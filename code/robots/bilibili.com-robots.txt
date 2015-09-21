@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /include/
+Disallow: /mylist/
+Disallow: /member/
+Disallow: /images/
+Disallow: /ass/
+Disallow: /getapi
+Disallow: /search
+Disallow: /account
+Disallow: /badlist.html
+Disallow: /m/

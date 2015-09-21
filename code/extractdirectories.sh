@@ -3,13 +3,14 @@
 echo ""
 echo "Extracting disallowed directories…"
 echo ""
-for robot in `ls /Users/daniel/Development/RobotsDisallowed/robots/*.txt`
+rm -f ./raw.txt
+for robot in `ls ./robots/*.txt`
 do
-    cat $robot | grep Disallow | cut -d " " -f2 >> /Users/daniel/Development/RobotsDisallowed/raw.txt
+    cat $robot | grep Disallow | cut -d " " -f2 >> raw.txt
 done
 
 # Cleanup
-sort raw.txt | uniq > DisallowedDirectories.txt
+sort ./raw.txt | uniq > ../DisallowedDirectories.txt
 echo ""
 echo "Complete."
 echo ""

@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="gbk" />
+<title>404 提示信息</title>
+<meta name="auther" content="F7 14093" />
+<style>
+/*  Reset  */
+html,body,div,span,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,cite,code,del,em,img,q,small,strong,sub,sup,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend { margin:0; padding:0; border:0; font-size:100%;}
+body { background:#fff; color:#000; font:12px simsun; text-align:center;}
+ol,ul { list-style:none;}
+cite,em,strong,th,h1,h2,h3,h4,h5,h6 { font-style:normal; font-weight:normal;}
+input,textarea,select,button,td { font-size:100%;}
+a { color:#000; text-decoration:none;}
+a:hover { color:#f00; text-decoration:underline;}
+
+/*  CMS Common title colors  */
+.title_default { }
+.title_black { color:black !important;}
+.title_red { color:red !important;}
+.title_blue { color:blue !important;}
+.title_green { color:green !important;}
+.title_brown { color:brown !important;}
+.title_gray { color:gray !important;}
+
+
+img { vertical-align:middle;}
+
+/**/
+.errorTop,
+.gohome,
+.news li { background-image:url("/error_page/img/error404_sprites.png");}
+
+/**/
+.errorTop { line-height:30px; height:30px; border-bottom:1px solid #ebebeb; background-repeat:repeat-x; background-position:100% 2px; background-color:#fff;}
+.errorTop-con { width:1000px; margin:auto; overflow:hidden;}
+.chinaHome { float:left;}
+.chinaPassport { float:right;}
+.chinaPassport a { padding-top:2px; padding-bottom:2px;}
+.icon-hua { background:url("/error_page/img/error404_ico_hua.png") no-repeat 0 0; padding-left:20px;}
+
+
+
+/**/
+.main { width:1000px; margin:auto;}
+.errorTitle { width:100%; overflow:hidden; padding:20px 0 10px;}
+.errorIcon { float:left; width:270px; text-align:center; font:bold 100px/150px "Microsoft YaHei"; color:#a4464f;}
+.errorTitle-right { margin-left:270px; _margin-left:267px; text-align:left; padding-top:20px;}
+.errorTitle-right h1 { font:bold 45px/80px "Microsoft YaHei"; color:#555;}
+.gohome { font:16px/24px "Microsoft YaHei"; color:#a4464f; padding-left:18px; background-repeat:no-repeat; background-position:0 -41px;}
+.gohome:hover { color:#ae00ff;}
+
+/**/
+.news { border:1px dashed #ccc; margin:30px 0;}
+.news ul { width:848px; margin:auto; padding:60px 0; overflow:hidden; text-align:left; background:url("/error_page/img/error404_news_line.png") no-repeat center center;}
+.news li { width:330px; float:left; _display:inline; margin:0 40px; padding-left:14px; font:14px/28px simsun; background-repeat:no-repeat; background-position:0 -88px;}
+.news a { color:#666;}
+.news a:hover { color:#c00;}
+
+/**/
+#about {background:#f7f7f7; border:1px solid #e4e4e4; margin:auto; padding:9px 0 8px; width:998px;}
+#about a {margin:0 10px;}
+</style>
+</head>
+
+<body>
+<div class="errorTop">
+  <div class="errorTop-con">
+    <div class="chinaHome"><a href="http://www.china.com/">中华网首页</a></div>
+    <div class="chinaPassport">
+      <a href="http://passport.china.com/logon.do?processID=register1">注册</a>
+      |
+      <a href="http://passport.china.com/" class="icon-hua">登录</a>
+    </div>
+  </div>
+</div>
+<div class="main">
+  <div class="errorTitle">
+    <div class="errorIcon">404</div>
+    <div class="errorTitle-right">
+      <h1>您访问的页面找不回来了！</h1>
+      <a href="/" class="gohome">返回首页</a>
+    </div>
+  </div>
+
+  <div class="news">
+    <ul id="error-news">您感兴趣的信息加载中...</ul>
+  </div>
+
+  <div id="about"><img src="/error_page/img/error404_logo_cdc.png" width="20" height="17"><a href="http://www.china.com/zh_cn/general/about.html" target="_blank">关于中华网</a>|<a href="http://www.china.com/zh_cn/general/gmg.html" target="_blank">关于国广控股</a>|<a href="http://www.china.com/zh_cn/general/advert.html" target="_blank">广告服务</a>|<a href="http://www.china.com/zh_cn/general/contact.html" target="_blank">联系我们</a>|<a href="http://www.china.com/zh_cn/general/job.html" target="_blank">招聘信息</a>|<a href="http://www.china.com/zh_cn/general/bqsm.html" target="_blank">版权声明</a>|<a href="http://www.china.com/zh_cn/general/legal.html" target="_blank">豁免条款</a>|<a href="http://www.china.com/zh_cn/general/links.html" target="_blank">友情链接</a>|<a href="http://www.china.com/zh_cn/general/news.html" target="_blank">中华网动态</a></div>
+</div>
+
+
+<script src="http://news.china.com/js/news_top.js"></script>
+<script>
+function setNewsList () {
+  var elem = document.getElementById("error-news"),
+      _html = '';
+
+  if ( typeof(rank_top) == "undefined" ) { return false };
+
+  for ( var i=0,l=rank_top.length; i<l; i++ ) {
+    if ( i >= 20 ) { break };
+    rank_top[i].title = rank_top[i].title.replace("(图)", '<span class="title_red">(图)</span>');
+    rank_top[i].title = rank_top[i].title.replace("(组图)", '<span class="title_blue">(组图)</span>');
+    _html += '<li><a href="'+ rank_top[i].location +'">'+ rank_top[i].title +'</a></li>';
+  };
+
+  elem.innerHTML = _html;
+};
+
+setNewsList();
+</script>
+</body>
+</html>

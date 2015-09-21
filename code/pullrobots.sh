@@ -1,4 +1,5 @@
 #!/bin/bash
+
 ##################################################
 # RobotsDisallowed
 # See the directories people don't want you to see
@@ -25,12 +26,10 @@ echo "Downloading the robots.txt file for each site…"
 echo ""
 for domain in `cat top1000.txt`
 do
-        curl -kLA "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10) AppleWebKit/600.1.25 (KHTML, like Gecko) Version/8.0 Safari/600.1.25" $domain/robots.txt > /Users/daniel/Development/RobotsDisallowed/robots/$domain-robots.txt
+        curl -kLA "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10) AppleWebKit/600.1.25 (KHTML, like Gecko) Version/8.0 Safari/600.1.25" $domain/robots.txt > ./robots/$domain-robots.txt
 done
 
-for robot in `ls ~/Development/RobotsDisallowed/robots`
+for robot in `ls ./robots/`
 do
     cat $robot | grep Disallow | cut -d " " -f2 >> /Users/daniel/Development/RobotsDisallowed/RobotsDisallowedDirectories.txt
 done
-
-
