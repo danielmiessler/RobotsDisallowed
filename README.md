@@ -9,6 +9,12 @@ It's like a list of places you're likely to find something interesting.
 
 So what we did is take the Alexa Top 1 Million Websites, download their robots.txt files, and then performed a bunch of cleanup on them (they are a mess) to make the list practical in web assessments.
 
+## How to use it
+
+You use the project by coming to the root and downloading the DisallowedDirectories files there. You can then plug them into your favorite web assessment tool/function, e.g., Burp Intruder.
+
+If you want to see how the output is created, enter the 'Code' directory. There you can get the raw Alexa site list, the scripts that are used to download and manipulate the robots.txt files, etc.
+
 ## Credit
 
 This concept is not new. The RAFT project was the first to do this, but the project is now dead and gone. And since the concept works best when it's kept up-to-date, we decided to give it a refresh in the form of RobotsDisallowed.
