@@ -10,7 +10,4 @@ do
 done
 
 # Cleanup
-sort ./raw.txt | uniq > ../DisallowedDirectories.txt
-echo ""
-echo "Complete."
-echo ""
+./cleanup.sh
