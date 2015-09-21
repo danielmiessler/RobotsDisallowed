@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /1060150/
+Disallow: /pocketpc/
