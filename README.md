@@ -19,6 +19,16 @@ If you want to see how the output is created, enter the 'Code' directory. There 
 
 This concept is not new. The RAFT project was the first to do this, but the project is now dead and gone. And since the concept works best when it's kept up-to-date, we decided to give it a refresh in the form of RobotsDisallowed.
 
+## Next steps
+
+There are lots of things we want to do with this:
+
+1. Write a cleanup script that prunes the least likely hits
+2. Complete all one million sites
+3. Create individual lists for the top 10, top 100, top 1000 directories, etc. So if you're pushed for time you can use one of the condensed versions.
+
+More ideas welcome!
+
 ### Leaders
 
 It's harder than it looks to make the list both comprehensive and usable. People tend to have some pretty silly stuff in their robots.txt files, and many of the entries are only useful for one site.
