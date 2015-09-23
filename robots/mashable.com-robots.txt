@@ -1,0 +1,29 @@
+User-agent: *
+Disallow: /adcentric
+Disallow: /adinterax
+Disallow: /atlas
+Disallow: /doubleclick
+Disallow: /eyereturn
+Disallow: /eyewonder
+Disallow: /klipmart
+Disallow: /pointroll
+Disallow: /smartadserver
+Disallow: /unicast
+Disallow: /viewpoint
+Disallow: /addineyeV2.html
+Disallow: /canvas.html
+Disallow: /DARTIframe.html
+Disallow: /interim.html
+Disallow: /oggiPlayerLoader.htm
+Disallow: /videoeggbackup.html
+Disallow: /search/
+
+Disallow: /facebook_xd_receiver.html
+Disallow: /readme.html
+Disallow: /rpc_relay.html
+Disallow: /twitterlists/
+Disallow: /wp-content/plugins/
+Disallow: /wp-content/themes/
+
+Sitemap: http://mashable.com/sitemap.xml
+Sitemap: http://mashable.com/sitemap-news.xmlo

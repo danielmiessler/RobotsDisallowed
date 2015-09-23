@@ -7,29 +7,100 @@
 #  websites and enumerates what's disallowed
 ##################################################
 
-# Get the current list of Alexa sites (Updated daily)
+# Variables
+DATE=`date +%d.%m.%y`
+NOS=$1
+
+# Input management
+if [ "$#" -ne 1 ] ; then
+    echo "Usage: ./pullrobots (number between 1-1000)" >&2
+        exit 1
+    fi
+
+if [[ $NOS =~ ^[0-9]+$ ]]; then
+    sleep .1
+    else
+        echo "Usage: ./pullrobots (number between 1-1000)" >&2
+            exit 1
+        fi
+
+#Get the current list of Alexa sites (Updated daily)
 echo ""
 echo "Downloading the top websites file…"
 echo ""
-curl http://s3.amazonaws.com/alexa-static/top-1m.csv.zip > top-1m.csv.zip
-unzip -o top-1m.csv.zip
-rm top-1m.csv.zip
-sed 's/.*,//g' top-1m.csv > nonumbers.csv
-sed 's/,//g' nonumbers.csv > domains.txt
+curl http://s3.amazonaws.com/alexa-static/top-1m.csv.zip > $DATE-Top1MillionSites.csv.zip
+unzip -o $DATE-Top1MillionSites.csv.zip
+rm *.zip
+
+# Create pure domain file
+sed 's/.*,//g' top-1m.csv > tocomma.csv
+sed 's/,//g' tocomma.csv > domains.txt
 
 # Take a certain number of them to work on
-head -n 1000 domains.txt > top1000.txt
+head -n $NOS domains.txt > $DATE-top$NOS-domains.txt
 
 # Pull the robots.txt file from each
 echo ""
 echo "Downloading the robots.txt file for each site…"
 echo ""
-for domain in `cat top1000.txt`
+
+# Setup
+mkdir -p ./robots
+
+# Epic Bash Multithreading, by Brade Wolfe
+for domain in `cat $DATE-top$NOS-domains.txt`
 do
-        curl -kLA "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10) AppleWebKit/600.1.25 (KHTML, like Gecko) Version/8.0 Safari/600.1.25" $domain/robots.txt > ./robots/$domain-robots.txt
+	echo "Attempting to pull robots.txt for $domain"
+	curl -skLA "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10) AppleWebKit/600.1.25 (KHTML, like Gecko) Version/8.0 Safari/600.1.25" -m 30 $domain/robots.txt > ./robots/$domain-robots.txt &
+
+	while (( $(jobs | wc -l) >= 256 )); do
+		sleep 0.1
+		jobs > /dev/null
+	done
 done
 
+while (( $(jobs | wc -l) >= 1 )); do
+	sleep 0.1; jobs > /dev/null
+done
+
+# Extract Disallowed entries from the robots.txt files
 for robot in `ls ./robots/`
 do
-    cat $robot | grep Disallow | cut -d " " -f2 >> /Users/daniel/Development/RobotsDisallowed/RobotsDisallowedDirectories.txt
+    cat ./robots/$robot | grep Disallow | cut -d " " -f2 >> ./raw.txt
 done
+
+# Cleanup junk characters, and make sure directories start with a /
+sed -i '' '/^\//!d' ./raw.txt
+sed -i '' '/:/d' ./raw.txt
+sed -i '' '/%/d' ./raw.txt
+sed -i '' '/-/d' ./raw.txt
+sed -i '' '/,/d' ./raw.txt
+sed -i '' '/_/d' ./raw.txt
+sed -i '' '/?/d' ./raw.txt
+sed -i '' '/*/d' ./raw.txt
+sed -i '' '/;/d' ./raw.txt
+tr -d '\r' < ./raw.txt > ./sanitized.txt
+
+# Sorting
+sort ./sanitized.txt | uniq -c | sort -nr > ./sorted.txt
+
+# Grouping the top hits
+head -n 10 ./sorted.txt | awk '{print $2}' > ../Top10-RobotsDisallowed.txt
+head -n 100 ./sorted.txt | awk '{print $2}' > ../Top100-RobotsDisallowed.txt
+head -n 500 ./sorted.txt | awk '{print $2}' > ../Top500-RobotsDisallowed.txt
+head -n 1000 ./sorted.txt | awk '{print $2}' > ../Top1000-RobotsDisallowed.txt
+
+# Cleanup temporary files
+rm ./domains.txt
+rm ./tocomma.csv
+rm ./22*
+rm ./raw.txt
+rm ./sorted.txt
+rm ./top-1m.csv
+rm ./sanitized.txt
+
+# Output
+
+echo ""
+echo "Complete…"
+echo ""
