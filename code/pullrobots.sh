@@ -12,7 +12,7 @@
 DATE=`date +%d.%m.%y`
 NOS=$1
 export LANG=C
-export LANG=C
+export LC_ALL=C
 
 # Input management
 if [ "$#" -ne 1 ] ; then
