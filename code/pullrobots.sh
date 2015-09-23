@@ -93,7 +93,7 @@ head -n 10000 ./sorted.txt | awk '{print $2}' > ../Top10000-RobotsDisallowed.txt
 head -n 100000 ./sorted.txt | awk '{print $2}' > ../Top100000-RobotsDisallowed.txt
 
 # Output
-
 echo ""
-echo "Complete…"
+echo "Process completed!"
+echo "The RobotsDisallowed files have been created in the root of the project."
 echo ""
