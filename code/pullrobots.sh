@@ -92,6 +92,13 @@ head -n 1000 ./sorted.txt | awk '{print $2}' > ../Top1000-RobotsDisallowed.txt
 head -n 10000 ./sorted.txt | awk '{print $2}' > ../Top10000-RobotsDisallowed.txt
 head -n 100000 ./sorted.txt | awk '{print $2}' > ../Top100000-RobotsDisallowed.txt
 
+# Create the interesting list
+rm ../InterestingDirectories.txt
+grep -i user ../Top100000-RobotsDisallowed.txt >> ../InterestingDirectories.txt
+grep -i pass ../Top100000-RobotsDisallowed.txt >> ../InterestingDirectories.txt
+grep -i secret ../Top100000-RobotsDisallowed.txt >> ../InterestingDirectories.txt
+grep -i code ../Top100000-RobotsDisallowed.txt >> ../InterestingDirectories.txt
+
 # Output
 echo ""
 echo "Process completed!"
