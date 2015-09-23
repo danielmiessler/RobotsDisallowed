@@ -39,4 +39,9 @@ The leaders are myself (Daniel Miessler) and Jason Haddix. If you'd like to help
 
 Thanks!
 
+### Credits
 
+It's important to us to thank people when they help out with the project.
+
+- Brad Wolfe for donating the epic Bash Multithreading code (yes, you heard that right)
+- YOURNAMEHERE
