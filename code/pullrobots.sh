@@ -67,6 +67,7 @@ if [[ $NOS =~ ^[0-9]+$ ]]; then
 #done
 
 # Extract Disallowed entries from the robots.txt files
+rm ./raw.txt
 find ./robots -name "*.txt" | xargs grep Disallow | awk '{ print $2 }' >> ./raw.txt
 
 # Cleanup junk characters, and make sure directories start with a /
