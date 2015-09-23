@@ -7,7 +7,7 @@ It's like a list of places you're likely to find something interesting.
 
 ## The project
 
-So what we did is take the Alexa Top 1 Million Websites, download their robots.txt files, and then performed a bunch of cleanup on them (they are a mess) to make the list practical in web assessments.
+So what we did is take the Alexa Top 100,000 websites, download their robots.txt files, and then performed a bunch of cleanup on them (they are a mess) to make the list practical in web assessments.
 
 ## How to use it
 
