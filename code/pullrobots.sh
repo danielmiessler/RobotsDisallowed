@@ -70,16 +70,16 @@ if [[ $NOS =~ ^[0-9]+$ ]]; then
 find ./robots -name "*.txt" | xargs grep Disallow | awk '{ print $2 }' >> ./raw.txt
 
 # Cleanup junk characters, and make sure directories start with a /
-LANG=C LC_ALL=C sed -i '' '/^\//!d' ./raw.txt
-LANG=C LC_ALL=C sed -i '' '/:/d' ./raw.txt
-LANG=C LC_ALL=C sed -i '' '/%/d' ./raw.txt
-LANG=C LC_ALL=C sed -i '' '/-/d' ./raw.txt
-LANG=C LC_ALL=C sed -i '' '/,/d' ./raw.txt
-LANG=C LC_ALL=C sed -i '' '/_/d' ./raw.txt
-LANG=C LC_ALL=C sed -i '' '/?/d' ./raw.txt
-LANG=C LC_ALL=C sed -i '' '/*/d' ./raw.txt
-LANG=C LC_ALL=C sed -i '' '/;/d' ./raw.txt
-LANG=C LC_ALL=C tr -d '\r' < ./raw.txt > ./sanitized.txt
+sed -i '' '/^\//!d' ./raw.txt
+sed -i '' '/:/d' ./raw.txt
+sed -i '' '/%/d' ./raw.txt
+sed -i '' '/-/d' ./raw.txt
+sed -i '' '/,/d' ./raw.txt
+sed -i '' '/_/d' ./raw.txt
+sed -i '' '/?/d' ./raw.txt
+sed -i '' '/*/d' ./raw.txt
+sed -i '' '/;/d' ./raw.txt
+tr -d '\r' < ./raw.txt > ./sanitized.txt
 
 # Sorting
 sort ./sanitized.txt | LANG=C LC_ALL=C uniq -c | sort -nr > ./sorted.txt
