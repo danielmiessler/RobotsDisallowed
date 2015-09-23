@@ -92,12 +92,6 @@ head -n 1000 ./sorted.txt | awk '{print $2}' > ../Top1000-RobotsDisallowed.txt
 head -n 10000 ./sorted.txt | awk '{print $2}' > ../Top10000-RobotsDisallowed.txt
 head -n 100000 ./sorted.txt | awk '{print $2}' > ../Top100000-RobotsDisallowed.txt
 
-# Cleanup temporary files
-#rm ./domains.txt
-#rm ./raw.txt
-rm ./sorted.txt
-rm ./sanitized.txt
-
 # Output
 
 echo ""
