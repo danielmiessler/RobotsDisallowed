@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /administrator/
+Disallow: /manager/
+Disallow: /partner/
+Disallow: /sysinfo/

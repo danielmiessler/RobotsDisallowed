@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<html lang="en-US" class="no-touch"><head>
+<script>
+/* declare SC namespace here and the LOAD_FILEs objects*/
+var SC = window.SC = {
+    ENVIRONMENT: {
+        jsEnvironment: (typeof nsglobal === 'undefined') ? 'browser' : 'server'
+    }
+,   isCrossOrigin: function()
+    {
+        return 'www.varidesk.com' !== document.location.hostname;
+    }
+,   isPageGenerator: function()
+    {
+        return typeof nsglobal !== 'undefined';
+    }
+,   getSessionInfo: function(key)
+    {
+        var session = SC.SESSION || SC.DEFAULT_SESSION || {};
+        return (key) ? session[key] : session;
+    }
+,   keepInTheSite: true
+};
+
+if (!history.pushState && SC.ENVIRONMENT.jsEnvironment === 'browser' && (location.pathname !== "/" || location.search !== "") && location.hash === '')
+{
+    if (location.pathname === "/")
+    {
+        var hash = (RegExp('fragment=' + '(.+?)(&|$)').exec(location.search)||[,null])[1];
+        location.replace(location.pathname + location.search + '/#' + unescape(hash));
+    }
+    else
+    {
+        location.replace('/#' + location.pathname + location.search);
+    }
+
+    document.write("");
+}
+
+</script>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="google-site-verification" content="x0DAHR1efIuTwOKwI9yBk_FdaA0IwKV5LxPXeujIeRo"/>
+<meta name="msvalidate.01" content="E23D13A46AFCEA113E6D33CAE0576318"/>
+<title>Height-Adjustable Standing Desks | VARIDESK</title>
+<link rel="icon" type="image/x-icon" href="http://www.varidesk.com/c.3973550/shopflow/images/favicon.ico"/>
+<script>
+
+/* if not in SEO we execute the html5 shiv. This code is copy and paste but characters '' were replaced with '\' because of the SSP renderer */
+if (!SC.isPageGenerator())
+{
+    /**
+    * @preserve HTML5 Shiv 3.7.1 | @afarkas @jdalton @jon_neal @rem | MIT/GPL2 Licensed
+    */
+    !function(a,b){function c(a,b){var c=a.createElement("p"),d=a.getElementsByTagName("head")[0]||a.documentElement;return c.innerHTML="x<style>"+b+"</style>",d.insertBefore(c.lastChild,d.firstChild)}function d(){var a=s.elements;return"string"==typeof a?a.split(" "):a}function e(a){var b=r[a[p]];return b||(b={},q++,a[p]=q,r[q]=b),b}function f(a,c,d){if(c||(c=b),k)return c.createElement(a);d||(d=e(c));var f;return f=d.cache[a]?d.cache[a].cloneNode():o.test(a)?(d.cache[a]=d.createElem(a)).cloneNode():d.createElem(a),!f.canHaveChildren||n.test(a)||f.tagUrn?f:d.frag.appendChild(f)}function g(a,c){if(a||(a=b),k)return a.createDocumentFragment();c=c||e(a);for(var f=c.frag.cloneNode(),g=0,h=d(),i=h.length;i>g;g++)f.createElement(h[g]);return f}function h(a,b){b.cache||(b.cache={},b.createElem=a.createElement,b.createFrag=a.createDocumentFragment,b.frag=b.createFrag()),a.createElement=function(c){return s.shivMethods?f(c,a,b):b.createElem(c)},a.createDocumentFragment=Function("h,f","return function(){var n=f.cloneNode(),c=n.createElement;h.shivMethods&&("+d().join().replace(/[\w\-:]+/g,function(a){return b.createElem(a),b.frag.createElement(a),'c("'+a+'")'})+");return n}")(s,b.frag)}function i(a){a||(a=b);var d=e(a);return!s.shivCSS||j||d.hasCSS||(d.hasCSS=!!c(a,"article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}template{display:none}")),k||h(a,d),a}var j,k,l="3.7.1",m=a.html5||{},n=/^<|^(?:button|map|select|textarea|object|iframe|option|optgroup)$/i,o=/^(?:a|b|code|div|fieldset|h1|h2|h3|h4|h5|h6|i|label|li|ol|p|q|span|strong|style|table|tbody|td|th|tr|ul)$/i,p="_html5shiv",q=0,r={};!function(){try{var a=b.createElement("a");a.innerHTML="<xyz></xyz>",j="hidden"in a,k=1==a.childNodes.length||function(){b.createElement("a");var a=b.createDocumentFragment();return"undefined"==typeof a.cloneNode||"undefined"==typeof a.createDocumentFragment||"undefined"==typeof a.createElement}()}catch(c){j=!0,k=!0}}();var s={elements:m.elements||"abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output picture progress section summary template time video",version:l,shivCSS:m.shivCSS!==!1,supportsUnknownElements:k,shivMethods:m.shivMethods!==!1,type:"default",shivDocument:i,createElement:f,createDocumentFragment:g};a.html5=s,i(b)}(this,document);
+}
+
+/* Define a function to load scripts at runtime, in the given order. Supports the SEO engne and older browsers. The script can be removed of the generated html by the server seo, please see Starter.js. */
+(function(){
+    var pendingScripts = []
+    ,   firstScriptTag = !SC.isPageGenerator() && document.getElementsByTagName('script')[0];//document.scripts[0] gives an ugly error in SEO ENGINE and is not used on it.
+
+    window.loadScript = function loadScript(scripts)
+    {
+        var src
+        ,   script;
+
+        var typeof_scripts = typeof scripts;
+        scripts = (typeof_scripts === 'string' || (typeof_scripts === 'object' && !scripts.length)) ? [scripts] : scripts;
+
+        // loop through our script urls
+        if (!SC.isCrossOrigin())
+        {
+            while (src = scripts.shift())
+            {
+                src = (typeof src === 'string') ? {url: src} : src;
+
+                // fall back to defer. This is the SEO Engine case too
+                if (SC.isPageGenerator())
+                {
+                    script = document.createElement('script');
+                    script.src = src.url;
+                    script.type = 'text/javascript';
+                    var seo_remove_element = document.createElement('div');
+                    seo_remove_element.className = 'seo-remove';
+                    seo_remove_element.appendChild(script);
+                    document.write(seo_remove_element.outerHTML);
+                }
+                // CASE 1: test for the ASYNC property on browsers
+                else if ('async' in firstScriptTag)
+                {
+                    script = document.createElement('script');
+                    script.async = !!src.async; //Should manage both async and sync
+                    script.src = src.url;
+                    script.type = 'text/javascript';
+                    firstScriptTag.parentNode.insertBefore(script, firstScriptTag);
+                }
+                //CASE 2: Test for the readystate. IE<10
+                else if (firstScriptTag.readyState)
+                {
+                    // create a script and add it to our todo pile
+                    script = document.createElement('script');
+                    script.type = 'text/javascript';
+                    script.async = !!src.async;
+                    //IF script is not meant to load 100% async
+                    if (!src.async)
+                    {
+                        // listen for state changes
+                        pendingScripts.push(script);
+                        // must set src AFTER adding onreadystatechange listener
+                        script.onreadystatechange = function()
+                        {
+                            // Watch scripts load in IE
+                            // Execute as many scripts in order as we can
+                            var pendingScript;
+                            while (pendingScripts[0] && pendingScripts[0].readyState == 'loaded')
+                            {
+                                pendingScript = pendingScripts.shift();
+                                // avoid future loading events from this script (eg, if src changes)
+                                pendingScript.onreadystatechange = null;
+                                // can't just appendChild, old IE bug if element isn't closed
+                                firstScriptTag.parentNode.insertBefore(pendingScript, firstScriptTag);
+                            }
+                        };
+                        // else we’ll miss the loaded event for cached scripts
+                    }
+                    script.src = src.url;
+                    if (src.async)
+                    {
+                        //ASYNC IE, append now
+                        firstScriptTag.parentNode.insertBefore(script, firstScriptTag);
+                    }
+                }
+                else
+                {
+                    //Fallback browser
+                    if (src.async)
+                    {
+                        script = document.createElement('script');
+                        script.src = src.url;
+                        script.type = 'text/javascript';
+                        firstScriptTag.parentNode.insertBefore(script, firstScriptTag);
+                    }
+                    else
+                    {
+                        document.write('<script src="' + src.url + '" defer></' + 'script>');
+                    }
+                }
+            }
+        }
+    }
+})();
+
+/* create link rel dns-prefetch and prefetch so main browsers can prefetch the dns of checkout domain. */
+if (!SC.isPageGenerator())
+{
+    
+    var prefetch_url = 'https://checkout.varidesk.com';
+    document.write('<link rel="dns-prefetch" href="' + prefetch_url + '">');
+}
+</script>
+
+<link rel="canonical" href="http://www.varidesk.com/"/><meta name="keywords" content="standing desks, height adjustable standing desks, standing workstations,  stand up desks, standup desks, sit to stand desks, sit stand desks, varidesk, veridesk, vari desk, versadesk, varidesk pro, varidesk pro plus,  laptop 30, pro desk 54, cube corner 48, cube plus 48, pro 48, standing desk mat, pro plus 48, pro plus 36, pro plus 30, pro 36, pro 30, varidesk laptop 30, varidesk pro desk 54, varidesk cube corner 48, varidesk cube plus 48, varidesk pro 48, varidesk standing desk mat, varidesk pro plus 48, varidesk pro plus 36, varidesk pro plus 30, varidesk pro 36, varidesk pro 30"/><meta name="description" content="The VARIDESK® is an adjustable-height standing desk that allows you to easily switch between standing and sitting while working. Change the way you work!"/><contentu00003du000022q8xshg3c4efcbmtama-cu2cih4muvs1rs7brfauntvwu000022 meta="" name="google-site-verification" content="q8Xshg3c4EFcBMTAmA-CU2CIh4mUVs1rs7brFaUnTvw"></contentu00003du000022q8xshg3c4efcbmtama-cu2cih4muvs1rs7brfauntvwu000022><contentu00003du000022q8xshg3c4efcbmtama-cu2cih4muvs1rs7brfauntvwu000022 meta="" name="google-site-verification" content="q8Xshg3c4EFcBMTAmA-CU2CIh4mUVs1rs7brFaUnTvw"></contentu00003du000022q8xshg3c4efcbmtama-cu2cih4muvs1rs7brfauntvwu000022></head>
+
+<body class="seo-support">
+
+<div id="scripts-placeholder"></div>
+
+<noscript>
+    <div class="container">
+        <div class="alert alert-error alert-noscript">
+            <strong>Javascript is disabled on your browser.</strong><br/>
+            To view this site, you must enable JavaScript or upgrade to a JavaScript-capable browser.
+        </div>
+    </div>
+</noscript>
+
+<div id="main" class="main"><div><div id="layout" class="layout region-"><header id="site-header" class="site-header"><div class="container"><div data-type="message-placeholder"></div><div class="site-branding pull-left"><div id="site-logo" class="site-logo content-banner"><a href="/" data-touchpoint="home" data-hashtag="#"><noscript><img src="/assets/images/logo.png" alt="Varidesk"/></noscript></a><span class="sub-logo">THE HEIGHT-ADJUSTABLE STANDING DESK</span></div></div><a class="show-search hide"><i class="icon icon-search icon-white"></i></a><div class="navbar navbar-inverse mobile-nav"><div class="navbar-inner"><div class="container"><a href="#" data-touchpoint="home" data-hashtag="#cart" class="mini-cart-summary-mobile"><i class="icon-mobile-cart"></i></a><a href="#" class="btn btn-navbar" data-toggle="collapse" data-target=".main-nav"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a></div></div></div><nav class="navbar collapse visible-phone main-nav site-header-main-nav"><div class="navbar-inner"><ul class="nav" id="mobile-site-header-main-nav"><li><a class="show-dropdown-menu" data-menu="#shop-dropdown" href="/search" data-touchpoint="home" data-hashtag="#search" data-keep-options="display"><span>Shop</span></a></li><li class="dropdown"><a href="/about-varidesk" class="show-dropdown-menu" data-menu="#sales-dropdown" target="_blank" data-touchpoint="home" data-hashtag="#about-varidesk" data-keep-options="display"><span>About</span></a><ul class="dropdown-menu"><li><a href="/varidesk-series" data-touchpoint="home" data-hashtag="#varidesk-series"><span>About the Series</span></a></li><li><a href="/faq" data-touchpoint="home" data-hashtag="#faq"><span>FAQ</span></a></li><li><a href="/social" data-touchpoint="home" data-hashtag="#social"><span>Social Media</span></a></li><li><a href="/news" data-touchpoint="home" data-hashtag="#news"><span>News</span></a></li></ul></li><li class="dropdown"><a href="/corporate-sales" class="show-dropdown-menu" data-menu="#sales-dropdown" data-touchpoint="home" data-hashtag="#corporate-sales" data-keep-options="display"><span>Corporate Sales</span></a><ul class="dropdown-menu"><li><a href="/shipping-policy" data-touchpoint="home" data-hashtag="#shipping-policy"><span>Shipping Policy</span></a></li><li><a href="/terms-and-conditions" data-touchpoint="home" data-hashtag="#terms-and-conditions"><span>Terms and Conditions</span></a></li></ul></li><li><a href="/varidesk-standing-desk-companion-application" class="download-tab" data-touchpoint="home" data-hashtag="#varidesk-standing-desk-companion-application"><span>Download The App</span></a></li></ul><ul class="nav mobile-profile"><li><a href="#" class="dropdown-toggle" data-toggle="dropdown" data-touchpoint="customercenter"><span class="my-account-title">Your Account</span></a></li></ul></div></nav><nav class="navbar hidden-phone main-nav site-header-main-nav pull-left"><div class="navbar-inner"><ul class="nav" id="desktoptablet-site-header-main-nav"><li class="dropdown"><a class="show-dropdown-menu" data-menu="#shop-dropdown" href="/search" data-touchpoint="home" data-hashtag="#search" data-keep-options="display"><span>Shop</span></a><ul class="unstyled"><li><div class="category-dropdown-menu shop-dropdown" id="shop-dropdown"><div class="container"><div class="shop-dropdown-content" id="shop-dropdown-content"><center><h2>How Many Monitors Do You Have?</h2></center><div class="row-fluid" title="NORTH AMERICA"><div class="span2"><a href="/series/Compact-Series" data-touchpoint="home" data-hashtag="#series/Compact-Series"><noscript><img src="/assets/images/content/navigation/nav-test/nav-test-laptop-only.jpg"/></noscript></a><ul><li><a href="/laptop-standing-desk-VARIDESK-for-laptop" data-touchpoint="home" data-hashtag="#laptop-standing-desk-VARIDESK-for-laptop">VARIDESK for Laptop</a></li><li><a href="/compact-standing-desk-laptop-30" data-touchpoint="home" data-hashtag="#compact-standing-desk-laptop-30">Laptop 30</a></li></ul></div><div class="span2"><a href="/number_of_monitors/One" data-touchpoint="home" data-hashtag="#number_of_monitors/One"><noscript><img src="/assets/images/content/navigation/nav-test/nav-test-one-monitor.jpg"/></noscript></a><ul><li><a href="/standing-desk-pro-30" data-touchpoint="home" data-hashtag="#standing-desk-pro-30">Pro 30</a></li><li><a href="/standing-desk-pro-plus-30" data-touchpoint="home" data-hashtag="#standing-desk-pro-plus-30">Pro Plus 30</a></li></ul></div><div class="span2"><a href="/number_of_monitors/Two" data-touchpoint="home" data-hashtag="#number_of_monitors/Two"><noscript><img src="/assets/images/content/navigation/nav-test/nav-test-two-monitors.jpg"/></noscript></a><ul><li><a href="/standing-desk-pro-plus-36" data-touchpoint="home" data-hashtag="#standing-desk-pro-plus-36">Pro Plus 36</a></li><li><a href="/standing-desk-pro-plus-36-white" data-touchpoint="home" data-hashtag="#standing-desk-pro-plus-36-white">Pro Plus 36 White</a></li><li><a href="/cubicle-standing-desk-cube-corner-48" data-touchpoint="home" data-hashtag="#cubicle-standing-desk-cube-corner-48">Cube Corner 48</a></li><li><a href="/cubicle-standing-desk-cube-corner-48-white" data-touchpoint="home" data-hashtag="#cubicle-standing-desk-cube-corner-48-white">Cube Corner 48 White</a></li><li><a href="/standing-desk-pro-36" data-touchpoint="home" data-hashtag="#standing-desk-pro-36">Pro 36</a></li></ul></div><div class="span2"><a href="/number_of_monitors/Two" data-touchpoint="home" data-hashtag="#/number_of_monitors/Two"><noscript><img src="/assets/images/content/navigation/nav-test/nav-test-laptop-monitor.jpg"/></noscript></a><ul><li><a href="/standing-desk-pro-plus-36" data-touchpoint="home" data-hashtag="#standing-desk-pro-plus-36">Pro Plus 36</a></li><li><a href="/standing-desk-pro-plus-36-white" data-touchpoint="home" data-hashtag="#standing-desk-pro-plus-36-white">Pro Plus 36 White</a></li><li><a href="/standing-desk-pro-36" data-touchpoint="home" data-hashtag="#standing-desk-pro-36">Pro 36</a></li></ul></div><div class="span2"><a href="/number_of_monitors/More-than-Two" data-touchpoint="home" data-hashtag="#number_of_monitors/More-than-Two"><noscript><img src="/assets/images/content/navigation/nav-test/nav-test-2-plus-monitors.jpg"/></noscript></a><ul><li><a href="/standing-desk-pro-48" data-touchpoint="home" data-hashtag="#standing-desk-pro-48">Pro 48</a></li><li><a href="/standing-desk-pro-plus-48" data-touchpoint="home" data-hashtag="#standing-desk-pro-plus-48">Pro Plus 48</a></li><li><a href="/standing-desk-pro-plus-48-white" data-touchpoint="home" data-hashtag="#standing-desk-pro-plus-48-white">Pro Plus 48 White</a></li><li><a href="/cubicle-standing-desk-cube-plus-48" data-touchpoint="home" data-hashtag="cubicle-standing-desk-cube-plus-48">Cube Plus 48</a></li><li><a href="/standing-desk-pro-desk-54" data-touchpoint="home" data-hashtag="#standing-desk-pro-desk-54">Pro Desk 54</a></li></ul></div><div class="span2"><a href="/series/Accessories" data-touchpoint="home" data-hashtag="#series/Accessories"><noscript><img src="/assets/images/content/navigation/nav-test/nav-test-accessories.jpg"/></noscript></a><ul><li><a href="/antifatigue-mat" data-touchpoint="home" data-hashtag="#antifatigue-mat">Mat 34</a></li><li><a href="/antifatigue-mat-36" data-touchpoint="home" data-hashtag="#antifatigue-mat-36">Mat 36</a></li></ul></div></div></div></div></div></li></ul></li><li class="dropdown"><a href="/about-varidesk" class="show-dropdown-menu" data-menu="#sales-dropdown" data-hashtag="#about-varidesk" data-touchpoint="home" data-keep-options="display"><span>About</span></a><ul class="dropdown-menu"><li><a href="/varidesk-series" data-hashtag="#varidesk-series" data-touchpoint="home" title="About the Varidesk Series"><span>About the Series</span></a></li><li><a href="/faq" data-hashtag="#faq" data-touchpoint="home"><span>FAQ</span></a></li><li><a href="/social" data-hashtag="#social" data-touchpoint="home"><span>Social Media</span></a></li><li><a href="/news" data-hashtag="#news" data-touchpoint="home"><span>News</span></a></li></ul></li><li class="dropdown"><a href="/corporate-sales" class="show-dropdown-menu" data-menu="#sales-dropdown" data-touchpoint="home" data-keep-options="display"><span>Corporate Sales</span></a></li><li class="dropdown"><a href="/contacts" class="show-dropdown-menu" data-menu="#contact-dropdown" data-touchpoint="home" data-keep-options="display"><span>Contact</span></a><ul class="dropdown-menu"><li><a href="/shipping-policy"><span>Shipping Policy</span></a></li><li><a href="/terms-and-conditions"><span>Terms and Conditions</span></a></li></ul></li><li class="dropdown"><a href="/varidesk-standing-desk-companion-application" class="download-tab" data-touchpoint="home"><span>Download The App</span></a></li></ul></div></nav><ul class="nav customer-site-settings"><li id="region-selector-container" class="region-selector-container"><form action="" class="navbar-form"><div class="input-prepend"><span class="region-name-custom"> Shipping Region: </span><select data-toggle="region-selector" class="input-medium"><option value="us" selected=""> United States </option><option value="eu"> Europe </option><option value="au"> Australia </option><option value="sk"> South Korea </option><option value="uk"> United Kingdom </option><option value="ca"> Canada </option><option value="nz"> New Zealand </option></select></div></form></li></ul><nav class="navbar navbar-inverse navbar-static-top site-header-top-nav"><div class="navbar-inner"><div class="pull-right"><ul class="contact-nav unstyled pull-right"><li><a href="/contacts" data-menu="#contacts" data-hashtag="#contacts" data-touchpoint="home">Contact Us</a></li><li class="chat-bubble"><a href="#" onclick="this.newWindow = window.open(&apos;http://c.velaro.com/visitor/requestchat.aspx?siteid=14028&amp;showwhen=inqueue&amp;deptid=29529&apos;, &apos;LiveChatSoftware&apos;, &apos;toolbar=no,location=no,directories=no,menubar=no,status=no,scrollbars=no,resizable=yes,replace=no&apos;);this.newWindow.focus();this.newWindow.opener=window;return false;"> Click to Chat</a></li></ul><ul class="nav pull-right step-down "><li id="mini-cart-container" class="dropdown mini-cart-container"><span href="#"><a href="/cart" data-touchpoint="home" data-hashtag="#cart"><i class="icon-shopping-cart-custom"></i><span class="item-count loading"> Loading cart... </span></a><span class="checkout-btn"><a href="#" data-touchpoint="checkout" data-hashtag="#">Checkout</a></span></span><div class="dropdown-menu"><ul class="items mini-cart-empty"><li><a href="#" data-touchpoint="home" data-hashtag="#cart"> Your cart is loading </a></li></ul></div></li><li><a href="#" data-touchpoint="login" data-hashtag="login-register">Login</a></li><li class="divider-vertical"></li><li><a href="#" data-touchpoint="register" data-hashtag="login-register">Register</a></li><li id="search-open"><a href="#" class="collapsed" data-toggle="collapse" data-target="#search-coll"><i class="icon icon-search-custom"></i></a></li></ul></div></div></nav><div class="search-wrapp"><div id="site-search-container" class="span3 site-search-container"><form class="form-search site-search collapse" id="search-coll" method="GET" action="/search"><div class="input-append"><input class="input-medium search-query" placeholder="Search" type="search" name="keywords" autocomplete="off" maxlength="40"/><button type="submit" class="btn"><i class="icon-search"></i></button></div></form></div></div></div></header><div id="banner-section-top" class="content-banner banner-section-top"></div><div id="content" class="content"><div id="home-page" class="home-page"><section><div id="home-slider-container" class="slidercont hidden-phone"><ul class="bxslider homeslidercont"><li><a href="/laptop-standing-desk-VARIDESK-for-laptop"><noscript><img src="/assets/images/content/rotators/desktop/english/rotators-laptop-for-varidesk-rotator.jpg" alt="standing desk for laptop"/></noscript></a></li><li><a data-toggle="modal" data-target="#myModal"><noscript><img src="/assets/images/content/Video_Rotator_Final_v02.jpg" alt="video popup"/></noscript></a></li><li><a href="/search"><noscript><img src="/assets/images/content/rotators/desktop/english/rotators-simple-height-adjustable-standing-desk.jpg" alt="Adjustable Height Standing Desk"/></noscript></a></li></ul></div><div id="mobile-home-slider-container" class="slidercont hidden-desktop hidden-tablet"><ul class="bxslider homeslidercont"><li><noscript><img src="/assets/images/content/rotators/mobile/rotators-pro-plus-series-mobile.jpg" alt="Slide"/></noscript></li><li><noscript><img src="/assets/images/content/rotators/mobile/rotators-cube-corner-mobile.jpg" alt="Slide"/></noscript></li><li><noscript><img src="/assets/images/content/rotators/mobile/rotators-simple-height-adjustable-mobile.jpg" alt="Slide"/></noscript></li></ul></div><div class="container"><div class="full-gradient-home merchandising"><div id="home-merchandising" class="home-merchandising container" data-type="merchandising-zone" data-id="home-merchandising"> <ASIDE><DIV class="row-fluid"><DIV class="row-fluid"><DIV class="span4"><DIV class="item-cell item-cell-grid"><DIV class="item-info"><H5 class="span8"><A href="/standing-desk-pro-plus-36" class="item-cell-name"> Pro Plus 36™ </A></H5><SPAN class="cell-price span4"><SPAN class="amount"><SPAN itemprop="offers" itemscope="" itemtype="http://schema.org/Offer"><META itemprop="priceCurrency" content="USD"></META><SPAN class="lead-price" itemprop="price" data-rate="350"><A href="/standing-desk-pro-plus-36" class="item-cell-name"> $350 </A></SPAN><LINK itemprop="availability" href="http://schema.org/InStock"></LINK></SPAN></SPAN></SPAN><DIV class="price" style="display:none"><DIV class="lead"><SPAN itemprop="offers" itemscope="" itemtype="http://schema.org/Offer"><META itemprop="priceCurrency" content="USD"></META><SPAN class="lead-price" itemprop="price" data-rate="350"> $350 </SPAN><LINK itemprop="availability" href="http://schema.org/InStock"></LINK></SPAN></DIV><DIV class="left-line"></DIV></DIV><DIV class="rating-message-container row-fluid"><DIV class="span9 item-rating item-cell-rating rating-4.8" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating"><A class="review-total" href="/standing-desk-pro-plus-36/reviews"><DIV class="rating star pull-left"><DIV class="rating-area" data-toggle="rater" data-name="" data-max="5" data-value="4.8"><META itemprop="bestRating" content="5"></META><DIV class="rating-area-fill" data-toggle="ratting-component-fill" style="width: 100%"></DIV><DIV class="clearfix"></DIV></DIV><META itemprop="ratingValue" content="4.8"></META><DIV class="clearfix"></DIV></DIV><SPAN class="review-total"><SPAN>395</SPAN> Reviews </SPAN></A></DIV></DIV></DIV><A class="thumbnail" href="/standing-desk-pro-plus-36"><NOSCRIPT><IMG src="http://www.varidesk.com/assets/images/products/standing-desk-pro-plus-36_main-1.jpg?resizeid=3&amp;resizeh=486&amp;resizew=486" alt="Standing Desk VARIDESK Pro Plus 36"></IMG></NOSCRIPT></A><A href="/standing-desk-pro-plus-36" class="btn btn-primary" data-toggle="show-in-modal"> Add to Cart </A></DIV></DIV><DIV class="span4"><DIV class="item-cell item-cell-grid"><DIV class="item-info"><H5 class="span8"><A href="/standing-desk-pro-plus-36-white" class="item-cell-name"> Pro Plus 36™ White </A></H5><SPAN class="cell-price span4"><SPAN class="amount"><SPAN itemprop="offers" itemscope="" itemtype="http://schema.org/Offer"><META itemprop="priceCurrency" content="USD"></META><SPAN class="lead-price" itemprop="price" data-rate="350"><A href="/standing-desk-pro-plus-36-white" class="item-cell-name"> $350 </A></SPAN><LINK itemprop="availability" href="http://schema.org/InStock"></LINK></SPAN></SPAN></SPAN><DIV class="price" style="display:none"><DIV class="lead"><SPAN itemprop="offers" itemscope="" itemtype="http://schema.org/Offer"><META itemprop="priceCurrency" content="USD"></META><SPAN class="lead-price" itemprop="price" data-rate="350"> $350 </SPAN><LINK itemprop="availability" href="http://schema.org/InStock"></LINK></SPAN></DIV><DIV class="left-line"></DIV></DIV><DIV class="rating-message-container row-fluid"><DIV class="span9 item-rating item-cell-rating rating-4.8" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating"><A class="review-total" href="/standing-desk-pro-plus-36-white/reviews"><DIV class="rating star pull-left"><DIV class="rating-area" data-toggle="rater" data-name="" data-max="5" data-value="4.8"><META itemprop="bestRating" content="5"></META><DIV class="rating-area-fill" data-toggle="ratting-component-fill" style="width: 100%"></DIV><DIV class="clearfix"></DIV></DIV><META itemprop="ratingValue" content="4.8"></META><DIV class="clearfix"></DIV></DIV><SPAN class="review-total"><SPAN>294</SPAN> Reviews </SPAN></A></DIV></DIV></DIV><A class="thumbnail" href="/standing-desk-pro-plus-36-white"><NOSCRIPT><IMG src="http://www.varidesk.com/assets/images/products/standing-desk-pro-plus-36-white_main-1.jpg?resizeid=3&amp;resizeh=486&amp;resizew=486" alt="Standing Desk White Pro Plus 36"></IMG></NOSCRIPT></A><A href="/standing-desk-pro-plus-36-white" class="btn btn-primary" data-toggle="show-in-modal"> Add to Cart </A></DIV></DIV><DIV class="span4"><DIV class="item-cell item-cell-grid"><DIV class="item-info"><H5 class="span8"><A href="/cubicle-standing-desk-cube-corner-48" class="item-cell-name"> Cube Corner 48™ </A></H5><SPAN class="cell-price span4"><SPAN class="amount"><SPAN itemprop="offers" itemscope="" itemtype="http://schema.org/Offer"><META itemprop="priceCurrency" content="USD"></META><SPAN class="lead-price" itemprop="price" data-rate="400"><A href="/cubicle-standing-desk-cube-corner-48" class="item-cell-name"> $400 </A></SPAN><LINK itemprop="availability" href="http://schema.org/InStock"></LINK></SPAN></SPAN></SPAN><DIV class="price" style="display:none"><DIV class="lead"><SPAN itemprop="offers" itemscope="" itemtype="http://schema.org/Offer"><META itemprop="priceCurrency" content="USD"></META><SPAN class="lead-price" itemprop="price" data-rate="400"> $400 </SPAN><LINK itemprop="availability" href="http://schema.org/InStock"></LINK></SPAN></DIV><DIV class="left-line"></DIV></DIV><DIV class="rating-message-container row-fluid"><DIV class="span9 item-rating item-cell-rating rating-4.8" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating"><A class="review-total" href="/cubicle-standing-desk-cube-corner-48/reviews"><DIV class="rating star pull-left"><DIV class="rating-area" data-toggle="rater" data-name="" data-max="5" data-value="4.8"><META itemprop="bestRating" content="5"></META><DIV class="rating-area-fill" data-toggle="ratting-component-fill" style="width: 100%"></DIV><DIV class="clearfix"></DIV></DIV><META itemprop="ratingValue" content="4.8"></META><DIV class="clearfix"></DIV></DIV><SPAN class="review-total"><SPAN>56</SPAN> Reviews </SPAN></A></DIV></DIV></DIV><A class="thumbnail" href="/cubicle-standing-desk-cube-corner-48"><NOSCRIPT><IMG src="http://www.varidesk.com/assets/images/products/cubicle-standing-desk-cube-corner-48_main-1.jpg?resizeid=3&amp;resizeh=486&amp;resizew=486" alt="Standing Desk VARIDESK Cube Corner"></IMG></NOSCRIPT></A><A href="/cubicle-standing-desk-cube-corner-48" class="btn btn-primary" data-toggle="show-in-modal"> Add to Cart </A></DIV></DIV></DIV><DIV class="row-fluid"><DIV class="span4"><DIV class="item-cell item-cell-grid"><DIV class="item-info"><H5 class="span8"><A href="/laptop-standing-desk-VARIDESK-for-laptop" class="item-cell-name"> VARIDESK Laptop </A></H5><SPAN class="cell-price span4"><SPAN class="amount"><SPAN itemprop="offers" itemscope="" itemtype="http://schema.org/Offer"><META itemprop="priceCurrency" content="USD"></META><SPAN class="lead-price" itemprop="price" data-rate="175"><A href="/laptop-standing-desk-VARIDESK-for-laptop" class="item-cell-name"> $175 </A></SPAN><LINK itemprop="availability" href="http://schema.org/InStock"></LINK></SPAN></SPAN></SPAN><DIV class="price" style="display:none"><DIV class="lead"><SPAN itemprop="offers" itemscope="" itemtype="http://schema.org/Offer"><META itemprop="priceCurrency" content="USD"></META><SPAN class="lead-price" itemprop="price" data-rate="175"> $175 </SPAN><LINK itemprop="availability" href="http://schema.org/InStock"></LINK></SPAN></DIV><DIV class="left-line"></DIV></DIV><DIV class="rating-message-container row-fluid"><DIV class="span9 item-rating item-cell-rating rating-5" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating"><A class="review-total" href="/laptop-standing-desk-VARIDESK-for-laptop/reviews"><DIV class="rating star pull-left"><DIV class="rating-area" data-toggle="rater" data-name="" data-max="5" data-value="5"><META itemprop="bestRating" content="5"></META><DIV class="rating-area-fill" data-toggle="ratting-component-fill" style="width: 100%"></DIV><DIV class="clearfix"></DIV></DIV><META itemprop="ratingValue" content="5"></META><DIV class="clearfix"></DIV></DIV><SPAN class="review-total"><SPAN>6</SPAN> Reviews </SPAN></A></DIV></DIV></DIV><A class="thumbnail" href="/laptop-standing-desk-VARIDESK-for-laptop"><NOSCRIPT><IMG src="http://www.varidesk.com/assets/images/products/laptop-standing-desk-VARIDESK-for-laptop_main-1.jpg?resizeid=3&amp;resizeh=486&amp;resizew=486" alt="Standing Desk VARIDESK Laptop"></IMG></NOSCRIPT></A><A href="/laptop-standing-desk-VARIDESK-for-laptop" class="btn btn-primary" data-toggle="show-in-modal"> Add to Cart </A></DIV></DIV><DIV class="span4"><DIV class="item-cell item-cell-grid"><DIV class="item-info"><H5 class="span8"><A href="/standing-desk-pro-plus-48-white" class="item-cell-name"> Pro Plus 48™ White </A></H5><SPAN class="cell-price span4"><SPAN class="amount"><SPAN itemprop="offers" itemscope="" itemtype="http://schema.org/Offer"><META itemprop="priceCurrency" content="USD"></META><SPAN class="lead-price" itemprop="price" data-rate="400"><A href="/standing-desk-pro-plus-48-white" class="item-cell-name"> $400 </A></SPAN><LINK itemprop="availability" href="http://schema.org/InStock"></LINK></SPAN></SPAN></SPAN><DIV class="price" style="display:none"><DIV class="lead"><SPAN itemprop="offers" itemscope="" itemtype="http://schema.org/Offer"><META itemprop="priceCurrency" content="USD"></META><SPAN class="lead-price" itemprop="price" data-rate="400"> $400 </SPAN><LINK itemprop="availability" href="http://schema.org/InStock"></LINK></SPAN></DIV><DIV class="left-line"></DIV></DIV><DIV class="rating-message-container row-fluid"><DIV class="span9 item-rating item-cell-rating rating-5" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating"><A class="review-total" href="/standing-desk-pro-plus-48-white/reviews"><DIV class="rating star pull-left"><DIV class="rating-area" data-toggle="rater" data-name="" data-max="5" data-value="5"><META itemprop="bestRating" content="5"></META><DIV class="rating-area-fill" data-toggle="ratting-component-fill" style="width: 100%"></DIV><DIV class="clearfix"></DIV></DIV><META itemprop="ratingValue" content="5"></META><DIV class="clearfix"></DIV></DIV><SPAN class="review-total"><SPAN>25</SPAN> Reviews </SPAN></A></DIV></DIV></DIV><A class="thumbnail" href="/standing-desk-pro-plus-48-white"><NOSCRIPT><IMG src="http://www.varidesk.com/assets/images/products/standing-desk-pro-plus-48-white_main-1.jpg?resizeid=3&amp;resizeh=486&amp;resizew=486" alt="Standing Desk Pro Plus 48 White"></IMG></NOSCRIPT></A><A href="/standing-desk-pro-plus-48-white" class="btn btn-primary" data-toggle="show-in-modal"> Add to Cart </A></DIV></DIV><DIV class="span4"><DIV class="item-cell item-cell-grid"><DIV class="item-info"><H5 class="span8"><A href="/standing-desk-pro-desk-54" class="item-cell-name"> Pro Desk 54™ </A></H5><SPAN class="cell-price span4"><SPAN class="amount"><SPAN itemprop="offers" itemscope="" itemtype="http://schema.org/Offer"><META itemprop="priceCurrency" content="USD"></META><SPAN class="lead-price" itemprop="price" data-rate="500"><A href="/standing-desk-pro-desk-54" class="item-cell-name"> $500 </A></SPAN><LINK itemprop="availability" href="http://schema.org/InStock"></LINK></SPAN></SPAN></SPAN><DIV class="price" style="display:none"><DIV class="lead"><SPAN itemprop="offers" itemscope="" itemtype="http://schema.org/Offer"><META itemprop="priceCurrency" content="USD"></META><SPAN class="lead-price" itemprop="price" data-rate="500"> $500 </SPAN><LINK itemprop="availability" href="http://schema.org/InStock"></LINK></SPAN></DIV><DIV class="left-line"></DIV></DIV><DIV class="rating-message-container row-fluid"><DIV class="span9 item-rating item-cell-rating rating-5" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating"><A class="review-total" href="/standing-desk-pro-desk-54/reviews"><DIV class="rating star pull-left"><DIV class="rating-area" data-toggle="rater" data-name="" data-max="5" data-value="5"><META itemprop="bestRating" content="5"></META><DIV class="rating-area-fill" data-toggle="ratting-component-fill" style="width: 100%"></DIV><DIV class="clearfix"></DIV></DIV><META itemprop="ratingValue" content="5"></META><DIV class="clearfix"></DIV></DIV><SPAN class="review-total"><SPAN>7</SPAN> Reviews </SPAN></A></DIV></DIV></DIV><A class="thumbnail" href="/standing-desk-pro-desk-54"><NOSCRIPT><IMG src="http://www.varidesk.com/assets/images/products/standing-desk-pro-desk-54_main-1.jpg?resizeid=3&amp;resizeh=486&amp;resizew=486" alt="Standing Desk VARIDESK Pro Desk 54"></IMG></NOSCRIPT></A><A href="/standing-desk-pro-desk-54" class="btn btn-primary" data-toggle="show-in-modal"> Add to Cart </A></DIV></DIV></DIV></DIV></ASIDE> </div></div><div class="full-gradient-home cdelivery"><div id="home-promo-content" class="home-promo-content container"></div></div></div></section></div></div><div class="sit-stand-slider-wrapper"><div class="slider-images-container" style="opacity: 0.5;"><div class="images-slider" id="product-slider"><noscript><img src="/assets/images/content/360/desk-animation-01.jpg"/></noscript><noscript><img src="/assets/images/content/360/desk-animation-02.jpg"/></noscript><noscript><img src="/assets/images/content/360/desk-animation-04.jpg"/></noscript><noscript><img src="/assets/images/content/360/desk-animation-05.jpg"/></noscript><noscript><img src="/assets/images/content/360/desk-animation-07.jpg"/></noscript><noscript><img src="/assets/images/content/360/desk-animation-08.jpg"/></noscript><noscript><img src="/assets/images/content/360/desk-animation-10.jpg"/></noscript><noscript><img src="/assets/images/content/360/desk-animation-11.jpg"/></noscript><noscript><img src="/assets/images/content/360/desk-animation-13.jpg"/></noscript><noscript><img src="/assets/images/content/360/desk-animation-14.jpg"/></noscript><noscript><img src="/assets/images/content/360/desk-animation-16.jpg"/></noscript><noscript><img src="/assets/images/content/360/desk-animation-17.jpg"/></noscript><noscript><img src="/assets/images/content/360/desk-animation-19.jpg"/></noscript><noscript><img src="/assets/images/content/360/desk-animation-20.jpg"/></noscript><noscript><img src="/assets/images/content/360/desk-animation-22.jpg"/></noscript><noscript><img src="/assets/images/content/360/desk-animation-23.jpg"/></noscript><noscript><img src="/assets/images/content/360/desk-animation-25.jpg"/></noscript><noscript><img src="/assets/images/content/360/desk-animation-26.jpg"/></noscript><noscript><img src="/assets/images/content/360/desk-animation-28.jpg"/></noscript><noscript><img src="/assets/images/content/360/desk-animation-29.jpg"/></noscript><noscript><img src="/assets/images/content/360/desk-animation-31.jpg"/></noscript><noscript><img src="/assets/images/content/360/desk-animation-32.jpg"/></noscript></div><div class="slider-container"><div class="sit">Sit</div><div class="sit-stand-slider" style="position: relative; visibility: 0; display: none;"><button style="left: 50%;"></button></div><div class="stand">Stand</div></div></div></div><div id="media-slider" class="slidercont"> <div class="bx-wrapper" style="max-width: 100%;"><div class="bx-viewport" style="width: 0px; overflow: hidden; position: relative; visibility: 0; display: none;"><div class="bx-loading"></div><div class="cites" style="width: 0px; position: relative;"><div style="list-style: none; position: relative; width: 0px;"><blockquote cite=""><span><noscript><img src="/core/media/media.nl?id=4168&amp;c=3973550&amp;h=2e12f3dcd98069a6f27e" alt="@SteveStanislav"/></noscript></span><p>“Just got my @Varidesk today, and even though it’s only been a couple of hours. I understand why so many people love standing desks.” </p><footer> – @SteveStanislav</footer></blockquote></div><div style="list-style: none; position: relative; width: 0px;"><blockquote cite=""><span><noscript><img src="/core/media/media.nl?id=18129&amp;c=3973550&amp;h=41454ddbbbd34eb78426" alt="@firmlogic"/></noscript></span><p>“Just popped open my new adjustable desk from @Varidesk. Out of the box and up and running in minutes. Amazing!” </p><footer> – @firmlogic</footer></blockquote></div><div style="list-style: none; position: relative; width: 0px;"><blockquote cite=""><span><noscript><img src="/core/media/media.nl?id=17823&amp;c=3973550&amp;h=316fecdf5a2d9833b82c" alt="@smartermag"/></noscript></span><p>“A @Varidesk standing desk could transform wellbeing, productivity and office morale.” </p><footer> – @smartermag</footer></blockquote></div><div style="list-style: none; position: relative; width: 0px;"><blockquote cite=""><span><noscript><img src="/core/media/media.nl?id=6891&amp;c=3973550&amp;h=a88e1f52f0d9a4b9aa34" alt="Larry Olmsted - Forbes.com"/></noscript></span><p>“What I love about the VARIDESK solution is that it offers the full up and down flexibility you need in a standing desk with a low price point and easy adoption.” </p><footer> – Larry Olmsted - Forbes.com</footer></blockquote></div><div style="list-style: none; position: relative; width: 0px;"><blockquote cite=""><span><noscript><img src="/core/media/media.nl?id=6896&amp;c=3973550&amp;h=6f582b1d3efb44fd3f67" alt="Amos Kwon"/></noscript></span><p>“The Pro Plus benefits from increased desk area over other even more affordable entry-level standing desks.” </p><footer> – Amos Kwon</footer></blockquote></div><div style="list-style: none; position: relative; width: 0px;"><blockquote cite=""><span><noscript><img src="/core/media/media.nl?id=6899&amp;c=3973550&amp;h=62e495f2ad832c5f61f8" alt="Ed N."/></noscript></span><p>“Have been using mine for about 6 months now. LOVE IT! If you are thinking about buying one, stop thinking and do it. Also make sure you get the squishy floor mat, a perfect combination.” </p><footer> – Ed N.</footer></blockquote></div></div></div><div class="bx-controls bx-has-pager bx-has-controls-direction"><div class="bx-pager bx-default-pager"><div class="bx-pager-item"><a href="" data-slide-index="0" class="bx-pager-link">1</a></div><div class="bx-pager-item"><a href="" data-slide-index="1" class="bx-pager-link">2</a></div><div class="bx-pager-item"><a href="" data-slide-index="2" class="bx-pager-link">3</a></div><div class="bx-pager-item"><a href="" data-slide-index="3" class="bx-pager-link">4</a></div><div class="bx-pager-item"><a href="" data-slide-index="4" class="bx-pager-link">5</a></div><div class="bx-pager-item"><a href="" data-slide-index="5" class="bx-pager-link">6</a></div></div><div class="bx-controls-direction"><a class="bx-prev" href="">Prev</a><a class="bx-next" href="">Next</a></div></div></div> </div><footer id="site-footer" class="site-footer"><div class="container"><div class="row-fluid" id="footer-columns-container"><div class="span4" title="en_US"><p>US Patent #8671853</p><p>US and Foreign Patents Pending</p></div><div class="span4"><a class="soc-icon facebook" href="http://www.facebook.com/varidesk" target="_blank"></a><a class="soc-icon twitter" href="http://www.twitter.com/hashtag/varidesk" target="_blank"></a><a class="soc-icon youtube" href="http://www.youtube.com/user/VARIDESK/videos" target="_blank"></a></div><div class="span4"><p><a href="/shipping-policy" data-menu="#shipping-policy" data-touchpoint="home">Shipping Policy</a> | <a href="/terms-and-conditions" data-menu="#terms-and-conditions" data-touchpoint="home">Terms and Conditions</a></p><p>Call (800) 207-2587 or <a href="/contacts">Contact Us Here</a></p></div></div><div id="back-to-top" class="text-center back-to-top"><a href="#" data-action="back-to-top"><i class="icon-arrow-up"></i></a></div><div id="banner-footer" class="content-banner banner-footer"><div class="container"><div class="modal fade" id="myModal" role="dialog"><div class="modal-dialog" style="width:60%;height:95%"><div class="modal-content" style="height:100%;width:100%;background-color:#aaaaaa"><div class="modal-body" style="width:90%;height:80%;margin:auto;"><iframe src="//player.vimeo.com/video/134328121" style="width:100%;height:100%;margin-top:7.5%" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe></div></div></div></div></div></div></div></footer></div> </div></div>
+
+<script>
+// Minimizes flickery of the 1st page load!
+if (!SC.isCrossOrigin())
+{
+    document.getElementById("main").innerHTML = '';
+}
+</script>
+
+<script>
+if (!SC.isCrossOrigin())
+{
+    // Do we have SEO Support
+    if (SC.isPageGenerator())
+    {
+        document.body.className = document.body.className + ' seo-support';
+    }
+    SC.ENVIRONMENT.seoSupport = !!~document.body.className.indexOf("seo-support");
+
+    /* load language and sc.environment.ssp */
+    loadScript([
+        '/c.3973550/shopflow/sc.environment.ssp?lang=en_US&cur=USD'
+    ,   '/c.3973550/shopflow/languages/en_US.js'
+    ]);
+
+    if (SC.isPageGenerator())
+    {
+        SC.ENVIRONMENT.PROFILE = {};
+    }
+
+    // Loads the application files, if you need to have a less agresive cacheing you can move them
+    // to the sc.environment.ssp (Moderate cacheing) or to the sc.user.environment.ssp (No cache but less performant)
+    loadScript([
+        '/c.3973550/shopflow/js/libs/Libraries-014ff355faa4.js'
+    ,   '/c.3973550/shopflow/templates/Templates-014ff35762a8.js'
+    ,   '/c.3973550/shopflow/js/Application-014ff355048c.js'
+    ]);
+
+    if (SC.ENVIRONMENT.jsEnvironment == 'browser')
+    {
+        loadScript({
+            url: '/c.3973550/shopflow/sc.user.environment.ssp?lang=en_US&cur=USD&t=' + new Date().getTime()
+        ,   async: true
+        });
+    }
+}
+
+</script>
+<script type="text/javascript" src="//dn3y71tq7jf07.cloudfront.net/varidesk.com/cbar.js.php" async=""></script>
+<link rel="stylesheet" href="http://www.varidesk.com/c.3973550/shopflow/skins/standard/Styles-014f2fb22f44.css"/>
+
+
+
+
+
+
+
+
+</body></html>
+
+<!-- 245 s: 23% #42 co: 17% #46 cache: 0% #9 -->
+<!-- [ sh.j10027.bos ] [ 2015.2.0.44 ]-->
+<!-- [ 3973550 ] [ /s.nl ] [ Mon Sep 21 21:40:50 PDT 2015 ] -->
+<!-- Not logging slowest SQL -->

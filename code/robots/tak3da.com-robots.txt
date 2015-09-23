@@ -1,0 +1,14 @@
+User-agent: Mediapartners-Google*
+Disallow:
+
+User-agent: *
+Disallow: /admin.php
+Disallow: /admin/
+Disallow: /db/
+Disallow: /images/
+Disallow: /includes/
+Disallow: /install/
+Disallow: /themes/
+Disallow: /blocks/
+Disallow: /modules/
+Disallow: /language/

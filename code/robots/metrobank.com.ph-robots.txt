@@ -1,0 +1,1467 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" >
+<title>Metrobank</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<!-- email popup modification js - START -->
+<script src="js/jquery.tools.min.js"></script>
+<script src="js/jquery.validate.js"></script>
+<script src="js/jquery.word-and-character-counter.js"></script>
+<!-- email popup modification js - END -->
+<!-- email popup modification css - START -->
+<style>
+	    /* the overlayed element */
+	    .emailUs {
+		    /* place overlay on top of other elements */
+		    z-index:10001;
+		
+		    /* styling */
+		    background-color:#fff;
+		    border: 1px solid #CCCCCC;
+		    display:none;
+		    height:515px;
+		    overflow-x: hidden;
+		    overflow-y: auto;
+		    width:800px;
+		    *height:507px;
+		    *width:700px;
+		    padding:15px;
+		    text-align:left;
+		
+		    /* override */
+		    top: 5px!important;
+
+		    /* CSS3 styling for latest browsers */
+		    -moz-border-radius:10px 10px 10px 10px;
+		    -webkit-border-radius:10px 10px 10px 10px;
+		    -moz-box-shadow: 0 0 7px #000;
+		    -webkit-box-shadow: 0 0 7px #000;
+	    }
+	
+	    .fit-box {
+		    height:auto!important;
+	    }
+
+	    /* close button positioned on upper right corner */
+	    .emailUs .close {
+		    background: url(images/close.png) 100% 0 no-repeat;
+		    position:absolute;
+		    right: 10px;
+		    top: -7px;
+		    cursor:pointer;
+		    height:35px;
+		    width:35px;
+	    }
+
+	    .emailUs h2 {
+		    border-bottom: 3px solid #bababa;
+		    color: #2160a4;
+		    margin:0px;
+		    padding:5px 0 10px 0px;
+		    font-size:15px;
+	    }
+	
+	    .emailUs h3 {
+		    background: transparent!important;
+		    color: #777!important;
+		    font-size: 13px!important;
+		    margin-top: 5px!important;
+		    padding: 8px 0!important;
+	    }
+
+	    .emailUs .steps {
+		    float: right;
+		    position: absolute;
+		    top: 22px;
+		    right: 40px;
+		    *right: 65px;
+	    }
+	
+	    .emailUs .steps span {
+		    margin: 0 3px;
+		    padding:5px 10px;
+		    *padding:3px 10px;
+		    *line-height:19px;
+	    }
+	
+	    .emailUs .steps span.active {
+		    background: #2162A1;
+		    color:#fff;
+		    /*cursor:hand;*/
+	    }
+
+	    .emailUs .steps span.inactive {
+		    background: #dcdcdc;
+		    color:#000;
+		    /*cursor:hand;*/
+	    }
+
+	    .emailUs p {
+		    color: #333333;
+		    padding: 8px 0;
+	    }
+	
+	    .emailUs label {
+		    display:block;
+		    color:#000;
+	    }	
+
+	    .emailUs form {
+		    padding:0!important;
+		    margin:0!important;
+	    }
+	
+	    .emailUs .req {
+		    color: red;
+	    }
+
+	    .emailUs ul {
+		    float:left!important;
+		    list-style: none!important;
+		    width:100%!important;
+	    }
+	
+	    .emailUs fieldset {
+		    border:none;
+	    }
+	
+	    .emailUs ul li {
+		    color:#000;
+		    display:block!important;
+		    float:left!important;
+		    width:100%;
+	    }
+	
+	    .emailUs ul li ul {
+		    float:left!important;
+		    list-style: none!important;
+		    width:100%!important;
+	    }
+	
+	    .emailUs ul li ul li {
+		    color:#000;
+		    display:inline!important;
+		    float:left!important;
+		    padding: 5px;
+		    width:auto!important;
+	    }
+
+	    .emailUs ul li ul li label {
+		    vertical-align:top;
+	    }
+
+	    .emailUs ul li ul li label span.req {
+		    vertical-align:top;
+	    }
+	
+	    .emailUs ul.form-type {
+		    float:left!important;
+		    list-style: none!important;
+		    width:100%!important;
+	    }
+	
+	    .emailUs ul.form-type li {
+		    color:#000;
+		    display:block!important;
+		    float:left!important;
+		    padding: 8px;
+	    }
+
+	    .emailUs ul.form-type li ul {
+		    float:left!important;
+		    list-style: none!important;
+		    width:100%!important;
+	    }
+	
+	    .emailUs ul.form-type li ul li {
+		    color:#000;
+		    display:inline!important;
+		    float:left!important;
+		    padding: 5px;
+		    width:45%!important;
+	    }
+
+	    .emailUs ul.form-type li ul li div {
+		    color: #000;
+	    }
+	    
+	    .emailUs .subjectOthers {
+		    display:none;
+	    }
+	    
+	    .emailUs #txtMessage_counter 
+	    {
+	        color:#999;
+	    }
+	    
+	    .emailUs p span.leftSide {
+		    float: left;
+		    height: 25px;
+		    width:50%;
+		    *width:45%;
+	    }
+
+	    .emailUs p span.rightSide {
+		    float: right;
+		    height: 25px;
+		    text-align: right;
+		    width:50%;
+		    *width:45%;
+	    }
+
+	    .emailUs a {
+		    color: #2160a4;
+		    font-size: 12px;
+		    font-weight: bold;
+	    }
+
+	    .emailUs button {
+		    background: #2162A1;
+		    color: #fff;
+		    border: 1px solid #fff;
+		    padding: 5px;
+		    *text-align:center;
+	    }
+	    .emailUs button:hover {
+		    background: #1A75BB;
+		    border: 1px solid #ddd;
+		    color:#eee;
+	    }
+	
+	    /* error message */
+	    label.error {
+		    position: absolute;
+		    height:15px;
+		    background-color:rgb(243, 243, 175);
+		    font-size:11px;
+		    border:1px solid rgb(248, 248, 152);
+		    padding:4px 10px;
+		    color:#000;
+		    cursor:pointer;
+		    display:none;
+		    z-index:10002;
+
+		    opacity: 0.9;
+		
+		    -moz-border-radius:4px;
+		    -webkit-border-radius:4px;
+		    -moz-border-radius-bottomleft:4px;
+		    -moz-border-radius-topleft:0;
+		    -webkit-border-bottom-left-radius:4px;
+		    -webkit-border-top-left-radius:0;
+
+		    -moz-box-shadow:0 0 6px #ddd;
+		    -webkit-box-shadow:0 0 6px #ddd;
+	    }
+
+	    label.error {
+		    margin:0;
+	    }
+    </style>
+<!-- email popup modification css - END -->
+<script language="javascript" src="js/functions.js"></script>
+<!--<script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>-->
+<script type="text/javascript" src="js/jquery.bxSlider.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-3147740-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<script>
+	$(function(){
+	 $("#menu-top li").mouseenter(function(){
+     	var cssObj = {
+          'left' : '0',
+          'top' : '15px'
+        }
+		$(this).find("ul").css(cssObj);
+	  }).mouseleave(function(){
+		$(this).find("ul").css("left","-9999");
+	  });
+	});
+</script>
+<script type="text/javascript">
+//var AnnouncementPopup = window.open("https://www.metrobank.com.ph/mntnce_ann.html","_blank","toolbar=no, scrollbars=no, resizable=no, top=40, left=275, width=500, height=500");
+
+// Create popup window
+function oncliKsample() {
+	var popup = window.open("https://www.metrobank.com.ph/nibs_ann.html","_blank","toolbar=no, scrollbars=no, resizable=no, top=40, left=275, width=485, height=610");
+	
+	// Set interval to check if wheter it has been closed
+	var windowCheckInterval = setInterval(function() { 
+
+		if (!popup || popup.closed) {
+			clearInterval(windowCheckInterval);
+
+			// Do something
+			window.location.href="https://personal.metrobankdirect.com";
+		}
+
+	}, 300);
+}
+</script>
+</head>
+<body>
+<form name="frmHandler" method="post" action="" target="">
+<input type="hidden" name="BlurbName" value="" />
+</form>
+
+<form name="frmView" method="post" action="">
+<input type="hidden" name="AnnouncementID" value="" />
+<input type="hidden" name="ArticleID" value="" />
+<input type="hidden" name="BlurbID" value="" />
+<input type="hidden" name="BrandID" value="" />
+<input type="hidden" name="ModelID" value="" />
+<input type="hidden" name="LocationID" value="" />
+<input type="hidden" name="TypeID" value="" />
+</form>
+<div id="container-main" class="center-main shadow">
+    <div id="header">
+    	<div id="header-top">
+        	<div id="home" class="left"><a href="index.asp">HOME</a></div>
+        	<div id="search" class="right">
+            	<div class="relative">
+                	<form onsubmit="if (document.forms['searchForm'].SearchKey.value=='') return false;" action="search_results.asp" method="post" name="searchForm">
+                    <input id="search-text" class="search_input_text" type="text" value="" name="SearchKey"/> 
+                    <input id="search-button"  width="23" type="image" height="13" alt="GO" src="images/btn_search.jpg">
+                    </form>
+                </div>
+            </div>
+            <div id="menu-top" class="right">
+            	<ul class="menu">
+                	<li class="menu-top-item">ABOUT METROBANK
+                    	<ul class="shadow">
+                        	<div class="arrow-small"></div>
+                        	
+                        	<li><a class="top-menu" href="#" onclick="javascript: gotoPage('about.asp','About_Overview','');">Overview</a></li>
+                            
+                        	<li><a class="top-menu" href="#" onclick="javascript: gotoPage('about.asp','Metrobank_Foundation','');">Metrobank Foundation</a></li>
+                            
+                        	<li><a class="top-menu" href="#" onclick="javascript: gotoPage('about.asp','awards','');">Awards & Distinctions</a></li>
+                            
+                        	<li><a class="top-menu" href="#" onclick="javascript: gotoPage('about.asp','mbtc_certifications','');">Certifications</a></li>
+                            
+                        	<li><a class="top-menu" href="#" onclick="javascript: gotoPage('about.asp','domestic_affiliates','');">Domestic Subsidiaries and Affiliates</a></li>
+                            
+                            <li><a class="top-menu" href="investor_relations.asp">Investor Relations</a></li>
+                            <li><a class="top-menu" href="corporate_governance.asp">Corporate Governance</a></li>
+                        </ul>
+                        
+                    </li>
+                    <li class="menu-top-item">BRANCH / ATM LOCATOR
+                    	<ul class="shadow">
+                        	<div class="arrow-small"></div>
+                        	<li><a class="top-menu" href="locate_branch.asp">Branch</a></li>
+                            <li><a class="top-menu" href="locate_atm.asp">ATM</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div> 
+        </div>
+        <div id="header-main">
+        	<div id="logo" class="left"><img id="logo-img" src="images/logo.png" /><!--img id="logo-50" src="images/50_years.png" /--></div>
+            <div id="direct-login" class="right"><img class="no-border" usemap="#Map" src="images/direct_login.png" /></div>
+            <div class="clear"></div>
+        </div>
+        <div id="main-menu">
+        	<ul>
+        	<li class="mm-item"><a href="personal_product.asp"><img src="images/menu/menu_01.png" /></a>
+                <div class="drop-down-menu-container">
+                    <div class="drop-down-menu shadow">
+                        <div class='dd-menu-item'><div><a href="javascript: gotoPage('personal_product.asp','personal_deposit','');">Deposit Accounts</a></div><ul><li><a href="javascript: gotoPage('personal_product.asp','personal_deposit_savings','');">Savings Accounts </a></li><li><a href="javascript: gotoPage('personal_product.asp','personal_deposit_checking','');">Checking Accounts</a></li><li><a href="javascript: gotoPage('personal_product.asp','personal_deposit_time','');">Time Deposit</a></li></ul></div><div class='dd-menu-item'><div><a href="javascript: gotoPage('personal_product.asp','personal_consumer_loans','');">Consumer Loans</a></div><ul><li><a href="javascript: gotoPage('https://www.metrobank.com.ph/homeloan/default.aspx','personal_loans','window');">Home Loan</a></li><li><a href="javascript: gotoPage('personal_product.asp','personal_homepromo','');">Dream Loan for your Dream Home Promo</a></li><li><a href="javascript: gotoPage('https://www.metrobank.com.ph/carloan/','personal_carloan','window');">Car Loan</a></li><li><a href="javascript: gotoPage('personal_product.asp','personal_carpromo','');">Car Loan Awesome 3 Promo 2015</a></li></ul></div><div class='dd-menu-item'><div><a href="javascript: gotoPage('personal_product.asp','personal_echannels','');">eChannels</a></div><ul><li><a href="javascript: gotoPage('personal_product.asp','personal_internet_banking_new','');">Metrobankdirect Personal</a></li><li><a href="javascript: gotoPage('personal_product.asp','personal_mobile_banking','');">Mobile Banking</a></li><li><a href="javascript: gotoPage('personal_product.asp','personal_phone_banking','');">Phone Banking</a></li><li><a href="javascript: gotoPage('personal_product.asp','personal_atm','');">Automated Teller Machine (ATM)</a></li><li><a href="javascript: gotoPage('personal_product.asp','personal_cam','');">Cash Accept Machine (CAM)</a></li></ul></div><div class='dd-menu-item'><div><a href="javascript: gotoPage('personal_product.asp','Debit_Prepaid_Cards','');">Debit & Prepaid Cards</a></div><ul><li><a href="javascript: gotoPage('personal_product.asp','Debit_Card_Page','');">Debit Card</a></li><li><a href="javascript: gotoPage('personal_product.asp','Prepaid_Card_Page','');">Metrobank Prepaid Card</a></li><li><a href="javascript: gotoPage('personal_product.asp','Cards_Promo','');">Debit & Prepaid Cards Promotions</a></li><li><a href="javascript: gotoPage('personal_product.asp','Cards_FAQ','');">Debit & Prepaid Cards FAQ</a></li></ul></div><div class='clear'></div><div class='dd-menu-item'><div><a href="javascript: gotoPage('personal_product.asp','personal_fxrate','');">Foreign Exchange Rate</a></div><ul><li><a href="javascript: gotoPage('personal_product.asp','buy_or_sell','');">Buy or Sell Foreign Currency</a></li></ul></div><div class='dd-menu-item'><div><a href="javascript: gotoPage('http://metrobankcard.com/','personal_credit_card','window');">Credit Card (MCC)</a></div><ul><li><a href="javascript: gotoPage('http://metrobankcard.com/services/Customer.aspx','MCC_Features','window');">Features</a></li><li><a href="javascript: gotoPage('http://metrobankcard.com/promos/whatsnew.aspx','MCC_Promotions','window');">Promotions</a></li><li><a href="javascript: gotoPage('http://metrobankcard.com/cards/interestedapp.aspx','MCC_Card_Application','window');">Card Application</a></li><li><a href="javascript: gotoPage('http://metrobankcard.com/Customer_Awareness/CustomerAwareness.aspx','MCC_Security','window');">Security Features</a></li><li><a href="javascript: gotoPage('http://metrobankcard.com/about/contact.aspx','MCC_Contact_Us','window');">Contact Us</a></li></ul></div><div class='dd-menu-item'><div><a href="javascript: gotoPage('personal_product.asp','personal_insurance','');">Life Insurance (AXA)</a></div><ul><li><a href="javascript: gotoPage('http://www.axa.com.ph','About_AXA','window');">About AXA Philippines </a></li><li><a href="javascript: gotoPage('http://www.axa.com/en/group/profile-and-key-figures/','About_Global','window');">About the Global AXA Group</a></li><li><a href="javascript: gotoPage('https://www.axa.com.ph/life-insurance-products/easy-and-affordable','Solutions_AXA','window');">Solutions for Young Professionals</a></li><li><a href="javascript: gotoPage('https://www.axa.com.ph/life-insurance-products/personalized-solutions','Personalized_Solutions_AXA','window');">Solutions for Family Breadwinners</a></li><li><a href="javascript: gotoPage('https://www.axa.com.ph/life-insurance-products/wealth-management','Investments_AXA','window');">Solutions for Wealth Management</a></li><li><a href="javascript: gotoPage('https://www.axa.com.ph/life-insurance-products/corporate-solutions','Financial_Solutions_AXA','window');">Solutions for Corporations/Organizations</a></li><li><a href="javascript: gotoPage('http://failproof.axa.com.ph','Failproof_AXA','window');">How to Fail Proof Your Future</a></li><li><a href="javascript: gotoPage('https://myaxabiz.secure.force.com/myaxapartner','Quiz_AXA','window');">Set an Appointment with an Advisor</a></li><li><a href="javascript: gotoPage('http://www.axaion.com.ph/','AXA_Online','window');">Buy AXA Insurance Online </a></li></ul></div>
+                        <div class="clear"></div>
+                        <div class="arrow personal"></div>
+                    </div>  
+                </div>  
+            </li>
+	    <li class="mm-item"><a href="https://www.metrobank.com.ph/sme/"><img src="images/menu/menu_sme.png" /></a>
+            	<div class="drop-down-menu-container">
+                    <div class="drop-down-menu shadow">
+                        <div class='dd-menu-item'><div><a href="javascript: gotoPage('https://www.metrobank.com.ph/sme/BusinessLoans.aspx','Our_Offerings','');">Our Offerings</a></div><ul><li><a href="javascript: gotoPage('https://www.metrobank.com.ph/sme/BusinessLoans.aspx','SME_Business_Loans','');">SME Business Loans</a></li><li><a href="javascript: gotoPage('https://www.metrobank.com.ph/sme/BusinessSolutions.aspx','SME_Business_Solutions','');">SME Business Solutions</a></li></ul></div><div class='dd-menu-item'><div><a href="javascript: gotoPage('https://www.metrobank.com.ph/sme/LoanCalculator.aspx','SME_Assistant ','');">SME Assistant </a></div><ul><li><a href="javascript: gotoPage('https://www.metrobank.com.ph/sme/LoanCalculator.aspx','Loan_Calculator','');">Loan Calculator</a></li><li><a href="javascript: gotoPage('https://www.metrobank.com.ph/sme/BusinessLoans.aspx','FAQ_on_SME_Business_Loans','');">FAQs on SME Business Loans</a></li><li><a href="javascript: gotoPage('https://www.metrobank.com.ph/sme/BusinessSolutions.aspx','FAQ_on_SME_Business_Solutions','');">FAQs on SME Business Solutions</a></li></ul></div><div class='dd-menu-item'><div><a href="javascript: gotoPage('https://www.metrobank.com.ph/sme/NewsandAdvisories.aspx','SME_News','');">SME News</a></div><ul><li><a href="javascript: gotoPage('https://www.metrobank.com.ph/sme/NewsandAdvisories.aspx','News_Advisories','');">News & Advisories</a></li><li><a href="javascript: gotoPage('https://www.metrobank.com.ph/sme/Events.aspx','Events','');">Events</a></li><li><a href="javascript: gotoPage('https://www.metrobank.com.ph/sme/KwentongSME.aspx','Kwentong_SME','');">Kwentong SME</a></li></ul></div>
+                        <div class="clear"></div>
+                        <div class="arrow sme"></div>
+                    </div>  
+                </div>
+            </li>            <li class="mm-item"><a href="business_product.asp"><img src="images/menu/menu_02.png" /></a>
+            	<div class="drop-down-menu-container">
+                    <div class="drop-down-menu shadow">
+                        <div class='dd-menu-item'><div><a href="javascript: gotoPage('business_product.asp','business_cash','');">Cash Management</a></div><ul><li><a href="javascript: gotoPage('business_product.asp','cashmgmt_basic_banking','');">Basic Banking</a></li><li><a href="javascript: gotoPage('business_product.asp','cashmgmt_liquidity','');">Cash Flow/Liquidity Solutions</a></li><li><a href="javascript: gotoPage('business_product.asp','cashmgmt_collection','');">Collection Solutions</a></li><li><a href="javascript: gotoPage('business_product.asp','cashmgmt_disbursement','');">Disbursement Solutions</a></li><li><a href="javascript: gotoPage('business_product.asp','cashmgmt_payroll_solutions','');">Payroll Solutions</a></li><li><a href="javascript: gotoPage('business_product.asp','cashmgmt_egovernment','');">eGovernment Solutions</a></li></ul></div><div class='dd-menu-item'><div><a href="javascript: gotoPage('business_product.asp','business_deposit','');">Corporate Deposit Accounts</a></div><ul><li><a href="javascript: gotoPage('business_product.asp','business_deposit_savings','');">Savings Accounts</a></li><li><a href="javascript: gotoPage('business_product.asp','business_deposit_checking','');">Checking Accounts</a></li><li><a href="javascript: gotoPage('business_product.asp','business_deposit_time','');">Time Deposit</a></li></ul></div><div class='dd-menu-item'><div><a href="javascript: gotoPage('business_product.asp','business_loans','');">Corporate Loans</a></div><ul><li><a href="javascript: gotoPage('business_product.asp','business_loans_ce','');">Loans for Capital Expenditures</a></li><li><a href="javascript: gotoPage('business_product.asp','business_loans_cfc','');">Corporate Finance and Consultancy</a></li></ul></div><div class='dd-menu-item'><div><a href="javascript: gotoPage('business_product.asp','business_trade','');">Trade Products & Services</a></div><ul><li><a href="javascript: gotoPage('business_product.asp','business_trade_imports','');">Financing for Imports and Domestic Purchases</a></li><li><a href="javascript: gotoPage('business_product.asp','business_trade_exports','');">Financing for Exports</a></li></ul></div><div class='clear'></div><div class='dd-menu-item'><div><a href="javascript: gotoPage('business_product.asp','business_insurance','');">Treasury Products for Businesses</a></div><ul><li><a href="javascript: gotoPage('business_product.asp','corporate_details','');">Foreign Exchange, Fixed Income, and Derivatives</a></li></ul></div>
+                        <div class="clear"></div>
+                        <div class="arrow business"></div>
+                    </div>  
+                </div>
+            </li>
+            <li class="mm-item"><a href="trust_product.asp"><img src="images/menu/menu_03.png" /></a>
+            	<div class="drop-down-menu-container">
+                    <div class="drop-down-menu shadow">
+                        <div class='dd-menu-item'><div><a href="javascript: gotoPage('trust_product.asp','trust_products','');">Trust Products and Services</a></div><ul><li><a href="javascript: gotoPage('trust_product.asp','trust_metrobank_investment_funds','');">Investment Funds</a></li><li><a href="javascript: gotoPage('trust_product.asp','trust_wealth_management_services','');">Wealth Management Services</a></li><li><a href="javascript: gotoPage('trust_product.asp','trust_corporate_trust_services','');">Corporate Trust Services</a></li><li><a href="javascript: gotoPage('trust_product.asp','trust_corporate_agency_services','');">Corporate Agency Services</a></li><li><a href="javascript: gotoPage('trust_product.asp','trust_escrow','');">Escrow</a></li></ul></div><div class='dd-menu-item'><div><a href="javascript: gotoPage('treasury_product.asp','treasury_products','');">Treasury Products</a></div><ul><li><a href="javascript: gotoPage('treasury_product.asp','gov_sec','');">Government Securities</a></li><li><a href="javascript: gotoPage('treasury_product.asp','corp_sec','');">Corporate Notes or Bonds</a></li><li><a href="javascript: gotoPage('treasury_product.asp','fx_trade','');">Foreign Exchange</a></li><li><a href="javascript: gotoPage('treasury_product.asp','Interest_Rate','');">Interest Rate</a></li><li><a href="javascript: gotoPage('treasury_product.asp','Other_Derivatives','');">Other Derivatives</a></li></ul></div><div class='dd-menu-item'><div><a href="javascript: gotoPage('trust_product.asp','trust_fund_performance','');">Metrobank Investment Funds</a></div><ul><li><a href="javascript: gotoPage('trust_product.asp','investment_funds','');">Monthly Fund Performance Report</a></li></ul></div><div class='dd-menu-item'><div><a href="javascript: gotoPage('http://www.firstmetro.com.ph','capital_markets','window');">Capital Markets (FMIC)</a></div></div><div class='clear'></div>
+                        <div class="clear"></div>
+                        <div class="arrow invest"></div>
+                    </div>  
+                </div>
+            </li>
+            <li class="mm-item"><a href="ofw.asp"><img src="images/menu/menu_04.png" /></a>
+            	<div class="drop-down-menu-container">
+                    <div class="drop-down-menu shadow">
+                        <div class='dd-menu-item'><div><a href="javascript: gotoPage('ofw.asp','personal_ofw_products','');">Products & Services</a></div><ul><li><a href="javascript: gotoPage('ofw.asp','Remittance','');">Remittance Services</a></li><li><a href="javascript: gotoPage('ofw.asp','OFW_Savings','');">OFW Peso Savings Account</a></li><li><a href="javascript: gotoPage('ofw.asp','Dollar_Savings','');">OFW Dollar Savings Account</a></li><li><a href="javascript: gotoPage('ofw.asp','World_Cash','');">World Cash Card</a></li></ul></div><div class='dd-menu-item'><div><a href="javascript: gotoPage('ofw.asp','personal_remittance_network','');">Remittance Network</a></div><ul><li><a href="javascript: gotoPage('ofw.asp','Foreign_Branches','');">Foreign Branches and Subsidiaries</a></li><li><a href="javascript: gotoPage('ofw.asp','Remittance_Partners','');">Remittance Partners and Tie-ups</a></li><li><a href="javascript: gotoPage('ofw.asp','Correspondent_Banks','');">Correspondent Banks</a></li><li><a href="javascript: gotoPage('ofw.asp','Charges_Fees_Remit','');">Remittance Charges and Fees</a></li></ul></div>
+                        <div class="clear"></div>
+                        <div class="arrow ofw"></div>
+                    </div>  
+                </div>
+            </li>
+            </ul>
+            <div class="clear"></div>
+        </div>
+        
+    </div>
+    <div id="main">
+    	<div id="main-content-container" class="left">
+                    <div id="main-content">
+                        <div id="banner-container">
+                    <div id="banner">
+                        <ul id="main-slide">
+                            
+                            <li><img class='banner-images' title='<font color=#282781 size=6><strong>WHAT&#39;S NEW<br/>AT METROBANK?<br/></font><font color=#ffffff size=6>A LOT!</strong></font>' link = "http://www.facebook.com/MetrobankPH/" oneliner = ' <font color=#282781 size=3><strong>What you want in a bank,<br/>check it out with Metrobank>></strong></font>' src='ViewImage.asp?id=3577' border="0" /></li>
+                            
+                            <li><img class='banner-images' title='<font color=#402571><strong>DREAM</strong>LOAN for your<br/></font><font color=#07bbd0><strong>DREAM</strong>HOME</font>' link = "https://www.metrobank.com.ph/homeloan" oneliner = '<font color=#402571>Save up to <strong>P200,000</strong> in <strong>FREE</strong> fees when you apply for your Dream Home!<br/></font>' src='ViewImage.asp?id=2664' border="0" /></li>
+                            
+                            <li><img class='banner-images' title='<font color=#ffffff size=6><strong>It&#8217s the Awesome<br> Comeback!</strong></font>' link = "https://www.metrobank.com.ph/carloan/" oneliner = '<font color=#ffffff>Get <strong>FREE Chattel Mortgage Fee</strong> and <strong>FREE first-year Insurance</strong> when you apply for a <strong>Metrobank Car Loan.</strong><br/><br/>Click here to learn more>></font>' src='ViewImage.asp?id=3598' border="0" /></li>
+                            
+                            <li><img class='banner-images' title='<font color=#d70035 size=6><strong>Live.Love.Laugh.</strong></font>' link = "javascript: gotoPage('trust_product.asp','trust_fund_performance','');" oneliner = '<font color=#d70035 size=3><strong>Let your investments do the work.</br></br></font><font color=#000000 size=3>Click here to learn more>></strong></font>' src='ViewImage.asp?id=2994' border="0" /></li>
+                            
+                            <li><img class='banner-images' title='<font color=#f06623><strong>Ang Partner Mo<br/>Sa Negosyo</strong></font>' link = "https://www.metrobank.com.ph/sme" oneliner = '<font color=#000000><strong>Metrobank SME is your partner in making your business grow.<br><br>Tara, pag-usapan natin>></strong></font>' src='ViewImage.asp?id=3380' border="0" /></li>
+                            
+                            <li><img class='banner-images' title='<font color=#2a245f size=6><strong>Send Remittance Quick, Safe<br>and Easy with</strong></font>' link = "javascript: gotoPage('ofw.asp','personal_ofw_products','Remittance','');" oneliner = '<font color=#1bb3ca size=7><strong>MetroRemit</strong></font>' src='ViewImage.asp?id=2563' border="0" /></li>
+                            
+                        </ul>
+                    </div>
+                    
+                    <div id="banner-text">
+                        <div id="pager"></div>
+                        <div class="pager-content">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                	<table id="frontpage-table" cellspacing="0" border="0">
+                    <tr>
+                    <td >
+                    	<div class="news-container">
+                            <div class="news-header">
+                            	<img src="images/how_can_i.jpg" />
+                            </div>
+                            
+                            <div class="news-current how-can-i">
+                                <img src='ViewImage.asp?id=2671' border="0" />
+                            </div>
+                            <div class="how-can-i-links">
+                                <ul id="how-can-i-list">
+                                    
+                                    	<li><a href="https://www.metrobank.com.ph/carloan/HowToApply.aspx" target='_blank'>Apply for a Car Loan</a></li>
+                                    
+                                    	<li><a href="https://www.metrobank.com.ph/loanapplication.asp" target='_blank'>Apply for a Home Loan</a></li>
+                                    
+                                    	<li><a href="javascript: gotoPage('ofw.asp','personal_ofw_products','');" >Send money to the Philippines</a></li>
+                                    
+                                    	<li><a href="javascript: gotoPage('trust_product.asp','trust_metrobank_investment_funds','');" >Invest my money</a></li>
+                                    
+                                    	<li><a href="javascript: gotoPage('personal_product.asp','buy_or_sell','');" >Buy or Sell Foreign Currency</a></li>
+                                    
+                                </ul>
+                                <div class="clear"></div>
+                            </div>
+                            
+                        </div>
+                    </td>
+                    <td width="4px"></td>
+                    <td>
+                    	<div class="news-container">
+                        	<div class="news-header">
+                            	<img src="images/advisories_header.jpg" />
+                            </div>
+                            <div class="news-current">
+                                <div class="news-icon left"><img src='ViewImage.asp?id=3596' border="0" /></div>
+                                <div id="top-announcment" class="news-teaser right"></div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="news-links">
+                                <ul id="announcment-list">
+                                    
+                                    <li><a href="#" onclick="javascript: viewObj('announcementitem.asp','269','');">Scheduled Downtime<br>(20 Sept 2015)</a></li>
+                                    
+                                    <li><a href="#" onclick="javascript: viewObj('announcementitem.asp','266','');">Metrobank posts 30% growth in core earnings, 1H income hits P9.3 billion</a></li>
+                                    
+                                    <li><a href="#" onclick="javascript: viewObj('announcementitem.asp','267','');">Metrobank strengthens partnerships with Japanese SME clients in Cebu</a></li>
+                                    
+                                    <li><a href="#" onclick="javascript: viewObj('announcementitem.asp','264','');">Metrobank offers waived fees for future home owners</a></li>
+                                    
+                                </ul>
+                                <a class="news-read" href="announcementroom.asp"><img class="right" src="images/read_more_btn_red.png" /></a>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </td>
+                    </tr>
+                    </table>
+                    <div class="clear"></div>
+                </div>
+                <!--div class="big-space"><img src="/images/banner.jpg" /></div-->
+            </div>
+        </div>
+        <div class="right">
+        <div id="sidebar" >
+            <div id="accordion">
+            	<h3>Foreign Exchange</h3>
+                <div>
+                	<table border="0" cellspacing="0" cellpadding="0" width="200" style="width: 200px; height: 120px" id="FX-table"><tbody><tr><td><font face="helvetica" size="1">Rate</font></td><td class="text-align-center FX-value"><font face="helvetica" size="1">Buy</font></td><td class="text-align-center FX-value"><font face="helvetica" size="1">Sell</font></td></tr><tr class="bg-gray"><td width="50%"><font face="helvetica" size="1" color="#000000">USD</font></td><td class="text-align-center FX-value"><span><font face="helvetica" size="1" color="#000000">46.400</font></span></td><td class="text-align-center FX-value"><span><font face="helvetica" size="1" color="#000000">46.900</font></span></td></tr><tr><td width="50%"><font face="helvetica" size="1" color="#000000">JPY</font></td><td class="text-align-center FX-value"><p><font face="helvetica" size="1" color="#000000"><span>0.3708</span></font></p></td><td class="text-align-center FX-value"><span><font face="helvetica" size="1" color="#000000">0.3929</font></span></td></tr><tr class="bg-gray"><td width="50%"><font face="helvetica" size="1" color="#000000">EUR</font></td><td class="text-align-center FX-value"><p><font face="helvetica" size="1" color="#000000"><span>49.9400</span></font></p></td><td class="text-align-center FX-value"><p><font face="helvetica" size="1" color="#000000"><span>52.3700</span></font></p></td></tr><tr><td width="50%"><font face="helvetica" size="1" color="#000000">SGD</font></td><td class="text-align-center FX-value"><p><font face="helvetica" size="1" color="#000000"><span>31.6900</span></font></p></td><td class="text-align-center FX-value"><span><font face="helvetica" size="1" color="#000000">33.1100</font></span></td></tr><tr class="bg-gray"><td width="50%"><font face="helvetica" size="1" color="#000000">CNY</font></td><td class="text-align-center FX-value"><p><font face="helvetica" size="1" color="#000000"><span>7.1900</span></font></p></td><td class="text-align-center FX-value"><font face="helvetica" size="1" color="#000000">7.3300</font></td></tr><tr><td class="text-align-center bold" colspan="3"><font face="helvetica" size="1">As of&nbsp;Sep&nbsp;23 2015<br /></font><a href="javascript: gotoPage(&#39;personal_product.asp&#39;,&#39;personal_fxrate&#39;,&#39;&#39;);"><font face="helvetica" size="1">Click to view more</font></a><font size="1"> </font></td></tr></tbody></table>
+                </div>                 
+                <h3>PSEi</h3>
+                <div>
+                	<div id="PSE-header">
+                    	<p class="blue">Philippine Stock Exchange Index</p>
+                    </div>
+                    <div id="PSE-content">
+                    <!-- Phisix -->
+                    	<p>7051.23 &#8595;</p>
+                        <p>At Tuesday Close</p>
+                        <p>09/22/2015</p>
+                        <p>(From Philippine Stock Exchange)</p>
+                    <!-- End -->
+                    </div>
+                </div>
+                <h3>Investment Funds NAVPU</h3>
+                <div>
+                	<table border="0" cellspacing="0" cellpadding="0" width="234" id="NAVPU-table"><tbody><tr><td class="NAVPU-header" colspan="2"><p>Peso Investment Fund (09/22/2015)</p></td></tr><tr><td width="75%"><a href="javascript: gotoPage(&#39;trust_product.asp&#39;,&#39;trust_fund_performance&#39;,&#39;&#39;);" class="NAVPU-label">Money Market Fund<br /></a></td><td class="NAVPU-value">1.535887</td></tr><tr><td width="75%"><a href="javascript: gotoPage(&#39;trust_product.asp&#39;,&#39;trust_fund_performance&#39;,&#39;&#39;);" class="NAVPU-label">Max-3 Bond Fund<br /></a></td><td class="NAVPU-value">1.794827</td></tr><tr><td width="75%"><a href="javascript: gotoPage(&#39;trust_product.asp&#39;,&#39;trust_fund_performance&#39;,&#39;&#39;);" class="NAVPU-label">Wealth Builder Fund<br /></a></td><td class="NAVPU-value">1.626635</td></tr><tr><td width="75%"><a href="javascript: gotoPage(&#39;trust_product.asp&#39;,&#39;trust_fund_performance&#39;,&#39;&#39;);" class="NAVPU-label">Max-5 Bond Fund<br /></a></td><td class="NAVPU-value">1.805305</td></tr><tr><td width="75%"><a href="javascript: gotoPage(&#39;trust_product.asp&#39;,&#39;trust_fund_performance&#39;,&#39;&#39;);" class="NAVPU-label">Balanced Fund<br /></a></td><td class="NAVPU-value">3.224317</td></tr><tr><td width="75%"><a href="javascript: gotoPage(&#39;trust_product.asp&#39;,&#39;trust_fund_performance&#39;,&#39;&#39;);" class="NAVPU-label">Equity Fund<br /></a></td><td class="NAVPU-value">2.479038</td></tr><tr><td width="75%"><a href="javascript: gotoPage(&#39;trust_product.asp&#39;,&#39;trust_fund_performance&#39;,&#39;&#39;);" class="NAVPU-label">PSEi Tracker Fund<br /></a></td><td class="NAVPU-value">0.985832</td></tr><tr><td width="75%"><a href="javascript: gotoPage(&#39;trust_product.asp&#39;,&#39;trust_fund_performance&#39;,&#39;&#39;);" class="NAVPU-label">High Dividend Yield Fund<br /></a></td><td class="NAVPU-value">0.989949</td></tr><tr><td width="75%"><font color="#0066cc"><u><a href="javascript: gotoPage(&#39;trust_product.asp&#39;,&#39;trust_fund_performance&#39;,&#39;&#39;);" class="NAVPU-label">Aspire Bond Feeder Fund</a></u></font><font color="#000000">*<br /></font></td><td class="NAVPU-value">1.001223</td></tr><tr><td width="75%"><font color="#0066cc"><u><a href="javascript: gotoPage(&#39;trust_product.asp&#39;,&#39;trust_fund_performance&#39;,&#39;&#39;);" class="NAVPU-label">Aspire Balanced Feeder Fund</a></u></font><font color="#000000">*<br /></font></td><td class="NAVPU-value">1.008813</td></tr><tr><td width="75%"><font color="#0066cc"><u><a href="javascript: gotoPage(&#39;trust_product.asp&#39;,&#39;trust_fund_performance&#39;,&#39;&#39;);" class="NAVPU-label">Aspire PSEi Tracker Fund</a></u></font><font color="#000000">*<br /></font></td><td class="NAVPU-value">1.004641</td></tr><tr><td colspan="2"><font face="arial,helvetica,sans-serif" size="1">*On Soft Launch<br /></font></td></tr></tbody></table><table border="0" cellspacing="0" cellpadding="0" width="234" id="NAVPU-table"><tbody><tr><td class="NAVPU-header" colspan="2">Dollar Investment Fund (09/22/2015) </td></tr><tr><td width="75%"><a href="javascript: gotoPage(&#39;trust_product.asp&#39;,&#39;trust_fund_performance&#39;,&#39;&#39;);" class="NAVPU-label">$ Money Market Fund<br /></a></td><td class="NAVPU-value">1.285199</td></tr><tr><td width="75%"><a href="javascript: gotoPage(&#39;trust_product.asp&#39;,&#39;trust_fund_performance&#39;,&#39;&#39;);" class="NAVPU-label">$ Max-3 Bond Fund<br /></a></td><td class="NAVPU-value">1.617058</td></tr><tr><td width="75%"><a href="javascript: gotoPage(&#39;trust_product.asp&#39;,&#39;trust_fund_performance&#39;,&#39;&#39;);" class="NAVPU-label">$ Max-5 Bond Fund<br /></a></td><td class="NAVPU-value">1.870887</td></tr></tbody></table>
+                    <div id="NAVPU-fund"><a href="javascript:%20gotoPage('trust_product.asp','investment_funds','');">View Fund Performance</a></div>
+                </div>
+                <h3>Deposit Rates</h3>
+                <div>
+                	<ul class="sidebar-links">
+                    	<li><a class="NAVPU-label no-underline" href="javascript: gotoPage('PopupRates.asp','personal_basic_banking','window');" >Personal Basic Banking</a></li>
+                        <li><a class="NAVPU-label no-underline" href="javascript: gotoPage('PopupRates.asp','personal_foreign','window');" >Personal Foreign Currency Deposit Account</a></li>
+                        <li><a class="NAVPU-label no-underline" href="javascript: gotoPage('PopupRates.asp','kiddie_account','window');" >Fun Savers Club</a></li>
+                        <li><a class="NAVPU-label no-underline" href="javascript: gotoPage('PopupRates.asp','corporate_basic_banking','window');" >Corporate Basic Banking</a></li>
+                        <li><a class="NAVPU-label no-underline" href="javascript: gotoPage('PopupRates.asp','corporate_foreign','window');" >Corporate Foreign Deposit Account</a></li>
+                    </ul>
+                </div>
+                <h3>Metro Research Central</h3>
+                <div>
+                	<ul class="sidebar-links">
+                    	
+                    	<li><a class="NAVPU-label no-underline" href="javascript: gotoPage('metro_research.asp','mr_daily_views','');" >Daily Economic Views</a></li>
+                        
+                    	<li><a class="NAVPU-label no-underline" href="javascript: gotoPage('metro_research.asp','mr_weekly_views','');" >Weekly Economic Views</a></li>
+                        
+                    	<li><a class="NAVPU-label no-underline" href="javascript: gotoPage('metro_research.asp','mr_economic_weather','');" >Economic Weather Report</a></li>
+                        
+                    	<li><a class="NAVPU-label no-underline" href="javascript: gotoPage('metro_research.asp','mr_economic_indicators','');" >Economic Indicators</a></li>
+                        
+                    </ul>
+                </div>
+                <h3>Properties/Vehicles for Sale</h3>
+                <div>
+                	<ul class="sidebar-links">
+                    	<li><a class="NAVPU-label no-underline" href="assets_for_sale.asp" >Properties For Sale</a></li>
+                        <li><a class="NAVPU-label no-underline" href="assets_for_sale_car.asp" >Vehicles For Sale</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="contact-container">
+            	<h3>Contact Us</h3>
+				<!-- email popup modification - START -->
+                <div id="contact" style="padding:3px 0 3px 0!important; border:1px solid #E7E7E7; background:#E7E7E7;">
+				    <a href="#" class="modalInput" rel="div.emailUs:eq(0)" style="text-decoration:none!important;">
+					<table style="background:#E7E7E7; color:#333333; cursor:pointer; width:100%!important;">
+						<tr>
+							<td>
+                                <table>
+                                    <tr>
+                                        <td rowspan="2"><img src="images/icon-only.png" /></td>
+                                        <td>
+                                            <p style="font-weight:bold;">Call us.</p>
+                                            <p>(632) 8700-700</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p style="font-weight:bold;">Send us email.</p></td>
+                                    </tr>
+                                </table>
+							</td>
+						</tr>
+					</table>
+					</a>
+					<!-- agreement -->
+					<div class="emailUs fit-box">
+						<h2>Read and confirm</h2>
+
+						<div class="steps">
+							<span class="active">1</span>
+							<span>2</span>
+							<span>3</span>
+							<span>4</span>
+						</div>
+						
+						<h3>PRIVACY POLICY</h3>
+						
+                        <div style=" height:400px; overflow-y:scroll!important;">
+                            <p><font face="verdana,geneva"><font color="#333333">Described here are the norms, infrastructure, standards, and procedures by which we can continually safeguard customer information and ensure its confidentiality, with your help, subject to the limitations prescribed in Section V (Limit on Liability) of the Terms and Conditions for Individual customers and Section XI (Limit on Liability) of the metrobankdirect Memorandum of Agreement for Corporate customers. In order to help you clearly understand our commitment in keeping the privacy of your information and upholding the security of your transactions, please note that the words &ldquo;we&rdquo;, &ldquo;us&rdquo;, and &ldquo;our&rdquo; refer to Metropolitan Bank and Trust Company (Metrobank), the flagship company of the Metrobank Group. The words &ldquo;you&rdquo; and &ldquo;your&rdquo; refer to the individual/s or corporate customer/s who opened and maintain/s one or more account/s with Metrobank and enrolled in metrobankdirect.</font></font></p>
+                            <p><font face="verdana,geneva">We thank you for trusting us, and please feel free to notify us immediately on how we can serve you better.</font></p>
+                            <p><font face="verdana,geneva"><strong><a href="javascript:%20gotoPage(&#39;Blurb.asp&#39;,%20&#39;priv_pol1&#39;,%20&#39;&#39;);"><font color="#3333ff">Protecting information is our shared responsibility.</font></a></strong></font></p>
+                            <p><font face="verdana,geneva">We safeguard information according to established security standards and procedures, and we continually assess&nbsp;new technology to protect your privacy.</font></p>
+                            <p><font face="verdana,geneva"><strong><a href="javascript:%20gotoPage(&#39;Blurb.asp&#39;,%20&#39;priv_pol2&#39;,%20&#39;&#39;);"><font color="#3333ff">Your responsibility to protect your information</font></a></strong></font></p>
+                            <p><font face="verdana,geneva">Ensuring your security is a responsibility we share with you. However, while we do our share to ensure security, we acknowledge that your role is also equally important. To ensure the full protection of your transactions and the whole Facility against unauthorized third parties, we urge you to do your share in protecting your information.</font></p>
+                            <p><font face="verdana,geneva"><strong><a href="javascript:%20gotoPage(&#39;Blurb.asp&#39;,%20&#39;priv_pol3&#39;,%20&#39;&#39;);"><font color="#3333ff">How we value your privacy</font></a><br /></strong></font></p>
+                            <p><font face="verdana,geneva">We value your privacy and we warrant to you that we shall hold in strict confidence all the information that you communicate to us. All the information that you communicate&nbsp;to us shall be governed by RA 1405 (Law on Secrecy of Bank Deposits) as amended, RA 8791 (General Banking Law of 2000), and other applicable laws and rules and regulations that may be issued by the Bangko Sentral ng Pilipinas and the Bankers&rsquo; Association of the Philippines.</font></p>
+                        </div>
+
+						<!-- buttons -->
+						<p>
+							<span class="leftSide">
+								<label style="cursor:pointer;">
+									<input id="chkAgreement" type="checkbox" />I Agree to the terms and conditions
+								</label>
+							</span>
+							<span class="rightSide">
+								<button id="agreementNext" rel="div.emailUs:eq(1)" disabled="disabled">Next</button>
+								<a href="#" class="close"></a>
+							</span>
+						</p>
+					</div>
+					
+					<!-- emailform -->
+					<div class="emailUs">
+						<h2>Fill-up the form</h2>
+
+						<div class="steps">
+							<span class="inactive">1</span>
+							<span class="active">2</span>
+							<span>3</span>
+							<span>4</span>
+						</div>
+						
+						<h3>We will reply to your e-mail within 48-72 hours / 2-3 banking days.</h3>
+
+						<p>Please complete the following fields (Mandatory fields are indicated by a red asterisk(<span class="req">*</span>))</p>
+
+						<form id="emailForm">
+							<fieldset>
+							<ul>
+								<li>
+									<ul>
+										<li><label for="drpTitle">Title <span class="req">*</span></label>
+										<select id="drpTitle" name="drpTitle" required="true">
+											<option value="">Please select</option>
+											<option value="Mr">Mr</option>
+											<option value="Ms">Ms</option>
+											<option value="Mrs">Mrs</option>
+										</select></li>
+
+										<li><label for="txtFname">First Name <span class="req">*</span></label>
+										<input id="txtFname" name="txtFname" type="text" maxlength="50"></li>
+
+										<li><label for="txtMname">Middle Initial</label>
+										<input id="txtMname" name="txtMname" type="text" maxlength="50" style="width:60px; *width:95px;"></li>
+
+										<li><label for="txtLname">Last Name <span class="req">*</span></label>
+										<input id="txtLname" name="txtLname" type="text" maxlength="50"></li>
+										
+									</ul>
+								</li>
+							
+								<li>
+									<ul>
+										<li style="width: 83.5%!important; *width: 96%!important;"><label for="txtEmailAdd">Email address <span class="req">*</span></label>
+										<input id="txtEmailAdd" name="txtEmailAdd" type="email" maxlength="50" style="width: 81%!important;"></li>
+									</ul>
+								</li>
+
+								<li>
+									<ul>
+										<li><label for="drpSubject">Subject <span class="req">*</span></label>
+										<div id="divSubject" style="float:left;"><select id="drpSubject" name="drpSubject">
+										</select></div>
+										</li>
+										<li>
+										<label for="txtSubjectOthers" id="txtSubjectLblOthers" name="txtSubjectLblOthers">If other, enter subject here</label>
+										<input id="txtSubjectOthers" name="txtSubjectOthers" type="text" maxlength="100" disabled="true" style="width:315px;"></li>
+									</ul>
+								</li>
+
+								<li>
+									<ul>
+										<li><label for="txtMessage">Your message <span class="req">*</span></label>
+										<textarea id="txtMessage" name="txtMessage" cols="65" rows="3" maxlength="1500"></textarea></li>
+									</ul>
+								</li>
+								<li>
+									<ul>
+										<li>
+											<p style="float:left; *float:none; width:144%; *width:80%;">
+												<span class="leftSide" style="height:auto!important;">
+													<label>Are you an existing MBTC customer? <span class="req">*</span></label>
+													<label>
+														<input id="rdoExistMbtcYes" name="rdoExistMbtc" type="radio" value="1">Yes
+													</label>
+													<label>
+														<input id="rdoExistMbtcNo" name="rdoExistMbtc" type="radio" value="2">No
+													</label>
+												</span>
+												<span class="rightSide" style="height:auto!important;">
+													<label>Click the image to refresh</label>
+													<span class="captchaSpan"><img id="captchaImg" name="captchaImg" src="web/service/check.ashx" style="cursor:pointer;" /></span>
+													<label for="txtCaptchaText">Type the <span class="captchaDef" style="color:#36c; cursor:pointer;">captcha</span> image here <span class="req">*</span></label>
+													<input id="txtCaptchaText" name="txtCaptchaText" type="text" maxlength="10" style="width:" />
+												</span>
+											</p>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<div class="captchaDefinition" style="float:left; padding:0px 5px; background:#ddd; display:none; width:100%;">
+										<p>Completely Automated Public Turing test to tell Computers and Humans Apart</p>
+										<p>A CAPTCHA is a program that can generate and grade tests that humans can pass but current computer programs cannot.</p>
+									</div>
+								</li>
+								<!-- buttons -->
+								<li>
+									<p>
+										<span class="leftSide">
+											<button rel="div.emailUs:eq(0)">Back</button>
+										</span>
+										<span class="rightSide">
+											<button type="reset">Clear</button>
+											<button id="emailFormNext" type="submit">Next</button>
+											<button id="emailFormNextHidden" rel="div.emailUs:eq(2)" type="submit" value="Next" style="display:none;">Next</button>
+											<a href="#" class="close"></a>
+										</span>
+									</p>
+								</li>
+							</ul>
+							</fieldset>
+						</form>
+					</div>
+
+					<!-- emailverify -->
+					<div class="emailUs">
+						<h2>Verify information</h2>
+
+						<div class="steps">
+							<span class="inactive">1</span>
+							<span class="inactive">2</span>
+							<span class="active">3</span>
+							<span>4</span>
+						</div>
+						
+						<h3>Please confirm if the information entered below are correct.</h3>
+						
+						<p>To modify/edit click 'Back' then 'Next' to proceed.</p>
+						
+						<ul class="form-type">
+							<li>
+								<ul>
+									<li><label>Are you an existing MBTC customer? <span class="req">*</span></label></li>
+									<li><label id="rdoExistMbtcVal" name="rdoExistMbtcVal"></label></li>
+								</ul>
+							</li>
+
+							<li>
+								<ul>
+									<li><label>Title <span class="req">*</span></label></li>
+									<li><label id="drpTitleVal" name="drpTitleVal"></label></li>
+								</ul>
+							</li>
+
+							<li>
+								<ul>
+									<li><label>First Name <span class="req">*</span></label></li>
+									<li><label id="txtFnameVal" name="txtFnameVal"></label></li>
+								</ul>
+							</li>
+
+							<li>
+								<ul>
+									<li><label>Middle Initial</label></li>
+									<li><label id="txtMnameVal" name="txtMnameVal"></label></li>
+								</ul>
+							</li>
+
+							<li>
+								<ul>
+									<li><label>Last Name <span class="req">*</span></label></li>
+									<li><label id="txtLnameVal" name="txtLnameVal"></label></li>
+								</ul>
+							</li>
+						
+							<li>
+								<ul>
+									<li><label>Email address <span class="req">*</span></label></li>
+									<li><label id="txtEmailAddVal" name="txtEmailAddVal"></label></li>
+								</ul>
+							</li>
+
+							<li>
+								<ul>
+									<li><label>Subject <span class="req">*</span></label></li>
+									<li><label id="drpSubjectVal" name="drpSubjectVal"></label></li>
+								</ul>
+							</li>
+
+							<li>
+								<ul>
+									<li id="txtSubjectLblOthersLi" name="txtSubjectLblOthersLi"><label id="txtSubjectLblOthersTxt" name="txtSubjectLblOthersTxt">If other, enter subject here</label></li>
+									<li id="txtSubjectOthersLiVal" name="txtSubjectOthersLiVal"><label id="txtSubjectOthersVal" name="txtSubjectOthersVal"></label></li>
+								</ul>
+							</li>
+
+							<li>
+								<ul>
+									<li><label>Your message <span class="req">*</span></label></li>
+									<li></li>
+								</ul>
+							</li>
+							<li>
+								<ul>
+									<li style="width:100%!important;"><div id="txtMessageVal" name="txtMessageVal"></div></li>
+								</ul>
+							</li>
+						</ul>
+
+						<!-- buttons -->
+						<p>
+							<span class="leftSide">
+								<button rel="div.emailUs:eq(1)">Back</button>
+							</span>
+							<span class="rightSide">
+								<button id="emailVerifyNext">Next</button>
+								<button id="emailVerifyNextHidden" rel="div.emailUs:eq(3)" style="display:none;">Next</button>
+								<button id="emailVerifyErrorHidden" rel="div.emailUs:eq(4)" style="display:none;">Next</button>
+								<a href="#" class="close"></a>
+							</span>
+						</p>
+					</div>
+
+					<!-- acknowledgement - success -->
+					<div class="emailUs fit-box">
+						<h2>Acknowledgement</h2>
+
+						<div class="steps">
+							<span class="inactive">1</span>
+							<span class="inactive">2</span>
+							<span class="inactive">3</span>
+							<span class="active">4</span>
+						</div>
+						
+						<p>Thank you for e-mailing us. We will reply to your e-mail within 48-72 hours / 2-3 banking days.</p>
+
+						<p><b>Note: For e-mails received after December 23, 2014, we will reply to your e-mail starting January 5, 2015.</b></p>
+					</div>
+
+					<!-- acknowledgement - error -->
+					<div class="emailUs fit-box">
+						<h2>Failed sending email</h2>
+
+						<div class="steps">
+							<span class="inactive">1</span>
+							<span class="inactive">2</span>
+							<span class="inactive">3</span>
+							<span class="active">4</span>
+						</div>
+						
+						<h3>Sorry but the email was not sent.</h3>
+						
+						<p>There must have been a problem in the form validation.</p>
+
+						<p class="errorMessage"></p>
+					</div>
+            	</div>
+				<!-- email popup modification - END -->
+           </div>
+        </div>
+        
+        <div class="advisory-container">
+        	<div class="advisory-header">
+           		<img src="images/monthly_features.jpg" />
+            </div>
+            <div class="advisory-current">
+                <a href="http://www.axaion.com.ph"><img src='ViewImage.asp?id=2658' border="0" /></a>          
+            </div>
+            <div class="advisory-links">
+                <ul>
+                    <li><p>AXA iON, the Philippines&#39; first online life insurance store, lets you save for the future, protect your family and health, and prepare for your child&#39;s education conveniently from your computer, laptop or mobile device.</p></li>
+                </ul>
+                <a class="news-read" href="http://www.axaion.com.ph"><img class="right" src="images/read_more_btn_red.png" /></a>
+                <div class="clear"></div>
+            </div>
+        </div>
+        
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div id="footer">
+    	<div id="footer-logo">
+    	<img src="images/footer_logo.png" />
+        </div>
+        <div id="menu-bottom">
+        <ul class="menu fmenu">
+        	<li> <a href="privacy_policy.asp">Privacy Policy&nbsp;|&nbsp;</a></li>
+            <li> <a href="terms_of_use.asp">Terms of Use&nbsp;|&nbsp;</a></li>
+            <li> <a href="sitemap.asp">Sitemap&nbsp;|&nbsp;</a></li>
+            <li> <a href="security_center.asp">Security Center&nbsp;|&nbsp;</a></li>
+            <li> <a href="https://careers.metrobank.com.ph/">Careers</a></li>
+        </ul>
+        <div class="clear"></div>
+        </div>
+        <p id="address">Head Office Metrobank Plaza Sen. Gil J. Puyat Avenue, Makati City, 1200 Philippines.</p>
+        <p><i>Over 800 domestic and international branches, offices and subsidiaries. Member: PDIC. Maximum Deposit Insurance for Each Depositor P500,000.</i></p>
+        <p><i>A proud member of </i><img src="images/bancnet_icon.jpg" />.</p><br />
+        <p>Copyright ©2012 Metrobank. All rights reserved.</p>
+    </div>
+</div>
+<map id="Map" name="Map">
+    <area href="javascript:void(0);" coords="74, 52, 130, 69" shape="rect" onclick="oncliKsample();">
+    <!--<area target="_blank" href="https://personal.metrobankdirect.com" coords="74, 52, 130, 69" shape="rect">-->
+<area target="_blank" href="https://corporate.metrobankdirect.com" coords="74, 73, 130, 90" shape="rect">
+    <area href="https://personal.metrobankdirect.com/RetailInternetPortal/enrollment.do" coords="135, 52, 173, 69" shape="rect">
+    <area href="javascript: gotoPage('business_product.asp','business_cash','');" coords="135, 73, 173, 90" shape="rect">
+</map>
+
+
+
+
+
+
+
+
+   
+                 
+</body>
+</html>
+<script type="text/javascript">
+var carouselload = false;
+$(document).ready(function(){
+
+  $( "#accordion" ).accordion({ 
+  	active: false,
+  	autoHeight :false 
+  });
+  
+  $("#news-list li:nth-child(1) a").appendTo("#top-news");
+  $("#announcment-list li:nth-child(1) a").appendTo("#top-announcment");
+
+	$(".menu-category-margin").mouseover(function() {
+		var menu_id = "#"+$(this).attr("id")+"-sub";
+		$(menu_id).addClass("home-menu-select");
+	}).mouseout(function(){
+		$(".home-menu").removeClass("home-menu-select");
+	});
+	
+	$(".dropdown").mouseover(function() {
+		$(this).children("ul").css("left",0);
+	}).mouseout(function(){
+		$(this).children("ul").css("left",-9999);
+	});
+	 	
+});
+</script>
+<script type="text/javascript">
+    // validate form
+    $.validator.setDefaults({
+        submitHandler: function () {
+            var agree = $('#chkAgreement:checked').val();
+            var existEmp = $('input[name="rdoExistMbtc"]:checked').val();
+            var captcha = $('#txtCaptchaText');
+            var captchaVal = $('#txtCaptchaText').val();
+            var title = $("#drpTitle").val();
+            var empFname = $("#txtFname").val();
+            var empMname = $("#txtMname").val();
+            var empLname = $("#txtLname").val();
+            var emailAdd = $("#txtEmailAdd").val();
+            var subjectText = $("#drpSubject option:selected").text();
+            var subjectVal = $("#drpSubject").val();
+            var subjOther = $("#txtSubjectOthers").val();
+            var message = $("#txtMessage").val().replace(/\n/g, "<br/>");
+
+            if (agree) {
+                $.ajax({
+                    url: "web/service/verify.ashx?c="
+                    + captchaVal + "",
+                    success: function (data) {
+                        if (data == "success") {
+                            // verify info
+                            $("#rdoExistMbtcVal").text((existEmp == 1) ? "Yes" : "No");
+                            $("#drpTitleVal").text(title);
+                            $("#txtFnameVal").text(empFname);
+                            $("#txtMnameVal").text(empMname);
+                            $("#txtLnameVal").text(empLname);
+                            $("#txtEmailAddVal").text(emailAdd);
+                            $("#drpSubjectVal").text(subjectText);
+
+                            if (subjectText.toLowerCase().indexOf("other") >= 0) {
+                                $("#txtSubjectOthersVal").text(subjOther);
+                            }
+                            else {
+                                $("#txtSubjectOthersVal").text('');
+                            }
+                            $("#txtMessageVal").html(message);
+
+                            $("#emailFormNextHidden").trigger("click");
+                        }
+                        else {
+                            captcha.val('');
+                            $('.captchaSpan').trigger("click");
+                            alert(data);
+                        }
+                    },
+                    error: function (data) {
+                        alert(data);
+                        $('.captchaSpan').trigger("click");
+                        $('.errorMessage').text(data);
+                    }
+                });
+            }
+        }
+    });
+
+    $.validator.addMethod("captchaText", function (value, element) {
+        value = value.replace(/^\s+|\s+$/g, '');
+        $(element).val(value); //element.value = value
+        return /^(?:(?:[A-Za-z0-9]+ *)+)$/.test(value);
+    }, "Please provide the valid text.");
+
+    $.validator.addMethod("fname", function (value, element) {
+        value = value.replace(/^\s+|\s+$/g, '');
+        $(element).val(value); //element.value = value
+        return /^(?:(?:[a-zA-Z]+ *)+)$/.test(value);
+    }, "Please provide a valid first name.");
+
+    $.validator.addMethod("lname", function (value, element) {
+        value = value.replace(/^\s+|\s+$/g, '');
+        $(element).val(value); //element.value = value
+        return /^(?:(?:[a-zA-Z]+ *)+)$/.test(value);
+    }, "Please provide a valid last name.");
+
+    $.validator.addMethod("email", function (value, element) {
+        value = value.replace(/^\s+|\s+$/g, '');
+        return this.optional(element) || /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i.test(value);
+    }, "Please enter a valid email address.");
+
+    $.validator.addMethod("subject", function (value, element) {
+        value = value.replace(/^\s+|\s+$/g, '');
+        $(element).val(value); //element.value = value
+        return /^(?:(?:[A-Za-z0-9,.!?@_:]+ *)+)$/.test(value);
+    }, "Please provide a valid subject.");
+
+    $.validator.addMethod("message", function (value, element) {
+        //value = value.replace(/^\s+|\s+$/g, '');
+        //value = value.replace(/[\|&;\$%@"<>\(\)\+,]/g, '');
+        $(element).val(value); //element.value = value
+        return /^(?:(?:[A-Za-z0-9,.!?@_: \r\n]+ *)+)$/.test(value);
+    }, "Please provide a valid message.");
+
+    $("#emailForm").validate({
+        ignore: [],
+        rules: {
+            rdoExistMbtc: "required",
+            txtCaptchaText: {
+                required: true,
+                captchaText: "Required text",
+                minlength: 6
+            },
+            drpTitle: "required",
+            txtFname: {
+                required: true,
+                fname: "Required first name",
+                minlength: 2
+            },
+            txtLname: {
+                required: true,
+                lname: "Required last name",
+                minlength: 2
+            },
+            txtEmailAdd: {
+                required: true,
+                email: true,
+                minlength: 6
+            },
+            drpSubject: "required",
+            txtSubjectOthers: {
+                required: true,
+                subject: "Required subject",
+                minlength: 2
+            },
+            txtMessage: {
+                required: true,
+                message: "Required message",
+                minlength: 2
+            }
+        },
+        messages: {
+            rdoExistMbtc: "Please select an option",
+            captchaText: {
+                required: "Please provide valid text",
+                minlength: "Your text must be at least 6 characters long"
+            },
+            firstname: {
+                required: "Please provide first name",
+                minlength: "Your first name must be at least 2 characters long"
+            },
+            lastname: {
+                required: "Please provide last name",
+                minlength: "Your last name must be at least 2 characters long"
+            },
+            txtEmailAdd: "Please provide a valid email address",
+            drpSubject: "Please select an option",
+            txtSubjectOthers: {
+                required: "Please provide the subject",
+                minlength: "Your subject must be at least 2 characters long"
+            },
+            txtMessage: {
+                required: "Please provide your message",
+                minlength: "Your message must be at least 2 characters long"
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        $.ajax({
+            url: "web/service/emailClientList.ashx",
+            success: function (data) {
+                $('#divSubject').html(data);
+            },
+            error: function (data) {
+                alert(data);
+            }
+        });
+
+        $('#chkAgreement').removeAttr("checked");
+        $("#txtSubjectOthers").css("background", "#ddd");
+
+         $('button').click(function () {
+             $('label.error').hide();
+         });
+
+         $('a.close').click(function () {
+             $('label.error').hide();
+             $("#chkAgreement").attr("checked", false);
+             $("button[type='reset']").trigger("click");
+             $('.captchaSpan').trigger("click");
+         });
+
+        $('label.error').live("click", function () {
+            $(this).hide();
+        });
+
+        $("#chkAgreement").click(function () {
+            var agreeNext = $("#agreementNext");
+            if ($(this).is(':checked')) {
+                agreeNext.attr("disabled", false);
+            }
+            else {
+                agreeNext.attr("disabled", true);
+            }
+        });
+
+        $('#captchaImg').attr("src", "web/service/check.ashx?uid=" + (new Date()).getTime() + "");
+        $('.captchaSpan, #captchaImg').click(function () {
+            $('#captchaImg').attr("src", "web/service/check.ashx?uid=" + (new Date()).getTime() + "");
+        });
+
+        $('.captchaDef').click(function () {
+            $('.captchaDefinition').toggle();
+        });
+
+        $("#drpSubject").live("change", function () {
+            var result = ($("#drpSubject option:selected").text().toLowerCase().indexOf("other") < 0) ? ($(this).val() != "") ? $(this).val() : 0 : -1;
+
+            if (result >= 0) {
+                $("#txtSubjectOthers").val("");
+                $("#txtSubjectOthers").attr("disabled", true);
+                $("#txtSubjectOthers").css("background", "#ddd");
+            }
+            else {
+                $("#txtSubjectOthers").attr("disabled", false);
+                $("#txtSubjectOthers").css("background", "#fff");
+                $("#txtSubjectOthers").val("");
+            }
+        });
+
+        $("#txtMessage").counter({
+            count: 'up',
+            goal: 1500
+        });
+
+        $('#txtCaptchaText').keyup(function (e) {
+            var $this = $(this);
+            $this.val($this.val().replace(/[\|&;\$%"~`^!@\-_:?.,\\\/*'\[\]={}#<>\(\)\+]/g, ''));
+        });
+        $('#txtCaptchaText').keydown(function (e) {
+            var $this = $(this);
+            $this.val($this.val().replace(/[\|&;\$%"~`^!@\-_:?.,\\\/*'\[\]={}#<>\(\)\+]/g, ''));
+        });
+        $('#txtCaptchaText').blur(function (e) {
+            var $this = $(this);
+            $this.val($this.val().replace(/[\|&;\$%"~`^!@\-_:?.,\\\/*'\[\]={}#<>\(\)\+]/g, ''));
+        });
+        $('#txtCaptchaText').bind("paste", function (e) {
+            var $this = $(this);
+            $this.val($this.val().replace(/[\|&;\$%"~`^!@\-_:?.,\\\/*'\[\]={}#<>\(\)\+]/g, ''));
+        });
+        $('#txtLname, #txtFname, #txtMname').keyup(function (e) {
+            var $this = $(this);
+            $this.val($this.val().replace(/[\|&;\$%"~`^!@\-_:?01234567890.,\\\/*'\[\]={}#<>\(\)\+]/g, ''));
+        });
+        $('#txtLname, #txtFname, #txtMname').keydown(function (e) {
+            var $this = $(this);
+            $this.val($this.val().replace(/[\|&;\$%"~`^!@\-_:?01234567890.,\\\/*'\[\]={}#<>\(\)\+]/g, ''));
+        });
+        $('#txtLname, #txtFname, #txtMname').blur(function (e) {
+            var $this = $(this);
+            $this.val($this.val().replace(/[\|&;\$%"~`^!@\-_:?01234567890.,\\\/*'\[\]={}#<>\(\)\+]/g, ''));
+        });
+        $('#txtLname, #txtFname, #txtMname').bind("paste", function (e) {
+            var $this = $(this);
+            $this.val($this.val().replace(/[\|&;\$%"~`^!@\-_:?01234567890.,\\\/*'\[\]={}#<>\(\)\+]/g, ''));
+        });
+        $('#txtEmailAdd').keyup(function (e) {
+            var $this = $(this);
+            $this.val($this.val().replace(/[&;\$%"`^!\:,\\\/*'\[\]#<>\(\)]/g, ''));
+        });
+        $('#txtEmailAdd').keydown(function (e) {
+            var $this = $(this);
+            $this.val($this.val().replace(/[&;\$%"`^!\:,\\\/*'\[\]#<>\(\)]/g, ''));
+        });
+        $('#txtEmailAdd').blur(function (e) {
+            var $this = $(this);
+            $this.val($this.val().replace(/[&;\$%"`^!\:,\\\/*'\[\]#<>\(\)]/g, ''));
+        });
+        $('#txtEmailAdd').bind("paste", function (e) {
+            var $this = $(this);
+            $this.val($this.val().replace(/[&;\$%"`^!\:,\\\/*'\[\]#<>\(\)]/g, ''));
+        });
+        $('#txtSubjectOthers, #txtMessage').keyup(function (e) {
+            var $this = $(this);
+            $this.val($this.val().replace(/[\|&;\$%"~`^\-\\\/*'\[\]={}#<>\(\)\+]/g, ''));
+        });
+        $('#txtSubjectOthers, #txtMessage').keydown(function (e) {
+            var $this = $(this);
+            $this.val($this.val().replace(/[\|&;\$%"~`^\-\\\/*'\[\]={}#<>\(\)\+]/g, ''));
+        });
+        $('#txtSubjectOthers, #txtMessage').blur(function (e) {
+            var $this = $(this);
+            $this.val($this.val().replace(/[\|&;\$%"~`^\-\\\/*'\[\]={}#<>\(\)\+]/g, ''));
+        });
+        $('#txtSubjectOthers, #txtMessage').bind("paste", function (e) {
+            var $this = $(this);
+            $this.val($this.val().replace(/[\|&;\$%"~`^\-\\\/*'\[\]={}#<>\(\)\+]/g, ''));
+        });
+
+        $("#emailVerifyNext").click(function () {
+            var agree = $('#chkAgreement:checked').val();
+            var existEmp = $('input[name="rdoExistMbtc"]:checked').val();
+            var captcha = $("#txtCaptchaText");
+            var captchaVal = $("#txtCaptchaText").val();
+            var title = $("#drpTitle").val();
+            var empFname = $("#txtFname").val();
+            var empMname = $("#txtMname").val();
+            var empLname = $("#txtLname").val();
+            var emailAdd = $("#txtEmailAdd").val();
+            var subjectText = $("#drpSubject option:selected").text();
+            var subjectVal = $("#drpSubject").val();
+            var subjOther = (subjectVal.length > 0) ? (subjectText.toLowerCase().indexOf("other") >= 0 && $("#txtSubjectOthers").val().length > 0) ? $("#txtSubjectOthers").val() : '' : '';
+            var message = $("#txtMessage").val().replace(/\n/g, "CRLF");
+
+            if (!agree
+            && !existEmp
+            && !captchaVal
+            && !title
+            //&& !empMname
+            && !empLname
+            && !emailAdd
+            && (!subjectVal || !subjOther)
+            && !message) {
+                alert("Oops. There's something wrong with the data. Please try again later.");
+                window.location.replace(window.location);
+            }
+
+            $.ajax({
+                url: "web/service/emailForm.ashx?a="
+                    + agree + "&e="
+                    + existEmp + "&c="
+                    + captchaVal + "&t="
+                    + title + "&ef="
+                    + empFname + "&em="
+                    + empMname + "&el="
+                    + empLname + "&ea="
+                    + emailAdd + "&s="
+                    + subjectVal + "&so="
+                    + subjOther + "&m="
+                    + message + "",
+                success: function (data) {
+                    if (data == "success") {
+                        $("#chkAgreement").attr("checked", false);
+
+                        $("#txtSubjectOthers").attr("background", "#aaa");
+
+                        $('input[name="rdoExistMbtc"]').attr("checked", false);
+                        $("#drpTitleVal").text('');
+                        $("#txtFnameVal").text('');
+                        $("#txtMnameVal").text('');
+                        $("#txtLnameVal").text('');
+                        $("#txtEmailAddVal").text('');
+                        $("#drpSubjectVal").text('');
+                        $("#txtSubjectOthersVal").text('');
+                        $("#txtMessageVal").text('');
+
+                        $("#emailVerifyNextHidden").trigger("click");
+                        $("button[type='reset']").trigger("click");
+                        captcha.val('');
+                        $('.captchaSpan').trigger("click");
+                    }
+                    else {
+                        $('.errorMessage').text(data);
+                        captcha.val('');
+                        $('.captchaSpan').trigger("click");
+                        $("#emailVerifyErrorHidden").trigger("click");
+                        	$("button[type='reset']").trigger("click");
+                    }
+                },
+                error: function (data) {
+                       alert(data);
+                       $('.errorMessage').text(data);
+                       captcha.val('');
+                       $('.captchaSpan').trigger("click");
+                       $('label.error').hide();
+                       $("#chkAgreement").attr("checked", false);
+                  	  $("button[type='reset']").trigger("click");
+                }
+            })
+        });
+
+        $("button[rel], a[rel]").each(function (i) {
+            $(this).overlay({
+                oneInstance: true,
+                closeOnClick: false
+            });
+        });
+    });
+</script>
+<script type="text/javascript">
+
+function gotoPage(linked,objName,target){
+	var doc = document.frmHandler;
+		doc.action = linked;
+		if (target=="window"){
+			window.open('','targetWindow','resizable=yes, scrollbars=yes, status=no, width=960, height=400');
+			doc.target = 'targetWindow';
+		}else{
+			doc.target = "_self";
+		}
+		doc.BlurbName.value = objName;
+		doc.submit();
+		doc.target = "";
+}
+
+function viewObj(linked,id,id2){
+var doc = document.frmView;
+	doc.action = linked;
+	doc.ArticleID.value = id;
+	doc.AnnouncementID.value = id;
+	doc.BlurbID.value = id;
+	doc.BrandID.value = id;
+	doc.ModelID.value = id2;
+	doc.LocationID.value = id;
+	doc.TypeID.value = id2;
+	doc.submit();
+}
+</script>
+<!--[if !IE]> -->
+	<script>
+	$(document).ready(function(){
+        $('#main-slide li:last img').load(function() {  
+              var mainslider = $('#main-slide').bxSlider({
+                    controls: false,
+                    auto: true,
+                    pager: true,
+                    pause: 5000,
+                    pagerSelector: '#pager',
+                    onAfterSlide: function(currentSlide, totalSlides)
+                    {
+                        currentSlide++;
+                        
+                        $(".pager-content > a").remove();
+                        title = $('img','#main-slide li:nth-child('+(currentSlide+1)+')').attr("title");
+                        linkto = $('img','#main-slide li:nth-child('+(currentSlide+1)+')').attr("link");
+                        oneliner = $('img','#main-slide li:nth-child('+(currentSlide+1)+')').attr("oneliner");
+                        $('.pager-content').append('<a href="'+linkto+'"><h1>'+title+'</h1><p>'+oneliner+'</p></a>').hide().fadeIn("slow");
+                    }
+              }); 
+              
+        }); 
+    });
+	</script>
+<!-- <![endif]-->
+<!--[if IE 7]>
+<style>
+	.drop-down-menu {
+    	top:30px;
+    }
+    .menu ul {
+    	top:12px;
+    }
+</style>
+<![endif]-->
+<!--[if lt IE 9]>
+<script>
+	$(document).ready(function(){
+	 $(".mm-item").mouseover(function() {
+        $(this).find(".drop-down-menu-container").css("left","0");
+      }).mouseout(function(){
+        $(this).find(".drop-down-menu-container").css("left","-99990px");
+      });
+       var mainslider = $('#main-slide').bxSlider({
+				controls: false,
+				auto: true,
+				pager: true,
+				pause: 5000,
+				pagerSelector: '#pager',
+				onAfterSlide: function(currentSlide, totalSlides)
+				{
+					currentSlide++;
+					
+					$(".pager-content > a").remove();
+					title = $('img','#main-slide li:nth-child('+(currentSlide+1)+')').attr("title");
+					linkto = $('img','#main-slide li:nth-child('+(currentSlide+1)+')').attr("link");
+					oneliner = $('img','#main-slide li:nth-child('+(currentSlide+1)+')').attr("oneliner");
+					$('.pager-content').append('<a href="'+linkto+'"><h1>'+title+'</h1><p>'+oneliner+'</p></a>').hide().fadeIn("slow");
+				}
+		  });  
+	});
+   
+</script>
+<![endif]-->
+<!--[if lte IE 7]>
+<script>
+	$(function(){
+	 $("#menu-top li").mouseenter(function(){
+     	var cssObj = {
+          'left' : '0',
+          'top' : '15px'
+        }
+		$(this).find("ul").css(cssObj);
+	  }).mouseleave(function(){
+		$(this).find("ul").css("left","-9999");
+	  });
+	});
+</script>
+<![endif]-->

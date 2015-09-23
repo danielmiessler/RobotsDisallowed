@@ -1,0 +1,3 @@
+User-Agent: *
+Disallow: /*?*p_p_id=switchlinksportlet_WAR_switchlinksportlet_INSTANCE_corpoSwitch2&p_p_lifecycle=1&p_p_state=normal&p_p_mode=view&_switchlinksportlet_WAR_switchlinksportlet_INSTANCE_corpoSwitch2_javax.portlet.action=*
+Sitemap: http://www.pgnig.pl/sitemap.xml

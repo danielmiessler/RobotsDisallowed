@@ -1,0 +1,1146 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<script src="http://www.ebtea.com/public/app/site/lang/zh_CN/js/lang.js"></script><link href="http://www.ebtea.com/public/app/site/statics/css_mini/typical.css" rel="stylesheet" media="screen, projection" /><script src="http://www.ebtea.com/public/app/site/statics/js_mini/moo.min.js"></script><script src="http://www.ebtea.com/public/app/site/statics/js_mini/ui.min.js"></script>	
+
+
+<link href="http://www.ebtea.com/public/app/b2c/statics/css_mini/basic.min.css" rel="stylesheet" media="screen, projection" /><script src="http://www.ebtea.com/public/app/b2c/lang/zh_CN/js/lang.js"></script><script>
+var Shop = {"url":{"shipping":"\/cart-shipping.html","total":"\/cart-total.html","region":"\/tools-selRegion.html","payment":"\/cart-payment.html","purchase_shipping":"\/cart-purchase_shipping.html","purchase_def_addr":"\/cart-purchase_def_addr.html","purchase_payment":"\/cart-purchase_payment.html","get_default_info":"\/cart-get_default_info.html","diff":"\/product-diff.html","fav_url":"\/member-ajax_fav.html","datepicker":"http:\/\/www.ebtea.com\/public\/app\/site\/statics\/js_mini","placeholder":"http:\/\/www.ebtea.com\/public\/app\/b2c\/statics\/images\/imglazyload.gif"},"base_url":"\/"};
+</script>
+
+    <script src="http://www.ebtea.com/public/app/b2c/statics/js_mini/shop.min.js"></script>
+<link rel="stylesheet" href="http://www.ebtea.com/widgetsproinstance-get_css-ebtea-c3BsYXNoLSgxKS5odG1s.html" /><link rel="stylesheet" href="http://www.ebtea.com/themes/ebtea/images/styles.css" />
+</head>
+<body>
+<div id="topbar" class="page-topbar">
+  <div class="inner-wrap2">
+    <div class="topbar-left">
+      <div id="login_261" class="small-signin">
+    分享优质茶具、茶叶，品味饮茶的乐趣，客服电话：400-6576-218 
+  <a href="/passport-login.html">登录</a> | 
+  <a href="/passport-signup.html">注册</a>
+</div>
+<div id="member_261" class="small-member" style="display:none;">
+  您好<span id="uname_261"></span>！
+  <a href="/passport-logout.html">退出</a>
+</div>
+<script>
+var name = Cookie.read('UNAME') || '';
+if(name){
+    $("uname_261").innerHTML = name;
+    $("member_261").setStyle('display','');
+    $("login_261").setStyle('display','none');
+}
+else{
+    $("login_261").setStyle('display','');
+    $("member_261").setStyle('display','none');
+}
+</script>
+    </div>
+    <div class="topbar-right">
+      <div class="subnav">
+  <div id="msgBar_262" class="my-msg">                                                                  
+    <a href="/member-inbox.html" class="fl">
+      <span class="mti"></span>您有<span id="msg_num"></span>条未读消息
+    </a>
+  </div>
+  <a href="/member.html">会员中心</a>
+  <a href="/article-help-l-1.html">帮助中心</a>
+  <a href="/article-cominfo_about-63.html">关于我们</a>
+  <a href="/article-cominfo_contact-65.html">联系我们</a>
+</div>
+
+<script>
+    var e = Cookie.read('UNAME')?Cookie.read('UNAME'):'';
+    /*
+    new Request({
+        url:'/passport-getuname.html',
+        method:'post',
+        onComplete:function(e){
+            */
+            if(e){
+                new Request({
+                  url:'/member-get_unreadmsg_num.html',
+                  method:'post',
+                  onComplete:function(e){
+                    rs = parseInt(JSON.decode(e).inbox_num);
+                    $("msg_num").innerHTML = rs;
+                    if(rs > 0){
+                      $("msgBar_262").setStyle('display','block');
+                    }else{
+                      $("msgBar_262").setStyle('display','none');
+                    }
+                  }
+                }).send();
+            }
+            else{
+                $("msgBar_262").setStyle('display','none');
+            }
+            /*
+        },
+        data:''
+    }).send();
+    */
+</script>
+    </div>
+  </div>
+</div>
+
+<div id="header" class="page-header">
+  <div class="inner-wrap2">
+    <div class="header-left">
+      <div class="logo"><a href="./"><img src="http://www.ebtea.com/public/images/56/3f/5c/672d39b05aedaf109e1ebb63a64ef7825d66a94a.jpg?1427355964#w" alt="茗茶网"></a></div>
+    </div>
+    <div class="header-main">
+      <div class="searchbar">
+  <form action="/search-result.html" method="post" id="searchbar_156" async="false">
+    <input class="x-input" type="text" name="search_keywords" placeholder="纪念抗战70周年" data-autocompleter="true" id="dom_el_93acbc0" />    <button type="submit" class="btn btn-search"><span><span class="icon">搜索</span></span></button>
+  </form>
+  <div class="hots">
+    <span>热门搜索：</span>
+        <a href="/index.php/gallery.html?scontent=n,铁壶">铁壶</a>
+        <a href="/index.php/gallery.html?scontent=n,汝窑">汝窑</a>
+        <a href="/index.php/gallery.html?scontent=n,玻璃杯">玻璃杯</a>
+        <a href="/index.php/gallery.html?scontent=n,品茶忆友">品茶忆友</a>
+      </div>
+</div>
+<script>
+(function(scope){
+scope.getElement('button[type=submit]').addEvent('click', function(e){
+    if(scope.getElement('input').value.trim() === '') {
+        e.stop();
+    }
+});
+
+var search_keywords = decodeURIComponent(Memory.get('search_key'));
+if(search_keywords == 'null'){
+      search_keywords = '';
+  }
+//scope.getElement('input[name=search_keywords]').value = search_keywords;
+
+var path ='http://www.ebtea.com/public/app/b2c/statics/js_mini/';
+$LAB.script(path + 'autocompleter.js').wait(function(){
+    var item = scope.getElement('[data-autocompleter]');
+    var options = {};
+    try {
+        options = JSON.decode(item.get('data-autocompleter-options'));
+    }catch (e) {}
+    Object.merge(options, item.retrieve('autocompleter_options', {}));
+
+    new Autocompleter.Request.JSON(item, "/search-associate.html", options);
+});
+})($('searchbar_156'));
+</script>
+    </div>
+    <div class="header-right">
+     <div class="banner">
+  <a href="" target="_blank">
+    <img data-src="/public/images/6d/0e/aa/9c83f0c0faa09b4210c1d0cfc36b3f716d81246f.jpg?1430073749#w" alt="" width="315"height="70" />
+  </a>
+</div>
+    </div>
+  </div>
+</div>
+
+<div id="nav" class="page-nav">
+  <div class="inner-wrap2">
+    <div class="nav-left">
+      
+
+
+
+
+
+<div class="category-handle" id="category_handle">
+  <a href="javascript:void(0);">所有商品分类</a>
+</div>
+<div class="category-content" id="category_box">
+  <ul class="category-list">
+        <li class="category-item">
+      <a href="/gallery-22.html"  class="category-link"><span class="text">金属茶具</span><i class="icon">&#x64;</i></a>
+            <div class="sub-box clearfix">
+        <table style="width:492px;">
+          <col width="300"/>
+          <col width="191"/>
+          <tr>
+            <td class="sub-category-box" valign="top">
+              <div class="padding">
+                                <dl class="sub-category clearfix">
+                  <dt><a href="/gallery-43.html"  class="level2">铸铁茶具</a></dt>
+                  <dd class="clearfix">
+                                        <a href="/gallery-112.html"  class="level3">铸铁茶壶</a>
+                                        <a href="/gallery-113.html"  class="level3">中端铁壶</a>
+                                        <a href="/gallery-114.html"  class="level3">高端铁壶</a>
+                                        <a href="/gallery-115.html"  class="level3">铁壶配件</a>
+                                      </dd>
+                </dl>
+                                <dl class="sub-category clearfix">
+                  <dt><a href="/gallery-44.html"  class="level2">精品铜器</a></dt>
+                  <dd class="clearfix">
+                                        <a href="/gallery-116.html"  class="level3">铜壶</a>
+                                        <a href="/gallery-117.html"  class="level3">茶叶罐</a>
+                                        <a href="/gallery-118.html"  class="level3">铜器配件</a>
+                                      </dd>
+                </dl>
+                                <dl class="sub-category clearfix">
+                  <dt><a href="/gallery-45.html"  class="level2">精品银器</a></dt>
+                  <dd class="clearfix">
+                                        <a href="/gallery-119.html"  class="level3">银壶</a>
+                                        <a href="/gallery-120.html"  class="level3">茶叶罐</a>
+                                        <a href="/gallery-121.html"  class="level3">银器配件</a>
+                                      </dd>
+                </dl>
+                              </div>
+            </td>
+            <td class="brands-box" valign="top">
+                            <a href="/brand-15.html" class="item">
+                <img src="http://www.ebtea.com/public/images/95/0e/7a/4df05625fb2f2b962b9a65172e24756bb0779174.png?1430876327#h" alt="品茶忆友" />
+              </a>
+                            <a href="/brand-16.html" class="item">
+                <img src="http://www.ebtea.com/public/images/36/d5/e0/932f4faabc19cc76bec4cf4077db6fe5e3a7198c.jpg?1427198757#h" alt="尚明" />
+              </a>
+                            <a href="/brand-21.html" class="item">
+                <img src="http://www.ebtea.com/public/images/4a/23/2d/1072c031a6e60b0b3c597f597b1cd4817ef79cee.jpg?1427964928#h" alt="一屋窑" />
+              </a>
+                            <a href="/brand-22.html" class="item">
+                <img src="http://www.ebtea.com/public/images/f7/76/78/1b639fad6f7e5279fb5b877c3bc8380b142cde12.jpg?1429187963#h" alt="PICAEYO" />
+              </a>
+                            <a href="/brand-23.html" class="item">
+                <img src="" alt="莺歌烧" />
+              </a>
+                          </td>
+          </tr>
+        </table>
+      </div>
+          </li>
+        <li class="category-item">
+      <a href="/gallery-122.html"  class="category-link"><span class="text">陶瓷茶具</span><i class="icon">&#x64;</i></a>
+            <div class="sub-box clearfix">
+        <table style="width:492px;">
+          <col width="300"/>
+          <col width="191"/>
+          <tr>
+            <td class="sub-category-box" valign="top">
+              <div class="padding">
+                                <dl class="sub-category clearfix">
+                  <dt><a href="/gallery-27.html"  class="level2">紫砂茶具</a></dt>
+                  <dd class="clearfix">
+                                        <a href="/gallery-63.html"  class="level3">紫砂杯</a>
+                                        <a href="/gallery-64.html"  class="level3">紫砂壶</a>
+                                        <a href="/gallery-65.html"  class="level3">紫砂茶宠</a>
+                                        <a href="/gallery-66.html"  class="level3">紫砂套装</a>
+                                        <a href="/gallery-162.html"  class="level3">煮茶器</a>
+                                        <a href="/gallery-67.html"  class="level3">其它</a>
+                                      </dd>
+                </dl>
+                                <dl class="sub-category clearfix">
+                  <dt><a href="/gallery-24.html"  class="level2">汝窑茶具</a></dt>
+                  <dd class="clearfix">
+                                        <a href="/gallery-47.html"  class="level3">陶瓷茶壶</a>
+                                        <a href="/gallery-48.html"  class="level3">品茗杯</a>
+                                        <a href="/gallery-49.html"  class="level3">茶宠</a>
+                                        <a href="/gallery-50.html"  class="level3">汝窑套装</a>
+                                        <a href="/gallery-160.html"  class="level3">汝窑公道杯</a>
+                                        <a href="/gallery-161.html"  class="level3">汝窑茶碗</a>
+                                        <a href="/gallery-168.html"  class="level3">快客杯</a>
+                                        <a href="/gallery-51.html"  class="level3">其它</a>
+                                      </dd>
+                </dl>
+                                <dl class="sub-category clearfix">
+                  <dt><a href="/gallery-130.html"  class="level2">景德镇陶瓷</a></dt>
+                  <dd class="clearfix">
+                                        <a href="/gallery-132.html"  class="level3">青花瓷茶壶</a>
+                                        <a href="/gallery-133.html"  class="level3">青花瓷盖碗</a>
+                                        <a href="/gallery-134.html"  class="level3">青花瓷品茗杯</a>
+                                        <a href="/gallery-136.html"  class="level3">青花瓷配件</a>
+                                        <a href="/gallery-159.html"  class="level3">青花瓷公道杯</a>
+                                        <a href="/gallery-163.html"  class="level3">青花瓷茶杯</a>
+                                        <a href="/gallery-135.html"  class="level3">青花瓷套装</a>
+                                        <a href="/gallery-248.html"  class="level3">单色釉陶瓷</a>
+                                      </dd>
+                </dl>
+                                <dl class="sub-category clearfix">
+                  <dt><a href="/gallery-131.html"  class="level2">陶土茶具</a></dt>
+                  <dd class="clearfix">
+                                        <a href="/gallery-137.html"  class="level3">陶土茶壶</a>
+                                        <a href="/gallery-138.html"  class="level3">陶土盖碗</a>
+                                        <a href="/gallery-139.html"  class="level3">陶土品茗杯</a>
+                                        <a href="/gallery-140.html"  class="level3">套装茶具</a>
+                                        <a href="/gallery-141.html"  class="level3">配件</a>
+                                      </dd>
+                </dl>
+                              </div>
+            </td>
+            <td class="brands-box" valign="top">
+                            <a href="/brand-15.html" class="item">
+                <img src="http://www.ebtea.com/public/images/95/0e/7a/4df05625fb2f2b962b9a65172e24756bb0779174.png?1430876327#h" alt="品茶忆友" />
+              </a>
+                            <a href="/brand-20.html" class="item">
+                <img src="http://www.ebtea.com/public/images/d6/3f/0d/785098ffa00d6692710cf01bba31e8716666e9dd.jpg?1427965787#h" alt="龚春" />
+              </a>
+                            <a href="/brand-22.html" class="item">
+                <img src="http://www.ebtea.com/public/images/f7/76/78/1b639fad6f7e5279fb5b877c3bc8380b142cde12.jpg?1429187963#h" alt="PICAEYO" />
+              </a>
+                            <a href="/brand-23.html" class="item">
+                <img src="" alt="莺歌烧" />
+              </a>
+                            <a href="/brand-24.html" class="item">
+                <img src="" alt="奉华" />
+              </a>
+                            <a href="/brand-25.html" class="item">
+                <img src="" alt="三师堂" />
+              </a>
+                          </td>
+          </tr>
+        </table>
+      </div>
+          </li>
+        <li class="category-item">
+      <a href="/chapan"  class="category-link"><span class="text">茶盘系列</span><i class="icon">&#x64;</i></a>
+            <div class="sub-box clearfix">
+        <table style="width:492px;">
+          <col width="300"/>
+          <col width="191"/>
+          <tr>
+            <td class="sub-category-box" valign="top">
+              <div class="padding">
+                                <dl class="sub-category clearfix">
+                  <dt><a href="/gallery-58.html"  class="level2">竹制茶盘</a></dt>
+                  <dd class="clearfix">
+                                        <a href="/gallery-190.html"  class="level3">毛竹茶盘</a>
+                                        <a href="/gallery-191.html"  class="level3">重竹茶盘</a>
+                                        <a href="/gallery-192.html"  class="level3">孟宗竹茶盘</a>
+                                      </dd>
+                </dl>
+                                <dl class="sub-category clearfix">
+                  <dt><a href="/gallery-59.html"  class="level2">木制茶盘</a></dt>
+                  <dd class="clearfix">
+                                        <a href="/gallery-193.html"  class="level3">黑檀木茶盘</a>
+                                        <a href="/gallery-194.html"  class="level3">花梨木茶盘</a>
+                                        <a href="/gallery-195.html"  class="level3">鸡翅木茶盘</a>
+                                        <a href="/gallery-196.html"  class="level3">红影木茶盘</a>
+                                        <a href="/gallery-197.html"  class="level3">小叶紫檀茶盘</a>
+                                      </dd>
+                </dl>
+                                <dl class="sub-category clearfix">
+                  <dt><a href="/gallery-60.html"  class="level2">石制茶盘</a></dt>
+                  <dd class="clearfix">
+                                        <a href="/gallery-198.html"  class="level3">乌金石茶盘</a>
+                                        <a href="/gallery-199.html"  class="level3">其它</a>
+                                      </dd>
+                </dl>
+                                <dl class="sub-category clearfix">
+                  <dt><a href="/gallery-61.html"  class="level2">茶盘套装</a></dt>
+                  <dd class="clearfix">
+                                        <a href="/gallery-239.html"  class="level3">整套木质茶盘</a>
+                                        <a href="/gallery-240.html"  class="level3">整套竹制茶盘</a>
+                                        <a href="/gallery-241.html"  class="level3">整套石头茶盘</a>
+                                      </dd>
+                </dl>
+                              </div>
+            </td>
+            <td class="brands-box" valign="top">
+                            <a href="/brand-15.html" class="item">
+                <img src="http://www.ebtea.com/public/images/95/0e/7a/4df05625fb2f2b962b9a65172e24756bb0779174.png?1430876327#h" alt="品茶忆友" />
+              </a>
+                            <a href="/brand-17.html" class="item">
+                <img src="http://www.ebtea.com/public/images/bd/5f/f9/5e9aa7ee70a7e82caa9c84406fe1aff543864b81.png?1427960974#h" alt="茗匠" />
+              </a>
+                            <a href="/brand-21.html" class="item">
+                <img src="http://www.ebtea.com/public/images/4a/23/2d/1072c031a6e60b0b3c597f597b1cd4817ef79cee.jpg?1427964928#h" alt="一屋窑" />
+              </a>
+                            <a href="/brand-22.html" class="item">
+                <img src="http://www.ebtea.com/public/images/f7/76/78/1b639fad6f7e5279fb5b877c3bc8380b142cde12.jpg?1429187963#h" alt="PICAEYO" />
+              </a>
+                          </td>
+          </tr>
+        </table>
+      </div>
+          </li>
+        <li class="category-item">
+      <a href="/gallery-26.html"  class="category-link"><span class="text">玻璃茶具</span><i class="icon">&#x64;</i></a>
+            <div class="sub-box clearfix">
+        <table style="width:492px;">
+          <col width="300"/>
+          <col width="191"/>
+          <tr>
+            <td class="sub-category-box" valign="top">
+              <div class="padding">
+                                <dl class="sub-category clearfix">
+                  <dt><a href="/gallery-52.html"  class="level2">玻璃茶具</a></dt>
+                  <dd class="clearfix">
+                                        <a href="/gallery-174.html"  class="level3">玻璃杯</a>
+                                        <a href="/gallery-175.html"  class="level3">玻璃壶</a>
+                                        <a href="/gallery-176.html"  class="level3">飘逸壶</a>
+                                        <a href="/gallery-177.html"  class="level3">飘逸杯</a>
+                                      </dd>
+                </dl>
+                                <dl class="sub-category clearfix">
+                  <dt><a href="/gallery-53.html"  class="level2">玻璃套装</a></dt>
+                  <dd class="clearfix">
+                                        <a href="/gallery-186.html"  class="level3">一壶两杯</a>
+                                        <a href="/gallery-187.html"  class="level3">一壶六杯</a>
+                                        <a href="/gallery-188.html"  class="level3">保温套装</a>
+                                        <a href="/gallery-189.html"  class="level3">整套茶具</a>
+                                      </dd>
+                </dl>
+                                <dl class="sub-category clearfix">
+                  <dt><a href="/gallery-142.html"  class="level2">保温系列</a></dt>
+                  <dd class="clearfix">
+                                        <a href="/gallery-182.html"  class="level3">不锈钢保温杯</a>
+                                        <a href="/gallery-183.html"  class="level3">玻璃保温杯</a>
+                                      </dd>
+                </dl>
+                                <dl class="sub-category clearfix">
+                  <dt><a href="/gallery-54.html"  class="level2">玻璃配件</a></dt>
+                  <dd class="clearfix">
+                                        <a href="/gallery-234.html"  class="level3">茶漏</a>
+                                        <a href="/gallery-235.html"  class="level3">公道杯</a>
+                                        <a href="/gallery-236.html"  class="level3">一口杯</a>
+                                        <a href="/gallery-237.html"  class="level3">其它</a>
+                                      </dd>
+                </dl>
+                              </div>
+            </td>
+            <td class="brands-box" valign="top">
+                            <a href="/brand-15.html" class="item">
+                <img src="http://www.ebtea.com/public/images/95/0e/7a/4df05625fb2f2b962b9a65172e24756bb0779174.png?1430876327#h" alt="品茶忆友" />
+              </a>
+                            <a href="/brand-16.html" class="item">
+                <img src="http://www.ebtea.com/public/images/36/d5/e0/932f4faabc19cc76bec4cf4077db6fe5e3a7198c.jpg?1427198757#h" alt="尚明" />
+              </a>
+                            <a href="/brand-18.html" class="item">
+                <img src="http://www.ebtea.com/public/images/54/93/d5/c58dfee94aa62df3f9ae892ddf518dc7141464a0.jpg?1431931043#h" alt="金灶" />
+              </a>
+                            <a href="/brand-19.html" class="item">
+                <img src="http://www.ebtea.com/public/images/f5/cf/c9/ea95a24fccc0d38ac7deb51b990bc3b83261cd14.jpg?1431931228#h" alt="Babol佰宝" />
+              </a>
+                            <a href="/brand-21.html" class="item">
+                <img src="http://www.ebtea.com/public/images/4a/23/2d/1072c031a6e60b0b3c597f597b1cd4817ef79cee.jpg?1427964928#h" alt="一屋窑" />
+              </a>
+                            <a href="/brand-22.html" class="item">
+                <img src="http://www.ebtea.com/public/images/f7/76/78/1b639fad6f7e5279fb5b877c3bc8380b142cde12.jpg?1429187963#h" alt="PICAEYO" />
+              </a>
+                          </td>
+          </tr>
+        </table>
+      </div>
+          </li>
+        <li class="category-item">
+      <a href="/gallery-32.html"  class="category-link"><span class="text">茶道配件</span><i class="icon">&#x64;</i></a>
+            <div class="sub-box clearfix">
+        <table style="width:492px;">
+          <col width="300"/>
+          <col width="191"/>
+          <tr>
+            <td class="sub-category-box" valign="top">
+              <div class="padding">
+                                <dl class="sub-category clearfix">
+                  <dt><a href="/gallery-76.html"  class="level2">杯垫/壶垫</a></dt>
+                  <dd class="clearfix">
+                                        <a href="/gallery-214.html"  class="level3">铁壶垫</a>
+                                        <a href="/gallery-215.html"  class="level3">杯垫</a>
+                                        <a href="/gallery-221.html"  class="level3">其它</a>
+                                      </dd>
+                </dl>
+                                <dl class="sub-category clearfix">
+                  <dt><a href="/gallery-77.html"  class="level2">六君子/茶针/茶夹/茶荷</a></dt>
+                  <dd class="clearfix">
+                                        <a href="/gallery-216.html"  class="level3">六君子</a>
+                                        <a href="/gallery-217.html"  class="level3">茶针</a>
+                                        <a href="/gallery-218.html"  class="level3">茶夹</a>
+                                        <a href="/gallery-219.html"  class="level3">茶匙</a>
+                                        <a href="/gallery-220.html"  class="level3">其它</a>
+                                        <a href="/gallery-231.html"  class="level3">茶刀</a>
+                                      </dd>
+                </dl>
+                                <dl class="sub-category clearfix">
+                  <dt><a href="/gallery-78.html"  class="level2">茶洗/茶巾/养壶笔</a></dt>
+                  <dd class="clearfix">
+                                        <a href="/gallery-222.html"  class="level3">养护笔</a>
+                                        <a href="/gallery-223.html"  class="level3">茶巾</a>
+                                        <a href="/gallery-224.html"  class="level3">茶水桶</a>
+                                        <a href="/gallery-225.html"  class="level3">茶洗</a>
+                                        <a href="/gallery-226.html"  class="level3">其它</a>
+                                      </dd>
+                </dl>
+                                <dl class="sub-category clearfix">
+                  <dt><a href="/gallery-79.html"  class="level2">茶席/茶宠摆件/茶漏</a></dt>
+                  <dd class="clearfix">
+                                        <a href="/gallery-227.html"  class="level3">茶席</a>
+                                        <a href="/gallery-228.html"  class="level3">置物架</a>
+                                        <a href="/gallery-229.html"  class="level3">茶宠</a>
+                                        <a href="/gallery-230.html"  class="level3">香炉/盘香</a>
+                                        <a href="/gallery-232.html"  class="level3">茶漏</a>
+                                        <a href="/gallery-233.html"  class="level3">香插</a>
+                                      </dd>
+                </dl>
+                              </div>
+            </td>
+            <td class="brands-box" valign="top">
+                            <a href="/brand-15.html" class="item">
+                <img src="http://www.ebtea.com/public/images/95/0e/7a/4df05625fb2f2b962b9a65172e24756bb0779174.png?1430876327#h" alt="品茶忆友" />
+              </a>
+                            <a href="/brand-16.html" class="item">
+                <img src="http://www.ebtea.com/public/images/36/d5/e0/932f4faabc19cc76bec4cf4077db6fe5e3a7198c.jpg?1427198757#h" alt="尚明" />
+              </a>
+                            <a href="/brand-17.html" class="item">
+                <img src="http://www.ebtea.com/public/images/bd/5f/f9/5e9aa7ee70a7e82caa9c84406fe1aff543864b81.png?1427960974#h" alt="茗匠" />
+              </a>
+                            <a href="/brand-18.html" class="item">
+                <img src="http://www.ebtea.com/public/images/54/93/d5/c58dfee94aa62df3f9ae892ddf518dc7141464a0.jpg?1431931043#h" alt="金灶" />
+              </a>
+                            <a href="/brand-19.html" class="item">
+                <img src="http://www.ebtea.com/public/images/f5/cf/c9/ea95a24fccc0d38ac7deb51b990bc3b83261cd14.jpg?1431931228#h" alt="Babol佰宝" />
+              </a>
+                            <a href="/brand-21.html" class="item">
+                <img src="http://www.ebtea.com/public/images/4a/23/2d/1072c031a6e60b0b3c597f597b1cd4817ef79cee.jpg?1427964928#h" alt="一屋窑" />
+              </a>
+                            <a href="/brand-22.html" class="item">
+                <img src="http://www.ebtea.com/public/images/f7/76/78/1b639fad6f7e5279fb5b877c3bc8380b142cde12.jpg?1429187963#h" alt="PICAEYO" />
+              </a>
+                            <a href="/brand-23.html" class="item">
+                <img src="" alt="莺歌烧" />
+              </a>
+                          </td>
+          </tr>
+        </table>
+      </div>
+          </li>
+        <li class="category-item">
+      <a href="/gallery-124.html"  class="category-link"><span class="text">电子茶具</span><i class="icon">&#x64;</i></a>
+            <div class="sub-box clearfix">
+        <table style="width:492px;">
+          <col width="300"/>
+          <col width="191"/>
+          <tr>
+            <td class="sub-category-box" valign="top">
+              <div class="padding">
+                                <dl class="sub-category clearfix">
+                  <dt><a href="/gallery-125.html"  class="level2">烧水壶</a></dt>
+                  <dd class="clearfix">
+                                        <a href="/gallery-171.html"  class="level3">随手泡</a>
+                                        <a href="/gallery-247.html"  class="level3">电茶壶</a>
+                                      </dd>
+                </dl>
+                                <dl class="sub-category clearfix">
+                  <dt><a href="/gallery-128.html"  class="level2">上水器/加热器</a></dt>
+                  <dd class="clearfix">
+                                        <a href="/gallery-244.html"  class="level3">上水器</a>
+                                        <a href="/gallery-245.html"  class="level3">保温底座</a>
+                                        <a href="/gallery-246.html"  class="level3">电陶炉</a>
+                                      </dd>
+                </dl>
+                                <dl class="sub-category clearfix">
+                  <dt><a href="/gallery-144.html"  class="level2">电茶壶套装</a></dt>
+                  <dd class="clearfix">
+                                      </dd>
+                </dl>
+                              </div>
+            </td>
+            <td class="brands-box" valign="top">
+                            <a href="/brand-15.html" class="item">
+                <img src="http://www.ebtea.com/public/images/95/0e/7a/4df05625fb2f2b962b9a65172e24756bb0779174.png?1430876327#h" alt="品茶忆友" />
+              </a>
+                            <a href="/brand-18.html" class="item">
+                <img src="http://www.ebtea.com/public/images/54/93/d5/c58dfee94aa62df3f9ae892ddf518dc7141464a0.jpg?1431931043#h" alt="金灶" />
+              </a>
+                            <a href="/brand-19.html" class="item">
+                <img src="http://www.ebtea.com/public/images/f5/cf/c9/ea95a24fccc0d38ac7deb51b990bc3b83261cd14.jpg?1431931228#h" alt="Babol佰宝" />
+              </a>
+                            <a href="/brand-22.html" class="item">
+                <img src="http://www.ebtea.com/public/images/f7/76/78/1b639fad6f7e5279fb5b877c3bc8380b142cde12.jpg?1429187963#h" alt="PICAEYO" />
+              </a>
+                            <a href="/brand-23.html" class="item">
+                <img src="" alt="莺歌烧" />
+              </a>
+                          </td>
+          </tr>
+        </table>
+      </div>
+          </li>
+        <li class="category-item">
+      <a href="/gallery-28.html"  class="category-link"><span class="text">茶叶专区</span><i class="icon">&#x64;</i></a>
+            <div class="sub-box clearfix">
+        <table style="width:492px;">
+          <col width="300"/>
+          <col width="191"/>
+          <tr>
+            <td class="sub-category-box" valign="top">
+              <div class="padding">
+                                <dl class="sub-category clearfix">
+                  <dt><a href="/gallery-35.html"  class="level2">发酵茶</a></dt>
+                  <dd class="clearfix">
+                                        <a href="/gallery-206.html"  class="level3">普洱</a>
+                                        <a href="/gallery-207.html"  class="level3">黑茶</a>
+                                        <a href="/gallery-208.html"  class="level3">红茶</a>
+                                        <a href="/gallery-209.html"  class="level3">铁观音</a>
+                                        <a href="/gallery-210.html"  class="level3">大红袍</a>
+                                        <a href="/gallery-211.html"  class="level3">乌龙茶</a>
+                                        <a href="/gallery-212.html"  class="level3">福鼎白茶</a>
+                                        <a href="/gallery-213.html"  class="level3">水仙</a>
+                                      </dd>
+                </dl>
+                                <dl class="sub-category clearfix">
+                  <dt><a href="/gallery-36.html"  class="level2">不发酵茶</a></dt>
+                  <dd class="clearfix">
+                                        <a href="/gallery-204.html"  class="level3">绿茶</a>
+                                        <a href="/gallery-205.html"  class="level3">其它</a>
+                                      </dd>
+                </dl>
+                                <dl class="sub-category clearfix">
+                  <dt><a href="/gallery-41.html"  class="level2">花草茶/保健茶</a></dt>
+                  <dd class="clearfix">
+                                        <a href="/gallery-200.html"  class="level3">茉莉花茶</a>
+                                        <a href="/gallery-201.html"  class="level3">菊花茶</a>
+                                        <a href="/gallery-202.html"  class="level3">大麦茶</a>
+                                        <a href="/gallery-203.html"  class="level3">其它</a>
+                                      </dd>
+                </dl>
+                                <dl class="sub-category clearfix">
+                  <dt><a href="/gallery-42.html"  class="level2">礼品茶</a></dt>
+                  <dd class="clearfix">
+                                        <a href="/gallery-242.html"  class="level3">高档礼盒装</a>
+                                        <a href="/gallery-243.html"  class="level3">普通装</a>
+                                      </dd>
+                </dl>
+                              </div>
+            </td>
+            <td class="brands-box" valign="top">
+                            <a href="/brand-15.html" class="item">
+                <img src="http://www.ebtea.com/public/images/95/0e/7a/4df05625fb2f2b962b9a65172e24756bb0779174.png?1430876327#h" alt="品茶忆友" />
+              </a>
+                            <a href="/brand-22.html" class="item">
+                <img src="http://www.ebtea.com/public/images/f7/76/78/1b639fad6f7e5279fb5b877c3bc8380b142cde12.jpg?1429187963#h" alt="PICAEYO" />
+              </a>
+                          </td>
+          </tr>
+        </table>
+      </div>
+          </li>
+      </ul>
+</div>
+<script>
+var category = $('category_box');
+
+category.getElements('.category-item').addEvents({
+    'mouseover':function(e){
+        var self = this;
+        clearTimeout(this.showTimer);
+        clearTimeout(this.hideTimer);
+        var active = function(){
+            if(self.getElement('.sub-box')){
+                self.addClass('active');
+            }
+        }
+        this.showTimer = active.delay(100);
+    },
+    'mouseout':function(e){
+        var self = this;
+        clearTimeout(this.showTimer);
+        clearTimeout(this.hideTimer);
+        var active = function(){
+            if(self.getElement('.sub-box')){
+                self.removeClass('active');
+            }
+        }
+        this.hideTimer = active.delay(100);
+    }
+});
+</script>
+
+    </div>
+    <div class="nav-main">
+      <div class="menu">
+  <ul class="clearfix">
+        <li class="nav-item "><a href="http://www.ebtea.com/index.html" >首页</a></li>
+        <li class="nav-item "><a href="http://www.ebtea.com/member.html" >会员中心</a></li>
+        <li class="nav-item "><a href="http://www.ebtea.com/brand-showlist.html" >品牌汇</a></li>
+        <li class="nav-item "><a href="http://www.ebtea.com/special-2.html" target="_blank">限时优惠</a></li>
+        <li class="nav-item "><a href="http://www.ebtea.com/gift-lists.html" >积分兑换</a></li>
+        <li class="nav-item "><a href="http://www.ebtea.com/special-3.html" >秒杀</a></li>
+        <li class="nav-item "><a href="/gallery-index---0---25.html" >新品上线</a></li>
+        <li class="nav-item "><a href="/gallery-112.html" >铁壶之源</a></li>
+        <li class="nav-item "><a href="http://www.ebtea.com/special-1.html" target="_blank">团购</a></li>
+      </ul>
+</div>    </div>
+    <div class="nav-right">
+      <div class="minicart has-minicart" id="minicart_160">
+  
+  <a href="/cart.html" class="minicart-text">
+    <i class="icon">&#x3e;</i> 购物车中有    <b class="op-cart-number">0</b> 件商品  </a>
+  <div class="minicart-cont">
+  </div>
+  
+</div>
+<script>
+window.addEvent('domready',function(){
+    updateCartInfo();
+
+    
+    var cartViewUrl='/cart-view.html';
+    var MiniCarWidgets={
+        init:function(){
+            var minicart=this.cart= $('minicart_160');
+            this.detailbox=minicart.getElement('.minicart-cont');
+            this.handle=minicart.getElement('.minicart-text');
+            this.attach();
+        },
+        attach:function(){
+            this.handle.addEvents({
+                'mouseenter':function(e){
+                    if(e&&this.state) return;
+                    this.show();
+
+                    this.request({
+                        url:cartViewUrl,
+                        method:'post',
+                        onRequest:function(){
+                            this.detailbox.innerHTML='<div class="loading">加载中...</div>';
+                        }.bind(this)
+                    });
+                }.bind(this)
+            });
+            this.cart.addEvent('_show',function(e){
+                this.handle.fireEvent('mouseenter');
+            }.bind(this));
+        },
+        show:function(e){
+            this.cart.addClass('minicart-active');
+            this.state=true;
+            var self = this;
+            $(document.body).addEvent('click',function(){
+                self.hide();
+                this.removeEvent('click',arguments.callee);
+            });
+            return this;
+        },
+        hide:function(){
+            this.cart.removeClass('minicart-active');
+            this.state=false;
+        },
+        setHeight: function(el) {
+            var h = window.getSize().y - this.detailbox.getPosition(document.body).y + window.getScroll().y - this.detailbox.getPatch().y;
+            var dh = this.detailbox.getSize().y - this.detailbox.getPatch('padding', 'border').y;
+            if(dh >= h){
+                this.detailbox.setStyle('height',h);
+            }
+            else this.detailbox.setStyle('height', 'auto');
+            return this;
+        },
+        removeCart:function(el){
+            this.request({
+                url:el.href,
+                data:el.getParent('.goods-item')
+            });
+        },
+        addEvent:function(){
+            var _this=this;
+            this.detailbox.getElements('.action-delete').addEvent('click',function(e){
+                e.stop();
+                _this.removeCart(this);
+            });
+        },
+        request:function(options){
+            options = options || {};
+            options.data = (options.data?options.data.toQueryString():'')+'&mini_cart_list=true';
+            options = Object.merge({
+                method:'post',
+                update: this.detailbox,
+                onSuccess:function(re){
+                    try{
+                        updateCartInfo();
+                        fixImageSize($$('img[data-img-zoom]'));
+                    }catch(e){}
+                    this.setHeight().addEvent();
+                }.bind(this)
+            },options);
+            return new Request.HTML(options).send();
+        }
+    };
+    MiniCarWidgets.init();
+    
+});
+</script>
+    </div>
+  </div>
+</div>
+<div id="container" class="page-container clearfix">
+  <div class="inner-wrap">
+    <div class="page-error">
+  <!--<span class="icon">&#x68;</span> -->
+  <div class="page-error-message"><div style="text-align: left;">无法找到页面－－－－－－－或者搜索相关产品关键词，</div><div style="text-align: left;"><br/></div><div style="text-align: left;">例如：</div><div style="text-align: left;"><a href="http://www.ebtea.com/gallery.html?scontent=n,茶具" type="url" target="_blank">茶具&nbsp;</a></div><div style="text-align: left;"><a href="http://www.ebtea.com/gallery-43.html" type="url" target="_blank">铁壶</a></div><div style="text-align: left;"><a href="http://www.ebtea.com/gallery-24.html" type="url" target="_blank">汝窑</a></div><div style="text-align: left;"><a href="http://www.ebtea.com/gallery-52.html" type="url" target="_blank">玻璃茶具</a></div><div style="text-align: left;"><a href="http://www.ebtea.com/gallery-212.html" type="url" target="_blank">白茶</a></div><div style="text-align: left;">普洱茶</div><div style="text-align: left;"><a href="http://www.ebtea.com/gallery-27.html" type="url" target="_blank">紫砂壶</a></div><div style="text-align: left;">品茶忆友</div><div style="text-align: left;">
+<img src="http://www.ebtea.com/public/images/a5/5c/63/4976052de03b3673f8d6969cc51a43f146e5755c.jpg?1431509793#w"></div></div>
+</div>
+<!-- <meta http-equiv="refresh" content="3; url=javascript:history.back();" /> -->
+  </div>
+</div>
+﻿
+<div id="helper" class="page-helper">
+  <div class="inner-wrap2">
+  <div style="padding-left:50px;"> 	
+    <div class="helper-item"><dl class="content-list">
+  <dt class="content-title">
+    <a class="link" href="http://www.ebtea.com/article-help_xgkbz-l-13.html">新茶客帮助</a>
+    </dt>
+      <dd class="node-index content-item">
+    <a href="http://www.ebtea.com/article-help_xgkbz-47.html" title=商品退货保障>商品退货保障</a>
+    </dd>
+      <dd class="node-index content-item">
+    <a href="http://www.ebtea.com/article-help_xgkbz-48.html" title=积分奖励计划>积分奖励计划</a>
+    </dd>
+      <dd class="node-index content-item">
+    <a href="http://www.ebtea.com/article-help_xgkbz-49.html" title=订单的几种状态>订单的几种状态</a>
+    </dd>
+      <dd class="node-index content-item">
+    <a href="http://www.ebtea.com/article-help_xgkbz-71.html" title=注册帮助>注册帮助</a>
+    </dd>
+      <dd class="node-index content-item">
+    <a href="http://www.ebtea.com/article-help-51.html" title=顾客必读>顾客必读</a>
+    </dd>
+  </dl>
+</div>
+    <div class="helper-item"><dl class="content-list">
+  <dt class="content-title">
+    <a class="link" href="http://www.ebtea.com/article-help_compass-l-14.html">购物指南</a>
+    </dt>
+      <dd class="node-index content-item">
+    <a href="http://www.ebtea.com/article-help_compass-42.html" title=简单的购物流程>简单的购物流程</a>
+    </dd>
+      <dd class="node-index content-item">
+    <a href="http://www.ebtea.com/article-help_compass-43.html" title=网站免责声明>网站免责声明</a>
+    </dd>
+      <dd class="node-index content-item">
+    <a href="http://www.ebtea.com/article-help_compass-45.html" title=体贴的售后服务>体贴的售后服务</a>
+    </dd>
+      <dd class="node-index content-item">
+    <a href="http://www.ebtea.com/article-help_compass-46.html" title=非会员购物通道>非会员购物通道</a>
+    </dd>
+      <dd class="node-index content-item">
+    <a href="http://www.ebtea.com/article-help_compass-50.html" title=会员等级折扣>会员等级折扣</a>
+    </dd>
+  </dl>
+</div>
+    <div class="helper-item"><dl class="content-list">
+  <dt class="content-title">
+    <a class="link" href="http://www.ebtea.com/article-help-l-1.html">帮助中心</a>
+    </dt>
+      <dd class="node-index content-item">
+    <a href="http://www.ebtea.com/article-help_compass-45.html" title=体贴的售后服务>体贴的售后服务</a>
+    </dd>
+      <dd class="node-index content-item">
+    <a href="http://www.ebtea.com/article-help-40.html" title=配送方式>配送方式</a>
+    </dd>
+      <dd class="node-index content-item">
+    <a href="http://www.ebtea.com/article-help_payment-39.html" title=订单何时出库？>订单何时出库？</a>
+    </dd>
+      <dd class="node-index content-item">
+    <a href="http://www.ebtea.com/article-help_payment-37.html" title=关于送货和验货>关于送货和验货</a>
+    </dd>
+      <dd class="node-index content-item">
+    <a href="http://www.ebtea.com/article-help-69.html" title=售后服务>售后服务</a>
+    </dd>
+  </dl>
+</div>
+    <div class="helper-item"><dl class="content-list">
+  <dt class="content-title">
+    <a class="link" href="http://www.ebtea.com/article-help-l-1.html">帮助中心</a>
+    </dt>
+      <dd class="node-index content-item">
+    <a href="http://www.ebtea.com/article-help_clause-35.html" title=隐私保护政策>隐私保护政策</a>
+    </dd>
+      <dd class="node-index content-item">
+    <a href="http://www.ebtea.com/article-help_compass-43.html" title=网站免责声明>网站免责声明</a>
+    </dd>
+      <dd class="node-index content-item">
+    <a href="http://www.ebtea.com/article-help_clause-44.html" title=网站使用条款>网站使用条款</a>
+    </dd>
+      <dd class="node-index content-item">
+    <a href="http://www.ebtea.com/article-help-36.html" title=会员注册协议>会员注册协议</a>
+    </dd>
+      <dd class="node-index content-item">
+    <a href="http://www.ebtea.com/article-help-72.html" title=会员隐私协议>会员隐私协议</a>
+    </dd>
+  </dl>
+</div>
+    <div class="helper-item"><dl class="content-list">
+  <dt class="content-title">
+    <a class="link" href="http://www.ebtea.com/article-cominfo-l-6.html">公司简介</a>
+    </dt>
+      <dd class="node-index content-item">
+    <a href="http://www.ebtea.com/article-cominfo_busniess-67.html" title=业务合作>业务合作</a>
+    </dd>
+      <dd class="node-index content-item">
+    <a href="http://www.ebtea.com/article-cominfo_about-63.html" title=公司介绍>公司介绍</a>
+    </dd>
+      <dd class="node-index content-item">
+    <a href="http://www.ebtea.com/article-cominfo_about-64.html" title=公司文化>公司文化</a>
+    </dd>
+      <dd class="node-index content-item">
+    <a href="http://www.ebtea.com/article-cominfo_contact-65.html" title=联系方式>联系方式</a>
+    </dd>
+      <dd class="node-index content-item">
+    <a href="http://www.ebtea.com/article-cominfo_jobs-66.html" title=招聘信息>招聘信息</a>
+    </dd>
+  </dl>
+</div>
+    <div class="helper-item"><a href="http://www.ebtea.com/article-cominfo_contact-65.html" type="url">
+<img src="http://www.ebtea.com/public/images/55/10/c2/c1345db15e807ca9ad0c54442276bb049a1af12e.gif?1439779611#w"></a></div>
+  </div>
+  </div>
+</div>
+
+<div id="footer" class="page-footer">
+  <div class="inner-wrap2">
+    <script>
+var Shop = window['Shop'] || {"url":{"region":"\/tools-selRegion.html","placeholder":"http:\/\/www.ebtea.com\/public\/app\/b2c\/statics\/images\/imglazyload.gif"}};
+window.addEvent('domready',function(){
+    var __time_out = 1000;
+    if (Shop.set != undefined&&Shop.set.refer_timeout) __time_out = Shop.set.refer_timeout;
+    var ReferObj ={};
+    Object.append(ReferObj,{
+        serverTime:1442989074,
+        init:function(){
+            var FIRST_REFER=Memory.get('first_refer');
+            var NOW_REFER=Memory.get('now_refer');
+            var nowDate=this.time=this.serverTime*1000;
+            if(!window.location.href.test('#r-')&&!document.referrer||document.referrer.test(document.domain))return;
+            if(window.location.href.test('#r-')) Memory.clean('n');
+            if(!FIRST_REFER){
+
+                if(NOW_REFER){
+                    Memory.set('first_refer',NOW_REFER,this.getTimeOut(JSON.decode(NOW_REFER).DATE));
+                }else{
+                    this.setRefer('first_refer',__time_out);
+                }
+            }
+            this.setRefer('now_refer',__time_out);
+            this.createGUID();
+        },
+        getUid:function(){
+            var lf=window.location.href,pos=lf.indexOf('#r-');
+            return pos!=-1?lf.substr(pos+4):'';
+        },
+        getRefer:function(){
+            return document.referrer?document.referrer:'';
+        },
+        setRefer:function(referName,timeout){
+            var uid=this.getUid(),referrer=this.getRefer();
+            var data={'ID':uid,'REFER':referrer,'DATE':this.time};
+
+            if('now_refer'==referName){
+                var refer=JSON.decode(Memory.get('first_refer'));
+                if(uid!=''&&refer&&refer.ID==''){
+                    var fdata={'ID':uid,'REFER':refer.REFER,'DATE':refer.DATE};
+                    Memory.set('first_refer',JSON.encode(fdata),this.getTimeOut(refer.DATE));
+                }else if(uid==''){
+                    Object.append(data,{'ID':refer.ID});
+                }
+            }
+            Memory.set(referName,JSON.encode(data),__time_out||15);
+        },
+        getTimeOut:function(nowDate){
+            var timeout=nowDate+__time_out*24*3600*1000;
+            var date=new Date(timeout);
+            return date;
+        },
+        createGUID:function(){
+            var GUID = (function(){
+                var S4=function(){
+                    return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+                };
+                return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4()).toUpperCase();
+            })();
+            Memory.set('n',GUID,3650);
+        }
+    });
+    ReferObj.init();
+});
+
+
+miniCart = {
+    'show':function(target){
+        target = $(target);
+        if (!target) return;
+
+        if(this.dialog){
+            this.hide();
+        }
+
+        var options = {
+                body: 'popup-body',
+                header: 'popup-header',
+                close: 'popup-btn-close',
+                content:'popup-content',
+                title:'正在加入购物车',
+                main:'<div class="loading">loading...</div>'
+            }, dialog = this.dialog = new Element('div#mini_cart_dialog.popup-container.mini-cart-dialog',{
+                'html': $('popup_template').get('html').substitute(options),
+                styles:{
+                    display:'block',
+                    zIndex: maxZindex('div', 1)
+                }
+            }).inject(document.body);
+
+        this.title = dialog.getElement('.popup-header h2');
+        this.close = dialog.getElements('.popup-btn-close');
+        this.content = dialog.getElement('.popup-content');
+        this.dialog.addEvent('click:relay(.popup-btn-close)',this.hide.bind(this));
+
+        var setSize = this.setSize = function(){
+            if(!dialog.isDisplayed()) return;
+            dialog.setStyles({
+                top:target.getPosition().y+target.getSize().y,
+                left:target.getPosition().x.limit(0,window.getSize().x-dialog.getSize().x) + window.getScroll().x
+            });
+        };
+
+        setSize();
+        window.addEvent('resize',setSize);
+    },
+    'hide':function(){
+        try{
+            this.dialog.destroy();
+            window.removeEvent('resize',this.setSize);
+        }catch(e){}
+    },
+    'load':function(options){
+        options = options || {};
+        options = Object.merge({
+            method: 'post',
+            onRequest: function(){
+                miniCart.show(options.target);
+            },
+            onSuccess: function(re){
+                if(re) {
+                    this.title.innerHTML = '提醒';
+                    this.content.innerHTML = re;
+                }
+
+                updateCartInfo();
+                
+                if(document.getElement('.minicart_box')&&document.getElement('.minicart_box').get('show_gallery')){
+                    document.getElement('.minicart_box').fireEvent('_show'); //迷你购物车
+                }
+                options.callback && options.callback(re);
+            }.bind(this),
+            onFailure: function(xhr){
+                this.title.innerHTML = '提醒';
+                this.content.innerHTML = '<div class="minicart-error"><p align="center">加入购物车失败。<br />可能库存不足或提交信息不完整。</p></div>';
+            }.bind(this)
+        },options||{});
+        if(!options.url) return false;
+
+        new Request(options).send(options.data ? options.data.toQueryString() + '&mini_cart=true' : 'mini_cart=true');
+    },
+    init:function(target, url, data){
+        var linktocart;
+        if(typeOf(target) == 'element') linktocart = target.getElements('[target=_dialog_minicart]');
+        else if(typeOf(target) == 'elements') linktocart = target;
+        else linktocart = $$('a[target=_dialog_minicart], button[target=_dialog_minicart]');
+        if(linktocart.length){
+            linktocart.addEvent('click',function(e){
+                e.preventDefault();
+                miniCart.load({url: url || this.href, data: data || this.getParent('.goods-item') || this.getParent('li'), target: this});
+            });
+        }
+    }
+};
+
+formToCart = function(container,target) {
+    container = $(container || document.body);
+    target = target || '.action-addtocart';
+    if(!container) return;
+
+    var formtocart = container.getElement('form[target=_dialog_minicart]') || container.getFirst().getParent('form[target=_dialog_minicart]');
+    if(formtocart) {
+        formtocart.addEvent('submit', function(e){
+            e.stop();
+            target = this.getElement(target) || this.getElement('*[type=submit]');
+            miniCart.load({
+                url:this.action,
+                method:this.method,
+                data:this,
+                target: target,
+                callback: function() {
+                    target.removeClass('disabled');
+                }.bind(this)
+            });
+        });
+    };
+}
+
+window.addEvent('domready',function(){
+    miniCart.init();
+    formToCart();
+});
+</script>
+
+<script id="popup_template" type="text/template">
+  <div class="{body}">
+     <div class="{header} clearfix">
+        <h2>{title}</h2>
+        <span><button type="button" title="关闭" class="{close}" hidefocus><i>×</i></button></span>
+    </div>
+    <div class="{content} clearfix">{main}</div>
+  </div>
+</script>
+<script id="message_template" type="text/template">
+  <div class="{body} clearfix">
+    <div class="icon">{icon}</div>
+    <div class="{content}">{main}</div>
+  </div>
+</script>
+<script id="dropmenu_template" type="text/template">
+  <div class="{body}">
+    <div class="{content} clearfix">{main}</div>
+  </div>
+</script>
+<div style="text-align: center;"> 
+<img src="http://www.ebtea.com/public/images/6c/34/db/41bc4f7a06c1f82acfdab3a614d719ff04a004de.gif?1432188878#w"></div><div style="text-align: center;"><font face="Tahoma">Copyright © 2009-2015 中茶茗品（北京）科技有限公司ebtea.com 茗茶网|All Rights Reserved|京ICP备12040349号|增值电信业务经营许可证：京ICP证100245号</font></div><div style="text-align: center;"><font face="Tahoma">2013-2015北京市重点示范电子商务企业|北京市文化特色产业专项资金扶持企业|2014-2015国家商务典型电子商务服务企业</font>｜<a href="http://www.ebtea.com/article-news-73.html" type="page" title="我们经营的茶叶，茶具产品">茶具</a></div>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?deabde7b49a19e28c58c04cd6fb7d94b";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  </div>
+</div>
+<div class="section-title"><h3>友情链接</h3></div>
+  <table>
+    <tr>
+      <td>
+        <ul class="friendlink-list clearfix">
+                    
+          <li class="link-item"> <a href="http://www.bidcenter.com.cn" class="text-name" target="_blank">中国采招网</a> </li>
+          
+                    
+          <li class="link-item"> <a href="http://www.ya-du.com" class="text-name" target="_blank">亚都</a> </li>
+          
+                    
+          <li class="link-item"> <a href="http://shidu.us/" class="text-name" target="_blank">野三坡门票</a> </li>
+          
+                    
+          <li class="link-item"> <a href="http://www.tabuzhe.com" class="text-name" target="_blank">社交网站</a> </li>
+          
+                    
+          <li class="link-item"> <a href="http://bj.dibaotong.com" class="text-name" target="_blank">北京信息网</a> </li>
+          
+                    
+          <li class="link-item"> <a href="http://www.wh-edu.com" class="text-name" target="_blank">湖北公务员考试网</a> </li>
+          
+                    
+          <li class="link-item"> <a href="http://www.shidu.us/" class="text-name" target="_blank">十渡风景区</a> </li>
+          
+                  </ul>
+      </td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

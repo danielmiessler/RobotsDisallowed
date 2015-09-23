@@ -1,0 +1,178 @@
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml"><head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        
+        <link rel="stylesheet" type="text/css" href="Resources?r=iconscss&c=1442259066000" />
+        <link rel="stylesheet" type="text/css" href="resources/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="resources/css/vale.css" />
+        <script type="text/javascript" src="js/sweetalert-dev.js"></script>
+        <script type="text/javascript" src="js/sweetalert.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/sweetalert.css"/>
+        <link rel="shortcut icon" href="https://cfd.sicofi.com.mx/Sicofi/img/favicon.ico" />
+        <link rel="icon" type="image/gif" href="https://cfd.sicofi.com.mx/Sicofi/img/animated_favicon1.gif" />
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"></link>
+        <script type="text/javascript" src="Resources?r=common&c=1442259072000"></script>
+        <script type="text/javascript" src="resources/js/validador.js"></script> 
+        <script type="text/javascript">
+            $(document).ready(function(){
+                if ($("#SessionC").val() == undefined) {                    
+                    SetTimesSesion();
+                }                
+            });            
+            var counter = 0;
+            var TimerDialog;
+            var TimerSesion;
+            var timerId;                      
+            function ShowAlert() {                                
+                if (counter != 0 && counter != undefined) {                                        
+                    SweetAlert(counter + " Segundos.");               
+                    counter = counter - 1;
+                }else{
+                    SweetAlert("Cerrando sesión...")
+                }                
+            }                    
+            function SweetAlert(dato) {                 
+                swal({
+                    title: "Cierre de Sesión por Inactividad",
+                    html: 'Por disposición del SAT con motivo de su seguridad, <br>Su sesión expirará después de 10 min de inactividad. <br>Para permanecer dentro del sistema de click en Continuar.<br> De lo contrario su sesión expirara en:<div style="color: red;"> ' + dato + '</div> ',
+                    type: 'warning',
+                    confirmButtonText: "Continuar",
+                    confirmButtonClass: 'confirm-class',
+                    closeOnCancel: false,
+                }, function (isConfirm) {
+                    if (isConfirm) {
+                        ResetTimeOut();                     
+                    }
+                });               
+            }
+            function ResetTimeOut() {
+                clearTimeout(TimerDialog);
+                clearTimeout(TimerSesion);
+                clearTimeout(timerId);
+                counter = undefined;                    
+                SetTimesSesion();
+            }
+            function SetTimesSesion() {
+                TimerDialog = setTimeout(function () {                                                       
+                    timerId = setInterval("ShowAlert()", 1000);
+                    counter = 180;
+                    ShowAlert();
+                }, 420000);
+
+                TimerSesion = setTimeout(function () {
+                    var redir = "";
+                    redir = 'Main?Acc=ExA';
+                    top.location = redir;
+                }, 600000);
+            }
+        </script>
+        <title>Sistema para la generación y envío de Comprobantes Fiscales Digitales</title>
+    </head><body><div id="loaderW" onClick="return false;"><div id="loader">
+                       <img alt="" src="resources/img/Loading.gif" /><p>Por favor espere.<br />Cargando.....</p>
+            </div></div><div id="content">
+
+<script type="text/javascript" src="resources/js/empresa/login.js"></script>
+
+
+<style type="text/css">
+    <!--
+    body {
+        background: #3080bb url('img/images/bg_main_login.jpg') 100% 50% no-repeat;
+    }
+    table{
+        margin-top:20px;
+        margin-left:175px;
+        text-align:left;
+    }
+    table td{
+       vertical-align:top;
+    }
+    .login_text {
+        font-family:Verdana, Geneva, sans-serif;
+        font-size:11px;
+        color:#FFF;
+        padding:90px 0 0 120px;
+    }
+    .datos_acceso{
+        font-family:Verdana, Geneva, sans-serif;
+        font-size:11px;
+        font-weight: bold;
+        color:#050;
+        
+    }
+    #Mostrar{
+        cursor: pointer;
+        background:url('../../Sicofi/img/menu/eye.png') no-repeat 0px 0; width: 35px; height: 35px;
+    }
+    .inputs{
+        font-family: Verdana, Geneva, sans-serif;
+        font-size: 11px;
+        width: 250px;
+        margin:2px;
+        border: 1px solid #060 !important;
+        padding:1px 3px;
+    }
+    .btningresar {
+        font-family: Verdana, Geneva, sans-serif;
+        font-size: 12px;
+        font-weight: bold;
+        color: #FFF;
+        background-color: #003399;
+        border: 1px solid #FFF;
+        padding:1px 15px;
+        margin:15px 0 0 120px;
+    }
+    -->
+</style>
+<div style="font-size: 25px;color: white;text-align: center;font-family: Tahoma; margin:20px auto;font-variant: small-caps; font-weight:bold;">
+    
+</div>
+<div style="margin:auto;text-align: center; background:url('img/images/login2.png');width:588px; height:263px; position:relative;">
+    <div class="login_text">
+        <b>Por favor escriba sus datos de acceso para ingresar al sistema.</b>
+    </div>
+    <form id="Login" name="Login" action="Main" method=post  onsubmit="">
+        <input name="Acc" type="hidden" value="NuevoLogin" />
+        <input name="SessionC" id="SessionC" type="hidden" value="1" />
+        <table>
+            <tr>
+                <td>
+                    <div class="datos_acceso" style="margin-top: 3px;">Correo Electr&oacute;nico:</div>
+                </td>
+                <td>
+                    <div class="datos_acceso"><input name="Login" id="Login" type="text" class="inputs" /></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="datos_acceso" style="float: left;margin-top: 3px;">Contrase&ntilde;a:</div>                                     
+                    <div id="Mostrar"  style="width: 15px; height: 15px; float: right; margin-top: 4px;"></div>
+                </td>
+                <td>                    
+                    <div class="datos_acceso"><input name="Password" id="Password" type="password" class="inputs" /></div>
+                </td>
+            </tr>
+        </table>
+        <div style="text-align: center">
+            <input  value="Ingresar" type="submit" id="ingresar" class="btningresar">
+        </div>
+    </form>
+    <div class="datos_acceso" style="text-align:left;padding: 25px 0 0 15px; position:absolute; bottom:12px;">
+        
+        <a href="Main?Acc=PAReceptor"><b>&iquest;Olvid&oacute; su contrase&ntilde;a?</b></a>
+                
+    </div>   
+</div>
+
+</div><script type="text/javascript" src="resources/js/loader.js"></script></body></html>

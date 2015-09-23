@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+		<script type="text/javascript">
+//<![CDATA[
+    var _rb_appid = null;
+    var _rb_language = "en";
+    var _rb_systemid = "572";
+    var _rb_ga_page_name = "404";
+    
+    var ga_host = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src=\""+ga_host+"google-analytics.com/ga.js\" type=\"text/javascript\"%3E%3C/script%3E"));
+
+function ga_track_download(id){
+    send_ga_query(_rb_ga_page_name+"/download/btn["+id+"]/sysid["+_rb_systemid+"]/appid["+_rb_appid+"]/lng["+_rb_language+"]", "");
+}
+
+function ga_track_view( ){
+    send_ga_query(_rb_ga_page_name+"/view/sysid["+_rb_systemid+"]/appid["+_rb_appid+"]/lng["+_rb_language+"]", "");
+}
+
+function send_ga_query(query, ga_account){
+    if(typeof _gat != "undefined" && _gat != null){
+	   try{
+	       var ga_tracker = _gat._getTracker(ga_account);
+	       ga_tracker._initData( );
+	       ga_tracker._trackPageview(query);
+	   }
+	   catch($e){}
+    }
+    else{
+	   setTimeout(function(){send_ga_query(query, ga_account)}, 1000);
+    }
+}    var ml_host = (("https:" == document.location.protocol) ? "https://" : "http://");
+var ml_host = ml_host+"www.mlstat.com";
+document.write(unescape("%3Cscript src='"+ml_host+"/scripts/appid.V2.js' type='text/javascript'%3E%3C/script%3E"));
+
+var _ml_stat_loaded = false;
+
+function ml_stats_load(){
+    if(typeof appidObj != "undefined" && appidObj != null){
+	   appidObj.init(_rb_systemid, ml_host);
+	   appidObj.track("hit");
+	   _rb_appid = appidObj.getAppID();
+	   ga_track_view();
+	   _ml_stat_loaded = true;
+    }
+    else{
+	   setTimeout(function(){ml_stats_load()}, 1000);
+    }
+}
+
+function ml_track_download(){
+    send_ml_query("download");
+}
+
+function send_ml_query(_event){
+    if(_ml_stat_loaded == true){
+	   appidObj.track(_event, _rb_language);
+    }
+    else{
+	   setTimeout(function(){send_ml_query(_event)}, 1000);
+    }
+}
+
+ml_stats_load();    
+    function track_download(id){
+	   send_ml_query('download');
+	   ga_track_download(id);
+    }
+//]]>
+</script>	<link href="/styles/default/main.css" rel="stylesheet" type="text/css" />
+<link href="/styles/default/inner.css" rel="stylesheet" type="text/css" />
+	
+	<title></title>
+</head>
+	<body>
+	    <div class="container">
+			<div class="content">
+							</div>
+		</div>
+		<div class="footer">
+    <p>Copyrights (c) ilividplus.com. All rights reserved | <a href="/privacy-policy">Privacy Policy</a> | <a href="/eula">Terms and Conditions</a></p>
+    <p class="copyright">iLivid Plus is a product of APN, LLC</p>
+</div>		<iframe id="downframe" width="0" height="0" frameborder="0" src="about:blank" name="downframe"></iframe>
+	</body>
+</html>

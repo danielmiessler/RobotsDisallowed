@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /my
+Allow: /*
+Sitemap: http://www.arcgames.com/sitemap.xml
+Sitemap: http://games.arcgames.com/sitemap.xml
+Sitemap: http://community.arcgames.com/sitemap.xml
+Sitemap: http://support.arcgames.com/sitemap.xml
+Sitemap: http://billing.arcgames.com/sitemap.xml

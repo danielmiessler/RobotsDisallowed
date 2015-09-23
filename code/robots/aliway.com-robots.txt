@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+<head lang="zh-CN">
+    <meta charset="utf-8">
+    <title>统一登录中心 @Alibaba</title>
+    <meta name="description" content="统一登录中心 @Alibaba"/>
+    <link rel="stylesheet" href="https://login.alibaba-inc.com/home/js/sea-modules/alice/one/1.2.2/one.css" />
+    <link rel="stylesheet" href="/home/css/ssoLoginNew.css?v=20140731"/>
+    <style>
+    .loginbackground{
+        background-image:url('http://gtms01.alicdn.com/tps/i1/TB1J65KJFXXXXbVXpXXFvnyIVXX-600-426.jpg')!important;
+        filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://gtms01.alicdn.com/tps/i1/TB1J65KJFXXXXbVXpXXFvnyIVXX-600-426.jpg', sizingMethod='scale')\9!important;
+        -moz-background-size: 100% 100%!important;
+        -o-background-size: 100% 100%!important;
+        -webkit-background-size: 100% 100%!important;
+        background-size: 100% 100%!important;
+        -moz-border-image: url(./btn.png) 0!important;
+        background-repeat:no-repeat\9!important; 
+        background-image:none\9!important;
+        width:615px!important;
+        height:425px!important;
+        top:50%;
+        margin-top:-252px!important;
+        margin-left:-500px;
+        left:50%;
+        position:relative;
+                    cursor:pointer;
+            }
+    </style>
+    <script src="/home/js/Barrett.js"></script>
+    <script src="/home/js/BigInt.js"></script>
+    <script src="/home/js/RSA.js"></script>
+    <script src="https://login.alibaba-inc.com/home/js/jquery.js"></script>
+    <script src="https://login.alibaba-inc.com/home/js/plugin/jquery.placeholder-enhanced.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/home/js/cdn/um.js"></script>
+    <script src="/home/js/common.js"></script>
+    <script type="text/javascript">
+        function ssoLogin() {
+            var account = $("#loginAccountInput").val();
+            var password = $("#loginPassword").val();
+            try {
+                var newAccount = account;
+                var newPassword = password;
+                if (true) {
+                    setMaxDigits(130);
+                    //第一个参数为加密指数、第二个参数为解密参数、第三个参数为加密系数
+                    var key = new RSAKeyPair("10001", "", "dae1bc2217765e9adaf56967ee74bef365cf890aa8fea48dee6f1fd4880d6e56cdbbbc54cb497c073788da2fc39e32c98a769dd133bf401afbd40218d25b949533fa0f0ac4bdf3bb4dd2de39543df0e58ca903ee81875f9f48977ead8470efc46547214796d1cfbf18535f223a8edd697c063d318745403dc1ce209f7316f57f");
+                    newAccount = encryptedString(key, encodeURIComponent(account));
+                    if (typeof(password) != "undefined") {
+                        newPassword = encryptedString(key, encodeURIComponent(password));
+                    }
+                }
+                $("#account").val(newAccount);
+                if (typeof(newPassword) != "undefined") {
+                    $("#password").val(newPassword);
+                }
+            } catch(e) {
+                $("#account").val(account);
+                if (typeof(password) != "undefined") {
+                    $("#password").val(password);
+                }
+                $("#isRsaPwd").val(false);
+                //通知服务端
+            }
+            document.getElementById('loginForm').submit();
+        }
+        
+        function enterIn(evt){
+            var evt=evt?evt:(window.event?window.event:null);//兼容IE和FF
+            if (evt.keyCode==13){
+               ssoLogin();
+            }
+        }
+    </script>
+</head>
+<body style="height:100%;background-color:#FFFBBE">
+<div id="_umfp" style="width:0px;height:0px;overflow:hidden">
+    <img src="https://ynuf.alipay.com/service/clear.png?xt=T8af2f5f2b6d4d525bb3b3137944484f4&xa=buc"/>
+</div>
+<div class="head" style="width: 100%; background-color: #fff;">
+    <div class="c">
+        <h1 class="logo">阿里巴巴集团</h1>
+    </div>
+</div>
+<div class="loginbackground" onclick="window.open('http://www.aliway.com/read.php?fid=116&amp;tid=296038')"></div>
+<div class="login-win" style="position:absolute;right:100px;top:50%;margin-top:-200px">
+    <form name="loginForm" id="loginForm" action="" method="post" class="login-form">
+        <input name='_csrf_token' type='hidden' value='TxwUub7sYRZFZjkoe4T4X4'>
+                <input type="hidden" id="action" name="action" value="SSOLoginAction"/>
+        <input type="hidden" name="event_submit_do_sso_login" value="true"/>
+        <input type="hidden" name="return" value=""/>
+        <input type="hidden" name="umidTokenId" value="T8af2f5f2b6d4d525bb3b3137944484f4"/>
+        <input type="hidden" id="deviceIp" name="deviceIp"  value=""/>
+        
+        <fieldset >统一登录中心</fieldset>
+                <div class="form-item">
+            <input type="hidden" name="isRsaPwd" id="isRsaPwd"  value="true"/>
+                            <input type="text" id="loginAccountInput" placeholder="域账号或工作账号" class="form-input form-full-size"/>
+                <input id="account" name="_fm.l._0.a" type="hidden" value="" tabindex="-1"/>
+                    </div>
+                        <div class="form-item">
+                            <input id="loginPassword" class="form-input form-full-size" type="password" placeholderDefault="密　码" placeholderPubAccount="个人账号|个人密码 如：san.zs|****" placeholder="密　码" onkeydown="enterIn(event);">
+                <input id="password" name="_fm.l._0.p" type="hidden" type="password" value="" tabindex="-1"/>
+                    </div>
+        
+                <div id="J-linpai-div" class="J-linpai form-item" style="display:none">
+            <input name="token" type="text" class="J-linpai_show form-input form-full-size" placeholder="请输入令牌6位数字">
+            <input type="hidden" id="rsaRequired" name="rsaRequired" value="" tabindex="-1"/>
+        </div>
+        
+                <div class="form-item">
+                            <label id="keepLogin" class="form-checkbox">
+                    <input type="checkbox" id="loginMaintain" name="login_maintain"/>
+                    <span>保持登录</span>
+                </label>
+                        <span class="fn-right">
+                                <a href="https://itkbm.alibaba-inc.com/listByCat.htm?catId=8305737" target="_blank">帮助</a>
+            </span>
+        </div>
+        <div class="form-item">
+            <button type="button" class="form-button form-submit form-full-size" onclick="ssoLogin()">登录</button>
+        </div>
+        <div class="form-item">
+                </div>
+    </form>
+            
+    <div class="login-explain">
+        <ul>
+            <li>请务必保管好账号/密码，工作中仅限使用自己的账号</li>            <li>非业务需求请勿使用工作账号</li>            <li>账号使用过程中产生和查看到的信息均属于内部信息，传播时请注意传播范围以及传播对象，避免信息泄漏</li>        </ul>
+    </div>
+            <!--令牌六位数字code的提示框 start-->
+    <div class="J-linpai_show J-linpai linpai-tip fn-hide " id="J-tip" style="z-index:999">
+        <p class="tokenAuthType1" style="display:none">
+            请在 <em>您的阿里郎手机令牌</em>
+        </p>
+        <p class="tokenAuthType2" style="display:none">
+            请在 <em>RSA令牌设备上</em>
+        </p>
+        <p class="tokenAuthType3" >
+            请在 <em>您的阿里郎手机令牌或RSA令牌设备上</em>
+        </p>
+        <p> 
+            查看6位动态口令<em>(请勿输入下面图示令牌口令)</em>
+        </p>
+        <div class="tip-content">
+            <p class="tokenAuthType1" style="display:none">
+                 阿里郎手机令牌
+            </p>
+            <p class="tokenAuthType2" style="display:none">
+                 RSA令牌
+            </p>
+            <p class="tokenAuthType3" >
+                 阿里郎手机令牌OR<p>RSA令牌</p>
+            </p>        
+        </div>
+        <a href="https://alilang.alibaba-inc.com" target="_blank">快速下载安装阿里郎</a> |
+        <a href="https://alilang.alibaba-inc.com/help.html" target="_blank">我需要帮助</a>
+    </div>
+    <!--令牌六位数字code的提示框end-->
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    $('input[placeholder], textarea[placeholder]').placeholderEnhanced({
+        normalize: false
+    });
+    //UMID的功能
+    var UA_Opt = new Object;
+    UA_Opt.ExTarget = ['password'];
+    UA_Opt.isSendError = 1;
+    UA_Opt.FormId = "loginForm"; //Form⽅方式提交,表⽰示将采集到的数据直接注⼊入指定form
+    UA_Opt.SendMethod = 1; //Form⽅方式提交
+    UA_Opt.MaxKSLog = 10;
+    UA_Opt.MaxMCLog = 10;
+    UA_Opt.MaxMPLog = 10;
+    UA_Opt.MPInterval = 50;
+    UA_Opt.MaxFocusLog = 10;
+    UA_Opt.Token = new Date().getTime() + ":" + Math.random();
+    UA_Opt.Flag = 97422;
+    
+    var container = document.getElementById('_umfp');
+    um.init({
+        timeout: 3000,
+        timestamp: '850028695959594053416374',
+        token: 'T8af2f5f2b6d4d525bb3b3137944484f4',
+        serviceUrl: 'https://ynuf.alipay.com/service/um.json',
+        appName: 'buc',
+        containers: {flash: container, dcp: container}
+    });
+    
+    //使用其它账号登录功能
+    $('#J_ChangeAccount').click(function (e) {
+        var url = location.href;
+        if(url.indexOf('#')!=-1) {
+            url = url.slice(0, url.length-1);
+        }
+        url += '&changeAccount=true&CANCEL_CERT=true';
+        location.href = url;
+        e.preventDefault();
+    });
+    
+    $('.vacationErrorDivHide').on("click",function(){
+       $('#vacationErrorDiv').hide();
+    });
+    
+    $('#accountTypeErrorDivHide').on("click",function(){
+       $('#accountTypeErrorDiv').hide();
+    });
+    
+    
+    
+    //令牌提醒DIV
+    var hideTimer;
+    var tip = $('#J-tip');
+    $('.J-linpai_show').on({
+        'mouseenter': function(){
+            hideTimer && clearTimeout(hideTimer);
+            tip.removeClass('fn-hide');
+        },
+        'mouseleave': function(){
+            hideTimer && clearTimeout(hideTimer);
+            hideTimer = setTimeout(function(){
+                tip.addClass('fn-hide');
+            }, 200);
+        }
+    });
+    
+    //是否需要RSA令牌处理
+    function tokenTipDocumentHandle(tokenAuthType){
+       if(tokenAuthType==1) {
+          $('.tokenAuthType1').show();
+          $('.tokenAuthType2').hide();
+          $('.tokenAuthType3').hide();
+          $('#J-tip').removeClass("type2");
+          $('#J-tip').addClass("type1");
+        } else if(tokenAuthType==2) {
+          $('.tokenAuthType1').hide();
+          $('.tokenAuthType2').show();
+          $('.tokenAuthType3').hide();
+          $('#J-tip').addClass("type2");
+          $('#J-tip').removeClass("type1");
+        }else{
+          $('.tokenAuthType1').hide();
+          $('.tokenAuthType2').hide();
+          $('.tokenAuthType3').show();
+          $('#J-tip').removeClass("type1");
+          $('#J-tip').removeClass("type2");
+        }
+    }
+    //因为浏览器自动填充表单功能，延迟200毫秒触发
+    var accountNode = jQuery('#loginAccountInput');
+    setTimeout(function () {
+        if (accountNode.val()) {
+            accountNode.trigger('blur');
+        }
+    }, 200);
+    var currentPwdPlaceholder = $('#loginPassword').attr("placeholderDefault");
+    accountNode.blur(function () {
+        var v = this.value;
+        jQuery.ajax({
+            type: 'get',
+            timeout: 2000,
+            async: false,
+            url: '/rpc/sso/loginAccountCheck.json?account=' + v + '&appName=alilang',
+            success: function (resp) {
+                if (!resp.hasError && resp.content && resp.content.needRsa) {//需要令牌
+                    $('#J-linpai-div').show();
+                    $('#rsaRequired').val(true);
+                    $('#keepLogin').hide();
+                    $('#loginMaintain').prop('checked', false);
+                    var tokenType = resp.content.tokenAuthType;
+                    tokenTipDocumentHandle(tokenType);
+                }else{//人员不需要需要令牌
+                                           $('#J-linpai-div').hide();
+                       $('#rsaRequired').val(false);
+                       $('#keepLogin').show();
+                                        var tokenType = 3;
+                    tokenTipDocumentHandle(tokenType);
+                }
+                var pwdPlaceholder = $('#loginPassword').attr("placeholderDefault");
+                if (!resp.hasError && resp.content && resp.content.isProxyAccount) {
+                     pwdPlaceholder = $('#loginPassword').attr("placeholderPubAccount");
+                }
+                if(currentPwdPlaceholder!=pwdPlaceholder){
+                    $('#loginPassword').placeholderEnhanced('destroy');
+                    $('#loginPassword').attr("placeholder",pwdPlaceholder);
+                    currentPwdPlaceholder=pwdPlaceholder;
+                    $('#loginPassword').placeholderEnhanced();
+                }
+            }
+        });
+    });
+        function onJSONPCallback(data){
+       $('#deviceIp').val(data.remote_addr);
+    }
+    GetDeviceIp("https://100.69.174.191/ip.js");
+    </script>
+<script type="text/javascript" charset="utf-8" src="/home/js/cdn/uab.js"></script>

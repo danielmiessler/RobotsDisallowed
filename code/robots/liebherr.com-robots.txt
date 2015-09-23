@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /shared/media/corporate/documents/terms-and-conditions/
+Disallow: /WebResource.axd
+Disallow: /Data/Einkaufsbedingungen/
+Sitemap: http://www.liebherr.com/en/deu/google-sitemap-corporate.xml

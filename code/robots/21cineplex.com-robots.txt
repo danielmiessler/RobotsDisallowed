@@ -1,0 +1,325 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="shortcut icon" href="http://www.21cineplex.com/favicon-new.ico" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>CINEMA 21 - Largest Indonesian Cinema Network - CINEMA 21</title>
+<meta name="keywords" content="Cinema 21, 21cineplex, Now Playing, Coming Soon, Theater, Bioskop 21, The Stars, 21Exclusive, Slowmotion, Gallery, Video Trailer" />
+
+<link type="text/css" media="screen" rel="stylesheet" href="http://www.21cineplex.com/css/style.css?v=25" />
+<link rel="stylesheet" href="http://www.21cineplex.com/css/jquery-ui-1.7.3.custom.css?v=14"/>
+<link type="text/css" media="screen" rel="stylesheet" href="http://www.21cineplex.com/css/jquery.bxslider.css?v=2" />
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://www.21cineplex.com/js/jquery.js?v=6" type="text/javascript"></script><script src="http://www.21cineplex.com/js/jquery.bxslider.js" type="text/javascript"></script>
+<script type="text/javascript" src="http://www.21cineplex.com/js/jquery-ui.js"></script>
+<script type="text/javascript" src="http://www.21cineplex.com/js/jquery.chainedSelects.js"></script>
+<script type="text/javascript" src="http://www.21cineplex.com/js/jquery.tinyscrollbar.min.js"></script>
+<script type="text/javascript">
+$.widget( "custom.catcomplete", $.ui.autocomplete, {
+_create: function() {
+  this._super();
+  this.widget().menu( "option", "items", "> :not(.ui-autocomplete-category)" );
+},
+_renderMenu: function( ul, items ) {
+  var that = this,currentCategory = "";
+  $.each( items, function( index, item ) {
+	var li;
+	if ( item.category != currentCategory ) {
+	  ul.append( "<li class='ui-autocomplete-category'>" + item.category + "</li>" );
+	  currentCategory = item.category;
+	}
+	li = that._renderItemData( ul, item );
+	if ( item.category ) {
+	  li.attr( "aria-label", item.category + " : " + item.label );
+	}
+  });
+}
+});
+</script>
+<script type="text/javascript">
+	var ROOT="http://www.21cineplex.com/";
+	$(function(){
+		if($('#slider3').length){
+		$('#slider3').bxSlider({
+            slideWidth: 50,
+			minSlides: 5,
+			autoHover: true,
+			hideControlOnEnd: true,
+			maxSlides: 5,
+			slideMargin: 10
+        });
+		}
+		if($('#slider1').length){
+		$('#slider1').bxSlider({
+			autoHover: true,
+			speed: 1000,			
+			pager: false,
+			hideControlOnEnd: true,
+			  nextText: '',
+			  prevText: '',  
+			auto:true
+		});
+		}
+		if($('#slider2').length){
+		$('#slider2').bxSlider({
+			autoHover: true,
+			speed: 1000,		
+			pager: false,
+            hideControlOnEnd: true, 
+			  nextText: '',
+			  prevText: '',  
+			auto:true
+		});
+		}
+		
+		if($('#midtab').length){
+		$('#midtab').tabs();
+		}
+		if($('#slider4').length){
+		$('#slider4').bxSlider({
+			slideWidth: 90,
+			minSlides: 4,
+			autoHover: true,
+			hideControlOnEnd: true,
+			maxSlides: 4,
+			slideMargin: 0,
+		  nextText: '',
+		  prevText: '',  
+			pager:false
+		});
+		}
+		if($('#lefttab2').length)
+			$('#lefttab2').tabs();
+		if($('#lefttab').length)
+		$('#lefttab').tabs();
+		if($('#righttab').length)
+		$('#righttab').tabs();
+		if($('#fulltab').length)
+		$('#fulltab').tabs();
+		
+		if($('#slideropening').length){
+			$('#slideropening').bxSlider({
+				speed: 1000,
+				autoHover: true,		
+				pager: false,
+				hideControlOnEnd: true, 
+				  nextText: '',
+				  prevText: '',    
+				auto:true
+			});
+		}
+		$('#img-login').click(function(){$('.loginbox').fadeIn();});
+		$('#close-login').click(function(){$('.loginbox').fadeOut();});	
+		
+		var timer=3000;
+		var step=1;
+		var fc=true;
+		var running=false;
+		function runSlider(){
+			running=true;
+			setTimeout(function(){
+				if(step==1){
+					$("#uslide li:eq(0)").fadeOut('slow');
+					$("#uslide li:eq(1)").fadeIn('slow');
+				}else if(step==2){
+					$("#uslide li:eq(1)").fadeOut('slow');
+					$("#uslide li:eq(2)").fadeIn('slow');
+				}else{
+					$("#uslide li:eq(2)").fadeOut('slow');
+					$("#uslide li:eq(0)").fadeIn('slow');
+					step=0;
+				}
+				step++;
+				if(fc)
+					runSlider();
+				else
+					running=false;
+			},timer);
+		}
+		runSlider();
+		var $wnd=$(window);
+		$wnd.blur(function(){fc=false});
+		$wnd.focus(function(){fc=true;if(!running)runSlider();});
+		$( "#q_gtx" ).catcomplete({
+			  source: ROOT+"page/ajax-search.php",
+			  minLength: 2,
+			  select: function( event, ui ) {
+				  window.location.href=ROOT+ui.item.uri;
+				return false;
+			  }
+		});
+	});
+</script>
+<script type='text/javascript'>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+  (function() {
+    var gads = document.createElement('script');
+    gads.async = true;
+    gads.type = 'text/javascript';
+    var useSSL = 'https:' == document.location.protocol;
+    gads.src = (useSSL ? 'https:' : 'http:') +
+      '//www.googletagservices.com/tag/js/gpt.js';
+    var node = document.getElementsByTagName('script')[0];
+    node.parentNode.insertBefore(gads, node);
+  })();
+</script>
+
+<script type='text/javascript'>
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/1043841/Cineplex21_Homepage_Showcase2', [300, 250], 'div-gpt-ad-1438239216163-0').addService(googletag.pubads());
+	googletag.defineSlot('/1043841/Cineplex21_Homepage_LeaderBoard', [728, 90], 'div-gpt-ad-1438241108365-117').addService(googletag.pubads());
+	googletag.defineSlot('/1043841/Cineplex21_NowPlaying_Showcase1', [300, 250], 'div-gpt-ad-1438241108365-145').addService(googletag.pubads());
+	googletag.defineSlot('/1043841/Cineplex21_NowPlaying_Showcase2', [300, 250], 'div-gpt-ad-1438241108365-167').addService(googletag.pubads());
+	googletag.defineSlot('/1043841/Cineplex21_NowPlaying_Showcase3', [300, 250], 'div-gpt-ad-1438241108365-94').addService(googletag.pubads());
+	googletag.defineSlot('/1043841/Cineplex21_NowPlaying_LeaderBoard', [728, 90], 'div-gpt-ad-1438241108365-118').addService(googletag.pubads());
+	googletag.defineSlot('/1043841/Cineplex21_NowPlaying_SideBanner', [240, 400], 'div-gpt-ad-1438241108365-109').addService(googletag.pubads());
+	googletag.defineSlot('/1043841/Cineplex21_ComingSoon_Showcase1', [300, 250], 'div-gpt-ad-1438241108365-120').addService(googletag.pubads());
+	googletag.defineSlot('/1043841/Cineplex21_ComingSoon_Showcase2', [300, 250], 'div-gpt-ad-1438241108365-75').addService(googletag.pubads());
+	googletag.defineSlot('/1043841/Cineplex21_ComingSoon_Showcase3', [300, 250], 'div-gpt-ad-1438241108365-168').addService(googletag.pubads());
+	googletag.defineSlot('/1043841/Cineplex21_ComingSoon_LeaderBoard', [728, 90], 'div-gpt-ad-1438241108365-97').addService(googletag.pubads());
+	googletag.defineSlot('/1043841/Cineplex21_ComingSoon_SideBanner', [240, 400], 'div-gpt-ad-1438241108365-68').addService(googletag.pubads());
+	googletag.defineSlot('/1043841/Cineplex21_Theater_Showcase1', [300, 250], 'div-gpt-ad-1438241108365-92').addService(googletag.pubads());
+	googletag.defineSlot('/1043841/Cineplex21_Theater_Showcase2', [300, 250], 'div-gpt-ad-1438241108365-89').addService(googletag.pubads());
+	googletag.defineSlot('/1043841/Cineplex21_Theater_Showcase3', [300, 250], 'div-gpt-ad-1438241108365-134').addService(googletag.pubads());
+	googletag.defineSlot('/1043841/Cineplex21_Theater_LeaderBoard', [728, 90], 'div-gpt-ad-1438241108365-99').addService(googletag.pubads());
+	googletag.defineSlot('/1043841/Cineplex21_MovieDetail_Showcase1', [300, 250], 'div-gpt-ad-1438241108365-93').addService(googletag.pubads());
+	googletag.defineSlot('/1043841/Cineplex21_MovieDetail_Showcase2', [300, 250], 'div-gpt-ad-1438241108365-129').addService(googletag.pubads());
+	googletag.defineSlot('/1043841/Cineplex21_MovieDetail_Showcase3', [300, 250], 'div-gpt-ad-1438241108365-141').addService(googletag.pubads());
+	googletag.defineSlot('/1043841/Cineplex21_MovieDetail_LeaderBoard', [728, 90], 'div-gpt-ad-1438241108365-163').addService(googletag.pubads());
+	googletag.defineSlot('/1043841/Cineplex21_PlayingAt_Showcase1', [300, 250], 'div-gpt-ad-1438241108365-90').addService(googletag.pubads());
+	googletag.defineSlot('/1043841/Cineplex21_PlayingAt_Showcase2', [300, 250], 'div-gpt-ad-1438241108365-138').addService(googletag.pubads());
+	googletag.defineSlot('/1043841/Cineplex21_PlayingAt_LeaderBoard', [728, 90], 'div-gpt-ad-1438241108365-88').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+  });
+</script></head>
+<body style="background:#000 url(http://www.21cineplex.com/images/bg-maingrad.jpg) top center repeat-x;">
+<div id="wrapper">
+	<div id="header"> 
+    <div style="height:60px;">
+    	<div class="searchbox">
+        	<form class="fsearchtop" action="http://www.21cineplex.com/search" id="cse-search-box">
+                <input type="hidden" name="cx" value="partner-pub-0638543342152890:2138330900">
+                <input type="hidden" name="cof" value="FORID:10">
+                <input type="hidden" name="ie" value="UTF-8">
+                <input type="text" name="q" id="q_gtx" class="srctxt" placeholder="Theaters, movies...">
+                <input type="submit" name="sa" value="search" class="go">
+            </form>
+        </div>
+    	<div class="social-icon">
+			                <a href="https://www.youtube.com/user/KanalXXI" title="CINEMA 21" target="_blank" class="yt"><span>youtube</span></a>
+              <a href="http://www.21cineplex.com/feeds/news.xml" target="_blank" class="tw"><span>twitter</span></a>
+              <a href="https://www.facebook.com/CinemaXXI?ref=ts&fref=ts"  title="Visit Our Official Facebook page"  target="_blank" class="fb"><span>fb</span></a>
+              <a href="https://twitter.com/cinema21" target="_blank" title="Visit Our Official Twitter page" class="rss"><span>rss</span></a> 
+        </div>
+		<div class="flogin">
+						<iframe frameBorder="0" class="fblogin" src="http://www.21cineplex.com/apis/fblogin/?xs=92" scrolling="no"></iframe>
+			<span class="loginbtn"><a href="#"><span id="img-login" class="signin"></span></a><a href="http://m.21cineplex.com"><b>Mobile site</b></a></span><span class="loginbox" style="display:none;">
+				<p><a href="http://www.21cineplex.com/signup">Sign Up</a>&nbsp;&nbsp;&nbsp;<a href="http://www.21cineplex.com/forgot">Forgot Password?</a>&nbsp;&nbsp;&nbsp;<a id="close-login" href="#"><b>X</b></a></p>
+				<form method="post" action="login.php"><input type="text" id="email" class="login-txt" value="Email" name="email" ><input id="password" name="password" type="password" class="login-txt" value="password"> <input type="submit" class="btn-login" value=""></form>
+                <script type="application/javascript">
+                	$(function(){
+						$("#email").focus(function(){if($(this).val()=="Email")$(this).val("")});
+						$("#email").blur(function(){if($(this).val()=="")$(this).val("Email")});
+						$("#password").focus(function(){if($(this).val()=="password")$(this).val("")});
+						$("#password").blur(function(){if($(this).val()=="")$(this).val("password")});
+					})
+                </script>
+			</span>
+					</div>
+        </div>
+        
+		<div class="logoimax">
+            <ul id="uslide" class="uslide">
+                <li rel="1">
+                    <a href="http://www.21cineplex.com/">
+                        <img alt="21cineplex logo" src="http://www.21cineplex.com/images/21cineplex-logo1.png" />
+                    </a>
+                </li> 
+                <li rel="2" style="display:none;">
+                    <a href="http://www.21cineplex.com/">
+                        <img alt="21cineplex logo" src="http://www.21cineplex.com/images/21cineplex-logo2.png" />
+                    </a>
+                </li> 
+                <li rel="3" style="display:none;">
+                    <a href="http://www.21cineplex.com/">
+                        <img alt="21cineplex logo" src="http://www.21cineplex.com/images/21cineplex-logo3.png" />
+                    </a>
+                </li>
+            </ul>        
+        </div>
+		
+		<script type='text/javascript' src='//partner.googleadservices.com/gampad/google_service.js'>
+        </script>
+        <script type='text/javascript'>
+        GS_googleAddAdSenseService("ca-pub-0638543342152890");
+        GS_googleEnableAllServices();
+        </script>
+        
+		<script type='text/javascript'>
+        GA_googleFetchAds();
+        </script>
+		
+		
+		<div class="leaderboard"></div>		
+		<div id="main-mn" style="margin-top:10px;">
+	<ul><li class="mn1"><a href="http://www.21cineplex.com/" id="current"><span><img class="img-home" src="http://www.21cineplex.com/images/home-icon.png" /></span></a></li>
+		<li class="mn2"><a href="http://www.21cineplex.com/nowplaying" id=""><span>NOW PLAYING</span></a></li>
+		<li class="mn3"><a href="http://www.21cineplex.com/comingsoon" id=""><span>COMING SOON</span></a></li>
+		<li class="mn4"><a href="http://www.21cineplex.com/theaters" id=""><span>THEATERS</span></a></li>	
+		<li class="mn6 drop"><a id="" href="http://www.21cineplex.com/news"><span>INFO 21</span></a>
+			<!--[if IE 7]><!--></a><!--<![endif]-->
+				<table><tr><td>
+				<ul>
+					<li class="l-ganjil"><a href="http://www.21cineplex.com/new-openings/"><span style="width: 100px;">NEW OPENINGS</span></a></li>	
+					<li class="l-ganjil"><a href="http://www.21cineplex.com/news/"><span>NEWS</span></a></li>	
+					<li class="l-ganjil"><a href="http://www.21cineplex.com/promotion/"><span>PROMOTIONS</span></a></li>	
+					<li class="l-ganjil"><a href="http://www.21cineplex.com/quiz-info/"><span>QUIZZES</span></a></li>	
+					<li class="l-ganjil"><a href="http://www.21cineplex.com/21profile/"><span>ABOUT US</span></a></li>						
+				</ul>
+				</td></tr></table>
+			<!--[if lte IE 6]></a><![endif]--></li>
+		<li class="mn7"><a id="" href="http://www.21cineplex.com/video"><span>TRAILERS</span></a></li>
+		<li class="mn5"><a href="http://www.21cineplex.com/moviecard" id=""><span><b class="mnlogo lcard"></b></span></a></li>
+		<li class="mn8"><a href="http://mtix.21cineplex.com"><span><b class="mnlogo lmtix"></b></span></a></li>
+		<li class="mn9"><a href="http://www.21cineplex.com/imax"><span><b class="mnlogo limax"></b></span></a></li>
+		<li class="mn10"><a href="http://www.21cineplex.com/dolby-atmos"><span><b class="mnlogo latmos"></b></span></a></li>
+		</ul>
+  </div>
+	</div><!--end header-->
+	
+	<div id="content">
+	     <div class="fullcolom"><img src="http://www.21cineplex.com/images/errorpg.gif" /></div> 	 
+	</div>	
+    
+	<div class="clear"></div>
+</div><!--end wrapper-->
+
+<div id="footer">
+<div id="wrapper">	
+	<div class="left">&nbsp;&nbsp;&nbsp;
+		<a href="http://www.21cineplex.com/21profile">Profile</a> | 
+		<a href="http://www.21cineplex.com/termofuse">Terms of Use</a> | 
+		<a href="http://www.21cineplex.com/jobs">Jobs Opportunities</a> | 
+		<a href="http://www.21cineplex.com/credits">Credit</a> | 
+		<a href="http://www.21cineplex.com/page/page-info-iklan.php" target="_blank">Info Iklan</a> | 
+		<a href="http://www.21cineplex.com/sitemap">Sitemap</a>
+	</div>
+    	<br class="clear"><br>
+	<div style="text-align:left">
+		THX and Lucasfilm are © Lucasfilm Ltd. TM All rights are reserved. Used under authorization.<br>
+	© 2000 Sony Cinema Products Corporation. All Rights Reserved. Sony, Sony Dynamic Digital Sound and SDDS are trademarks of Sony Corporation.<br>
+	© 1999-2012 21Cineplex.com. All materials and contents (texts, graphics, and every attributes) of 21Cineplex or 21Cineplex.com website are copyrights and trademarks of 21Cineplex. <br>
+	Any commercial usage of the materials and contents is forbidden without prior permission from 21Cineplex. There is no other institutions/agencies outside 21Cineplex allowed to use 
+	www.21Cineplex.com (21Cineplex website) without prior permission from 21Cineplex.
+	</div>
+</div></div> 
+
+<script type="text/javascript">var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www."); document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));</script><script type="text/javascript">var pageTracker = _gat._getTracker("UA-1473696-2");pageTracker._initData();pageTracker._trackPageview();
+</script>
+
+</body>
+</html>  

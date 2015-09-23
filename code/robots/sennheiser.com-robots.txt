@@ -1,0 +1,37 @@
+User-agent: AdsBot-Google 
+User-agent: ArchitextSpider 
+User-agent: Baiduspider 
+User-agent: bingbot 
+User-agent: Blekkobot 
+User-agent: Daumoa 
+User-agent: fastcrawler 
+User-agent: Googlebot 
+User-agent: Googlebot-Image 
+User-agent: Googlebot-Mobile 
+User-agent: Lycos 
+User-agent: Mail.Ru 
+User-agent: Mediapartners-Google 
+User-agent: msnbot 
+User-agent: msnbot-media 
+User-agent: Najdi.si 
+User-agent: OnetSzukaj 
+User-agent: Rambler 
+User-agent: Scooter 
+User-agent: SeznamBot 
+User-agent: Slurp 
+User-agent: solbot 
+User-agent: Teoma 
+User-agent: Virgilio 
+User-agent: VoilaBot 
+User-agent: Yahoo-Blogs 
+User-agent: Yahoo-MMCrawler 
+User-agent: Yandex 
+Disallow: /global_search 
+Disallow: /search 
+Disallow: /sku/ 
+Disallow: 
+
+User-agent: * 
+Disallow: /
+Disallow: /downloads/download/file/5520/Facebook_Sweepstakes_Official_Rules.pdf
+Disallow: /downloads/download/file/5521/Instagram_Terms_and_Conditions.pdf

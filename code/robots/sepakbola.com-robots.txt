@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=1000">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SEPAKBOLA.com Portal Pecinta Bola Se-Indonesia!</title>
+    
+    <link rel="canonical" href="http://www.sepakbola.com/"/>
+    <link rel="next" href="http://www.sepakbola.com/berita?page=2"/>
+    <meta name="description" content="Dapatkan berita terkini sepakbola, live score, jadwal, ulasan pertandingan, cuplikan gol, prediksi, data pemain, statistik, foto, liga-liga eropa, piala dunia, etc."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="SEPAKBOLA.com Portal Pecinta Bola Se-Indonesia!"/>
+    <meta property="og:description" content="Dapatkan berita terkini sepakbola, live score, jadwal, ulasan pertandingan, cuplikan gol, prediksi, data pemain, statistik, foto, liga-liga eropa, piala dunia, etc."/>
+    <meta property="og:site_name" content="SEPAKBOLA.com Portal Pecinta Bola Se-Indonesia!"/>
+    
+    <meta name="google-site-verification" content="AMUp1xCrck1IY3_oTqlNC4edCDQCsPv3buZoZ9V6wy0"/>
+    <link href="http://static.sepakbola.com/css/bootstrap.css" rel="stylesheet">
+    <link href="http://static.sepakbola.com/css/main.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <link href="http://static.sepakbola.com/css/ie.css" rel="stylesheet">
+      <script src="http://static.sepakbola.com/script/html5shiv.js"></script>
+      <script src="http://static.sepakbola.com/script/respond.min.js"></script>
+    <![endif]-->
+    <script src="http://static.sepakbola.com/script/modernizr-2.6.1.min.js"></script>
+    
+  </head>
+  <body ng-app="sepakbolaApp">
+    <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+    <![endif]-->
+
+    <div ng-controller="Sepakbola.navbar" id="sb-navbar">
+<div class="navbar navbar-inverse navbar-static-top" role="navigation">
+  <div class="container" style="padding-left: 10px; padding-right: 10px">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <!--<span class="sr-only">Toggle Navigation</span>-->
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a href="http://www.sepakbola.com/" class="navbar-brand">
+      <img src="http://www.sepakbola.com/files/common/logo.jpg" alt="logo">
+    </a>
+
+    <div class="row row-n">
+      <ul class="nav navbar-nav navbar-collapse collapse navbar-ex1-collapse" role="navigation">
+        <li ng-class="getClass('/')"><a href="http://www.sepakbola.com/">Home</a></li>
+        <li ng-class="getClass('/berita')"><a href="http://www.sepakbola.com/berita">Berita</a></li>
+        <li ng-class="getClass('/jadwal')"><a href="http://www.sepakbola.com/jadwal">Jadwal</a></li>
+        <li ng-class="getClass('/liveskor')"><a href="http://www.sepakbola.com/liveskor">Live Skor</a></li>
+                <li ng-class="getClass('/teamdirectory')"><a href="http://www.sepakbola.com/teamdirectory">Team Directory</a></li>
+        
+        
+        <li ng-class="getClass('/akun')" ng-cloak ng-if="akun.id" class="dropdown pull-right">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="text-decoration: none"><img src="http://www.sepakbola.com/images/akun/{{akun.id}}.jpg"> {{akun.display_name}} <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://www.sepakbola.com/akun/beranda"><span class="glyphicon glyphicon-home"></span> &nbsp; Beranda</a></li>
+            <li><a href="http://www.sepakbola.com/akun/pengaturan"><span class="glyphicon glyphicon-cog"></span> &nbsp; Pengaturan</a></li>
+            <li class="divider"></li>
+            <li><a href="http://www.sepakbola.com/akun/keluar"><span class="glyphicon glyphicon-log-out"></span> &nbsp; Keluar</a></li>
+          </ul>
+        </li>
+        
+        <li ng-cloak class="pull-right daftar" ng-if="!akun.id"><a href="http://www.sepakbola.com/akun/daftar">Daftar</a></li>
+        <li ng-cloak class="pull-right" ng-if="!akun.id"><a href="http://www.sepakbola.com/akun/masuk">Masuk</a></li>
+        
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="navbar navbar-bottom navbar-static-top" role="navigation">
+  <div class="container" style="padding-left: 10px; padding-right: 10px">
+
+    <div class="row row-n">
+      <ul class="nav navbar-nav navbar-collapse option-group pull-left">
+        <li class="browse">Browse:</li>
+        <li id="btn-favorit"><a>Favorit</a></li>
+        <li id="btn-populer"><a>Populer</a></li>
+        <li id="btn-semualiga"><a>Semua Liga</a></li>
+        <li id="btn-internasional"><a>Internasional</a></li>
+      </ul>
+        <div class="pull-right clearfix" style="margin-right: 15px">
+            <form method="GET" action="http://www.sepakbola.com/search">
+                <input name="q" type="text" class="form-control pull-left" placeholder="Cari turnamen, tim, dan pemain" style="width: 200px" value="">
+                <button class="btn btn-xs btn-primary pull-left"><span class="glyphicon glyphicon-search"></span></button>
+            </form>
+        </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="favorit" class="nav-region">
+  <div class="container">
+    <div class="content clearfix"> 
+
+      <p class="hidden" style="color: #fff">Tambahkan liga favorit dan turnamen favoritmu untuk akses lebih cepat dengan mengklik icon <span class="glyphicon glyphicon-star" style="color: #ffcc00"></span> di menu Populer, Semua Liga, atau Internasional.</p>
+
+      <div class="row">
+        
+          <div ng-repeat="league_id in favourite.leagues " class="col-xs-2">
+              <a href="{{base_url }}league/{{league_id}}" class="clearfix">
+                  <div ng-init="league = (leagues | getById:league_id)" class="ui-icon country flg-{{league.country_code}}">{{ league.name }}</div>
+                
+              </a>
+          </div>
+        
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="populer" class="nav-region">
+  <div class="container">
+    <div class="content clearfix">
+
+      <div ng-init="populer = (popularLeagues | partition:5)" class="row">
+        
+          <div ng-repeat="part in populer" class="col-xs-2">
+              <a ng-repeat="league in part track by $index" href="{{base_url }}league/{{league.id}}" class="clearfix">
+                <div class="ui-icon country flg-{{ league.country_code }}">{{ league.name | character_limiter:20 }}</div>
+                <div class="nav-star" ng-click="add_fav_league(league.id);$event.preventDefault()" title="Tambahkan ke Favorit"><span class="glyphicon glyphicon-star"></span></div>
+            </a>
+          </div>
+        
+        
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="semualiga" class="nav-region">
+    <div class="container">
+        <div class="content clearfix">
+
+            <div class="row" id="navbar_all">
+
+                <div class="col-xs-12">
+                    <div ng-init="letters = 'ABCDEFGHIJKLMNOPQRSTUVWYZ'.split('')" class="league-index clearfix">
+                        <dd ng-repeat="a in letters"><a ng-class="isActive(a)" ng-click="setLetter(a)" data-value="{{a}}" href="#" class="option">{{a}}</a></dd>
+                        
+                        <dd><a ng-class="isActive('')" ng-click="setLetter('')" data-value="All" href="#" class="option">All</a></dd></div>
+                </div>
+                
+                
+                <div ng-repeat="region in all = (leagues | filter:{type : 0} | byLetter : letter   ) " class="col-xs-2">
+                    <a href="#" onclick="$(this).next().slideToggle();$event.preventDefault()" class="clearfix">
+                      <div class="ui-icon country flg-{{ region.code }}">{{ region.name | character_limiter:20 }}</div>
+                      
+                    </a>
+                    <ul style="display:none">
+                        <li ng-repeat="league in (region.tournaments )">
+                          <a href="{{base_url}}league/{{league.id}}" class="clearfix">
+                                <div>{{ league.name | character_limiter:20 }}</div>
+                                <div class="nav-star" ng-click="add_fav_league(league.id);$event.preventDefault()" title="Tambahkan ke Favorit"><span class="glyphicon glyphicon-star"></span></div>
+                          </a>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div><!--.row-->
+
+        </div>
+    </div>
+</div>
+
+<div id="internasional" class="nav-region">
+  <div class="container">
+    <div class="content clearfix">
+
+        <div ng-repeat="region in all = (leagues | filter:{type : 1}    ) " class="col-xs-2">
+            <a href="#" onclick="$(this).next().slideToggle();$event.preventDefault()" class="clearfix">
+              <div class="ui-icon country flg-{{ region.code }}">{{ region.name | character_limiter:20 }}</div>
+
+            </a>
+            <ul style="display:none">
+                <li ng-repeat="league in region.tournaments ">
+                  <a href="{{base_url}}league/{{league.id}}" class="clearfix">
+                        <div>{{ league.name | character_limiter:20 }}</div>
+                        <div class="nav-star" ng-click="add_fav_league(league.id);$event.preventDefault()" title="Tambahkan ke Favorit"><span class="glyphicon glyphicon-star"></span></div>
+                  </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+  </div>
+</div>
+</div>
+
+    <div class="container main">
+      <div class="content">
+
+        <div class="row">
+
+          <div class="col-xs-12">
+            <div class="main-content">
+
+              <div class="row">
+
+              <!--<div class="col-xs-8" style="padding-right: 0">
+                <div class="main-banner">
+                  <a href=""><p>Lorem Ipsum Dolor Siamet</p></a>
+                  <div class="pic-overlayer"></div>
+                  <img class="img-responsive" src="http://static.sepakbola.com/files/common/img_banner-1.jpg">
+                </div>
+              </div>-->
+
+              <div class="col-xs-8" style="padding-right: 0">
+                <div id="main-banner" class="carousel slide" data-ride="carousel">
+                  <!-- Indicators -->
+                  <ol class="carousel-indicators">
+                    <li data-target="#main-banner" data-slide-to="0" class="active"></li>
+                    <li data-target="#main-banner" data-slide-to="1"></li>
+                    <li data-target="#main-banner" data-slide-to="2"></li>
+                    <li data-target="#main-banner" data-slide-to="3"></li>
+                    <li data-target="#main-banner" data-slide-to="4"></li>
+                  </ol>
+
+                  <!-- Wrapper for slides -->
+                  <div class="carousel-inner">
+                                                                                <div class="item active">
+                      <div class="main-banner main-story-shade">
+                        <a href="http://www.sepakbola.com/2015/09/chelsea-kesal-dengan-keputusan-fa-untuk-kasus-costa"><p>Chelsea Kesal dengan Keputusan FA untuk Kasus 'Costa vs Gabriel'</p></a>
+                        <div class="pic-overlayer"></div>
+                        <img class="img-responsive" width="657" height="328" src="http://static.sepakbola.com/uploads/2015/09/gabriel-costa-657x328.jpg">
+                      </div>
+                    </div>
+                                                            <div class="item ">
+                      <div class="main-banner main-story-shade">
+                        <a href="http://www.sepakbola.com/2015/09/sir-alex-sebut-hanya-4-pemain-kelas-dunia-yang-pernah-dilatih-inilah-mereka"><p>Sir Alex Sebut Hanya Ada 4 Pemain Kelas Dunia yang Pernah Dilatih, Inilah Mereka</p></a>
+                        <div class="pic-overlayer"></div>
+                        <img class="img-responsive" width="657" height="328" src="http://static.sepakbola.com/uploads/2015/09/ronaldo(3)-657x328.jpg">
+                      </div>
+                    </div>
+                                                            <div class="item ">
+                      <div class="main-banner main-story-shade">
+                        <a href="http://www.sepakbola.com/2015/09/zanetti-bantah-berperan-dalam-pemecatan-direktur-inter"><p>Dituduh Jadi Dalang Pemecatan Direktur Inter, Ini Jawaban Zanetti</p></a>
+                        <div class="pic-overlayer"></div>
+                        <img class="img-responsive" width="657" height="328" src="http://static.sepakbola.com/uploads/2015/09/zanetti inter-657x328.jpg">
+                      </div>
+                    </div>
+                                                            <div class="item ">
+                      <div class="main-banner main-story-shade">
+                        <a href="http://www.sepakbola.com/2015/09/dua-kali-gagal-eksekusi-penalti-messi-tetap-dipercaya-enrique"><p>Dua Kali Gagal Eksekusi Penalti, Messi Tetap Dipercaya Enrique</p></a>
+                        <div class="pic-overlayer"></div>
+                        <img class="img-responsive" width="657" height="328" src="http://static.sepakbola.com/uploads/2015/09/messi mirror-657x328.jpeg">
+                      </div>
+                    </div>
+                                                            <div class="item ">
+                      <div class="main-banner main-story-shade">
+                        <a href="http://www.sepakbola.com/2015/09/di-maria-tak-akan-selebrasi-jika-bobol-gawang-real-madrid"><p>Ini yang Akan Dilakukan Di Maria Jika Bobol Gawang Real Madrid</p></a>
+                        <div class="pic-overlayer"></div>
+                        <img class="img-responsive" width="657" height="328" src="http://static.sepakbola.com/uploads/2015/09/dimaria getty-657x328.jpg">
+                      </div>
+                    </div>
+                                        
+                  </div>
+
+                  <!-- Controls -->
+                  <a class="left carousel-control" href="#main-banner" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left font12"></span>
+                  </a>
+                  <a class="right carousel-control" href="#main-banner" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right font12 "></span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-xs-4" style="padding-left: 0">
+                <div class="box berita-terkini">
+                  <div class="heading">
+                    <h3>Berita Terkini</h3>
+                    <img src="http://static.sepakbola.com/files/common/bg_heading.png">
+                  </div>
+                  <div class="content p_0 custom-scroll">
+                    <table class="table table-striped">
+                      <tbody>
+                                                                    
+                        <tr>
+                          <td>
+                            <a href="http://www.sepakbola.com/2015/09/lewandowski-masih-bingung-dengan-rekor-yang-ditorehkan" style="display: block">
+                              <div class="timestamp" data-short-timestamp='2015-09-23 12:53:00'></div>
+                              <p>Lewandowski Masih Bingung dengan Rekor yang Ditorehkan</p>
+                            </a>
+                          </td>
+                        </tr>
+                                                                    
+                        <tr>
+                          <td>
+                            <a href="http://www.sepakbola.com/2015/09/mancini-yakin-ljajic-jadi-tokoh-kunci-inter-musim-ini" style="display: block">
+                              <div class="timestamp" data-short-timestamp='2015-09-23 11:43:00'></div>
+                              <p>Mancini Yakin Ljajic Jadi Figur Kunci Inter Musim Ini</p>
+                            </a>
+                          </td>
+                        </tr>
+                                                                    
+                        <tr>
+                          <td>
+                            <a href="http://www.sepakbola.com/2015/09/agen-pesimis-turan-bisa-perkuat-barcelona-sebelum-januari" style="display: block">
+                              <div class="timestamp" data-short-timestamp='2015-09-23 11:36:00'></div>
+                              <p>Agen Pesimis Turan Bisa Perkuat Barcelona Sebelum Januari</p>
+                            </a>
+                          </td>
+                        </tr>
+                                                                    
+                        <tr>
+                          <td>
+                            <a href="http://www.sepakbola.com/2015/09/alex-sarankan-marquinhos-tinggalkan-psg" style="display: block">
+                              <div class="timestamp" data-short-timestamp='2015-09-23 11:28:00'></div>
+                              <p>Alex Sarankan Talenta Brasil Ini Tinggalkan PSG</p>
+                            </a>
+                          </td>
+                        </tr>
+                                                                    
+                        <tr>
+                          <td>
+                            <a href="http://www.sepakbola.com/2015/09/pochhettino-bakal-gunakan-pengalamannya-sebagai-pemain-lawan-arsenal" style="display: block">
+                              <div class="timestamp" data-short-timestamp='2015-09-23 11:22:00'></div>
+                              <p>Ini Modal Pochhettino untuk Ladeni Arsenal di Piala Liga</p>
+                            </a>
+                          </td>
+                        </tr>
+                                                                    
+                        <tr>
+                          <td>
+                            <a href="http://www.sepakbola.com/2015/09/pelatih-roma-tak-panik-inter-kuasai-puncak-klasemen-saat-ini" style="display: block">
+                              <div class="timestamp" data-short-timestamp='2015-09-23 11:20:00'></div>
+                              <p>Pelatih Roma Tak Panik Inter Kuasai Puncak Klasemen Saat Ini</p>
+                            </a>
+                          </td>
+                        </tr>
+                                                                    
+                        <tr>
+                          <td>
+                            <a href="http://www.sepakbola.com/2015/09/pelatih-lazio-ungkap-kesulitan-adaptasi-morrison" style="display: block">
+                              <div class="timestamp" data-short-timestamp='2015-09-23 11:13:00'></div>
+                              <p>Pelatih Lazio Ungkap Kesulitan Adaptasi Morrison</p>
+                            </a>
+                          </td>
+                        </tr>
+                                                                    
+                        <tr>
+                          <td>
+                            <a href="http://www.sepakbola.com/2015/09/higuain-gemilang-di-awal-musim-pelatih-napoli-layangkan-pujian" style="display: block">
+                              <div class="timestamp" data-short-timestamp='2015-09-23 11:01:00'></div>
+                              <p>Higuain Gemilang di Awal Musim, Pelatih Napoli Layangkan Pujian</p>
+                            </a>
+                          </td>
+                        </tr>
+                                                                    
+                        <tr>
+                          <td>
+                            <a href="http://www.sepakbola.com/2015/09/lahm-lewandowski-harusnya-cetak-tujuh-gol" style="display: block">
+                              <div class="timestamp" data-short-timestamp='2015-09-23 10:56:00'></div>
+                              <p>Lahm: Lewandowski Harusnya Cetak Tujuh Gol</p>
+                            </a>
+                          </td>
+                        </tr>
+                                                                    
+                        <tr>
+                          <td>
+                            <a href="http://www.sepakbola.com/2015/09/benitez-hanya-ronaldo-pemain-yang-tak-tersentuh-di-real-madrid" style="display: block">
+                              <div class="timestamp" data-short-timestamp='2015-09-23 10:52:00'></div>
+                              <p>Benitez: Hanya Ronaldo Pemain yang Tak Tersentuh di Real Madrid</p>
+                            </a>
+                          </td>
+                        </tr>
+                                              </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div><!--.col0-xs-4-->
+            </div><!--.row-->
+
+            </div>
+
+          </div>
+        </div>
+          
+          
+          <div id="ads_rbp" class="row">
+              <style>#ads_rbp{margin-right:-45px;text-align:center;padding:20px 20px 0}#ads_rbp .rbp,#ads_rbp>a{float:left;margin-right:29px}</style>
+              <!--/* Revive Adserver Javascript Tag v3.0.5 */-->
+                <script type='text/javascript'>//<![CDATA[
+var m3_u=(location.protocol=='https:'?'https://ads.sepakbola.com/delivery/ajs.php':'http://ads.sepakbola.com/delivery/ajs.php');var m3_r=Math.floor(Math.random()*99999999999);if(!document.MAX_used)document.MAX_used=',';document.write("<scr"+"ipt type='text/javascript' src='"+m3_u);document.write("?zoneid=6");document.write('&amp;cb='+m3_r);if(document.MAX_used!=',')document.write("&amp;exclude="+document.MAX_used);document.write(document.charset?'&amp;charset='+document.charset:(document.characterSet?'&amp;charset='+document.characterSet:''));document.write("&amp;loc="+escape(window.location));if(document.referrer)document.write("&amp;referer="+escape(document.referrer));if(document.context)document.write("&context="+escape(document.context));if(document.mmm_fo)document.write("&amp;mmm_fo=1");document.write("'><\/scr"+"ipt>");
+//]]></script><noscript><a href='http://ads.sepakbola.com/delivery/ck.php?n=a6184417&amp;cb=2.0711763579793E+20' target='_blank'><img src='http://ads.sepakbola.com/delivery/avw.php?zoneid=6&amp;cb=8.0056119999199E+17&amp;n=a6184417' border='0' alt=''/></a></noscript>
+
+                <!--/* Revive Adserver Javascript Tag v3.0.5 */-->
+                <script type='text/javascript'>//<![CDATA[
+var m3_u=(location.protocol=='https:'?'https://ads.sepakbola.com/delivery/ajs.php':'http://ads.sepakbola.com/delivery/ajs.php');var m3_r=Math.floor(Math.random()*99999999999);if(!document.MAX_used)document.MAX_used=',';document.write("<scr"+"ipt type='text/javascript' src='"+m3_u);document.write("?zoneid=7");document.write('&amp;cb='+m3_r);if(document.MAX_used!=',')document.write("&amp;exclude="+document.MAX_used);document.write(document.charset?'&amp;charset='+document.charset:(document.characterSet?'&amp;charset='+document.characterSet:''));document.write("&amp;loc="+escape(window.location));if(document.referrer)document.write("&amp;referer="+escape(document.referrer));if(document.context)document.write("&context="+escape(document.context));if(document.mmm_fo)document.write("&amp;mmm_fo=1");document.write("'><\/scr"+"ipt>");
+//]]></script><noscript><a href='http://ads.sepakbola.com/delivery/ck.php?n=a6184417&amp;cb=1.4921011969851E+20' target='_blank'><img src='http://ads.sepakbola.com/delivery/avw.php?zoneid=6&amp;cb=1.3133281389869E+20&amp;n=a6184417' border='0' alt=''/></a></noscript>
+
+                <!--/* Revive Adserver Javascript Tag v3.0.5 */-->
+                <script type='text/javascript'>//<![CDATA[
+var m3_u=(location.protocol=='https:'?'https://ads.sepakbola.com/delivery/ajs.php':'http://ads.sepakbola.com/delivery/ajs.php');var m3_r=Math.floor(Math.random()*99999999999);if(!document.MAX_used)document.MAX_used=',';document.write("<scr"+"ipt type='text/javascript' src='"+m3_u);document.write("?zoneid=8");document.write('&amp;cb='+m3_r);if(document.MAX_used!=',')document.write("&amp;exclude="+document.MAX_used);document.write(document.charset?'&amp;charset='+document.charset:(document.characterSet?'&amp;charset='+document.characterSet:''));document.write("&amp;loc="+escape(window.location));if(document.referrer)document.write("&amp;referer="+escape(document.referrer));if(document.context)document.write("&context="+escape(document.context));if(document.mmm_fo)document.write("&amp;mmm_fo=1");document.write("'><\/scr"+"ipt>");
+//]]></script><noscript><a href='http://ads.sepakbola.com/delivery/ck.php?n=a6184417&amp;cb=4.8189199199518E+19' target='_blank'><img src='http://ads.sepakbola.com/delivery/avw.php?zoneid=6&amp;cb=4.7377548999526E+18&amp;n=a6184417' border='0' alt=''/></a></noscript>
+
+          </div>
+        <div class="row banner-thumb m_t_20 box"> 
+          <div id="buzz-feed" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="item active">
+                                                <div class="col-xs-2 active">
+                  <a href="http://www.sepakbola.com/2015/09/video-cuplikan-gol-sunderland-1-4-man-city-kucing-hitam-hancur-lebur">
+                  <div class="content">
+                    <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/09/Review_Sunderland-ManCity-COC-138x69.jpg">
+                    <p>[VIDEO] CUPLIKAN GOL Sunderland&#8230;</p>
+                  </div></a>
+                </div>
+                                                <div class="col-xs-2 active">
+                  <a href="http://www.sepakbola.com/2015/09/video-cuplikan-gol-udinese-2-3-milan-mihajlovic-nyaris-blunder">
+                  <div class="content">
+                    <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/09/Review_Udinese-ACMilan-138x69.jpg">
+                    <p>[VIDEO] CUPLIKAN GOL Udinese 2-3&#8230;</p>
+                  </div></a>
+                </div>
+                                                <div class="col-xs-2 active">
+                  <a href="http://www.sepakbola.com/2015/09/video-cuplikan-gol-atletico-madrid-2-0-getafe-griezmann-borong-dua-gol">
+                  <div class="content">
+                    <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/09/Review_AtleticoMadrid-Getafe-138x69.jpg">
+                    <p>[VIDEO] CUPLIKAN GOL Atletico&#8230;</p>
+                  </div></a>
+                </div>
+                                                <div class="col-xs-2 active">
+                  <a href="http://www.sepakbola.com/2015/09/video-cuplikan-gol-bayern-munich-5-1-wolfsburg-lewandowski-sembilan-menit-lima-gol">
+                  <div class="content">
+                    <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/09/Review_BayernMunchen-Wolfsburg-138x69.jpg">
+                    <p>[VIDEO] CUPLIKAN GOL Bayern Munich&#8230;</p>
+                  </div></a>
+                </div>
+                                                <div class="col-xs-2 active">
+                  <a href="http://www.sepakbola.com/2015/09/prediksi-bayern-munich-vs-wolfsburg-pertahankan-kesempurnaan-awal-musim">
+                  <div class="content">
+                    <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/09/munchen-138x69.jpg">
+                    <p>PREDIKSI Bayern Munich vs Wolfsburg:&#8230;</p>
+                  </div></a>
+                </div>
+                                                <div class="col-xs-2 active">
+                  <a href="http://www.sepakbola.com/2015/09/prediksi-athletic-bilbao-vs-real-madrid-jaga-start-gemilang">
+                  <div class="content">
+                    <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/09/Bilbao-vs-Real-Madrid-138x69.jpg">
+                    <p>PREDIKSI Athletic Bilbao vs Real&#8230;</p>
+                  </div></a>
+                </div>
+                              </div>
+              <div class="item">
+                                                <div class="col-xs-2 active">
+                  <a href="http://www.sepakbola.com/2015/09/prediksi-espanyol-vs-valencia-perebutkan-tiga-poin-krusial">
+                  <div class="content">
+                    <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/09/Espanyol-vs-Valencia-138x69.jpg">
+                    <p>PREDIKSI Espanyol vs Valencia:&#8230;</p>
+                  </div></a>
+                </div>
+                                                <div class="col-xs-2 active">
+                  <a href="http://www.sepakbola.com/2015/09/prediksi-juventus-vs-frosinone-lanjutkan-momentum">
+                  <div class="content">
+                    <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/09/Juventus-vs-Frosinone(1)-138x69.jpg">
+                    <p>PREDIKSI Juventus vs Frosinone:&#8230;</p>
+                  </div></a>
+                </div>
+                                                <div class="col-xs-2 active">
+                  <a href="http://www.sepakbola.com/2015/09/prediksi-psg-vs-guingamp-kemenangan-harga-mati">
+                  <div class="content">
+                    <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/09/psg guingamp-138x69.png">
+                    <p>PREDIKSI PSG vs Guingamp: Kemenangan&#8230;</p>
+                  </div></a>
+                </div>
+                                                <div class="col-xs-2 active">
+                  <a href="http://www.sepakbola.com/2015/09/hasil-lengkap-pertandingan-klasemen-la-liga-hari-ini">
+                  <div class="content">
+                    <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/09/hasil la liga spanyol-138x69.jpg">
+                    <p>Hasil Lengkap Pertandingan & Klasemen&#8230;</p>
+                  </div></a>
+                </div>
+                                                <div class="col-xs-2 active">
+                  <a href="http://www.sepakbola.com/2015/09/hasil-lengkap-pertandingan-liga-inggris-hari-ini">
+                  <div class="content">
+                    <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/09/Screenshot_2015-09-21-02-10-36_1-138x69.jpg">
+                    <p>Hasil Lengkap Pertandingan & Klasemen&#8230;</p>
+                  </div></a>
+                </div>
+                                                <div class="col-xs-2 active">
+                  <a href="http://www.sepakbola.com/2015/09/video-cuplikan-gol-marseille-1-1-lyon-lyon-gagal-manfaatkan-keunggulan-jumlah-pemain">
+                  <div class="content">
+                    <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/09/Review_Marseille-Lyon-138x69.jpg">
+                    <p>[VIDEO] CUPLIKAN GOL Marseille&#8230;</p>
+                  </div></a>
+                </div>
+                              </div>
+            </div>
+            <a class="left carousel-control" href="#buzz-feed" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left font12"></span>
+            </a>
+            <a class="right carousel-control" href="#buzz-feed" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right font12 "></span>
+            </a>
+          </div>
+        </div><!--.row-->
+
+        <div class="row">
+
+          <div class="col-xs-8 col-main">
+            
+            <div class="row">
+            <div class="col-xs-6">
+    <div class="box thumb" style="position: relative;height:267px;">
+      <div class="cat"><a href="http://www.sepakbola.com/berita?category_name=best-of-the-best-2">Best of The Best <span class="glyphicon glyphicon-chevron-right font10" style="top: 0"></span></a></div>
+
+            
+      <a href="http://www.sepakbola.com/2015/09/7-pemain-ini-pernah-jadi-buruan-utama-sir-alex">
+        <div class="image">
+          <p class="title">7 Pemain Ini Pernah Jadi Buruan Utama Sir Alex</p>
+          <div class="pic-overlayer"></div>
+          <img class="img-responsive fix-image" width="320" height="160" src="http://static.sepakbola.com/uploads/2015/09/ferguson-320x160.jpg">
+        </div>
+      </a>
+      <div class="content">
+        <ul class="news-list">
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/lima-hal-yang-bisa-dipetik-dari-premier-league-pekan-ini">[TOP 5] Catatan Menarik dari Premier League Pekan Ini</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/top-15-perang-kata-kata-pedas-mourinho-vs-wenger">[TOP 15] Perang Kata-kata Pedas Wenger vs Mourinho</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/top-15-cedera-patah-kaki-horor-di-dunia-sepak-bola">[TOP 15] Cedera Patah Kaki Horor di Dunia Sepak Bola</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/5-fakta-menarik-kekalahan-mu-dari-psv-eindhoven">5 Fakta Menarik dari Kekalahan MU Kontra PSV Eindhoven</a></li>
+                  </ul>
+      </div>
+    </div>
+  </div><!--.col-xs-6--><div class="col-xs-6">
+    <div class="box thumb" style="position: relative;height:267px;">
+      <div class="cat"><a href="http://www.sepakbola.com/berita?category_name=liga-inggris">Liga Inggris <span class="glyphicon glyphicon-chevron-right font10" style="top: 0"></span></a></div>
+
+            
+      <a href="http://www.sepakbola.com/2015/09/pochhettino-bakal-gunakan-pengalamannya-sebagai-pemain-lawan-arsenal">
+        <div class="image">
+          <p class="title">Ini Modal Pochhettino untuk Ladeni Arsenal di Piala Liga</p>
+          <div class="pic-overlayer"></div>
+          <img class="img-responsive fix-image" width="320" height="160" src="http://static.sepakbola.com/uploads/2015/09/pochettino-320x160.jpg">
+        </div>
+      </a>
+      <div class="content">
+        <ul class="news-list">
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/lampard-yakin-terry-bakal-bangkit-kembali">Lampard Yakin Bek Veteran Chelsea Ini Bakal Bangkit Kembali</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/ini-komentar-matic-bermain-dengan-costa">Ini Pandangan Matic Tentang 'Bomber Kontroversial' The Blues</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/wenger-pastikan-giroud-bukan-lagi-pilihan-utama">Wenger Pastikan Giroud Bukan Lagi Pilihan Utama</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/chelsea-kesal-dengan-keputusan-fa-untuk-kasus-costa">Chelsea Kesal dengan Keputusan FA untuk Kasus 'Costa vs Gabriel'</a></li>
+                  </ul>
+      </div>
+    </div>
+  </div><!--.col-xs-6--><div class="col-xs-6">
+    <div class="box thumb" style="position: relative;height:267px;">
+      <div class="cat"><a href="http://www.sepakbola.com/berita?category_name=bola-babes">Bola Babes <span class="glyphicon glyphicon-chevron-right font10" style="top: 0"></span></a></div>
+
+            
+      <a href="http://www.sepakbola.com/2015/09/wenger-pisah-dengan-istrinya">
+        <div class="image">
+          <p class="title">Wenger Resmi Berpisah dengan Sang Istri</p>
+          <div class="pic-overlayer"></div>
+          <img class="img-responsive fix-image" width="320" height="160" src="http://static.sepakbola.com/uploads/2015/09/wenger(2)-320x160.jpg">
+        </div>
+      </a>
+      <div class="content">
+        <ul class="news-list">
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/08/model-cantik-australia-menolak-diselingkuhi-oleh-cr7">Model Cantik Australia Menolak Diselingkuhi oleh CR7</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/07/supermodel-seksi-kate-moss-mengaku-naksir-david-beckham">Supermodel Seksi Ini Mengaku Naksir David Beckham</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/07/karim-benzema-pacari-mantan-pacar-axel-witsel">[FOTO & VIDEO] Karim Benzema Pacari Mantan Kekasih Axel Witsel</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/07/bintang-porno-ini-mengaku-sebagai-suporter-manchester-united">Bintang Porno Ini Mengaku Sebagai Suporter Manchester United</a></li>
+                  </ul>
+      </div>
+    </div>
+  </div><!--.col-xs-6--><div class="col-xs-6">
+    <div class="box thumb" style="position: relative;height:267px;">
+      <div class="cat"><a href="http://www.sepakbola.com/berita?category_name=liga-champions">Champions League <span class="glyphicon glyphicon-chevron-right font10" style="top: 0"></span></a></div>
+
+            
+      <a href="http://www.sepakbola.com/2015/09/di-maria-tak-akan-selebrasi-jika-bobol-gawang-real-madrid">
+        <div class="image">
+          <p class="title">Ini yang Akan Dilakukan Di Maria Jika Bobol Gawang Real Madrid</p>
+          <div class="pic-overlayer"></div>
+          <img class="img-responsive fix-image" width="320" height="160" src="http://static.sepakbola.com/uploads/2015/09/dimaria getty-320x160.jpg">
+        </div>
+      </a>
+      <div class="content">
+        <ul class="news-list">
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/nainggolan-roma-targetkan-lolos-grup-liga-champions">Nainggolan: Roma Targetkan Lolos Grup Liga Champions</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/pirlo-buffon-kiper-terbaik-sepanjang-masa">Pirlo: Buffon, Kiper Terbaik Sepanjang Masa</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/shaw-berada-di-tangan-yang-tepat-untuk-pemulihan">‘Shaw Berada di Tangan yang Tepat untuk Pemulihan’</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/ferdinand-kecam-wenger-karena-hal-ini">Ferdinand Kecam Wenger Karena Hal Ini</a></li>
+                  </ul>
+      </div>
+    </div>
+  </div><!--.col-xs-6--><div class="col-xs-6">
+    <div class="box"><!--m_b_20-->
+        <ul class="box table-nav nav navbar-nav nav nav-tabs nav-justified" id="myTab" style="border-bottom: 3px solid #2aabe4">
+            <li class="active"><a href="#tab-terpopuler" data-toggle="tab" style="padding: 5px 12px 7px">Terpopuler</a></li>
+            <li><a href="#tab-terkomentari" data-toggle="tab" style="padding: 5px 12px 7px">Terkomentari</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab-terpopuler">
+                <div class="content p_0"> 
+                    <ul class="terpopuler">
+                                                        <li class="clearfix">
+                                <a href="http://www.sepakbola.com/2015/09/hasil-lengkap-pertandingan-liga-inggris-hari-ini">
+                                    <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/09/Screenshot_2015-09-21-02-10-36_1-150x150.jpg">
+                                    <div class="rank">01</div>
+                                    <p>Hasil Lengkap Pertandingan &  Klasemen Liga Inggris Hari Ini</p>
+                                                                        <a class="nama-liga" href="http://www.sepakbola.com/berita?category_name=liga-inggris">Liga Inggris</a>
+                                                                    </a>
+                            </li>
+                                <li class="clearfix">
+                                <a href="http://www.sepakbola.com/2015/09/peringkat-uefa-terjun-bebas-liverpool-sejajar-klub-medioker-eropa">
+                                    <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/09/Liverpool Images(1)-150x150.JPG">
+                                    <div class="rank">02</div>
+                                    <p>Peringkat UEFA Terjun Bebas, Liverpool Sejajar Klub Medioker Eropa</p>
+                                                                        <a class="nama-liga" href="http://www.sepakbola.com/berita?category_name=liga-europa">Liga Europa</a>
+                                                                    </a>
+                            </li>
+                                <li class="clearfix">
+                                <a href="http://www.sepakbola.com/2015/09/foto-inilah-penampakan-shaw-setelah-operasi-kaki">
+                                    <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/09/Shaw Mata Images-150x150.JPG">
+                                    <div class="rank">03</div>
+                                    <p> [FOTO] Inilah Penampakan Shaw Setelah Operasi Kaki</p>
+                                                                        <a class="nama-liga" href="http://www.sepakbola.com/berita?category_name=liga-inggris">Liga Inggris</a>
+                                                                    </a>
+                            </li>
+                                <li class="clearfix">
+                                <a href="http://www.sepakbola.com/2015/09/selangkah-lagi-liverpool-akan-dibeli-keluarga-kaya-dubai">
+                                    <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/09/Liverpoo Images-150x150.jpg">
+                                    <div class="rank">04</div>
+                                    <p>Selangkah Lagi Liverpool Akan Dibeli Keluarga Kaya Dubai</p>
+                                                                        <a class="nama-liga" href="http://www.sepakbola.com/berita?category_name=liga-inggris">Liga Inggris</a>
+                                                                    </a>
+                            </li>
+                                <li class="clearfix">
+                                <a href="http://www.sepakbola.com/2015/09/ini-incaran-united-pengganti-shaw">
+                                    <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/09/Aaron-Cresswell-West-Ham-150x150.png">
+                                    <div class="rank">05</div>
+                                    <p>Inikah Wingback Incaran United untuk Gantikan Shaw?</p>
+                                                                        <a class="nama-liga" href="http://www.sepakbola.com/berita?category_name=berita-transfer">Transfer</a>
+                                                                    </a>
+                            </li>
+                                <li class="clearfix">
+                                <a href="http://www.sepakbola.com/2015/09/cuplikan-gol-southampton-2-3-manchester-united-panggung-aksi-martial-dan-pelle">
+                                    <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/09/Review_Southampton-ManUnited-150x150.jpg">
+                                    <div class="rank">06</div>
+                                    <p>[VIDEO] CUPLIKAN GOL Southampton 2-3 Manchester United: Panggung Aksi Martial dan Pelle</p>
+                                                                        <a class="nama-liga" href="http://www.sepakbola.com/berita?category_name=cuplikan-gol">Cuplikan Gol</a>
+                                                                    </a>
+                            </li>
+                                <li class="clearfix">
+                                <a href="http://www.sepakbola.com/2015/09/martial-dibanjiri-pujian">
+                                    <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/09/martial(3)-150x150.jpg">
+                                    <div class="rank">07</div>
+                                    <p>Mesin Gol Anyar Setan Merah Kebanjiran Pujian</p>
+                                                                        <a class="nama-liga" href="http://www.sepakbola.com/berita?category_name=liga-inggris">Liga Inggris</a>
+                                                                    </a>
+                            </li>
+                                <li class="clearfix">
+                                <a href="http://www.sepakbola.com/2015/09/video-horor-tevez-patahkan-kaki-ezequiel-ham">
+                                    <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/09/ham-150x150.jpg">
+                                    <div class="rank">08</div>
+                                    <p>[VIDEO] Horor! Tevez Patahkan Kaki Pemain Muda Argentinos Junior</p>
+                                                                        <a class="nama-liga" href="http://www.sepakbola.com/berita?category_name=bola-amerika-latin">Amerika Latin</a>
+                                                                    </a>
+                            </li>
+                    </ul>
+                </div>
+            </div><!--.tab-pane-->
+            <div class="tab-pane" id="tab-terkomentari">
+                <div class="content p_0"> 
+                    <ul class="terpopuler">
+                                                        <li class="clearfix">
+                                <a href="http://www.sepakbola.com/2015/09/pelatih-everton-sebut-dua-anak-asuhnya-sebagai-bek-tengah-premier-league">
+                                    <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/09/Jagielka and Stones-150x150.JPG">
+                                    <div class="rank">01</div>
+                                    <p>Pelatih Everton Sebut Dua Anak Asuhnya Sebagai Bek Tengah Terbaik Premier League </p>
+                                                                        <a class="nama-liga" href="http://www.sepakbola.com/berita?category_name=liga-inggris">Liga Inggris</a>
+                                                                    </a>
+                            </li>
+                                <li class="clearfix">
+                                <a href="http://www.sepakbola.com/2015/09/alex-sarankan-marquinhos-tinggalkan-psg">
+                                    <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/09/marquinhos psg-150x150.jpg">
+                                    <div class="rank">02</div>
+                                    <p>Alex Sarankan Talenta Brasil Ini Tinggalkan PSG</p>
+                                                                        <a class="nama-liga" href="http://www.sepakbola.com/berita?category_name=liga-prancis">Ligue 1</a>
+                                                                    </a>
+                            </li>
+                                <li class="clearfix">
+                                <a href="http://www.sepakbola.com/2015/09/srdjan-lopicic-alami-cedera-parah-dan-harus-absen-satu-bulan">
+                                    <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/09/uji-coba-pbfc-vs-psm2-150x150.jpg">
+                                    <div class="rank">03</div>
+                                    <p>Srdjan Lopicic Alami Cedera Parah dan Harus Absen Satu Bulan</p>
+                                                                        <a class="nama-liga" href="http://www.sepakbola.com/berita?category_name=bola-indonesia">Indonesia</a>
+                                                                    </a>
+                            </li>
+                                <li class="clearfix">
+                                <a href="http://www.sepakbola.com/2015/09/parah-penjegal-luke-shaw-kembali-cedera-pemain-lain">
+                                    <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/09/Moreno Images(2)-150x150.JPG">
+                                    <div class="rank">04</div>
+                                    <p>Parah, Penjegal Luke Shaw Kembali Cederai Pemain Lain</p>
+                                                                        <a class="nama-liga" href="http://www.sepakbola.com/berita?category_name=bola-eropa">Eropa</a>
+                                                                    </a>
+                            </li>
+                                <li class="clearfix">
+                                <a href="http://www.sepakbola.com/2015/09/agen-pesimis-turan-bisa-perkuat-barcelona-sebelum-januari">
+                                    <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/09/arda turan-150x150.jpg">
+                                    <div class="rank">05</div>
+                                    <p>Agen Pesimis Turan Bisa Perkuat Barcelona Sebelum Januari</p>
+                                                                        <a class="nama-liga" href="http://www.sepakbola.com/berita?category_name=la-liga-spanyol">La Liga Spanyol</a>
+                                                                    </a>
+                            </li>
+                                <li class="clearfix">
+                                <a href="http://www.sepakbola.com/2015/09/ingin-revans-di-bali-bali-united-langsung-tancap-gas">
+                                    <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/09/bali-150x150.jpg">
+                                    <div class="rank">06</div>
+                                    <p>Ingin Revans di Bali, Bali United Langsung Tancap Gas</p>
+                                                                        <a class="nama-liga" href="http://www.sepakbola.com/berita?category_name=bola-indonesia">Indonesia</a>
+                                                                    </a>
+                            </li>
+                                <li class="clearfix">
+                                <a href="http://www.sepakbola.com/2015/09/mancini-yakin-ljajic-jadi-tokoh-kunci-inter-musim-ini">
+                                    <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/09/ljajic tuttosport-150x150.jpg">
+                                    <div class="rank">07</div>
+                                    <p>Mancini Yakin Ljajic Jadi Figur Kunci Inter Musim Ini</p>
+                                                                        <a class="nama-liga" href="http://www.sepakbola.com/berita?category_name=liga-italia">Liga Serie A</a>
+                                                                    </a>
+                            </li>
+                                <li class="clearfix">
+                                <a href="http://www.sepakbola.com/2015/09/djanur-sudah-punya-strategi-kalahkan-pbfc">
+                                    <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/09/pbfc persib 1-150x150.jpg">
+                                    <div class="rank">08</div>
+                                    <p>Djanur Sudah Punya Strategi Kalahkan PBFC</p>
+                                                                        <a class="nama-liga" href="http://www.sepakbola.com/berita?category_name=bola-indonesia">Indonesia</a>
+                                                                    </a>
+                            </li>
+                    </ul>
+                </div>
+            </div><!--.tab-pane-->
+        </div><!--.tab-content-->
+    </div><!--.box-->
+</div><div class="col-xs-6">
+    <div class="box thumb" style="position: relative;height:267px;">
+      <div class="cat"><a href="http://www.sepakbola.com/berita?category_name=prediksi-bola">PREDIKSI <span class="glyphicon glyphicon-chevron-right font10" style="top: 0"></span></a></div>
+
+            
+      <a href="http://www.sepakbola.com/2015/09/prediksi-bayern-munich-vs-wolfsburg-pertahankan-kesempurnaan-awal-musim">
+        <div class="image">
+          <p class="title">PREDIKSI Bayern Munich vs Wolfsburg: Pertahankan Kesempurnaan Awal Musim</p>
+          <div class="pic-overlayer"></div>
+          <img class="img-responsive fix-image" width="320" height="160" src="http://static.sepakbola.com/uploads/2015/09/munchen-320x160.jpg">
+        </div>
+      </a>
+      <div class="content">
+        <ul class="news-list">
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/prediksi-athletic-bilbao-vs-real-madrid-jaga-start-gemilang">PREDIKSI Athletic Bilbao vs Real Madrid: Jaga Start Gemilang</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/prediksi-espanyol-vs-valencia-perebutkan-tiga-poin-krusial">PREDIKSI Espanyol vs Valencia: Perebutkan Tiga Poin Krusial</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/prediksi-juventus-vs-frosinone-lanjutkan-momentum">PREDIKSI Juventus vs Frosinone: Lanjutkan Momentum</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/prediksi-psg-vs-guingamp-kemenangan-harga-mati">PREDIKSI PSG vs Guingamp: Kemenangan Harga Mati</a></li>
+                  </ul>
+      </div>
+    </div>
+  </div><!--.col-xs-6--><div class="col-xs-6">
+    <div class="box thumb" style="position: relative;height:267px;">
+      <div class="cat"><a href="http://www.sepakbola.com/berita?category_name=cuplikan-gol">Cuplikan Gol <span class="glyphicon glyphicon-chevron-right font10" style="top: 0"></span></a></div>
+
+            
+      <a href="http://www.sepakbola.com/2015/09/video-cuplikan-gol-sunderland-1-4-man-city-kucing-hitam-hancur-lebur">
+        <div class="image">
+          <p class="title">[VIDEO] CUPLIKAN GOL Sunderland 1-4 Man City: Kucing Hitam Hancur Lebur</p>
+          <div class="pic-overlayer"></div>
+          <img class="img-responsive fix-image" width="320" height="160" src="http://static.sepakbola.com/uploads/2015/09/Review_Sunderland-ManCity-COC-320x160.jpg">
+        </div>
+      </a>
+      <div class="content">
+        <ul class="news-list">
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/video-cuplikan-gol-udinese-2-3-milan-mihajlovic-nyaris-blunder">[VIDEO] CUPLIKAN GOL Udinese 2-3 Milan: Mihajlovic Nyaris Blunder</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/video-cuplikan-gol-atletico-madrid-2-0-getafe-griezmann-borong-dua-gol">[VIDEO] CUPLIKAN GOL Atletico Madrid 2-0 Getafe: Griezmann Borong Dua Gol</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/video-cuplikan-gol-bayern-munich-5-1-wolfsburg-lewandowski-sembilan-menit-lima-gol">[VIDEO] CUPLIKAN GOL Bayern Munich 5-1 Wolfsburg: Lewandowski Sembilan Menit Lima Gol</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/video-cuplikan-gol-marseille-1-1-lyon-lyon-gagal-manfaatkan-keunggulan-jumlah-pemain">[VIDEO] CUPLIKAN GOL Marseille 1-1 Lyon: Lacazette dkk Gagal Manfaatkan Keunggulan Jumlah Pemain</a></li>
+                  </ul>
+      </div>
+    </div>
+  </div><!--.col-xs-6--><div class="col-xs-6">
+    <div class="box thumb" style="position: relative;height:267px;">
+      <div class="cat"><a href="http://www.sepakbola.com/berita?category_name=bola-indonesia">Indonesia <span class="glyphicon glyphicon-chevron-right font10" style="top: 0"></span></a></div>
+
+            
+      <a href="http://www.sepakbola.com/2015/09/arema-tak-harus-terbebani-gol-tandang-bali-united">
+        <div class="image">
+          <p class="title">Arema Tak Harus Terbebani Gol Tandang Bali United</p>
+          <div class="pic-overlayer"></div>
+          <img class="img-responsive fix-image" width="320" height="160" src="http://static.sepakbola.com/uploads/2015/09/bali united arema-320x160.jpg">
+        </div>
+      </a>
+      <div class="content">
+        <ul class="news-list">
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/pbfc-optimis-lolos-meski-bawa-21-pemain-ke-kota-kembang">PBFC Optimistis Lolos dari Adangan Persib Meski Dua Penggawanya Absen</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/djanur-akui-targetnya-meleset-di-borneo">Djanur Akui Targetnya Meleset di Borneo</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/piala-kemerdekaan-dinilai-cukup-oleh-bopi">Piala Kemerdekaan Dapat Nilai Cukup dari BOPI</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/bopi-siap-panggil-mahaka-terkait-tuntutan-bonek">BOPI Siap Panggil Mahaka Terkait Tuntutan Bonek</a></li>
+                  </ul>
+      </div>
+    </div>
+  </div><!--.col-xs-6--><div class="col-xs-6">
+    <div class="box thumb" style="position: relative;height:267px;">
+      <div class="cat"><a href="http://www.sepakbola.com/berita?category_name=berita-transfer">Bursa Transfer <span class="glyphicon glyphicon-chevron-right font10" style="top: 0"></span></a></div>
+
+            
+      <a href="http://www.sepakbola.com/2015/09/arsenal-terus-pantau-dua-pemain-juventus-ini">
+        <div class="image">
+          <p class="title">Arsenal Terus Pantau 2 Pemain Juventus Ini</p>
+          <div class="pic-overlayer"></div>
+          <img class="img-responsive fix-image" width="320" height="160" src="http://static.sepakbola.com/uploads/2015/09/zaza lastampa-320x160.jpg">
+        </div>
+      </a>
+      <div class="content">
+        <ul class="news-list">
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/lacazette-masuk-radar-mourinho">Top Skorer Liga Prancis Masuk Radar Mourinho</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/barca-incar-coutinho-akankah-calon-jadi-suarez-kedua">Barcelona Incar Coutinho, Akankah Transfer Suarez Terulang?</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/ini-incaran-united-pengganti-shaw">Inikah Wingback Incaran United untuk Gantikan Shaw?</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/juventus-bidik-raja-tendangan-bebas-bundesliga">Juventus Bidik Raja Tendangan Bebas Bundesliga</a></li>
+                  </ul>
+      </div>
+    </div>
+  </div><!--.col-xs-6--><div class="col-xs-6">
+    <div class="box thumb" style="position: relative;height:267px;">
+      <div class="cat"><a href="http://www.sepakbola.com/berita?category_name=liga-italia">Liga Serie A <span class="glyphicon glyphicon-chevron-right font10" style="top: 0"></span></a></div>
+
+            
+      <a href="http://www.sepakbola.com/2015/09/mancini-yakin-ljajic-jadi-tokoh-kunci-inter-musim-ini">
+        <div class="image">
+          <p class="title">Mancini Yakin Ljajic Jadi Figur Kunci Inter Musim Ini</p>
+          <div class="pic-overlayer"></div>
+          <img class="img-responsive fix-image" width="320" height="160" src="http://static.sepakbola.com/uploads/2015/09/ljajic tuttosport-320x160.jpg">
+        </div>
+      </a>
+      <div class="content">
+        <ul class="news-list">
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/pelatih-roma-tak-panik-inter-kuasai-puncak-klasemen-saat-ini">Pelatih Roma Tak Panik Inter Kuasai Puncak Klasemen Saat Ini</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/pelatih-lazio-ungkap-kesulitan-adaptasi-morrison">Pelatih Lazio Ungkap Kesulitan Adaptasi Morrison</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/higuain-gemilang-di-awal-musim-pelatih-napoli-layangkan-pujian">Higuain Gemilang di Awal Musim, Pelatih Napoli Layangkan Pujian</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/zanetti-bantah-berperan-dalam-pemecatan-direktur-inter">Dituduh Jadi Dalang Pemecatan Direktur Inter, Ini Jawaban Zanetti</a></li>
+                  </ul>
+      </div>
+    </div>
+  </div><!--.col-xs-6--><div class="col-xs-6">
+    <div class="box thumb" style="position: relative;height:267px;">
+      <div class="cat"><a href="http://www.sepakbola.com/berita?category_name=bola-global">Internasional <span class="glyphicon glyphicon-chevron-right font10" style="top: 0"></span></a></div>
+
+            
+      <a href="http://www.sepakbola.com/2015/09/cantona-tawarkan-rumahnya-untuk-jadi-tempat-tinggal-sementara-imigran-suriah">
+        <div class="image">
+          <p class="title">Cantona Siap Tampung Imigran Suriah di Rumahnya</p>
+          <div class="pic-overlayer"></div>
+          <img class="img-responsive fix-image" width="320" height="160" src="http://static.sepakbola.com/uploads/2015/09/cantona-320x160.jpg">
+        </div>
+      </a>
+      <div class="content">
+        <ul class="news-list">
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/miris-mantan-bintang-spanyol-ini-hanya-digaji-2000-euro-setiap-bulannya">Miris! Mantan Bintang Spanyol Ini Hanya Digaji 2.000 Euro per Bulan</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/casillas-tidak-ada-dendam-dengan-real-madrid">Casillas: Tak Ada Dendam untuk Real Madrid</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/oscar-hulk-willian-dan-coutinho-dipanggil-dunga">Hulk dan Tiga Bintang Liga Inggris Dipanggil Timnas Samba</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/ikon-suporter-sepakbola-brasil-ini-meninggal-dunia">Ikon Suporter Sepak Bola Brasil Ini Meninggal Dunia</a></li>
+                  </ul>
+      </div>
+    </div>
+  </div><!--.col-xs-6--><div class="col-xs-6">
+    <div class="box thumb" style="position: relative;height:267px;">
+      <div class="cat"><a href="http://www.sepakbola.com/berita?category_name=la-liga-spanyol">La Liga <span class="glyphicon glyphicon-chevron-right font10" style="top: 0"></span></a></div>
+
+            
+      <a href="http://www.sepakbola.com/2015/09/agen-pesimis-turan-bisa-perkuat-barcelona-sebelum-januari">
+        <div class="image">
+          <p class="title">Agen Pesimis Turan Bisa Perkuat Barcelona Sebelum Januari</p>
+          <div class="pic-overlayer"></div>
+          <img class="img-responsive fix-image" width="320" height="160" src="http://static.sepakbola.com/uploads/2015/09/arda turan-320x160.jpg">
+        </div>
+      </a>
+      <div class="content">
+        <ul class="news-list">
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/benitez-hanya-ronaldo-pemain-yang-tak-tersentuh-di-real-madrid">Benitez: Hanya Ronaldo Pemain yang Tak Tersentuh di Real Madrid</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/dua-kali-gagal-eksekusi-penalti-messi-tetap-dipercaya-enrique">Dua Kali Gagal Eksekusi Penalti, Messi Tetap Dipercaya Enrique</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/inilah-susunan-pemain-atletico-vs-getafe">Inilah Susunan Pemain Atletico Madrid vs Getafe</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/ramos-absen-di-laga-hadapi-bilbao">Lawan Bilbao, Madrid Tanpa Ramos</a></li>
+                  </ul>
+      </div>
+    </div>
+  </div><!--.col-xs-6--><div style='display:none' class="col-xs-6">
+    <div class="box thumb" style="position: relative">
+        <div class="cat"><a href="">Top Video <span class="glyphicon glyphicon-chevron-right font10" style="top: 0"></span></a></div>
+        <a href="http://www.sepakbola.com/artikel">
+            <div class="image">
+                <p class="title">Video Title</p>
+                <div class="vid-overlayer"><img class="img-responsive" src="http://www.sepakbola.com/files/common/img_icon-play.png" width="30"></div>
+                <div class="pic-overlayer"></div>
+                <img class="img-responsive" src="http://www.sepakbola.com/files/common/img_banner-2.jpg">
+            </div>
+        </a>
+        <div class="pic-list clearfix" style="padding: 2px">
+            <div class="col-xs-6" style="padding: 2px">
+                <a href="http://www.sepakbola.com/artikel">
+                    <div class="image">
+                        <p class="title">Video Title</p>
+                        <div class="vid-overlayer"><img class="img-responsive" src="http://www.sepakbola.com/files/common/img_icon-play.png" width="30"></div>
+                        <div class="pic-overlayer"></div>
+                        <img class="img-responsive" src="http://www.sepakbola.com/files/common/img_banner-1.jpg">
+                    </div>
+                </a>
+            </div>
+            <div class="col-xs-6" style="padding: 2px">
+                <a href="http://www.sepakbola.com/artikel">
+                    <div class="image">
+                        <p class="title">Video Title</p>
+                        <div class="vid-overlayer"><img class="img-responsive" src="http://www.sepakbola.com/files/common/img_icon-play.png" width="30"></div>
+                        <div class="pic-overlayer"></div>
+                        <img class="img-responsive" src="http://www.sepakbola.com/files/common/img_banner-3.jpg">
+                    </div>
+                </a>
+            </div>
+            <div class="col-xs-6" style="padding: 2px">
+                <a href="http://www.sepakbola.com/artikel">
+                    <div class="image">
+                        <p class="title">Video Title</p>
+                        <div class="vid-overlayer"><img class="img-responsive" src="http://www.sepakbola.com/files/common/img_icon-play.png" width="30"></div>
+                        <div class="pic-overlayer"></div>
+                        <img class="img-responsive" src="http://www.sepakbola.com/files/common/img_banner-2.jpg">
+                    </div>
+                </a>
+            </div>
+            <div class="col-xs-6" style="padding: 2px">
+                <a href="http://www.sepakbola.com/artikel">
+                    <div class="image">
+                        <p class="title">Video Title</p>
+                        <div class="vid-overlayer"><img class="img-responsive" src="http://www.sepakbola.com/files/common/img_icon-play.png" width="30"></div>
+                        <div class="pic-overlayer"></div>
+                        <img class="img-responsive" src="http://www.sepakbola.com/files/common/img_banner-1.jpg">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div><div style='display:none' class="col-xs-6">
+    <div class="box thumb" style="position: relative">
+        <div class="cat"><a href="">Top Meme <span class="glyphicon glyphicon-chevron-right font10" style="top: 0"></span></a></div>
+                        <a href="http://www.sepakbola.com/2015/06/vermaelen-cuma-bermain-sekali-namun-raih-treble-ini-reaksi-lucu-di-twitter">
+            <div class="image">
+                <p class="title">Kumpulan Meme Lucu Tentang Vermaelen yang Cuma Bermain Sekali Namun Raih Treble di Barcelona</p>
+                <div class="pic-overlayer"></div>
+                <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/06/vermae eurosport-320x160.jpg">
+            </div>
+        </a>
+
+        <div class="pic-list clearfix" style="padding: 2px">
+                                            <div class="col-xs-6" style="padding: 2px">
+                    <a href="http://www.sepakbola.com/2015/04/foto-video-kumpulan-meme-meme-lucu-usai-united-menangi-derby-manchester">
+                        <div class="image">
+                            <p class="title">[FOTO & VIDEO] Kumpulan Meme-meme Lucu Usai United Menangi Derby Manchester</p>
+                            <div class="pic-overlayer"></div>
+                            <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/04/manchester united vs city-320x160.png">
+                        </div>
+                    </a>
+                </div>
+                                            <div class="col-xs-6" style="padding: 2px">
+                    <a href="http://www.sepakbola.com/2015/04/foto-ini-reaksi-pengguna-twitter-setelah-ronaldo-cetak-lima-gol">
+                        <div class="image">
+                            <p class="title">[FOTO] Ini Reaksi Pengguna Twitter Setelah Ronaldo Cetak Lima Gol</p>
+                            <div class="pic-overlayer"></div>
+                            <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/04/ronaldo vs granada-320x160.JPG">
+                        </div>
+                    </a>
+                </div>
+                                            <div class="col-xs-6" style="padding: 2px">
+                    <a href="http://www.sepakbola.com/2015/04/video-kumpulan-meme-kocak-usai-kekalahan-portugal-dari-cape-verde">
+                        <div class="image">
+                            <p class="title">[VIDEO] Kumpulan Meme Kocak Usai Kekalahan Memalukan Portugal dari Cape Verde</p>
+                            <div class="pic-overlayer"></div>
+                            <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/03/portugal fans-320x160.jpg">
+                        </div>
+                    </a>
+                </div>
+                                            <div class="col-xs-6" style="padding: 2px">
+                    <a href="http://www.sepakbola.com/2015/03/kumpulan-meme-kocak-usai-falcao-bintangi-laga-kolombia-vs-bahrain">
+                        <div class="image">
+                            <p class="title">Kumpulan Meme Kocak Usai Falcao Bintangi Laga Kolombia vs Bahrain</p>
+                            <div class="pic-overlayer"></div>
+                            <img class="img-responsive" src="http://static.sepakbola.com/uploads/2015/03/Falcao Kolombia-320x160.jpg">
+                        </div>
+                    </a>
+                </div>
+                    </div>
+    </div>
+</div><div class="col-xs-6">
+    <div class="box thumb" style="position: relative;height:267px;">
+      <div class="cat"><a href="http://www.sepakbola.com/berita?category_name=liga-jerman">Bundesliga <span class="glyphicon glyphicon-chevron-right font10" style="top: 0"></span></a></div>
+
+            
+      <a href="http://www.sepakbola.com/2015/09/lewandowski-masih-bingung-dengan-rekor-yang-ditorehkan">
+        <div class="image">
+          <p class="title">Lewandowski Masih Bingung dengan Rekor yang Ditorehkan</p>
+          <div class="pic-overlayer"></div>
+          <img class="img-responsive fix-image" width="320" height="160" src="http://static.sepakbola.com/uploads/2015/09/lewandowskids-320x160.jpg">
+        </div>
+      </a>
+      <div class="content">
+        <ul class="news-list">
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/lahm-lewandowski-harusnya-cetak-tujuh-gol">Lahm: Lewandowski Harusnya Cetak Tujuh Gol</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/guardiola-tercengang-lewandowski-cetak-lima-gol">[VIDEO] Guardiola dan Bos Wolfsburg Sama-sama Bingung Lewandowski Cetak Lima Gol</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/boateng-sebut-dortmund-lebih-berbahaya-dibanding-wolfsburg">Boateng Sebut Dortmund Lebih Berbahaya Dibanding Wolfsburg</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/susunan-pemain-bayern-vs-wolfsburg-dante-hadapi-mantan">Susunan Pemain Bayern vs Wolfsburg: Dante Hadapi Mantan</a></li>
+                  </ul>
+      </div>
+    </div>
+  </div><!--.col-xs-6--><div class="col-xs-6">
+    <div class="box thumb" style="position: relative;height:267px;">
+      <div class="cat"><a href="http://www.sepakbola.com/berita?category_name=liga-europa">Liga Europa <span class="glyphicon glyphicon-chevron-right font10" style="top: 0"></span></a></div>
+
+            
+      <a href="http://www.sepakbola.com/2015/09/peringkat-uefa-terjun-bebas-liverpool-sejajar-klub-medioker-eropa">
+        <div class="image">
+          <p class="title">Peringkat UEFA Terjun Bebas, Liverpool Sejajar Klub Medioker Eropa</p>
+          <div class="pic-overlayer"></div>
+          <img class="img-responsive fix-image" width="320" height="160" src="http://static.sepakbola.com/uploads/2015/09/Liverpool Images(1)-320x160.JPG">
+        </div>
+      </a>
+      <div class="content">
+        <ul class="news-list">
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/tottenham-targetkan-juara-liga-europa">Tottenham Targetkan Juara Liga Europa</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/spurs-berhasil-atasi-qarabag-pochettino-puji-pemain-barunya">Spurs Atasi Qarabag, Pochettino Puji Pemain Barunya</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/hasil-lengkap-pertandingan-babak-penyisihan-liga-europa">Hasil Lengkap Pertandingan Pertama Babak Penyisihan Liga Europa</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/rodgers-siap-turunkan-origi-sebagai-starter-di-europa-league">Rodgers Siap Turunkan Origi Sebagai Starter di Europa League</a></li>
+                  </ul>
+      </div>
+    </div>
+  </div><!--.col-xs-6--><div class="col-xs-6">
+    <div class="box thumb" style="position: relative;height:267px;">
+      <div class="cat"><a href="http://www.sepakbola.com/berita?category_name=liga-prancis">Ligue 1 <span class="glyphicon glyphicon-chevron-right font10" style="top: 0"></span></a></div>
+
+            
+      <a href="http://www.sepakbola.com/2015/09/alex-sarankan-marquinhos-tinggalkan-psg">
+        <div class="image">
+          <p class="title">Alex Sarankan Talenta Brasil Ini Tinggalkan PSG</p>
+          <div class="pic-overlayer"></div>
+          <img class="img-responsive fix-image" width="320" height="160" src="http://static.sepakbola.com/uploads/2015/09/marquinhos psg-320x160.jpg">
+        </div>
+      </a>
+      <div class="content">
+        <ul class="news-list">
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/gambar-ibra-kegirangan-cetak-gol-pertamanya-musim-ini">[FOTO] Ekspresi Ibra Usai Cetak Gol Pertama Musim ini</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/di-maria-klaim-bela-united-adalah-masa-paling-suram">Di Maria Klaim Bela United adalah Masa Paling Suram</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/di-maria-terkejut-melihat-talenta-ibra">Di Maria Terkejut Melihat Talenta Ibra</a></li>
+                              <li class="ellipsis"><a href="http://www.sepakbola.com/2015/09/ibra-mandul-blanc-tak-cemas">Ibra Mandul, Blanc Tak Cemas</a></li>
+                  </ul>
+      </div>
+    </div>
+  </div><!--.col-xs-6-->            </div>
+            
+
+          </div><!--.col-xs-8-->
+
+          <div class="col-xs-4 col-side">
+              
+            <!--/* Revive Adserver Javascript Tag v3.0.5 */-->
+
+            <script type='text/javascript'>//<![CDATA[
+var m3_u=(location.protocol=='https:'?'https://ads.sepakbola.com/delivery/ajs.php':'http://ads.sepakbola.com/delivery/ajs.php');var m3_r=Math.floor(Math.random()*99999999999);if(!document.MAX_used)document.MAX_used=',';document.write("<scr"+"ipt type='text/javascript' src='"+m3_u);document.write("?zoneid=9");document.write('&amp;cb='+m3_r);if(document.MAX_used!=',')document.write("&amp;exclude="+document.MAX_used);document.write(document.charset?'&amp;charset='+document.charset:(document.characterSet?'&amp;charset='+document.characterSet:''));document.write("&amp;loc="+escape(window.location));if(document.referrer)document.write("&amp;referer="+escape(document.referrer));if(document.context)document.write("&context="+escape(document.context));if(document.mmm_fo)document.write("&amp;mmm_fo=1");document.write("'><\/scr"+"ipt>");
+//]]></script><noscript><a href='http://ads.sepakbola.com/delivery/ck.php?n=ae4ce511&amp;cb=1.7573906329824E+20' target='_blank'><img src='http://ads.sepakbola.com/delivery/avw.php?zoneid=9&amp;cb=9.9966351399E+19&amp;n=ae4ce511' border='0' alt=''/></a></noscript>
+
+            <!--/* Revive Adserver Javascript Tag v3.0.5 */-->
+
+            <script type='text/javascript'>//<![CDATA[
+var m3_u=(location.protocol=='https:'?'https://ads.sepakbola.com/delivery/ajs.php':'http://ads.sepakbola.com/delivery/ajs.php');var m3_r=Math.floor(Math.random()*99999999999);if(!document.MAX_used)document.MAX_used=',';document.write("<scr"+"ipt type='text/javascript' src='"+m3_u);document.write("?zoneid=10");document.write('&amp;cb='+m3_r);if(document.MAX_used!=',')document.write("&amp;exclude="+document.MAX_used);document.write(document.charset?'&amp;charset='+document.charset:(document.characterSet?'&amp;charset='+document.characterSet:''));document.write("&amp;loc="+escape(window.location));if(document.referrer)document.write("&amp;referer="+escape(document.referrer));if(document.context)document.write("&context="+escape(document.context));if(document.mmm_fo)document.write("&amp;mmm_fo=1");document.write("'><\/scr"+"ipt>");
+//]]></script><noscript><a href='http://ads.sepakbola.com/delivery/ck.php?n=ae4ce511&amp;cb=1.8914567509811E+20' target='_blank'><img src='http://ads.sepakbola.com/delivery/avw.php?zoneid=9&amp;cb=1.2459078869875E+20&amp;n=ae4ce511' border='0' alt=''/></a></noscript>
+
+
+            <div data-load="http://www.sepakbola.com/widgets/pertandingan_live" class="box m_b_20"><!--m_b_20-->
+              
+            </div><!--.box-->
+            
+            <div data-load="http://www.sepakbola.com/widgets/pertandingan_hari_ini_small" class="box m_b_20"><!--m_b_20-->
+              
+            </div><!--.box-->
+
+            <div data-load="http://www.sepakbola.com/widgets/hasil_pertandingan" class="box m_b_20"> 
+              
+            </div><!--.box-->
+
+            <div data-load="http://www.sepakbola.com/widgets/klasemen" class="box klasemen"><!--m_b_20-->
+              
+            </div><!--.box-->
+
+          </div><!--.col-side-->
+
+        </div>
+
+      </div>
+              <style>body .container.main{position:relative}</style>
+        <div id="ads_h1a" style="position: absolute;top:0;left:-151px">
+            <!-- LB1 -->
+            <!--/* Revive Adserver Javascript Tag v3.0.5 */-->
+
+            <script type='text/javascript'>//<![CDATA[
+var m3_u=(location.protocol=='https:'?'https://ads.sepakbola.com/delivery/ajs.php':'http://ads.sepakbola.com/delivery/ajs.php');var m3_r=Math.floor(Math.random()*99999999999);if(!document.MAX_used)document.MAX_used=',';document.write("<scr"+"ipt type='text/javascript' src='"+m3_u);document.write("?zoneid=56");document.write('&amp;cb='+m3_r);if(document.MAX_used!=',')document.write("&amp;exclude="+document.MAX_used);document.write(document.charset?'&amp;charset='+document.charset:(document.characterSet?'&amp;charset='+document.characterSet:''));document.write("&amp;loc="+escape(window.location));if(document.referrer)document.write("&amp;referer="+escape(document.referrer));if(document.context)document.write("&context="+escape(document.context));if(document.mmm_fo)document.write("&amp;mmm_fo=1");document.write("'><\/scr"+"ipt>");
+//]]></script><noscript><a href='http://ads.sepakbola.com/delivery/ck.php?n=a69cc9e8&amp;cb=1.9078837989809E+20' target='_blank'><img src='http://ads.sepakbola.com/delivery/avw.php?zoneid=56&amp;cb=1.3836751809862E+20&amp;n=a69cc9e8' border='0' alt=''/></a></noscript>
+
+            <!-- LB1 -->
+            <!-- LB2 -->
+            <!--/* Revive Adserver Javascript Tag v3.0.5 */-->
+
+            <script type='text/javascript'>//<![CDATA[
+var m3_u=(location.protocol=='https:'?'https://ads.sepakbola.com/delivery/ajs.php':'http://ads.sepakbola.com/delivery/ajs.php');var m3_r=Math.floor(Math.random()*99999999999);if(!document.MAX_used)document.MAX_used=',';document.write("<scr"+"ipt type='text/javascript' src='"+m3_u);document.write("?zoneid=57");document.write('&amp;cb='+m3_r);if(document.MAX_used!=',')document.write("&amp;exclude="+document.MAX_used);document.write(document.charset?'&amp;charset='+document.charset:(document.characterSet?'&amp;charset='+document.characterSet:''));document.write("&amp;loc="+escape(window.location));if(document.referrer)document.write("&amp;referer="+escape(document.referrer));if(document.context)document.write("&context="+escape(document.context));if(document.mmm_fo)document.write("&amp;mmm_fo=1");document.write("'><\/scr"+"ipt>");
+//]]></script><noscript><a href='http://ads.sepakbola.com/delivery/ck.php?n=a6e22b27&amp;cb=1.8337393709817E+20' target='_blank'><img src='http://ads.sepakbola.com/delivery/avw.php?zoneid=57&amp;cb=1.8147122179819E+20&amp;n=a6e22b27' border='0' alt=''/></a></noscript>
+
+            <!-- LB2 -->
+        </div>
+        <div id="ads_h1b" style="position: absolute;top:0;right:-151px">
+           <!-- RB1 -->
+           <!--/* Revive Adserver Javascript Tag v3.0.5 */-->
+
+            <script type='text/javascript'>//<![CDATA[
+var m3_u=(location.protocol=='https:'?'https://ads.sepakbola.com/delivery/ajs.php':'http://ads.sepakbola.com/delivery/ajs.php');var m3_r=Math.floor(Math.random()*99999999999);if(!document.MAX_used)document.MAX_used=',';document.write("<scr"+"ipt type='text/javascript' src='"+m3_u);document.write("?zoneid=58");document.write('&amp;cb='+m3_r);if(document.MAX_used!=',')document.write("&amp;exclude="+document.MAX_used);document.write(document.charset?'&amp;charset='+document.charset:(document.characterSet?'&amp;charset='+document.characterSet:''));document.write("&amp;loc="+escape(window.location));if(document.referrer)document.write("&amp;referer="+escape(document.referrer));if(document.context)document.write("&context="+escape(document.context));if(document.mmm_fo)document.write("&amp;mmm_fo=1");document.write("'><\/scr"+"ipt>");
+//]]></script><noscript><a href='http://ads.sepakbola.com/delivery/ck.php?n=a23097be&amp;cb=1.99645180498E+20' target='_blank'><img src='http://ads.sepakbola.com/delivery/avw.php?zoneid=58&amp;cb=8.5773321299142E+19&amp;n=a23097be' border='0' alt=''/></a></noscript>
+
+           <!-- RB1 -->
+           <!-- RB2 -->
+           <!--/* Revive Adserver Javascript Tag v3.0.5 */-->
+
+            <script type='text/javascript'>//<![CDATA[
+var m3_u=(location.protocol=='https:'?'https://ads.sepakbola.com/delivery/ajs.php':'http://ads.sepakbola.com/delivery/ajs.php');var m3_r=Math.floor(Math.random()*99999999999);if(!document.MAX_used)document.MAX_used=',';document.write("<scr"+"ipt type='text/javascript' src='"+m3_u);document.write("?zoneid=59");document.write('&amp;cb='+m3_r);if(document.MAX_used!=',')document.write("&amp;exclude="+document.MAX_used);document.write(document.charset?'&amp;charset='+document.charset:(document.characterSet?'&amp;charset='+document.characterSet:''));document.write("&amp;loc="+escape(window.location));if(document.referrer)document.write("&amp;referer="+escape(document.referrer));if(document.context)document.write("&context="+escape(document.context));if(document.mmm_fo)document.write("&amp;mmm_fo=1");document.write("'><\/scr"+"ipt>");
+//]]></script><noscript><a href='http://ads.sepakbola.com/delivery/ck.php?n=a335c8c5&amp;cb=6.5426386899346E+19' target='_blank'><img src='http://ads.sepakbola.com/delivery/avw.php?zoneid=59&amp;cb=1.5769594749842E+20&amp;n=a335c8c5' border='0' alt=''/></a></noscript>
+
+           <!-- RB2 -->
+        </div>    </div>
+    
+    <!--/* Revive Adserver Interstitial or Floating DHTML Tag v3.0.5 */-->
+
+    <script type='text/javascript'>//<![CDATA[
+var ox_u='http://ads.sepakbola.com/delivery/al.php?zoneid=11&layerstyle=simple&align=center&valign=bottom&padding=0&padding=0&shifth=0&shiftv=0&closebutton=f&nobg=t&noborder=t';if(document.context)ox_u+='&context='+escape(document.context);document.write("<scr"+"ipt type='text/javascript' src='"+ox_u+"'></scr"+"ipt>");
+//]]></script>
+
+
+    <script type="text/javascript">var addthis_share={url_transforms:{shorten:{twitter:'bitly'}}}</script>
+    
+    <div id="footer" class="">
+  <div class="footer" style="border-top: 3px solid #2aabe4">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-xs-3">
+          <img src="http://www.sepakbola.com/files/common/img_footer-logo.png" width="80%" style="margin-bottom: 10px">
+          <a href="mailto:ads@sepakbola.com">ads@sepakbola.com</a>
+          <p>+1 (408) 915-5588</p>
+        </div>
+
+        <div class="col-xs-3">
+          <ul>
+            <li><a href="http://www.sepakbola.com/">Home</a></li>
+            <li><a href="http://www.sepakbola.com/berita">Berita</a></li>
+            <li><a href="http://www.sepakbola.com/jadwal">Jadwal</a></li>
+            <li><a href="http://www.sepakbola.com/liveskor">Live Skor</a></li>
+          </ul>
+        </div>
+
+        <div class="col-xs-3">
+          <ul>
+            <!--<li><a href="http://www.sepakbola.com/topvideo">Top Video</a></li>-->
+            <li><a href="http://www.sepakbola.com/teamdirectory">Team Directory</a></li>
+            <li><a href="http://fantasi.sepakbola.com">Fantasi</a></li>
+            <li><a href="http://www.sepakbola.com/contact">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="col-xs-3">
+          <form action="akun/subscribe" method="POST" class="form-inline" role="form">
+            <div class="clearfix">
+              <div class="form-group newsletter">
+                <label class="hidden sr-only">Email</label>
+                <input type="email" name="email" class="form-control newsletter" placeholder="Type your email">
+              </div>
+              <button type="submit" class="btn btn-primary btn-sm newsletter">GO</button>
+            </div>
+          </form>
+          <p style="margin-top: 5px; font-size: 11px">Daftar ke newsletter Sepakbola.com untuk mendapatkan berita terbaru di inbox Anda.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="footer footer-bottom">
+    <div class="container clearfix">
+      <p class="pull-left">
+        &copy; 2014 SepakBola.com. All rights reserved.
+        <a data-toggle="modal" href="#privacypolicy">Privacy Policy</a> /
+        <a data-toggle="modal" href="#termsconditions">Terms &amp; Conditions</a>
+      </p>
+      <div class="pull-right">
+        <a href="http://www.facebook.com/sepakbolacom?ref=hl"><div class="soc-foot fb"></div></a>
+        <a href="http://twitter.com/sepakbola"><div class="soc-foot twitter"></div></a>
+        <a href="http://instagram.com/sepakbolacom"><div class="soc-foot insta"></div></a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+<div class="modal fade" id="privacypolicy" role="dialog" aria-labelledby="privacypolicy" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body" style="position: relative">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="position: absolute; top: 10px; right: 15px">&times;</button>
+
+        <h2 class="h2">Privacy Policy</h2>
+        <p class="subp">Last updated March 14, 2014</p>
+          This Privacy Policy governs the manner in which SepakBola.com collects, uses, maintains and discloses information collected from users (each, a "User") of the <a href="www.sepakbola.com">www.sepakbola.com</a> website ("Site"). This privacy policy applies to the Site and all products and services offered by SepakBola.com.<br><br>
+
+          <b>Personal identification information</b><br><br>
+
+          We may collect personal identification information from Users in a variety of ways, including, but not limited to, when Users visit our site, subscribe to the newsletter, fill out a form, and in connection with other activities, services, features or resources we make available on our Site. Users may be asked for, as appropriate, name, email address, phone number. Users may, however, visit our Site anonymously. We will collect personal identification information from Users only if they voluntarily submit such information to us. Users can always refuse to supply personally identification information, except that it may prevent them from engaging in certain Site related activities.<br><br>
+
+          <b>Non-personal identification information</b><br><br>
+
+          We may collect non-personal identification information about Users whenever they interact with our Site. Non-personal identification information may include the browser name, the type of computer and technical information about Users means of connection to our Site, such as the operating system and the Internet service providers utilized and other similar information.<br><br>
+
+          <b>Web browser cookies</b><br><br>
+
+          Our Site may use "cookies" to enhance User experience. User's web browser places cookies on their hard drive for record-keeping purposes and sometimes to track information about them. User may choose to set their web browser to refuse cookies, or to alert you when cookies are being sent. If they do so, note that some parts of the Site may not function properly.<br><br>
+
+          <b>How we use collected information</b><br><br>
+
+          SepakBola.com may collect and use Users personal information for the following purposes:<br>
+          <ul>
+          <li><i>- To run a promotion, contest, survey or other Site feature</i><br>
+            To send Users information they agreed to receive about topics we think will be of interest to them.</li>
+          <li><i>- To send periodic emails</i><br>
+          We may use the email address to respond to their inquiries, questions, and/or other requests. If User decides to opt-in to our mailing list, they will receive emails that may include company news, updates, related product or service information, etc. If at any time the User would like to unsubscribe from receiving future emails, we include detailed unsubscribe instructions at the bottom of each email or User may contact us via our Site.</li>
+          </ul>
+          <b>How we protect your information</b><br><br>
+
+          We adopt appropriate data collection, storage and processing practices and security measures to protect against unauthorized access, alteration, disclosure or destruction of your personal information, username, password, transaction information and data stored on our Site.<br><br>
+
+          <b>Sharing your personal information</b><br><br>
+
+          We do not sell, trade, or rent Users personal identification information to others. We may share generic aggregated demographic information not linked to any personal identification information regarding visitors and users with our business partners, trusted affiliates and advertisers for the purposes outlined above.We may use third party service providers to help us operate our business and the Site or administer activities on our behalf, such as sending out newsletters or surveys. We may share your information with these third parties for those limited purposes provided that you have given us your permission.<br><br>
+
+          <b>Changes to this privacy policy</b><br><br>
+
+          SepakBola.com has the discretion to update this privacy policy at any time. When we do, we will revise the updated date at the bottom of this page. We encourage Users to frequently check this page for any changes to stay informed about how we are helping to protect the personal information we collect. You acknowledge and agree that it is your responsibility to review this privacy policy periodically and become aware of modifications.<br><br>
+
+          <b>Your acceptance of these terms</b><br><br>
+
+          By using this Site, you signify your acceptance of this policy and <a href="www.sepakbola.com/privacypolicy">terms of service</a>. If you do not agree to this policy, please do not use our Site. Your continued use of the Site following the posting of changes to this policy will be deemed your acceptance of those changes.<br><br>
+
+          <b>Contacting us</b><br><br>
+
+          If you have any questions about this Privacy Policy, the practices of this site, or your dealings with this site, please contact us at:<br>
+          <a href="www.sepakbola.com">SepakBola.com</a><br>
+          <a href="www.sepakbola.com">www.sepakbola.com</a><br>
+          Ruko Karinda Blok B1 No. 11 Lt 2
+          Jl. Karang Tengah Raya. Lebak Bulus
+          Jakarta Selatan 12440<br>
+          +1 (408) 915-5588<br>
+          ads@sepakbola.com<br>
+          <br>
+
+          <div style="font-size:10px;color:gray;">Privacy policy created by <a style="font-size:10px;color:gray;text-decoration:none;cursor:default;" href="http://www.generateprivacypolicy.com" target="_blank">Generate Privacy Policy</a></div>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="termsconditions" role="dialog" aria-labelledby="termsconditions" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body" style="position: relative">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="position: absolute; top: 10px; right: 15px">&times;</button>
+
+          <h2 class="h2">Terms &amp; Conditions</h2>
+          <p class="subp">Last updated March 14, 2014</p>
+            
+          <b>
+            Web Site Terms and Conditions of Use
+          </b>
+          <br>
+          <br>
+
+          <b>
+            1. Terms
+          </b>
+          <br>
+          <br>
+
+          <p>
+            By accessing this web site, you are agreeing to be bound by these 
+            web site Terms and Conditions of Use, all applicable laws and regulations, 
+            and agree that you are responsible for compliance with any applicable local 
+            laws. If you do not agree with any of these terms, you are prohibited from 
+            using or accessing this site. The materials contained in this web site are 
+            protected by applicable copyright and trade mark law.
+          </p>
+          <br>
+          <br>
+
+          <b>
+            2. Disclaimer
+          </b>
+          <br>
+          <br>
+
+          <ol type="a">
+            <li>
+              The materials on SepakBola.com's web site are provided "as is". SepakBola.com makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties, including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights. Further, SepakBola.com does not warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials on its Internet web site or otherwise relating to such materials or on any sites linked to this site.
+            </li>
+          </ol>
+          <br>
+          <br>
+
+          <b>
+            3. Limitations
+          </b>
+          <br>
+          <br>
+
+          <p>
+            In no event shall SepakBola.com or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption,) arising out of the use or inability to use the materials on SepakBola.com's Internet site, even if SepakBola.com or a SepakBola.com authorized representative has been notified orally or in writing of the possibility of such damage. Because some jurisdictions do not allow limitations on implied warranties, or limitations of liability for consequential or incidental damages, these limitations may not apply to you.
+          </p>
+          <br>
+          <br>
+                
+          <b>
+            4. Revisions and Errata
+          </b>
+          <br>
+          <br>
+
+          <p>
+            The materials appearing on SepakBola.com's web site could include technical, typographical, or photographic errors. SepakBola.com does not warrant that any of the materials on its web site are accurate, complete, or current. SepakBola.com may make changes to the materials contained on its web site at any time without notice. SepakBola.com does not, however, make any commitment to update the materials.
+          </p>
+          <br>
+          <br>
+
+          <b>
+            5. Links
+          </b>
+          <br>
+          <br>
+
+          <p>
+            SepakBola.com has not reviewed all of the sites linked to its Internet web site and is not responsible for the contents of any such linked site. The inclusion of any link does not imply endorsement by SepakBola.com of the site. Use of any such linked web site is at the user's own risk.
+          </p>
+          <br>
+          <br>
+
+          <b>
+            6. Site Terms of Use Modifications
+          </b>
+          <br>
+          <br>
+
+          <p>
+            SepakBola.com may revise these terms of use for its web site at any time without notice. By using this web site you are agreeing to be bound by the then current version of these Terms and Conditions of Use.
+          </p>
+          <br>
+          <br>
+
+          <b>
+            7. Governing Law
+          </b>
+          <br>
+          <br>
+
+          <p>
+            Any claim relating to SepakBola.com's web site shall be governed by the laws of the Indonesia without regard to its conflict of law provisions.
+          </p>
+          <br>
+          <br>
+
+          <p>
+            General Terms and Conditions applicable to Use of a Web Site.
+          </p>
+
+
+
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+<script src="http://www.sepakbola.com/script/jquery.js"></script>
+<script src="http://www.sepakbola.com/script/jquery-ui-1.10.4.custom.min.js"></script>
+<!-- Start Alexa Certify Javascript -->
+<script type="text/javascript">_atrk_opts={atrk_acct:"JXzUi1a4ZP0088",domain:"sepakbola.com",dynamic:true};(function(){var as=document.createElement('script');as.type='text/javascript';as.async=true;as.src="https://d31qbv1cthcecs.cloudfront.net/atrk.js";var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as,s);})();</script>
+<noscript><img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=JXzUi1a4ZP0088" style="display:none" height="1" width="1" alt=""/></noscript>
+<!-- End Alexa Certify Javascript -->
+
+<!-- begin adf.ly conversion tracking --><img src="http://adf.ly/ad/conv?aid=404272" width="1" height="1" border="0" hspace="0" vspace="0"/><!-- end adf.ly conversion tracking -->
+
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-50021703-1']);_gaq.push(['_setDomainName','sepakbola.com']);_gaq.push(['_setAllowLinker',true]);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src=('https:'==document.location.protocol?'https://':'http://')+'stats.g.doubleclick.net/dc.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();</script>
+
+<script type="text/javascript">adroll_adv_id="LIA5TNTSZVAXTKBNLMEIWL";adroll_pix_id="6X5VFAPGAVCIHAKCPVZJ6T";(function(){var oldonload=window.onload;window.onload=function(){__adroll_loaded=true;var scr=document.createElement("script");var host=(("https:"==document.location.protocol)?"https://s.adroll.com":"http://a.adroll.com");scr.setAttribute('async','true');scr.type="text/javascript";scr.src=host+"/j/roundtrip.js";((document.getElementsByTagName('head')||[null])[0]||document.getElementsByTagName('script')[0].parentNode).appendChild(scr);if(oldonload){oldonload()}};}());</script>
+
+<script type="text/javascript">setTimeout(function(){var a=document.createElement("script");var b=document.getElementsByTagName("script")[0];a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0023/6162.js?"+Math.floor(new Date().getTime()/3600000);a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)},1);</script>
+
+<script type="text/javascript">var base_url='http://www.sepakbola.com/';</script>
+<script type="text/javascript" src="http://www.sepakbola.com/akun/js"></script>
+<script type="text/javascript" src="http://www.sepakbola.com/league/navbar.pagespeed.jm.5vUw3Np3JX.js"></script>
+
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-532bde3500446388"></script>
+
+<!-- GPlus Script -->
+<!-- Place this tag after the last share tag. -->
+<script type="text/javascript">(function(){var po=document.createElement('script');po.type='text/javascript';po.async=true;po.src='//apis.google.com/js/platform.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(po,s);})();</script>
+
+
+    <script src="http://static.sepakbola.com/script/bootstrap.js"></script>
+    <script src="http://static.sepakbola.com/script/moment.min.js"></script>
+    <script src="http://static.sepakbola.com/script/holder.js"></script>
+    <script src="http://static.sepakbola.com/script/angular.min.js"></script>
+    <script src="http://static.sepakbola.com/script/sepakbola.js"></script>
+    <script type="text/javascript">Sepakbola.index();jQuery(document).ready(function(){$('[data-load]').each(function(){$(this).load($(this).attr('data-load'),function(){$("#accordion, #accordion-2").accordion({heightStyle:"content"});});});$(window).scroll(function(){$('#ads_h1a,#ads_h1b').css('top',$(window).scrollTop())});});</script>
+    
+    
+    
+
+
+
+  </body>
+</html>
+<!-- Dynamic page generated in 0.0008 seconds. -->

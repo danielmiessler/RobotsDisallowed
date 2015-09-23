@@ -1,0 +1,47 @@
+# robots.txt file for http://www.sw.org
+#
+# Note: The default record (User-agent: *) should be the last one in the file.
+#       Many bots stop at the first record that matches their user agent,
+#       so if you have * listed first, they may never see the specific
+#       rules you have for them.
+#       Accordingly any rules you have in the default record should also
+#       appear in each of the preceding specific bot records that you want
+#       to obey such rules.
+
+
+# The S&W Google Appliance for public sites.
+# Allow everything.  Let the Google Mini's exclusion list decide what it will not index.
+User-agent: SW-gsa-crawler
+Disallow: 
+
+# The S&W Google Appliance for InSite -- exclude all, just in case it gets here unintentionally.
+User-agent: SWinsite-gsa-crawler
+Disallow: /
+
+# The LinkWalker paid subscription service -- exclude until we have requirements.
+#User-agent: linkwalker
+#Disallow: /
+
+# Everyone else -- these rules should also exist for any specified public bot.
+# Disallow the following:
+#   AJAX calls
+#   SitePublisher URLs (in case they leak out)
+#   Invalid links to the home page that have been discovered by the Google Mini
+#   Search results pages returned by the Google Mini
+#   Doctor pages that do not use the vanity URL
+#   
+User-agent: *
+Disallow: /ajax-services/
+Disallow: /sites/www/
+Disallow: /sites/healthcare-professionals/
+Disallow: /sites/researchers/
+Disallow: /$PAGE_LINK
+Disallow: /home_LI
+Disallow: /home%
+Disallow: /homehome
+Disallow: /homeome
+Disallow: /homePAGE_LINK
+Disallow: /search-results
+Disallow: /doctor-detail-pb
+Disallow: /ExtProvider
+

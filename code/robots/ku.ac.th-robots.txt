@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-874" />
+<title>Page error</title>
+<style type="text/css">
+<!--
+
+body,td,th {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 14px;
+	color: #333;
+}
+-->
+</style>
+<script type="text/javascript">
+function coolRedirect(url, msg)
+{
+   var TARG_ID = "COOL_REDIRECT";
+   var DEF_MSG = "<center><font size=2></font></center>"; // ตั้งรูปแบบของตัวอักษรตอนบอกว่ากำลัง REDIRECT หน้าอยู่
+
+   if( ! msg )
+   {
+      msg = DEF_MSG;
+   }
+
+   if( ! url )
+   {
+      throw new Error('You didn\'t include the "url" parameter');
+   }
+
+
+   var e = document.getElementById(TARG_ID);
+
+   if( ! e )
+   {
+      throw new Error('"COOL_REDIRECT" element id not found');
+   }
+
+   var cTicks = parseInt(e.innerHTML);
+
+   var timer = setInterval(function()
+   {
+      if( cTicks )
+      {
+         e.innerHTML = --cTicks;
+      }
+      else
+      {
+         clearInterval(timer);
+         document.body.innerHTML = msg;
+         location = url;	  
+      }
+
+   }, 1000);
+}
+</script>
+</head>
+
+<body onload="coolRedirect('http://www.ku.ac.th')">
+<br />
+<br />
+<table width="607" border="0" align="center" cellpadding="4" cellspacing="1" bgcolor="#CCCCCC">
+  <tr>
+    <td width="597" align="center" bgcolor="#FFFFFF" class="e"><table width="100" border="0">
+      <tr>
+        <td><img src="http://www.ku.ac.th/newwww/images/index/logo.jpg" /></td>
+      </tr>
+    </table>   <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>ไม่พบที่อยู่ที่ท่านเรียก หรือเกิดความผิดพลาดเกี่ยวกับที่อยู่ที่ท่านเรียก <br />
+        กรุณาลองใหม่ หรือ <a href="http://ku.ac.th">กลับไปสู่หน้าหลัก</a> </p>
+      <p>&nbsp;</p>
+      <p><br />
+      </p>
+      <table width="200" border="0" align="right">
+        <tr>
+          <td width="216">กลับหน้าแรกอัตโนมัติ</td>
+          <td width="14"> <font face="MS Sans Serif" size="2" color="#FF0000"><b>
+  <!--- ให้คุณตั้งเวลาเป็นวินาทีที่ต้องการให้ REDIRECT หน้า เช่น ถ้าต้องการให้ 5 วินาทีค่อย REDIRECT หน้าก็ใส่เลข 5 ลงไปแทนที่ในตำแหน่งเลข 10 ในบรรทัดด้านล่าง ---> 
+  <div id="COOL_REDIRECT" >30</div></b></font></td>
+          <td width="30">วินาที</td>
+        </tr>
+    </table></td>
+  </tr>
+</table>
+<br />
+<br />
+</body>
+</html>

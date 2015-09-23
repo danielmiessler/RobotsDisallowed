@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /wyniki/
+Disallow: /szukaj/
+
+Sitemap: http://www.infor.pl/sitemap_news.xml
+Sitemap: http://www.infor.pl/sitemap_index.xml

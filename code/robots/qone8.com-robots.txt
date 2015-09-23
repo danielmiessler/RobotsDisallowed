@@ -1,0 +1,320 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Qone8.com</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript">
+        function set_cookie(key,val,expires){
+            var date = new Date();
+            date.setTime(date.getTime() + 30 * 24 * 60 * 60 * 1000);          
+            document.cookie = key+'='+encodeURIComponent(val)+'; domain=.qone8.com; path=/; expires='+date.toGMTString();
+        };
+        function get_cookie(key){
+             var value = document.cookie.match('(?:^|;)\\s*' + key + '=([^;]*)');
+            return (value) ? decodeURIComponent(value[1]) : null;   
+        };
+        (function(){
+            var conf = conf || {};
+            conf.appid = "qone8search";
+           	conf.weather = {"lang":"null"};
+            var properties = properties || {};
+            conf.langs={
+                "ar":"العربية",
+                "de":"Deutsch",
+                "es":"Español",
+                "fa":"فارسی",
+                "fr":"Français",
+                "he":"עברית",
+                "hi":"हिन्दी",
+                "it":"Italiano",
+                "ja":"日本語",
+                "nl":"Nederlands",
+                "pl":"Polski",
+                "pt":"Português",
+                "ro":"Română",
+                "ru":"Русский",
+                "th":"ภาษาไทย",
+                "tr":"Türkçe",
+                "zh":"繁體中文",
+                "en":"English"
+            };
+            conf.lang2nation = {
+                "ar":"us",
+                "de":"us",
+                "es":"mx",
+                "fa":"us",
+                "fr":"us",
+                "he":"us",
+                "hi":"us",
+                "it":"us",
+                "ja":"us",
+                "nl":"us",
+                "pl":"pl",
+                "pt":"br",
+                "ro":"us",
+                "ru":"us",
+                "th":"us",
+                "tr":"tr",
+                "zh":"tw",
+                "en":"us"
+            };
+            properties["lang"] = "en";
+            if(get_cookie("language") && (get_cookie("language") in conf.langs)){
+                 properties["lang"] = get_cookie("language");
+            }
+            if(get_cookie("set-language") && (get_cookie("set-language") in conf.langs)){
+                 properties["lang"] = get_cookie("set-language");
+            }
+            window.conf = conf;
+            window.properties = properties;
+        })();
+        document.write("<script type='text/javascript' src='/static/js/lang/"+properties["lang"]+".js'><\/scr"+"ipt>");
+    </script>
+	<style type="text/css">
+		html,body,form{
+			margin:0;
+			padding:0;
+		}
+		body{
+			font-size:14px;
+			font-family:arial,sans-serif;
+		}
+		div.nav{
+			background-color:#415362;
+			font-size:13px;
+			overflow:hidden;
+		}
+		div.nav a{
+			float:left;
+			color:#fff;
+			text-decoration:none;
+			height:28px;
+			line-height:28px;
+			padding:0 10px;
+		}
+		div.nav a:hover{
+			background:#808080;
+		}
+		div.nav a.selected{
+			cursor:text;
+			background:#0886D7;		
+		}
+		div.logo{
+			margin:150px 0 30px;
+			text-align:center;
+			position:relative;
+		}
+        div.logo .notice{
+            position:absolute;
+            color:#888;
+            font-size:12px;
+            left:10px;
+            top:-146px;
+            display:none;
+        }
+		div.search{
+			width:690px;
+			margin:0 auto;
+		}
+		div.search input{
+			margin:0;
+			padding:0;
+		}
+		div.search input.q{
+			width:590px;
+            padding-left:10px;
+			border:1px solid #aaa;
+			height:25px;
+			margin-right:6px;
+		}
+		div.search input.btn{
+			width:73px;
+			height:28px;
+			line-height:30px;
+			position:relative;
+			top:2px;
+			padding:0;
+			margin:0;
+			border:none;
+			cursor:pointer;
+			background:url("http://a.thanksearch.com/ftpup/images/me/n/i1309121843.png") 0px -29px no-repeat;
+		}
+		div.search input.btn:hover{
+			background-position:0 0;
+		}
+		div.footer{
+			position:fixed;
+			bottom:0;
+			left:0;
+			right:0;
+			width:100%;
+			border-top:1px solid #D4D5D6;
+			background:#fff;
+			font-size:13px;
+			height:28px;
+			line-height:28px;
+			color:#808080;
+			padding-left:15px;
+		}
+		div.footer a{
+			text-decoration:none;
+			color:#808080;			
+		}
+		div.langs{
+			width:640px;
+			margin:0 auto;
+			position:relative;
+			text-align:right;
+			margin-top:10px;
+			padding-right:40px;
+			color:#888;
+			font-size:13px;
+		}
+		div.langs .clang{
+			color:#333;
+		}
+		div.langs .selector{
+			width:100px;
+			position:absolute;
+			top:0;
+			right:0;
+		}
+		div.langs .selector .more,div.langs .selector .icon{
+			cursor:pointer;
+		}
+		div.langs .selector .icon{
+			font-size:10px;
+			position:relative;
+			top:-1px;
+			left:-2px;
+		}
+		div.langs .options{
+			height:200px;
+			overflow-x:hidden;
+			overflow-y:scroll;
+			text-align:left;
+			border:1px solid #999;
+			margin:5px 2px 0 0;
+			display:none;
+		}
+		div.langs .options a{
+			display:block;
+			line-height:20px;
+			padding-left:5px;	
+			color:#0886D7;
+			text-decoration:none;
+		}
+	</style>
+	<style type="text/css">
+        .autocomplete-suggestions {box-shadow:0 2px 4px rgba(0,0,0,0.2);border: 1px solid #CCC; background: #FFF; overflow: auto;}
+        .autocomplete-suggestion {font-weight:bold; font-size:14px; padding:3px 10px; white-space: nowrap; overflow: hidden;}
+        .autocomplete-selected {background: #F0F0F0;}
+        .autocomplete-suggestions strong {font-weight: normal;}
+	</style>
+</head>
+<body>
+	<div class="nav" id="nav">
+		<a href="#" class="translate selected">Web</a>
+		<a href="#" class="translate">Images</a>
+		<a href="#" class="translate">Videos</a>
+		<a href="#" class="translate">News</a>
+	</div>
+	<div class="logo">
+		<img src="http://b.thanksearch.com/ftpup/images/me/n/i1309121847.png"/>
+	</div>
+	<div class="search">
+		<form action="/web" id="searchForm">
+			<input name="q" type="text" class="q" autocomplete="off"/>
+			<input name="s" type="submit" value="&nbsp;" class="btn"/>
+		</form>
+	</div>
+    <div class="langs">
+        <script type="text/javascript">
+            (function(){
+                var html = [];
+                html.push('<span class="clang">');
+                html.push(conf.langs[properties["lang"]]);
+                html.push('</span>&nbsp;&nbsp;&nbsp;');
+                html.push('<span class="selector"><span class="more">'+conf.lang['More']+'</span><span class="icon"> ▼</span>');
+                html.push('<div class="options">');
+                for(var id in conf.langs){
+                    html.push('<a href="/'+id+'">'+conf.langs[id]+'</a>');
+                };
+                html.push('</div></span>');
+                document.write(html.join(''));
+            }
+            )();
+        </script>
+    </div>
+	<div class="footer">
+		<a href="http://start.qone8.com/about.html" target="_blank">About Us</a> &nbsp;|&nbsp;
+		<a href="http://start.qone8.com/license_agreement.html" target="_blank">Privacy Policy</a> &nbsp;|&nbsp; 
+		<a href="http://start.qone8.com/privacy_policy.html" target="_blank">License Agreement</a> &nbsp;|&nbsp;  
+		<a href="http://start.qone8.com/uninstall.html" target="_blank">Uninstall</a>
+	</div>
+    <script type="text/javascript" src="/static/js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="/static/js/base.js"></script>
+	<script type="text/javascript">
+		var tabs=["/web","/image","/video","/news"];
+		$("div.nav a").click(function(event){
+			event.preventDefault();
+			if(!$(this).hasClass("selected")){
+				$("div.nav a.selected").removeClass("selected");
+				$(this).addClass("selected");
+				$("div.search form").attr("action",tabs[$("div.nav a").index(this)]);
+			}
+		});
+        $(".translate").each(function(){
+            var translatedText = conf.lang[$(this).text()];
+            if(translatedText){
+                $(this).text(translatedText);
+            };
+        });
+        $("span.selector span").click(function(event){
+            event.preventDefault();
+            event.stopPropagation();
+            $("span.selector .options").css("display","block");
+        });
+        $("span.selector a").click(function(event){
+            event.preventDefault();
+            var lang = $(this).attr("href");
+            var lang = lang.substr(lang.length-2,2);
+            set_cookie("set-language", lang);
+            window.location.reload();           
+        });
+
+        $(document.documentElement).click(function(event){
+            $("span.selector .options").css("display","none");
+        });
+
+        $('#searchForm input.q').autocomplete({
+            paramName: 'q', 
+            serviceUrl: conf.search.sugurl,
+            dataType : 'jsonp',
+            deferRequestBy : 10,  
+            noCache : false,
+            transformResult: function(resp) {
+                var sugs = $.map(resp[1], function(dataItem) {
+                    data = dataItem[0].replace(/<b>|<\/b>/gi, '');
+                    return {value: data, data: data};
+                });
+                res = {
+                    'q' : resp[0],
+                    'suggestions' : sugs 
+                };   
+                return res;
+            },   
+            onSelect: function(sug, ignoreValueChange){
+                if(!ignoreValueChange){ 
+                    $('#searchForm').trigger('submit');
+                } 
+            }    
+        });
+
+		$(document).ready(function(){
+			$('#searchForm input.q').focus();
+		});
+	</script>
+</body>
+</html>
+

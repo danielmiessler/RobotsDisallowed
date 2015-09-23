@@ -1,0 +1,993 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+    <meta charset="UTF-8" /><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VQYEUFRbABAGUlFVAwIP"};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),f=c.length,u=i(a,o,r),d=0;f>d;d++)c[d].apply(u,n);return u}function a(t,e){f[t]=s(t).concat(e)}function s(t){return f[t]||[]}function c(){return n(e)}var f={};return{on:a,emit:e,create:c,listeners:s,_events:f}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t){try{i.console&&console.log(t)}catch(e){}}var n,r=t("ee"),o=t(1),i={};try{n=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(i.console=!0,-1!==n.indexOf("dev")&&(i.dev=!0),-1!==n.indexOf("nr_dev")&&(i.nrDev=!0))}catch(a){}i.nrDev&&r.on("internal-error",function(t){e(t.stack)}),i.dev&&r.on("fn-err",function(t,n,r){e(r.stack)}),i.dev&&(e("NR AGENT IN DEVELOPMENT MODE"),e("flags: "+o(i,function(t){return t}).join(", ")))},{1:23,ee:"QJf3ax"}],4:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(f){try{r("ierr",[f,(new Date).getTime(),!0])}catch(u){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(6),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,t(5),window.onerror=e;try{throw new Error}catch(f){"stack"in f&&(t(1),t(2),"addEventListener"in window&&t(3),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)&&t(4),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:10,2:9,3:7,4:11,5:3,6:24,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],5:[function(t){t("loader").features.ins=!0},{loader:"G9z0Bl"}],6:[function(t){function e(){}if(window.performance&&window.performance.timing&&window.performance.getEntriesByType){var n=t("ee"),r=t("handle"),o=t(1),i=t(2);t("loader").features.stn=!0,t(3),n.on("fn-start",function(t){var e=t[0];e instanceof Event&&(this.bstStart=Date.now())}),n.on("fn-end",function(t,e){var n=t[0];n instanceof Event&&r("bst",[n,e,this.bstStart,Date.now()])}),o.on("fn-start",function(t,e,n){this.bstStart=Date.now(),this.bstType=n}),o.on("fn-end",function(t,e){r("bstTimer",[e,this.bstStart,Date.now(),this.bstType])}),i.on("fn-start",function(){this.bstStart=Date.now()}),i.on("fn-end",function(t,e){r("bstTimer",[e,this.bstStart,Date.now(),"requestAnimationFrame"])}),n.on("pushState-start",function(){this.time=Date.now(),this.startPath=location.pathname+location.hash}),n.on("pushState-end",function(){r("bstHist",[location.pathname+location.hash,this.startPath,this.time])}),"addEventListener"in window.performance&&(window.performance.addEventListener("webkitresourcetimingbufferfull",function(){r("bstResource",[window.performance.getEntriesByType("resource")]),window.performance.webkitClearResourceTimings()},!1),window.performance.addEventListener("resourcetimingbufferfull",function(){r("bstResource",[window.performance.getEntriesByType("resource")]),window.performance.clearResourceTimings()},!1)),document.addEventListener("scroll",e,!1),document.addEventListener("keypress",e,!1),document.addEventListener("click",e,!1)}},{1:10,2:9,3:8,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],7:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=t("ee").create(),i=t(1)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:25,ee:"QJf3ax",gos:"7eSDFh"}],8:[function(t,e){var n=t("ee").create(),r=t(1)(n);e.exports=n,r.inPlace(window.history,["pushState"],"-")},{1:25,ee:"QJf3ax"}],9:[function(t,e){var n=t("ee").create(),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:25,ee:"QJf3ax"}],10:[function(t,e){function n(t,e,n){t[0]=o(t[0],"fn-",null,n)}var r=t("ee").create(),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:25,ee:"QJf3ax"}],11:[function(t,e){function n(){f.inPlace(this,p,"fn-")}function r(t,e){f.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}function i(t,e){for(var n in t)e[n]=t[n];return e}var a=t("ee").create(),s=t(1),c=t(2),f=c(a),u=c(s),d=window.XMLHttpRequest,p=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=a,window.XMLHttpRequest=function(t){var e=new d(t);try{a.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",o),e.addEventListener("readystatechange",n,!1)}catch(r){try{a.emit("internal-error",[r])}catch(i){}}return e},i(d,XMLHttpRequest),XMLHttpRequest.prototype=d.prototype,f.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),a.on("send-xhr-start",r),a.on("open-xhr-start",r)},{1:7,2:25,ee:"QJf3ax"}],12:[function(t){function e(t){var e=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!e.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){e.status=t.status;var a=t.responseType,f="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,u=n(f);if(u&&(r.rxSize=u),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(e.cat=d.split(", ").pop())}}else e.status=0;r.cbTime=this.cbTime,o("xhr",[e,r,this.startTime])}}}function n(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,f=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=e,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,e){var r=this.metrics,o=t[0],i=this;if(r&&o){var f=n(o);f&&(r.txSize=f)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof e.onload))&&i.end(e)}catch(n){try{a.emit("internal-error",[n])}catch(r){}}};for(var u=0;c>u;u++)e.addEventListener(s[u],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+f(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+f(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:13,3:11,4:7,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],13:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split("@").pop().split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,r.protocol=o[0],"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],14:[function(t,e){function n(t){return function(){r(t,[(new Date).getTime()].concat(i(arguments)))}}var r=t("handle"),o=t(1),i=t(2);"undefined"==typeof window.newrelic&&(newrelic=window.NREUM);var a=["setPageViewName","addPageAction","setCustomAttribute","finished","addToTrace","inlineHit","noticeError"];o(a,function(t,e){window.NREUM[e]=n("api-"+e)}),e.exports=window.NREUM},{1:23,2:24,handle:"D5DuLP"}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):void(r.q&&(r.q[t]||(r.q[t]=[]),r.q[t].push(e)))}var r=t("ee").create();e.exports=n,n.ee=r,r.q={}},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info,e=f.getElementsByTagName("script")[0];if(t&&t.licenseKey&&t.applicationID&&e){s(d,function(e,n){e in t||(t[e]=n)});var n="https"===u.split(":")[0]||t.sslForHttp;p.proto=n?"https://":"http://",a("mark",["onload",i()]);var r=f.createElement("script");r.src=p.proto+t.agent,e.parentNode.insertBefore(r,e)}}function r(){"complete"===f.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=t(1),c=window,f=c.document;t(2);var u=(""+location).split("?")[0],d={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-686.min.js"},p=e.exports={offset:i(),origin:u,features:{}};f.addEventListener?(f.addEventListener("DOMContentLoaded",o,!1),c.addEventListener("load",n,!1)):(f.attachEvent("onreadystatechange",r),c.attachEvent("onload",n)),a("mark",["firstbyte",i()])},{1:23,2:14,handle:"D5DuLP"}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],23:[function(t,e){function n(t,e){var n=[],o="",i=0;for(o in t)r.call(t,o)&&(n[i]=e(o,t[o]),i+=1);return n}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],24:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],25:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,f;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){u([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return f=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,f],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,f(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,f="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,f?s+o:o,i,s))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){u([o,e,n,r])}}function f(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){u([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function u(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:24,ee:"QJf3ax"}]},{},["G9z0Bl",4,12,6,5]);</script>
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">-->
+    <meta name="robots" content="index, follow" /><title>La boutique Esprit - Mode & accessoires pour femmes, hommes, enfants</title><meta name="description" content="La boutique Esprit propose un grand choix d'articles de mode de grande qualité pour les femmes, les enfants et les hommes ainsi que des accessoires de mode et des objets tendance pour la maison." />
+            <meta name="keywords" content="" />
+            <meta name="author" content="ESPRIT Online-Shop France" />
+            <meta name="copyright" content="ESPRIT Online-Shop France" />
+        <link rel="alternate" hreflang="fr-CH" href="http://www.espritshop.ch" />
+<link rel="alternate" hreflang="fr-BE" href="http://www.esprit.be" />
+<link rel="alternate" hreflang="fr-FR" href="http://www.esprit.fr" />
+<link rel="alternate" media="only screen and (max-width: 640px)" href="http://m.esprit.fr" /><meta name="audience" content="all" />
+<meta http-equiv="Expires" content="0" />
+<meta name="distribution" content="global" />
+<meta name="google" content="notranslate" />
+<meta name="page-topic" content="Onlineshop,Online-Shop,Shop,Modeshop,Mode-Shop,Modekatalog" />
+<meta name="page-type" content="Shop" />
+<meta name="google-site-verification" content="NsB12tGlEo11usuSvhSYXyPXYSjvqLGIzlFOWOu1rRM" />    <link rel="shortcut icon" href="http://pics3.esprit.de/Shop/images/default/global/favicon.ico" type="image/x-icon" />
+
+    
+    <link rel="stylesheet" href="desktop/styles/main.css"/>
+    <script type="text/javascript">
+
+            if (typeof(NWS_WS) == "undefined") {
+                var NWS_WS = function () {
+                    return {};
+                }();
+            }
+
+            NWS_WS.timeStart         = new Date().getTime();
+            webtrekk                 = {};
+
+            NWS_WS.arrBasketInfo     = [];
+            NWS_WS.fltBasketVvp      = 0;
+
+            NWS_WS.ajaxGetParamLanguage = "language=fr";
+
+            NWS_WS.arrJshelper = {
+                "abtestConfig" : false,
+                "rdeId" : "63ba65a18495",
+                "linkItemClickLearn" : "http://rde.esprit.eu/rde_server/res/{res}/event/click/sid/{sid}?itemid={itemid}&template={template}&box={boxname}",
+                "genderStartpage" : "",
+                "country" : "FR",
+                "baseurl" : "http://www.esprit.fr/",
+                "baseurl_nolang" : "http://www.esprit.fr/",
+                "baseurlssl_nolang" : "https://www.esprit.fr/",
+                "boolRunningLocal" : false,
+                "local_ip" : "",
+                "boolRunningInProduction" : true,
+                "basket_uri" : "basketajax",
+                "landingpage_basket_uri" : "panier",
+                "boolGiftcardInBasket" : false,
+                "loadertext_basket" : "Cet article va être ajouté à votre panier…",
+                "loadertext_basket2" : "Veuillez patienter.",
+                "basket_remove_giftcard_caption" : "na",
+                "basket_remove_giftcard_message" : "na",
+                "basket_request_error_caption" : "Oups!",
+                "basket_request_error_message" : "Un problème a eu lieu. L’article n’a pas été déposé dans le panier. Veuillez réessayer.",
+                "basket_dialog_button_ok" : "OK",
+                "basket_dialog_button_cancel" : "annuler",
+                "chosen_language" : "fr",
+                "current_camp" : "FR_ES_HE_HP_63_00003",
+                "decimal_separator" : ",",
+                "last_uri_element" : "",
+                "last_viewed_stylenumber" : "",
+                "last_viewed_colornumber" : "",
+                "local_picpath_nolang" : "http://pics3.esprit.de/Shop/images/default/global",
+                "localpicpath_nolang" : "http://pics3.esprit.de/Shop/images/default/global",
+                "local_picpath_lang" : "http://pics3.esprit.de/Shop/images/default/language/fr",
+                "localpicpath_country_lang" : "http://pics3.esprit.de/Shop/images/default/country/FR/language/fr",
+                "localcontent_lang" : "http://www.esprit.fr/content/default/language/fr",
+                "localcontent_nolang" : "http://www.esprit.fr/content/default/global",
+                "kickoff_camp" : "FR_ES_HE_HP_63_00003",
+                "current_camp" : "FR_ES_HE_HP_63_00003",
+                "mouseOverPicChange" : "without_mouseover",
+                "flashFitGuideState" : "",
+                "flashFitGuideType" : "",
+                "picserver_url" : "http://pics3.esprit.de/Shop",
+                "search_uri" : "recherche",
+                "suggest_uri" : "http://esprit-fra.fact-finder.de/FACT-Finder/Suggest.ff",
+                "searchtracking_uri" : "http://esprit-fra.fact-finder.de/FACT-Finder/Tracking.ff",
+                "enable_suggest" : "1",
+                "show_country_free_delivery" : "1",
+                "shown_colornumber" : "",
+                "shown_colorname" : "",
+                "geoTargeting_uri" : "geotargeting",
+                "sizeChartId" : "",
+                "strTemplate" : "",
+                "style_brand" : "",
+                "ComingSoon" : "",
+                "stylenumber" : "",
+                "theme" : "default",
+                "uri" : "",
+                "uri_ids" : "13839",
+                "actualPageHasPages" : false,
+                "uri_webtrekk" : "startpage",
+                "action_title" : "newstartpage",
+                "xxl_pic_path" : "",
+                "strCurrencySymbol" : "€",
+                "strCurrencySymbolPosition" : "after",
+                "strCurrencySpace" : "&#160;",
+                "strDecimalSeparator" : ",",
+                "strThousandSeparator" : ".",
+                "intMinimumBasketPrice" : 0,
+                "boolBasketIgnoreMinPurchase" : false,
+                "basket_flyout_note" : "Recommandation",
+                "basket_flyout_min_note" : '<span class="bold">Veuillez noter que,</span><br />le montant minimum de commande est de <span class="price_output">0,00</span>&#160;<span class="currency_symbol">&euro;</span>.',
+                "boolVVPinPurchase" : false,
+                "intModelInfoId" : "",
+                "boolMyaccountActive" : "false",
+                "show_ekomi" : "1",
+                "show_rde" : true,
+                "session_name" : "SESS_NWS",
+                "ov_sort" : true,
+                "strActiveImgFolder" : "",
+                "strLanguageChangeError" : "Erreur: Langue sélectionnée n`est pas Reversible.",
+                "help_pos_tc" : "10,1",
+                "help_pos_pp" : "7,1",
+                "footer_career" : "http://www.esprit.com/index.php?command=Display&navi_id=461",
+                "help_pos_imprint" : "6,1",
+                "help_pos_gift" : "0",
+                "help_pos_code" : "0",
+                "intActualStyleCount" : 0,
+                "saleWomenRedirectUrl" : "",
+                "fltBasketOutletExtraCharge" : 0,
+                "fltBasketFreeShippingValue" : 0,
+                "abbruchpopup" : false,
+                "cardcreatorlink" : "http://xmas.esprit.at",
+                "ekomi_num_of_shown_responses" : "5",
+                "strSizechooserSoldOut" : "épuisé",
+                "help_pos_gift" : "0",
+                "mums_world_redirect" : "femmes/toutes_marques/V_TEMENTS/pour_femmes_enceintes",
+                "nys_world_redirect" : "kids/name_your_style",
+                "search_too_short" : "Votre mot-clé est malheureusement trop court. Veuillez saisir 2 caractères minimum.",
+                "last_search_terms_header" : "Dernières recherches",
+                "last_search_terms_clear" : "Supprimer",
+                "str_close" : "fermer",
+                "error_no_single_size_choose" : "Vous n’avez pas sélectionné de taille.",
+                "error_no_multi_size_choose" : "Vous n’avez pas sélectionné de largeur / longueur.",
+                "error_no_size_choose_caption" : "Attention",
+                "size_chooser_width_ucfirst" : "Tour de taille",
+                "size_chooser_length_ucfirst" : "Long.",
+                "spv_spin360_play" : "LECTURE",
+                "spv_spin360_pause" : "",
+                "global_flash_fallback_text_360" : "Malheureusement, Flash n\u2019est pas install\u00e9 sur votre appareil. C\u2019est pourquoi la vue \u00e0 360\u00b0 ne peut pas \u00eatre affich\u00e9e. Vous pouvez t\u00e9l\u00e9charger et installer la version actuelle de Flash Player en cliquant <a rel=\"external\" href=\"http:\/\/get.adobe.com\/flashplayer\/\">ici<\/a>.",
+                "global_flash_na_text_360" : "Malheureusement, Flash n\u2019est pas disponible sur votre appareil. C\u2019est pourquoi la vue \u00e0 360\u00b0 ne peut pas \u00eatre affich\u00e9e sur cet appareil.",
+                "global_flash_fallback_text_video" : "Malheureusement, Flash n\u2019est pas install\u00e9 sur votre appareil. C\u2019est pourquoi la vid\u00e9o ne peut pas \u00eatre visionn\u00e9e. Vous pouvez t\u00e9l\u00e9charger et installer la version actuelle de Flash Player en cliquant <a rel=\"external\" href=\"http:\/\/get.adobe.com\/flashplayer\/\">ici<\/a>.",
+                "global_flash_na_text_video" : "Malheureusement, Flash n\u2019est pas disponible sur votre appareil. C\u2019est pourquoi la vid\u00e9o ne peut pas \u00eatre visionn\u00e9e sur cet appareil.",
+                "rde_item_and_spv_learn_enable" : true,
+                "spv_zoom_text" : "CLIQUER POUR ZOOMER",
+                "outfit_click_to_product_text" : "CLIQUER POUR LE PRODUIT",
+                "myaccount_welcome_text" : "Bonjour",
+                "myaccount_logout_text" : "Déconnexion",
+                "myaccount_login_text" : "Connexion",
+                "geo_country" : "DE",
+                "meinesprit_newstamp" : "0",
+                "myesprit_dynamic_link_attribute" : "mon-esprit",
+                "compare" : "COMPARER",
+                "pov_fade_styleimage_active" : "0",
+                "setOutfitSpv" : false,
+                "displaySaleAfSlider" : false,
+                "startrdeslider" : "true",
+                "edcBannerLink_w" : "femmes-edc",
+                "edcBannerLink_m" : "hommes-edc",
+                "edcBannerLink_saleaf_w" : "femmes-edc",
+                "edcBannerLink_saleaf_m" : "hommes-edc",
+                "edcBannerNavi_w" : "EDC",
+                "edcBannerNavi_m" : "EDC",
+                "edcBannerNavi_saleaf_w" : "EDC",
+                "edcBannerNavi_saleaf_m" : "EDC",
+                "edcBannerName_w" : "edcbanner_w.jpg",
+                "edcBannerName_m" : "edcbanner_m.jpg",
+                "edcBannerName_saleaf_w" : "edcbanner_saleaf_w.jpg",
+                "edcBannerName_saleaf_m" : "edcbanner_saleaf_m.jpg",
+                "edcBannerIndex_norm_saleaf" : "0,1",
+                "navigationGender" : "mixed",
+                "landingpagelayer_active" : "0",
+                "categoryGender" : "mixed",
+                "javascript_redirect_enabled": true,
+                "startpage" : {
+                    "women" : "/mode-femmes",
+                    "men" : "/mode-hommes",
+                }
+            };
+
+            NWS_WS.arrHtmlFitGuideHistoryHelper = [];
+        NWS_WS.abTestConfigs = {"RDESLIDER":{"name":"rdeslider","enabled":true,"lifetime":60,"tracking":"cs8","query":"","groups":{"off":{"name":"off","percentage":0,"paramValue":""},"on":{"name":"on","percentage":100,"paramValue":""}}}};NWS_WS.trackNavigation = {"caption":"-","cb11":"newstartpage","0":"newstartpage","1":"","2":"","3":""};NWS_WS.arrJshelper["styleType"]        = "noSizeChart";</script>    <script src="/desktop/scripts/desktop/redirector/redirector.js"></script>
+    <script>
+        // all backbone views and models we need will be added to this list in each loaded twig template. After we've
+        // loaded require.js later in the document we use this list to create the needed instances.
+        var viewInitializerList = [];
+    </script>
+
+    <script type="text/javascript" src="/min/index.php?f=eJytV-124jYQfaHG3jRPkJDQZg9kaczZ_OwR8mCEZY0iybDk6Tu2lwSEwTLuD471MfdqpJm5Emu2YZYboV2cK-Q5lu7mLvoWffu3wFQsBaTR2v6x_rKCXw6UFahs_GO5tODOz4-YlAvGc89i_V6C2d3cRre30V1UCNU-X4jMMAdk92d022J2sNC9MWznTXM00E6sZZkJQr0CS3f_lFB22K1fwBmWsofSOTzj7Kdt3Y3W7x-IxU23D3vuBCRw9whWZGErcMRchDrObA4ubj4zAxsB26BFVqwowASZFqPSOiwSbrAKehfo2LPjbi_o96Pum1Apbh9hyUoZyPNcsAzsBFkKaetgGM1fEheU7mwHpm3sMomsFjIBhnvm0Qp4_mBwa8HMuucCSQ1am7idBDtaIdqDnZxOhVFOsNRw3AushzqP5lTjLUOB22EGSwvyZOAynJuddkjSo1e7z2Krxi7DZriZsI9dlTJB9ZLVuTGWzK7GF2XS39YUrKXkbDK9fbRX_gfwhRGNhXRgRgG6JOrqkiLtSobmqBbsRqN1RePSZYjVRjiwWqiDpgdJm-OJOR2-BRv_DVX1zcBYVEwKy5w4kfk9ppJOG69qxLNa4gNT6qQYDm4mukTBKPFhIl7rY9hRvsHCGcjzk4Ge8O11sPc7LX511cn6y8m5oewVKgsGPG1AuSlTFE7_7Pzg3C_mYP1U9qMhNWnVopE8yip1zr5gQkG1tq-I_qq11LU9DXzD1xTi-5RpyvwKRanDq7HfQwHgKdO6wlK7aQZgXk8Kp82q3sMjFg-lkJSEPzZhzE8h50NqV_3OWNFFRs_IuHmizFAK7j_OPMumnkJsXthGZJcK1AIzfBVbLvgZi0VbybZm1BKxO4iPBjVppJqCKo861-KeJBTnU7gT_uzAV5m26CXiA5a1YgelXQUZCzfuh6BfgwiznVJ59rFvbMeMOzTnMuyzojXtme6CnxTgTn4qZOM0qVPYpbAVdkUmXSFLwGzogiTqg2a7CnrS-V4Knm8oGb9aHWtNmHVJXQpzMMVJ_-fpP4CeDMPQE-RMJhQ22vtvrQwLY3_eYYTNc-b_dPGIcSiVctWbuJPHlhk9uNz-S7il8G_rc5ik-VZ7H9NrEMx3qggd5n8QR9ipXqQKEqQAhn6uVG87uacbMQcZYSfdOnARfw32GsyArdYPiyF7HLD2V9RmzLACwnOwi2aAUy-wvfpM9tgh8fhUhGHoAS7MUSfQQ4jawQMceEMj_T_e4cCrJCjgDvUQR3r9H-H9V-8="></script>    <link rel="stylesheet" href="javascript/vendor/slider/owl2/css/owl.carousel.css">
+    <link rel="stylesheet" href="javascript/vendor/slider/owl2/css/owl.theme.default.min.css">
+    <script type="text/javascript" src="javascript/vendor/slider/owl2/owl.carousel.js"></script>
+    <!--[if gt IE 9]> -->
+    <script type="text/javascript" src="http://s7d1.scene7.com/s7viewers/html5/js/VideoViewer.js"></script>
+    <!-- <![endif]-->
+    <link href="/min/index.php?b=&amp;f=eJyNkktuwkAMhi9UOnegBakSZcOia5M4E1MzDmNPUG7PILpoEaFe-fVZ_i07qE2MGlrsoLCFI1C6pV4b1ZdwV2aYpJj-2LWIYX4K9gitC9lIFAf2Oa10yGQOdGeSsaPknA8pFoj41ouoq2MJ-o0eIV-kPZO6NCPkpneAWxgpgpEkB_yROllCSv-sFVn2wDWa4QbIRsB_wJDwrIw29weHU8E8LQYusT5WOGzRMrSwQ8bG3lEpPl7gru-IqvU489rqyUbMTVX4y72SFwQCHZk=" media="screen" rel="stylesheet" type="text/css" >
+<link href="/styles/default/dynamicstyles.css.php?strLanguage=fr&amp;strCountry=FR&amp;strBasepath=www.esprit.fr%2F&amp;picBase=pics3.esprit.de%2FShop" media="screen" rel="stylesheet" type="text/css" >
+<link href="/min/index.php?b=&amp;f=eJyNjUEKg0AQBD8kmccYch-0VwdGNkzPGvT1Jp4leGuKKlqYm4MyomjzlLdGmjrl5HVFrIaP0HYU80Q8BrKTe1Wx_BMRGsMsrsz-nE_EwkvVdastKTN0RPRtmsB8fS9-9gFerExv" media="screen" rel="stylesheet" type="text/css" >        <!--[if lt IE 9]>
+<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->    </head>
+<body    data-language="fr"
+         data-country="fr"
+         data-webtrekkpage="startpage"
+         data-pagenumber="0"
+         class="newstartpage">
+<svg display="none" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <symbol id="icon-new-arrivals-arrow" viewBox="0 0 1024 1024">
+            <title>new-arrivals-arrow</title>
+            <path class="path1" d="M1011.738 825.574l-127.411-180.531c-14.746-20.941-43.674-25.933-64.691-11.136-20.915 14.746-26.010 43.75-11.136 64.717l66.995 94.976c-377.037-40.96-778.803-352.666-778.803-747.162 0-25.626-20.813-46.438-46.464-46.438-25.677 0-46.464 20.813-46.464 46.438 0 444.698 426.086 785.203 845.030 837.299l-79.206 55.885c-20.915 14.797-25.933 43.699-11.136 64.717 9.037 12.826 23.45 19.661 37.965 19.661 9.293 0 18.637-2.765 26.778-8.525l177.408-125.184c10.035-7.117 16.87-17.946 18.944-30.054 2.099-12.134-0.666-24.602-7.808-34.662z"></path>
+        </symbol>
+    </defs>
+</svg><div id="feedback">
+    <img alt=""
+         src="http://pics3.esprit.de/Shop/images/default/language/fr/feedback.png"
+         width="50" height="144" />
+</div>
+<div id="backtomobile" class="font-lucida">
+    <a data-qaid="linkBackToMobile" class="link-txt">BASCULER EN VERSION MOBILE</a>
+    <span class="raquo">&raquo;</span>
+</div><div id="policy_header">
+    <div class="policy_header_text">
+        <a href="#policy_header" class="close-cookie-policy" data-qaid="cookiePolicyBannerClose">
+            <svg><image xlink:href="//pics3.esprit.de/Shop/images/default/global/rwd/icons/cross.svg" src="//pics3.esprit.de/Shop/images/default/global/rwd/icons/cross.png" width="100%" height="100%" /></svg>        </a>
+        <span class="text">
+            Nous utilisons les cookies afin d'optimiser votre shopping en ligne. Veuillez par conséquent accepter la politique relative aux cookies.            <a href="/support?cmd=VIEW_ARTICLE&article=236" data-qaid="policyCookieSupport">
+                Lire la suite            </a>
+        </span>
+    </div>
+</div>
+
+<!-- BEGIN: header -->
+<div id="header">
+    <div class="header-tools-wrapper clearfix">
+        <div class="header-tools-delimiter">
+            <div class="left-header-tools-wrapper clearfix">
+                                                    <div id="header_myesprit">
+    <a id="header_myesprit_icon_link" href="https://www.esprit.fr/mon-esprit" data-webtrekk-click="header.myesprit"></a>
+    <a id="header_myesprit_link" href="https://www.esprit.fr/mon-esprit" data-webtrekk-click="header.myesprit">
+        Friends Login    </a>
+    <a id="header_myesprit_salutation" href="https://www.esprit.fr/mon-esprit">
+        Bonjour <em></em>
+    </a>
+    <span id="header_myesprit_logout_wrapper">
+        <span class="header_seperation_letter">|</span>
+        <a id="header_myesprit_logout" href="//www.esprit.fr/mon-esprit/rest/logout" data-webtrekk-click="header.myesprit_logout">
+            Déconnexion        </a>
+    </span>
+</div>
+                
+                                            </div>
+
+            <div class="right-header-tools-wrapper clearfix">
+                                                    <div id="nws_ws_container_basket" class="clearfix">
+    <div class="basket_display_wrapper">
+        <a id="nws_ws_container_basket_icon_link" href="http://www.esprit.fr/panier" data-webtrekk-click="header.basket_open"></a>
+        <a href="http://www.esprit.fr/panier" data-webtrekk-click="header.basket_open">
+            Panier            <span id="itemCountAndPriceWrapper">
+                <em id="nws_ws_basket_items_count"></em>                <span id="nws_ws_basket_items_price" class="invisible-xs">
+                                    </span>
+            </span>
+        </a>
+    </div>
+
+            <div id="basketPreviewLayer" class="shadow">
+            <img class="basketPreviewLoaderImage" src="//pics3.esprit.de/Shop/images/default/global/loader.gif" alt=""/>
+        </div>
+    
+            <script type="text/javascript">
+            var basketPreviewConfig = {"itemsElementId":"nws_ws_basket_items","itemsCountElementId":"nws_ws_basket_items_count","itemsSingleTextElementId":"nws_ws_basket_items_text_single","itemsMoreTextElementId":"nws_ws_basket_items_text_more","priceElementId":"nws_ws_basket_price","itemPriceElementId":"nws_ws_basket_items_price","language":"fr"};
+        </script>
+    </div>
+                
+                                                    <div id="header-wishlist">
+    <a id="header_wishlist_icon_link" href="http://www.esprit.fr/liste-d-envies" data-webtrekk-click="header.wishlist_open"></a>
+    <a id="header_wishlist_link" href="http://www.esprit.fr/liste-d-envies" data-webtrekk-click="header.wishlist_open">
+        <span class="invisible-xs">Liste de favoris</span>
+        (<span class="header-wishlist-number">0</span>)
+    </a>
+</div>
+                
+                                                <div id="header-storefinder" class="font-lucida" style="display: block">
+    <a href="#" id="header_storefinder_icon_link" data-webtrekk-click="header.storefinder_open"></a>
+    <a class="invisible-xs" href="#" data-webtrekk-click="header.storefinder_open">
+        Liste des magasins    </a>
+</div>
+                            </div>
+        </div>
+    </div>
+
+                <div id="header-search">
+    <form onsubmit="return false;">
+        <p class="search-image" >
+            <input type="text" name="search" maxlength="60" class="search font-lucida"
+                   value="recherche..." autocomplete="off" data-webtrekk-click="header.search_open" />
+            <script type="text/javascript">
+                $jq("input.search").data("searchInputStandardValue", "recherche...");
+            </script>
+        </p>
+    </form>
+    <div id="searchloadinglayer" >
+        <div class="searchloadinglayer-icon" >
+            <img src="//pics3.esprit.de/Shop/images/default/global/search/loading_icon.gif" alt="seeking" />
+        </div>
+        <div class="searchloadinglayer-text">
+            Un moment s.v.p., nous effectuons votre recherche…        </div>
+    </div>
+</div>
+        <div id="suggest-view"
+     data-bind="style: {
+                    display: showView() ? 'block' : 'none'
+                },
+                attr: {'data-query': query()},
+                event: {mouseover: setMouseIsInView, mouseout: setMouseIsNotInView}">
+
+    <script type="text/html" id="node-template">
+        <li>
+            <a data-bind="html: title, attr: {href: 'http://www.esprit.fr/recherche?query=' + target(), 'data-webtrekk-click': 'suggestedsearch.' + depthText() + '.click', 'data-webtrekk-ck9' : query()},
+                          click: $root.queryOrQueryNaviSearch"></a>
+            <!-- ko if: hasNodes -->
+            <ul data-bind="template: {name: 'node-template', foreach: nodes}"></ul>
+            <!-- /ko -->
+        </li>
+    </script>
+
+    <script type="text/html" id="style-template">
+        <li>
+            <a data-bind="attr: {href: 'http://www.esprit.fr/recherche?query=' + target()},
+                          click: $root.queryOrQueryNaviSearch" data-webtrekk-click="suggestedsearch.product.click">
+                <img data-bind="attr: {src: image, alt: alternative}"/>
+                <span>
+                    <span data-bind="html: name"></span><br/>
+                    <span data-bind="html: number"></span>
+                </span>
+            </a>
+        </li>
+    </script>
+
+    <h3>Suggestions de recherche</h3>
+    <!-- ko if: showCategoryView -->
+    <div id="suggest-category-view">
+        <div class="column column-left">
+
+            <!-- ko if: hasCategories -->
+            <h4>Catégories</h4>
+            <!-- ko foreach: categories -->
+            <h5 data-bind="html: gender"></h5>
+            <ul class="first-level" data-bind="template: {name: 'node-template', foreach: nodes}"></ul>
+            <!-- /ko -->
+            <!-- /ko -->
+
+            <!-- ko if: hasSearches -->
+            <h4>Voir les modèles favoris</h4>
+            <pre data-bind="text: ko.toJSON(nodes, null, 2)"></pre>
+            <ul class="first-level" data-bind="template: {name: 'node-template', foreach: searches}"></ul>
+            <!-- /ko -->
+
+        </div>
+        <div class="column column-right">
+
+            <!-- ko if: hasNews -->
+            <h4>Nouveautés</h4>
+            <ul data-bind="template: {name: 'style-template', foreach: news}"></ul>
+            <!-- /ko -->
+
+            <!-- ko if: hasTops -->
+            <h4>Meilleures ventes</h4>
+            <ul data-bind="template: {name: 'style-template', foreach: tops}"></ul>
+            <!-- /ko -->
+
+        </div>
+    </div>
+    <!-- /ko -->
+    <!-- ko if: showStyleView -->
+    <div id="suggest-style-view">
+        <!-- ko foreach: styles -->
+        <h4>
+            <span data-bind="html: gender"></span>
+            <a data-bind="attr: {href: 'http://www.esprit.fr/recherche?query=' + target()},
+                              click: $root.seeMoreSearch"
+               class="suggest-more" data-webtrekk-click="suggest-style-view">Voir plus de résultats &raquo;</a>
+        </h4>
+        <ul data-bind="template: {name: 'style-template', foreach: styles}"></ul>
+        <!-- /ko -->
+    </div>
+    <!-- /ko -->
+</div>
+    
+        <div id="logo">
+    <a href="http://www.esprit.fr/" data-webtrekk-click="header.home">
+        <svg><image xlink:href="//pics3.esprit.de/Shop/images/default/global/rwd/icons/esprit.svg" src="//pics3.esprit.de/Shop/images/default/global/rwd/icons/esprit.png" width="100%" height="100%" class="header_image" title="Esprit Logo" alt="La boutique Esprit" /></svg>    </a>
+</div>
+
+                <!-- navigation -->
+        
+<div id="header-menu" class="font-georgia-italic">
+
+    <div class="mainmenu">
+        <ul class="topnavi-level-1 parent-menu-0 mainmenu"><li id="root-59" class="level-1">
+<a class="new_arrivals" href="http://www.esprit.fr/nouveautes-femmes/nouveautes-d-aujourd-hui-des-derniers-jours" data-webtrekk-click="navitop.today_108" data-qaid="link-todayNewArrivals">
+    Aujourd'hui <span class="number_of_new_styles">108</span></a>
+<div class="icon-new-arrivals-arrow-wrapper">
+    <svg><image xlink:href="//pics3.esprit.de/Shop/images/default/global/rwd/icons/arrow-curved-right.svg" src="//pics3.esprit.de/Shop/images/default/global/rwd/icons/arrow-curved-right.png" width="100%" height="100%" class="icon-new-arrivals-arrow" /></svg></div>
+<a id="menu-59" href="http://www.esprit.fr/nouveautes-femmes">Nouveautés</a><ul class="topnavi-level-2 parent-menu-59 flyout"><li class="section level-2"><a id="menu-1738" class="caption" href="http://www.esprit.fr/nouveautes-femmes/nouveautes-d-aujourd-hui-des-derniers-jours">NOUVEAUTÉS FEMMES</a><ul class="topnavi-level-3 parent-menu-1738"><li class="level-3"><a id="menu-12671" href="http://www.esprit.fr/nouveautes-femmes/nouveautes-d-aujourd-hui-des-derniers-jours/articles-in-dits">Nouveautés d'aujourd'hui & des derniers jours</a></li><li class="level-3"><a id="menu-4738" href="http://www.esprit.fr/nouveautes/femmes/blazers_vestes">Vestes & manteaux</a></li><li class="level-3"><a id="menu-7844" href="http://www.esprit.fr/nouveautes-femmes/pulls-cardigans">Pulls & cardigans</a></li><li class="level-3"><a id="menu-4736" href="http://www.esprit.fr/nouveautes/femmes/jeans_pantalons">Jeans & pantalons</a></li><li class="level-3"><a id="menu-4735" href="http://www.esprit.fr/nouveautes/femmes/robes_jupes">Robes & jupes</a></li><li class="level-3"><a id="menu-9202" href="http://www.esprit.fr/nouveautes-femmes/-manches-longues-chemisiers">Chemisiers & blazers</a></li><li class="level-3"><a id="menu-9657" href="http://www.esprit.fr/nouveautes-femmes/t-shirts-tops">T-shirts & manches longues</a></li><li class="level-3"><a id="menu-1021" href="http://www.esprit.fr/nouveautes-femmes/lingerie">Lingerie</a></li><li class="level-3"><a id="menu-1921" href="http://www.esprit.fr/nouveautes/femmes/maillots_de_bain">Maillots de bain</a></li><li class="level-3"><a id="menu-1616" href="http://www.esprit.fr/nouveautes-femmes/v-tements-de-nuit-cocooning">Vêtements de nuit & cocooning</a></li><li class="level-3"><a id="menu-1572" href="http://www.esprit.fr/nouveautes/femmes/chaussures">Chaussures</a></li><li class="level-3"><a id="menu-327" href="http://www.esprit.fr/nouveautes/femmes/accessoires_plus">Accessoires</a></li><li class="level-3"><a id="menu-12039" href="http://www.esprit.fr/nouveautes-femmes/montres-bijoux">Montres & bijoux</a></li><li class="level-3"><a id="menu-4740" href="http://www.esprit.fr/nouveautes/femmes/sports">Sports</a></li><li class="level-3"><a id="menu-1956" href="http://www.esprit.fr/nouveautes-femmes/pour-les-mamans">Pour les mamans</a></li><li class="level-3"><a id="menu-4767" href="http://www.esprit.fr/nouveautes/femmes/seulement_edc">Seulement EDC</a></li><li class="level-3 topnavi-lastchild"><a id="menu-12074" href="http://www.esprit.fr/nouveautes-femmes/100-coton">100% coton</a></li></ul></li><li class="section level-2"><a id="menu-1739" class="caption" href="http://www.esprit.fr/nouveautes-hommes/nouveautes-d-aujourd-hui-des-derniers-jours">NOUVEAUTÉS HOMMES</a><ul class="topnavi-level-3 parent-menu-1739"><li class="level-3"><a id="menu-12678" href="http://www.esprit.fr/nouveautes-hommes/nouveautes-d-aujourd-hui-des-derniers-jours/articles-in-dits">Nouveautés d'aujourd'hui & des derniers jours</a></li><li class="level-3"><a id="menu-7593" href="http://www.esprit.fr/nouveautes-hommes/vestes-manteaux">Vestes & manteaux</a></li><li class="level-3"><a id="menu-4755" href="http://www.esprit.fr/nouveautes/hommes/blousons_pulls">Pulls & vestes zippées</a></li><li class="level-3"><a id="menu-9204" href="http://www.esprit.fr/nouveautes-hommes/chemises">Chemises</a></li><li class="level-3"><a id="menu-4741" href="http://www.esprit.fr/nouveautes/hommes/t_shirts_chemises">T-shirts & manches longues</a></li><li class="level-3"><a id="menu-4744" href="http://www.esprit.fr/nouveautes/hommes/jeans_pantalons">Jeans & pantalons</a></li><li class="level-3"><a id="menu-4743" href="http://www.esprit.fr/nouveautes/hommes/costume_vestes">Costume & vestes</a></li><li class="level-3"><a id="menu-1602" href="http://www.esprit.fr/nouveautes-hommes/sous-v-tements-pyjamas">Sous-vêtements & pyjamas</a></li><li class="level-3"><a id="menu-12908" href="http://www.esprit.fr/nouveautes-hommes/chauss-acc">Chauss & acc.</a></li><li class="level-3"><a id="menu-1988" href="http://www.esprit.fr/nouveautes-hommes/montres-bijoux">Montres & bijoux</a></li><li class="level-3 topnavi-lastchild"><a id="menu-4768" href="http://www.esprit.fr/nouveautes/hommes/seulement_edc">Seulement EDC</a></li></ul></li><li class="section level-2"><a id="menu-1740" class="caption" href="http://www.esprit.fr/nouveautes-enfants/petits">NOUVEAUTÉS ENFANTS</a><ul class="topnavi-level-3 parent-menu-1740"><li class="level-3"><a id="menu-13875" href="http://www.esprit.fr/nouveautes-enfants/articles-inedits">Articles inédits</a></li><li class="level-3"><a id="menu-4761" href="http://www.esprit.fr/nouveautes/enfants/layette">Layette</a></li><li class="level-3"><a id="menu-1574" href="http://www.esprit.fr/nouveautes/enfants/bebes">Bébés 0-2 ans</a></li><li class="level-3"><a id="menu-9206" href="http://www.esprit.fr/nouveautes-enfants/petits">Petits 2-9 ans</a></li><li class="level-3 topnavi-lastchild"><a id="menu-1571" href="http://www.esprit.fr/nouveautes/enfants/jeunes">Jeunes 9-14 ans</a></li></ul></li><li class="section level-2 topnavi-lastchild"><a id="menu-1741" class="caption" href="http://www.esprit.fr/nouveautes-maison">NOUVEAUTÉS MAISON</a><ul class="topnavi-level-3 parent-menu-1741"><li class="level-3"><a id="menu-3589" href="http://www.esprit.fr/nouveautes/maison/salle_de_bains">Salle de bains</a></li><li class="level-3"><a id="menu-431" href="http://www.esprit.fr/nouveautes/maison/sejour">Séjour</a></li><li class="level-3 topnavi-lastchild"><a id="menu-3605" href="http://www.esprit.fr/nouveautes-maison/cuisine">Cuisiner & manger</a></li></ul></li></ul></li><li id="root-8" class="level-1"><a id="menu-8" href="http://www.esprit.fr/mode-femmes">Femmes</a><ul class="topnavi-level-2 parent-menu-8 flyout"><li class="section level-2"><a id="menu-1736" class="caption" href="http://www.esprit.fr/mode-femmes">COLLECTION</a><ul class="topnavi-level-3 parent-menu-1736"><li class="level-3"><a id="menu-3542" href="http://www.esprit.fr/femmes-vestes-manteaux">Vestes & manteaux</a></li><li class="level-3"><a id="menu-777" href="http://www.esprit.fr/femmes-pulls-maille">Pulls & cardigans</a></li><li class="level-3"><a id="menu-837" href="http://www.esprit.fr/femmes-jeans">Jeans</a></li><li class="level-3"><a id="menu-303" href="http://www.esprit.fr/femmes-pantalons">Pantalons</a></li><li class="level-3"><a id="menu-585" href="http://www.esprit.fr/robes">Robes</a></li><li class="level-3"><a id="menu-764" href="http://www.esprit.fr/jupes">Jupes</a></li><li class="level-3"><a id="menu-13297" href="http://www.esprit.fr/mode-femmes/combinaisons">Combinaisons</a></li><li class="level-3"><a id="menu-917" href="http://www.esprit.fr/femmes-chemisiers">Chemisiers & tuniques</a></li><li class="level-3"><a id="menu-10117" href="http://www.esprit.fr/femmes-manches-longues">Manches longues</a></li><li class="level-3"><a id="menu-1049" href="http://www.esprit.fr/femmes-tshirts">T-shirts & tops</a></li><li class="level-3"><a id="menu-11292" href="http://www.esprit.fr/femmes-sweatshirts">Sweat-shirts & vestes</a></li><li class="level-3"><a id="menu-1291" href="http://www.esprit.fr/femmes-blazers-tailleurs">Blazers & tailleurs</a></li><li class="level-3 topnavi-lastchild"><a id="menu-11085" href="http://www.esprit.fr/mode-femmes/sport/nouvelle-collection">Sport & fonctionnels</a></li></ul></li><li class="section level-2"><a id="menu-526" class="caption" href="http://www.esprit.fr/femmes-chaussures">Chaussures</a><a id="menu-1737" class="caption" href="http://www.esprit.fr/femmes-sacs-porte-monnaie">Accessoires</a><a id="menu-223" class="caption" href="http://www.esprit.fr/femmes-lingerie">Lingerie & nightwear</a><a id="menu-9972" class="caption" href="http://www.esprit.fr/mode-femmes/maillots-de-bain">Maillots de bain</a><a id="menu-1006" class="caption" href="http://www.esprit.fr/futures-mamans">Pour les mamans</a></li><li class="section level-2"><a id="menu-1950" class="caption" href="http://www.esprit.fr/femmes/tendances-exclusivit-s/nouvelles-textures">TENDANCES</a><ul class="topnavi-level-3 parent-menu-1950"><li class="level-3"><a id="menu-14058" href="http://www.esprit.fr/femmes/tendances-exclusivit-s/nouvelles-textures">Nouvelles textures</a></li><li class="level-3"><a id="menu-13953" href="http://www.esprit.fr/femmes/tendances-exclusivit-s/look-marin-moderne">Look marin moderne</a></li><li class="level-3"><a id="menu-13934" href="http://www.esprit.fr/femmes/tendances-exclusivit-s/boh-me-urbaine">Bohème urbaine</a></li><li class="level-3"><a id="menu-13882" href="http://www.esprit.fr/femmes/tendances-exclusivit-s/imperfect">#ImPerfect</a></li><li class="level-3"><a id="menu-13801" href="http://www.esprit.fr/femmes/tendances-exclusivit-s/marsala">Marsala</a></li><li class="level-3 topnavi-lastchild"><a id="menu-14076" href="http://www.esprit.fr/femmes/tendances-exclusivit-s/tendance-carreaux">Tendance carreaux</a></li></ul></li><li class="section level-2"><a id="menu-11508" class="caption" href="http://www.esprit.fr/femmes/boutiques-th-mes/tenues-festives">BOUTIQUES À THÈMES</a><ul class="topnavi-level-3 parent-menu-11508"><li class="level-3"><a id="menu-9009" href="http://www.esprit.fr/femmes/boutiques-th-mes/tenues-festives">Mariages & festivités</a></li><li class="level-3"><a id="menu-10112" href="http://www.esprit.fr/femmes/boutiques-th-mes/business-lounge">Business lounge</a></li><li class="level-3"><a id="menu-3728" href="http://www.esprit.fr/femmes/boutiques-th-mes/sports/lookbook-nouvelle-collection">Sport & fonctionnels</a></li><li class="level-3 topnavi-lastchild"><a id="menu-9383" href="http://www.esprit.fr/femmes/boutiques-th-mes/nouveau-boutique-des-basiques/basiques-chines">Les basiques</a></li></ul></li><li class="section level-2 topnavi-lastchild"><a id="menu-7036" class="caption" href="http://www.esprit.fr/femmes-edc/vestes-blazers">BOUTIQUE edc</a></li></ul></li><li id="root-105" class="level-1"><a id="menu-105" href="http://www.esprit.fr/mode-hommes">Hommes</a><ul class="topnavi-level-2 parent-menu-105 flyout"><li class="section level-2"><a id="menu-1765" class="caption" href="http://www.esprit.fr/mode-hommes">COLLECTION</a><ul class="topnavi-level-3 parent-menu-1765"><li class="level-3"><a id="menu-7619" href="http://www.esprit.fr/hommes-vestes-manteaux">Vestes & manteaux</a></li><li class="level-3"><a id="menu-862" href="http://www.esprit.fr/hommes-maille-sweatshirts">Pulls & gilets</a></li><li class="level-3"><a id="menu-11288" href="http://www.esprit.fr/mode-hommes/sweat-shirts-vestes">Sweat-shirts & vestes</a></li><li class="level-3"><a id="menu-6281" href="http://www.esprit.fr/hommes-chemises">Chemises</a></li><li class="level-3"><a id="menu-1133" href="http://www.esprit.fr/hommes-tshirts">T-shirts & manches longues</a></li><li class="level-3"><a id="menu-1173" href="http://www.esprit.fr/hommes-jeans">Jeans</a></li><li class="level-3"><a id="menu-901" href="http://www.esprit.fr/hommes-pantalons">Pantalons</a></li><li class="level-3"><a id="menu-1155" href="http://www.esprit.fr/hommes-costumes-vestes">Costume & vestes</a></li><li class="level-3"><a id="menu-400" href="http://www.esprit.fr/hommes-sous-vetements-pyjamas">Sous-vêtements & pyjamas</a></li><li class="level-3 topnavi-lastchild"><a id="menu-1881" href="http://www.esprit.fr/hommes-maillots-de-bain">Maillots de bain</a></li></ul></li><li class="section level-2"><a id="menu-1767" class="caption" href="http://www.esprit.fr/hommes-divers">CHAUSS. & ACC.</a><ul class="topnavi-level-3 parent-menu-1767"><li class="level-3"><a id="menu-1275" href="http://www.esprit.fr/hommes-chaussures">Chaussures</a></li><li class="level-3"><a id="menu-215" href="http://www.esprit.fr/hommes-chaussettes">Chaussettes</a></li><li class="level-3"><a id="menu-2558" href="http://www.esprit.fr/hommes-ceintures">Ceintures</a></li><li class="level-3"><a id="menu-6208" href="http://www.esprit.fr/hommes-casquettes-foulards">Écharpes & bonnets</a></li><li class="level-3"><a id="menu-453" href="http://www.esprit.fr/cravates">Cravates</a></li><li class="level-3"><a id="menu-6624" href="http://www.esprit.fr/hommes-sacs-porte-monnaie">Sacs & portefeuilles</a></li><li class="level-3"><a id="menu-107" href="http://www.esprit.fr/hommes-montres-bijoux">Montres</a></li><li class="level-3"><a id="menu-13545" href="http://www.esprit.fr/hommes-divers/bijoux">Bijoux</a></li><li class="level-3"><a id="menu-6278" href="http://www.esprit.fr/hommes-divers/divers/lunettes-de-soleil">Lunettes de soleil</a></li><li class="level-3"><a id="menu-196" href="http://www.esprit.fr/hommes-divers/divers/gels-douche-parfums">Gels douche & parfums</a></li><li class="level-3"><a id="menu-493" href="http://www.esprit.fr/hommes-divers/divers/parapluies">Parapluies</a></li><li class="level-3 topnavi-lastchild"><a id="menu-445" href="http://www.esprit.fr/hommes-divers/divers/idees-de-cadeaux">Cadeaux & sources d´inspiration</a></li></ul></li><li class="section level-2"><a id="menu-1778" class="caption" href="http://www.esprit.fr/hommes/tendances-exclusivit-s/le-nouveau-bleu">TENDANCES</a><ul class="topnavi-level-3 parent-menu-1778"><li class="level-3"><a id="menu-14048" href="http://www.esprit.fr/hommes/tendances-exclusivit-s/le-nouveau-bleu">Le nouveau bleu</a></li><li class="level-3"><a id="menu-14046" href="http://www.esprit.fr/hommes/tendances-exclusivit-s/sensations-aventures">Sensations & aventures</a></li><li class="level-3"><a id="menu-14045" href="http://www.esprit.fr/hommes/tendances-exclusivit-s/style-militaire-moderne">Style militaire moderne</a></li><li class="level-3"><a id="menu-13956" href="http://www.esprit.fr/hommes/tendances-exclusivit-s/rouge-bleu">Rouge & bleu</a></li><li class="level-3"><a id="menu-13883" href="http://www.esprit.fr/hommes/tendances-exclusivit-s/imperfect">#ImPerfect</a></li><li class="level-3 topnavi-lastchild"><a id="menu-13830" href="http://www.esprit.fr/hommes/tendances-exclusivit-s/look-chine">Effet chiné</a></li></ul></li><li class="section level-2"><a id="menu-9443" class="caption" href="http://www.esprit.fr/hommes/nouveau-boutique-des-basiques/pulls-manches-longues">Les basiques</a><ul class="topnavi-level-3 parent-menu-9443"><li class="level-3"><a id="menu-13958" href="http://www.esprit.fr/hommes/nouveau-boutique-des-basiques/top-des-basiques-d-automne">Top des basiques d'automne</a></li><li class="level-3"><a id="menu-9446" href="http://www.esprit.fr/hommes/nouveau-boutique-des-basiques/pulls-manches-longues">Pulls & sweat-shirts</a></li><li class="level-3"><a id="menu-9444" href="http://www.esprit.fr/hommes/nouveau-boutique-des-basiques/t-shirts-polos">T-shirts & polos</a></li><li class="level-3"><a id="menu-11424" href="http://www.esprit.fr/hommes/nouveau-boutique-des-basiques/manches-longues">Manches longues</a></li><li class="level-3"><a id="menu-9445" href="http://www.esprit.fr/hommes/nouveau-boutique-des-basiques/chemises">Chemises</a></li><li class="level-3 topnavi-lastchild"><a id="menu-9655" href="http://www.esprit.fr/hommes/nouveau-boutique-des-basiques/jeans-pantalons">Jeans & pantalons</a></li></ul><a id="menu-10743" class="caption" href="http://www.esprit.fr/hommes/business-lounge/tenues-business">BUSINESS LOUNGE</a><ul class="topnavi-level-3 parent-menu-10743"><li class="level-3"><a id="menu-10748" href="http://www.esprit.fr/hommes/business-lounge/vestes-de-costume">Vestes</a></li><li class="level-3"><a id="menu-10749" href="http://www.esprit.fr/hommes/business-lounge/pantalons-de-costume">Pantalons</a></li><li class="level-3"><a id="menu-10750" href="http://www.esprit.fr/hommes/business-lounge/chemises-business">Choix de chemises</a></li><li class="level-3"><a id="menu-10752" href="http://www.esprit.fr/hommes/business-lounge/chaussures-acc">Accessoires stylés</a></li><li class="level-3 topnavi-lastchild"><a id="menu-13805" href="http://www.esprit.fr/hommes/business-lounge/tenues-business">Tenues business</a></li></ul></li><li class="section level-2 topnavi-lastchild"><a id="menu-7342" class="caption" href="http://www.esprit.fr/hommes-edc/blousons-parkas-vestes">BOUTIQUE edc</a><ul class="topnavi-level-3 parent-menu-7342"><li class="level-3 topnavi-lastchild"><a id="menu-14074" href="http://www.esprit.fr/hommes/edc/mod-les-phare/voir-tous-les-articles">Modèles phare !</a></li></ul></li></ul></li><li id="root-208" class="level-1"><a id="menu-208" href="http://www.esprit.fr/enfants">Enfants</a><ul class="topnavi-level-2 parent-menu-208 flyout"><li class="section level-2"><a id="menu-409" href="http://www.esprit.fr/enfants/bebes-0-2-ans/filles-0-2-ans/articles-favoris">Bébés 0-2 ans</a><ul class="topnavi-level-3 parent-menu-409"><li class="level-3"><a id="menu-7750" href="http://www.esprit.fr/enfants/bebes-0-2-ans/filles-0-2-ans/layette">Layette</a></li><li class="level-3"><a id="menu-742" href="http://www.esprit.fr/enfants/bebes-0-2-ans/filles-0-2-ans/articles-favoris">Filles 0-2 ans</a></li><li class="level-3 topnavi-lastchild"><a id="menu-819" href="http://www.esprit.fr/enfants/bebes-0-2-ans/garcons-0-2-ans/articles-favoris">Garçons 0-2 ans</a></li></ul><a id="menu-283" href="http://www.esprit.fr/mode-filles">Petits 2-9 ans</a><ul class="topnavi-level-3 parent-menu-283"><li class="level-3"><a id="menu-623" href="http://www.esprit.fr/mode-filles">Filles 2-9 ans</a></li><li class="level-3 topnavi-lastchild"><a id="menu-648" href="http://www.esprit.fr/mode-garcons">Garçons 2-9 ans</a></li></ul><a id="menu-356" href="http://www.esprit.fr/enfants/jeunes-9-14-ans/filles-9-14-ans/articles-favoris">Jeunes 9-14 ans</a><ul class="topnavi-level-3 parent-menu-356"><li class="level-3"><a id="menu-610" href="http://www.esprit.fr/enfants/jeunes-9-14-ans/filles-9-14-ans/articles-favoris">Filles 9-14 ans</a></li><li class="level-3 topnavi-lastchild"><a id="menu-671" href="http://www.esprit.fr/enfants/jeunes-9-14-ans/garcons-9-14-ans/articles-favoris">Garçons 9-14 ans</a></li></ul></li><li class="section level-2"><a id="menu-8302" href="http://www.esprit.fr/enfants/tendances-enfants/tendances-d-automne">TENDANCES ENFANTS</a><ul class="topnavi-level-3 parent-menu-8302"><li class="level-3"><a id="menu-14038" href="http://www.esprit.fr/enfants/tendances-enfants/tendances-d-automne/filles-0-2-ans">Tendances d'automne</a></li><li class="level-3"><a id="menu-14022" href="http://www.esprit.fr/enfants/tendances-enfants/basiques-inedits-preferes/filles-2-9-ans">Basiques inédits préférés</a></li><li class="level-3 topnavi-lastchild"><a id="menu-13997" href="http://www.esprit.fr/enfants/tendances-enfants/tendances-vestes/filles-2-9-ans">Tendances vestes</a></li></ul></li><li class="section level-2"><a id="menu-9450" href="http://www.esprit.fr/enfants/nouveau-boutique-des-basiques/filles-0-2-ans">Les basiques</a><ul class="topnavi-level-3 parent-menu-9450"><li class="level-3"><a id="menu-9461" href="http://www.esprit.fr/enfants/nouveau-boutique-des-basiques/filles-0-2-ans">Filles 0-2 ans</a></li><li class="level-3"><a id="menu-9462" href="http://www.esprit.fr/enfants/nouveau-boutique-des-basiques/gar-ons-0-2-ans">Garçons 0-2 ans</a></li><li class="level-3"><a id="menu-9463" href="http://www.esprit.fr/enfants/nouveau-boutique-des-basiques/filles-2-9-ans">Filles 2-9 ans</a></li><li class="level-3"><a id="menu-9464" href="http://www.esprit.fr/enfants/nouveau-boutique-des-basiques/gar-ons-2-9-ans">Garçons 2-9 ans</a></li><li class="level-3"><a id="menu-9465" href="http://www.esprit.fr/enfants/nouveau-boutique-des-basiques/filles-9-14-ans">Filles 9-14 ans</a></li><li class="level-3 topnavi-lastchild"><a id="menu-9466" href="http://www.esprit.fr/enfants/nouveau-boutique-des-basiques/gar-ons-9-14-ans">Garçons 9-14 ans</a></li></ul><a id="menu-209" href="http://www.esprit.fr/enfants-chaussures-tennis">Chaussures & chaussettes</a><a id="menu-394" href="http://www.esprit.fr/enfants/bijoux-divers/montres-bijoux">Accessoires</a></li><li class="section level-2 topnavi-lastchild"><a id="menu-8596" href="http://www.esprit.fr/enfants/maison">MAISON</a><ul class="topnavi-level-3 parent-menu-8596"><li class="level-3"><a id="menu-210" href="http://www.esprit.fr/enfants-tapis">Tapisserie</a></li><li class="level-3"><a id="menu-10980" href="http://www.esprit.fr/enfants/maison/rideaux-enfants">Rideaux Enfants</a></li><li class="level-3 topnavi-lastchild"><a id="menu-9261" href="http://www.esprit.fr/maison">Tous les articles maison</a></li></ul></li></ul></li><li id="root-5856" class="level-1"><a id="menu-5856" href="http://www.esprit.fr/bonnes-affaires">Bonnes Affaires</a><ul class="topnavi-level-2 parent-menu-5856 flyout"><li class="section level-2"><a id="menu-5857" href="http://www.esprit.fr/bonnes-affaires/femmes/produits">femmes</a><ul class="topnavi-level-3 parent-menu-5857"><li class="level-3"><a id="menu-5858" class="caption" href="http://www.esprit.fr/bonnes-affaires/femmes/produits/vestes-manteaux">PRODUITS</a><ul class="topnavi-level-4 parent-menu-5858"><li class="level-4"><a id="menu-8188" href="http://www.esprit.fr/bonnes-affaires/femmes/produits/vestes-manteaux">Vestes & manteaux</a></li><li class="level-4"><a id="menu-7770" href="http://www.esprit.fr/bonnes-affaires/femmes/produits/pulls">Pulls</a></li><li class="level-4"><a id="menu-6896" href="http://www.esprit.fr/bonnes-affaires/femmes/produits/jeans">Jeans</a></li><li class="level-4"><a id="menu-5870" href="http://www.esprit.fr/bonnes-affaires/femmes/produits/pantalons">Pantalons</a></li><li class="level-4"><a id="menu-5932" href="http://www.esprit.fr/bonnes-affaires/femmes/produits/robes">Robes</a></li><li class="level-4"><a id="menu-6903" href="http://www.esprit.fr/bonnes-affaires/femmes/produits/jupes">Jupes</a></li><li class="level-4"><a id="menu-13981" href="http://www.esprit.fr/bonnes-affaires/femmes/produits/combinaisons-salopettes">Combinaisons & salopettes</a></li><li class="level-4"><a id="menu-5939" href="http://www.esprit.fr/bonnes-affaires/femmes/produits/chemisiers-tuniques">Chemisiers & tuniques</a></li><li class="level-4"><a id="menu-13197" href="http://www.esprit.fr/bonnes-affaires/femmes/produits/manches-longues">Manches longues</a></li><li class="level-4"><a id="menu-5924" href="http://www.esprit.fr/bonnes-affaires/femmes/produits/t-shirts">T-shirts & tops</a></li><li class="level-4"><a id="menu-13890" href="http://www.esprit.fr/bonnes-affaires/femmes/produits/shorts-pantacourts">Shorts & pantacourts</a></li><li class="level-4"><a id="menu-11901" href="http://www.esprit.fr/bonnes-affaires/femmes/produits/sweat-shirts-vestes">Sweat-shirts & vestes</a></li><li class="level-4"><a id="menu-6907" href="http://www.esprit.fr/bonnes-affaires/femmes/produits/blazers-tailleurs">Blazers & tailleurs</a></li><li class="level-4"><a id="menu-5859" href="http://www.esprit.fr/bonnes-affaires/femmes/produits/lingerie">Lingerie</a></li><li class="level-4"><a id="menu-6219" href="http://www.esprit.fr/bonnes-affaires/femmes/produits/v-tements-de-nuit">Vêtements de nuit</a></li><li class="level-4"><a id="menu-5904" href="http://www.esprit.fr/bonnes-affaires/femmes/produits/pour-les-mamans">Pour les mamans</a></li><li class="level-4"><a id="menu-6964" href="http://www.esprit.fr/bonnes-affaires/femmes/produits/sports">Sports</a></li><li class="level-4 topnavi-lastchild"><a id="menu-6912" href="http://www.esprit.fr/bonnes-affaires/femmes/produits/maillots-de-bain">Maillots de bain</a></li></ul></li><li class="level-3 topnavi-lastchild"><a id="menu-5945" class="caption" href="http://www.esprit.fr/bonnes-affaires/femmes/chauss-acc/chaussures">CHAUSS. & ACC.</a><ul class="topnavi-level-4 parent-menu-5945"><li class="level-4"><a id="menu-5946" href="http://www.esprit.fr/bonnes-affaires/femmes/chauss-acc/chaussures">Chaussures</a></li><li class="level-4"><a id="menu-7617" href="http://www.esprit.fr/bonnes-affaires/femmes/chauss-acc/sacs-porte-m">Sacs & portefeuilles</a></li><li class="level-4"><a id="menu-7612" href="http://www.esprit.fr/bonnes-affaires/femmes/chauss-acc/foulards-charpes">Foulards & écharpes</a></li><li class="level-4"><a id="menu-6221" href="http://www.esprit.fr/bonnes-affaires/femmes/chauss-acc/ceintures">Ceintures</a></li><li class="level-4"><a id="menu-11166" href="http://www.esprit.fr/bonnes-affaires/femmes/chauss-acc/bonnets-chapeaux">Bonnets & gants</a></li><li class="level-4"><a id="menu-7576" href="http://www.esprit.fr/bonnes-affaires/femmes/chauss-acc/bijoux-montres">Bijoux fantaisie</a></li><li class="level-4"><a id="menu-9966" href="http://www.esprit.fr/bonnes-affaires/femmes/chauss-acc/bijoux-argent">Bijoux argent & acier</a></li><li class="level-4"><a id="menu-10236" href="http://www.esprit.fr/bonnes-affaires/femmes/chauss-acc/montres">Montres</a></li><li class="level-4"><a id="menu-12381" href="http://www.esprit.fr/bonnes-affaires/femmes/chauss-acc/lunettes-de-soleil">Lunettes de soleil</a></li><li class="level-4"><a id="menu-5967" href="http://www.esprit.fr/bonnes-affaires/femmes/chauss-acc/divers">Divers</a></li><li class="level-4 topnavi-lastchild"><a id="menu-5955" href="http://www.esprit.fr/bonnes-affaires/femmes/chauss-acc/maison">Maison</a></li></ul></li></ul></li><li class="section level-2"><a id="menu-5976" href="http://www.esprit.fr/bonnes-affaires/hommes/produits">hommes</a><ul class="topnavi-level-3 parent-menu-5976"><li class="level-3"><a id="menu-5983" class="caption" href="http://www.esprit.fr/bonnes-affaires/hommes/produits/vestes-manteaux">PRODUITS</a><ul class="topnavi-level-4 parent-menu-5983"><li class="level-4"><a id="menu-11177" href="http://www.esprit.fr/bonnes-affaires/hommes/produits/vestes-manteaux">Vestes & manteaux</a></li><li class="level-4"><a id="menu-12384" href="http://www.esprit.fr/bonnes-affaires/hommes/produits/pulls-vestes">Pulls & gilets</a></li><li class="level-4"><a id="menu-13226" href="http://www.esprit.fr/bonnes-affaires/hommes/produits/sweat-shirts-vestes">Sweat-shirts & vestes</a></li><li class="level-4"><a id="menu-5984" href="http://www.esprit.fr/bonnes-affaires/hommes/produits/chemises">Chemises</a></li><li class="level-4"><a id="menu-6008" href="http://www.esprit.fr/bonnes-affaires/hommes/produits/t-shirts-polos">T-shirts</a></li><li class="level-4"><a id="menu-7537" href="http://www.esprit.fr/bonnes-affaires/hommes/produits/jeans">Jeans</a></li><li class="level-4"><a id="menu-6941" href="http://www.esprit.fr/bonnes-affaires/hommes/produits/pantalons">Pantalons</a></li><li class="level-4"><a id="menu-13897" href="http://www.esprit.fr/bonnes-affaires/hommes/produits/bermudas-shorts">Bermudas & shorts</a></li><li class="level-4"><a id="menu-8865" href="http://www.esprit.fr/bonnes-affaires/hommes/produits/costume-vestes">Costume & vestes</a></li><li class="level-4 topnavi-lastchild"><a id="menu-6140" href="http://www.esprit.fr/bonnes-affaires/hommes/produits/sous-v-tements-maillots-de-bain">Sous-vêtements & pyjamas</a></li></ul></li><li class="level-3 topnavi-lastchild"><a id="menu-5977" class="caption" href="http://www.esprit.fr/bonnes-affaires/hommes/chauss-acc/chaussures">CHAUSS. & ACC.</a><ul class="topnavi-level-4 parent-menu-5977"><li class="level-4"><a id="menu-10966" href="http://www.esprit.fr/bonnes-affaires/hommes/chauss-acc/chaussures">Chaussures</a></li><li class="level-4"><a id="menu-11912" href="http://www.esprit.fr/bonnes-affaires/hommes/chauss-acc/ceintures">Ceintures</a></li><li class="level-4"><a id="menu-10441" href="http://www.esprit.fr/bonnes-affaires/hommes/chauss-acc/echarpes-foulards">Écharpes</a></li><li class="level-4"><a id="menu-13214" href="http://www.esprit.fr/bonnes-affaires/hommes/chauss-acc/bonnets-gants">Bonnets & chapeaux</a></li><li class="level-4"><a id="menu-12108" href="http://www.esprit.fr/bonnes-affaires/hommes/chauss-acc/cravates">Cravates</a></li><li class="level-4"><a id="menu-10442" href="http://www.esprit.fr/bonnes-affaires/hommes/chauss-acc/sacs-porte-m">Sacs & portefeuilles</a></li><li class="level-4"><a id="menu-11914" href="http://www.esprit.fr/bonnes-affaires/hommes/chauss-acc/montres">Montres</a></li><li class="level-4 topnavi-lastchild"><a id="menu-12599" href="http://www.esprit.fr/bonnes-affaires/hommes/chauss-acc/lunettes-de-soleil">Lunettes de soleil</a></li></ul></li></ul></li><li class="section level-2 topnavi-lastchild"><a id="menu-6013" href="http://www.esprit.fr/bonnes-affaires/enfants/b-b-s">enfants</a><ul class="topnavi-level-3 parent-menu-6013"><li class="level-3"><a id="menu-10125" href="http://www.esprit.fr/bonnes-affaires/enfants/b-b-s">Filles 0-2 ans</a></li><li class="level-3"><a id="menu-10781" href="http://www.esprit.fr/bonnes-affaires/enfants/gar-ons-0-2-ans">Garçons 0-2 ans</a></li><li class="level-3"><a id="menu-6942" href="http://www.esprit.fr/bonnes-affaires/enfants/filles-2-9-ans">Filles 2-9 ans</a><ul class="topnavi-level-4 parent-menu-6942"><li class="level-4"><a id="menu-13900" href="http://www.esprit.fr/bonnes-affaires/enfants/filles-2-9-ans/hauts">Hauts</a></li><li class="level-4"><a id="menu-13901" href="http://www.esprit.fr/bonnes-affaires/enfants/filles-2-9-ans/bas">Bas</a></li><li class="level-4"><a id="menu-13902" href="http://www.esprit.fr/bonnes-affaires/enfants/filles-2-9-ans/sous-v-tements-v-tements-de-nuit">Sous-vêtements & vêtements de nuit</a></li><li class="level-4 topnavi-lastchild"><a id="menu-13903" href="http://www.esprit.fr/bonnes-affaires/enfants/filles-2-9-ans/fin-de-serie">Fin de série</a></li></ul></li><li class="level-3"><a id="menu-6948" href="http://www.esprit.fr/bonnes-affaires/enfants/gar-ons-2-9-ans">Garçons 2-9 ans</a><ul class="topnavi-level-4 parent-menu-6948"><li class="level-4"><a id="menu-13905" href="http://www.esprit.fr/bonnes-affaires/enfants/gar-ons-2-9-ans/hauts">Hauts</a></li><li class="level-4"><a id="menu-13906" href="http://www.esprit.fr/bonnes-affaires/enfants/gar-ons-2-9-ans/bas">Bas</a></li><li class="level-4 topnavi-lastchild"><a id="menu-13907" href="http://www.esprit.fr/bonnes-affaires/enfants/gar-ons-2-9-ans/sous-v-tements-v-tements-de-nuit">Sous-vêtements & vêtements de nuit</a></li></ul></li><li class="level-3"><a id="menu-6031" href="http://www.esprit.fr/bonnes-affaires/enfants/filles-9-14-ans">Filles 9-14 ans</a><ul class="topnavi-level-4 parent-menu-6031"><li class="level-4"><a id="menu-13444" href="http://www.esprit.fr/bonnes-affaires/enfants/filles-9-14-ans/hauts">Hauts</a></li><li class="level-4"><a id="menu-13445" href="http://www.esprit.fr/bonnes-affaires/enfants/filles-9-14-ans/bas">Bas</a></li><li class="level-4"><a id="menu-13453" href="http://www.esprit.fr/bonnes-affaires/enfants/filles-9-14-ans/sous-v-tements-v-tements-de-nuit">Sous-vêtements & vêtements de nuit</a></li><li class="level-4 topnavi-lastchild"><a id="menu-13478" href="http://www.esprit.fr/bonnes-affaires/enfants/filles-9-14-ans/fin-de-serie">Fin de série</a></li></ul></li><li class="level-3"><a id="menu-6143" href="http://www.esprit.fr/bonnes-affaires/enfants/gar-ons-9-14-ans">Garçons 9-14 ans</a></li><li class="level-3 topnavi-lastchild"><a id="menu-10777" href="http://www.esprit.fr/bonnes-affaires/enfants/accessoires">Chauss & acc.</a></li></ul></li></ul></li><li id="root-7857" class="level-1"><a id="menu-7857" href="http://www.esprit.fr/maison">Maison</a><ul class="topnavi-level-2 parent-menu-7857 flyout"><li class="section level-2"><a id="menu-7879" class="caption" href="http://www.esprit.fr/salle-de-bain">Salle de bains</a><ul class="topnavi-level-3 parent-menu-7879"><li class="level-3"><a id="menu-7880" href="http://www.esprit.fr/maison/salle-de-bains/peignoirs">Peignoirs</a></li><li class="level-3"><a id="menu-7882" href="http://www.esprit.fr/maison/salle-de-bains/draps-de-bain/unis">Draps de bain</a></li><li class="level-3"><a id="menu-7881" href="http://www.esprit.fr/maison/salle-de-bains/serviettes-de-plage">Serviettes de plage</a></li><li class="level-3"><a id="menu-7887" href="http://www.esprit.fr/maison/salle-de-bains/serviettes-de-toilette">Serviettes de toilette</a></li><li class="level-3"><a id="menu-7888" href="http://www.esprit.fr/maison/salle-de-bains/gants-de-toilette">Gants de toilette</a></li><li class="level-3"><a id="menu-7889" href="http://www.esprit.fr/maison/salle-de-bains/tapis-de-bains">Tapis de bains</a></li><li class="level-3 topnavi-lastchild"><a id="menu-7891" href="http://www.esprit.fr/maison/salle-de-bains/accessoires-bain">Accessoires bain</a></li></ul></li><li class="section level-2"><a id="menu-7898" class="caption" href="http://www.esprit.fr/sejour">Séjour</a><ul class="topnavi-level-3 parent-menu-7898"><li class="level-3"><a id="menu-7899" href="http://www.esprit.fr/maison/sejour/coussins/tous-les-coussins">Coussins</a></li><li class="level-3"><a id="menu-7907" href="http://www.esprit.fr/maison/sejour/couvertures">Couvertures</a></li><li class="level-3"><a id="menu-7908" href="http://www.esprit.fr/maison/sejour/rideaux/tous-les-rideaux">Rideaux</a></li><li class="level-3"><a id="menu-7913" href="http://www.esprit.fr/maison/sejour/deco">Accessoires pour la maison</a></li><li class="level-3 topnavi-lastchild"><a id="menu-7922" href="http://www.esprit.fr/maison/sejour/tapisserie/tous-les-papiers-peints">Tapisserie</a></li></ul></li><li class="section level-2"><a id="menu-8615" class="caption" href="http://www.esprit.fr/maison/chambre-d-enfant">Chambre d´enfant</a><ul class="topnavi-level-3 parent-menu-8615"><li class="level-3"><a id="menu-8616" href="http://www.esprit.fr/maison/chambre-d-enfant/papier-peint-enfants">Tapisserie</a></li><li class="level-3 topnavi-lastchild"><a id="menu-11102" href="http://www.esprit.fr/maison/chambre-d-enfant/rideaux">Rideaux</a></li></ul></li><li class="section level-2 topnavi-lastchild"><a id="menu-7932" class="caption" href="http://www.esprit.fr/cuisine">Cuisiner & manger</a><ul class="topnavi-level-3 parent-menu-7932"><li class="level-3"><a id="menu-7937" href="http://www.esprit.fr/maison/cuisine/chemins-de-table">Chemins de table</a></li><li class="level-3 topnavi-lastchild"><a id="menu-7934" href="http://www.esprit.fr/maison/cuisine/maniques-tabliers">Maniques & tabliers</a></li></ul><a id="menu-9358" class="caption" href="http://www.esprit.fr/maison/tendance">TENDANCE</a><ul class="topnavi-level-3 parent-menu-9358"><li class="level-3"><a id="menu-14047" href="http://www.esprit.fr/maison/tendance/woods">Woods</a></li><li class="level-3"><a id="menu-13758" href="http://www.esprit.fr/maison/tendance/desert">Désert</a></li><li class="level-3"><a id="menu-13386" href="http://www.esprit.fr/maison/tendance/coastline">Coastline</a></li><li class="level-3"><a id="menu-13123" href="http://www.esprit.fr/maison/tendance/lakeside">Lakeside</a></li><li class="level-3 topnavi-lastchild"><a id="menu-12137" href="http://www.esprit.fr/maison/tendance/stockholm">Stockholm</a></li></ul></li></ul></li><li id="root-4918" class="level-1"><a id="menu-external-4918" href="http://www.esprit.com/imperfect/?lang=fr&wt_mc=dd-stories.fr.comefrom.esprit.fr">#ImPerfect</a><ul class="topnavi-level-2 parent-menu-4918 flyout"><li class="section level-2"><div class="section-title first-section section-no-1">Automne 2015</div><a id="menu-external-4919" href="http://www.esprit.com/imperfect/lookbook/?lang=fr&wt_mc=dd-stories.fr.comefrom.esprit.fr">LOOKBOOK</a></li><li class="section level-2"><div class="section-title empty section-no-2">&nbsp;</div><a id="menu-external-4920" href="http://www.esprit.com/imperfect/gallery/?lang=fr&wt_mc=dd-stories.fr.comefrom.esprit.fr">GALLERIE #ImPerfect</a></li><li class="section level-2 nextEmpty"><div class="section-title empty section-no-3">&nbsp;</div><a id="menu-external-4921" href="http://www.esprit.com/imperfect/gallery?lang=fr&wt_mc=dd-stories.fr.comefrom.esprit.fr&tool=open">REJOIGNEZ-NOUS !</a></li><li class="section level-2 nextEmpty"><div class="section-title empty section-no-4">&nbsp;</div></li><li class="section level-2 topnavi-lastchild nextEmpty"><div class="section-title topnavi-lastchild empty section-no-5">&nbsp;</div></li></ul></li><li id="root-90000" class="level-1 topnavi-lastchild"><a id="menu-external-90000" href="https://www.esprit.fr/mon-esprit/">friends</a><ul class="topnavi-level-2 parent-menu-90000 flyout"><li class="section level-2"><a id="menu-external-90100" href="https://www.esprit.fr/mon-esprit/">MON ESPRIT</a><ul class="topnavi-level-3 parent-menu-90100"><li class="level-3"><a id="menu-external-90101" href="https://www.esprit.fr/mon-esprit/orders">Mes commandes</a></li><li class="level-3"><a id="menu-external-90102" href="https://www.esprit.fr/mon-esprit/epoints">Mes e-points</a></li><li class="level-3"><a id="menu-external-90103" href="https://www.esprit.fr/mon-esprit/mydata">Mes données</a></li><li class="level-3"><a id="menu-external-90104" href="https://www.esprit.fr/mon-esprit/profile/changepass">Mon mot de passe</a></li><li class="level-3"><a id="menu-external-90105" href="https://www.esprit.fr/mon-esprit/newsletter">Ma newslett</a></li><li class="level-3 topnavi-lastchild"><a id="menu-external-90106" href="https://www.esprit.fr/mon-esprit/voucher">Mes bons d'achat</a></li></ul></li><li class="section level-2"><a id="menu-external-90200" href="https://www.esprit.fr/mon-esprit/external/registration">Inscription</a><ul class="topnavi-level-3 parent-menu-90200"><li class="level-3 topnavi-lastchild"><a id="menu-external-90201" href="https://www.esprit.fr/mon-esprit/external/howtojoin">Devenir membre</a></li></ul></li><li class="section level-2"><a id="menu-external-90300" href="https://www.esprit.fr/mon-esprit/external/benefits">Les avantages</a><ul class="topnavi-level-3 parent-menu-90300"><li class="level-3"><a id="menu-external-90301" href="https://www.esprit.fr/mon-esprit/external/benefits">Vue d'ensemble</a></li><li class="level-3"><a id="menu-external-90302" href="https://www.esprit.fr/mon-esprit/external/friendscard">Friends Card</a></li><li class="level-3"><a id="menu-external-90303" href="https://www.esprit.fr/mon-esprit/external/goldcard">Gold Card</a></li><li class="level-3 topnavi-lastchild"><a id="menu-external-90304" href="https://www.esprit.fr/mon-esprit/external/platinumcard">Platinum Card</a></li></ul></li><li class="section level-2 topnavi-lastchild"><a id="menu-external-90400" href="https://www.esprit.fr/mon-esprit/external/contact">Aide & contact</a><ul class="topnavi-level-3 parent-menu-90400"><li class="level-3"><a id="menu-external-90401" href="https://www.esprit.fr/mon-esprit/external/contact">Contact</a></li><li class="level-3"><a id="menu-external-90402" href="https://www.esprit.fr/mon-esprit/external/helplogin">Aide à la connexion</a></li><li class="level-3"><a id="menu-external-90403" href="https://www.esprit.fr/mon-esprit/external/forgotpassword">Mot de passe oublié ?</a></li><li class="level-3 topnavi-lastchild"><a id="menu-external-90404" href="https://www.esprit.fr/mon-esprit/external/faq">FAQ</a></li></ul></li></ul></li></ul>    </div>
+
+</div>    </div>
+<!-- END: header -->
+<div id="wrapper">
+    <div class="clear"></div>
+    <!-- START: content  -->
+    <div id="content">
+                    <div id="main_slider" data-qaid="mainSlider">
+        
+<style>
+    #main_slider .owl-controls .owl-dots,
+    #main_slider .owl-controls .owl-nav .owl-prev,
+    #main_slider .owl-controls .owl-nav .owl-next {
+        z-index: 100;
+    }
+</style>
+
+<section id="owl-slider" class="owl-carousel owl-theme swiper-slide">
+                    <div class="swiper-slide"
+             data-paginationlinktext="#imperfect" data-qaid="mainSliderSlide">
+                                <div class="videowrapper" data-qaid="videoWrapper">
+                                                <div class="startbanner imagemap pointer" data-qaid="videoStartBanner">
+                            <img id="banner_258939"
+                                 src="http://pics3.esprit.de/Shop/banner/FR/fr/13839/default/imperfect_natalie_startbanner_startpage_main_1440774076.jpg">
+                            <div class="play-icon"></div>
+                        </div>
+                        <div class="bottom-gradient"></div>
+                                                <div class="videobanner" data-qaid="videoBanner">
+                            <div id="videocontainer"></div>
+                        </div>
+                                                <div class="endbanner imagemap pointer" style="display: none;" data-qaid="videoEndBanner">
+                            <img id="banner_258941" src="http://pics3.esprit.de/Shop/banner/FR/fr/13839/default/imperfect_natalie_mark_endbanner_startpage_main_1440774077.jpg">
+                            <div class="replay-icon"></div>
+                        </div>
+                        <div class="bottom-gradient"></div>
+                                            </div>
+                    <!--[if gt IE 9]> -->
+                    <script>
+                        $jq(document).ready(function () {
+                            /** @var $banner \NWS\BannerNsp\Application\Contract\VideoBanner */
+                            var autoPlay = "0",
+                                myVideoView = new s7viewers.VideoViewer({
+                                "containerId" : "videocontainer",
+                                "params" : {
+                                    "asset" : "esprit/ImPerfect_Natalie-AVS",
+                                    "autoplay": autoPlay,
+                                    "initialbitrate": "100",
+                                    "posterimage": "none",
+                                    "serverurl" : "http://esprit.scene7.com/is/image/",
+                                    "contenturl": "http://esprit.scene7.com/skins/",
+                                    "config": "Scene7SharedAssets/Universal_HTML5_Video",
+                                    "emailurl": "http://esprit.scene7.com/s7/emailFriend",
+                                    "videoserverurl": "http://esprit.scene7.com/is/content/"
+                                },
+                                "handlers": {
+                                    "initComplete": function () {
+
+                                    },
+                                    "trackEvent": function (objID, compClass, instName, timeStamp, eventInfo) {
+                                        //identify event type
+                                        var eventType = eventInfo.split(",")[0];
+                                        switch(eventType) {
+                                            case "STOP":
+                                                if ($jq('.endbanner').length > 0) {
+                                                    if (document.exitFullscreen) {
+                                                        document.exitFullscreen();
+                                                    } else if (document.msExitFullscreen) {
+                                                        document.msExitFullscreen();
+                                                    } else if (document.mozCancelFullScreen) {
+                                                        document.mozCancelFullScreen();
+                                                    } else if (document.webkitExitFullscreen) {
+                                                        document.webkitExitFullscreen();
+                                                    }
+                                                    $jq('.videobanner').hide();
+                                                    $jq('.endbanner').fadeIn(600).trigger('stopAutoLoader');
+                                                    $jq('#main_slider .owl-controls .owl-dots').css('visibility', 'visible');
+                                                    $jq('#main_slider .videobanner').removeClass('playing').removeClass('paused');
+                                                }
+                                                break;
+                                            case "PLAY":
+                                                $jq('#main_slider .owl-controls .owl-dots').css('visibility', 'hidden');
+                                                break;
+                                        }
+                                    }
+                                }
+                            });
+
+                            if (Modernizr.video) {
+                                myVideoView.setParam("playback", "native");
+                            }
+
+//                            if (autoPlay) {
+//                                $jq('[data-qaid="videoStartBanner"]').hide();
+//
+//                                myVideoView.setParam("autoplay", "0");
+//
+//                                //                                myVideoView.setParam("autoplay", "1");
+//                                setTimeout(function () {
+//                                    $jq(document).trigger('stopAutoLoaderWithoutTimeout');
+//                                }, 1000);
+//                                //
+//                                $jq(document).on('translated.owl.carousel', function () {
+//                                    if ($jq('.owl-item.active').find('[data-qaid="videoWrapper"]').length > 0) {
+//                                        setTimeout(function () {
+//                                            $jq(document).trigger('stopAutoLoaderWithoutTimeout');
+//                                        }, 1000);
+//                                        myVideoView.videoplayer.seek(0);
+//                                        myVideoView.videoplayer.play();
+//                                    }
+//                                });
+//                            }
+
+                            myVideoView.init();
+
+                            $jq('#main_slider .startbanner .play-icon').on('click', function () {
+                                $jq('#main_slider .owl-controls .owl-dots').css('visibility', 'hidden');
+                                $jq('#main_slider .startbanner').fadeOut(300);
+                                myVideoView.videoplayer.seek(0);
+                                myVideoView.videoplayer.play();
+                            });
+
+                            $jq(document).on('click', '#main_slider .endbanner .replay-icon', function () {
+                                $jq('#main_slider .videobanner').fadeIn(500);
+                                myVideoView.videoplayer.seek(0);
+                                myVideoView.videoplayer.play();
+                            });
+
+                            $jq(document).on('click', '#main_slider .owl-prev, #main_slider .owl-next', function () {
+                                if ($jq('.owl-item.active').find('.videobanner').length === 0) {
+                                    myVideoView.videoplayer.pause();
+                                    checkPlayerState();
+                                }
+                            });
+
+                            $jq(document).on('dragged.owl.carousel', function () {
+                                setTimeout(function () {
+                                    if ($jq('.owl-item.active').find('.videobanner').length === 0) {
+                                        myVideoView.videoplayer.pause();
+                                        checkPlayerState();
+                                    }
+                                }, 500);
+                            });
+
+//                            $jq(document).on('translated.owl.carousel', function () {
+//                                if ($jq('.owl-item.active').find('.videobanner.paused').length > 0) {
+//                                    myVideoView.videoplayer.play();
+//                                    checkPlayerState();
+//                                }
+//                            });
+
+                            function checkPlayerState() {
+                                setTimeout(function () {
+                                    var paused = "";
+                                    paused = document.getElementById("videocontainer_playPauseButton").getAttribute('selected');
+                                    if (paused == "true") {
+                                        $jq('#main_slider .owl-controls .owl-dots').css('visibility', 'visible');
+                                        $jq('#main_slider .videobanner').removeClass('playing');
+                                        $jq('#main_slider .videobanner').addClass('paused');
+                                    } else {
+                                        $jq('#main_slider .owl-controls .owl-dots').css('visibility', 'hidden');
+                                        $jq('#main_slider .videobanner').removeClass('paused');
+                                        $jq('#main_slider .videobanner').addClass('playing');
+                                    }
+                                }, 50);
+                            }
+
+                            $jq(document).on('click', '#videocontainer, #videocontainer_playPauseButton', function() {
+                                checkPlayerState();
+                            });
+                        });
+                    </script>
+                    <!-- <![endif]-->
+                    <!--[if lte IE 9]>
+                    <script>
+                        $jq('.startbanner').hide();
+                        $jq('.videobanner').hide();
+                        $jq('.endbanner').show();
+                        $jq('.replay-icon').hide();
+                    </script>
+                    <![endif]-->
+                            </div>
+                    <div class="swiper-slide"
+             data-paginationlinktext="NOUVEAUTÉS FEMMES" data-qaid="mainSliderSlide">
+                                <a href="http://www.esprit.fr/mode-femmes" class="slide"
+                       data-webtrekk-click="banner.nouveaut_s_femmes"
+                       data-webtrekk-ck4="main2">
+                        <img class="owl-lazy" data-src="http://pics3.esprit.de/Shop/banner/FR/fr/13839/default/new-collection-u_startpage_mainbanner_1439558093.jpg" alt="">
+                    </a>
+                    <div class="bottom-gradient"></div>
+                            </div>
+                    <div class="swiper-slide"
+             data-paginationlinktext="NOUVEAUTÉS HOMMES" data-qaid="mainSliderSlide">
+                                <a href="http://www.esprit.fr/mode-hommes" class="slide"
+                       data-webtrekk-click="banner.nouveaut_s_hommes"
+                       data-webtrekk-ck4="main3">
+                        <img class="owl-lazy" data-src="http://pics3.esprit.de/Shop/banner/FR/fr/13839/default/men-collection-u_startpage_mainbanner_1439558100.jpg" alt="">
+                    </a>
+                    <div class="bottom-gradient"></div>
+                            </div>
+                    <div class="swiper-slide"
+             data-paginationlinktext="NOUVEAUTÉS ENFANTS" data-qaid="mainSliderSlide">
+                                <a href="http://www.esprit.fr/enfants" class="slide"
+                       data-webtrekk-click="banner.nouveaut_s_enfants"
+                       data-webtrekk-ck4="main4">
+                        <img class="owl-lazy" data-src="http://pics3.esprit.de/Shop/banner/FR/fr/13839/default/kids-collection-u_startpage_mainbanner_1439558109.jpg" alt="">
+                    </a>
+                    <div class="bottom-gradient"></div>
+                            </div>
+    </section>
+<script>
+    $jq(document).ready(function () {
+
+        /* slider */
+
+        var dots = true,
+            nav = true,
+            autoplayTimeout = 8000,
+            $slideElements = $jq('[data-paginationlinktext]'),
+            elementCount = 4;
+
+        if (elementCount <= 1) {
+            dots = false;
+            nav = false;
+        }
+
+        var slider = ($jq("#owl-slider"));
+        slider.owlCarousel({
+            items: 1,
+            autoplay: true,
+            autoplayTimeout: autoplayTimeout,
+            autoplayHoverPause: true,
+            animateIn: 'fadeIn',
+            animateOut: 'fadeOut',
+            nav: nav,
+            navText: [],
+            dots: dots,
+            lazyLoad: true
+        });
+
+        slider.on('translated.owl.carousel', function (event) {
+            if (!($jq('#owl-slider').hasClass('autoloader-stopped'))) {
+                if ($slideElements.eq(elementCount - 1).closest('div.owl-item').hasClass('active')) {
+                    window.setTimeout(function () {
+                        if ($slideElements.eq(elementCount - 1).closest('div.owl-item').hasClass('active')) {
+                            slider.trigger('to.owl.carousel', [0, false]);
+                            stopAutoLoader();
+                        }
+                    }, autoplayTimeout - 1600);
+                }
+            }
+        });
+
+        $jq('#main_slider #owl-slider').on('click', function () {
+            stopAutoLoader();
+        });
+
+        $jq(document).on('dragged.owl.carousel', function () {
+            stopAutoLoader();
+        })
+
+        $jq(document).on('stopAutoLoader', function () {
+            stopAutoLoader();
+        });
+
+        $jq(document).on('stopAutoLoaderWithoutTimeout', function () {
+            stopAutoLoaderWithoutTimeout();
+        });
+
+        $jq.each($slideElements, function (index, element) {
+            var paginationLinkText = $jq(element).attr('data-paginationlinktext');
+            $jq('.owl-dots .owl-dot span').eq(index).text(paginationLinkText);
+        });
+
+        function stopAutoLoader() {
+            window.setTimeout(function () {
+                slider.trigger('stop.owl.autoplay');
+            }, autoplayTimeout);
+            $jq('#owl-slider').addClass('autoloader-stopped');
+        };
+
+        function stopAutoLoaderWithoutTimeout() {
+            slider.trigger('stop.owl.autoplay');
+        };
+
+        $jq.fn.owlCarousel.Constructor.Plugins.autoplay.prototype.stop = function() {
+            window.clearInterval(this.interval);
+            this.core.settings.autoplay = false;
+        };
+    });
+</script>
+    </div>
+    <div class="module_container" data-qaid="standardBanner">
+                    <h2 class="module_h2">Hey! Le saviez-vous?</h2>
+        <section class="module_row">
+                                <article id="" class="module_column">
+                <a href="http://www.esprit.com/imperfect/gallery?country_code=fr" class="module_image_link"
+                   data-webtrekk-click="banner.the_imperfect_movement"
+                   data-webtrekk-ck4="bottom_1">
+                    <img src="http://pics3.esprit.de/Shop/banner/FR/fr/13839/default/imperfect-w_startpage_bottom_left_1442411764.jpg" class="module_image">
+                </a>
+                <a href="http://www.esprit.com/imperfect/gallery?country_code=fr" class="module_link"
+                   data-webtrekk-click="banner.the_imperfect_movement"
+                   data-webtrekk-ck4="bottom_1">
+                    <span class="module_link_text">The #ImPerfect movement</span>
+                    <span class="raquo">&raquo;</span>
+                </a>
+                <p class="module_text">Participez maintenant et gagnez de super prix !</p>
+            </article>
+                                            <article id="" class="module_column">
+                <a href="http://www.esprit.fr/connexion" class="module_image_link"
+                   data-webtrekk-click="banner.vous_aimez_profiter_d_avantages_exclusifs_"
+                   data-webtrekk-ck4="bottom_2">
+                    <img src="http://pics3.esprit.de/Shop/banner/FR/fr/13839/default/friends_startpage_bottom_middle_1442917177.jpg" class="module_image">
+                </a>
+                <a href="http://www.esprit.fr/connexion" class="module_link"
+                   data-webtrekk-click="banner.vous_aimez_profiter_d_avantages_exclusifs_"
+                   data-webtrekk-ck4="bottom_2">
+                    <span class="module_link_text">Vous aimez profiter d'avantages exclusifs ?</span>
+                    <span class="raquo">&raquo;</span>
+                </a>
+                <p class="module_text">Inscrivez-vous dans l'espace paiement, profitez d'un bon de 10 € et de tous les autres avantages !</p>
+            </article>
+                                            <article id="" class="module_column">
+                <a href="http://www.esprit.com/index.php?page=jobfinder" class="module_image_link"
+                   data-webtrekk-click="banner.envie_de_trouver_votre_job_de_r_ve_"
+                   data-webtrekk-ck4="bottom_3">
+                    <img src="http://pics3.esprit.de/Shop/banner/FR/fr/13839/default/karriere-esprit-startpage_bottom_right_1439555818.jpg" class="module_image">
+                </a>
+                <a href="http://www.esprit.com/index.php?page=jobfinder" class="module_link"
+                   data-webtrekk-click="banner.envie_de_trouver_votre_job_de_r_ve_"
+                   data-webtrekk-ck4="bottom_3">
+                    <span class="module_link_text">Envie de trouver votre job de rêve ?!</span>
+                    <span class="raquo">&raquo;</span>
+                </a>
+                <p class="module_text">Découvrez ici toutes les offres d'emploi chez Esprit</p>
+            </article>
+                        </section>
+    </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    <!-- END: content  -->
+</div>
+<div class="clear"></div>
+<!-- START: footer  -->
+<!-- START: footer-newsletter -->
+<div id="newsletter-promo" class="font-lucida">
+    <div class="hr"></div>
+        <div class="wrapper" >
+
+            <div class="center-content">
+            <div class="newsletter_heading" id="newsletter_heading_fr">
+                    S'abonner à la <span class="newsletter_footer_text"> newsletter </span> & bénéficier de - <span class="newsletter_footer_text"> 10 % </span>            </div>
+                        <form action="#" method="post">
+                <div class="newsletter-textfield">
+                    <input type="text" name="email" maxlength="50" value="votre adresse e-mail" />
+                </div>
+                <input type="hidden" value="Erreur e-mail" name="newsletter_subscribe_emailerrorcaption" />
+                <input type="hidden" value="Veuillez vérifier votre adresse e-mail." name="newsletter_subscribe_emailerror" />
+                <input type="hidden" value="Merci pour l'intérêt que vous portez à notre newsletter.<br /><br /> Malheureusement, il nous est impossible de traiter des adresses e-mail de plus de 50 caractères.<br />  Veuillez saisir une autre adresse e-mail contenant moins de 50 caractères." name="newsletter_subscribe_emailerror_length" class="newsletter_subscribe_emailerror_length" />
+                <input type="hidden" value="fr" name="instance" />
+                <input type="hidden" value="shop.frei" name="source" />
+                    <div id="nele_button_fr" class="newsletter-button-women button_container" data-webtrekk-click="footer.newsletter.subscribe">
+                          femmes                    </div>
+                    <div id="nele_button_fr" class="newsletter-button-men button_container" data-webtrekk-click="footer.newsletter.subscribe">
+                           hommes                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END: footer-newsletter -->
+<div class="clear"></div>
+<!-- START: benefitbar -->
+
+            <div id="benefitbar" class="font-lucida">
+                <div class="wrapper" >
+                    <div id="benefit-menu">
+                        <ul id="benefitbar-headers" class="font-lucida">
+                            <li id="benefit_0" class=FR data-webtrekk-click="footer.collection">LE PLUS GRAND CHOIX ESPRIT AU MONDE</li> <li id="benefit_1" class=FR data-webtrekk-click="footer.delivery">Livraison gratuite</li> <li id="benefit_2" class=FR data-webtrekk-click="footer.payment">PAIEMENT SÉCURISÉ</li> <li id="benefit_3" class=FR data-webtrekk-click="footer.returns">RETOURS GRATUITS</li> <li id="benefit_4" class=FR data-webtrekk-click="footer.friends">ESPRIT FRIENDS (3 % DE BONUS)</li> 
+                        </ul>
+                        <div id="benefitbar-layer" class="font-georgia">
+                            <div id="benefit_0_text" class="dropdown_img_container_open"><div class="dropdown_headline">LE PLUS GRAND CHOIX ESPRIT AU MONDE</div><div class="dropdown_text"> <div class="dropdown_text_p">Faites votre choix : </div><div class="dropdown_text_p">Dans notre boutique en ligne, vous trouverez plus d'articles ESPRIT que nulle part ailleurs dans le monde !</div><div class="dropdown_text_p"><span style="font-weight:bold">12 collections par an</span>, 70 nouveaux modèles chaque jour – toujours à la pointe de la tendance et toujours dans l’air du temps.</div> </div></div><div id="benefit_1_text" class="dropdown_img_container_open"><div class="dropdown_headline">Livraison gratuite</div><div class="dropdown_text_p">	<div class="dropdown_text_p">Faire vos emplettes, cela peut être si confortable, si rapide et si sûr : nous livrons gratuitement à l'adresse de votre choix via La Poste, ou en relais Kiala, et ce sans aucun montant minimum de commande.<br \=""><br \="">Votre commande vous parviendra dans un délai de 3 à 6  jours ouvrables.</div><div style="padding: 12px 0px 15px 0px; border-bottom: 1px dotted #5E5E5E;"><table><tbody><tr><td><img alt="" src="//pics3.esprit.de/Shop/images/default/country/FR/../../global/footer/icon_la_poste.gif"></td><td style="padding-left:20px;"><img alt="kiala" src="//pics3.esprit.de/Shop/images/default/country/FR/../../global/footer/icon_kiala.gif"></td><td style="padding-left:20px;"><img alt="colissimo" src="//pics3.esprit.de/Shop/images/default/country/FR/../../global/footer/icon_so_colissimo.gif"></td></tr></tbody></table></div><div style="padding-top: 20px;"><span style="font-weight:bold">Souhaitez-vous une livraison plus rapide ?</span><br>Nous expédions votre colis par<span style="font-weight:bold"> DHL Express</span> pour <span style="font-weight:bold">9,95 €</span> seulement.</div><div style="padding: 12px 0px 15px 0px;"><img src="//pics3.esprit.de/Shop/images/default/country/FR/../../global/footer/icon_dhl_express.png" alt=""></div><table>  <tbody><tr style="padding-bottom: 5px;">     <td style="width: 184px; padding-bottom: 5px;"><span style="font-weight:bold">Commande</span></td>     <td><span style="font-weight:bold">Livraison*</span></td>  </tr><tr>      <td style="padding-bottom: 5px;">du lundi au jeudi avant 11h00</td>      <td>livraison le lendemain</td></tr><tr>      <td style="padding-bottom: 5px;">du jeudi après 11h00 au vendredi avant 11h00</td>      <td style="vertical-align:middle;">livraison le lundi</td></tr><tr>      <td style="padding-bottom: 5px;">Entre le vendredi après 11h00 et le dimanche</td>      <td style="vertical-align:middle;">livraison le mardi</td></tr></tbody></table><div class="dropdown_text_p"><table><tbody><tr><td>*</td><td>Sous réserve de solvabilité. Veuillez noter que le délai de livraison s'allonge en fonction des jours fériés.</td></tr></tbody></table></div></div></div><div id="benefit_2_text" class="dropdown_img_container_open"><div class="dropdown_headline">PAIEMENT SÉCURISÉ</div><div class="dropdown_text_p"> Réglez en toute tranquillité via PayPal ou par carte de crédit.</div><div class="dropdown_text_p"><div style="margin: 20px 0px;"><span style="font-weight:bold;">Moyens de paiement acceptés :</span></div><table cellspacing="0" cellpadding="1" width="100%" id="dropdown_invoice_open_find">	<colgroup>    <col width="90">	</colgroup>	<tbody>		<tr>			<td>Carte de crédit</td>			<td>				<img border="0" alt="" src="//pics3.esprit.de/Shop/images/default/global/footer/icon_benefit_visa.gif">				<img border="0" alt="" src="//pics3.esprit.de/Shop/images/default/global/footer/icon_benefit_mastercard.gif">				<img border="0" alt="" src="//pics3.esprit.de/Shop/images/default/global/footer/icon_benefit_carte_bleue.gif">		<img border="0" alt="" src="//pics3.esprit.de/Shop/images/default/global/footer/icon_benefit_cartebancaire.gif">  						</td>		</tr>		<tr>		</tr><tr>			<td><a href="javascript:wtClickPixel('.benefitbar.paypal_font', 'benefitbar'); openPayment('paypal');">PayPal</a></td>			<td>				<a rel="external_paypal" href="https://www.paypal.com/fr/cgi-bin/webscr?cmd=xpt/Marketing/popup/OLCWhatIsPayPal-outside"><img border="0" alt="" src="//pics3.esprit.de/Shop/images/default/global/footer/icon_benefit_paypal.gif"></a>			</td>		</tr>	</tbody></table><div><div style="width:26px; height:60px; padding-right:10px; float: left;"><img src="//pics3.esprit.de/Shop/images/default/global/footer/icon_ssl_lock.jpg" alt=""></div><div style="">Soyez sans crainte quant à l’utilisation de vos données : chez <span class="dropdown_text_bold">ESPRIT</span>, l’ensemble du processus de commande est <span class="dropdown_text_bold">absolument sûr </span>grâce  au protocole de sécurisation des échanges sur Internet SSL.</div></div></div></div><div id="benefit_3_text" class="dropdown_img_container_open"><div class="dropdown_headline">RETOURS GRATUITS</div><div class="dropdown_text"><div class="dropdown_text_p">L’article que vous avez commandé ne vous va ou ne vous convient pas ? </div><div class="dropdown_text_p">Aucun problème. Utilisez simplement <span class="dropdown_text_bold">l’autocollant "retour"</span>  joint à votre colis et remettez le paquet dans une succursale de <span class="dropdown_text_bold">Kiala</span> ou de <span class="dropdown_text_bold">La Poste</span>.</div><div class="dropdown_text_p dropdown_text_bold">Attention :</div><div class="dropdown_text_p">Le retour doit impérativement s'effectuer par l'intermédiaire du transporteur qui a été désigné pour la livraison.</div></div>   </div><div id="benefit_4_text" class="dropdown_img_container_open"><div class="dropdown_headline">ESPRIT FRIENDS (3 % DE BONUS)</div><div class="dropdown_text">  <div class="dropdown_text_p">Avantages Esprit Friends :</div>  <div class="dropdown_text_p">   <ul>    <li>bonus de 3 % à chaque achat sous forme d´e-points dans de nombreux magasins Esprit et sur l’e-shop</li>    <li>infos sur les collections et les promotions</li>    <li>gratuit et sans engagement</li>   </ul>  </div> </div></div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- END: benefitbar -->
+
+<div class="clear"></div>
+<div class="hr"></div>
+<div id="footer" class="font-georgia">
+    <!-- START: footer-Text -->
+        <!-- END: footer-Text -->
+
+    <div class="wrapper">
+
+        <div class="clear"></div>
+
+        <ul id="footer-socialmedia">
+            <li class="socialmedia-text">
+                Suivez-nous            </li>
+            <li id="footer-youtube" class="socialmedia-icon" data-webtrekk-click="footer.youtube">
+                                <a href="https://www.youtube.com/user/esprit" target="_blank">
+                    <svg><image xlink:href="//pics3.esprit.de/Shop/images/default/global/rwd/icons/youtube-filled.svg" src="//pics3.esprit.de/Shop/images/default/global/rwd/icons/youtube-filled.png" width="100%" height="100%" class="socialmedia-icon" title="YouTube" alt="La boutique Esprit" /></svg>                </a>
+            </li>
+            <li id="footer-facebook" class="socialmedia-icon" data-webtrekk-click="footer.facebook">
+                <a href="http://www.facebook.com/esprit.fr" target="_blank">
+                    <svg><image xlink:href="//pics3.esprit.de/Shop/images/default/global/rwd/icons/facebook-filled.svg" src="//pics3.esprit.de/Shop/images/default/global/rwd/icons/facebook-filled.png" width="100%" height="100%" class="socialmedia-icon" title="Facebook" alt="La boutique Esprit" /></svg>                </a>
+            </li>
+            <li id="footer-googleplus" class="socialmedia-icon" data-webtrekk-click="footer.googleplus">
+                <a href="https://plus.google.com/109029985038035915607/" target="_blank">
+                    <svg><image xlink:href="//pics3.esprit.de/Shop/images/default/global/rwd/icons/googleplus-filled.svg" src="//pics3.esprit.de/Shop/images/default/global/rwd/icons/googleplus-filled.png" width="100%" height="100%" class="socialmedia-icon" title="google+" alt="La boutique Esprit" /></svg>                </a>
+            </li>
+            <li id="footer-pinterest" class="socialmedia-icon" data-webtrekk-click="footer.pinterest">
+                <a href="http://pinterest.com/espritofficial/" target="_blank">
+                    <svg><image xlink:href="//pics3.esprit.de/Shop/images/default/global/rwd/icons/pinterest-filled.svg" src="//pics3.esprit.de/Shop/images/default/global/rwd/icons/pinterest-filled.png" width="100%" height="100%" class="socialmedia-icon" title="pinterest" alt="La boutique Esprit" /></svg>                </a>
+            </li>
+            <li id="footer-instagram" class="socialmedia-icon" data-webtrekk-click="footer.instagram">
+                <a href="https://instagram.com/esprit/" target="_blank">
+                    <svg><image xlink:href="//pics3.esprit.de/Shop/images/default/global/rwd/icons/instagram-filled.svg" src="//pics3.esprit.de/Shop/images/default/global/rwd/icons/instagram-filled.png" width="100%" height="100%" class="socialmedia-icon" title="instagram" alt="La boutique Esprit" /></svg>                </a>
+            </li>
+        </ul>
+
+        <div class="clear"></div>
+
+        <!-- START: footer-menu -->
+        <div id='footer-menu'>
+            <dl>
+                <dt>
+                    Service clientèle
+                </dt>
+                    <dd>
+                        <a class='footer_help' data-webtrekk-click='footer.help' href='http://www.esprit.fr/support?cmd=STARTPAGE'>AIDE en ligne</a>
+                    </dd>
+                    <dd>
+                        <a class='footer_contact' data-webtrekk-click='footer.contact' href='http://www.esprit.fr/support?cmd=ESCALATION_REQUEST&tte'>Contact</a>
+                    </dd>
+                    <dd>
+                        <a class='footer_telephone' data-webtrekk-click='footer.phone' href='http://www.esprit.fr/support?cmd=VIEW_ARTICLE&article=249'>Téléphone (00800 00 377748)</a>
+                    </dd>
+                    <dd>
+                        <a class='footer_post_fax' data-webtrekk-click='footer.mail_fax' href='http://www.esprit.fr/support?cmd=VIEW_ARTICLE&article=250'>Post/Fax</a>
+                    </dd>
+                    <dd>
+                        <a class='footer-feedback' data-webtrekk-click='footer.feedback' href='#'>Votre opinion/suggestions</a>
+                    </dd><dd><a class='footer_storefinder' data-webtrekk-click='footer.storefinder' href='#'>Liste des magasins</a></dd>
+            </dl>
+
+            <dl class='footer_easy' >
+                <dt>
+                    SHOPPING FACILE
+                </dt>
+                <dd>
+                    <a class='footer_worldwide' data-webtrekk-click='footer.collection' href='http://www.esprit.fr/support?cmd=VIEW_ARTICLE&article=197'>Plus grand choix Esprit</a>
+                </dd>
+                <dd>
+                    <a class='footer_shippingcosts' data-webtrekk-click='footer.delivery' href='http://www.esprit.fr/support?cmd=VIEW_ARTICLE&article=167'>Livraison gratuite</a>
+                </dd>
+                <dd>
+                    <a class='footer_shipping' data-webtrekk-click='footer.delivery' href='http://www.esprit.fr/support?cmd=VIEW_ARTICLE&article=169'>Envoi sous 1 à 3 jours</a>
+                </dd>
+                <dd>
+                    <a class='footer_purchaseonaccount' data-webtrekk-click='footer.payment' href='http://www.esprit.fr/support?cmd=VIEW_ARTICLE&article=151'>Paiement sécurisé</a>
+                </dd>
+                <dd>
+                    <a class='footer_retoure' data-webtrekk-click='footer.returns' href='http://www.esprit.fr/support?cmd=VIEW_ARTICLE&article=181'>Retours gratuits</a>
+                </dd>
+                <dd>
+                    <a class='footer_esprit_friends' data-webtrekk-click='footer.friends' href='https://www.esprit.fr/mon-esprit/login'>ESPRIT FRIENDS (3 % bonus)</a>
+                </dd>
+            </dl>
+
+            <dl>
+                <dt>
+                    CONSEILS EN LIGNE
+                </dt>
+                <dd>
+                    <a class='footer_sizechart' data-webtrekk-click='footer.sizeinfo' href='/tableaux-des-tailles'>Tableaux des tailles</a>
+                </dd>
+                <dd>
+                    <a class='footer_product_feedback' data-webtrekk-click='footer.customerfeedback' href='http://www.esprit.fr/support?cmd=VIEW_ARTICLE&article=121'>Évaluations produits</a>
+                </dd>
+                <dd>
+                    <a class='footer_material_info' data-webtrekk-click='footer.material' href='http://www.esprit.fr/support?cmd=VIEW_ARTICLE&article=122'>Informations matières</a>
+                </dd>
+                <dd>
+                    <a class='footer_fitguide' data-webtrekk-click='footer.fitguide' href='http://www.esprit.fr/support?cmd=VIEW_ARTICLE&article=124'>Guides des coupes</a>
+                </dd>
+                <dd>
+                    <a class='footer_availability' data-webtrekk-click='footer.availability' href='http://www.esprit.fr/support?cmd=VIEW_ARTICLE&article=194'>Disponibilité</a>
+                </dd>
+            </dl>
+
+            <dl class='last'>
+                <dt>
+                    Esprit
+                </dt>
+                <dd>
+                    <a class='footer_espritcom' data-webtrekk-click='footer.stories' href='#'>Stories</a>
+                </dd>
+                <dd>
+                    <a class='footer_press' data-webtrekk-click='footer.press' href='#'>Presse</a>
+                </dd>
+                <dd>
+                    <a class='footer_investor-relations' data-webtrekk-click='footer.investorrelations' href='#'>Relations avec les investisseurs</a>
+                </dd>
+                <dd>
+                    <a class='footer_jobs' data-webtrekk-click='footer.career' href='http://www.esprit.com/index.php?command=Display&navi_id=461' rel='external' >Carrière</a>
+                </dd>
+                <dd>
+                    <a class='footer_tc' href='http://www.esprit.fr/support?cmd=VIEW_ARTICLE&article=245&amp;tte=1031'>CGV</a>
+                </dd>
+                <dd>
+                    <a class='footer_imprint' data-webtrekk-click='footer.gtc_imprint' href='http://www.esprit.fr/support?cmd=VIEW_ARTICLE&article=246&amp;tte=1031'>Mentions légales</a>
+                </dd>
+                <dd>
+                    <a class='footer_withdrawal' href='http://www.esprit.fr/support?cmd=VIEW_ARTICLE&article=270&amp;tte=1031'>Rétractation</a>
+                </dd>
+                <dd>
+                    <a class='footer_privacy' data-webtrekk-click='footer.dataprivacy' href='http://www.esprit.fr/support?cmd=VIEW_ARTICLE&article=232'>protection des données</a>
+                </dd>
+            </dl>
+
+            <div class='clear'></div>
+        </div>
+
+        <!-- START: footer-iconbar -->
+        <div id="footer-iconbar">
+            <!-- START: payment and shipping -->
+            
+        <span class="iconbar-payment">
+            <span class="iconbar-payment-text">
+                    Payer par:
+            </span>
+                <a data-webtrekk-click="footer.payment.creditcard" href="http://www.esprit.fr/support?cmd=VIEW_ARTICLE&amp;article=154" ><img src="//pics3.esprit.de/Shop/images/default/global/footer/startseite_bleue_logo.gif" alt="carte_bleu" height="20"/></a><a data-webtrekk-click="footer.payment.creditcard" href="http://www.esprit.fr/support?cmd=VIEW_ARTICLE&amp;article=154" ><img src="//pics3.esprit.de/Shop/images/default/global/footer/startseite_visa_logo.gif" alt="visa" height="20"/></a><a data-webtrekk-click="footer.payment.creditcard" href="http://www.esprit.fr/support?cmd=VIEW_ARTICLE&amp;article=154" ><img src="//pics3.esprit.de/Shop/images/default/global/footer/startseite_mastercard_logo.gif" alt="master" height="20"/></a><a data-webtrekk-click="footer.payment.paypal" href="http://www.esprit.fr/support?cmd=VIEW_ARTICLE&amp;article=147" ><img src="//pics3.esprit.de/Shop/images/default/global/footer/icon_paypal.png" alt="paypal" height="20"/></a><a data-webtrekk-click="footer.payment.creditcard" href="http://www.esprit.fr/support?cmd=VIEW_ARTICLE&amp;article=154" ><img src="//pics3.esprit.de/Shop/images/default/global/footer/startseite_cartebancaire.gif" alt="carte_bancaire" height="20"/></a>        </span>
+        <span class="iconbar-shipping">
+            <span class="iconbar-shipping-text">
+                Transporteur:
+            </span>
+                <a data-webtrekk-mouseup="footer.delivery.laposte" rel="external" href="http://www.laposte.fr/"><img src="//pics3.esprit.de/Shop/images/default/global/footer/icon_la_poste.gif" alt="la poste" height="20"/></a><a data-webtrekk-mouseup="footer.delivery.kiala" rel="external" href="http://www.kiala.fr/kplocator"><img src="//pics3.esprit.de/Shop/images/default/global/footer/icon_kiala.gif" alt="kiala" height="20"/></a><a data-webtrekk-mouseup="footer.delivery.dhlexpress" rel="external" href="http://www.dhl.fr/fr/dhl_express.html"><img src="//pics3.esprit.de/Shop/images/default/global/footer/icon_dhl_express.png" alt="dhl express" height="20"/></a><a data-webtrekk-mouseup="footer.delivery.socolissimo" rel="external" href="http://www.colissimo.fr"><img src="//pics3.esprit.de/Shop/images/default/global/footer/icon_so_colissimo.gif" alt="so colissimo" height="20"/></a>        </span>
+
+                <!-- END: payment and shipping -->
+        </div>
+        <!-- END: footer-iconbar -->
+
+    </div>
+
+    <div class="hr"></div>
+    <div class="wrapper">
+
+            <span class="iconbar-security">
+                <img alt="" src="//pics3.esprit.de/Shop/images/default/global/footer/icon_padlock.png">
+                <span class="iconbar-mouseover shadow dropdown_text">
+                    Soyez sans crainte quant l’utilisation de vos données: chez <span class="dropdown_text_bold">ESPRIT</span> , l’ensemble du processus de commande est <span class="dropdown_text_bold">absolument sûr grâce</span>  au protocole de sécurisation des échanges sur Internet SSL.                </span>
+                <span class="ssl-icon-text">
+                    SSL Secure                </span>
+            </span>
+
+        <div id="footer-copyright">
+            &copy; Esprit Retail B.V. &amp; Co. KG
+        </div>
+
+    </div>
+
+</div>
+<div class="clear"></div>
+
+
+<noscript>
+<div id="noscript">
+<div>
+<div class="logo_hide nopointer">
+<span class="logo_hide_strong nopointer">JavaScript est malheureusement désactivé dans votre navigateur.</span><br/>
+<span class="nopointer">Veuillez activer JavaScript pour pouvoir utiliser la boutique en ligne.</span><br/>
+<a href="http://www.esprit.fr/support?cmd=VIEW_ARTICLE&article=224" class="pointer">Vous trouverez de l'aide ICI.</a><br/>
+Ou bien appelez-nous au 00800 00 377748 (appel gratuit).<br/>
+<span class="logo_hide_sub nopointer">Du lundi au dimanche de 8h00 à 22h00. </span>
+</div>
+</div>
+</div>
+</noscript><!-- END: footer  -->
+<script type="text/javascript" src="/javascript/jquery-plugins/jNetrada3rd/conversant.js"></script><!-- sv: 6.1.4-b8-live -->
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"59bbf037ed","applicationID":"6607438","transactionName":"MVFXZkEHWUVWB0wPVwgbdFFHD1hYGABdAFkTWEEdXQNARUMFShJIB1NQHV0DQEVDBUoSSAdTUA==","queueTime":0,"applicationTime":168,"atts":"HRZUEAkdSks=","errorBeacon":"bam.nr-data.net","agent":"js-agent.newrelic.com\/nr-686.min.js"}</script></body>
+<!---  QATestautomatisierung15789 -->
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>&#220;yelik Sistemi - Hata</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="robots" content="noindex,NOFOLLOW"/>
+<base target="_self" />
+<link href="/Static/v1/hurpass/css/popup.css" rel="stylesheet" type="text/css" />
+<link href="/Static/v1/hurpass/css/jquery.ui.core.css" rel="stylesheet" type="text/css" />
+<link href="/Static/v1/hurpass/css/jquery.ui.button.css" rel="stylesheet" type="text/css" />
+<link href="/Static/v1/hurpass/css/jquery.ui.selectmenu.css" rel="stylesheet" type="text/css" />
+<link href="/Static/v1/hurpass/css/jquery.fancybox.css?v=2.1.0" rel="stylesheet" type="text/css" />
+
+
+<script src="/Static/v1/hurpass/scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script src="/Static/v1/hurpass/scripts/jquery.fancybox.pack.js?v=2.1.0" type="text/javascript"></script>
+<script src="/Static/v1/hurpass/scripts/jquery.ui.core.js" type="text/javascript"></script>
+<script src="/Static/v1/hurpass/scripts/jquery.ui.widget.js" type="text/javascript"></script>
+<script src="/Static/v1/hurpass/scripts/jquery.ui.position.js" type="text/javascript"></script>
+<script src="/Static/v1/hurpass/scripts/jquery.ui.button.js" type="text/javascript"></script>
+<script src="/Static/v1/hurpass/scripts/jquery.ui.menu.js" type="text/javascript"></script>
+<script src="/Static/v1/hurpass/scripts/jquery.ui.selectmenu.js" type="text/javascript"></script>
+
+
+<script src="/Static/v1/hurpass/scripts/scripts.js" type="text/javascript"></script>
+ <script src="/Static/v1/bday-picker.js" type="text/javascript"></script>
+
+<!-- Partial Script-->
+<script>
+    function isCookieDisabled() {
+        try {
+            var t_va = Date.now().toString();
+            $.cookie(t_va, t_va);
+            $.cookie(t_va, null);
+            return false;
+        } catch (e) { }
+        return true;
+    }
+    try {
+        $(window).resize(function () { resize1() });
+    } catch (e) {
+
+    }
+    function resize1() {
+
+        try {
+            window.dialogWidth = '750px';
+            window.dialogHeight = '800px';
+        } catch (e) {
+        }
+
+    }
+
+    function resizeAndNavigate(url, toResize) {
+        loader2();
+        if (window.opener) {
+            if (toResize) {
+                window.resizeTo(800, 750);
+                try {
+                    window.dialogWidth = '750px';
+                    window.dialogHeight = '800px';
+                } catch (e) {
+                }
+
+
+                window.moveTo(400, 100);
+            }
+        }
+        window.location = url;
+    }
+
+ function load_register() {
+        var url = "http://hurpass.com/error/register?aspxerrorpath=%2frobots.txt";
+    resizeAndNavigate(url, true);
+}
+
+function load_reset_pass() {
+    var url = "http://hurpass.com/error/reset_pass?aspxerrorpath=%2frobots.txt";
+    resizeAndNavigate(url, false);
+}
+
+
+          
+
+</script>
+
+<script src="../../Static/v1/jquery.tools.min.js" type="text/javascript"></script>
+<script>
+    var sso_loader;
+    $(document).ready(function () {
+        $("form").each(function () {
+            var t_id = "#" + this.id;
+            $(t_id).attr("onsubmit", "loader2();");
+        });
+        try {
+            $("#sso_loader").overlay().close();
+        } catch (e) {
+
+        }
+        bindEvents();
+    });
+    function closer() {
+        try {
+            sso_loader.hide();
+            sso_loader.close();
+            
+        } catch (e) {
+            try {
+                $("#sso_loader").overlay().close();
+            } catch (e) {
+
+            }
+        }
+
+    }
+
+    function bindEvents() {
+        $(window).bind("load", function () {
+            loader();
+            setTimeout(function () { closer() }, 5000);
+
+        });
+        $(window).bind("beforeunload", function () {
+            loader();
+            setTimeout(function () { closer() }, 5000);
+        });
+
+        $(window).bind("unload", function () {
+            loader();
+            setTimeout(function () { closer() }, 5000);
+        });
+        $(window).unload(function () {
+            loader();
+            setTimeout(function () { closer() }, 5000);
+        });
+        setTimeout(function () { closer() }, 5000);
+    }
+    bindEvents();
+    function loader2() {
+        try {
+            sso_loader.load();
+            setTimeout(function () { closer() }, 5000);
+            countdown_trigger(3);
+           // loader_finding_email();
+        } catch (e) {
+
+        }
+
+    }
+
+    function loader_finding_email() {
+        try {
+            closer();
+        } catch (e) {
+
+        }
+        try {
+         var t_loader=   $("#sso_loader_login").overlay({
+
+                // custom top position
+                top: 260,
+
+                // some mask tweaks suitable for facebox-looking dialogs
+                mask: {
+
+                    // you might also consider a "transparent" color for the mask
+                    color: '#fff',
+
+                    // load mask a little faster
+                    loadSpeed: 100,
+
+                    // very transparent
+                    opacity: 0.8
+                },
+
+                // disable this for modal dialog-type of overlays
+                closeOnClick: false,
+
+                // load it immediately after the construction
+                load: true
+
+            });
+            setTimeout(function () { t_loader.close() }, 5000);
+            countdown_trigger(3);
+            
+        } catch (e) {
+
+        }
+
+    }
+
+    function countdown_trigger(countdown_number) {
+        if (countdown_number > 0) {
+            // loader();
+            sso_loader.load();
+            countdown_number--;
+            if (countdown_number > 0) {
+                countdown = setTimeout('countdown_trigger(' + countdown_number + ')', 1000);
+            }
+        }
+    }
+
+    function loader() {
+        sso_loader = $("#sso_loader").overlay({
+
+            // custom top position
+            top: 260,
+
+            // some mask tweaks suitable for facebox-looking dialogs
+            mask: {
+
+                // you might also consider a "transparent" color for the mask
+                color: '#fff',
+
+                // load mask a little faster
+                loadSpeed: 200,
+
+                // very transparent
+                opacity: 0.8
+            },
+
+            // disable this for modal dialog-type of overlays
+            closeOnClick: false,
+
+            // load it immediately after the construction
+            load: true
+
+        });
+
+        
+
+    }
+
+  
+</script>
+
+</head>
+
+<body>
+       
+<script type="text/javascript">
+    var _gaq = [['_setAccount', 'UA-9076647-27'], ['_setDomainName', 'hurpass.com'], ['_trackPageview']];
+    (function () {
+        var ga = document.createElement('script');  ga.async = true;
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+
+
+<div id="sso_loader" class="notification" style="z-index: 9999;">
+<br /><br />iþleminiz yapýlýrken lütfen bekleyiniz...<br /><img src="../../Static/v1/hurpass/images/loading36.gif" alt="iþleminiz yapýlýrken lütfen bekleyiniz..."/>
+<br />
+<br />
+        
+</div>
+
+
+
+
+    <div class="header popup">
+<div class="logo"></div>
+<h2>&#220;yelik Sistemi - Hata</h2>
+</div>
+
+
+<div class="content" id="sso_content">
+<div class="panel_register_update">
+        	<h1 class="page_title"><span>Ýþleminiz Gerçekleþtirilemedi</span></h1>
+           <div> Aradýðýnýz sayfa bulunamadý veya hata oluþtu.
+            Bu iþlem incelenmek üzere kayýt altýna alýnmýþtýr.</div>
+            </div>
+    </div>
+
+
+        
+
+
+
+
+</body>
+</html>

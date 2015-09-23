@@ -1,0 +1,3 @@
+User-Agent: *
+Disallow:
+Sitemap: http://geoportal.gov.pl/sitemap.xml

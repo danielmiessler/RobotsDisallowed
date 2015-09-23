@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /BVFrame.aspx
+Disallow: /BVSandbox.aspx
+Disallow: /Proxy.ashx
+Crawl-delay: 1
+Request-rate: 1/1

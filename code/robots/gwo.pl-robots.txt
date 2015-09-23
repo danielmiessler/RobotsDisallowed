@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /bookshops/download/
+disallow: /schools/userList/
+
+
+disallow: /galeriaMSM/

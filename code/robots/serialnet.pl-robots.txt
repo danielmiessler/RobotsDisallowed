@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /play.php?
+Allow: /
+
+# Internet Archiver Wayback Machine
+User-agent: ia_archiver
+Disallow: /
+
+User-agent: spbot
+Disallow: /

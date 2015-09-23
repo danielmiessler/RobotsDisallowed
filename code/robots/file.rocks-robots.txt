@@ -1,0 +1,250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<title>..::File Management::..</title>
+
+<link href="css/reset.css" rel="stylesheet" type="text/css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="fonts/stylesheet.css" rel="stylesheet" type="text/css" />
+<link href="css/responsive.css" rel="stylesheet" type="text/css" />   
+<link rel='stylesheet' href='css/popbox.css' type='text/css' media='screen' charset='utf-8'>
+<link rel="stylesheet" type="text/css" href="css/modal.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script type='text/javascript' charset='utf-8' src='js/popbox.js'></script>
+
+
+<!-- Responsive menu start -->
+<script type="text/javascript"> 
+$(document).ready(function(){
+	$('.popbox').popbox();
+
+	$("#flip").click(function(){
+		$("#panel").slideToggle("slow");
+	});
+  $('li a').click(function () {    
+		var ullist = $(this).parent().children('ul:first');
+		ullist.toggle('slow');
+	});
+});
+</script>
+  
+  
+    <script type="text/javascript">
+        var CLIENT_ID = "258911420882-hagurr2tkdltrmlo8eq9fjf5ovqshfdn.apps.googleusercontent.com";
+        var SCOPES = 'https://www.googleapis.com/auth/drive';
+    </script>
+    <script type="text/javascript" src="auth.js"></script>
+    
+    <script type="text/javascript" src="//apis.google.com/js/client.js?onload=handleClientLoad"></script>
+
+
+    
+</head>
+
+<body>
+    <div class="container">
+    	<!--header start -->
+<div class="header">
+           	 	<div class="wrapper">
+                	 <div class="header-top">
+                     <div class="padding-20">                
+       <div class="header-top-left">Google Drive Sharer <small>Application</small></div>
+                  
+                	<div class="clear"></div>
+                </div>
+                </div>
+               
+                
+                <div class="header-btn-admin">
+                <div class="padding-20 padding-0">
+                	<div class="header-btn-admin-left">
+                    </div>
+                  <div class="header-btn-admin-right">
+                  <div class='popbox'>
+    <a class='open' href='#'>
+    <img src="images/nav2.png" width="25" height="20"  style='width:21px;position:relative; top:21px;'/> 
+    </a>
+    
+    <div class='collapse'>
+      <div class='box'>
+        <div class='arrow'></div>
+        <div class='arrow-border'></div>
+            <div class="popbox-body">
+                <div class="popbox-top">
+                	<h2  class="emailinfo" style="display:none"> Welcome  </h2>
+                    <div class="button authbtn" style="display:none" ><a href="" class="blue valign">Authorize</a></div>
+                    <p> Free Member </p>  
+                    <!--<div class="button">
+                    <a href="" class="green"> Free 30-Day Trial ! </a></div>-->
+                    <div class="button"><a href="" class="blue"> File Management </a></div>
+                    <p> <a href="logout.php" style="display:none"> Logout </a> </p>             
+                </div>
+                
+           </div>        
+                
+      </div>
+    </div>
+  </div>
+                  </div>
+                    <div class="clear"></div>
+                </div> 
+                </div>
+                        
+                	<div class="clear"></div>
+                </div>     
+            </div>
+
+        	
+        <!--header end -->
+
+
+<!--    page3.html---->
+	<div class="content-section"  id="drive" style="display:none;">
+	<div class="wrapper">
+        <div class="contenair">
+          <div class="full-width">
+            <div class="informations-panel">
+                <div class="informations-panel-header"><h2>Google Drive Sharer</h2></div>
+                    <div class="informations-panel-body">
+                        <div class="contenair padding-bottom">                        	
+                            
+                                  <p>Links :</p>
+                                  <p>                                   
+                                    <textarea class="textarea" rows="5" cols="45" id="link0" name="textarea"></textarea>
+                                  </p>
+                                    <input id="link-submit"  type="submit" class="blue-btn-cnt valign" value="Send" id="button" name="button">
+                                  
+                                 <p></p><p></p>
+                             
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+            
+            <div class="clear"></div>
+        </div>
+	</div>
+</div>
+
+
+
+
+
+       
+		<!--    page4.html---->
+		<div class="content-section" id="auth-button" style="display:none;">
+            	<div class="wrapper">
+            	  <div class="contenair">
+              	  <div class="full-width">
+                   	  <div class="informations-panel">
+                	<div class="informations-panel-header"><h2>Google Drive Sharer</h2></div>
+                <div class="informations-panel-body">
+                    	<div class="contenair padding-top-bottom">
+                       	  <a href="#" class="blue-btn valign">Authorize</a>
+                        </div>
+                       
+                </div>
+              </div>
+              	  </div>
+                    
+                    <div class="clear"></div>
+                </div>
+                
+                
+            </div>
+            </div>
+    </div>
+
+  
+
+    
+	
+	
+	
+	
+<div id="urlModal" class="simplePopup">
+<h2>Link to File</h2>
+<div class="simplePopup-body">
+    <div class="padding-bottom">
+    	<div class="popup-border">
+        	<h3>Upload Status :</h3> 
+        	<p><span id="file-link"></span></p>
+        </div>
+    </div>
+    
+    <div class="padding-bottom">
+    	<div class="popup-border">
+        	<h3>Message : <span id="file-message"></span></h3>         	
+        </div>
+    </div>
+    
+    <div class="contenair">
+    	<div class="simplePopupClose2 close-btn">Close</div>
+        <div class="clear"></div>
+    </div>
+    
+</div>
+
+</div>
+<script src="js/jquery.simplePopup.js" type="text/javascript"></script>
+
+
+    <script>
+        $(function() {
+
+            String.format = function() {
+                // The string containing the format items (e.g. "{0}")
+                // will and always has to be the first argument.
+                var theString = arguments[0];
+                
+                // start with the second argument (i = 1)
+                for (var i = 1; i < arguments.length; i++) {
+                    // "gm" = RegEx options for Global search (more than one instance)
+                    // and for Multiline search
+                    var regEx = new RegExp("\\{" + (i - 1) + "\\}", "gm");
+                    theString = theString.replace(regEx, arguments[i]);
+                }
+                
+                return theString;
+            }
+
+            $("#link-submit").click(function() {
+
+                var linkVal = $("#link0").val().split("\n");
+                //console.log(linkVal);
+                var data = new FormData();
+                data.append('fileId', linkVal);
+                data.append('email', userEmail);
+                $.ajax({
+                    url: 'metadata.php',
+                    type: 'POST',
+                    data: data,
+                    cache: false,
+                    dataType: 'json',
+                    processData: false,
+                    contentType: false,
+                    success: function(data, textStatus, jqXHR) {
+                        links = data.link;
+                        htmldata = "";
+                        $.each(links, function(key, val){
+                          htmldata += String.format("<b>{0}</b> : {1}</br>", key, val);
+                        });
+                        $("#file-link").html(htmldata);
+                        $("#file-message").html(data.message);
+                       $('#urlModal').simplePopup();
+                        $("#link0").val("");
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        alert('There was an error uploading');
+                    }
+
+                });
+            });
+        });
+    </script>	
+</body>
+
+</html>

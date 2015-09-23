@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="/tea/mt.js" type="text/javascript"></script>
+<script type="text/javascript">
+var E92='\\';
+var arr=new RegExp("/(x?)html("+E92+"d)/["+E92+"w/]+/("+E92+"d+)/("+E92+"d+)-("+E92+"d+).htm").exec("/robots.txt");
+if(arr)
+{
+  cook.set("status",arr[1]=='x'?"1":"0");
+  for(var i=arr[4].length;i<4;i++)arr[4]="0"+arr[4];
+  localStorage.setItem('404_url',location.pathname+location.search);
+  location.replace("/servlet/Node?node="+arr[3]+arr[4]+"&language="+arr[2]+"&pos="+arr[5]+location.search.replace('?','&')+location.hash);
+  document.write("<style>*{display:none}</style>");
+}
+
+function hback()
+{
+  if(history.length==(mt.isIE?0:1))
+    location.href="/";
+  else
+    history.back();
+}
+if(name=='_ajax')alert('404');
+</script>
+<script>
+var _hmt = _hmt || [];
+(function(){
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?41266a92b6e4571ae69bf4bc141f0933";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm,s);
+})();
+</script>
+<link href="/res/Home/cssjs/community.css" rel="stylesheet" type="text/css">
+<title>提示信息</title>
+</head>
+<body>
+<h1>提示信息</h1>
+<div id="head6"><img height="6" src="about:blank"></div>
+
+<table cellspacing="0" style="width:550px;height:118px;background-image:url(/jsp/info/error/bg.jpg);background-repeat: no-repeat;background-position: left top;">
+<tr>
+  <td align="center" valign="middle">该页不存在，单击<a href="javascript:hback();">这里</a>返回。</td>
+</tr>
+</table>
+
+</body>
+</html>

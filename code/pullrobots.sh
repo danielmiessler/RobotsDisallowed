@@ -2,6 +2,7 @@
 
 ##################################################
 # RobotsDisallowed
+# September 2015, Daniel Miessler
 # See the directories people don't want you to see
 # Scans the robots.txt files for the world's top
 #  websites and enumerates what's disallowed
@@ -10,6 +11,7 @@
 # Variables
 DATE=`date +%d.%m.%y`
 NOS=$1
+export LANG=C
 export LANG=C
 
 # Input management
@@ -68,33 +70,32 @@ if [[ $NOS =~ ^[0-9]+$ ]]; then
 find ./robots -name "*.txt" | xargs grep Disallow | awk '{ print $2 }' >> ./raw.txt
 
 # Cleanup junk characters, and make sure directories start with a /
-sed -i '' '/^\//!d' ./raw.txt
-sed -i '' '/:/d' ./raw.txt
-sed -i '' '/%/d' ./raw.txt
-sed -i '' '/-/d' ./raw.txt
-sed -i '' '/,/d' ./raw.txt
-sed -i '' '/_/d' ./raw.txt
-sed -i '' '/?/d' ./raw.txt
-sed -i '' '/*/d' ./raw.txt
-sed -i '' '/;/d' ./raw.txt
-tr -d '\r' < ./raw.txt > ./sanitized.txt
+LANG=C LC_ALL=C sed -i '' '/^\//!d' ./raw.txt
+LANG=C LC_ALL=C sed -i '' '/:/d' ./raw.txt
+LANG=C LC_ALL=C sed -i '' '/%/d' ./raw.txt
+LANG=C LC_ALL=C sed -i '' '/-/d' ./raw.txt
+LANG=C LC_ALL=C sed -i '' '/,/d' ./raw.txt
+LANG=C LC_ALL=C sed -i '' '/_/d' ./raw.txt
+LANG=C LC_ALL=C sed -i '' '/?/d' ./raw.txt
+LANG=C LC_ALL=C sed -i '' '/*/d' ./raw.txt
+LANG=C LC_ALL=C sed -i '' '/;/d' ./raw.txt
+LANG=C LC_ALL=C tr -d '\r' < ./raw.txt > ./sanitized.txt
 
 # Sorting
-sort ./sanitized.txt | uniq -c | sort -nr > ./sorted.txt
+sort ./sanitized.txt | LANG=C LC_ALL=C uniq -c | sort -nr > ./sorted.txt
 
 # Grouping the top hits
 head -n 10 ./sorted.txt | awk '{print $2}' > ../Top10-RobotsDisallowed.txt
 head -n 100 ./sorted.txt | awk '{print $2}' > ../Top100-RobotsDisallowed.txt
 head -n 500 ./sorted.txt | awk '{print $2}' > ../Top500-RobotsDisallowed.txt
 head -n 1000 ./sorted.txt | awk '{print $2}' > ../Top1000-RobotsDisallowed.txt
+head -n 10000 ./sorted.txt | awk '{print $2}' > ../Top10000-RobotsDisallowed.txt
+head -n 100000 ./sorted.txt | awk '{print $2}' > ../Top100000-RobotsDisallowed.txt
 
 # Cleanup temporary files
 #rm ./domains.txt
-rm ./tocomma.csv
-rm ./22*
 #rm ./raw.txt
 rm ./sorted.txt
-rm ./top-1m.csv
 rm ./sanitized.txt
 
 # Output

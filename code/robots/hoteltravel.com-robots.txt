@@ -1,0 +1,202 @@
+
+<% 
+    
+   'Don't send response text as we go, in case we do a redirect 
+   'Response.Buffer = True    
+   '*******************************************
+   ' start of caputring the useragent requesting the robots.txt file
+Const RESDATA = "Driver={SQL Server};server=masterbooking.ht.ht;uid=checkdns;Pwd=79#sh@qpuh;Database=logging;Connection Reset=FALSE"
+Dim arrayParams,sIP,sUseragent
+
+sip = Request.ServerVariables("REMOTE_ADDR")
+sUseragent=Request.ServerVariables("HTTP_USER_AGENT")
+arrayParams = Array(0, sip,sUseragent)
+results = SPexec("xx_insertrobotfile", RESDATA, arrayParams, 100, adoRS, Errvalue)
+'end of capturing
+   '*******************************************
+
+   'Check if HTTPS is turned on.  If not, redirect to the secure site 
+   If (UCASE(Request.ServerVariables("HTTPS")) <> "ON") Then 
+
+'	Response.write "User-agent: Slurp" & vbcrlf 
+'	Response.write "Disallow: /network/" & vbcrlf
+'	Response.write "Disallow: /planner/" & vbcrlf
+'	Response.write "Disallow: /member/" & vbcrlf
+'	Response.write "Disallow: /de/network/" & vbcrlf
+'	Response.write "Disallow: /kr/network/" & vbcrlf
+'	Response.write "Disallow: /jp/network/" & vbcrlf
+'	Response.write "Disallow: /fr/network/" & vbcrlf
+'	Response.write "Disallow: /cn/network/" & vbcrlf
+'	Response.write "Disallow: /it/network/" & vbcrlf
+'	Response.write "Disallow: /es/network/" & vbcrlf
+'	Response.write "Disallow: /map/" & vbcrlf
+'	Response.write "Disallow: /maplist/" & vbcrlf
+'	Response.write "Disallow: /robottrap/" & vbcrlf
+'	Response.write "Disallow: /robottrap/robottrap.asp" & vbcrlf
+'	Response.write "Disallow: /error/" & vbcrlf
+'	Response.write "Disallow: /search/" & vbcrlf
+'	Response.write "Disallow: /searchinghotel/" & vbcrlf
+'	Response.write "Disallow: /application/" & vbcrlf
+'	Response.write "Disallow: /rates/" & vbcrlf
+'	Response.write "Disallow: /ratesapp/" & vbcrlf
+'	Response.write "Disallow: /newsletter/" & vbcrlf
+	
+	
+	Response.write "" & vbcrlf
+	Response.write "User-agent: *" & vbcrlf
+	Response.write "Disallow: /network/" & vbcrlf
+	Response.write "Disallow: /planner/" & vbcrlf
+	Response.write "Disallow: /member/" & vbcrlf
+	Response.write "Disallow: /subscription/" & vbcrlf
+	Response.write "Disallow: /de/network/" & vbcrlf
+	Response.write "Disallow: /kr/network/" & vbcrlf
+	Response.write "Disallow: /jp/network/" & vbcrlf
+	Response.write "Disallow: /fr/network/" & vbcrlf
+	Response.write "Disallow: /cn/network/" & vbcrlf
+	Response.write "Disallow: /it/network/" & vbcrlf
+	Response.write "Disallow: /es/network/" & vbcrlf
+	'Response.write "Disallow: /tools/" & vbcrlf
+	Response.write "Disallow: /map/" & vbcrlf
+	Response.write "Disallow: /maplist/" & vbcrlf
+	Response.write "Disallow: /robottrap/" & vbcrlf
+	Response.write "Disallow: /robottrap/robottrap.asp" & vbcrlf
+	Response.write "Disallow: /error/" & vbcrlf
+	Response.write "Disallow: /search/" & vbcrlf
+	Response.write "Disallow: /searchinghotel/" & vbcrlf
+	Response.write "Disallow: /application/" & vbcrlf
+	Response.write "Disallow: /rates/" & vbcrlf
+	Response.write "Disallow: /ratesapp/" & vbcrlf
+	Response.write "Disallow: /newsletter/" & vbcrlf
+	Response.write "Disallow: /searchnearby/" & vbcrlf
+	Response.write "Disallow: /hotelgetrates/" & vbcrlf
+	
+	
+	
+    ELSE
+	Response.Write "User-agent: *" & vbcrlf
+	Response.Write "Disallow: /planner/" & vbcrlf
+	Response.Write "Disallow: /member/" & vbcrlf
+	Response.Write "Disallow: /subscription/" & vbcrlf
+	Response.Write "Disallow: /network" & vbcrlf
+	Response.Write "Disallow: /de/network/" & vbcrlf
+	Response.Write "Disallow: /kr/network/" & vbcrlf
+	Response.Write "Disallow: /jp/network/" & vbcrlf
+	Response.Write "Disallow: /fr/network/" & vbcrlf
+	Response.Write "Disallow: /cn/network/" & vbcrlf
+	Response.Write "Disallow: /it/network/" & vbcrlf
+	Response.Write "Disallow: /es/network/" & vbcrlf
+	'Response.Write "User-agent: *" & vbcrlf
+	'Response.Write "Disallow: /" & vbcrlf
+
+End If
+
+%> 
+<%
+' -----------------------------------------------------------------------------
+' LIBRARY:     libASP
+' AUTHOR:      Graham Johnson
+' NARRATIVE:   ASP Code Library
+' HISTORY:     20/04/2000 GPJ Created
+' COPYRIGHT:   (C) Silversands Limited 1986 - 2000 All rights reserved.
+' -----------------------------------------------------------------------------
+
+' EXPORTED FUNCTIONS
+' Function SPexec(asCommand, asConnection, avParams(), alTimeout, aoRS, asErr) 
+
+' -----------------------------------------------------------------------------
+' METHOD:      SPexec
+' AUTHOR:      Graham Johnson
+' NARRATIVE:   Executes a stored procedure
+'              Takes a variant array of params - param 0 is return value
+'              Must pass oRS - ADO Result Set
+'              Returns error string in asErr
+' HISTORY:     20/04/2000 GPJ Created
+' -----------------------------------------------------------------------------
+
+Function SPexec(asCommand, asConnection, avParams(), alTimeout, aoRS, asErr) 
+   'On Error Resume Next
+
+   ' first define the ADO constants we need
+		
+	
+    const adCmdStoredProc = 4  
+	Const adLockReadOnly = 1
+	Const adLockPessimistic = 2
+	Const adLockOptimistic = 3
+	Const adLockBatchOptimistic = 4
+	Const adOpenForwardOnly = 0
+	Const adOpenKeyset = 1
+	Const adOpenDynamic = 2
+	Const adOpenStatic = 3
+	Const adUseClient = 3
+
+
+   Dim oConn    'ADODB.Connection
+   Dim oCmd	'ADODB.Command
+   Dim oRS 	'ADODB.Recordset
+   Dim oErr	'ADODB.Error
+   Dim lParam
+
+   SPexec = False
+   asErr = ""
+
+   ' opening an active connection will open a connection if necessary
+   Set oCmd = Server.CreateObject("ADODB.Command")
+   oCmd.ActiveConnection = asConnection  'RESERVATIONDSN
+   oCmd.CommandType = adCmdStoredProc
+   oCmd.CommandText = asCommand
+   'oCmd.CommandTimeout = 90
+ oCmd.CommandTimeout = alTimeout
+   oCmd.Parameters.Refresh
+
+   Set aoRS = Server.Createobject("ADODB.Recordset")
+   if oCmd.Parameters.Count = 0 then asErr = "Parameter refresh failure"
+   if asErr = "" and (oCmd.Parameters.Count - 1) <> UBound(avParams) then asErr = "Parameter mismatch-" & oCmd.Parameters.Count & " - " & UBound(avParams)
+   if (asErr = "") then 
+     For lParam = 1 To oCmd.Parameters.Count - 1
+       oCmd.Parameters(lParam).Value = avParams(lParam)
+'       Response.Write oCmd.Parameters(lParam).Name & " = " & oCmd.Parameters(lParam).Value & "<BR>"
+     Next
+   end if
+   if (Err.Number <> 0) then asErr = Err.Description
+
+   ' execute that result set
+   if (asErr = "") then
+'     Set aoRS = Nothing
+	 
+'    Set aoRS = oCmd.Execute()
+aoRS.CursorType = adOpenKeyset
+	 aoRs.LockType = adLockOptimistic
+     aoRS.CursorLocation = adUseClient
+	 aoRS.Open oCmd
+     if (Err.Number <> 0) then asErr = Err.Description
+   end if
+
+   ' get the sql errors
+   if (asErr = "") then
+     For Each oErr In oCmd.ActiveConnection.Errors
+       If oErr.NativeError = 50000 Then asErr = "Message: " & oErr.Description & vbCrLf
+       If oErr.NativeError <> 50000 Then asErr = "Error: " & oErr.Number & vbCr & oErr.Description & vbCr & "Source: " & oErr.SOURCE & vbCr & "SQL State: " & oErr.SQLState & vbCr & "Native Error: " & oErr.NativeError & vbCrLf & asErr
+     Next
+
+     if (Err.Number <> 0) then asErr = Err.Description & vbCrLf & asErr
+   end if
+
+   ' package up error result
+   if (Err.Number = 0) then
+
+     For lParam = 0 To oCmd.Parameters.Count - 1
+       avParams(lParam) = oCmd.Parameters(lParam).Value
+     Next
+
+     if (err.number <> 0) then asErr = Err.Description
+	   Response.Write asErr
+    end if
+  
+   Set oCmd.ActiveConnection = Nothing
+   Set oCmd = Nothing
+ 
+End Function
+%>
+
+

@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+<head>
+<title>Kostenlos Bilder und Fotos hochladen - Pic-Upload.de</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta name="keywords" content="bilder, hochladen, kostenlos, bild, fotos, image, hosting, upload, pic" />
+<meta name="description" content="Bilder und Fotos kostenlos hochladen und veröffentlichen. Unbegrenzt und ohne Anmeldung." />
+<meta name="robots" content="index,follow" />
+<meta name="viewport" content="width=1060" />
+<script src="http://www.pic-upload.de/js/jquery-1.7.2.min.js"></script>
+<script src="http://www.pic-upload.de/byteflex/bf.js"></script>
+<script src="http://www.pic-upload.de/byteflex/bf-overlay.js"></script>
+<script src="http://www.pic-upload.de/byteflex/bf-scrollbar.js"></script>
+<script src="http://www.pic-upload.de/byteflex/bf-dialog.js"></script>
+<script src="http://www.pic-upload.de/byteflex/bf-upload.js"></script>
+<link href="http://www.pic-upload.de/styles/bf-upload.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="http://www.pic-upload.de/styles/style.css" type="text/css" media="all" />
+</head>
+
+<body id="top">
+<div id='header'>
+	<div id='login'>
+		<form action='http://www.pic-upload.de/login.php' method='post'>
+			<input onfocus='this.value="";' onblur='if(this.value=="") this.value="Benutzername";' type='text' name='name' value='Benutzername' />
+			<input id='pass' class='password_image' onfocus='this.className="";' onblur='if(this.value=="") this.className="password_image";' type='password' name='pw' value='' />
+			<input class='submit' type='submit' name='submit' value='Login' />
+		</form>
+	</div>
+	<div class='my_clear'></div>
+	<ul class='headermenu'>
+		<li class='first'><a href='http://www.pic-upload.de/kontakt.php' title='Kontakt'>Kontakt & Support</a></li>
+		<li><a href='http://www.pic-upload.de/hilfe.php' title='Hilfe'>Hilfe</a></li>
+		<li><a href='http://www.pic-upload.de/tools.php' title='Tools'>Tools</a></li>
+		<li><a href='http://www.pic-upload.de/register.php' title='Registrieren'>Registrieren</a></li>
+		<li><a href='http://www.pic-upload.de/neuigkeiten.php' title='Neuigkeiten'>Neuigkeiten</a></li>
+		<li><a class='active' href='http://www.pic-upload.de' title='Bilder hochladen'>Bilder hochladen</a></li>
+	</ul>
+	<a href='/' id='home'></a>	
+</div>
+<div class='my_clear'></div>
+<script>
+	//var usealt = ;
+	var inputs = ['mail','kommentar','bildsize','thumbsize','type'];
+
+	var opts = {
+		parent: '#jsupload',
+		boxcontainer: '#fileliste',
+		destination: 'http://www.pic-upload.de/upload.php',
+		inputs: inputs,
+		width: 246,
+		widthlist: 400,
+		height: 'auto',
+		removeafter: true,
+		directupload: true,
+		displayfiles: 3,
+		maxsimultan: 3,
+		maxcount: 20,
+		onfileclick: null,
+		onstart: hideDataForm,
+		onreset: showDataForm,
+		oncomplete: generateLinks,
+		selecttext: 'Bilder auswählen',
+		uploadtext: 'Hochladen',
+		canceltext: 'Abbrechen',
+		resettext: 'Mehr Hochladen'
+	}
+	function hideDataForm(){
+		//$('#infoupload').hide();
+	}
+	function showDataForm(){
+		//$('#infoupload').show();
+	}
+	function generateLinks(){
+		var ids = [];
+		var names = [];
+		var passwords = [];
+		var errors = [];
+		for(var i = 0; i < this.files.length; i++){
+			if(this.files[i].result.error == 'ok'){
+				ids.push(this.files[i].result.id);
+				names.push(this.files[i].result.origname);
+				passwords.push(this.files[i].result.p);
+			}
+			else{
+				console.log(this.files[i].result.error);
+				errors.push({msg: this.files[i].result.error, file: this.files[i].obj.name});
+			}
+		}
+		
+		/*byteflex.Dialog.request('', 'complete.php', {
+			type: 'POST',
+			data: {ids: ids.join(), names: names.join(), passwords: passwords.join()}
+		});*/
+		if(errors.length > 0){
+			var text = '';
+			for(var i = 0; i < errors.length; i++){
+				text += errors[i].file + ' : ' + errors[i].msg + '<br>';
+			}
+			byteflex.Dialog.alert('Fehler bei Upload', text);
+		}
+		if(errors.length != this.files.length)
+			$.post('complete.php', {ids: ids, names: names, passwords: passwords}, function(data){$('#content').remove(); $('#footer').remove(); $('body').append($(data));});
+	}
+	
+	function toggleMultiUpload(on){
+		byteflex.Cookies.add('nojsupload', on == false ? 1:0);
+		window.location = 'http://www.pic-upload.de';
+	}
+</script>
+<div id='content'>
+	<h1 class='startseite_head'>Hier können Sie kostenlos Bilder hochladen und online verfügbar machen!</h1>
+<div class='bildupload_box'>
+	<div class='bildupload_outside'>
+	<div class='bildupload'>
+		<form action='http://www.pic-upload.de/upload.php' name="dataform" method="post" enctype="multipart/form-data" id="dataform">
+		<div id="fileliste">
+				<noscript><div class='javascript'>Sie haben JavaScript deaktiviert. Unser Service ist so nur sehr eingeschränkt nutzbar!<input class='alt-file-input' type='file' name='file'/><input class='alt-indicator' type='hidden' name='alternative' value='alternative' /><input class='alt-upload-button' type='submit' name='submit' value='Hochladen' /></div></noscript></div><div class='div_bildupload'><div id='jsupload'></div><script>var upload = byteflex.createUploadBox(opts);if(!upload.container){byteflex.Cookies.add('nojsupload', 1); window.location = 'http://www.pic-upload.de/?why='+upload;}</script>				<div class='infoupload'>
+				<p>
+					Geeignete Datein: .jpg, .gif, .png, .bmp, .psd, .tif <br />maximal 30 MB pro Bild - (<a style='cursor: pointer;' onclick='toggleMultiUpload(false);' title='' >Upload ohne JS</a>)				</p>
+				</div>
+			</div>
+			<div class='upload_daten'>
+				<div class='left_fields'>
+					<label>Größe ändern:</label>
+					<select name='bildsize' id='bildsize'>
+						<option value='0' selected='selected'>Nicht ändern</option>
+						<option value='100'>100x75 (Avatar)</option>
+						<option value='150'>150x112 (Thumbnail)</option>
+						<option value='320'>320x240 (für Webseiten)</option>
+						<option value='450'>450x338 (für Blogs)</option>
+						<option value='640'>640x480 (für Foren)</option>
+						<option value='800'>800x600 (15-Zoll-Monitor)</option>
+						<option value='1024'>1024x768 (17-Zoll-Monitor)</option>
+						<option value='1280'>1280x1024 (19-Zoll-Monitor)</option>
+						<option value='1600'>1600x1200 (21-Zoll-Monitor)</option>
+					</select>
+					<div class='my_clear'></div>
+					<label>Thumbnail:</label>
+					<select name='thumbsize' id='thumbsize'>
+						<option value='1'>Breite 300px</option>
+						<option value='2'>Breite 200px</option>
+						<option value='3' selected='selected'>Breite 150px</option>
+						<option value='4'>Breite 100px</option>
+						<option value='5'>Breite 50px</option>
+					</select>
+									</div>
+				<div class='right_fields'>
+					<label>E-Mail:</label>
+					<input  onfocus='this.value="";' onblur='if(this.value=="") this.value="freiwillig";'  type='text' name='mail' id='mail' value='freiwillig' />
+					<div class='my_clear'></div>
+					<label>Kommentar:</label>
+					<input  onfocus='this.value="";' onblur='if(this.value=="") this.value="freiwillig";'  type='text' name='kommentar' id='kommentar' value='freiwillig' />
+				</div>
+				<div class='my_clear'></div>
+			</div>
+		</form>
+	</div>
+	</div>
+	<div class='bildupload_bottom'></div>
+</div>
+	<div class='startseite_right'>
+		<h2>Pic-Upload.de - Ihr kostenloser Bilderhoster</h2>
+		<p>
+			Teilen Sie Ihre Bilder oder Fotos über <strong>Pic-Upload.de</strong> ganz unkompliziert und kostenlos mit Freunden und Bekannten!
+		</p>
+		<p>
+			Wählen Sie über das Formular einfach die gewünschten Bilder oder Fotos von Ihrem Datenträger aus und bestätigen Sie den Upload. Sofort können Sie den angegebenen Link an andere Menschen weitergeben um ihnen die Bilder zu zeigen.
+		</p>
+		<p>
+			Die Bilder sind bei Pic-Upload sicher aufgehoben und können von Ihnen jederzeit gelöscht werden.
+		</p>
+		<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2FPicUpload&amp;layout=button_count&amp;show_faces=false&amp;width=200&amp;action=like&amp;font&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:200px; height:21px;" allowTransparency="true"></iframe>
+	</div>
+
+	<div class='my_clear'></div>
+</div>
+<div id='footer'>
+	<ul class='footer'>
+		<li><a href='http://www.yourwebmedia.de' title='YOURWEBMEDIA' target='_blank'>© 2006 - 2015 YOURWEBMEDIA</a></li>
+		- <li><a href='http://www.pic-upload.de/partnerprogramm.php' title='Partnerprogramm'>Partnerprogramm</a></li>		- <li><a href='http://www.facebook.com/PicUpload' title='Facebook' rel='nofollow' target='_blank'>Facebook</a></li>
+		- <li><a href='http://www.pic-upload.de/agb.php' title='AGB'>AGB</a></li>
+		- <li><a href='http://www.pic-upload.de/impressum.php' title='Impressum'>Impressum</a></li>
+	</ul>
+	<ul class='footer' style='padding-top:0px;font-size:13px;'>
+		<li><a href='https://www.febas.de' style='font-size:13px;' title='Webhosting' target='_blank'>Webhosting</a></li>
+		- <li><a href='https://hostdream.de' style='font-size:13px;' title='Hostdream' target='_blank'>Webspace</a></li>
+		- <li><a href='http://www.file-upload.net' style='font-size:13px;' title='File-Upload' target='_blank'>Dateien hochladen</a></li>
+		- <li><a href='http://www.fotostudio-im-westend.de' style='font-size:13px;' title='Photogenika München' target='_blank'>Photogenika München</a></li>
+	</ul>
+	
+	<ul class='partner'>
+	</ul>
+
+</div>
+<script type='text/javascript'>
+	document.getElementById('pass').setAttribute('autocomplete','off');
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-22329531-3']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>

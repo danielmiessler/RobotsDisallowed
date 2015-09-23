@@ -1,0 +1,660 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Seller</title>
+  <meta http-equiv="Cache-Control" content="no-cache"/>
+  <meta http-equiv="Expires" content="0"/>
+  <meta http-equiv="Pragma" content="no-cache"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="imagetoolbar" content="no"/>
+
+  
+
+  <!-- Begin depth(css,js) -->
+  <style type="text/css" media="all">
+    /*<![CDATA[*/
+    @import "/en_US/css2/default.css";
+    @import "/en_US/css2/error.css";
+    /*]]>*/
+  </style>
+
+  <script>
+    var Global_DepthPathImage = "";
+  </script>
+  <script src="/en_US/js/jquery-1.5.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/en_US/js/common_path.js" type="text/javascript" language="JavaScript"></script>
+  <script src="/en_US/js/common.js" type="text/javascript" language="JavaScript"></script>
+  <script src="/en_US/js/userDefineCommon.js" type="text/javascript" language="JavaScript"></script>
+  <script src="/en_US/js/prototype.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/en_US/js/validator.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/en_US/js/datepicker.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/en_US/js/paging.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/en_US/js/util.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/en_US/js/calendarPopup.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/en_US/js/commonPopup.js" type="text/javascript" charset="utf-8"></script>
+
+  <script>
+    function goPrevPage() {
+      history.back();
+    }
+
+    function tvLogin() {
+      var tokenId = getCookie('iPlanetDirectoryPro');
+      var encodeToken = encodeURIComponent(tokenId);
+      var guid = getCookie('uid');
+
+      //set tokenId && guid
+      $j('#SSOTokenID').attr("value", encodeToken);
+      $j('#GUID').attr("value", guid);
+
+      var theForm = document.tvSsoFrm;
+      theForm.action = "http://seller.samsungapps.com/tv/member/signin?SSOTokenID=" + encodeToken + "&GUID=" + guid;
+      theForm.submit();
+    }
+
+    function getCookie(ckey) {
+      var allcookies = document.cookie;
+      var cookies = allcookies.split("; ");
+      for (var i = 0; i < cookies.length; i++) {
+        var keyValues = cookies[i].split("=");
+        //alert("test2: "+keyValues);
+        if (keyValues[0] == ckey) {
+          return unescape(keyValues[1]);
+        }
+      }
+      return "";
+    }
+
+    
+    location.replace('/error/errorPage.as?goPage=astoreNotPermittedError');
+    
+  </script>
+  <!-- End depth(css,js) -->
+</head>
+<body>
+  <!-- Begin Wrapper -->
+  <div id="DW_BodyOfPage">
+    <div id="bg_popup" style="display:none;">&nbsp;</div>
+    <!-- Begin top -->
+    <div id="header">
+      
+          <div id="hgroup">
+            <a href="http://seller.samsungapps.com/main/sellerMain.as">
+	            <h1>
+	            	<img src="http://img.samsungapps.com/seller/en_US/images/main/h1_samsungapps.gif" alt="Samsung Apps Seller Office">
+	            </h1>
+            </a>
+            <ul class="top-list">
+              <li><a href="#" onclick="showLogin()"><img src="http://img.samsungapps.com/seller/en_US/images/common/top/top_login.gif" alt=""/></a></li>
+              <li><a href="http://seller.samsungapps.com/login/signIn.as?view=signUp"><img src="http://img.samsungapps.com/seller/en_US/images/common/top/top_joinus.gif" alt=""/></a></li>
+            </ul>
+          </div>
+        
+    </div>
+    <!-- End top -->
+  
+    <hr/>
+  
+    <div id="nav">
+      <ul id="nav_main">
+        <!-- profile -->
+        <li class="nav_li n01">
+          <a href="https://seller.samsungapps.com/member/getSellerDetail.as">
+            <img id="menu01" alt="Profile"
+                 src="http://img.samsungapps.com/seller/en_US/images/main/menu1_new.gif" />
+          </a>
+        </li>
+        <!-- buyersupport -->
+        <li class="nav_li n02">
+          <a href="http://seller.samsungapps.com/comment/getCommentList.as">
+            <img id="menu02" alt="Buyer Comments"
+                 src="http://img.samsungapps.com/seller/en_US/images/main/menu2_new.gif" />
+          </a>
+        </li>
+        <!-- applications -->
+        <li class="nav_li n03">
+          <a href="#" onclick="javascript:menu_click(3)"><img id="menu03" 
+            src="http://img.samsungapps.com/seller/en_US/images/main/menu3.gif"/>
+          </a>
+          <div id="sub03" class="sub ">
+            <ul class="b_menu">
+              <li><a  href="/content/common/summaryContentList.as">My Applications</a></li>
+              
+                  <li><a  href="/product/promotion/promotioncoupon.as">Coupon</a></li>
+                  <li><a  href="/product/discount/discountList.as">Discounts</a></li>
+                  
+                  <li><a  href="/product/content/listUid.as"><span>UID</a></span></li>
+                  <li><a  href="/product/content/listWidgetId.as"><span>WidgetID</a></span></li>
+                  
+            </ul>
+          </div>
+        </li>
+        <!-- accounting -->
+        <li class="nav_li n04">
+          <a href="#" onclick="javascript:menu_click(4)"><img id="menu04" 
+            src="http://img.samsungapps.com/seller/en_US/images/main/menu4.gif"/>
+          </a>
+          <div id="sub04" class="sub ">
+            <ul>
+              <li><a  href="/accounting/accountingList.as">Sales Summary</a></li>
+              <li><a  href="/accounting/financialReport.as">Financial Report</a></li>
+              <li><a  href="/accounting/settlementReport.as">???sell.COMMONLAYOUT.left.SettlementReport???</a></li>
+            </ul>
+          </div>
+        </li>
+        <!-- statistics -->
+        <li class="nav_li n05">
+          <!-- a href="https://seller.samsungapps.com/statistics/statisticsDownloadsSales.as" alt="Statistics" -->
+          <a href="#" onclick="javascript:menu_click(5)"><img id="menu05" 
+            src="http://img.samsungapps.com/seller/en_US/images/main/menu5.gif"/>
+          </a>
+          <div id="sub05" class="sub ">
+            <ul>
+              <li><a  href="http://seller.samsungapps.com/statistics/statisticsDownloadsSales.as">???sell.COMMONLAYOUT.left.Application???</a></li>
+              <li><a  href="http://seller.samsungapps.com/statistics/statisticsItemDownloads.as">???sell.COMMONLAYOUT.left.Item???</a></li>
+            </ul>
+          </div>
+        </li>
+        <!-- support -->
+        <li class="nav_li n06">
+          <a href="#" onclick="javascript:menu_click(6)"><img id="menu06" 
+            src="http://img.samsungapps.com/seller/en_US/images/main/menu6.gif"/>
+          </a>
+          <div id="sub06" class="sub ">
+            <ul>
+              <li><a  href="http://seller.samsungapps.com/notice/getNoticeList.as">Notice</a></li>
+              <li><a  href="http://seller.samsungapps.com/info/guideDownload.as">???sell.COMMONLAYOUT.left.guide???</a></li>
+              <li><a  href="#" onclick="nsupportMove('/faq/searchFaq.do');">FAQ</a></li>
+              <li><a  href="#" onclick="nsupportMove('/ticket/searchTicketList.do');">My questions</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div id="b_menu">
+      <ul class="subbtn_area">
+        <li style="float: left;">
+          
+          <a href="javascript:void(0);" class="btn_add_new_app">
+            <img src="/en_US/images/main/btn_gnb_add_new.gif" alt="Add New Application"/>
+            
+        </li>
+        <li style="float: right;"><a href="#" onclick="javascirpt:show_guide()" id="btn_guide"><img src="/en_US/images/main/btn_gnb_guide_new.gif" alt="Guide"/></a></li>
+      </ul>
+    </div>
+    <div id="guide" style="z-index:99 ; ">
+      <ul style="height:64px;">
+        <li class="guide_01"><a href="/qa/downloadSupportFiles.as?type=1"><span>???sell.COMMONLAYOUT.left.UserGuide???</span></a></li>
+        <li class="guide_02"><a href="/qa/downloadSupportFiles.as?type=9"><span>???sell.COMMONLAYOUT.left.GuidelineToRequestCommercialSellerStatus???</span></a></li>
+        <li class="guide_03"><a href="/qa/downloadSupportFiles.as?type=8"><span>???sell.COMMONLAYOUT.left.InAppPurcharseGuideline???</span></a></li>
+        <li class="guide_04"><a href="/qa/downloadSupportFiles.as?type=2"><span>???sell.COMMONLAYOUT.left.PublisherGuideline???</span></a></li>
+        <li class="guide_05"><a href="/qa/downloadSupportFiles.as?type=3"><span>???sell.COMMONLAYOUT.left.AgeRatingGuideline???</span></a></li>
+        <li class="guide_06"><a href="/qa/downloadSupportFiles.as?type=6"><span>???sell.COMMONLAYOUT.left.DownloadApplicationProtectGuid???</span></a></li>
+        <li class="guide_07"><a href="/qa/downloadSupportFiles.as?type=10"><span>???sell.COMMONLAYOUT.left.badaAppl???</span></a></li>
+      </ul>
+      <div><a href="#" onclick="javascirpt:hide_guide()" id="close_guide">???sell.COMMONLAYOUT.left.Close???</a></div>
+    </div>
+  
+  
+    <!-- Begin Contents -->
+    <div id="errorWrap">
+      <div class="blueBaseBoxLT blue-bg">
+        <div class="blueBaseBoxRT">
+          <div class="blueBaseBoxLB">
+            <div class="blueBaseBoxRB">
+              <div class="blueBaseBoxWidth">
+                <h2>Page Not Found</h2>
+                <p class="h2Guide">
+                  <strong>The Page you requested is not available</strong>
+                </p>
+                <p class="contents">
+                  Sorry, we are having a problem executing your request.<br/>
+                  We apologize for the inconvenience. Please check your link again or use the menu above to reach your destination.
+                </p>
+                <p class="returnUrl">
+                  <a href="javascript:goPrevPage();"><span>Return to the previous page</span></a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+    <!-- End Contents -->
+  
+    <hr />
+  
+    <!-- Begin Bottom -->
+    <div id="footer">
+      <div class="foot">
+        <p class="footerLogo"><img src="http://img.samsungapps.com/seller/en_US/images/common/footer_logo.gif" alt="Samsung"/></p>
+  
+        <div class="copyright">
+          <ul class="linkpage">
+            <li><a href="http://seller.samsungapps.com/help/termsAndConditions.as?channel=mobile">Terms and Conditions</a></li>
+            <li><a href="http://seller.samsungapps.com/help/privacy.as">Privacy Policy</a></li>
+            <li class="last"><a href="http://seller.samsungapps.com/help/siteMap.as">Site Map</a></li>
+          </ul>
+          <address>Copyright &copy; Samsung Electronics Co.,Ltd. All rights reserved.</address>
+        </div>
+        <!-- 2011-04-19 테스트 스크립트추가 -->
+        <div class="combo-box" style="z-index: 100">
+          <a href="#" class="button" onclick="open_related('fmView');return false;">Related Sites</a>
+          <ul id="fmView">
+            <li><a href="#">Samsung Apps TV</a></li>
+            <li><a href="#">Samsung Developers</a></li>
+            <li><a href="#">Samsung Dive</a></li>
+          </ul>
+        </div>
+        <!-- //2011-04-19 테스트 스크립트추가 -->
+      </div>
+    </div>
+    <!-- End Bottom -->
+  </div>
+  <!-- End Wrapper -->
+  
+  <form id="tvSsoFrm" name="tvSsoFrm" method="post" action="">
+    <input type="hidden" id="SSOTokenID" name="SSOTokenID" value=""/>
+    <input type="hidden" id="GUID" name="GUID" value=""/>
+  </form>
+  
+  <div id="add_new_app" class="layerPopup" style="width: 250px; display:none;">
+    <div class="lineBoxLT">
+      <div class="lineBoxRT">
+        <div class="lineBoxLB">
+          <div class="lineBoxRB">
+            <div class="popGuide">
+              <p class="caution">Notice</p>
+  
+              <p>???sell.UI-AST-S-I0000.popup.addNewApps.general01???</p>
+  
+              <p style="margin-top:10px;">
+                ???sell.UI-AST-S-I0000.popup.addNewApps.general02???
+                <a href="http://help.content.samsung.com/csseller/" target="_blank" style="text-decoration:underline;">
+                  Support > ???sell.UI-AST-S-I0000.popup.contactUs???
+                </a>
+                ???sell.UI-AST-S-I0000.popup.addNewApps.general03???
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="popBtnArea">
+      <a href="#" class="btnGray" onClick="close_popup('add_new_app');"><span>OK</span></a>
+    </p>
+  
+    <p class="popClose"><a href="#" class="popup" onClick="close_popup('add_new_app');"><img src="http://img.samsungapps.com/seller/en_US/images/common/poplayer/btn_close.gif" alt="close"></a></p>
+    <iframe class="ie6_bug" scrolling="no" frameborder="0" width="286" height="176"></iframe>
+  </div>
+  
+  <script type="text/javascript">
+    var $j = jQuery.noConflict();
+    init_a();
+  
+    function menu_click(num) {
+      var nav = $j("#nav_main");
+      nav.children().find('img[id^="menu"]').each(function(index, eml) {
+        eml.src = eml.src.replace("_on.gif", ".gif");
+      });
+      nav.children().find('div[id^="sub"]').each(function(index, eml) {
+        $j(eml).hide();
+      });
+      nav.children().find('img[id="menu0' + num + '"]').each(function(index, eml) {
+        eml.src = eml.src.replace(".gif", "_on.gif");
+      });
+      nav.children().find('div[id="sub0' + num + '"]').show();
+    }
+  
+    function init_a() {
+      $j("#nav_main").children().find('.selected').show();
+      $j("#nav_main").children().find('#current').addClass("on");
+    }
+  
+    function show_guide() {
+      $j("#btn_guide").children('img').attr('src', "/en_US/images/main/btn_gnb_guide_new_on.gif");
+      $j("#btn_guide").css({'color': '#7BA9EB'});
+      $j("div[id='guide']").show();
+    }
+  
+    function hide_guide() {
+      $j("#btn_guide").children('img').attr('src', "/en_US/images/main/btn_gnb_guide_new.gif");
+      $j("#btn_guide").css({'color': '#fff'});
+      $j("div[id='guide']").hide();
+    }
+  
+    function nsupportMove(link) {
+      document.ssoFrm.action = "http://help.content.samsung.com/csseller/auth/gosupport.do";
+  
+      var tokenId = getCookie('iPlanetDirectoryPro');
+      var encodeToken = encodeURIComponent(tokenId);
+      var guid = getCookie('uid');
+  
+      if (tokenId == "") {
+        $j('#_common_check_sso_login').attr("value", "false");
+        $j('#_common_check_sso_logout').attr("value", "true");
+      } else {
+        $j('#_common_check_sso_login').attr("value", "true");
+        $j('#_common_check_sso_logout').attr("value", "false");
+        $j('#tokenId').attr("value", encodeToken);
+        $j('#guid').attr("value", guid);
+      }
+  
+      //set ncomCountrylanguage
+      $j('#serviceCd').attr("value", "apps");
+      $j('#chnlCd').attr("value", "web");
+  
+      //set targetUrl
+      $j('#targetUrl').attr("value", link);
+  
+      
+      $j('#_common_country').attr("value", "US");
+      $j('#_common_lang').attr("value", "en_us");
+      
+  
+      document.getElementById("ssoFrm").submit();
+    }
+  
+    function getCookie(ckey) {
+      var allcookies = document.cookie;
+      var cookies = allcookies.split("; ");
+      for (var i = 0; i < cookies.length; i++) {
+        var keyValues = cookies[i].split("=");
+        if (keyValues[0] == ckey) {
+          return unescape(keyValues[1]);
+        }
+      }
+      return "";
+    }
+  
+    // [Seller UX 개선] Add New Application 플랫폼 선택 팝업
+    $j('.btn_add_new_app').click(function() {
+      //seller curated type code 가 general일 경우 revision만 가능
+      if ('' == '04') {
+        $j('#add_new_app').show();
+      } else if('' == '06'){
+    	  $j('body').append('<div class="dimmed_box02" id="newApplicationDimLayer"></div>');
+          $j('body').append('<div class="add_app_layer" id="newApplicationPopupLayer">'
+          + '<p>Add New Application</p>'
+          + '<p class="disc_txt_01">???seller.UI-AST-S-2200.addNew.description???</p>'
+          + '<ul class="add_app_layer_03">'
+          + '  <li>'
+          + '    <a href="javascript:void(0);"><span>Android</span></a>'
+          + '    <div class="dft_lang_box">'
+          + '      <span class="txt_dft_lang">???seller.UI-AST-S-2200.addNew.defaultLanguage???</span>'
+          + '      <div class="ipt_box">'
+          + '        <select name="">'
+          + '          <option value="ARA">Arabic</option>'
+          + '          <option value="BUL">Bulgarian</option>'
+          + '          <option value="CES">Czech</option>'
+          + '          <option value="HRV">Croatian</option>'
+          + '          <option value="DAN">Danish</option>'
+          + '          <option value="NLD">Dutch</option>'
+          + '          <option value="ENG">English</option>'
+          + '          <option value="EST">Estonian</option>'
+          + '          <option value="FIN">Finnish</option>'
+          + '          <option value="FRA">French</option>'
+          + '          <option value="GLA">Gaelic</option>'
+          + '          <option value="DEU">German</option>'
+          + '          <option value="ELL">Greek</option>'
+          + '          <option value="HEB">Hebrew</option>'
+          + '          <option value="HUN">Hungarian</option>'
+          + '          <option value="IND">Indonesian</option>'
+          + '          <option value="ITA">Italian</option>'
+          + '          <option value="JPN">Japanese</option>'
+          + '          <option value="KAZ">Kazakh</option>'
+          + '          <option value="KOR">Korean</option>'
+          + '          <option value="LAV">Latvian</option>'
+          + '          <option value="LIT">Lithuanian</option>'
+          + '          <option value="NOR">Norwegian</option>'
+          + '          <option value="FAS">Persian</option>'
+          + '          <option value="POL">Polish</option>'
+          + '          <option value="POR">Portuguese</option>'
+          + '          <option value="RON">Romanian</option>'
+          + '          <option value="RUS">Russian</option>'
+          + '          <option value="SRP">Serbian</option>'
+          + '          <option value="ZHO" selected="selected">Simplified Chinese???seller.UI-AST-S-2200.addNew.recommended???</option>'
+          + '          <option value="SLK">Slovakian</option>'
+          + '          <option value="SPA">Spanish</option>'
+          + '          <option value="SWE">Swedish</option>'
+          + '          <option value="THA">Thai</option>'
+          + '          <option value="TUR">Turkish</option>'
+          + '          <option value="UKR">Ukrainian</option>'
+          + '          <option value="VIE">Vietnamese</option>'
+          + '          <option value="002">Traditional Chinese</option>'
+          + '        </select>'
+          + '      </div>'
+          + '      <a href="http://seller.samsungapps.com/application/main.as?platform=android" class="btn_next"><span>Next</span></a>'
+          + '    </div>'
+          + '  </li>'
+          + '  <li>'
+          + '    <a href="javascript:void(0);" class="gear"><span>Samsung Gear</span></a>'
+          
+          + '    <div class="dft_lang_box02">'
+          
+          + '      <span class="txt_dft_lang">???seller.UI-AST-S-2200.addNew.defaultLanguage???</span>'
+          + '      <div class="ipt_box">'
+          + '        <select name="">'
+          + '          <option value="ARA">Arabic</option>'
+          + '          <option value="BUL">Bulgarian</option>'
+          + '          <option value="CES">Czech</option>'
+          + '          <option value="HRV">Croatian</option>'
+          + '          <option value="DAN">Danish</option>'
+          + '          <option value="NLD">Dutch</option>'
+          + '          <option value="ENG">English</option>'
+          + '          <option value="EST">Estonian</option>'
+          + '          <option value="FIN">Finnish</option>'
+          + '          <option value="FRA">French</option>'
+          + '          <option value="GLA">Gaelic</option>'
+          + '          <option value="DEU">German</option>'
+          + '          <option value="ELL">Greek</option>'
+          + '          <option value="HEB">Hebrew</option>'
+          + '          <option value="HUN">Hungarian</option>'
+          + '          <option value="IND">Indonesian</option>'
+          + '          <option value="ITA">Italian</option>'
+          + '          <option value="JPN">Japanese</option>'
+          + '          <option value="KAZ">Kazakh</option>'
+          + '          <option value="KOR">Korean</option>'
+          + '          <option value="LAV">Latvian</option>'
+          + '          <option value="LIT">Lithuanian</option>'
+          + '          <option value="NOR">Norwegian</option>'
+          + '          <option value="FAS">Persian</option>'
+          + '          <option value="POL">Polish</option>'
+          + '          <option value="POR">Portuguese</option>'
+          + '          <option value="RON">Romanian</option>'
+          + '          <option value="RUS">Russian</option>'
+          + '          <option value="SRP">Serbian</option>'
+          + '          <option value="ZHO" selected="selected">Simplified Chinese???seller.UI-AST-S-2200.addNew.recommended???</option>'
+          + '          <option value="SLK">Slovakian</option>'
+          + '          <option value="SPA">Spanish</option>'
+          + '          <option value="SWE">Swedish</option>'
+          + '          <option value="THA">Thai</option>'
+          + '          <option value="TUR">Turkish</option>'
+          + '          <option value="UKR">Ukrainian</option>'
+          + '          <option value="VIE">Vietnamese</option>'
+          + '          <option value="002">Traditional Chinese</option>'
+          + '        </select>'
+          + '      </div>'
+          + '      <a href="http://seller.samsungapps.com/application/main.as?platform=gear" class="btn_next"><span>Next</span></a>'
+          + '    </div>'
+          + '  </li>'
+          
+          + '</ul>'
+          + '<a href="javascript:void(0);" class="btn_add_app_close"><span>???sell.COMMONLAYOUT.left.Close???</span></a>'
+          + '</div>');
+          $j('#newApplicationDimLayer, #newApplicationPopupLayer').show();
+  
+        $j('#newApplicationPopupLayer ul li').click(function(event) {
+          $j('#newApplicationPopupLayer ul li').removeClass('on');
+          $j(this).each(function() {
+            if ($j(this).hasClass('bada')) {
+              event.preventDefault();
+              $j('.add_app_layer').hide();
+              window.location.href = $j(this).find('a').attr('href');
+            } else {
+              $j(this).addClass('on');
+            }
+          });
+        });
+  
+        $j('.dft_lang_box > a').click(function(event) {
+          var languageCode = $j(this).siblings().find('select').val();
+          var href = $j(this).attr('href');
+          event.preventDefault();
+          $j('#newApplicationPopupLayer').hide();
+          window.location.href = href + "&defaultLanguage=" + languageCode;
+        });
+  
+        $j('.btn_add_app_close').click(function() {
+          $j('#newApplicationDimLayer, #newApplicationPopupLayer').hide();
+          $j('#newApplicationPopupLayer').remove();
+          $j('#newApplicationDimLayer').remove();
+        });
+      } else { // CR-AST1500607 [Seller][CR] bada 서비스 종료
+          $j('body').append('<div class="dimmed_box02" id="newApplicationDimLayer"></div>');
+          $j('body').append('<div class="add_app_layer" id="newApplicationPopupLayer">'
+          + '<p>Add New Application</p>'
+          + '<p class="disc_txt_01">???seller.UI-AST-S-2200.addNew.description???</p>'
+          + '<ul class="add_app_layer_03">'
+          + '  <li>'
+          + '    <a href="javascript:void(0);"><span>Android</span></a>'
+          + '    <div class="dft_lang_box">'
+          + '      <span class="txt_dft_lang">???seller.UI-AST-S-2200.addNew.defaultLanguage???</span>'
+          + '      <div class="ipt_box">'
+          + '        <select name="">'
+          + '          <option value="ARA">Arabic</option>'
+          + '          <option value="BUL">Bulgarian</option>'
+          + '          <option value="CES">Czech</option>'
+          + '          <option value="HRV">Croatian</option>'
+          + '          <option value="DAN">Danish</option>'
+          + '          <option value="NLD">Dutch</option>'
+          + '          <option value="ENG" selected="selected">English???seller.UI-AST-S-2200.addNew.recommended???</option>'
+          + '          <option value="EST">Estonian</option>'
+          + '          <option value="FIN">Finnish</option>'
+          + '          <option value="FRA">French</option>'
+          + '          <option value="GLA">Gaelic</option>'
+          + '          <option value="DEU">German</option>'
+          + '          <option value="ELL">Greek</option>'
+          + '          <option value="HEB">Hebrew</option>'
+          + '          <option value="HUN">Hungarian</option>'
+          + '          <option value="IND">Indonesian</option>'
+          + '          <option value="ITA">Italian</option>'
+          + '          <option value="JPN">Japanese</option>'
+          + '          <option value="KAZ">Kazakh</option>'
+          + '          <option value="KOR">Korean</option>'
+          + '          <option value="LAV">Latvian</option>'
+          + '          <option value="LIT">Lithuanian</option>'
+          + '          <option value="NOR">Norwegian</option>'
+          + '          <option value="FAS">Persian</option>'
+          + '          <option value="POL">Polish</option>'
+          + '          <option value="POR">Portuguese</option>'
+          + '          <option value="RON">Romanian</option>'
+          + '          <option value="RUS">Russian</option>'
+          + '          <option value="SRP">Serbian</option>'
+          + '          <option value="ZHO">Simplified Chinese</option>'
+          + '          <option value="SLK">Slovakian</option>'
+          + '          <option value="SPA">Spanish</option>'
+          + '          <option value="SWE">Swedish</option>'
+          + '          <option value="THA">Thai</option>'
+          + '          <option value="TUR">Turkish</option>'
+          + '          <option value="UKR">Ukrainian</option>'
+          + '          <option value="VIE">Vietnamese</option>'
+          + '          <option value="002">Traditional Chinese</option>'
+          + '        </select>'
+          + '      </div>'
+          + '      <a href="http://seller.samsungapps.com/application/main.as?platform=android" class="btn_next"><span>Next</span></a>'
+          + '    </div>'
+          + '  </li>'
+          + '  <li>'
+          + '    <a href="javascript:void(0);" class="gear"><span>Samsung Gear</span></a>'
+          
+          + '    <div class="dft_lang_box02">'
+          
+          + '      <span class="txt_dft_lang">???seller.UI-AST-S-2200.addNew.defaultLanguage???</span>'
+          + '      <div class="ipt_box">'
+          + '        <select name="">'
+          + '          <option value="ARA">Arabic</option>'
+          + '          <option value="BUL">Bulgarian</option>'
+          + '          <option value="CES">Czech</option>'
+          + '          <option value="HRV">Croatian</option>'
+          + '          <option value="DAN">Danish</option>'
+          + '          <option value="NLD">Dutch</option>'
+          + '          <option value="ENG" selected="selected">English???seller.UI-AST-S-2200.addNew.recommended???</option>'
+          + '          <option value="EST">Estonian</option>'
+          + '          <option value="FIN">Finnish</option>'
+          + '          <option value="FRA">French</option>'
+          + '          <option value="GLA">Gaelic</option>'
+          + '          <option value="DEU">German</option>'
+          + '          <option value="ELL">Greek</option>'
+          + '          <option value="HEB">Hebrew</option>'
+          + '          <option value="HUN">Hungarian</option>'
+          + '          <option value="IND">Indonesian</option>'
+          + '          <option value="ITA">Italian</option>'
+          + '          <option value="JPN">Japanese</option>'
+          + '          <option value="KAZ">Kazakh</option>'
+          + '          <option value="KOR">Korean</option>'
+          + '          <option value="LAV">Latvian</option>'
+          + '          <option value="LIT">Lithuanian</option>'
+          + '          <option value="NOR">Norwegian</option>'
+          + '          <option value="FAS">Persian</option>'
+          + '          <option value="POL">Polish</option>'
+          + '          <option value="POR">Portuguese</option>'
+          + '          <option value="RON">Romanian</option>'
+          + '          <option value="RUS">Russian</option>'
+          + '          <option value="SRP">Serbian</option>'
+          + '          <option value="ZHO">Simplified Chinese</option>'
+          + '          <option value="SLK">Slovakian</option>'
+          + '          <option value="SPA">Spanish</option>'
+          + '          <option value="SWE">Swedish</option>'
+          + '          <option value="THA">Thai</option>'
+          + '          <option value="TUR">Turkish</option>'
+          + '          <option value="UKR">Ukrainian</option>'
+          + '          <option value="VIE">Vietnamese</option>'
+          + '          <option value="002">Traditional Chinese</option>'
+          + '        </select>'
+          + '      </div>'
+          + '      <a href="http://seller.samsungapps.com/application/main.as?platform=gear" class="btn_next"><span>Next</span></a>'
+          + '    </div>'
+          + '  </li>'
+          
+          + '</ul>'
+          + '<a href="javascript:void(0);" class="btn_add_app_close"><span>???sell.COMMONLAYOUT.left.Close???</span></a>'
+          + '</div>');
+          $j('#newApplicationDimLayer, #newApplicationPopupLayer').show();
+  
+        $j('#newApplicationPopupLayer ul li').click(function(event) {
+          $j('#newApplicationPopupLayer ul li').removeClass('on');
+          $j(this).each(function() {
+            if ($j(this).hasClass('bada')) {
+              event.preventDefault();
+              $j('.add_app_layer').hide();
+              window.location.href = $j(this).find('a').attr('href');
+            } else {
+              $j(this).addClass('on');
+            }
+          });
+        });
+  
+        $j('.dft_lang_box > a').click(function(event) {
+          var languageCode = $j(this).siblings().find('select').val();
+          var href = $j(this).attr('href');
+          event.preventDefault();
+          $j('#newApplicationPopupLayer').hide();
+          window.location.href = href + "&defaultLanguage=" + languageCode;
+        });
+  
+        $j('.btn_add_app_close').click(function() {
+          $j('#newApplicationDimLayer, #newApplicationPopupLayer').hide();
+          $j('#newApplicationPopupLayer').remove();
+          $j('#newApplicationDimLayer').remove();
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

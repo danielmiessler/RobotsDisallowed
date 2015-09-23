@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+Disallow: *.swf
+Disallow: /out.php
+Disallow: /scripts/iefix.js

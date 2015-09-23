@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Allow: /wp-content/
+
+Sitemap: http://www.spidersweb.pl/sitemap_index.xml

@@ -1,0 +1,100 @@
+<!doctype html>
+<!--[if lt IE 7 ]><html lang="fr" class="ie6 oldie"><![endif]-->
+<!--[if IE 7 ]><html lang="fr" class="ie7 oldie"><![endif]-->
+<!--[if IE 8 ]><html lang="fr" class="ie8 oldie"><![endif]-->
+<!--[if (gt IE 8)]><html lang="fr" class="ie9p"><![endif]-->
+<!--[if !(IE)]><html lang="fr"><![endif]-->
+<head>
+<meta charset="UTF-8">
+<title>MGD Erreur 404</title>
+<!-- version : 1.6.9 -->
+<!-- build : d317e49 -->
+<meta property="og:site_name" content="www.mistergooddeal.com">
+<meta name="description" content="L'achat discount sur les grandes marques satisfait ou remboursé, produits en stock, livraison et points de retrait, paiement 3 et 6 fois sans frais." >
+<meta property="og:description" content="L'achat discount sur les grandes marques satisfait ou remboursé, produits en stock, livraison et points de retrait, paiement 3 et 6 fois sans frais.">
+<link rel="stylesheet" href="http://static.mistergooddeal.com/resources/gudi/wro/common.pack.css" media="all" />
+<script type="text/javascript" src="//assets.adobedtm.com/4f3eff4ae40af7a1e6d6706ba2346bb81314e0da/satelliteLib-2a258db711fd304dbf72632a65c54f129b3bcf8e.js"></script>
+</head>
+<body class="error_404" id="error_404">
+<div class="page">
+<img src="http://static.mistergooddeal.com/resources/gudi/desktop2/errors/404.jpg" alt="404" width="980" height="655">
+<ul class="cf">
+<li class="bleu">
+Pour retourner<br>sur le site,<br>cliquez ici<br>
+<a href="/" class="button button_bleu">Accueil</a>
+</li>
+<li class="violet">
+Pour découvrir<br>nos promos,<br>cliquez ici<br>
+<a href="/" class="button button_violet">Promos</a>
+</li>
+<li class="orange">
+Pour trouver votre<br>mode de livraison,<br>cliquez ici<br>
+<a href="/static/page-service.htm#livraison" class="button button_orange">Livraison</a>
+</li>
+</ul>
+</div>
+<script type="text/javascript">
+var CONF = CONF || {};
+CONF.CONST = CONF.CONST || {};
+CONF.HOOKS = CONF.HOOKS || {};
+CONF.CONST.CTX_PATH = "/";
+CONF.CONST.MGD_COM_BASEURL = "http://www.mistergooddeal.com";
+CONF.CONST.MGD_COM_SSL = "https://www.mistergooddeal.com";
+</script>
+<script type="text/javascript" src="http://static.mistergooddeal.com/resources/gudi/wro/common.pack.js"></script>
+<script type="text/javascript">
+var lastAction = CONF.removeLocalItem('last_action');
+var lastSearch = CONF.removeLocalItem('last_search');
+function fAction(name) { return function() { CONF.setLocalItem('last_action', name); } }
+function saveSearch() { CONF.setLocalItem('last_search', $('#dartyCom_searchfield_xxl').val()); }
+function getSatellite() {
+if (typeof window._satellite === "undefined" || !window._satellite) {
+// fallback pour pas planter quand on a pas le window._satellite, pour une raison ou une autre
+window._satellite = {
+pageBottom : function(){},
+track : function(e){}
+};
+}
+return window._satellite;
+}
+$(function() {
+var $ = jQuery;
+var qsf = $('#quick_search_form');
+qsf.submit(function(){ saveSearch() });
+qsf.on('click','li', function(){ fAction("autocomplete")(); $('[name="text"]', qsf).val($(this).text()); saveSearch() });
+qsf.keydown(function(e) {
+var li_selected = $('li.ui-state-focus').size()>0;
+if ((e.which == 38 || e.which == 40) && li_selected) { $('[name="text"]', qsf).val($('li.ui-state-focus').text()); fAction("autocomplete")() };
+if (e.which == 13) saveSearch();
+});
+});
+if (typeof(s_mgd)==='undefined') s_mgd={};
+s_mgd.prop1 = '0';
+s_mgd.prop5 = '48';
+s_mgd.pageName = 'www/erreur/404';
+s_mgd.eVar46 = '1';
+s_mgd.basketContent = {"lines":[]};
+$(function() {
+var w = $(window), total = $(document).height(), initial = w.height(),
+bottomSeen = initial, pgName = s_mgd.pageName;
+s_mgd.prevPage = CONF.removeLocalItem('prev_page');
+setPgName();
+w.scroll(function() {
+var bt = w.scrollTop() + w.height();
+if (bt>bottomSeen) {
+bottomSeen=bt;
+setPgName();
+}
+});
+function setPgName() {
+CONF.setLocalItem('prev_page', pgName + ':' + initial
++ ':' + bottomSeen + ':' + total);
+}
+});
+$(function() {
+getSatellite().pageBottom();
+getSatellite().track('sPointT');
+});
+</script>
+</body>
+</html>

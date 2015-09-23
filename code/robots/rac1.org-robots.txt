@@ -1,0 +1,85 @@
+#
+# robots.txt para tu blog en WordPress.
+#
+
+# Primero el contenido adjunto.
+
+User-Agent: *
+Allow: /wp-content/uploads/
+Disallow: /wp-content/plugins/
+Disallow: /wp-content/themes/
+Disallow: /wp-includes/
+Disallow: /wp-admin/
+
+# También podemos desindexar todo lo que empiece 
+# por wp-. Es lo mismo que los Disallow de arriba pero
+# incluye cosas como wp-rss.php
+
+Disallow: /wp-
+
+#
+# Sitemap permitido, búsquedas no.
+#
+
+Sitemap: http://rac1.org/sitemap.xml
+Disallow: /?s=
+Disallow: /search
+
+#
+# Permitimos el feed general para Google Blogsearch.
+#
+# Impedimos que permalink/feed/ sea indexado ya que el
+# feed con los comentarios suele posicionarse en lugar de
+# la entrada y desorienta a los usuarios.
+#
+# Lo mismo con URLs terminadas en /trackback/ que sólo
+# sirven como Trackback URI (y son contenido duplicado).
+#
+
+Allow: /feed/$
+Disallow: /feed
+Disallow: /comments/feed
+Disallow: /*/feed/$
+Disallow: /*/feed/rss/$
+Disallow: /*/trackback/$
+Disallow: /*/*/feed/$
+Disallow: /*/*/feed/rss/$
+Disallow: /*/*/trackback/$
+Disallow: /*/*/*/feed/$
+Disallow: /*/*/*/feed/rss/$
+Disallow: /*/*/*/trackback/$
+
+# Lista de bots que suelen respetar el robots.txt pero rara
+# vez hacen un buen uso del sitio y abusan bastante...
+# Añadir al gusto del consumidor...
+
+User-agent: MSIECrawler
+Disallow: /
+
+User-agent: WebCopier
+Disallow: /
+
+User-agent: HTTrack
+Disallow: /
+
+User-agent: Microsoft.URL.Control
+Disallow: /
+
+User-agent: libwww
+Disallow: /
+
+#
+# Slurp (Yahoo!), Noxtrum y el bot de MSN a veces tienen
+# idas de pinza, toca decirles que reduzcan la marcha.
+# El valor es en segundos y podéis dejarlo bajo e ir 
+# subiendo hasta el punto óptimo.
+#
+
+User-agent: noxtrumbot
+Crawl-delay: 50
+
+User-agent: msnbot
+Crawl-delay: 30
+
+User-agent: Slurp
+Crawl-delay: 10

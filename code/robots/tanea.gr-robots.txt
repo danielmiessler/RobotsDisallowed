@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /netvolution/
+Disallow: /Themes/
+Disallow: /Temp/
+Disallow: /z_	# prevent indexing of the search catalog!
+
+Sitemap: /sitemap.aspx

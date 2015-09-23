@@ -1,0 +1,12 @@
+User-agent: *
+Disallow: /chatta/
+Disallow: /chat/
+Disallow: /nb/chat/
+Disallow: /de/chat/
+Disallow: /da/chat/
+Disallow: /es/chat/
+Disallow: /fr/chat/
+Disallow: /ru/chat/
+Disallow: /pt/chat/
+Disallow: /pl/chat/
+Disallow: /fi/chat/

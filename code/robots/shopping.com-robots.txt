@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /*?all
+Disallow: /*&all
+Disallow: /istlo

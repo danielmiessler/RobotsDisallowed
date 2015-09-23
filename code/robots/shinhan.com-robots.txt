@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=7,requiresActiveX=true">
+	<meta http-equiv="Content-Type" Pragma="no-cache" Cache-control="no-cache" content="text/html; charset=utf-8"/>
+	<title>신한은행 홈페이지 [w1p-xhpe2_1]</title>
+	<script type="text/javascript">
+	_common = {};
+	_common.session = {};
+	_common.session.sessionData = {};
+	_common.session.sessionType = new Object();
+
+	function setSavedDoc(key, value) {
+		var valueType = "object";
+		if( typeof value == 'string' ) {
+			valueType ='string';
+		} else if ( typeof value == 'object' && typeof value.documentElement != 'undefined' && value.nodeType == 9 ) {		// XML Document
+			value = WebSquare.xml.serialize( value );
+			valueType = 'xml';
+		} else if( typeof value == 'object' ) {
+			if( ( typeof value.serialize == 'function' || typeof value.serialize == 'object' ) || ( typeof value.classType != 'undefined' )  ) {
+				valueType = value.classType;
+				value = value.serialize();
+			} else {
+				value = value.toString();
+				valueType = 'object';
+			}
+		}
+		_common.session.recursiveCall("_common.session._setSavedDoc", key, value, valueType);
+	}
+	_common.session._setSavedDoc = function(key, value, valueType) {
+		_common.session.sessionData[key] = value;
+		_common.session.sessionType[key] = valueType;
+	}
+	function getSavedDoc(key) {
+		var obfuscator_retStr = _common.session.recursiveCall("_common.session._getSavedData", key );
+		var retType = _common.session.recursiveCall("_common.session._getSavedType", key );
+		if( typeof obfuscator_retStr == 'undefined' || obfuscator_retStr == null) {
+			return null;
+		}
+		if( retType.toLowerCase() == 'string' || retType.toLowerCase() == 'number' || retType.toLowerCase() == 'boolean') {
+			return obfuscator_retStr;
+		} else if( retType == 'xml' ) {
+			return WebSquare.xml.parse( obfuscator_retStr );
+		} else if( retType == 'object' ) {
+			return obfuscator_retStr;
+		} else {
+			return eval('new ' + retType + '( obfuscator_retStr )');
+		}
+	}
+	_common.session._getSavedData = function(key) {
+		var retStr = _common.session.sessionData[key];
+		if( typeof retStr == 'undefined' || retStr == null) {
+			return null;
+		} else {
+			_common.session.sessionData[key] = null;
+		}
+		return retStr;
+	}
+	_common.session._getSavedType = function(key) {
+		var retType = _common.session.sessionType[key];
+		if( typeof retType == 'undefined' || retType == null) {
+			return null;
+		} else {
+			_common.session.sessionType[key] = null;
+		}
+		return retType;
+	}
+	_common.session.recursiveCall = function() {
+		var value = undefined;
+		try {
+			var funcName = null;
+			var argumentsStr = "";
+			for (var i=0; i < arguments.length; i++) {
+				if (i==0) {
+					funcName = arguments[i];
+				} else {
+					if (i != 1) {
+						argumentsStr += ",arguments["+i+"]";
+					} else {
+						argumentsStr += "arguments["+i+"]";
+					}
+				}
+			}
+			if (argumentsStr == "") argumentsStr = "''";
+			if (funcName != null) {
+				if (_common.session.isOpenerMethod(funcName)) {
+					try {
+						value = eval("opener._common.session.recursiveCall('"+funcName+"',"+argumentsStr+")");
+					} catch (ee) {
+						if (_common.session.isParentFrameMethod(funcName)) {
+							value = eval("parent._common.session.recursiveCall('"+funcName+"',"+argumentsStr+")");
+						} else {
+							value = eval(funcName+"("+argumentsStr+")");
+						}
+					}
+				} else if (_common.session.isParentFrameMethod(funcName)) {
+					value = eval("parent._common.session.recursiveCall('"+funcName+"',"+argumentsStr+")");
+				} else {
+					value = eval(funcName+"("+argumentsStr+")");
+				}
+			}
+			return value;
+		} catch (e) {
+			printStackTrace( e );
+		}
+	} 			
+	_common.session.isOpenerMethod = function(methodName) {
+		try {
+			if (typeof window.opener == 'undefined') {
+				return false;
+			} else if (window.opener.closed) {
+				return false;
+			} else {
+				if (eval("typeof window.opener."+methodName) == 'function' || eval("typeof window.opener."+methodName) == 'object') {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		} catch(e) { }
+		return false;
+	}
+	_common.session.isParentFrameMethod = function(methodName) {
+		try {
+			if (parent != window && eval("parent."+methodName)) {
+				return true;
+			}
+			return false;
+		} catch (e) { }
+		return false;
+	}
+
+	function ckechBrowser()
+	{
+		var uAgent = navigator.userAgent.toLowerCase();
+		var mobilePhones = new Array('iphone','ipod','iPad','android','blackberry','windows ce','nokia','webos','opera mini','sonyericsson','opera mobi','iemobile');
+		for(var i=0;i<mobilePhones.length;i++)
+   		if(uAgent.indexOf(mobilePhones[i]) != -1)
+       		top.location.href = "http://m.shinhan.com";
+
+		if (navigator.userAgent.match(/mozilla/) == null && navigator.userAgent.match(/Mobile|Windows CE|Windows Phone|Opera Mini|POLARIS/) != null)
+       		top.location.href = "http://m.shinhan.com";
+	}
+
+	function ckechBrowserWebzine()
+	{
+		var uAgent = navigator.userAgent.toLowerCase();
+		var mobilePhones = new Array('iphone','ipod','iPad','android','blackberry','windows ce','nokia','webos','opera mini','sonyericsson','opera mobi','iemobile');
+		for(var i=0;i<mobilePhones.length;i++)
+   		if(uAgent.indexOf(mobilePhones[i]) != -1)
+       		top.location.href = "http://webzine.shinhan.com/websquare/websquare.jsp?w2xPath=/contents/switch2015/main.xml";
+
+		if (navigator.userAgent.match(/mozilla/) == null && navigator.userAgent.match(/Mobile|Windows CE|Windows Phone|Opera Mini|POLARIS/) != null)
+       		top.location.href = "http://webzine.shinhan.com/websquare/websquare.jsp?w2xPath=/contents/switch2015/main.xml";
+	}
+
+	
+	if(!(document.location.href.indexOf('http://webzine.shinhan.com') == 0))
+	{
+		ckechBrowser();
+	}
+	else
+	{
+		ckechBrowserWebzine();
+	}
+
+</script>
+</head>
+<frameset rows='0,*' border='0' >
+	<frame title='보안용 프레임' src='about:blank' name='secureframe' scrolling='no' marginwidth='0'  />	
+	<frame title='내용 프레임' src='/websquare/websquare.jsp?w2xPath=/contents/main.xml' name='bizMain' scrolling='yes' />
+	<!-- SSO 미사용시 주석을 풀어주세요 <frame title='내용없는 프레임' name="unloadFrame" src="/common/hpe/jsp/unloadFrame.jsp" style='border:0;' marginwidth="0" scrolling="no" noresize > -->
+</frameset>
+</html>

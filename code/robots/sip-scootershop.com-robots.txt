@@ -1,0 +1,8 @@
+# Zugriff auf alle Dateien erlauben
+User-agent: *
+Disallow: /main/user/
+Disallow: /main/checkout/
+
+Sitemap: http://www.sip-scootershop.com/sip_DE.xml
+Sitemap: http://www.sip-scootershop.com/sip_EN.xml
+Sitemap: http://www.sip-scootershop.com/sip_FR.xml

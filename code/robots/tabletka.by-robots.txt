@@ -1,0 +1,505 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
+<head>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+	<meta http-equiv="Keywords" content="аптечная справка, лекарства, аптеки, справочник, медицина, здоровье, поиск лекарств, medicine, Минск, Брест, Витебск, Гомель, Гродно, Могилев">
+	<meta http-equiv="Description" content="Сервис представляет информацию по аптекам Беларуси, наличию лекарственных средств в аптечных учреждениях, ценах.">
+    <link rel="icon" type="image/png" href="favicon.png" />
+	<link rel="stylesheet" href="style.css?11" type="text/css" media="screen" />
+    <link rel="stylesheet" href="print.css?11" type="text/css" media="print" />
+    <title>tabletka.by - поиск лекарств в аптеках Беларуси</title>  
+      <script src="src/jquery/jquery.min.js" type="text/javascript"></script>
+      <script type="text/javascript" src="jquery.autocomplete.js"></script>
+      <script src="chosen/chosen.jquery.js" type="text/javascript"></script>
+      <script language="javascript">
+$(document).ready(function()
+{   	
+     $("#tlec").autocomplete("autocomplete.php", {
+      autoFill:false,
+      cacheLength:1,
+      delay:500,
+      matchCase:false,
+      matchContains:false,		
+      matchSubset:false,			// Запрос при каждом изменении
+      minChars:3,
+      mustMatch:false,
+      scroll:false,
+      maxItemsToShow:10
+     });
+     
+     
+     
+     $(".chzn-select").chosen(); 
+     $(".chzn-select-deselect").chosen({allow_single_deselect:true});
+     
+     $(".chzn-select").change(function(){
+        var text = $('.chzn-select option:selected').text();
+        var id = $('.chzn-select option:selected').val();
+        $('#pharmacyid').text('Аптеки Региона '+text).attr('href','apteki.php?region='+id+'');
+     })
+		
+});
+</script>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/13228765/320x240', [320, 240], 'div-gpt-ad-1377512809555-0').addService(googletag.pubads());
+googletag.defineSlot('/13228765/980x200', [980, 200], 'div-gpt-ad-1377512809555-1').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
+</script>
+<link rel="stylesheet" href="chosen/chosen.css?11" />
+</head>
+<body>
+<script language="javascript">
+	function snlec_form_Submit() 
+	{
+		var tlec = jQuery.trim(document.snlec_form.tlec.value);
+		if (tlec == "")
+		{
+		    document.snlec_form.tlec.value ="";  
+            document.snlec_form.tlec.focus();
+			alert(' Не заполнена строка поиска! ');
+			return false;
+		};
+		if (tlec.length<3)
+		{
+		    document.snlec_form.tlec.value =  jQuery.trim(document.snlec_form.tlec.value); 
+            document.snlec_form.tlec.focus();
+			alert('   Вы задали слишком короткую строку поиска!  ');
+			return false;
+		};
+		if (document.snlec_form.region.value=="0" || document.snlec_form.region.value=="")
+		{
+			alert('  Вы не выбрали регион! ');
+			return false;
+		};
+	}
+	function f_region_Submit() 
+	{
+		document.f_region.region.value=document.snlec_form.region.value;
+		if (document.f_region.region.value=="0" || document.f_region.region.value=="")
+		{
+			alert(' Вы не выбрали регион! ');
+			return;
+		};
+		document.f_region.submit();
+	}
+</script>
+
+
+<div class="hall">
+	<div class="hallin">
+		<div class="hc">
+        </div>
+		<div class="logot">
+		<img src="logosm.gif" width="175" height="31" /> 
+		</div>
+        <div class="hsearch">
+        	<div class="hsearchin">
+            	<div class="divform">
+                <div class="podph">Наименование</div><div class="podph">Регион поиска</div>
+              <form action="result1.php" method="GET" name="snlec_form" onsubmit="return snlec_form_Submit(this)">
+                	<div class="divfl">
+                    <input type="text" name="tlec" id="tlec" class="hinput" onclick="this.className = 'hinputa'" onblur="this.className = 'hinput'" alt="Строка поиска лекарственных препаратов." title="Строка поиска лекарственных препаратов." required="required" />
+                    <input type="hidden" name="ns" value="0" />
+                    <input type="hidden" name="srcreg" value="1" />
+                    <input type="hidden" name="srctype" value="1" />
+                    </div>
+                    <div class="divfl">
+                                        <select data-placeholder="Выберите регион..." class="chzn-select" style="width:230px;" tabindex="2"  name="region">
+                     </OPTION>
+                     <OPTION value=42 >Барановичи</OPTION>
+<OPTION value=92 >Барань</OPTION>
+<OPTION value=121 >Белоозерск</OPTION>
+<OPTION value=145 >Белыничи</OPTION>
+<OPTION value=91 >Береза</OPTION>
+<OPTION value=161 >Березино</OPTION>
+<OPTION value=43 >Березовка</OPTION>
+<OPTION value=153 >Берестовица</OPTION>
+<OPTION value=90 >Бешенковичи</OPTION>
+<OPTION value=56 >Бобруйск</OPTION>
+<OPTION value=48 >Борисов</OPTION>
+<OPTION value=95 >Боровляны</OPTION>
+<OPTION value=94 >Браслав</OPTION>
+<OPTION value=41 >Брест</OPTION>
+<OPTION value=168 >Буда-Кошелево</OPTION>
+<OPTION value=151 >Быхов</OPTION>
+<OPTION value=93 >Верхнедвинск</OPTION>
+<OPTION value=155 >Ветка</OPTION>
+<OPTION value=89 >Вилейка</OPTION>
+<OPTION value=19 >Витебск</OPTION>
+<OPTION value=37 >Волковыск</OPTION>
+<OPTION value=162 >Воложин</OPTION>
+<OPTION value=167 >Вороново</OPTION>
+<OPTION value=122 >Высокое</OPTION>
+<OPTION value=123 >Ганцевичи</OPTION>
+<OPTION value=185 >Гатово</OPTION>
+<OPTION value=141 >Глубокое</OPTION>
+<OPTION value=179 >Глуск</OPTION>
+<OPTION value=36 >Гомель</OPTION>
+<OPTION value=59 >Горки</OPTION>
+<OPTION value=38 >Гродно</OPTION>
+<OPTION value=71 >Давид-Городок</OPTION>
+<OPTION value=102 >Дзержинск</OPTION>
+<OPTION value=86 >Добруш</OPTION>
+<OPTION value=154 >Дрибин</OPTION>
+<OPTION value=124 >Дрогичин</OPTION>
+<OPTION value=96 >Дружный пос.</OPTION>
+<OPTION value=142 >Дятлово</OPTION>
+<OPTION value=50 >Жабинка</OPTION>
+<OPTION value=68 >Житковичи</OPTION>
+<OPTION value=24 >Жлобин</OPTION>
+<OPTION value=62 >Жодино</OPTION>
+<OPTION value=143 >Заславль</OPTION>
+<OPTION value=166 >Зельва</OPTION>
+<OPTION value=125 >Иваново</OPTION>
+<OPTION value=126 >Ивацевичи</OPTION>
+<OPTION value=77 >Ивье</OPTION>
+<OPTION value=103 >Калинковичи</OPTION>
+<OPTION value=74 >Каменец</OPTION>
+<OPTION value=152 >Кировск</OPTION>
+<OPTION value=76 >Клецк</OPTION>
+<OPTION value=187 >Климовичи</OPTION>
+<OPTION value=197 >Кличев</OPTION>
+<OPTION value=127 >Кобрин</OPTION>
+<OPTION value=158 >Колодищи</OPTION>
+<OPTION value=163 >Копыль</OPTION>
+<OPTION value=160 >Кореличи</OPTION>
+<OPTION value=132 >Коссово</OPTION>
+<OPTION value=180 >Костюковичи</OPTION>
+<OPTION value=196 >Краснополье</OPTION>
+<OPTION value=144 >Кричев</OPTION>
+<OPTION value=157 >Круглое</OPTION>
+<OPTION value=164 >Крупки</OPTION>
+<OPTION value=69 >Лельчицы</OPTION>
+<OPTION value=34 >Лида</OPTION>
+<OPTION value=10 >Логойск</OPTION>
+<OPTION value=128 >Лунинец</OPTION>
+<OPTION value=165 >Любань</OPTION>
+<OPTION value=129 >Ляховичи</OPTION>
+<OPTION value=130 >Малорита</OPTION>
+<OPTION value=87 >Марьина Горка</OPTION>
+<OPTION value=195 >Мачулищи</OPTION>
+<OPTION value=70 >Микашевичи</OPTION>
+<OPTION value=-23 SELECTED>Минск</OPTION>
+<OPTION value=58 > - Минск / Заводской</OPTION>
+<OPTION value=49 > - Минск / Ленинский</OPTION>
+<OPTION value=54 > - Минск / Московский</OPTION>
+<OPTION value=60 > - Минск / Октябрьский</OPTION>
+<OPTION value=45 > - Минск / Партизанский</OPTION>
+<OPTION value=44 > - Минск / Первомайский</OPTION>
+<OPTION value=7 > - Минск / Советский</OPTION>
+<OPTION value=2 > - Минск / Фрунзенский</OPTION>
+<OPTION value=61 > - Минск / Центральный</OPTION>
+<OPTION value=99 >Миоры</OPTION>
+<OPTION value=156 >Мир</OPTION>
+<OPTION value=184 >Михановичи</OPTION>
+<OPTION value=40 >Могилев</OPTION>
+<OPTION value=39 >Мозырь</OPTION>
+<OPTION value=46 >Молодечно</OPTION>
+<OPTION value=149 >Мосты</OPTION>
+<OPTION value=147 >Мстиславль</OPTION>
+<OPTION value=175 >Мядель</OPTION>
+<OPTION value=176 >Нарочь</OPTION>
+<OPTION value=85 >Негорелое</OPTION>
+<OPTION value=75 >Несвиж</OPTION>
+<OPTION value=81 >Новогрудок</OPTION>
+<OPTION value=100 >Новополоцк</OPTION>
+<OPTION value=51 >Орша</OPTION>
+<OPTION value=80 >Осиповичи</OPTION>
+<OPTION value=169 >Островец</OPTION>
+<OPTION value=150 >Ошмяны</OPTION>
+<OPTION value=52 >Пинск</OPTION>
+<OPTION value=171 >Плещеницы</OPTION>
+<OPTION value=72 >Полоцк</OPTION>
+<OPTION value=65 >Пружаны</OPTION>
+<OPTION value=88 >Речица</OPTION>
+<OPTION value=191 >Рогачев</OPTION>
+<OPTION value=172 >Руденск</OPTION>
+<OPTION value=140 >Ружаны</OPTION>
+<OPTION value=186 >Самохваловичи</OPTION>
+<OPTION value=79 >Светлогорск</OPTION>
+<OPTION value=78 >Свислочь</OPTION>
+<OPTION value=148 >Скидель</OPTION>
+<OPTION value=146 >Славгород</OPTION>
+<OPTION value=57 >Слоним</OPTION>
+<OPTION value=98 >Слуцк</OPTION>
+<OPTION value=173 >Смиловичи</OPTION>
+<OPTION value=170 >Смолевичи</OPTION>
+<OPTION value=55 >Сморгонь</OPTION>
+<OPTION value=35 >Солигорск</OPTION>
+<OPTION value=174 >Старые Дороги</OPTION>
+<OPTION value=64 >Столбцы</OPTION>
+<OPTION value=131 >Столин</OPTION>
+<OPTION value=139 >Телеханы</OPTION>
+<OPTION value=178 >Узда</OPTION>
+<OPTION value=47 >Фаниполь</OPTION>
+<OPTION value=97 >Хойники</OPTION>
+<OPTION value=188 >Хотимск</OPTION>
+<OPTION value=181 >Чаусы</OPTION>
+<OPTION value=177 >Червень</OPTION>
+<OPTION value=194 >Чериков</OPTION>
+<OPTION value=73 >Шарковщина</OPTION>
+<OPTION value=53 >Шклов</OPTION>
+<OPTION value=67 >Щучин</OPTION>
+                    <option value="-1000" >Все регионы</option>
+                    </select>
+                    </div>
+                    <div class="divb">
+					<input type="image"  title="Поиск лекарственных средств" alt="Поиск лекарственных средств" src="sbut.png" class="sbut" />
+					</div>
+				</div>
+                <div class="divform2">
+                	<label>
+                	<div class="divfl2">
+					<div class="inpb"><input type="checkbox" name="mnn_box" /></div><div class="inpbt">включая полные аналоги по МНН, без учета формы выпуска и дозировки</div>
+					</div>
+                    </label>
+                </div>
+                </form>
+			</div>
+﻿            <div class="kolr">
+В поиске <span class="bigprice">2217</span> аптек в <span class="bigprice">133</span> регионах<br>Запросов <span class="bigprice">55217
+</span> за предыдущие сутки</div>
+		</div>
+        <div class="navgreen">
+		<ul class="navul">
+		<li class="navlileft">
+		<a href="apteki.php?region=-23" id="pharmacyid" class="navh">Аптеки Региона Минск</a>
+		</li>
+		<li class="navlileft">
+		<a href="abc.php" class="navh">Лекарства А-Я</a>
+		</li>
+		<li class="navlileft">
+		<a href="actionsales.php" class="navh">Акции и скидки</a>
+		</li>
+		<li class="navlileft">
+		<a href="faq.php" class="navh">Вопросы и ответы</a>
+		</li>
+		<li class="navliright">
+		<a href="help.php" class="navh">Помощь</a>
+		</li>
+		<li class="navliright">
+		<a href="about.php" class="navh">Контакты</a>
+		</li>
+		</ul>
+		</div>         
+	</div>
+</div>
+
+
+        
+
+<div class="Centred">
+<div class="ban728">
+<!-- 980x200 -->
+<div id='div-gpt-ad-1377512809555-1' style='width:980px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1377512809555-1'); });
+</script>
+</div>
+</div>
+<div class="infoindex">
+<div class="infoalll">
+<div class="actn">
+<div class="topdrzagin">
+<img class="skosl" src="skosl.png" width="6" height="14" />Акции и скидки в аптеках
+</div>
+<div class="actnprein">
+<div class="actnin"><div class="actpic"><img src="img/actpicn25.jpg" width="105" height="62"/></div><div class="acttxt"><a href="sales.php?messid=25">Скидка 10% в Витебское УП Фармация на лекарственные средства отечественного пр-ва.</a></div></div><div class="actnin"><div class="actpic"><img src="img/actpicn9.jpg" width="105" height="62"/></div><div class="acttxt"><a href="sales.php?messid=9">Скидка 5% в аптеках Гродненского РУП "Фармация" на товары белорусского производства</a></div></div></div>
+<div style="height:15px; width:100px; float:left;">
+</div>
+<div class="aptnews">
+<div class="topdrzagin">
+<img class="skosl" src="skosl.png" width="6" height="14" />Новости и статьи
+</div>
+<div class="actnprein">
+<div class="actnin">
+<div class="actpic">
+<img src="img/osma_logo_min.jpg" width="105" height="62"/>
+</div>
+<div class="acttxt"><a href="osma.php"> Дезодоранты на основе 100 % натурального горно-вулканического происхождения...
+</a>
+</div>
+</div>
+</div>
+<div class="actnprein">
+<div class="actnin">
+<div class="actpic">
+<img src="img/logo_himalaya.jpg" width="105" height="62"/>
+</div>
+<div class="acttxt"><a href="http://tab.by/liv-52.php">Поддерживаем своего важного помощника! Печень - уникальный орган! Поговорим о ней...</a>
+</div>
+</div>
+</div></div></div>
+<div class="tops">
+
+<div class="topdr">
+<div class="topdrzag">
+<div class="topdrzagin">
+<img class="skosl" src="skosl.png" width="6" height="14" />Лидеры ассортимента / Минск</div>
+</div>
+<div class="toptab">
+<table class="toptabl" cellpadding="0" cellspacing="0">
+<tr class="trgr"><td class="toptd">1</td><td title="Искамед ООО Аптека N20 / ул. Московская, 16" class="topcell"><a href="apteki_info.php?kapt=223&region=-23">Искамед ООО Аптека N20 / ул. Московская, 16</a></td><td title="4144 - количество наименований лекарственных средтв и биолокически-активных добавок в аптеке" class="toptd">4144</td></tr><tr class="trw"><td class="toptd">2</td><td title="Беролина ЗАО Аптека N1 / пр-т Независимости, 143, корп. 1" class="topcell"><a href="apteki_info.php?kapt=193&region=-23">Беролина ЗАО Аптека N1 / пр-т Независимости, 143, корп. 1</a></td><td title="4131 - количество наименований лекарственных средтв и биолокически-активных добавок в аптеке" class="toptd">4131</td></tr><tr class="trgr"><td class="toptd">3</td><td title="Искамед ООО Аптека N7 / пр-т Рокоссовского, 80" class="topcell"><a href="apteki_info.php?kapt=228&region=-23">Искамед ООО Аптека N7 / пр-т Рокоссовского, 80</a></td><td title="4100 - количество наименований лекарственных средтв и биолокически-активных добавок в аптеке" class="toptd">4100</td></tr><tr class="trw"><td class="toptd">4</td><td title="Искамед ООО Аптека N3 / ул. Рафиева, 88А" class="topcell"><a href="apteki_info.php?kapt=227&region=-23">Искамед ООО Аптека N3 / ул. Рафиева, 88А</a></td><td title="4082 - количество наименований лекарственных средтв и биолокически-активных добавок в аптеке" class="toptd">4082</td></tr><tr class="trgr"><td class="toptd">5</td><td title="Беролина ЗАО Аптека N2 / ул. Уманская, 55" class="topcell"><a href="apteki_info.php?kapt=194&region=-23">Беролина ЗАО Аптека N2 / ул. Уманская, 55</a></td><td title="4017 - количество наименований лекарственных средтв и биолокически-активных добавок в аптеке" class="toptd">4017</td></tr><tr class="trw"><td class="toptd">6</td><td title="Медвакс СЗАО Аптека N6 / ул. Ленина, 7" class="topcell"><a href="apteki_info.php?kapt=175&region=-23">Медвакс СЗАО Аптека N6 / ул. Ленина, 7</a></td><td title="3901 - количество наименований лекарственных средтв и биолокически-активных добавок в аптеке" class="toptd">3901</td></tr><tr class="trgr"><td class="toptd">7</td><td title="Беролина ЗАО Аптека N3 / пр-т Независимости, 95, пом. 22" class="topcell"><a href="apteki_info.php?kapt=195&region=-23">Беролина ЗАО Аптека N3 / пр-т Независимости, 95, пом. 22</a></td><td title="3893 - количество наименований лекарственных средтв и биолокически-активных добавок в аптеке" class="toptd">3893</td></tr></table>
+</div>
+</div>
+  <div class="topdr">
+    <div class="topdrzag">
+<div class="topdrzagin">
+<img class="skosl" src="skosl.png" width="6" height="14" />Рейтинг средних цен / Минск </div>
+</div>
+<div class="toptab">
+<table class="toptabl" cellpadding="0" cellspacing="0">
+<tr class="trgr"><td class="toptd">1</td><td title="Интерофицина Плюс ООО Аптека N8 / ул. Притыцкого, 10" class="topcell"><a href="apteki_info.php?kapt=145&region=-23">Интерофицина Плюс ООО Аптека N8 / ул. Притыцкого, 10</a></td><td title="73871 рублей - средняя цена в аптеке (по топ-тысяче наиболее дистрибутированных лекарственных средств и биологических добавок в Беларуси)" class=\"toptd\">73871</td></tr><tr class="trw"><td class="toptd">2</td><td title="Доктор Время ООО Аптека N5 / пер. Молочный, 4 ст.м. Институт культуры" class="topcell"><a href="apteki_info.php?kapt=1019&region=-23">Доктор Время ООО Аптека N5 / пер. Молочный, 4 ст.м. Институт культуры</a></td><td title="74095 рублей - средняя цена в аптеке (по топ-тысяче наиболее дистрибутированных лекарственных средств и биологических добавок в Беларуси)" class=\"toptd\">74095</td></tr><tr class="trgr"><td class="toptd">3</td><td title="ЛКЛ ООО Аптека N1 / ул. Володарского, 12А" class="topcell"><a href="apteki_info.php?kapt=1819&region=-23">ЛКЛ ООО Аптека N1 / ул. Володарского, 12А</a></td><td title="74300 рублей - средняя цена в аптеке (по топ-тысяче наиболее дистрибутированных лекарственных средств и биологических добавок в Беларуси)" class=\"toptd\">74300</td></tr><tr class="trw"><td class="toptd">4</td><td title="Заботливая аптека Ивем и К ООО Аптека N1 / ул. Бакинская, 20/1А" class="topcell"><a href="apteki_info.php?kapt=512&region=-23">Заботливая аптека Ивем и К ООО Аптека N1 / ул. Бакинская, 20/1А</a></td><td title="74780 рублей - средняя цена в аптеке (по топ-тысяче наиболее дистрибутированных лекарственных средств и биологических добавок в Беларуси)" class=\"toptd\">74780</td></tr><tr class="trgr"><td class="toptd">5</td><td title="Новамедика Аптека N1 / ул. Шабаны, 5" class="topcell"><a href="apteki_info.php?kapt=61&region=-23">Новамедика Аптека N1 / ул. Шабаны, 5</a></td><td title="75128 рублей - средняя цена в аптеке (по топ-тысяче наиболее дистрибутированных лекарственных средств и биологических добавок в Беларуси)" class=\"toptd\">75128</td></tr><tr class="trw"><td class="toptd">6</td><td title="БризФарм Аптека N3 / ул. Бельского, 2, пом. 4Н" class="topcell"><a href="apteki_info.php?kapt=1382&region=-23">БризФарм Аптека N3 / ул. Бельского, 2, пом. 4Н</a></td><td title="75479 рублей - средняя цена в аптеке (по топ-тысяче наиболее дистрибутированных лекарственных средств и биологических добавок в Беларуси)" class=\"toptd\">75479</td></tr><tr class="trgr"><td class="toptd">7</td><td title="БризФарм Аптека N1 / ул. Есенина, 16, пом. 1Н" class="topcell"><a href="apteki_info.php?kapt=1381&region=-23">БризФарм Аптека N1 / ул. Есенина, 16, пом. 1Н</a></td><td title="75620 рублей - средняя цена в аптеке (по топ-тысяче наиболее дистрибутированных лекарственных средств и биологических добавок в Беларуси)" class=\"toptd\">75620</td></tr></table>
+</div>
+</div>
+
+</div>
+<div class="promoprep">
+<div class="promol"><img src="packn11141.jpg" width="75" height="75" /><div class="promolin"><a href="http://tabletka.by/result2.php?lstr=11141&regcsv=-1000">ЭЛЕВИТ 30 таблеток Витамины для беременных      </div><div class="pricepromo">от <span class="bigprice">11800</span> руб.</a></div></div><div class="promol"><img src="packn17790.jpg" width="75" height="75" /><div class="promolin"><a href="http://tabletka.by/result2.php?lstr=17790&regcsv=-1000">АЛЬМОКС А при заболеваниях пищевода и желудка</div><div class="pricepromo">от <span class="bigprice">24500</span> руб.</a></div></div><div class="promol"><img src="packn17350.jpg" width="75" height="75" /><div class="promolin"><a href="http://tabletka.by/result2.php?lstr=17350&regcsv=-1000">ЦИСТИВИТ при заболеваниях мочевыводящих путей</div><div class="pricepromo">от <span class="bigprice">50200</span> руб.</a></div></div><div class="promol"><img src="packn17762.jpg" width="75" height="75" /><div class="promolin"><a href="http://tabletka.by/result2.php?lstr=17762&regcsv=-1000">ЭССЕЛ ФОРТЕ Э для лечения заболеваний печени, N30</div><div class="pricepromo">от <span class="bigprice">66000</span> руб.</a></div></div><div class="promol"><img src="packn5475.jpg" width="75" height="75" /><div class="promolin"><a href="http://tabletka.by/result2.php?lstr=5475&regcsv=-1000">ЛОМА ЛЮКС АКНЕ для лечения угрей, прыщей и розацеа</div><div class="pricepromo">от <span class="bigprice">232300</span> руб.</a></div></div></div>
+<div class="quotes"><div class="gra3"></div>
+<div class="topdrzagin">
+<img class="skosl" src="skosl.png" width="6" height="14" />Ответы на вопросы
+</div>
+<div class="overquotes">
+<div class="questext"><a href="faq.php" class="grb"><span class="dashedbot"><b>ВОПРОС: </b></span>Нужен сахароснижающий препарат "Форксига", нет нигде, есть ли он под другим названием?&nbsp(светлана&nbsp22.09.15&nbsp15:21)<p style="margin-top:5px;"><span class="dashedbot"><b>ОТВЕТ: </b></span>К сожалению не зарегистрирован и никогда не встречался в РБ. Полных аналогов нет.</p></a></div></div></div>
+<div class="lasttop">
+<div class="topdrzagin">
+<img class="skosl" src="skosl.png" width="6" height="14" />Новые препараты в поиске
+</div>
+<div class="lasttopin">
+<img src="lit.gif" /><a href="result2.php?rs=1&lstr=17955&regcsv=-1000">РЕЛАКСЕДИН капс N30 Минскинтеркапс</a><br>
+<img src="lit.gif" /><a href="result2.php?rs=1&lstr=17957&regcsv=-1000">ГРАММИДИН ДЕТСКИЙ таб для рассас 1.5мг/1мг N18 ЩВЗ/Валента</a><br>
+<img src="lit.gif" /><a href="result2.php?rs=1&lstr=17961&regcsv=-1000">МИАЛДЕКС таб п/о 25мг N20 Лабораториос Нормон</a><br>
+<img src="lit.gif" /><a href="result2.php?rs=1&lstr=17962&regcsv=-1000">ПАНОРМА пор инф 40мг N1 Гранд Медикал/Рафарм Геллас</a><br>
+<img src="lit.gif" /><a href="result2.php?rs=1&lstr=17965&regcsv=-1000">НЕОМИЦИН аэрозоль 11.72мг/1г 32г N1 Польфа Тархомин</a><br>
+</div>
+</div>
+</div>
+
+<div class="infolm">
+<div class="topdr">
+<div class="topdrzag">
+<div class="topdrzagin">
+<img class="skosl" src="skosl.png" width="6" height="14" />Популярные запросы пользователей
+</div>
+</div>
+
+<div class="topdrl">
+<img src="lit.gif" /><a href="result1.php?tlec=АКТОВЕГИН&region=-1000">Актовегин</a><br><img src="lit.gif" /><a href="result1.php?tlec=ГЕНФЕРОН&region=-1000">Генферон</a><br><img src="lit.gif" /><a href="result1.php?tlec=НЕУРОБЕКС НЕО&region=-1000">Неуробекс нео</a><br><img src="lit.gif" /><a href="result1.php?tlec=ЛИНЕКС&region=-1000">Линекс</a><br><img src="lit.gif" /><a href="result1.php?tlec=ГРОПРИНОСИН&region=-1000">Гроприносин</a><br></div><div class="topdrl"><img src="lit.gif" /><a href="result1.php?tlec=НЕУРОБЕКС&region=-1000">Неуробекс</a><br><img src="lit.gif" /><a href="result1.php?tlec=ПОЛИДЕКСА&region=-1000">Полидекса</a><br><img src="lit.gif" /><a href="result1.php?tlec=АУГМЕНТИН&region=-1000">Аугментин</a><br><img src="lit.gif" /><a href="result1.php?tlec=БЕПАНТЕН&region=-1000">Бепантен</a><br><img src="lit.gif" /><a href="result1.php?tlec=СИНУПРЕТ&region=-1000">Синупрет</a><br></div><div class="topdrlr"><a href="result1.php?tlec=ДЮФАСТОН&region=-1000"><img src="lit.gif" />Дюфастон</a><br><a href="result1.php?tlec=АЛФЛУТОП&region=-1000"><img src="lit.gif" />Алфлутоп</a><br><a href="result1.php?tlec=ФЛУКОНАЗОЛ&region=-1000"><img src="lit.gif" />Флуконазол</a><br><a href="result1.php?tlec=СЕРМИОН&region=-1000"><img src="lit.gif" />Сермион</a><br><a href="result1.php?tlec=НОВАРИНГ&region=-1000"><img src="lit.gif" />Новаринг</a><br></div>
+</div>
+<div class="ads320240">
+<!-- 320x240 -->
+<div id='div-gpt-ad-1377512809555-0' style='width:320px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1377512809555-0'); });
+</script>
+</div>
+</div>
+<div class="menul">
+<div class="topdrzagin">
+<img class="skosl" src="skosl.png" width="6" height="14" />Полезные ссылки
+</div>
+<div class="li190">
+<ul class="ulr">
+<li class="lir"><a href="24h.php">Круглосуточные аптеки</a></li>
+<li class="lir"><a href="factureapt.php">Производственные аптеки</a></li>
+<li class="lir"><a href="faq.php">Ответы на вопросы</a></li>
+<li class="lir"><a href="friends.php">Партнеры и друзья</a></li>
+<li class="lir"><a href="aptekam.php">Информация для аптек</a></li>
+</ul>
+</div>
+<div class="li130">
+<ul class="ulr">
+<li class="lir"><a href="abc.php">Лекарства А-Я</a></li>
+<li class="lir"><a href="actionsales.php">Акции и скидки</a></li>
+<li class="lir"><a href="api.php">Разработчикам</a></li>
+<li class="lir"><a href="ad.php">Реклама</a></li>
+<li class="lir"><a href="about.php">Контакты</a></li>
+</ul>
+</div>
+</div>
+<div class="apps">
+  <a class="qrnew" href="https://play.google.com/store/apps/details?id=com.tabletka.by" target="_blank"><img src="google-play-button.gif" width="155" height="49" /><em><img src="img/qr-android.gif" /></em></a> <a class="qrnew" href="https://itunes.apple.com/by/app/tabletka.by/id810267361?ls=1&mt=8" target="_blank"><img src="appstore-button.gif" width="155" height="49" /><em><img src="img/qr-iphone.gif" /></em></a></div>
+</div>
+
+
+</div>
+<div class="tabmenu2">
+  &copy; 2010-2013 - Интелликс-М - tabletka.by 
+  
+  <!-- Akavita counter code -->
+<script language="javascript" type="text/javascript"><!--
+d=document;w=window;n=navigator;d.cookie="cc=1";
+r=''+escape(d.referrer);js=10;c=(d.cookie)?1:0;j=0;
+x=Math.random();u=''+escape(w.location.href);lt=0;
+h=history.length;t=new Date;f=(self!=top)?1:0;cd=0;
+tz=t.getTimezoneOffset();cpu=n.cpuClass;ww=wh=ss=0;
+//--></script><script language="javascript1.1" type="text/javascript"><!--
+js=11;j=(n.javaEnabled()?1:0);
+//--></script><script language="javascript1.2" type="text/javascript"><!--
+js=12;lt=1;s=screen;ss=s.width;ssh=s.height;
+cd=(s.colorDepth?s.colorDepth:s.pixelDepth);
+//--></script><script language="javascript1.3" type="text/javascript"><!--
+js=13;wh=w.innerHeight;ww=w.innerWidth;
+wh=(wh?wh:d.documentElement.offsetHeight);
+ww=(ww?ww:d.documentElement.offsetWidth);
+//--></script><script language="javascript" type="text/javascript"><!--
+q='lik?id=40504&d='+u+'&r='+r+'&h='+h+'&f='+f;
+q+='&c='+c+'&tz='+tz+'&cpu='+cpu+'&js='+js+'&wh='+wh;
+q+='&ww='+ww+'&ss='+ss+'&ssh='+ssh+'&cd='+cd+'&j='+j+'&x='+x;
+d.write('<a target="_top" href="http://www.akavita.by/">'+
+'<img src="http://adlik.akavita.com/bin/'+
+q+'" alt="Akavita" '+
+'border="0" width="34" height="12"/></a>');
+//--></script><noscript>
+<a target="_top" href="http://www.akavita.by/">
+<img src="http://adlik.akavita.com/bin/lik?id=40504" border="0"
+height="12" width="34"
+alt="Akavita" /></a></noscript>
+<!-- Akavita counter code -->
+<!-- BEGIN Rating All.BY CODE - ALTERNATING THIS CODE WILL CAUSE TERMINATION ACCOUNT-->
+<A HREF="http://www.all.by/">
+<IMG SRC="http://www.all.by/cgi-bin/rating.cgi?id=10077007&amp;ni=3" BORDER="0" WIDTH="34" HEIGHT="12" ALT="Rating All.BY"></A>
+<!-- END Rating All.BY CODE-->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-13219199-1']);
+  _gaq.push(['_setDomainName', 'tabletka.by']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</div>
+<div class="tabmenu3">
+  <img src="img/print.gif" style="float:left" width="12" height="12" />&nbsp;<a href="javascript:(print());">Версия для печати</a>
+  </div>
+  <div class="tabmenu3" style="margin-right:50px;"> <a href="terms-of-use.php">Пользовательское соглашение</a></div> 
+  </div>
+</body>
+</html>

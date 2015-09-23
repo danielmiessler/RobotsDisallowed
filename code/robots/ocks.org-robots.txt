@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html class="ocks-org do-not-copy">
+<meta charset="utf-8">
+<title>File Not Found</title>
+<style>
+
+@import url(/mike/style.css?aea6f0a);
+
+iframe {
+  width: 960px;
+  height: 500px;
+  border: 1px solid #dedede;
+}
+
+</style>
+
+<header>
+  <aside>April 28, 2012</aside>
+  <a href="/mike/">Mike Bostock</a>
+</header>
+
+<h1>File Not Found</h1>
+
+<iframe src="http://bl.ocks.org/mbostock/raw/1893974/" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+
+<p>Unfortunately, the page you were looking for does not appear to exist. Instead, here is a pleasing demonstration of <b><a href="http://bl.ocks.org/mbostock/1893974">Mitchell’s best-candidate</a></b> algorithm.
+
+<p>The best-candidate algorithm generates a new random sample by creating <i>k</i> candidate samples and picking the one with the highest score: the one farthest from previous samples. The algorithm approximates <a href="http://www.cs.virginia.edu/~gfx/pubs/antimony/">Poisson-disc sampling</a>, producing a more natural appearance (better blue noise spectral characteristics) than uniform random sampling. This has a variety of useful applications in computer graphics, such as reducing <a href="http://en.wikipedia.org/wiki/Moiré_pattern">Moiré patterns</a> in supersampling raytracers.
+
+<p>In pseudo-code:
+
+<pre><code>function bestCandidate(k) {
+  var bestScore = 0,
+      bestCandidate;
+
+  // Generate k random candidates.
+  for (var i = 0; i < k; ++i) {
+    var c = randomCandidate();
+
+    // Determine if the current candidate is the new best.
+    var s = score(c);
+    if (s > bestScore) {
+      bestScore = s;
+      bestCandidate = c;
+    }
+  }
+
+  return bestCandidate;
+}</code></pre>
+
+<p>This implementation depends on an external function <code>score</code> which computes the minimum distance between the new candidate <code>c</code> and all previous samples. The naïve implementation is expensive, since it iterates over all previous samples for each new sample! Fortunately, data structures such as <a href="https://github.com/mbostock/d3/wiki/Quadtree-Geom">quadtrees</a> can accelerate these tests by skipping samples that are far away.
+
+<footer>
+  <aside>April 28, 2012</aside>
+  <a href="/mike/">Mike Bostock</a>
+</footer>
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="/mike/highlight.min.js"></script>

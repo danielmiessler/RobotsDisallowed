@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+    <head><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"Vw4BV1ZbGwAEU1BaBQY="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t){try{i.console&&console.log(t)}catch(e){}}var n,r=t("ee"),o=t(1),i={};try{n=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(i.console=!0,-1!==n.indexOf("dev")&&(i.dev=!0),-1!==n.indexOf("nr_dev")&&(i.nrDev=!0))}catch(a){}i.nrDev&&r.on("internal-error",function(t){e(t.stack)}),i.dev&&r.on("fn-err",function(t,n,r){e(r.stack)}),i.dev&&(e("NR AGENT IN DEVELOPMENT MODE"),e("flags: "+o(i,function(t){return t}).join(", ")))},{1:20,ee:"QJf3ax"}],4:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(6),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,t(3),window.onerror=e;try{throw new Error}catch(u){"stack"in u&&(t(4),t(5),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:5,2:8,3:3,4:7,5:6,6:21,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],5:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=t("ee").create(),i=t(1)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:22,ee:"QJf3ax",gos:"7eSDFh"}],6:[function(t,e){var n=t("ee").create(),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:22,ee:"QJf3ax"}],7:[function(t,e){function n(t,e,n){t[0]=o(t[0],"fn-",null,n)}var r=t("ee").create(),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:22,ee:"QJf3ax"}],8:[function(t,e){function n(){u.inPlace(this,p,"fn-")}function r(t,e){u.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}function i(t,e){for(var n in t)e[n]=t[n];return e}var a=t("ee").create(),s=t(1),c=t(2),u=c(a),f=c(s),d=window.XMLHttpRequest,p=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=a,window.XMLHttpRequest=function(t){var e=new d(t);try{a.emit("new-xhr",[],e),f.inPlace(e,["addEventListener","removeEventListener"],"-",o),e.addEventListener("readystatechange",n,!1)}catch(r){try{a.emit("internal-error",[r])}catch(i){}}return e},i(d,XMLHttpRequest),XMLHttpRequest.prototype=d.prototype,u.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),a.on("send-xhr-start",r),a.on("open-xhr-start",r)},{1:5,2:22,ee:"QJf3ax"}],9:[function(t){function e(t){var e=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!e.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){e.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=n(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(e.cat=d.split(", ").pop())}}else e.status=0;r.cbTime=this.cbTime,o("xhr",[e,r,this.startTime])}}}function n(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=e,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,e){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=n(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof e.onload))&&i.end(e)}catch(n){try{a.emit("internal-error",[n])}catch(r){}}};for(var f=0;c>f;f++)e.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:10,3:8,4:5,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],10:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split("@").pop().split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,r.protocol=o[0],"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],11:[function(t,e){function n(t){return function(){r(t,[(new Date).getTime()].concat(i(arguments)))}}var r=t("handle"),o=t(1),i=t(2);"undefined"==typeof window.newrelic&&(newrelic=window.NREUM);var a=["setPageViewName","addPageAction","setCustomAttribute","finished","addToTrace","inlineHit","noticeError"];o(a,function(t,e){window.NREUM[e]=n("api-"+e)}),e.exports=window.NREUM},{1:20,2:21,handle:"D5DuLP"}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):void(r.q&&(r.q[t]||(r.q[t]=[]),r.q[t].push(e)))}var r=t("ee").create();e.exports=n,n.ee=r,r.q={}},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info,e=u.getElementsByTagName("script")[0];if(t&&t.licenseKey&&t.applicationID&&e){s(d,function(e,n){e in t||(t[e]=n)});var n="https"===f.split(":")[0]||t.sslForHttp;p.proto=n?"https://":"http://",a("mark",["onload",i()]);var r=u.createElement("script");r.src=p.proto+t.agent,e.parentNode.insertBefore(r,e)}}function r(){"complete"===u.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=t(1),c=window,u=c.document;t(2);var f=(""+location).split("?")[0],d={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-686.min.js"},p=e.exports={offset:i(),origin:f,features:{}};u.addEventListener?(u.addEventListener("DOMContentLoaded",o,!1),c.addEventListener("load",n,!1)):(u.attachEvent("onreadystatechange",r),c.attachEvent("onload",n)),a("mark",["firstbyte",i()])},{1:20,2:11,handle:"D5DuLP"}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],20:[function(t,e){function n(t,e){var n=[],o="",i=0;for(o in t)r.call(t,o)&&(n[i]=e(o,t[o]),i+=1);return n}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],21:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],22:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:21,ee:"QJf3ax"}]},{},["G9z0Bl",4,9]);</script>
+        <title>LIKEtoKNOW.it</title>
+
+        <meta name="description" content="LIKEtoKNOW.it is an Instagram shopping tool that helps top tier style publishers share shoppable posts with followers.">
+        <meta name="keywords" content="ltk, liketoknow, instagram, fashion, style, blog, publish, lifestyle, home">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="google-site-verification" content="UYamC-9DwcZIZ-uqZ2ZyhsYO3Pw8SS-s9iTwTP2vBr8" />
+        <!-- Bootstrap -->
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Gudea' rel='stylesheet' type='text/css'>
+        <link href="/css/ltk.css?v=2.0.0" rel="stylesheet">
+
+        <link rel="shortcut icon" href="/images/favicon.ico">
+
+        <link rel="stylesheet" type="text/css" href="//cloud.typography.com/631988/724364/css/fonts.css" />
+        <link rel="stylesheet" type="text/css" href="/js/media-element/mediaelementplayer.min.css" />
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+        <script src="/js/ga.js"></script>
+    </head>
+    <body id="home" class="logged-out">
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <img src="https://www.rewardstyle.com/images/search/product-popup-x.png" alt="Close" data-dismiss="modal" aria-hidden="true" />
+                    <div class="modal-body">
+                        <label for="language">CHOOSE LANGUAGE</label>
+                        <input type="radio" name="lang" id="lang_1" value="1" checked>
+                        <label for="lang_1">English</label><br/>
+                        <input type="radio" name="lang" id="lang_11" value="11" >
+                        <label for="lang_11">French - Français</label><br/>
+                        <input type="radio" name="lang" id="lang_13" value="13" >
+                        <label for="lang_13">German - Deutsch</label><br/>
+                        <input type="radio" name="lang" id="lang_2" value="2" >
+                        <label for="lang_2">Mandarin - 普通话</label><br/>
+                        <input type="radio" name="lang" id="lang_19" value="19" >
+                        <label for="lang_19">Russian - Pусский</label><br/>
+                        <input type="radio" name="lang" id="lang_14" value="14" >
+                        <label for="lang_14">Spanish - Español</label><br/>
+                        <input type="radio" name="lang" id="lang_12" value="12" >
+                        <label for="lang_12">Italian - Italia</label><br/>
+                        <input type="radio" name="lang" id="lang_47" value="47" >
+                        <label for="lang_47">Portuguese - Português</label><br/>
+                        <input type="radio" name="lang" id="lang_21" value="21" >
+                        <label for="lang_21">Swedish - Svenska</label><br/>
+                        <input type="radio" name="lang" id="lang_18" value="18" >
+                        <label for="lang_18">Japanese - 日本語</label><br/>
+                        <input type="radio" name="lang" id="lang_15" value="15" >
+                        <label for="lang_15">Dutch - Nederlands</label><br/>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <div class="row header-container">
+            <div class="page-header">
+                <a href="http://liketoknow.it">
+                    <img src="/images/LTK-logo_v2.svg" onerror="this.src=/images/LTK-logo_v2.png" />
+                </a>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row homerow">
+                <img src="/images/envelope-icon.svg" onerror="this.src='/images/envelope-icon.png'" alt="LTK" class="fourtybyfourty center" />
+                <p class="upper">Shop your</p>
+                <p class="upper">favorite instagrams</p>
+                <hr />
+                <p class="hitalic lower">From your</p>
+                <p class="hitalic lower">favorite instagrammers</p>
+                <a href="?instagram" class="black_button">Sign Up // Login</a>
+            </div>
+            <!-- How It Works Video Text -->
+            <div class="hiw-video-text">
+                <div class="hiw-text upper">how does it work?</div>
+                <a class="hiw-video-link" href="javascript:void(0);">
+                    <div class="play-icon">
+                        <img src="/images/Play-icon_email.png" height="30" width="30" alt="Video Play" />
+                    </div>
+                    <div class="play-text lower">(play video)</div>
+                </a>
+            </div>
+            <!-- End How It Works Video Text -->
+            <div class="row">
+                <div class="gridContainer"></div>
+            </div>
+            <hr id="hiw_video" class="style-eight-nine" data-url="../images/English-homepage-image.png">
+            <!-- How It Works Video -->
+            <div class="hiw-video">
+                <div class="hiw-video-overlay-hover">
+                    <div class="inner">
+                        <img class="center" src="/images/Play-icon-hover.png" />
+                        <div class="play-text lower">(click to play)</div>
+                    </div>
+                </div>
+                <div class="hiw-video-overlay">
+                    <div class="inner">
+                        <div class="text center">
+                            <div class="cascade-left upper">wouldn't you&hellip;</div>
+                            <img class="img center" src="/images/HIW-LTK-logo.png" />
+                            <div class="cascade-right upper">how it works?</div>
+                        </div>
+                        <img class="center" src="/images/Play-icon_email.png" />
+                        <div class="play-text lower">(play video)</div>
+                    </div>
+                </div>
+                <div class="hiw-video-wrapper">
+                    <video id="video" src="https://s3.amazonaws.com/ltk-videos/ltk-how-it-works-1-HD.mp4" width="700" height="394" poster="/videos/ltk-how-it-works.png" controls="controls" preload="none">
+
+                        <source type="video/webm" src="https://s3.amazonaws.com/ltk-videos/ltk-how-it-works-1-HD.webm" />
+                        <source type="video/ogg" src="https://s3.amazonaws.com/ltk-videos/ltk-how-it-works-1-HD.ogv" />
+                        <source type="video/mp4" src="https://s3.amazonaws.com/ltk-videos/ltk-how-it-works-1-HD.mp4" />
+                        <object width="700" height="394" type="application/x-shockwave-flash" data="/js/media-element/flashmediaelement.swf">
+                            <param name="movie" value="/js/mediaelement/flashmediaelement.swf" />
+                            <param name="flashvars" value="controls=true&amp;poster=/videos/ltk-how-it-works.png&amp;file=/videos/ltk-how-it-works.mp4" />
+                            <img src="/videos/ltk-how-it-works.png" width="700" height="394" title="No video playback capabilities" />
+                        </object>
+                    </video>
+                </div>
+            </div>
+            <!-- End How It Works Video -->
+            <div class="containercontainer">
+                <div class="hiw_overflow">
+                    <div class="howitworks">
+                        <div class="phone_" id="p1">
+                            <img src="/images/iPhone-1.png" />
+                            <div>1
+                                <span class="upper center" style="width: 180px !important">SIGN UP FOR<span class="text-normal">LIKEtoKNOW.it</span></span>
+                            </div>
+                        </div>
+                        <div class="phone_" id="p2">
+                            <img src="/images/iPhone-2.png" />
+                            <div>2
+                                <span class="upper center" style="width: 220px !important">LIKE AN INSTAGRAM PHOTO WITH A WWW.LIKETK.IT LINK</span>
+                            </div>
+                        </div>
+                        <div class="phone_" id="p3">
+                            <img src="/images/iPhone-3.png" />
+                            <div>3
+                                <span class="upper center">RECEIVE READY-TO-SHOP PRODUCT LINKS TO YOUR INBOX</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="homerow no_margin">
+                <a href="?instagram" class="black_button upper">Sign Up // Login</a>
+            </div>
+            <div class="footer">
+                <div class="horizontal-rule">
+                    <div class="hr-content">
+                        <img src="/images/envelope-icon.svg" onerror="this.src='/images/envelope-icon.png'" alt="LTK" />
+                    </div>
+                </div>
+                <div class="copyright">
+                    <div class="signup">
+                        <span class="signup-text">Find out more about  LIKEtoKNOW.it:</span>
+                        <ul class="list-inline vertical-bar">
+                            <li><a href="https://www.rewardstyle.com/register/ltk" target="_blank">Publisher</a></li>
+                            <li><a href="mailto:retailers@liketoknow.it">Retailer</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul class="list-inline vertical-bar">
+                            <li>&copy; 2015 LIKEtoKNOW.it</li>
+                            <li>All rights reserved</li>
+                            <li><a data-toggle="modal" data-target="#myModal">English</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul class="list-inline vertical-bar">
+                            <li><a href="/legal/tos">Terms of Service</a></li>
+                            <li><a href="/legal/privacy">Privacy Policy</a></li>
+                            <li><a href="/brand_assets">Brand Resources</a></li>
+                            <li><a href="mailto:press@liketoknow.it">Press Inquiries</a></li>
+                            <li><a href="mailto:info@liketoknow.it">Contact Support</a></li>
+                            <li><a href="/legal/giveaway">Giveaway</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div><!-- end container div -->
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="/js/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/media-element/mediaelement-and-player.min.js"></script>
+        <script src="/js/preload.js"></script>
+        <script type="text/javascript">
+var w                 = $(window),
+    c                 = $('.container'),
+    h                 = $('.home'),
+    r                 = 0.78048780487,
+    m                 = window.mozInnerScreenX === undefined ? 0 : 19,
+    min_width         = 296,
+    scrollTo          = 0,
+    scrollTo_2        = 0,
+    player            = new MediaElementPlayer('#video', {
+        videoWidth         : video_width(),
+        videoHeight        : video_height(),
+        defaultVideoWidth  : video_width(),
+        defaultVideoHeight : video_height(),
+        pluginWidth        : video_width(),
+        pluginHeight       : video_height()
+    }),
+    vid_overlay       = $('.hiw-video .hiw-video-overlay'),
+    vid_overlay_all   = $('.hiw-video .hiw-video-overlay, .hiw-video .hiw-video-overlay-hover');
+
+var video_resize = function () {
+    // Responsive Video
+    if (window.outerWidth <= 725) {
+        var video_height = window.video_height();
+        $('.mejs-container, .mejs-container video, .mejs-overlay, .mejs-poster').css({
+            height: video_height
+        });
+    }
+};
+
+video_resize();
+w.resize(video_resize);
+w.on('resize', function () {
+    var height = (h.width() / r) + m,
+        diff   = c.height() - h.height(),
+        temp, p11, p12, p13;
+
+    h.width('auto');
+
+    if(diff + height > w.height()) {
+        h.height(w.height() - diff);
+        h.width(h.height() * r);
+    }
+    else {
+        h.height((h.width() / r) + m);
+    }
+
+    if(h.width() < min_width) {
+        h.width(min_width);
+        h.height((min_width / r) + m);
+    }
+
+    if(window.outerWidth > 991) {
+        $('#p1, #p2, #p3').css('margin-left', 0);
+        $('#p3').css('margin-right', 0);
+    }
+
+    gridResize();
+
+    if(window.outerWidth <= 725 && window.outerWidth >= 576) {
+        height = $('.row.header-container').height();
+
+        $('.menu_text').text('Log in');
+        $('.menu_text').css({
+            'margin-top'   : Math.round(height / 2 - 8)  + 'px',
+            'margin-right' : Math.round(height / 2 - 14) + 'px',
+            'margin-bottom': Math.round(height / 2 - 9)  + 'px',
+            'margin-left'  : Math.round(height / 2 - 14) + 'px',
+        });
+
+    }
+    else if(window.outerWidth < 576) {
+        height = $('.row.header-container').height();
+
+        $('.menu_text').text('Log in');
+        $('.menu_text').css({
+            'margin-top'    : Math.round(height / 2 - 5)  + 'px',
+            'margin-right'  : Math.round(height / 2 - 14) + 'px',
+            'margin-bottom' : Math.round(height / 2 - 6)  + 'px',
+            'margin-left'   : Math.round(height / 2 - 14) + 'px'
+        });
+    }
+    else {
+        $('.menu_text').text('Log in');
+        $('.menu_text').css('margin', '0 0 0 0');
+    }
+
+    if($('.container').width() < 750) {
+        temp = $('.container').width();
+
+        $('#p1').css({
+            'margin-left' : Math.round(238 - ((750 - temp) / 2)) + 'px',
+            'width'       : '270px'
+        });
+
+        $('#p2').css({
+            'margin-left' : Math.round(((temp - 270) / 2) - 63) + 'px'
+        });
+
+        $('#p3').css({
+            'margin-left'  : Math.round(((temp - 270) / 2) - 63)  + 'px',
+            'margin-right' : Math.round(238 - ((750 - temp) / 2)) + 'px',
+            'width'        : '270px'
+        });
+
+        p11 = parseInt($('.howitworks > div:nth-child(1)').css('margin-left'),  10) + 270;
+        p12 = parseInt($('.howitworks > div:nth-child(2)').css('margin-left'),  10) + 270;
+        p13 = parseInt($('.howitworks > div:nth-child(3)').css('margin-left'),  10) + 270 +
+              parseInt($('.howitworks > div:nth-child(3)').css('margin-right'), 10);
+
+        $('.howitworks').css('width', (p11 + p12 + p13 + 8) + 'px');
+    }
+    else {
+        $('#p1').css({
+            'margin-left' : '0px',
+            'width'       : '230px'
+        });
+
+        $('#p2').css({
+            'margin-left' : '0px'
+        });
+
+        $('#p3').css({
+            'margin-left'  : '0px',
+            'margin-right' : '0px',
+            'width'        : '230px'
+        });
+
+        p11 = parseInt($('.howitworks > div:nth-child(1)').css('margin-left'),  10) + 230;
+        p12 = parseInt($('.howitworks > div:nth-child(2)').css('margin-left'),  10) + 270;
+        p13 = parseInt($('.howitworks > div:nth-child(3)').css('margin-left'),  10) + 230 + parseInt($('.howitworks > div:nth-child(3)').css('margin-right'), 10);
+
+        $('.howitworks').css('width', (p11 + p12 + p13 + 10) + 'px');
+    }
+
+}).resize();
+
+$('input[name="lang"]').change(function() {
+    window.location.href='http://liketoknow.it?language=' + $('input[name="lang"]:checked').val();
+});
+
+var origGridData  = '[{"image_id":"28223683","wid":"1LMmk"},{"image_id":"28225099","wid":"1LN4O"},{"image_id":"28223779","wid":"1M88u"},{"image_id":"28225513","wid":"1LEKO"},{"image_id":"28221673","wid":"1M7HI"},{"image_id":"28224055","wid":"1LLso"},{"image_id":"28221703","wid":"1kR60"},{"image_id":"28222009","wid":"1M7K2"},{"image_id":"28224679","wid":"1M8im"},{"image_id":"28223023","wid":"1LXs0"},{"image_id":"28224925","wid":"1LJka"},{"image_id":"28222759","wid":"1M7UQ"},{"image_id":"28225351","wid":"1LMC4"},{"image_id":"28221889","wid":"1M7I4"},{"image_id":"28223899","wid":"1M88S"},{"image_id":"28224163","wid":"1LKRq"},{"image_id":"28223305","wid":"1M81W"},{"image_id":"28222741","wid":"1M7Vy"},{"image_id":"28224967","wid":"1M8f0"},{"image_id":"28223839","wid":"1M89m"},{"image_id":"28221991","wid":"1M7KI"},{"image_id":"28223287","wid":"1M81E"},{"image_id":"28222111","wid":"1M7MI"},{"image_id":"28224973","wid":"1M8mq"},{"image_id":"28221793","wid":"1M7K0"},{"image_id":"28223689","wid":"1M86K"},{"image_id":"28222159","wid":"1M7Ma"},{"image_id":"28225855","wid":"1M4BI"},{"image_id":"28222195","wid":"1GKqN"},{"image_id":"28223491","wid":"1M7fs"},{"image_id":"28225039","wid":"1EGh7"},{"image_id":"28224061","wid":"1M8c4"},{"image_id":"28224091","wid":"1M8bM"},{"image_id":"28222153","wid":"1M6KQ"},{"image_id":"28222399","wid":"1M7Qk"},{"image_id":"28222939","wid":"1M7Yk"},{"image_id":"28224349","wid":"1ESYV"},{"image_id":"28224307","wid":"1M8fG"},{"image_id":"28224139","wid":"1M8d2"},{"image_id":"28222417","wid":"1M7yG"},{"image_id":"28224109","wid":"1M84s"},{"image_id":"28224943","wid":"1yUaG"},{"image_id":"28221979","wid":"1M7Jm"},{"image_id":"28224547","wid":"1LVxW"},{"image_id":"28222531","wid":"1M7Rm"},{"image_id":"28224403","wid":"1M8fW"},{"image_id":"28224997","wid":"1M8n2"},{"image_id":"28222801","wid":"1M7TY"},{"image_id":"28223149","wid":"1M80Y"},{"image_id":"28222165","wid":"1M7Nu"},{"image_id":"28223059","wid":"1B7OX"},{"image_id":"28225117","wid":"1M8kY"},{"image_id":"28222645","wid":"1M7UG"},{"image_id":"28223239","wid":"1M80Q"},{"image_id":"28225213","wid":"1M8pQ"},{"image_id":"28225585","wid":"1M8u6"},{"image_id":"28224487","wid":"1M8hi"},{"image_id":"28225603","wid":"1Ly2c"},{"image_id":"28222855","wid":"1M7eK"},{"image_id":"28223809","wid":"1M888"},{"image_id":"28224481","wid":"1M8gq"},{"image_id":"28223911","wid":"1M8aa"},{"image_id":"28222705","wid":"1LzDe"},{"image_id":"28223977","wid":"1M8aE"}]',
+    gridData      = $.parseJSON(origGridData),
+    randomElement = 0,
+    itemID        = 0,
+    imgURL,
+    randomElement,
+    itemID;
+
+origGridData = $.parseJSON(origGridData);
+
+
+$( document ).ready(function() {
+
+    // Show the overlay buttons on small screens only
+    $('.mejs-overlay-button, .mejs-overlay-loading').addClass('visible-xs visible-sm');
+
+    $(".hiw_overflow").scroll(function() {
+        if(!/Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            clearTimeout($.data(this, 'scrollTimer'));
+
+            $.data(this, 'scrollTimer', setTimeout(function() {
+                var offset = $('.hiw_overflow').prop('scrollWidth') - $('.hiw_overflow').prop('clientWidth');
+
+                if($(".hiw_overflow").scrollLeft() < (offset / 4)) {
+                    $(".hiw_overflow").animate( { scrollLeft: 0 }, 100);
+                }
+                else if($(".hiw_overflow").scrollLeft() > (offset / 4) && $(".hiw_overflow").scrollLeft() < ((offset / 4) * 3)) {
+                    $(".hiw_overflow").animate( { scrollLeft: offset / 2 }, 100);
+                }
+                else {
+                    $(".hiw_overflow").animate( { scrollLeft: offset }, 100);
+                }
+            }, 100));
+        }
+    });
+
+    for(var i = 0; i < 27; i++) {
+        if(i < origGridData.length) {
+            randomElement = Math.floor(Math.random() * gridData.length);
+            itemID        = gridData[randomElement];
+            imgURL        = 'http://images.rewardstyle.com/img?v=2.3&msi=' + itemID.image_id + '&width=256&height=256&crop';
+
+            if(i >= 21) {
+                $('.gridContainer').append('<div id="' + itemID.image_id + '" style="background-image: url(\'' + imgURL + '\');" class="home_instimg inst_last">' +
+                                           '    <a href="/' + itemID.wid + '"></a>' +
+                                           '</div>');
+            }
+            else {
+                $('.gridContainer').append('<div id="' + itemID.image_id + '" style="background-image: url(\'' + imgURL + '\');" class="home_instimg">' +
+                                           '    <a href="/' + itemID.wid + '"></a>' +
+                                           '</div>');
+            }
+
+            gridData.splice(randomElement,1);
+        } else {
+            $('.gridContainer').append('<div class="home_instimg"></div>');
+        }
+    }
+
+    gridResize();
+
+    setInterval(function() {
+        if(origGridData.length > $('.home_instimg a').length) {
+            var gridSize = $.map(origGridData, function(n, i) { return i; }).length,
+                randElem = $('.home_instimg:visible');
+
+            //get random item
+            itemID   = origGridData[Math.round(Math.random() * (gridSize - 1))];
+            //see if item is already in grid
+            getHiddenSafetyStraps(gridSize);
+            //create image url
+            imgURL   = 'http://images.rewardstyle.com/img?v=2.3&msi=' + itemID.image_id + '&width=256&height=256&crop';
+            //remove existing hidden preloaded image
+            $('#hiddenImage').remove();
+            //append new image hidden image so it preloads
+            $('.gridContainer').append('<img src="' + imgURL + '" style="display: none; visibility: hidden;" id="hiddenImage" />');
+            //fade out old image and fade in new image when new image has completely preloaded
+            $('#hiddenImage').attr('src', imgURL).on('load', function() {
+                randElem.eq(Math.round(Math.random() * (randElem.length - 1))).fadeOut(250, function () {
+                    $(this).css('background-image', 'url(\'' + imgURL + '\')').prop('id', itemID.image_id).children('a').prop('href', itemID.wid);
+                    $(this).fadeIn(250);
+                });
+            });
+        }
+    }, 4000);
+
+    // Video Player Stuffs
+    $('video').on('play', function () {
+        // Hide both overlays when the video is playing
+        vid_overlay_all.hide();
+    }).on('pause', function () {
+        // Bring the top overlay back,
+        // Remove inline styling caused by show/hide
+        vid_overlay.show().css('display', '');
+    }).on('ended', function () {
+        // Once the video is finished bring back both overlays
+        vid_overlay_all.show().css('display', '');
+    });
+
+    // Mobile support and 'click to play' overlay
+    $('.hiw-video').on('click', '.hiw-video-overlay, .hiw-video-overlay-hover', function () {
+        // plays the video, which will then hide the overlays
+        player.play();
+    });
+
+    // Animate scrolling to the video
+    $('.hiw-video-link').on('click', function () {
+        var video_id = 'hiw_video';
+
+        // Animate the scroll to the video
+        $('html, body').animate({
+            scrollTop: $('#' + video_id).offset().top
+        }, 1000, 'swing', function () {
+            // Change the hash of the address bar to the video anchor
+            window.location.hash = video_id;
+
+            // then play the video
+            player.play();
+        });
+    });
+});
+
+function getHiddenSafetyStraps(gridSize) {
+    if($('#' + itemID.image_id).length > 0) {
+        itemID = origGridData[Math.round(Math.random() * (gridSize - 1))];
+        getHiddenSafetyStraps(gridSize);
+    }
+    return true;
+}
+
+function gridResize() {
+    var newSize,
+        offset,
+        row_width = $('.home_instimg').closest('.row').width();
+
+    offset  = (row_width > 500) ? 9 : 7;
+    newSize = Math.round((row_width - (offset * 2)) / offset) - 1;
+
+    $('.home_instimg').css({
+        'height' : newSize,
+        'width'  : newSize
+    }).parent('div').css({
+        'width'  : (newSize * offset) + (offset * 2)
+    });
+}
+
+function video_height() {
+    return (video_width() * 9) / 16;
+}
+function video_width() {
+    var window_size = $( window ).outerWidth();
+    return (window_size > 700) ? 700 : window_size;
+}
+        </script>
+    <script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"fda514d34f","applicationID":"3471827","transactionName":"NFNaNRBZDEdWAEQKXw0ZexQRTA1ZGCdZEEAPV0FOBlERRFsCSTxYDFtd","queueTime":0,"applicationTime":108,"ttGuid":"","agentToken":"","atts":"GBRZQ1hDH0k=","errorBeacon":"bam.nr-data.net","agent":"js-agent.newrelic.com\/nr-686.min.js"}</script></body>
+</html>

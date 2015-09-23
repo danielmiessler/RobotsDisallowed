@@ -1,0 +1,1708 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"Ug4EWFBbGwcAUVhRDgE="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t){try{i.console&&console.log(t)}catch(e){}}var n,r=t("ee"),o=t(1),i={};try{n=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(i.console=!0,-1!==n.indexOf("dev")&&(i.dev=!0),-1!==n.indexOf("nr_dev")&&(i.nrDev=!0))}catch(a){}i.nrDev&&r.on("internal-error",function(t){e(t.stack)}),i.dev&&r.on("fn-err",function(t,n,r){e(r.stack)}),i.dev&&(e("NR AGENT IN DEVELOPMENT MODE"),e("flags: "+o(i,function(t){return t}).join(", ")))},{1:20,ee:"QJf3ax"}],4:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(6),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,t(3),window.onerror=e;try{throw new Error}catch(u){"stack"in u&&(t(4),t(5),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:5,2:8,3:3,4:7,5:6,6:21,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],5:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:21,2:22,ee:"QJf3ax",gos:"7eSDFh"}],6:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:22,2:21,ee:"QJf3ax"}],7:[function(t,e){function n(t,e,n){t[0]=o(t[0],"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:22,2:21,ee:"QJf3ax"}],8:[function(t,e){function n(){u.inPlace(this,p,"fn-")}function r(t,e){u.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}function i(t,e){for(var n in t)e[n]=t[n];return e}var a=t("ee").create(),s=t(1),c=t(2),u=c(a),f=c(s),d=window.XMLHttpRequest,p=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=a,window.XMLHttpRequest=function(t){var e=new d(t);try{a.emit("new-xhr",[],e),f.inPlace(e,["addEventListener","removeEventListener"],"-",o),e.addEventListener("readystatechange",n,!1)}catch(r){try{a.emit("internal-error",[r])}catch(i){}}return e},i(d,XMLHttpRequest),XMLHttpRequest.prototype=d.prototype,u.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),a.on("send-xhr-start",r),a.on("open-xhr-start",r)},{1:5,2:22,ee:"QJf3ax"}],9:[function(t){function e(t){var e=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!e.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){e.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=n(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(e.cat=d.split(", ").pop())}}else e.status=0;r.cbTime=this.cbTime,o("xhr",[e,r,this.startTime])}}}function n(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=e,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,e){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=n(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof e.onload))&&i.end(e)}catch(n){try{a.emit("internal-error",[n])}catch(r){}}};for(var f=0;c>f;f++)e.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:10,3:8,4:5,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],10:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split("@").pop().split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,r.protocol=o[0],"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],11:[function(t,e){function n(t){return function(){r(t,[(new Date).getTime()].concat(i(arguments)))}}var r=t("handle"),o=t(1),i=t(2);"undefined"==typeof window.newrelic&&(newrelic=window.NREUM);var a=["setPageViewName","addPageAction","setCustomAttribute","finished","addToTrace","inlineHit","noticeError"];o(a,function(t,e){window.NREUM[e]=n("api-"+e)}),e.exports=window.NREUM},{1:20,2:21,handle:"D5DuLP"}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info,e=u.getElementsByTagName("script")[0];if(t&&t.licenseKey&&t.applicationID&&e){s(d,function(e,n){e in t||(t[e]=n)});var n="https"===f.split(":")[0]||t.sslForHttp;p.proto=n?"https://":"http://",a("mark",["onload",i()]);var r=u.createElement("script");r.src=p.proto+t.agent,e.parentNode.insertBefore(r,e)}}function r(){"complete"===u.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=t(1),c=(t(2),window),u=c.document,f=(""+location).split("?")[0],d={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-632.min.js"},p=e.exports={offset:i(),origin:f,features:{}};u.addEventListener?(u.addEventListener("DOMContentLoaded",o,!1),c.addEventListener("load",n,!1)):(u.attachEvent("onreadystatechange",r),c.attachEvent("onload",n)),a("mark",["firstbyte",i()])},{1:20,2:11,handle:"D5DuLP"}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],20:[function(t,e){function n(t,e){var n=[],o="",i=0;for(o in t)r.call(t,o)&&(n[i]=e(o,t[o]),i+=1);return n}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],21:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],22:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:21,ee:"QJf3ax"}]},{},["G9z0Bl",4,9]);</script>
+    	    
+    <title>
+            Romania libera - stiri iesite din tipar - actualitate, investigatii, politica, cultura, diaspora, video, anunturi de mica publicitate
+                
+    </title>
+    
+        <meta name="description" content="Romania libera - stiri iesite din tipar - actualitate, investigatii, politica, cultura, diaspora, video, anunturi de mica publicitate">
+     
+    
+        <meta name="keywords" content="Ziarul Romania libera, stiri, stiri iesite din tipar, presa, noutati, eveniment, editorial, economie, finante, cultura, sport, divertisment, politica, actualitate, investigatii, politica, cultura, diaspora, video, anunturi de mica publicitate">
+     
+            
+        <meta property="og:title" content="Romania Libera" />
+              
+          
+        <meta property="og:description" content="Romania libera - stiri iesite din tipar - actualitate, investigatii, politica, cultura, diaspora, video, anunturi de mica publicitate" />
+         
+             
+        <meta property="og:image" content="http://www.romanialibera.ro/img/logo/logo.gif"/>
+      
+    
+    
+    <meta property="og:site_name" content="RomaniaLibera.ro" />    
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://www.romanialibera.ro/robots.txt" />
+             
+    <meta name="viewport" content="maximum-scale=1"  />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css?m=47a4a5fac6edec46a7ba37b697a3d260" media="screen, projection">
+    <link rel="stylesheet" href="/css/article-print.css" media="print">
+    <link rel="stylesheet" href="/css/ajax.css">
+    <link rel="stylesheet" href="/css/form.css">
+    <link rel="stylesheet" href="/js/plugins/magnific-popup/magnific-popup.css">
+    <link rel="stylesheet" href="/css/blitzer/jquery-ui-1.10.4.custom.min.css">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon-precomposed.png">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/js/jquery-ui-1.10.4.custom.min.js"></script>
+    
+    <script type="text/javascript" src="//ro.adocean.pl/files/js/ado.js"></script>
+    <script type="text/javascript">
+    /* (c)AdOcean 2003-2015 */
+            if(typeof ado!=="object"){ado={};ado.config=ado.preview=ado.placement=ado.master=ado.slave=function(){};} 
+            ado.config({mode: "old", xml: false, characterEncoding: true});
+            ado.preview({enabled: true, emiter: "ro.adocean.pl", id: "9o_nnmMOl7DVtYDXaZt4a6fiYvE4HBI1Yn6GfTZu5v3.E7"});
+    </script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new
+    Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-4917625-1', 'romanialibera.ro');
+      ga('send', 'pageview');
+
+    </script>
+    
+    <script>
+    /**
+    * Function that tracks a click on an outbound link in Google Analytics.
+    * This function takes a valid URL string as an argument, and uses that URL string
+    * as the event label.
+    */
+    var trackOutboundLink = function(url) {
+       ga('send', 'event', 'outbound', 'click', url, {'hitCallback':
+         function () {
+         document.location = url;
+         }
+       });
+    }
+    </script>
+    
+    <!-- start master -->
+<script type="text/javascript">
+/* (c)AdOcean 2003-2014, MASTER: rl_ro.Romania_Libera.Default */
+ado.master({id: '73T65UldQ0BSrOgVF067c4p4Y4KLERHrrbRJe.zutH...7', server: 'liberaro.adocean.pl' });
+</script>
+<!--  end master  -->
+<script type='text/javascript'>
+(function() {
+var useSSL = 'https:' == document.location.protocol;
+var src = (useSSL ? 'https:' : 'http:') +
+'//www.googletagservices.com/tag/js/gpt.js';
+document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/57247736/RL.ro-HP-300x100', [300, 100], 'div-gpt-ad-1404492169139-0').addService(googletag.pubads());
+googletag.defineSlot('/57247736/RL.ro-HP-Branding-Left', [[120, 600], [160, 600]], 'div-gpt-ad-1404492169139-1').addService(googletag.pubads());
+googletag.defineSlot('/57247736/RL.ro-HP-Branding-Right', [[120, 601], [160, 601]], 'div-gpt-ad-1404492169139-2').addService(googletag.pubads());
+googletag.defineSlot('/57247736/RL.ro-HP-Branding-Top', [980, 150], 'div-gpt-ad-1404492169139-3').addService(googletag.pubads());
+googletag.defineSlot('/57247736/RL.ro-HP-Leaderboard-1', [[728, 90], [960, 150], [970, 90], [970, 250]], 'div-gpt-ad-1404492169139-4').addService(googletag.pubads());
+googletag.defineSlot('/57247736/RL.ro-HP-Leaderboard-2', [[728, 90], [960, 150], [970, 90], [970, 250]], 'div-gpt-ad-1404492169139-5').addService(googletag.pubads());
+googletag.defineSlot('/57247736/RL.ro-HP-Leaderboard-3', [[728, 90], [970, 250]], 'div-gpt-ad-1404492169139-6').addService(googletag.pubads());
+googletag.defineSlot('/57247736/RL.ro-HP-Rectangle-1', [[160, 600], [300, 250], [300, 600]], 'div-gpt-ad-1404492169139-7').addService(googletag.pubads());
+googletag.defineSlot('/57247736/RL.ro-HP-Rectangle-2', [[160, 600], [300, 250], [300, 600]], 'div-gpt-ad-1404492169139-8').addService(googletag.pubads());
+googletag.defineSlot('/57247736/RL.ro-HP-Rectangle-3', [[160, 600], [300, 250], [300, 600]], 'div-gpt-ad-1404492169139-9').addService(googletag.pubads());
+googletag.defineSlot('/57247736/RL.ro-HP-Rectangle-4', [[160, 600], [300, 250], [300, 600]], 'div-gpt-ad-1404492169139-10').addService(googletag.pubads());
+googletag.defineSlot('/57247736/RL.ro-HP-Floating', [1, 1], 'div-gpt-ad-1404823692860-0').addService(googletag.pubads());
+googletag.defineOutOfPageSlot('/57247736/RL.ro-HP-Floating', 'div-gpt-ad-1404823692860-0-oop').addService(googletag.pubads());
+
+googletag.pubads().enableSyncRendering();
+googletag.pubads().enableSingleRequest();
+googletag.pubads().collapseEmptyDivs();
+googletag.enableServices();
+});
+</script>    
+</head>
+
+<body>
+    
+    <script>(function(e){var t=document,n=t.createElement("script");n.async=!0,n.defer=!0,n.src=e,t.getElementsByTagName("head")[0].appendChild(n)})("//c.flx1.com/78-3999.js?id=3999&m=78")</script>
+    <script>
+       (function (doc, type, path, script, scripts) {
+           script = doc.createElement(type), scripts = doc.getElementsByTagName(type)[0];
+           script.async = 1;
+           script.src = path;
+           scripts.parentNode.insertBefore(script, scripts)
+    })(document, 'script', '//admonitoring.bsgroup.ro/Tracking?t='+((new Date()).getTime()));
+    </script>
+
+    <!-- COD 2 -->
+
+    <script type="text/javascript">
+    <!--//--><![CDATA[//><!--
+    var pp_gemius_identifier = '15aVTSr3JWEyq30CkxXe7mZW7O_ZjJBREd3NGnjzq_7.H7';
+    // lines below shouldn't be edited
+    function gemius_pending(i) { window[i] = window[i] || function() {var x = window[i+'_pdata'] = window[i+'_pdata'] || []; x[x.length]=arguments;};};
+    gemius_pending('gemius_hit'); gemius_pending('gemius_event'); gemius_pending('pp_gemius_hit'); gemius_pending('pp_gemius_event');
+    (function(d,t) {try {var gt=d.createElement(t),s=d.getElementsByTagName(t)[0],l='http'+((location.protocol=='https:')?'s':''); gt.setAttribute('async','async');
+    gt.setAttribute('defer','defer'); gt.src=l+'://garo.hit.gemius.pl/xgemius.js'; s.parentNode.insertBefore(gt,s);} catch (e) {}})(document,'script');
+    //--><!]]>
+    </script>
+
+    <!-- COD 3 -->
+
+    <script type="text/javascript">
+    avandor_account="cedebb6e872f539bef8c3f919874e9d7";
+    var avandor = document.createElement('script');	
+            avandor.type = 'text/javascript';	
+            avandor.async = true;	
+            avandor.src = '//profiling.avandor.com/platform.js';
+    (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(avandor);
+    </script>
+
+    <!-- BRAT VERSION="1.5" -->
+    <SCRIPT LANGUAGE="JavaScript"> <!--
+        var br_sitecode = "romanialib";
+        var br_sitepath = "homepage";
+        var IVW="http://"+br_sitecode+".count.brat-online.ro/cgi-bin/cnt/CP/"+br_sitepath;
+        document.write("<IMG SRC=\""+IVW+"?r="+escape(document.referrer)+"&d="+(Math.random()*100000)+"&x="+screen.width+"x"+screen.height+"\" WIDTH=\"1\" HEIGHT=\"1\" style=\"position: absolute;\">");
+        //-->
+    </SCRIPT>
+    <NOSCRIPT>
+        <IMG SRC="http://romanialib.count.brat-online.ro/cgi-bin/cnt/CP/homepage" WIDTH="1" HEIGHT="1">
+    </NOSCRIPT>
+    <SCRIPT SRC="http://romanialib.count.brat-online.ro/2004/01/survey.js" TYPE="text/javascript"></SCRIPT>
+    <!-- /BRAT -->
+
+    <!-- BRAT VERSION="1.5" -->
+    <SCRIPT LANGUAGE="JavaScript"> <!--
+        var br_sitecode = "g-medien";
+        var br_sitepath = "";
+        var IVW="http://"+br_sitecode+".count.brat-online.ro/cgi-bin/cnt/CP/"+br_sitepath;
+        document.write("<IMG SRC=\""+IVW+"?r="+escape(document.referrer)+"&d="+(Math.random()*100000)+"&x="+screen.width+"x"+screen.height+"\" WIDTH=\"1\" HEIGHT=\"1\" style=\"position: absolute;\">");
+        //-->
+    </SCRIPT>
+    <NOSCRIPT>
+        <IMG SRC="http://g-medien.count.brat-online.ro/cgi-bin/cnt/CP/" WIDTH="1" HEIGHT="1">
+    </NOSCRIPT>
+    <!-- /BRAT -->
+
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=578310538929893";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+    
+    <script>(function() {
+    var _fbq = window._fbq || (window._fbq = []);
+    if (!_fbq.loaded) {
+      var fbds = document.createElement('script');
+      fbds.async = true;
+      fbds.src = '//connect.facebook.net/en_US/fbds.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(fbds, s);
+      _fbq.loaded = true;
+    }
+    _fbq.push(['addPixelId', '964956156859288']);
+    })();
+    window._fbq = window._fbq || [];
+    window._fbq.push(['track', 'PixelInitialized', {}]);
+    </script>
+  <noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id=964956156859288&amp;ev=PixelInitialized" /></noscript>
+
+           
+    
+
+
+    
+
+    <div style="width:980px; margin:0 auto; position:relative;">
+        <!-- start slave -->
+<div id="adoceanliberarosbrelilpag"></div>
+<script type="text/javascript">
+/* (c)AdOcean 2003-2014, rl_ro.Romania_Libera.Default.1200x150px */
+ado.slave('adoceanliberarosbrelilpag', {myMaster: '73T65UldQ0BSrOgVF067c4p4Y4KLERHrrbRJe.zutH...7' });
+</script>
+<!--  end slave  -->                 
+        <div style="margin:0 0 0 -300px;width:300px;text-align:right;height:600px;position:absolute;left:0; top:0;">
+            <div style="display: inline-block;">
+                <!-- start slave -->
+<div id="adoceanliberarorhlpktghhv"></div>
+<script type="text/javascript">
+/* (c)AdOcean 2003-2014, rl_ro.Romania_Libera.Default.120x600px_left */
+ado.slave('adoceanliberarorhlpktghhv', {myMaster: '73T65UldQ0BSrOgVF067c4p4Y4KLERHrrbRJe.zutH...7' });
+</script>
+<!--  end slave  -->            </div>
+        </div>
+
+        <div style="margin:0 -300px 0 0px;width:300px;text-align:left;height:600px;position:absolute;right:0; top:0;">
+            <div style="display: inline-block;">
+                <!-- start slave -->
+<div id="adoceanliberarooicgoqqlcq"></div>
+<script type="text/javascript">
+/* (c)AdOcean 2003-2014, rl_ro.Romania_Libera.Default.120x600px_right */
+ado.slave('adoceanliberarooicgoqqlcq', {myMaster: '73T65UldQ0BSrOgVF067c4p4Y4KLERHrrbRJe.zutH...7' });
+</script>
+<!--  end slave  -->            </div>
+        </div>
+  
+    </div>
+    
+
+    
+    <div class="container">
+                                
+        <div id="header-container">        
+            <div id="header" class="container_12">
+                <div class="rl-logo grid_2">
+                    <a href="/">
+                        <img src="/img/logo/rl_big.png" alt="RomaniaLibera.ro" />
+                    </a>
+                </div>
+                
+                <div class="grid_7 hot-topics">  
+                    
+                                        
+                                        
+                </div>
+                
+                
+                <div class="header-info grid_3">
+                                        <ul class="top-menu">
+                        
+                        <li><a style="font-size: 12px;" href="http://publicitate.romanialibera.ro/" class="highlight" target="_blank">Mica publicitate</a></li>
+                        <li><a href="/utilizator/login" class="ajax-popup">Login</a></li>
+                        <li><a href="/utilizator/inregistrare" class="ajax-popup">Cont nou</a>
+                    </ul>
+                                        
+                    <div class="search-form">
+                        <form action="/cauta" method="post">
+                            <input type="text" name="q" id="termen" 
+                                   value="" 
+                                   placeholder="cauta in romania libera..." />
+                            <input type="submit" name="topSearchSubmit" id="topSearchSubmit" value="Cauta" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+        
+    <div class="container">
+        <div id="menu-container">
+            <div class="container">
+                <div id="main-menu" class="container_12">
+                    
+                    
+<div class="rl-menu grid_12">
+    <ul class="main-nav-v2">
+                    <li >
+                <a href="/actualitate">
+                    Actualitate                </a>
+            </li>
+                    <li >
+                <a href="/aldine">
+                    Aldine                </a>
+            </li>
+                    <li >
+                <a href="/cultura">
+                    Cultura                </a>
+            </li>
+                    <li >
+                <a href="/economie">
+                    Economie                </a>
+            </li>
+                    <li >
+                <a href="/opinii">
+                    Opinii                </a>
+            </li>
+                    <li >
+                <a href="/politica">
+                    Politica                </a>
+            </li>
+                    <li >
+                <a href="/societate">
+                    Societate                </a>
+            </li>
+                    <li >
+                <a href="/special">
+                    Special                </a>
+            </li>
+                    <li >
+                <a href="/sport">
+                    Sport                </a>
+            </li>
+                    <li >
+                <a href="/stiinta-tehnologie">
+                    Stiinta &amp; Tehnologie                </a>
+            </li>
+                    <li >
+                <a href="/stil-de-viata">
+                    Stil de viata                </a>
+            </li>
+                    <li >
+                <a href="/Antreprenor21">
+                    Antreprenor XXI                </a>
+            </li>
+            </ul>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <div class="container page-background">
+        <div class="clear"></div>
+        
+        <div class="content">
+        <div class="row container_12">
+            <div class="grid_8">
+            <div class="row container_12">
+            <div class="grid_4">
+        <div class="widget-banner">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- rl.300x250_1 --><ins class="adsbygoogle"     style="display:inline-block;width:300px;height:250px"     data-ad-client="ca-pub-2692609014385404"     data-ad-slot="8972307175"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+    </div>
+            <div class="grid_4">
+        <div class="widget-banner">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- rl.300x250_2 --><ins class="adsbygoogle"     style="display:inline-block;width:300px;height:250px"     data-ad-client="ca-pub-2692609014385404"     data-ad-slot="1449040370"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+    </div>
+                <div class="clear"></div>
+    </div>
+    <div class="p404">
+    <h1>404</h1>
+    <h2>Această pagină nu a fost găsită</h2>
+
+    <h3>Această eroare poate apărea din cauza:</h3>
+    <p>Adresa URL nu a fost scrisă corect</p>
+    <p>Pagina pe care o căutați a fost mutată sau ștearsă</p>
+
+    <a href="http://www.romanialibera.ro/">RomâniaLibera.ro</a>
+</div>
+
+    <div class="widget-promo1">
+        <div style="height: 220px; width: 618px; overflow: hidden; position: relative;">
+            <div class="widget-main-container">
+                                    <div class="main">
+                        <div class="main-img">
+                            <a href="/special/dezvaluiri/%E2%80%9Eperlele%E2%80%9C-care-l-au-plasat-dupa-gratii-pe-oprescu-393864">
+                                <img src="/imagine/339x226/%25E2%2580%259EPerlele%25E2%2580%259C%2Bcare%2Bl-au%2Bplasat%2Bdup%25C4%2583%2Bgratii%2Bpe%2BOprescu_532122.jpg" alt="" />
+                            </a>
+                        </div>
+                        <div class="main-info">
+                            <p class="main-title">
+                                <a href="/special/dezvaluiri/%E2%80%9Eperlele%E2%80%9C-care-l-au-plasat-dupa-gratii-pe-oprescu-393864">
+                                    „Perlele“ care l-au plasat după gratii pe Oprescu                                </a>
+                            </p>
+                            <p class="main-desc">
+                                <a href="/special/dezvaluiri/%E2%80%9Eperlele%E2%80%9C-care-l-au-plasat-dupa-gratii-pe-oprescu-393864">
+                                    În apărarea sa, primarul suspendat al Capitalei a prezentat variante uşor de demontat. Gama erorilor e largă: de la incapacitatea lui Oprescu de a explica prezenţa unui off-shore în afacerea familiei, la bâlbe evidente când a fost vorba să justifice ...
+                                </a>
+                            </p>
+                        <span class="category">
+                            <a href="/special">
+                                Special                            </a>
+                        </span>
+                        <span class="date">
+                            <a href="/2015/09/23" class="timelineUrl">
+                                23 septembrie 2015                            </a>
+                        </span>
+                        </div>
+                    </div>
+                                        <div class="main">
+                        <div class="main-img">
+                            <a href="/aldine/calendar/23-septembrie-in-istorie--s-a-infiintat-interpolul--un-director-adjunct-de-la-nato-a-fost-arestat-pentru-spionaj-393839">
+                                <img src="/imagine/339x226/23%2Bseptembrie%2B%25C3%25AEn%2Bistorie%253A%2BS-a%2B%25C3%25AEnfiin%25C5%25A3at%2BInterpolul.%2BUn%2Bdirector%2Badjunct%2Bde%2Bla%2BNATO%2Ba%2Bfost%2Barestat%2Bpentru%2Bspionaj_533519.jpg" alt="" />
+                            </a>
+                        </div>
+                        <div class="main-info">
+                            <p class="main-title">
+                                <a href="/aldine/calendar/23-septembrie-in-istorie--s-a-infiintat-interpolul--un-director-adjunct-de-la-nato-a-fost-arestat-pentru-spionaj-393839">
+                                    23 septembrie în istorie: S-a înfiinţat Interpolul. Un director adjunct de la NATO a fost arestat pentru spionaj                                </a>
+                            </p>
+                            <p class="main-desc">
+                                <a href="/aldine/calendar/23-septembrie-in-istorie--s-a-infiintat-interpolul--un-director-adjunct-de-la-nato-a-fost-arestat-pentru-spionaj-393839">
+                                    CALENDAR: Ce s-a întâmplat pe 23 septembrie...
+                                </a>
+                            </p>
+                        <span class="category">
+                            <a href="/aldine">
+                                Aldine                            </a>
+                        </span>
+                        <span class="date">
+                            <a href="/2015/09/23" class="timelineUrl">
+                                23 septembrie 2015                            </a>
+                        </span>
+                        </div>
+                    </div>
+                                        <div class="main">
+                        <div class="main-img">
+                            <a href="/actualitate/international/sistemul-de-distribuire-a-120-000-de-refugiati-pe-baza-de-cote--aprobat-in-consiliul-jai-393833">
+                                <img src="/imagine/339x226/Sistemul%2Bde%2Bdistribuire%2Ba%2B120.000%2Bde%2Brefugia%25C5%25A3i%2Bpe%2Bbaz%25C4%2583%2Bde%2Bcote%252C%2BAPROBAT%2B%25C3%25AEn%2Bconsiliul%2BJAI.%2BCe%2Bcot%25C4%2583%2B%25C3%25AEi%2Brevine%2BRom%25C3%25A2niei_550516.jpg" alt="" />
+                            </a>
+                        </div>
+                        <div class="main-info">
+                            <p class="main-title">
+                                <a href="/actualitate/international/sistemul-de-distribuire-a-120-000-de-refugiati-pe-baza-de-cote--aprobat-in-consiliul-jai-393833">
+                                    Sistemul de distribuire a 120.000 de refugiaţi pe bază de cote, APROBAT în consiliul JAI. Ce cotă îi revine României                                </a>
+                            </p>
+                            <p class="main-desc">
+                                <a href="/actualitate/international/sistemul-de-distribuire-a-120-000-de-refugiati-pe-baza-de-cote--aprobat-in-consiliul-jai-393833">
+                                    Miniştrii de Interne ai statelor UE au aprobat, marţi, sistemul propus de Comisia Europeană privind distribuirea a încă 120.000 de refugiaţi.
+
+ 
+
+ ...
+                                </a>
+                            </p>
+                        <span class="category">
+                            <a href="/actualitate">
+                                Actualitate                            </a>
+                        </span>
+                        <span class="date">
+                            <a href="/2015/09/22" class="timelineUrl">
+                                22 septembrie 2015                            </a>
+                        </span>
+                        </div>
+                    </div>
+                                        <div class="main">
+                        <div class="main-img">
+                            <a href="/politica/institutii/criza-imigrantilor--lipsa-de-coordonare-intre-mai-si-mae--393819">
+                                <img src="/imagine/339x226/Criza%2Bimigran%25C8%259Bilor%253A%2BLips%25C4%2583%2Bde%2Bcoordonare%2B%25C3%25AEntre%2BMAI%2B%25C8%2599i%2BMAE%253F_547548.jpg" alt="" />
+                            </a>
+                        </div>
+                        <div class="main-info">
+                            <p class="main-title">
+                                <a href="/politica/institutii/criza-imigrantilor--lipsa-de-coordonare-intre-mai-si-mae--393819">
+                                    Criza imigranților: Lipsă de coordonare între MAI și MAE?                                </a>
+                            </p>
+                            <p class="main-desc">
+                                <a href="/politica/institutii/criza-imigrantilor--lipsa-de-coordonare-intre-mai-si-mae--393819">
+                                    După mai bine de zece ore de negocieri ambasadorii statelor membre UE la Bruxelles au convenit luni asupra unui proiect de document ce ar urma să fie aprobat astăzi la reuniunea extraordinară a șefilor de stat sau de guvern. Potrivit documentului cit...
+                                </a>
+                            </p>
+                        <span class="category">
+                            <a href="/politica">
+                                Politica                            </a>
+                        </span>
+                        <span class="date">
+                            <a href="/2015/09/22" class="timelineUrl">
+                                22 septembrie 2015                            </a>
+                        </span>
+                        </div>
+                    </div>
+                                        <div class="main">
+                        <div class="main-img">
+                            <a href="/opinii/comentarii/o-constitutie-prea-indepartata-%E2%80%93-partea-i-393862">
+                                <img src="/imagine/339x226/O%2BConstitu%25C5%25A3ie%2Bprea%2B%25C3%25AEndep%25C4%2583rtat%25C4%2583%2B%25E2%2580%2593%2BPartea%2BI_493884.jpg" alt="" />
+                            </a>
+                        </div>
+                        <div class="main-info">
+                            <p class="main-title">
+                                <a href="/opinii/comentarii/o-constitutie-prea-indepartata-%E2%80%93-partea-i-393862">
+                                    O Constituţie prea îndepărtată – Partea I                                </a>
+                            </p>
+                            <p class="main-desc">
+                                <a href="/opinii/comentarii/o-constitutie-prea-indepartata-%E2%80%93-partea-i-393862">
+                                    În ultima perioadă, s–a tot vorbit despre necesitatea adoptării unei noi Constituții. Marea majoritate a cetățenilor, a politicienilor și a juriștilor nu au făcut decât să se lamenteze la nesfârșit, fără ca nimeni să pună degetul pe rană și să arate ...
+                                </a>
+                            </p>
+                        <span class="category">
+                            <a href="/opinii">
+                                Opinii                            </a>
+                        </span>
+                        <span class="date">
+                            <a href="/2015/09/22" class="timelineUrl">
+                                22 septembrie 2015                            </a>
+                        </span>
+                        </div>
+                    </div>
+                                        <div class="main">
+                        <div class="main-img">
+                            <a href="/opinii/comentarii/paradoxul-oprescu-393861">
+                                <img src="/imagine/339x226/Paradoxul%2BOprescu_346610.jpg" alt="" />
+                            </a>
+                        </div>
+                        <div class="main-info">
+                            <p class="main-title">
+                                <a href="/opinii/comentarii/paradoxul-oprescu-393861">
+                                    Paradoxul Oprescu                                </a>
+                            </p>
+                            <p class="main-desc">
+                                <a href="/opinii/comentarii/paradoxul-oprescu-393861">
+                                    Deşi în urmă cu trei ani obţinuse mai mult de jumătate din voturile exprimate de bucureşteni, rar mi-a fost dat să văd o mai consistentă explozie de bucurie pe reţelele sociale decât în duminica în care s-a aflat vestea arestării primarului Sorin Opr...
+                                </a>
+                            </p>
+                        <span class="category">
+                            <a href="/opinii">
+                                Opinii                            </a>
+                        </span>
+                        <span class="date">
+                            <a href="/2015/09/22" class="timelineUrl">
+                                22 septembrie 2015                            </a>
+                        </span>
+                        </div>
+                    </div>
+                                        <div class="main">
+                        <div class="main-img">
+                            <a href="/actualitate/international/serialul-pugaciov-vs-putin-continua-la-haga-393859">
+                                <img src="/imagine/339x226/Serialul%2BPugaciov%2Bvs%2BPutin%2Bcontinu%25C4%2583%2Bla%2BHaga_477544.jpg" alt="" />
+                            </a>
+                        </div>
+                        <div class="main-info">
+                            <p class="main-title">
+                                <a href="/actualitate/international/serialul-pugaciov-vs-putin-continua-la-haga-393859">
+                                    Serialul Pugaciov vs Putin continuă la Haga                                </a>
+                            </p>
+                            <p class="main-desc">
+                                <a href="/actualitate/international/serialul-pugaciov-vs-putin-continua-la-haga-393859">
+                                    Fostul om de afaceri rus Serghei Pugaciov, care a fugit din Rusia după ce a căzut în disgraţia preşedintelui rus, Vladimir Putin, şi a obţinut naţionalitate franceză, reproşează Moscovei că în 2009 a îngheţat în totală ilegalitate averile sale din Ru...
+                                </a>
+                            </p>
+                        <span class="category">
+                            <a href="/actualitate">
+                                Actualitate                            </a>
+                        </span>
+                        <span class="date">
+                            <a href="/2015/09/22" class="timelineUrl">
+                                22 septembrie 2015                            </a>
+                        </span>
+                        </div>
+                    </div>
+                                        <div class="main">
+                        <div class="main-img">
+                            <a href="/economie/finante-banci/peste-un-sfert-din-economie--departe-de-ochii-fiscului-393858">
+                                <img src="/imagine/339x226/Peste%2Bun%2Bsfert%2Bdin%2Beconomie%252C%2Bdeparte%2Bde%2Bochii%2BFiscului_487289.jpg" alt="" />
+                            </a>
+                        </div>
+                        <div class="main-info">
+                            <p class="main-title">
+                                <a href="/economie/finante-banci/peste-un-sfert-din-economie--departe-de-ochii-fiscului-393858">
+                                    Peste un sfert din economie, departe de ochii Fiscului                                </a>
+                            </p>
+                            <p class="main-desc">
+                                <a href="/economie/finante-banci/peste-un-sfert-din-economie--departe-de-ochii-fiscului-393858">
+                                    Povara taxelor și a impozitelor a dus la o economie ascunsă de 28% din PIB-ul României, cu 10% mai mare decât media Uniunii Europene, a declarat marți președintele Consiliului Fiscal, Ionuț Dumitru, în cadrul unei conferințe de specialitate....
+                                </a>
+                            </p>
+                        <span class="category">
+                            <a href="/economie">
+                                Economie                            </a>
+                        </span>
+                        <span class="date">
+                            <a href="/2015/09/22" class="timelineUrl">
+                                22 septembrie 2015                            </a>
+                        </span>
+                        </div>
+                    </div>
+                                        <div class="main">
+                        <div class="main-img">
+                            <a href="/economie/finante-banci/miza-razboiului-fratilor-micula-cu-statul-si-comisia-europeana-393857">
+                                <img src="/imagine/339x226/Miza%2Br%25C4%2583zboiului%2Bfra%25C8%259Bilor%2BMicula%2Bcu%2Bstatul%2B%25C8%2599i%2BComisia%2BEuropean%25C4%2583_552658.jpg" alt="" />
+                            </a>
+                        </div>
+                        <div class="main-info">
+                            <p class="main-title">
+                                <a href="/economie/finante-banci/miza-razboiului-fratilor-micula-cu-statul-si-comisia-europeana-393857">
+                                    Miza războiului fraților Micula cu statul și Comisia Europeană                                </a>
+                            </p>
+                            <p class="main-desc">
+                                <a href="/economie/finante-banci/miza-razboiului-fratilor-micula-cu-statul-si-comisia-europeana-393857">
+                                    Frații Micula se judecă cu statul român atât în țară, cât și peste hotare pentru a nu fi obligați să returneze banii rezultați din facilitățile fiscale acordate de România în baza unui tratat bilateral. Comisia Europeană a decis că este ajutor de sta...
+                                </a>
+                            </p>
+                        <span class="category">
+                            <a href="/economie">
+                                Economie                            </a>
+                        </span>
+                        <span class="date">
+                            <a href="/2015/09/22" class="timelineUrl">
+                                22 septembrie 2015                            </a>
+                        </span>
+                        </div>
+                    </div>
+                                        <div class="main">
+                        <div class="main-img">
+                            <a href="/actualitate/international/scandalul-volkswagen-ia-dimensiuni-mondiale-393824">
+                                <img src="/imagine/339x226/Scandalul%2BVolkswagen%2Bia%2Bdimensiuni%2Bmondiale_552642.jpg" alt="" />
+                            </a>
+                        </div>
+                        <div class="main-info">
+                            <p class="main-title">
+                                <a href="/actualitate/international/scandalul-volkswagen-ia-dimensiuni-mondiale-393824">
+                                    Scandalul Volkswagen ia dimensiuni mondiale                                </a>
+                            </p>
+                            <p class="main-desc">
+                                <a href="/actualitate/international/scandalul-volkswagen-ia-dimensiuni-mondiale-393824">
+                                    SUA au acuzat grupul Volkswagen că a implantat un program în vehiculele vândute pentru mascarea emisiilor reale de gaz poluant, scandalul luînd proporţii planetare în doar două zile, cu consecinţe incalculabile....
+                                </a>
+                            </p>
+                        <span class="category">
+                            <a href="/actualitate">
+                                Actualitate                            </a>
+                        </span>
+                        <span class="date">
+                            <a href="/2015/09/22" class="timelineUrl">
+                                22 septembrie 2015                            </a>
+                        </span>
+                        </div>
+                    </div>
+                                </div>
+        </div>
+        <div class="more">
+            <ul>
+                                    <li class="active li">
+                        <a href="/special/dezvaluiri/%E2%80%9Eperlele%E2%80%9C-care-l-au-plasat-dupa-gratii-pe-oprescu-393864">
+                            „Perlele“ care l-au plasat după gratii pe Oprescu                        </a>
+                    </li>
+                                        <li class=" li">
+                        <a href="/aldine/calendar/23-septembrie-in-istorie--s-a-infiintat-interpolul--un-director-adjunct-de-la-nato-a-fost-arestat-pentru-spionaj-393839">
+                            23 septembrie în istorie: S-a înfiinţat Interpolul. Un director adjunct de la NATO a fost arestat pentru spionaj                        </a>
+                    </li>
+                                        <li class=" li">
+                        <a href="/actualitate/international/sistemul-de-distribuire-a-120-000-de-refugiati-pe-baza-de-cote--aprobat-in-consiliul-jai-393833">
+                            Sistemul de distribuire a 120.000 de refugiaţi pe bază de cote, APROBAT în consiliul JAI. Ce cotă îi revine României                        </a>
+                    </li>
+                                        <li class=" li">
+                        <a href="/politica/institutii/criza-imigrantilor--lipsa-de-coordonare-intre-mai-si-mae--393819">
+                            Criza imigranților: Lipsă de coordonare între MAI și MAE?                        </a>
+                    </li>
+                                        <li class=" li">
+                        <a href="/opinii/comentarii/o-constitutie-prea-indepartata-%E2%80%93-partea-i-393862">
+                            O Constituţie prea îndepărtată – Partea I                        </a>
+                    </li>
+                                        <li class=" li">
+                        <a href="/opinii/comentarii/paradoxul-oprescu-393861">
+                            Paradoxul Oprescu                        </a>
+                    </li>
+                                        <li class=" li">
+                        <a href="/actualitate/international/serialul-pugaciov-vs-putin-continua-la-haga-393859">
+                            Serialul Pugaciov vs Putin continuă la Haga                        </a>
+                    </li>
+                                        <li class=" li">
+                        <a href="/economie/finante-banci/peste-un-sfert-din-economie--departe-de-ochii-fiscului-393858">
+                            Peste un sfert din economie, departe de ochii Fiscului                        </a>
+                    </li>
+                                        <li class=" li">
+                        <a href="/economie/finante-banci/miza-razboiului-fratilor-micula-cu-statul-si-comisia-europeana-393857">
+                            Miza războiului fraților Micula cu statul și Comisia Europeană                        </a>
+                    </li>
+                                        <li class=" li">
+                        <a href="/actualitate/international/scandalul-volkswagen-ia-dimensiuni-mondiale-393824">
+                            Scandalul Volkswagen ia dimensiuni mondiale                        </a>
+                    </li>
+                                </ul>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+
+        var promoWidgetApp = {
+
+            selectorArticles : $('.widget-promo1 .widget-main-container .main'),
+            selectorSliderContainer : $('.widget-promo1 .widget-main-container'),
+            getRelatedSelectorActive : function() {
+                return $('.widget-promo1 .more .active');
+            },
+
+            initialArticleBoxWidth : null, // setat in init
+            sliderWidth : null, // setati in init
+
+            setInitialArticleBoxWidth : function() {
+                this.initialArticleBoxWidth = parseInt( this.selectorArticles.first().width() );
+            },
+            getArticlesNumber : function() {
+                return parseInt(this.selectorArticles.length);
+            },
+            setSliderWidth : function() { // apelat 1 data in init
+                this.setInitialArticleBoxWidth();
+                var sliderWidth = this.getArticlesNumber() * this.initialArticleBoxWidth;
+
+                this.sliderWidth = sliderWidth;
+            },
+            leftPos: null, // setat in init
+
+            makeAnimation : function() {
+                // animation
+                var fn = this;
+
+                // set related selector active
+                var curentRelatedSelector = fn.getRelatedSelectorActive();
+                curentRelatedSelector.removeClass('active');
+
+                if( curentRelatedSelector.next().is('li') ) {
+                    curentRelatedSelector.next().addClass('active');
+                }
+                else if(curentRelatedSelector.next().next().is('li')) {
+                    curentRelatedSelector.next().next().addClass('active');
+                }
+                else {
+                    $('.widget-promo1 .more ul li').first().addClass('active');
+                }
+                // end
+
+                fn.selectorSliderContainer.animate({
+                    left: '-=' + fn.leftPos
+                }, 1200, function() {
+
+                    var curLeft = parseInt($(this).css('left').replace('px',''));
+
+                    if(fn.leftPos < 0) {
+                        // daca este mai mic ca zero a fost resetat
+                        // deci resetam leftPos la dimensiune normala
+                        fn.leftPos = fn.initialArticleBoxWidth; return;
+                    }
+
+                    if(-curLeft+fn.initialArticleBoxWidth >= fn.sliderWidth) {
+                        // daca curLeft mai mare ca sliderWidth inseamna ca a ajuns la capat
+                        // deci setam left post la dimensiunea totala curLeft
+                        fn.leftPos = curLeft;
+                    }
+
+                });
+
+
+            },
+
+            init : function() {
+                this.setSliderWidth();
+                this.leftPos = this.initialArticleBoxWidth;
+                // set selectorSlider width
+                this.selectorSliderContainer.css('width', this.sliderWidth + 'px');
+
+
+                setInterval('promoWidgetApp.makeAnimation()', 7000);
+            }
+
+        };
+
+        $(document).ready(function(){
+            promoWidgetApp.init();
+        })
+
+
+
+
+    </script>
+
+<div class="mask"></div>
+<div class="widget-popup">
+    <div class="close-popup">
+        <span class="cont"><span class="x">+</span></span>
+    </div>
+
+            <h1>Ramai la curent cu noutatile RomaniaLibera.ro</h1>
+    
+    <div class="newsletter left">
+        <div class="content">
+            
+<div class="widget-newsletter newsletter204">
+    <div class="head">
+        Aboneaza-te la newsletter    </div>
+    <div class="body">
+        <p>Aboneaza-te pentru a primi cele mai importante titluri pe e-mail.</p>        <p class="newsletterError err204"></p>
+
+        <form action="" method="post" id="newsletterSignIn204">
+            <div class="lists">                <label for="rl_list"> <input type="checkbox" name="list[]" id="rl_list" value="rl" /> RomaniaLibera General</label>
+                <label for="st_list"> <input type="checkbox" name="list[]" id="st_list" value="st" /> Stiinta si Tehnologie</label>
+                <label for="sv_list"> <input type="checkbox" name="list[]" id="sv_list" value="sv" /> Stil de Viata</label>
+                                <label for="an_list"> <input type="checkbox" name="list[]" id="an_list" value="an" /> Antreprenor21</label>
+            </div>
+            <input type="text" name="emailNewsletter" id="widgetNewsletterEmail" placeholder="Adresa de e-mail" value="" />
+            <input type="submit" name="submitNewsletter" value="Inscrie-te" />
+        </form>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#newsletterSignIn204').submit(function() {
+            $.ajax({
+                url: '/newsletter',
+                type: "POST",
+                data: $('#newsletterSignIn204').serialize(),
+                success: function( response ) {
+
+                    if(response.search('Eroare') != '-1') {
+                        $('.err204').html(response);
+
+                    } else {
+                        $('.newsletter204 .body').html('<p>' + response + '</p>');
+
+                        try {
+                            setTimeout(ascundeBanner, 3000);
+                        }
+                        catch(err) {
+
+                        }
+                    }
+                    return false;
+                }
+            });
+
+            return false;
+        });
+    });
+</script>        </div>
+    </div>
+    <div class="facebook right">
+        <div class="content">
+            <div class="fb-like-box" data-href="https://www.facebook.com/romanialibera.ro" data-width="300" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="false"></div>        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $('.close-popup').click(function(){
+        ascundeBanner();
+    })
+
+    $('.mask').click(function(){
+        ascundeBanner();
+    })
+
+    function ascundeBanner()
+    {
+        $('.mask').hide();
+        $('.widget-popup').hide();
+    }
+
+    function arataBanner()
+    {
+        $('.mask').show();
+        $('.widget-popup').show();
+    }
+
+    $(document).ready(function() {
+        ascundeBanner();
+
+        console.log(document.cookie.indexOf("popup"));
+        if(document.cookie.indexOf("popup") <= 0) {
+            setTimeout(arataBanner, 3000);
+
+            expiry = new Date();
+            expiry.setTime(expiry.getTime()+(24 * 60 * 60 * 1000));
+            document.cookie = "popup=yes; expires=" + expiry.toGMTString();
+        }
+    });
+</script>    </div>
+            <div class="grid_4">
+        
+    <div class="widget-breaking-news">
+        <a href="/actualitate/eveniment/sorin-oprescu-va-fi-transferat-la-spital-393881">
+            <div class="head">
+                Breaking news
+            </div>
+        </a>
+        <div class="body">
+            <div class="breaking-image">
+                <a href="/actualitate/eveniment/sorin-oprescu-va-fi-transferat-la-spital-393881">
+                    <img src="/imagine/280x203/Sorin%2BOprescu%2Bva%2Bfi%2Btransferat%2Bla%2Bspital_480987.jpg" alt="" />
+                </a>
+            </div>
+
+            <div class="breaking-title">
+                <a href="/actualitate/eveniment/sorin-oprescu-va-fi-transferat-la-spital-393881">
+                    Sorin Oprescu va fi transferat la spital                </a>
+            </div>
+
+            <div class="breaking-desc">
+                <a href="/actualitate/eveniment/sorin-oprescu-va-fi-transferat-la-spital-393881">
+                      Primarul suspendat al Bucureștiului, Sorin Oprescu, aflat în arest preventiv pentru luare de mită, va fi transferat la Spitalul Militar Central, sub pază....
+                </a>
+            </div>
+
+            <div class="breaking-more">
+                <a href="/actualitate/eveniment/sorin-oprescu-va-fi-transferat-la-spital-393881">
+                    Citeste tot articolul
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="widget-banner">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- RL_300x600_sidebar --><ins class="adsbygoogle"     style="display:inline-block;width:300px;height:600px"     data-ad-client="ca-pub-8044549120355257"     data-ad-slot="7425202453"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+<div class="widget-latestHour">
+    <div class="head">
+        <p>Ultima ora</p>
+    </div>
+    <div class="body">
+        <ul>
+                                                <li>
+                    <div class="time">
+                        <p>
+                            <a href="/2015/09/23" class="timelineUrl">
+                                9:01                            </a>
+                        </p>
+                    </div>
+                    <div class="title">
+                        <p>
+                            <a href="/sport/sporturi/live-text-simona-halep---timea-babos--cand-are-loc-meciul--avancronica-duelului-din-optimile-guangzhou-2015--393799" title="LIVE TEXT Simona Halep - Timea Babos: când are loc meciul. Avancronica duelului din optimile Guangzhou 2015 ">
+                                LIVE TEXT Simona Halep - Timea Babos: când are loc meciul. Avancronica duelului ...                            </a>
+                        </p>
+                    </div>
+                </li>
+                                                <li>
+                    <div class="time">
+                        <p>
+                            <a href="/2015/09/23" class="timelineUrl">
+                                8:59                            </a>
+                        </p>
+                    </div>
+                    <div class="title">
+                        <p>
+                            <a href="/actualitate/international/ce-acorduri-a-semnat-nato-cu-ucraina-393883" title="Ce acorduri a semnat NATO cu Ucraina">
+                                Ce acorduri a semnat NATO cu Ucraina                            </a>
+                        </p>
+                    </div>
+                </li>
+                                                <li>
+                    <div class="time">
+                        <p>
+                            <a href="/2015/09/23" class="timelineUrl">
+                                8:50                            </a>
+                        </p>
+                    </div>
+                    <div class="title">
+                        <p>
+                            <a href="/stiinta-tehnologie/stiinta/echinoctiul-de-toamna-2015--ziua-scade--noaptea-devine-tot-mai-lunga--393882" title="Echinocțiul de toamnă 2015: Ziua scade, noaptea devine tot mai lungă ">
+                                Echinocțiul de toamnă 2015: Ziua scade, noaptea devine tot mai lungă                             </a>
+                        </p>
+                    </div>
+                </li>
+                                                <li>
+                    <div class="time">
+                        <p>
+                            <a href="/2015/09/23" class="timelineUrl">
+                                8:46                            </a>
+                        </p>
+                    </div>
+                    <div class="title">
+                        <p>
+                            <a href="/stil-de-viata/timp-liber/galerie-foto--disneyland-2015--de-la-printese-in-caleasca-la-curse-in-spatiul-cosmic-393776" title="GALERIE FOTO. Disneyland 2015. De la prinţese în caleaşcă la curse în spaţiul cosmic">
+                                GALERIE FOTO. Disneyland 2015. De la prinţese în caleaşcă la curse în  ...                            </a>
+                        </p>
+                    </div>
+                </li>
+                                                <li>
+                    <div class="time">
+                        <p>
+                            <a href="/2015/09/23" class="timelineUrl">
+                                8:22                            </a>
+                        </p>
+                    </div>
+                    <div class="title">
+                        <p>
+                            <a href="/politica/institutii/motiunea-de-cenzura--citita-miercuri-in-parlament-393880" title="Moțiunea de cenzură, citită miercuri în Parlament">
+                                Moțiunea de cenzură, citită miercuri în Parlament                            </a>
+                        </p>
+                    </div>
+                </li>
+                                                <li>
+                    <div class="time">
+                        <p>
+                            <a href="/2015/09/23" class="timelineUrl">
+                                8:18                            </a>
+                        </p>
+                    </div>
+                    <div class="title">
+                        <p>
+                            <a href="/stil-de-viata/monden/delia-explica-de-ce-nu-vrea-sa-aiba-un-copil--%E2%80%9Eadmit--sunt-vinovata--393788" title="Delia explică de ce NU vrea să aibă un copil">
+                                Delia explică de ce NU vrea să aibă un copil                            </a>
+                        </p>
+                    </div>
+                </li>
+                                                <li>
+                    <div class="time">
+                        <p>
+                            <a href="/2015/09/23" class="timelineUrl">
+                                8:15                            </a>
+                        </p>
+                    </div>
+                    <div class="title">
+                        <p>
+                            <a href="/actualitate/revista-blogurilor/revista-blogurilor--tolontan--oprea--unul-dintre-accidentele-istorice-ajuns-in-elita-unui-stat-393879" title="REVISTA BLOGURILOR. Tolontan: Oprea, unul dintre accidentele istorice ajuns în elita unui stat">
+                                REVISTA BLOGURILOR. Tolontan: Oprea, unul dintre accidentele istorice ajuns în  ...                            </a>
+                        </p>
+                    </div>
+                </li>
+                                                <li>
+                    <div class="time">
+                        <p>
+                            <a href="/2015/09/23" class="timelineUrl">
+                                8:15                            </a>
+                        </p>
+                    </div>
+                    <div class="title">
+                        <p>
+                            <a href="/stiinta-tehnologie/stiinta/foto--nava-spatiala-cassini-face-o-descoperire-uimitoare-pe-saturn--393726" title="FOTO: Nava spațială Cassini face o descoperire UIMITOARE pe Saturn ">
+                                FOTO: Nava spațială Cassini face o descoperire UIMITOARE pe Saturn                             </a>
+                        </p>
+                    </div>
+                </li>
+                                                <li>
+                    <div class="time">
+                        <p>
+                            <a href="/2015/09/23" class="timelineUrl">
+                                8:10                            </a>
+                        </p>
+                    </div>
+                    <div class="title">
+                        <p>
+                            <a href="/stil-de-viata/horoscop/horoscop-23-septembrie--taurii-isi-schimba-stilul-de-viata--afla-previziunile-astrale-pentru-zodia-ta-393771" title="HOROSCOP 23 septembrie: Taurii îşi schimbă stilul de viaţă. Află previziunile astrale pentru zodia ta">
+                                HOROSCOP 23 septembrie: Taurii îşi schimbă stilul de viaţă. Află  ...                            </a>
+                        </p>
+                    </div>
+                </li>
+                                                <li>
+                    <div class="time">
+                        <p>
+                            <a href="/2015/09/23" class="timelineUrl">
+                                7:46                            </a>
+                        </p>
+                    </div>
+                    <div class="title">
+                        <p>
+                            <a href="/actualitate/revista-presei/revista-presei--valul-de-migranti--solutia-pentru-reintinerirea-europei-393878" title="REVISTA PRESEI: Valul de migranți, soluția pentru reîntinerirea Europei">
+                                REVISTA PRESEI: Valul de migranți, soluția pentru reîntinerirea Europei                            </a>
+                        </p>
+                    </div>
+                </li>
+                    </ul>
+    </div>
+</div>
+
+<div class="widget-latestHour2">
+    <div class="head">
+        <p>Articole recente</p>
+    </div>
+    <div class="body">
+        <ol>
+                                                <li>
+                    <div class="title">
+                        <p>
+                            <a href="/stil-de-viata/povesti-virale/foto-inedite--un-fotograf-polonez-a-imortalizat--timp-de-13-ani--rasariturile-si-apusurile-de-pe-muntii--karkonosze-393717" title="FOTO: Polonia ascunde munți misterioși și spectaculoși: cum arată peisajele din Karkonosze">
+                                FOTO: Polonia ascunde munți misterioși și spectaculoși: cum arată peisajele ...                            </a>
+                        </p>
+                    </div>
+                </li>
+                                                <li>
+                    <div class="title">
+                        <p>
+                            <a href="/sport/sporturi/un-boxer-roman--campion-mondial-aiba-pro-boxing-la-categoria-supergrea-393877" title="Un boxer român, campion mondial AIBA Pro Boxing la categoria supergrea">
+                                Un boxer român, campion mondial AIBA Pro Boxing la categoria supergrea                            </a>
+                        </p>
+                    </div>
+                </li>
+                                                <li>
+                    <div class="title">
+                        <p>
+                            <a href="/actualitate/international/marea-britanie-a-primit-primii-refugiati-sirieni-393876" title="Marea Britanie a primit primii refugiați sirieni">
+                                Marea Britanie a primit primii refugiați sirieni                            </a>
+                        </p>
+                    </div>
+                </li>
+                                                <li>
+                    <div class="title">
+                        <p>
+                            <a href="/actualitate/eveniment/repartitoarele-de-caldura-devin-obligatorii-393875" title="Repartitoarele de căldură devin obligatorii">
+                                Repartitoarele de căldură devin obligatorii                            </a>
+                        </p>
+                    </div>
+                </li>
+                                                <li>
+                    <div class="title">
+                        <p>
+                            <a href="/sport/fotbal/acs-poli-timisoara--calificata-in-optimile-cupei-romaniei-393874" title="ACS Poli Timișoara, calificată în optimile Cupei României">
+                                ACS Poli Timișoara, calificată în optimile Cupei României                            </a>
+                        </p>
+                    </div>
+                </li>
+                                                <li>
+                    <div class="title">
+                        <p>
+                            <a href="/actualitate/international/foto--descoperire-istorica-intr-un-oras-din-moldova--ce-a-iesit-la-iveala-dupa-mii-de-ani-393873" title="FOTO: Descoperire ISTORICĂ într-un oraș din Moldova. Ce a ieşit la iveală după mii de ani">
+                                FOTO: Descoperire ISTORICĂ într-un oraș din Moldova. Ce a ieşit la iveală  ...                            </a>
+                        </p>
+                    </div>
+                </li>
+                                                <li>
+                    <div class="title">
+                        <p>
+                            <a href="/actualitate/international/slovacia-refuza-sa-accepte-imigranti-conform-cotelor-obligatorii-393872" title="Slovacia REFUZĂ să accepte imigranţi conform cotelor obligatorii">
+                                Slovacia REFUZĂ să accepte imigranţi conform cotelor obligatorii                            </a>
+                        </p>
+                    </div>
+                </li>
+                                                <li>
+                    <div class="title">
+                        <p>
+                            <a href="/politica/institutii/reactia-lui-victor-ponta--dupa-ce-a-aflat-cati-refugiati-trebuie-sa-gazduiasca-romania-393871" title="Reacția lui Victor Ponta, după ce a aflat câți refugiați trebuie să găzduiască România">
+                                Reacția lui Victor Ponta, după ce a aflat câți refugiați trebuie să  ...                            </a>
+                        </p>
+                    </div>
+                </li>
+                                                <li>
+                    <div class="title">
+                        <p>
+                            <a href="/actualitate/international/care-este-scopul-avioanelor-pe-care-rusia-le-a-trimis-in-siria-393870" title="Care este scopul avioanelor pe care Rusia le-a trimis în Siria">
+                                Care este scopul avioanelor pe care Rusia le-a trimis în Siria                            </a>
+                        </p>
+                    </div>
+                </li>
+                                                <li>
+                    <div class="title">
+                        <p>
+                            <a href="/actualitate/eveniment/cati-refugiati-primeste-romania--potrivit-deciziei-jai-393869" title="Câți refugiați primește România, potrivit deciziei JAI">
+                                Câți refugiați primește România, potrivit deciziei JAI                            </a>
+                        </p>
+                    </div>
+                </li>
+                    </ol>
+    </div>
+</div>
+    </div>
+                <div class="clear"></div>
+    </div>
+    </div>
+        
+        <div class="clear"></div>
+                
+        
+
+
+
+<div style="width: 23%; display: inline-block; vertical-align: top;">
+    <div class="widget-rss-parteners-footer">                
+        <div class="head">
+            <p>
+                <img src="/links/rss-academia-catavencu.png" 
+                     alt="Academia Catavencu" />
+            </p>
+        </div>
+        <ul>
+                                            <li>
+                    <div class="article">
+                                                <div class="image">
+                            <a href="http://www.academiacatavencu.info/actualitate/romania-va-construi-si-ea-un-gard-de-a-lungul-granitelor--ca-sa-nu-ne-fuga-imigrantii--38727" onclick="trackOutboundLink('http://www.academiacatavencu.info/actualitate/romania-va-construi-si-ea-un-gard-de-a-lungul-granitelor--ca-sa-nu-ne-fuga-imigrantii--38727'); return false;" target="_blank">
+                                <img src="http://www.academiacatavencu.info/imagine/613x343/Rom%25C3%25A2nia%2Bva%2Bconstrui%2B%25C5%259Fi%2Bea%2Bun%2Bgard%2Bde-a%2Blungul%2Bgrani%25C5%25A3elor%252C%2Bca%2Bs%25C4%2583%2Bnu%2Bne%2Bfug%25C4%2583%2Bimigran%25C5%25A3ii%2521_46053.jpg"
+                                alt="" />
+                            </a>
+                        </div>
+                                                <div class="info" >
+                            <div class="title">
+                                <p>
+                                    <a href="http://www.academiacatavencu.info/actualitate/romania-va-construi-si-ea-un-gard-de-a-lungul-granitelor--ca-sa-nu-ne-fuga-imigrantii--38727" onclick="trackOutboundLink('http://www.academiacatavencu.info/actualitate/romania-va-construi-si-ea-un-gard-de-a-lungul-granitelor--ca-sa-nu-ne-fuga-imigrantii--38727'); return false;" target="_blank">
+                                        România va construi şi ea un gard de-a lungul graniţelor, ca să nu ne fugă imigranţii! | Academia Catavencu                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                    </ul>
+
+        <div class="others">
+            <ul>
+                                                        <li>
+                        <p>
+                            <a href="http://www.academiacatavencu.info/actualitate/medicii-reconfirma--doctorul-oprescu-este-in-afara-oricarui-pericol--38724" onclick="trackOutboundLink('http://www.academiacatavencu.info/actualitate/medicii-reconfirma--doctorul-oprescu-este-in-afara-oricarui-pericol--38724'); return false;" target="_blank">
+                                Medicii reconfirmă: doctorul Oprescu este în afara oricărui pericol! | Academia Catavencu                            </a>
+                        </p>
+                    </li>
+                                                        <li>
+                        <p>
+                            <a href="http://www.academiacatavencu.info/opinii/asasinii-cu-arme-vs--asasinii-cu-vorbe-38726" onclick="trackOutboundLink('http://www.academiacatavencu.info/opinii/asasinii-cu-arme-vs--asasinii-cu-vorbe-38726'); return false;" target="_blank">
+                                Asasinii cu arme vs. asasinii cu vorbe | Academia Catavencu                            </a>
+                        </p>
+                    </li>
+                            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div style="width: 23%; display: inline-block; vertical-align: top;">
+    <div class="widget-rss-parteners-footer">                
+        <div class="head">
+            <p>
+                <img src="/links/rss-bebelu.png" 
+                     alt="Bebelu" />
+            </p>
+        </div>
+        <ul>
+                                            <li>
+                    <div class="article">
+                                                <div class="image">
+                            <a href="http://www.bebelu.ro/combate-natural-si-eficient-acneea-folosind-gama-antiacneica-de-la-vivanatura.html" onclick="trackOutboundLink('http://www.bebelu.ro/combate-natural-si-eficient-acneea-folosind-gama-antiacneica-de-la-vivanatura.html'); return false;" target="_blank">
+                                <img src="http://www.bebelu.ro/wp-content/uploads/2015/09/VivaNatura-antiacnee-300x166.jpg"
+                                alt="" />
+                            </a>
+                        </div>
+                                                <div class="info" >
+                            <div class="title">
+                                <p>
+                                    <a href="http://www.bebelu.ro/combate-natural-si-eficient-acneea-folosind-gama-antiacneica-de-la-vivanatura.html" onclick="trackOutboundLink('http://www.bebelu.ro/combate-natural-si-eficient-acneea-folosind-gama-antiacneica-de-la-vivanatura.html'); return false;" target="_blank">
+                                        Combate natural si eficient acneea folosind Gama Antiacneica de la Vivanatura                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                    </ul>
+
+        <div class="others">
+            <ul>
+                                                        <li>
+                        <p>
+                            <a href="http://www.bebelu.ro/astmul-in-sarcina.html" onclick="trackOutboundLink('http://www.bebelu.ro/astmul-in-sarcina.html'); return false;" target="_blank">
+                                Astmul in sarcina                            </a>
+                        </p>
+                    </li>
+                                                        <li>
+                        <p>
+                            <a href="http://www.bebelu.ro/reteta-zilei-pentru-sarcina-ziua-2.html" onclick="trackOutboundLink('http://www.bebelu.ro/reteta-zilei-pentru-sarcina-ziua-2.html'); return false;" target="_blank">
+                                Reteta zilei pentru sarcina: Ziua 2                            </a>
+                        </p>
+                    </li>
+                            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div style="width: 23%; display: inline-block; vertical-align: top;">
+    <div class="widget-rss-parteners-footer">                
+        <div class="head">
+            <p>
+                <img src="/links/rss-casamea.png" 
+                     alt="Casamea" />
+            </p>
+        </div>
+        <ul>
+                                            <li>
+                    <div class="article">
+                                                <div class="image">
+                            <a href="http://www.casamea.ro/interior/design-interior/hol/10-idei-de-design-pentru-un-hol-luminos-14764" onclick="trackOutboundLink('http://www.casamea.ro/interior/design-interior/hol/10-idei-de-design-pentru-un-hol-luminos-14764'); return false;" target="_blank">
+                                <img src="http://www.casamea.ro/imagine/613x343/Sursa%2Bfoto%253A%2Bwww.amazinginteriordesign.com_82975.jpg"
+                                alt="" />
+                            </a>
+                        </div>
+                                                <div class="info" >
+                            <div class="title">
+                                <p>
+                                    <a href="http://www.casamea.ro/interior/design-interior/hol/10-idei-de-design-pentru-un-hol-luminos-14764" onclick="trackOutboundLink('http://www.casamea.ro/interior/design-interior/hol/10-idei-de-design-pentru-un-hol-luminos-14764'); return false;" target="_blank">
+                                        10 idei de design pentru un hol luminos                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                    </ul>
+
+        <div class="others">
+            <ul>
+                                                        <li>
+                        <p>
+                            <a href="http://www.casamea.ro/lifestyle/retete/desert/desert-de-sezon--placinta-cu-gutui-14763" onclick="trackOutboundLink('http://www.casamea.ro/lifestyle/retete/desert/desert-de-sezon--placinta-cu-gutui-14763'); return false;" target="_blank">
+                                Desert de sezon: placinta cu gutui                            </a>
+                        </p>
+                    </li>
+                                                        <li>
+                        <p>
+                            <a href="http://www.casamea.ro/inspiratie/prezentari-case/apartamente/un-apartament-de-familie-elegant-14762" onclick="trackOutboundLink('http://www.casamea.ro/inspiratie/prezentari-case/apartamente/un-apartament-de-familie-elegant-14762'); return false;" target="_blank">
+                                Un apartament de familie elegant                            </a>
+                        </p>
+                    </li>
+                            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+                <div id="footer" class="container_12">
+            <div class="grid_10">
+            
+                                <div class="footer-box grid_2">
+                    <h2>Actualitate</h2>
+                    <ul class="list-1">
+                                                <li><a href="/actualitate/eveniment">Eveniment</a></li>
+                                                <li><a href="/actualitate/fapt-divers">Fapt divers</a></li>
+                                                <li><a href="/actualitate/international">International</a></li>
+                                                <li><a href="/actualitate/meteo">Meteo</a></li>
+                                                <li><a href="/actualitate/proiecte-locale">Proiecte locale</a></li>
+                                                <li><a href="/actualitate/revista-presei">Revista presei</a></li>
+                                                <li><a href="/actualitate/revista-blogurilor">Revista blogurilor</a></li>
+                                            </ul>
+                </div>
+                                <div class="footer-box grid_2">
+                    <h2>Aldine</h2>
+                    <ul class="list-1">
+                                                <li><a href="/aldine/history">HiStory</a></li>
+                                                <li><a href="/aldine/nihil-sine-video">Nihil Sine Video</a></li>
+                                                <li><a href="/aldine/profil">Profil</a></li>
+                                                <li><a href="/aldine/contur">Contur</a></li>
+                                                <li><a href="/aldine/indigo">Indigo</a></li>
+                                                <li><a href="/aldine/zece">Zece</a></li>
+                                                <li><a href="/aldine/magazin">Magazin</a></li>
+                                                <li><a href="/aldine/e-bazar">e-Bazar</a></li>
+                                                <li><a href="/aldine/calendar">Calendar</a></li>
+                                                <li><a href="/aldine/delasarea-secului">Delasarea Secului</a></li>
+                                            </ul>
+                </div>
+                                <div class="footer-box grid_2">
+                    <h2>Cultura</h2>
+                    <ul class="list-1">
+                                                <li><a href="/cultura/carte">Carte</a></li>
+                                                <li><a href="/cultura/arte">Arte</a></li>
+                                                <li><a href="/cultura/cultura-urbana">Cultura urbana</a></li>
+                                            </ul>
+                </div>
+                                <div class="footer-box grid_2">
+                    <h2>Economie</h2>
+                    <ul class="list-1">
+                                                <li><a href="/economie/companii">Companii</a></li>
+                                                <li><a href="/economie/bursa">Bursa</a></li>
+                                                <li><a href="/economie/finante-banci">Finante &amp; Banci</a></li>
+                                                <li><a href="/economie/finante-personale">Finante personale</a></li>
+                                                <li><a href="/economie/curs-valutar">Curs valutar</a></li>
+                                                <li><a href="/economie/fonduri-europene">Fonduri europene</a></li>
+                                                <li><a href="/economie/manager-express">Manager Express</a></li>
+                                            </ul>
+                </div>
+                                <div class="footer-box grid_2">
+                    <h2>Opinii</h2>
+                    <ul class="list-1">
+                                                <li><a href="/opinii/editorial">Editorial</a></li>
+                                                <li><a href="/opinii/comentarii">Comentarii</a></li>
+                                                <li><a href="/opinii/interviuri">Interviuri</a></li>
+                                            </ul>
+                </div>
+                                <div class="footer-box grid_2">
+                    <h2>Politica</h2>
+                    <ul class="list-1">
+                                                <li><a href="/politica/institutii">Institutii</a></li>
+                                                <li><a href="/politica/uniunea-europeana">Uniunea Europeana</a></li>
+                                                <li><a href="/politica/partide">Partide</a></li>
+                                                <li><a href="/politica/politica-alegeri-prezidentiale">Alegeri prezidențiale 2014</a></li>
+                                            </ul>
+                </div>
+                                <div class="footer-box grid_2">
+                    <h2>Societate</h2>
+                    <ul class="list-1">
+                                                <li><a href="/societate/sanatate">Sanatate</a></li>
+                                                <li><a href="/societate/educatie">Educatie</a></li>
+                                                <li><a href="/societate/munca">Munca</a></li>
+                                            </ul>
+                </div>
+                                <div class="footer-box grid_2">
+                    <h2>Special</h2>
+                    <ul class="list-1">
+                                                <li><a href="/special/investigatii">Investigatii</a></li>
+                                                <li><a href="/special/documentare">Documentare</a></li>
+                                                <li><a href="/special/reportaje">Reportaje</a></li>
+                                                <li><a href="/special/dezvaluiri">Dezvaluiri</a></li>
+                                                <li><a href="/special/fotografia-zilei">Fotografia zilei</a></li>
+                                                <li><a href="/special/declaratia-zilei">Declaratia zilei</a></li>
+                                            </ul>
+                </div>
+                                <div class="footer-box grid_2">
+                    <h2>Sport</h2>
+                    <ul class="list-1">
+                                                <li><a href="/sport/fotbal">Fotbal</a></li>
+                                                <li><a href="/sport/motorsport">Motorsport</a></li>
+                                                <li><a href="/sport/sporturi">Sporturi</a></li>
+                                                <li><a href="/sport/clasamente">Clasamente</a></li>
+                                                <li><a href="/sport/amatori">Amatori</a></li>
+                                            </ul>
+                </div>
+                                <div class="footer-box grid_2">
+                    <h2>Stiinta &amp; Tehnologie</h2>
+                    <ul class="list-1">
+                                                <li><a href="/stiinta-tehnologie/gadgets">Gadgets</a></li>
+                                                <li><a href="/stiinta-tehnologie/auto">Auto</a></li>
+                                                <li><a href="/stiinta-tehnologie/stiinta">Stiinta</a></li>
+                                                <li><a href="/stiinta-tehnologie/it-c">IT&amp;C</a></li>
+                                            </ul>
+                </div>
+                                <div class="footer-box grid_2">
+                    <h2>Stil de viata</h2>
+                    <ul class="list-1">
+                                                <li><a href="/stil-de-viata/alimentatie">Alimentatie</a></li>
+                                                <li><a href="/stil-de-viata/casa-mea">Casa mea</a></li>
+                                                <li><a href="/stil-de-viata/familie">Familie</a></li>
+                                                <li><a href="/stil-de-viata/moda">Moda</a></li>
+                                                <li><a href="/stil-de-viata/monden">Monden</a></li>
+                                                <li><a href="/stil-de-viata/utile">Utile</a></li>
+                                                <li><a href="/stil-de-viata/timp-liber">Timp liber</a></li>
+                                                <li><a href="/stil-de-viata/povesti-virale">Povesti virale</a></li>
+                                                <li><a href="/stil-de-viata/horoscop">Horoscop</a></li>
+                                                <li><a href="/stil-de-viata/reteta-zilei">Reteta zilei</a></li>
+                                            </ul>
+                </div>
+                                <div class="footer-box grid_2">
+                    <h2>Antreprenor XXI</h2>
+                    <ul class="list-1">
+                                                <li><a href="/Antreprenor21/intrebari-si-raspunsuri">Intrebari si Raspunsuri</a></li>
+                                                <li><a href="/Antreprenor21/lectii-de-antreprenoriat">Lectii de Antreprenoriat</a></li>
+                                            </ul>
+                </div>
+                                
+            </div>
+            
+            <div class="grid_2">
+                <ul class="image-links">
+                    <li>
+                        <a href="http://www.bebelu.ro/" target="_blank">
+                            <img src="/links/bebelu.jpg" alt="Bebelu" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.casamea.ro/" target="_blank">
+                            <img src="/links/casamea.jpg" alt="Casamea" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.medienholding.ro/" target="_blank">
+                            <img src="/links/holding.jpg" alt="Medienholding" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.academiacatavencu.info/" target="_blank">
+                            <img src="/links/catavencu.jpg" alt="AcademiaCatavencu" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright container_12">
+            <div class="grid_12">
+                <ul class="footerMenu">
+                                                                    <li><a href="http://www.romanialibera.ro/">Home</a></li>
+                                                                                            <li><a href="http://www.romanialibera.ro/rss">RSS</a></li>
+                                                                                            <li><a href="/diverse/mica-publicitate">Mica publicitate</a></li>
+                                                                                            <li><a href="/diverse/abonamente">Abonamente</a></li>
+                                                                                            <li><a href="/diverse/contact">Contact</a></li>
+                                                                                            <li><a href="/diverse/anunturi-romania-libera">Anunturi Romania Libera</a></li>
+                                                            </ul>
+            </div>
+            
+            
+
+<div class="grid_12">
+    <ul class="footerMenu">
+                <li>
+            <a href="/tag/monica-macovei-845">
+                monica macovei            </a>
+        </li>
+                <li>
+            <a href="/tag/corina-cretu-25975">
+                corina creţu            </a>
+        </li>
+                <li>
+            <a href="/tag/theodor-stolojan-23943">
+                theodor stolojan            </a>
+        </li>
+                <li>
+            <a href="/tag/catalin-ivan-1722">
+                cătălin ivan            </a>
+        </li>
+                <li>
+            <a href="/tag/cristian-preda-4263">
+                cristian preda            </a>
+        </li>
+                <li>
+            <a href="/tag/daciana-sarbu-35192">
+                daciana sârbu            </a>
+        </li>
+                <li>
+            <a href="/tag/dan-nica-28629">
+                dan nica            </a>
+        </li>
+                <li>
+            <a href="/tag/siegfried-muresan-182241">
+                siegfried muresan            </a>
+        </li>
+                <li>
+            <a href="/tag/teodor-baconschi-15468">
+                teodor baconschi            </a>
+        </li>
+                <li>
+            <a href="/tag/norica-nicolai-31495">
+                norica nicolai            </a>
+        </li>
+                <li>
+            <a href="/tag/maria-grapini-66563">
+                maria grapini            </a>
+        </li>
+                <li>
+            <a href="/tag/adina-valean-42193">
+                adina valean            </a>
+        </li>
+                <li>
+            <a href="/tag/ramona-manescu-27636">
+                ramona mănescu            </a>
+        </li>
+                <li>
+            <a href="/tag/ioan-mircea-pascu-15162">
+                ioan mircea pașcu            </a>
+        </li>
+                <li>
+            <a href="/tag/renate-weber-30506">
+                renate weber            </a>
+        </li>
+                <li>
+            <a href="/tag/marian-jean-marinescu-61236">
+                marian jean marinescu            </a>
+        </li>
+                <li>
+            <a href="/tag/dan-diaconescu-2602">
+                dan diaconescu            </a>
+        </li>
+                <li>
+            <a href="/tag/aurelian-pavelescu-16427">
+                aurelian pavelescu            </a>
+        </li>
+                <li>
+            <a href="/tag/sebastian-bodu-32570">
+                sebastian bodu            </a>
+        </li>
+                <li>
+            <a href="/tag/corneliu-vadim-tudor-24637">
+                corneliu vadim tudor            </a>
+        </li>
+                <li>
+            <a href="/tag/ecaterina-andronescu-11666">
+                ecaterina andronescu            </a>
+        </li>
+                <li>
+            <a href="/tag/crin-antonescu-6448">
+                crin antonescu            </a>
+        </li>
+                <li>
+            <a href="/tag/mihai-razvan-ungureanu-30553">
+                mihai razvan ungureanu            </a>
+        </li>
+                <li>
+            <a href="/tag/emil-boc-2717">
+                emil boc            </a>
+        </li>
+            </ul>
+</div>
+
+
+
+
+                        
+            <div class="grid_12">
+                <div class="copyText">
+                    <p style="float: left;">
+                        Copyright &copy; 2014. Toate drepturile rezervate RomaniaLibera.ro
+                    </p>
+                    <p style="float: right;">                        
+                            Dezvoltat de 
+                        <a href="http://www.bluebay.ro/" target="_blank">
+                            Bluebay Design
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <div class="clear"></div>
+        <small>
+        <script type="text/javascript" src='//profiling.avandor.com/privacy/embed.js'></script>
+        </small>
+    </div>
+    
+    <!-- start slave -->
+<div id="adoceanliberaromdprbtoiea"></div>
+<script type="text/javascript">
+/* (c)AdOcean 2003-2014, rl_ro.Romania_Libera.Default.Ribbon */
+ado.slave('adoceanliberaromdprbtoiea', {myMaster: '73T65UldQ0BSrOgVF067c4p4Y4KLERHrrbRJe.zutH...7' });
+</script>
+<!--  end slave  -->        
+    <!-- start slave -->
+<div id="adoceanliberaroyenghwkrsc"></div>
+<script type="text/javascript">
+/* (c)AdOcean 2003-2014, rl_ro.Romania_Libera.Homepage.Floating */
+ado.slave('adoceanliberaroyenghwkrsc', {myMaster: 'RZBMayBpPcJpIDPl.66mtxZOEzeF9.IaFFfZLUG.hsH.X7' });
+</script>
+<!--  end slave  -->
+
+<!-- RL.ro-HP-Floating -->
+<div id='div-gpt-ad-1404823692860-0' style='width:1px; height:1px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1404823692860-0'); });
+</script>
+</div>
+<!-- RL.ro-HP-Floating out-of-page -->
+<div id='div-gpt-ad-1404823692860-0-oop'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1404823692860-0-oop'); });
+</script>
+</div>    
+    <script src="/js/plugins/magnific-popup/magnific.js"></script>
+    <script src="/js/rl.js?m=1"></script>
+
+    <script type="text/javascript"> (function() {
+            var scr = document.createElement('script');
+            scr.type = 'text/javascript'; scr.async = true;
+            scr.src = '/js/spring.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(scr, s);
+        })();
+    </script>
+    
+    <script type="text/javascript">
+	window._ttf = window._ttf || [];
+	_ttf.push({
+		pid: 22860
+		,lang: 'ro'
+		,slot: '#menu-container'
+		,format: 'inread'
+		,minSlot: 0
+		,BTF: false
+		,css: 'padding-bottom: 10px; padding-top: 10px;'
+	});
+	(function(d){
+		var js, s = d.getElementsByTagName('script')[0];
+		js = d.createElement('script'); js.async = true;
+		js.src = "http://cdn.teads.tv/js/all-v1.js";
+		s.parentNode.insertBefore(js, s);
+	})(window.document);
+    </script>
+    <script type="text/javascript">
+	// Configuration of the format
+	var _ttf = _ttf || [];
+	_ttf.push({
+		pid: 22841
+		, format: 'inflow'
+		, triggerMode: 'precontent' // Lancement de linFlow en mode PRECONTENT
+		, passBack:    function(num) {
+			// function executed when no campaign is available
+		}
+	});
+	// call of the inFlow script on Teads servers
+	(function(d){
+		var js, s = d.getElementsByTagName('script')[0];
+		js = d.createElement('script'); js.async = true;
+		js.src = "//cdn.teads.tv/js/all-v1.js";
+		s.parentNode.insertBefore(js, s);
+	})(window.document);
+    </script>
+    <script src="//www.chargeplatform.com/pxls/?id=1288490971"></script>
+    
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"90a3b30ce3","applicationID":"4059390","transactionName":"NFUHMRADDRBYUkBdXA0fJAYWCwwNFlVRUlIWXBFKBxARDEseUUZBDEI=","queueTime":0,"applicationTime":237,"atts":"GBIER1gZHh4=","errorBeacon":"bam.nr-data.net","agent":"js-agent.newrelic.com\/nr-632.min.js"}</script></body>
+
+</html>

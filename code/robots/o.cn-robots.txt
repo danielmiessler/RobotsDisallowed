@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta http-equiv=Content-Type content="text/html;charset=utf-8">
+<title>地图|三维地图|公交查询|电子地图|地图查询|数字城市|智慧城市|都市圈－查地图,搜公交上都市圈</title>
+<meta property="wb:webmaster" content="2e8300585994d4c4" />
+<meta name="baidu-tc-verification" content="c93600c90df4872993299ad2d5335766" />
+<meta name="Keywords" content="地图，旅游地图，地图查询，三维地图，电子地图，公交地图，公交查询，地图导航，地图卫星，地图搜索，地图网站，立体地图，地铁路线图，公交车站，行车路线，仿真城市，地铁，数字城市，仿真城市，中国地图，旅游查询，景点查询，城市黄页" />
+<meta name="Description" content="都市圈地图是全球最大的三维仿真城市，提供各地地图、地图查询、三维地图、公交查询、电子地图、广州地铁、北京地铁、上海地铁等查询服务。都市圈·定位你的生活。" />
+<link rel="stylesheet" type="text/css" href="http://static.o.cn/css/citylist/citylist.css" media="all">
+</head>
+<body>
+<div class="header">
+	<h1><a href="http://www.o.cn/" class="ocnlogo" target="_blank" title="都市圈"><span class="dis_none">都市圈</span></a></h1>
+</div>
+<div class="container">
+<div class="location mb20">
+
+   <!--
+  <a href="http://o2o.o.cn" target="_blank" ><img src="http://img0.o.cn/upload/1/channel/index/20141121/165624_991375.png"></a>
+  --> 
+
+  <a  rel="nofollow" href="http://59.42.53.226:58896/" target="_blank" onClick="ga('send', 'event', 'zhihuilvyou', 'Click', 'chancheng', 1);" ><img src="./images/禅城旅游广告.png"></a>
+     
+</div>
+<div class="location mb20">
+	我们猜您可能在<span id="ipCity1"> 广州</span>，点击进入
+	<a onClick="toCity(this.innerHTML);return false;" href="javascript:void(0)" class="ft14 fw_b" id="ipCity2">广州</a>
+	<div style="cursor: pointer;" class="ocnweather" id="weather"></div>
+</div>
+
+<!-- 选择/查询城市 -->
+<div class="search">
+	<div class="select_city l">
+		<div class="l">按省份选择城市：</div>
+		<div id="provinceDiv" class="selectbox mt4 select_state"><span>广东</span></div>
+		<div id="cityDiv" class="selectbox mt4 select_city"><span>广州</span></div>
+		<a href="#" class="go_btn" id="go_btn"></a>
+	</div>
+	<div class="search_city r">
+		<form name="tf" action="http://ditu.o.cn/" onSubmit="return doFormCheck()" target="_blank">
+			<div for="" class="l">查询城市：</div>
+			<div class="searchbox">
+				<input id="iCityname" name="city" type="text" class="sear_input" placeholder="请输入城市名称" />
+				<button type="submit" class="sear_submit" id="searchBtn" style="cursor:pointer"></button>
+			</div>
+		</form>
+	</div>
+</div>
+
+<!-- 全国城市列表 -->
+<div class="hot_city">
+	<div class="r">
+		<a href="#">全  国</a><span class="c_999">(含34个省、自治区、直辖市、特别行政区、340个地级市)</span>
+	</div>
+	<dl>
+		<dt class="l">热门城市：</dt>
+		<dd>
+			<a  class="a3d"  href="http://ditu.o.cn" target="_blank" >广州</a>
+			<a  class="a3d"  href="http://bj.o.cn/" target="_blank" >北京</a>
+			<a  class="a3d"  href="http://sh.o.cn/" target="_blank" >上海</a>
+			<a  class="a3d"  href="http://sz.o.cn/" target="_blank" >深圳</a>
+			<a  class="a3d"  href="http://wuhan.o.cn/" target="_blank" >武汉</a>
+		</dd>
+	</dl>
+</div>
+<div class="city_list">
+	<label>按拼音选择城市</label>
+	<dl>
+		<dt>
+			<strong>A</strong>
+		</dt>
+		<dd>
+			<a href="http://anqing.o.cn" target="_blank">安庆</a>| <a href="http://anshun.o.cn" target="_blank">安顺</a>|  <a href="http://anyang.o.cn" target="_blank">安阳</a>| <a href="http://anshan.o.cn" target="_blank">鞍山</a>| <a href="http://alashanmeng.o.cn" target="_blank">阿拉善盟</a>| <a href="http://ankang.o.cn" target="_blank">安康</a>| <a href="http://abazhou.o.cn" target="_blank">阿坝州</a>| <a href="http://alaer.o.cn" target="_blank">阿拉尔</a>| <a href="http://akesu.o.cn" target="_blank">阿克苏地区</a>| <a href="http://aletai.o.cn" target="_blank">阿勒泰地区</a>
+		</dd>
+	</dl>
+	<dl>
+		<dt>
+			<strong>B</strong>
+		</dt>
+		<dd>
+			<a href="http://bj.o.cn" target="_blank" class="a3d">北京</a>|<a href="http://binhai.o.cn" target="_blank" class="a3d">滨海</a>| <a href="http://bb.o.cn" target="_blank" class="a3d">蚌埠</a>|<a href="http://bozhou.o.cn" target="_blank">亳州</a>| <a href="http://baiyin.o.cn" target="_blank">白银</a>| <a href="http://baise.o.cn" target="_blank">百色</a>| <a href="http://bijie.o.cn" target="_blank">毕节地区</a>| <a href="http://baisha.o.cn" target="_blank">白沙</a>| <a href="http://baoting.o.cn" target="_blank">保亭</a>| <a href="http://baoding.o.cn" target="_blank">保定</a>| <a href="http://baicheng.o.cn" target="_blank">白城</a>| <a href="http://baishan.o.cn" target="_blank">白山</a>| <a href="http://benxi.o.cn" target="_blank">本溪</a>| <a href="http://baotou.o.cn" target="_blank">包头</a>| <a href="http://bayannaoer.o.cn" target="_blank">巴彦淖尔</a>| <a href="http://binzhou.o.cn" target="_blank">滨州</a>| <a href="http://baoji.o.cn" target="_blank">宝鸡</a>| <a href="http://boertalazhou.o.cn" target="_blank">博尔塔拉州</a>| <a href="http://baoshan.o.cn" target="_blank">保山</a>
+		</dd>
+	</dl>
+	<dl>
+		<dt>
+			<strong>C</strong>
+		</dt>
+		<dd>
+			<a href="http://cz.o.cn" target="_blank" class="a3d">常州</a>|<a href="http://chongqing.o.cn" target="_blank">重庆</a>|<a href="http://chaohu.o.cn" target="_blank">巢湖</a>|<a href="http://chizhou.o.cn" target="_blank">池州</a>|<a href="http://chuzhou.o.cn" target="_blank">滁州</a>|<a href="http://chaozhou.o.cn" target="_blank">潮州</a>|<a href="http://chongzuo.o.cn" target="_blank">崇左</a>|<a href="http://chengmai.o.cn" target="_blank">澄迈</a>|<a href="http://cangzhou.o.cn" target="_blank" class="a3d">沧州</a>|<a href="http://chengde.o.cn" target="_blank">承德</a>|<a href="http://changsha.o.cn" target="_blank">长沙</a>|<a href="http://changde.o.cn" target="_blank">常德</a>|<a href="http://chenzhou.o.cn" target="_blank">郴州</a>|<a href="http://changchun.o.cn" target="_blank">长春</a>|<a href="http://chaoyang.o.cn" target="_blank">朝阳</a> | <a href="http://chifeng.o.cn" target="_blank">赤峰</a>|<a href="http://changzhi.o.cn" target="_blank">长治</a>|<a href="http://chengdu.o.cn" target="_blank">成都</a>|<a href="http://changdou.o.cn" target="_blank">昌都地区</a>|<a href="http://changjizhou.o.cn" target="_blank">昌吉州</a>|<a href="http://chuxiongzhou.o.cn" target="_blank">楚雄州</a>
+
+		</dd>
+	</dl>
+	<dl>
+		<dt>
+			<strong>D</strong>
+		</dt>
+		<dd>
+			<a href="http://dongguan.o.cn" target="_blank" class="a3d">东莞</a>|<a href="http://dy.o.cn" target="_blank" class="a3d">东营</a>|<a href="http://dingxi.o.cn" target="_blank">定西</a>|<a href="http://dongfang.o.cn" target="_blank">东方</a>|<a href="http://daqing.o.cn" target="_blank">大庆</a>|<a href="http://daxinganling.o.cn" target="_blank">大兴安岭地区</a>|<a href="http://dalian.o.cn" target="_blank">大连</a>|<a href="http://dandong.o.cn" target="_blank">丹东</a>|<a href="http://dezhou.o.cn" target="_blank">德州</a>|<a href="http://datong.o.cn" target="_blank">大同</a>|<a href="http://deyang.o.cn" target="_blank">德阳</a>|<a href="http://dalizhou.o.cn" target="_blank" class="a3d">大理州</a>|<a href="http://dehongzhou.o.cn" target="_blank">德宏州</a>|<a href="http://diqingzhou.o.cn" target="_blank">迪庆州</a>|<a href="http://danzhou.o.cn" target="_blank">儋州</a>|<a href="http://dingan.o.cn" target="_blank">定安</a>|<a href="http://diaoyudao.o.cn" target="_blank">钓鱼岛</a>
+
+		</dd>
+	</dl>
+	<dl>
+		<dt>
+			<strong>E</strong>
+		</dt>
+		<dd>
+			<a href="http://ezhou.o.cn" target="_blank">鄂州</a>|<a   href="http://enshi.o.cn" target="_blank"> 恩施</a>|<a href="http://eerduosi.o.cn" target="_blank"> 鄂尔多斯</a>
+
+		</dd>
+	</dl>
+	<dl>
+		<dt>
+			<strong>F</strong>
+		</dt>
+		<dd>
+			<a href="http://fz.o.cn" target="_blank" class="a3d">福州</a>|<a href="http://fuyang.o.cn" target="_blank">阜阳</a>|<a href="http://foshan.o.cn" target="_blank">佛山</a>|<a href="http://fangchenggang.o.cn" target="_blank">防城港</a>|<a href="http://fuzhou.o.cn" target="_blank">抚州</a>|<a href="http://fushun.o.cn" target="_blank">抚顺</a>|<a href="http://fuxin.o.cn" target="_blank">阜新</a>
+
+		</dd>
+	</dl>
+	<dl>
+		<dt>
+			<strong>G</strong>
+		</dt>
+		<dd>
+			<a href="http://ditu.o.cn" target="_blank" class="a3d">广州</a>|<a href="http://gy.o.cn" target="_blank" class="a3d">贵阳</a>|<a href="http://gannanzhou.o.cn" target="_blank">甘南州</a>|<a href="http://guilin.o.cn" target="_blank">桂林</a>|<a href="http://guigang.o.cn" target="_blank">贵港</a>|<a href="http://ganzhou.o.cn" target="_blank">赣州</a>|<a href="http://guyuan.o.cn" target="_blank">固原</a>|<a href="http://guoluozhou.o.cn" target="_blank">果洛州</a>|<a href="http://ganzizhou.o.cn" target="_blank">甘孜州</a>|<a href="http://guangan.o.cn" target="_blank">广安</a>|<a href="http://guangyuan.o.cn" target="_blank">广元</a>
+
+		</dd>
+	</dl>
+	<dl>
+		<dt>
+			<strong>H</strong>
+		</dt>
+		<dd>
+			<a href="http://hs.o.cn" target="_blank" class="a3d">黄山</a>|<a href="http://hangzhou.o.cn" target="_blank">杭州</a><!--|<a href="" target="_blank" class="a3d">海宁</a>-->|<a href="http://huizhou.o.cn" target="_blank">惠州</a>|<a href="http://hefei.o.cn" target="_blank">合肥</a>|<a href="http://huaibei.o.cn" target="_blank">淮北</a>|<a href="http://huainan.o.cn" target="_blank">淮南</a>|<a href="http://heyuan.o.cn" target="_blank" class="a3d">河源</a>|<a href="http://hechi.o.cn" target="_blank">河池</a>|<a href="http://hezhou.o.cn" target="_blank">贺州</a>|<a href="http://haikou.o.cn" target="_blank">海口</a>|<a href="http://handan.o.cn" target="_blank">邯郸</a>|<a href="http://hengshui.o.cn" target="_blank">衡水</a>|<a href="http://hebi.o.cn" target="_blank">鹤壁</a>|<a href="http://haerbin.o.cn" target="_blank">哈尔滨</a>|<a href="http://hegang.o.cn" target="_blank">鹤岗</a>|<a href="http://heihe.o.cn" target="_blank">黑河</a>|<a href="http://huanggang.o.cn" target="_blank">黄冈</a>|<a href="http://huangshi.o.cn" target="_blank">黄石</a>|<a href="http://hengyang.o.cn" target="_blank">衡阳</a>|<a href="http://huaihua.o.cn" target="_blank">怀化</a>|<a href="http://huaian.o.cn" target="_blank">淮安</a>|<a href="http://huludao.o.cn" target="_blank">葫芦岛</a>|<a href="http://huhehaote.o.cn" target="_blank">呼和浩特</a>|<a href="http://hulunbeier.o.cn" target="_blank">呼伦贝尔</a>|<a href="http://haidong.o.cn" target="_blank">海东地区</a>|<a href="http://haibeizhou.o.cn" target="_blank">海北州</a>|<a href="http://hainanzhou.o.cn" target="_blank">海南州</a>|<a href="http://haixizhou.o.cn" target="_blank">海西州</a>|<a href="http://huangnanzhou.o.cn" target="_blank">黄南州</a>|<a href="http://heze.o.cn" target="_blank">菏泽</a>|<a href="http://hanzhong.o.cn" target="_blank">汉中</a>|<a href="http://hami.o.cn" target="_blank">哈密地区</a>|<a href="http://hetian.o.cn" target="_blank">和田地区</a>|<a href="http://honghezhou.o.cn" target="_blank">红河州</a>|<a href="http://huzhou.o.cn" target="_blank">湖州</a>
+
+		</dd>
+	</dl>
+
+	<dl>
+		<dt>
+			<strong>J</strong>
+		</dt>
+		<dd>
+			<a href="http://jm.o.cn" target="_blank" class="a3d">江门</a>|<a href="http://jincheng.o.cn" target="_blank" class="a3d">晋城</a>|<a href="http://jiayuguan.o.cn" target="_blank">嘉峪关</a>|<a href="http://jinchang.o.cn" target="_blank">金昌</a>|<a href="http://jiuquan.o.cn" target="_blank">酒泉</a>|<a href="http://jieyang.o.cn" target="_blank">揭阳</a>|<a href="http://jiaozuo.o.cn" target="_blank">焦作</a>|<a href="http://jixi.o.cn" target="_blank">鸡西</a>|<a href="http://jiamusi.o.cn" target="_blank">佳木斯</a>|<a href="http://jingmen.o.cn" target="_blank" class="a3d">荆门</a>|<a href="http://jingzhou.o.cn" target="_blank">荆州</a>|<a href="http://jian.o.cn" target="_blank">吉安</a>|<a href="http://jingdezhen.o.cn" target="_blank">景德镇</a>|<a href="http://jiujiang.o.cn" target="_blank">九江</a>|<a href="http://jilin.o.cn" target="_blank">吉林市</a>|<a href="http://jinzhou.o.cn" target="_blank">锦州</a>|<a href="http://jinan.o.cn" target="_blank">济南</a>|<a href="http://jining.o.cn" target="_blank">济宁</a>|<a href="http://jinzhong.o.cn" target="_blank">晋中</a>|<a href="http://jiaxing.o.cn" target="_blank">嘉兴</a>|<a href="http://jinhua.o.cn" target="_blank">金华</a>
+
+		</dd>
+	</dl>
+	<dl>
+		<dt>
+			<strong>K</strong>
+		</dt>
+		<dd>
+			<a href="http://km.o.cn" target="_blank" class="a3d">昆明</a>|<a href="http://kel.o.cn" target="_blank" class="a3d">库尔勒</a>|<a href="http://kaifeng.o.cn" target="_blank">开封</a>|<a href="http://kashen.o.cn" target="_blank">喀什地区</a>|<a href="http://kelamayi.o.cn" target="_blank">克拉玛依</a>
+
+		</dd>
+	</dl>
+	<dl>
+		<dt>
+			<strong>L</strong>
+		</dt>
+		<dd>
+			<a href="http://liaoyang.o.cn" target="_blank" class="a3d">辽阳</a>|<a href="http://loudi.o.cn" target="_blank" class="a3d">娄底</a>|<a href="http://luoyang.o.cn" target="_blank" class="a3d">洛阳</a>|<a href="http://linyi.o.cn" target="_blank" class="a3d">临沂</a>|<a href="http://longyan.o.cn" target="_blank" class="a3d">龙岩</a>|<a href="http://luan.o.cn" target="_blank">六安</a>|<a href="http://lanzhou.o.cn" target="_blank">兰州</a>|<a href="http://linxiazhou.o.cn" target="_blank">临夏州</a>|<a href="http://longnan.o.cn" target="_blank">陇南</a>|<a href="http://laibin.o.cn" target="_blank">来宾</a>|<a href="http://liuzhou.o.cn" target="_blank">柳州</a>|<a href="http://liupanshui.o.cn" target="_blank">六盘水</a>|<a href="http://ledong.o.cn" target="_blank">乐东</a>|<a href="http://lingao.o.cn" target="_blank">临高</a>|<a href="http://lingshui.o.cn" target="_blank">陵水</a>|<a href="http://langfang.o.cn" target="_blank">廊坊</a>|<a href="http://luohe.o.cn" target="_blank">漯河</a>|<a href="http://lianyungang.o.cn" target="_blank">连云港</a>|<a href="http://laiwu.o.cn" target="_blank">莱芜</a>|<a href="http://liaocheng.o.cn" target="_blank">聊城</a>|<a href="http://linfen.o.cn" target="_blank">临汾</a>|<a href="http://lvliang.o.cn" target="_blank">吕梁</a>|<a href="http://luzhou.o.cn" target="_blank">泸州</a>|<a href="http://leshan.o.cn" target="_blank">乐山</a>|<a href="http://liangshanzhou.o.cn" target="_blank">凉山州</a>|<a href="http://lasa.o.cn" target="_blank">拉萨</a>|<a href="http://linzhi.o.cn" target="_blank">林芝地区</a>|<a href="http://lijiang.o.cn" target="_blank">丽江</a>|<a href="http://lincang.o.cn" target="_blank">临沧</a>|<a href="http://lishui.o.cn" target="_blank">丽水</a>
+
+		</dd>
+	</dl>
+	<dl>
+		<dt>
+			<strong>M</strong>
+		</dt>
+		<dd>
+			<a href="http://maanshan.o.cn" target="_blank">马鞍山</a>|<a href="http://maoming.o.cn" target="_blank">茂名</a>|<a href="http://meizhou.o.cn" target="_blank">梅州</a>|<a href="http://mudanjiang.o.cn" target="_blank">牡丹江</a>|<a href="http://meishan.o.cn" target="_blank">眉山</a>|<a href="http://mianyang.o.cn" target="_blank">绵阳</a>
+
+		</dd>
+	</dl>
+	<dl>
+		<dt>
+			<strong>N</strong>
+		</dt>
+		<dd>
+			<a href="http://nanjing.o.cn" target="_blank">南京</a>|<a href="http://nanping.o.cn" target="_blank">南平</a>|<a href="http://nanning.o.cn" target="_blank">南宁</a>|<a href="http://nanyang.o.cn" target="_blank">南阳</a>|<a href="http://nantong.o.cn" target="_blank">南通</a>|<a href="http://nanchang.o.cn" target="_blank">南昌</a>|<a href="http://nanchong.o.cn" target="_blank">南充</a>|<a href="http://ningde.o.cn" target="_blank">宁德</a>|<a href="http://neijiang.o.cn" target="_blank">内江</a>|<a href="http://neiqu.o.cn" target="_blank">那曲地区</a>|<a href="http://nujiangzhou.o.cn" target="_blank">怒江州</a>|<a href="http://ningbo.o.cn" target="_blank">宁波</a>
+
+		</dd>
+	</dl>
+
+	<dl>
+		<dt>
+			<strong>P</strong>
+		</dt>
+		<dd>
+			<a href="http://putian.o.cn" target="_blank">莆田</a>|<a href="http://pingliang.o.cn" target="_blank">平凉</a>|<a href="http://pingdingshan.o.cn" target="_blank">平顶山</a>|<a href="http://puyang.o.cn" target="_blank">濮阳</a>|<a href="http://pingxiang.o.cn" target="_blank">萍乡</a>|<a href="http://panjin.o.cn" target="_blank">盘锦</a>|<a href="http://panzhihua.o.cn" target="_blank">攀枝花</a>|<a href="http://puer.o.cn" target="_blank">普洱</a>
+		</dd>
+	</dl>
+	<dl>
+		<dt>
+			<strong>Q</strong>
+		</dt>
+		<dd>
+			<a href="http://qz.o.cn" target="_blank" class="a3d">泉州</a>|<a href="http://qujing.o.cn" target="_blank">曲靖</a> |<a href="http://qingyang.o.cn" target="_blank">庆阳</a>|<a href="http://qingyuan.o.cn" target="_blank">清远</a>|<a href="http://qinzhou.o.cn" target="_blank">钦州</a>|<a href="http://qianxinanzhou.o.cn" target="_blank">黔西南州</a>|<a href="http://qiandongnanzhou.o.cn" target="_blank">黔东南州</a>|<a href="http://qiannanzhou.o.cn" target="_blank">黔南州</a>|<a href="http://qionghai.o.cn" target="_blank">琼海</a>|<a href="http://qiongzhong.o.cn" target="_blank">琼中</a>|<a href="http://qinhuangdao.o.cn" target="_blank">秦皇岛</a>|<a href="http://qitaihe.o.cn" target="_blank">七台河</a>|<a href="http://qiqihaer.o.cn" target="_blank">齐齐哈尔</a>|<a href="http://qianjiang.o.cn" target="_blank">潜江</a>|<a href="http://qingdao.o.cn" target="_blank">青岛</a>|<a href="http://quzhou.o.cn" target="_blank">衢州</a>
+		</dd>
+	</dl>
+	<dl>
+		<dt>
+			<strong>R</strong>
+		</dt>
+		<dd>
+			<a href="http://rizhao.o.cn" target="_blank">日照</a>|<a href="http://rikaze.o.cn" target="_blank">日喀则地区</a>
+		</dd>
+	</dl>
+	<dl>
+		<dt>
+			<strong>S</strong>
+		</dt>
+		<dd>
+			<a href="http://sh.o.cn" target="_blank" class="a3d">上海</a>|<a href="http://sz.o.cn" target="_blank" class="a3d">深圳</a>|<a href="http://suzhou.o.cn" target="_blank" class="a3d">苏州</a>|<a href="http://shiyan.o.cn" target="_blank" class="a3d">十堰</a>|<a href="http://shantou.o.cn" target="_blank">汕头</a>|<a href="http://ahsuzhou.o.cn" target="_blank">宿州</a>|<a href="http://sanming.o.cn" target="_blank">三明</a>|<a href="http://shanwei.o.cn" target="_blank" class="a3d">汕尾</a>|<a href="http://shaoguan.o.cn" target="_blank" class="a3d">韶关</a>|<a href="http://sanya.o.cn" target="_blank">三亚</a>|<a href="http://shijiazhuang.o.cn" target="_blank">石家庄</a>|<a href="http://sanmenxia.o.cn" target="_blank">三门峡</a>|<a href="http://shangqiu.o.cn" target="_blank">商丘</a>|<a href="http://shuangyashan.o.cn" target="_blank">双鸭山</a>|<a href="http://suihua.o.cn" target="_blank">绥化</a>|<a href="http://shennongjialinqu.o.cn" target="_blank">神农架林区</a>|<a href="http://suizhou.o.cn" target="_blank">随州</a>|<a href="http://shaoyang.o.cn" target="_blank">邵阳</a>|<a href="http://suqian.o.cn" target="_blank">宿迁</a>|<a href="http://shangrao.o.cn" target="_blank">上饶</a>|<a href="http://siping.o.cn" target="_blank">四平</a>|<a href="http://songyuan.o.cn" target="_blank">松原</a>|<a href="http://shenyang.o.cn" target="_blank">沈阳</a>|<a href="http://shizuishan.o.cn" target="_blank">石嘴山</a>|<a href="http://shuozhou.o.cn" target="_blank">朔州</a>|<a href="http://shangluo.o.cn" target="_blank">商洛</a>|<a href="http://suining.o.cn" target="_blank">遂宁</a>|<a href="http://shannan.o.cn" target="_blank">山南地区</a>|<a href="http://shihezi.o.cn" target="_blank">石河子</a>|<a href="http://shaoxing.o.cn" target="_blank">绍兴</a>|<a href="http://sansha.o.cn" target="_blank">三沙</a>
+
+		</dd>
+	</dl>
+	<dl>
+		<dt>
+			<strong>T</strong>
+		</dt>
+		<dd>
+			<a href="http://taiyuan.o.cn" target="_blank" class="a3d">太原</a>|<a href="http://tianjin.o.cn" target="_blank">天津</a>|<a href="http://tongling.o.cn" target="_blank">铜陵</a>|<a href="http://tianshui.o.cn" target="_blank">天水</a>|<a href="http://tongren.o.cn" target="_blank">铜仁地区</a>|<a href="http://tunchang.o.cn" target="_blank">屯昌</a>|<a href="http://tangshan.o.cn" target="_blank">唐山</a>|<a href="http://tianmen.o.cn" target="_blank">天门</a>|<a href="http://taizhou.o.cn" target="_blank">泰州</a>|<a href="http://tonghua.o.cn" target="_blank">通化</a>|<a href="http://tieling.o.cn" target="_blank">铁岭</a>|<a href="http://tongliao.o.cn" target="_blank">通辽</a>|<a href="http://taian.o.cn" target="_blank">泰安</a>|<a href="http://tongchuan.o.cn" target="_blank">铜川</a>|<a href="http://tacheng.o.cn" target="_blank">塔城地区</a>|<a href="http://tumushuke.o.cn" target="_blank">图木舒克</a>|<a href="http://tulufan.o.cn" target="_blank">吐鲁番地区</a>|<a href="http://taizhou.o.cn" target="_blank">台州</a>
+		</dd>
+	</dl>
+	<dl>
+		<dt>
+			<strong>W</strong>
+		</dt>
+		<dd>
+			<a href="http://wuhan.o.cn" target="_blank" class="a3d">武汉</a>|<a href="http://wuhu.o.cn" target="_blank" class="a3d">芜湖</a>|<a href="http://wujiang.o.cn" target="_blank" class="a3d">吴江</a>|<a href="http://weifang.o.cn" target="_blank" class="">潍坊</a>|<a href="http://wuwei.o.cn" target="_blank">武威</a>|<a href="http://wuzhou.o.cn" target="_blank">梧州</a>|<a href="http://wanning.o.cn" target="_blank">万宁</a>|<a href="http://wenchang.o.cn" target="_blank">文昌</a>|<a href="http://wuzhishan.o.cn" target="_blank">五指山</a>|<a href="http://wuxi.o.cn" target="_blank">无锡</a>|<a href="http://wuhai.o.cn" target="_blank">乌海</a>|<a href="http://wulanchabu.o.cn" target="_blank">乌兰察布</a>|<a href="http://wuzhong.o.cn" target="_blank">吴忠</a>|<a href="http://weihai.o.cn" target="_blank">威海</a>|<a href="http://weinan.o.cn" target="_blank">渭南</a>|<a href="http://wulumuqi.o.cn" target="_blank">乌鲁木齐</a>|<a href="http://wujiaqu.o.cn" target="_blank">五家渠</a>|<a href="http://wenshan.o.cn" target="_blank">文山</a>|<a href="http://wenzhou.o.cn" target="_blank">温州</a>
+		</dd>
+	</dl>
+	<dl>
+		<dt>
+			<strong>X</strong>
+		</dt>
+		<dd>
+			<a href="http://xuancheng.o.cn" target="_blank">宣城</a>|<a href="http://xiamen.o.cn" target="_blank">厦门</a>|<a href="http://xingtai.o.cn" target="_blank">邢台</a>|<a href="http://xinxiang.o.cn" target="_blank">新乡</a>|<a href="http://xiantao.o.cn" target="_blank">仙桃</a>|<a href="http://xinyang.o.cn" target="_blank">信阳</a>|<a href="http://xuchang.o.cn" target="_blank">许昌</a>|<a href="http://xianning.o.cn" target="_blank">咸宁</a>|<a href="http://xiangfan.o.cn" target="_blank" class="a3d">襄樊</a>|<a href="http://xiaogan.o.cn" target="_blank">孝感</a>|<a href="http://xiangtan.o.cn" target="_blank">湘潭</a>|<a href="http://xiangxizhou.o.cn" target="_blank">湘西州</a>|<a href="http://xuzhou.o.cn" target="_blank">徐州</a>|<a href="http://xinyu.o.cn" target="_blank">新余</a>|<a href="http://xilinguolemeng.o.cn" target="_blank">锡林郭勒盟</a>|<a href="http://xinganmeng.o.cn" target="_blank">兴安盟</a>|<a href="http://xining.o.cn" target="_blank">西宁</a>|<a href="http://xinzhou.o.cn" target="_blank">忻州</a>|<a href="http://xian.o.cn" target="_blank">西安</a>|<a href="http://xianyang.o.cn" target="_blank">咸阳</a>|<a href="http://xishuangbanna.o.cn" target="_blank">西双版纳</a>
+		</dd>
+	</dl>
+	<dl>
+		<dt>
+			<strong>Y</strong>
+		</dt>
+		<dd>
+			<a href="http://yiwu.o.cn" target="_blank" class="a3d">义乌</a>|<a href="http://yancheng.o.cn" target="_blank" class="a3d">盐城</a>|<a href="http://3dyt.o.cn" target="_blank" class="a3d">烟台</a>|<a href="http://yangjiang.o.cn" target="_blank">阳江</a>|<a href="http://yunfu.o.cn" target="_blank" class="a3d">云浮</a>|<a href="http://gxyulin.o.cn" target="_blank">玉林</a>|<a href="http://hljyc.o.cn" target="_blank">伊春</a>|<a href="http://yichang.o.cn" target="_blank">宜昌</a>|<a href="http://yiyang.o.cn" target="_blank">益阳</a>|<a href="http://yongzhou.o.cn" target="_blank">永州</a>|<a href="http://yueyang.o.cn" target="_blank">岳阳</a>|<a href="http://yangzhou.o.cn" target="_blank">扬州</a>|<a href="http://yichun.o.cn" target="_blank">宜春</a>|<a href="http://yingtan.o.cn" target="_blank">鹰潭</a>|<a href="http://yanbian.o.cn" target="_blank">延边</a>|<a href="http://yingkou.o.cn" target="_blank">营口</a>|<a href="http://yinchuan.o.cn" target="_blank">银川</a>|<a href="http://yushuzhou.o.cn" target="_blank">玉树州</a>|<a href="http://yangquan.o.cn" target="_blank">阳泉</a>|<a href="http://yuncheng.o.cn" target="_blank">运城</a>|<a href="http://yanan.o.cn" target="_blank">延安</a>|<a href="http://yulin.o.cn" target="_blank">榆林</a>|<a href="http://yaan.o.cn" target="_blank">雅安</a>|<a href="http://yibin.o.cn" target="_blank">宜宾</a>|<a href="http://yilizhou.o.cn" target="_blank">伊犁州</a>|<a href="http://yuxi.o.cn" target="_blank">玉溪</a>
+		</dd>
+	</dl>
+	<dl>
+		<dt>
+			<strong>Z</strong>
+		</dt>
+		<dd>
+			<a href="http://zhuhai.o.cn" target="_blank" class="a3d">珠海</a>|<a href="http://zhongshan.o.cn" target="_blank" class="a3d">中山</a>|<a href="http://zhuzhou.o.cn" target="_blank" class="a3d">株洲</a>|<a href="http://zhangzhou.o.cn" target="_blank">漳州</a>|<a href="http://zhangye.o.cn" target="_blank">张掖</a>|<a href="http://zhanjiang.o.cn" target="_blank">湛江</a>|<a href="http://zhaoqing.o.cn" target="_blank">肇庆</a>|<a href="http://zunyi.o.cn" target="_blank">遵义</a>|<a href="http://zhangjiakou.o.cn" target="_blank">张家口</a>|<a href="http://zhengzhou.o.cn" target="_blank">郑州</a>   <a href="http://zhoukou.o.cn" target="_blank">周口</a>|<a href="http://zhumadian.o.cn" target="_blank">驻马店</a>|<a href="http://zhangjiajie.o.cn" target="_blank">张家界</a>|<a href="http://zhenjiang.o.cn" target="_blank">镇江</a>|<a href="http://zhongwei.o.cn" target="_blank">中卫</a>|<a href="http://zaozhuang.o.cn" target="_blank">枣庄</a>|<a href="http://zibo.o.cn" target="_blank">淄博</a>|<a href="http://ziyang.o.cn" target="_blank">资阳</a>|<a href="http://zigong.o.cn" target="_blank">自贡</a>|<a href="http://zhaotong.o.cn" target="_blank">昭通</a>|<a href="http://zhoushan.o.cn" target="_blank">舟山</a>
+		</dd>
+	</dl>
+	<dl>
+		<dt>
+		</dt>
+		<dd>
+			<a href="http://macau.o.cn" target="_blank" class="a3d">澳门</a>|<a href="http://hongkong.o.cn" target="_blank">香港</a>|<a href="http://taibei.o.cn/" target="_blank">台湾</a>
+		</dd>
+	</dl>
+</div>
+</div>
+<!--页尾开始 -->
+<div class="footer">
+	<a target="_blank" href="http://www.o.cn/about_us/aboutus.html">关于都市圈</a>|<a class="hot" href=" http://o2o.o.cn/" target="_blank">O2O解决方案</a>|<a target="_blank" class="hot" href="http://www.o.cn/api/">地图API</a>|<a class="hot" href=" http://gis.o.cn/" target="_blank">智慧城市</a>|<a target="_blank" href="http://www.o.cn/about_us/strategy.html">战略合作</a>|<a target="_blank" href="http://www.o.cn/about_us/legal.html">法律声明</a>|<a target="_blank" href="http://www.o.cn/hr/">人才招聘</a>|<a target="_blank" href="http://www.o.cn/sitemap.html">网站地图</a>|<a target="_blank" href="http://www.o.cn/about_us/contactus.html">联系我们</a>|<a target="_blank" href="http://www.o.cn/leave.shtml">访问留言</a>|<a target="_blank" href="http://www.o.cn/link.html">友情链接</a>
+	<p>版权所有 ©2014 广州都市圈网络科技有限公司  本站所有内容，未经许可均不得转载。</p>
+	<p>经营许可证粤B2-20120663  软件版权证XB-06235  粤ICP备11003747  国家测绘资质证：乙测资字44101161</p>
+	<p><a href="http://210.76.65.188/webrecord/innernet/Welcome.jsp?bano=4402013010575" target="_blank"><img src="http://static.o.cn/images/header/waicon1.gif" alt="#"></a><a href="http://guangzhou.cyberpolice.cn/netalarm/netalarm/Welcome.jsp?bano=4401060100227" target="_blank"><img src="http://static.o.cn/images/header/waicon2.gif" alt="#"></a></p>
+</div>
+<!--页尾结束 -->
+<ul id="provinceUl" class="select_lt select_state"></ul>
+<ul id="cityUl" class="select_lt select_city"></ul>
+<script type="text/javascript" src="http://static.o.cn/js/common/jquery.js"></script>
+<script type="text/javascript" src="http://static.o.cn/js/postdata.js"></script>
+<script type="text/javascript" src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js" charset="GBK"></script>
+<script type="text/javascript">
+var o_jsData=[];
+$(function(){
+	if(!-[1,]){
+		$('[placeholder]').focus(function() {
+			var input = $(this);
+			if (input.val() == input.attr('placeholder')){
+				input.val('');
+				input.removeClass('placeholder');
+			}
+		}).blur(function() {
+				var input = $(this);
+				if (input.val() == '' || input.val() == input.attr('placeholder')){
+					input.addClass('placeholder');
+					input.val(input.attr('placeholder'));
+				}
+			}).blur();
+		$('form').submit(function() {
+			$(this).find('[placeholder]').each(function() {
+				var input = $(this);
+				if (input.val() == input.attr('placeholder')) {
+					input.val('');
+					input.removeClass('placeholder');
+				}
+			});
+		});
+	}
+	//body监听
+	$('body').mousedown(function(){
+		if($('.select_lt').is(':visible')){
+			$('.select_lt').hide();
+		}
+	});
+	$('.select_lt').mousedown(eventstop);
+	$("#go_btn").click(function(){
+		var city=$("#cityDiv").text();
+		if(city!=""){
+			toCity(city);
+		}
+	});
+	/* $("#searchBtn").click(function(){
+	 var city=$("#iCityname").val();
+	 if($.trim(city)!=""&&city!='请输入城市名称'){
+	 toCity(city);
+	 }else{
+	 alert("请输入城市名称");
+	 $("#iCityname").focus();
+	 return false;
+	 }
+	 });*/
+	//城市数据
+	var provinceUl=$("#provinceUl");
+	for( var provice in cityData){
+		var li=document.createElement("LI");
+		li.innerHTML=provice;
+		li.onclick=provinceSelect;
+		provinceUl.append(li);
+	}
+
+	//alterCityDomain();
+
+	$('.selectbox').click(function(){
+		var t = $(this).offset().top + $(this).height();
+		var l = $(this).offset().left;
+		var s = $(this).hasClass('select_state')?$('.select_lt.select_state'):$('.select_lt.select_city');
+		s.siblings('.select_lt').hide();
+		s.css({
+			top:t,
+			left:l,
+			overflowY:'auto',
+			height:s.innerHeight() > 240?'240px':s.innerHeight() + 'px'
+		}).show();
+	});
+
+	$('.sear_input').focus(function(){
+		$(this).siblings('.sear_submit').addClass('active');
+	}).blur(function(){
+			if($(this).val() == ''){
+				$(this).siblings('.sear_submit').removeClass('active');
+			}
+		});
+
+	if(remote_ip_info&&""!=remote_ip_info.city){
+		$("#ipCity1").html(remote_ip_info.city);
+		$("#ipCity2").html(remote_ip_info.city);
+        
+		//读取天气
+		var cityName=remote_ip_info.city.replace("市","");
+		if(remote_ip_info.province!=""){
+			changeProvince(remote_ip_info.province)
+		}
+	   if(cityName=='北京'||cityName=='上海'||cityName=='重庆'||cityName=='天津'){
+	      $("#provinceDiv").html('直辖市');
+	   }
+       //$("#cityDiv").html(remote_ip_info.city);
+       changeCity(cityName);
+       getWeather(cityName);
+
+	}else{
+		if(IPData&&""!=IPData[3]){
+			$("#ipCity1").html(IPData[3]);
+			$("#ipCity2").html(IPData[3]);
+			//读取天气
+			var cityName=IPData[3].replace("市","");
+			if(IPData[2]!=""){
+				changeProvince(IPData[2])
+			}
+			if(cityName=='北京'||cityName=='上海'||cityName=='重庆'||cityName=='天津'){
+	         $("#provinceDiv").html('直辖市');
+	         }
+			//$("#cityDiv").html(remote_ip_info.city);
+            changeCity(cityName);
+			getWeather(cityName);
+		}
+	}
+
+	//关闭gis广告
+	$('.gis_ad').on({
+		click:function(){
+			$(this).parent().hide();
+			return false;
+		}
+	},'.close');
+
+});
+//停止冒泡
+function eventstop(event){
+	event.stopPropagation();
+}
+function getWeather(cName) {
+	var loadingStr = "&nbsp;&nbsp;<img src='http://static.o.cn/images/common/loader_black_s.gif' border=0/>";
+	if(cName=='') cName='广州';
+	var weather = $('#weather');
+	function showList( ) {
+		if (o_jsData['weather'] == null) {
+			weather.html("")
+		} else {
+			weather.html(o_jsData['weather'].json);
+		}
+	}
+	try{
+		requestScript('http://ditu.o.cn/map/findWeatherByCity.shtml?json=1&cityName='+encodeURIComponent(cName), showList );
+	}catch(e){}
+
+	weather.html( loadingStr);
+}
+function provinceSelect(){
+	$(this).addClass('selected').siblings('li').removeClass('selected');
+	$(this).parent().hide();
+	changeProvince($(this).text());
+}
+function citySelect(){
+	$(this).addClass('selected').siblings('li').removeClass('selected');
+	$("#cityDiv").children('span').text($(this).text());
+	$(this).parent().hide();
+}
+
+function changeProvince(province){
+	$("#provinceDiv").children('span').text(province);
+	var citys=cityData[province];
+	if(citys){
+		var cityUl=$("#cityUl");
+		cityUl.empty();
+		for(var i=0;i<citys.length;i++){
+			var li=document.createElement("LI");
+			li.innerHTML=citys[i];
+			li.onclick=citySelect;
+			cityUl.append(li);
+		}
+		$("#cityUl li:first-child").addClass("selected");
+		$("#cityDiv").html('<span>'+citys[0]+'</span>');
+	}
+}
+function changeCity(cityname){
+    $("#cityDiv").children('span').text(cityname);
+    $("#cityUl").children('li:contains("'+cityname+'")').addClass('selected').siblings('li').removeClass('selected');
+}
+function toCity(cityname){
+	cityname=cityname.replace("市","");
+	for(var i=0;i<cityDomain.length;i++){
+		if(cityname=="广州")
+		{
+			window.open("http://ditu.o.cn");
+			return;
+		}
+		else if(cityname==cityDomain[i].name){
+			window.open("http://"+cityDomain[i].domain+".o.cn");
+			return;
+		}
+	}
+	window.open("http://ditu.o.cn/?city="+encodeURIComponent(cityname));
+}
+function doFormCheck() {
+	var city = $("#iCityname").val();
+	if ($.trim(city) == ""||city=='请输入城市名称') {
+		alert('请输入城市名称');
+		$("#iCityname").focus();
+
+	}else{
+		toCity(city);
+	}
+	return false;
+}
+
+var cityDomain=[{"name":"广州","domain":"gz"},{"name":"北京","domain":"bj"},{"name":"芜湖","domain":"wuhu"},{"name":"上海","domain":"sh"},{"name":"常州","domain":"cz"},{"name":"中山","domain":"zhongshan"},{"name":"义乌","domain":"yiwu"},{"name":"昆明","domain":"km"},{"name":"澳门","domain":"macau"},{"name":"贵阳","domain":"gy"},{"name":"东营","domain":"dy"},{"name":"泉州","domain":"qz"},{"name":"大理","domain":"dalizhou"},{"name":"深圳","domain":"sz"},{"name":"江门","domain":"jm"},{"name":"东莞","domain":"dongguan"},{"name":"珠海","domain":"zhuhai"},{"name":"库尔勒","domain":"kel"},{"name":"株洲","domain":"zhuzhou"},{"name":"黄山","domain":"hs"},{"name":"武汉","domain":"wuhan"},{"name":"晋城","domain":"jincheng"},{"name":"烟台","domain":"3dyt"},{"name":"太原","domain":"taiyuan"},{"name":"蚌埠","domain":"bb"},{"name":"洛阳","domain":"luoyang"},{"name":"福州","domain":"fz"},{"name":"辽阳","domain":"liaoyang"},{"name":"吴江","domain":"wujiang"},{"name":"滨海","domain":"binhai"},{"name":"娄底","domain":"loudi"},{"name":"盐城","domain":"yancheng"},{"name":"天津","domain":"tianjin"},{"name":"重庆","domain":"chongqing"},{"name":"佛山","domain":"foshan"},{"name":"潮州","domain":"chaozhou"},{"name":"汕头","domain":"shantou"},{"name":"湛江","domain":"zhanjiang"},{"name":"惠州","domain":"huizhou"},{"name":"河源","domain":"heyuan"},{"name":"揭阳","domain":"jieyang"},{"name":"梅州","domain":"meizhou"},{"name":"肇庆","domain":"zhaoqing"},{"name":"韶关","domain":"shaoguan"},{"name":"汕尾","domain":"shanwei"},{"name":"阳江","domain":"yangjiang"},{"name":"茂名","domain":"maoming"},{"name":"清远","domain":"qingyuan"},{"name":"云浮","domain":"yunfu"},{"name":"哈尔滨","domain":"haerbin"},{"name":"大庆","domain":"daqing"},{"name":"大兴安岭","domain":"daxinganling"},{"name":"鹤岗","domain":"hegang"},{"name":"黑河","domain":"heihe"},{"name":"鸡西","domain":"jixi"},{"name":"佳木斯","domain":"jiamusi"},{"name":"牡丹江","domain":"mudanjiang"},{"name":"七台河","domain":"qitaihe"},{"name":"双鸭山","domain":"shuangyashan"},{"name":"齐齐哈尔","domain":"qiqihaer"},{"name":"伊春","domain":"hljyc"},{"name":"绥化","domain":"suihua"},{"name":"长春","domain":"changchun"},{"name":"白城","domain":"baicheng"},{"name":"白山","domain":"baishan"},{"name":"吉林","domain":"jilin"},{"name":"辽源","domain":"liaoyuan"},{"name":"四平","domain":"siping"},{"name":"通化","domain":"tonghua"},{"name":"松原","domain":"songyuan"},{"name":"延边","domain":"yanbian"},{"name":"沈阳","domain":"shenyang"},{"name":"大连","domain":"dalian"},{"name":"本溪","domain":"benxi"},{"name":"阜新","domain":"fuxin"},{"name":"葫芦岛","domain":"huludao"},{"name":"盘锦","domain":"panjin"},{"name":"铁岭","domain":"tieling"},{"name":"丹东","domain":"dandong"},{"name":"锦州","domain":"jinzhou"},{"name":"营口","domain":"yingkou"},{"name":"鞍山","domain":"anshan"},{"name":"抚顺","domain":"fushun"},{"name":"朝阳","domain":"chaoyang"},{"name":"呼和浩特","domain":"huhehaote"},{"name":"包头","domain":"baotou"},{"name":"赤峰","domain":"chifeng"},{"name":"鄂尔多斯","domain":"eerduosi"},{"name":"巴彦淖尔","domain":"bayannaoer"},{"name":"阿拉善","domain":"alashan"},{"name":"乌兰浩特","domain":"wulanhaote"},{"name":"通辽","domain":"tongliao"},{"name":"乌海","domain":"wuhai"},{"name":"乌兰察布","domain":"wulanchabu"},{"name":"锡林郭勒","domain":"xilinguole"},{"name":"石家庄","domain":"shijiazhuang"},{"name":"沧州","domain":"cangzhou"},{"name":"承德","domain":"chengde"},{"name":"秦皇岛","domain":"qinhuangdao"},{"name":"唐山","domain":"tangshan"},{"name":"保定","domain":"baoding"},{"name":"廊坊","domain":"langfang"},{"name":"邢台","domain":"xingtai"},{"name":"衡水","domain":"hengshui"},{"name":"张家口","domain":"zhangjiakou"},{"name":"邯郸","domain":"handan"},{"name":"任丘","domain":"renqiu"},{"name":"河间","domain":"hejian"},{"name":"泊头","domain":"botou"},{"name":"济南","domain":"jinan"},{"name":"青岛","domain":"qingdao"},{"name":"潍坊","domain":"weifang"},{"name":"德州","domain":"dezhou"},{"name":"滨州","domain":"binzhou"},{"name":"聊城","domain":"liaocheng"},{"name":"菏泽","domain":"heze"},{"name":"济宁","domain":"jining"},{"name":"临沂","domain":"linyi"},{"name":"淄博","domain":"zibo"},{"name":"泰安","domain":"taian"},{"name":"枣庄","domain":"zaozhuang"},{"name":"日照","domain":"rizhao"},{"name":"莱芜","domain":"laiwu"},{"name":"长治","domain":"changzhi"},{"name":"大同","domain":"datong"},{"name":"阳泉","domain":"yangquan"},{"name":"朔州","domain":"shuozhou"},{"name":"临汾","domain":"linfen"},{"name":"忻州","domain":"xinzhou"},{"name":"运城","domain":"yuncheng"},{"name":"运城","domain":"yuncheng"},{"name":"吕梁","domain":"lvliang"},{"name":"西安","domain":"xian"},{"name":"宝鸡","domain":"baoji"},{"name":"铜川","domain":"tongchuan"},{"name":"咸阳","domain":"xianyang"},{"name":"渭南","domain":"weinan"},{"name":"汉中","domain":"hanzhong"},{"name":"榆林","domain":"yulin"},{"name":"安康","domain":"ankang"},{"name":"商洛","domain":"shangluo"},{"name":"延安","domain":"yanan"},{"name":"郑州","domain":"zhengzhou"},{"name":"安阳","domain":"anyang"},{"name":"济源","domain":"jiyuan"},{"name":"鹤壁","domain":"hebi"},{"name":"焦作","domain":"jiaozuo"},{"name":"开封","domain":"kaifeng"},{"name":"濮阳","domain":"puyang"},{"name":"三门峡","domain":"sanmenxia"},{"name":"驻马店","domain":"zhumadian"},{"name":"商丘","domain":"shangqiu"},{"name":"新乡","domain":"xinxiang"},{"name":"信阳","domain":"xinyang"},{"name":"许昌","domain":"xuchang"},{"name":"周口","domain":"zhoukou"},{"name":"南阳","domain":"nanyang"},{"name":"平顶山","domain":"pingdingshan"},{"name":"漯河","domain":"luohe"},{"name":"合肥","domain":"hefei"},{"name":"铜陵","domain":"tongling"},{"name":"安庆","domain":"anqing"},{"name":"滁州","domain":"chuzhou"},{"name":"宣城","domain":"xuancheng"},{"name":"阜阳","domain":"fuyang"},{"name":"淮北","domain":"huaibei"},{"name":"淮南","domain":"huainan"},{"name":"池州","domain":"chizhou"},{"name":"马鞍山","domain":"maanshan"},{"name":"宿州","domain":"suzhou"},{"name":"巢湖","domain":"chaohu"},{"name":"六安","domain":"liuan"},{"name":"亳州","domain":"bozhou"},{"name":"南京","domain":"nanjing"},{"name":"苏州","domain":"suzhou"},{"name":"扬州","domain":"yangzhou"},{"name":"无锡","domain":"wuxi"},{"name":"南通","domain":"nantong"},{"name":"连云港","domain":"lianyungang"},{"name":"徐州","domain":"xuzhou"},{"name":"镇江","domain":"zhenjiang"},{"name":"宿迁","domain":"suqian"},{"name":"泰州","domain":"taizhou"},{"name":"太仓","domain":"taicang"},{"name":"杭州","domain":"hangzhou"},{"name":"宁波","domain":"ningbo"},{"name":"温州","domain":"wenzhou"},{"name":"丽水","domain":"lishui"},{"name":"奉化","domain":"fenghua"},{"name":"宁海","domain":"ninghai"},{"name":"临海","domain":"linhai"},{"name":"三门","domain":"sanmen"},{"name":"绍兴","domain":"shaoxing"},{"name":"舟山","domain":"zhoushan"},{"name":"北仑","domain":"beilun"},{"name":"慈溪","domain":"cixi"},{"name":"象山","domain":"xiangshan"},{"name":"余姚","domain":"yuyao"},{"name":"天台","domain":"tiantai"},{"name":"温岭","domain":"wenling"},{"name":"仙居","domain":"xianju"},{"name":"台州","domain":"taizhou"},{"name":"嘉兴","domain":"jiaxing"},{"name":"湖州","domain":"huzhou"},{"name":"衢州","domain":"quzhou"},{"name":"金华","domain":"jinhua"},{"name":"南昌","domain":"nanchang"},{"name":"九江","domain":"jiujiang"},{"name":"赣州","domain":"ganzhou"},{"name":"景德镇","domain":"jingdezhen"},{"name":"萍乡","domain":"pingxiang"},{"name":"新余","domain":"xinyu"},{"name":"吉安","domain":"jian"},{"name":"宜春","domain":"yichun"},{"name":"抚州","domain":"fuzhou"},{"name":"上饶","domain":"shangrao"},{"name":"鹰潭","domain":"yingtan"},{"name":"十堰","domain":"shiyan"},{"name":"宜昌","domain":"yichang"},{"name":"黄石","domain":"huangshi"},{"name":"襄樊","domain":"xiangfan"},{"name":"荆州","domain":"jingzhou"},{"name":"荆门","domain":"jingmen"},{"name":"孝感","domain":"xiaogan"},{"name":"黄冈","domain":"huanggang"},{"name":"咸宁","domain":"xianning"},{"name":"随州","domain":"suizhou"},{"name":"恩施","domain":"enshi"},{"name":"仙桃","domain":"xiantao"},{"name":"天门","domain":"tianmen"},{"name":"潜江","domain":"qianjiang"},{"name":"长沙","domain":"changsha"},{"name":"张家界","domain":"zhangjiajie"},{"name":"株州","domain":"zhuzhou"},{"name":"韶山","domain":"shaoshan"},{"name":"衡阳","domain":"hengyang"},{"name":"郴州","domain":"chenzhou"},{"name":"湘潭","domain":"xiangtan"},{"name":"邵阳","domain":"shaoyang"},{"name":"岳阳","domain":"yueyang"},{"name":"益阳","domain":"yiyang"},{"name":"永州","domain":"yongzhou"},{"name":"怀化","domain":"huaihua"},{"name":"吉首","domain":"jishou"},{"name":"厦门","domain":"xiamen"},{"name":"漳州","domain":"zhangzhou"},{"name":"龙岩","domain":"longyan"},{"name":"莆田","domain":"putian"},{"name":"南平","domain":"nanping"},{"name":"三明","domain":"sanming"},{"name":"宁德","domain":"ningde"},{"name":"南宁","domain":"nanning"},{"name":"柳州","domain":"liuzhou"},{"name":"北海","domain":"beihai"},{"name":"百色","domain":"baise"},{"name":"梧州","domain":"wuzhou"},{"name":"贺州","domain":"hezhou"},{"name":"玉林","domain":"gxyulin"},{"name":"河池","domain":"hechi"},{"name":"桂林","domain":"guilin"},{"name":"钦州","domain":"qinzhou"},{"name":"防城港","domain":"fangchenggang"},{"name":"来宾","domain":"laibin"},{"name":"贵港","domain":"guigang"},{"name":"崇左","domain":"chongzuo"},{"name":"海口","domain":"haikou"},{"name":"三亚","domain":"sanya"},{"name":"五指山","domain":"wuzhishan"},{"name":"琼海","domain":"qionghai"},{"name":"儋州","domain":"danzhou"},{"name":"文昌","domain":"wenchang"},{"name":"万宁","domain":"wanning"},{"name":"东方","domain":"dongfang"},{"name":"成都","domain":"chengdu"},{"name":"内江","domain":"neijiang"},{"name":"峨眉山","domain":"emeishan"},{"name":"绵阳","domain":"mianyang"},{"name":"宜宾","domain":"yibin"},{"name":"泸州","domain":"luzhou"},{"name":"攀枝花","domain":"panzhihua"},{"name":"自贡","domain":"zigong"},{"name":"资阳","domain":"ziyang"},{"name":"崇州","domain":"chongzhou"},{"name":"西昌","domain":"xichang"},{"name":"都江堰","domain":"doujiangyan"},{"name":"遂宁","domain":"suining"},{"name":"乐山","domain":"leshan"},{"name":"德阳","domain":"deyang"},{"name":"南充","domain":"nanchong"},{"name":"广元","domain":"guangyuan"},{"name":"广安","domain":"guangan"},{"name":"达州","domain":"dazhou"},{"name":"巴中","domain":"bazhong"},{"name":"眉山","domain":"meishan"},{"name":"阿坝","domain":"aba"},{"name":"甘孜","domain":"ganzi"},{"name":"西双版纳","domain":"xishuangbanna"},{"name":"曲靖","domain":"qujing"},{"name":"玉溪","domain":"yuxi"},{"name":"保山","domain":"baoshan"},{"name":"昭通","domain":"zhaotong"},{"name":"思茅","domain":"simao"},{"name":"临沧","domain":"lincang"},{"name":"丽江","domain":"lijiang"},{"name":"文山","domain":"wenshan"},{"name":"个旧","domain":"gejiu"},{"name":"楚雄","domain":"chuxiong"},{"name":"德宏","domain":"dehong"},{"name":"怒江","domain":"nujiang"},{"name":"迪庆","domain":"diqing"},{"name":"六盘水","domain":"liupanshui"},{"name":"遵义","domain":"zunyi"},{"name":"安顺","domain":"anshun"},{"name":"铜仁","domain":"tongren"},{"name":"毕节","domain":"bijie"},{"name":"兴义","domain":"xingyi"},{"name":"凯里","domain":"kaili"},{"name":"都匀","domain":"douyun"},{"name":"兰州","domain":"lanzhou"},{"name":"白银","domain":"baiyin"},{"name":"天水","domain":"tianshui"},{"name":"嘉峪关","domain":"jiayuguan"},{"name":"金昌","domain":"jinchang"},{"name":"武威","domain":"wuwei"},{"name":"张掖","domain":"zhangye"},{"name":"平凉","domain":"pingliang"},{"name":"酒泉","domain":"jiuquan"},{"name":"庆阳","domain":"qingyang"},{"name":"定西","domain":"dingxi"},{"name":"陇南","domain":"longnan"},{"name":"临夏","domain":"linxia"},{"name":"甘南","domain":"gannan"},{"name":"银川","domain":"yinchuan"},{"name":"石嘴山","domain":"shizuishan"},{"name":"吴忠","domain":"wuzhong"},{"name":"固原","domain":"guyuan"},{"name":"中卫","domain":"zhongwei"},{"name":"乌鲁木齐","domain":"wulumuqi"},{"name":"克拉玛依","domain":"kelamayi"},{"name":"河子","domain":"hezi"},{"name":"图木舒克","domain":"tumushuke"},{"name":"吐鲁番","domain":"tulufan"},{"name":"哈密","domain":"hami"},{"name":"和田","domain":"hetian"},{"name":"喀什","domain":"kashen"},{"name":"昌吉","domain":"changji"},{"name":"阿图什","domain":"atushen"},{"name":"博乐","domain":"bole"},{"name":"伊宁","domain":"yining"},{"name":"阿拉尔","domain":"alaer"},{"name":"阿克苏","domain":"akesu"},{"name":"五家渠","domain":"wujiaqu"},{"name":"拉萨","domain":"lasa"},{"name":"那曲","domain":"neiqu"},{"name":"昌都","domain":"changdou"},{"name":"山南","domain":"shannan"},{"name":"日喀则","domain":"rikaze"},{"name":"阿里","domain":"ali"},{"name":"林芝","domain":"linzhi"},{"name":"西宁","domain":"xining"},{"name":"海东","domain":"haidong"},{"name":"海北","domain":"haibei"},{"name":"黄南","domain":"huangnan"},{"name":"海南","domain":"hainan"},{"name":"果洛","domain":"guoluo"},{"name":"海西","domain":"haixi"},{"name":"玉树","domain":"yushu"},{"name":"台北","domain":"taibei"},{"name":"台中","domain":"taizhong"},{"name":"台南","domain":"tainan"},{"name":"高雄","domain":"gaoxiong"},{"name":"香港","domain":"hongkong"},{"name":"甘南州","domain":"gannanzhou"},{"name":"临夏州","domain":"linxiazhou"},{"name":"毕节地区","domain":"bijie"},{"name":"铜仁地区","domain":"tongren"},{"name":"黔西南州","domain":"qianxinanzhou"},{"name":"黔东南州","domain":"qiandongnanzhou"},{"name":"黔南州","domain":"qiannanzhou"},{"name":"白沙","domain":"baisha"},{"name":"保亭","domain":"baoting"},{"name":"昌江","domain":"changjiang"},{"name":"澄迈","domain":"chengmai"},{"name":"定安","domain":"dingan"},{"name":"琼中","domain":"qiongzhong"},{"name":"乐东","domain":"ledong"},{"name":"临高","domain":"lingao"},{"name":"陵水","domain":"lingshui"},{"name":"屯昌","domain":"tunchang"},{"name":"大兴安岭地区","domain":"daxinganling"},{"name":"鄂州","domain":"ezhou"},{"name":"神农架林区","domain":"shennongjialinqu"},{"name":"常德","domain":"changde"},{"name":"湘西州","domain":"xiangxizhou"},{"name":"淮安","domain":"huaian"},{"name":"吉林","domain":"jilin"},{"name":"阿拉善盟","domain":"alashanmeng"},{"name":"呼伦贝尔","domain":"hulunbeier"},{"name":"锡林郭勒盟","domain":"xilinguolemeng"},{"name":"兴安盟","domain":"xinganmeng"},{"name":"果洛州","domain":"guoluozhou"},{"name":"海东地区","domain":"haidong"},{"name":"海北州","domain":"haibeizhou"},{"name":"海南州","domain":"hainanzhou"},{"name":"海西州","domain":"haixizhou"},{"name":"黄南州","domain":"huangnanzhou"},{"name":"玉树州","domain":"yushuzhou"},{"name":"威海","domain":"weihai"},{"name":"晋中","domain":"jinzhong"},{"name":"阿坝州","domain":"abazhou"},{"name":"甘孜州","domain":"ganzizhou"},{"name":"凉山州","domain":"liangshanzhou"},{"name":"雅安","domain":"yaan"},{"name":"阿里地区","domain":"ali"},{"name":"昌都地区","domain":"changdou"},{"name":"林芝地区","domain":"linzhi"},{"name":"那曲地区","domain":"neiqu"},{"name":"日喀则地区","domain":"rikaze"},{"name":"山南地区","domain":"shannan"},{"name":"阿克苏地区","domain":"akesu"},{"name":"阿勒泰地区","domain":"aletai"},{"name":"巴音郭楞","domain":"bayinguoleng"},{"name":"博尔塔拉州","domain":"boertalazhou"},{"name":"昌吉州","domain":"changjizhou"},{"name":"哈密地区","domain":"hami"},{"name":"和田地区","domain":"hetian"},{"name":"喀什地区","domain":"kashen"},{"name":"克孜勒苏州","domain":"kezilesuzhou"},{"name":"石河子","domain":"shihezi"},{"name":"塔城地区","domain":"tacheng"},{"name":"吐鲁番地区","domain":"tulufan"},{"name":"伊犁州","domain":"yilizhou"},{"name":"楚雄州","domain":"chuxiongzhou"},{"name":"大理州","domain":"dalizhou"},{"name":"德宏州","domain":"dehongzhou"},{"name":"迪庆州","domain":"diqingzhou"},{"name":"红河州","domain":"honghezhou"},{"name":"怒江州","domain":"nujiangzhou"},{"name":"普洱","domain":"puer"},{"name":"三沙","domain":"sansha"}];
+var cityData=[];
+cityData['安徽']=['合肥','安庆','蚌埠','亳州','巢湖','池州','滁州','阜阳','淮北','淮南','黄山','六安','马鞍山','宿州','铜陵','芜湖','宣城'];
+cityData['福建']=['福州','龙岩','南平','宁德','莆田','泉州','三明','厦门','漳州'  ];
+cityData['甘肃']=[ '兰州','白银','定西','甘南州','嘉峪关','金昌','酒泉','临夏州','陇南','平凉','庆阳','天水','武威','张掖'  ];
+cityData['广东']=[ '广州','潮州','东莞','佛山','河源','惠州','江门','揭阳','茂名','梅州','清远','汕头','汕尾','韶关','深圳','阳江','云浮','湛江','肇庆','中山','珠海'];
+cityData['广西']=[ '南宁','百色','北海','崇左','防城港','桂林','贵港','河池','贺州','来宾','柳州','钦州','梧州','玉林'  ];
+cityData['贵州']=['贵阳','安顺','毕节地区','六盘水','铜仁地区','遵义','黔西南州','黔东南州','黔南州 '];
+cityData['海南']=['海口','白沙','保亭','昌江','儋州','澄迈','东方','定安','琼海','琼中','乐东','临高','陵水','三亚','屯昌','万宁','文昌','五指山','三沙'];
+cityData['河北']=['石家庄','保定','沧州','承德','邯郸','衡水','廊坊','秦皇岛','唐山','邢台','张家口'  ];
+cityData['河南']=['郑州','安阳','鹤壁','焦作','开封','洛阳','漯河','南阳','平顶山','濮阳','三门峡','商丘','新乡','信阳','许昌','周口','驻马店'  ];
+cityData['黑龙江']=[ '哈尔滨','大庆','大兴安岭地区','鹤岗','黑河','鸡西','佳木斯','牡丹江','七台河','齐齐哈尔','双鸭山','绥化','伊春'];
+cityData['湖北']=[ '武汉','鄂州','恩施','黄冈','黄石','荆门','荆州','潜江','神农架林区','十堰','随州','天门','仙桃','咸宁','襄樊','孝感','宜昌' ];
+cityData['湖南']=[ '长沙','常德','郴州','衡阳','怀化','娄底','邵阳','湘潭','湘西州','益阳','永州','岳阳','张家界','株洲'  ];
+cityData['江苏']=['南京','滨海','常州','淮安','连云港','南通','苏州','宿迁','泰州','吴江','无锡','徐州','盐城','扬州','镇江' ];
+cityData['江西']=['南昌','抚州','赣州','吉安','景德镇','九江','萍乡','上饶','新余','宜春','鹰潭' ];
+cityData['吉林']=['长春','白城','白山','吉林市','辽源','四平','松原','通化','延边'];
+cityData['辽宁']=[ '沈阳','鞍山','本溪','朝阳','大连','丹东','抚顺','阜新','葫芦岛','锦州','辽阳','盘锦','铁岭','营口'];
+cityData['内蒙古']=['呼和浩特','阿拉善盟','包头','巴彦淖尔','赤峰','鄂尔多斯','呼伦贝尔','通辽','乌海','乌兰','察布锡林','郭勒盟','兴安盟' ];
+cityData['宁夏']=['银川','固原','石嘴山','吴忠','中卫' ];
+cityData['青海']=['西宁','果洛州','海东地区','海北州','海南州','海西州','黄南州','玉树州'];
+cityData['山东']=[ '济南','滨州','东营','德州','菏泽','济宁','莱芜','聊城','临沂','青岛','日照','泰安','威海','潍坊','烟台','枣庄','淄博'];
+cityData['山西']=['太原','长治','大同','晋城','晋中','临汾','吕梁','朔州','忻州','阳泉','运城'  ];
+cityData['陕西']=[ '西安','安康','宝鸡','汉中','商洛','铜川','渭南','咸阳','延安','榆林'];
+cityData['四川']=['成都','阿坝州','巴中','达州','德阳','甘孜州','广安','广元','乐山','凉山州','泸州','南充','眉山','绵阳','内江','攀枝花','遂宁','雅安','宜宾','资阳','自贡'];
+cityData['西藏' ]=['拉萨','阿里地区','昌都地区','林芝地区','那曲地区','日喀则地区','山南地区'];
+cityData['新疆']=['乌鲁木齐','阿拉尔','阿克苏地区','阿勒泰地区','巴音郭楞','博尔塔拉州','昌吉州','哈密地区','和田地区','喀什地区','克拉玛依','依克孜勒苏州','石河子','塔城地区','图木舒克','吐鲁番地区','五家渠','伊犁州'];
+cityData['云南']=['昆明','保山','楚雄州','大理州','德宏州','迪庆州','红河州','丽江','临沧','怒江州','普洱','曲靖','昭通','文山','西双版纳','玉溪'  ];
+cityData['浙江']=['杭州','湖州','嘉兴','金华','丽水','宁波','衢州','绍兴','台州','温州','义乌','舟山'  ];
+cityData['直辖市']=['北京','上海','天津','重庆'];
+cityData['特别行政区']=['香港','澳门'];
+
+/**
+ function alterCityDomain(){
+ var aList=$('A');
+ for(var i=0;i<aList.length;i++){
+ var city=aList[i].innerHTML;
+ var domain=getDomain(city);
+ if(domain!=null){
+ aList[i].setAttribute('href',domain);
+ aList[i].setAttribute('target','_blank');
+ aList[i].removeAttribute('onclick');
+ }
+ }
+
+ }
+
+ function getDomain(cityname){
+ cityname=cityname.replace("市","");
+ for(var i=0;i<cityDomain.length;i++){
+ if(cityname==cityDomain[i].name){
+ return "http://"+cityDomain[i].domain+".o.cn" ;
+
+ }
+ }
+ return null;
+ }**/
+</script>
+<script type="text/javascript">
+	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+	document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F69042aa3d7d9652903d3bed16d985e7a' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-P6RF62"	
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>	
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':	
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],	
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=	
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);	
+})(window,document,'script','dataLayer','GTM-P6RF62');</script>
+</body>
+</html>

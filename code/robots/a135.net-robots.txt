@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>游族客服中心</title>
+<link rel="stylesheet" href="/css/common.css" />
+<script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
+</head>
+<body class="log_bdbg">
+<div class="log_header_bar">
+  <div class="log_header_bg">
+    <div class="log_wrap">
+      <div class="log_banner"></div>
+      <!--登录框开始-->
+      <div class="log_Group">
+        <div class="tops"></div>
+        <div class="mild">
+          <div class="login_info">
+            <form action="" method="post" >
+              <div class="shuru_line">
+                <label for="text">用户名：</label>
+                <input type="text" class="form_text" name="ULoginForm[username]" />
+
+              </div>
+              <div class="shuru_line">
+                <label for="password">密&nbsp;&nbsp;&nbsp;码：</label>
+                <input type="password" class="form_text" name="ULoginForm[password]" />
+                              </div>
+              <div class="shuru_line">
+                <label for="captcha">验证码：</label>
+                <input type="text" class="form_text" style="width:50px;" name="ULoginForm[verifyCode]" />
+                <img onclick="changeVerifyCode()" id="imgVerifyCode" align="middle" title="点击换一张" src="" valign="absmiddle">
+                <span onclick="changeVerifyCode()">重新生成一张</span>
+              </div>
+              <div class="shuru_btns">
+                <button value="登录" type="submit" class="btn_dl" title="登录">登录</button>
+                <a href="javascript:;" class="btn_qc" id="clear_form">清除</a> </div>
+            </form>
+          </div>
+        </div>
+        <div class="ends"></div>
+      </div>
+      <!--登录框结束-->
+    </div>
+  </div>
+</div>
+<!--顶部结束，尾部开始-->
+<div class="log_footer_bar">
+  <div class="log_wrap">
+    <p class="guanyu"><a title="关于游族" href="http://www.uuzu.com/about/about.html" target="_blank">关于游族</a> <a title="服务条款" href="http://www.uuzu.com/about/services.html" target="_blank">服务条款</a> <a title="联系我们" href="http://www.uuzu.com/about/connect.html" target="_blank">联系我们</a> <a title="公司招聘" href="http://www.uuzu.com/about/employee.html" target="_blank">公司招聘</a> <a title="客服中心" href="http://kf.uuzu.com" target="_blank">客服中心</a> <a title="商务合作" href="http://www.uuzu.com/about/cooperate.html" target="_blank">商务合作</a> <a title="网站地图" href="http://www.uuzu.com/sitemap.html" target="_blank">网站地图</a> <a title="网站地图" href="http://www.uuzu.com/" target="_blank">网页游戏</a> </p>
+  </div>
+</div>
+<script>
+	function changeVerifyCode() {
+		$.ajax({
+			url: "/site/captcha/refresh/1",
+			dataType: 'json',
+			cache: false,
+			success: function(data) {
+				$('#imgVerifyCode').attr('src', data['url']);
+				$('body').data('site/captcha.hash', [data['hash1'], data['hash2']]);
+			}
+		});
+	}
+	changeVerifyCode();
+	
+	$(function(){
+		$("#clear_form").click(function(){
+			$("input").val('');
+		});
+	});
+</script>
+</body>

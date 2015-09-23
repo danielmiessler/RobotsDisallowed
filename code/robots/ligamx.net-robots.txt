@@ -1,0 +1,1123 @@
+
+<!DOCTYPE html>
+<html lang="es_MX">
+<head>
+    <script type="text/javascript" src="/js/socketcluster.min.js"></script>
+    <script type="text/javascript">
+        window._sitio="1";
+        var sName="LIGA MX";
+        
+        window.vsHostsvr="siidadmin.ligamx.net";
+        //        if(window.vsHostsvr.indexOf('localhost')>=0)
+        //            window.vsHostsvr='www.ligamx.net'
+        window.vsHostSrvcs="http://"+window.vsHostsvr+'/webservices/';
+        var mxmChannel_universal=null;
+        //        Descomentar las siguientes lineas para activar el socket de Notificaciones.
+        var socket_main=socketCluster.connect();
+        socket_main.on("error",function(a){throw"Socket error - "+a;});
+        socket_main.on("connect",function(){});
+        var mxmChannel_universal=socket_main.subscribe("mxm_universal_"+sName.replace(/\s+/g, '')); // se crea un canal universal por app
+        mxmChannel_universal.on("subscribeFail",function(a){});
+        //fin codigo comentado de los sockets Notificaciones
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0; i<ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1);
+                if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+            }
+            return "";
+        }
+        var vsLang=getCookie('locale');
+        if(vsLang=='')
+            vsLang='es';
+    </script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=0, width=1024, maximum-scale = 1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="images/favicons_liga/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="images/favicons_liga/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/favicons_liga/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images/favicons_liga/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/favicons_liga/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/favicons_liga/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="images/favicons_liga/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/favicons_liga/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicons_liga/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="images/favicons_liga/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="images/favicons_liga/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="images/favicons_liga/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="images/favicons_liga/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="images/favicons_liga/manifest.json">
+    
+    <meta name="apple-mobile-web-app-title" content="LIGA MX">
+    <meta name="application-name" content="LIGA MX">
+    
+    <meta name="msapplication-TileColor" content="#004e80">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <base href="/" />
+    <!-- <title>LIGA BBVA Bancomer MX</title> -->
+    <title>LIGA MX</title>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        setTimeout(function() {
+            switch (window.location.hostname) {
+                case "www.ligamx.net":
+                    ga('create', 'UA-45550455-1', 'auto');
+                    ga('send', 'pageview');
+                    break;
+                case "www.ascensomx.net":
+                    ga('create', 'UA-45550455-2', 'auto');
+                    ga('send', 'pageview');
+                    break;
+                case "www.ascensobancomer.mx":
+                    ga('create', 'UA-45550455-10', 'auto');
+                    ga('send', 'pageview');
+                    break;
+                case "www.lacopamx.net":
+                    ga('create', 'UA-45550455-3', 'auto');
+                    ga('send', 'pageview');
+                    break;
+                case "www.ligabancomer.mx":
+                    ga('create', 'UA-45550455-8', 'auto');
+                    ga('send', 'pageview');
+                    break;
+                case "sub20.ligamx.net":
+                    ga('create', 'UA-45550455-4', 'auto');
+                    ga('send', 'pageview');
+                    break;
+                case "sub17.ligamx.net":
+                    ga('create', 'UA-45550455-5', 'auto');
+                    ga('send', 'pageview');
+                    break;
+                case "sub15.ligamx.net":
+                    ga('create', 'UA-45550455-6', 'auto');
+                    ga('send', 'pageview');
+                    break;
+                case "sub15internacional.ligamx.net":
+                    ga('create', 'UA-45550455-9', 'auto');
+                    ga('send', 'pageview');
+                    break;
+                case "sub13.ligamx.net":
+                    ga('create', 'UA-45550455-7', 'auto');
+                    ga('send', 'pageview');
+                    break;
+            }
+        },700);
+    </script>
+    <!-- Parámetros Globales -->
+    <script>
+        window.parametros = {actual:{"idDivision":1,"idTemporada":66,"idTorneo":1,"idJornada":9,"top":10,"nombreDivision":"LIGA MX","nombreTemporada":"2015-2016","nombreTorneo":"Apertura","appPort":"9001","idnewshome":"2","facebook":"LigaBancomerMX","twitter":"LIGABancomerMX","twitterID":"565694996700229632","twitterConsumerKey":"c61h7czSjnrUk3FivqZQgg","twitterConsumerSecret":"G8ooaivdd3LNcPW3UyxkbYBCVcZWYbuNFRTxuzxJvo","twitterAccessToken":"353959801-1BCmX4OPT03HQgmfyl7cDprSBnVOBgyUCKg37w8G","twitterAccessTokenSecret":"Cq75R0hcriBx2Sg2f9wWEfHrxZvb9LKjl5sneSLA","twitterUserId":"353959801","idBanner":18,"idBannerMd":21,"idBannerSH":25,"mainCss":"liga_style","hilos":"20","appName":"ligamx"}};
+    </script>
+    <script type="text/javascript" src="/js/libraries/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="/js/modernizr.min.js"></script>
+    <script type="text/javascript" src="/js/LMX.js?rnd=11213124124"></script>
+    <script src="js/ejs.min.js"></script>
+    <script src="js/ejs_client.js"></script>
+    <script src="/js/highchartsall.js"></script>
+    <link href="css/liga_style.css" rel="stylesheet" type="text/css" media="all, print">
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all, print">
+    <script type="text/javascript" src="/js/jquery.loader.min.js"></script>
+    <link href="css/font-awesome.min.css" rel="stylesheet" media="all, print">
+    <link href="css/lmx.css" rel="stylesheet" type="text/css" media="all, print">
+    <script type="text/javascript" src="/js/toastr.js"></script>
+    <script type="text/javascript" src="/js/widgets/master.js"></script>
+    <style type="text/css">
+
+      @media print {
+        a[href]:after { content: ""; }
+
+      }
+
+        .menu-main nav>ul>li.torneos {
+            padding-top: 0;
+            height: 63px;
+            margin-right: 0px !important;
+        }
+        .menu-main nav>ul>li:first-child {
+            height: 60px;
+        }
+        .menu-main nav>ul {
+            width: 100%;
+            font-size: 5px !important;
+        }
+        .pointer{cursor:pointer !important;}
+        /*se repite estilo en playlist.ejs*/
+        .cntplayer{
+            background-color: #1A1A1A !important;
+            padding:0px;
+        }
+        .cntplayer .contenedor{display:table;height: 470px !important;width:100%}
+        .cntplayer .cntplayervideo{display:table-cell;vertical-align:middle;background-color: #000 !important;}
+        .cntplayer .table{display:table;height: 125px !important;width:100%;margin:0px}
+        .cntplayer .cell{display:table-cell;vertical-align:middle;height: 125px}
+    </style>
+
+    
+
+
+</head>
+<body >
+<!--<div class="stream_fmf " style=" padding: 10px; background: black; border-bottom: 5px solid #00549C">-->
+  <!--<div style=" margin: auto; width: 560px !important;">-->
+    <!--<div class="js-player_embed_wrapper embed-wrapper clearfix">-->
+      <!--<div id="player_embed" class="js-player_embed" style="visibility: hidden;">-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div style="margin: auto">-->
+      <!--<iframe src="http://livestream.com/accounts/5863520/events/4295055/player?width=560&height=315&autoPlay=true&mute=false" width="560" height="315" frameborder="0" scrolling="no"> </iframe>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+<div id="anchortop"></div>
+<header>
+    
+    <section  id="teamlogos_head" class="team-logos">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12" style="padding: 0px !important;">
+                    <ul id="teamLogos" class="list-inlinel">
+                        <li>
+                            <a class="loadershow" href="/cancha/club/9" data-toggle="tooltip" data-placement="bottom" title="Posición: # 1 <br> Puntos: 21">
+                                
+                                <img height="40" width="40" src="https://s3.amazonaws.com/lmxwebsite/docs/archdgtl/AfldDrct/logos35x35/9/9.png" class="img-responsive" alt="León">
+                                
+                            </a></li>
+                        <li>
+                            <a class="loadershow" href="/cancha/club/18" data-toggle="tooltip" data-placement="bottom" title="Posición: # 2 <br> Puntos: 18">
+                                
+                                <img height="40" width="40" src="https://s3.amazonaws.com/lmxwebsite/docs/archdgtl/AfldDrct/logos35x35/18/18.png" class="img-responsive" alt="UNAM">
+                                
+                            </a></li>
+                        <li>
+                            <a class="loadershow" href="/cancha/club/1" data-toggle="tooltip" data-placement="bottom" title="Posición: # 3 <br> Puntos: 18">
+                                
+                                <img height="40" width="40" src="https://s3.amazonaws.com/lmxwebsite/docs/archdgtl/AfldDrct/logos35x35/1/1.png" class="img-responsive" alt="América">
+                                
+                            </a></li>
+                        <li>
+                            <a class="loadershow" href="/cancha/club/16" data-toggle="tooltip" data-placement="bottom" title="Posición: # 4 <br> Puntos: 16">
+                                
+                                <img height="40" width="40" src="https://s3.amazonaws.com/lmxwebsite/docs/archdgtl/AfldDrct/logos35x35/16/16.png" class="img-responsive" alt="UANL">
+                                
+                            </a></li>
+                        <li>
+                            <a class="loadershow" href="/cancha/club/17" data-toggle="tooltip" data-placement="bottom" title="Posición: # 5 <br> Puntos: 16">
+                                
+                                <img height="40" width="40" src="https://s3.amazonaws.com/lmxwebsite/docs/archdgtl/AfldDrct/logos35x35/17/17.png" class="img-responsive" alt="Toluca">
+                                
+                            </a></li>
+                        <li>
+                            <a class="loadershow" href="/cancha/club/3107" data-toggle="tooltip" data-placement="bottom" title="Posición: # 6 <br> Puntos: 16">
+                                
+                                <img height="40" width="40" src="https://s3.amazonaws.com/lmxwebsite/docs/archdgtl/AfldDrct/logos35x35/3107/3107.png" class="img-responsive" alt="Veracruz">
+                                
+                            </a></li>
+                        <li>
+                            <a class="loadershow" href="/cancha/club/3108" data-toggle="tooltip" data-placement="bottom" title="Posición: # 7 <br> Puntos: 14">
+                                
+                                <img height="40" width="40" src="https://s3.amazonaws.com/lmxwebsite/docs/archdgtl/AfldDrct/logos35x35/3108/3108.png" class="img-responsive" alt="Jaguares">
+                                
+                            </a></li>
+                        <li>
+                            <a class="loadershow" href="/cancha/club/10445" data-toggle="tooltip" data-placement="bottom" title="Posición: # 8 <br> Puntos: 13">
+                                
+                                <img height="40" width="40" src="https://s3.amazonaws.com/lmxwebsite/docs/archdgtl/AfldDrct/logos35x35/10445/10445.png" class="img-responsive" alt="Atlas">
+                                
+                            </a></li>
+                        <li>
+                            <a class="loadershow" href="/cancha/club/12" data-toggle="tooltip" data-placement="bottom" title="Posición: # 9 <br> Puntos: 12">
+                                
+                                <img height="40" width="40" src="https://s3.amazonaws.com/lmxwebsite/docs/archdgtl/AfldDrct/logos35x35/12/12.png" class="img-responsive" alt="Puebla">
+                                
+                            </a></li>
+                        <li>
+                            <a class="loadershow" href="/cancha/club/5" data-toggle="tooltip" data-placement="bottom" title="Posición: # 10 <br> Puntos: 12">
+                                
+                                <img height="40" width="40" src="https://s3.amazonaws.com/lmxwebsite/docs/archdgtl/AfldDrct/logos35x35/5/5.png" class="img-responsive" alt="Tijuana">
+                                
+                            </a></li>
+                        <li>
+                            <a class="loadershow" href="/cancha/club/10" data-toggle="tooltip" data-placement="bottom" title="Posición: # 11 <br> Puntos: 12">
+                                
+                                <img height="40" width="40" src="https://s3.amazonaws.com/lmxwebsite/docs/archdgtl/AfldDrct/logos35x35/10/10.png" class="img-responsive" alt="M. Morelia">
+                                
+                            </a></li>
+                        <li>
+                            <a class="loadershow" href="/cancha/club/14" data-toggle="tooltip" data-placement="bottom" title="Posición: # 12 <br> Puntos: 11">
+                                
+                                <img height="40" width="40" src="https://s3.amazonaws.com/lmxwebsite/docs/archdgtl/AfldDrct/logos35x35/14/14.png" class="img-responsive" alt="Monterrey">
+                                
+                            </a></li>
+                        <li>
+                            <a class="loadershow" href="/cancha/club/7" data-toggle="tooltip" data-placement="bottom" title="Posición: # 13 <br> Puntos: 10">
+                                
+                                <img height="40" width="40" src="https://s3.amazonaws.com/lmxwebsite/docs/archdgtl/AfldDrct/logos35x35/7/7.png" class="img-responsive" alt="Guadalajara">
+                                
+                            </a></li>
+                        <li>
+                            <a class="loadershow" href="/cancha/club/11" data-toggle="tooltip" data-placement="bottom" title="Posición: # 14 <br> Puntos: 10">
+                                
+                                <img height="40" width="40" src="https://s3.amazonaws.com/lmxwebsite/docs/archdgtl/AfldDrct/logos35x35/11/11.png" class="img-responsive" alt="Pachuca">
+                                
+                            </a></li>
+                        <li>
+                            <a class="loadershow" href="/cancha/club/6" data-toggle="tooltip" data-placement="bottom" title="Posición: # 15 <br> Puntos: 10">
+                                
+                                <img height="40" width="40" src="https://s3.amazonaws.com/lmxwebsite/docs/archdgtl/AfldDrct/logos35x35/6/6.png" class="img-responsive" alt="Cruz Azul">
+                                
+                            </a></li>
+                        <li>
+                            <a class="loadershow" href="/cancha/club/3106" data-toggle="tooltip" data-placement="bottom" title="Posición: # 16 <br> Puntos: 8">
+                                
+                                <img height="40" width="40" src="https://s3.amazonaws.com/lmxwebsite/docs/archdgtl/AfldDrct/logos35x35/3106/3106.png" class="img-responsive" alt="Querétaro">
+                                
+                            </a></li>
+                        <li>
+                            <a class="loadershow" href="/cancha/club/3111" data-toggle="tooltip" data-placement="bottom" title="Posición: # 17 <br> Puntos: 8">
+                                
+                                <img height="40" width="40" src="https://s3.amazonaws.com/lmxwebsite/docs/archdgtl/AfldDrct/logos35x35/3111/3111.png" class="img-responsive" alt="Dorados de Sinaloa">
+                                
+                            </a></li>
+                        <li>
+                            <a class="loadershow" href="/cancha/club/15" data-toggle="tooltip" data-placement="bottom" title="Posición: # 18 <br> Puntos: 7">
+                                
+                                <img height="40" width="40" src="https://s3.amazonaws.com/lmxwebsite/docs/archdgtl/AfldDrct/logos35x35/15/15.png" class="img-responsive" alt="S. Laguna">
+                                
+                            </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+        <section class="logo-header">
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-7 col-xs-12 logo">
+                        <a class="loadershow" href="/">
+                            <h1>
+
+
+                                
+                                <img src="images/logo_liga_mx.jpg" alt="LIGA MX" class="img-responsive">
+                                
+
+
+                            </h1>
+                        </a>
+                    </div>
+                    <div class="col-sm-5 col-xs-12 menu-league" style="background: none !important;">
+                        
+                        <ul>
+                            
+                            <!-- Liga -->
+                            <li class="mx-league" style="background:#00549c !important"><a href="http://www.ligamx.net" style="color:white !important" class="loadershow pointer menusites" data-port="8091">LIGA MX</a></li>
+                            <li class="promotion-league"><a href="http://www.ascensomx.net" class="loadershow pointer menusites" data-port="8092">ASCENSO MX</a></li>
+                            <li class="cup-league"><a href="http://www.lacopamx.net" class="loadershow pointer menusites" data-port="8093">COPA MX</a></li>
+                            
+                        </ul>
+
+                        
+                    </div>
+
+                    
+
+                </div>
+            </div>
+        </section>
+        <section class="menu-main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-1 hidden-xs button-home"><a href="/">Home</a></div>
+                    <div class="col-sm-10 col-xs-10" style="padding: 0px !important;">
+                        <nav>
+                            <div class="visible-sm-12 label">
+                                <div></div>Menu
+                            </div>
+                            <ul style="width:102% !important;margin-bottom: 0px !important;">
+                                
+                                <li><a href="#">Subs<span class="ico flecha-down"></span></a>
+                                    <div class="sub-menu"><span class="arrow"></span>
+                                        <ul>
+                                            <li><a href="http://sub20.ligamx.net" class="loadershow pointer menusites" data-port="9004">Sub 20</a></li>
+                                            <li><a href="http://sub17.ligamx.net" class="loadershow pointer menusites" data-port="9005">Sub 17</a></li>
+                                            <li><a href="http://sub15.ligamx.net" class="loadershow pointer menusites" data-port="9006">Sub 15</a></li>
+                                            <li><a href="http://sub15internacional.ligamx.net" class="loadershow pointer menusites" data-port="9006">Sub 15 Internacional</a></li>
+                                            <li><a href="http://sub13.ligamx.net" class="loadershow pointer menusites" data-port="9007">Sub 13</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                
+                                <li><a class="loadershow" href="/cancha/marcadores/1">Marcadores</a></li>
+                                <li><a>Estadística<span class="ico flecha-down"></span></a>
+                                    <div class="sub-menu"><span class="arrow"></span>
+                                        <ul>
+                                            <li><a class="loadershow" href="/cancha/estadistica/1">Estadística <br/> Apertura 2015</a></li>
+                                            <li class="parent"> <a href="#">Tablas Apertura 2015 <span style=" background-position:-47px -263px   " class="ico ico-sigMini"></span></a>
+                                                <div class="sub-menu-2"><span class="arrow-left"></span>
+                                                    <!-- Mandar llamar componenete listadoTablas, se envia parametro booleano para saber si esta en menu o en seccion tablas  -->
+                                                    
+
+<ul>
+    
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+        
+                            
+                                <li>
+                                <a class="loadershow" href="/cancha/tablas/tablaGeneralClasificacion/sp/89e1ae66829775">Tabla General</a>
+                            
+                        </li>
+                    
+                
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+        
+                            
+                                <li>
+                                <a class="loadershow" href="/cancha/tablas/tablaGeneralClasificacionTmpr/sp/89e1ae66829775">Tabla General de la Temporada</a>
+                            
+                        </li>
+                    
+                
+
+            
+
+            
+
+            
+
+            
+        
+                            
+                                <li>
+                                <a class="loadershow" href="/cancha/tablas/tablaCociente/sp/89e1ae66829775">Tabla de Cociente</a>
+                            
+                        </li>
+                    
+                
+
+            
+
+            
+
+            
+
+            
+        
+                            
+                                <li>
+                                <a class="loadershow" href="/cancha/tablas/tablaCocienteSgntTmpr/eyJiYW5kIjoiMSJ9/89e1ae66829775">Tabla de Cociente para Inicio de Temporada 2016 - 2017</a>
+                            
+                        </li>
+                    
+                
+
+            
+
+            
+
+            
+
+            
+        
+                            
+                                <li>
+                                <a class="loadershow" href="/cancha/tablas/CriteriosDescenso/eyJiYW5kIjoiMSJ9/89e1ae66829775">Criterios de Descenso</a>
+                            
+                        </li>
+                    
+                
+
+            
+
+            
+
+            
+
+            
+        
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+        
+                            
+                                <li>
+                                <a class="loadershow" href="/cancha/tablas/tablaGoleoCompleta/sp/89e1ae66829775">Tabla de Goleo Individual</a>
+                            
+                        </li>
+                    
+                
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+        
+                            
+                                <li>
+                                <a class="loadershow" href="/cancha/tablas/tablaOfnsDfns/sp/89e1ae66829775">Tabla de Ofensivas y Defensivas</a>
+                            
+                        </li>
+                    
+                
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+        
+                            
+                                <li>
+                                <a class="loadershow" href="/cancha/tablas/tablaMntsJgdsXJgdrClub/sp/89e1ae66829775">Tabla de Minutos Jugados por Jugador y Club</a>
+                            
+                        </li>
+                    
+                
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+        
+                            
+                                <li>
+                                <a class="loadershow" href="/cancha/tablas/tablafairplay/sp/89e1ae66829775">Tabla Fair Play</a>
+                            
+                        </li>
+                    
+                
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+        
+                            
+                                <li>
+                                <a class="loadershow" href="/cancha/tablas/tablaTrjt/sp/89e1ae66829775">Tabla Tarjetas</a>
+                            
+                        </li>
+                    
+                
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+        
+                            
+                                <li>
+                                <a class="loadershow" href="/cancha/tablas/tablaCnteTrjtXClub/sp/89e1ae66829775">Conteo de Tarjetas por Club</a>
+                            
+                        </li>
+                    
+                
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+        
+                            
+                                <li>
+                                <a class="loadershow" href="/cancha/tablas/tablaDrctTcnc/sp/89e1ae66829775">Tabla de Directores Técnicos</a>
+                            
+                        </li>
+                    
+                
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+        
+    
+
+</ul>
+                                                </div>
+                                            </li>
+                                            
+                                            <li><a class="loadershow" href="/cancha/estadisticahistorica/1">Estadística Historica</a></li>
+                                            
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li><a class="loadershow" href="/cancha/centronoticias/1">Noticias</a></li>
+                                <li><a class="loadershow" href="/cancha/calendario/1">Calendario</a></li>
+                                <li><a class="loadershow" href="/cancha/reglamentos/1">Reglamento</a></li>
+                                <li><a class="loadershow" href="/cancha/videos/1">Videos</a></li>
+                                <li><a class="loadershow" href="/cancha/galeria/1">Galería</a></li>
+                                
+                                <li class="torneos"><a>Torneos <br/> Internacionales</a>
+                                    <div class="sub-menu sub-menu_int"><span class="arrow"></span>
+                                        <ul>
+                                            
+                                            <li><a class="loadershow" href="/cancha/internacional/18/eyJpZFRlbXBvcmFkYSI6IjY2IiwiaWRKb3JuYWRhIjoiNSIsImlkVG9ybmVvIjoiMTgiLCJpZERpdmlzaW9uIjoiMSJ9">
+                                                    Liga<br/>Campeones de Concacaf</a></li>
+                                            <li><a class="loadershow" href="/cancha/internacional/14/eyJpZFRlbXBvcmFkYSI6IjY1IiwiaWRKb3JuYWRhIjoiMTgiLCJpZFRvcm5lbyI6IjE0IiwiaWREaXZpc2lvbiI6IjEifQ==">
+                                                    Copa<br/> Libertadores</a></li>
+                                            
+                                        </ul>
+                                    </div>
+                                </li>
+                                
+                                
+                                <li style=" padding: 0px !important; "><a class="loadershow" href="/cancha/responsabilidadsocial/1">Responsabilidad <br> Social</a></li>
+                                
+                                
+                              
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-sm-1 col-xs-2 search-box"><a href="javascript:" class="btn-open"> <span>Buscar</span></a>
+                        <form action="javascript:" method="post" autocomplete="off"><span class="arrow"></span>
+                            <input type="text" value="" id="txtBusqMaster">
+                            <input type="submit" value="Buscar" class="btnBusqMaster loadershow">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+</header>
+
+<div class="main-home">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 paddingTopLarge paddingBottomLarge backgroundColorTransparenteInterior datosJugador">
+			<div class="col-xs-12 col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-2 col-lg-4 col-lg-offset-2 text-center">
+				<img class="ancho70 img-circle" src="http://administrador.ligamx.net/media/news/8047/size2/8047.jpg" alt=" ">
+			</div>
+			<div class="col-xs-12 col-sm-5 col-md-6 col-lg-6">
+				<div class="row">
+					<h2>No se puede encontrar la página web solicitada.</h2>
+					<h1><a href="/" style="color:#5cb85c;">Ir a la Portada</a></h1>
+					<div style="width:90%; text-align: right;"><a id="_vermas">+</a></div>
+					<div id="_detalle_error" style="display:none; font-size: 21px;">
+						<h2 style="width:100%;">404: Página no encontrada</h2>
+						<h3 style="width:100%;">Consulte al administrador del sistema!</h3>
+
+					</div>
+				</div>
+			</div>
+		</div>				
+	</div>	
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#_vermas").click(function(){
+			if($("#_detalle_error").is(":visible")){
+				$("#_detalle_error").hide();
+			}else{
+				$("#_detalle_error").show();
+			}			
+		});
+
+	});
+</script>
+<section class="logosFooter">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-xs-6">
+                <div class="disp-table">
+                    
+                    <div class="disp-cell"> <a href="http://www.bancomer.com/" target="_blank"><img src="images/sponsor/bancomer-sponsor.png" alt="Bancomer" class="img-responsive"></a></div>
+                    
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-xs-6">
+                <div class="disp-table">
+                    <div class="disp-cell"><a href="http://www.ea.com/mx" target="_blank"><img src="images/sponsor/ea_sports_sponsor.png" alt="Sports" class="img-responsive"></a></div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-xs-6">
+                <div class="disp-table">
+                    <div class="disp-cell"><a href="http://voit.com/" target="_blank"><img src="images/sponsor/voit.png" alt="Voit" class="img-responsive"></a></div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-xs-6">
+                <div class="disp-table">
+                    <div class="disp-cell"><a href="http://global.puma.com/es_MX/home?locale=es_MX" target="_blank"><img src="images/sponsor/puma-sponsor.png" alt="Puma" class="img-responsive"></a></div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-xs-6">
+                <div class="disp-table">
+                    <div class="disp-cell"><a href="http://www.panini.com.mx/" target="_blank"><img src="images/sponsor/panini-sponsor.png" alt="Panini" class="img-responsive"></a></div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-xs-6">
+                <div class="disp-table">
+                    <div class="disp-cell"><a href="http://www.coca-cola.com.mx/" target="_blank"><img src="images/sponsor/cocacola-sponsor.png" alt="Coca-cola" class="img-responsive"></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-xs-12 menu-footer">
+                
+                
+                    <img src="images/logos_footer/liga_mx_footer.png" alt="LIGA MX" class="img-responsive">
+                
+
+
+                <nav>
+                    <ul class="col-xs-6" >
+                        <li><a class="loadershow" href="/cancha/marcadores/1">Marcadores</a></li>
+                        <li><a class="loadershow" href="/cancha/estadistica/1">Estadística</a></li>
+                        <li><a class="loadershow" href="/cancha/centronoticias/1">Noticias</a></li>
+                        <li><a class="loadershow" href="/cancha/calendario/1">Calendario</a></li>
+                        <li><a class="loadershow" href="/cancha/videos/1">Videos</a></li>
+                        <li><a class="loadershow" href="/cancha/galeria/1">Galería</a></li>
+                        <li><a class="loadershow" href="/cancha/avisodeprivacidad/1">Aviso de Privacidad</a></li>
+                    </ul>
+                    <ul class="col-xs-6">
+                        <li><a class="loadershow" href="/cancha/internacional/18/eyJpZFRlbXBvcmFkYSI6IjY2IiwiaWRKb3JuYWRhIjoiNSIsImlkVG9ybmVvIjoiMTgiLCJpZERpdmlzaW9uIjoiMSJ9">Campeones
+                                <br/> CONCACAF</a></li>
+                        <li><a class="loadershow" href="/cancha/internacional/14/eyJpZFRlbXBvcmFkYSI6IjY1IiwiaWRKb3JuYWRhIjoiMTgiLCJpZFRvcm5lbyI6IjE0IiwiaWREaXZpc2lvbiI6IjEifQ==">Copa
+                                <br/> Libertadores</a></li>
+                        <li><a class="loadershow" href="/cancha/corporativo/1">Corporativo</a></li>
+                        <li><a class="loadershow" href="/cancha/directorio/1">Directorio</a></li>
+                        <li><a class="loadershow" href="/cancha/reglamentos/1">Reglamentos</a></li>
+                        <li><a class="loadershow" href="/cancha/responsabilidadsocial/1">Liga Responsable</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-sm-8 col-xs-12 footer-logos">
+                <ul class="col-xs-12 logosGdes">
+                    <li class="col-xs-6">
+                        <div class="disp-table"><a href="/cancha/esr/1" class="disp-cell loadershow"><img  src="images/logos_footer/esr.png" alt="Empresa Socialmente Responsable" class="img-responsive"></a></div>
+                    </li>
+                    <li class="col-xs-6">
+                        <div class="disp-table"><a href="/cancha/aenor/1" class="disp-cell loadershow"><img src="images/logos_footer/aenor.png" alt="Certificaci&amp;oacute;n" class="img-responsive"></a></div>
+                    </li>
+                </ul>
+                <ul class="col-xs-12 logosSmall">
+                    
+                
+
+                    <li class="col-xs-2">
+                        <div class="disp-table"><a href="http://www.lacopamx.net" data-port="8093" class="disp-cell menusites loadershow"><img src="images/logos_footer/copamx.png" alt="Copa MX" class="img-responsive pointer"></a></div>
+                    </li>
+                    <li class="col-xs-2">
+                        <div class="disp-table"><a href="http://www.ascensomx.net" data-port="8092" class="disp-cell menusites loadershow"><img src="images/logos_footer/ascenso.png" alt="Ascenso MX" class="img-responsive pointer"></a></div>
+                    </li>
+
+                
+
+
+
+                    <li class="col-xs-2">
+                        <div class="disp-table"><a href="http://www.femexfut.org.mx/" class="disp-cell"><img src="images/logos_footer/femexfut.png" alt="FEMEXFUT" class="img-responsive"></a></div>
+                    </li>
+                    <li class="col-xs-2">
+                        <div class="disp-table"><a href="http://www.fifa.com/" class="disp-cell"><img src="images/logos_footer/fifa.png" alt="FIFA" class="img-responsive"></a></div>
+                    </li>
+                    <li class="col-xs-2">
+                        <div class="disp-table"><a href="http://www.concacaf.com/" class="disp-cell"><img src="images/logos_footer/concacaf.png" alt="CONCACAF" class="img-responsive"></a></div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-12 col-xs-12 copyright">
+                <p class="col-md-9 col-sm-8 col-xs-12">&copy; Todos los Derechos Reservados LIGA MX / ASCENSO MX. Prohibida la reproducci&oacute;n total o parcial, incluyendo cualquier medio electr&oacute;nico o magn&eacute;tico.</p>
+                <ul class="col-md-3 col-sm-4 col-xs-12">
+                    <li><a href="mailto:centrodeatencion@ligamx.net?subject=Sugerencia-Comentario" title="Póngase en contacto con nosotros">Contacto</a></li>
+                    <li><a class="loadershow" href="/cancha/mapadelsitio/1">Mapa de Sitio</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- ### /Footer -->
+<!-- ### Modal para visualizar PDFs -->
+<div class="modal fade" id="objModalPDFDiv" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div id="objModalPDF" class="modal-dialog modal-lg" style="width: 98%;">
+        <div class="modal-content">
+            <div class="modal-header" style="background: #FFFFFF !important; color: white;">
+                <h4 class="modal-title" id="objModalLabel">LIGA BBVA Bancomer MX</h4>
+            </div>
+            <div class="modal-body">
+                <object id="objPDF" type="application/pdf" data="" width="99.6%">This is not working as expected</object>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/js/libraries/hammer.js"></script>
+<script type="text/javascript" src="/js/libraries/jquery.plugins.min.js"></script>
+<script type="text/javascript" src="/js/libraries/jquery.showbizpro.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/index.min.js"></script>
+</body>
+<style type="text/css">
+    .toast-success { background-color:  #FFF; }
+</style>
+<!--boton arriba-->
+<div id="divmenu_flyout" class="top-link-block" style="position:fixed; bottom:18px; right:30px; display:none; z-index:1001">
+    <a href="javascript:LMX.fp_NavAnchor('#anchortop');" role="button"><img src="/css/assets/bg/arriba.png" /></a>
+</div>
+<!--boton regresar-->
+<div id="divmenu_flyout_back" class="top-link-block" style="position:fixed; top:10px; left:30px; display:none; z-index:1001; opacity:0.8">
+    <div class="col-xs-12"><a href="javascript:history.back(-1)" class="btnBack"><span class="ico flecha-atras"></span>Regresar</a></div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('body').master({
+            voNtfcSckt:mxmChannel_universal,
+            voprmtrsMXM:[["Por Jugar",false,"#880000","#480101","PJ","#FFC938"],["Para Transmitir",false,"#000000","#EB4656","MM","#000000"],["Alineaciones",true,"#F5A649","#FF7300","AP","#880000"],["1er Tiempo",true,"#cee945","#728706","PT","#880000"],["Medio Tiempo",true,"#cee945","#728706","MT","#880000"],["2do Tiempo",true,"#cee945","#728706","ST","#FF0000"],["Marcador Final",true,"#3e8ad3","#0b4378","MF","#FFC938"],["Marcador Oficial",true,"#043756","#001725","MO","#FFC938"],["Descanso Tiempo Extra",true,"#c6b817","#635b03","MTE","#880000"],["1er Tiempo Extra",true,"#4cae90","#1353f","PTE","#FFC938"],["2do Tiempo Extra",true,"#4cae90","#1353f","STE","#FF0000"],["Penales",true,"#468e39","#0f5503","TP","#FFC938"],["Sin información",true,"#000","#000","TP","#000"]],
+            vnviewport:window.innerWidth,
+            vbsckt:true
+        });
+        
+    });
+    
+
+
+
+
+</script>
+
+
+<style>
+
+    .redSociali{
+        cursor: pointer;
+    }
+
+</style>
+
+
+
+<section class="redesBtns">
+    <nav>
+        <ul>
+            <!--facebook-->
+            <li><a onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + location.href,'_blank');" target="_blank" class="btn-red facebook redSociali"></a></li>
+            <!--twitter-->
+            <li><a onclick="window.open('https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Fwww.ligabancomer.mx/&text=' + '&url=' + location.href + '&via=ligabancomermx','_blank');" target="_blank" class="btn-red twitter redSociali"></a></li>
+            <!--google+-->
+            <li><a onclick="window.open('https://plus.google.com/share?url=' + location.href,'_blank');" target="_blank" class="btn-red google redSociali"></a></li>
+            <!--instagram-->
+            <li><a onclick="window.open('http://instagram.com/ligabancomer','_blank');" target="_blank" class="btn-red instagram redSociali"></a></li>
+            <!--linkedin-->
+            <li><a onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=' + location.href + '&title=' + '&summary=&source=','_blank');" target="_blank" class="btn-red linkedin redSociali"></a></li>
+            <!--mail-->
+            <li id="maily"><a class="btn-red mail redSociali"></a></li>
+            <!--imprimir-->
+
+            <li><a  onclick="window.print();" style="margin:-2px;font-size:18px; height: 32px; width: 33px;cursor:pointer !important;" class="btn-red printer redSociali "></a></li>
+            <!-- <li><a onclick="javascript:window.location='mailto:?subject=LIGA MX&body=Estos son los reglamentos actualizados de la LIGA MX %0A%0A Más información: ' + window.location;" class="btn-red mail redSociali"></a></li> -->
+
+        </ul>
+    </nav>
+</section>
+
+
+
+<script>
+
+    var titulo_mail = "";
+
+
+    $(document).ready(function() {
+
+        titulo_mail = $("#titulo_mailMail").html();
+
+        $("#maily").click(function () {
+            ////alert( $("#titulo_mailMail").html() );
+
+//        validamos si la pagina actual contiene titulo_mail
+            if ( typeof titulo_mail == "undefined" ) {
+                window.location = 'mailto:?subject=Te comparto algo interesante de la página web de: LIGA MX' + ' &body=' + 'Te comparto algo interesante de la página web de ' + 'LIGA MX' + '%0A%0AMás información en: ' + window.location;
+
+            }else{
+                window.location = 'mailto:?subject=LIGA MX' + ' - ' + titulo_mail + '&body=' + 'Te comparto la sección de ' + titulo_mail + ' de la página web de ' + 'LIGA MX' + '%0A%0AMás información en: ' + window.location;
+            }
+        });
+
+
+
+//        if( typeof $("#detecta_noticia").html() == "undefined" ) {
+//            ////Fuera de Noticia
+//
+//            $('.printer').hide();
+//        }
+//        else {
+//            ////Dentro de Noticia
+//
+//            $('.printer').show();
+//        }
+
+
+    });
+
+</script>
+
+
+<!--comentario-->

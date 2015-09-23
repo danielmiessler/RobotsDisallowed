@@ -1,0 +1,961 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title></title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta http-equiv="Expires" CONTENT="0">
+<meta http-equiv="Cache-Control" CONTENT="no-cache">
+<meta http-equiv="Pragma" CONTENT="no-cache">
+
+<!-- Bootstrap -->
+<link href="http://static1.pvrcinemas.com/css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom -->
+<link href="http://static1.pvrcinemas.com/css/pvr-style.css?v=20" rel="stylesheet">
+<link href="http://static1.pvrcinemas.com/css/responsive-custom.css?v=14" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<!-- bootstrap select -->
+<link href="http://static1.pvrcinemas.com/css/bootstrap-select.css" rel="stylesheet">
+
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<!--[if lt IE 9]>
+    <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+    <![endif]-->
+<!--[if lt IE 8]>
+    <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE8.js"></script>
+    <![endif]-->
+<!--[if lt IE 7]>
+    <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE7.js"></script>
+    <![endif]-->
+<!--[if lte IE 6]>
+    <link rel="stylesheet" type="text/css" media="screen, projection" href="http://universal-ie6-css.googlecode.com/files/ie6.0.3.css" />
+    <![endif]-->
+
+
+
+<script src="http://static1.pvrcinemas.com/js/jquery.min.js"></script>
+ <script src="http://static1.pvrcinemas.com/js/placeholders.jquery.min.js"></script>
+<!--DWR JS -->
+<script type="text/javascript" src="http://static1.pvrcinemas.com/dwr/engine.js"></script>
+<script type="text/javascript" src="http://static1.pvrcinemas.com/dwr/util.js"></script>
+<script type="text/javascript" src="http://static1.pvrcinemas.com/dwr/interface/dwrService.js?v=7"></script>
+
+<title>PVR Cinemas</title>
+</head>
+<body>
+
+
+<!-- cinemax popup -->
+
+<!-- cinemax popup end -->
+
+	<!--  Loading Please Wait  --->
+	<div class="sl-load-overlay" id="please-wait">
+		<div class="sl-load">
+			<div class="sl-bg-white">
+				<div class="loading-img">
+					<img src="http://static1.pvrcinemas.com/images/loading.gif">
+				</div>
+				<h4>Please wait...</h4>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<noscript>
+		<div class="alert alert-warning text-center js-alert">This
+			website require javascript. Please enable your browser javascript.</div>
+	</noscript>
+	
+	<!-- Header -->
+	
+
+
+
+
+
+
+
+
+<div id="fb-root"></div>
+<!--Facebook Script  -->
+<!-- Sandbox id = 526070564134700
+	 prod id = 68386086163 -->
+<script type="text/javascript">
+	var fb_id=null;
+	var fb_name=null;
+	var fb_email=null;
+	var fb_mobile=null;
+	var fb_dob=null;
+	var fb_gender=null;
+	window.fbAsyncInit = function() {
+	    FB.init({
+	        appId   : '68386086163',
+	        oauth   : true,
+	        status  : true, // check login status
+	        cookie  : true, // enable cookies to allow the server to access the session
+	        xfbml   : true // parse XFBML
+	    });
+
+	  };
+
+	function fb_login(){
+		 $('.login-loading').show();
+	    FB.login(function(response) {
+
+	        if (response.authResponse) {
+	            console.log('Welcome!  Fetching your information.... ');
+	            //console.log(response); // dump complete info
+	            access_token = response.authResponse.accessToken; //get access token
+	            user_id = response.authResponse.userID; //get FB UID
+
+	            FB.api('/me', function(response) {
+	                fb_email = response.email; //get user email
+	                fb_id = response.id;
+	                fb_name= response.name;
+	                fb_mobile = response.mobile;
+	                fb_dob = response.dob;
+	                fb_gender = response.gender;
+	                fblogin();
+	          // you can store this data into your database             
+	            });
+
+	        } else {
+	            //user hit cancel button
+	            console.log('User cancelled login or did not fully authorize.');
+
+	        }
+	    }, {
+	        scope: 'publish_stream,email'
+	    });
+	}
+	(function() {
+	    var e = document.createElement('script');
+	    e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+	    e.async = true;
+	    document.getElementById('fb-root').appendChild(e);
+	}());
+	</script>	
+	
+	 <!--  Header  -->
+<div class="container-fluid header">
+	<nav class="navbar navbar-default container-pvr" role="navigation">
+		<div class="container-fluid nopadding">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+				<a class="navbar-brand" href="/"><img src="http://static1.pvrcinemas.com/images/pvr-logo.png"
+					alt="PVR Cinemas"></a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			    <div class="navbar-collapse menu-cont" id="bs-example-navbar-collapse-1">
+     				 <ul class="nav navbar-nav menu">
+     				
+					<li ><a href="/cinemas/Delhi-NCR">Cinemas</a></li>
+					<li ><a href="/pvrlive">PVR Live</a></li>
+					<li ><a href="/deals">DEALS &amp; EXCLUSIVES</a></li>
+					<li ><a href="/giftcards">Gift Cards</a></li>
+					<li ><a href="/bulkbooking/Delhi/NCR">BULK BOOKINGS</a></li>
+					
+					<li ><a href="/careers">WORK AT PVR</a></li>
+					<li class="dropdown pull-right">
+          <a href="#" class="dropdown-toggle location" data-toggle="dropdown">Delhi/NCR <span class="caret"></span></a>
+          <ul class="dropdown-menu city" role="menu">
+          	
+				
+					<li><span>North</span></li>
+				
+				
+				<li><a href="/nowshowing/Allahabad">Allahabad</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Chandigarh">Chandigarh</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Dehradun">Dehradun</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Delhi-NCR">Delhi/NCR</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Jalandhar">Jalandhar</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Kanpur">Kanpur</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Lucknow">Lucknow</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Ludhiana">Ludhiana</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Mohali">Mohali</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Panipat">Panipat</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Udaipur">Udaipur</a></li>
+			
+				
+					<li><span>South</span></li>
+				
+				
+				<li><a href="/nowshowing/Bengaluru">Bengaluru</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Chennai">Chennai</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Hubli">Hubli</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Hyderabad">Hyderabad</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Kochi">Kochi</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Mangalore">Mangalore</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Vijayawada">Vijayawada</a></li>
+			
+				
+					<li><span>West</span></li>
+				
+				
+				<li><a href="/nowshowing/Ahmedabad">Ahmedabad</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Aurangabad">Aurangabad</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Bhilai">Bhilai</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Bhopal">Bhopal</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Bilaspur">Bilaspur</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Gandhinagar">Gandhinagar</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Indore">Indore</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Latur">Latur</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Malegaon">Malegaon</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Mumbai">Mumbai</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Nagpur">Nagpur</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Nanded">Nanded</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Nashik">Nashik</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Pune">Pune</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Raipur">Raipur</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Surat">Surat</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Ujjain">Ujjain</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Vadodara">Vadodara</a></li>
+			
+				
+					<li><span>East</span></li>
+				
+				
+				<li><a href="/nowshowing/Bokaro">Bokaro</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Guwahati">Guwahati</a></li>
+			
+				
+				
+				<li><a href="/nowshowing/Kolkata">Kolkata</a></li>
+			
+            
+          </ul>
+        </li>
+        
+        	
+        	
+        	 <li class="dropdown pull-right" id="logined-user" style="display: none;">
+	          <a href="javascript:void(0)" class="dropdown-toggle login ellipsis" data-toggle="dropdown"  id="login-username"></a>
+	          <ul class="dropdown-menu user-dd" role="menu">
+	          	  <li><a href="/profile">Profile</a></li>
+	                
+	                <li><a href="/bookinghistory">Booking History</a></li>
+	                <li><a href="javascript:void(0)" onclick="logout()">Logout</a></li>
+	          </ul>
+	        </li> 
+        	
+        	
+        <li class="dropdown pull-right" id="login-sp">
+          <a href="#" class="dropdown-toggle login" data-toggle="dropdown">Login</a>
+          <ul class="dropdown-menu login-dd" role="menu">
+            <li>
+            <div class="login-container">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div id="login-here">
+                            <h4>Login here</h4>
+                            <div class="text-box-c">
+                                <input type="text" placeholder="Email"  id="login-email" maxlength="50">
+                            </div>
+                            <div class="text-box-c">
+                                <input type="text" placeholder="Mobile No."  id="login-mobile" maxlength="50">
+                            </div>
+                            <div class="text-box-c">
+                                <input type="password" placeholder="Password" id="login-pass">
+                            </div>
+                            <div class="button-c">
+                                <a href="javascript:void(0)" onclick="login_user()">Login</a>
+                            
+                                <a href="javascript:void(0)" onclick="showreg()">Register</a>
+                            </div>
+                            <div class="link-c">
+                                <a href="javascript:void(0)" onclick="forgotPassSwitch()">Forgot Password?</a>
+                            </div>
+                        </div>
+                        <div id="forgot-pass" style="display: none;">
+                            <h4>Forgot password</h4>
+                            <div class="text-box-c">
+                                <input type="text" placeholder="Email" id="pass_email" maxlength="50">
+                            </div>
+                            <div class="text-box-c">
+                                <input type="text" placeholder="Mobile No." id="pass_mob" maxlength="50">
+                            </div>
+                            <div class="button-c">
+                                <a href="javascript:void(0)" onclick="forgotPass()">Submit</a>
+                            </div>
+                            <div class="link-c">
+                                <a href="javascript:void(0)" onclick="loginswitch()">Back to login</a>
+                            </div>
+                        </div>
+                        <div id="change-pass" style="display: none;">
+                            <h4>Change password</h4>
+                            <div class="text-box-c">
+                                <input placeholder="OTP" type="password" id="cp-otp">
+                            </div>
+                            <div class="text-box-c">
+                                <input placeholder="New Password" type="password" id="cp-pass">
+                            </div>
+                            <div class="text-box-c">
+                                <input placeholder="Confirm New Password" type="password" id="cp-confirm-pass">
+                            </div>                            
+                            <div class="button-c">
+                                <a href="javascript:void(0)" onclick="change_Password()">Submit</a>
+                            </div>
+                        </div>
+						<div id="signup-here" style="display: none;">
+                            <h4>Register here</h4>
+                            <div class="text-box-c">
+                                <input type="text" placeholder="Name" id="register-name">
+                            </div>
+                            <div class="text-box-c">
+                                <input type="text" placeholder="10 digit mobile No." id="register-mobile" maxlength="15">
+                            </div>
+                            <div class="text-box-c">
+                                <input placeholder="Email ID"  type="email" id="register-email" maxlength="50">
+                            </div>
+                            <div class="text-box-c">
+                                <input type="password" placeholder="Password" id="register-pass">
+                            </div>
+                            <div class="text-box-c">
+                                <input type="password" placeholder="Confirm Password" id="register-cpass">
+                            </div>
+                            <div class="button-c">
+                                <a href="javascript:void(0)" onclick="register_user()">Sign-up</a>
+                            </div>
+                            <div class="link-c">
+							<a onclick="loginswitch()" href="javascript:void(0)">Back to login</a>
+							</div>
+                        </div>
+                        <div id="otp-fb" style="display: none;">
+                            <h4>OTP</h4>
+                            <div class="text-box-c">
+                                <input type="text" placeholder="PIN" id="otp-fb-1">
+                            </div>
+                            <div class="button-c">
+                                <a href="javascript:void(0)" onclick="faceBookOtp()">Login</a>
+                            </div>
+                             
+                        </div>
+                      <!--   <div id="or-facebook" style="display: none;">
+                            <div class="link-c">
+                                OR
+                            </div>
+                            <div class="fb-login">
+                            <a href="javascript:void(0)" onclick="fb_login()"><i class="fa fa-facebook"></i> Login with Facebook</a>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6" style="display:none">
+                        <div id="signup-opt">
+                            <h4>Signup with</h4>
+                           <!--  <div class="fb-login">
+                                <a href="javascript:void(0)" onclick="fb_login()"><i class="fa fa-facebook"></i> Login with Facebook</a>
+                            </div>
+                            <div class="link-c">
+                                OR
+                            </div> -->
+                            <!-- <div class="button-c">
+                                <a href="javascript:void(0)" onclick="showreg()">Register</a>
+                            </div>-->
+                            
+                        </div>
+                        <!-- <div id="signup-here" style="display: none;">
+                            <h4>Register here</h4>
+                            <div class="text-box-c">
+                                <input type="text" placeholder="Name" id="register-name">
+                            </div>
+                            <div class="text-box-c">
+                                <input type="text" placeholder="10 digit mobile No." id="register-mobile" maxlength="15">
+                            </div>
+                            <div class="text-box-c">
+                                <input placeholder="Email ID"  type="email" id="register-email" maxlength="50">
+                            </div>
+                            <div class="text-box-c">
+                                <input type="password" placeholder="Password" id="register-pass">
+                            </div>
+                            <div class="text-box-c">
+                                <input type="password" placeholder="Confirm Password" id="register-cpass">
+                            </div>
+                            <div class="button-c">
+                                <a href="javascript:void(0)" onclick="register_user()">Sign-up</a>
+                            </div>
+                        </div> -->
+                        <div id="fb-signup-here" style="display: none;">
+                            <h4>Login</h4>
+                            <div class="text-box-c">
+                                <input type="text" placeholder="Name" id="fb-name">
+                            </div>
+                            <div class="text-box-c">
+                                <input type="text" placeholder="10 digit mobile No." id="fb-mobile" maxlength="15">
+                            </div>
+                            <div class="text-box-c">
+                                <input placeholder="Email ID"  type="email" id="fb-email" maxlength="50">
+                            </div>
+                            <div class="button-c">
+                                <a href="javascript:void(0)" onclick="fblogin()">Submit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            
+          </ul>
+        </li>
+        
+        	
+        
+      </ul>
+
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+</div>
+
+
+
+	
+	
+	
+
+
+ 
+ 
+ 
+ <script>
+ var searchJson = '{"result":"success","msg":"","output":{"movies":[{"key":"HO00008403","name":"KATTI BATTI","movietype":"nowshowing"},{"key":"HO00008443","name":"(3D) EVEREST","movietype":"nowshowing"},{"key":"HO00008454","name":"BAANKEY KI CRAZY BARAAT","movietype":"nowshowing"},{"key":"HO00008624","name":"(3D) EVEREST","movietype":"nowshowing"},{"key":"HO00008510","name":"MSG-2 THE MESSENGER","movietype":"nowshowing"},{"key":"HO00008414","name":"HERO","movietype":"nowshowing"},{"key":"HO00006719","name":"WELCOME BACK","movietype":"nowshowing"},{"key":"HO00007247","name":"PAWN SACRIFICE","movietype":"nowshowing"},{"key":"HO00008447","name":"BLACK MASS","movietype":"nowshowing"},{"key":"HO00008649","name":"(3D) EVEREST (ENGLISH)(ATMOS)","movietype":"nowshowing"},{"key":"HO00008528","name":"MEERUTHIYA GANGSTERS","movietype":"nowshowing"},{"key":"HO00008331","name":"THE MAN FROM U.N.C.L.E","movietype":"nowshowing"},{"key":"HO00008597","name":"THE INTERN","movietype":"nowshowing"},{"key":"HO00008629","name":"TRISHA ILLANA NAYANTHARA","movietype":"nowshowing"},{"key":"HO00008637","name":"KATTI BATTI (HINDI) (WITH ENGLISH SUBTITLE)","movietype":"nowshowing"},{"key":"HO00008628","name":"NJAN SAMVIDHANAM CHEYYUM","movietype":"nowshowing"},{"key":"HO00008415","name":"MANJHI-THE MOUNTAIN MAN","movietype":"nowshowing"},{"key":"HO00008057","name":"CALENDAR GIRLS","movietype":"upcoming"},{"key":"HO00008446","name":"MAZE RUNNER: THE SCORCH TRIALS","movietype":"upcoming"},{"key":"HO00008478","name":"JUGAADI DOT COM","movietype":"upcoming"},{"key":"HO00008521","name":"KIS KISKO PYAAR KAROON","movietype":"upcoming"},{"key":"HO00008568","name":"BHAAG JOHNNY","movietype":"upcoming"},{"key":"HO00008627","name":"LIFE OF JOSOOTTY (MALAYALAM)","movietype":"upcoming"},{"key":"HO00008643","name":"(3D) MAZE RUNNER :THE SCORCH TRIALS","movietype":"upcoming"},{"key":"HO00008652","name":"VAKRATUND MAHAKAYA","movietype":"upcoming"},{"key":"HO00008654","name":"TIME OUT","movietype":"upcoming"},{"key":"HO00008655","name":"SUBRAMANYAM FOR SALE (TELUGU)","movietype":"upcoming"},{"key":"HO00008656","name":"KAUN KAREY INSAAF","movietype":"upcoming"},{"key":"HO00008658","name":"KADHAL AGADHEE (TAMIL)","movietype":"upcoming"},{"key":"HO00008659","name":"THIRUTU V.C.D (TAMIL)","movietype":"upcoming"},{"key":"HO00008660","name":"JIPPAA JIMIKKI (TAMIL)","movietype":"upcoming"},{"key":"HO00008661","name":"KUTTRAM KADITHAL (TAMIL)","movietype":"upcoming"},{"key":"HO00008662","name":"UNAKKENNA VENUM SOLLU (TAMIL)","movietype":"upcoming"},{"key":"HO00008663","name":"KIRUMI (TAMIL)","movietype":"upcoming"},{"key":"HO00008664","name":"CHANDRIKA (TELUGU)","movietype":"upcoming"},{"key":"HO00008592","name":"(3D) THE MARTIAN","movietype":"upcoming"},{"key":"HO00008566","name":"TALVAR","movietype":"upcoming"},{"key":"HO00008492","name":"SINGH IS BLIING","movietype":"upcoming"},{"key":"HO00008493","name":"JAZBAA","movietype":"upcoming"},{"key":"HO00008207","name":"(3D) PAN","movietype":"upcoming"},{"key":"HO00008270","name":"SICARIO","movietype":"upcoming"},{"key":"HO00008519","name":"(3D) THE WALK","movietype":"upcoming"},{"key":"HO00008626","name":"(3D) RUDHRAMADEVI","movietype":"upcoming"},{"key":"HO00008621","name":"BRIDGE OF SPIES","movietype":"upcoming"},{"key":"HO00008596","name":"PYAAR KA PUNCHNAMA 2","movietype":"upcoming"},{"key":"HO00008603","name":"WEDDING PULLAV","movietype":"upcoming"},{"key":"HO00008517","name":"CRIMSON PEAK-A TRUE STORY","movietype":"upcoming"},{"key":"HO00008523","name":"BEFORE I WAKE","movietype":"upcoming"},{"key":"HO00008541","name":"RAJWADE AND SONS","movietype":"upcoming"},{"key":"HO00008494","name":"TITLI","movietype":"upcoming"},{"key":"HO00008475","name":"THE LAST WITCH HUNTER","movietype":"upcoming"},{"key":"HO00008498","name":"SHAANDAAR","movietype":"upcoming"},{"key":"HO00008583","name":"GOOSEBUMPS","movietype":"upcoming"},{"key":"HO00008584","name":"JEM AND THE HOLOGRAMS","movietype":"upcoming"},{"key":"HO00008622","name":"OUR BRAND IS  CRISIS","movietype":"upcoming"},{"key":"HO00008650","name":"SAADEY CM SAAB","movietype":"upcoming"},{"key":"HO00008593","name":"HE NAMED ME MALALA","movietype":"upcoming"},{"key":"HO00008595","name":"THE 33","movietype":"upcoming"},{"key":"HO00008594","name":"(3D) HOTEL TRANSYLVANIA 2","movietype":"upcoming"},{"key":"HO00008553","name":"LEGEND","movietype":"upcoming"},{"key":"HO00008036","name":"SPECTRE","movietype":"upcoming"},{"key":"HO00008651","name":"TAMASHA","movietype":"upcoming"},{"key":"HO00008618","name":"WAZIR","movietype":"upcoming"},{"key":"HO00008619","name":"BAJIRAO MASTANI","movietype":"upcoming"}],"cinemas":[{"key":"AMBG","name":"PVR Ambience-Gold, Gurgaon","movietype":""},{"key":"AMBP","name":"PVR Ambience-Premiere, Gurgaon","movietype":""},{"key":"CTWG","name":"PVR Select CityWalk - Gold, Saket, Delhi","movietype":""},{"key":"CTWP","name":"PVR Select CityWalk - Premiere, Saket, Delhi","movietype":""},{"key":"DCVK","name":"PVR Directors Cut, Vasant Kunj, Delhi","movietype":""},{"key":"FRBD","name":"PVR Crown Plaza, Faridabad","movietype":""},{"key":"GURM","name":"PVR MGF-Gurgaon","movietype":""},{"key":"LJNR","name":"PVR 3C\'s","movietype":""},{"key":"MAHA","name":"PVR Mahagun Metro Mall-Vaishali, Ghaziabad","movietype":""},{"key":"NARA","name":"PVR Naraina-Delhi","movietype":""},{"key":"OPNT","name":"PVR Opulent-Ghaziabad","movietype":""},{"key":"PEDM","name":"PVR EDM-Kaushambi, Ghaziabad","movietype":""},{"key":"PLZA","name":"PVR Plaza-CP, Delhi","movietype":""},{"key":"PRVH","name":"PVR Prashant Vihar-Delhi","movietype":""},{"key":"PRYA","name":"PVR Priya-Vasant Vihar, Delhi","movietype":""},{"key":"RIVO","name":"PVR Rivoli-CP, Delhi","movietype":""},{"key":"SAHR","name":"PVR Sahara-Gurgaon","movietype":""},{"key":"SAKT","name":"PVR Saket - Delhi","movietype":""},{"key":"SANG","name":"PVR Sangam","movietype":""},{"key":"SUBH","name":"PVR Pacific Mall, Subhash Nagar","movietype":""},{"key":"VIKA","name":"PVR Vikaspuri-Delhi","movietype":""}],"deals":[{"key":"1","name":"PVR Kotak Credit Card","movietype":""},{"key":"2","name":"50% Off on food","movietype":""},{"key":"5","name":"Book Early Pay Less ","movietype":""},{"key":"6","name":"MobiKwik Offer","movietype":""},{"key":"7","name":"Mother\'s Day Special","movietype":""},{"key":"8","name":"PVR Woohoo Offer","movietype":""},{"key":"9","name":"RAKHI SPECIAL OFFER","movietype":""},{"key":"10","name":"SPECIAL DISCOUNT FOR NEW USERS","movietype":""}]}}';
+ 
+ 
+if(!navigator.cookieEnabled){
+	alert("This website require cookies, Please enable your cookie");
+	navigator.cookieEnabled=true;
+	window.location.assign('');
+}
+	$(document).ready(function() 
+	{
+		if(searchJson!=''){
+		data = JSON.parse(searchJson);
+		}
+		divid="";
+		$(".search").keyup(function()
+			 {
+				k=$(this).val().trim();
+ 				if(this.id=="auto-search")
+ 					{
+ 						divid="#abc";
+ 					}
+ 										
+	 			if(k!="")
+	 			{
+	 				$('.autocomplete').fadeIn();
+	 				autoSearchSuccess(data);
+	 		  		 			
+	 			}
+	 			else
+	 				{
+	 					$('.autocomplete').fadeIn();
+	 					$(divid).html("<h4 class='head'>No Records Found</h4>");
+	 						 					
+	 				}
+		  
+		 	});
+ 	
+  	$(document).click(function()
+		 { 
+  			$('.autocomplete').fadeOut();
+  			//$('.search-close').hide();
+  			$('#auto-search').val('');
+  			$('body').css('padding-bottom', '0px');
+ 		 });
+ 	$(document).keyup(function(event){
+	 if(event.keyCode==27)
+		 {
+		  $('.autocomplete').fadeOut();
+		  $('#auto-search').focus();
+		  $('#auto-search').val('');
+		 }
+	});
+ 
+ 	$(document).keydown(function(event) {
+ 		//if($('#abc').is(':visible'))
+ 		event.stopPropagation();
+ 		if (event.keyCode == 40) 
+	    {
+ 			if($('#abc').is(':visible'))
+ 				{
+ 					event.preventDefault();
+ 				}
+			
+			if($(".ac-list a").hasClass("active"))
+				{
+				
+				 if($(".ac-list a.active").next("a").length==0)
+	    			{
+	    				if($("#div-cinemas a").length>0)
+	    					{
+			    				$(".ac-list a.active").removeClass("active");
+				    			$("#div-cinemas a:first").focus();
+				    			$("#div-cinemas a").removeClass('active'); 
+				    			$("#div-cinemas a:first").addClass('active');
+	    					}
+	    			}
+	    		else
+	    			{
+		    			$(".ac-list a.active").next("a").focus();
+		    			$(".ac-list a.active").next("a").addClass('active');
+						$(".ac-list a.active").prev("a").removeClass('active');
+					}
+				}
+			else
+				{
+					$(".ac-list a:first").focus();
+					$(".ac-list a").removeClass('active'); 
+					$(".ac-list a:first").addClass('active');
+				}
+	    }
+	 	if (event.keyCode == 38) 
+	 	{
+	 		//event.preventDefault();
+	 		if($('#abc').is(':visible'))
+ 				{
+ 					event.preventDefault();
+ 				}
+	 		if($("#div-cinemas a.active").prev("a").length==0 && $("#div-cinemas a").hasClass("active"))
+			{
+	 			if($("#div-movies a").length>0)
+				{
+		 			$("#div-cinemas a.active").removeClass("active");
+					$("#div-movies a:last").focus();
+					$("#div-movies a").removeClass('active'); 
+					$("#div-movies a:last").addClass('active');
+				}		
+			}
+	 		else
+	 			{
+	 				 $(".ac-list a.active").prev("a").focus();
+					 $(".ac-list a.active").prev("a").addClass('active');
+					 $(".ac-list a.active").next("a").removeClass('active');
+	 			}
+			
+	 	}  
+	 	
+	});
+  
+ });
+ 
+</script>
+
+ 
+ <!--  Specific Search  -->
+<div class="specific-search">
+	<div class="panel-group" id="accordion-search">
+		<div class="panel panel-default pvr-search-panel">
+			<div id="collapsesearch" class="panel-collapse collapse">
+				<div class="container-fluid pvr-search-bg">
+					<div class="container-pvr">
+						<div class="search-cont">
+							<div class="search-by">Search by &nbsp; &nbsp; &nbsp; Movie &nbsp; OR &nbsp; Cinema</div>
+							<div class="input-group">
+								<input type="text" class="form-control search" 	placeholder="Search" id="auto-search" autocomplete="off">
+								<div class="autocomplete scroller" id="abc" style="display: none;">
+								</div>
+								<span class="input-group-btn">
+									<button class="btn btn-default search-submit" type="button">Search</button>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel-heading pvr-panel-heading">
+				<div class="search-down-btn">
+					<a data-toggle="collapse" data-parent="#accordion-search" href="#collapsesearch"> Search 
+					<i class="fa fa-chevron-down"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+function autoSearchSuccess(data)
+{
+	usercity='Delhi/NCR';
+	ucity='Delhi/NCR'.replace("-","/");
+	var moviePre = false;
+	var cinemaPre = false;
+	for(i=0;i<data.output.movies.length;i++)
+	  {
+		if(data.output.movies[i].name.toLowerCase().indexOf(k.toLowerCase())>-1){
+			moviePre = true;
+			break;
+		}
+	  }
+	for(i=0;i<data.output.cinemas.length;i++)
+	  {
+		if(data.output.cinemas[i].name.toLowerCase().indexOf(k.toLowerCase())>-1){
+			cinemaPre = true;
+			break;
+		}
+	  }
+	
+	
+	$(divid).html('');
+	if(!moviePre && !cinemaPre)
+		{
+			$(divid).html("<h4 class='head'>No Records Found</h4>");
+			var imdbrefn="http://www.imdb.com/find?s=all&q="+k;
+			$(divid).append('<h4 class="head"><a target="_blank" id="imdbref">Find More Information...</a></h4>');
+			$("#imdbref").attr('href',imdbrefn);
+		}
+	else
+		{
+			$(divid).html('');
+			if(moviePre)
+			  {
+				$(divid).append('<h4 class="head">Movies</h4><div class="ac-list" id="div-movies"></div>');
+				for(i=0;i<data.output.movies.length;i++)
+					  {
+						if(data.output.movies[i].name.toLowerCase().indexOf(k.toLowerCase())>-1)
+						{
+							if(data.output.movies[i].movietype=="nowshowing")
+						  		{
+                				var url='/moviesessions/'+usercity+'/'+data.output.movies[i].name.toLowerCase().replace(/ /g,'-').replace(/\//g, '-')+'/'+data.output.movies[i].key;
+						  		$("#div-movies").append('<a href='+url+'>'
+						  			  	+'   					<h4>'+data.output.movies[i].name+'</h4>'
+						  			  	+'   					<h5 class="ns">'+'Now Showing'+'</h5>'
+						  			  	+'						</a>');
+						  		}
+						  	else
+						  		{
+						  		var url='/commingsoon/'+usercity+'/'+data.output.movies[i].name.toLowerCase().replace(/ /g,'-').replace(/\//g, '-')+'/'+data.output.movies[i].key;
+						  		$("#div-movies").append('<a href='+url+'>'
+						  			  	+'   					<h4>'+data.output.movies[i].name+'</h4>'
+						  			  	+'   					<h5 class="cs">'+'Coming Soon'+'</h5>'
+						  			  	+'						</a>');
+		
+						  		}
+						}
+                		
+					 }
+                	 				
+			  }
+		  	
+		  if(cinemaPre)
+		  {
+		  	  $(divid).append('<h4 class="head">Cinemas</h4><div class="ac-list" id="div-cinemas"></div>');
+				  for(i=0;i<data.output.cinemas.length;i++)
+					  {
+					  if(data.output.cinemas[i].name.toLowerCase().indexOf(k.toLowerCase())>-1)
+						  {
+						        var cinemaurl='/cinemasessions/'+usercity+'/'+data.output.cinemas[i].name.toLowerCase().replace(/ /g,'-')+'/'+data.output.cinemas[i].key;
+					  			$("#div-cinemas").append('<a href='+cinemaurl+'>'
+					  			+'					     <h4>'+data.output.cinemas[i].name+'</h4>'
+					   			+'						 </a>');
+						  }
+					  }
+			}
+		  var imdbref="http://www.imdb.com/find?s=all&q="+k;
+		  $(divid).append('<h4 class="head"><a target="_blank" id="imdb">Find More Information...</a></h4>');
+		  $("#imdb").attr('href',imdbref);
+	}
+}
+
+</script>
+
+
+<!-- Banners -->    
+
+
+
+
+
+    
+   
+	
+<div class="container-pvr">
+    <div class="col-lg-2 col-md-2"></div>
+    <div class="col-lg-8 col-md-8 error-div">
+    	<div class="error-image">
+   	    	<img src="/images/404.png" width="100%" alt="404">
+        </div>
+        <h3>SOMETHING WENT WRONG!</h3>
+        <p>Try back after a while so we can put the pieces back together.</p>
+        <div class="row pad-top-40">
+        	        	<div class="col-lg-4 col-md-4 col-sm-4 nopadding mob-hide">
+            	<div class="e-sap"></div>
+            </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+            	<a href="" class="e-backhome"><i class="fa fa-home"></i> BACK TO HOME</a>
+            </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 nopadding mob-hide">
+            	<div class="e-sap"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-2"></div>
+</div>
+	
+
+
+
+
+
+    <!--  Footer  -->
+    <div class="container-fluid footer-cont">
+    	<div class="container-pvr footer">
+        	<h4 class="ft-mob">About us</h4>
+			<div class="col-lg-4 col-md-4 col-sm-12 mob-accordion tab-border-bott">
+            	<h4>About us</h4>
+                <div class="ft-detail text-capitalize">
+                	PVR is the largest and the most premium film and retail entertainment company in India. Since its inception in 1997, the brand has redefined the way entertainment is consumed in India. It currently operates a cinema circuit comprising of 474 screens in 106 properties in 43 cities pan India.<br><a href="/aboutus" class="ft-readmore">READ MORE</a>
+                </div>
+            </div>
+            <h4 class="ft-mob">General</h4>
+        	<div class="col-lg-2 col-md-2 col-sm-3 mob-accordion">
+            	<h4>General</h4>
+                <div class="ft-detail">
+                	<ul class="list-unstyled">
+               					<li><a href="/aboutus">About Us</a></li>
+								<li><a href="/faq">FAQ's</a></li>
+								<li><a href="/corporate">Corporate Info.</a></li>
+								<li><a href="/careers">Career</a></li>
+								<li><a href="/news">News</a></li>
+								<li><a href="/feedback">Feedback</a></li>
+								<li><a href="/events">Events</a></li> 
+								<li><a href="/trivia" >PVR The Storyteller</a></li>
+								<li><a href="http://www.nvsp.in/" target="_blank">nvsp</a></li>
+                    </ul>
+                </div>
+            </div>
+            <h4 class="ft-mob">Our Brands</h4>
+            <div class="col-lg-2 col-md-2 col-sm-3 mob-accordion">
+            	<h4>Our Brands</h4>
+                <div class="ft-detail">
+                	<ul class="list-unstyled">
+								<!-- <li><a href="http://www.pvrpictures.com/" target="_blank">PVR Pictures</a></li> -->
+								<li><a href="http://www.pvrdirectorscut.com/"  target="_blank">PVR Director's Cut</a></li>
+								<li><a href="http://www.pvrdirectorsrare.com/"  target="_blank">PVR Director's Rare</a></li>
+								<li><a href="/pvrpictures/index.html">PVR Pictures</a></li>
+								
+								<li><a href="/pvrimax">PVR IMAX</a></li>
+								<!-- <li><a href="https://www.cinemax.co.in/"  target="_blank">PVR Cinemax</a></li> -->
+								<li><a href="http://www.pvrbluo.com/"  target="_blank">Blu'o'</a></li>
+								<li><a href="http://www.pvrnest.org/"  target="_blank">PVR Nest</a></li>
+								<li><a href="http://www.mistralgrill.com/" target="_blank">Mistral</a></li>
+								<!-- <li><a href="#">Food Union</a></li> -->
+							</ul>
+                </div>
+            </div>
+            <h4 class="ft-mob">Cinemas</h4>
+            <div class="col-lg-2 col-md-2 col-sm-3 mob-accordion">
+            	<h4>Cinemas</h4>
+                <div class="ft-detail">
+                	<ul class="list-unstyled">
+                    <li><a href="/cinemas/Delhi-NCR">Locator</a></li>
+                    <li><a href="/upcomingcinemas">Upcoming</a></li>
+                    <li><a href="/advertise">advertise</a></li>
+                    <li><a href="/foodnbeverages/Delhi/NCR">FOOD &amp; BEVERAGES</a></li>
+                    
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-3">
+                <div class="ft-detail social">
+                	<div class="ft-social">
+                		<a href="https://www.facebook.com/moviesatpvr" target="_blank"><img src="http://static1.pvrcinemas.com/images/facebook.png"></a>
+                        <a href="https://twitter.com/_PVRCinemas" target="_blank"><img src="http://static1.pvrcinemas.com/images/twitter.png"></a>
+                        <a href="http://www.linkedin.com/company/70153?trk=tyah&trkInfo=tas%3Apvr" target="_blank"><img src="http://static1.pvrcinemas.com/images/linked-in.png"></a>
+                        <a href="https://www.youtube.com/user/PVRChannel" target="_blank"><img src="http://static1.pvrcinemas.com/images/youtube-white.png"></a>
+                    </div>
+                    <div class="ft-links">
+                    	<a href="/privacypolicy">Privacy Policy</a><br>
+                        <a href="/termsandconditions">Terms &amp; Conditions</a><br>
+                        <a href="/termsofuse">Terms of use</a><br><br>
+                        <span>Copyright<br>
+                        ©. 2014 PVR Ltd<br>
+                        All Rights Reserved</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="disclaimer">
+        	<div class="container-pvr">Disclaimer: Photos &amp; certain artwork used on PVR Cinemas.com are copyright protected and are the property of their respective owners.<br> Brand logos &amp; other trademarks used herein are the property of ther respective owners.</div>
+        </div>
+    </div>
+    
+
+	<script src="http://static1.pvrcinemas.com/js/bootstrap.min.js"></script>
+	<script src="http://static1.pvrcinemas.com/js/bootstrap-select.js"></script>
+	<script src="http://static1.pvrcinemas.com/js/custom.js"></script>
+	<script src="http://static1.pvrcinemas.com/js/serverjs/common.js?v=2"></script>
+	<script src="http://static1.pvrcinemas.com/js/jquery.nicescroll.min.js"></script>
+	<script src="http://static1.pvrcinemas.com/js/serverjs/login.js?v=2"></script>
+	<script src="http://static1.pvrcinemas.com/js/numeral.js"></script>
+	
+	<script type="text/javascript">
+	var userid='';
+	function gotoPage(url){
+		
+		
+		
+			window.location.assign(''+url);
+		
+	
+	}
+	</script>
+
+	<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-19434392-1']);
+  //_gaq.push(['_setCustomVar', 1, 'Section', 'Life & Style']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  
+  //_gaq.push(['_trackEvent', 'button3', 'clicked']);
+  
+
+</script>
+
+<script type="text/javascript">
+<!-- 
+document.write('<script type="text/javascript" src="'+ document.location.protocol
++ '//abc.nsfleximail.com/abc/etrack.php"><'+'/script>');// -->
+</script>
+
+<script type="text/javascript">
+<!-- 
+document.write('<script type="text/javascript" src="'+ document.location.protocol
++ '//pvrcinemasroi.exacttouch.com/pvrcinemas/etrack.php"><'+'/script>');// -->
+</script>
+
+
+</body>
+</html>

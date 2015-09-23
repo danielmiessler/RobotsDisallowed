@@ -1,0 +1,478 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<!-- Head Scripts -->
+			<title>عرفانی زاده دات کام</title>
+
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta name="author" content="Tsoy">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link href="/templates/ErfaniZadeh/images/small-logo.png" rel="shortcut icon"/>
+	<link rel="stylesheet" href="/templates/ErfaniZadeh/css/bootstrap.css" media="all">
+	<link rel="stylesheet" href="/templates/ErfaniZadeh/css/font-awesome.css" media="all">
+	<link rel="stylesheet" href="/templates/ErfaniZadeh/css/icomoon.css" media="all">
+	<link rel="stylesheet" href="/templates/ErfaniZadeh/css/styles.css" media="all">
+	<link rel="stylesheet" href="/templates/ErfaniZadeh/css/mystyles.css" media="all">
+	<link href="/templates/ErfaniZadeh/css/mycss/jquery.raty.css" rel="stylesheet" type="text/css" media="screen" />
+	<script src="/templates/ErfaniZadeh/js/modernizr.js"></script>
+	<script src="/templates/ErfaniZadeh/js/jquery.js"></script>
+	<script src="/templates/ErfaniZadeh/js/bootstrap.js"></script>
+	<script src="/templates/ErfaniZadeh/js/slimmenu.js"></script>
+	<script src="/templates/ErfaniZadeh/js/bootstrap-datepicker.js"></script>
+	<script src="/templates/ErfaniZadeh/js/bootstrap-timepicker.js"></script>
+	<script src="/templates/ErfaniZadeh/js/nicescroll.js"></script>
+	<script src="/templates/ErfaniZadeh/js/dropit.js"></script>
+	<script src="/templates/ErfaniZadeh/js/icheck.js"></script>
+	<script src="/templates/ErfaniZadeh/js/fotorama.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+	<script src="/templates/ErfaniZadeh/js/typeahead.js"></script>
+	<script src="/templates/ErfaniZadeh/js/magnific.js"></script>
+	<script src="/templates/ErfaniZadeh/js/owl-carousel.js"></script>
+	<script src="/templates/ErfaniZadeh/js/myjs/Countdown.js"></script>
+	<script src="/templates/ErfaniZadeh/js/myjs/jquery.cookie.js" type="text/javascript"></script>
+	<script src="/templates/ErfaniZadeh/js/myjs/jquery.raty.js" type="text/javascript"></script>
+	<script src="/templates/ErfaniZadeh/js/myjs/jquery.autosize.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('textarea').autosize();    
+	});
+	</script>
+	<script src="/ckeditor2/ckeditor.js" type="text/javascript"></script>
+	<script type="text/javascript" language="javascript" src="/templates/ErfaniZadeh/js/jquery.dotdotdot.min.js"></script>
+	<script type="text/javascript" language="javascript">
+	$(function() {
+		$('.ellipsis').dotdotdot({
+			ellipsis : '... ',
+			watch: 'window'
+		});
+	});
+	</script>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+</head>
+
+<body class="boxed">
+	<div class="global-wrap boxed">
+		<!-- Header -->
+						<script type="text/javascript">
+		$('document').ready(function ()
+		{
+			$('#sendToFriend').click(function (event)
+			{
+				event.preventDefault();
+				$("#fade").slideDown(300);
+				$('#sendToFriendForm').slideDown(1000);
+			});
+			$("#fade").click(function ()
+			{
+				$("#fade").slideUp(300);
+				$("#sendToFriendForm").hide(500);
+			});
+			function IsEmail(email) {
+				var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+				return regex.test(email.trim());
+			}
+			$('#sendToFriendForm').submit(function (event)
+			{
+				event.preventDefault();
+				//Empty Validation
+				if ($('#sendToFriendName').val() != "" && $('#sendToFriendEmail').val() != "")
+				{
+					if (IsEmail($('#sendToFriendEmail').val()))
+					{
+						var Data = $("#sendToFriendForm").serialize();
+						$("#sendToFriendPlaceholder").html('<img src="/images/ajax-loader2.gif" alt="Loading" />');
+						$.post("/AjaxSendToFriend", Data, function(data)
+						{
+							if(data == "")
+							{
+								$("#sendToFriendPlaceholder").html('<p style="color:green;">این مطلب برای دوست شما ارسال شد</p>');
+							}
+							else
+							{
+								$("#sendToFriendPlaceholder").html(data);
+							}
+						});
+					}
+					else
+					{
+						$("#sendToFriendPlaceholder").html('<p style="color:red;">آدرس ایمیل صحیح نمی باشد</p>');
+					}
+				}
+				else
+				{
+					$("#sendToFriendPlaceholder").html('<p style="color:red;">لطفا فیلد های ستاره دار را کامل پر نمائید</p>');
+				}
+			});
+			//Email Validation
+			$('#sendToFriendEmail').blur(function ()
+			{
+				if (!IsEmail($('#sendToFriendEmail').val()))
+				{
+					$("#Message").html('<p style="color:red;">آدرس ایمیل صحیح نمی باشد</p>').fadeIn(500).delay(3000).fadeOut(500);
+				}
+			});
+		});
+		</script>
+			<div id="sendToFriendForm" class="popup">
+				<button title="Close (Esc)" type="button" class="mfp-close close">×</button>
+				<div class="clear"></div>
+				<div class="holder">
+					<form method="POST" action="">
+						<p>این مطلب را به دوست خود ارسال کنید</p>
+						<div id="sendToFriendPlaceholder" style="color:red;"></div>
+						<div class="form-group form-group-icon-left required"><i class="fa fa-user input-icon input-icon-show"></i>
+							<label>نام شما</label>
+							<input id="sendToFriendName" name="name" type="text" class="form-control" value="">
+						</div>
+						<div class="form-group form-group-icon-left required"><i class="fa fa-user input-icon input-icon-show"></i>
+							<label>آدرس ایمیل دوست خود را بنویسید</label>
+							<input id="sendToFriendEmail" name="email" type="text" class="form-control">
+						</div>
+						<input id="sendToFriendButton" name="submit" type="submit" class="btn btn-success" value="ارسال"/>
+						<p style="font-size:13px;">اطلاعات شما نزد عرفانی زاده دات کام کاملا محفوظ می باشد</p>
+					</form>
+				</div>
+			</div>
+		<div class="messageToAll">
+				<div class="main"><h2><br />
+<span style="font-size:22px;"><strong><a href="http://erfanizade.com/my-1-million-secret-free-ebook"><span style="color: rgb(255, 0, 0);">برای دانلود رایگان کتاب الکترونیکی راز یک میلیون دلاری من، راز دستیابی به استقلال مالی کلیک کنید!</span></a></strong></span></h2>
+</div>
+			</div>		<header id="main-header">
+			<div class="header-top">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-3">
+							<form action="/search" method="POST" class="main-header-search">
+								<div class="form-group form-group-icon-left">
+									<i class="fa fa-search input-icon"></i>
+									<input id="keyword" name="keyword" type="text" placeholder="جستجوی واژه مورد نظر" class="form-control rtl" value="" />
+								</div>
+							</form>
+						</div>
+						<div class="col-md-9 rtl">
+							<div class="top-user-area clearfix">
+																<form action="/Login" name="login" method="post" class="form-inline main-header-search">
+									<div class="form-group form-group-icon-left"><i class="fa fa-user input-icon"></i>
+										<input name="username" class="form-control" placeholder="ایمیل خود را وارد کنید" type="text" />
+									</div>
+									<div class="form-group form-group-icon-left"><i class="fa fa-lock input-icon"></i>
+										<input name="password" class="form-control" type="password" placeholder="کلمه عبور خود را وارد کنید" />
+									</div>
+									<input class="btn btn-primary" type="submit" value="ورود" />
+									<div class="form-group">
+										<label for="rememberme" class="checkbox-inline text-white"> مرا به خاطر بسپار <input id="rememberme" name="rememberme" type="checkbox" checked="checked" value="on" /></label>
+									</div>
+								</form>
+								<a href="/Remember">کلمه عبور خود را فراموش کرده ام</a>
+															</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="nav">
+					<ul class="slimmenu" id="slimmenu"><li><a href="/" target="_self">صفحه اصلی</a></li><li><a href="/articles/" target="_self">مقالات</a></li><li><a href="/products" target="_self">محصولات</a></li><li><a href="/downloads/" target="_self">دانلود های رایگان</a></li><li><a href="/vips" target="_self">مطالب اعضای ویژه</a></li><li><a href="/courses/" target="_self">دوره های آنلاین</a></li><li><a href="/forums" target="_self">انجمن</a></li><li><a href="/register" target="_self">عضویت</a></li><li><a href="/about-us" target="_self">درباره ما</a></li><li><a href="/contact-us" target="_self">تماس با ما</a></li></ul>				</div>
+			</div>
+		</header>
+
+		<!-- Slider -->
+						<div class="top-area show-onload">
+			<div class="bg-holder full">
+				<div class="owl-carousel owl-slider owl-carousel-area visible-lg" id="owl-carousel-slider">
+					<a href="" target="_blank">
+							<div class="bg-holder full">
+								<div class="bg-img" style="background-image:url('/uploads/slider/005.jpg');"></div>
+							</div>
+						</a><a href="" target="_blank">
+							<div class="bg-holder full">
+								<div class="bg-img" style="background-image:url('/uploads/slider/004.jpg');"></div>
+							</div>
+						</a><a href="" target="_blank">
+							<div class="bg-holder full">
+								<div class="bg-img" style="background-image:url('/uploads/slider/002.jpg');"></div>
+							</div>
+						</a><a href="" target="_blank">
+							<div class="bg-holder full">
+								<div class="bg-img" style="background-image:url('/uploads/slider/003.jpg');"></div>
+							</div>
+						</a>				</div>
+				<div class="bg-img hidden-lg" style="background-image:url('/uploads/slider/003.jpg');"></div>
+			</div>
+		</div>
+		
+		<div class="gap"></div>
+		
+		<!-- Campaign -->
+		
+
+		<div class="container rtl">
+			<div class="row row-wrap">
+				<div class="col-md-4">
+					<div class="thumb text-center">
+						<header class="thumb-header">
+							<a class="hover-img curved" href="/products">
+								<img src="/uploads/product/gTezGqETd.jpg" alt="محصولات" title="محصولات" />
+								<h5 class="hover-title-top-left hover-hold">محصولات</h5>
+							</a>
+						</header>
+					</div>
+				</div><div class="col-md-4">
+					<div class="thumb text-center">
+						<header class="thumb-header">
+							<a class="hover-img curved" href="/downloads">
+								<img src="/uploads/download/1441303138.png" alt="دانلود های رایگان" title="دانلود های رایگان" />
+								<h5 class="hover-title-top-left hover-hold">دانلود های رایگان</h5>
+							</a>
+						</header>
+					</div>
+				</div><div class="col-md-4">
+					<div class="thumb text-center">
+						<header class="thumb-header">
+							<a class="hover-img curved" href="/articles">
+								<img src="/uploads/article/o-JOBS-WANTED-AS-KIDS-facebook.jpg" alt="مقالات" title="مقالات" />
+								<h5 class="hover-title-top-left hover-hold">مقالات</h5>
+							</a>
+						</header>
+					</div>
+				</div>			</div>
+			<div class="row row-wrap">
+				<div class="col-md-4">
+					<div class="thumb text-center">
+						<header class="thumb-header">
+							<a class="hover-img curved" href="/vips">
+								<img src="/uploads/vip/lovee.jpg" alt="مطالب اعضای ویژه" title="مطالب اعضای ویژه" />
+								<h5 class="hover-title-top-left hover-hold">مطالب اعضای ویژه</h5>
+							</a>
+						</header>
+					</div>
+				</div><div class="col-md-4">
+					<div class="thumb text-center">
+						<header class="thumb-header">
+							<a class="hover-img curved" href="/registrations">
+								<img src="/uploads/registeration/premium-servies.jpg" alt="خدمات ویژه و اختصاصی" title="خدمات ویژه و اختصاصی" />
+								<h5 class="hover-title-top-left hover-hold">خدمات ویژه و اختصاصی</h5>
+							</a>
+						</header>
+					</div>
+				</div><div class="col-md-4">
+					<div class="thumb text-center">
+						<header class="thumb-header">
+							<a class="hover-img curved" href="/courses">
+								<img src="/uploads/course/1428080568.jpg" alt="دوره ها" title="دوره ها" />
+								<h5 class="hover-title-top-left hover-hold">دوره ها</h5>
+							</a>
+						</header>
+					</div>
+				</div>			</div>
+			<div class="gap gap-small"></div>
+		</div>
+
+		<!-- LoyalCustomers -->
+				<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h3 style="text-align:right; color:red; font-size:22px; font-weight:normal; direction:rtl;">مشتریان وفادار:</h3>
+						<p style="text-align:justify; color:black; font-size:17px; font-weight:normal; direction:rtl;">
+							در این لیست نام دوستانی که بیشترین خرید را <span style="color:red; font-size:inherit;">به صورت پرداخت آنلاین</span> از سایت داشته اند به ترتیب امتیاز وجود دارد.
+						</p>
+						<br />
+						<div class="loyalCustomersDiv rtl">
+							<table class="table table-striped"><tr><td style="width:20px; text-align:center; color:green;">1</td>
+										<td>حسین منصوری <span style="color:red;">(امتیاز 1,682)</span></td><td style="width:20px; text-align:center; color:green;">2</td>
+										<td>A . Ali <span style="color:red;">(امتیاز 346)</span></td><td style="width:20px; text-align:center; color:green;">3</td>
+										<td>بهاره راد <span style="color:red;">(امتیاز 305)</span></td><td style="width:20px; text-align:center; color:green;">4</td>
+										<td>طاهره امیدی <span style="color:red;">(امتیاز 299)</span></td></tr><tr><td style="width:20px; text-align:center; color:green;">5</td>
+										<td>esie20 esie20 <span style="color:red;">(امتیاز 275)</span></td><td style="width:20px; text-align:center; color:green;">6</td>
+										<td>مریم  مومنی <span style="color:red;">(امتیاز 262)</span></td><td style="width:20px; text-align:center; color:green;">7</td>
+										<td>saeid gh <span style="color:red;">(امتیاز 261)</span></td><td style="width:20px; text-align:center; color:green;">8</td>
+										<td>علی عارفی نیا <span style="color:red;">(امتیاز 254)</span></td></tr><tr><td style="width:20px; text-align:center; color:green;">9</td>
+										<td>رضا انوری <span style="color:red;">(امتیاز 252)</span></td><td style="width:20px; text-align:center; color:green;">10</td>
+										<td>nazanin N <span style="color:red;">(امتیاز 251)</span></td><td style="width:20px; text-align:center; color:green;">11</td>
+										<td>نیما  افشاری فرد <span style="color:red;">(امتیاز 250)</span></td><td style="width:20px; text-align:center; color:green;">12</td>
+										<td>Reza Mak <span style="color:red;">(امتیاز 250)</span></td></tr><tr><td style="width:20px; text-align:center; color:green;">13</td>
+										<td>بهروز  فردی <span style="color:red;">(امتیاز 250)</span></td><td style="width:20px; text-align:center; color:green;">14</td>
+										<td>رباب جوادی <span style="color:red;">(امتیاز 250)</span></td><td style="width:20px; text-align:center; color:green;">15</td>
+										<td>ر- کرمی <span style="color:red;">(امتیاز 250)</span></td><td style="width:20px; text-align:center; color:green;">16</td>
+										<td>سیده زینب  حسینی <span style="color:red;">(امتیاز 249)</span></td></tr></table>
+						</div>				</div>
+			</div>
+		</div>
+
+		<!-- Footer -->
+				<script type="text/javascript" language="javascript">
+		$('document').ready(function ()
+		{
+			function IsEmail(email) {
+				var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+				return regex.test(email.trim());
+			}
+			$('#newsletterForm').submit(function (event)
+			{
+				event.preventDefault();
+				//Empty Validation
+				if ($('#newsletterEmail').val() != "")
+				{
+					if (IsEmail($('#newsletterEmail').val()))
+					{
+						var Data = $("#newsletterForm").serialize();
+						$("#Message").html('<img src="/images/ajax-loader2.gif" alt="Loading" />').fadeIn(500);
+						$.post("/AjaxNewsletter", Data, function(data)
+						{
+							if(data == "")
+							{
+								$("#Message").html('<p style="color:green;">ایمیل شما در خبرنامه ثبت شد</p>').fadeIn(500).delay(3000).fadeOut(500);
+							}
+							else
+							{
+								$("#Message").html(data).fadeIn(500).delay(3000).fadeOut(500);
+							}
+						});
+					}
+					else
+					{
+						$("#Message").html('<p style="color:red;">آدرس ایمیل صحیح نمی باشد</p>').fadeIn(500).delay(3000).fadeOut(500);
+					}
+				}
+				else
+				{
+					$("#Message").html('<p style="color:red;">لطفا ایمیل و شماره موبایل خود را بنویسید</p>').fadeIn(500).delay(3000).fadeOut(500);
+				}
+			});
+		});
+		</script>
+		<footer id="main-footer" class="rtl">
+			<div class="container">
+				<div class="row row-wrap">
+					<div class="col-md-3">
+						<a class="logo" href="/">
+							<img src="/templates/ErfaniZadeh/images/small-logo.png" alt="عرفانی زاده دات کام" title="عرفانی زاده دات کام" />
+						</a>
+						<p class="mb20">ما را در شبکه های اجتماعی دنبال کنید ...</p>
+						<ul class="list list-horizontal list-space">
+							<li>
+								<a class="fa fa-facebook box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+							</li>
+							<li>
+								<a class="fa fa-twitter box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+							</li>
+							<li>
+								<a class="fa fa-google-plus box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+							</li>
+							<li>
+								<a class="fa fa-linkedin box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+							</li>
+							<li>
+								<a class="fa fa-pinterest box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="col-md-3">
+						<h4>عضویت در خبرنامه</h4>
+						<form id="newsletterForm" action="" method="POST">
+							<label>ایمیل خود را وارد نمائید</label>
+							<input id="newsletterEmail" name="email" type="text" class="form-control ltr" placeholder="example@email.com" />
+							<p class="mt5 rtl"><small>*ایمیل شما نزد ما محفوظ است</small></p>
+							<input id="newsletterSubmit" type="submit" class="btn btn-primary" value="ثبت">
+						</form>
+						<div id="newsletterPlaceholder" style="color:red;"></div>
+
+					</div>
+					<div class="col-md-3">
+						<ul class="list list-footer">
+							<li><a href="/">صفحه اصلی</a></li>
+							<li><a href="/articles">مقالات</a></li>
+							<li><a href="/downloads">دانلود رایگان</a></li>
+							<li><a href="/products">فروشگاه</a></li>
+							<li><a href="/vips">مطالب اعضای طلایی</a></li>
+							<li><a href="/courses">دوره های آنلاین</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<h4>سوالی دارید ؟</h4>
+						<h5 class="text-color ltr right">09199990218</h5>
+						<h5 class="text-color ltr right">+98-31-36284903</h5>
+						<h5><a href="mailto:info@erfanizade.com" class="text-color ltr right">info@erfanizade.com</a></h5>
+						<h5><a href="mailto:support@erfanizade.com" class="text-color ltr right">support@erfanizade.com</a></h5>
+						<h5><a href="mailto:sale@erfanizade.com" class="text-color ltr right">sale@erfanizade.com</a></h5>
+					</div>
+
+				</div>
+				<div class="row row-wrap">
+					<div class="col-md-12 center">
+						<p>آدرس دفتر مرکزی: اصفهان- توحید میانی- رو به روی داروخانه دکتر منوچهری- ساختمان پاسارگاد- طبقه چهارم واحد 403 (مراجعه حضوری صرفا با هماهنگی قبلی امکان پذیر می باشد)</p>
+						<a href="http://armanic.com">طراحی وب سایت و سئو توسط گروه تخصصی آرمانیک</a> | <a href="http://modireweb.com">مشاوره تبلیغات آنلاین توسط مدیر وب</a>
+					</div>
+				</div>
+			</div>
+			<!-- enamad -->
+			<div class="enamad">
+			<iframe src="/eNamadLogo.htm" frameborder="0" scrolling="no" allowtransparency="true" style="width: 150px; height:150px;"></iframe>
+			</div>
+			<!-- enamad -->
+		</footer>
+
+		<!-- Footer Scripts -->
+		<div id="Message" class="dont-scale-images"></div>
+		<div id="fade"></div>
+
+		<div style="display:none;"><script type="text/javascript" src="/pslivechat/php/app.php/widget-init.js"></script></div>
+
+		<script type="text/javascript">
+				$(document).ready(function ()
+		{
+			$("#fade, .mfp-close").click(function ()
+			{
+				$("#fade").fadeOut(300);
+				$(".popup").fadeOut(500);
+			});
+			//Captcha Refresh
+			$(".captchaRefresh").click(function ()
+			{
+				$('.captchaImage').attr("src", '/inc/captcha.php?' + Math.random());
+			});
+		});
+		if ($('#rate').length != 0)
+		{
+			if ($.cookie($('#rate').attr('data-type')+$('#rate').attr('data-typeID')) == undefined)
+			{
+				readonly = false;
+			}
+			else
+			{
+				readonly = true;
+			}
+			$('#rate').raty(
+			{
+				readOnly: readonly,
+				path: '/templates/ErfaniZadeh/css/mycss',
+				hints: ['خیلی بد', 'بد', 'معمولی', 'خوب', 'عالی'],
+				score: function() {
+					return $(this).attr('data-score');
+				},
+				click: function(score, evt)
+				{
+					if ($.cookie($(this).attr('data-type')+$(this).attr('data-typeID')) == undefined)
+					{
+						$.cookie($(this).attr('data-type')+$(this).attr('data-typeID'), "1", { path: "/" });
+						$('#rate').raty('readOnly', true);
+
+						$.post('/Vote', { section: $(this).attr('data-type'), voteID: $(this).attr('data-typeID'), rate: score }, function (data)
+						{
+							$("#Message").html(data).fadeIn(500).delay(3000).fadeOut(500);
+						});
+					}
+				}
+			});
+		}
+		</script>
+		<script src="/templates/ErfaniZadeh/js/custom.js"></script>
+	</div>
+</body>
+
+</html>
+
+

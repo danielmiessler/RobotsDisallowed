@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /mail.php
+Disallow: /print.php
+Disallow: /komentarz.php
+Disallow: /link.php
+Disallow: /error.php
+Disallow: /telefon.php
+Disallow: /images

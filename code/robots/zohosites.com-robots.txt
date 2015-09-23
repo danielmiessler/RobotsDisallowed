@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Zoho - Page Not Found</title>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="https://www.zoho.com/404/style.css">
+<style type="text/css">
+    .search-box input[type="text"]  {  
+		line-height: 32px\9;  
+	}  
+</style>
+<script type="text/javascript">
+	if (!Array.prototype.indexOf) { 
+	    Array.prototype.indexOf = function(obj, start) {
+	         for (var i = (start || 0), j = this.length; i < j; i++) {
+	             if (this[i] === obj) { return i; }
+	         }
+	         return -1;
+	    }
+	}
+	function checkTextBoxFocus(curBox,blurStatus){
+	    var myArray = curBox.className.split(/\s+/);
+
+	    if (myArray.indexOf("search-box-hover") < 0 && blurStatus) {
+	        myArray[myArray.length] = "search-box-hover";
+	    }
+	    else{
+	    	myArray[myArray.indexOf("search-box-hover")] = "";
+	    }	   
+	    document.getElementById("search-box").className = myArray.join(" ");
+	}
+	function parseCurrentPageURL(){
+		var pageURL = document.createElement('a');
+		pageURL.href = window.location;
+		var pageHostName = (pageURL.host).replace("www.","");
+		//user hostname for remove port number.
+		var pageURLString = "";
+		var pageSearchString = "";
+		if((pageURL.pathname).length > 1){
+			var pathArray = (pageURL.pathname).split("/");
+			var pathInfo = [];
+			for (var i = 0; i < pathArray.length; i++) {
+			  	if (pathArray[i] !== undefined && pathArray[i] !== null && pathArray[i] !== "") {
+			    	pathInfo.push(pathArray[i]);
+			  	}
+			}
+			pageURLString = pathInfo[0];
+			console.log(pageURL.pathname,pageURLString);
+			
+			var pathInfo1 = pageURLString.split(".");
+			if(pathInfo1.length > 1){
+				pageSearchString = pageURLString;
+				pageURLString = "";
+			}
+			else{
+				pageSearchString = pathInfo[pathInfo.length-1];
+				pageSearchString = (pageURLString == pageSearchString) ? "" : pageSearchString;
+				pageURLString =  "/" + pageURLString;
+			}
+			pageSearchString = pageSearchString.split(".")[0];
+		}
+		//document.getElementById("searchbtn").value = "Search in "+pageHostName + pageURLString;
+		//document.getElementById("sitesearch").value = pageHostName + pageURLString;		
+	//	document.getElementById("searchstring").value = pageSearchString;		
+	}
+</script>
+</head>
+<body onload="parseCurrentPageURL()">
+<div class="wrapper">
+	<div class="logo"><a href="https://www.zoho.com/"><img src="https://www.zoho.com/404/logo_zoho.png" alt="Zoho"></a></div>
+	<div class="main">
+		<img src="https://www.zoho.com/404/icon_setting.png" width="142" height="220" style="margin-left:375px;margin-top:-20px"/>		
+		<h1>Page Not Found</h1>
+        <div style="text-align:center;">The page you are looking for is unavailable. It might have been removed, had its name changed or moved.</div>
+        <div id="search-box-container">
+            <div id="search-box">
+                <form method="get" action="https://www.google.com/search">
+                <input type="hidden"  name="sitesearch" id="sitesearcsh" value="zoho.com"/>
+                    <input type="text" placeholder="" name="q" id="searchstring"/>
+                    <input type="submit" name="searchbtn" id="searchbtn" value="Search in zoho.com">
+                </form>
+            </div>
+        </div>
+	</div>
+</div>
+<div class="footer">© 2013, Zoho Corporation Pvt. Ltd. All Rights Reserved.</div>
+</body>
+</html>

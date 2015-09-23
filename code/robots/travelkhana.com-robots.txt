@@ -1,0 +1,1673 @@
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html class="html_height">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>Food Delivery in Trains | Food for Train Journey | Train Food Service – TravelKhana.Com</title>
+<meta name="description" content="Searching for Delivery of Food in Trains or Train Food Service? Order your food requirements and we will deliver the same at your seat just like a restaurant." />
+<meta name="keywords" content="Food in train,Jain Food in Train, rail, food, delivery, PNR, Railway,food delivery in train, food for train journey, train food service, railway restaurant" />
+<meta property="og:image" content="http://travelkhana.com/travelkhana/images/TK-logo.png" />
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link href="../webcss/style2.css?v=6.5" rel="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" media="screen and (min-device-width: 620px)" href="../webcss/style2.css?v=6.5" />
+<link type="text/css" rel="stylesheet" media="only screen and (max-device-width: 620px)" href="../webcss/travelkhana_app.css?v=6.7" />
+<link type="text/css" rel="stylesheet" media="only screen and (max-width: 620px)" href="../webcss/travelkhana_app.css?v=6.7" />
+<link type="text/css" rel="stylesheet" media="handheld" href="../webcss/travelkhana_app.css?v=6.7" />
+<link href="../webcss/ui-lightness/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  <script src="../webjs/jquery.min.js"></script>
+  <script src="../webjs/jquery-ui.min.js"></script>
+ 
+ <script src="../js/firsttime.js"></script> 
+  <script async src="../js/data.js"></script>
+  <script src="../js/dataTrain.js?v=7"></script>
+ 
+<script async src="../js/trainStationMobile.js?v=7"></script>
+<script type="text/javascript" src="../js/ucMini.js"></script>
+<style>
+.TnC{
+Font:Verdana;
+font-size:11px;
+color:#d21519;
+}
+
+.TnC a{
+Font:Verdana;
+font-size:11px;
+color:#d21519;
+text-decoration:none;
+}
+
+.TnC a:hover{
+Font:Verdana;
+font-size:11px;
+color:#d21519;
+text-decoration:underline;
+}
+</style>
+
+
+<script type="text/javascript">
+function isblank(s) {
+	  var len=s.length
+	  var i
+	  for(i=0;i<len;++i) {
+	    if (s.charAt(i) != " " ) return false;
+	        }
+	    return true;
+	}
+	function validatesrcstn() {
+	 if(isblank(document.forms[0].fromstn.value)) {
+		if(!checkStationFound(document.getElementById('from1').value)){
+			
+	   alert("Source Station not found");
+	   document.getElementById('from1').focus();
+	   return false;
+		}else{
+			return true;
+		}
+	 }else{
+	   return true;
+	}
+	}
+	function validatedeststn() {
+	 if(isblank(document.forms[0].tostn.value)) {
+		 if(!checkStationFound(document.getElementById('to1').value)){
+	   alert("Destination Station not found.");
+	   document.getElementById('to1').focus();
+	   return false;
+			}else{
+				return true;
+			}
+		 }else{
+		   return true;
+		}
+	}
+	function checkStationFound(input){
+		//alert(input);
+		try{  
+			var found=false;
+		if(input.length>4 ||input.length<1){
+
+			   return false;
+		   }else{
+			   for(var i=0;i<keyArray.length;i++){
+				  // alert(keyArray.length);
+				   var stncode = keyArray[i].substring(0,keyArray[i].indexOf('/'));
+				   if(input.toLowerCase() ==stncode.toLowerCase()){
+					   found=true;
+					   break;
+				   }
+			   }
+			   if(found){
+				   return true;
+			   }else{
+			   return false;
+			   }
+		   }
+		}catch(e){
+			//alert(e);
+		}
+	   }
+var flagfrom=0;
+function stationByTrain(){
+	try{
+		if(document.getElementById('train1').value==""){
+			$j("#from1").autocomplete(keyArray,{max:30,matchContains: true,width:200}).result(function(evt,item){
+				if(item!=null && item.length==1){
+					var tar=item[0].split("/");
+					evt.target.value=item[0];
+					document.forms[0].fromstn.value=$.trim(tar[1]);
+					//alert(document.forms[0].fromstn.value);
+					$("#to1").focus();	
+					flagfrom=1;
+					 return false;
+				}
+			});
+		}else{
+			var train=document.getElementById('train1').value;
+			var trainData = trainStation[train.substr(0,train.indexOf("/"))];
+			if(trainData){
+				$j(document).ready(function(){
+					var dataArray=trainData.station.split(",");
+					$j("#from1").autocomplete(dataArray,{max:30,matchContains: true,width:200}).result(function(evt,item){
+						if(item!=null && item.length==1){
+							var tar=item[0].split("/");
+							evt.target.value=item[0];
+							document.forms[0].fromstn.value=$.trim(tar[1]);
+//							alert(document.forms[0].from.value);
+							document.getElementById('to1').focus();
+							flagfrom=1;
+							 return false;
+						}
+					});
+				});
+			}else{
+				$j("#from1").autocomplete(keyArray,{max:30,matchContains: true,width:200}).result(function(evt,item){
+					if(item!=null && item.length==1){
+						var tar=item[0].split("/");
+						evt.target.value=item[0];
+						document.forms[0].fromstn.value=$.trim(tar[1]);
+						//alert(document.forms[0].from.value);
+						document.getElementById('to1').focus();
+						flagfrom=1;
+						 return false;
+					}
+				});
+			}
+		}
+	if(flagfrom==1){
+			document.getElementById('to1').focus();
+			flagfrom=0;
+		}
+	}catch(ep){
+		$j("#from1").autocomplete(keyArray,{max:30,matchContains: true,width:200}).result(function(evt,item){
+			if(item!=null && item.length==1){
+				var tar=item[0].split("/");
+				evt.target.value=item[0];
+				document.forms[0].fromstn.value=$.trim(tar[1]);
+				//alert(document.forms[0].fromstn.value);
+				document.getElementById('to1').focus();
+			}
+		});
+	}
+}
+
+function toStationByTrain(){
+	try{
+		if(document.getElementById('from1').value==""){
+			alert("Please select starting station");
+			document.getElementById('from1').focus();
+		}else if(document.getElementById('train1').value==""){
+			$j("#to1").autocomplete(keyArray,{max:30,matchContains: true,width:200}).result(function(evt,item){
+				if(item!=null && item.length==1){
+					var tar=item[0].split("/");
+					evt.target.value=item[0];
+					document.forms[0].tostn.value=$.trim(tar[1]);
+					//alert(document.forms[0].tostn.value);
+					document.getElementById('datepicker1').focus();
+				}
+			});
+		}else{
+			var train=document.getElementById('train1').value;
+			var trainData = trainStation[train.substr(0,train.indexOf("/"))];
+			if(trainData){
+				$j(document).ready(function(){
+					var dataArray=trainData.station.split(",");
+					var start=0;
+					var toArray=new Array();
+					for(var n=0;n<dataArray.length;n++){
+						if(dataArray[n].indexOf(document.getElementById('from1').value)!=-1){
+							start=n;
+							break;
+						}
+					}
+					for(var n=start;n<dataArray.length;n++){
+						toArray[n-start]=dataArray[n];
+					}
+					$j("#to1").autocomplete(toArray,{max:30,matchContains: true,width:200}).result(function(evt,item){
+						if(item!=null && item.length==1){
+							var tar=item[0].split("/");
+							evt.target.value=item[0];
+							document.forms[0].tostn.value=$.trim(tar[1]);
+//							alert(document.forms[0].from.value);
+							document.getElementById('datepicker1').focus();
+						}
+					});
+				});
+			}else{
+				$j("#to1").autocomplete(keyArray,{max:30,matchContains: true,width:200}).result(function(evt,item){
+					if(item!=null && item.length==1){
+						var tar=item[0].split("/");
+						evt.target.value=item[0];
+						document.forms[0].tostn.value=$.trim(tar[1]);
+						//alert(document.forms[0].tostn.value);
+						document.getElementById('datepicker1').focus();
+					}
+				});
+			}
+		}
+	}catch(ep){
+		$j("#to1").autocomplete(keyArray,{max:30,matchContains: true,width:200}).result(function(evt,item){
+			if(item!=null && item.length==1){
+				var tar=item[0].split("/");
+				evt.target.value=item[0];
+				document.forms[0].tostn.value=$.trim(tar[1]);
+			//	alert(document.forms[0].tostn.value);
+				document.getElementById('datepicker1').focus();
+			}
+		});
+	}
+}
+	function showVendor(vendor){
+		try{
+			if(vendor!="select"){
+				var name=vendor.substring(0,vendor.indexOf("/"));
+				var code=vendor.substring(vendor.indexOf("/")+1,vendor.length);
+//				document.input_form.action="locationDetails.jsp?stName="+name+"&stCode="+code;
+				document.input_form.action="/travelkhana/food-delivery-at-"+name+"-railway-station-"+code;			
+				document.input_form.submit();
+			}
+		}catch(e){}
+	}
+</script>
+<script type="text/javascript">
+function getXMLHTTP(){
+	var xmlhttp;
+	try{
+		xmlhttp=new XMLHttpRequest();
+		//alert("in");
+	}catch(e){
+		try{
+			xmlhttp= new ActiveXObject("Microsoft.XMLHTTP");
+		}catch(e){
+			try{
+				xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+    		}catch(e1){
+    			xmlhttp=false;
+    		}
+		}
+	}
+	return xmlhttp;
+}
+</script>
+
+<style type="text/css">
+.marquee {position:relative;
+overflow:hidden;
+width:935px;
+left:8px;top:10px;
+font-size:14px;color:#ff7f27;font-weight:bold;float:left;
+}
+.marquee span {white-space:nowrap;font-weight:bold;}
+</style>
+
+<script type="text/javascript" src="../js/easySlider1.7.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){	
+			document.getElementById("slidImg").style.display='block';
+			$("#slider").easySlider({
+				auto: true, 
+				continuous: true,
+				controlsShow: false,
+				pause:5000
+			});
+		});	
+	</script>
+	
+<link href="../webcss/screen.css" rel="stylesheet" type="text/css" media="screen" />
+<script type="text/javascript">
+function mobilePopup(){
+	try{
+		var deviceWidth=window.innerWidth;
+		var nav = navigator.userAgent;
+		if(deviceWidth<620 && nav.indexOf('Android') != -1  && document.getElementById('no_order_div').style.display!='block'){			
+			if(navigator.appVersion.indexOf("(Android; Opera Mini")!=-1){ //Opera Mini
+				document.getElementById('opera_browser').style.display='block';
+				document.getElementById('not_opera_browser').style.display='none';
+				document.getElementById('opera_train_details').style.display='none';
+				document.getElementById('opera_mini_callUS').style.display='block';
+			}else{				
+				document.getElementById('not_opera_browser').style.display='block';
+				document.getElementById('mobile_web_back').style.display='block';
+				document.getElementById('information_msg').style.display='block';
+			}		
+		}
+	}catch(e){}
+}
+function disablePopups(){	
+	if(document.getElementById('information_msg').style.display=='block'){
+		document.getElementById('mobile_web_back').style.display='none';
+		document.getElementById('information_msg').style.display='none';	
+	}
+}
+</script>
+<!-- Improvely tracking code 
+<script type="text/javascript">
+improvely.label('TKvisit');
+</script>-->
+</head>
+
+<body onload="start();mobilePopup();blink();" style="background-color:#ffffff;" alink="#003899" vlink="#003899" link="#003899">
+<div class="main_div" id="main_div">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<script type="text/javascript">
+function disableExpCart() {	
+	if(document.getElementById('expCart').style.display=='block'){
+	document.getElementById('cartexp_back').style.display='none';
+	document.getElementById('expCart').style.display='none';
+	}
+	else if(document.getElementById('no_order_div').style.display=='block'){
+	document.getElementById('mobile_web_back').style.display='none';
+	document.getElementById('no_order_div').style.display='none';
+	}
+}
+function noItem(windowname,open) {	
+	infono_size(windowname);
+	if(open){
+	document.getElementById('noitem_div').style.display='block';
+	document.getElementById('noItem').style.display='block';
+	}else{
+		document.getElementById('noitem_div').style.display='none';
+		document.getElementById('noItem').style.display='none';
+		
+	}
+}
+function infono_size(popUpDivVar) {
+	if (typeof window.innerWidth != 'undefined') {
+		viewportheight = window.innerHeight;
+	} else {
+		viewportheight = document.documentElement.clientHeight;
+	}
+	if ((viewportheight > document.body.parentNode.scrollHeight) && (viewportheight > document.body.parentNode.clientHeight)) {
+		menu_height = viewportheight;
+	} else {
+		if (document.body.parentNode.clientHeight > document.body.parentNode.scrollHeight) {
+			menu_height = document.body.parentNode.clientHeight;
+		} else {
+			menu_height = document.body.parentNode.scrollHeight;
+		}
+	}
+	var menu = document.getElementById('noitem_div');
+	menu.style.height = (menu_height +2000)+ 'px';
+	var popUpDiv = document.getElementById(popUpDivVar);
+	popUpDiv_height=menu_height/2-250;
+	popUpDiv.style.top = 25 + 'px';
+	popUpDiv.style.left = -145 + 'px';
+	}
+</script>
+
+
+<script type="text/javascript">	
+function hideshow(){
+	if(document.getElementById('ulLink').style.display=='none'){
+		document.getElementById('ulLink').style.display='block';
+		document.getElementById('logoutbutton').style.display='none';
+	}
+} 
+function hideme(){
+	$(document).click(function(){		
+		document.getElementById('ulLink').style.display='none';
+		document.getElementById('logoutbutton').style.display='none';
+	});
+	$("#name").click(function(e){
+		  e.stopPropagation();
+		});
+	$("#logoutsym").click(function(e){
+		  e.stopPropagation();
+		});
+}
+$(document).ready(function(){
+	document.getElementById('main_div').setAttribute("onclick", "hideme()");
+	
+	$("#name").click(function(e){
+		  e.stopPropagation();
+		});
+	$("#logoutsym").click(function(e){
+		  e.stopPropagation();
+		});
+	});
+</script>
+
+
+
+</head>
+
+<body>
+<div class="fdfeedback" id="feedback">
+<a href="/travelkhana/jsp/feedback.jsp" title="Custmer Service" target="_blank"  >
+<img src="/travelkhana/webimages/feedbackicon.png?v=1.1"  style="width:27px;height:103px;"/>
+</a>
+</div>
+
+
+
+	<div style="width:100%;float:left;">
+	<div class="device_detection_screen" style="float:left;width:100%;">
+   	<!--<div style="width:100%; float:left; margin:auto 0; paddind:0px; background-image:url(/travelkhana/webimages/deep.jpg);background-repeat: repeat-x; height:40px;"></div>
+	-->
+<div class="header" style="padding-bottom:20px;border-bottom: 1px solid #e0e0e0;padding-bottom: 4px;">
+   	  <div style="float:left;margin-bottom: -80px">
+   	  <div class="header_logo"><a href="/travelkhana/jsp/order.jsp" title="Travelkhana Home Page"><img src="/travelkhana/webimages/logo.png" title="Travelkhana Home Page" alt="Train Food Service Provider" width="100px" height="84px"/></a></div>
+     <div style="margin-left:300px;width:300px;height: 55px;margin-top:20px;"><img src="/travelkhana/webimages/iamai_3.png" width="300" height="60"/></div>
+     </div>
+    <div class="header_right" style="margin-top: 5px;">       
+    <div class="header_right_Mid_r_right" style="float:left;width:180px;margin-left:497px;"><span class="header_right_Mid_r_left" style="margin-top: -5px; margin-left: 25px;" >
+    <span class="headerRight1left"></span></span><span style="font-size: 14px; float:right; margin-top: 2px;padding-right: 26px;" id="blinking">08800-31-31-31</span> 
+	<br/><span style="font-size: 11px; float:right;">(live operators 7:00am-10pm)</span>   
+
+	</div>
+	
+<div  style="float:left;margin-left:3px;width:40px;height:39px;">
+            <div id="logoutsymw" style="float:right;width:40px;height:38px;display: none;" onclick="loginshow()" onmouseover="mouseover()" onmouseout="mouseout()">
+			<img id="fbk_userw" src="/travelkhana/webimages/loginperson.png" width="40px" style="cursor: pointer;border-radius:3px;" />
+			
+			<div id="logoutbuttonw" style="display:none;width:50px;z-index:9001;background-color: #ffffff;position:absolute;padding-left:2px;padding-top:3px;box-shadow:1px 3px 5px 2px #ccc;" onmouseover="mouseover()" onmouseout="mouseout()">
+			<a id="login_namew" style="border-bottom:1px solid #e9e9e9;  margin-left:2px;cursor: pointer;color:#6a6560;text-decoration: none; font-size: 12px;padding-bottom:3px;white-space:nowrap;display:inline-block;overflow:hidden;text-overflow:ellipsis;float:left;vertical-align:middle;width:84%;"></a>
+			<a style="width:48%;padding-top:3px; float:left;margin-left:2px;cursor: pointer;color:#6a6560;text-decoration: none;padding-bottom:3px;font-size: 12px" onclick="userlogout('tklogin')">Logout</a>
+			</div>
+			
+			</div>
+</div>
+        
+      <div  style="float:left;margin-left:2px;width:60px;height:39px;">
+            	<div>
+            	
+            	<a  onclick="noItem('noItem',true)"  style="text-decoration: none;cursor:pointer;"><span class="headerRight" style="z-index: 100;"></span>
+            	<div style="position: relative;margin-left:38px;margin-top:-33px;float:left"><label id="ordercount" style="z-index: 109;font-size:18px;color:white;font-weight:bolder;font-size:24px;cursor: pointer;">0</label>   </div></a>
+         
+            </div>             
+        </div>
+    
+    </div>
+    
+      <div class="header_right" style="margin-top:25px;height: 20px;">
+          
+      	<div class="header_right_top" style=";width: 860px;">
+      	<div style="border: 0px solid blue;float: left;width: 10%"> <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2FTravelkhana&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=true&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21&amp;appId=112624165578765" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowTransparency="true"></iframe>
+      </div>
+      	<div style="float: left;width: 90%;">
+        	<ul class="header_right_top ul">
+            	<li><a href="/travelkhana/jsp/order.jsp" title="Travelkhana|Food delivery service in trains Home Page">Home</a></li>
+                <li>|</li>
+               <li><a href="/travelkhana/jsp/locations.jsp" title="Locations for food delivery in trains">Locations</a> </li>
+                <li>|</li>
+                <li><a href="/travelkhana/jsp/popularTrainList.jsp" title="Important trains for train food service">Popular Trains</a> </li>
+                <li>|</li>
+                
+                <li><a href="/travelkhana/jsp/userQuery.jsp" title="Request a callback for food delivery in trains">Request CallBack</a></li>
+                <li>|</li>
+                <li><a href="/travelkhana/jsp/groupBooking.jsp" title="Order food for group travel|Group food delivery">Group Travel</a> </li>
+                <li>|</li>
+                <li><a href="/travelkhana/jsp/trackOrder.jsp" title="Booked order status">Track Your Order</a> </li>
+                <li>|</li>
+                <li><a href="http://bit.ly/1a5lLVi" target="_blank"><img src="/travelkhana/webimages/download-app.jpg"></img></a></li>
+               </ul>
+         </div>
+		 <div id="user-info" style=""></div>
+        </div>
+      
+
+      </div>
+    </div>
+    </div>
+    <div style="width:100%;float: left;background-color: white;" class="device_detection_handheld">
+    <div style="border-bottom: 1px solid #e0e0e0;padding-bottom: 2px;width:100%;float: left;height:35px;">
+   	  <div class="header_logo" style="width:100%;float:left;padding-top:0px;margin-top:0px;">
+   	  <div style="width:42px;float: left;margin-left:5px;height:27px;text-align:center;padding-top:8px;">
+   	  <a title="Travelkhana Home Page"><span class="msite_logo"></span></a>
+ 	  </div>
+	  <div style=""><label id="pageTitle" class="headpage_title"></label></div>
+   	  <div style="float:right;height:30px;padding-top:0px;margin-top:0px;z-index:101;position: relative;">   	  
+  	    <div class="header_right_top" style="color:#fdf9ee;float:right;"> 
+			
+			<div style="float:right;">
+			<ul style="width:30px;">
+			<li>
+				<a style="cursor: pointer;color:white;float:left;" onclick="hideshow()" id="name">
+				<span class="msite_menu_bar"></span>
+				</a>
+			
+			<ul id="ulLink" style="display:none;width:135px;z-index:9001;margin-left:-122px;background-color: #f0f0f0;position:absolute;margin-top:30px;border:1px solid #e0e0e0;padding-left:15px;border-radius:2px;padding-top:10px;"><li>
+			<a href="/travelkhana/track-train" style="width:100%;color:black;text-decoration: none;padding-bottom:3px;border-bottom: 1px solid #b4b4b4;font-size: 14px">Track Train</a>
+			<a href="/travelkhana/pnr-status-on-mobile" style="width:100%;color:black;text-decoration: none;padding-bottom:3px;border-bottom: 1px solid #b4b4b4;font-size: 14px">Check PNR Status</a>
+			<a onclick="_gaq.push(['_trackEvent', 'Home', 'callus','tel:08800313131']);window.location='tel:08800313131'" style="width:100%;color:black;text-decoration: none;font-size: 14px">Call Us</a>
+			</li>
+			</ul>
+			</li>
+			
+			</ul>
+			<div id="logoutsym" style="width:28px;float:left;margin-top:4px;display: none;margin-right : 4px;">
+			<img id="fbk_user" src="/travelkhana/webimages/loginperson.png" width="28px" onclick="loginshow()" style="cursor: pointer" />
+			<ul id="logoutbutton" style="display:none;width:90px;z-index:9001;background-color: #f0f0f0;position:absolute;margin-top:3px;border:1px solid #e0e0e0;padding-left:2px;border-radius:2px;padding-top:10px;">
+			<li>
+			<a style="margin-left:15px;color:black;text-decoration: none;font-size: 14px;width:90%;">
+			<label id="login_name" style="margin-left:5px;white-space:nowrap;display:inline-block;overflow:hidden;width:60%;text-overflow:ellipsis;float:left;vertical-align:middle;"></label></a>
+			<a style="width:48%;border-top: 1px solid #b4b4b4;padding-top:5px; float:left;margin-left:10px; cursor: pointer;color:black;text-decoration: none;padding-bottom:3px;font-size: 14px" onclick="userlogout('tklogin')">Logout</a>
+			</li>
+			</ul>
+			</div>
+			<div style="width:52px;float:left;margin-top:6px;height:26px;">
+				<a href="/travelkhana/mobileSite/OrderSummary.jsp" style="text-decoration: none;">
+				<span class="msite_cart"></span>
+            	<div class="orderCountClass" style="padding-left: 7px;padding-top: 2px;">
+            		<label id="ordercount_mb">0</label>
+            	</div></a>
+				
+			</div>
+			<div style="width:38px;float:right;margin-top:4px;">
+			<a href="/travelkhana/jsp/order.jsp"><span class="msite_home"></span></a>
+			</div>
+			</div>
+	     </div>
+   	  </div>
+   	  </div>
+   
+
+        
+        
+        
+        
+        
+        
+
+    </div>
+    </div>
+    </div>
+
+<script type="text/javascript">
+if(window.innerWidth>620){
+	document.getElementById('feedback').style.display='block';
+}
+else{
+	if(window.innerWidth>280){
+		if(document.URL.indexOf("OrderSummary.jsp")!=-1  && window.innerWidth<=620){}
+		else{
+			document.getElementById('feedback').style.display='block';
+	}
+	}
+}
+</script> 
+<div id="noitem_div" class="blanket"  style="display:none;"></div>
+										<div id="noItem" class="contain"  style="display:none;">
+										<div class="close_action">
+										<img  onclick="noItem('noItem',false)" title="Close" alt="Close" src="/travelkhana/images/closebutton.png" width="29" height="20" class="closeImg" />
+										</div>
+												<div id="infodiv" style=" min-height: 100px; overflow: hidden;float:left;width:100%;">
+												<div id="noItms" class="noItms">No items in your cart.
+												</div>
+													<div onclick="noItem('noItem',false)" class="addItms">
+												Add Items</div>												
+												<div class="brwse">
+												Browse
+												</div>
+												<div class="lnks">
+							            	<span class="bullet">>>&nbsp;</span><a class="nwlnk" href="/travelkhana/jsp/order.jsp" title="Travelkhana|Food delivery service in trains Home Page">Home</a>
+							             &nbsp;&nbsp; <span class="bullet">>>&nbsp;</span> <a class="nwlnk" href="/travelkhana/jsp/locations.jsp" title="Locations for food delivery in trains">Locations</a>
+               							&nbsp;&nbsp;<span class="bullet">>>&nbsp;</span><a class="nwlnk" href="/travelkhana/jsp/popularTrainList.jsp" title="Important trains for train food service">Popular Trains</a>
+ 	                					&nbsp;&nbsp;<span class="bullet">>>&nbsp;</span><a class="nwlnk" href="/travelkhana/jsp/userQuery.jsp" title="Request a callback for food delivery in trains">Request CallBack</a>
+ 	             						</div><div class="seperate">
+												OR</div><div class="callhead">
+												<span class="callUs">Call &nbsp;&nbsp;</span>08800-31-31-31
+												</div></div></div> 
+<div id="no_order_div" class="no_order_cart" style="display:none;">
+Your cart has been expired.
+<div style="width:100%;text-align: center;float: center;">
+<input type="button" value="Place Order" class="cancelBtn" style="width:100px;height: 25px;" onclick="disableExpCart()"/>
+</div>
+</div>
+<div id="mobile_web_back" class="mobile_web_back" style="display: none;" onclick="disableExpCart()"></div>
+<script type="text/javascript">
+checkcookie();
+</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>fbLogin</title>
+<style>
+.fblogin_back{
+	background-color:#111111;
+	opacity:0.65;
+	position:fixed;
+	z-index:9001;
+	top:0px;
+	left:0px;
+	width:100%;
+	min-height:100%;
+	float:left;}
+
+.social-login{
+	left:0;
+	right:0;
+	top:11%;
+	margin:auto;
+	position:fixed;
+	padding:auto;
+	width:40%;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	text-align:center;
+	color:#666564;
+	background-color:#ffffff;
+	box-shadow:1px 3px 5px 2px #ccc;
+}
+.skip{
+	padding:0px;
+	margin:0px;
+	font-size:10px;
+	text-align:right;
+	padding-right:10px;
+	cursor: pointer;
+}
+.skip a{
+	color:#666564;
+	text-decoration:underline;
+}
+
+.skip a:hover{
+	color:#666564;
+	text-decoration:underline;
+}
+
+.logo-div{
+	background-image:url(/travelkhana/webimages/logo.jpg);
+	width:127px;
+	height:114px;
+	background-repeat:no-repeat;
+	background-position:top center;
+	margin:auto;
+	padding:auto;
+}
+
+@media screen and (max-width: 550px)
+ {
+    .social-login{
+	margin:auto;
+	padding:auto;
+	width:85%;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	text-align:center;
+	color:#666564;
+	background-color:#ffffff;
+	box-shadow:1px 3px 5px 2px #ccc;
+}
+.logo-div{
+	display:none;
+}
+
+}
+</style>
+</head>
+<body>
+<div id="fblogin_back" class="fblogin_back" style="display: none;"></div>
+<div class="social-login" id="fblogin_div" style="display:none;z-index:9002;">
+<br/>
+<a href="http://www.travelkhana.com"><div class="logo-div">&nbsp;</div></a>
+<br/>Login with your Facebook or Google+ account
+<br/><br/>
+
+<img src="/travelkhana/webimages/facebook.jpg" width="175" height="34" align="center" style="cursor: pointer;margin-left: 5px;margin-top: 5px" onClick="fbbutton()"/>
+<img src="/travelkhana/webimages/googleplus.jpg" width="175" height="34" align="center" style="cursor: pointer;margin-left: 5px;margin-top: 5px" onClick="gplusbutton()"/>
+<br/><br/>
+<p class="skip"><a onclick="skip()">Skip</a></p>
+<br/>
+</div>
+<script type="text/javascript"  src="/travelkhana/js/fbloginjs.js?v=1.3"></script>
+<script type="text/javascript">
+if((navigator.userAgent.indexOf("(Android; Opera Mini")==-1)&&(navigator.userAgent.indexOf(".NET CLR")==-1)){
+	var fbPopUp=false;
+	if((document.URL.indexOf("vendorMap.jsp")!=-1)||(document.URL.indexOf("vendorMap2.jsp")!=-1)||(document.URL.indexOf("/trainList.jsp")!=-1)||(document.URL.indexOf("/food-delivery-at")!=-1)){
+		var fbPopUp=true;
+	}
+	checkLoginCookie(fbPopUp);
+}
+</script>
+</body>
+</html>
+
+<div id="cartexp_back" class="cartexp_back" style="display: none;" onclick="disableExpCart();"></div>
+<div id="expCart" style="display: none;z-index:9002;" class="pop-tbl">
+<table border="0" align="center" cellpadding="0" cellspacing="0" class="pop-tbl" style="z-index:9002;">
+  <tr>
+    <td align="center"><img src="/travelkhana/webimages/oops-img.jpg" width="138" height="116" /></td>
+    
+    
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</div>
+</body>
+</html>
+
+<script type="text/javascript" src="../js/jquery-latest.js"></script>
+<script type="text/javascript" src="../js/jquery.autocomplete.js"></script>
+
+<script type="text/javascript">
+var $j = jQuery.noConflict();
+</script>
+
+<script type="text/javascript">
+function IsNumeric(strString){
+	var strValidChars = "0123456789";
+	var strChar;
+	var blnResult = true;
+	if (strString.length == 0) return false;
+	// test strString consists of valid characters listed above
+	for (i = 0; i < strString.length && blnResult == true; i++){
+		strChar = strString.charAt(i);
+		if (strValidChars.indexOf(strChar) == -1)
+		{
+			blnResult = false;
+		}
+	}
+	return blnResult;
+}
+function clearText(id,id2){
+	document.getElementById(id).value='';
+	document.getElementById(id2).value='';
+}
+
+function validatedata(n){
+	var intRegex = /^\d+$/;
+	//alert(document.getElementById('train'+n).value.length);
+	if(document.getElementById('pnr'+n).value.length<2){
+		if(validatesrcstn()){
+			if(validatedeststn()){
+		if(document.getElementById('datepicker'+n).value.length<2){
+	 		alert("Please enter date");
+	 		document.getElementById('datepicker'+n).focus();
+	 	}else{
+		 	if(document.getElementById('train'+n).value.length>1){
+			 	var train1=document.getElementById('train'+n).value;
+				if(train1.indexOf("/")==-1 || train1.indexOf("/")<4 || train1.indexOf("/")>5){
+					alert("Please select the train from list");
+				}else if(IsNumeric(train1.substring(0,train1.indexOf('/')))==false){
+					alert("Train number/ Train name is not valid");
+				}else if(train1.substring(train1.indexOf('/')+1,train1.length).length < 5){
+					alert("Train number/ Train name is not valid");
+				}else{
+					document.input_form.action="vendorMap.jsp";
+					document.input_form.submit();
+				}	
+			}else{
+				document.input_form.action="trainList.jsp";
+				document.input_form.submit();
+			}
+	 	}
+			}
+		}
+	}else if(document.getElementById('pnr'+n).value.length == 10 && intRegex.test(document.getElementById('pnr'+n).value)){
+		document.input_form.action="searchByPnr.jsp";
+		document.input_form.submit();
+	}else{
+		document.getElementById('errorp').firstChild.nodeValue='Pnr must be of 10 digits';
+		document.getElementById('pnr'+n).focus();
+	}
+}
+$(function() {	
+	$( "#datepicker1" ).datepicker({ dateFormat: 'dd-mm-yy' ,numberOfMonths: 1, showCurrentMonthAtPos: 1, minDate: '-2',maxDate:'+4M',
+                                   beforeShow: function (textbox, instance) {   
+                      					instance.dpDiv.css({
+                							marginTop: (22-textbox.offsetHeight) + 'px',
+                							marginLeft: textbox.offsetWidth-220 + 'px'});
+            							   }					
+											});
+});
+	$j(document).ready(function(){
+	$j("#train1").autocomplete(keyTrains,{max:30,matchContains:true,width:420}).result(function(evt,item){
+        if(item!=null && item.length==1){
+                var tar=item[0].split("/");
+                evt.target.value=item[0];
+               
+                
+                document.forms[0].to.value=$.trim(tar[1]);
+                
+               
+              
+                
+        }
+});
+});
+</script>
+<div id="website" class="website" style="width: 100%; float:left;">
+<div style="width: 100%; height: 300px; float:left;">
+<div style="height:35px;width:1012px;"></div>
+
+<div class="a"  style="float: left; margin-top: -5px;width: 45%;height: 260px;border:0px solid black;">
+<form name="input_form" id="input_form" method="get" action="">
+<div style="border-top:1px solid #9f2200;width: 451px;height: 25px;color:#a02200;background-color:#f2f2f2;font-weight: bolder; padding-top: 7px;padding-left: 8px;">
+<h1 style="margin:0px;font-weight: bolder;font-size:14px;width: 215px;float:left; ">Book Your Food In Train</h1><font face="comic sans MS, new york, times" style="margin-left: 130px; font-size: 11px;"> Zero booking fees</font></div>
+
+
+<div style="width: 100%">
+<div class="leavinf_form">
+               	  <div class="leavinf_L" style="width: 200px;font-weight: normal;font-size: 11px;">Train Name or No (optional)</div>
+   </div>
+   <div class="leavinf_inputs">
+               	  <div class="leavinf_L" style="width: 200px;">
+               	    <input type="text" onblur="_gaq.push(['_trackEvent', 'HomePage', 'trainno', document.getElementById('train1').value]);" onclick="return clearText('train1')" class="input_box" id="train1" name="train1"  style="width: 150px;" placeholder="Enter train" />
+               	  </div>
+   </div>  
+  <div class="leavinf_form">
+               	  <div class="leavinf_L_new" style="width:145px;font-weight: normal;font-size: 11px;">Leaving from<span class="red_star">*</span></div>               	  
+                  <div class="leavinf_C" style="width:145px;font-weight: normal;font-size: 11px;">Going to<span class="red_star">*</span></div>  
+                   <div class="leavinf_R_new" style="float: left;font-weight: normal;font-size: 11px;width:145px;margin-left: 13px;">Departure date<span class="red_star">*</span></div>
+  </div>
+  <div class="leavinf_inputs">
+               	   <div class="leavinf_L_new" style="width: 145px;"><input type="text" onblur="_gaq.push(['_trackEvent', 'HomePage', 'goingfrom', document.getElementById('from1').value]);" onclick="return clearText('from1','fromstn')" class="sml_input_box_new" id="from1" name="from1" onfocus="stationByTrain();" placeholder="Enter a station" style="width: 120px;"  />
+               	   <input type="hidden" id="fromstn" name="fromstn"  >
+               	   </div>
+                  <div class="leavinf_C" style="width: 145px;"><input type="text" onblur="_gaq.push(['_trackEvent', 'HomePage', 'goingto', document.getElementById('to1').value]);"  onclick="return clearText('to1','tostn')" class="sml_input_box_new" id="to1" name="to1" onfocus="toStationByTrain();" placeholder="Enter a station" style="width: 120px;" />
+                  <input type="hidden" id="tostn" name="tostn"  >
+                  </div>
+                   <div class="leavinf_C" style="float: left;width: 130px;">
+                  	<div><input type="text" value="23-9-2015
+"   class="sml_input_box_new" id="datepicker1" name="datepicker1" readonly="readonly"  style="width: 100px;"/></div>
+                    <div class="calander"><img alt="calender" src="../webimages/calander.png" onclick="javascript:document.getElementById('datepicker1').focus();" height="14" width="14" /></div>
+                  </div>                 
+  </div>
+    
+    <div class="leavinf_inputs">         
+   <div class="mouse_ho_m_f_bottom_Top_n" style="width: 450px; float: left;">
+               	  <div class="leavinf_or" style="width: 450px;">OR</div>
+   </div>             
+    </div> 
+    <div class="leavinf_form" style="margin-top:0px;">
+               	  <div class="leavinf_L" style="font-weight: normal;font-size: 11px;">PNR No.</div>
+    </div>  
+    <div class="leavinf_inputs" style="">
+           	    <div class="leavinf_L_claender" style="width: 150px;">
+                  	<div><input type="text" onkeydown="validateNumber(event,'pnr1','errorp')" onkeyup="validateNumber(event,'pnr1','errorp')" class="sml_input_box" id="pnr1" name="pnr" maxlength="10" value="" placeholder="Enter pnr no" style="width: 120px;"/></div>
+                  		</div>
+                  		
+   <div class="mouse_ho_m_f_bottom_right" style="float: left;margin-top:0px;width: 80px;margin-left: 170px; border:0px solid black;">
+        <input type="button" class="search_btn" style="font-size: 14px;" value="Search Food" onclick="javascript:validatedata('1');" />
+   </div>        	   
+      <div style="color:red;font-size:10px;float:left;width:274px;margin-top:8px;">
+                  		<label id="errorp" > </label>
+                  		</div>
+                  		 
+    </div>
+  
+</div>
+</form>
+</div>
+<div class="b" style="float:left; width: 46%;margin-top: -10px;height: 230px;margin-left: 69px;border: 0px solid black;">
+
+<div id="container"  style="width:470px;">
+	<div id="content">
+		<div id="slider">
+			<ul>	
+				<!-- <li style="width:470px;"><img style="cursor:pointer;" onclick="window.location.href='http://www.travelkhana.com/travelkhana/jsp/mobileapp.jsp'" src="http://www.travelkhana.com/travelkhana/webimages/appbanner.jpg" alt="Travelkhana Offer" width="460" height="222" /></li>  -->
+				<li  style="width:470px;"><a href="http://www.travelkhana.com/travelkhana/jsp/wow100.jsp" target="_blank" ><img  src="../webimages/web.jpg" alt="download travelkhana app" width="460" height="222" style='border-radius: 20px;cursor:pointer;'/></a></li>
+				<li id="slidImg" style="width:470px;display: none;"><a href="http://www.travelkhana.com/travelkhana/jsp/TravelKhana-UBER-Campaign.jsp" target="_blank" ><img style="cursor:pointer;border-radius: 20px;"  src="../webimages/Website-banneruber.jpg" alt="Get Free Uber Ride Of Rs.300" width="460" height="222"/></a></li>
+							</ul>
+		</div>
+	</div>
+</div>
+ <div style="float:left;width: 99%;border: 0px;;margin-top:2px;margin-left: -5px;">  
+    <div class="visa"></div>
+    <div class="mastercard"></div>
+    <div class="netbanking"></div>
+    <div class="cashondelivery"></div>  
+    <a href="https://www.facebook.com/Travelkhana" target="_blank" style="float: right;"><span class="facebook"></span></a>
+    <a href="http://twitter.com/Travelkhana" target="_blank" style="float: right;"><span class="twitter"></span></a>
+    <a href="https://plus.google.com/u/0/b/110489037488385778286/+Travelkhanaservice/about" target="_blank" style="float: rigth;"><span class="google_plus"></span></a>
+</div>
+</div>
+</div>
+<div style="width: 100%;height: 600px;float: left;">
+<div class="c" style="width: 45%;float: left;" >
+<div style="width: 451px;color:#a02200;background-color:#f2f2f2;border-top:1px solid #9f2200;font-size: 14px;padding-top: 7px;height:25px; padding-top: 7px;padding-left: 8px;"><b>Call Us For Food Delivery
+<font style="margin-left: 142px;">(7:00am to 10pm)</font></b></div>
+<div class="header_right_Mid_r_right" style="float:left;padding-right:10px;width:446px;border:0px solid blue;">
+     <span class="header_right_Mid_r_left" style="margin-left: 115px;margin-top: 13px;"><img alt="Call travelkhana" src="/travelkhana/webimages/phone_icon13.png" width="35px" height="35px"/></span>
+     <span style="font-size: 20px; float:left; margin-left: 40px;margin-top: 22px;" id="blinking">
+     <span style="float:left;width:100%">08800-31-31-31</span>
+     </span>
+	 <br/></div><br/>			
+<div id="locations" style="margin-top: 55px;height:182px;">
+<div class="options" style="font-size: 11px;width: 456px;text-align: justify;">
+		<p align="justify" style="line-height:24px;">
+		
+				<a href="/travelkhana/food-delivery-at-new delhi-railway-station-ndls" title="Food Delivery In Trains At NEW DELHI Railway Station.">NEW DELHI</a>
+				<a href="/travelkhana/food-delivery-at-jhansi junction-railway-station-jhs" title="Food Delivery In Trains At JHANSI JUNCTION Railway Station.">JHANSI JUNCTION</a>
+				<a href="/travelkhana/food-delivery-at-bhopal junction-railway-station-bpl" title="Food Delivery In Trains At BHOPAL JUNCTION Railway Station.">BHOPAL JUNCTION</a>
+				<a href="/travelkhana/food-delivery-at-bhusaval junction-railway-station-bsl" title="Food Delivery In Trains At BHUSAVAL JUNCTION Railway Station.">BHUSAVAL JUNCTION</a>
+				<a href="/travelkhana/food-delivery-at-vadodara junction-railway-station-brc" title="Food Delivery In Trains At VADODARA JUNCTION Railway Station.">VADODARA JUNCTION</a>
+				<a href="/travelkhana/food-delivery-at-nagpur-railway-station-ngp" title="Food Delivery In Trains At NAGPUR Railway Station.">NAGPUR</a>
+				<a href="/travelkhana/food-delivery-at-surat-railway-station-st" title="Food Delivery In Trains At SURAT Railway Station.">SURAT</a>
+				<a href="/travelkhana/food-delivery-at-ahmedabad jn-railway-station-adi" title="Food Delivery In Trains At AHMEDABAD JN Railway Station.">AHMEDABAD JN</a>
+				<a href="/travelkhana/food-delivery-at-ratlam junction-railway-station-rtm" title="Food Delivery In Trains At RATLAM JUNCTION Railway Station.">RATLAM JUNCTION</a>
+				<a href="/travelkhana/food-delivery-at-kota junction-railway-station-kota" title="Food Delivery In Trains At KOTA JUNCTION Railway Station.">KOTA JUNCTION</a>
+				<a href="/travelkhana/food-delivery-at-itarsi junction-railway-station-et" title="Food Delivery In Trains At ITARSI JUNCTION Railway Station.">ITARSI JUNCTION</a>
+				<a href="/travelkhana/food-delivery-at-panvel-railway-station-pnvl" title="Food Delivery In Trains At PANVEL Railway Station.">PANVEL</a>
+				<a href="/travelkhana/food-delivery-at-mathura junction-railway-station-mtj" title="Food Delivery In Trains At MATHURA JUNCTION Railway Station.">MATHURA JUNCTION</a>
+				<a href="/travelkhana/food-delivery-at-kanpur central-railway-station-cnb" title="Food Delivery In Trains At KANPUR CENTRAL Railway Station.">KANPUR CENTRAL</a>
+				<a href="/travelkhana/food-delivery-at-abu road-railway-station-abr" title="Food Delivery In Trains At ABU ROAD Railway Station.">ABU ROAD</a>
+				<a href="/travelkhana/food-delivery-at-sawai madhopur junction-railway-station-swm" title="Food Delivery In Trains At SAWAI MADHOPUR JUNCTION Railway Station.">SAWAI MADHOPUR JUNCTION</a>
+				<a href="/travelkhana/food-delivery-at-akola jn-railway-station-ak" title="Food Delivery In Trains At AKOLA JN Railway Station.">AKOLA JN</a>
+				<a href="/travelkhana/food-delivery-at-allahabad jn-railway-station-ald" title="Food Delivery In Trains At ALLAHABAD JN Railway Station.">ALLAHABAD JN</a>
+				<a href="/travelkhana/food-delivery-at-varanasi jn-railway-station-bsb" title="Food Delivery In Trains At VARANASI JN Railway Station.">VARANASI JN</a>
+				<a href="/travelkhana/food-delivery-at-ambala cantt junction-railway-station-umb" title="Food Delivery In Trains At AMBALA CANTT JUNCTION Railway Station.">AMBALA CANTT JUNCTION</a>
+				<a href="/travelkhana/food-delivery-at-solapur jn-railway-station-sur" title="Food Delivery In Trains At SOLAPUR JN Railway Station.">SOLAPUR JN</a>
+				<a href="/travelkhana/food-delivery-at-ajmer-railway-station-aii" title="Food Delivery In Trains At AJMER Railway Station.">AJMER</a>
+				<a href="/travelkhana/food-delivery-at-jabalpur-railway-station-jbp" title="Food Delivery In Trains At JABALPUR Railway Station.">JABALPUR</a>
+				<a href="/travelkhana/food-delivery-at-rewari-railway-station-re" title="Food Delivery In Trains At REWARI Railway Station.">REWARI</a>
+				<a href="/travelkhana/food-delivery-at-patna jn-railway-station-pnbe" title="Food Delivery In Trains At PATNA JN Railway Station.">PATNA JN</a>
+			</p>
+			<p style="margin-left: 380px;"><a href="/travelkhana/jsp/locations.jsp" title="More Food Delivery Locations">More...</a></p>
+			</div>
+</div>
+</div>
+<div class="d" style="width: 46%;float: left;margin-left: 70px;">
+<div style="height: 140px;">
+<div style="border-top:1px solid #9f2200;height: 25px;background-color:#f2f2f2;padding-top: 7px;margin-left: 0px;margin-bottom: 10px;"><font style="color:#a02200;margin-left: 6px;margin-right: 161px;font-size:14px;"><b>Latest Food Orders</b></font>
+<span id="people_count" style="font-size:14px;color:#a02200; font-family: comic sans MS, new york, times" >1066603 people served</span></div>
+
+ 	<div id="" style="display: block;">
+ 	<iframe src="recentOrders.jsp" frameborder="0" width="460px" height="115px" scrolling="no"></iframe></div> 
+    </div>  
+     <div style="margin-top:32px;border-top: 1px dotted #e4e4a4;"></div>   
+		<div id="" style="display: block;margin-left: 5px;margin-top: 5px;width:460px;"><font style="font-size:17px; font-weight: bold;padding-bottom: 10px;padding-top:7px;color: #404040;">Media</font><br/>
+	    <div id="s1" style="margin:0; width:auto;height: 70px;"> 	      
+	      <div class="slide" style="width:455px;margin-top: 3px">
+	      <a href="http://blogs.wsj.com/indiarealtime/2013/07/22/meals-on-wheels-online/" title="The Wall Street Journal: Meals on Wheels Online" target="_blank"><span class="media1"></span></a>
+	      <a href="http://travelkhana.com/travelkhana/jsp/dainikBhaskar.html" title="DainikBhaskar: Travelkhana In Solving Quality Food Problems " target="_blank"><span class="media2"></span></a>
+	      <a href="http://www.youtube.com/watch?v=nJiUDeDMO5o" title="CNBC Awaaz: Online Food Delivery Service " target="_blank"><span class="media3"></span></a>
+	      &nbsp;<a href="media.jsp" style="position:relative;left:50px;top:30px;font-size: 11px;">More...</a>
+	      </div>	       
+        </div>
+     
+        <pre><code class="mix"></code></pre>    
+
+</div>
+</div>
+
+<div style="text-align: justify;width: 1024px;float: left;font-family: Arial, Helvetica, sans-serif;font-size:12px;">
+<h1 style="font-size:14px;margin-left:0px;">Great Food in Train<br></h1>
+
+<span style="padding-bottom: 5px;float: left;line-height: 17px;">If you love the rush of travelling in trains but aren't sure what kind of food you will get while travelling, do not worry! TravelKhana - an award winning company is here to serve you. If you are interested in going on a long or short trip but worried about the food you will get, we have a surprise for you. Our delicious food has been relished by both kids and adults alike. And that is why we have been honoured with two coveted awards: IAMAI Travel Website 2014 and CNBC TV 18 Startup of the Year 2013. We make food delivery convenient for you and we cannot do it without our food partners in various cities around India. Enjoy cuisines from different cities and with being a travel enthusiast, become a food aficionado too.   </span><br/>
+<span style="padding-bottom: 5px;float: left;line-height: 17px;">We pay immense attention to three important things - Availability, Hygiene and Flavour. We always ensure the customers get their food on time and it is exactly what they ask for. While you are on a train, you can call us in the middle of the night or at dawn, if you have placed your order with us, we will get you the food you wanted. We cover thousands of train routes every day in more than 500 cities. And this has made our customer count over 9 lakhs and is increasing day by day. So just call us or book your order online, you can get our great services while travelling by train.  </span><br/>
+<span style="padding-bottom: 5px;float: left;line-height: 17px;">We have numerous cuisines to pick from like North Indian, South Indian, Chinese, Mughlai, Hyderabadi, Continental, Italian, Non-Vegetarian, Vegetarian, and, of course, soft drinks. These are just few we listed down, go through our menu to be stunned! Besides all this, we ensure you that the local food suppliers, we have partnered with, cook hygienic food so that you do not have to rely on unhealthy snacks. </span><br/> 
+<span style="padding-bottom: 5px;float: left;line-height: 17px;">Payments can be made directly online while placing the order or you can pay on delivery of the food too. And guess what? You can use our site to surprise someone with delicious food who will be travelling by train! How amazing is this idea, right? This will be one incredible gift to present anyone with. </span><br/> 
+<span style="padding-bottom: 5px;float: left;line-height: 17px;">So, call us and place your order and have a memorable journey with the most flavoursome and healthy dishes! </span><br/> 
+
+
+</div>
+</div>
+<div class="footer_main" style="border-top: 1px dotted #a4a4a4;">
+       	  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<style type="text/css">
+.verisign_verify{width:74px;height:35px;background: url(/travelkhana/webimages/secure_imgs.jpg) 0 0;float: left;}
+.norton_verify{margin-left:10px;width:67px;height:35px;background: url(/travelkhana/webimages/secure_imgs.jpg) 87px 0px;float: left;}
+.visa_verify{margin-left:10px;width:76px;height:35px;background: url(/travelkhana/webimages/secure_imgs.jpg) 0px 35px;float: left;}
+.pci_verify{margin-left:10px;width:109px;height:35px;background: url(/travelkhana/webimages/secure_imgs.jpg) 108px 35px;float: left;}
+</style>
+<script type="text/javascript" language="Javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+	var $jjj = jQuery.noConflict();
+</script>
+<script type="text/javascript">
+$jjj(document).ready(function() {
+
+	
+
+	
+	//toggle hide/show shout box
+	$jjj(".headertop").click(function (e) {
+		//get CSS display state of .toggle_chat element
+		var toggleState = $jjj('.toggle_chat').css('display');
+		
+		//toggle show/hide chat box
+		$jjj('.toggle_chat').slideToggle();
+		
+		//use toggleState var to change close/open icon image
+		if(toggleState == 'block')
+		{
+			$jjj(".headertop div").attr('class', 'open_btn');
+		}else{
+			$jjj(".headertop div").attr('class', 'close_btn');
+			document.getElementById('error').innerHTML="";
+		}
+		 
+		 
+	});
+});
+
+</script>
+<script language="javascript" type="text/javascript">
+
+function validateNumber(evt,phone_no) {
+	   var theEvent = evt || window.event;
+	   var key = theEvent.keyCode || theEvent.which;
+	   key = String.fromCharCode( key );
+	   var reg=/[-!@#$%^&*()_+|~=`{}\[\]:";'<>?,.\/\ \\\\\]|[a-z]|[A-Z]/;
+	   var regex = /^([^0-9]*)$/;
+	   
+	   try
+	   {if(document.getElementById(phone_no).value.length<11){
+		  
+		   if(reg.test(document.getElementById(phone_no).value.substring(document.getElementById(phone_no).value.length-1,document.getElementById(phone_no).value.length))){
+			   document.getElementById('error').innerHTML='Only numbers are allowed';
+			   document.getElementById(phone_no).value=document.getElementById(phone_no).value.substring(0,document.getElementById(phone_no).value.length-1);
+		   }
+		   else	if( !regex.test(key)&&reg.test(key) ) {
+		   document.getElementById('error').innerHTML='Only numbers are allowed';
+	     theEvent.returnValue = false;
+	     if(theEvent.preventDefault) theEvent.preventDefault();
+	   }else if(document.getElementById(phone_no).value.charAt(0)=='0'){
+		  
+		 document.getElementById(phone_no).value=document.getElementById(phone_no).value.substring(0,document.getElementById(phone_no).value.length-1);;
+		 document.getElementById('error').innerHTML='Number should not start with 0';
+	   }
+	 }
+	   }catch(e){
+		   alert(e);
+	   }
+}
+
+</script>
+<script type="text/javascript">
+function sendMessage()
+{
+if(document.getElementById('phone_no').value=='')
+{
+document.getElementById("error").innerHTML="Mobile number can not left blank";
+document.getElementById('phone_no').focus();
+return false;
+}
+
+else if(document.getElementById('phone_no').value.length!=10){
+document.getElementById("error").innerHTML="Mobile No. should be 10 digits";
+document.getElementById('phone_no').focus();
+return false;
+}
+else
+{
+	
+	var url_orderLimit="sendMessage.jsp?phone_no="+document.getElementById('phone_no').value;
+	var req = getXMLHTTP();
+	if(req){
+		req.onreadystatechange = function() {
+			if (req.readyState == 4) {
+    			if (req.status == 200) {
+    				document.getElementById('error').innerHTML=req.responseText;
+    				document.getElementById('phone_no').value="";
+    			
+    			}else{
+        			alert("Some problem while using XMLHTTP:\n" + req.statusText);
+    			}
+			}
+		};
+		req.open("GET", url_orderLimit, false);
+		req.send(null);
+	}
+	
+	
+
+}
+
+}
+
+</script>
+<!-- new tracking code -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37839621-1']);
+  _gaq.push(['_setDomainName', 'travelkhana.com']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<script>
+function getXMLHTTP(){
+	var xmlhttp=false;
+	try{
+		xmlhttp=new XMLHttpRequest();
+	}catch(e){
+		try{
+			xmlhttp= new ActiveXObject("Microsoft.XMLHTTP");
+		}catch(e){
+			try{
+				xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+    		}catch(e1){
+    			xmlhttp=false;
+    		}
+		}
+	}
+	return xmlhttp;
+}
+function validate()
+{
+	var filter =/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	if(document.getElementById('emailid_footer').value=="")
+		{
+			return false;
+		}
+	else
+		{
+		if(!filter.test(emailid_footer.value))
+			{ 
+				alert('Valid email id required!'); 
+				return false;
+			}
+		}
+	var req = getXMLHTTP();
+	 try{
+		var strURL="/travelkhana/jsp/submitMailid.jsp?emailid="+document.getElementById('emailid_footer').value;
+		//alert(strURL);
+	
+		document.getElementById('submit_emailid').innerHTML='Please wait..';
+		if(req){
+			req.onreadystatechange = function() {
+				if (req.readyState == 4) {//alert("req"); alert(req.status);
+	        		if (req.status == 200) {//alert("response");
+	        		try{
+	        			document.getElementById('submit_emailid').innerHTML=req.responseText;
+	        			document.getElementById('emailid_footer').value="";}
+	        		catch(e){alert(e);}
+	            	}else{
+	            		alert("There was a problem while using XMLHTTP:\n" + req.statusText);
+	        		}
+	 			}
+			};
+			req.open("GET", strURL, true);
+			req.send(null);
+		}
+	 }catch(e){alert(e);}
+}
+</script>
+<!-- Improvely tracking code 
+<script type="text/javascript">
+
+var im_domain = 'travelkhana';
+
+var im_project_id = 1;
+
+(function(e,t){window._improvely=[];var n=e.getElementsByTagName("script")[0];var r=e.createElement("script");r.type="text/javascript";r.src="https://"+im_domain+".iljmp.com/improvely.js";r.async=true;n.parentNode.insertBefore(r,n);if(typeof t.init=="undefined"){t.init=function(e,t){window._improvely.push(["init",e,t])};t.goal=function(e){window._improvely.push(["goal",e])};t.label=function(e){window._improvely.push(["label",e])}}window.improvely=t;t.init(im_domain,im_project_id)})(document,window.improvely||[])
+
+</script>-->
+<!-- remarketing tag for facebook -->
+<script>(function() {
+
+var _fbq = window._fbq || (window._fbq = []);
+
+if (!_fbq.loaded) {
+
+var fbds = document.createElement('script');
+
+fbds.async = true;
+
+fbds.src = '//connect.facebook.net/en_US/fbds.js';
+
+var s = document.getElementsByTagName('script')[0];
+
+s.parentNode.insertBefore(fbds, s);
+
+_fbq.loaded = true;
+
+}
+
+_fbq.push(['addPixelId', '1390476827867683']);
+
+})();
+
+window._fbq = window._fbq || [];
+
+window._fbq.push(['track', 'PixelInitialized', {}]);
+
+</script>
+<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id=1390476827867683&ev=PixelInitialized" /></noscript>
+<style type="text/css">
+.toggle_chat
+{
+display:none;
+}
+.headertop
+{
+height:20px;
+width:280px;
+ border-top-left-radius: 1em;
+// padding-left:10px;
+ 
+border-top-right-radius: 1em;
+}
+.shout_box {
+	background: #DF3A01;
+	width: 300px;
+	overflow: hidden;
+	position: fixed;
+	bottom: 0;
+	right: 5%;
+	 border-top-left-radius: 1em;
+border-top-right-radius: 1em;
+	z-index:101;
+//	padding-left:10px;
+}
+.shout_box .headertop .close_btn {
+	background: url(http://www.travelkhana.com/travelkhana/webimages/down.jpg) no-repeat;
+	float: right;
+	width: 25px;
+	height: 25px;
+	//background:red;
+}
+
+
+.shout_box .headertop .open_btn {
+	background: url(http://www.travelkhana.com/travelkhana/webimages/up.jpg);
+	float: right;
+	width: 25px;
+	height: 25px;
+	//background:blue;
+}
+
+.shout_box .headertop{
+	padding: 10px 3px 5px 10px;
+	font: 16px 'lucida grande', tahoma, verdana, arial, sans-serif;
+	font-weight: bold;
+	color:#fff;
+	border: 1px solid #DF3A01;
+	border-bottom:none;
+	cursor: pointer;
+}
+.shout_box .headertop:hover{
+	background-color: #FE642E;
+}
+.shout_box .message_box {
+	background: #f9f9f9;
+	min-height: 310px;
+	overflow:auto;
+	border: 1px solid #bbb;
+}
+.shout_msg{
+	margin-bottom: 10px;
+	display: block;
+	border-bottom: 1px solid #F3F3F3;
+	padding: 0px 5px 5px 5px;
+	font: 11px 'lucida grande', tahoma, verdana, arial, sans-serif;
+	color:#7C7C7C;
+}
+.message_box:last-child {
+	border-bottom:none;
+}
+
+.upr
+{
+background:url(http://www.travelkhana.com/travelkhana/webimages/ipad.jpg);
+height:160px;
+//border:1px solid #ddd;
+
+}
+.dwnldtext
+{
+margin:5px;
+padding:5px;
+font-family:  Gill Sans Extrabold, sans-serif;
+font-size:15px;
+}
+.udownpr
+{
+margin:5px;padding:5px;
+height:60px;
+border:1px solid #cccccc;
+background:#fff; 
+-webkit-box-shadow: 0 10px 6px -6px #aaa;
+-moz-box-shadow: 0 10px 6px -6px #aaa;
+box-shadow: 0 10px 6px -6px #aaa;
+}
+</style>
+
+
+</head>
+<body>
+
+<div class="footer1">
+<div style="width: 620px;">
+         <ul style=" width: 620px; float:left;border-right: 1px;border-right-color: grey;border-right-style: dotted;">
+         <li class="horizontal">
+	         <ul>
+	         	 <li class="horizontal"><div style="font-weight: bold;font-size:12px;margin-bottom:4px;">Corporate Information:</div></li>
+		         <li class="horizontal"><a class="nwlnk" href="/travelkhana/jsp/about.jsp" title="About Travelkhana">About Us</a></li>
+		         <li class="horizontal" style="margin-left:7px;"><a class="nwlnk" href="/travelkhana/jsp/team.jsp" title="Team Travelkhana">Team</a></li>
+				 <li class="horizontal" style="margin-left:7px;"><a class="nwlnk" href="/travelkhana/jsp/career.jsp" title="Career Travelkhana">Career</a></li>
+				 <li class="horizontal" style="margin-left:7px;"><a class="nwlnk" href="/travelkhana/jsp/media.jsp" title="Travelkhana Media and Reviews">Media & Reviews</a></li>
+	         </ul>
+         </li>
+         
+         <li class="horizontal" style="margin-top:7px;float:left;padding-right:3px;">
+	        <ul >
+	         	<li class="horizontal"><div style="font-weight: bold;font-size:12px;margin-bottom:4px;margin-top:5px;">Services:</div></li>
+	         	<li class="horizontal"><a class="nwlnk" href="/travelkhana/jsp/order.jsp" title="Travelkhana Home">Order Food</a></li>
+		         <li class="horizontal" style="margin-left:7px;"><a class="nwlnk" href="/travelkhana/jsp/popularTrainList.jsp" title="Food Delivery In Popular Trains">Food In Popular Trains</a></li>
+		         <li class="horizontal" style="margin-left:7px;"><a class="nwlnk" href="/travelkhana/jsp/locations.jsp" title="Food Delivery Locations">Locations & Menu</a></li>
+		         <li class="horizontal" style="margin-left:7px;"><a class="nwlnk" href="/travelkhana/check-pnr-status" title="Pnr Checking">Check PNR status</a></li>
+		          <li class="horizontal" style="margin-left:7px;"><a class="nwlnk" href="/travelkhana/track-train" title="Travelkahana Train Tracking">Track Train</a></li>		        
+		         <li class="horizontal" style="margin-left:7px;"><a class="nwlnk" href="/travelkhana/indian-railways-reservation" title="Indian Railways Online Reservation">Indian Railways Reservation</a></li>
+		       	 <li class="horizontal" style="margin-left:0px;"><a class="nwlnk" href="/travelkhana/indian-railways-time-table" title="Indian Railway Train Schedule">Indian Railways Time Table</a></li>      	
+	         </ul>
+         </li>
+         
+         <li class="horizontal" style="margin-top:7px;float:left;">
+                	<ul >
+                		<li class="horizontal" style="margin-left:3px;"><div style="font-weight: bold;font-size:12px;margin-bottom:4px;margin-top:5px;">Customer Services:</div></li>
+                		<li class="horizontal"><a class="nwlnk" href="/travelkhana/jsp/faq.jsp" title="Travelkhana FAQ's">FAQ</a></li>
+						<li class="horizontal" style="margin-left:7px;"><a class="nwlnk" href="http://www.travelkhana.com/blog" title="Travelkhana Blog">Blog</a> </li>
+                		<li class="horizontal" style="margin-left:7px;"><a class="nwlnk" href="/travelkhana/jsp/contact.jsp" title="Contact Travelkhana">Contact Us</a></li>
+                		<li class="horizontal" style="margin-left:7px;"><a class="nwlnk" href="/travelkhana/jsp/sitemap.jsp" title="Travelkhana Site Map">Site Map</a></li>
+                		<li class="horizontal" style="margin-left:7px;"><a class="nwlnk" href="/travelkhana/jsp/policy.jsp" title="Travelkhana Privacy Policy">Privacy Policy</a></li>
+                		<li class="horizontal" style="margin-left:7px;"><a class="nwlnk" href="/travelkhana/jsp/terms.jsp" title="Travelkhana Terms and Conditions">Terms and Conditions</a></li>
+						<li class="horizontal" style="margin-left:7px;"><a class="nwlnk" href="/travelkhana/jsp/disclaimer.jsp" title="Travelkhana Disclaimer">Disclaimer</a></li>
+                	</ul>
+                </li>
+         </ul>
+         </div>
+         <div style="width:380px; float:right; padding-left: 10px;">
+         	<div style="padding-bottom:15px;float:left;"><font style="font-weight: bold;font-size:12px;">Safe and Secure</font></div>
+         	<div style="float:left;width:360px;margin-bottom:3px;margin-left: -2px;">
+         		<div class="verisign_verify"></div>
+         		<div class="norton_verify"></div>
+         		<div class="visa_verify"></div>
+         		<div class="pci_verify"></div>
+         	</div> 
+        	<div onclick="window.location.href='http://www.travelkhana.com/travelkhana/jsp/restaurant.jsp'" style="cursor:pointer;float:left;border:1px dotted white;border-top:1px dotted grey;font-weight: bold;height:50px;width:350px;text-align:center;margin-top:15px;padding-top:5px;color:#ff7f27;font-size:12px;">
+        	<div style="font-size:16px;color:black;float:left;text-align:center;width:348px;">Restaurant Owner?</div>
+        	<div style="float:left;">        	
+        	JOIN THE TRAVELKHANA NETWORK AND INCREASE YOUR SALES
+        	</div>
+        	</div>
+        	
+        	<div style="text-align:center;cursor:pointer;float:left;border:1px dotted white;border-top:1px dotted grey;font-weight: bold;height:50px;width:340px;text-align:center;margin-top:15px;padding-top:5px;color:#ff7f27;font-size:12px;">
+        	<input type="text" name="emailid_footer" id="emailid_footer" style="width:250px;height:20px;" placeholder="For exciting offers, enter your email id"/>
+        	<input type="button" name="go" class="search_btn" style="background:url(/travelkhana/webimages/search_btn_bg_1.png);width:70px;height:25px;font-size:14px;float:center; font-weight:bold;" value="SUBMIT" onclick="return validate();"/>
+        	<div id="submit_emailid"></div>
+        	</div>
+         </div>
+            	
+
+<div class="copy" > Copyright &copy; 2013 Duronto Technologies Pvt Ltd. All rights reserved.</div>
+</div>
+
+ <!-- Google Code for Remarketing Tag -->
+<!--------------------------------------------------
+Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. See more information and instructions on how to setup the tag on: http://google.com/ads/remarketingsetup
+--------------------------------------------------->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 990399466;
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="pixel" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/990399466/?value=0&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+<!-- Google Code for Remarketing Tag -->
+<!--------------------------------------------------
+Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. See more information and instructions on how to setup the tag on: http://google.com/ads/remarketingsetup
+--------------------------------------------------->
+<script type="text/javascript">
+var google_tag_params = {
+ecomm_prodid: 'REPLACE_WITH_VALUE',
+ecomm_pagetype: 'REPLACE_WITH_VALUE',
+ecomm_totalvalue: 'REPLACE_WITH_VALUE',
+};
+</script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 995252255;
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/995252255/?value=0&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+<div class="shout_box" id="shout_box">
+<div class="headertop">Download and win an iPad*<div class="open_btn">&nbsp;</div></div>
+  <div class="toggle_chat">
+  <div class="message_box">
+  <div class="upr" >
+  </div>
+  
+  <div class="dwnldtext">Download Travelkhana App &
+get a chance to Win an iPad
+<br />
+  <div id="error" style="color:red;height:10px;"></div>
+</div>
+  <div class="udownpr" >
+ <div class="" style="font-family:  Gill Sans Extrabold, sans-serif;font-size:12px;height:20px;"> <strong>Send me the download Link</strong></div>
+  <input type="textbox" id="phone_no" style="width:210px;height:25px;border-radius:5px;border:1px solid #aaa;" maxlength="10" PLACEHOLDER="e.g 9215421547" onkeyup="validateNumber(event,'phone_no');">
+  <input type="button" value="Send" style="border-radius:5px;border:1px solid #b03060;background:#B40404;color:#fff;width:50px;height:28px;" onClick="sendMessage();">
+  
+  </div>
+    <div style="color:#777;float:right;margin-right:5px;font-size:10px" >*T&C</div>
+    </div>
+  
+
+    </div>
+</div>
+
+
+</body>
+</html>
+        </div>
+</div>
+
+
+<!-- -----------------mobile web code -->
+<div id="home_page_app" style="font-family:sans-serif,Georgia,Serif,Times New Roman;" class="home_page_app">
+<div class="book_food_app">BOOK FOOD</div>
+<div class="header_right_top">
+	<div class="header_right_top" onclick="_gaq.push(['_trackEvent', 'Home', 'pnr','http://www.travelkhana.com/travelkhana/mobileSite/pnrSearch.jsp']);window.location='/travelkhana/mobileSite/pnrSearch.jsp'" style="cursor: pointer;">
+		
+			<div class="app_home_imgs"><div class="msite_home_pnr"></div></div>
+			<span class="mobileOrderSpans">
+				<span class="pnr_app">PNR</span>
+				<span class="order_food_app">Order food using PNR</span>
+			</span>
+	
+		<div class="border_img"></div>
+	</div>
+	<div id="opera_train_details" class="header_right_top" onclick="_gaq.push(['_trackEvent', 'Home', 'train detail','http://www.travelkhana.com/travelkhana/mobileSite/mobileOrder.jsp']);window.location='../mobileSite/mobileOrder.jsp'" style="cursor: pointer;">
+		
+			<div class="app_home_imgs" ><div class="msite_home_train"></div></div>
+			<span class="mobileOrderSpans">
+				<span class="pnr_app">TRAIN DETAILS</span>
+				<span class="order_food_app">Order food by entering train details</span>
+			</span>
+		
+		<div class="border_img"></div>
+	</div>
+	<div class="header_right_top" id="opera_mini_callUS" onclick="_gaq.push(['_trackEvent', 'Home', 'callus','tel:08800313131']);window.location='tel:08800313131'" style="cursor: pointer;text-decoration: none;color: black;display: none;">
+		
+			<div class="app_home_imgs"><div class="msite_home_call"></div></div>
+			<span class="mobileOrderSpans">
+				<span class="pnr_app">CALL US</span>
+				<span class="order_food_app">Order food by phone</span>
+			</span>
+		
+		<div class="border_img"></div>
+	</div>
+	<div id="opera_browser" class="header_right_top" style="display:none;" onclick="window.location='https://play.google.com/store/apps/details?id=com.travelkhana'">
+	   <div style="text-align:center;margin-top: 20%;margin-bottom: 10%;">
+			<p>Download our FREE app from <a href="https://play.google.com/store/apps/details?id=com.travelkhana" style="color:#2486ac;text-decoration: none;">
+			Google Play Store&nbsp;<img alt="Travelkhana at playstore" src="/travelkhana/webimages/playstore.jpg" width="20px"  height="22px"  style="vertical-align:middle"  /></a>
+			and order food on the move anywhere on train.</p>
+	   </div>
+	</div>
+</div>
+
+<div id="not_opera_browser" style="display:none;">
+<div id="mobile_web_back" class="mobile_web_back" onclick="disablePopups()" style="display: none;"></div>
+
+<div id="information_msg" class="information_msg2" style="display:block;min-height:335px;vertical-align:middle;padding:2px;width:80%;background-image: url('/travelkhana/webimages/pop-up.png'); background-repeat:no-repeat;background-size: 100% 100%;top: 8%;" >
+	
+	<div style="height: 20px;padding-bottom: 3%;">
+					<a onclick="disablePopups()" style="float: right;"><img title="Close" alt="Close" src="../images/closebutton.png" style="padding-right: 2px;text-decoration: none;" width="29px" height="20px"/></a>
+					</div>
+					
+					<div style=" clear:both;"></div>
+					<div style=" margin:0 auto; padding: 0 auto;width:100%;padding-top:20%;">
+
+<div style="width:90%;text-align:center; margin-top:14px;height:30%;float:right;margin-top: 5%;">
+<div style="width:90%;border:0px solid green;margin-top:100%;float: right;">
+<a href="https://play.google.com/store/apps/details?id=com.travelkhana" style="text-decoration:none;cursor:hand;">
+<input type="button"  value="Download Now"  style="font-family:Verdana, Geneva, sans-serif;
+	font-size:18px;	text-align:center;	color:#ffffff;background-color:#b5061f; 
+	border:2px solid #ffffff;height:30px;float:right;width:80%;padding-right:2%;"/>
+ </a>
+ </div>
+</div>
+<div style="font-size:10px;height:25px; float:right;margin-top:25%; "><a style="text-decoration: none;float:right;margin-right: 15px;color: #232323;font-weight: bold;" href="/travelkhana/jsp/terms.jsp">*T&C Apply</a></div>
+</div>
+
+</div>
+</div>
+</div>
+
+</div>
+
+
+<!-- HOME PAGE POP-UP-DISPLAY -->
+	<div id="pop_div" onclick="infopouupdiv('popUpInfoMenu',false)" style="background-color:#111;opacity: 0.65;position:fixed;z-index: 9001;top:0px;left:0px;width:100%; height:100%; display:none;">			
+	</div>
+	<div id="popUpInfoMenu" style="position: fixed; z-index: 9002; display: none; margin-top: 100px; height: 427px; width: 640px; border: 0px solid blue;left: -80px;  background-image: url(http://www.travelkhana.com/travelkhana/webimages/Subscribe-me-new-chef.png);">
+	<div style="height:30px;cursor:pointer;" onclick="infopouupdiv('popUpInfoMenu',false)">
+		<span class="close" style="background:none;"></span>
+	</div>
+		<div style="margin-top: 285px; margin-left: 145px; margin-right:30px; height:100px; border: 0px solid blue;width:190px;">
+			<input type="text" name="mailaddress" id="mailaddress" style="height:25px; width:175px; margin-left:5px;margin-top:6px ;border:0px solid red;padding-left:10px;" placeholder=" Enter your e-mail here.." onkeydown="if (event.keyCode == 13) document.getElementById('popup_submit').click()"/>
+			<div id="popup_emailid" style="text-align:center;  border:0px solid yellow;">&nbsp;</div>
+			<div style="border:0px solid pink;margin-top:1px; width: 190px; ">
+				<input class="registerpopup" type="button" id="popup_submit" name="submit" value="" style="cursor: pointer;margin-left: 11px;border:0px solid blue; border-radius:3px;" onClick="return popupFunc()"; />
+			</div>
+			<input type="hidden" id="CookieName" value="">
+		</div>
+		<div style="margin-right:0px;height:380px;border:0px solid black;width:260px;margin-left:348px;margin-top:-365px;">
+		<div style="margin-right:0px;height:360px;border:0px solid black;width:260px;cursor:pointer;" onclick="window.open('https://play.google.com/store/apps/details?id=com.travelkhana','_blank')">
+		</div>
+		<div style="height:20px; margin-top:-5px;text-align:right; vertical-align:bottom;font-size:10px;color:#800000 ;border:0px solid #000000;"><a href="http://www.travelkhana.com/travelkhana/jsp/terms.jsp" class='TnC' target="_blank">* T&C Apply</a></div>
+		
+		</div>
+	</div>
+	<script type="text/javascript">
+	document.getElementById('popUpInfoMenu').style.marginLeft=(window.innerWidth-500)/2+"px";
+	</script>
+<script async src="../js/blink.js"></script>
+
+<script>
+function popupFunc()
+{ 
+	var filter =/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	if(document.getElementById('mailaddress').value==""){ 
+		document.getElementById('mailaddress').focus();
+			return false;
+	}else{ 
+		if(!filter.test(mailaddress.value))
+			{  
+			    document.getElementById("popup_emailid").innerHTML = 'Please enter a valid email id!';
+			    return false;
+			}
+		}
+	var req = getXMLHTTP();
+	 try{
+		var strURL="/travelkhana/jsp/submitMailid.jsp?emailid="+document.getElementById('mailaddress').value;
+		//alert(strURL);
+	
+		document.getElementById('popup_emailid').innerHTML='Please wait..';
+		if(req){
+			req.onreadystatechange = function() {
+				if (req.readyState == 4) {//alert("req");
+				if (req.status == 200) {//alert("response");
+	        		try{
+	        			document.getElementById('popup_emailid').innerHTML=req.responseText;
+	        		
+	        			if((document.getElementById('submit_status').innerHTML == "Already registered!")||(document.getElementById('submit_status').innerHTML == "Registered successfully!"))
+	        			{	
+							//SYNTAX :-  document.cookie =  'name=value; expires=Thu, 2 Aug 2001 20:47:11 UTC; path=/'
+							
+	                  		 document.cookie='pWrD4jBo=%7Eorder%7E; expires=Fri, 1 Jan 2016  12:00:00 GMT; path=/';
+	                  		 setTimeout(function() {infopouupdiv('popUpInfoMenu',false);}, 3000);
+	                  	}
+	        			//alert(document.getElementById('submit_status').innerHTML);
+	        			if((document.getElementById('submit_status').innerHTML).indexOf("Please submit again!")>-1)
+	        					{
+	        				
+	        				//var interval=setInterval(function() {infopouupdiv('popUpInfoMenu',true);}, 10);
+	        				//setTimeout(function(){ clearInterval(interval); }, 3000);
+	        				infopouupdiv('popUpInfoMenu',true);
+	        					}
+	        			document.getElementById('mailaddress').value="";
+	        			/* setTimeout(function() {infopouupdiv('popUpInfoMenu',false);}, 3000); */
+	        			}catch(e){alert(e);}
+	            	}else{
+	            		alert("There was a problem while using XMLHTTP:\n" + req.statusText);
+	        		}
+	 			}
+			};
+			req.open("GET", strURL, true);
+			req.send(null);
+		}
+	 }catch(e){alert(e);}
+}
+function infopouupdiv(windowname,open) {
+	
+	if(open && document.getElementById('noitem_div').style.display!='block'){
+	document.getElementById('pop_div').style.display='block';
+	document.getElementById('popUpInfoMenu').style.display='block';
+	document.getElementById('mailaddress').focus();
+	}else{
+		document.getElementById('pop_div').style.display='none';
+		document.getElementById('popUpInfoMenu').style.display='none';
+	}
+}
+</script>
+
+<!-- INVITE REFERRAL 
+<div id='invtrflfloatbtn'></div>
+<script>
+if(window.innerWidth>620){
+var invite_referrals = window.invite_referrals || {}; (function() { 
+	invite_referrals.auth = { bid_e : 'B552A52A7F3DD492175C79FB7CD9404B', bid : '496', t : '420', email : ''};	
+var script = document.createElement('script');script.async = true;
+script.src = (document.location.protocol == 'https:' ? "//d11yp7khhhspcr.cloudfront.net" : "//cdn.invitereferrals.com") + '/js/invite-referrals-1.0.js';
+var entry = document.getElementsByTagName('script')[0];entry.parentNode.insertBefore(script, entry); })();
+}
+</script>
+-->
+
+</body>
+
+</html>

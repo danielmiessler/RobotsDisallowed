@@ -1,0 +1,413 @@
+<!doctype html>
+<!--[if (lte IE 9)]> <html class="unsupported-browser" lang="en"  ng-app="circleApp" ng-strict-di> <![endif]-->
+<!--[if (gte IE 10)|!(IE)]><!--> <html lang="en" ng-app="circleApp" ng-strict-di> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="description" content="Circle is a digital currency company that makes it easy to exchange, store, send and receive bitcoin."/>
+
+<title>Circle</title>
+
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="stylesheet" href="/assets/application-412f883c81ccbe363b07d6a3dc9051ff.css">
+<!--[if lt IE 9]>
+<script type="text/javascript" src="/assets/application-ie-d30681fd6aee31b41578df536cee291e.js"></script>
+<![endif]-->
+
+
+
+
+
+<link rel="apple-touch-icon-precomposed" href="/assets/touch/apple-touch-icon-precomposed-1661e3eaf626fca5c0fadec52555b292.png">
+<link rel="apple-touch-icon-precomposed" sizes="76x76" href="/assets/touch/apple-touch-icon-76x76-precomposed-32df719b7dc48dea41645c1be56dd6bb.png">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="/assets/touch/apple-touch-icon-120x120-precomposed-74de1fb2a1636656a9df4d08b1791560.png">
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="/assets/touch/apple-touch-icon-152x152-precomposed-c614cc9eb359cec818aece97a56caa0e.png">
+<link rel="icon" sizes="196x196" href="/assets/touch/favicon-196x196-0289e14279623cf4d4506f0bc9791914.png">
+</head>
+<body ng-class="{'blur-content': blurContent, 'system-message': showingSystemMessage }" lang="en">
+  <div id="BCLDGuidDiv" style="border: 0px; width: 0px; height: 0px;"></div>
+  <div id="BCLDflashplayer" style="border: 0px; width: 0px; height: 0px;"></div>
+
+  <div snap-drawer ng-cloak ng-if="isSignedIn()" ng-controller="NavbarController">
+    <div class="drawer-close" snap-toggle><div ys-icon-close></div></div>
+    <img ng-src="{{ currentCustomer.avatarUrlMedium }}" class="snap-drawer-customer-avatar">
+    <div class="snap-drawer-customer-name">{{ currentCustomerFullName }}</div>
+    <ul>
+      <li><a href="/accounts" snap-toggle><span ys-icon-user-account></span><span>{{ "index.drawer.account" | i18next }}</span></a></li>
+      <li><a href="/transaction-history" snap-toggle><span ys-icon-request></span><span>{{ "index.drawer.transactions" | i18next }}</span></a></li>
+      <li><a href="/send" snap-toggle><span ys-icon-spend></span><span>{{ "index.drawer.send" | i18next }}</span></a></li>
+      <li><a href="/request" snap-toggle><span ys-icon-receive></span><span>{{ "index.drawer.request" | i18next }}</span></a></li>
+      <li ng-class="{'disabled': disableDepositsAndWithdrawals() }">
+        <a href="/deposit" snap-toggle>
+          <span ys-icon-deposit></span>
+          <span>{{ "index.drawer.deposit" | i18next: { context: currentCustomer.baseCurrencyCode !== 'BTC' ? 'fiat' : 'btc' } }}</span>
+        </a>
+      </li>
+      <li ng-class="{'disabled': disableDepositsAndWithdrawals() }">
+        <a href="/withdraw" snap-toggle>
+          <span ys-icon-withdrawal></span>
+          <span>{{ "index.drawer.withdraw" | i18next: { context: currentCustomer.baseCurrencyCode !== 'BTC' ? 'fiat' : 'btc' } }}</span>
+        </a>
+      </li>
+      <li><a href="/mobile-help" snap-toggle><span ys-icon-support></span><span>{{ "index.drawer.help" | i18next }}</span></a></li>
+      <li><a href="/settings/profile" snap-toggle><span ys-icon-settings></span><span>{{ "index.drawer.settings" | i18next }}</span></a></li>
+      <li><a href="#" ng-click="performSignOut()" snap-toggle><span ys-icon-arrow></span><span>{{ "index.drawer.signOut" | i18next }}</span></a></li>
+    </ul>
+    <div class="drawer-logo"><div ys-icon-logo-mark="white"></div></div>
+  </div>
+
+  <div class="app-container" snap-content ng-cloak>
+    <div ys-system-message></div>
+    <div class="ys-app-banner" ys-app-banner ng-if="isAndroid"></div>
+
+    <header id="header" ng-controller="NavbarController" ng-cloak ng-if="isPhone">
+      <a href="{{ mobileHelpUrl }}" class="right" ng-if="isSignedIn() && isSupportArticle" ys-zenbox ng-click="supportPage()"><span>{{ "index.header.help" | i18next }}</span><span ys-icon-document></span></a>
+      <a href="/signin" class="right" ng-show="!hideSignIn()"><span>{{ "index.header.signIn" | i18next }}</span><span ys-icon-arrow></span></a>
+      <a href="#" class="right" ng-if="isSignedInPendingVerification()" ng-click="performSignOut()"><span>{{ "index.header.signOut" | i18next }}</span></a>
+
+      <span class="pointer" snap-toggle ng-if="isSignedIn()"><span ys-icon-hamburger></span><span>{{ "index.header.menuText" | i18next }}</span></span>
+      <a href="{{ rootPath() }}" class="header-logo" ng-if="isPhone" target="_self"><span ys-icon-logo-mark></span></a>
+    </header>
+
+    <header id="header" ng-controller="NavbarController" ng-cloak ng-if="isTablet">
+      <a href="{{ rootPath() }}" class="header-logo" target="_self"><span ys-circle-logo></span></a>
+
+      <div ng-click="toggleTabletDropdown=!toggleTabletDropdown" ng-class="{'dropdown-open': toggleTabletDropdown}" class="dropdown navbar-tablet" ng-if="isSignedIn()">
+        <span>{{ current }}</span>
+        <span class="caret"></span>
+        <ul class="dropdown-menu" ys-header-links>
+          <li ys-header-link="overview">
+            <a href="/accounts">{{ "index.header.menu_overview" | i18next }}</a>
+          </li>
+          <li ys-header-link="transactions">
+            <a href="/transaction-history">{{ "index.header.menu_transactions" | i18next }}</a>
+          </li>
+          <li ys-header-link="send">
+            <a href="/send">{{ "index.header.menu_send" | i18next }}</a>
+          </li>
+          <li ys-header-link="request">
+            <a href="/request">{{ "index.header.menu_request" | i18next }}</a>
+          </li>
+          <li>
+            <a href="https://support.circle.com">{{ "index.header.help" | i18next }}</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="signin-container">
+        <div ng-if="!hideSignIn()" ys-sign-in-form ys-sign-in-form-success="signInSuccess()" ys-sign-in-form-error="signInError()" ys-sign-in-form-template="/views/partials/_navbarSignIn.html"></div>
+
+        <div ng-show="isSignedIn()">
+          <ul class="signin-container-list">
+            <li>
+              <div ng-click="toggleDropdown=!toggleDropdown" ng-class="{'dropdown-open': toggleDropdown}" class="dropdown user-menu">
+                <img class="customer-avatar customer-avatar-20" ng-src="{{currentCustomer.avatarUrl}}" alt="{{currentCustomerFullName}}" />
+                <span class="ptor-fullname">{{currentCustomerFullName}}</span>
+                <span class="caret"></span>
+                <ul class="dropdown-menu">
+                  <li><a href="#" ys-get-address-modal ng-click="showGetAddressModal()">{{ "index.header.getAddress" | i18next }}</a></li>
+                  <li><a href="/settings/profile">{{ "index.header.profileSettings" | i18next }}</a></li>
+                  <li><a href="#" ng-click="performSignOut()">{{ "index.header.signOut" | i18next }}</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="partially-authenticated-user" ng-show="isSignedInPendingVerification()">
+          <button class="btn btn-medium btn-primary" ng-click="performSignOut()">{{ "index.header.signOut" | i18next }}</button>
+        </div>
+      </div>
+    </header>
+
+    <header id="header" ng-controller="NavbarController" ng-cloak ng-if="isDesktop">
+      <a href="{{ rootPath() }}" class="header-logo" target="_self"><span ys-circle-logo></span></a>
+
+      <div class="navbar-nav-container">
+        <ul class="navbar-nav" ng-show="isSignedIn()" ys-header-links ys-navbar>
+          <li class="navbar-nav-item first" ys-header-link="overview">
+            <a href="/accounts">{{ "index.header.menu_overview" | i18next }}</a>
+          </li>
+          <li class="navbar-nav-item" ys-header-link="transactions">
+            <a href="/transaction-history">{{ "index.header.menu_transactions" | i18next }}</a>
+          </li>
+          <li class="navbar-nav-item" ys-header-link="send">
+            <a href="/send">{{ "index.header.menu_send" | i18next }}</a>
+          </li>
+          <li class="navbar-nav-item last" ys-header-link="request">
+            <a href="/request">{{ "index.header.menu_request" | i18next }}</a>
+          </li>
+          <li id="navbar-nav-bar" class="navbar-nav-item navbar-nav-bar" ys-header-links-active></li>
+        </ul>
+      </div>
+
+      <div class="signin-container">
+        <div ng-if="!hideSignIn()" ys-sign-in-form ys-sign-in-form-success="signInSuccess()" ys-sign-in-form-error="signInError()" ys-sign-in-form-template="/views/partials/_navbarSignIn.html"></div>
+
+        <div ng-show="isSignedIn()">
+          <ul class="signin-container-list">
+            <li class="list-item-support">
+              <a href="#" ys-zenbox ng-click="showZenbox('navbar')">
+                <span ys-icon-support-enclosed></span><span>{{ "index.header.help" | i18next }}</span>
+              </a>
+            </li>
+            <li>
+              <div ng-click="toggleDropdown=!toggleDropdown" ng-class="{'dropdown-open': toggleDropdown}" class="dropdown user-menu">
+                <img class="customer-avatar customer-avatar-20" ng-src="{{currentCustomer.avatarUrl}}" alt="{{currentCustomerFullName}}" />
+                <span class="customer-fullname ptor-fullname">{{currentCustomerFullName}}</span>
+                <span class="caret"></span>
+                <ul class="dropdown-menu">
+                  <li><a href="#" ys-get-address-modal ng-click="showGetAddressModal()">{{ "index.header.getAddress" | i18next }}</a></li>
+                  <li><a href="/settings/profile">{{ "index.header.profileSettings" | i18next }}</a></li>
+                  <li><a href="#" ng-click="performSignOut()">{{ "index.header.signOut" | i18next }}</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="partially-authenticated-user" ng-show="isSignedInPendingVerification()">
+          <button class="btn btn-medium btn-primary" ng-click="performSignOut()">{{ "index.header.signOut" | i18next }}</button>
+        </div>
+      </div>
+    </header>
+    <div class="header-stripe"></div>
+
+    <div ys-flash-messages></div>
+
+    <div ng-view ng-cloak></div>
+
+    <div class="footer-stripe-container">
+      <div class="footer-stripe"></div>
+    </div>
+    <footer id="footer" ng-cloak>
+      <div class="pure-g-r footer-top">
+        <div class="pure-u-1-2">
+          <a href="{{rootPath()}}" class="footer-logo" target="_self"><span ys-icon-logo-stacked ng-if="isPhone"></span><span ys-circle-logo ng-if="!isPhone"></span></a>
+        </div>
+        <div class="pure-u-1-2">
+          <ul class="list footer-list">
+            <li class="footer-list-item"><a href="/about" target="_self">{{ "index.footer.about" | i18next }}</a></li>
+            <li class="footer-list-item"><a href="/news" target="_self">{{ "index.footer.news" | i18next }}</a></li>
+            <li class="footer-list-item"><a href="http://blog.circle.com" target="_self" rel="noreferrer">{{ "index.footer.blog" | i18next }}</a></li>
+            <li class="footer-list-item"><a href="/careers" target="_self">{{ "index.footer.careers" | i18next }}</a></li>
+            <li class="footer-list-item"><a href="/contact-us" target="_self">{{ "index.footer.contact" | i18next }}</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          Connect with us on
+        </p>
+        <span class="footer-list-connect">
+          <div class="footer-list-connect-item footer-list-connect-item-facebook">
+          <a href="https://www.facebook.com/circlepay"><div ys-icon-facebook></div></a>
+          </div>
+          <div class="footer-list-connect-item footer-list-connect-item-twitter">
+          <a href="https://twitter.com/circlepay"><div ys-icon-twitter></div></a>
+          </div>
+          <div class="footer-list-connect-item footer-list-connect-item-linkedin">
+          <a href="https://www.linkedin.com/company/3509899"><div ys-icon-linkedin></div></a>
+          </div>
+        </span>
+        <div class="terms-container">
+          <a href="/user-agreement" target="_blank" rel="noreferrer">USER AGREEMENT</a>
+          <span> / </span>
+          <a href="/privacy" target="_blank" rel="noreferrer">PRIVACY</a>
+          <span> / </span>
+          <a href="/cookie-policy" target="_blank" rel="noreferrer">COOKIE POLICY</a>
+          <span class="copyright">&copy; 2015 Circle Internet Financial Limited</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <div class="modal-container support-modal" ng-show="showModal" ng-controller="ZendeskController" ng-cloak>
+  <div class="modal-backdrop" ng-click="close()"></div>
+  <div class="inner-modal-container">
+    <span ng-click="close()" ys-icon-close></span>
+
+    <div ng-switch="currentPane">
+
+      <div ng-switch-when="help" class="help">
+        <div id="modal-content" class="content">
+          <h1 class="need-help">{{ "zendesk.helpHow" | i18next }}</h1>
+          <div class="quick-help-container">
+            <h3>{{ "zendesk.quickAnswers" | i18next }}</h3>
+            <ul class="quick-help-list">
+              <li><a href="{{ helpCenter.href }}/sections/200156824-General-FAQ" target="_blank" class="hc-btn" rel="noreferrer">{{ "zendesk.FAQ" | i18next }}</a></li>
+              <li><a href="{{ helpCenter.href }}/sections/200107049" target="_blank" class="hc-btn" rel="noreferrer">{{ "zendesk.paymentQuestions" | i18next }}</a></li>
+              <li><a href="{{ helpCenter.href }}" target="_blank" class="hc-btn" rel="noreferrer">{{ "zendesk.all" | i18next }}</a></li>
+              <li class="message-btn"><a href="{{ helpCenter.href }}/requests" target="_blank" rel="noreferrer">{{ "zendesk.previousRequests" | i18next }}</a></li>
+              <li class="message-btn"><a href="#" ys-zenbox ng-click="showZenboxTicketForm()" rel="noreferrer">{{ "zendesk.messageUs" | i18next }}</a></li>
+          </div>
+          <div class='live-chat-container' ng-show="liveChatAvailable">
+            <div class='live-help' ng-class="{ 'live': liveChatAvailable }">
+              <div ys-icon-support-enclosed></div>
+              {{ "zendesk.liveChatAvailable" | i18next }}
+            </div>
+            <a href="{{ helpCenter.chatHref }}" target="_blank" class="btn btn-primary btn-medium" ng-show="liveChatAvailable" rel="noreferrer">{{ "zendesk.chatNow" | i18next }}</a>
+          </div>
+          <div class="phone-footer">
+            <h4 class="phone-info">{{ "zendesk.phoneInfo" | i18next }} <span class="phone-number"> {{ "zendesk.phone" | i18next }}</span></h4>
+            <p class="phone-time">{{ "zendesk.phoneTime" | i18next }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div ng-switch-when="error" class="error">
+        <div id="modal-content" class="content">
+          <h1 class="article-not-found">{{ "zendesk.articleNotFound" | i18next }}</h1>
+        </div>
+      </div>
+
+      <div ng-switch-when="article" class="article">
+        <div id="modal-content" class="content">
+          <h2 class="title">{{ articleTitle }}</h2>
+          <div  class="slide" ng-repeat="slide in slides" slider-index="{{ $index }}" ng-bind-html="slide" ng-hide="!isCurrentSlideIndex($index)"></div>
+          <div class="slide-nav" ng-show="numberSlides !== 1">
+              <a href="#" ng-click="prevSlide()" class="btn btn-primary btn-small previous" ng-disabled="isCurrentSlideIndex(0)">{{ "zendesk.previous" | i18next }}</a>
+              <span class="position">{{ currentSlideIndex + 1 }} of {{ numberSlides }}</span>
+              <a href="#" ng-click="nextSlide()" class="btn btn-primary btn-small next" ng-disabled="isCurrentSlideIndex(numberSlides - 1)">{{ "zendesk.next" | i18next }}</a>
+          </div>
+        </div>
+      </div>
+
+      <div ng-switch-when="ticket" class="ticket">
+        <div class="content">
+          <form name="ticketForm" class="form form-stacked ticketForm" role="form" ng-submit="submitTicket()" ys-spinner-form>
+            <div class="form-group">
+              <label ys-label-validator ys-input-name="subject" ys-label-text="zendesk.subject"></label>
+              <input name="subject" type="text" class="pure-input-1" ng-model="formData.subject" required ng-maxlength="140">
+            </div>
+            <div class="form-group">
+              <label ys-label-validator ys-input-name="questionDescription" ys-label-text="zendesk.question" class="ng-isolate-scope ng-binding"></label>
+              <textarea name="questionDescription" class="pure-input-1 question" ng-model="formData.question" required ng-maxlength="500"></textarea>
+            </div>
+            <div class="form-group">
+              <label ys-label-validator="" ys-input-name="requestType" ys-label-text="zendesk.ticket-type" class="ng-isolate-scope ng-binding"></label>
+              <div class="select-wrapper">
+                <select ng-model="formData.tag" name="request" ng-options="o as o for o in options" required></select>
+              </div>
+            </div>
+            <div class="form-actions">
+              <ul>
+                <li><button type="submit" class="btn btn-primary btn-large btn-wide" ng-disabled="disabled(ticketForm)">{{ "zendesk.sendMessage" | i18next }}</button></li>
+              </ul>
+            </div>
+          </form>
+        </div>
+        <div class='live-chat-banner' ng-show="liveChatAvailable">
+          <div ys-icon-support-enclosed ng-class="{ 'live': liveChatAvailable }"></div>
+          <a href="{{ helpCenter.chatHref }}" target="_blank" rel="noreferrer">{{ "zendesk.liveChatClick" | i18next }}</a>
+        </div>
+      </div>
+      <div ng-switch-when="success" class="success">
+        <div class="content">
+          <div class="volume-message-container" ng-show="submissionMessage">
+            <div class="inline-flash-message {'message': submissionMessage }">
+              <div class="alert-container">
+                <div ys-icon-alert-enclosed class="ys-icon-alert-enclosed"></div>
+              </div>
+              <div class="message-container">
+                <p class="message">{{ "zendesk.volumeAlert" | i18next }}</p>
+              </div>
+            </div>
+          </div>
+          <h1>{{ "zendesk.successHeader" | i18next }}</h1>
+          <p>{{ "zendesk.successMessage" | i18next }}</p>
+        </div>
+      </div>
+
+      <div class="footer" ng-show="currentPane !== 'help'">
+        <ul class="menu">
+          <li class="helpcenter" ><a href="{{ helpCenter.href }}" target="_blank" rel="noreferrer">{{ "zendesk.helpCenter" | i18next }}</a></li>
+          <li class="message" ng-class="{'selected': currentPane == 'ticket'}"} ys-zenbox ng-click="showZenboxTicketForm()"><a href="">{{ "zendesk.messageSupport" | i18next }}</a></li>
+          <li class="phone"><p><span class="number">{{ "zendesk.phone" | i18next }} </span><br> {{ "zendesk.phoneTimeShort" | i18next }}</p></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <div class="modal-container get-address" ng-show="showModal" ng-controller="GetAddressModalController" ng-cloak>
+  <div class="modal-backdrop" ng-click="close()"></div>
+  <div class="inner-modal-container">
+    <div ys-icon-close ng-click="close()"></div>
+    <div>
+      <h5>{{ "getAddress.bitcoinAddress" | i18next }}</h5>
+      <p class="get-address-overview">{{ "getAddress.overview" | i18next }}</p>
+      <form class="form form-stacked">
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" class="pure-input-1" disabled ng-bind="bitcoinAddress" value="{{ bitcoinAddress }}">
+            <div class="input-group-btn" ng-show="flashEnabled">
+              <button ys-clip class="btn btn-primary btn-medium" data-clipboard-text="{{ bitcoinAddress }}">{{ copyButtonText }}</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <div class="qr-code" ys-qrcode ys-qrcode-bitcoin-address="{{ bitcoinAddress }}" ng-show='bitcoinAddress'></div>
+      <div class="description">
+        <div ys-icon-document-enclosed></div>
+        <div class="column-why">
+          <div class="why-title">{{ "getAddress.whyChangeTitle" | i18next }}</div>
+          <p class="why-description">{{ "getAddress.whyChangeBody" | i18next }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="modal-container google-authenticator" ng-show="showModal" ng-controller="GoogleAuthenticatorController"ng-cloak>
+  <div class="modal-backdrop" ng-click="close()"></div>
+  <div class="inner-modal-container form">
+    <div ys-icon-close ng-click="close()"></div>
+    <form name="googleAuthenticatorConfirmation" ys-submit="verifyTotpCode()">
+      <ol>
+        <li>
+          <label>{{ "googleAuthenticatorModal.stepOne" | i18next }}</label>
+          <p>
+            <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8&uo=4" target="_blank" rel="noreferrer"><span class="sprite-icon-apple-app-store-135x40"></span></a>
+            <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2" target="_blank" rel="noreferrer"><span class="sprite-icon-android-play-117x40"></span></a>
+          </p>
+        </li>
+        <li>
+          <label>{{ "googleAuthenticatorModal.stepTwo" | i18next }}</label>
+          <p>{{ "googleAuthenticatorModal.scanQRCode"  | i18next }}</p>
+          <div class="totp-secret-key">
+            <qrcode version="10" error-correction-level="L" size="155" data="{{ googleAuthenticatorURL }}"></qrcode>
+            <input type="text" ng-model="totpKey" readonly>
+          </div>
+        </li>
+        <li>
+          <label>{{ "googleAuthenticatorModal.stepThree" | i18next }}</label>
+          <div class="enter-code">
+            <input type="text" name="" ng-model="totpCode">
+            <button class="btn btn-primary ladda-button">{{ "googleAuthenticatorModal.enableAuthenticator" | i18next }}</button>
+          </div>
+        </li>
+      </ol>
+    </form>
+  </div>
+</div>
+
+
+  <script type="text/javascript" src="/assets/bootstrap-data.js"></script>
+  <script type="text/javascript" src="/assets/mixpanel.js"></script>
+
+  <script type="text/javascript" src="/getUserMedia/getUserMedia.js"></script>
+  <script type="text/javascript" src="/assets/angular-templates-b5896be7c184d593795aef763628124c.js"></script>
+  <script type="text/javascript" src="/assets/application-86e94d9c49126fff94a9ff08d69e737c.js"></script>
+
+  <script type="text/javascript" src="/assets/analytics.js"></script>
+
+    <noscript>
+    <meta HTTP-EQUIV="REFRESH" content="0; url=/unsupported-browser">
+  </noscript>
+
+</body>
+</html>

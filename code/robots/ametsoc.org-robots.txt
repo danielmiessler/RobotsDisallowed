@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><script type="text/javascript">_cf_loadingtexthtml="<img alt=' ' src='/cfsc/ajax/resources/cf/images/loading.gif'/>";
+_cf_contextpath="";
+_cf_ajaxscriptsrc="/cfsc/ajax";
+_cf_jsonprefix='//';
+</script><script type="text/javascript" src="/cfsc/ajax/messages/cfmessage.js"></script>
+<script type="text/javascript" src="/cfsc/ajax/package/cfajax.js"></script>
+
+<script type="text/javascript">
+	ColdFusion.Ajax.importTag('CFAJAXPROXY');
+</script>
+
+<script type="text/javascript">
+	var _cf_keyword=ColdFusion.AjaxProxy.init('/org/ametsoc/web/system/general/keyword.cfc','keywordsjs');
+	_cf_keyword.prototype.delkeyword=function(whatuuid) { return ColdFusion.AjaxProxy.invoke(this, "delkeyword", {whatuuid:whatuuid});};
+	_cf_keyword.prototype.checkkeyword=function(whatcheck) { return ColdFusion.AjaxProxy.invoke(this, "checkkeyword", {whatcheck:whatcheck});};
+	_cf_keyword.prototype.getthiskeyword=function(whatuuid) { return ColdFusion.AjaxProxy.invoke(this, "getthiskeyword", {whatuuid:whatuuid});};
+	_cf_keyword.prototype.updatekw=function(keyworduuid,keywordword,keywordurl,keywordaction) { return ColdFusion.AjaxProxy.invoke(this, "updatekw", {keyworduuid:keyworduuid,keywordword:keywordword,keywordurl:keywordurl,keywordaction:keywordaction});};
+	_cf_keyword.prototype.getallkeywords=function() { return ColdFusion.AjaxProxy.invoke(this, "getallkeywords", {});};
+	_cf_keyword.prototype.getkeyword=function(url) { return ColdFusion.AjaxProxy.invoke(this, "getkeyword", {url:url});};
+</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<link href="/cssfiles/AMSMaster.css" rel="stylesheet" type="text/css" />
+</head>
+
+
+<script>
+	function init404(){
+		try{
+		newkeywordjs=new keywordsjs();
+		newkeywordjs.setCallbackHandler(processkeyword);
+		newkeywordjs.setErrorHandler(whoops);
+		newkeywordjs.getthiskeyword(window.location.toString());
+		}
+		catch(err){
+			document.getElementById('errorarea').innerHTML=err.message;
+		}
+
+	}
+
+	function whoops(e){
+
+	}
+
+	function processkeyword(e){
+
+		if(e[0].KEYWORDACTION=='forward'){
+			if(e[0].KEYWORDURL != ''){
+				window.location=e[0].KEYWORDURL + '?' + e[1];
+			}
+		}
+		else if(e[0].KEYWORDACTION=='module'){
+			window.location='/amshub/index.cfm?modid=' + e.LOCATION;
+		}
+		else if(e[0].KEYWORDACTION==''){
+			document.getElementById('message').innerHTML="Sorry, we can't seem to find the page you requested.";
+		}
+	}
+
+</script>
+<body onload="init404()">
+	<div id="wrapper">
+		<div id="header">
+	<a href="http://www.ametsoc.org" id="topheader"></a>
+   	<div id="utilitynav">
+        <a id="utilityNavLastItem" href="http://www.ametsoc.org/amsvolunteers/index.html" class="utilitynavitem">Volunteer</a>   
+		<a href="http://www.ametsoc.org/search.html" id="searchUtility" class="utilitynavitem">Search</a>
+		<a href="http://www.ametsoc.org/sss/scienceservicesociety.html" id="scienceUtility" class="utilitynavitem">Science, Service, Society</a>
+		<a href="http://www.ametsoc.org/faqs/index.html" id="faqUtility" class="utilitynavitem">FAQ</a>
+		<a href="http://www.ametsoc.org/exec/contacts.html" id="contactUtility" class="utilitynavitem">Contact</a>
+		<a href="http://www.ametsoc.org/aboutams/amsaffiliations.html" id="affiliationsUtility" class="utilitynavitem">Affiliations</a>
+		<a id="utilityNavFirstItem" href="http://www.ametsoc.org/aboutams/index.html" class="utilitynavitem">About</a>
+	</div>
+</div>
+
+		<div id="contentarea">
+			<div id="leftgutter"></div>
+			<div id="center">
+				<div id="message">One moment please</div>
+                <div id="errorarea" style="display:none"></div>
+			</div>
+			<div id="rightgutter"></div>
+		</div>
+	</div>
+	
+</body>
+</html>

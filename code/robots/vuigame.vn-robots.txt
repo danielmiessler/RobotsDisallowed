@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<!-- http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]><html lang="en" class="ie6"><![endif]-->
+<!--[if IE 7]><html lang="en" class="ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="ie8"><![endif]-->
+<!--[if IE 9]><html lang="en" class="ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+    <head>
+        <title>VuiGame.vn | Vui Hơn Với Vui Game</title>
+        <meta name="keywords" content="game, vuigame, vui game, game vui, game hot, game hay, game moi, game tri tue, game mini, game viet">
+        <meta name="description" content="Vui game: cổng game vui, kho game flash với các game mini vui nhộn, chơi game vui miễn phí, các game vui nhộn hay nhất, game vui mới nhất cập nhật mỗi ngày">
+
+        
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!--
+Javascript để hỗ trợ HTML5 & CSS3 media queries từ IE8 trở xuống (xem http://code.google.com/p/html5shim/), 
+nếu không có internet thì thay bằng: 
+<script src="js/html5.js"></script> 
+<script src="js/css3-mediaqueries.js"></script>
+-->
+<!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <script src="js/html5.js"></script> 
+        <script src="js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+<link rel="shortcut icon" href="http://st.vuigame.vn/images/ico1/favicon.ico">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://st.vuigame.vn/images/ico1/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://st.vuigame.vn/images/ico1/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="http://st.vuigame.vn/images/ico1/apple-touch-icon-57-precomposed.png">
+
+<link rel="stylesheet" href="http://st.vuigame.vn/css/style2.15.css">
+
+<script src="http://st.vuigame.vn/js/modernizr.js"></script>
+<script src="http://st.vuigame.vn/js/jquery/jquery.min.js"></script>
+<script src="http://st.vuigame.vn/js/jquery/equalize.min.js"></script>
+
+<script src="http://st.vuigame.vn/js/jquery/responsiveslides.min.js"></script>
+<link rel="stylesheet" href="http://st.vuigame.vn/js/jquery/responsiveslides.css">
+<link rel="stylesheet" href="http://st.vuigame.vn/js/jquery/jquery.fancybox.css">
+
+
+<script src="http://st.vuigame.vn/js/jquery.raty.js"></script>
+<script src="http://st.vuigame.vn/js/labs.js"></script>
+<script src="http://st.vuigame.vn/js/jquery.fancybox.js"></script>
+<script src="http://st.vuigame.vn/js/swfobject.js"></script>
+
+
+<script src="http://st.vuigame.vn/js/jquery/jquery.webui-popover.js"></script>
+<link rel="stylesheet" href="http://st.vuigame.vn/js/jquery/jquery.webui-popover.css">
+
+<script>
+    var IMAGE_LINK = 'http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize/';
+    var DOMAIN = 'http://vuigame.vn';
+</script>
+
+
+<script>
+function Counter1(idProduct, nameSeo)
+{
+    $.ajax({
+        type: "POST",
+        url: DOMAIN+"/AjaxPlay?type=lastgame&idProduct=" + idProduct,
+        //if received a response from the server
+        success: function (data, textStatus, jqXHR) {
+            window.location.href = 'http://vuigame.vn/choi-game/' + nameSeo + '/' + idProduct;
+        }
+    });
+    $.ajax({
+        type: "POST",
+        url: DOMAIN+"/AjaxPlay?type=counter&idProduct=" + idProduct,
+        //if received a response from the server
+        success: function (data, textStatus, jqXHR) {
+
+        }
+    });
+
+}
+function Counter(idProduct)
+{
+//    $.ajax({
+//        type: "POST",
+//        url: DOMAIN+"/AjaxPlay?type=lastgame&idProduct=" + idProduct,
+//        //if received a response from the server
+//        success: function (data, textStatus, jqXHR) {
+//
+//        }
+//    });
+    $.ajax({
+        type: "POST",
+        url: DOMAIN+"/AjaxPlay?type=counter&idProduct=" + idProduct,
+        //if received a response from the server
+        success: function (data, textStatus, jqXHR) {
+
+        }
+    });
+}
+function renderProduct(product)
+{
+
+    var category = product['_category'];
+    var image = product['_image'];
+    var linkimage = '';
+//        if(image.indexOf(".gif")===-1)
+//        {
+//            linkimage = $('#IMAGE_LINK').val();
+//            linkimage += image;
+//        }else
+//        {
+//            linkimage = $('#IMAGE_GIF').val();
+//            linkimage += image;
+//        }
+    linkimage = IMAGE_LINK;
+    linkimage += image;
+    var linkplay = DOMAIN;
+    if (product['_isUnity'] === 1)
+    {
+        linkplay += '/choi-game-3d/';
+    } else
+    {
+        linkplay += '/choi-game/';
+    }
+    linkplay += product['_nameSeo'] + '/' + product['_id'];
+
+    var html = '<li class="banner column">';
+    html += '<div class="image-wrapper"> <a href="' + linkplay + '" onclick="Counter(' + product['_id'] + ');" title="' + product['_name'] + '"><span class="badge ' + product['_badge'] + '">' + product['_badge'] + '</span><img id="image_' + product['_id'] + '" src="' + linkimage + '" alt=""></a></div>';
+    html += '<div class="title-wrapper">';
+    html += '<h4 class="the-title"><a href = "' + linkplay + '" onclick="Counter(' + product['_id'] + ');" title = "' + product['_name'] + '">' + product['_name'] + '</a></h4>';
+    html += '<span class="the-cate"><a href = "' + DOMAIN + '/' + category['_nameSeo'] + '/' + category['_id'] + '" title = "' + category['_name'] + '">' + category['_name'] + '</a></span>';
+    html += '</div>';
+    html += '</li>';
+    return html;
+}
+</script>
+<script type="text/javascript"> (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-36010553-1', {'cookieDomain': 'vuigame.vn'});
+    ga('send', 'pageview');</script>
+<script type="text/javascript">
+    function trackEvent(eventCategory, eventAction, eventLabel, eventValue, event_Nonin) {
+        if ((typeof eventCategory != 'undefined') && (typeof eventAction != 'undefined') && eventCategory != null && eventAction != null)
+        {
+            if (typeof eventLabel == 'undefined')
+            {
+                eventLabel = "";
+            }
+            if (typeof eventValue == 'undefined')
+            {
+                eventValue = 0;
+            }
+            if (typeof event_Nonin == 'undefined')
+            {
+                event_Nonin = true;
+            }
+            ga('send', 'event', eventCategory, eventAction, eventLabel, eventValue, event_Nonin);
+        }
+    }
+</script>
+
+    </head>
+    <body class="page-404">
+        <style>
+    body{
+        background-color : #7fccf8;
+    }
+</style>
+<a id="backgrounddiv" href="https://ad.doubleclick.net/ddm/trackclk/N135802.1939304VUIGAME/B8659221.117638026;dc_trk_aid=295659905;dc_trk_cid=65432512" 
+   target="_blank" 
+   title="Thiên Thư" 
+   style="background: url('http://vuigame.vcdn.vn/upload/images/original/banner/ThienThu_BG1_2000x749_m01_1442830560.jpg') no-repeat scroll center 0 rgba(0, 0, 0, 0)"
+   class="background-main"></a>
+<script>
+    $('backgrounddiv').ready(function() { 
+        trackEvent('Banner Activity Tracking','Impression','Vuigame.vn_Background_Thiên Thư');
+           
+    });
+</script>
+<!-- Google Tag Manager -->
+        <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TFB9RT"
+                          height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <script>(function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start':
+                            new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                j.async = true;
+                j.src =
+                        '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-TFB9RT');</script>
+        <!-- End Google Tag Manager -->
+
+        <div id="site-wrapper">
+            <header id="site-header">
+                <nav id="header-navigation">
+    <ul class="links left">
+        <li class="homepage first"><a onclick="trackEvent('Button Group On TopBar', 'Button Vuigame');" href="http://vuigame.vn">VuiGame</a></li>
+        <li class="category-list last">
+            <a href="http://vuigame.vn/game-hay/suggest/">Game</a>
+            <div class="sub-links-wrapper">
+                <div class="column">
+                    <div class="title">Webgame Hay</div>
+                    <ul class="sub-links">
+                        
+                        <li><img onload="trackEvent('Banner Activity Tracking','Impression','Vuigame.vn_HomePage_Bách Chiến Vô Song 2');" src="http://vuigame.vcdn.vn/upload/images/thumb/banner/478x204/BCVS2_24x24_1438591354.jpg"><a onclick="trackEvent('Banner Activity Tracking','Click','Vuigame.vn_HomePage_TopIcon0');" target="_blank" href="https://ad.doubleclick.net/ddm/trackclk/N135802.1939304VUIGAME/B8659221.117743590;dc_trk_aid=293812355;dc_trk_cid=64449525">Bách Chiến Vô Song 2</a></li>
+                        
+                        <li><img onload="trackEvent('Banner Activity Tracking','Impression','Vuigame.vn_HomePage_Công Thành Chiến');" src="http://vuigame.vcdn.vn/upload/images/thumb/banner/478x204/CTC_24x24_1434428084.jpg"><a onclick="trackEvent('Banner Activity Tracking','Click','Vuigame.vn_HomePage_TopIcon0');" target="_blank" href="http://ad.doubleclick.net/ddm/trackclk/N135802.1939304VUIGAME/B8659221.117744310;dc_trk_aid=291524935;dc_trk_cid=63280900">Công Thành Chiến</a></li>
+                        
+                        <li><img onload="trackEvent('Banner Activity Tracking','Impression','Vuigame.vn_HomePage_Hắc Ám Chi Quang');" src="http://vuigame.vcdn.vn/upload/images/thumb/banner/478x204/hacam_28x28_1434428107.jpg"><a onclick="trackEvent('Banner Activity Tracking','Click','Vuigame.vn_HomePage_TopIcon0');" target="_blank" href="http://ad.doubleclick.net/ddm/trackclk/N135802.1939304VUIGAME/B8659221.117743591;dc_trk_aid=291654993;dc_trk_cid=63363257">Hắc Ám Chi Quang</a></li>
+                        
+                        <li><img onload="trackEvent('Banner Activity Tracking','Impression','Vuigame.vn_HomePage_Thiên Thư');" src="http://vuigame.vcdn.vn/upload/images/thumb/banner/478x204/ThienThu_24x24_1442830653.jpg"><a onclick="trackEvent('Banner Activity Tracking','Click','Vuigame.vn_HomePage_TopIcon0');" target="_blank" href="https://ad.doubleclick.net/ddm/trackclk/N135802.1939304VUIGAME/B8659221.117743592;dc_trk_aid=295659345;dc_trk_cid=65432268">Thiên Thư</a></li>
+                        
+                        <li><img onload="trackEvent('Banner Activity Tracking','Impression','Vuigame.vn_HomePage_Gunny');" src="http://vuigame.vcdn.vn/upload/images/thumb/banner/478x204/24x24-gamungtuoi_1431318357.jpg"><a onclick="trackEvent('Banner Activity Tracking','Click','Vuigame.vn_HomePage_TopIcon0');" target="_blank" href="http://ad.doubleclick.net/ddm/trackclk/N135802.1939304VUIGAME/B8659221.117744312;dc_trk_aid=291524920;dc_trk_cid=63279689">Gunny</a></li>
+                        
+                        <li><img onload="trackEvent('Banner Activity Tracking','Impression','Vuigame.vn_HomePage_Độc Bộ Thiên Hạ');" src="http://vuigame.vcdn.vn/upload/images/thumb/banner/478x204/115x115_DocBo_Icon_1434967562.gif"><a onclick="trackEvent('Banner Activity Tracking','Click','Vuigame.vn_HomePage_TopIcon0');" target="_blank" href="http://ad.doubleclick.net/ddm/trackclk/N135802.1939304VUIGAME/B8659221.117744313;dc_trk_aid=292376088;dc_trk_cid=63681415">Độc Bộ Thiên Hạ</a></li>
+                        
+                        <li><img onload="trackEvent('Banner Activity Tracking','Impression','Vuigame.vn_HomePage_Võ Lâm Chi Mộng 2');" src="http://vuigame.vcdn.vn/upload/images/thumb/banner/478x204/VLCM2_24x24_1431318498.jpg"><a onclick="trackEvent('Banner Activity Tracking','Click','Vuigame.vn_HomePage_TopIcon0');" target="_blank" href="http://ad.doubleclick.net/ddm/trackclk/N135802.1939304VUIGAME/B8659221.117744255;dc_trk_aid=291524754;dc_trk_cid=63280640">Võ Lâm Chi Mộng 2</a></li>
+                        
+                        <li><img onload="trackEvent('Banner Activity Tracking','Impression','Vuigame.vn_HomePage_Bách Chiến Vô Song');" src="http://vuigame.vcdn.vn/upload/images/thumb/banner/478x204/BCVS115x115_1434439905.jpg"><a onclick="trackEvent('Banner Activity Tracking','Click','Vuigame.vn_HomePage_TopIcon0');" target="_blank" href="http://ad.doubleclick.net/ddm/trackclk/N135802.1939304VUIGAME/B8659221.117744406;dc_trk_aid=291524736;dc_trk_cid=63280564">Bách Chiến Vô Song</a></li>
+                        
+                        <li><img onload="trackEvent('Banner Activity Tracking','Impression','Vuigame.vn_HomePage_Võ Lâm Chi Mộng');" src="http://vuigame.vcdn.vn/upload/images/thumb/banner/478x204/VLCM1_1431337491.jpg"><a onclick="trackEvent('Banner Activity Tracking','Click','Vuigame.vn_HomePage_TopIcon0');" target="_blank" href="http://ad.doubleclick.net/ddm/trackclk/N135802.1939304VUIGAME/B8659221.117744256;dc_trk_aid=291524946;dc_trk_cid=63280906">Võ Lâm Chi Mộng</a></li>
+                        
+                        <li><img onload="trackEvent('Banner Activity Tracking','Impression','Vuigame.vn_HomePage_Thần Khúc');" src="http://vuigame.vcdn.vn/upload/images/thumb/banner/478x204/TK1_1431337554.jpg"><a onclick="trackEvent('Banner Activity Tracking','Click','Vuigame.vn_HomePage_TopIcon0');" target="_blank" href="http://ad.doubleclick.net/ddm/trackclk/N135802.1939304VUIGAME/B8659221.117744257;dc_trk_aid=291524914;dc_trk_cid=63279684">Thần Khúc</a></li>
+                        
+                        <li><img onload="trackEvent('Banner Activity Tracking','Impression','Vuigame.vn_HomePage_Phong Vân');" src="http://vuigame.vcdn.vn/upload/images/thumb/banner/478x204/24x24_PhongVan_Icon_1431318893.gif"><a onclick="trackEvent('Banner Activity Tracking','Click','Vuigame.vn_HomePage_TopIcon0');" target="_blank" href="http://ad.doubleclick.net/ddm/trackclk/N135802.1939304VUIGAME/B8659221.117744258;dc_trk_aid=291525560;dc_trk_cid=63280644">Phong Vân</a></li>
+                        
+                        <li><img onload="trackEvent('Banner Activity Tracking','Impression','Vuigame.vn_HomePage_2U');" src="http://vuigame.vcdn.vn/upload/images/thumb/banner/478x204/SKY5_1431318947.jpg"><a onclick="trackEvent('Banner Activity Tracking','Click','Vuigame.vn_HomePage_TopIcon0');" target="_blank" href="http://ad.doubleclick.net/ddm/trackclk/N135802.1939304VUIGAME/B8659221.117744259;dc_trk_aid=291524750;dc_trk_cid=63280626">2U</a></li>
+                        
+                        <li><img onload="trackEvent('Banner Activity Tracking','Impression','Vuigame.vn_HomePage_Bạo Phong');" src="http://vuigame.vcdn.vn/upload/images/thumb/banner/478x204/BP_24x24-JPG_1440498113.jpg"><a onclick="trackEvent('Banner Activity Tracking','Click','Vuigame.vn_HomePage_TopIcon0');" target="_blank" href="https://ad.doubleclick.net/ddm/trackclk/N135802.1939304VUIGAME/B8659221.117744407;dc_trk_aid=294527460;dc_trk_cid=64831078">Bạo Phong</a></li>
+                        
+                        <li><img onload="trackEvent('Banner Activity Tracking','Impression','Vuigame.vn_HomePage_Cửu Tinh');" src="http://vuigame.vcdn.vn/upload/images/thumb/banner/478x204/CT_24x24_1440564346.jpg"><a onclick="trackEvent('Banner Activity Tracking','Click','Vuigame.vn_HomePage_TopIcon0');" target="_blank" href="https://ad.doubleclick.net/ddm/trackclk/N135802.1939304VUIGAME/B8659221.119938363;dc_trk_aid=294565711;dc_trk_cid=64852734">Cửu Tinh</a></li>
+                        
+                        
+                    </ul>
+                </div>
+                <div class="column">
+                    <div class="title">Danh Mục Game</div>
+                    <ul class="sub-links">
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/original/category/2_HanhDong_1372664575.png"><a onclick="trackEvent('VuiGame Reports','Category Browsing','Hành Động');" href="http://vuigame.vn/game-hanh-dong/57">Hành Động</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/original/category/1_DuaTop_1372664526.png"><a onclick="trackEvent('VuiGame Reports','Category Browsing','Đua top');" href="http://vuigame.vn/game-dua-top/53">Đua top</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/original/category/unity3d1_1416994061.jpg"><a onclick="trackEvent('VuiGame Reports','Category Browsing','3D Unity');" href="http://vuigame.vn/game-3d-unity/124">3D Unity</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/original/category/5_PhieuLuu_1372664478.png"><a onclick="trackEvent('VuiGame Reports','Category Browsing','Phiêu Lưu');" href="http://vuigame.vn/game-phieu-luu/50">Phiêu Lưu</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/original/category/3_TriTue_1372664449.png"><a onclick="trackEvent('VuiGame Reports','Category Browsing','Trí Tuệ');" href="http://vuigame.vn/game-tri-tue/10">Trí Tuệ</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/original/category/4_TheThao_1372664466.jpg"><a onclick="trackEvent('VuiGame Reports','Category Browsing','Thể Thao');" href="http://vuigame.vn/game-the-thao/13">Thể Thao</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/original/category/8_BanSung_1372664504.png"><a onclick="trackEvent('VuiGame Reports','Category Browsing','Bắn súng');" href="http://vuigame.vn/game-ban-sung/52">Bắn súng</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/original/category/10_VuiNhon_1372664564.png"><a onclick="trackEvent('VuiGame Reports','Category Browsing','Vui nhộn');" href="http://vuigame.vn/game-vui-nhon/56">Vui nhộn</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/original/category/11_BanGai_1372664557.png"><a onclick="trackEvent('VuiGame Reports','Category Browsing','Bạn gái');" href="http://vuigame.vn/game-ban-gai/55">Bạn gái</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/original/category/7_GiaiTri_1372664407.png"><a onclick="trackEvent('VuiGame Reports','Category Browsing','Giải Trí');" href="http://vuigame.vn/game-giai-tri/4">Giải Trí</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/original/category/game_1439371301.jpg"><a onclick="trackEvent('VuiGame Reports','Category Browsing','Mobile');" href="http://vuigame.vn/game-mobile/122">Mobile</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/original/category/Sizeicon200x200-Recovered_1419240493.jpg"><a onclick="trackEvent('VuiGame Reports','Category Browsing','Giả Lập');" href="http://vuigame.vn/game-gia-lap/132">Giả Lập</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/original/category/9_ThieuNhi_1372664536.png"><a onclick="trackEvent('VuiGame Reports','Category Browsing','Thiếu nhi');" href="http://vuigame.vn/game-thieu-nhi/54">Thiếu nhi</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/original/category/6_ChienThuat_1372664489.png"><a onclick="trackEvent('VuiGame Reports','Category Browsing','Chiến Thuật');" href="http://vuigame.vn/game-chien-thuat/51">Chiến Thuật</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="column">
+                    <div class="title">Game Mới Hôm Nay</div>
+                    <ul class="sub-links">
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442986622.jpg"><a onclick="Counter('24336');" href="http://vuigame.vn/choi-game/nguoi-nhen-lai-xe-dua/24336">Người Nhện Lái Xe Đua</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442985980.jpg"><a onclick="Counter('24335');" href="http://vuigame.vn/choi-game/chien-binh-thep-3/24335">Chiến Binh Thép 3</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442985208.jpg"><a onclick="Counter('24334');" href="http://vuigame.vn/choi-game/cun-con-cau-ca/24334">Cún Con Câu Cá</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442984920.jpg"><a onclick="Counter('24333');" href="http://vuigame.vn/choi-game/winx-stella-lam-toc/24333">Winx Stella Làm Tóc</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442984684.jpg"><a onclick="Counter('24332');" href="http://vuigame.vn/choi-game/doi-chan-nang-tien-ca/24332">Đôi Chân Nàng Tiên Cá</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442984470.jpg"><a onclick="Counter('24331');" href="http://vuigame.vn/choi-game/lam-banh-pancake-dau/24331">Làm Bánh Pancake Dâu</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442983903.jpg"><a onclick="Counter('24330');" href="http://vuigame.vn/choi-game/adventure-time-than-lua-phieu-luu/24330">Adventure Time Thần Lửa Phiêu Lưu</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442983479.jpg"><a onclick="Counter('24329');" href="http://vuigame.vn/choi-game/minion-tim-diem-khac-nhau/24329">Minion Tìm Điểm Khác Nhau</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442982533.jpg"><a onclick="Counter('24328');" href="http://vuigame.vn/choi-game/ultraman-diet-rong/24328">Ultraman Diệt Rồng</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442982193.jpg"><a onclick="Counter('24327');" href="http://vuigame.vn/choi-game/goku-diet-zombies/24327">Goku Diệt Zombies</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442900965.jpg"><a onclick="Counter('24326');" href="http://vuigame.vn/choi-game/tinkerbell-hoc-toan/24326">Tinkerbell Học Toán</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442900715.jpg"><a onclick="Counter('24325');" href="http://vuigame.vn/choi-game/ben-10-lai-moto/24325">Ben 10 Lái Moto</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442900505.jpg"><a onclick="Counter('24324');" href="http://vuigame.vn/choi-game/big-hero-diet-zombies/24324">Big Hero Diệt Zombies</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442900149.jpg"><a onclick="Counter('24323');" href="http://vuigame.vn/choi-game/lat-hinh-tom-jerry/24323">Lật Hình Tom Jerry</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="column last">
+                    <div class="title">Game Đua Top</div>
+                    <ul class="sub-links">
+                       
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442230279.jpg"><a onclick="Counter('24269');" href="http://vuigame.vn/choi-game/iron-man-kham-pha-sao-hoa/24269">Iron Man Khám Phá Sao Hỏa</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon200x200-Recovered_1419413191.jpg"><a onclick="Counter('22575');" href="http://vuigame.vn/choi-game/sieu-nhan-nghenh-chien/22575">Siêu Nhân Nghênh Chiến</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon200x200-Recovered-Recovered_1435225437.jpg"><a onclick="Counter('23692');" href="http://vuigame.vn/choi-game/choc-pha-angela/23692">Chọc Phá Angela</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1433921587.jpg"><a onclick="Counter('23594');" href="http://vuigame.vn/choi-game/plants-vs-zombies-ban-dan-lua/23594">Plants Vs Zombies Bắn Đạn Lửa</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon200x200-Recovered_1433496644.jpg"><a onclick="Counter('23565');" href="http://vuigame.vn/choi-game/doraemon-truy-tim-banh-ran/23565">Doraemon Truy Tìm Bánh Rán</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon200x200-Recovered_1433408323.jpg"><a onclick="Counter('23555');" href="http://vuigame.vn/choi-game/samurai-diet-quy/23555">Samurai Diệt Quỷ</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon200x200-Recovered_1433239133.jpg"><a onclick="Counter('23538');" href="http://vuigame.vn/choi-game/ben-10-an-gach/23538">Ben 10 Ăn Gạch</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon200x200-Recovered_1433150793.jpg"><a onclick="Counter('23520');" href="http://vuigame.vn/choi-game/oggy-hung-chen-dia/23520">Oggy Hứng Chén Dĩa</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon200x200-Recovered_1432720369.jpg"><a onclick="Counter('23495');" href="http://vuigame.vn/choi-game/nhung-anh-hung-sonic/23495">Những Anh Hùng Sonic</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon200x200-Recovered_1432110415.jpg"><a onclick="Counter('23470');" href="http://vuigame.vn/choi-game/ben-10-giai-cuu-bellwood/23470">Ben 10 Giải Cứu Bellwood</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon200x200-Recovered_1432106835.jpg"><a onclick="Counter('23463');" href="http://vuigame.vn/choi-game/jerry-nhat-pho-mat/23463">Jerry Nhặt Pho Mát</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon200x200-Recovered_1432106556.jpg"><a onclick="Counter('23462');" href="http://vuigame.vn/choi-game/tay-sung-batman-2/23462">Tay Súng Batman 2</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon200x200_1432105941.jpg"><a onclick="Counter('23460');" href="http://vuigame.vn/choi-game/goku-chay-dua/23460">Goku Chạy Đua</a></li>
+                        
+                        <li><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon200x200_1432025189.jpg"><a onclick="Counter('23449');" href="http://vuigame.vn/choi-game/chuyen-di-cua-rong/23449">Chuyến Đi Của Rồng</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <ul class="links right" id="sitelogin">
+        <!-- Chưa đăng nhập -->
+        
+        <li class="user-login first"><a onclick="return zmeOpenWidget.doLogin();" href="javascript:void(0);">Đăng Nhập</a></li>
+<li class="user-register last"><a onclick="return zmeOpenWidget.doRegister();" href="javascript:void(0);">Đăng Ký</a></li>
+
+
+        
+
+        <!-- Đã đăng nhập -->
+    </ul>
+</nav>
+<script>
+    var DOMAIN_STATIC = 'http://st.vuigame.vn';
+    var DOMAIN = 'http://vuigame.vn';
+    var key_api = '5dc4a29add3746b58ea8d4f149926145';
+</script>
+<div id="div_iframecheck">
+    <iframe id="check_login" src="https://sso3.zing.vn/xchecklogin?apikey=5dc4a29add3746b58ea8d4f149926145&u=http://vuigame.vn/checkauth" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</div>
+<script type="text/javascript" src="http://st.vuigame.vn/js/code/header.new.script.js"></script>
+<input type="hidden" id="username" value="" />
+<input type="hidden" id="display_name" value="" />
+<input type="hidden" id="fullname" value="" />
+            </header>
+
+            <div id="site-body">
+
+                <div id="suggestion-404" class="site-body-block no-sidebar">
+
+    <div id="body-center" class="body-center">
+        <div class="body-block-wrapper">
+            <h1><a href="http://vuigame.vn" title="VuiGame.vn | Vui Hơn Với Vui Game">VuiGame.vn | Vui Hơn Với Vui Game</a></h1>
+            <div class="block-title-wrapper">
+                <h2>Game Hay Có Thể Bạn Sẽ Thích</h2>
+                <ul class="filter-wrapper">
+                    <li class="active last"><a href="/" title="">&larr; Quay Về Trang Chủ</a></li>
+                </ul>
+            </div>
+            <div class="block-content-wrapper">
+                <ul class="banner-list">
+                    
+                    <li class="banner column">
+                        <div class="image-wrapper"><a href="http://vuigame.vn/choi-game/chien-binh-thep-3/24335" title="Chiến Binh Thép 3"><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442985980.jpg" alt=""></a></div>
+                        <div class="title-wrapper">
+                            <h4 class="the-title"><a href="http://vuigame.vn/choi-game/chien-binh-thep-3/24335" title="Chiến Binh Thép 3">Chiến Binh Thép 3</a></h4>
+                            <span class="the-cate"><a href="http://vuigame.vn/biet-kich/31" title="Biệt Kích">Biệt Kích</a></span>
+                        </div>
+                    </li>
+                    
+                    <li class="banner column">
+                        <div class="image-wrapper"><a href="http://vuigame.vn/choi-game/adventure-time-than-lua-phieu-luu/24330" title="Adventure Time Thần Lửa Phiêu Lưu"><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442983903.jpg" alt=""></a></div>
+                        <div class="title-wrapper">
+                            <h4 class="the-title"><a href="http://vuigame.vn/choi-game/adventure-time-than-lua-phieu-luu/24330" title="Adventure Time Thần Lửa Phiêu Lưu">Adventure Time Thần Lửa Phiêu Lưu</a></h4>
+                            <span class="the-cate"><a href="http://vuigame.vn/di-canh/70" title="Đi Cảnh">Đi Cảnh</a></span>
+                        </div>
+                    </li>
+                    
+                    <li class="banner column">
+                        <div class="image-wrapper"><a href="http://vuigame.vn/choi-game/ultraman-diet-rong/24328" title="Ultraman Diệt Rồng"><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442982533.jpg" alt=""></a></div>
+                        <div class="title-wrapper">
+                            <h4 class="the-title"><a href="http://vuigame.vn/choi-game/ultraman-diet-rong/24328" title="Ultraman Diệt Rồng">Ultraman Diệt Rồng</a></h4>
+                            <span class="the-cate"><a href="http://vuigame.vn/doi-khang/29" title="Đối Kháng">Đối Kháng</a></span>
+                        </div>
+                    </li>
+                    
+                    <li class="banner column">
+                        <div class="image-wrapper"><a href="http://vuigame.vn/choi-game/goku-diet-zombies/24327" title="Goku Diệt Zombies"><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442982193.jpg" alt=""></a></div>
+                        <div class="title-wrapper">
+                            <h4 class="the-title"><a href="http://vuigame.vn/choi-game/goku-diet-zombies/24327" title="Goku Diệt Zombies">Goku Diệt Zombies</a></h4>
+                            <span class="the-cate"><a href="http://vuigame.vn/nhanh-tay/67" title="Nhanh Tay">Nhanh Tay</a></span>
+                        </div>
+                    </li>
+                    
+                    <li class="banner column">
+                        <div class="image-wrapper"><a href="http://vuigame.vn/choi-game/nauto-vuot-thach-thuc/24321" title="Nauto Vượt Thách Thức"><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442898522.jpg" alt=""></a></div>
+                        <div class="title-wrapper">
+                            <h4 class="the-title"><a href="http://vuigame.vn/choi-game/nauto-vuot-thach-thuc/24321" title="Nauto Vượt Thách Thức">Nauto Vượt Thách Thức</a></h4>
+                            <span class="the-cate"><a href="http://vuigame.vn/di-canh/70" title="Đi Cảnh">Đi Cảnh</a></span>
+                        </div>
+                    </li>
+                    
+                    <li class="banner column">
+                        <div class="image-wrapper"><a href="http://vuigame.vn/choi-game/ultraman-danh-quai-4/24317" title="Ultraman Đánh Quái 4"><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442896590.jpg" alt=""></a></div>
+                        <div class="title-wrapper">
+                            <h4 class="the-title"><a href="http://vuigame.vn/choi-game/ultraman-danh-quai-4/24317" title="Ultraman Đánh Quái 4">Ultraman Đánh Quái 4</a></h4>
+                            <span class="the-cate"><a href="http://vuigame.vn/doi-khang/29" title="Đối Kháng">Đối Kháng</a></span>
+                        </div>
+                    </li>
+                    
+                    <li class="banner column">
+                        <div class="image-wrapper"><a href="http://vuigame.vn/choi-game/dragon-ball-giao-dau/24311" title="Dragon Ball Giao Đấu"><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442812653.jpg" alt=""></a></div>
+                        <div class="title-wrapper">
+                            <h4 class="the-title"><a href="http://vuigame.vn/choi-game/dragon-ball-giao-dau/24311" title="Dragon Ball Giao Đấu">Dragon Ball Giao Đấu</a></h4>
+                            <span class="the-cate"><a href="http://vuigame.vn/doi-khang/29" title="Đối Kháng">Đối Kháng</a></span>
+                        </div>
+                    </li>
+                    
+                    <li class="banner column">
+                        <div class="image-wrapper"><a href="http://vuigame.vn/choi-game/ket-noi-adventure-time/24308" title="Kết Nối Adventure Time"><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442811469.jpg" alt=""></a></div>
+                        <div class="title-wrapper">
+                            <h4 class="the-title"><a href="http://vuigame.vn/choi-game/ket-noi-adventure-time/24308" title="Kết Nối Adventure Time">Kết Nối Adventure Time</a></h4>
+                            <span class="the-cate"><a href="http://vuigame.vn/pikamay/48" title="Pikamay">Pikamay</a></span>
+                        </div>
+                    </li>
+                    
+                    <li class="banner column">
+                        <div class="image-wrapper"><a href="http://vuigame.vn/choi-game/khung-long-bao-chua-paris/24307" title="Khủng Long Bạo Chúa Paris"><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442810812.jpg" alt=""></a></div>
+                        <div class="title-wrapper">
+                            <h4 class="the-title"><a href="http://vuigame.vn/choi-game/khung-long-bao-chua-paris/24307" title="Khủng Long Bạo Chúa Paris">Khủng Long Bạo Chúa Paris</a></h4>
+                            <span class="the-cate"><a href="http://vuigame.vn/truy-bat/58" title="Truy Bắt">Truy Bắt</a></span>
+                        </div>
+                    </li>
+                    
+                    <li class="banner column">
+                        <div class="image-wrapper"><a href="http://vuigame.vn/choi-game/doraemon-leo-cao-a/24305" title="Doraemon Leo Cao a"><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442554822.jpg" alt=""></a></div>
+                        <div class="title-wrapper">
+                            <h4 class="the-title"><a href="http://vuigame.vn/choi-game/doraemon-leo-cao-a/24305" title="Doraemon Leo Cao a">Doraemon Leo Cao a</a></h4>
+                            <span class="the-cate"><a href="http://vuigame.vn/thu-tai-nhay/59" title="Thử Tài Nhảy">Thử Tài Nhảy</a></span>
+                        </div>
+                    </li>
+                    
+                    <li class="banner column">
+                        <div class="image-wrapper"><a href="http://vuigame.vn/choi-game/ghep-hinh-sieu-nhan/24304" title="Ghép Hình Siêu Nhân"><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442554625.jpg" alt=""></a></div>
+                        <div class="title-wrapper">
+                            <h4 class="the-title"><a href="http://vuigame.vn/choi-game/ghep-hinh-sieu-nhan/24304" title="Ghép Hình Siêu Nhân">Ghép Hình Siêu Nhân</a></h4>
+                            <span class="the-cate"><a href="http://vuigame.vn/xep-hinh/41" title="Xếp Hình">Xếp Hình</a></span>
+                        </div>
+                    </li>
+                    
+                    <li class="banner column">
+                        <div class="image-wrapper"><a href="http://vuigame.vn/choi-game/lap-rap-robot-angry-bear/24298" title="Lắp Ráp Robot Angry Bear"><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442551965.jpg" alt=""></a></div>
+                        <div class="title-wrapper">
+                            <h4 class="the-title"><a href="http://vuigame.vn/choi-game/lap-rap-robot-angry-bear/24298" title="Lắp Ráp Robot Angry Bear">Lắp Ráp Robot Angry Bear</a></h4>
+                            <span class="the-cate"><a href="http://vuigame.vn/xep-hinh/41" title="Xếp Hình">Xếp Hình</a></span>
+                        </div>
+                    </li>
+                    
+                    <li class="banner column">
+                        <div class="image-wrapper"><a href="http://vuigame.vn/choi-game/chien-tuyen-rigby-vs-mordecai/24295" title="Chiến Tuyến Rigby Vs Mordecai"><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442473685.jpg" alt=""></a></div>
+                        <div class="title-wrapper">
+                            <h4 class="the-title"><a href="http://vuigame.vn/choi-game/chien-tuyen-rigby-vs-mordecai/24295" title="Chiến Tuyến Rigby Vs Mordecai">Chiến Tuyến Rigby Vs Mordecai</a></h4>
+                            <span class="the-cate"><a href="http://vuigame.vn/nham-ban/86" title="Nhắm Bắn">Nhắm Bắn</a></span>
+                        </div>
+                    </li>
+                    
+                    <li class="banner column">
+                        <div class="image-wrapper"><a href="http://vuigame.vn/choi-game/gumball-vs-darwin-xep-kim-cuong/24293" title="Gumball Vs Darwin Xếp Kim Cương"><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442472337.jpg" alt=""></a></div>
+                        <div class="title-wrapper">
+                            <h4 class="the-title"><a href="http://vuigame.vn/choi-game/gumball-vs-darwin-xep-kim-cuong/24293" title="Gumball Vs Darwin Xếp Kim Cương">Gumball Vs Darwin Xếp Kim Cương</a></h4>
+                            <span class="the-cate"><a href="http://vuigame.vn/xep-kim-cuong/74" title="Xếp Kim Cương">Xếp Kim Cương</a></span>
+                        </div>
+                    </li>
+                    
+                    <li class="banner column">
+                        <div class="image-wrapper"><a href="http://vuigame.vn/choi-game/doraemon-vs-nobita-ban-sung/24291" title="Doraemon Vs Nobita Bắn Súng"><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442470960.jpg" alt=""></a></div>
+                        <div class="title-wrapper">
+                            <h4 class="the-title"><a href="http://vuigame.vn/choi-game/doraemon-vs-nobita-ban-sung/24291" title="Doraemon Vs Nobita Bắn Súng">Doraemon Vs Nobita Bắn Súng</a></h4>
+                            <span class="the-cate"><a href="http://vuigame.vn/goc-nhin-thu-nhat/36" title="Góc nhìn thứ nhất">Góc nhìn thứ nhất</a></span>
+                        </div>
+                    </li>
+                    
+                    <li class="banner column">
+                        <div class="image-wrapper"><a href="http://vuigame.vn/choi-game/tran-chien-robot-dino/24290" title="Trận Chiến Robot Dino"><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442470690.jpg" alt=""></a></div>
+                        <div class="title-wrapper">
+                            <h4 class="the-title"><a href="http://vuigame.vn/choi-game/tran-chien-robot-dino/24290" title="Trận Chiến Robot Dino">Trận Chiến Robot Dino</a></h4>
+                            <span class="the-cate"><a href="http://vuigame.vn/khac/111" title="Khác">Khác</a></span>
+                        </div>
+                    </li>
+                    
+                    <li class="banner column">
+                        <div class="image-wrapper"><a href="http://vuigame.vn/choi-game/ben-10-thiet-bi-ngoai-hanh-tinh/24288" title="Ben 10 Thiết Bị Ngoài Hành Tinh"><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442475128.jpg" alt=""></a></div>
+                        <div class="title-wrapper">
+                            <h4 class="the-title"><a href="http://vuigame.vn/choi-game/ben-10-thiet-bi-ngoai-hanh-tinh/24288" title="Ben 10 Thiết Bị Ngoài Hành Tinh">Ben 10 Thiết Bị Ngoài Hành Tinh</a></h4>
+                            <span class="the-cate"><a href="http://vuigame.vn/logic/43" title="Logic">Logic</a></span>
+                        </div>
+                    </li>
+                    
+                    <li class="banner column">
+                        <div class="image-wrapper"><a href="http://vuigame.vn/choi-game/chima-dua-xe-vuot-ham-toi/24287" title="Chima Đua Xe Vượt Hầm Tối"><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442381617.jpg" alt=""></a></div>
+                        <div class="title-wrapper">
+                            <h4 class="the-title"><a href="http://vuigame.vn/choi-game/chima-dua-xe-vuot-ham-toi/24287" title="Chima Đua Xe Vượt Hầm Tối">Chima Đua Xe Vượt Hầm Tối</a></h4>
+                            <span class="the-cate"><a href="http://vuigame.vn/nham-ban/86" title="Nhắm Bắn">Nhắm Bắn</a></span>
+                        </div>
+                    </li>
+                    
+                    <li class="banner column">
+                        <div class="image-wrapper"><a href="http://vuigame.vn/choi-game/mr-bean-say-ruou/24286" title="Mr Bean Say Rượu"><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442381303.jpg" alt=""></a></div>
+                        <div class="title-wrapper">
+                            <h4 class="the-title"><a href="http://vuigame.vn/choi-game/mr-bean-say-ruou/24286" title="Mr Bean Say Rượu">Mr Bean Say Rượu</a></h4>
+                            <span class="the-cate"><a href="http://vuigame.vn/kheo-leo/114" title="Khéo Léo">Khéo Léo</a></span>
+                        </div>
+                    </li>
+                    
+                    <li class="banner column">
+                        <div class="image-wrapper"><a href="http://vuigame.vn/choi-game/cu-dam-dragon-ball/24283" title="Cú Đấm Dragon Ball"><img src="http://vuigame.vcdn.vn/upload/images/thumb/product/sizexsize//Sizeicon_1442380505.jpg" alt=""></a></div>
+                        <div class="title-wrapper">
+                            <h4 class="the-title"><a href="http://vuigame.vn/choi-game/cu-dam-dragon-ball/24283" title="Cú Đấm Dragon Ball">Cú Đấm Dragon Ball</a></h4>
+                            <span class="the-cate"><a href="http://vuigame.vn/nhanh-tay/67" title="Nhanh Tay">Nhanh Tay</a></span>
+                        </div>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+            </div>
+
+            <footer id="site-footer">
+                <div class="left">
+    <ul class="sub-navigation">
+        <li class="first"><a href="http://vuigame.vn/gioi-thieu" title="Giới thiệu">Giới thiệu</a></li>
+<!--        <li><a href="#" title="Liên hệ & Góp ý">Liên hệ & Góp ý</a></li>-->
+        <li><a href="http://vuigame.vn/gioi-thieu/6" title="Điều khoản sử dụng">Điều khoản sử dụng</a></li>
+<!--        <li class="last"><a href="http://vuigame.vn/rss/" title="RSS">RSS</a></li>-->
+    </ul>
+    <p>Giấy phép MXH số 04/GXN-TTDT Công Ty TNHH Nội Dung Số Nguyên Bảo.</p>
+    <p>Địa chỉ: số 73/17 Trần Khánh Dư, phường Mỹ An, quận Ngũ Hành Sơn, thành phố Đà Nẵng</p>
+</div>
+<div class="right"><p>Game vui miễn phí hay và hấp dẫn nhất, hãy quay lại để tham gia các game vui mới nhất được cập nhật liên tục bạn nhé!</p></div>
+            </footer>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#main-navigation .links li a').mouseover(function () {
+                    current = $(this);
+                    current.parent().addClass('is-hover');
+                }).mouseout(function () {
+                    $(this).parent().removeClass('is-hover');
+                });
+
+                $('#header-navigation ul.links li').mouseover(function () {
+                    current = $(this);
+                    current.addClass('is-hover');
+                }).mouseout(function () {
+                    $(this).removeClass('is-hover');
+                });
+            });
+
+            $(function () {
+                $(".rslides").responsiveSlides({
+                    auto: true,
+                    speed: 300,
+                    timeout: 3000,
+                    pager: true,
+                    nav: false,
+                    navContainer: '.rslides-control-wrapper'
+                });
+            });
+        </script>		
+    </body>
+</html>

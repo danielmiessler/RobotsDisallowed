@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Spaste is a website to create, share pastes online while earning money.">
+    <meta name="author" content="spaste.com">
+	<base href="/themes/site/" />
+    <title>404 Not Found | SPaste</title>
+
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="js/vegas/jquery.vegas.css" />
+    <link rel="stylesheet" type="text/css" href="css/dripicon.css" />
+    <link rel="stylesheet" type="text/css" href="css/swipebox.css" />
+    <link rel="stylesheet" href="css/hover-btn.css"/>
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
+	<script src="js/jquery-1.11.0.js"></script>
+	<!--<script src="//cdn.ckeditor.com/4.4.7/standard/ckeditor.js"></script>-->
+	<script src="js/bootstrap.min.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+    [data-sr] {
+        visibility: hidden;
+    }
+        .social i{
+            opacity:0.35;
+        }
+        .social i:hover{
+            opacity:1;
+        }
+         #element_to_pop_up { display:none; }
+    </style>
+	<script>
+    	$(document).ready(function () {
+    		$(".countryHere").click(function () {
+    			var elem = $(this);
+    			elem.html("Please wait.....");
+    			$.get('http://spaste.com/site/getCountryFromIp',{ip:elem.parent().find("span").html()},function (r){
+    				elem.html(r);
+    			});
+    		});
+    	});
+    </script>
+    <script type="text/javascript">
+function revertForm()
+{
+	$("#editor1").val('');
+	//CKEDITOR.instances['editor1'].setData("");
+	$("#paste_title").val('');
+	$("#resultData").show();
+	$("#resultData1").hide();
+}
+	$(document).ready(function(){
+		$("#submitPaste").click(function(){
+			var co=$("#editor1").val();
+			
+			//var co = CKEDITOR.instances["editor1"].getData();
+			var paste_content=co;
+			
+			var paste_title=$("#paste_title").val();
+			//alert(paste_content);
+			if(paste_content=="")
+			{
+				alert("Fill in the paste content");
+				return false;
+			}
+			$.post("/site/index",{'paste_content':paste_content,'paste_title':paste_title,'userspaste':'userspaste',ajax:'a'},function(r){
+			$("#resultData").hide();
+							$("#resultData2").show();
+				$("#resultDataC2").html("<p style='font-weight:600;'>Press CTRL+C to copy</p><input class='form-control' style='width:75%;float:left;height:45px;font-weight:400;border-radius:5px;padding:10px;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;' id='newUrl2' type='text' onclick='this.select()' value='"+r+"'/>&nbsp;&nbsp;<a style=' float: left; margin-left: 20px;' class='btn btn-success' href='"+r+"'>Open</a>");
+				$("#newUrl2").select();
+				$("#resultData2").bPopup();
+						
+		});
+	});	
+	
+	$("#updatePaste").click(function(){
+			var co=$("#editor1").val();
+			
+			//var co = CKEDITOR.instances["editor1"].getData();
+			var paste_content=co;
+			
+			var paste_title=$("#paste_title").val();
+			var idd=$("#idd").val();
+			//alert(paste_content);
+			if(paste_content=="")
+			{
+				alert("Fill in the paste content");
+				return false;
+			}
+			$.post("http://spaste.com/site/updateUserPaste",{'idd':idd,'paste_content':paste_content,'paste_title':paste_title,'userspaste':'userspaste',ajax:'a'},function(r){
+			$("#resultData").hide();
+			if(r=="success")
+			{
+				alert("Update Successfully");
+			}
+			else
+			{
+				alert("Error in current process try later.");
+			}
+			
+		});
+	});	
+			$(".closePaste").click(function(){
+				$(".__b-popup1__").css('opacity','0');
+				$("#resultData1").hide();
+			});
+			$(".newPaste").click(function(){
+				$(".__b-popup1__").css('opacity','0');
+				$("#resultData1").hide();
+			});
+});
+</script> 
+</head>
+<div id="element_to_pop_up" class="row" style="background-color:#05C1FD;">
+				<div class="col-sm-12" style="width:450px;height:290px">
+                    <div class="about-nest">
+                        <h2>Login Here</h2>
+                        <br>
+                        <script>
+                            	$(document).ready(function(){
+                            		$(".submitBtn").click(function(){
+                            		var username=$(".username").val();
+                            		var password=$(".password").val();
+                            		$.post("/site/AjaxLogin",{'username':username,'password':password,'LoginForm':'LoginForm'},function(r){
+                            		var obj = JSON.parse(r);
+                            		
+                            		console.log(obj);
+                            		//alert(obj.wrongCredentials="activeCode");
+                           if(obj.message!="user" && obj.message!="" && obj.message!="success" && obj.message!="admin"){
+                           	$("#errorMessage").empty();
+                           	
+                           		$("#errorMessage").append('<div class="sb_msg clearfix">'+obj.message+'</div>');
+                        	}
+                        	if(obj.message=="success"){
+                           			window.location.href="/site/dashboard";
+                        					}
+                        	if(obj.message=="user"){
+                           			window.location.href="/site/dashboard";
+                        					}
+                        	if(obj.message=="admin"){
+                           			window.location.href="/admin/dashboard";
+                        					}
+                            			});
+                            		});
+                            	});
+                            </script>
+                            <div class="form-group">
+                           		<div id="errorMessage">
+                           			
+                           		</div>
+                           	</div>
+						<!--<form action="" method="post">-->
+			            <div class="form-group">
+			                			            </div>	
+                        <div class="form-group">
+
+                            <input onkeyup="if(event.which == 13) $('#submitBtn').click(); " name="LoginForm[username]" value="" type="text" placeholder="Enter Email" class="form-control username">
+                        </div>
+                        <div class="form-group">
+
+                            <input onkeyup="if(event.which == 13) $('#submitBtn').click(); " name="LoginForm[password]" value="" type="password" placeholder="Enter Password" class="form-control password">
+                        </div>
+                        <div class="form-group">
+                    	                         </div>
+                        <div class="box-footer">
+                        	<button class="btn btn-primary submitBtn" type="submit" id="submitBtn" name="template-contactform-submit" value="submit">Login</button>
+                          <a href="/site/forgot" style="float:right;font-size:20px;font-weight:bold;">Forgot password?</a>
+                        </div>
+						<!--</form>-->
+                        
+
+                    </div>
+                </div>
+            </div>
+<div id="resultData1" class="form-group" style="display:none;background-color: #fff;
+    height: 210px;
+    left: 326.5px;
+    opacity: 1;
+    position: absolute;
+    top: 520.5px;
+    width: 750px;
+    z-index: 9999;
+    border-radius:5px;">
+         	<div id="resultDataC" style="padding: 25px;margin-bottom:18px;">
+         		
+         	</div>
+         	<div class="modal-footer">
+         		<button class="btn btn-info newPaste" onclick="revertForm()" >New Paste</button>
+              <button class="btn btn-danger closePaste" onclick="revertForm()" data-dismiss="modal">Close</button>
+              
+            </div>
+         	
+    	</div>
+    	
+<div id="resultData2" class="form-group" style="display:none;background-color: #fff;
+    left: 326.5px;
+    opacity: 1;
+    position: absolute;
+    top: 520.5px;
+    width: 750px;
+    z-index: 9999;
+    border-radius:5px;">
+         	<div id="resultDataC2" style="padding: 25px;margin-bottom:18px;">
+         		
+         	</div>
+         	<div style="text-align:center;width:100%;">
+         					    <h3>Get paid to share this link</h3>
+			    <p>Create a free account and anytime you share links, we will pay you for each unique visitor. <br />
+Earn up to $12.3 per thousand visitors to your links.<br />
+</p>
+			  <a class="btn btn-info newPaste" href="/site/register">Join Today</a>
+			  <br /><br />
+			  </div>
+         	<div class="modal-footer">
+         		<a class="btn btn-info newPaste" href="/site/register">New Paste</a>
+              	<button class="btn btn-danger closePaste" onclick="revertForm();bclose();" data-dismiss="modal">Close</button>
+              
+            </div>
+         	
+    	</div>
+<!-- <body id="page-top" class="index"> -->
+<body id="page-top" class="index body-padding">
+
+    <!-- Navigation -->
+    <!--<nav class="navbar navbar-default navbar-fixed-bottom navbar-wrapper">-->
+    <nav class="navbar navbar-default navbar-fixed-bottom navbar-wrapper sticky navbar-shrink">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#page-top" style="padding: 0px"><img src="http://spaste.com/themes/site/img/spaste-logo.png"></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="page-scroll">
+                        <a href="/site/index"><i class="fa fa-fw fa-home"></i>Home</a>
+                    </li>
+
+                    
+										
+                    <li  id="login" class="page-scroll">
+                        <a href="/site/login"><i class="fa fa-fw fa-sign-in"></i>Login</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="/site/register"><i class="icon icon-user-group"></i>Sign Up</a>
+                    </li>
+                    
+                    <li class="page-scroll">
+                        <a href="/site/index#contact"><i class="fa fa-fw fa-location-arrow"></i>Contact</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="http://spaste.com/support/"><i class="fa fa-fw fa-support"></i>support</a>
+                    </li>
+					                    
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid-fluid -->
+    </nav>
+    <!-- End of Navigation -->
+
+    <!-- Header -->
+   
+    <header style="background:url('img/Finance_Wallpapers_Money_Currency_030149_.jpg') center top;display:none;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 text-right">
+                    <div style="padding-top:10px;padding-right:10px;" class="social">
+                        <a href="http://facebook.com"><i style="color:#fff;font-size:25px;" class="fa fa-fw fa-facebook"></i></a>
+                        <a href="https://twitter.com/sPasteTeam"><i style="color:#fff;font-size:25px;" class="fa fa-fw fa-twitter"></i></a>
+                        <a href="http://gmail.com"><i style="color:#fff;font-size:25px;" class="fa fa-fw fa-google-plus"></i></a>
+                        <a href="/cdn-cgi/l/email-protection#1b72757d745b686b7a686f7e35787476"><i style="color:#fff;font-size:25px;" class="icon icon-mail"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="intro-text">
+                        <h1>
+                            <!--<span>Spaste</span>-->
+                            <a href="/site/index">
+                            	<img src="img/spaste-logo.png" alt="" style=""/>
+                            </a>
+                        </h1>
+                        
+                        <h4>
+                        	
+                            <span style="font-weight: bold;">
+                            	Synchronize, Share and Monetize your links                            </span>
+                        </h4>
+                        <br>
+                        <span class="page-scroll" style="padding: 10px 28px 10px;">
+                            <a class="color-white" href="#about" >Enter</a>
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- <div class="embed-responsive embed-responsive-16by9">
+                      <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/eoK4i0SU3DA"></iframe>
+                    </div> -->
+    </header>
+    
+    <!-- End of Header -->
+
+    <div id="content">
+	<section id="features" class="success">
+        <div class="arrow-down"></div>
+        <div class="ray-top ray1"></div>
+        <div class="ray-top ray2"></div>
+        <div class="ray-top ray3"></div>
+
+        <div class="container-fluid" style="height:50vh;">
+        	  <div class="row">
+                <div class="col-md-12">
+                    <div class="title-overview">
+                        <h2 class="color-yellow title-change-color">
+                            <span class="border-color">404 Not Found</span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+             <div class="row">
+                
+
+
+                <div class="col-md-12">
+                    <div class="resume-content">
+                        <!--<h4>Cambridge University</h4>
+                        <h5>
+                            <span><i class="icon-calendar"></i>2001 - 2004</span>
+                        </h5>-->
+                       
+                        
+                        
+						
+						
+						<h4>What does this even mean??</h4>
+						<p>This is a “404 error” page. What it means is the page you were looking for has moved - either the URL structure changed or the page simply no longer exists on this site and the link you followed to get here - whether from Google or someone else’s website, is out of date. I’m really sorry about that!</p>
+					
+                        
+                    </div>
+
+
+                </div>
+            </div>
+            <br>
+            <br>
+
+            
+
+        </div>
+    </section></div><!-- content -->
+
+
+    <!-- Footer -->
+    
+    <!-- Footer -->
+    <div class="footer-below" style="background:#000;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    Copyright © 2015 sPaste.com All Rights Reserved.
+                </div>
+                <div class="col-lg-6 text-right">
+                    <p>
+                        <a style="margin-right:5px;font-size:15px;" href="/site/privacy">Privacy Policy</a> /
+                        <a style="margin-right:5px;font-size:15px;" href="/site/tos">Terms of Service</a> /
+                        <a style="margin-right:5px;font-size:15px;" href="/site/faq">FAQs</a> / 
+                        <a style="margin-right:5px;font-size:15px;" href="/site/earnMoney">Earn Money</a> / 
+                        <a style="margin-right:5px;font-size:15px;" href="/site/dmca">DMCA</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Footer -->
+    
+    <!-- jQuery Version 1.11.0 -->
+   
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/style-change.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/cbpAnimatedHeader.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    
+    
+    <!--<script src="js/contact_me.js"></script>-->
+    
+    
+    
+    
+    <!-- Custom Theme JavaScript -->
+    <script src="js/freelancer.js"></script>
+    <script src="js/horizBarChart.js"></script>
+    <!-- portfolio filtered -->
+    <script type="text/javascript" src="js/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mixitup.min.js"></script>
+    <script type="text/javascript" src="js/jquery.swipebox.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <!-- Gmap  Option -->
+
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
+     <script type="text/javascript" src="js/bpopup.js"></script>
+    <script type="text/javascript" src="js/gmap3.min.js"></script>
+    <!--  Sliding settting -->
+    <script src="js/jquery.tabSlideOut.v1.3.js"></script>
+    <script src='js/scrollReveal.js'></script>
+    <script>
+    window.sr = new scrollReveal();
+    </script>
+
+
+    <script type="text/javascript">
+    $(function() {
+        $('#test1').gmap3({
+            marker: {
+                address: "Haltern am See, Weseler Str. 151"
+            },
+            map: {
+                options: {
+                    zoom: 16
+                }
+            }
+        });
+        //CKEDITOR.replace( 'editor1' );
+    });
+    </script>
+    <script>
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+
+    </script>
+
+    <script type="text/javascript">
+    $(function() {
+        //lightbox 
+        $('.swipebox').swipebox();
+        //filtered portfolio
+        var filterList = {
+            init: function() {
+                // MixItUp plugin
+                // http://mixitup.io
+                $('#portfoliolist').mixitup({
+                    targetSelector: '.portfolio',
+                    filterSelector: '.filter',
+                    effects: ['fade'],
+                    easing: 'snap',
+                    // call the hover effect
+                    onMixEnd: filterList.hoverEffect()
+                });
+
+            },
+
+            hoverEffect: function() {
+
+                // Simple parallax effect
+                $('#portfoliolist .portfolio').hover(
+                    function() {
+                        $(this).find('.label').stop().animate({
+                            bottom: 0
+                        }, 200, 'easeOutQuad');
+                        $(this).find('img').stop().animate({
+                            top: -30
+                        }, 500, 'easeOutQuad');
+                    },
+                    function() {
+                        $(this).find('.label').stop().animate({
+                            bottom: -40
+                        }, 200, 'easeInQuad');
+                        $(this).find('img').stop().animate({
+                            top: 0
+                        }, 300, 'easeOutQuad');
+                    }
+                );
+
+            }
+
+        };
+
+        // Run the show!
+        filterList.init();
+        //slide out panel
+        $('.slide-out-div').tabSlideOut({
+            tabHandle: '.handle', //class of the element that will be your tab
+            pathToTabImage: '<i class="icon-phone"></i>', //path to the image for the tab (optionaly can be set using css)
+            imageHeight: '40px', //height of tab image
+            imageWidth: '40px', //width of tab image    
+            tabLocation: 'right', //side of screen where tab lives, top, right, bottom, or left
+            speed: 300, //speed of animation
+            action: 'click', //options: 'click' or 'hover', action to trigger animation
+            topPos: '200px', //position from the top
+            fixedPosition: true //options: true makes it stick(fixed position) on scroll
+        });
+        
+        
+          $('#login').bind('click', function(e) {
+                e.preventDefault();
+                $('#element_to_pop_up').bPopup({
+                 });
+            });
+            
+			//$('#myModal').modal();
+    });
+    </script>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+(function(){try{var s,a,i,j,r,c,l=document.getElementsByTagName("a"),t=document.createElement("textarea");for(i=0;l.length-i;i++){try{a=l[i].getAttribute("href");if(a&&a.indexOf("/cdn-cgi/l/email-protection") > -1  && (a.length > 28)){s='';j=27+ 1 + a.indexOf("/cdn-cgi/l/email-protection");if (a.length > j) {r=parseInt(a.substr(j,2),16);for(j+=2;a.length>j&&a.substr(j,1)!='X';j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}j+=1;s+=a.substr(j,a.length-j);}t.innerHTML=s.replace(/</g,"&lt;").replace(/>/g,"&gt;");l[i].setAttribute("href","mailto:"+t.value);}}catch(e){}}}catch(e){}})();
+/* ]]> */
+</script>
+</body>
+
+</html>

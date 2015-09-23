@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /indywidualni/odnosniki
+Disallow: /indywidualni/odnosniki/
+Disallow: /_user/

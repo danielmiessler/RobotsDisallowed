@@ -1,0 +1,24 @@
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: Slurp
+User-agent: Yandex
+User-agent: AskJeeves
+User-agent: Baiduspider
+User-agent: ia_archiver
+Disallow: /Vtemp/
+Disallow: /seg_nivel/
+Disallow: /boletin/
+Disallow: /lengua_y_ensenanza/espacio_lenguas_ibericas/
+Disallow: /sobre_instituto_cervantes/espacios_profesionales/
+Disallow: /lengua_y_ensenanza/comprofes/inscripcion/
+Disallow: /default_pruebas.htm
+Disallow: /cultura_espanola/informacion_noindex.htm
+Disallow: /bibliotecas_documentacion_espanol/default-noindex.htm
+Disallow: /france/cours_espagnol_paris_bordeaux/
+Disallow: /france/cours_espagnol_paris_lyon/
+Disallow: /lengua_y_ensenanza/csf/
+Disallow: /memoria_ic_web_2011-2012/
+Crawl-delay: 20
+
+User-agent: *
+Disallow: /

@@ -1,0 +1,1 @@
+# http://www.nextthing.org/archives/2007/03/12/robotstxt-adventure aa

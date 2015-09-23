@@ -1,0 +1,6 @@
+User-agent: *
+
+Disallow: /myaccount/
+Disallow: /info/
+
+Sitemap: http://www.pctools.com/sitemaps/sitemapindex.xml

@@ -1,0 +1,17 @@
+User-agent: Mediapartners-Google*
+Disallow:
+
+User-agent: *
+Disallow: /login/
+Disallow: /text/
+Disallow: /szukaj/
+Disallow: /tekst/*/sciaga
+Disallow: /zadanie/pobierz/prev
+Disallow: /zadanie/pobierz/next
+Disallow: /zadanie/dodaj
+Disallow: /forum/
+Disallow: /korepetycje/
+Disallow: /klasa/
+Disallow: /konkurs/
+Disallow: /testy/
+Disallow: /auth/

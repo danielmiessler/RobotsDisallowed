@@ -1,0 +1,56 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>出错了！</title>
+<link href="http://edtsoft.com:80/css/3rd/error.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript">
+	var timeFlag = 10;
+	var basePath='http://edtsoft.com:80/';
+	console.log("basePaht is:"+basePath);
+	window.onload = function(){
+		setTimeout("timeout()", 1000);
+	}
+	function timeout(){
+		if(timeFlag == 0) {
+			if (window == window.top) {
+				console.log("window == window.top");
+				location.href = basePath;
+			} else {
+				console.log("window != window.top");
+				window.top.$.fancybox.close(true);
+			}
+		} else {
+		timeFlag--;
+		document.getElementById("showTime").innerHTML=timeFlag+"秒后自动跳转回首页";
+		setTimeout("timeout();",1000);
+		}
+	}
+</script>
+</head>
+
+<body>
+<table border="0" align="center" cellpadding="0" cellspacing="0"
+	class="error_tab">
+	<tr class="error_tab_trtop">
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td align="center">
+		<div class="error_div">您访问的页面不存在！<br />
+		<a id="showTime" class="error_div_b">10秒后自动跳转回首页</a>
+		<div class="error_div_memo">如您不想等待， <a
+			href="/firstPage.html">点此立即跳转至首页 </a>。<br />
+		您也可以 <a href="javascript:history.go(-1)">点此返回上一页</a>，尝试其他操作。</div>
+		</div>
+		</td>
+	</tr>
+	<tr class="error_tab_trbot">
+		<td>&nbsp;</td>
+	</tr>
+</table>
+</body>
+
+</html>

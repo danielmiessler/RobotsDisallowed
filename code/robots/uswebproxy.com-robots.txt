@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /browse.php
+Disallow: /tmp

@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type='text/javascript'>var _sf_startpt = (new Date()).getTime()</script>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"Ug8HVF9bGwAAUlFTBQY="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t){try{i.console&&console.log(t)}catch(e){}}var n,r=t("ee"),o=t(1),i={};try{n=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(i.console=!0,-1!==n.indexOf("dev")&&(i.dev=!0),-1!==n.indexOf("nr_dev")&&(i.nrDev=!0))}catch(a){}i.nrDev&&r.on("internal-error",function(t){e(t.stack)}),i.dev&&r.on("fn-err",function(t,n,r){e(r.stack)}),i.dev&&(e("NR AGENT IN DEVELOPMENT MODE"),e("flags: "+o(i,function(t){return t}).join(", ")))},{1:20,ee:"QJf3ax"}],4:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(6),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,t(3),window.onerror=e;try{throw new Error}catch(u){"stack"in u&&(t(4),t(5),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:5,2:8,3:3,4:7,5:6,6:21,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],5:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=t("ee").create(),i=t(1)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:22,ee:"QJf3ax",gos:"7eSDFh"}],6:[function(t,e){var n=t("ee").create(),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:22,ee:"QJf3ax"}],7:[function(t,e){function n(t,e,n){t[0]=o(t[0],"fn-",null,n)}var r=t("ee").create(),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:22,ee:"QJf3ax"}],8:[function(t,e){function n(){u.inPlace(this,p,"fn-")}function r(t,e){u.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}function i(t,e){for(var n in t)e[n]=t[n];return e}var a=t("ee").create(),s=t(1),c=t(2),u=c(a),f=c(s),d=window.XMLHttpRequest,p=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=a,window.XMLHttpRequest=function(t){var e=new d(t);try{a.emit("new-xhr",[],e),f.inPlace(e,["addEventListener","removeEventListener"],"-",o),e.addEventListener("readystatechange",n,!1)}catch(r){try{a.emit("internal-error",[r])}catch(i){}}return e},i(d,XMLHttpRequest),XMLHttpRequest.prototype=d.prototype,u.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),a.on("send-xhr-start",r),a.on("open-xhr-start",r)},{1:5,2:22,ee:"QJf3ax"}],9:[function(t){function e(t){var e=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!e.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){e.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=n(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(e.cat=d.split(", ").pop())}}else e.status=0;r.cbTime=this.cbTime,o("xhr",[e,r,this.startTime])}}}function n(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=e,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,e){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=n(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof e.onload))&&i.end(e)}catch(n){try{a.emit("internal-error",[n])}catch(r){}}};for(var f=0;c>f;f++)e.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:10,3:8,4:5,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],10:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split("@").pop().split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,r.protocol=o[0],"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],11:[function(t,e){function n(t){return function(){r(t,[(new Date).getTime()].concat(i(arguments)))}}var r=t("handle"),o=t(1),i=t(2);"undefined"==typeof window.newrelic&&(newrelic=window.NREUM);var a=["setPageViewName","addPageAction","setCustomAttribute","finished","addToTrace","inlineHit","noticeError"];o(a,function(t,e){window.NREUM[e]=n("api-"+e)}),e.exports=window.NREUM},{1:20,2:21,handle:"D5DuLP"}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):void(r.q&&(r.q[t]||(r.q[t]=[]),r.q[t].push(e)))}var r=t("ee").create();e.exports=n,n.ee=r,r.q={}},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info,e=u.getElementsByTagName("script")[0];if(t&&t.licenseKey&&t.applicationID&&e){s(d,function(e,n){e in t||(t[e]=n)});var n="https"===f.split(":")[0]||t.sslForHttp;p.proto=n?"https://":"http://",a("mark",["onload",i()]);var r=u.createElement("script");r.src=p.proto+t.agent,e.parentNode.insertBefore(r,e)}}function r(){"complete"===u.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=t(1),c=window,u=c.document;t(2);var f=(""+location).split("?")[0],d={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-686.min.js"},p=e.exports={offset:i(),origin:f,features:{}};u.addEventListener?(u.addEventListener("DOMContentLoaded",o,!1),c.addEventListener("load",n,!1)):(u.attachEvent("onreadystatechange",r),c.attachEvent("onload",n)),a("mark",["firstbyte",i()])},{1:20,2:11,handle:"D5DuLP"}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],20:[function(t,e){function n(t,e){var n=[],o="",i=0;for(o in t)r.call(t,o)&&(n[i]=e(o,t[o]),i+=1);return n}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],21:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],22:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:21,ee:"QJf3ax"}]},{},["G9z0Bl",4,9]);</script>
+    <link rel="canonical" href="">
+    <link
+        href="https://plus.google.com/103028798598212850671"
+        rel="publisher">
+            <meta name="twitter:card" content="summary">
+        <meta name="twitter:site"
+              content="@PPFA">
+        <meta name="twitter:creator" content="Planned Parenthood">
+        <meta name="twitter:title" content="Planned Parenthood Federation of America :: Planned Parenthood">
+        <meta name="twitter:description" content="Planned Parenthood has been providing trusted health care for nearly 100 years. Learn about pregnancy.">
+            <title>Planned Parenthood Federation of America :: Planned Parenthood</title>
+    <meta name="title" property="title" content="Planned Parenthood Federation of America :: Planned Parenthood"/>
+    <meta name="description" property="description" content="Planned Parenthood has been providing trusted health care for nearly 100 years. Learn about pregnancy."/>
+    
+    <meta name="og:title" property="og:title" content="Planned Parenthood Federation of America :: Planned Parenthood"/>
+    <meta name="og:description" property="og:description" content="Planned Parenthood has been providing trusted health care for nearly 100 years. Learn about pregnancy."/>
+    <meta name="og:image" property="og:image" content="/images/planned_parenthood_sharing_small.png"/>
+    
+    <link rel="image_src" href="/images/planned_parenthood_sharing_small.png"/>
+    <link rel="shortcut icon" href="/favicon.ico"/>
+    <!--Favorite Icon-->
+    <link type="text/css" rel="stylesheet"
+          href="//fast.fonts.net/cssapi/5e9f5a2f-7e43-4ba8-b08d-fa31beabf427.css"/>
+    <link href="/packages/responsive_theme/themes/responsive_theme/css/styles.css?ver=20150826.a" rel="stylesheet" type="text/css"/>
+    
+    <!-- http://broadcast.oreilly.com/2010/04/using-css-media-queries-ipad.html -->
+    <link rel="stylesheet" media="all and (max-device-width: 480px)" href="/packages/responsive_theme/themes/responsive_theme/css/iphone.css"> 
+    <link rel="stylesheet" media="all and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)" href="/packages/responsive_theme/themes/responsive_theme/css/ipad-portrait.css"> 
+    <link rel="stylesheet" media="all and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)" href="/packages/responsive_theme/themes/responsive_theme/css/ipad-landscape.css"> 
+    <link rel="stylesheet" media="all and (min-device-width: 1025px)" href="/packages/responsive_theme/themes/responsive_theme/css/ipad-landscape.css"> 
+
+    <link href="/packages/responsive_theme/themes/responsive_theme/css/foundation_tables.css?ver=20150826.a" rel="stylesheet" type="text/css"/>
+        <link href="/packages/responsive_theme/themes/responsive_theme/css/to_be_merged.css?ver=20150826.a" rel="stylesheet" type="text/css"/>
+    <meta name="viewport"
+          content="user-scalable=0, width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="HandheldFriendly" content="True">
+    <!--[if IE]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <!--[if lt IE 8]>
+    <script src="/packages/responsive_theme/themes/responsive_theme/js/vendor/pictonic.min.js"></script><![endif]-->
+    
+        
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="concrete5 - 5.6.2RC1" />
+<script type="text/javascript">
+var CCM_DISPATCHER_FILENAME = '/index.php';var CCM_CID = 16819;var CCM_EDIT_MODE = false;var CCM_ARRANGE_MODE = false;var CCM_IMAGE_PATH = "/concrete/images";
+var CCM_TOOLS_PATH = "/tools/required";
+var CCM_BASE_URL = "";
+var CCM_REL = "";
+
+</script>
+
+<link rel="stylesheet" type="text/css" href="/css/ccm.base.css?v=59f263ecf445e406a17f2a8dc3408e01" />
+<script type="text/javascript" src="/concrete/js/jquery.js?v=59f263ecf445e406a17f2a8dc3408e01"></script>
+<script type="text/javascript" src="/concrete/js/ccm.base.js?v=59f263ecf445e406a17f2a8dc3408e01"></script>
+<script type="text/javascript" src="/blocks/home_hero_carousel/js/lean-slider.js?v=59f263ecf445e406a17f2a8dc3408e01"></script>
+    <script src="/packages/responsive_theme/themes/responsive_theme/js/vendor/modernizr.custom.js?ver=20150826.a"></script>
+    
+        <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAbL3ckt0kCXKnw9YRKeviXbMd780X89I&sensor=false"></script>
+                
+    <script src="/packages/responsive_theme/themes/responsive_theme/js/vendor/lean-slider.js?ver=20150826.a"></script>
+    <!--<script src="/packages/responsive_theme/themes/responsive_theme/js/vendor/retina-1.1.0.min.js"></script>-->
+    <script src="/packages/responsive_theme/themes/responsive_theme/js/vendor/respond.js?ver=20150826.a"></script>
+    <script src="/packages/responsive_theme/themes/responsive_theme/js/vendor/bootstrap.min.js?ver=20150826.a"></script>
+    <script src="/packages/responsive_theme/themes/responsive_theme/js/vendor/bootstrap-paginator.min.js?ver=20150826.a"></script>
+    <script src="/packages/responsive_theme/themes/responsive_theme/js/vendor/jquery.sidr.min.js?ver=20150826.a"></script>
+    <script src="/packages/responsive_theme/themes/responsive_theme/js/vendor/detectmobilebrowser.js?ver=20150826.a"></script>
+    <script src="/packages/responsive_theme/themes/responsive_theme/js/vendor/markup/markup.min.js?ver=20150826.a"></script>
+    <script src="/packages/responsive_theme/themes/responsive_theme/js/vendor/markup/extras/arrays.js?ver=20150826.a"></script>
+    <script src="/packages/responsive_theme/themes/responsive_theme/js/jquery.cookie.js?ver=20150826.a"></script>
+    <script src="/js/jquery.scrolldepth.min.js?ver=20150826.a"></script>
+    <script src="/js/detectmobilebrowser.js?ver=20150826.a"></script>
+    <script src="/packages/promos/js/promos.js?ver=20150826.a"></script> 
+        <script src="/packages/responsive_theme/themes/responsive_theme/js/alt_nav.js" type="text/javascript"></script>
+    <script src="/js/proofpilot.js?ver=20150826.a"></script>
+    
+    <!-- ShareThis Scripts -->
+    <script type="text/javascript">var switchTo5x = true;</script>
+    <script type="text/javascript" src="//w.sharethis.com/button/buttons.js"></script>
+    <script
+        type="text/javascript">stLight.options({publisher: "ur-9f94c47c-37a-5e03-751b-f670d8774acd", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+
+    <link href="/packages/responsive_theme/themes/responsive_theme/typography.css?ver=20150826.a" rel="stylesheet" type="text/css"/>
+
+        <script type='text/javascript'>
+        var MODAL_ONLY_DIALOG_URL = "/tools/packages/interstitials/rt_modal_dialog";
+        var INTERSTITIALS_DIALOG_URL = "/tools/packages/interstitials/rt_interstitial_popup";
+	   var INTERSTITIALS_LANGUAGE = "en";
+    </script>
+    <script>
+        dataLayer = [{pageCategory:'Home',pageSubCategory:undefined,topic:undefined,subTopic:undefined,affiliateId:undefined,affiliateName:undefined,userAffiliateId:undefined,userAffiliateName:undefined,facilityId:undefined,healthCenterName:undefined,searchResultsType:undefined,language:'English',healthCenterServicePage:undefined}];
+    </script>
+</head>
+<body class="no-write edit-inactive">
+<!-- Google Tag Manager -->
+<noscript>
+    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZJZ59" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe>
+</noscript>
+<script>(function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src ='//www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-MZJZ59');</script>
+<!-- End Google Tag Manager -->
+<div class="responsive-web">
+<div class="responsive-menu" id="sidr">
+            <ul>
+                            <li><a class="needsclick" href="/learn">Learn</a></li>
+                        <li><a class="needsclick" href="/get-care">Get Care</a></li>
+                            <li><a class="needsclick" href="/get-involved">Get Involved</a></li>
+                    </ul>
+    <ul>
+    <li><h4>Just For You</h4></li>
+            <li>
+            <a href="/teens">
+                Info for Teens            </a>
+        </li>
+        <li>
+        <a href="/parents">
+            Tools for Parents        </a>
+    </li>
+    </ul><ul>
+    <li><h4>Get the Facts</h4></li>
+                <li>
+                <a href="/learn/abortion">Abortion</a>
+            </li>
+                    <li>
+                <a href="/learn/birth-control">Birth Control</a>
+            </li>
+                    <li>
+                <a href="/learn/morning-after-pill-emergency-contraception">Morning-After Pill (Emergency Contraception)</a>
+            </li>
+                    <li>
+                <a href="/learn/stds-hiv-safer-sex">STDs</a>
+            </li>
+                    <li>
+                <a href="/learn/womens-health">Women's Health</a>
+            </li>
+        </ul>    <ul>
+                            <li><a href="/about-us/newsroom">Newsroom</a></li>
+                                    <li><a href="/about-us/contact-us">Contact Us</a></li>
+                                    <li><a href="/about-us/jobs-volunteering">Jobs & Volunteering</a></li>
+                    </ul>
+</div><div class="container  home">
+<header id="main-header">
+	<a href="#sidr" id="mobile-nav-toggle" class="nav-toggle"></a>
+	<h4><a href="/" class="tr">Planned Parenthood</a></h4>
+		<ul class="social-links">
+	 <li class="follow">Follow</li>
+	 <li class="twitter"><span class="icon-twitter-3"></span>
+		  <ul class="link-box national-twitter">
+			   <li class="triangle"></li>
+			   <li class="first">Follow <span class="bold">Planned Parenthood</span> on Twitter<span class="icon icon-twitter-3 fr"></span></li>
+			   <li class="no-border-top alt-arrow light-blue"><a target="_blank" href="https://twitter.com/@PPFA"><span class="bold no-caps">@PPFA:</span> Planned Parenthood<sup>&copy;</sup> <span class="bold">Health</span></a></li>
+			   <li class="alt-arrow purple"><a target="_blank" href="https://twitter.com/@HeyPP"><span class="bold no-caps">@HeyPP:</span> Planned Parenthood<sup>&copy;</sup> <span class="bold">Info for Teens</span></a></li>
+			   <li class="alt-arrow pink"><a target="_blank" href="https://twitter.com/@PPact" class="interstitial-offsite"><span class="bold no-caps">@PPAct:</span> Planned Parenthood<sup>&copy;</sup> <span class="bold">Action</span></a></li>
+			   <li class="close"><span class="icon-kub-remove"></span> Close</li>
+		  </ul>
+	 </li>
+	 <li class="fb"><span class="icon-facebook"></span>
+		  <ul class="link-box national-fb">
+			   <li class="triangle"></li>
+			   <li class="first">Like <span class="bold">Planned Parenthood</span> on Facebook <span class="icon fr icon-facebook"></span></li>
+			   <li class="no-border-top alt-arrow light-blue"><a target="_blank" href="http://www.facebook.com/plannedparenthood">Planned Parenthood<sup>&copy;</sup> <span class="bold">Health</span></a></li>
+			   <li class="alt-arrow purple"><a target="_blank" href="http://www.facebook.com/PlannedParenthoodInfoforTeens">Planned Parenthood<sup>&copy;</sup> <span class="bold">Info for Teens</span></a></li>
+			   <li class="alt-arrow pink"><a target="_blank" href="http://www.facebook.com/plannedparenthoodaction" class="interstitial-offsite">Planned Parenthood<sup>&copy;</sup> <span class="bold">Action</span></a></li>
+			   <li class="close"><span class="icon-kub-remove"></span> Close</li>
+		  </ul>
+	 </li>
+	 <li class="no-sub-menu"><a target="_blank" href="http://plannedparenthood.tumblr.com/"><span class="icon-tumblr"></span></a></li>
+	 <li class="youtube"><span class="icon-youtube"></span>
+		  <ul class="link-box national-youtube">
+			   <li class="triangle"></li>
+			   <li class="first">Follow <span class="bold">Planned Parenthood</span> on Youtube <span class="icon fr icon-youtube"></span></li>
+			   <li class="no-border-top alt-arrow light-blue"><a target="_blank" href="http://www.youtube.com/user/plannedparenthood"><span class="bold">Planned Parenthood<sup>&copy;</sup></span></a></li>
+			   <li class="alt-arrow pink"><a target="_blank" href="http://www.youtube.com/user/ppvotes" class="interstitial-offsite">Planned Parenthood<sup>&copy;</sup> <span class="bold">Action</span></a></li>
+			   <li class="close"><span class="icon-kub-remove"></span> Close</li>
+		  </ul>
+	 </li>
+	 <li class="gplus"><span class="icon-google__x2B_"></span>
+		  <ul class="link-box national-gplus">
+			   <li class="triangle"></li>
+			   <li class="first">Follow <span class="bold">Planned Parenthood</span> on Google+ <span class="icon fr icon-google__x2B_"></span></li>
+			   <li class="no-border-top alt-arrow light-blue"><a target="_blank" href="https://plus.google.com/103028798598212850671">Planned Parenthood<sup>&copy;</sup> <span class="bold">Health</span></a></li>
+			   <li class="alt-arrow purple"><a target="_blank" href="https://plus.google.com/113212607421382877002">Planned Parenthood<sup>&copy;</sup> <span class="bold">Info for Teens</span></a></li>
+			   <li class="alt-arrow pink"><a target="_blank" href="https://plus.google.com/115674130304218283197" class="interstitial-offsite">Planned Parenthood<sup>&copy;</sup> <span class="bold">Action</span></a></li>
+			   <li class="close"><span class="icon-kub-remove"></span> Close</li>
+		  </ul>
+	 </li>
+	 <li class="instagram">
+		  <span class="icon-instagram"></span>
+		  <ul class="link-box national-instagram">
+			   <li class="triangle"></li>
+			   <li class="first">Follow <span class="bold">Planned Parenthood</span> on Instagram <span class="icon fr icon-instagram"></span></li>
+			   <li class="no-border-top alt-arrow light-blue"><a target="_blank" href="http://instagram.com/plannedparenthood">Planned Parenthood<sup>&copy;</sup> <span class="bold">Health</span></a></li>
+			   <li class="alt-arrow pink"><a target="_blank" href="http://instagram.com/ppact" class="interstitial-offsite">Planned Parenthood<sup>&copy;</sup> <span class="bold">Action</span></a></li>
+			   <li class="close"><span class="icon-kub-remove"></span> Close</li>
+		  </ul>
+	 </li>
+	 <li class="rss"><span class="icon-rss"></span>
+		  <ul class="link-box national-rss">
+			   <li class="triangle"></li>
+			   <li class="first">Follow Planned Parenthood <span class="icon icon-rss"></span></li>
+			   <!--<li class="no-border-top alt-arrow light-blue"><a target="_blank" href="http://asktheexperts.plannedparenthood.org/?feed=rss2"><span class="bold"></span></a></li>-->
+			   <li class="alt-arrow pink"><a target="_blank" href="http://www.womenarewatching.org/rss.xml" class="interstitial-offsite"><span class="bold">Women Are Watching</span></a></li>
+			   <li class="close"><span class="icon-kub-remove"></span> Close</li>
+		  </ul>
+	 </li>
+</ul>
+	<aside class="visible-desktop ">
+          <ul>
+			<li><a href="/">Home</a></li>
+			<li><a href="/esp">En Espa&ntilde;ol</a></li>
+          </ul>
+          <a href="http://www.plannedparenthoodaction.org/" onclick="ga('send', 'event', 'Header CTA', 'Take Action click', 'PPFA action site');" id="take-action" class="tr fr clear interstitial-offsite type-1">Take Action &raquo;</a>
+		<a href="https://secure.ppaction.org/site/Donation2?df_id=12913&12913.donation=form1&s_src=Evergreen_c3_PPNonDirected_banner"
+		   onclick="ga('send', 'event', 'Header CTA', 'Donate click', 'Donation page');" 
+		   id="donate-link" 
+		   class="tr fr clear">Donate &raquo;</a>
+	</aside>
+</header><!--End Header--><section id="content">
+	<nav id="main-nav" class="visible-desktop ">
+	<ul>
+				<li class="dropdown-two ">
+			<a href="/learn" title="Learn">
+				Learn			</a>
+						<ul id="altNavMainNat">
+				<li><a  href='/learn/abortion'>Abortion</a></li><li><a  href='/learn/birth-control'>Birth Control</a></li><li><a  href='/learn/body-image'>Body Image</a></li><li><a  href='/learn/general-health-care'>General Health Care</a></li><li><a  href='/learn/men'>Men's Sexual Health</a></li><li><a  href='/learn/morning-after-pill-emergency-contraception'>Morning-After Pill (Emergency Contraception)</a></li><li><a  href='/learn/pregnancy'>Pregnancy</a></li><li><a  href='/learn/relationships'>Relationships</a></li><li><a  href='/learn/sexuality'>Sex & Sexuality</a></li><li><a  href='/learn/sexual-orientation-gender'>Sexual Orientation & Gender</a></li><li><a  href='/learn/stds-hiv-safer-sex'>STDs</a></li><li><a  href='/learn/womens-health'>Women's Health</a></li>			</ul>
+					</li>
+		                    <li class="dropdown-two ">
+                <a href="/get-care" title="Get Care">
+                    Get Care                </a>
+                                            </li>
+        				<li class="dropdown-two ">
+			<a href="/get-involved" title="Get Involved">
+				Get Involved			</a>
+						<ul>
+				<li><a  href='/get-involved/share-your-story'>Share Your Story</a></li><li><a  href='https://secure.ppaction.org/site/Donation2?df_id=12913&12913.donation=form1&s_src=Evergreen_c3_PPNonDirected_banner&_ga=1.2473973.457604410.1419000818'>Donate</a></li><li><a class="interstitial-offsite" href='http://www.plannedparenthoodaction.org/'>Take Action</a></li><li><a  href='/get-involved/jobs-volunteering'>Jobs & Volunteering</a></li><li><a  href='http://www.facebook.com/PlannedParenthood'>Join Us on Facebook</a></li>			</ul>
+					</li>
+						<li class="dropdown-two ">
+			<a href="/about-us" title="/about-us">
+				About Us			</a>
+						<ul>
+				<li><a  href='/about-us/who-we-are'>Who We Are</a></li><li><a  href='/about-us/our-leadership'>Our Leadership</a></li><li><a  href='/about-us/local-state-offices'>Local & State Offices</a></li><li><a  href='/about-us/planned-parenthood-global'>Planned Parenthood Global</a></li><li><a  href='/about-us/jobs-volunteering'>Jobs & Volunteering</a></li><li><a  href='/about-us/newsroom'>Newsroom</a></li><li><a  href='/about-us/advisory-boards-initiatives'>Advisory Boards & Initiatives</a></li><li><a  href='/about-us/annual-report'>Annual Report</a></li><li><a  href='/about-us/about-this-site'>About This Site</a></li><li><a  href='/about-us/contact-us'>Contact Us</a></li>			</ul>
+					</li>
+			</ul>
+</nav>
+<aside id="sidebar">
+		<section class="sidebar-blue-wrapper">
+		<article class="find-health-center">
+    <form id="find-health-center-fhc-560073007d9cb103667" action="/health-center" method="post">
+        <h4>
+            Find a <span>health center</span>            <span class="visible-phone">&amp;</span>
+            <span class="visible-phone">book an appointment</span>
+        </h4>
+
+        <div class="input-group" style="height: 35px;">
+            <input id="fhc-560073007d9cbhealth-zip" type="text" name="fhc-560073007d9cbhealthZip" maxlength="5"
+                   class="health-zip"
+                   placeholder="Zip Code">
+
+            <div class="input-button visible-phone" id="health-center-input-arrow-wrapper-fhc-560073007d9cb"><input class="input-arrow" type="submit" value=""></div>
+            <label for="fhc-560073007d9cbhealth-state" class="visible-desktop">Or</label>
+            <select id="fhc-560073007d9cbhealth-state" name="fhc-560073007d9cbhealthState" class="visible-desktop">
+                <option name="label" value="State">State</option>
+                <option value="AK">AK</option>
+                <option value="AL">AL</option>
+                <option value="AR">AR</option>
+                <option value="AZ">AZ</option>
+                <option value="CA">CA</option>
+                <option value="CO">CO</option>
+                <option value="CT">CT</option>
+                <option value="DC">DC</option>
+                <option value="DE">DE</option>
+                <option value="FL">FL</option>
+                <option value="GA">GA</option>
+                <option value="HI">HI</option>
+                <option value="IA">IA</option>
+                <option value="ID">ID</option>
+                <option value="IL">IL</option>
+                <option value="IN">IN</option>
+                <option value="KS">KS</option>
+                <option value="KY">KY</option>
+                <option value="LA">LA</option>
+                <option value="MA">MA</option>
+                <option value="MD">MD</option>
+                <option value="ME">ME</option>
+                <option value="MI">MI</option>
+                <option value="MN">MN</option>
+                <option value="MO">MO</option>
+                <option value="MS">MS</option>
+                <option value="MT">MT</option>
+                <option value="NC">NC</option>
+                <option value="ND">ND</option>
+                <option value="NE">NE</option>
+                <option value="NH">NH</option>
+                <option value="NJ">NJ</option>
+                <option value="NM">NM</option>
+                <option value="NV">NV</option>
+                <option value="NY">NY</option>
+                <option value="OH">OH</option>
+                <option value="OK">OK</option>
+                <option value="OR">OR</option>
+                <option value="PA">PA</option>
+                <option value="RI">RI</option>
+                <option value="SC">SC</option>
+                <option value="SD">SD</option>
+                <option value="TN">TN</option>
+                <option value="TX">TX</option>
+                <option value="UT">UT</option>
+                <option value="VA">VA</option>
+                <option value="VT">VT</option>
+                <option value="WA">WA</option>
+                <option value="WI">WI</option>
+                <option value="WV">WV</option>
+                <option value="WY">WY</option>
+            </select>
+            <input type="submit" id="health-submit" value="Go" class="go-btn"></div>
+                    <h4 class="or-call visible-desktop">Or <span>Call</span></h4>
+            <h4 class="visible-desktop">
+                                    <a href="tel:+18002307526" class="find-health-center-phone">1-800-230-PLAN</a>
+                            </h4>
+            </form>
+</article>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#health-center-input-arrow-wrapper-fhc-560073007d9cb").click(function(e) {
+            e.preventDefault();
+            $("#find-health-center-fhc-560073007d9cb103667").submit();
+        });
+        
+        $("#find-health-center-fhc-560073007d9cb103667").submit(function (e) {
+            e.preventDefault();
+		  if ($("#find-health-center-fhc-560073007d9cb103667 #fhc-560073007d9cbhealth-zip").val() != '') {
+//		  if (false) {
+                window.location.href = '/health-center/all/all/' + $("#find-health-center-fhc-560073007d9cb103667 #fhc-560073007d9cbhealth-zip").val();
+                return false;
+            }
+            else if ($("#find-health-center-fhc-560073007d9cb103667 #fhc-560073007d9cbhealth-state").val() != "State") {
+                window.location.href = '/health-center/' + $("#find-health-center-fhc-560073007d9cb103667 #fhc-560073007d9cbhealth-state").val() + '/';
+                return false;
+            }
+        });
+        $("#fhc-560073007d9cbhealth-state").change(function (e) {
+            if ($("#fhc-560073007d9cbhealth-state").val() != "State") {
+                $("#fhc-560073007d9cbhealth-zip").val("");
+            }
+        });
+
+        $("#fhc-560073007d9cbhealth-zip").click(function () {
+            $("#fhc-560073007d9cbhealth-state").val("State");
+        });
+
+        $("#fhc-560073007d9cbhealth-zip").keypress(function (e) {
+            var char = (typeof e.which == "undefined") ? e.keyCode : e.which;
+            if (!((char===08||char===13)||(char >= 48 && char <= 58))) {
+                e.preventDefault();
+            }
+        });
+    });
+</script><article id="facts" class="visible-desktop">
+	<div>
+		<h4>The <span>Facts On</span></h4>
+		<ul id= "altNavNat" class="list">
+							<li>
+					<a href="/learn/abortion">Abortion</a>
+				</li>
+								<li>
+					<a href="/learn/birth-control">Birth Control</a>
+				</li>
+								<li>
+					<a href="/learn/morning-after-pill-emergency-contraception">Morning-After Pill (Emergency Contraception)</a>
+				</li>
+								<li>
+					<a href="/learn/stds-hiv-safer-sex">STDs</a>
+				</li>
+								<li>
+					<a href="/learn/womens-health">Women's Health</a>
+				</li>
+						</ul>
+				<span class = "more-health visible-desktop link-arrow">
+			<a href = "/learn">More Health Topics			</a>
+		</span>
+	</div>
+</article>
+
+			</section>
+		<nav id="sidebar-nav">
+    <ul>
+                    <li class='teens-info'>
+			<span class="link-arrow">
+				<a href="/teens">
+                    Info for <span>Teens</span>                </a>
+			</span>
+            </li>
+
+                <li>
+			<span class="link-arrow">
+				<a href="/parents">
+                    Tools for <span>Parents</span>                </a>
+			</span>
+        </li>
+
+            </ul>
+</nav>
+	<section class="sidebar-promos visible-desktop">
+					</section>
+	</aside>	<section id='featured-banner'>
+		        
+        		
+        <span id="home_hero" class="" style="">
+                    <div id="slider" class="lean-slider">
+            <div class="slide1">
+                        <a href="/esp" class="spanish visible-phone">
+                Espa&ntilde;ol            </a>
+                <img src="/files/cache/e1fda9f31a340502040c466a7df91a23_f16879.png" alt='provider-screenshot.png'>
+        <article class="promo-banner">
+                            <h3 class="promo-heading white">
+                    Meet Our<br />
+Providers                </h3>
+            <a href = "https://www.youtube.com/watch?v=6Ho7MkRTn7o" target = "_blank" class = " go-btn" target = "_blank" >Watch the Video</a >         </article>
+    </div>
+
+    <div class="slide2 visible-desktop lean-slider-slide">
+                        <img src="/files/cache/72d85c00d3a148e94f9f9b1535f9ddab_f11060.jpg" alt='planned-parenthood-about-us-1920x1080.jpg'>
+        <article class="promo-banner">
+                            <h3 class="promo-heading white">
+                    Care. <br />
+No Matter<br />
+Where.℠                </h3>
+            <a href = "/health-center" class = " go-btn" >Make an appointment</a >         </article>
+    </div>
+
+    </div>
+            <div id="slider-direction-nav"></div>
+        <div id="slider-control-nav" class="visible-desktop"></div>
+        <script>
+            function sliderStartup() {
+                $('#slider').leanSlider({
+                    directionNav: '#slider-direction-nav',
+                    controlNav: '#slider-control-nav'
+                });
+            }
+            $(document).ready(function(){
+                // image slider
+                if ($("#home_hero").attr('class') == "pending") {
+                    return;
+                } else {
+                    sliderStartup();
+                }
+            });
+        </script>
+    		</span>
+	</section>
+	<section id="main-content" class=" home">
+		<section class="landing-page">
+			<article id="main-section" class="no-border-bot">
+			
+<div id="HTMLBlock205500" class="HTMLBlock">
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-NFL5CV"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NFL5CV');</script>
+<!-- End Google Tag Manager --></div>
+<div id="HTMLBlock168236" class="HTMLBlock">
+<!-- Start Quantcast Tag -->
+<script type="text/javascript"> 
+var _qevents = _qevents || [];
+
+(function() {
+var elem = document.createElement('script');
+elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
+elem.async = true;
+elem.type = "text/javascript";
+var scpt = document.getElementsByTagName('script')[0];
+scpt.parentNode.insertBefore(elem, scpt);
+})();
+
+_qevents.push(
+{qacct:"p-f83mnHGect3fW",labels:"_fp.event.Homepage"}
+);
+</script>
+<noscript>
+<img src="//pixel.quantserve.com/pixel/p-f83mnHGect3fW.gif?labels=_fp.event.Homepage" style="display: none;" border="0" height="1" width="1" alt="Quantcast"/>
+</noscript>
+<!-- End Quantcast tag --></div>
+<div id="HTMLBlock170694" class="HTMLBlock">
+<!-- Tag for Activity Group: PP.org CMS Page Visits, Activity Name: PP.org Homepage, Activity ID: 1973584 -->
+
+<!-- Expected URL: http://www.plannedparenthood.org/ -->
+
+
+
+<!--
+
+Activity ID: 1973584
+
+Activity Name: PP.org Homepage
+
+Activity Group Name: PP.org CMS Page Visits
+
+-->
+
+
+
+<!--
+
+Start of DoubleClick Floodlight Tag: Please do not remove
+
+Activity name of this tag: PP.org Homepage
+
+URL of the webpage where the tag is expected to be placed: http://www.plannedparenthood.org/
+
+This tag must be placed between the <body> and </body> tags, as close as possible to the opening tag.
+
+Creation Date: 10/31/2014
+
+-->
+
+<script type="text/javascript">
+
+var axel = Math.random() + "";
+
+var a = axel * 10000000000000;
+
+document.write('<iframe src="http://4558437.fls.doubleclick.net/activityi;src=4558437;type=plann0;cat=ppfahome;ord=' + a + '?" width="1" height="1" frameborder="0" style="display:none"></iframe>');
+
+</script>
+
+<noscript>
+
+<iframe src="http://4558437.fls.doubleclick.net/activityi;src=4558437;type=plann0;cat=ppfahome;ord=1?" width="1" height="1" frameborder="0" style="display:none"></iframe>
+
+</noscript>
+
+<!-- End of DoubleClick Floodlight Tag: Please do not remove -->
+</div>			<article class="highlight">
+	<a href = "/learn/morning-after-pill-emergency-contraception" class = "" >	<img 
+		id="highlight-211437" 
+		src="/files/cache/e41796d93edd9fdc989963c2758a23f2_f1259.jpg" 
+		width="160" 
+		height="90" />
+	</a > 	<div>
+		<h3 class="link-arrow">
+			<a href = "/learn/morning-after-pill-emergency-contraception" class = "" >Morning-After Pill</a > 		</h3>
+		<div class="description">
+						<p>
+				Emergency contraception safely and effectively prevents pregnancy up to five days after unprotected sex.			</p>
+					</div>
+	</div>
+</article><article class="highlight">
+	<a href = "/learn/birth-control" class = "" >	<img 
+		id="highlight-211440" 
+		src="/files/cache/e5773c7a30c800f2f476b4226b6a90fd_f5703.jpg" 
+		width="160" 
+		height="90" />
+	</a > 	<div>
+		<h3 class="link-arrow">
+			<a href = "/learn/birth-control" class = "" >BIRTH CONTROL</a > 		</h3>
+		<div class="description">
+						<p>
+				Birth control lets you prevent and plan the timing of pregnancy. Compare birth control options and find the best method for you.			</p>
+					</div>
+	</div>
+</article><article class="highlight">
+	<a href = "/learn/abortion" class = "" >	<img 
+		id="highlight-211443" 
+		src="/files/cache/f5927d8b2af4b5017145c7e369c3d4f7_f1309.png" 
+		width="160" 
+		height="90" />
+	</a > 	<div>
+		<h3 class="link-arrow">
+			<a href = "/learn/abortion" class = "" >Abortion</a > 		</h3>
+		<div class="description">
+						<p>
+				Abortion is a safe way to end a pregnancy. Get the facts about the abortion pill and in-clinic abortion.			</p>
+					</div>
+	</div>
+</article><article class="highlight">
+	<a href = "/learn/stds-hiv-safer-sex" class = "" >	<img 
+		id="highlight-211446" 
+		src="/files/cache/f637256bdb6ffe44a34a1c713fd072c2_f1508.jpg" 
+		width="160" 
+		height="90" />
+	</a > 	<div>
+		<h3 class="link-arrow">
+			<a href = "/learn/stds-hiv-safer-sex" class = "" >STDs</a > 		</h3>
+		<div class="description">
+						<p>
+				Sexually transmitted infections are passed during sexual contact. Learn more about STD symptoms, testing, and treatment.			</p>
+					</div>
+	</div>
+</article>
+<div id="HTMLBlock171275" class="HTMLBlock">
+<br><br></div>			</article>
+			<footer id="landing-social-icons" class="visible-desktop">
+	<ul>
+		<li class="twitter">
+			<span class='st_twitter_custom' displayText='Tweet'>
+				<img src="/packages/responsive_theme/themes/responsive_theme/images/social/planned-parenthood-share-on-twitter.png" alt="twitter icon">
+			</span>
+		</li>
+		<li class="facebook">
+			<span class='st_facebook_custom' displayText='Facebook'>
+				<img src="/packages/responsive_theme/themes/responsive_theme/images/social/planned-parenthood-share-on-facebook.png" alt="facebook icon">
+			</span>
+		</li>
+		<li class="tumblr">
+			<span class='st_tumblr_custom' displayText='Tumblr'>
+				<img src="/packages/responsive_theme/themes/responsive_theme/images/social/planned-parenthood-share-on-tumblr.png" alt="tumblr icon">
+			</span>
+		</li>
+		<li class="googleplus">
+			<span class='st_googleplus_custom' displayText='Google +'>
+				<img src="/packages/responsive_theme/themes/responsive_theme/images/social/planned-parenthood-share-on-google.png" alt="google plus icon">
+			</span>
+		</li>
+		<li class="pinterest">
+			<span class='st_pinterest_custom' displayText='Pinterest'>
+				<img src="/packages/responsive_theme/themes/responsive_theme/images/social/planned-parenthood-share-on-pinterest.png" alt="twitter icon">
+			</span>
+		</li>
+	</ul>
+</footer>
+		</section>
+	</section>
+</section>
+<footer id="main-footer" class="visible-desktop">
+    <span class="fl">&copy; 2014 Planned Parenthood Federation of America Inc.</span>
+    <span class="tel fr"><a href="tel:18002307526" style="color: white">1-800-230-PLAN</a></span>
+
+    <div class="clear" id="extra-footer">
+        <p><a href="/privacy-policy">Privacy Policy</a></p>
+        <p><a href="/terms-use">Terms of Use</a></p>
+                <nav id="footer-nav" class="fr">
+            <ul>
+                <li><a href="/about-us/newsroom">Newsroom</a></li>
+                <li><a href="/about-us/contact-us">Contact Us</a></li>
+                <li><a href="/about-us/jobs-volunteering">Jobs &amp; Volunteering</a></li>
+                <li><a href="http://marketplace.plannedparenthood.org/">Store</a></li>
+                <li><a href="/learn/glossary">Glossary</a></li>
+            </ul>
+        </nav>
+    </div>
+</footer>
+<section id="mobile-footer-2" data-role="footer">
+    <article class="find-health-center">
+	<form id="find-health-center-fhc-56007300b2dfa103667" action="/health-center" method="post">
+		<h4>
+			Find a <span>health center</span>			<span class="visible-phone">&amp;</span>
+			<span class="visible-phone">book an appointment</span>
+		</h4>
+
+		<div class="input-group">
+			<input id="fhc-56007300b2dfahealth-zip" type="text" name="fhc-56007300b2dfahealthZip" maxlength="5" class="health-zip"
+				  placeholder="Zip Code">
+
+			<div class="input-button visible-phone"><input class="input-arrow" type="submit" value=""></div>
+			<label for="fhc-56007300b2dfahealth-state" class="visible-desktop">Or</label>
+			<select id="fhc-56007300b2dfahealth-state" name="fhc-56007300b2dfahealthState" class="visible-desktop">
+				<option name="label" value="State">State</option>
+				<option value="AK">AK</option>
+				<option value="AL">AL</option>
+				<option value="AR">AR</option>
+				<option value="AZ">AZ</option>
+				<option value="CA">CA</option>
+				<option value="CO">CO</option>
+				<option value="CT">CT</option>
+				<option value="DC">DC</option>
+				<option value="DE">DE</option>
+				<option value="FL">FL</option>
+				<option value="GA">GA</option>
+				<option value="HI">HI</option>
+				<option value="IA">IA</option>
+				<option value="ID">ID</option>
+				<option value="IL">IL</option>
+				<option value="IN">IN</option>
+				<option value="KS">KS</option>
+				<option value="KY">KY</option>
+				<option value="LA">LA</option>
+				<option value="MA">MA</option>
+				<option value="MD">MD</option>
+				<option value="ME">ME</option>
+				<option value="MI">MI</option>
+				<option value="MN">MN</option>
+				<option value="MO">MO</option>
+				<option value="MS">MS</option>
+				<option value="MT">MT</option>
+				<option value="NC">NC</option>
+				<option value="ND">ND</option>
+				<option value="NE">NE</option>
+				<option value="NH">NH</option>
+				<option value="NJ">NJ</option>
+				<option value="NM">NM</option>
+				<option value="NV">NV</option>
+				<option value="NY">NY</option>
+				<option value="OH">OH</option>
+				<option value="OK">OK</option>
+				<option value="OR">OR</option>
+				<option value="PA">PA</option>
+				<option value="RI">RI</option>
+				<option value="SC">SC</option>
+				<option value="SD">SD</option>
+				<option value="TN">TN</option>
+				<option value="TX">TX</option>
+				<option value="UT">UT</option>
+				<option value="VA">VA</option>
+				<option value="VT">VT</option>
+				<option value="WA">WA</option>
+				<option value="WI">WI</option>
+				<option value="WV">WV</option>
+				<option value="WY">WY</option>
+			</select>
+			<input type="submit" id="health-submit" value="Go" class="go-btn"></div>
+	</form>
+</article>
+<div class="call">
+			<a href="tel:+18002307526" class="go-btn full">Call Planned Parenthood</a>
+			<a href="https://secure.ppaction.org/site/Donation2?df_id=12913&12913.donation=form1&s_src=Evergreen_c3_PPNonDirected_banner" class="go-btn blue-secondary full">Donate Today</a>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$("#find-health-center-fhc-56007300b2dfa103667").submit(function (e) {
+			e.preventDefault();
+			if ($("#find-health-center-fhc-56007300b2dfa103667 #fhc-56007300b2dfahealth-zip").val() != '') {
+//			if (false) {
+				window.location.href = '/health-center/all/all/' + $("#find-health-center-fhc-56007300b2dfa103667 #fhc-56007300b2dfahealth-zip").val();
+				return false;
+			}
+			else if ($("#find-health-center-fhc-56007300b2dfa103667 #fhc-56007300b2dfahealth-state").val() != "State") {
+				window.location.href = '/health-center/' + $("#find-health-center-fhc-56007300b2dfa103667 #fhc-56007300b2dfahealth-state").val() + '/';
+				return false;
+			}
+		});
+		$("#fhc-56007300b2dfahealth-state").change(function (e) {
+			if ($("#fhc-56007300b2dfahealth-state").val() != "State")
+			{
+				$("#fhc-56007300b2dfahealth-zip").val("");
+			}
+		});
+
+		$("#fhc-56007300b2dfahealth-zip").click(function () {
+			$("#fhc-56007300b2dfahealth-state").val("State");
+		});
+		$("#fhc-56007300b2dfahealth-zip").keypress(function (e) {
+			var char = (typeof e.which == "undefined") ? e.keyCode : e.which;
+			if (!((char === 08 || char === 13) || (char >= 48 && char <= 58))) {
+				e.preventDefault();
+			}
+		});
+	});
+</script>    <ul class="national-social-sub national-fb">
+	<li class="first">
+		<span class="icon fr icon-facebook"></span> 
+		Like Planned 
+		<span class="break">Parenthood on Facebook</span>
+	</li>
+	<li class="close"></li>
+	<li class="no-border-top alt-arrow light-blue">
+		<a href="http://www.facebook.com/plannedparenthood">
+			Planned Parenthood<sup>&copy;</sup> Health		</a>
+	</li>
+	<li class="alt-arrow purple">
+		<a href="http://www.facebook.com/PlannedParenthoodInfoforTeens">
+			Planned Parenthood<sup>&copy;</sup> Info for Teens		</a>
+	</li>
+	<li class="last alt-arrow pink">
+		<a href="http://www.facebook.com/plannedparenthoodaction" class="interstitial-offsite">
+			Planned Parenthood<sup>&copy;</sup> Action		</a>
+	</li>
+</ul>
+<ul class="national-social-sub national-twitter">
+	<li class="first">
+		<span class="icon icon-twitter-3 fr"></span> 
+		Follow Planned 
+		<span class="break">Parenthood on Twitter</span>
+	</li>
+	<li class="close"></li>
+	<li class="no-border-top alt-arrow light-blue">
+		<a href="https://twitter.com/@PPFA">
+			Planned Parenthood<sup>&copy;</sup> Health		</a>
+	</li>
+	<li class="alt-arrow purple">
+		<a href="https://twitter.com/@HeyPP">
+			Planned Parenthood<sup>&copy;</sup> Info for Teens		</a>
+	</li>
+	<li class="last alt-arrow pink">
+		<a href="https://twitter.com/@PPact" class="interstitial-offsite">
+			Planned Parenthood<sup>&copy;</sup> Action		</a>
+	</li>
+</ul>
+<ul class="national-social-sub national-youtube">
+	<li class="first">
+		<span class="icon fr icon-youtube"></span> 
+		Follow Planned 
+		<span class="break">Parenthood on Youtube</span>
+	</li>
+	<li class="close"></li>
+	<li class="no-border-top alt-arrow light-blue">
+		<a href="http://www.youtube.com/user/plannedparenthood">
+			Planned Parenthood<sup>&copy;</sup>
+		</a>
+	</li>
+	<li class="last alt-arrow pink">
+		<a href="http://www.youtube.com/user/ppvotes" class="interstitial-offsite">
+			Planned Parenthood<sup>&copy;</sup> Action		</a>
+	</li>
+</ul>
+<ul class="national-social-sub national-gplus">
+	<li class="first">
+		<span class="icon fr icon-google__x2B_"></span>
+		Follow Planned 
+		<span class="break">Parenthood on Google+</span>
+	</li>
+	<li class="close"></li>
+	<li class="no-border-top alt-arrow light-blue">
+		<a href="https://plus.google.com/103028798598212850671">
+			Planned Parenthood<sup>&copy;</sup> Health		</a>
+	</li>
+	<li class="alt-arrow purple">
+		<a href="https://plus.google.com/113212607421382877002">
+			Planned Parenthood<sup>&copy;</sup> Info for Teens		</a>
+	</li>
+	<li class="last alt-arrow pink">
+		<a href="https://plus.google.com/115674130304218283197" class="interstitial-offsite">
+			Planned Parenthood<sup>&copy;</sup> Action		</a>
+	</li>
+</ul>
+<ul class="national-social-sub national-instagram">
+	<li class="first">
+		<span class="icon fr icon-instagram"></span>
+		Follow Planned 
+		<span class="break">Parenthood on Instagram</span>
+	</li>
+	<li class="close"></li>
+	<li class="no-border-top alt-arrow light-blue">
+		<a href="http://instagram.com/plannedparenthood">
+			Planned Parenthood<sup>&copy;</sup> Health		</a>
+	</li>
+	<li class="last alt-arrow pink">
+		<a href="http://instagram.com/ppact" class="interstitial-offsite">
+			Planned Parenthood<sup>&copy;</sup> Action		</a>
+	</li>
+</ul>
+<ul class="national-social-sub national-rss">
+	<li class="first">
+		<span class="icon icon-rss"></span> 
+		Follow Planned 
+		<span class="break">Parenthood</span>
+	</li>
+	<li class="close"></li>
+<!--	<li class="no-border-top alt-arrow light-blue">
+		<a href="http://asktheexperts.plannedparenthood.org/?feed=rss2">
+					</a>
+	</li>-->
+	<li class="last alt-arrow pink">
+		<a href="http://www.womenarewatching.org/rss.xml" class="interstitial-offsite">
+			Women Are Watching		</a>
+	</li>
+</ul>
+<ul class="national-social">
+	<li class="fb"><span class="fb-icon"></span></li>
+	<li class="twitter"><span class="twitter-icon"></span></li>
+		<li class="instagram"><span class="instagram-icon"></span></li>
+	<li class="no-sub-menu"><a href="http://plannedparenthood.tumblr.com/"><span class="tumblr-icon"></span></a></li>
+	<li class="gplus"><span class="google-icon"></span></li>
+	<li class="youtube"><span class="youtube-icon"></span></li>
+</ul>
+    <ul class="footer-links">
+        <li><a href="/privacy-policy">Privacy Policy</a></li>
+        <li><a href="/terms-use">Terms of Use</a></li>
+        <li><a href="/about-us/contact-us">Contact Us</a></li>
+        <li><a href="/esp">En Español</a></li>
+    </ul>
+    <p>&copy; 2014 Planned Parenthood Federation of America Inc.</p>
+</section>
+</div>
+</div>
+<div style="visibility: hidden">
+	<div itemscope itemtype="http://schema.org/Article">
+		<span itemprop="name">Planned Parenthood Federation of America</span>
+		<meta itemprop="description" content="" />
+				<meta itemprop="dateModified" content="2015/08/10" />
+	</div>
+</div><!-- Year end donation 2014-->
+<script src="/packages/responsive_theme/themes/responsive_theme/js/jquery.pageslide.min.js?ver=20150826.a"></script>
+<script src="/packages/responsive_theme/themes/responsive_theme/js/foundation.pageslide.js?ver=20150826.a"></script>
+<!-- Year end donation 2014-->
+<script src="/packages/responsive_theme/themes/responsive_theme/js/vendor/waypoints.min.js?ver=20150826.a"></script>
+<script src="/packages/responsive_theme/themes/responsive_theme/js/vendor/waypoints-sticky.min.js?ver=20150826.a"></script>
+<script src="/packages/responsive_theme/themes/responsive_theme/js/vendor/magnific.popup.min.js?ver=20150826.a"></script>
+<script src="/packages/responsive_theme/themes/responsive_theme/js/vendor/fastclick.js?ver=20150826.a"></script>
+<script src="/packages/responsive_theme/themes/responsive_theme/js/main.js?ver=20150826.a"></script>
+<!--[if lt IE 10]>
+	<script src="/packages/responsive_theme/themes/responsive_theme/js/vendor/css3-multi-column.js"></script>
+<![endif]-->
+<script type='text/javascript'>
+    var _sf_async_config={};
+    /** CONFIGURATION START **/
+    _sf_async_config.uid = 40587;
+    _sf_async_config.domain = 'plannedparenthood.org';
+    _sf_async_config.useCanonical = true;
+    _sf_async_config.sections = ''; //CHANGE THIS
+    _sf_async_config.authors = 'No Author';   //CHANGE THIS
+    /** CONFIGURATION END **/
+    (function(){
+        function loadChartbeat() {
+            window._sf_endpt=(new Date()).getTime();
+            var e = document.createElement('script');
+            e.setAttribute('language', 'javascript');
+            e.setAttribute('type', 'text/javascript');
+            e.setAttribute('src', '//static.chartbeat.com/js/chartbeat.js');
+            document.body.appendChild(e);
+        }
+        var oldonload = window.onload;
+        window.onload = (typeof window.onload != 'function') ?
+            loadChartbeat : function() { oldonload(); loadChartbeat(); };
+    })();
+</script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"afa06086e4","applicationID":"3060127","transactionName":"YVNQbEBRVxcCVxBaW1gZZ0pbH1AKB1EcHUReRg==","queueTime":0,"applicationTime":1687,"atts":"TRRTGghLRBk=","errorBeacon":"bam.nr-data.net","agent":"js-agent.newrelic.com\/nr-686.min.js"}</script></body>
+</html>

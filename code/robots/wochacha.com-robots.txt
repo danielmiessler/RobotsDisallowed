@@ -1,0 +1,944 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title> 我查查——第一比质比价平台！比质比价,正品低价,货到付款,条码扫描,折扣优</title>
+<meta name="Keywords" content=" 我查查,商品比价,超市代购,商品秒杀,城市精品,我查查手机软件下载,快递查询,曝光,网上购物,条码比价,二维码,扫描,防伪,省钱,在线购买,电子商务,网上比价,价格查询,质量查询,O2O,最便宜,最低价">
+<meta name="Description" content=" 我查查PC版是一个集成搜索比价、超市代购、商品秒杀,我查查手机应用下载于一体的综合性网络平台。用户可以在该平台上实现商品比价、支付购买、商品秒杀和我查查应用下载等功能。我查查秉承“公信力”理念，将大量商品信息呈现给用户，并帮助用户以最低的价格、最便捷的方式购买到质量有保障的正品。用户在我查查网站下载我查查条码比价手机客户端后，在手机端也可实现轻松购物明白消费。">
+<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8;IE=EDGE">  
+<meta name="apple-itunes-app" content="app-id=401857578">
+<link rel="canonical" href="http://www.wochacha.com/">
+<link rel="shortcut icon" href="http://www.wochacha.com/img/favicon.ico" />
+<link rel="icon" type="image/x-icon" href="http://www.wochacha.com/img/favicon.ico" />
+
+<script type="text/javascript">
+
+var URLPrefix = {"passport":"http://www.wochacha.com","search_keyword":"http://www.wochacha.com"};
+
+var favorite="我查查";
+var hostUrl="wochacha.com";
+var httpUrl="http://www.wochacha.com";
+var imgurl = "http://img.wochacha.com";
+var need_freight = "";
+var isIndex=0;
+var isLogin = 0;
+	var top_city_title = 0;
+
+</script>
+<script src="http://www.wochacha.com/js/jquery.js?v=20130828" type="text/javascript"></script>
+<script src="http://www.wochacha.com/js/jquery.cookie.js?v=20130828"  charset="UTF-8" type="text/javascript"></script>
+
+
+<link href="/css/channel_index.css?v=20130828" rel="stylesheet" type="text/css">
+<link type="text/css" rel="stylesheet" href="http://www.wochacha.com/css/global_site_index.css?v=20130828">
+<link type="text/css" rel="stylesheet" href="http://www.wochacha.com/css/global_site_wcc.css?v=20130828">
+<link href="http://www.wochacha.com/css/base.css?v=20130828" rel="stylesheet" type="text/css">
+<link href="http://www.wochacha.com/css/a.css?v=20130828" rel="stylesheet" type="text/css">
+
+
+</head>
+<body class="w1024" align='center' id='maindiv'>
+
+<div class="bdwbanner" id="bdwbanner">
+<div style="margin:0 auto;width:1054px;">
+	<a href="http://e.wochacha.com">
+		<div class="bdbar" id="bdbar"><img width="1024px" height="240px" src="/img/bdbar_pic.jpg" onerror="this.src='../img/error_360.jpg'"></div>
+	</a>
+	<div class="banner_del" onclick="del()">
+		<img width="30px" height="30px" src="/img/close.png" onerror="this.src='../img/error_360.jpg'">
+	</div>
+</div>
+</div>
+
+<!--top条-->
+<div class="top_bar" id="global_top_bar">
+  <div class="wrap clearfix" style="z-index:1001">
+    <div class="top_bar_link fr">
+      <div class="fl">
+        <div id="user_name" class="clearfix"> <s id="user_level" class="vip_none"></s> <span id="user_name_info" class="user_name_txt">您好</span> </div>
+        <span id="user_name_welcome" class="fl hide" style="display: inline;">,欢迎您</span> <span id="login"> <a id="global_top_bar_loginLink" href="http://www.wochacha.com/login/?redirectURL=aHR0cDovL3d3dy53b2NoYWNoYS5jb20v">[登录]</a> <a href="http://www.wochacha.com/login_register.html">[注册]</a> </span> <span><a href="http://www.wochacha.com/login_logout.html" class="logout" id="logout">[退出]</a></span> </div>
+      <ul class="fl">
+        <!--<li id="myorderID"> <a href="http://www.wochacha.com/center_index_url_order-orderlist.html">我的订单</a></li>
+        <li id="mycenter"><a class="drop" href="http://www.wochacha.com/center.html">我的查查</a>-->
+         <!-- <ul>
+            <li><a href="http://www.wochacha.com/center_index_url_order-orderlist.html">我的订单</a></li>
+            <li><a href="http://www.wochacha.com/center_index_url_order-product.html">已购买商品</a></li>
+          </ul>
+        </li>-->
+        <li id="customerservice"> <a class="drop" target="_blank" href="http://www.wochacha.com/help.html">帮助中心</a>
+          <ul>
+            <li><a target="_blank" href="http://www.wochacha.com/help_index_selecttab_1.html">常见问题</a></li>
+            <li><a target="_blank" href="http://www.wochacha.com/help.html" >新会员注册</a></li>
+          </ul>
+        </li>
+		 <li id="bugbackID"> <a href="http://www.wochacha.com/about/bugback.html">意见反馈</a></li>
+      </ul>
+    </div>
+    <div class="top_bar_link fl">
+      <ul>
+        <li><a href="javascript:bookmark();" class="favorites">收藏本站</a></li>
+        <li><a target="_blank" href="http://www.wochacha.com/m" class="phone_version">我查查手机版</a></li>
+		
+      </ul>
+    </div>
+  </div>
+</div>
+<!--top条结束-->
+<div class="wrap clearfix" id="site_header">
+    <div id="logo_areaID" class="logo_area fl clearfix">
+    <div class="logo_area_right fl">
+      <p class="slogan"><a class="fl" href="http://www.wochacha.com"></a></p>
+            	      <div class="indxProvce fl" id="headerSelectProvince">
+        <div><span id="top_city_title">&nbsp;&nbsp;</span>
+          <a style="display: inline;" class="header_province_name" id="currProvince" href="http://www.wochacha.com/interface_getbasecity.html">&nbsp;&nbsp;</a> </div>
+      </div>
+      	          </div>
+  </div>
+  <div class="head_search">
+  <form action="http://www.wochacha.com/index/search" method="get" enctype="multipart/form-data" id="searchForm" onsubmit="return searchMe();">
+    <p id="hotKeywordsShow"> <span>热门搜索：</span> <a href="http://www.wochacha.com/index/search?q=%E9%A9%B1%E8%9A%8A" target="_blank" title="驱蚊">驱蚊</a>
+<a href="http://www.wochacha.com/index/search?q=%E7%9F%BF%E6%B3%89%E6%B0%B4" target="_blank" title="矿泉水">矿泉水</a>
+<a href="http://www.wochacha.com/index/search?q=%E9%A5%AE%E6%96%99" target="_blank" title="饮料">饮料</a>
+<a href="http://www.wochacha.com/index/search?q=%E6%B4%97%E5%8F%91%E9%9C%B2" target="_blank" title="洗发露">洗发露</a>
+<a href="http://www.wochacha.com/index/search?q=%E4%BC%9E" target="_blank" title="伞">伞</a>
+<a href="http://www.wochacha.com/index/search?q=%E6%AF%9B%E5%B7%BE" target="_blank" title="毛巾">毛巾</a>
+ </p>
+    <div class="searchForm">
+      <input name="q" id="q"  style="color: rgb(153, 153, 153);" value="请输入关键词" maxlength="30" type="text">
+      <!--搜索提示 begin-->
+      <button class="searchBtn">搜 索</button>
+    </div>
+    <div class="serviceForm">
+        <div class="index_three_img"> </div>
+    </div>
+    </form>
+  </div>
+
+
+</div>
+<div id="headerNav" class="headerNav" style="height:1px;overflow:auto;">
+  
+</div>
+<script src="http://www.wochacha.com/js/global_site_wcc.js?v=20130828" type="text/javascript"></script>
+<script src="http://www.wochacha.com/js/global_index_top.js?v=20130828" charset="UTF-8" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+	try{
+		//登录用户
+		var nikename = $.cookie("nikename");
+		if($.trim(nikename))
+		{
+			$("#user_name_info").html(nikename);	
+			$("#login").hide();
+			$("#logout").show();
+		}
+	}catch(err){
+		
+	}			
+	var curid = 'index';
+	$('#'+curid).addClass('cur home');
+	
+
+
+</script>
+
+
+
+<script type="text/javascript">
+var isIndex = 1;
+function select_tab(tab){
+	$.each([1,2,3],function(){
+		if(tab==this){
+			$("#selecttab"+this).addClass("cur");
+		}else{
+			$("#selecttab"+this).removeClass("cur");
+			$("#block"+this).hide();
+		}
+	});
+	$("#block"+tab).show();
+}
+</script>
+
+<link href="/css/i.css?v=20130828" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="http://www.wochacha.com/css/poster.css?v=20130828"> 
+<link href="/css/norm.css?v=20130828" rel="stylesheet" type="text/css">
+<link href="/css/base.css?v=20130828" rel="stylesheet" type="text/css">
+<link href="/css/index_slides.css?v=20130828" rel="stylesheet" type="text/css">
+<link href="http://www.wochacha.com/css/venderbrand.css?v=20130828" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+.brand-con{
+  position: relative;
+}
+.bottom_service_link{
+	margin-top:2px;
+}
+#loading{
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background:#eee none repeat scroll 0 0 !important; 
+  filter:alpha(Opacity=50);
+  -moz-opacity:0.5;
+  opacity: 0.5;
+  z-index:9999; 
+  top:0;
+}
+#loading span{
+  display:block;
+  width:35px;
+  height:35px;
+  margin-top: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  background: url(/img/loading.gif) repeat 0 0;
+  z-index:110; 
+}
+    
+</style>
+
+<!--content start-->
+<div id="container" style="margin-top:-4px;">
+
+  <!--header-->
+  <div id="main">
+    <div id="maincontent">
+		 <div class="msblock" id="midcolumn0">
+          <div class="midcolumntitle">
+            <div class="newproduct">看看大家都在比</div>
+          </div>
+          <!--midcolumntitle-->
+          <div class="brand-con">
+          <div class="newimgs" id='scan_list'> 
+                      <div class="compare_list">
+              <div class='c1'> <a class="img60"  href="http://www.wochacha.com/compare_index_id_rrhqx4.html" title="10片吸黑头鼻贴(金缕梅女士型)+8ml黑头导出精华液" target="_blank"><img class="newproimg" width='60' height='60' src="http://img.wochacha.com/product_images/e/c/6928733116406.jpg" alt="10片吸黑头鼻贴(金缕梅女士型)+8ml黑头导出精华液" onerror="this.src='../img/error_60.jpg'" img2="/product_images/e/c/6928733116406.jpg" ></a></div>
+              <div class='c2'>
+                <div class="newtxtitle"><a  href="http://www.wochacha.com/compare_index_id_rrhqx4.html" title="10片吸黑头鼻贴(金缕梅女士型)+8ml黑头导出精华液" target="_blank">10片吸黑头鼻贴(金缕梅女士型)+8ml黑头导出精华液</a></div>
+                <div class="proprice" realprice="y"><p class="hprice">￥15.00</p><p class="mprice">￥19.50</p> </div>
+               
+              </div>
+            </div>
+                                    <div class="line"> </div>
+                                    <div class="compare_list">
+              <div class='c1'> <a class="img60"  href="http://www.wochacha.com/compare_index_id_hrhgks.html" title="眼部驻颜精油" target="_blank"><img class="newproimg" width='60' height='60' src="http://img.wochacha.com/product_images/5/5/6931765916425.jpg" alt="眼部驻颜精油" onerror="this.src='../img/error_60.jpg'" img2="/product_images/5/5/6931765916425.jpg" ></a></div>
+              <div class='c2'>
+                <div class="newtxtitle"><a  href="http://www.wochacha.com/compare_index_id_hrhgks.html" title="眼部驻颜精油" target="_blank">眼部驻颜精油</a></div>
+                <div class="proprice" realprice="y"><p class="hprice">￥117.60</p><p class="mprice">￥168.00</p> </div>
+               
+              </div>
+            </div>
+                                    <div class="line"> </div>
+                                    <div class="compare_list">
+              <div class='c1'> <a class="img60"  href="http://www.wochacha.com/compare_index_id_wu0eby.html" title="Heinz 亨氏 香梨汁 118ml" target="_blank"><img class="newproimg" width='60' height='60' src="http://img.wochacha.com/product_images/4/5/6921956602107.jpg" alt="Heinz 亨氏 香梨汁 118ml" onerror="this.src='../img/error_60.jpg'" img2="/product_images/4/5/6921956602107.jpg" ></a></div>
+              <div class='c2'>
+                <div class="newtxtitle"><a  href="http://www.wochacha.com/compare_index_id_wu0eby.html" title="Heinz 亨氏 香梨汁 118ml" target="_blank">Heinz 亨氏 香梨汁 118ml</a></div>
+                <div class="proprice" realprice="y"><p class="hprice">￥4.40</p><p class="mprice">￥7.50</p> </div>
+               
+              </div>
+            </div>
+                                    <div class="line"> </div>
+                                    <div class="compare_list">
+              <div class='c1'> <a class="img60"  href="http://www.wochacha.com/compare_index_id_ias24x.html" title="百多百蕃茄比萨味" target="_blank"><img class="newproimg" width='60' height='60' src="http://img.wochacha.com/product_images/d/a/6901845041064.jpg" alt="百多百蕃茄比萨味" onerror="this.src='../img/error_60.jpg'" img2="/product_images/d/a/6901845041064.jpg" ></a></div>
+              <div class='c2'>
+                <div class="newtxtitle"><a  href="http://www.wochacha.com/compare_index_id_ias24x.html" title="百多百蕃茄比萨味" target="_blank">百多百蕃茄比萨味</a></div>
+                <div class="proprice" realprice="y"><p class="hprice">￥3.00</p><p class="mprice">￥6.30</p> </div>
+               
+              </div>
+            </div>
+                                    <div class="line"> </div>
+                                    <div class="compare_list">
+              <div class='c1'> <a class="img60"  href="http://www.wochacha.com/compare_index_id_pskgwg.html" title="冰露矿物质水瓶" target="_blank"><img class="newproimg" width='60' height='60' src="http://img.wochacha.com/product_images/4/b/6935607060055.jpg" alt="冰露矿物质水瓶" onerror="this.src='../img/error_60.jpg'" img2="/product_images/4/b/6935607060055.jpg" ></a></div>
+              <div class='c2'>
+                <div class="newtxtitle"><a  href="http://www.wochacha.com/compare_index_id_pskgwg.html" title="冰露矿物质水瓶" target="_blank">冰露矿物质水瓶</a></div>
+                <div class="proprice" realprice="y"><p class="hprice">￥0.90</p><p class="mprice">￥1.40</p> </div>
+               
+              </div>
+            </div>
+                                    <div class="line"> </div>
+                                    <div class="compare_list">
+              <div class='c1'> <a class="img60"  href="http://www.wochacha.com/compare_index_id_yhglim.html" title="1#彩色长尾夹(筒装）" target="_blank"><img class="newproimg" width='60' height='60' src="http://img.wochacha.com/product_images/5/0/6926032336310.jpg" alt="1#彩色长尾夹(筒装）" onerror="this.src='../img/error_60.jpg'" img2="/product_images/5/0/6926032336310.jpg" ></a></div>
+              <div class='c2'>
+                <div class="newtxtitle"><a  href="http://www.wochacha.com/compare_index_id_yhglim.html" title="1#彩色长尾夹(筒装）" target="_blank">1#彩色长尾夹(筒装）</a></div>
+                <div class="proprice" realprice="y"><p class="hprice">￥10.90</p><p class="mprice">￥22.80</p> </div>
+               
+              </div>
+            </div>
+                                    <div class="line"> </div>
+                                    <div class="compare_list">
+              <div class='c1'> <a class="img60"  href="http://www.wochacha.com/compare_index_id_sfjduj.html" title="喜力小瓶" target="_blank"><img class="newproimg" width='60' height='60' src="http://img.wochacha.com/product_images/d/b/6908942371070.jpg" alt="喜力小瓶" onerror="this.src='../img/error_60.jpg'" img2="/product_images/d/b/6908942371070.jpg" ></a></div>
+              <div class='c2'>
+                <div class="newtxtitle"><a  href="http://www.wochacha.com/compare_index_id_sfjduj.html" title="喜力小瓶" target="_blank">喜力小瓶</a></div>
+                <div class="proprice" realprice="y"><p class="hprice">￥6.40</p><p class="mprice">￥11.50</p> </div>
+               
+              </div>
+            </div>
+                                     
+            </div>
+            <div id="loading"><span></span></div>
+          </div>
+		  
+		  
+		  
+		  <div class="index_down fl">
+      		<div class="global_rounded_title index_down_header">我查查手机客户端下载</div>
+      		<div class="index_down_body">
+      			<div class="index_down_blank"></div>
+      			<div class="index_down_logo"></div>
+      			<div class="index_down_iphone mb5" onclick="javascript:window.open('http://itunes.apple.com/cn/app/id401857578?mt=8','_blank')"></div>
+      			<div class="index_down_android mb5" onclick="javascript:window.open('http://www.wochacha.com/m.html','_blank')"></div>
+      			
+      		</div>
+      	</div>
+
+		  
+		  
+		  
+		  </div>
+          <!--newimgs-->
+		
+
+        <div id="myCarousel" class="carousel slide" style="margin-bottom:0px;"> 
+          		  
+		 
+		  
+          <div class="carousel-inner">
+                        <div class="item active">
+            <a   target="_blank"   alt="我查查条码比价" imgid="93" onclick="javasctipt:tj(93,'PCIndex')"> 
+              <img src="http://img.wochacha.com/pcbanner/hp_1438855634.jpg" alt="我查查条码比价">
+            </a> 
+            </div>
+                      </div>
+             
+			 <div class="head_link" style="margin-left:0px;margin-top:0px;width:190px;">
+<ul>
+	<a href="http://www.wochacha.com/m.html" target="_blank"><li style="border-top:1px solid #d4d4d4;" class="global_first"><div class="first_img"></div> <span>我查查手机客户端下载</span></li></a>
+	<a href="http://e.wochacha.com" target="_blank"><li class="global_second"><div class="second_img"></div> <span>我查查购物助手下载</span></li></a>
+	<a href="http://www.wochacha.com/help/?selecttab=8" target="_blank"><li class="global_three"><div class="three_img"></div><span>商户认证与广告服务介绍</span></li></a>
+	<a href="http://www.wochacha.com/help/?selecttab=9" target="_blank"><li class="global_four"><div class="four_img"></div><span>免费信息服务介绍</span></li></a>
+</ul>
+</div>
+			 
+			     
+       
+	    <div class="clear"></div>
+	   
+      	
+     
+
+		
+		
+		
+      	
+    <div class="red_black_list " id="index_recommend_list" >
+    	<div class="global_rounded_title pro_tab2 clearfix">
+		 <span>曝光栏</span>
+		</div>
+	<div id="hrb">
+      <ul class="tab_content" id="block1" style="display: block;">
+      <div class="hot_more color_gary"><a href="http://www.wochacha.com/newsqs/bindex" target="_blank">查看更多热点&gt;&gt;</a></div>
+        <div class="red_black_content"> 
+                  <ul>
+            <li class="l"> 
+            	<a target="_blank" title="假有机奶粉充斥消费市场  " href="http://www.wochacha.com/newsqs_subjectview_id_41639.html">
+                <img alt="假有机奶粉充斥消费市场  " src="http://img.wochacha.com/qs_img/qs_icon/41639.jpg" width="60" height="60" onerror="this.src='../img/error_110.jpg'">
+                </a>
+              <!--<li-->
+            </li>
+            <li class="r">
+				<div class='tabtit'> 
+					<div class="tabtit_div1" style='text-align:left'>	<a target="_blank" tk="822_578962_1" title="假有机奶粉充斥消费市场  " href="http://www.wochacha.com/newsqs_subjectview_id_41639.html"> 假有机奶粉充斥消费市场  </a></div>
+					<div class="weihai">危害级别：</div><div class='damagelevel0'></div>
+				</div>
+            </li>          
+          </ul>
+                    <ul>
+            <li class="l"> 
+            	<a target="_blank" title="高油高糖月饼打起“养生牌”  " href="http://www.wochacha.com/newsqs_subjectview_id_41637.html">
+                <img alt="高油高糖月饼打起“养生牌”  " src="http://img.wochacha.com/qs_img/qs_icon/41637.jpg" width="60" height="60" onerror="this.src='../img/error_110.jpg'">
+                </a>
+              <!--<li-->
+            </li>
+            <li class="r">
+				<div class='tabtit'> 
+					<div class="tabtit_div1" style='text-align:left'>	<a target="_blank" tk="822_578962_1" title="高油高糖月饼打起“养生牌”  " href="http://www.wochacha.com/newsqs_subjectview_id_41637.html"> 高油高糖月饼打起“养生牌”  </a></div>
+					<div class="weihai">危害级别：</div><div class='damagelevel0'></div>
+				</div>
+            </li>          
+          </ul>
+                    <ul>
+            <li class="l"> 
+            	<a target="_blank" title="未经处理生鲜蜂蜜易引发中毒 " href="http://www.wochacha.com/newsqs_subjectview_id_41635.html">
+                <img alt="未经处理生鲜蜂蜜易引发中毒 " src="http://img.wochacha.com/qs_img/qs_icon/41635.jpg" width="60" height="60" onerror="this.src='../img/error_110.jpg'">
+                </a>
+              <!--<li-->
+            </li>
+            <li class="r">
+				<div class='tabtit'> 
+					<div class="tabtit_div1" style='text-align:left'>	<a target="_blank" tk="822_578962_1" title="未经处理生鲜蜂蜜易引发中毒 " href="http://www.wochacha.com/newsqs_subjectview_id_41635.html"> 未经处理生鲜蜂蜜易引发中毒 </a></div>
+					<div class="weihai">危害级别：</div><div class='damagelevel0'></div>
+				</div>
+            </li>          
+          </ul>
+                    <ul>
+            <li class="l"> 
+            	<a target="_blank" title="景区变相提高票价将被查处 " href="http://www.wochacha.com/newsqs_subjectview_id_41629.html">
+                <img alt="景区变相提高票价将被查处 " src="http://img.wochacha.com/qs_img/qs_icon/41629.jpg" width="60" height="60" onerror="this.src='../img/error_110.jpg'">
+                </a>
+              <!--<li-->
+            </li>
+            <li class="r">
+				<div class='tabtit'> 
+					<div class="tabtit_div1" style='text-align:left'>	<a target="_blank" tk="822_578962_1" title="景区变相提高票价将被查处 " href="http://www.wochacha.com/newsqs_subjectview_id_41629.html"> 景区变相提高票价将被查处 </a></div>
+					<div class="weihai">危害级别：</div><div class='damagelevel0'></div>
+				</div>
+            </li>          
+          </ul>
+                    </div>
+          
+      </ul>
+      <ul id='block2' class="tab_content tab_content_black  ml10 mt10">
+      	<li class="black">
+         <div class="red_black_content"> 
+          <div class="black_more color_gary"><a href="http://www.wochacha.com/newsqs/bindex?tab=3" target="_blank">查看更多黑榜&gt;&gt;</a></div>
+                  <ul>
+            <li>
+            	<a target="_blank" title="配装眼镜" href="http://www.wochacha.com/newsqs_view_lid_1243251.html">
+                <img alt="配装眼镜" src="http://img.wochacha.com/qsr_images/1243251.jpg" width="60px" height="60px" onerror="this.src='../img/error_110.jpg'">
+                </a>
+              <!--<li-->
+            </li>
+            <li class="r">
+            	<div class='tabtit'> 
+					<div class="tabtit_div1">	<a target="_blank" tk="822_578962_1" title="配装眼镜" href="http://www.wochacha.com/newsqs_view_lid_1243251.html"> 配装眼镜</a></div>
+					
+				</div>
+				<div style='color:#f00000;margin-left:10px'>抽检结果：球镜顶焦度偏差不合格</div>
+            </li>
+          </ul>
+                    <ul>
+            <li>
+            	<a target="_blank" title="配装眼镜" href="http://www.wochacha.com/newsqs_view_lid_1243253.html">
+                <img alt="配装眼镜" src="http://img.wochacha.com/qsr_images/1243253.jpg" width="60px" height="60px" onerror="this.src='../img/error_110.jpg'">
+                </a>
+              <!--<li-->
+            </li>
+            <li class="r">
+            	<div class='tabtit'> 
+					<div class="tabtit_div1">	<a target="_blank" tk="822_578962_1" title="配装眼镜" href="http://www.wochacha.com/newsqs_view_lid_1243253.html"> 配装眼镜</a></div>
+					
+				</div>
+				<div style='color:#f00000;margin-left:10px'>抽检结果：球镜顶焦度偏差不合格</div>
+            </li>
+          </ul>
+                    <ul>
+            <li>
+            	<a target="_blank" title="配装眼镜" href="http://www.wochacha.com/newsqs_view_lid_1243255.html">
+                <img alt="配装眼镜" src="http://img.wochacha.com/qsr_images/1243255.jpg" width="60px" height="60px" onerror="this.src='../img/error_110.jpg'">
+                </a>
+              <!--<li-->
+            </li>
+            <li class="r">
+            	<div class='tabtit'> 
+					<div class="tabtit_div1">	<a target="_blank" tk="822_578962_1" title="配装眼镜" href="http://www.wochacha.com/newsqs_view_lid_1243255.html"> 配装眼镜</a></div>
+					
+				</div>
+				<div style='color:#f00000;margin-left:10px'>抽检结果：柱镜轴位偏差不合格</div>
+            </li>
+          </ul>
+                    </li><li  class="red">
+         <div class="red_black_content"> 
+         <div class="red_more color_gary"><a href="http://www.wochacha.com/newsqs/bindex?tab=4" target="_blank">查看更多红榜&gt;&gt;</a></div>
+                  <ul>
+            <li> 
+            	<a target="_blank" title="文胸" href="http://www.wochacha.com/newsqs_view_lid_1243515.html">
+                <img alt="文胸" src="http://img.wochacha.com/qsr_images/1243515.jpg" width="60px" height="60px" onerror="this.src='../img/error_110.jpg'">
+                </a>
+              <!--<li-->
+            </li>
+            <li class="r">
+            	<div class='tabtit'> 
+					<div class="tabtit_div1">	<a target="_blank" tk="822_578962_1" title="文胸" href="http://www.wochacha.com/newsqs_view_lid_1243515.html"> 文胸</a></div>
+				</div>
+				<div style='color:#166bcc;margin-left:10px'>合格商品</div>
+            </li>
+          </ul>
+                    <ul>
+            <li> 
+            	<a target="_blank" title="好波文胸" href="http://www.wochacha.com/newsqs_view_lid_1243517.html">
+                <img alt="好波文胸" src="http://img.wochacha.com/qsr_images/1243517.jpg" width="60px" height="60px" onerror="this.src='../img/error_110.jpg'">
+                </a>
+              <!--<li-->
+            </li>
+            <li class="r">
+            	<div class='tabtit'> 
+					<div class="tabtit_div1">	<a target="_blank" tk="822_578962_1" title="好波文胸" href="http://www.wochacha.com/newsqs_view_lid_1243517.html"> 好波文胸</a></div>
+				</div>
+				<div style='color:#166bcc;margin-left:10px'>合格商品</div>
+            </li>
+          </ul>
+                    <ul>
+            <li> 
+            	<a target="_blank" title="林夕梦文胸" href="http://www.wochacha.com/newsqs_view_lid_1243519.html">
+                <img alt="林夕梦文胸" src="http://img.wochacha.com/qsr_images/1243519.jpg" width="60px" height="60px" onerror="this.src='../img/error_110.jpg'">
+                </a>
+              <!--<li-->
+            </li>
+            <li class="r">
+            	<div class='tabtit'> 
+					<div class="tabtit_div1">	<a target="_blank" tk="822_578962_1" title="林夕梦文胸" href="http://www.wochacha.com/newsqs_view_lid_1243519.html"> 林夕梦文胸</a></div>
+				</div>
+				<div style='color:#166bcc;margin-left:10px'>合格商品</div>
+            </li>
+          </ul>
+                    </div>
+          
+        </ul>
+
+    </div>
+    </li>
+         
+         
+      </ul>
+</div>
+   
+   
+   
+   <div class="red_black_list ">
+    	<div class="global_rounded_title pro_tab2 clearfix">
+		 <span class="supermarket_poster">超市海报</span><span class="more_poster"><a href="http://www.wochacha.com/poster.html">查看更多海报>></a></span>
+		</div>
+	<div id="hrb" style="height:300px;">
+		
+						<div class="posterlist" style="margin-left:45px;" id='pl' onmouseover="mo(this)" onmouseout="ou(this)">
+			<div class="posterit">
+				<a href="/poster_detail.html"><a href="/poster_detail_ppid_67437.html"><img src="http://img.wochacha.com/promotion_image/67437/cover/1_cover.jpg" width="183" height="241" onerror="this.src='../img/poster_error_183x241.jpg'" alt="poster67437"/></a></a>
+				<div class="postertitle">
+					<div class='sp' style="line-height:21px;">乐购</div>
+					<div class='ci' style="line-height:18px;">上海|09.16-09.27</div>
+				</div>
+			</div>
+		</div>
+				<div class="posterlist" style="margin-left:45px;" id='pl' onmouseover="mo(this)" onmouseout="ou(this)">
+			<div class="posterit">
+				<a href="/poster_detail.html"><a href="/poster_detail_ppid_67479.html"><img src="http://img.wochacha.com/promotion_image/67479/cover/1_cover.jpg" width="183" height="241" onerror="this.src='../img/poster_error_183x241.jpg'" alt="poster67479"/></a></a>
+				<div class="postertitle">
+					<div class='sp' style="line-height:21px;">农工商</div>
+					<div class='ci' style="line-height:18px;">上海|09.16-09.29</div>
+				</div>
+			</div>
+		</div>
+				<div class="posterlist" style="margin-left:45px;" id='pl' onmouseover="mo(this)" onmouseout="ou(this)">
+			<div class="posterit">
+				<a href="/poster_detail.html"><a href="/poster_detail_ppid_67221.html"><img src="http://img.wochacha.com/promotion_image/67221/cover/1_cover.jpg" width="183" height="241" onerror="this.src='../img/poster_error_183x241.jpg'" alt="poster67221"/></a></a>
+				<div class="postertitle">
+					<div class='sp' style="line-height:21px;">家乐福</div>
+					<div class='ci' style="line-height:18px;">上海|09.15-09.27</div>
+				</div>
+			</div>
+		</div>
+				<div class="posterlist" style="margin-left:45px;" id='pl' onmouseover="mo(this)" onmouseout="ou(this)">
+			<div class="posterit">
+				<a href="/poster_detail.html"><a href="/poster_detail_ppid_67509.html"><img src="http://img.wochacha.com/promotion_image/67509/cover/1_cover.jpg" width="183" height="241" onerror="this.src='../img/poster_error_183x241.jpg'" alt="poster67509"/></a></a>
+				<div class="postertitle">
+					<div class='sp' style="line-height:21px;">罗森便利</div>
+					<div class='ci' style="line-height:18px;">上海|09.21-10.04</div>
+				</div>
+			</div>
+		</div>
+				<div class="posterlist" style="margin-left:45px;" id='pl' onmouseover="mo(this)" onmouseout="ou(this)">
+			<div class="posterit">
+				<a href="/poster_detail.html"><a href="/poster_detail_ppid_67403.html"><img src="http://img.wochacha.com/promotion_image/67403/cover/1_cover.jpg" width="183" height="241" onerror="this.src='../img/poster_error_183x241.jpg'" alt="poster67403"/></a></a>
+				<div class="postertitle">
+					<div class='sp' style="line-height:21px;">麦德龙</div>
+					<div class='ci' style="line-height:18px;">上海|09.17-09.30</div>
+				</div>
+			</div>
+		</div>
+				<div class="posterlist" style="margin-left:45px;" id='pl' onmouseover="mo(this)" onmouseout="ou(this)">
+			<div class="posterit">
+				<a href="/poster_detail.html"><a href="/poster_detail_ppid_67405.html"><img src="http://img.wochacha.com/promotion_image/67405/cover/1_cover.jpg" width="183" height="241" onerror="this.src='../img/poster_error_183x241.jpg'" alt="poster67405"/></a></a>
+				<div class="postertitle">
+					<div class='sp' style="line-height:21px;">麦德龙</div>
+					<div class='ci' style="line-height:18px;">上海|09.17-09.30</div>
+				</div>
+			</div>
+		</div>
+				<div class="posterlist" style="margin-left:45px;" id='pl' onmouseover="mo(this)" onmouseout="ou(this)">
+			<div class="posterit">
+				<a href="/poster_detail.html"><a href="/poster_detail_ppid_67247.html"><img src="http://img.wochacha.com/promotion_image/67247/cover/1_cover.jpg" width="183" height="241" onerror="this.src='../img/poster_error_183x241.jpg'" alt="poster67247"/></a></a>
+				<div class="postertitle">
+					<div class='sp' style="line-height:21px;">易买得</div>
+					<div class='ci' style="line-height:18px;">上海|09.16-09.29</div>
+				</div>
+			</div>
+		</div>
+				<div class="posterlist" style="margin-left:45px;" id='pl' onmouseover="mo(this)" onmouseout="ou(this)">
+			<div class="posterit">
+				<a href="/poster_detail.html"><a href="/poster_detail_ppid_67507.html"><img src="http://img.wochacha.com/promotion_image/67507/cover/1_cover.jpg" width="183" height="241" onerror="this.src='../img/poster_error_183x241.jpg'" alt="poster67507"/></a></a>
+				<div class="postertitle">
+					<div class='sp' style="line-height:21px;">罗森便利</div>
+					<div class='ci' style="line-height:18px;">上海|09.14-09.27</div>
+				</div>
+			</div>
+		</div>
+				<div class="posterlist" style="margin-left:45px;" id='pl' onmouseover="mo(this)" onmouseout="ou(this)">
+			<div class="posterit">
+				<a href="/poster_detail.html"><a href="/poster_detail_ppid_67151.html"><img src="http://img.wochacha.com/promotion_image/67151/cover/_cover.jpg" width="183" height="241" onerror="this.src='../img/poster_error_183x241.jpg'" alt="poster67151"/></a></a>
+				<div class="postertitle">
+					<div class='sp' style="line-height:21px;">迪亚天天</div>
+					<div class='ci' style="line-height:18px;">上海|09.10-09.23</div>
+				</div>
+			</div>
+		</div>
+				<div class="posterlist" style="margin-left:45px;" id='pl' onmouseover="mo(this)" onmouseout="ou(this)">
+			<div class="posterit">
+				<a href="/poster_detail.html"><a href="/poster_detail_ppid_67505.html"><img src="http://img.wochacha.com/promotion_image/67505/cover/1_cover.jpg" width="183" height="241" onerror="this.src='../img/poster_error_183x241.jpg'" alt="poster67505"/></a></a>
+				<div class="postertitle">
+					<div class='sp' style="line-height:21px;">罗森便利</div>
+					<div class='ci' style="line-height:18px;">上海|09.07-10.11</div>
+				</div>
+			</div>
+		</div>
+				<div class="posterlist" style="margin-left:45px;" id='pl' onmouseover="mo(this)" onmouseout="ou(this)">
+			<div class="posterit">
+				<a href="/poster_detail.html"><a href="/poster_detail_ppid_67063.html"><img src="http://img.wochacha.com/promotion_image/67063/cover/1_cover.jpg" width="183" height="241" onerror="this.src='../img/poster_error_183x241.jpg'" alt="poster67063"/></a></a>
+				<div class="postertitle">
+					<div class='sp' style="line-height:21px;">屈臣氏</div>
+					<div class='ci' style="line-height:18px;">上海|09.03-09.23</div>
+				</div>
+			</div>
+		</div>
+				<div class="posterlist" style="margin-left:45px;" id='pl' onmouseover="mo(this)" onmouseout="ou(this)">
+			<div class="posterit">
+				<a href="/poster_detail.html"><a href="/poster_detail_ppid_66733.html"><img src="http://img.wochacha.com/promotion_image/66733/cover/1_cover.jpg" width="183" height="241" onerror="this.src='../img/poster_error_183x241.jpg'" alt="poster66733"/></a></a>
+				<div class="postertitle">
+					<div class='sp' style="line-height:21px;">罗森便利</div>
+					<div class='ci' style="line-height:18px;">上海|08.31-10.04</div>
+				</div>
+			</div>
+		</div>
+				<div class="posterlist" style="margin-left:45px;" id='pl' onmouseover="mo(this)" onmouseout="ou(this)">
+			<div class="posterit">
+				<a href="/poster_detail.html"><a href="/poster_detail_ppid_66617.html"><img src="http://img.wochacha.com/promotion_image/66617/cover/1_cover.jpg" width="183" height="241" onerror="this.src='../img/poster_error_183x241.jpg'" alt="poster66617"/></a></a>
+				<div class="postertitle">
+					<div class='sp' style="line-height:21px;">麦德龙</div>
+					<div class='ci' style="line-height:18px;">上海|08.19-09.30</div>
+				</div>
+			</div>
+		</div>
+				<div class="posterlist" style="margin-left:45px;" id='pl' onmouseover="mo(this)" onmouseout="ou(this)">
+			<div class="posterit">
+				<a href="/poster_detail.html"><a href="/poster_detail_ppid_66327.html"><img src="http://img.wochacha.com/promotion_image/66327/cover/1_cover.jpg" width="183" height="241" onerror="this.src='../img/poster_error_183x241.jpg'" alt="poster66327"/></a></a>
+				<div class="postertitle">
+					<div class='sp' style="line-height:21px;">罗森便利</div>
+					<div class='ci' style="line-height:18px;">上海|08.17-09.27</div>
+				</div>
+			</div>
+		</div>
+				<div class="posterlist" style="margin-left:45px;" id='pl' onmouseover="mo(this)" onmouseout="ou(this)">
+			<div class="posterit">
+				<a href="/poster_detail.html"><a href="/poster_detail_ppid_13599.html"><img src="http://img.wochacha.com/promotion_image/13599/cover/4_cover.jpg" width="183" height="241" onerror="this.src='../img/poster_error_183x241.jpg'" alt="poster13599"/></a></a>
+				<div class="postertitle">
+					<div class='sp' style="line-height:21px;">我查查官方海报</div>
+					<div class='ci' style="line-height:18px;">上海|01.01-12.31</div>
+				</div>
+			</div>
+		</div>
+				<div class="posterlist" style="margin-left:45px;" id='pl' onmouseover="mo(this)" onmouseout="ou(this)">
+			<div class="posterit">
+				<a href="/poster_detail.html"><a href="/poster_detail_ppid_13601.html"><img src="http://img.wochacha.com/promotion_image/13601/cover/5_cover.jpg" width="183" height="241" onerror="this.src='../img/poster_error_183x241.jpg'" alt="poster13601"/></a></a>
+				<div class="postertitle">
+					<div class='sp' style="line-height:21px;">我查查官方海报</div>
+					<div class='ci' style="line-height:18px;">上海|01.01-12.31</div>
+				</div>
+			</div>
+		</div>
+				<div class="posterlist" style="margin-left:45px;" id='pl' onmouseover="mo(this)" onmouseout="ou(this)">
+			<div class="posterit">
+				<a href="/poster_detail.html"><a href="/poster_detail_ppid_13603.html"><img src="http://img.wochacha.com/promotion_image/13603/cover/9_cover.jpg" width="183" height="241" onerror="this.src='../img/poster_error_183x241.jpg'" alt="poster13603"/></a></a>
+				<div class="postertitle">
+					<div class='sp' style="line-height:21px;">我查查官方海报</div>
+					<div class='ci' style="line-height:18px;">上海|01.01-12.31</div>
+				</div>
+			</div>
+		</div>
+				<div class="posterlist" style="margin-left:45px;" id='pl' onmouseover="mo(this)" onmouseout="ou(this)">
+			<div class="posterit">
+				<a href="/poster_detail.html"><a href="/poster_detail_ppid_62401.html"><img src="http://img.wochacha.com/promotion_image/62401/cover/4_cover.jpg" width="183" height="241" onerror="this.src='../img/poster_error_183x241.jpg'" alt="poster62401"/></a></a>
+				<div class="postertitle">
+					<div class='sp' style="line-height:21px;">我查查官方海报</div>
+					<div class='ci' style="line-height:18px;">上海|01.01-12.31</div>
+				</div>
+			</div>
+		</div>
+				<div class="posterlist" style="margin-left:45px;" id='pl' onmouseover="mo(this)" onmouseout="ou(this)">
+			<div class="posterit">
+				<a href="/poster_detail.html"><a href="/poster_detail_ppid_62403.html"><img src="http://img.wochacha.com/promotion_image/62403/cover/5_cover.jpg" width="183" height="241" onerror="this.src='../img/poster_error_183x241.jpg'" alt="poster62403"/></a></a>
+				<div class="postertitle">
+					<div class='sp' style="line-height:21px;">我查查官方海报</div>
+					<div class='ci' style="line-height:18px;">上海|01.01-12.31</div>
+				</div>
+			</div>
+		</div>
+				<div class="posterlist" style="margin-left:45px;" id='pl' onmouseover="mo(this)" onmouseout="ou(this)">
+			<div class="posterit">
+				<a href="/poster_detail.html"><a href="/poster_detail_ppid_62405.html"><img src="http://img.wochacha.com/promotion_image/62405/cover/7_cover.jpg" width="183" height="241" onerror="this.src='../img/poster_error_183x241.jpg'" alt="poster62405"/></a></a>
+				<div class="postertitle">
+					<div class='sp' style="line-height:21px;">我查查官方海报</div>
+					<div class='ci' style="line-height:18px;">上海|01.01-12.31</div>
+				</div>
+			</div>
+		</div>
+					
+	</div>
+   </div>
+   
+   </div>
+      </div>
+        </div>
+</div>
+</div>
+<div class="fixedRightIndex">
+  <div class="toBugBack" id="toBugBack"></div>
+  <div class="toTop" id="toTop"></div>
+</div>
+<script src="http://www.wochacha.com/js/slider.js?v=20130828"  charset="UTF-8" type="text/javascript"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+//默认状态下左右滚动
+	$(".mini_block").each(function(){
+		$(this).xslider({
+			unitdisplayed:3,
+			movelength:3,
+			unitlen:184,
+		});
+	});	
+	 	loadCssAndJs(httpUrl+'/js/zxsearch.js?v=20130828','js');
+		//绑定toTop事件
+		$("#toTop").bind({
+			click:function(){
+				scroll(0,0);
+			}
+		});	
+		
+		$("#toBugBack").bind({
+			click:function(){
+				window.open(httpUrl+'/about/bugback.html');
+			}
+		});	
+		try{
+			var isshow = 1;
+		}catch(err)
+		{
+			var isshow = 0;
+		}
+		
+		if(isshow === 1){
+				if($.cookie("top_banner2")){
+					nowdate = getnowdate();
+				//	document.getElementById("bdwbanner").style.display="none";
+					$("#bdwbanner").hide('slow');
+					if($.cookie('top_banner2') <= nowdate){ 
+						$.cookie("top_banner2","",{ expires: 365, path: '/',domain:hostUrl });
+						$.cookie("top_banner",nowdate,{ expires: 365, path: '/',domain:hostUrl });
+
+				//		document.getElementById("bdwbanner").style.display="block";
+						$("#bdwbanner").show('slow');
+					}
+				}else{
+					nowdate = getnowdate();
+					if(!$.cookie('top_banner')){
+				//		document.getElementById("bdwbanner").style.display="block";
+						$("#bdwbanner").show('slow');
+						$.cookie("top_banner",nowdate,{ expires: 365, path: '/',domain:hostUrl });
+					}
+					else{
+						if($.cookie('top_banner') == nowdate){ 
+				//			$.cookie("top_banner",data,{ expires: 365, path: '/',domain:hostUrl });
+				//			document.getElementById("bdwbanner").style.display="none";
+							$("#bdwbanner").hide('slow');
+						}else{
+				//			document.getElementById("bdwbanner").style.display="block";
+							$("#bdwbanner").show('slow');
+							$.cookie("top_banner",nowdate,{ expires: 365, path: '/',domain:hostUrl });
+						}
+					}
+				}
+		}
+});
+
+
+
+function del(){
+	afterdate = getafterdate();
+	$.cookie("top_banner2",afterdate,{ expires: 365, path: '/',domain:hostUrl });
+//	document.getElementById("bdwbanner").style.display="none";
+	$("#bdwbanner").hide('slow');
+}
+
+
+function getnowdate(){
+	var day="";
+    var month="";
+    var ampm="";
+    var ampmhour="";
+    var myweekday="";
+    var year="";
+    mydate=new Date();
+    myweekday=mydate.getDay();
+    mymonth=mydate.getMonth()+1;
+    myday= mydate.getDate();
+    myyear= mydate.getYear();
+    year=(myyear > 200) ? myyear : 1900 + myyear;
+ 	date = year+"/"+mymonth+"/"+myday;
+	return date;
+}
+
+function getafterdate(){
+	var day="";
+    var month="";
+    var ampm="";
+    var ampmhour="";
+    var myweekday="";
+    var year="";
+    mydate=new Date();
+	mydate.setDate(mydate.getDate() + 7);
+    myweekday=mydate.getDay();
+    mymonth=mydate.getMonth()+1;
+    myday= mydate.getDate();
+    myyear= mydate.getYear();
+    year=(myyear > 200) ? myyear : 1900 + myyear;
+ 	date = year+"/"+mymonth+"/"+myday;
+	return date;
+}
+</script>
+<script src="/js/bootstrap.min.js?v=20130828"></script>
+  <!-- End SlidesJS Required -->
+
+  <!-- SlidesJS Required: Initialize SlidesJS with a jQuery doc ready -->
+  <script>
+
+    $(function() {
+		
+	     $('#myCarousel').carousel()
+	  
+	function topDiv(){ 
+	var elem=document.createElement("div"); 
+	elem.className="top-div"; 
+	//=========生成图片标签
+	var img=document.createElement("img"); 
+	img.src="http://www.wochacha.com/img/index_start.png"; 
+	
+	elem.appendChild(img); 
+
+	//=========将生成的遮罩层附到 body 标签内 
+	document.body.appendChild(elem); 
+	var alpha = alphaDiv(elem); 
+} 
+
+function alphaDiv(el){ 
+	var elem=document.createElement("div"); 
+	elem.className="alphaDiv"; 
+	elem.onclick=function(e){ 
+		$(".alphaDiv").remove();
+		$(".top-div").remove();
+	} 
+	document.body.appendChild(elem); 
+
+	//调整高度宽度
+	var h = $(document).height()+"px";
+	var w = $(document).width()+"px";
+	
+	var sw = $(window).width();
+	if(sw-1000>0)
+	{
+		sw = (sw-1000)/2+"px";
+	}else{
+		sw = "0px";
+	}
+	$(".alphaDiv").css({"height":h});
+	$(".top-div").css("left",sw);
+	setTimeout(function(){
+				$(".alphaDiv").remove();
+				$(".top-div").remove();
+	},8000);
+} 
+
+
+
+    });
+  </script>
+
+
+
+
+<div  id="footerServiceLinkId" lazyLoad_textarea="div_textarea_footerServiceLink">
+
+  	<div class="bottom_service_link clearfix">
+  		<div id="bottomHelpLinkId" class="help_link_list" align='center'>
+			<dl class="bottom_help_1">
+				<dt>新手入门</dt>
+					<dd><a href="http://www.wochacha.com/help"  target="_blank">新会员注册</a></dd>
+					<!--<dd><a href="http://www.wochacha.com/help?selecttab=2"  target="_blank">服务承诺</a></dd>
+                    <dd><a href="http://www.wochacha.com/help?selecttab=3"  target="_blank">商品验货与签收</a></dd>
+                    <dd><a href="http://www.wochacha.com/help?selecttab=4"  target="_blank">常见问题</a></dd>-->
+					
+			</dl>
+			<dl class="bottom_help_2">
+				<dt>支付方式</dt>
+				<dd><a href="http://www.wochacha.com/help?selecttab=5"  target="_blank">支付方式</a></dd>
+                <dd><a href="http://www.wochacha.com/help?selecttab=6"  target="_blank">发票制度</a></dd>
+				<dd><a href="http://www.wochacha.com/help?selecttab=7"  target="_blank">网上支付</a></dd>
+			</dl>
+			
+<!--			<dl class="bottom_help_3">
+				<dt>售后服务</dt>
+				<dd><a href="http://www.wochacha.com/help" tk="9081_1092683_1" target="_blank">退货原则</a></dd>
+				<dd><a href="http://www.wochacha.com/help" tk="9081_1092686_2" target="_blank">退款说明</a></dd>
+			</dl>-->
+			<dl class="bottom_help_3">
+				<dt>联系我们</dt>
+				<dd><a target="_blank">客服电话：400 666 9301</a></dd>
+				<dd><a  target="_blank">邮箱：service@wochacha.com</a></dd>
+				<dd><a  target="_blank">用户交流官方群：175933339</a></dd>
+				<dd><a  target="_blank">数据合作官方群：259907875</a></dd>
+			</dl>
+            <dl class="bottom_help_4">
+				<dt>关注我们</dt>
+                <dd>
+                <iframe width="136" scrolling="no" height="24" frameborder="0" allowtransparency="true" marginwidth="0" marginheight="0" border="0" src="http://widget.weibo.com/relationship/followbutton.php?language=zh_cn&width=136&height=24&uid=1767579870&style=2&btn=light&dpc=1"></iframe>
+                <!--<iframe width="120" height="24" frameborder="0" allowtransparency="true" marginwidth="0" marginheight="0" scrolling="no" border="0" src="http://widget.weibo.com/relationship/followbutton.php?language=zh_cn&width=120&height=24&uid=1767579870&style=2&btn=red&dpc=1"></iframe>-->
+                </dd>
+				<dd><a target="_blank" href="http://t.qq.com/wochacha-SH">腾讯微博</a></dd>
+				<dd><a target="_blank" href="http://user.qzone.qq.com/1839458293">腾讯QQ空间</a></dd>
+                <dd><a href="http://wochacha.diandian.com/" target="_blank">微信公众账号</a></dd>
+			</dl>
+		</div>
+	</div>
+</div>
+<div id="footer_hr"></div>
+<div id="footer" class=' clearfix'>
+
+<p class="footer_link"><a href="http://www.wochacha.com/about/index" target="_blank">关于我们</a>|<a href="http://www.wochacha.com/about/contact" target="_blank">联系我们</a>|<a href="http://www.wochacha.com/news_list_c_2_p_1.html" target="_blank">公司动态</a>|<a href="http://www.wochacha.com/news_list_c_3_p_1.html" target="_blank">产品动态</a>|<a href="http://www.wochacha.com/m" target="_blank">手机我查查</a>|<a href="http://www.wochacha.com/about/job" target="_blank">招贤纳士</a>|<a href="http://www.wochacha.com/news_list_c_77_p_1.html" target="_blank">媒体报道</a>|<a href="http://www.wochacha.com/about/links" target="_blank">友情链接</a>|<a href="http://www.wochacha.com/about/bugback" target="_blank">意见反馈</a>|<a href="http://www.wochacha.com/about/mianze" target="_blank">免责声明</a></p>
+
+  <p>©2010-2014 我查查信息技术（上海）有限公司 All Rights Reserved  沪ICP备10030282号 沪公网安备310115001566号</p>
+	<p style="padding-top:10px;"><a target="zx110" href="http://www.zx110.org/"><img style="margin-right:10px;margin-top:-10px;" src="http://www.wochacha.com/img/zxw.jpg"></a>
+	<a target="zx110" href="http://www.sgs.gov.cn/lz/licenseLink.do?method=licenceView&entyId=20120514171658416"><img style="margin-top:-10px" src="http://www.wochacha.com/img/gongshang.jpg"></a></p>
+	 <a id="_pingansec_bottomleft_shiming"></a>
+	 <script src="http://v.trustutn.org/js/cert.js?v=2"></script><script type="text/javascript" src="http://si.trustutn.org/certShow?type=111&certType=1&sn=925141223009973778734"></script>
+  </div>
+  <script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff03a6dc050c95205501bd6f3ef63834c' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+</body>
+</html>
+
+

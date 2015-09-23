@@ -1,0 +1,20 @@
+# Default Flywheel robots file
+User-agent: *
+Disallow: /calendar/action:posterboard/
+Disallow: /calendar/action:agenda/
+Disallow: /calendar/action:oneday/
+Disallow: /calendar/action:month/
+Disallow: /calendar/action:week/
+Disallow: /calendar/action:map/
+Disallow: /calendar/action~posterboard/
+Disallow: /calendar/action~agenda/
+Disallow: /calendar/action~oneday/
+Disallow: /calendar/action~month/
+Disallow: /calendar/action~week/
+Disallow: /calendar/action~stream/
+Disallow: /events/action~posterboard/
+Disallow: /events/action~agenda/
+Disallow: /events/action~oneday/
+Disallow: /events/action~month/
+Disallow: /events/action~week/
+Disallow: /events/action~stream/

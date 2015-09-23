@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html class="google" lang="en">
+  <head>
+
+    <script>
+    (function(H){H.className=H.className.replace(/\bgoogle\b/,'google-js')})(document.documentElement)
+    </script>
+    <meta charset="utf-8">
+    <meta content="initial-scale=1, minimum-scale=1, width=device-width" name="viewport">
+    <title>
+      Google Cookie Choices
+    </title>
+    <script src="//www.google.com/js/google.js">
+    </script>
+    <script>
+    new gweb.analytics.AutoTrack({profile:"UA-51793705-1"});
+    </script>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" rel=
+    "stylesheet">
+    <link href="./css/default.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="maia-header" id="maia-header" role="banner">
+      <div class="maia-aux">
+        <h1>
+          <a href="www.cookiechoices.org"><img alt="Google" src=
+          "//www.google.com/images/logos/google_logo_41.png"> Cookie Choices</a>
+        </h1><a class="maia-teleport" href="#content">Skip to content</a>
+      </div>
+    </div>
+    <div class="maia-notification maia-stage" id="cookie-statement">
+      <div class="text">
+        <span>Cookies help us deliver our services. By using our services, you agree to our use of
+        cookies.</span> <a href="http://www.google.com/intl/en/policies/technologies/cookies/"
+        target="_blank">Learn more</a> <a id="close-cc-bar">Got it</a>
+      </div>
+    </div>
+    <div class="maia-stage" id="intro">
+      <div class="maia-aux title-wrapper">
+        <h1 id="intro-title">
+          Helping publishers with cookie consent
+        </h1>
+      </div>
+    </div>
+    <div class="maia-stage" id="content">
+      <div class="maia-stage about-choices content-section" id="about">
+        <div class="maia-aux">
+          <div class="maia-cols">
+            <div class="maia-col-2"></div>
+            <div class="maia-col-4" id="about-text">
+              <h2>
+                Why is this important?
+              </h2>
+              <p>
+                European laws require that digital publishers give visitors to their sites and apps
+                information about their use of cookies and other forms of local storage. In many
+                cases these laws also require that consent be obtained.
+              </p>
+              <p>
+                This site is produced by Google. We work with lots of publisher partners and, based
+                on that experience, we wanted to provide any publishers with easy-to-implement
+                tools that can help them meet their legal obligations to get user consent.
+              </p>
+            </div>
+            <div class="maia-col-4">
+              <img alt="" id="about-image" src="images/cookie-consent-browser.svg">
+            </div>
+            <div class="maia-col-2"></div>
+          </div>
+        </div>
+      </div>
+      <div class="maia-stage tools-choices content-section" id="tools">
+        <div class="maia-aux">
+          <div class="maia-cols">
+            <div class="maia-col-2"></div>
+            <div class="maia-col-8">
+              <h2>
+                What do I need to do?
+              </h2>
+              <p>
+                There’s guidance from data protection authorities and IABs (see below) across
+                Europe on what is required to comply with relevant laws. We also recommend seeking
+                legal advice on what’s right for your website or app, though we recognize that many
+                publishers don’t have access to legal advice.
+              </p>
+              <p>
+                There are vendors that offer tools or solutions to add a cookie consent function to
+                your website, some of which are free of charge. For example:
+              </p>
+              <ul>
+                <li>
+                  <a href="http://sitebeam.net/cookieconsent/" target="_blank">Cookie Consent</a>
+                  by Silktide
+                </li>
+                <li>
+                  <a href="http://www.civicuk.com/cookie-control/index" target="_blank">Cookie
+                  Control</a> by CIVIC
+                </li>
+                <li>
+                  <a href="http://www.cookielaw.org/" target="_blank">The Cookie Collective</a> by
+                  Governor Technology
+                </li>
+                <li>
+                  <a href="https://www.cookiebot.com/" target="_blank">Cookiebot</a> by Cybot
+                </li>
+                <li>
+                  <a href="http://ec.europa.eu/ipg/basics/legal/cookies/index_en.htm#section_5"
+                  target="_blank">Cookie Consent Kit</a> by the European Commission
+                </li>
+              </ul>
+              <p>
+                These solutions can be configured in different ways. Some of them allow you to give
+                your users choices about the cookies used on your site. For example, your visitors
+                might be presented with an option to block 'advertising' cookies. It's important to
+                note that such configurations <strong>won't control the cookies on your site
+                automatically</strong>.
+              </p>
+              <p>
+                So if you're using third party advertising services, such as Google AdSense, you'll
+                need to take steps to integrate your preferred solution with the advertising tags
+                on your pages to make sure your users' preferences are respected. Each vendor
+                offers instructions or support services for doing this. If you don't follow these
+                steps for all the tags on your pages, you risk misleading your users: they will
+                think they’re switching off advertising cookies when in fact advertising cookies
+                will still be used. Therefore, test carefully any implementation of these tools on
+                your own site.
+              </p>
+              <div class="tab-buttons">
+                <a class="tab-button current" data-tab="ios">iOS</a> <a class="tab-button"
+                data-tab="android">Android</a>
+              </div>
+              <div class="tab-content current" dir="ltr" id="ios">
+                <pre class="code-block">
+<span class=
+"comment">// This code will work in iOS 2 and up<br>// (spoiler: you're not going to need anything below iOS 6).<br>// Tested in iOS 7 <br>// In your app's UIApplicationDelegate:<br></span><br>- (BOOL)application:(UIApplication *)application
+    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  (...)
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];<br>  if (![defaults boolForKey:@"termsAccepted"]) {<br>    NSString *message =
+      @"Your message for visitors here";
+    UIAlertView *alert =
+      [[UIAlertView alloc] initWithTitle:@"Cookies"
+                                 message:message
+                                delegate:self
+                       cancelButtonTitle:nil
+                       otherButtonTitles:@"Close message", nil];
+    [alert show];
+  }
+}
+<br><br><span class="comment">// Elsewhere in the file:</span>
+- (void)alertView:(UIAlertView *)alertView<br>    clickedButtonAtIndex:(NSInteger)buttonIndex {<br>  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  [defaults setBool:YES forKey:@"termsAccepted"];
+  [defaults synchronize];
+}
+</pre>
+              </div>
+              <div class="tab-content" dir="ltr" id="android">
+                <pre class="code-block">
+<span class=
+"comment">// This code works on Android API level 1 (Android 1.0) and up.<br>// Tested on the latest (at the moment) API level 19 (Android 4.4 KitKat).<br>// In the main activity of your app:<br></span><br>
+public class MainActivity extends Activity {<br><br>  (...)<br><br>  @Override
+  public void onStart() {
+    super.onStart();
+    final SharedPreferences settings =<br>        getSharedPreferences("localPreferences", MODE_PRIVATE);<br>    if (settings.getBoolean("isFirstRun", true)) {
+      new AlertDialog.Builder(this)<br>        .setTitle("Cookies")<br>        .setMessage("Your message for visitors here")<br>        .setNeutralButton("Close message", new OnClickListener() {
+          @Override<br>          public void onClick(DialogInterface dialog, int which) {<br>            settings.edit().putBoolean("isFirstRun", false).commit();<br>          }
+        }).show();
+    }
+  }
+}
+</pre>
+              </div>
+              <p class="policy">
+                <em>Except as otherwise noted, the content of this page is licensed under the
+                <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative
+                Commons Attribution 3.0 License,</a> and code samples are licensed under the
+                <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache 2.0
+                License.</a> For details, see our <a href=
+                "https://developers.google.com/site-policies" target="_blank">Site
+                Policies.</a></em>
+              </p>
+              <p>
+                Make sure you carefully test this code in your own apps. Note that it does not
+                distinguish EU visitors from non-EU visitors, so all your visitors will see the
+                notices unless you add your own geographic restrictions.
+              </p>
+            </div>
+            <div class="maia-col-2"></div>
+          </div>
+          <div class="maia-cols sub-section">
+            <div class="maia-col-2"></div>
+            <div class="maia-col-8">
+              <h2>
+                What do I put in my consent message?
+              </h2>
+              <p>
+                Unfortunately we can’t tell you what your website or app consent message should say
+                because it will largely depend on your own uses of cookies and other information,
+                and the third party services you work with. However, we can give you some pointers.
+              </p>
+              <p>
+                Here’s a message that <strong>might</strong> be appropriate for your
+                <strong>website</strong>, if you use products like Google AdSense or Google
+                Analytics, or similar products from other organisations. Just remember, you’ll need
+                to adjust this to suit your own uses of cookies and other information.
+              </p>
+              <div class="example-message">
+                <p>
+                  We use cookies to personalise content and ads, to provide social media features
+                  and to analyse our traffic. We also share information about your use of our site
+                  with our social media, advertising and analytics partners. <a title=
+                  "Include your URL linking to full details.">See details</a>
+                </p>
+              </div>
+              <p>
+                For an <strong>app</strong>, you might want a slightly different message:
+              </p>
+              <div class="example-message">
+                <p>
+                  We use device identifiers to personalise content and ads, to provide social media
+                  features and to analyse our traffic. We also share such identifiers and other
+                  information from your device with our social media, advertising and analytics
+                  partners. <a title="Include your URL linking to full details.">See details</a>
+                </p>
+              </div>
+            </div>
+            <div class="maia-col-2"></div>
+          </div>
+          <div class="maia-cols sub-section">
+            <div class="maia-col-2"></div>
+            <div class="maia-col-8">
+              <h2>
+                Where should 'See details' link?
+              </h2>
+              <p>
+                The link in your message may expand the area that contains the message, to offer
+                more information, or it may open a new page that contains additional detail. That
+                new page might be part of your Privacy Policy, or it might be a dedicated cookie
+                policy.
+              </p>
+              <p>
+                Again, we can’t tell you what to write by way of detail: it will depend on the
+                cookies and other information you use, the other services you work with, and any
+                opt-out controls made available to users of your site. However, we can offer some
+                help as regards your use of Google products on your site.
+              </p>
+              <p>
+                If you’re using Google products like Google AdSense or DoubleClick for Publishers,
+                you’ll be required by your contract to follow Google’s <a href=
+                "https://www.google.com/about/company/user-consent-policy.html" target="_blank">EU
+                user consent policy</a>. If you are using Google Analytics Advertiser Features,
+                you’ll be required to follow the <a href=
+                "https://support.google.com/analytics/answer/2700409?hl=en" target="_blank">Policy
+                requirements for Google Analytics Advertisers features</a>. To comply with the
+                disclosure obligations with respect to Google's use of data, you have the option to
+                display a prominent link to <a href=
+                "http://www.google.com/intl/en/policies/privacy/partners/" target="_blank">How
+                Google uses data when you use our partners' sites or apps</a>.
+              </p>
+              <p>
+                Implementing a consent mechanism like this for your EU visitors, which includes a
+                link to an additional information page that in turn links to Google’s information
+                about how Google uses data, can help you meet the requirements of Google’s own
+                policies. It should also help towards your compliance with European cookie and data
+                protection laws.
+              </p>
+            </div>
+            <div class="maia-col-2"></div>
+          </div>
+        </div>
+      </div>
+      <div class="maia-stage resources-choices content-section" id="resources">
+        <div class="maia-aux">
+          <div class="maia-cols">
+            <div class="maia-col-2"></div>
+            <div class="maia-col-8">
+              <h2>
+                Other Resources
+              </h2>
+              <p>
+                If you want to find out more about Europe's laws on cookies, the following
+                resources are good places to start:
+              </p>
+              <div class="resource-panel">
+                <span>IAB Europe Guidance: <a href=
+                "http://www.iabeurope.eu/files/1414/3650/6858/IAB_Europe_Guidance_-_Five_Practical_Steps_to_Comply_with_EU_ePrivacy_Directive.pdf"
+                target="_blank">Five Practical Steps to help companies comply with the E-Privacy
+                Directive</a></span> <span>Belgium: Commission de la protection de la vie privée (
+                <a href=
+                "http://www.privacycommission.be/sites/privacycommission/files/documents/Projet_de_recommandation_cookies.pdf"
+                target="_blank">French</a> | <a href=
+                "http://www.privacycommission.be/sites/privacycommission/files/documents/Ontwerp_aanbeveling_cookies.pdf"
+                target="_blank">Dutch</a> )</span> <span>Czech Republic: <a href=
+                "http://www.uoou.cz/vismo/zobraz_dok.asp?id_org=200144&amp;id_ktg=1853&amp;n=cookies-prechod-z-principu-opt-out-na-opt-in&amp;query=cookie"
+                target="_blank">Úřad pro ochranu osobních údajů</a></span> <span>Denmark: <a href=
+                "http://w2l.dk/file/377959/engelsk-vejledning-cookiebekendtgorelse.pdf" target=
+                "_blank">Guidelines on Executive Order on Information and Consent Required in Case
+                of Storing and Accessing Information in End-User Terminal Equipment</a></span>
+                <span>France: <a href=
+                "http://www.cnil.fr/vos-obligations/sites-web-cookies-et-autres-traceurs/" target=
+                "_blank">Commission Nationale de l'Informatique et des Libertés</a></span>
+                <span>Germany: <a href=
+                "https://www.telemedicus.info/uploads/Dokumente/COCOM11-20QuestionnaireonArt.53e-PrivacyDir.pdf"
+                target="_blank">EC Communications Committee Working Document on
+                implementation</a></span> <span>Greece: <a href=
+                "http://www.dpa.gr/portal/page?_pageid=33,146950&amp;_dad=portal&amp;_schema=PORTAL"
+                target="_blank">Η χρήση cookies στο διαδίκτυο</a></span> <span>Ireland: <a href=
+                "http://www.dataprotection.ie/docs/Guidance_Note_on_Data_Protection_in_the_Electronic_Communica/1152.htm#6"
+                target="_blank">Guidance note on Data Protection in the Electronic Communications
+                Sector</a></span> <span>Italy: <a href=
+                "http://www.garanteprivacy.it/web/guest/home/docweb/-/docweb-display/docweb/2142939"
+                target="_blank">Garante per la protezione dei dati personali</a></span>
+                <span>Luxembourg: <a href=
+                "http://www.cnpd.public.lu/fr/actualites/international/2012/06/G29-avis-cookies/index.html?highlight=cookies"
+                target="_blank">Commission nationale pour la protection des données</a></span>
+                <span>Netherlands: <a href=
+                "https://www.acm.nl/nl/publicaties/publicatie/12768/Veelgestelde-vragen-over-de-cookiebepaling/"
+                target="_blank">Autoriteit Consument en Markt</a></span> <span>Spain: <a href=
+                "http://www.agpd.es/portalwebAGPD/canaldocumentacion/cookies/index-ides-idphp.php"
+                target="_blank">Agencia de Protección de Datos</a></span> <span>UK: <a href=
+                "http://ico.org.uk/for_organisations/privacy_and_electronic_communications/the_guide/cookies"
+                target="_blank">Information Commissioner's Office</a></span>
+              </div>
+              <p>
+                The Article 29 Working Party (the umbrella body for EU data protection regulators),
+                has also published guidance:
+              </p>
+              <div class="resource-panel">
+                <span><a href=
+                "http://ec.europa.eu/justice/data-protection/article-29/documentation/opinion-recommendation/files/2013/wp208_en.pdf"
+                target="_blank">Obtaining consent for cookies</a> (PDF)</span> <span><a href=
+                "http://ec.europa.eu/justice/data-protection/article-29/documentation/opinion-recommendation/files/2012/wp194_en.pdf"
+                target="_blank">Cookie consent exemption</a> (PDF)</span> <span><a href=
+                "http://ec.europa.eu/justice/policies/privacy/docs/wpdocs/2010/wp171_en.pdf"
+                target="_blank">Online behavioural advertising</a> (PDF)</span>
+              </div>
+            </div>
+            <div class="maia-col-2"></div>
+          </div>
+        </div>
+      </div>
+      <div id="brand-base">
+        <div class="maia-aux">
+          <img alt="Google" class="google-logo" src=
+          "//www.google.com/images/logos/google_logo_41.png">
+        </div>
+      </div>
+    </div>
+    <div class="maia-footer" id="maia-footer">
+      <div id="maia-footer-global">
+        <div class="maia-aux">
+          <div class="maia-locales">
+            <select onchange=
+            "var href=this[this.selectedIndex].value;if(href!=''){window.location.href='http://'+href};">
+            <option value="www.cookiechoices.org/intl/id/">
+                Bahasa Indonesia
+              </option>
+              <option value="www.cookiechoices.org/intl/ms/">
+                Bahasa Melayu
+              </option>
+              <option value="www.cookiechoices.org/intl/ca/">
+                Català
+              </option>
+              <option value="www.cookiechoices.org/intl/cs/">
+                Čeština
+              </option>
+              <option value="www.cookiechoices.org/intl/da/">
+                Dansk
+              </option>
+              <option value="www.cookiechoices.org/intl/de/">
+                Deutsch
+              </option>
+              <option value="www.cookiechoices.org/intl/et/">
+                Eesti
+              </option>
+              <option selected="selected" value="www.cookiechoices.org/">
+                English
+              </option>
+              <option value="www.cookiechoices.org/intl/en-GB/">
+                English (UK)
+              </option>
+              <option value="www.cookiechoices.org/intl/es/">
+                Español
+              </option>
+              <option value="www.cookiechoices.org/intl/tl/">
+                Filipino
+              </option>
+              <option value="www.cookiechoices.org/intl/fr/">
+                Français
+              </option>
+              <option value="www.cookiechoices.org/intl/hr/">
+                Hrvatski
+              </option>
+              <option value="www.cookiechoices.org/intl/it/">
+                Italiano
+              </option>
+              <option value="www.cookiechoices.org/intl/lv/">
+                Latviešu
+              </option>
+              <option value="www.cookiechoices.org/intl/lt/">
+                Lietuvių
+              </option>
+              <option value="www.cookiechoices.org/intl/nl/">
+                Nederlands
+              </option>
+              <option value="www.cookiechoices.org/intl/no/">
+                Norsk
+              </option>
+              <option value="www.cookiechoices.org/intl/pl/">
+                Polski
+              </option>
+              <option value="www.cookiechoices.org/intl/pt-BR/">
+                Português (Brasil)
+              </option>
+              <option value="www.cookiechoices.org/intl/pt-PT/">
+                Português (Portugal)
+              </option>
+              <option value="www.cookiechoices.org/intl/ro/">
+                Română
+              </option>
+              <option value="www.cookiechoices.org/intl/sk/">
+                Slovenčina
+              </option>
+              <option value="www.cookiechoices.org/intl/fi/">
+                Suomi
+              </option>
+              <option value="www.cookiechoices.org/intl/sv/">
+                Svenska
+              </option>
+              <option value="www.cookiechoices.org/intl/vi/">
+                Tiếng Việt
+              </option>
+              <option value="www.cookiechoices.org/intl/tr/">
+                Türkçe
+              </option>
+              <option value="www.cookiechoices.org/intl/el/">
+                Ελληνικά
+              </option>
+              <option value="www.cookiechoices.org/intl/bg/">
+                Български
+              </option>
+              <option value="www.cookiechoices.org/intl/ru/">
+                Русский
+              </option>
+              <option value="www.cookiechoices.org/intl/sr/">
+                Српски
+              </option>
+              <option value="www.cookiechoices.org/intl/uk/">
+                Українська
+              </option>
+              <option value="www.cookiechoices.org/intl/iw/">
+                עברית
+              </option>
+              <option value="www.cookiechoices.org/intl/ar/">
+                العربية
+              </option>
+              <option value="www.cookiechoices.org/intl/hi/">
+                हिन्दी – भारत
+              </option>
+              <option value="www.cookiechoices.org/intl/th/">
+                ไทย
+              </option>
+              <option value="www.cookiechoices.org/intl/ko/">
+                한국어
+              </option>
+              <option value="www.cookiechoices.org/intl/zh-HK/">
+                中文 (香港)
+              </option>
+              <option value="www.cookiechoices.org/intl/zh-CN/">
+                中文（简体中文）
+              </option>
+              <option value="www.cookiechoices.org/intl/zh-TW/">
+                中文（繁體中文）
+              </option>
+              <option value="www.cookiechoices.org/intl/ja/">
+                日本語
+              </option>
+            </select>
+          </div>
+          <ul>
+            <li>
+              <a href="//www.google.com/">Google</a>
+            </li>
+            <li>
+              <a href="//www.google.com/intl/en/about/">About Google</a>
+            </li>
+            <li>
+              <a href="//www.google.com/intl/en/policies/privacy/">Privacy</a>
+            </li>
+            <li>
+              <a href="//www.google.com/intl/en/policies/terms/">Terms</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <script src="/js/main.min.js">
+    </script> 
+    <script>
+    /*
+ Copyright 2014 Google Inc. All rights reserved.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
+(function(window) {
+
+  if (!!window.cookieChoices) {
+    return window.cookieChoices;
+  }
+
+  var document = window.document;
+  // IE8 does not support textContent, so we should fallback to innerText.
+  var supportsTextContent = 'textContent' in document.body;
+
+  var cookieChoices = (function() {
+
+    var cookieName = 'displayCookieConsent';
+    var cookieConsentId = 'cookieChoiceInfo';
+    var dismissLinkId = 'cookieChoiceDismiss';
+
+    function _createHeaderElement(cookieText, dismissText, linkText, linkHref) {
+      var butterBarStyles = 'position:fixed;width:100%;background-color:#eee;' +
+          'margin:0; left:0; top:0;padding:4px;z-index:1000;text-align:center;';
+
+      var cookieConsentElement = document.createElement('div');
+      cookieConsentElement.id = cookieConsentId;
+      cookieConsentElement.style.cssText = butterBarStyles;
+      cookieConsentElement.appendChild(_createConsentText(cookieText));
+
+      if (!!linkText && !!linkHref) {
+        cookieConsentElement.appendChild(_createInformationLink(linkText,
+            linkHref));
+      }
+      cookieConsentElement.appendChild(_createDismissLink(dismissText));
+      return cookieConsentElement;
+    }
+
+    function _createDialogElement(cookieText, dismissText, linkText, linkHref) {
+      var glassStyle = 'position:fixed;width:100%;height:100%;z-index:999;' +
+          'top:0;left:0;opacity:0.5;filter:alpha(opacity=50);' +
+          'background-color:#ccc;';
+      var dialogStyle = 'z-index:1000;position:fixed;left:50%;top:50%';
+      var contentStyle = 'position:relative;left:-50%;margin-top:-25%;' +
+          'background-color:#fff;padding:20px;box-shadow:4px 4px 25px #888;';
+
+      var cookieConsentElement = document.createElement('div');
+      cookieConsentElement.id = cookieConsentId;
+
+      var glassPanel = document.createElement('div');
+      glassPanel.style.cssText = glassStyle;
+
+      var content = document.createElement('div');
+      content.style.cssText = contentStyle;
+
+      var dialog = document.createElement('div');
+      dialog.style.cssText = dialogStyle;
+
+      var dismissLink = _createDismissLink(dismissText);
+      dismissLink.style.display = 'block';
+      dismissLink.style.textAlign = 'right';
+      dismissLink.style.marginTop = '8px';
+
+      content.appendChild(_createConsentText(cookieText));
+      if (!!linkText && !!linkHref) {
+        content.appendChild(_createInformationLink(linkText, linkHref));
+      }
+      content.appendChild(dismissLink);
+      dialog.appendChild(content);
+      cookieConsentElement.appendChild(glassPanel);
+      cookieConsentElement.appendChild(dialog);
+      return cookieConsentElement;
+    }
+
+    function _setElementText(element, text) {
+      if (supportsTextContent) {
+        element.textContent = text;
+      } else {
+        element.innerText = text;
+      }
+    }
+
+    function _createConsentText(cookieText) {
+      var consentText = document.createElement('span');
+      _setElementText(consentText, cookieText);
+      return consentText;
+    }
+
+    function _createDismissLink(dismissText) {
+      var dismissLink = document.createElement('a');
+      _setElementText(dismissLink, dismissText);
+      dismissLink.id = dismissLinkId;
+      dismissLink.href = '#';
+      dismissLink.style.marginLeft = '24px';
+      return dismissLink;
+    }
+
+    function _createInformationLink(linkText, linkHref) {
+      var infoLink = document.createElement('a');
+      _setElementText(infoLink, linkText);
+      infoLink.href = linkHref;
+      infoLink.target = '_blank';
+      infoLink.style.marginLeft = '8px';
+      return infoLink;
+    }
+
+    function _dismissLinkClick() {
+      _saveUserPreference();
+      _removeCookieConsent();
+      return false;
+    }
+
+    function _showCookieConsent(cookieText, dismissText, linkText, linkHref,
+        isDialog) {
+        _removeCookieConsent();
+        var consentElement = (isDialog) ?
+            _createDialogElement(cookieText, dismissText, linkText, linkHref) :
+            _createHeaderElement(cookieText, dismissText, linkText, linkHref);
+        var fragment = document.createDocumentFragment();
+        fragment.appendChild(consentElement);
+        document.body.appendChild(fragment.cloneNode(true));
+        document.getElementById(dismissLinkId).onclick = _dismissLinkClick;
+    }
+
+    function showCookieConsentBar(cookieText, dismissText, linkText, linkHref) {
+      _showCookieConsent(cookieText, dismissText, linkText, linkHref, false);
+    }
+
+    function showCookieConsentDialog(cookieText, dismissText, linkText,
+        linkHref) {
+      _showCookieConsent(cookieText, dismissText, linkText, linkHref, true);
+    }
+
+    function _removeCookieConsent() {
+      var cookieChoiceElement = document.getElementById(cookieConsentId);
+      if (cookieChoiceElement != null) {
+        cookieChoiceElement.parentNode.removeChild(cookieChoiceElement);
+      }
+    }
+
+    function _saveUserPreference() {
+      // Set the cookie expiry to one year after today.
+      var expiryDate = new Date();
+      expiryDate.setFullYear(expiryDate.getFullYear() + 1);
+      document.cookie = cookieName + '=y; expires=' + expiryDate.toGMTString();
+    }
+
+    function _shouldDisplayConsent() {
+      // Display the header only if the cookie has not been set.
+      return !document.cookie.match(new RegExp(cookieName + '=([^;]+)'));
+    }
+
+    var exports = {};
+    exports.showCookieConsentBar = showCookieConsentBar;
+    exports.showCookieConsentDialog = showCookieConsentDialog;
+    return exports;
+  })();
+
+  window.cookieChoices = cookieChoices;
+  return cookieChoices;
+})(this);
+    </script>  
+    <script>
+    var demoButterBar = function() {
+        cookieChoices.showCookieConsentBar('Your message for visitors here.',
+            'close message', 'learn more', 'http://example.com');
+      };
+
+      var demoSplashScreen = function() {
+        cookieChoices.showCookieConsentDialog('Your message for visitors here.',
+            'close message', 'learn more', 'http://example.com');
+      };
+    </script>  
+    <script src="//www.google.com/js/maia.js">
+    </script>
+  </body>
+</html>

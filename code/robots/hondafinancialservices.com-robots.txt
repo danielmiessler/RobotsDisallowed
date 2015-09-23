@@ -1,0 +1,15 @@
+User-agent: *
+Disallow: /*?faqId
+Disallow: /*?id
+Disallow: /*?aspxerrorpath
+Disallow: /?loginErr
+Disallow: /?regErr
+Disallow: /*?ui_mode
+Disallow: /*?url
+Disallow: /admin/*
+Disallow: /configuration/*
+Disallow: /diagnostics/*
+Disallow: /error/*
+Disallow: /login/authenticateuser
+Disallow: /home/incident-information
+sitemap: http://www.hondafinancialservices.com/sitemap.xml

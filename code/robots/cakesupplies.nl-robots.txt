@@ -1,0 +1,1472 @@
+<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="LTR" lang="nl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<base href="http://www.cakesupplies.nl/">
+                                    
+
+                                        <title>CakeSupplies.nl</title>
+  <META NAME="Description" Content="CakeSupplies.nl">
+  <META NAME="Keywords" Content="">
+
+<script type="text/javascript" src="scripts/jquery-1.7.js"></script>
+<script type="text/javascript" src="scripts/jquery.alerts.js"></script>
+<script type="text/javascript" src="scripts/jquery.paging.js"></script>
+<link rel="stylesheet" type="text/css" href="scripts/jquery.alerts.css" />
+<link rel="stylesheet" href="css/tip-violet.css" type="text/css" />
+<script type="text/javascript" src="scripts/scripts.js"></script>
+<link rel="stylesheet" href="scripts/notify/css/jquery.notifyBar.css">
+<script src="scripts/notify/jquery.notifyBar.js"></script>
+<script type="text/javascript">
+
+//SuckerTree Vertical Menu (Aug 4th, 06)
+//By Dynamic Drive: http://www.dynamicdrive.com/style/
+
+var menuids=["suckertree1"] //Enter id(s) of SuckerTree UL menus, separated by commas
+
+function buildsubmenus(){
+for (var i=0; i<menuids.length; i++){
+  var ultags=document.getElementById(menuids[i]).getElementsByTagName("ul")
+    for (var t=0; t<ultags.length; t++){
+    ultags[t].parentNode.getElementsByTagName("a")[0].className="subfolderstyle"
+    ultags[t].parentNode.onmouseover=function(){
+    this.getElementsByTagName("ul")[0].style.display="block"
+    }
+    ultags[t].parentNode.onmouseout=function(){
+    this.getElementsByTagName("ul")[0].style.display="none"
+    }
+    }
+  }
+}
+
+if (window.addEventListener)
+window.addEventListener("load", buildsubmenus, false)
+else if (window.attachEvent)
+window.attachEvent("onload", buildsubmenus)
+//end sucker div
+
+function Del_Product(pid){
+    $('#bin'+pid).slideUp().hide;
+    update_qty(pid, '0');
+    reload_list();
+}
+function Del_Product_cart(pid){
+    $('#bin'+pid).slideUp().hide;
+    update_cart(pid, '0', 'del');
+    products_price(pid, 1)
+}
+function Replace_Product(pid, qty){
+    $('#bin'+pid).slideUp().hide;
+    update_cart(pid, qty, 'replace');
+}
+function Add_Product(pid, qty){
+    $('#bin'+pid).slideUp().hide;
+    update_cart(pid, qty, 'add');
+    products_price(pid, qty)
+    reload_list();
+}
+
+function change_fav(pid){
+  $.ajax({
+        url: 'update_data.php',
+        type: "POST",
+        data: "fav=" + pid
+    });
+}
+
+function change_notify(pid){
+  $.ajax({
+        url: 'update_data.php',
+        type: "POST",
+        data: "notify=" + pid
+    });
+}
+
+function update_cart(pid, qty, cart){
+//$('.log').text('pb:' + pid + 'pq:' + qty + 'p:' + cart);
+
+            $.ajax({
+              type: "POST",
+              url: "update_data.php",
+              async: false,
+              data: "pid=" + pid + "&qty=" + qty + "&cart=" + cart
+            }).done(function( msg ) {
+  if(msg == 'login'){
+    $(window.location).attr('href', 'login.php');
+  }
+    if(msg == 'reload'){
+    $(window.location).attr('href', 'imports.php');
+  };
+    update_cart_data(pid, qty);
+    //reload_list();
+});
+  //$('#in_cart'+pid).val(get_cart_qty(pid)); // update value hidden field
+}
+
+function reload_list(){
+      var numItems = $('.bin:visible').length;
+    if(numItems == 1){
+    $(window.location).attr('href', 'imports.php');
+  }
+}
+function update_cart_data(pid, qty){
+    $('#basket').load('basket.php');
+    $('#basket_sub').load('basket_subtotal.php', function() {
+    });
+    if (qty){
+      $('#in_cart'+pid).val(qty);
+    //$('.log').text('update'+msg);
+      $("span[id=in_cart"+pid+']').text(qty);
+    }
+    update_weight(pid);
+}
+
+function update_weight(pid){
+  $.ajax({
+        url: 'basket_subtotal.php',
+        type: "POST",
+        dataType: "json",
+        data: "pid=" + pid
+    }).done(function( data ) {
+        //alert(print_r(data, false) + '--');
+        if (data[1] == 'empty'){
+          $('#shipp_delivery_'+data[0]).slideUp().hide();   
+        }
+  $('#shipp_delivery_'+data[0]).html(data[1]);
+});
+  
+}
+function products_price(pid, pqty){
+ //   $('#basket').load('basket.php');
+//    $('#basket_sub').load('basket_subtotal.php', function() {
+//    });
+    //alert('ok'+pqty);
+  $.ajax({
+        url: 'products_price.php',
+        type: "POST",
+        data: "pid=" + pid + "&quantity=" + pqty
+    }).done(function( msg ) {
+  $('#products_price'+pid).html(msg);
+});
+products_price_text(pid, pqty);
+}
+
+function products_price_text(pid, pqty){
+ //   $('#basket').load('basket.php');
+//    $('#basket_sub').load('basket_subtotal.php', function() {
+//    });
+    //alert('ok'+pqty);
+  $.ajax({
+        url: 'products_price_text.php',
+        type: "POST",
+        data: "pid=" + pid + "&quantity=" + pqty
+    }).done(function( msg ) {
+  $("span[id=boxtext"+pid+']').html(msg);
+});
+}
+
+function update_product_info(pid, ClassNAME){
+    $.ajaxSetup({cache:false});
+  $.ajax({
+        url: 'product_data.php #product_info',
+        type: "POST",
+        data: "pid=" + pid + '&class=' + ClassNAME
+    }).done(function(data) {
+  $('#product'+pid).html(data);
+});
+
+    
+}
+
+function chng(formf){
+    id_waarde = str_replace('imgcart', '', formf.id ); //get id from image id
+    //$('input[id=inpcart'+id_waarde+']').val(formf.name);
+    //$('img[id=imgcart'+id_waarde+']').slideUp();
+    //$('input[id=updatecart]').slideDown().show();
+    $('#popup_content'+id_waarde).show();
+    $('#advies'+id_waarde).hide();
+    //$('input[id=inpcart'+id_waarde+']').css({'background-color' : '#D4F7D8'});
+}
+function update_qty (pid, qty){
+    if (qty == 0){
+            $.ajax({
+              type: "POST",
+              url: "update_data.php",
+              data: "pid=" + pid + "&qty=" + qty
+            }).done(function( msg ) {
+  if(msg == 'reload'){
+    $(window.location).attr('href', 'imports.php');
+  };
+        });
+    }
+}
+function changeQTY(doos,oval, roww, qty_available, price) {
+//$('.log').text('update'+roww);
+   // update_cart(roww, oval, 'replace');
+    //loadQTY(doos,oval, roww, qty_available);
+            $.ajax({
+              type: "POST",
+              url: "update_data.php",
+              data: "prod=" + roww + "&qty=" + oval
+            }).done(function( msg ) {
+$('#price'+roww).html(msg);
+
+});
+}
+    
+   function change_price_omdoos(pid){
+    $('#box_price'+pid).css({'color' : 'black'});
+    $('#unit_price'+pid).css({'color' : 'grey'});
+     $('#Vdoos'+pid).slideDown().show();
+    $('#Vunit'+pid).slideUp().hide();
+   } 
+   function change_price_unit(pid){
+    $('#box_price'+pid).css({'color' : 'grey'});
+    $('#unit_price'+pid).css({'color' : 'black'});
+    $('#Vunit'+pid).slideDown().show();
+    $('#Vdoos'+pid).slideUp().hide();
+   } 
+function loadQTY(doos,oval, roww, qty_available) {
+//$('.log').text('pb:' + doos + 'pq:' + oval + 'p_id:' + roww + 'pa:' + qty_available );
+                //alert(doos + '-' + pqty + '-' + pbox + '-' + pQuantity);
+                
+
+		    $.alerts.okButton = ' Ja ';
+            $.alerts.cancelButton = ' Nee ';
+            update_qty(roww, oval);
+            //if (qty_available === '') qty_available = oval.value;
+            var qtydoos = doos;
+            var QtyAlert = false;
+            var advies = (oval / qtydoos);
+            var doos = Math.floor(advies);
+                advies = advies - doos;
+                if (advies > 0) QtyAlert = true; //alert question enabled
+                if (advies < .5 ){ // round 0
+                    if (doos > 0){ 
+                        advies = 0; 
+                    } else {
+                        advies = 1; //minimum qty 1
+                    }
+                } else { //round to 1doos 
+                    advies = 1;
+                }
+                doos = doos + advies;
+                advies = doos * qtydoos;
+                if (qty_available < 0) qty_available = 0;
+                bckorder = oval - qty_available;
+                
+                if (advies <= qty_available) {
+                doostekst = ' handelseenheden te bestellen wat gelijk staat aan ';
+                if (doos == 1) doostekst = ' handelseenheid te bestellen wat gelijk staat aan ';
+            var str = 'Ons advies is ' + doos + doostekst + advies + ' stuks. ';
+                } else { //qty < bestel
+                QtyAlert = true; //alert question enabled
+                 if (bckorder > 0) {
+                   var str = 'Onze voorraad is ' + qty_available + ' stuks. ' + bckorder + ' stuks gaan in backorder.'; 
+                 } else {
+QtyAlert = false; //alert question enabled
+                 }
+                if (qty_available <= 0)    
+                var str = bckorder + ' stuks gaan in backorder.';
+                }
+                   // alert(roww);
+                if (QtyAlert){
+                    $('#advies'+roww).html(str); //advies melding
+                    //$('#advies'+roww).addClass('confirm');//advies opmaak
+                    //$('#popup_content'+roww).hide(); // default text verstoppen
+                    $('#advies'+roww).show(); //advies melding tonen
+                    $("#omdoos"+roww).hide(700);
+                    $("#import"+roww).hide(700);
+                    //$('img[id=imgcart'+roww+']').attr('name', advies).slideDown(); //tonen qty aanpassen button
+                    $('#'+roww).css({'background-color' : '#F9D9DE'});
+                } else {
+                    $('#popup_content'+roww).show();// default text tonen
+                    $('#advies'+roww).hide(); // advies text verstoppen
+                    $('#'+roww).css({'background-color' : '#D4F7D8'});
+                    $('img[id=imgcart'+roww+']').slideUp(); //verwijderen qty aanpassen button
+                }
+            		/*jConfirm(str, 'Aanpassen bestel hoeveelheid', function(r) {
+            		if (r == true){
+                    oval.value = advies; 
+                    
+                    //return false;
+            } 					
+            					});*/
+                    $('input[id=chkbx'+roww+']').attr('checked', true); //vinkje in listing bij producten
+                    //$('input[id=updatecart]').slideDown().show(); //tonen update cart button in shopppingcart
+} 
+
+//-->
+
+
+                $('.image_cart_add_tot').delegate('img', 'hover', function(){
+                    $('body').css('cursor', 'auto');
+                });
+// $pictures.find('img').click(function () {
+$('.image_cart_add_tot').delegate('img', 'click', function () {
+alert('clik');  
+});  
+        // Suppress default tooltip behavior on hover
+var tempTitle = "";
+$('.cart_quantity').hover(
+    function(e){
+         e.preventDefault();
+         tempTitle = $(this).attr('title');
+
+         $(this).attr('title', '');
+
+             $(this).mousedown(
+                function(){
+                    $(this).attr('title', tempTitle);
+                }
+            );
+    }
+   ,
+   function() {
+       $(this).attr('title', tempTitle);
+   }
+);
+
+
+$(document).ready(function() {
+	$('.showHide2').click(function() {
+		$('.hiddenDiv').slideToggle("slow");
+	});		
+
+       $("#import_cart, #shopping_cart") //some delegated actions
+            .delegate('.image_cart_replace, .image_cart_add, .image_cart_add_to, .image_cart_delete, .image_fav, .image_notify', 'mouseover', function (){
+                $("body").css("cursor", "pointer");
+               if (!$(this).hasClass('image_fav') && !$(this).hasClass('image_cart_add_to')){
+                var pid = parseInt(this.name.replace('delete_export', ''));
+                var pqty = $('#'+pid).val(); //products_qty field
+                var pQc = $('#in_cart'+pid).val(); //products_quantity in cart
+                var cart = parseInt(pQc) + parseInt(pqty);
+                
+/*                $(this).poshytip('update', add_text);                                   
+                $(this).poshytip({
+	className: 'tip-violet',
+	showOn: 'hover',
+	alignTo: 'target',
+    alignTo:'cursor',
+	alignX: 'right',
+	alignY: 'right',
+	offsetX: 0,
+	offsetY: 5,
+	showTimeout: 100
+}); */
+	               $(this).attr({'title':add_text});
+
+                }
+                })
+            .delegate('.image_cart_replace, .image_cart_add, .image_cart_add_to, .image_cart_delete, .image_fav, .image_notify', 'mouseout', function (){
+                $("body").css("cursor", "auto");
+
+                //
+                })
+            .delegate('.image_cart_add_to', 'click', function (){
+                var clssnm = $(this).closest('table').attr("class").replace('productListing-over', '');
+                var pid = this.name;
+                var pqty = $('#'+pid).val(); //products_qty field
+                Add_Product(pid, pqty); //add to cart
+                update_product_info(pid, clssnm);
+                })  
+            .delegate('.image_cart_add', 'click', function (){
+                var pid = parseInt(this.name.replace('add_cart', ''));
+                var pqty = $('#'+pid).val(); //products_qty field
+                var pbox = $('#products_box'+pid).val(); //products_box
+                var pQuantity = $('#products_quantity'+pid).val(); //products_quantity voorraad
+                if ((pqty*1 >= pbox*1)) { //check omdoos
+                       pqty = Math.ceil(pqty/pbox)*pbox;
+                         //$("#omdoos"+pid).show(700);
+                }
+//change price indicator
+                    if ((parseInt(pqty,10) >= parseInt(pQuantity,10) || parseInt(pqty,10) >= parseInt(pbox,10)) && pbox > 1){
+                        change_price_omdoos(pid);
+                    } else {
+                        change_price_unit(pid);
+                    }
+                loadQTY(pbox,pqty, pid, pQuantity);
+                $('#delete_cart'+pid).show(700);
+                $('#add_cart'+pid).hide(700);
+                $("#notice_cart"+pid).show(700);
+                Add_Product(pid, pqty); //add to cart
+                })  
+            .delegate('.image_cart_replace', 'click', function (){
+                var pid = parseInt(this.name.replace('replace_cart', ''));
+                var pqty = $('#'+pid).val(); //products_qty field
+                Replace_Product(pid, pqty); //add to cart
+                })  
+            .delegate('.image_cart_delete', 'click', function (){
+                var pid = parseInt(this.name.replace('delete_export', ''));
+                var pbox = $('#products_box'+pid).val(); //products_box
+                Del_Product_cart(pid); //delete from cart
+                $("#notice_cart"+pid).hide(700);
+                $("#advies"+pid).hide(700);
+                change_price_omdoos(pid);
+                         $("#omdoos"+pid).hide(700);
+                         $("#import"+pid).hide(700);
+                $('#'+pid).val(pbox); // set default qty input field per box
+                $('#delete_cart'+pid).hide(700);
+                $('#add_cart'+pid).show(700); 
+                $('#'+pid+'box').val('');
+               })  
+                
+                /*
+             $('.image_cart_delete').hover(function (){
+                $("body").css("cursor", "pointer");
+                },function(){
+                    $('body').css('cursor', 'auto');
+                })
+                .click(function () {
+                var pid = parseInt(this.name.replace('delete_export', ''));
+                Del_Product_cart(pid); //delete from cart
+                
+                $("body").css("cursor", "auto");
+                $('#delete_cart').hide(700);
+                $('#add_cart').show(700);
+
+                });
+                */   // favorites button add remove action
+            .delegate('.image_fav', 'click', function () {
+                    var pid = parseInt(this.name.replace('favID', ''));
+                    if ($(this).attr("src") == "includes/languages/dutch/images/buttons/favorits_add.png") {
+                        $(this).attr("src", "includes/languages/dutch/images/buttons/favorits_remove.png");
+                        $(this).attr("title", "Verwijder product van Assortiment Bestellijst");
+                    } else {
+                        $(this).attr("src", "includes/languages/dutch/images/buttons/favorits_add.png");
+                        $(this).attr("title", "Voeg product toe aan Assortiment Bestellijst");
+                    }
+                change_fav(pid); //add to / remove from fav's
+                })
+ // favorites button add remove action
+            .delegate('.image_notify', 'click', function () {
+                    var pid = parseInt(this.name.replace('notifyID', ''));
+                    if ($(this).attr("src") == "images//icons/notify_on.png") {
+                        $(this).attr("src", "images//icons/notify_off.png");
+                        $(this).attr("title", "Verwijder voorraadmelding");
+                         $.notifyBar({cssClass: "success",html: 'U ontvangt van ons een e-mail als dit product weer op voorraad is.', position: "bottom",});
+                    } else {
+                        $(this).attr("src", "images//icons/notify_on.png");
+                        $(this).attr("title", "Ontvang voorraadmelding");
+                         //$.notifyBar({cssClass: "warning",html: 'U ontvangt van ons geen e-mail als dit product weer op voorraad is.', position: "bottom",});
+                    }
+                change_notify(pid); //add to / remove from fav's
+                })
+                
+                 // favorites button add remove action
+            .delegate('#legenda', 'click', function () { 
+                $(".legenda_text").toggle("slow",0);
+                //alert('boudy');
+                 //$(".to_toggle").show();
+                });
+//the hovers for listings
+     $("#import_cart, #shopping_cart") //some delegated actions
+
+        .delegate('.productListing-even, .productListing-odd', 'mouseover', function(){ //When mouse over menu item
+            $(this).toggleClass("productListing-over");
+        })
+        .delegate('.productListing-even, .productListing-odd', 'mouseout', function(){ //When mouse no longer over menu item
+            $(this).toggleClass("productListing-over");
+        })
+        .delegate('.productListing-even, .productListing-odd', 'click', function(){ //When mouse over menu item
+            //$(this).find("input:text:visible:first").focus();
+        })
+        .delegate('.cart_quantity', 'focus', function(){ //When mouse over menu item   
+            $(this).closest('table').addClass("productListing-selected");
+            //$(this).poshytip();
+          })
+        .delegate('.cart_quantity', 'blur', function(){ //When mouse over menu item
+            $(this).closest('table').removeClass("productListing-selected");
+            //$('.cart_quantity').poshytip('hideDelayed', 2000);
+        })        
+        .delegate('.cart_quantity', 'hover', function(e){ //When mouse over menu item
+        })        
+        .delegate('.staffel_icon', 'mouseover', function(){ //When mouse over menu item
+            var pid = parseInt(this.id.replace('staffel_icon', ''));
+            //alert('rrr'+pid);
+            $('#staffel'+pid).show(); //advies melding tonen
+        })        
+        .delegate('.staffel_icon', 'mouseout', function(){ //When mouse over menu item
+            var pid = parseInt(this.id.replace('staffel_icon', ''));
+            //alert('rrr'+pid);
+            $('#staffel'+pid).hide(500); //advies melding tonen
+        })        
+        .delegate('.cart_quantity', 'mousemove', function(e){ //When mouse over menu item
+        });
+        
+//key strokes qty inputs:
+     $("#import_cart, #shopping_cart") //some delegated actions
+        .delegate('input[class=cart_quantity]', 'keyup', function(event) {
+                
+                //alert('hhh');
+                //change the values:
+               var allowed_key = true;
+               if(event.keyCode == 9 || event.keyCode == 16){
+                    allowed_key = false;
+                    event.preventDefault();
+               }
+                  
+                  if (/\D/g.test(this.value))
+                    {
+                        // Filter non-digits from input value.
+                              allowed_key = false;
+                        this.value = this.value.replace(/\D/g, '');
+                  }
+               if (allowed_key){ //alleen actie als erjuiste key is getyped
+                var pid = this.id.match(/[0-9]+/g); //products_id
+                var pqty = this.value; //value field
+                var pbox = $('#products_box'+pid).val(); //products_box
+                var pQuantity = $('#products_quantity'+pid).val(); //products_quantity
+                var clssnm = $(this).closest('div')[0].className;
+                var incart = $('#in_cart'+pid).val(); //product_in_cart
+
+                 //else {
+                    if (this.name == 'cart_quantity_box') { //omdoos aantallen
+                       pqty = pbox * pqty;  
+                    var str = this.id;
+str = str.substring(0, str.length - 3);
+                    //alert(str.length);
+                    //alert(pid);
+                    $('#'+pid).val(pqty);
+                    //$('#'+pid).attr('value').val(pqty);
+                    } else if (this.name == 'cart_quantity['+pid+']' && (pqty*1 >= pbox*1)) { //unieke aantallen
+                    //alert(pbox + '- '+ pqty);
+                    var pqty_set = pqty;
+                       pqty = Math.ceil(pqty/pbox)*pbox; 
+                      if (pqty_set != pqty){ //showonly if is different
+                         $("#omdoos"+pid).show(700);
+                          $("#import"+pid).hide(700);
+                      } else {
+                          $("#omdoos"+pid).hide(700);
+                          $("#import"+pid).hide(700);
+                      }
+                    var str = this.id;
+str = str.substring(0, str.length - 3);
+                    }
+//change price indicator
+                    if (((parseInt(pqty,10) >= parseInt(pQuantity,10) && parseInt(pQuantity,10) > 0) || parseInt(pqty,10) >= parseInt(pbox,10)) && pbox > 1){
+                    //alert('doos'+pqty + '>=' + pQuantity + '||' + pqty + '>=' + parseInt(pbox,10));
+                        change_price_omdoos(pid);
+                    } else {
+                    //alert('unit'+pqty + '>=' + pQuantity + '||' + pqty + '>=' + parseInt(pbox,10));
+                        change_price_unit(pid);
+                    }
+                    setTimeout(function (){
+                        $('#'+pid).val(pqty);
+                        if ((pqty/pbox) >= 1){
+                        $('#'+pid+'box').val(pqty/pbox);} else {
+                            $('#'+pid+'box').val('');
+                        }
+                    }, 500);
+                    if (incart > 0){
+                         update_cart(pid, pqty, 'replace')
+                        loadQTY(pbox,pqty, pid, pQuantity);
+                    } else {
+                        loadQTY(pbox,pqty, pid, pQuantity);
+                    }
+              //}
+              products_price(pid, pqty);
+if (clssnm == 'cart'){
+                //only for cartlisting:
+                var pprice = $('#products_price'+pid).val(); //products_final price per piece
+                    changeQTY(pbox, pqty, pid, pQuantity, pprice); 
+                }
+                
+                //products_price(pid, pqty);
+               
+               }
+        	}).delegate('input[class=cart_quantity]', 'keydown', function(e) {
+               /*if(event.shiftKey && event.keyCode != 9  )
+                    event.preventDefault();
+               if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 16 || event.keyCode == 9 || event.keyCode == 116) {
+               }
+               else {
+                    if (event.keyCode < 95) {
+                      if (event.keyCode < 48 || event.keyCode > 57) {
+                            event.preventDefault();
+                      }
+                    } 
+                    else {
+                          if (event.keyCode < 96 || event.keyCode > 105) {
+                              event.preventDefault();
+                          }
+                    }
+                  } */
+                  if (/\D/g.test(this.value))
+                    {
+                        // Filter non-digits from input value.
+                        this.value = this.value.replace(/\D/g, '');
+                        //alert('boudy2');
+                  }
+        	});
+
+
+                
+      $('#basket_sub').load('basket_subtotal.php');
+
+
+   }); 
+function print_r( array, return_val ) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Michael White (http://crestidg.com)
+    // +   improved by: Ben Bryan
+    // *     example 1: print_r(1, true);
+    // *     returns 1: 1
+    
+    var output = "", pad_char = " ", pad_val = 4;
+ 
+    var formatArray = function (obj, cur_depth, pad_val, pad_char) {
+        if (cur_depth > 0) {
+            cur_depth++;
+        }
+ 
+        var base_pad = repeat_char(pad_val*cur_depth, pad_char);
+        var thick_pad = repeat_char(pad_val*(cur_depth+1), pad_char);
+        var str = "";
+ 
+        if (obj instanceof Array || obj instanceof Object) {
+            str += "Array\n" + base_pad + "(\n";
+            for (var key in obj) {
+                if (obj[key] instanceof Array) {
+                    str += thick_pad + "["+key+"] => "+formatArray(obj[key], cur_depth+1, pad_val, pad_char);
+                } else {
+                    str += thick_pad + "["+key+"] => " + obj[key] + "\n";
+                }
+            }
+            str += base_pad + ")\n";
+        } else if(obj == null || obj == undefined) {
+            str = '';
+        } else {
+            str = obj.toString();
+        }
+ 
+        return str;
+    };
+ 
+    var repeat_char = function (len, pad_char) {
+        var str = "";
+        for(var i=0; i < len; i++) { 
+            str += pad_char; 
+        };
+        return str;
+    };
+    output = formatArray(array, 0, pad_val, pad_char);
+ 
+    if (return_val !== true) {
+        document.write("<pre>" + output + "<\/pre>");
+        return true;
+    } else {
+        return output;
+    }
+}
+function strstr (haystack, needle, bool) {
+    // Finds first occurrence of a string within another  
+    // 
+    // version: 1109.2015
+    // discuss at: http://phpjs.org/functions/strstr
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Onno Marsman
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // *     example 1: strstr('Kevin van Zonneveld', 'van');
+    // *     returns 1: 'van Zonneveld'
+    // *     example 2: strstr('Kevin van Zonneveld', 'van', true);
+    // *     returns 2: 'Kevin '
+    // *     example 3: strstr('name@example.com', '@');
+    // *     returns 3: '@example.com'
+    // *     example 4: strstr('name@example.com', '@', true);
+    // *     returns 4: 'name'
+    var pos = 0;
+ 
+    haystack += '';
+    pos = haystack.indexOf(needle);
+    if (pos == -1) {
+        return false;
+    } else {
+        if (bool) {
+            return haystack.substr(0, pos);
+        } else {
+            return haystack.slice(pos);
+        }
+    }
+}
+</script><link rel="stylesheet" type="text/css" href="stylesheet.css">
+<script language="javascript" src="includes/general.js"></script>
+<script language="javascript"><!--
+function check_form() {
+  var error_message = "Er hebben zich fouten voorgedaan tijdens het verwerken van het formulier!\nMaak de volgende aanpassingen:\n\n";
+  var error_found = false;
+  var error_field;
+  var keywords = document.advanced_search.keywords.value;
+  var dfrom = document.advanced_search.dfrom.value;
+  var dto = document.advanced_search.dto.value;
+  var pfrom = document.advanced_search.pfrom.value;
+  var pto = document.advanced_search.pto.value;
+  var pfrom_float;
+  var pto_float;
+
+  /* if ( ((keywords == '') || (keywords.length < 1)) && ((dfrom == '') || (dfrom == 'dd/mm/jjjj') || (dfrom.length < 1)) && ((dto == '') || (dto == 'dd/mm/jjjj') || (dto.length < 1)) && ((pfrom == '') || (pfrom.length < 1)) && ((pto == '') || (pto.length < 1)) ) {
+    error_message = error_message + "* Ten minste een van de velden moet worden ingevuld.\n";
+    error_field = document.advanced_search.keywords;
+    error_found = true;
+  } */
+
+  if ((dfrom.length > 0) && (dfrom != 'dd/mm/jjjj')) {
+    if (!IsValidDate(dfrom, 'dd/mm/jjjj')) {
+      error_message = error_message + "* Ongeldig vanaf datum\n";
+      error_field = document.advanced_search.dfrom;
+      error_found = true;
+    }
+  }
+
+  if ((dto.length > 0) && (dto != 'dd/mm/jjjj')) {
+    if (!IsValidDate(dto, 'dd/mm/jjjj')) {
+      error_message = error_message + "* Ongeldig tot en met datum\n";
+      error_field = document.advanced_search.dto;
+      error_found = true;
+    }
+  }
+
+  if ((dfrom.length > 0) && (dfrom != 'dd/mm/jjjj') && (IsValidDate(dfrom, 'dd/mm/jjjj')) && (dto.length > 0) && (dto != 'dd/mm/jjjj') && (IsValidDate(dto, 'dd/mm/jjjj'))) {
+    if (!CheckDateRange(document.advanced_search.dfrom, document.advanced_search.dto)) {
+      error_message = error_message + "* Tot en met datum moet groter of gelijk zijn aan de vanaf Datum\n";
+      error_field = document.advanced_search.dto;
+      error_found = true;
+    }
+  }
+
+  if (pfrom.length > 0) {
+    pfrom_float = parseFloat(pfrom);
+    if (isNaN(pfrom_float)) {
+      error_message = error_message + "* Prijs vanaf moet een nummer zijn\n";
+      error_field = document.advanced_search.pfrom;
+      error_found = true;
+    }
+  } else {
+    pfrom_float = 0;
+  }
+
+  if (pto.length > 0) {
+    pto_float = parseFloat(pto);
+    if (isNaN(pto_float)) {
+      error_message = error_message + "* Prijs Tot en met moet een nummer zijn\n";
+      error_field = document.advanced_search.pto;
+      error_found = true;
+    }
+  } else {
+    pto_float = 0;
+  }
+
+  if ( (pfrom.length > 0) && (pto.length > 0) ) {
+    if ( (!isNaN(pfrom_float)) && (!isNaN(pto_float)) && (pto_float < pfrom_float) ) {
+      error_message = error_message + "* Prijs tot en met moet groter of gelijk zijn aan de Prijs vanaf.\n";
+      error_field = document.advanced_search.pto;
+      error_found = true;
+    }
+  }
+
+  if (error_found == true) {
+    alert(error_message);
+    error_field.focus();
+    return false;
+  } else {
+    RemoveFormatString(document.advanced_search.dfrom, "dd/mm/jjjj");
+    RemoveFormatString(document.advanced_search.dto, "dd/mm/jjjj");
+    return true;
+  }
+}
+
+function popupWindow(url) {
+  window.open(url,'popupWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,width=450,height=280,screenX=150,screenY=150,top=150,left=150')
+}
+//--></script>
+</head>
+<body marginwidth="0" marginheight="0" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" align="center">
+<div align="center">
+<table border="0"><tr><td  class="hoofdtabel">
+<!-- header //-->
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-WTPSPF"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WTPSPF');</script>
+<!-- End Google Tag Manager -->
+
+<!--Google analytics - 141209 -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-885478-7']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    //ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<!--eo google analytics -->
+
+    <table width="100%" cellpadding="3" cellspacing="0" border="0">
+      <tr><td>
+
+    <table CELLSPACING="4" CELLPADDING="1" BORDER="0" width="1000" align="center" bgcolor="#ffffff">
+      <tr><td>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0" class="header">
+	<tr>
+		<td class="logo">
+		<a href="http://www.cakesupplies.nl/index.php"><img src="images/logo_cakesupplies.jpg" border="0" alt="CakeSupplies.nl" title="CakeSupplies.nl" width="275" height="140" /></a>		</td>
+		<td class="header_images" valign="middle">
+		        <div id="basket" class="header_basket" title="Winkelwagen" onclick="window.location = 'http://www.cakesupplies.nl/shopping_cart.php';"><table width="160" border="0" cellspacing="0" cellpadding="0">
+  <tr height="40">
+    <td valign="middle" class="header_cart" colspan="3" style="color:#D2D2D2">Winkelwagen</td>
+  </tr>
+  <tr>
+    <td valign="top" colspan="3" class="header_cart_price" style="color:#D2D2D2">Artikelen: 0</td>
+  </tr>
+</table></div>		</td>
+  	</tr>		
+</table>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+		<td colspan="2" align="right" class="talen">
+		<a href="https://plus.google.com/102751531639274922988" rel="publisher" target="_blank"><img src="images/icons/google_plus.png" border="0" alt="Volg ons op Google+" title="Volg ons op Google+" width="21" height="21" /></a>&nbsp;<a href="http://www.facebook.com/cakesupplies.nl" target="_blank"><img src="images/icons/facebook.png" border="0" alt="Volg ons op Facebook" title="Volg ons op Facebook" width="21" height="21" /></a>&nbsp;<a href="http://twitter.com/#!/CakeSuppliesNL/" target="_blank"><img src="images/icons/twitter.png" border="0" alt="Volg ons op Twitter" title="Volg ons op Twitter" width="21" height="21" /></a><img src="images/pixel_trans.gif" border="0" alt="" width="100" height="1" /> <a href="http://www.cakesupplies.nl/404.php?language=EN"><img src="includes/languages/english/images/icon.png" border="0" alt="English" title="English" width="32" height="32" /></a>  <a href="http://www.cakesupplies.nl/404.php?language=de"><img src="includes/languages/german/images/icon.png" border="0" alt="Deutsch" title="Deutsch" width="32" height="32" /></a>  <a href="http://www.cakesupplies.nl/404.php?language=fr"><img src="includes/languages/french/images/icon.png" border="0" alt="Française" title="Française" width="32" height="32" /></a> 		</td>
+  	</tr>
+</table>
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="1">
+  <tr class="headerNavigation">
+    <td class="headerNavigation">&nbsp;&nbsp;<a href="http://www.cakesupplies.nl/index.php" class="headerNavigation">Winkel</a> &raquo; <a href="http://www.cakesupplies.nl/FILENAME_404" class="headerNavigation">Pagina niet gevonden</a></td>
+    
+    </tr>
+</table>
+<!-- header_eof //-->
+
+<!-- body //-->
+<table border="0" width="1000" cellspacing="3" cellpadding="3">
+  <tr>
+    <td width="180" valign="top"><table border="0" width="180" cellspacing="0" cellpadding="2">
+<!-- left_navigation //-->
+<!-- categories //-->
+          <tr>
+            <td>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="14" class="infoBoxHeading"><img src="images/infobox/corner_left.gif" border="0" alt="" width="1" height="1" /></td>
+    <td width="100%" height="14" class="infoBoxHeading">Categorieën</td>
+    <td height="14" class="infoBoxHeading" nowrap><img src="images/pixel_trans.gif" border="0" alt="" width="11" height="14" /></td>
+  </tr>
+</table>
+<table border="0" width="100%" cellspacing="0" cellpadding="1" class="navBox">
+  <tr>
+    <td><table border="0" width="100%" cellspacing="0" cellpadding="0" class="navBoxContents">
+  <tr>
+    <td><img src="images/pixel_trans.gif" border="0" alt="" width="100%" height="1" /></td>
+  </tr>
+  <tr>
+    <td class="boxText"><img src="images/pixel_white.gif" border="0" alt="" width="100%" height="5" /></td>
+  </tr>
+  <tr>
+    <td class="boxText"><div class='suckerdiv'><ul id='suckertree1'><li><a href='http://www.cakesupplies.nl/aanbieding-c-264.html'>Aanbieding!</a>
+<ul><li><a href='http://www.cakesupplies.nl/daddios-proseries-c-264_580.html'>Fat Daddio's ProSeries</a>
+</li><li><a href='http://www.cakesupplies.nl/rainbow-dust-sparkle-range-c-264_579.html'>Rainbow Dust Sparkle Range</a>
+</li><li><a href='http://www.cakesupplies.nl/outlet-c-264_432.html'>Outlet</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/halloween-herfst-c-278.html'>Halloween & Herfst</a>
+<ul><li><a href='http://www.cakesupplies.nl/baking-cups-cupcake-combo-pack-c-278_568.html'>Baking Cups & Cupcake Combo Pack</a>
+</li><li><a href='http://www.cakesupplies.nl/bakvormen-c-278_565.html'>Bakvormen</a>
+</li><li><a href='http://www.cakesupplies.nl/candy-molds-c-278_567.html'>Candy Molds</a>
+</li><li><a href='http://www.cakesupplies.nl/decoraties-c-278_563.html'>Decoraties</a>
+</li><li><a href='http://www.cakesupplies.nl/ingredinten-c-278_571.html'>Ingrediënten</a>
+</li><li><a href='http://www.cakesupplies.nl/party-c-278_570.html'>Party</a>
+</li><li><a href='http://www.cakesupplies.nl/presentatie-c-278_569.html'>Presentatie</a>
+</li><li><a href='http://www.cakesupplies.nl/siliconen-molds-c-278_566.html'>Siliconen Molds</a>
+</li><li><a href='http://www.cakesupplies.nl/uitstekers-c-278_564.html'>Uitstekers</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/wilton-nieuw-c-528.html'>Wilton nieuw</a>
+<ul><li><a href='http://www.cakesupplies.nl/color-right-c-528_555.html'>Color Right</a>
+</li><li><a href='http://www.cakesupplies.nl/treatology-c-528_539.html'>Treatology</a>
+</li><li><a href='http://www.cakesupplies.nl/wilton-zomer-assortiment-c-528_515.html'>Wilton zomer assortiment</a>
+</li><li><a href='http://www.cakesupplies.nl/wilton-nieuw-2015-c-528_529.html'>Wilton nieuw 2015</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/daddios-c-464.html'>Fat Daddio’s</a>
+<ul><li><a href='http://www.cakesupplies.nl/bakvormen-c-464_465.html'>Bakvormen</a>
+<ul><li><a href='http://www.cakesupplies.nl/proseries-cake-c-464_465_537.html'>ProSeries Cake Pan</a>
+</li><li><a href='http://www.cakesupplies.nl/proseries-springvorm-c-464_465_538.html'>ProSeries Springvorm</a>
+</li><li><a href='http://www.cakesupplies.nl/cheesecake-pans-c-464_465_469.html'>Cheesecake pans</a>
+</li><li><a href='http://www.cakesupplies.nl/dadder-c-464_465_470.html'>Mad Dadder</a>
+</li><li><a href='http://www.cakesupplies.nl/tartquiche-c-464_465_471.html'>Tart/Quiche pan</a>
+</li><li><a href='http://www.cakesupplies.nl/hemisphere-bolvorm-c-464_465_472.html'>Hemisphere pan (bolvorm)</a>
+</li><li><a href='http://www.cakesupplies.nl/pie-pan-c-464_465_473.html'>Pie pan</a>
+</li><li><a href='http://www.cakesupplies.nl/bread-pans-c-464_465_478.html'>Bread pans</a>
+</li><li><a href='http://www.cakesupplies.nl/bakringen-c-464_465_474.html'>Bakringen</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/gereedschappen-c-464_466.html'>Gereedschappen</a>
+</li><li><a href='http://www.cakesupplies.nl/crimpers-c-464_467.html'>Crimpers</a>
+</li><li><a href='http://www.cakesupplies.nl/chocolade-mallen-c-464_468.html'>Chocolade mallen</a>
+<ul><li><a href='http://www.cakesupplies.nl/mallen-c-464_468_475.html'>3-D mallen</a>
+</li><li><a href='http://www.cakesupplies.nl/piece-mallen-c-464_468_476.html'>‘Two-piece’ mallen</a>
+</li><li><a href='http://www.cakesupplies.nl/chocolade-mallen-c-464_468_477.html'>Chocolade mallen</a>
+</li></ul></li></ul></li><li><a href='http://www.cakesupplies.nl/apparaten-c-307.html'>Apparaten</a>
+<ul><li><a href='http://www.cakesupplies.nl/airbrush-c-307_420.html'>Airbrush</a>
+<ul><li><a href='http://www.cakesupplies.nl/airbrush-c-307_420_423.html'>Airbrush</a>
+</li><li><a href='http://www.cakesupplies.nl/airbrush-kleurstoffen-c-307_420_424.html'>Airbrush kleurstoffen</a>
+</li><li><a href='http://www.cakesupplies.nl/stencils-c-307_420_425.html'>Stencils</a>
+</li><li><a href='http://www.cakesupplies.nl/airbrush-overig-c-307_420_426.html'>Airbrush overig</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/apparaten-c-307_419.html'>Apparaten</a>
+</li><li><a href='http://www.cakesupplies.nl/chocolade-c-307_421.html'>Chocolade</a>
+</li><li><a href='http://www.cakesupplies.nl/weegschalen-c-307_422.html'>Weegschalen</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/bakmixen-c-305.html'>Bakmixen</a>
+</li><li><a href='http://www.cakesupplies.nl/bakvormen-c-28.html'>Bakvormen</a>
+<ul><li><a href='http://www.cakesupplies.nl/bakringen-c-28_124.html'>Bakringen</a>
+</li><li><a href='http://www.cakesupplies.nl/bakvorm-hart-bloem-c-28_209.html'>Bakvorm Hart & Bloem</a>
+</li><li><a href='http://www.cakesupplies.nl/bakvorm-mini-c-28_102.html'>Bakvorm Mini</a>
+</li><li><a href='http://www.cakesupplies.nl/bakvorm-muffin-cupcake-c-28_154.html'>Bakvorm Muffin & Cupcake</a>
+</li><li><a href='http://www.cakesupplies.nl/bakvorm-overig-c-28_240.html'>Bakvorm Overig</a>
+</li><li><a href='http://www.cakesupplies.nl/bakvorm-rond-c-28_207.html'>Bakvorm Rond</a>
+</li><li><a href='http://www.cakesupplies.nl/bakvorm-rond-extra-diep-c-28_238.html'>Bakvorm Rond Extra Diep</a>
+</li><li><a href='http://www.cakesupplies.nl/bakvorm-speciaal-c-28_156.html'>Bakvorm Speciaal</a>
+</li><li><a href='http://www.cakesupplies.nl/bakvorm-vierkant-rechthoek-c-28_208.html'>Bakvorm Vierkant & Rechthoek</a>
+</li><li><a href='http://www.cakesupplies.nl/bakvorm-vrknt-extra-diep-c-28_239.html'>Bakvorm Vrknt Extra Diep</a>
+</li><li><a href='http://www.cakesupplies.nl/bakvormen-thema-c-28_83.html'>Bakvormen 3D thema</a>
+</li><li><a href='http://www.cakesupplies.nl/cookie-treat-pans-c-28_142.html'>Cookie Treat Pans</a>
+</li><li><a href='http://www.cakesupplies.nl/hemisphere-bolvorm-c-28_479.html'>Hemisphere pan (bolvorm)</a>
+</li><li><a href='http://www.cakesupplies.nl/dadder-c-28_480.html'>Mad Dadder</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/boeken-magazines-c-37.html'>Boeken & Magazines</a>
+<ul><li><a href='http://www.cakesupplies.nl/boeken-engelstalig-c-37_133.html'>Boeken Engelstalig</a>
+</li><li><a href='http://www.cakesupplies.nl/boeken-nederlandstalig-c-37_265.html'>Boeken Nederlandstalig</a>
+</li><li><a href='http://www.cakesupplies.nl/magazines-c-37_134.html'>Magazines</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/brownies-cookies-c-215.html'>Brownies & Cookies</a>
+<ul><li><a href='http://www.cakesupplies.nl/brownie-cookie-ingredinten-c-215_216.html'>Brownie & Cookie Ingrediënten</a>
+</li><li><a href='http://www.cakesupplies.nl/brownie-cookie-overig-c-215_220.html'>Brownie & Cookie overig</a>
+</li><li><a href='http://www.cakesupplies.nl/koekjes-uitstekers-c-215_218.html'>Koekjes Uitstekers</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/chocolate-candy-pops-c-74.html'>Chocolate, Candy & Pops</a>
+<ul><li><a href='http://www.cakesupplies.nl/bakvaste-chocolade-c-74_104.html'>Bakvaste Chocolade</a>
+</li><li><a href='http://www.cakesupplies.nl/cacaoboter-kleurstof-c-74_352.html'>Cacaoboter Kleurstof</a>
+</li><li><a href='http://www.cakesupplies.nl/cake-pops-c-74_267.html'>Cake Pops</a>
+</li><li><a href='http://www.cakesupplies.nl/candy-chocolate-melts-c-74_103.html'>Candy & Chocolate Melts</a>
+</li><li><a href='http://www.cakesupplies.nl/candy-chocolate-molds-c-74_105.html'>Candy & Chocolate Molds</a>
+</li><li><a href='http://www.cakesupplies.nl/candy-chocolate-overig-c-74_116.html'>Candy & Chocolate Overig</a>
+</li><li><a href='http://www.cakesupplies.nl/isomalt-c-74_356.html'>Isomalt</a>
+</li><li><a href='http://www.cakesupplies.nl/modelleer-chocolade-c-74_351.html'>Modelleer Chocolade</a>
+</li><li><a href='http://www.cakesupplies.nl/transfer-sheets-c-74_462.html'>Transfer Sheets</a>
+</li><li><a href='http://www.cakesupplies.nl/treat-pops-c-74_348.html'>Treat Pops</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/cupcakes-muffins-c-44.html'>Cupcakes & Muffins</a>
+<ul><li><a href='http://www.cakesupplies.nl/baking-cups-c-44_90.html'>Baking cups</a>
+<ul><li><a href='http://www.cakesupplies.nl/culpitt-c-44_90_272.html'>Culpitt</a>
+</li><li><a href='http://www.cakesupplies.nl/house-marie-c-44_90_273.html'>House of Marie</a>
+</li><li><a href='http://www.cakesupplies.nl/pme-c-44_90_323.html'>PME</a>
+</li><li><a href='http://www.cakesupplies.nl/squires-kitchen-c-44_90_349.html'>Squires Kitchen</a>
+</li><li><a href='http://www.cakesupplies.nl/stdter-c-44_90_322.html'>Städter</a>
+</li><li><a href='http://www.cakesupplies.nl/wilton-c-44_90_274.html'>Wilton</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/cupcake-bakvormen-c-44_260.html'>Cupcake Bakvormen</a>
+</li><li><a href='http://www.cakesupplies.nl/cupcake-doosjes-c-44_157.html'>Cupcake doosjes</a>
+</li><li><a href='http://www.cakesupplies.nl/cupcake-ingredinten-c-44_261.html'>Cupcake Ingrediënten</a>
+</li><li><a href='http://www.cakesupplies.nl/cupcake-overig-c-44_91.html'>Cupcake overig</a>
+</li><li><a href='http://www.cakesupplies.nl/cupcake-standaards-c-44_113.html'>Cupcake standaards</a>
+</li><li><a href='http://www.cakesupplies.nl/cupcake-topuitstekers-c-44_259.html'>Cupcake Top/Uitstekers</a>
+</li><li><a href='http://www.cakesupplies.nl/cupcake-wrappers-c-44_237.html'>Cupcake Wrappers</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/decoratie-c-3.html'>Decoratie</a>
+<ul><li><a href='http://www.cakesupplies.nl/cake-toppers-deco-sets-c-3_318.html'>Cake toppers & Deco sets</a>
+<ul><li><a href='http://www.cakesupplies.nl/cake-toppers-c-3_318_151.html'>Cake toppers</a>
+</li><li><a href='http://www.cakesupplies.nl/decoratie-sets-c-3_318_152.html'>Decoratie sets</a>
+</li><li><a href='http://www.cakesupplies.nl/fun-pix-c-3_318_206.html'>Fun Pix</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/chocolade-decoraties-c-3_324.html'>Chocolade Decoraties</a>
+</li><li><a href='http://www.cakesupplies.nl/decoratie-juwelen-c-3_186.html'>Decoratie Juwelen</a>
+</li><li><a href='http://www.cakesupplies.nl/decorating-c-3_97.html'>Decorating Gel</a>
+</li><li><a href='http://www.cakesupplies.nl/decorating-icing-c-3_146.html'>Decorating Icing</a>
+</li><li><a href='http://www.cakesupplies.nl/kaarsjes-c-3_317.html'>Kaarsjes</a>
+<ul><li><a href='http://www.cakesupplies.nl/kleur-kaarsjes-c-3_317_132.html'>Kleur kaarsjes</a>
+</li><li><a href='http://www.cakesupplies.nl/nummer-kaarsjes-c-3_317_153.html'>Nummer kaarsjes</a>
+</li><li><a href='http://www.cakesupplies.nl/thema-kaarsjes-c-3_317_131.html'>Thema kaarsjes</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/strooisels-c-3_95.html'>Strooisels</a>
+</li><li><a href='http://www.cakesupplies.nl/suikerbloemen-c-3_96.html'>Suikerbloemen</a>
+</li><li><a href='http://www.cakesupplies.nl/suikerfiguurtjes-c-3_118.html'>Suikerfiguurtjes</a>
+</li><li><a href='http://www.cakesupplies.nl/suikerparels-c-3_100.html'>Suikerparels</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/eetbare-prints-c-269.html'>Eetbare Prints</a>
+</li><li><a href='http://www.cakesupplies.nl/embossers-crimpers-veiners-c-76.html'>Embossers, Crimpers & Veiners</a>
+<ul><li><a href='http://www.cakesupplies.nl/crimpers-c-76_129.html'>Crimpers</a>
+</li><li><a href='http://www.cakesupplies.nl/embossers-stempels-c-76_111.html'>Embossers (stempels)</a>
+</li><li><a href='http://www.cakesupplies.nl/veiners-c-76_188.html'>Veiners</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/fondant-marsepein-c-53.html'>Fondant & Marsepein</a>
+<ul><li><a href='http://www.cakesupplies.nl/fondant-glazuur-c-53_122.html'>Fondant Glazuur</a>
+</li><li><a href='http://www.cakesupplies.nl/funcakes-fondant-c-53_289.html'>FunCakes Fondant</a>
+</li><li><a href='http://www.cakesupplies.nl/funcakes-marsepein-decoraties-c-53_244.html'>FunCakes Marsepein Decoraties</a>
+</li><li><a href='http://www.cakesupplies.nl/funcakes-marsepein-rolkwaliteit-c-53_50.html'>FunCakes Marsepein Rolkwaliteit</a>
+</li><li><a href='http://www.cakesupplies.nl/paste-c-53_70.html'>Gum Paste</a>
+</li><li><a href='http://www.cakesupplies.nl/lace-decorating-c-53_453.html'>Lace Decorating</a>
+<ul><li><a href='http://www.cakesupplies.nl/lace-c-53_453_454.html'>Lace Mix</a>
+</li><li><a href='http://www.cakesupplies.nl/lace-tools-c-53_453_455.html'>Lace Tools</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/modelleer-chocolade-c-53_350.html'>Modelleer Chocolade</a>
+</li><li><a href='http://www.cakesupplies.nl/modelling-paste-c-53_357.html'>Modelling Paste</a>
+</li><li><a href='http://www.cakesupplies.nl/overige-merken-fondant-c-53_293.html'>Overige Merken Fondant</a>
+</li><li><a href='http://www.cakesupplies.nl/pettinice-fondant-c-53_290.html'>Pettinice Fondant</a>
+</li><li><a href='http://www.cakesupplies.nl/paste-c-53_558.html'>PME Gum Paste</a>
+</li><li><a href='http://www.cakesupplies.nl/sugarpaste-c-53_542.html'>PME Sugarpaste</a>
+</li><li><a href='http://www.cakesupplies.nl/renshaw-fondant-c-53_291.html'>Renshaw Fondant</a>
+</li><li><a href='http://www.cakesupplies.nl/renshaw-marsepein-c-53_561.html'>Renshaw Marsepein</a>
+</li><li><a href='http://www.cakesupplies.nl/satin-fondant-c-53_292.html'>Satin Ice Fondant</a>
+</li><li><a href='http://www.cakesupplies.nl/squires-kitchen-fondant-c-53_354.html'>Squires Kitchen Fondant</a>
+</li><li><a href='http://www.cakesupplies.nl/wilton-fondant-c-53_427.html'>Wilton Fondant</a>
+</li><li><a href='http://www.cakesupplies.nl/zeelandia-marsepein-c-53_414.html'>Zeelandia Marsepein</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/gereedschappen-c-183.html'>Gereedschappen</a>
+<ul><li><a href='http://www.cakesupplies.nl/decorating-kits-c-183_437.html'>Decorating Kits</a>
+</li><li><a href='http://www.cakesupplies.nl/gereedschap-overig-c-183_184.html'>Gereedschap Overig</a>
+</li><li><a href='http://www.cakesupplies.nl/gereedschappen-chocolade-c-183_410.html'>Gereedschappen Chocolade</a>
+</li><li><a href='http://www.cakesupplies.nl/modelling-tools-c-183_67.html'>Modelling tools</a>
+</li><li><a href='http://www.cakesupplies.nl/paletmes-taartzaag-c-183_165.html'>Paletmes & taartzaag</a>
+</li><li><a href='http://www.cakesupplies.nl/rolling-pins-mats-c-183_66.html'>Rolling Pins & Mats</a>
+</li><li><a href='http://www.cakesupplies.nl/smoothers-edgers-c-183_235.html'>Smoothers & Edgers</a>
+</li><li><a href='http://www.cakesupplies.nl/wilton-better-baking-tools-c-183_205.html'>Wilton Better Baking Tools</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/glans-glitter-c-34.html'>Glans & Glitter</a>
+<ul><li><a href='http://www.cakesupplies.nl/bladgoud-zilver-c-34_364.html'>Bladgoud & -zilver</a>
+</li><li><a href='http://www.cakesupplies.nl/glans-spray-c-34_127.html'>Glans Spray</a>
+</li><li><a href='http://www.cakesupplies.nl/glitter-flakes-c-34_56.html'>Glitter Flakes</a>
+</li><li><a href='http://www.cakesupplies.nl/pearl-dust-c-34_57.html'>Pearl Dust</a>
+</li><li><a href='http://www.cakesupplies.nl/rainbow-dust-craft-dust-c-34_583.html'>Rainbow Dust Craft Dust</a>
+</li><li><a href='http://www.cakesupplies.nl/rainbow-dust-decorative-sparkles-c-34_227.html'>Rainbow Dust Decorative Sparkles</a>
+</li><li><a href='http://www.cakesupplies.nl/rainbow-dust-edible-glitter-c-34_389.html'>Rainbow Dust Edible Glitter</a>
+</li><li><a href='http://www.cakesupplies.nl/rainbow-dust-edible-shapes-c-34_226.html'>Rainbow Dust Edible Shapes</a>
+</li><li><a href='http://www.cakesupplies.nl/rainbow-dust-edible-silk-c-34_225.html'>Rainbow Dust Edible Silk</a>
+</li><li><a href='http://www.cakesupplies.nl/squires-kitchen-dust-c-34_362.html'>Squires Kitchen Dust</a>
+</li><li><a href='http://www.cakesupplies.nl/squires-kitchen-pollen-grains-c-34_361.html'>Squires Kitchen Pollen Grains</a>
+</li><li><a href='http://www.cakesupplies.nl/squires-kitchen-sparkles-c-34_363.html'>Squires Kitchen Sparkles</a>
+</li><li><a href='http://www.cakesupplies.nl/wilton-color-dust-c-34_331.html'>Wilton Color Dust</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/icing-c-29.html'>Icing</a>
+<ul><li><a href='http://www.cakesupplies.nl/icing-accessoires-c-29_88.html'>Icing accessoires</a>
+</li><li><a href='http://www.cakesupplies.nl/icing-decorating-sets-c-29_87.html'>Icing Decorating Sets</a>
+</li><li><a href='http://www.cakesupplies.nl/icing-ingredinten-c-29_143.html'>Icing Ingrediënten</a>
+</li><li><a href='http://www.cakesupplies.nl/nozzles-c-29_554.html'>JEM Nozzles</a>
+</li><li><a href='http://www.cakesupplies.nl/supatubes-c-29_229.html'>PME Supatubes</a>
+</li><li><a href='http://www.cakesupplies.nl/spuitzakken-c-29_117.html'>Spuitzakken</a>
+</li><li><a href='http://www.cakesupplies.nl/wilton-icing-decorating-tips-c-29_86.html'>Wilton Icing Decorating Tips</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/ingredinten-c-2.html'>Ingrediënten</a>
+<ul><li><a href='http://www.cakesupplies.nl/eetbare-lijm-c-2_544.html'>Eetbare Lijm</a>
+</li><li><a href='http://www.cakesupplies.nl/funcakes-bakmixen-c-2_79.html'>FunCakes Bakmixen</a>
+</li><li><a href='http://www.cakesupplies.nl/funcakes-bakpoeders-c-2_268.html'>FunCakes Bakpoeders</a>
+</li><li><a href='http://www.cakesupplies.nl/funcakes-bavaroise-c-2_334.html'>FunCakes Bavaroise</a>
+</li><li><a href='http://www.cakesupplies.nl/ingredinten-c-2_80.html'>Ingrediënten</a>
+</li><li><a href='http://www.cakesupplies.nl/toppings-vullingen-c-2_223.html'>Toppings & Vullingen</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/kits-plans-c-413.html'>Kits & Plans</a>
+<ul><li><a href='http://www.cakesupplies.nl/kits-plans-c-413_406.html'>PME Kits & Plans</a>
+</li><li><a href='http://www.cakesupplies.nl/wilton-kits-plans-c-413_326.html'>Wilton Kits & Plans</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/kleurstoffen-c-1.html'>Kleurstoffen</a>
+<ul><li><a href='http://www.cakesupplies.nl/cacaoboter-kleurstof-c-1_353.html'>Cacaoboter Kleurstof</a>
+</li><li><a href='http://www.cakesupplies.nl/dinkydoodle-paint-c-1_541.html'>Dinkydoodle Paint</a>
+</li><li><a href='http://www.cakesupplies.nl/airbrush-colours-c-1_543.html'>PME Airbrush Colours</a>
+</li><li><a href='http://www.cakesupplies.nl/brush-fine-c-1_562.html'>PME Brush n Fine</a>
+</li><li><a href='http://www.cakesupplies.nl/natural-food-colours-c-1_321.html'>PME Natural Food Colours</a>
+</li><li><a href='http://www.cakesupplies.nl/paste-colour-c-1_553.html'>PME Paste Colour</a>
+</li><li><a href='http://www.cakesupplies.nl/rainbow-dust-colour-c-1_527.html'>Rainbow Dust Colour Flo</a>
+</li><li><a href='http://www.cakesupplies.nl/rainbow-dust-food-paint-c-1_295.html'>Rainbow Dust Food Paint</a>
+</li><li><a href='http://www.cakesupplies.nl/rainbow-dust-kleurpoeders-c-1_236.html'>Rainbow Dust Kleurpoeders</a>
+</li><li><a href='http://www.cakesupplies.nl/rainbow-dust-kleurstiften-c-1_89.html'>Rainbow Dust Kleurstiften</a>
+</li><li><a href='http://www.cakesupplies.nl/rainbow-dust-paint-c-1_484.html'>Rainbow Dust Paint It!</a>
+</li><li><a href='http://www.cakesupplies.nl/rainbow-dust-progel-c-1_338.html'>Rainbow Dust ProGel</a>
+</li><li><a href='http://www.cakesupplies.nl/squires-kitchen-food-colour-c-1_355.html'>Squires Kitchen Food Colour</a>
+</li><li><a href='http://www.cakesupplies.nl/squires-kitchen-food-paint-c-1_359.html'>Squires Kitchen Food Paint</a>
+</li><li><a href='http://www.cakesupplies.nl/squires-kitchen-kleurpoeders-c-1_358.html'>Squires Kitchen Kleurpoeders</a>
+</li><li><a href='http://www.cakesupplies.nl/squires-kitchen-kleurstiften-c-1_360.html'>Squires Kitchen Kleurstiften</a>
+</li><li><a href='http://www.cakesupplies.nl/sugarflair-airbrush-colouring-c-1_486.html'>Sugarflair Airbrush Colouring</a>
+</li><li><a href='http://www.cakesupplies.nl/sugarflair-dusting-colour-c-1_429.html'>Sugarflair Dusting Colour</a>
+</li><li><a href='http://www.cakesupplies.nl/sugarflair-kleurstiften-c-1_536.html'>Sugarflair Kleurstiften</a>
+</li><li><a href='http://www.cakesupplies.nl/sugarflair-paste-colours-c-1_190.html'>Sugarflair Paste Colours</a>
+</li><li><a href='http://www.cakesupplies.nl/wilton-color-right-c-1_559.html'>Wilton Color Right</a>
+</li><li><a href='http://www.cakesupplies.nl/wilton-icing-colors-c-1_45.html'>Wilton Icing Colors</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/macarons-c-487.html'>Macarons</a>
+<ul><li><a href='http://www.cakesupplies.nl/kleurstoffen-c-487_488.html'>Kleurstoffen</a>
+</li><li><a href='http://www.cakesupplies.nl/smaakstoffen-c-487_489.html'>Smaakstoffen</a>
+</li><li><a href='http://www.cakesupplies.nl/vullingen-c-487_490.html'>Vullingen</a>
+</li><li><a href='http://www.cakesupplies.nl/ingredinten-c-487_491.html'>Ingrediënten</a>
+</li><li><a href='http://www.cakesupplies.nl/gereedschappen-c-487_492.html'>Gereedschappen</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/materialen-c-21.html'>Materialen</a>
+<ul><li><a href='http://www.cakesupplies.nl/bakers-twine-c-21_404.html'>Bakers Twine</a>
+</li><li><a href='http://www.cakesupplies.nl/cake-tool-boxen-c-21_170.html'>Cake & Tool boxen</a>
+</li><li><a href='http://www.cakesupplies.nl/cake-standaards-c-21_101.html'>Cake Standaards</a>
+</li><li><a href='http://www.cakesupplies.nl/cakeframe-c-21_514.html'>CakeFrame</a>
+</li><li><a href='http://www.cakesupplies.nl/dowel-rods-c-21_483.html'>Dowel Rods</a>
+</li><li><a href='http://www.cakesupplies.nl/draaiplateaus-c-21_164.html'>Draaiplateaus</a>
+</li><li><a href='http://www.cakesupplies.nl/floral-wires-tapes-c-21_185.html'>Floral Wires & Tapes</a>
+</li><li><a href='http://www.cakesupplies.nl/overige-materialen-c-21_68.html'>Overige Materialen</a>
+</li><li><a href='http://www.cakesupplies.nl/pillars-plates-c-21_141.html'>Pillars & Plates</a>
+</li><li><a href='http://www.cakesupplies.nl/stamens-c-21_343.html'>Stamens</a>
+</li><li><a href='http://www.cakesupplies.nl/stencils-c-21_189.html'>Stencils</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/rolstokken-c-306.html'>Rolstokken</a>
+</li><li><a href='http://www.cakesupplies.nl/siliconen-molds-c-112.html'>Siliconen Molds</a>
+<ul><li><a href='http://www.cakesupplies.nl/decoflex-c-112_130.html'>Decoflex</a>
+</li><li><a href='http://www.cakesupplies.nl/first-impressions-c-112_221.html'>First Impressions</a>
+</li><li><a href='http://www.cakesupplies.nl/karen-davies-c-112_228.html'>Karen Davies</a>
+</li><li><a href='http://www.cakesupplies.nl/marvelous-molds-c-112_388.html'>Marvelous Molds</a>
+</li><li><a href='http://www.cakesupplies.nl/silikomart-c-112_482.html'>Silikomart</a>
+</li><li><a href='http://www.cakesupplies.nl/sillicreations-c-112_339.html'>Sillicreations</a>
+</li><li><a href='http://www.cakesupplies.nl/squires-kitchen-c-112_365.html'>Squires Kitchen</a>
+</li><li><a href='http://www.cakesupplies.nl/stdter-c-112_415.html'>Städter</a>
+</li><li><a href='http://www.cakesupplies.nl/sweet-lace-c-112_392.html'>Sweet Lace</a>
+</li><li><a href='http://www.cakesupplies.nl/sweet-lace-express-c-112_403.html'>Sweet Lace Express</a>
+</li><li><a href='http://www.cakesupplies.nl/wilton-c-112_276.html'>Wilton</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/smaakstoffen-c-254.html'>Smaakstoffen</a>
+<ul><li><a href='http://www.cakesupplies.nl/funcakes-smaakstoffen-c-254_344.html'>FunCakes smaakstoffen</a>
+</li><li><a href='http://www.cakesupplies.nl/funcakes-trempeersiroop-c-254_367.html'>FunCakes Trempeersiroop</a>
+</li><li><a href='http://www.cakesupplies.nl/lorann-bakvaste-emulsie-c-254_256.html'>LorAnn Bakvaste Emulsie</a>
+</li><li><a href='http://www.cakesupplies.nl/lorann-geconcentreerde-smaakstof-c-254_255.html'>LorAnn Geconcentreerde Smaakstof</a>
+</li><li><a href='http://www.cakesupplies.nl/lorann-natuurlijke-smaakstof-c-254_262.html'>LorAnn Natuurlijke Smaakstof</a>
+</li><li><a href='http://www.cakesupplies.nl/wilton-smaakstof-c-254_203.html'>Wilton Smaakstof</a>
+</li><li><a href='http://www.cakesupplies.nl/wilton-treatology-c-254_540.html'>Wilton Treatology</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/speciaal-dieet-c-345.html'>Speciaal Dieet</a>
+<ul><li><a href='http://www.cakesupplies.nl/glutenvrij-c-345_279.html'>Glutenvrij</a>
+<ul><li><a href='http://www.cakesupplies.nl/chocolade-candy-melts-c-345_279_316.html'>Chocolade & Candy Melts</a>
+</li><li><a href='http://www.cakesupplies.nl/decoratie-c-345_279_287.html'>Decoratie</a>
+</li><li><a href='http://www.cakesupplies.nl/foodwriters-c-345_279_286.html'>Foodwriters</a>
+</li><li><a href='http://www.cakesupplies.nl/glans-glitters-c-345_279_285.html'>Glans & Glitters</a>
+</li><li><a href='http://www.cakesupplies.nl/ingredinten-c-345_279_282.html'>Ingrediënten</a>
+</li><li><a href='http://www.cakesupplies.nl/kleurstoffen-c-345_279_283.html'>Kleurstoffen</a>
+</li><li><a href='http://www.cakesupplies.nl/rolfondant-c-345_279_281.html'>Rolfondant</a>
+</li><li><a href='http://www.cakesupplies.nl/smaakstoffen-c-345_279_284.html'>Smaakstoffen</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/halal-c-345_379.html'>Halal</a>
+<ul><li><a href='http://www.cakesupplies.nl/bakmixen-c-345_379_449.html'>Bakmixen</a>
+</li><li><a href='http://www.cakesupplies.nl/chocolade-c-345_379_448.html'>Chocolade</a>
+</li><li><a href='http://www.cakesupplies.nl/decoraties-c-345_379_450.html'>Decoraties</a>
+</li><li><a href='http://www.cakesupplies.nl/fondant-c-345_379_380.html'>Fondant</a>
+</li><li><a href='http://www.cakesupplies.nl/paste-c-345_379_381.html'>Gum Paste</a>
+</li><li><a href='http://www.cakesupplies.nl/ingredinten-c-345_379_383.html'>Ingrediënten</a>
+</li><li><a href='http://www.cakesupplies.nl/marsepein-c-345_379_451.html'>Marsepein</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/kosher-c-345_346.html'>Kosher</a>
+<ul><li><a href='http://www.cakesupplies.nl/chocolade-c-345_346_370.html'>Chocolade</a>
+</li><li><a href='http://www.cakesupplies.nl/decoratie-c-345_346_405.html'>Decoratie</a>
+</li><li><a href='http://www.cakesupplies.nl/fondant-c-345_346_347.html'>Fondant</a>
+</li><li><a href='http://www.cakesupplies.nl/glans-glitter-c-345_346_375.html'>Glans & Glitter</a>
+<ul><li><a href='http://www.cakesupplies.nl/eetbare-glitter-c-345_346_375_377.html'>Eetbare glitter</a>
+</li><li><a href='http://www.cakesupplies.nl/glanspoeder-c-345_346_375_376.html'>Glanspoeder</a>
+</li><li><a href='http://www.cakesupplies.nl/niet-eetbare-glitter-c-345_346_375_378.html'>Niet-eetbare glitter</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/ingredinten-c-345_346_368.html'>Ingrediënten</a>
+</li><li><a href='http://www.cakesupplies.nl/kleurstoffen-c-345_346_369.html'>Kleurstoffen</a>
+<ul><li><a href='http://www.cakesupplies.nl/kleurpoeders-c-345_346_369_371.html'>Kleurpoeders</a>
+</li><li><a href='http://www.cakesupplies.nl/kleurstiften-verf-c-345_346_369_373.html'>Kleurstiften & Verf</a>
+</li><li><a href='http://www.cakesupplies.nl/kleurstoffen-c-345_346_369_372.html'>Kleurstoffen</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/smaakstoffen-c-345_346_384.html'>Smaakstoffen</a>
+<ul><li><a href='http://www.cakesupplies.nl/geconcentreerde-smaakstoffen-c-345_346_384_387.html'>Geconcentreerde smaakstoffen</a>
+</li><li><a href='http://www.cakesupplies.nl/natuurlijke-smaakstoffen-c-345_346_384_385.html'>Natuurlijke smaakstoffen</a>
+</li><li><a href='http://www.cakesupplies.nl/smaakstoffen-c-345_346_384_386.html'>Smaakstoffen</a>
+</li></ul></li></ul></li></ul></li><li><a href='http://www.cakesupplies.nl/taartdozen-dummies-c-85.html'>Taartdozen & Dummies</a>
+<ul><li><a href='http://www.cakesupplies.nl/cake-boards-c-85_174.html'>Cake Boards</a>
+</li><li><a href='http://www.cakesupplies.nl/cake-drums-10mm-c-85_173.html'>Cake Drums 10mm</a>
+</li><li><a href='http://www.cakesupplies.nl/cupcake-doosjes-c-85_168.html'>Cupcake Doosjes</a>
+</li><li><a href='http://www.cakesupplies.nl/taart-doilies-c-85_204.html'>Taart Doilies</a>
+</li><li><a href='http://www.cakesupplies.nl/taart-dozen-c-85_169.html'>Taart Dozen</a>
+</li><li><a href='http://www.cakesupplies.nl/taart-dummies-c-85_167.html'>Taart Dummies</a>
+</li><li><a href='http://www.cakesupplies.nl/taart-kartons-c-85_166.html'>Taart Kartons</a>
+</li><li><a href='http://www.cakesupplies.nl/traktatie-doosjes-c-85_390.html'>Traktatie Doosjes</a>
+</li><li><a href='http://www.cakesupplies.nl/traktatie-zakjes-c-85_391.html'>Traktatie Zakjes</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/uitstekers-c-35.html'>Uitstekers</a>
+<ul><li><a href='http://www.cakesupplies.nl/bloem-blad-uitstekers-c-35_24.html'>Bloem & Blad Uitstekers</a>
+</li><li><a href='http://www.cakesupplies.nl/koekjes-uitstekers-c-35_42.html'>Koekjes Uitstekers</a>
+</li><li><a href='http://www.cakesupplies.nl/nylon-cutter-sets-c-35_481.html'>Nylon Cutter Sets</a>
+</li><li><a href='http://www.cakesupplies.nl/overige-uitstekers-c-35_137.html'>Overige uitstekers</a>
+</li><li><a href='http://www.cakesupplies.nl/patchwork-cutters-c-35_187.html'>Patchwork Cutters</a>
+</li><li><a href='http://www.cakesupplies.nl/plunger-cutters-c-35_43.html'>Plunger Cutters</a>
+</li><li><a href='http://www.cakesupplies.nl/sierrand-uitstekers-c-35_25.html'>Sierrand uitstekers</a>
+</li><li><a href='http://www.cakesupplies.nl/tappit-uitstekers-c-35_36.html'>Tappit uitstekers</a>
+</li><li><a href='http://www.cakesupplies.nl/uitstekers-metaal-c-35_39.html'>Uitstekers Metaal</a>
+</li><li><a href='http://www.cakesupplies.nl/wilton-uitstekers-c-35_159.html'>Wilton uitstekers</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/winkel-materiaal-c-302.html'>Winkel materiaal</a>
+</li><li><a href='http://www.cakesupplies.nl/assortiment-thema-c-138.html'>Assortiment per Thema</a>
+<ul><li><a href='http://www.cakesupplies.nl/bloemen-c-138_393.html'>Bloemen</a>
+<ul><li><a href='http://www.cakesupplies.nl/bloem-bladuitstekers-c-138_393_394.html'>Bloem- en bladuitstekers</a>
+</li><li><a href='http://www.cakesupplies.nl/bloemdraad-c-138_393_395.html'>Bloemdraad</a>
+</li><li><a href='http://www.cakesupplies.nl/bloemtape-c-138_393_396.html'>Bloemtape</a>
+</li><li><a href='http://www.cakesupplies.nl/boeken-c-138_393_397.html'>Boeken</a>
+</li><li><a href='http://www.cakesupplies.nl/gereedschappen-c-138_393_398.html'>Gereedschappen</a>
+</li><li><a href='http://www.cakesupplies.nl/ingredinten-c-138_393_399.html'>Ingrediënten</a>
+</li><li><a href='http://www.cakesupplies.nl/kleurstoffen-c-138_393_400.html'>Kleurstoffen</a>
+</li><li><a href='http://www.cakesupplies.nl/stamens-c-138_393_401.html'>Stamens</a>
+</li><li><a href='http://www.cakesupplies.nl/veiners-c-138_393_402.html'>Veiners</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/communiereligie-c-138_148.html'>Communie/Religie</a>
+</li><li><a href='http://www.cakesupplies.nl/geboorte-c-138_108.html'>Geboorte</a>
+</li><li><a href='http://www.cakesupplies.nl/halloween-herfst-c-138_114.html'>Halloween & Herfst</a>
+</li><li><a href='http://www.cakesupplies.nl/kerst-winter-c-138_115.html'>Kerst & Winter</a>
+</li><li><a href='http://www.cakesupplies.nl/kids-c-138_328.html'>Kids</a>
+</li><li><a href='http://www.cakesupplies.nl/koningsdag-c-138_158.html'>Koningsdag</a>
+</li><li><a href='http://www.cakesupplies.nl/liefde-c-138_126.html'>Liefde</a>
+</li><li><a href='http://www.cakesupplies.nl/minions-c-138_556.html'>Minions®</a>
+</li><li><a href='http://www.cakesupplies.nl/pasen-lente-c-138_139.html'>Pasen & Lente</a>
+</li><li><a href='http://www.cakesupplies.nl/sinterklaas-c-138_253.html'>Sinterklaas</a>
+</li><li><a href='http://www.cakesupplies.nl/patricks-c-138_301.html'>St. Patricks Day</a>
+</li><li><a href='http://www.cakesupplies.nl/trouwen-c-138_59.html'>Trouwen</a>
+<ul><li><a href='http://www.cakesupplies.nl/bruidstaart-decoraties-c-138_59_107.html'>Bruidstaart decoraties</a>
+</li><li><a href='http://www.cakesupplies.nl/taart-standaards-c-138_59_110.html'>Taart Standaards</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/voetbal-c-138_150.html'>Voetbal</a>
+</li><li><a href='http://www.cakesupplies.nl/zomer-c-138_447.html'>Zomer</a>
+</li></ul></li><li><a href='http://www.cakesupplies.nl/assortiment-c-320.html'>Uit Assortiment</a>
+</li></ul></div></td>
+  </tr>
+  <tr>
+    <td><img src="images/pixel_trans.gif" border="0" alt="" width="100%" height="1" /></td>
+  </tr>
+</table>
+</td>
+  </tr>
+</table>
+            </td>
+          </tr>
+<!-- MenuConfigategories_eof //--><!-- manufacturers //-->
+          <tr>
+            <td>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="14" class="infoBoxHeading"><img src="images/infobox/corner_right_left.gif" border="0" alt="" width="1" height="1" /></td>
+    <td width="100%" height="14" class="infoBoxHeading">Selecteer op merk:</td>
+    <td height="14" class="infoBoxHeading" nowrap><img src="images/pixel_trans.gif" border="0" alt="" width="11" height="14" /></td>
+  </tr>
+</table>
+<table border="0" width="100%" cellspacing="0" cellpadding="1" class="infoBox">
+  <tr>
+    <td><table border="0" width="100%" cellspacing="0" cellpadding="0" class="infoBoxContents">
+  <tr>
+    <td><img src="images/pixel_trans.gif" border="0" alt="" width="100%" height="1" /></td>
+  </tr>
+  <tr>
+    <td class="boxText" style="padding-left: 4px;"><form name="manufacturers" action="http://www.cakesupplies.nl/index.php" method="get"><select name="manufacturers_id" onChange="this.form.submit();" size="1" style="width: 100%"><option value="" selected="selected">Selecteer</option><option value="105">Administratief</option><option value="72">Bestron</option><option value="45">Cake craft & de..</option><option value="103">CakeFrame</option><option value="100">Cakestructure</option><option value="74">Callebaut</option><option value="50">CelCakes</option><option value="80">Chocolate World</option><option value="49">Country Kitchen..</option><option value="56">Cricut Cake</option><option value="41">Crisco</option><option value="38">Culpitt</option><option value="63">Cupcake Courier</option><option value="97">Dinkydoodle Des..</option><option value="101">Fat Daddio&#039;s</option><option value="34">First Impressio..</option><option value="11">FMM</option><option value="30">FunCakes</option><option value="61">House of Marie</option><option value="31">JEM</option><option value="73">Kaiser</option><option value="44">Karen Davies</option><option value="70">Little Venice</option><option value="55">LorAnn</option><option value="82">Magazine Cake D..</option><option value="79">Marvelous Molds</option><option value="54">Mjam Taart!</option><option value="35">Overig</option><option value="33">PatchworkCutter..</option><option value="104">Patidess</option><option value="43">Pettinice</option><option value="15">PME</option><option value="83">PME Kits & Plan..</option><option value="98">R&W Scott</option><option value="47">Rainbow Dust</option><option value="66">Renshaw</option><option value="64">Satin Ice</option><option value="102">Silikomart</option><option value="77">Sillicreations</option><option value="12">Squires Kitchen</option><option value="39">Städter</option><option value="32">Sugarflair</option><option value="81">Sweet Lace</option><option value="99">Sweet Magazine</option><option value="16">Wilton</option><option value="75">Wilton Kits & P..</option><option value="57">Wilton Seasonal</option><option value="60">Zeelandia</option></select></form></td>
+  </tr>
+  <tr>
+    <td><img src="images/pixel_trans.gif" border="0" alt="" width="100%" height="1" /></td>
+  </tr>
+</table>
+</td>
+  </tr>
+</table>
+            </td>
+          </tr>
+         
+<!-- manufacturers_eof //-->
+<tr><td><p><a href="http://www.cakesupplies.nl/Geautoriseerde-Wilton-Locatie-i-91.html" target="_self"><img alt="Wilton School worden" src="http://www.cakesupplies.nl/upload/images/WMI/CS_Banner_WMI_NL.jpg" style="height:145px; width:190px" /></a></p></td></tr> <!-- left_navigation_eof //-->
+    </table></td>
+<!-- body_text //-->
+    <td width="100%" valign="top"><form name="advanced_search" action="http://www.cakesupplies.nl/advanced_search_result.php" method="get" onSubmit="return check_form(this);"><table border="0" width="100%" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="pageHeading">Pagina niet gevonden</td>
+            <td class="pageHeading" align="right">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td><img src="images/pixel_trans.gif" border="0" alt="" width="100%" height="10" /></td>
+      </tr>
+	  <tr>
+	  	<td class="main">Helaas, deze pagina bestaat niet (meer) of is verplaatst. <br>Wellicht dat u met de <a href="/advanced_search.php" target="_self"><b>uitgebreid zoeken functie</a></b> vindt wat u zoekt.</td>
+	  </tr>
+	
+     
+    </table></form></td>
+<!-- body_text_eof //-->
+    <td width="180" valign="top"><table border="0" width="180" cellspacing="0" cellpadding="2">
+<!-- right_navigation //-->
+<!-- navigation //-->
+          <tr>
+            <td>
+<table border="0" width="100%" cellspacing="0" cellpadding="1" class="navBox">
+  <tr>
+    <td><table border="0" width="100%" cellspacing="0" cellpadding="0" class="navBoxContents">
+  <tr>
+    <td><img src="images/pixel_trans.gif" border="0" alt="" width="100%" height="1" /></td>
+  </tr>
+  <tr>
+    <td class="boxText"><div id="navigatie_blok">
+											<ul>
+											<li><a href="https://www.cakesupplies.nl/login.php"><img src="images/icons/login.png" border="0" alt="Inloggen" title="Inloggen" width="16" height="16" />&nbsp;Inloggen</a></li><li><a href="http://www.cakesupplies.nl/-n-83.html"><img src="images/icons/information.png" border="0" alt="Assortiment Bestellijst" title="Assortiment Bestellijst" width="16" height="16" />&nbsp;Uitleg bestelproces</a></li><li><a href="http://www.cakesupplies.nl/shopping_cart.php"><img src="images/icons/shoppingcart2.png" border="0" alt="Winkelwagen" title="Winkelwagen" width="16" height="16" />&nbsp;Winkelwagen</a></li><li><a href="https://www.cakesupplies.nl/checkout_shipping.php"><img src="images/icons/cash-register.png" border="0" alt="Afrekenen" title="Afrekenen" width="16" height="16" />&nbsp;Afrekenen</a></li>
+										   </ul>
+										   </div></td>
+  </tr>
+  <tr>
+    <td class="boxText"><SCRIPT type="text/javascript">
+										  function clearDefault(el) {
+  										  if (el.defaultValue==el.value) el.value = ""
+										  }
+										  </SCRIPT>
+										 <form name="quick_find" action="advanced_search_result.php" method="get">
+		  	       						 <table bgcolor="#2F3083" width="1" border="0" style="vertical-align: bottom;">
+  										 <tr><td colspan="2"><span class="zoeken"><strong>Snel zoeken</strong></span></td></tr>
+										<tr>
+										<td>
+										<div align="right">
+					    	
+										<input type="text" name="keywords" value="" size="20" ONFOCUS="clearDefault(this)" />
+										<input type="hidden" name="search_in_description" value="1" />
+										<input type="hidden" name="inc_subcat" value="1" />
+			        					</div>
+										</td>
+										<td>
+											<div align="left"><input type="image" src="includes/languages/dutch/images/buttons/search.png" alt="Snel zoeken" title=" Snel zoeken " />
+												</div>
+										</td>
+									</tr>
+									<tr><td colspan="2" align="center">
+									<a href="http://www.cakesupplies.nl/advanced_search.php" class="zoeken">Uitgebreid zoeken</a></td></tr>
+								</table>
+						
+						</form></td>
+  </tr>
+  <tr>
+    <td><img src="images/pixel_trans.gif" border="0" alt="" width="100%" height="1" /></td>
+  </tr>
+</table>
+</td>
+  </tr>
+</table>
+            </td>
+          </tr>
+<!-- navigation_eof //--><tr><td><p><a href="http://www.cakesupplies.nl/products_new.php"><img alt="Nieuwe producten" src="http://www.cakesupplies.nl/upload/images/New-Products-banner/Banner_Nieuweproducten_NL_v9.jpg" style="height:190px; width:190px" /></a></p></td></tr><tr><td><table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="14" class="infoBoxHeading"><img src="images/infobox/corner_right_left.gif" border="0" alt="" width="1" height="1" /></td>
+    <td width="100%" height="14" class="infoBoxHeading">Waarom CakeSupplies?</td>
+    <td height="14" class="infoBoxHeading" nowrap><img src="images/pixel_trans.gif" border="0" alt="" width="11" height="14" /></td>
+  </tr>
+</table>
+<table border="0" width="100%" cellspacing="0" cellpadding="1" class="infoBox">
+  <tr>
+    <td><table border="0" width="100%" cellspacing="0" cellpadding="0" class="infoBoxContents">
+  <tr>
+    <td><img src="images/pixel_trans.gif" border="0" alt="" width="100%" height="1" /></td>
+  </tr>
+  <tr>
+    <td class="boxText" style="padding-left: 4px;"><p><img alt="Waarom CakeSupplies?" src="http://www.cakesupplies.nl/upload/images/USP/CS-USP-NL.jpg" style="height:196px; width:180px" /></p></td>
+  </tr>
+  <tr>
+    <td><img src="images/pixel_trans.gif" border="0" alt="" width="100%" height="1" /></td>
+  </tr>
+</table>
+</td>
+  </tr>
+</table>
+</td></tr><tr><td><p><a href="http://www.cakesupplies.nl/cakesupplies-experience-centre-i-27.html"><img alt="CakeSupplies Experience Centre" src="http://www.cakesupplies.nl/upload/banner_CEC/Banner_CEC_NL.jpg" style="height:145px; width:190px" /></a></p></td></tr><tr><td><table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="14" class="infoBoxHeading"><img src="images/infobox/corner_right_left.gif" border="0" alt="" width="1" height="1" /></td>
+    <td width="100%" height="14" class="infoBoxHeading">Contact</td>
+    <td height="14" class="infoBoxHeading" nowrap><img src="images/pixel_trans.gif" border="0" alt="" width="11" height="14" /></td>
+  </tr>
+</table>
+<table border="0" width="100%" cellspacing="0" cellpadding="1" class="infoBox">
+  <tr>
+    <td><table border="0" width="100%" cellspacing="0" cellpadding="0" class="infoBoxContents">
+  <tr>
+    <td><img src="images/pixel_trans.gif" border="0" alt="" width="100%" height="1" /></td>
+  </tr>
+  <tr>
+    <td class="boxText" style="padding-left: 4px;"><p><img width="186" height="41" align="left" alt="Telefoon" src="http://www.cakesupplies.nl/upload/Contact/CS_telefoon2.jpg" /><img width="36" height="34" align="absMiddle" src="http://www.cakesupplies.nl/upload/Contact/CS_mail.png" alt="" /><a href="http://www.cakesupplies.nl/contact_us.php">Mail ons</a></p></td>
+  </tr>
+  <tr>
+    <td><img src="images/pixel_trans.gif" border="0" alt="" width="100%" height="1" /></td>
+  </tr>
+</table>
+</td>
+  </tr>
+</table>
+</td></tr><!-- information //-->
+          <tr>
+            <td>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="14" class="infoBoxHeading"><img src="images/infobox/corner_right_left.gif" border="0" alt="" width="1" height="1" /></td>
+    <td width="100%" height="14" class="infoBoxHeading">Informatie</td>
+    <td height="14" class="infoBoxHeading" nowrap><img src="images/pixel_trans.gif" border="0" alt="" width="11" height="14" /></td>
+  </tr>
+</table>
+<table border="0" width="100%" cellspacing="0" cellpadding="1" class="infoBox">
+  <tr>
+    <td><table border="0" width="100%" cellspacing="0" cellpadding="0" class="infoBoxContents">
+  <tr>
+    <td><img src="images/pixel_trans.gif" border="0" alt="" width="100%" height="1" /></td>
+  </tr>
+  <tr>
+    <td class="boxText" style="padding-left: 4px;"><a href="http://www.cakesupplies.nl/aanmelden-klant-i-5.html">Aanmelden als klant</a></td>
+  </tr>
+  <tr>
+    <td class="boxText" style="padding-left: 4px;"><a href="http://www.cakesupplies.nl/algemene-voorwaarden-i-17.html">Algemene Voorwaarden</a></td>
+  </tr>
+  <tr>
+    <td class="boxText" style="padding-left: 4px;"><a href="http://www.cakesupplies.nl/afhalen-i-2.html">Afhalen</a></td>
+  </tr>
+  <tr>
+    <td class="boxText" style="padding-left: 4px;"><a href="http://www.cakesupplies.nl/betaalmogelijkheden-i-6.html">Betaalmogelijkheden</a></td>
+  </tr>
+  <tr>
+    <td class="boxText" style="padding-left: 4px;"><a href="http://www.cakesupplies.nl/cakesupplies-experience-centre-i-27.html">CakeSupplies Experience Centre</a></td>
+  </tr>
+  <tr>
+    <td class="boxText" style="padding-left: 4px;"><a href="http://www.cakesupplies.nl/downloads-i-63.html">Downloads</a></td>
+  </tr>
+  <tr>
+    <td class="boxText" style="padding-left: 4px;"><a href="http://www.cakesupplies.nl/leveringsvoorwaarden-i-7.html">Leveringsvoorwaarden</a></td>
+  </tr>
+  <tr>
+    <td class="boxText" style="padding-left: 4px;"><a href="http://www.cakesupplies.nl/vacatures-i-9.html">Vacatures</a></td>
+  </tr>
+  <tr>
+    <td class="boxText" style="padding-left: 4px;"><a href="http://www.cakesupplies.nl/verzenden-retourneren-i-1.html">Verzenden & Retourneren</a></td>
+  </tr>
+  <tr>
+    <td class="boxText" style="padding-left: 4px;"><a href="http://www.cakesupplies.nl/privacy-i-16.html">Privacy</a></td>
+  </tr>
+  <tr>
+    <td class="boxText" style="padding-left: 4px;"><a href="http://www.cakesupplies.nl/ondernemen-i-10.html">Zin in ondernemen</a></td>
+  </tr>
+  <tr>
+    <td class="boxText" style="padding-left: 4px;"><a href="http://www.cakesupplies.nl/contact_us.php">Neem contact op</a></td>
+  </tr>
+  <tr>
+    <td><img src="images/pixel_trans.gif" border="0" alt="" width="100%" height="1" /></td>
+  </tr>
+</table>
+</td>
+  </tr>
+</table>
+            </td>
+          </tr>
+<!-- information_eof //--><!-- right_navigation_eof //-->
+    </table></td>
+  </tr>
+</table>
+<!-- body_eof //-->
+
+<!-- footer //-->
+<table border="0" width="100%" cellspacing="5" cellpadding="1"><tr>
+	<td class="infobox" colspan="2">
+	<table cellpadding="1" cellspacing="0" width="100%" class="infoBoxContents">
+	<tr>
+	<td width="50">&nbsp;</td>
+	<td align="center">Alle genoemde prijzen op deze website zijn exclusief BTW  | Prijswijzigingen en typfouten voorbehouden.</td>
+	<td class="boxText" style="text-align:right; white-space:nowrap;" width="200">
+	<a href="http://www.cakesupplies.nl/privacy-i-16.html">Privacy</a> | <a href="http://www.cakesupplies.nl/algemene-voorwaarden-i-17.html">Algemene Voorwaarden</a> | <a href="https://www.cakesupplies.nl/contact_us.php">Neem contact op</a>&nbsp;&nbsp;    <!--<td align="right" class="footer">&nbsp;&nbsp;&nbsp;&nbsp;</td>-->
+	</td>
+	</tr> 
+	</table>
+	</td>
+	</tr>
+</table>
+<br>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+
+  <tr>
+    <td align="center" valign="bottom" class="smallText" colspan="7"><br />Copyright &copy; 2015 <a href="http://www.cakesupplies.nl/index.php">CakeSupplies.nl</a></td>
+  </tr>
+
+</table>
+</td></tr>
+    </table>
+    
+
+      </td></tr>
+          </table>
+          
+          <!-- footer_eof //-->
+<br>
+</td></tr></table>
+</div>
+<br>
+</body>
+</html>
+<br />
+<b>Warning</b>:  Invalid argument supplied for foreach() in <b>/home/newcakes/domains/cakesupplies.nl/public_html/includes/functions/sessions.php</b> on line <b>150</b><br />

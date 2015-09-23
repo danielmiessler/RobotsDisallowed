@@ -1,0 +1,1615 @@
+
+
+<!DOCTYPE html>
+<html ng-app="lsomewhereApp">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="交友,婚活,寂寞商機,白領新貴,精緻社交,約會,愛情,月老,聯誼,緣分,擦肩而過">
+    <meta name="description" content="愛在轉角是一個利用最新的 GPS 定位，搜尋散落在你周遭緣份的交友網站。提供網路交友、尋找興趣相投的心靈伴侶、解決各種愛情疑難雜症等服務。不論你是單身正在找尋真愛，或是已有固定伴侶，愛在轉角都能滿足你，任何關於愛情的需求。">
+    <meta name="author" content="LBSTEK Inc.燿麒科技股份有限公司 (c) All Rights Reserved" />
+    <meta name="copyright" content="LBSTEK Inc. 燿麒科技股份有限公司 (c) All Rights Reserved" />
+    <title>愛在轉角 | 安全交友的第一品牌</title>
+
+    <link href="https://www.l-somewhere.com/static/new2/css/header.css" rel="stylesheet" type="text/css" />
+    <link href="https://www.l-somewhere.com/static/new2/css/header/cm-style.css" rel="stylesheet" type="text/css" />
+    <link href="https://www.l-somewhere.com/static/zh-tw/new2/css/header.css" rel="stylesheet" type="text/css" />
+    <link href="https://www.l-somewhere.com/static/new2/css/friends-invitation.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="https://www.l-somewhere.com/static/new2/css/jquery.mCustomScrollbar.css" type="text/css" />
+    <link rel="stylesheet" href="https://www.l-somewhere.com/static/new2/css/member_center/popup.css" type="text/css" />
+    <link rel="stylesheet" href="https://www.l-somewhere.com/static/new2/css/login.css" type="text/css" />
+    <link rel="stylesheet" href="https://www.l-somewhere.com/static/new2/css/traffic/traffic.css" type="text/css" />
+    <link rel="shortcut icon" href="https://www.l-somewhere.com/static/new/images/favicon.ico" />
+
+    <script src="https://www.l-somewhere.com/static/lib/jquery-1.11.1.min.js"></script>
+    <script src="https://www.l-somewhere.com/static/new2/js/detectmobilebrowser.js"></script>
+
+    <script src="https://www.l-somewhere.com/static/new2/js/load_common_friends.js"></script>
+    <script src="https://www.l-somewhere.com/static/new2/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="https://www.l-somewhere.com/static/new2/js/chat_notify.js"></script>
+    <script type="text/javascript" src="https://www.l-somewhere.com/static/new2/js/jquery.blockUI.js"></script>
+    <script type="text/javascript" src="/jsi18n/"></script>
+
+    <link rel="stylesheet" href="https://www.l-somewhere.com/static/new2/css/office/office.css" type="text/css" />
+    <link rel="stylesheet" href="https://www.l-somewhere.com/static/new2/css/menu_fixed.css" type="text/css" />
+
+    <script src="https://www.l-somewhere.com/static/lib/lutils.js"></script>
+    <script src="https://www.l-somewhere.com/static/lib/edm.js"></script>
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://www.l-somewhere.com/static/lib/font-awesome/css/font-awesome.css" type="text/css" />
+
+    <!-- mugshot envelope -->
+    <link rel="stylesheet" href="https://www.l-somewhere.com/static/new2/css/mugshot_envelope.css" type="text/css" />
+    <script src="https://www.l-somewhere.com/static/new2/js/mugshot_envelope.js"></script>
+
+    <!-- datetimepicker -->
+    <link rel="stylesheet" type="text/css" href="https://www.l-somewhere.com/static/lib/datetimepicker/jquery.datetimepicker.css"/ >
+    <script src="https://www.l-somewhere.com/static/lib/datetimepicker/jquery.datetimepicker.js"></script>
+
+    <!-- jqeury validate -->
+    <script src="https://www.l-somewhere.com/static/lib/jquery.validate.js"></script>
+
+    
+
+    <!-- prettyPhoto init -->
+    <script type="text/javascript" src="https://www.l-somewhere.com/static/new2/js/prettyPhoto/js/jquery.prettyPhoto.js"></script>
+    <link rel="stylesheet" href="https://www.l-somewhere.com/static/new2/js/prettyPhoto/css/prettyPhoto.css" type="text/css" media="screen" charset="utf-8" />
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function(){
+            $("a[rel^='prettyPhoto']").prettyPhoto();
+            $('#header-linkto-bulletin').click(function(){ $('#bulletin-new-mark').fadeOut(400); });
+            var check_bulletin_index = getCookie_header('bulletin_index_read');
+            var lpk =  $('#bulletin-new-mark').attr('lpk');
+            if(parseInt(lpk) <= parseInt(check_bulletin_index)) {
+                $('#bulletin-new-mark').hide();
+            }
+            $('#bulletin-new-mark').click(function(){
+                location.href="/new2/bulletin_board/index/";
+            });
+        });
+
+        function setCookie_header(name, value, exdays, path, domain, secure){
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays*24*60*60*1000)); // expire day = 1 day
+            document.cookie= name + "=" + escape(value) +
+            ((exdays) ? "; expires=" + d.toGMTString() : "") +
+            ("; path=/") +       //you having wrong quote here
+            ((domain) ? "; domain=" + domain : "") +
+            ((secure) ? "; secure" : "");
+        }
+
+        function getCookie_header(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+
+            for(var i=0; i<ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') {c = c.substring(1);}
+
+                if (c.indexOf(name) != -1) {
+                    return c.substring(name.length,c.length);
+                }
+            }
+
+            return "";
+        }
+    </script>
+
+    <!-- ms-Dropdown and i18n init -->
+    <script type="text/javascript" src="https://www.l-somewhere.com/static/lib/ms-Dropdown-master/js/msdropdown/jquery.dd.js"></script>
+    <link rel="stylesheet" href="https://www.l-somewhere.com/static/lib/ms-Dropdown-master/css/msdropdown/dd_new2header.css" type="text/css" media="screen" charset="utf-8" />
+
+    <script type="text/javascript" charset="utf-8">
+    $(document).ready(function(){
+        var $ldd = $('#lang-dropdown');
+        $ldd.msDropdown();
+
+        $ldd.on('change', function(){
+            $('#lang-form').submit();
+        });
+    });
+    </script>
+
+    
+
+    <script>
+        var STATIC_URL = "https://www.l-somewhere.com/static/";
+        var WORD_COMMON_FRIENDS_URL = "/new2/word_common_friends/";
+        var ADV_COMMON_FRIENDS_URL = "/new2/common_friends/";
+        function pop_mrright(content) {
+                var templateUrl = '';
+                var isLogin = $('#isLogin').val();
+                if (content == 'valentine') {
+                    if (isLogin == 1) {
+                        templateUrl ="/new2/ajax/mrright/3/valentine/";
+                    } else {
+                        return false;
+                    }
+                }
+                else { templateUrl ="/new2/ajax/mrright/3/countdown/"; }
+                var pop_data = {
+                    template_url: templateUrl,
+                    close_btn:true,
+                };
+                l_template(pop_data);  // popup now
+        }
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId : 503054863136245,
+//                 appId : 628839940557736,
+                status : true,
+                cookie: true,
+                xfbml: true,
+                version: 'v2.1',
+                channelURL: 'http://dev.l-somewhere.com/static/js/channel.html'
+            });
+
+            $(function(){
+                // Facebook Login process
+                //var csrf_token = $("input[name=csrfmiddlewaretoken]").val();
+                $(".fb_login_btn").click(function() {
+                    $.blockUI({ css: {
+                        border: 'none',
+                        padding: '15px',
+                        backgroundColor: '#000',
+                        '-webkit-border-radius': '10px',
+                        '-moz-border-radius': '10px',
+                        opacity: .5,
+                        color: '#fff'
+                    }, message: '登入中，請稍候...' });
+
+                    setTimeout($.unblockUI, 30000);
+
+                    FB.getLoginStatus(function(response) {
+                        if (response.status == 'connected') {
+
+                            var params = {
+                                //csrfmiddlewaretoken: csrf_token,
+                                accessToken: response.authResponse.accessToken
+                            };
+
+                            $.post('/social_networks/fb_login/', params, function(data) {
+                                if (data.status == 200) {
+                                    var redirectPath = "";
+
+                                    if (redirectPath.length > 0) {
+                                        window.location.href = redirectPath;
+                                    } else {
+                                        window.location.href = "/";
+                                    }
+
+                                } else if (data.status == 201) {
+                                    window.location.href = "/new2/main/#register";
+                                } else if (data.status == 202) {
+                                    window.location.href = "/new2/intro/";
+                                } else if (data.status == 500 && data.message == "us is not fully registered") {
+                                    l_alert({title:"請啟用帳戶", info:"此帳號已經註冊，請檢查信箱收取啟用信件", btntext:"確定"});
+                                }
+                            }, 'json');
+
+                        } else if (response.status == 'not_authorized') {
+
+                            FB.login(function(response) {
+                                var params = {
+                                    //csrfmiddlewaretoken: csrf_token,
+                                    accessToken: response.authResponse.accessToken
+                                };
+
+                                $.post('/social_networks/fb_login/', params, function(data) {
+                                    if (data.status == 200) {
+                                        var redirectPath = "";
+                                        if (redirectPath.length > 0) {
+                                            window.location.href = redirectPath;
+                                        } else {
+                                            window.location.href = "/";
+                                        }
+                                    } else if (data.status == 201) {
+                                        window.location.href = "/new2/main/#register";
+                                    } else if (data.status == 202) {
+                                        window.location.href = "/new2/intro/";
+                                    }
+                                }, 'json');
+                            }, {scope: 'email, user_hometown, user_birthday'});
+
+                        } else {
+                            FB.login(function(response) {
+                                var params = {
+                                    //csrfmiddlewaretoken: csrf_token,
+                                    accessToken: response.authResponse.accessToken
+                                };
+
+                                $.post('/social_networks/fb_login/', params, function(data) {
+                                    if (data.status == 200) {
+                                        var redirectPath = "";
+                                        if (redirectPath.length > 0) {
+                                            window.location.href = redirectPath;
+                                        } else {
+                                            window.location.href = "/";
+                                        }
+                                    } else if (data.status == 201) {
+                                        window.location.href = "/new2/register/2/";
+                                    } else if (data.status == 202) {
+                                        window.location.href = "/new2/intro/";
+                                    }
+                                }, 'json');
+
+                            }, {scope: 'email, user_hometown, user_birthday'});
+
+                        }
+                    });
+                });
+
+                var invite = $('.friends_invitation_box');
+                var notif = $('.friends_notification_box');
+                var pollingTimer = null;
+
+                $('#friend_invite').click(function(){
+                    invite.toggle();
+
+                    if(invite.is(':visible')){
+                        $.get('/new2/request_friends/').done(function(data) {
+                            invite.html(data);
+                            $('.all_memberbers').mCustomScrollbar("update");
+                            notif.hide();
+                        });
+                    }
+                    return false;
+                });
+
+                $('#friend_notif').click(function(){
+                    notif.toggle();
+
+                    if(notif.is(':visible')){
+                        $.get('/new2/recent_notification/').done(function(data) {
+                            notif.html(data);
+                            $('.notification_all_memberbers').mCustomScrollbar("update");
+                            invite.hide();
+                        });
+                    }
+
+                    return false;
+                });
+
+                
+                    var popUpDiv = $('#popUpDivCommon');
+                    var pathname = window.location.pathname;
+
+                    $('.ft_not').click(function(e){
+                        e.preventDefault();
+
+                        popUpDiv.bPopup({
+                            modalClose: true,
+                            opacity: 0.6,
+                            positionStyle: 'fixed',
+                            loadUrl: '/new2/report_popup/4/?path=' + pathname,
+                            loadCallback: function(){
+                                close_popup(popUpDiv);
+                            }
+                        });
+                    });
+
+                    $('.ftpg_not').click(function(e){
+                        e.preventDefault();
+
+                        popUpDiv.bPopup({
+                            modalClose: true,
+                            opacity: 0.6,
+                            positionStyle: 'fixed',
+                            loadUrl: '/new2/report_popup/4/?path=/new2/fate/fate',
+                            loadCallback: function(){
+                                close_popup(popUpDiv);
+                            }
+                        });
+                    });
+                
+            });
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/zh_TW/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        function poll(){
+            $.get("/api/polling/unread_count/")
+            .done(function(data) {
+                if(data.unread_friend_request > 0){
+                    $('.notification_number').text(data.unread_friend_request).show();
+                    $('#friend_invite_image').prop('src', 'https://www.l-somewhere.com/static/new2/images/header/notify/friend_active.png');
+                }
+
+            if(data.unread_notification > 0){
+                $('.notification_number03').text(data.unread_notification).show();
+                $('#notification_image').prop('src', 'https://www.l-somewhere.com/static/new2/images/header/notify/notification_active.png');
+                }
+            })
+            .fail(function(date) {
+            });
+        }
+
+        function close_popup(popUpDiv){
+            $('.green_pop_out_closed').click(function(e){
+                e.preventDefault();
+                popUpDiv.bPopup().close();
+            });
+        }
+    </script>
+
+    
+<link rel="stylesheet" href="https://www.l-somewhere.com/static/new2/css/menu_fixed.css" type="text/css" />
+<link rel="stylesheet" href="https://www.l-somewhere.com/static/new2/css/login.css" type="text/css" />
+
+    
+
+    <style>
+        body *{
+            font-family: "微軟正黑體", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+        .pink-text, #header-lowerline a.pink-text{
+            color: #F1607F;
+        }
+        .gray-text{
+            color: silver;
+        }
+        .blue-text{
+            color: #2a6496;
+        }
+        .login-text, .login-text:hover, .fb-text, .fb-text:hover{
+            color: #35cfb6 !important;
+            font-weight: bold;
+        }
+        #header-nav{
+            background: white;
+            border-bottom: 1px solid #61D7C4;
+        }
+        #header-nav *{
+            vertical-align: middle;
+        }
+        #header-nav a{
+            text-decoration: none;
+        }
+        #header-nav a:hover{
+            text-decoration: none;
+            color: #2a6496;
+        }
+        .width-limiter{
+            width: 980px;
+            margin: auto;
+        }
+        #header-logo{
+            float: left;
+            width: 240px;
+            margin-top: -8px;
+        }
+        #header-right{
+            float: right;
+            width: 730px;
+            height: 73px;
+        }
+        #header-upperline{
+            text-align: right;
+        }
+        .header-item > a{
+            font-size: 14px;
+        }
+        #header-lowerline{
+            white-space:nowrap;
+            text-align: right;
+            margin-top: 9px;
+            padding-top: 11px;
+            position: relative;
+            font-weight: bold !important;
+            overflow-x: hidden;
+        }
+        #header-lowerline .header-item{
+            margin: 0 0 0 3px;
+            font-weight: bold !important;
+        }
+        #header-lowerline a{
+            color: #333;
+            font-size: 17px;
+            transition: 0.1s;
+        }
+        .header-item-new{
+            float:right;
+            color:#F00;
+            cursor:pointer;
+        }
+        #header-lowerline a:hover, #header-lowerline a.lightup{
+            background-color: pink;
+            border-radius: 20px;
+            box-shadow: 0 0 5px pink;
+            color: white;
+        }
+        .header-item{
+            display: inline-block;
+            vertical-align: middle;
+            position: relative;
+            margin: 0 5px;
+        }
+        .header-notify-number{
+            height: 17px;
+            width: 17px;
+            background-color: #61D7C4;
+            float: right;
+            font-family: "Arial Black", Gadget, sans-serif;
+            color: #FFF;
+            font-size: 12px;
+            text-align: center;
+            border-radius: 50px;
+            position: absolute;
+            top: -7px;
+            right: -5px;
+        }
+        #points_remaining{
+            vertical-align: middle;
+        }
+
+
+        #footer *{
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        #footer-line{
+            background-color: #62D7C4;
+        }
+        .footer-block{
+            width: 980px;
+            margin: auto;
+        }
+        .footer-line-item{
+            text-decoration: none;
+            line-height: 40px;
+            color: white;
+            padding: 5px;
+            transition: .3s;
+            border-radius: 3px;
+        }
+        a.footer-line-item:hover{
+            text-decoration: none;
+            color: #333;
+            background-color: rgba(255, 255, 255, 0.75);
+        }
+        #footer-go-top{
+            overflow: hidden;
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
+            line-height: 40px;
+            float: right;
+            text-align: center;
+            background-color: rgba(255,255,255,0.5);
+            color: white;
+            transition: .3s;
+        }
+        #footer-go-top:hover{
+            cursor: pointer;
+            line-height: 20px;
+            color: #555;
+            background-color: rgba(255,255,255,0.75);
+            text-shadow: 0 0 2px #555;
+        }
+        #footer table{
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        #footer table td{
+            vertical-align: top;
+            padding: 0;
+            height: 95px;
+        }
+        .footer-td-standard{
+            width: 112px;
+        }
+        .footer-td-medal{
+            width: 170px;
+        }
+        .footer-td-edm{
+            width: 250px;
+        }
+        .footer-vert-line{
+            border-left: 1px solid #EEE;
+            width: 30px;
+        }
+        .footer-td-app{
+            background: url("https://www.l-somewhere.com/static/zh-tw/new2/images/header/app_qrcode_block.png") no-repeat left top;
+        }
+        #footer-edm-subscribe-email{
+            width: 210px;
+            border-radius: 5px;
+            padding: 5px;
+            border: 1px solid silver;
+            transition: .5s;
+        }
+        #footer-edm-subscribe-email:focus{
+            outline: none;
+            border-color: #62D7C4;
+            box-shadow: 0 0 10px #62D7C4;
+        }
+        .footer-heading-item, .footer-content-item{
+            margin: 5px;
+        }
+        .footer-heading-item{
+            margin: 10px 5px;
+            font-weight: bold;
+        }
+        a.footer-content-item{
+            display: block;
+            text-decoration: none;
+            padding: 3px;
+            margin: 2px;
+            color: #333;
+            border-radius: 3px;
+            transition: .3s;
+        }
+        a.footer-content-item:hover{
+            color: white;
+            background-color: #333;
+            text-decoration: none;
+            font-style: italic;
+        }
+        a.footer-content-item:hover::after{
+            content: '<';
+        }
+        .footer-medal{
+            cursor: pointer;
+            margin: 5px;
+            width: 40px;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            transition: .3s;
+        }
+        .footer-medal:hover{
+            box-shadow: -2px 2px 3px gray;
+            border: 1px solid #333;
+        }
+        #footer-logo{
+            margin: 0px 5px 20px 5px;
+            height: 40px;
+            vertical-align: middle;
+        }
+        .footer-text{
+            color: silver;
+            font-size: 13px !important;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        #lang-form{
+            text-align: left;
+        }
+        #lang-form ul, #lang-form li{
+            margin-left: 0px;
+        }
+        #lang-form ul{
+            display: block;
+        }
+        #lang-form li{
+            display: list-item;
+        }
+        #lang-dropdown_msdd{
+            width: 65px !important;
+        }
+
+    </style>
+    <style type="text/css">
+    body {
+        background-image: url('https://www.l-somewhere.com/static/new2/images/home/moon_festival/bg.jpg'), url('https://www.l-somewhere.com/static/new2/images/home/moon_festival/down_edge.jpg');
+        background-position: center;
+        background-repeat: repeat-y, repeat;
+
+        /*     background-position:0px 104px; */
+    }
+    </style>
+</head>
+
+<body>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-33612012-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+    <!-- Start Alexa Certify Javascript -->
+    <script type="text/javascript">
+        _atrk_opts = { atrk_acct:"XXkYk1a4eFf27i", domain:"l-somewhere.com",dynamic: true};
+        (function() { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js"; var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as, s); })();
+    </script>
+    <noscript><img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=XXkYk1a4eFf27i" style="display:none" height="1" width="1" alt="" /></noscript>
+    <!-- End Alexa Certify Javascript -->
+
+    <!-- 不顯示的輔助資料 -->
+    
+
+
+<script src="https://www.l-somewhere.com/static/lib/jquery-bpopup/jquery.bpopup.min.js"></script>
+
+<style>
+	.l-popup {
+		text-align: center;
+		background: white;
+		border-radius: 6px;
+		box-shadow: 0 0 15px 2px #999;
+		display: none;
+	}
+	.l-popup .b-close:hover {
+		background-color: #13b399;
+	}
+	.l-popup .title {
+		color: white;
+		background-color: #37C7AE;
+		font-size: 24px;
+		font-weight: 700;
+		padding: 10px 15px;
+		border-radius: 5px 5px 0 0;
+	}
+	.l-popup .body {
+		padding: 15px;
+		font-size: 18px;
+		line-height: initial;
+		display: table-cell;
+		width: 500px;
+		height: 100px;
+		vertical-align: middle;
+	}
+	.l-popup .body div ,
+	.l-popup .body p {
+		font-size: 18px;
+	}
+	.l-popup .footer {
+		padding: 10px;
+	}
+
+	.l-popup .footer .l-popup-btn-group {
+		margin-top: 10px;
+	}
+	.l-popup .l-popup-btn {
+		color: white;
+		display: inline-block;
+		padding: 6px 20px;
+		vertical-align: bottom;
+		background-color: #37C7AE;
+		border: 2px solid white;
+		cursor: pointer;
+		border-radius: 10px;
+		font-size: 16px;
+	}
+	.l-popup .l-popup-btn:hover{
+		background-color: #13b399;
+		border-color: #ccc;
+	}
+	.l-popup .b-close {
+		background-color: #3fc6ae;
+		border-radius: 10px;
+		box-shadow: 0 2px 3px rgba(0,0,0,0.3);
+		color: #fff;
+		cursor: pointer;
+		display: inline-block;
+		padding: 6px 12px;
+		text-align: center;
+		text-decoration: none;
+		border-radius: 4px;
+		box-shadow: none;
+		font: bold 131% sans-serif;
+		padding: 2px 5px;
+		position: absolute;
+		right: -7px;
+		top: -7px;
+		font-size: 18px;
+	}
+
+	.l-popup.l-template {
+		background: none;
+		border-radius: none;
+		box-shadow: none;
+	}
+</style>
+
+<div id="l-confirm" class="l-popup">
+	<div id="l-confirm-title" class="title">
+		確認嗎？
+	</div>
+	<div id="l-confirm-body" class="body">
+		<div id="l-confirm-content">
+			<!-- 內容 -->
+		</div>
+	</div>
+	<div id="l-confirm-body" class="footer">
+		<div class="l-popup-btn-group">
+			<div id="l-confirm-btn-yes" class="l-popup-btn">
+				是
+			</div>
+			<div id="l-confirm-btn-no" class="l-popup-btn">
+				否
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="l-alert" class="l-popup">
+	<div id="l-alert-title" class="title">
+		訊息
+	</div>
+	<div class="body">
+		<div id="l-alert-content" style="font-size: 17px;">
+			<!-- 內容 -->
+		</div>
+	</div>
+
+	<div class="footer">
+		<div class="l-popup-btn-group">
+			<a id="l-alert-btn" class="l-popup-btn">
+				好的
+			</a>
+		</div>
+	</div>
+</div>
+
+<div id="l-template" class="l-popup l-template">
+	<div id="l-template-content"></div>
+</div>
+
+<div id="l-confirm-smallfont" class="l-popup">
+	<div id="l-confirm-title-smallfont" class="title">
+		確認嗎？
+	</div>
+	<div id="l-confirm-body-smallfont" class="body">
+		<div id="l-confirm-content-smallfont" style="font-size: 17px;">
+			<!-- 內容 -->
+		</div>
+	</div>
+	<div id="l-confirm-footer-smallfont" class="footer">
+		<div class="l-popup-btn-group">
+			<div id="l-confirm-btn-yes-smallfont" class="l-popup-btn">
+				是
+			</div>
+			<div id="l-confirm-btn-no-smallfont" class="l-popup-btn">
+				否
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="l-confirm-smallfont-alignleft" class="l-popup">
+	<div id="l-confirm-title-smallfont-alignleft" class="title">
+		確認嗎？
+	</div>
+	<div id="l-confirm-body-smallfont-alignleft" class="body">
+		<div id="l-confirm-content-smallfont-alignleft">
+			<!-- 內容 -->
+		</div>
+	</div>
+	<div id="l-confirm-footer-smallfont-alignleft" class="footer">
+		<div class="l-popup-btn-group">
+			<div id="l-confirm-btn-yes-smallfont-alignleft" class="l-popup-btn">
+				是
+			</div>
+			<div id="l-confirm-btn-no-smallfont-alignleft" class="l-popup-btn">
+				否
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	// set default options
+	function l_popup_default_options(input_options){
+		var input_options = input_options ? input_options : {};
+		var options = { // default options
+			speed: 400,
+			transition: 'slideDown',
+// 			follow: [true, false],
+			zIndex: 500,
+			position: ['auto', 60] //x, y
+		};
+		$.extend(options, input_options);
+		return options;
+	}
+
+	function l_popup_set_close_btn($box, close_btn){
+		if (close_btn) {
+			$box.prepend('<span class="b-close"><i class="fa fa-times"></i></span>');
+		}
+	}
+
+	// button callback attach
+	// do some function when click $btn ... then close popup!
+	function l_popup_set_click_func($box, $btn, func){
+		$btn.off();
+		$btn.on('click', function(){ $box.bPopup().close(); });
+		$btn.on('click', func);
+	}
+
+	// set the html to $elem
+	function l_popup_set_html($elem, html){
+		if(html){ $elem.html(html); }
+	}
+
+	// call confirm dialog
+	function l_confirm(input_options){
+		var options = l_popup_default_options(input_options);
+		// content setting
+		l_popup_set_html($('#l-confirm-title'), options['title']);
+		l_popup_set_html($('#l-confirm-content'), options['info']);
+		l_popup_set_html($('#l-confirm-btn-yes'), options['yesText']);
+		l_popup_set_html($('#l-confirm-btn-no'), options['noText']);
+		// function attach
+		var $box = $('#l-confirm');
+		l_popup_set_click_func($box, $('#l-confirm-btn-yes'), options['yesFunc']);
+		l_popup_set_click_func($box, $('#l-confirm-btn-no'), options['noFunc']);
+		// popup now!
+		$box.bPopup(options);
+	};
+
+	// call alert dialog
+	function l_alert(input_options){
+		var options = l_popup_default_options(input_options);
+		// content setting
+		l_popup_set_html($('#l-alert-title'), options['title']);
+		l_popup_set_html($('#l-alert-content'), options['info']);
+		l_popup_set_html($('#l-alert-btn'), options['btnText']);
+		// function attach
+		var $box = $('#l-alert');
+		l_popup_set_click_func($box, $('#l-alert-btn'), options['btnFunc']);
+		// popup now!
+		$box.bPopup(options);
+	};
+
+//l_alert({title: 'title', info:'info', btnText:'Submit'});
+	// call blank dialog
+	function l_template(input_options){
+		var $box = $('#l-template');
+		var options = l_popup_default_options(input_options);
+		var data = {};
+		$.get(input_options['template_url'], data, function(response){
+			if (response.status) {
+					l_popup_set_html($('#l-template-content'), response.template);
+					// popup now!
+					l_popup_set_close_btn($box, options['close_btn']);
+					$box.bPopup(options);
+				} else {
+					alert('get template error');
+				}
+		}, 'json');
+	};
+
+	// call confirm dialog
+	function l_confirm_smallfont(input_options){
+		var options = l_popup_default_options(input_options);
+		// content setting
+		l_popup_set_html($('#l-confirm-title-smallfont'), options['title']);
+		l_popup_set_html($('#l-confirm-content-smallfont'), options['info']);
+		l_popup_set_html($('#l-confirm-btn-yes-smallfont'), options['yesText']);
+		l_popup_set_html($('#l-confirm-btn-no-smallfont'), options['noText']);
+		// function attach
+		var $box = $('#l-confirm-smallfont');
+		l_popup_set_click_func($box, $('#l-confirm-btn-yes-smallfont'), options['yesFunc']);
+		l_popup_set_click_func($box, $('#l-confirm-btn-no-smallfont'), options['noFunc']);
+		// popup now!
+		$box.bPopup(options);
+	};
+
+	function l_confirm_smallfont_alignleft(input_options){
+		var options = l_popup_default_options(input_options);
+		// content setting
+		l_popup_set_html($('#l-confirm-title-smallfont-alignleft'), options['title']);
+		l_popup_set_html($('#l-confirm-content-smallfont-alignleft'), options['info']);
+		l_popup_set_html($('#l-confirm-btn-yes-smallfont-alignleft'), options['yesText']);
+		l_popup_set_html($('#l-confirm-btn-no-smallfont-alignleft'), options['noText']);
+		// function attach
+		var $box = $('#l-confirm-smallfont-alignleft');
+		l_popup_set_click_func($box, $('#l-confirm-btn-yes-smallfont-alignleft'), options['yesFunc']);
+		l_popup_set_click_func($box, $('#l-confirm-btn-no-smallfont-alignleft'), options['noFunc']);
+		// popup now!
+		$box.bPopup(options);
+	};
+</script>
+
+    
+<script>
+
+ 
+
+	function buy_product_confirm(product_field) {
+		l_alert({info: "請登入後再行購買。"});
+	}
+
+
+</script>
+
+    <div id="fb-root"></div>
+    <input type="hidden" id="isLogin" value="0">
+
+    <nav id="header-nav" role='navigation'>
+      <div class="width-limiter">
+        <a href="/new2/home/">
+            <img alt="愛在轉角" id="header-logo" src="https://www.l-somewhere.com/static/new2/images/header/april_logo.png"/>
+        </a>
+        <div id="header-right">
+          <div id="header-upperline">
+            
+                 
+            <div class="header-item">
+              <a class="fb_login_btn fb-text" style="cursor: pointer;">
+                <img alt="FB" src="https://www.l-somewhere.com/static/new2/images/index/facebook.png" style="width: 16px;">
+                
+              </a>
+            </div>
+            <div class="header-item gray-text">
+              |
+            </div>
+            <div class="header-item">
+                <!-- <a id="header-register-link" href="/new2/register/0/" class="login-text blink-status-1">註冊</a> -->
+              <a id="header-register-link" class="login-text blink-status-1">註冊</a>
+              <!-- Code for blinking... -->
+              <style>
+                #header-register-link.blink-status-1{
+                  color: #FFC350 !important;
+                }
+                #header-register-link.blink-status-2{
+                  color: #EBA723 !important;
+                }
+
+              </style>
+
+            </div>
+            <div class="header-item gray-text">
+              |
+            </div>
+            <div class="header-item">
+              <a class="login-text" id="header-login-link">登入</a>
+            </div>
+            <div class="header-item gray-text">
+              |
+            </div>
+                   
+              <script>
+                setInterval(function(){
+                  var $link = $('#header-register-link');
+                    if($link.hasClass('blink-status-1')){
+                      $link.removeClass('blink-status-1');
+                      $link.addClass('blink-status-2');
+                    }
+                    else{
+                      $link.removeClass('blink-status-2');
+                      $link.addClass('blink-status-1');
+                    }
+                }, 500);
+                function last_login_popup(category){
+                  var data = {
+                      template_url: "/new2/ajax/template/fast_login/",
+                      onOpen: function() {
+                          setTimeout(function(){
+                              if (category == 'register') {
+                                $('.inline-login .inline-login-tablist li:eq(0) a').click();
+                              } else if (category == 'login') {
+                                $('.inline-login .inline-login-tablist li:eq(1) a').click();
+                                //setTimeout(function(){$('.inline-login #inline_login_form [name=identification]').focus()}, 100);
+                              } else if (category == 'forget') {
+                                $('.inline-login .inline-login-tablist li:eq(2) a').click();
+                              }
+                         }, 300);
+                      },
+                    }
+                  l_template(data);  // popup now
+                }
+
+                $(document).ready(function(){
+                  $('#header-register-link, #header-login-link, a#index-forget-link').click(function(){
+                    var id_name = $(this).attr('id');
+                    if (id_name == 'header-register-link') {
+                      last_login_popup('register');
+                    } else if (id_name == 'header-login-link') {
+                      last_login_popup('login');
+                    } else if (id_name == 'index-forget-link') {
+                      last_login_popup('forget');
+                    }
+                  });
+                });
+              </script>
+
+            
+            <div class="header-item">
+              
+              <form id="lang-form" action="/i18n/setlang/" method="post">
+              <div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='H4Mz6hAdEGVkss5ST7yTcY7WYMkvgSIc' /></div>
+              <input name="next" type="hidden" value="" />
+                <select id="lang-dropdown" name="language">
+                <option value="zh-tw" selected>繁</option>
+                <option value="zh-cn" >簡</option>
+                <option value="en" >ENG</option>
+                </select>
+              </form>
+            </div>
+          </div>
+          <div id="header-lowerline">
+            <div class="header-item">
+              <a href="/vip/" target="_blank" class="pink-text" id="header-linkto-vip">貴賓中心</a>
+            </div>
+            <div class="header-item">
+              <a href="/new2/comment_wall/all/" id="header-linkto-cwall">塗鴉本</a>
+            </div>
+            <div class="header-item">
+              <a href="/new2/photowall/?&order_key=all" id="header-linkto-pwall">照片牆</a>
+            </div>
+            <div class="header-item">
+                
+                    <a href="/new2/diary/" id="header-linkto-diary">心情日記</a>
+                
+            </div>
+            <div class="header-item">
+              <a href="/new2/fate/pass/" id="header-linkto-fate">緣份度</a>
+            </div>
+            <div class="header-item">
+              <a href="/new2/article/" id="header-linkto-article">轉角話題</a>
+            </div>
+            <div class="header-item">
+              <a href="/store/" id="header-linkto-store">轉角商城</a>
+            </div>
+            
+            <div class="header-item">
+              
+              <div id="bulletin-new-mark" class="header-item-new" lpk="">NEW</div>
+              
+              <a href="/new2/bulletin_board/index/" id="header-linkto-bulletin">公告欄</a>
+            </div>
+            <div class="header-item">
+              <a href="/new2/newbie/01/" id="header-linkto-faq">使用指南</a>
+            </div>
+          </div>
+          <div id="poker-banner" class="poker-banner"><img alt="轉角翻到愛" src="https://www.l-somewhere.com/static/zh-tw/game/images/Banner_PokerGame.gif"/></div>
+          <div id="pokergame" class="pokergame" style="display: none;">
+            <span class="gclose"><span>X</span></span>
+            <div id="pokercontent" class="pokercontent"></div>
+          </div>
+          <div id="popintro" class="popintro" style="display: none;"><div id="popintrocontent" class="popintrocontent"></div></div>
+          <div id="popup-banner" class="popup-banner" style="display: none;"><span class="popbanner-close"><span>X</span></span><div id="popup-banner-content" class="popup-banner-content" style="cursor: pointer;"></div></div>
+        </div>
+
+        <style>
+            #popup-banner-content iframe {
+                min-width: 650px;
+                min-height: 400px;
+            }
+            .poker-banner{
+                cursor:pointer;
+            }
+            .pokercontent iframe {
+                min-width:980px;
+                min-height:980px;
+            }
+            #pokergame, .bMulti {
+                background-color: #FFF;
+                border-radius: 10px 10px 10px 10px;
+                box-shadow: 0 0 25px 5px #999;
+                color: #111;
+                display: none;
+                padding: 25px;
+            }
+
+            #pokergame .logo {
+                color: #2B91AF;
+                font: bold 325% 'Petrona',sans;
+            }
+            .gclose {
+                background-color: #2B91AF;
+                font-size:22px;
+                box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+                color: #FFF;
+                cursor: pointer;
+                display: inline-block;
+                text-align: center;
+                text-decoration: none;
+                border-radius: 7px 7px 7px 7px;
+                font: bold 131% sans-serif;
+                padding: 10px 12px 10px 12px;
+                position: absolute;
+                right: -7px;
+                top: -7px;
+            }
+            .gclose:hover {
+                background-color: #3BA1BF;
+                box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+                color: #FFF;
+                cursor: pointer;
+                display: inline-block;
+                text-align: center;
+                text-decoration: none;
+                border-radius: 7px 7px 7px 7px;
+                font: bold 131% sans-serif;
+                padding: 12px 14px 12px 14px;
+                position: absolute;
+                right: -7px;
+                top: -7px;
+            }
+            .button.b-close, .button.bClose {
+                border-radius: 7px 7px 7px 7px;
+                box-shadow: none;
+                font: bold 131% sans-serif;
+                padding: 0 6px 2px;
+                position: absolute;
+                right: -7px;
+                top: -7px;
+            }
+
+            .button {
+                background-color: #2B91AF;
+                border-radius: 10px;
+                box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+                color: #FFF;
+                cursor: pointer;
+                display: inline-block;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+            }
+            .popbanner-close {
+                background-color: #3fc6ae;
+                border-radius: 10px;
+                box-shadow: 0 2px 3px rgba(0,0,0,0.3);
+                color: #fff;
+                cursor: pointer;
+                display: inline-block;
+                padding: 8px 14px;
+                text-align: center;
+                text-decoration: none;
+                border-radius: 4px;
+                box-shadow: none;
+                font: bold 131% sans-serif;
+                padding: 2px 5px;
+                position: absolute;
+                right: -7px;
+                top: -7px;
+                font-size: 18px;
+            }
+            .popbanner-close:hover {
+                background-color: #13b399;
+            }
+        </style>
+
+        <script>
+        $('.gclose').click( function() {
+            location.reload();
+        });
+         $('#poker-banner').click( function() {
+             var popkerpop = $('#pokergame').bPopup({
+                 content:'iframe',
+                 closeClass:'gclose',
+                 loadUrl:'https://www.l-somewhere.com/game/',
+                 contentContainer:'.pokercontent',
+                 modalClose:false,
+                 escClose:false,
+//                  follow: [true,false],
+                 position:['auto','auto'],
+//                  positionStyle:'fixed',
+             });
+             setCookie_header('gamebpop', true, 1);setCookie_header('gamebpop2', true, 1);
+         });
+         $('.gclose').click( function() {
+             location.reload();
+         });
+        function Closegame_Goto(URL)
+            {
+                 $('#pokergame').bPopup().close();
+                 if(URL){location.href=URL;}
+                 else{location.reload();}
+            }
+
+        (function RunEventApplyClick(){
+             var check_EventApply_status = getCookie_header('EAStatus');
+             if (String(check_EventApply_status) === '1') {
+                 setTimeout(function(){$('.signup_btn').click();},200);
+                 setCookie_header('EAStatus', 0, -1);
+             }
+        })();
+/*
+        (function popupBanner(){
+                var check_popupBanner = String(getCookie_header('popupBanner'));
+                if (check_popupBanner !== '1')
+                    {
+                        var pop_banner = $('#popup-banner').bPopup({
+                                content:'iframe',
+                                loadUrl:'/web_api/banner/popup/',
+                                contentContainer:'.popup-banner-content',
+                                modalClose:false,
+                                escClose:false,
+                                closeClass:'popbanner-close',
+                                transition:'fadeIn',
+                                //position:['auto','auto'],
+                                //positionStyle:'fixed',
+                            });
+                        setCookie_header('popupBanner', 1, 1);
+
+                        var iframe = $("#popup-banner-content iframe")[0].contentWindow
+                        var message = 'initialize';
+                        var domain_david = 'http://dev.l-somewhere.com:3130';
+                        var domain_test = 'http://testweb.lbstek.com:8000';
+                        var domain_live = 'https://www.l-somewhere.com';
+
+                        $(document).ready(function() {
+                            setTimeout(function() {
+                                 iframe.postMessage(message, domain_live);
+                            }, 3000);
+                        });
+
+                        window.addEventListener('message', function(event) {
+                            if(event.origin !== domain_live) return;
+                            window.open(event.data, '_blank');
+                            $(".popbanner-close").click();
+                        }, false);
+
+                    }
+        })();
+*/
+// No Game
+        (function popupGame()
+            {
+                var isLogin = $('#isLogin').val();
+                var check_popgame = getCookie_header('gamebpop');
+                var check_popgame2 = getCookie_header('gamebpop2');
+                var check_new_reg = String(getCookie_header('new_register'));
+                var check_game_reg = String(getCookie_header('game_register'));
+                var DURING_ACT_REG = parseInt('');
+                var check_popgamefail = getCookie_header('gamefailpop');
+                if (isLogin == 1)
+                    {
+                        var quotaurl = 'https://www.l-somewhere.com/game/poker/quota/';
+                        $.get(quotaurl).done(function(data) {
+                                                                quota5_tmp = parseInt(data.FIVE);
+                                                                again_tmp = parseInt(data.AGAIN);
+                                                                quota0_tmp = parseInt(data.FREE);
+                                                                quotar_tmp = parseInt(data.REGISTER);
+                                                                if(DURING_ACT_REG == 1)
+                                                                    {
+                                                                        if (quotar_tmp >0)
+                                                                            {
+                                                                                if( check_new_reg === '1' && !check_popgame2 )
+                                                                                    {
+                                                                                        var popkerpop = $('#pokergame').bPopup({
+                                                                                            content:'iframe',
+                                                                                            closeClass:'gclose',
+                                                                                            loadUrl:'https://www.l-somewhere.com/game/',
+                                                                                            contentContainer:'.pokercontent',
+                                                                                            modalClose:false,
+                                                                                            escClose:false,
+                                                                                            follow: [true,false],
+                                                                                            position:['auto',0],
+                                                                                        });
+                                                                                        if ( check_game_reg === '3'){setCookie_header('game_register', '4', 1);}
+                                                                                        setCookie_header('gamebpop', true, 1);
+                                                                                        setCookie_header('gamebpop2', true, 1);
+                                                                                    }
+                                                                            }
+                                                                    }
+                        }).fail(function(data) {});
+                    }
+
+            })();
+
+            </script>
+
+                <style>
+        .popintrocontent {
+            width:1100px;
+            height:910px;
+        }
+        .popintrocontent iframe {
+            min-width:1100px;
+            min-height:910px;
+        }
+        </style>
+        <script>
+            function Closeintro_Goto(URL)
+                {
+                    $('#popintro').bPopup().close();
+                    if(URL){location.href=URL;}
+                    else{location.reload();}
+                }
+            function Closeintro_PopGame()
+                {
+                    $('#popintro').bPopup().close();
+                    $('#poker-banner').click();
+                }
+            function parseDate(dateStr)
+                {
+                    var a = $.map(dateStr.split(/[^0-9]/), function(s) {
+                    return parseInt(s, 10)
+                    });
+                    return new Date(a[0], a[1] - 1 || 0, a[2] || 1, a[3] || 0, a[4] || 0, a[5] || 0, a[6] || 0);
+                }
+            (function new_register_intro(){
+                var check_new_reg = String(getCookie_header('new_register'));
+                var isLogin = $('#isLogin').val();
+                if ( isLogin == 1 ) {
+                    if( check_new_reg === '1') {
+                            var popkerpop = $('#popintro').bPopup({
+                                    content:'iframe',
+                                            loadUrl:"/new2/pop_intro/6/",
+                                            contentContainer:'.popintrocontent',
+                                            modalClose:false,
+                                            escClose:false,
+                                            follow: [true,false],
+                                            position:['auto',0],
+                            });
+                    }
+                }
+            })();
+        </script>
+
+        <!-- 計算高亮 -->
+        <script>
+          if (typeof String.prototype.startsWith != 'function') {
+            // see below for better implementation!
+            String.prototype.startsWith = function (str){
+              return this.indexOf(str) == 0;
+            };
+          }
+          (function(){
+            var path = location.pathname;
+            if(path.startsWith('/new2/comment_wall')){
+              $('#header-linkto-cwall').addClass('lightup');
+            }
+            else if(path.startsWith('/new2/photowall')){
+              $('#header-linkto-pwall').addClass('lightup');
+            }
+            else if(path.startsWith('/new2/fate')){
+              $('#header-linkto-fate').addClass('lightup');
+            }
+            else if(path.startsWith('/new2/article')){
+              $('#header-linkto-article').addClass('lightup');
+            }
+            else if(path.startsWith('/store')){
+              $('#header-linkto-store').addClass('lightup');
+            }
+            else if(path.startsWith('/vip/certification')){
+              $('#header-linkto-vip-cert').addClass('lightup');
+            }
+            else if(path.startsWith('/new2/bulletin_board')){
+              $('#header-linkto-bulletin').addClass('lightup');
+            }
+            else if(path.startsWith('/new2/faq')){
+              $('#header-linkto-faq').addClass('lightup');
+            }
+          })();
+        </script>
+
+      </div>
+
+    </nav>
+
+    
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td align="center">&nbsp;</td>
+      </tr>
+            <tr>
+        <td align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td align="center">
+          <a href="/new2/main/">
+            <img src="https://www.l-somewhere.com/static/new2/images/etc/404.jpg" />
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+
+
+    <div id="footer" style="background:#FFF;">
+      <div id="footer-line">
+        <div class="footer-block">
+          <a target="_blank" href="/new2/comment_wall/all/" class="footer-line-item">
+            塗鴉本
+          </a>
+          <span class="footer-line-item">|</span>
+          <a target="_blank" href="/new2/photowall/?&order_key=all" class="footer-line-item">
+            照片牆
+          </a>
+          <span class="footer-line-item">|</span>
+          <a target="_blank" href="/new2/fate/pass/" class="footer-line-item">
+            緣份度
+          </a>
+          <span class="footer-line-item">|</span>
+          <a target="_blank" href="/new2/article/" class="footer-line-item">
+            轉角話題
+          </a>
+          <span class="footer-line-item">|</span>
+          <a target="_blank" href="/store/" class="footer-line-item">
+            轉角商城
+          </a>
+          
+          <span class="footer-line-item">|</span>
+          <a target="_blank" href="/new2/bulletin_board/index/" class="footer-line-item">
+            公告欄
+          </a>
+          <span class="footer-line-item">|</span>
+          <a target="_blank" href="/new2/newbie/01/" class="footer-line-item">
+            使用指南
+          </a>
+          <div id="footer-go-top" onclick="$(document).scrollTop(0);">
+            ▴ Top
+          </div>
+        </div>
+      </div>
+      <div class="footer-block">
+        <table>
+          <tbody>
+            <tr>
+              <td class="footer-td-standard">
+                <div class="footer-heading-item">
+                    <a target="_blank" href="/new2/article/detail/2730/">
+                        關於我們
+                    </a>
+                </div>
+                <a class="footer-content-item" target="_blank" href="/vip/">
+                  貴賓中心
+                </a>
+                <a class="footer-content-item" target="_blank" href="http://www.104.com.tw/jobbank/custjob/index.php?r=cust&j=624a436d485c3e213c423b1d1d1d1d5f2443a363189j50">
+                  人才招募
+                </a>
+              </td>
+              <td class="footer-td-standard">
+                <div class="footer-heading-item">
+                  聯絡資訊
+                </div>
+                <a class="footer-content-item" target="_blank" href="/new2/traffic_info/">
+                  交通資訊
+                </a>
+                <a class="footer-content-item" target="_blank" href="/new2/contact_us/">
+                  聯絡我們
+                </a>
+              </td>
+              <td class="footer-td-standard">
+                <div class="footer-heading-item">
+                  政策條款
+                </div>
+                <a class="footer-content-item" target="_blank" href="/new2/clause/clause/">
+                  使用條款
+                </a>
+                <a class="footer-content-item" target="_blank" href="/new2/clause/privacy/">
+                  個資保護政策
+                </a>
+              </td>
+              <td class="footer-td-medal">
+                <div class="footer-heading-item">
+                  <p>　</p>
+                </div>
+                <img class="footer-medal" onclick="window.open('https://www.l-somewhere.com/new2/bulletin_board/detail/?bulletin_id=205')" src="https://www.l-somewhere.com/static/new2/images/sgs/SGS_27001.png" title="SGS 27001 認証標章" alt="SGS 27001 認証標章"/>
+                <img class="footer-medal" onclick="window.open('https://www.l-somewhere.com/new2/bulletin_board/detail/?bulletin_id=292')" src="https://www.l-somewhere.com/static/new2/images/sgs/SGS_Qualicert.png" title="SGS 服務品質 認証標章" alt="SGS 服務品質 認証標章"/>
+                <img class="footer-medal" onclick="window.open('https://seal.godaddy.com/verifySeal?sealID=ecoDtdD60fyd6bqjbkxlYsFH47UHDu9cwPoSOfuS6BqBoYNwClhTMTRf', '認証', 'location=no,toolbar=no,menubar=no,status=no,height=500,width=640')" src="https://www.l-somewhere.com/static/new2/images/header/ssl.png" title="SSL 認証標章" alt="SSL 認証標章"/>
+              </td>
+              <td class="footer-vert-line">
+              </td>
+              <td class="footer-td-edm">
+                <div class="footer-heading-item">
+                  訂閱電子報 (<a style="color: gray;" target="_blank" href="/new2/edm/index">總覽</a>)
+                </div>
+                <input id="footer-edm-subscribe-email" class="footer-content-item" type="email" placeholder="請輸入電子信箱，按下 Enter"></input>
+
+
+                <script>
+                  /**
+                   * Script for edm subscribe UI.
+                   */
+                  $trigger = $('#footer-edm-subscribe-email');
+                  lutils.enterFor(
+                    $trigger[0],
+                    function(){
+                      var email = $trigger.val();
+                      if(lutils.isEmail(email)){
+                        edm.subscribe(email, {
+                          200: function(){
+                            $trigger.prop('disabled', 'disabled');
+                            $trigger.val("✔ 訂閱成功");
+                          },
+                        });
+                      }
+                      else{
+                        $trigger.prop('placeholder', "✖ " + email + " 不是有效的 email");
+                        $trigger.val('');
+                      }
+                    }
+                  );
+                </script>
+
+
+              </td>
+              <td class="footer-vert-line">
+              </td>
+              <td class="footer-td-app">
+                <div class="footer-heading-item">
+                  
+                  APP 下載
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <br/>
+        <a href="/new2/home/"><img alt="愛在轉角" id="footer-logo" src="https://www.l-somewhere.com/static/new2/images/header/home_logo_white_valentine.png"/></a>
+        <p class="footer-text">
+          Tel: 0800-068-026 / Fax: 02-2321-7208 / E-mail: <a style="color: gray;" href="mailto:Service@L-Somewhere.com">Service@L-Somewhere.com</a> / 地址：10058 <a style="color: gray;" target="_blank" href="https://www.google.com.tw/maps?q=%E5%8F%B0%E5%8C%97%E5%B8%82%E4%B8%AD%E6%AD%A3%E5%8D%80%E5%85%AB%E5%BE%B7%E8%B7%AF%E4%B8%80%E6%AE%B523%E8%99%9F6%E6%A8%93&hl=zh-TW&ie=UTF8&ll=25.045092,121.534195&spn=0.036586,0.063257&sll=23.63446,120.970459&sspn=9.421769,16.193848&brcurrent=3,0x3442a99bd1adbcc7:0xc5ab69bb7491162a,0,0x3442ac6b61dbbd9d:0xc0c243da98cba64b&hnear=100%E5%8F%B0%E5%8C%97%E5%B8%82%E4%B8%AD%E6%AD%A3%E5%8D%80%E5%85%AB%E5%BE%B7%E8%B7%AF%E4%B8%80%E6%AE%B523%E8%99%9F&t=m&z=15">台北市中正區八德路一段23號6樓</a><br/>
+          本公司法律顧問：統領法律事務所 LBSTEK Inc. <a style="color: gray;" target="_blank" href="http://www.lbstek.com/">燿麒科技股份有限公司</a>© All Rights Reserved
+        </p>
+
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,871 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Fortress</title>
+<meta name="msvalidate.01" content="964000D1BF14462EF52CD2DE99593F94" />
+
+<meta name="author" content="" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta name="classification" content="" />
+<meta name="robots" content="all" />
+
+<meta property="og:url" content="http://www.fortress.com.hk/robots.txt?404%3Bhttp%3A%2F%2Fwww_fortress_com_hk%3A80%2Frobots_txt=">
+<meta property="og:image" content="http://www.fortress.com.hk/images/common/facebook_share.jpg">
+
+		
+<!--Mobile Usage-->
+<meta name="format-detection" content="telephone=no" />
+<meta name="handheldfriendly" content="true" />
+<meta name="viewport" content="width=1024, user-scalable=yes" />
+
+<script>
+var lang = 'tc';
+</script>
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+
+<link rel="stylesheet" type="text/css" href="/css/reset.css" media="all" />
+<link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css" media="all" />
+<link rel="stylesheet" type="text/css" href="/css/typeahead.css" media="all" />
+<link rel="stylesheet" type="text/css" href="/css/jqtransform.css" media="all" />
+<link rel="stylesheet" type="text/css" href="/css/nouislider.css" media="all" />
+<link rel="stylesheet" type="text/css" href="/css/common.css" media="all" />
+<link rel="stylesheet" type="text/css" href="/css/tc/style.css" media="all" />
+
+<script type="text/javascript" src="/js/jquery-1.9.1.min.js" ></script>
+<script type="text/javascript" src="/js/jquery-migrate-1.1.1.min.js" ></script>
+<script type="text/javascript" src="/js/jquery.easing.1.3.js" ></script>
+<script type="text/javascript" src="/js/jquery.cookie.js" ></script>
+<script type="text/javascript" src="/js/jquery.fancybox.pack.js" ></script>
+<script type="text/javascript" src="/js/helpers/jquery.fancybox-media.js" ></script>
+<script type="text/javascript" src="/js/jquery.scrollTo-1.4.3.1-min.js" ></script>
+<script type="text/javascript" src="/js/jquery.nouislider.js" ></script>
+<script type="text/javascript" src="/js/jquery.jqtransform.js" ></script>
+<script type="text/javascript" src="/js/modernizr.js" ></script>
+<script type="text/javascript" src="/js/jquery.imagesloaded.min.js" ></script>
+<script type="text/javascript" src="/js/typeahead.js" ></script>
+<script type="text/javascript" src="/js/jquery.jscrollpane.min.js" ></script>
+<script type="text/javascript" src="/js/jquery.mousewheel.js" ></script>
+<script type="text/javascript" src="/js/json2.js" ></script>
+
+<script type="text/javascript" src="/js/lang.js" ></script>
+<script type="text/javascript" src="/js/script.js" ></script>
+<script type="text/javascript" src="/js/currencyFormatter.js" ></script>
+<script type="text/javascript" src="/js/jquery.form.js"></script>
+<script type="text/javascript" src="/js/jquery.form.valid.js"></script>
+<script type="text/javascript">
+	var nowUrl = location.href;
+
+	var moneybackEvents = {
+		valid: function() {
+			var isValid = false;
+			var errorMsg = "";
+			var moneybackLoginID = $(".moneybackLoginID");
+			var moneybackLoginPW = $(".moneybackLoginPW");
+
+			if (moneybackLoginID.find(":text").val().replace(/^[\r\n\t]/g, "").replace(/[\r\n\t]$/g, "").length < 1) {
+				errorMsg += "請填寫您的{0}。\n".replace("{0}", moneybackLoginID.find(".placeholder").html());
+			}
+			else if (moneybackLoginID.find(":text").val().length != 11 && moneybackLoginID.find(":text").val().length != 13) {
+				errorMsg += "請填寫有效之{0}。\n".replace("{0}", moneybackLoginID.find(".placeholder").html());
+			}
+			else if (!/^[0-9]+$/i.test(moneybackLoginID.find(":text").val())) {
+				errorMsg += "請填寫有效之{0}。\n".replace("{0}", moneybackLoginID.find(".placeholder").html());
+			}
+
+			if (moneybackLoginPW.find(":password").val().replace(/^[\r\n\t]/g, "").replace(/[\r\n\t]$/g, "").length < 1) {
+				errorMsg += "請填寫您的{0}。\n".replace("{0}", moneybackLoginPW.find(".placeholder").html());
+			}
+
+			if (errorMsg.length == 0) {
+				isValid = true;
+			}
+			else {
+				alert(errorMsg);
+			}
+
+			return isValid;
+		},
+		submitForm: function() {
+			showDocLoading();
+			$.ajax({
+				url: "/webproxy/moneybackLogin.php",
+				data: { login : $(".moneybackLoginID :text").val(), password: $(".moneybackLoginPW :password").val(), lang: "tc" },
+				dataType: "json",
+				type: "post",
+				error: function() {
+					hideDocLoading();
+				},
+				success: function(data) {
+					switch(parseInt(data.status, 10)) {
+						case 1 : {
+							location.href = "../moneyback/myaccount.php";
+						}
+						break;
+						default: {
+							alert(data.returnmsg);
+							hideDocLoading();
+						}
+					}
+				}
+			});
+		},
+		logout: function() {
+			$.ajax({
+				url: "/webproxy/moneybackLogout.php",
+				dataType: "json",
+				error: function() {
+				},
+				success: function(data) {
+					location.href = (location.href.indexOf("myaccount.php") != -1) ? "../moneyback/about.php" : location.href;
+				}
+			});
+		},
+		handler: function() {
+			$(".moneybackBtn.login").bind("click", function() {
+				if (moneybackEvents.valid())
+					moneybackEvents.submitForm();
+				return false;
+			});
+
+			$(".moneybackAccount .moneybackBtn").bind("click", function() {
+				moneybackEvents.logout();
+				return false;
+			});
+		},
+		init: function() {
+			moneybackEvents.handler();
+		}
+	};
+
+
+var subscribeEvents = {
+
+	validSubscribe : function() {
+		var resultArr= {};
+
+		$.errorMsg({
+			header : "請修改以下的項目:\n",
+			isDefault : "請填寫您的{0}。\n",
+			isInvalid : "請填寫有效之{0}。\n",
+			isInvalidFormat : "請填寫有效之{0}。\n",
+			isNotTickCheckbox : "請選擇{0}.\n",
+		});
+
+		resultArr = $.valid([
+			{ field: $(".fancybox-inner #firstName"), name: "名字", required: true, check: false},
+			{ field: $(".fancybox-inner #lastName"), name: "姓氏", required: true, check: false},
+			{ field: $(".fancybox-inner #phoneNumber"), name: "電話號碼", required: false, check: true, type: "number"},
+			{ field: $(".fancybox-inner #phonePrefix"), name: "區號", required: false, check: true, type: "number"},
+			{ field: $(".fancybox-inner #subscribeEmail"), name: "電郵地址", required: true, check: true, type: "email"},
+			{ field: $(".fancybox-inner #captchaTxt"), name: "驗證碼", required: true, check: false},
+			{ field: $(".fancybox-inner #tnc"), name: "個人身份証識別資料收集聲明及關於免責聲明、版權及責任限制的通知。", required: true, check: false}
+		]);
+
+		if (!resultArr["isValid"])
+			alert(resultArr["errorMsg"]);
+		return resultArr["isValid"];
+	},
+
+	submitFooterForm : function() {
+		$(".loading").show();
+		$("#cmsFooterForm").ajaxSubmit({
+			dataType : "json",
+			error : function() {
+				$(".loading").hide();
+				alert("Error! Please find technical help!");
+			},
+			success: function(data) {
+				$(".loading").hide();
+				switch(parseInt(data.status, 10)) {
+					case 1 :
+						alert("遞交成功。");
+						location.href = location.href;
+					break;
+					case 2 :
+						alert("閣下的電郵地址已被使用。");
+					break;
+					case 3 :
+						alert("請填寫有效之驗證碼。");
+					break;
+					default: alert(data.returnmsg);
+				}
+				$('#resetBtn').trigger('click');
+			}
+		});
+	},
+	handler : function() {
+		$("#saveSubscribe").bind("click", function() {
+			if (subscribeEvents.validSubscribe()){
+				showDocLoading();
+				subscribeEvents.submitFooterForm();
+				hideDocLoading();
+			}
+		});
+
+		$("#cmsFooterForm").bind({
+			"keyup": function(e) {
+				if (e.keyCode == 13)
+					$("#saveSubscribe").trigger("click");
+				return false;
+			},
+			"submit": function() {
+				return false;
+			}
+		});
+
+		$('#resetBtn').bind('click', function() {
+			$('#captcha').attr('src', $('#captcha').data('src')+'?'+Math.floor((Math.random()*10000)+1));
+		});
+		// $('#resetBtn').trigger('click');
+	},
+	init : function() {
+		subscribeEvents.handler();
+		//$("#cmsForm td").css("vertical-align", "top");
+	}
+};
+
+	$(function() {
+
+		if ($(".moneybackLogin").length > 0 || $(".moneybackAccount").length > 0) {
+			moneybackEvents.init();
+		}
+		subscribeEvents.init();
+
+		$("#searchForm").bind("keyup", function(e) {
+			if (e.keyCode == 13) {
+				$("#searchForm").submit();
+			}
+		});
+
+	});
+
+
+
+	if (nowUrl.indexOf("/moneyback/") != -1 && nowUrl.indexOf("http://") != -1) {
+		// location.href = nowUrl.replace("http://", "https://");
+	}
+	else if (nowUrl.indexOf("/moneyback/") == -1 && nowUrl.indexOf("http://") == -1) {
+		// location.href = nowUrl.replace("https://", "http://");
+	}
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31289854-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</head>
+<body>
+
+<div class="loading">
+	<div class="loadingBg"></div>
+	<div class="loadingIcon"></div>
+</div>
+
+<div class="container">
+    
+    <div class="headerContainer">
+		<div class="header">
+			
+<style type="text/css">
+.header .nav li{
+	padding-left:0px;
+}
+</style>
+<script type="text/javascript" src="/js/jquery.form.js"></script>
+<script type="text/javascript" src="/js/jquery.form.valid.js"></script>
+<script>
+	var lang = 'tc';
+</script>
+
+<a class="logo" href="../home/index.php"><img src="/images/common/logo.jpg" /></a>
+<a class="eshop" href="http://eshop.fortress.com.hk" target="_blank"></a>
+
+<div class="top">
+	<span class="link">
+		<!-- <a href="../moneyback/about.php">易賞錢登入</a> | -->
+		<a name="lang" href="#">ENG</a> |
+		<a name="lang" href="#">簡</a>
+	</span>
+	<span class="social">
+		<a href="http://www.facebook.com/fortresshk" class="social-facebook" target="_blank"></a>
+		<a href="http://e.weibo.com/fortresshk" class="social-weibo" target="_blank"></a>
+		<!--<a href="../other/other_promo.php?id=401" class="social-wechat wechatQrBtn"></a>-->
+		<a href="http://www.youtube.com/user/fortresshongkong" class="social-youtube" target="_blank"></a>
+			</span>
+	<span class="search">
+		<form id="searchForm" action="../product/search.php" method="get">
+			<input id="searchTxt" name="searchTxt" type="text" placeholder="產品搜尋" />
+			<a href="#" onclick="if ($('#searchTxt').val().length > 0) $('#searchForm').submit(); return false;"><img src="/images/common/search-btn.png" /></a>
+		</form>
+	</span>
+	<span class="myFav">
+		<a href="#" class="myFavBtn">
+			<span class="myFav-left"></span><span class="myFav-center">我的收藏 <span class="myFav-num"></span><span class="myFav-arrow"></span></span><span class="myFav-right"></span>
+		</a>
+		<div class="myFavList">
+			<ul>
+			
+			</ul>
+			<div class="myFavMore">
+				<table>
+					<tr>
+						<td class="left">
+							尚有 <span class="myFavTotalNum"></span> 件收藏品						</td>
+						<td class="right">
+							<a href="#" class="btn-orange">
+								<span class="btn-orange-left"></span><span class="btn-orange-center">查看所有收藏產品</span><span class="btn-orange-right"></span>
+							</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="myFavNone">
+				沒有收藏品			</div>
+		</div>
+	</span>
+</div>
+
+<div class="nav">
+	<ul>
+		<li class="productMenu"><a href="../product/listing.php"><span class="menu-item"><img src="/images/common/tc/nav-item_1-1.png" alt="產品種類" /></span></a>
+			<div class="productSubMenu">
+				<div class="productCat">
+					<ul class="CatThumb">
+						<li>
+							<a href="../product/listing.php?mainCategoryID=1">
+								<img src="/uploads/images/maincategory/cat-thumb-communication.png" alt="流動產品" />
+								<p>流動產品</p>
+							</a>
+							<div class="arrow"></div>
+						</li>
+						<li>
+							<a href="../product/listing.php?mainCategoryID=2">
+								<img src="/uploads/images/maincategory/cat-thumb-homeav.png" alt="電視影音" />
+								<p>電視影音</p>
+							</a>
+							<div class="arrow"></div>
+						</li>
+						<li>
+							<a href="../product/listing.php?mainCategoryID=3">
+								<img src="/uploads/images/maincategory/cat-thumb-camera.png" alt="數碼影像 " />
+								<p>數碼影像 </p>
+							</a>
+							<div class="arrow"></div>
+						</li>
+						<li>
+							<a href="../product/listing.php?mainCategoryID=4">
+								<img src="/uploads/images/maincategory/cat-thumb-computing.png" alt="電腦文儀" />
+								<p>電腦文儀</p>
+							</a>
+							<div class="arrow"></div>
+						</li>
+						<li>
+							<a href="../product/listing.php?mainCategoryID=5">
+								<img src="/uploads/images/maincategory/cat-thumb-large.png" alt="大型家庭電器" />
+								<p>大型家庭電器</p>
+							</a>
+							<div class="arrow"></div>
+						</li>
+						<li>
+							<a href="../product/listing.php?mainCategoryID=6">
+								<img src="/uploads/images/maincategory/cat-thumb-small.png" alt="小型家庭電器" />
+								<p>小型家庭電器</p>
+							</a>
+							<div class="arrow"></div>
+						</li>
+						<li>
+							<a href="../product/listing.php?mainCategoryID=7">
+								<img src="/uploads/images/maincategory/personal.png" alt="個人護理" />
+								<p>個人護理</p>
+							</a>
+							<div class="arrow"></div>
+						</li>
+						<li>
+							<a href="../product/listing.php?mainCategoryID=8">
+								<img src="/uploads/images/maincategory/game.png" alt="電子遊戲" />
+								<p>電子遊戲</p>
+							</a>
+							<div class="arrow"></div>
+						</li>
+					</ul>
+					<div class="subCat clear">
+						<div class="subCatMenu">
+							<ul>
+								<li><a href="../product/listing.php?categoryID=1">手提電話</a></li>
+								<li><a href="../product/listing.php?categoryID=4">緊急充電器 (配)</a></li>
+								<li><a href="../product/listing.php?categoryID=101">手機配件</a></li>
+							</ul>
+						</div>
+						<div class="subCatMenu">
+							<ul>
+								<li><a href="../product/listing.php?categoryID=6">電視機</a></li>
+								<li><a href="../product/listing.php?categoryID=7">影碟播放器</a></li>
+								<li><a href="../product/listing.php?categoryID=8">音響組合</a></li>
+								<li><a href="../product/listing.php?categoryID=9">音響組件</a></li>
+								<li><a href="../product/listing.php?categoryID=5">耳機 (配)</a></li>
+								<li><a href="../product/listing.php?categoryID=10">投影機</a></li>
+								<li><a href="../product/listing.php?categoryID=201">AV配件</a></li>
+								<li><a href="../product/listing.php?categoryID=301">MP3 及多媒體播放器</a></li>
+							</ul>
+						</div>
+						<div class="subCatMenu">
+							<ul>
+								<li><a href="../product/listing.php?categoryID=11">輕便數碼相機</a></li>
+								<li><a href="../product/listing.php?categoryID=12">無反光鏡可換鏡頭數碼相機</a></li>
+								<li><a href="../product/listing.php?categoryID=13">單鏡反光數碼相機</a></li>
+								<li><a href="../product/listing.php?categoryID=14">數碼攝錄機</a></li>
+								<li><a href="../product/listing.php?categoryID=15">鏡頭</a></li>
+								<li><a href="../product/listing.php?categoryID=401">相機配件</a></li>
+							</ul>
+						</div>
+						<div class="subCatMenu">
+							<ul>
+								<li><a href="../product/listing.php?categoryID=16">桌面電腦</a></li>
+								<li><a href="../product/listing.php?categoryID=17">平板電腦</a></li>
+								<li><a href="../product/listing.php?categoryID=18">手提電腦</a></li>
+								<li><a href="../product/listing.php?categoryID=19">顯示器</a></li>
+								<li><a href="../product/listing.php?categoryID=20">打印機及掃瞄器</a></li>
+								<li><a href="../product/listing.php?categoryID=21">電子辭典</a></li>
+								<li><a href="../product/listing.php?categoryID=22">滑鼠及鍵盤(配)</a></li>
+								<li><a href="../product/listing.php?categoryID=23">平板機殼(配)</a></li>
+</ul>
+<ul>								<li><a href="../product/listing.php?categoryID=24">外置儲存器(配)</a></li>
+								<li><a href="../product/listing.php?categoryID=25">路由器(配)</a></li>
+								<li><a href="../product/listing.php?categoryID=102">電腦配件</a></li>
+								<li><a href="../product/listing.php?categoryID=402">打印機配件</a></li>
+							</ul>
+						</div>
+						<div class="subCatMenu">
+							<ul>
+								<li><a href="../product/listing.php?categoryID=26">抽油煙機</a></li>
+								<li><a href="../product/listing.php?categoryID=27">座地式煮食爐</a></li>
+								<li><a href="../product/listing.php?categoryID=28">抽濕機</a></li>
+								<li><a href="../product/listing.php?categoryID=29">洗碗機</a></li>
+								<li><a href="../product/listing.php?categoryID=30">雪櫃</a></li>
+								<li><a href="../product/listing.php?categoryID=31">酒櫃</a></li>
+								<li><a href="../product/listing.php?categoryID=32">洗衣機</a></li>
+								<li><a href="../product/listing.php?categoryID=33">乾衣機</a></li>
+</ul>
+<ul>								<li><a href="../product/listing.php?categoryID=34">熱水爐</a></li>
+								<li><a href="../product/listing.php?categoryID=35">冷氣機</a></li>
+							</ul>
+						</div>
+						<div class="subCatMenu">
+							<ul>
+								<li><a href="../product/listing.php?categoryID=36">空氣清新機</a></li>
+								<li><a href="../product/listing.php?categoryID=37">電熱水瓶</a></li>
+								<li><a href="../product/listing.php?categoryID=38">電熱水壺</a></li>
+								<li><a href="../product/listing.php?categoryID=39">咖啡機</a></li>
+								<li><a href="../product/listing.php?categoryID=40">風扇</a></li>
+								<li><a href="../product/listing.php?categoryID=41">食物處理及攪拌</a></li>
+								<li><a href="../product/listing.php?categoryID=42">暖爐</a></li>
+								<li><a href="../product/listing.php?categoryID=43">放濕機</a></li>
+</ul>
+<ul>								<li><a href="../product/listing.php?categoryID=44">電磁爐及煮食爐</a></li>
+								<li><a href="../product/listing.php?categoryID=45">熨斗</a></li>
+								<li><a href="../product/listing.php?categoryID=46">微波爐</a></li>
+								<li><a href="../product/listing.php?categoryID=47">多功能煮食爐</a></li>
+								<li><a href="../product/listing.php?categoryID=48">焗爐</a></li>
+								<li><a href="../product/listing.php?categoryID=49">電飯煲</a></li>
+								<li><a href="../product/listing.php?categoryID=50">吸塵機</a></li>
+								<li><a href="../product/listing.php?categoryID=51">淨水機</a></li>
+								<li><a href="../product/listing.php?categoryID=52">室內電話</a></li>
+							</ul>
+						</div>
+						<div class="subCatMenu">
+							<ul>
+								<li><a href="../product/listing.php?categoryID=53">血壓計</a></li>
+								<li><a href="../product/listing.php?categoryID=54">風筒</a></li>
+								<li><a href="../product/listing.php?categoryID=55">電子溫度計</a></li>
+								<li><a href="../product/listing.php?categoryID=56">女士脫毛器</a></li>
+								<li><a href="../product/listing.php?categoryID=57">電鬚刨</a></li>
+								<li><a href="../product/listing.php?categoryID=58">按摩產品</a></li>
+								<li><a href="../product/listing.php?categoryID=59">美髮造型</a></li>
+								<li><a href="../product/listing.php?categoryID=60">美容產品</a></li>
+</ul>
+<ul>								<li><a href="../product/listing.php?categoryID=61">電動牙刷</a></li>
+							</ul>
+						</div>
+						<div class="subCatMenu">
+							<ul>
+								<li><a href="../product/listing.php?categoryID=62">遊戲主機</a></li>
+								<li><a href="../product/listing.php?categoryID=63">遊戲軟件</a></li>
+								<li><a href="../product/listing.php?categoryID=64">手制(配)</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="productBrand">
+						<table>
+							<tr>
+								<td>瀏覽所有品牌</td>
+								<td>	
+									<a href="../product/brand.php" class="btn-orange">
+										<span class="btn-orange-left"></span><span class="btn-orange-center">立即查看</span><span class="btn-orange-right"></span>
+									</a>
+								</td>
+							</tr>
+						</table>
+					</div>
+			</div>
+		</li>
+		<li><a href="../ownbrand/index.php"><span class="menu-item"><img src="/images/common/tc/nav-item_2-1.png" alt="豐澤牌電器" /></span></a></li>
+		<li><a href="../promotion/index.php"><span class="menu-item"><img src="/images/common/tc/nav-item_3-1.png" alt="精彩優惠" /></span></a></li>
+		<li><a href="../moneyback/about.php"><span class="menu-item"><img src="/images/common/tc/nav-item_4-1.png" alt="易賞錢會員專區" /></span></a></li>
+		<li><a href="../location/index.php"><span class="menu-item"><img src="/images/common/tc/nav-item_5-1.png" alt="分店網絡" /></span></a></li>
+		<li><a href="../services/index.php"><span class="menu-item"><img src="/images/common/tc/nav-item_6-1.png" alt="服務及支援" /></span></a></li>
+		<li><a href="../csr/index.php"><span class="menu-item"><img src="/images/common/tc/nav-item_7-1.png" alt="企業社會責任" /></span></a></li>
+	</ul>
+</div>
+
+<script type="text/javascript">
+
+</script>		</div>
+    </div>
+	
+	<div class="breadcrumbsContainer">
+	</div>
+	
+	<div class="innerContainer">
+		<!-- Compare List Start -->
+		<div class="compareContainer">
+			<span class="compareListContainer">
+				<a href="#" class="compareListBtn">
+					<span class="compareListBtn-left"></span><span class="compareListBtn-center">產品比較 <span class="compareListNum"></span><span class="compareListBtn-arrow"></span></span><span class="compareListBtn-right"></span>
+				</a>
+				<div class="compareList">
+					<ul>
+					</ul>
+					<div class="compareListMore">
+						<table>
+							<tr>
+								<td class="left">
+									<a href="#" class="compareListClear">清除全部</a>
+								</td>
+								<td class="right">
+									<a href="#" class="btn-orange">
+										<span class="btn-orange-left"></span><span class="btn-orange-center">查看所有產品比較</span><span class="btn-orange-right"></span>
+									</a>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="compareListNone">
+						沒有產品可以比較					</div>
+				</div>
+			</span>
+		</div>
+		<!-- Compare List End -->
+	
+		<div class="aboutPageContainer">
+			<div class="aboutPage innerPage">
+			
+				
+				<div class="aboutContainer">
+					
+					<p>Sorry, the page requested cannot be found. It is possible that the address has been typed incorrectly, or that the page no longer exists or has been revised. Please check and try again or <a href="/en/home/">click here</a> to go to our homepage.</p>
+					<p>對不起，由於你剛才輸入的網址可能有誤，或該網頁已不存在或已變更，我們未能提供你所查詢的網頁。請重新輸入，或<a href="/tc/home/">按此</a>轉往豐澤網站主頁。</p>
+					<p>对不起，由於你刚才输入的网址可能有误，或该网页已不存在或已变更，我们未能提供你所查询的网页。请重新输入，或<a href="/sc/home/">按此</a>转往丰泽网站主页。</p>
+					
+					
+			</div>
+		</div>
+		
+	</div>
+	
+	<div class="footerContainer">
+		<div class="footerTop">
+	<div class="footer">
+		<div class="footer-block">
+			<h3>我們的服務</h3>
+			<p>豐澤致力不斷創新，並為顧客引進更精彩的購物新體驗。查看我們所提供的服務及支援。</p>
+			<a href="../services/index.php">服務承諾</a>
+		</div>
+		<div class="footer-block-sep"></div>
+		<div class="footer-block">
+			<h3>分店網絡</h3>
+			<p>查找你所在區域的豐澤或經授權零售商</p>
+			<a href="../location/index.php">立即查找</a>
+		</div>
+		<div class="footer-block-sep"></div>
+		<div class="footer-block">
+			<h3>追蹤我們</h3>
+			<p>分享豐澤最新消息</p>
+			<a href="http://www.facebook.com/fortresshk" class="footer-top-facebook" target="_blank"><img src="/images/common/icon-footer-44-facebook.png" /></a>
+			<a href="http://e.weibo.com/fortresshk" class="footer-top-weibo" target="_blank"><img src="/images/common/icon-footer-44-weibo.png" /></a>
+			<!--<a href="../other/other_promo.php?id=401" class="footer-top-wechat wechatQrBtn"><img src="/images/common/icon-footer-44-wechat.png" /></a>-->
+			<a href="http://www.youtube.com/user/fortresshongkong" class="footer-top-youtube" target="_blank"><img src="/images/common/icon-footer-44-youtube.png" /></a>
+					</div>
+
+		<div class="clear"></div>
+	</div>
+</div>
+<div class="footerBorder"></div>
+<div class="footerBottom">
+	<div class="footer">
+
+		<div class="sitemap">
+			<table>
+				<tr>
+					<td>
+						<h6>產品一覽</h6>
+						<ul>
+							<li><a href="../product/listing.php">產品種類</a></li>
+							<li><a href="../product/brand.php">品牌</a></li>
+						</ul>
+					</td>
+					<td>
+						<h6>豐澤牌電器</h6>
+						<ul>
+							<li><a href="../ownbrand/index.php">品牌介紹</a></li>
+							<li><a href="../ownbrand/index.php">產品一覽</a></li>
+							<li><a href="../ownbrand/index.php">廣告推廣</a></li>
+                            <li><a href="../ownbrand/index.php">保養服務</a></li>
+						</ul>
+					</td>
+					<td>
+						<h6>推廣優惠</h6>
+						<ul>
+
+							<li><a href="../promotion/index.php">推廣優惠</a></li>
+
+						</ul>
+					</td>
+					<td>
+						<h6>易賞錢會員專區</h6>
+						<ul>
+							<li><a href="../moneyback/about.php">關於易賞錢</a></li>
+							<li><a href="../moneyback/promo.php">推廣優惠</a></li>
+							<li><a href="../moneyback/order.php">優先登記</a></li>
+							<li><a href="../moneyback/workshop.php">會員活動</a></li>
+
+						</ul>
+					</td>
+					<td>
+						<h6>生活新資</h6>
+						<ul>
+							<li><a href="../wave/index.php">生活新資</a></li>
+						</ul>
+					</td>
+					<td>
+						<h6>分店網絡</h6>
+						<ul>
+							<li><a href="../location/index.php">分店網絡</a></li>
+						</ul>
+					</td>
+					<td>
+						<h6>服務及支援</h6>
+						<ul>
+							<li><a href="../services/index.php">服務及支援</a></li>
+						</ul>
+					</td>
+					<td>
+						<h6>關於我們</h6>
+						<ul>
+							<li><a href="../other/about.php">公司簡介</a></li>
+							<li><a href="../other/milestone.php">發展里程碑</a></li>
+							<li><a href="../other/contact.php">聯絡我們</a></li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<div class="logo">
+			<div class="subscribe">
+				<h6>訂閱電子快訊</h6>
+				<div class="subscribeInput">
+					<input type="text" name="footerSubscribeEmail" id="footerSubscribeEmail" placeholder="請輸入你的電子郵件" />
+					<a class="subscribeBtn" href="javascript:void(0);"><img src="/images/common/footer-subsribe-btn.png" /></a>
+				</div>
+			</div>
+
+			<div class="popup">
+				<div class="subscribeForm">
+					<h3>訂閱電子快訊</h3>
+					<form id="cmsFooterForm" name="cmsFooterForm" method="post" action="../../../include/subscribeSave.php">
+						<table class="subscribeFormTable">
+							<input id="lang" name="lang" type="hidden" value="tc" />
+							<tr>
+								<td class="label">名字*</td>
+								<td>
+									<table class="subscribeFormName">
+										<tr>
+											<td width="1">稱謂</td>
+											<td width="1">
+												<div class="subscribeSelect subscribeTitle">
+													<select name="subscribeTitle" id="subscribeTitle">
+														<option value="Mr">先生</option>
+														<option value="Mrs">太太</option>
+														<option value="Ms">小姐</option>
+													</select>
+												</div>
+											</td>
+											<td width="1">名字</td>
+											<td><span class="inputText"><span></span><input type="text" id="firstName" name="firstName"/></span></td>
+											<td width="1">姓氏</td>
+											<td class="lastField"><span class="inputText"><span></span><input type="text" id="lastName" name="lastName"/></span></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td class="label">電話號碼</td>
+								<td>
+									<table class="telTable">
+										<tr>
+											<td width="80">
+												<div class="subscribeSelect telRegionSelect">
+													<select id="region" name="region">
+														<option value="852">香港</option>
+														<option value="86">中國</option>
+														<option value="853">澳門</option>
+														<option value="">其他</option>
+													</select>
+												</div>
+											</td>
+											<td width="120"><span class="inputText telRegion"><span></span><input type="text" id="phonePrefix" name="phonePrefix" /></span></td>
+											<td> - </td>
+											<td class="telLast"><span class="inputText telNum"><span></span><input type="text" id="phoneNumber" name="phoneNumber" maxlength="13"/></span></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td class="label">電郵地址*</td>
+								<td><span class="inputText"><span></span><input type="text" class="subscribeEmail" id="subscribeEmail" name="subscribeEmail"/></span></td>
+							</tr>
+							<tr>
+								<td colspan="2" align="center">
+									<img id="captcha" src="" alt="CAPTCHA Image" data-src="/include/securimage/securimage_show.php" />
+									<a id="resetBtn" href="javascript:;" >重設</a>
+								</td>
+							</tr>
+							<tr>
+								<td class="label">驗證碼*</td>
+								<td><span class="inputText"><span></span><input type="text" class="captcha" id="captchaTxt" name="captchaTxt"/></span></td>
+							</tr>
+							<tr>
+								<td colspan="3"><input type="checkbox" name="tnc" id="tnc">本人已閱讀及接受<a href="../../tc/other/privacy.php" target="_blank">個人身份証識別資料收集聲明</a>及<a href="../../tc/other/disclaimer.php " target="_blank">關於免責聲明、版權及責任限制的通知。</a></td>
+							</tr>
+							<tr>
+								<td colspan="2">*必填</td>
+							</tr>
+							<tr>
+								<td class="label">&nbsp;</td>
+								<td>
+									<a class="btn-orange" id="saveSubscribe" href="javascript:void(0);">
+										<span class="btn-orange-left"></span><span class="btn-orange-center">確定</span><span class="btn-orange-right"></span>
+									</a>
+									<a href="#" class="btn-orange" onclick="javascript: $.fancybox.close(); return false;">
+										<span class="btn-orange-left"></span><span class="btn-orange-center">取消</span><span class="btn-orange-right"></span>
+									</a>
+
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+			</div>
+
+
+			<div class="follow">
+				<h6>追蹤我們</h6>
+				<div class="followBtn">
+					<a href="http://www.facebook.com/fortresshk" target="_blank"><img src="/images/common/icon-footer-32-facebook.png" /></a>
+					<a href="http://e.weibo.com/fortresshk" target="_blank"><img src="/images/common/icon-footer-32-weibo.png" /></a>
+					<!--<a href="../other/other_promo.php?id=401" class="wechatQrBtn"><img src="/images/common/icon-footer-32-wechat.png" /></a>-->
+					<a href="http://www.youtube.com/user/fortresshongkong" target="_blank"><img src="/images/common/icon-footer-32-youtube.png" /></a>
+									</div>
+			</div>
+			<div class="icon">
+				<img src="/uploads/images/footer/award-icon-footer-01.png" alt="" />
+				<img src="/uploads/images/footer/award-icon-footer-02-1.png" alt="" />
+				<img src="/uploads/images/footer/award-icon-footer-03.png" alt="" />
+				<img src="/uploads/images/footer/award-icon-footer-04.png" alt="" />
+				<img src="/uploads/images/footer/award-icon-footer-05.png" alt="" />
+				<img src="/uploads/images/footer/award-icon-footer-06.png" alt="" />
+			</div>
+			<div class="hwl">
+				<a href="http://www.ckh.com.hk/tc/global/home.php" target="_blank">
+					<img src="/images/common/tc/logo-footer-aswatsons-hwl.png" />
+				</a>
+			</div>
+			<div class="clear"></div>
+		</div>
+
+	</div>
+</div>
+<div class="footerCopy">
+	<div class="footer">
+		<span class="left">
+			<a href="../other/about.php">關於我們</a> &nbsp; | &nbsp;
+			<a href="../other/contact.php">聯絡我們</a> &nbsp; | &nbsp;
+			<a href="../location/index.php">分店網絡</a> &nbsp; | &nbsp;
+			<a href="../other/sitemap.php">網站地圖</a> &nbsp; | &nbsp;
+			<a href="../other/disclaimer.php">免責條款</a> &nbsp; | &nbsp;
+			<a href="../other/privacy.php">私隱政策</a>
+		</span>
+		<span class="right">版權 © 2013 豐澤。 版權所有，不得轉載。</span>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+	if (lang == "en") {
+		$("[name='lang']:eq(0)").attr("href", location.href.replace(lang, "tc"));
+		$("[name='lang']:eq(1)").attr("href", location.href.replace(lang, "sc"));
+	}
+	else if (lang == "tc") {
+		$("[name='lang']:eq(0)").attr("href", location.href.replace(lang, "en"));
+		$("[name='lang']:eq(1)").attr("href", location.href.replace(lang, "sc"));
+	}
+	else {
+		$("[name='lang']:eq(0)").attr("href", location.href.replace(lang, "en"));
+		$("[name='lang']:eq(1)").attr("href", location.href.replace(lang, "tc"));
+	}
+
+	$(".eng").attr("href", "");
+	$(".eng").bind("click", function() {
+		alertBox('The English version will be available in mid-July. <br />Thank you for your support.');
+		return false;
+	});
+
+</script>
+	</div>
+	
+	
+</div>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	
+	init();
+	
+	compareList();
+	
+	$("a").each(function() {
+		var link = $(this).attr("href");
+		
+		if (link.indexOf("../") != -1) {
+			$(this).attr("href", link.replace("../", "/tc/"));
+		}
+	});
+
+});
+
+</script>
+</body>
+</html>

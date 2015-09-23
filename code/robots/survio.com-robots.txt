@@ -1,0 +1,5 @@
+User-agent: psbot
+Disallow: /
+User-agent: *
+Disallow:
+Sitemap: http://www.survio.com/sitemap.xml

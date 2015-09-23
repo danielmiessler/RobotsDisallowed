@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /beta/
+Disallow: /szukaj/
+Disallow: /pages/prywatnosc

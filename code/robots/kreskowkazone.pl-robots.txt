@@ -1,0 +1,13 @@
+User-agent: *
+Sitemap: http://www.animezone.pl/sitemap.xml
+Disallow: /szablon/css/
+Disallow: /images/
+Disallow: /includes/
+Allow: /includes/odcinki_stream_jw.php
+Allow: /includes/odcinki_stream_emb.php
+Allow: /includes/odcinki_stream_swf.php
+Allow: /includes/pobierz.php
+Allow: /images/favicon.ico
+Disallow: /szablon/js/
+Disallow: /konfiguracja.php
+Disallow: /silnik.php

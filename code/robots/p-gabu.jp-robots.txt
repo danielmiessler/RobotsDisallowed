@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head lang="ja">
+<meta charset="UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta content="86400" http-equiv="Expires" >
+
+
+	<title>ぱちガブッ！ - パチンコ・パチスロの攻略、ホール情報が満載！ | ぱちガブッ！</title>
+	<meta name="format-detection" content="telephone=no,email=no">
+	<meta name="description" content="パチンコ・パチスロの最新情報が満載のぱちガブッ！最新機種情報やパチンコ・パチスロの攻略情報などがどこよりも充実しています。更に全国のホール、激熱イベント情報、最新の実践動画なども検索いただけます。">
+	<meta name="keywords" content="パチンコ,パチスロ,スロット,攻略,攻略法,情報,ぱちガブッ">
+<link rel="shortcut icon" href="http://img.p-gabu.jp/assets/15091701/pc/seven/img/favicon.ico">
+<link rel="apple-touch-icon" href="http://img.p-gabu.jp/assets/15091701/pc/seven/img/touchicon_7go.png">
+<link type="text/css" rel="stylesheet" href="http://img.p-gabu.jp/assets/15091701/pc/seven/css/reset_7go.css" media="screen,print">
+<link type="text/css" rel="stylesheet" href="http://img.p-gabu.jp/assets/15091701/pc/seven/css/style_7go.css" media="screen,print">
+<!--[if lte IE 9]>
+<link type="text/css" rel="stylesheet" href="http://img.p-gabu.jp/assets/15091701/pc/seven/css/ie_7go.css" media="screen,print">
+<![endif]-->
+<!--[if lte IE 8]>
+<script type="text/javascript" src="http://img.p-gabu.jp/assets/15091701/pc/seven/js/html5shiv-printshiv_7go.js"></script>
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="http://img.p-gabu.jp/assets/15091701/pc/seven/css/style_modify_csol_7go.css" media="screen,print">
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://img.p-gabu.jp/assets/15091701/pc/gw/js/sbi_kuchikomi.js"></script>
+<script type="text/javascript">
+  (function () {
+    var tagjs = document.createElement("script");
+    var s = document.getElementsByTagName("script")[0];
+    tagjs.async = true;
+    tagjs.src = "//s.yjtag.jp/tag.js#site=epC1pSC";
+    s.parentNode.insertBefore(tagjs, s);
+  }());
+</script>
+<noscript>
+  <iframe src="//b.yjtag.jp/iframe?c=epC1pSC" width="1" height="1" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+</noscript>
+</head>
+<body class="body-pc">
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-63032804-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<div id="wrapper">
+
+<header id="header">
+	<div class="header-inner">
+		<h1 class="logo"><a href="http://p-gabu.jp/"><img src="http://img.p-gabu.jp/assets/15091701/pc/seven/img/header_logo_beta.png" width="180" height="50" alt="パチンコ・パチスロまるかじり　ぱちガブッ！"></a></h1>
+				<div class="header-keyword-search">
+			<div class="gadget-search-keyword">
+								<div class="search-type">
+					<input type="radio" name="search_type" id="header_hall_search" value="hall" onchange="toggleHeaderSearch('hall');" checked><label for="header_hall_search">ホール検索</label>
+				</div>
+				<div class="search-type">
+					<input type="radio" name="search_type" id="header_machine_search" value="machine" onchange="toggleHeaderSearch('machine');" ><label for="header_machine_search">機種検索</label>
+				</div>
+				<div class="search-type">
+					<input type="radio" name="search_type" id="header_content_search" value="content" onchange="toggleHeaderSearch('content');" ><label for="header_content_search">攻略記事検索</label>
+				</div>
+				<form action="http://p-gabu.jp/hall/search" method="get" name="hall_search" id="header_hall_form" class="header-form" accept-charset="utf-8">					<input id="header_hall_keyword" type="text" class="ipt-txt header-keyword" placeholder="ホール名入力" maxlength="50" name="hall_keyword" value="" />					<input type="submit" class="btn btn-rect btn-small btn-submit" name="hs" value="検索" id="form_hs" />				</form>				<form action="http://p-gabu.jp/contents/machine" method="get" id="header_machine_form" class="header-form is-hide" accept-charset="utf-8">					<input id="header_machine_keyword" type="text" class="ipt-txt header-keyword" placeholder="機種名入力" data-nps="a" autocomplete="off" maxlength="50" name="machine_keyword" value="" />					<input id="machine_submit" type="submit" class="btn btn-rect btn-small btn-submit" name="header_submit" value="検索" />					<input name="machine_type" value="0" type="hidden" id="form_machine_type" />				</form>				<form action="http://p-gabu.jp/contents/contents" method="get" id="header_content_form" class="header-form is-hide" accept-charset="utf-8">					<input id="header_content_keyword" type="text" class="ipt-txt header-keyword" placeholder="キーワード入力" maxlength="50" name="contents_keyword" value="" />					<input id="contents_submit" type="submit" class="btn btn-rect btn-small btn-submit" name="header_submit" value="検索" />					<input name="machine_type" value="0" type="hidden" id="form_machine_type" />					<input name="s15" value="all_check" type="hidden" id="form_s15" />				</form>			</div>
+		</div>
+								<div class="visitor">
+					<a class="btn btn-medium btn-login" href="https://p-gabu.jp/member/index">ログイン</a>
+				</div>
+			</div>
+                <nav id="navigation">
+		<ul class="navi-wrap">
+			<li class="navi-menu menu-top"><a href="http://p-gabu.jp/">TOP</a></li>
+			<li class="navi-menu menu-hall">
+				<a href="http://p-gabu.jp/hall/index" class="">ホール検索</a>
+			</li>
+			<li class="navi-menu menu-search">
+				<a href="http://p-gabu.jp/contents/index">機種・コンテンツ検索</a>
+			</li>
+			<li class="navi-menu menu-favorite">
+				<a href="https://p-gabu.jp/setting/index">設定・お気に入り</a>
+				<!--ul class="navi-child-wrap">
+					<li class="navi-child-menu"><a href="#">My新着</a></li>
+					<li class="navi-child-menu"><a href="#">Myカレンダー</a></li>
+					<li class="navi-child-menu"><a href="#">My〇〇〇〇</a></li>
+					<li class="navi-child-menu"><a href="#">My〇〇〇〇</a></li>
+					<li class="navi-child-menu"><a href="#">My〇〇〇〇</a></li>
+					<li class="navi-child-menu"><a href="#">My〇〇〇〇</a></li>
+				</ul-->
+			</li>
+			<li class="navi-menu menu-pachi2guide">
+				<a href="http://p-gabu.jp/guideworks/index"><img src="http://img.p-gabu.jp/assets/15091701/pc/seven/img/guidestation_menu_logo.png" width="108" height="18" alt="ガイドステーション"></a>
+				<!--ul class="navi-child-wrap">
+					<li class="navi-child-menu"><a href="http://p-gabu.jp/guideworks/video">動画</a></li>
+					<li class="navi-child-menu"><a href="http://p-gabu.jp/guideworks/blogindex">ブログ</a></li>
+					<li class="navi-child-menu"><a href="http://p-gabu.jp/guideworks/book">電子書籍</a></li>
+				</ul-->
+			</li>
+						<li class="navi-menu menu-contents">
+				<a href="#">各種サービス</a>
+				<ul class="navi-child-wrap">
+										<li class="navi-child-menu"><a href="http://p-gabu.jp/cprovider/index/146">777TOWN</a></li>
+										<li class="navi-child-menu"><a href="http://p-gabu.jp/cprovider/index/150">モバ７</a></li>
+										<li class="navi-child-menu"><a href="http://p-gabu.jp/cprovider/index/151">パチ&amp;スロタウン</a></li>
+									</ul>
+			</li>
+					</ul>
+	</nav></header>
+<script>
+var selected_type = $(".header-keyword-search input[type=radio]:checked").val();
+$(".header-keyword.ipt-txt").val($("#header_"+selected_type+"_keyword").val());
+$(".header-keyword.ipt-txt").on("change", function(){
+	$(".header-keyword.ipt-txt").val($(this).val());
+});
+function toggleHeaderSearch(type){
+		$('.header-form').addClass('is-hide');
+		$('#header_'+type+'_form').removeClass('is-hide');
+}
+</script>
+<div id="breadcrumbs"><ul class="topic-path"><li itemscope="itemscope" itemtype="http://data-vocabulary.org/Breadcrumb" class="active"><a itemprop="url" href="http://p-gabu.jp/">パチンコ・パチスロ情報サイト TOP</a></li></ul></div>
+<div id="contents" class="column-2 ">
+<script type="text/javascript">
+	document.title = "ぱちガブッ！ - パチンコ・パチスロの攻略、ホール情報が満載！";
+</script>
+<div class="col">
+	<section class="gadget-module notfound">
+		<header class="gadget-head">
+			<h1 class="head-main">ご指定のページが見つかりません</h1>
+		</header>
+		<div class="notfound-body">
+			<p class="notfound-text">リンクに問題があるか、ページが削除された可能性があります。<br>アドレスが間違っていないか再度ご確認ください。</p>
+			<div class="notfound-logo"><a href="http://p-gabu.jp/"><img src="http://img.p-gabu.jp/assets/15091701/pc/seven/img/logo_7go.gif" width="200" height="68" alt=""></a></div>
+		</div>
+	</section>
+</div>
+<div class="col-adsense">
+	<ul class="adsense-list">
+												<li data-ad-id="69" data-page-id="501" data-ad-pos="1"><!-- i-mobile for PC client script -->
+<script type="text/javascript">
+	imobile_pid = "40722"; 
+	imobile_asid = "508829"; 
+	imobile_width = 300; 
+	imobile_height = 250;
+</script>
+<script type="text/javascript" src="http://spdeliver.i-mobile.co.jp/script/ads.js?20101001"></script>
+</li>
+																<li data-ad-id="70" data-page-id="501" data-ad-pos="2"><!-- i-mobile for PC client script -->
+<script type="text/javascript">
+	imobile_pid = "40722"; 
+	imobile_asid = "508836"; 
+	imobile_width = 300; 
+	imobile_height = 250;
+</script>
+<script type="text/javascript" src="http://spdeliver.i-mobile.co.jp/script/ads.js?20101001"></script>
+</li>
+																<li data-ad-id="71" data-page-id="501" data-ad-pos="3"><!-- i-mobile for PC client script -->
+<script type="text/javascript">
+	imobile_pid = "40722"; 
+	imobile_asid = "508838"; 
+	imobile_width = 300; 
+	imobile_height = 250;
+</script>
+<script type="text/javascript" src="http://spdeliver.i-mobile.co.jp/script/ads.js?20101001"></script>
+</li>
+																<li data-ad-id="72" data-page-id="501" data-ad-pos="4"><!-- i-mobile for PC client script -->
+<script type="text/javascript">
+	imobile_pid = "40722"; 
+	imobile_asid = "508841"; 
+	imobile_width = 300; 
+	imobile_height = 250;
+</script>
+<script type="text/javascript" src="http://spdeliver.i-mobile.co.jp/script/ads.js?20101001"></script>
+</li>
+									</ul>
+</div></div>
+
+
+<div id="pagetop">
+	<a href="javascript:void(0);"><img src="http://img.p-gabu.jp/assets/15091701/pc/seven/img/btn_pagetop_7go.png" width="60" height="60" alt="ページの先頭に戻る"></a>
+</div>
+
+
+
+<footer id="footer">
+	<div class="nav-wrap">
+		<ul class="navi">
+			
+					<li><a href="http://p-gabu.jp/footer/index/user_policy/1">各種規約</a></li>
+					<li><a href="http://p-gabu.jp/footer/index/privacy_notice/1">個人情報保護方針</a></li>
+					<li><a href="http://p-gabu.jp/footer/index/use_of_personal_info/1">個人情報の取り扱いについて</a></li>
+					<li><a href="http://p-gabu.jp/footer/index/privacy_policy/1">プライバシーポリシー</a></li>
+					<li><a href="http://p-gabu.jp/copyright/index">コピーライト一覧</a></li>
+					<li><a href="http://www.sammy-net.jp/" target="_blank">会社概要</a></li>
+			
+						<li>
+				<form name="form_footer_contact" action="https://www.nozon.jp/social/gateway/inquiry" target="_blank" method="POST">
+					<input type="hidden" name="appId" value="0006" >
+					<input type="hidden" name="rtn_uri" value="http://p-gabu.jp/" >
+				</form>
+				<a href="javascript:document.form_footer_contact.submit();">お問い合わせ</a>
+			</li>
+					</ul>
+		<div class="jasrac">
+			<p><img src="http://img.p-gabu.jp/assets/img/jasrac.jpg" width="50" height="50" alt="JASRAC" /></p>
+			<p>JASRAC許諾番号：<br>6618221277Y45038</p>
+		</div>
+	</div>
+
+	
+	</footer><div id="modal-bg"></div>
+</div>
+
+
+
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+function switch_img(el){
+	el.src = "http://img.p-gabu.jp/assets/15091701/pc/seven/img/no_image_square.png";
+	$(el).attr('style', 'max-height:90px;max-width:100%;width: auto;margin: 0 auto;');
+}
+$('img').error(function(){
+	switch_img(this);
+});
+$( document ).ajaxComplete(function() {
+	$('img').error(function(){
+		switch_img(this);
+		return true;
+	});
+});
+//IEのため
+var userAgent = window.navigator.userAgent.toLowerCase();
+if (userAgent.indexOf("msie") > -1 || navigator.userAgent.match(/Trident\/7\./)) {
+	$( window ).load(function() {
+		$('img').each(function(){
+			if(this.complete == false && this.naturalWidth == 0 && this.naturalHeight == 0){
+				switch_img(this);
+			}
+		});
+	});
+} else {
+$("img").one("load", function() {
+	var t = this;
+	setTimeout(function(){
+		if(t.naturalWidth === 0 && t.naturalHeight === 0){
+			switch_img(t);
+		}
+	}, 1000);
+}).each(function() {
+	if(this.complete) $(this).load();
+});
+}
+</script>
+<script type="text/javascript" src="http://img.p-gabu.jp/assets/15091701/pc/seven/js/base_7go.js"></script>
+<script type="text/javascript" src="http://img.p-gabu.jp/assets/15091701/pc/seven/js/slide_7go.js"></script>
+<script type="text/javascript" src="http://img.p-gabu.jp/assets/15091701/pc/seven/js/calendar_7go.js"></script>
+<script type="text/javascript" src="http://img.p-gabu.jp/assets/15091701/pc/seven/js/machine_detail_7go.js"></script>
+
+<script type="text/javascript" src="http://img.p-gabu.jp/assets/15091701/pc/seven/js/box-slider-all.jquery.min.js" ></script>
+
+<!--[if lte IE 9]>
+<script type="text/javascript" src="http://img.p-gabu.jp/assets/15091701/pc/common/js/jquery.placeholder.min.js"></script>
+<script>$('input, textarea').placeholder();</script>
+<![endif]-->
+<form action="http://p-gabu.jp/hall/search" method="get" name="hall_search" id="hall_coord_search" accept-charset="utf-8"></form><script>
+function searchNearbyHalls() {
+    navigator.geolocation.getCurrentPosition(searchNearbyHallsOk, searchNearbyHallsError);
+}
+function searchNearbyHallsOk(position) {
+    var latitude = position.coords.latitude;
+    var longitude = position.coords.longitude;
+    $('<input>').attr('type', 'hidden').attr('name', 'coord').attr('value', latitude+','+longitude).appendTo('#hall_coord_search');
+    $('#hall_coord_search').submit();
+}
+function searchNearbyHallsError(error) {
+    if(error['code'] == 2){
+        toastMsg('現在の位置情報判定できませんでした。<br>端末の設定を確認してください。');
+    }
+    else if(error['code'] == 1){
+        toastMsg('位置情報取得の許可が必要です。<br>端末の設定を確認してください。');
+    }
+    else{
+        toastMsg('位置情報取得できませんでした。');
+    }
+}
+
+
+document.write(unescape("%3Cscript src='"+(("https:"==document.location.protocol)?"https:":"http:")+"//sammyf-s.snva.jp/js/naviplus_suggestitem_view.js' type='text/javascript' charset='UTF-8' %3E%3C/script%3E"));
+document.write(unescape("%3Cscript src='"+(("https:"==document.location.protocol)?"https:":"http:")+"//sammyf-s.snva.jp/js/naviplus_suggest.js' type='text/javascript' charset='UTF-8' %3E%3C/script%3E"));
+document.write(unescape("%3Clink src='"+(("https:"==document.location.protocol)?"https:":"http:")+"//sammyf-s.snva.jp/css/naviplus_suggest.css' type='text/css' rel='stylesheet' %3E%3C/link%3E"));
+
+$(function(){
+       $('input[data-nps]').each(function(){
+           var narrow = '';
+           var inputID = $(this).attr('id');
+           if($(this).attr('data-nps') == 'a') {
+               narrow = 'narrow6, narrow7';
+           }
+           else if($(this).attr('data-nps') == 'p') {
+               narrow = 'narrow6';
+           }
+           else if($(this).attr('data-nps') == 's') {
+               narrow = 'narrow7';
+           }
+
+           NPSuggest.bind({
+                server: "sammyf-s.snva.jp",        // サジェストのホスト(HTML連携の場合は不要)
+                accountID: "snwp",
+                inputAreaID: inputID,       // キーワード入力テキストボックス(input type="text")のidを指定
+                categoryAreaID: "",                     // 商品カテゴリ指定用プルダウン(select)のidを指定
+                field: narrow,                       // サジェストに使用するフィールド
+                suggestAreaClass: "suggest-area",
+                itemListClass: "np-item-suggest",
+                maxSuggest: 7,                          // サジェストの最大キーワード数
+                sortType: 1,                            // サジェスト結果の並び順タイプ ※詳細はマニュアルを参照
+                matchMode: "partial",                   // 前方一致("prefix") / 部分一致("partial")
+                groupByCategory: false,                 // サジェスト結果をカテゴリごとに分類するかどうか
+                alwaysOnTop: false
+            });
+       });
+});
+
+upload_domain = 'https://upload.p-gabu.jp';
+
+</script>
+
+</body>
+</html>

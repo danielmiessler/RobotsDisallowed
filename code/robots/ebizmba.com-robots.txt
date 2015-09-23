@@ -1,0 +1,9 @@
+User-agent: Mediapartners-Google
+Disallow:
+
+User-agent: *
+Disallow: /search
+Disallow: /thankyou
+Disallow: /stats/
+
+Sitemap: http://www.ebizmba.com/sitemap.xml

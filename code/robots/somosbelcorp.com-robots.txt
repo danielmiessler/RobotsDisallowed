@@ -1,0 +1,879 @@
+
+
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" /><title>
+	.:: BELCORP::.
+</title><meta name="description" content="Pasa tu pedido e informate de lo último de las marcas de Belcorp." /><meta name="author" content="Belcorp" /><meta property="og:title" content="Somos Belcorp| Cree en ti" /><meta property="og:description" content="Pasa tu pedido e informate de lo último de las marcas de Belcorp." /><meta property="og:image" content="https://sts.somosbelcorp.com/adfs/ls/Images/logo_intro.png" /><meta property="og:site_name" content="Somos Belcorp" /><link rel="stylesheet" type="text/css" href="Css/style.css" /><link rel="stylesheet" type="text/css" href="Css/nodal_style.css" /><link rel="stylesheet" type="text/css" href="Css/jquery-ui.css" />
+    <!--[if lt IE 9]>
+	    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+	<![endif]-->
+    <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.8.20.min.js"></script>
+
+    <script type="text/javascript">
+        var showUser = false;
+	var val_Usuario = false;
+	var val_Password = false;
+
+        //E2
+        $(document).ready(function () {
+            Jqueryplaceholder("ctl00_ContentPlaceHolder1_password");
+            $(".detalle").hide();
+            $(".DropDown").change(function () {
+		val_Usuario = false;
+		val_Password = false;
+                EjecutarMensajes();
+            });
+            EjecutarMensajes();
+
+	    $(".nav0")
+  		.mouseover(function() {
+	    	     $(this).find("img").attr("src", "images/ico0_b.png");
+	  	})
+		.mouseout(function() {
+	    	     $(this).find("img").attr("src", "images/ico0.png");
+  		});
+	    $(".nav1")
+  		.mouseover(function() {
+	    	     $(this).find("img").attr("src", "images/ico1_b.png");
+	  	})
+		.mouseout(function() {
+	    	     $(this).find("img").attr("src", "images/ico1.png");
+  		});
+	    $(".nav2")
+  		.mouseover(function() {
+	    	     $(this).find("img").attr("src", "images/ico2_b.png");
+	  	})
+		.mouseout(function() {
+	    	     $(this).find("img").attr("src", "images/ico2.png");
+  		});
+	    $(".nav3")
+  		.mouseover(function() {
+	    	     $(this).find("img").attr("src", "images/ico3_b.png");
+	  	})
+		.mouseout(function() {
+	    	     $(this).find("img").attr("src", "images/ico3.png");
+  		});
+        })
+
+	function AbrirMensajeLogin(tipo)
+	{
+		if ($(".DropDown").val() == "00")
+			return;
+		if(tipo == 1)
+		{
+			var tipo_display = "none";	
+			if(!val_Usuario)
+			{
+				tipo_display = "block";
+				val_Usuario = true;
+			}
+			else
+			{
+				tipo_display = "none";
+				val_Usuario = false;
+			}
+
+                    switch ($(".DropDown").val()) {
+                        case "PE": $('.alerta_red_peru_user').css({ "display": tipo_display });
+                            break;
+                        case "BO": $('.alerta_red_bolivia_user').css({ "display": tipo_display });
+                            break;
+                        case "CL": $('.alerta_red_chile_user').css({ "display": tipo_display });
+                            break;
+                        case "PA": $('.alerta_red_cam_user9').css({ "display": tipo_display });
+                            break;
+                        case "GT": $('.alerta_red_cam_user7').css({ "display": tipo_display });
+                            break;
+                        case "CR": $('.alerta_red_cam_user7').css({ "display": tipo_display });
+                            break;
+                        case "SV": $('.alerta_red_cam_user7').css({ "display": tipo_display });
+                            break;
+                        case "PR": $('.alerta_red_pr_user').css({ "display": tipo_display });
+                            break;
+                        case "DO": $('.alerta_red_do_user').css({ "display": tipo_display });
+                            break;
+                        case "MX": $('.alerta_red_mx_user').css({ "display": tipo_display });
+                            break;
+                        case "EC": $('.alerta_red_ec_user').css({ "display": tipo_display });
+                            break;
+                        case "VE": $('.alerta_red_ve_user').css({ "display": tipo_display });
+                            break;
+                        case "CO": $('.alerta_red_co_user').css({ "display": tipo_display });
+                            break
+			}
+
+		}else
+		{
+			var tipo_display = "none";	
+			if(!val_Password)
+			{
+				tipo_display = "block";
+				val_Password = true;
+			}
+			else
+			{
+				tipo_display = "none";
+				val_Password = false;
+			}
+                    switch ($(".DropDown").val()) {
+                        case "PE": $('.alerta_red_peru_clave').css({ "display": tipo_display });
+                            break;
+                        case "BO": $('.alerta_red_bolivia').css({ "display": tipo_display });
+                            break;
+                        case "CL": $('.alerta_red_chile_clave').css({ "display": tipo_display });
+                            break;
+                        case "PA": $('.alerta_red_cam_clave').css({ "display": tipo_display });
+                            break;
+                        case "GT": $('.alerta_red_cam_clave').css({ "display": tipo_display });
+                            break;
+                        case "CR": $('.alerta_red_cam_clave').css({ "display": tipo_display });
+                            break;
+                        case "SV": $('.alerta_red_cam_clave').css({ "display": tipo_display });
+                            break;
+                        case "PR": $('.alerta_red_pr_clave').css({ "display": tipo_display });
+                            break;
+                        case "DO": $('.alerta_red_do_clave').css({ "display": tipo_display });
+                            break;
+                        case "MX": $('.alerta_red_mx_clave').css({ "display": tipo_display });
+                            break;
+                        case "EC": $('.alerta_red_ec_clave').css({ "display": tipo_display });
+                            break;
+                        case "VE": $('.alerta_red_ve_clave').css({ "display": tipo_display });
+                            break;
+                        case "CO": $('.alerta_red_co_clave').css({ "display": tipo_display });
+                            break
+			}
+		}	
+	}
+
+        function Jqueryplaceholder(Control) {
+            var placeholder = $('#' + Control).attr('placeholder');
+            $('#' + Control).val(placeholder);
+            $('#' + Control).focus(function () {
+                var placeholdertext = $(this).attr('placeholder');
+                var pass = $('<input id="' + Control + '" class="inputForm" type="password" placeholder="' + placeholdertext + '">');
+                $(this).replaceWith(pass);
+                $('#' + Control).focus();
+                $('#' + Control).blur(function () {
+                    if ($(this).val().length == 0) {
+                        var placeholdertext = $(this).attr('placeholder');
+                        var pass = $('<input id="' + Control + '" class="inputForm" type="text" value="' + placeholdertext + '" placeholder="' + placeholdertext + '">');
+                        $(this).replaceWith(pass);
+                        Jqueryplaceholder(Control);
+                    }
+                })
+            });
+        }
+
+        function Background(ISO) {
+            if (ISO == "00" || ISO == "BR")
+                $("body").css("background-image", "url(Images/fondo_default.jpg)");
+            else {
+                var ImgPais = $('#ctl00_ContentPlaceHolder1_hdf_' + ISO).val();
+                if (ImgPais != null)
+                    $("body").css("background-image", "url(Images/" + ImgPais + ")");
+                else
+                    $("body").css("background-image", "url(Images/fondo_default.jpg)");
+            }
+        }
+
+        function EjecutarMensajes() {
+            //Background($(".DropDown").val());
+            var dpIso = $(".DropDown").val();
+            if (dpIso == null)
+                return;
+
+            if ($(".DropDown").val() != "00") {
+                $('.alerta_red_peru_user').css({ "display": "none" });
+                $('.alerta_red_peru_clave').css({ "display": "none" });
+                $('.alerta_red_bolivia_user').css({ "display": "none" });
+                $('.alerta_red_bolivia').css({ "display": "none" });
+                $('.alerta_red_chile_user').css({ "display": "none" });
+                $('.alerta_red_chile_clave').css({ "display": "none" });
+
+                $('.alerta_red_pr_user').css({ "display": "none" });
+                $('.alerta_red_pr_clave').css({ "display": "none" });
+                $('.alerta_red_do_user').css({ "display": "none" });
+                $('.alerta_red_do_clave').css({ "display": "none" });
+                $('.alerta_red_mx_user').css({ "display": "none" });
+                $('.alerta_red_mx_clave').css({ "display": "none" });
+
+                $('.alerta_red_ar_user').css({ "display": "none" });
+                $('.alerta_red_ar_clave').css({ "display": "none" });
+
+                $('.alerta_red_ec_user').css({ "display": "none" });
+                $('.alerta_red_ec_clave').css({ "display": "none" });
+                $('.alerta_red_ec_chat').css({ "display": "none" });
+
+                $('.alerta_red_ve_user').css({ "display": "none" });
+                $('.alerta_red_ve_clave').css({ "display": "none" });
+
+                $('.alerta_red_cam_user7').css({ "display": "none" });
+                $('.alerta_red_cam_user9').css({ "display": "none" });
+                $('.alerta_red_cam_clave').css({ "display": "none" });
+
+                $('.alerta_red_co_user').css({ "display": "none" });
+                $('.alerta_red_co_clave').css({ "display": "none" });
+
+                var result = $('#ctl00_ContentPlaceHolder1_hdfPaises').val().indexOf($(".DropDown").val());
+                if (result == -1) {
+                    if ($(".DropDown").val() == "BR") {
+                        dataLayer.push({
+                            'event': 'pageview',
+                            'virtualUrl': '/Login/Belcorp-BR'
+                        });
+                        location.href = "http://www.somosbelcorp.com.br";
+                    }
+                    //else	
+                    //location.href = $('#ctl00_ContentPlaceHolder1_hdfURL').val()+"/Default.aspx?PAI="+$('#ctl00_ContentPlaceHolder1_hdf_'+$(".DropDown").val()).val();
+                }
+                else {
+                    //openMant();
+                    //return;
+                    switch ($(".DropDown").val()) {
+                        case "PE":
+			    $('#RecuadroComunidad').css({ "display": "block" });
+			    $('#PagoLinea').css({ "display": "none" });
+                            break;
+                        case "BO":
+			    $('#RecuadroComunidad').css({ "display": "block" });
+			    $('#PagoLinea').css({ "display": "none" });
+                            break;
+                        case "CL":
+			    $('#RecuadroComunidad').css({ "display": "block" });
+			    $('#PagoLinea').css({ "display": "none" });
+                            break;
+                        case "PA":
+			    $('#RecuadroComunidad').css({ "display": "block" });
+			    $('#PagoLinea').css({ "display": "none" });
+                            break;
+                        case "GT":
+			    $('#RecuadroComunidad').css({ "display": "block" });
+			    $('#PagoLinea').css({ "display": "none" });
+                            break;
+                        case "CR":
+			    $('#RecuadroComunidad').css({ "display": "block" });
+			    $('#PagoLinea').css({ "display": "none" });
+                            break;
+                        case "SV":
+			    $('#RecuadroComunidad').css({ "display": "block" });
+			    $('#PagoLinea').css({ "display": "none" });
+                            break;
+                        case "PR":
+			    $('#RecuadroComunidad').css({ "display": "block" });
+			    $('#PagoLinea').css({ "display": "none" });
+                            break;
+                        case "DO":
+			    $('#RecuadroComunidad').css({ "display": "block" });
+			    $('#PagoLinea').css({ "display": "none" });
+                            break;
+                        case "MX":;
+			    $('#RecuadroComunidad').css({ "display": "block" });
+			    $('#PagoLinea').css({ "display": "none" });
+                            break;
+                        case "AR":;
+			    $('#RecuadroComunidad').css({ "display": "none" });
+			    $('#PagoLinea').css({ "display": "none" });
+                            break;
+                        case "EC":
+			    $('#RecuadroComunidad').css({ "display": "block" });
+			    $('#PagoLinea').css({ "display": "none" });
+                            break;
+                        case "VE":
+			    $('#RecuadroComunidad').css({ "display": "block" });
+			    $('#PagoLinea').css({ "display": "none" });
+                            break;
+                        case "CO":
+			    $('#RecuadroComunidad').css({ "display": "block" });
+			    $('#PagoLinea').css({ "display": "block" });
+                            break
+                    }
+                }
+            }
+            else {
+                $('.alerta_red_peru_user').css({ "display": "none" });
+                $('.alerta_red_peru_clave').css({ "display": "none" });
+                $('.alerta_red_bolivia_user').css({ "display": "none" });
+                $('.alerta_red_bolivia').css({ "display": "none" });
+                $('.alerta_red_chile_user').css({ "display": "none" });
+                $('.alerta_red_chile_clave').css({ "display": "none" });
+
+                $('.alerta_red_pr_user').css({ "display": "none" });
+                $('.alerta_red_pr_clave').css({ "display": "none" });
+                $('.alerta_red_do_user').css({ "display": "none" });
+                $('.alerta_red_do_clave').css({ "display": "none" });
+                $('.alerta_red_mx_user').css({ "display": "none" });
+                $('.alerta_red_mx_clave').css({ "display": "none" });
+
+                $('.alerta_red_ar_user').css({ "display": "none" });
+                $('.alerta_red_ar_clave').css({ "display": "none" });
+
+                $('.alerta_red_ec_user').css({ "display": "none" });
+                $('.alerta_red_ec_clave').css({ "display": "none" });
+                $('.alerta_red_ec_chat').css({ "display": "none" });
+
+                $('.alerta_red_ve_user').css({ "display": "none" });
+                $('.alerta_red_ve_clave').css({ "display": "none" });
+
+                $('.alerta_red_cam_user7').css({ "display": "none" });
+                $('.alerta_red_cam_user9').css({ "display": "none" });
+                $('.alerta_red_cam_clave').css({ "display": "none" });
+                $('.alerta_red_co_user').css({ "display": "none" });
+                $('.alerta_red_co_clave').css({ "display": "none" });
+
+		$('#PagoLinea').css({ "display": "none" });
+            }
+        }
+
+        function openDialog() {
+            _gaq.push(['_trackEvent', 'Link', 'Crear-cuenta']);
+            document.getElementById("bg_1").style.display = "block";
+        }
+        function closeit() {
+            document.getElementById("bg_1").style.display = "none";
+        }
+        function openMant() {
+            document.getElementById("divMant").style.display = "block";
+        }
+        function closeMant() {
+            document.getElementById("divMant").style.display = "none";
+        }
+
+        function RedirectBelcorpResponde() {
+            _gaq.push(['_trackEvent', 'Link', 'Belcorp-Responde']);
+            dataLayer.push({
+                'event': 'pageview',
+                'virtualUrl': '/Login/Belcorp-Responde'
+            });
+            window.open('https://www2.somosbelcorp.com/belcorpresponde/belcorp-responde.asp', '_blank');
+            return false;
+        }
+
+        function RedirectPagoLinea() {
+            _gaq.push(['_trackEvent', 'Link', 'Pago-Linea']);
+            dataLayer.push({
+                'event': 'pageview',
+                'virtualUrl': '/Login/Pago-Linea'
+            });
+            window.open('https://www.zonapagos.com/t_belstar/pagos.asp', '_blank');
+            return false;
+        }
+
+
+        function RedirectUneteaBelcorp() {
+            _gaq.push(['_trackEvent', 'Link', 'Unete-Belcorp']);
+            dataLayer.push({
+                'event': 'pageview',
+                'virtualUrl': '/Login/Unete-Belcorp'
+            });
+            window.open('http://www.uneteabelcorp.com/', '_blank');
+            return false;
+        }
+
+        function RedirectAdministrador() {
+            dataLayer.push({
+                'event': 'pageview',
+                'virtualUrl': '/Login/Administrador'
+            });
+            window.open('https://identidad.belcorp.biz/adfs/ls/?wa=wsignin1.0&wtrealm=https://sts.somosbelcorp.com/adfs/services/trust', '_self');
+            return false;
+        }
+
+        function RedirectRecuperarClave() {
+            dataLayer.push({
+                'event': 'pageview',
+                'virtualUrl': '/Login/RecuperarClave'
+            });
+            window.open('https://www.somosbelcorp.com/WebPages/RecuperarClave.aspx', '_blank');
+            return false;
+        }
+
+        function GALogOut() {
+            _gaq.push(['_trackPageview', '/Somosbelcorp/Logout']);
+            location.href = 'https://www.somosbelcorp.com';
+        }
+
+        function Ayuda(Tipo) {
+            if (Tipo == 1) {
+                _gaq.push(['_trackEvent', 'Login', 'Ayuda', 'Usuario']);
+            }
+            if (Tipo == 2) {
+                _gaq.push(['_trackEvent', 'Login', 'Ayuda', 'Clave']);
+            }
+        }
+
+
+        function Correo(Tipo) {
+            if (Tipo == 1) {
+                _gaq.push(['_trackEvent', 'Login', 'Crear-cuenta', 'GMail']);
+                dataLayer.push({
+                    'event': 'pageview',
+                    'virtualUrl': '/Login/Crear-cuenta-GMail'
+                });
+                window.open('http://www.gmail.com', '_blank');
+            }
+            if (Tipo == 2) {
+                _gaq.push(['_trackEvent', 'Login', 'Crear-cuenta', 'Yahoo']);
+                dataLayer.push({
+                    'event': 'pageview',
+                    'virtualUrl': '/Login/Crear-cuenta-Yahoo'
+                });
+                window.open('https://login.yahoo.com/config/login_verify2?.intl=pe&.src=ym', '_blank');
+            }
+            if (Tipo == 3) {
+                _gaq.push(['_trackEvent', 'Login', 'Crear-cuenta', 'Hotmail']);
+                dataLayer.push({
+                    'event': 'pageview',
+                    'virtualUrl': '/Login/Crear-cuenta-Hotmail'
+                });
+                window.open('https://login.live.com/login.srf?wa=wsignin1.0&rpsnv=11&ct=1362435576&rver=6.1.6206.0&wp=MBI&wreply=http:%2F%2Fmail.live.com%2Fdefault.aspx&lc=3082&id=64855&mkt=es-es&cbcxt=mai&snsc=1', '_blank');
+            }
+            if (Tipo == 4) {
+                _gaq.push(['_trackEvent', 'Login', 'Crear-cuenta', 'Outlook']);
+                dataLayer.push({
+                    'event': 'pageview',
+                    'virtualUrl': '/Login/Crear-cuenta-Outlook'
+                });
+                window.open('https://login.live.com/login.srf?wa=wsignin1.0&ct=1362435602&rver=6.1.6206.0&sa=1&ntprob=-1&wp=MBI_SSL_SHARED&wreply=https:%2F%2Fmail.live.com%2F%3Fowa%3D1%26owasuffix%3Dowa%252f&id=64855&snsc=1&cbcxt=mail', '_blank');
+            }
+        }
+
+        function AbrirFooter(Marca, Url) {
+            _gaq.push(['_trackEvent', 'Link', Marca, 'Site']);
+            dataLayer.push({
+                'event': 'pageview',
+                'virtualUrl': '/Login/' + Marca
+            });
+            window.open(Url, '_blank');
+            //blank.location.href = ;
+            return false;
+        }
+
+    </script>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-38299403-1']);
+        _gaq.push(['_setDomainName', 'none']);
+        _gaq.push(['_setAllowLinker', true]);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <script type="text/javascript">
+        var CE_SNAPSHOT_NAME = "Login";
+    </script>
+    <script type="text/javascript">
+        setTimeout(function () {
+            var a = document.createElement("script");
+            var b = document.getElementsByTagName("script")[0];
+            a.src = document.location.protocol + "//dnn506yrbagrg.cloudfront.net/pages/scripts/0017/4400.js?" + Math.floor(new Date().getTime() / 3600000);
+            a.async = true; a.type = "text/javascript"; b.parentNode.insertBefore(a, b)
+        }, 1);
+    </script>
+</head>
+<body class="body_login">
+    <!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-M8QMC8"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M8QMC8');</script>
+<!-- End Google Tag Manager -->
+    <!-- MANTENIMIENTO -->
+    <div id="divMant" style="display: none;position: absolute;top: 25%;left: 25%;z-index: 1111;" class="modal_mantenimiento">
+        <a href="#" onclick="closeMant();">
+            <img src="Images/MantenimientoBO.jpg" alt="" />
+        </a>
+    </div>
+    <!-- CIERRA MANTENIMIENTO -->
+    <!--POPUP-->
+    <div id="bg_1" style="display: none;">
+        <a href="javascript:closeit()" class="cerrar"></a>
+        <div id="header">
+        </div>
+        <div id="cuadro1">
+            <div id="text1">
+                Si eres Consultora y no tienes un "correo electrónico", ésta es la ocasión de obtener
+                uno:
+            </div>
+            <div id="titulo1">
+            </div>
+            <div id="text2">
+                Para emplearlo al ingresar a Somosbelcorp, en reemplazo del código de consultora.
+            </div>
+            <div id="titulo2">
+            </div>
+            <div id="text2">
+                Será más fácil recordarlo al ingresar y nosotros estaremos en contacto contigo mediante
+                él.
+            </div>
+            <div id="titulo3">
+            </div>
+            <div id="text2">
+                Solo debes escoger una de la opciones que te sugerimos aquí y proceder a crear el
+                tuyo.
+            </div>
+        </div>
+        <div id="cuadro2">
+            <div id="titulo4">
+            </div>
+            <div id="text3">
+                Te presentamos 4 opciones gratuitas para crear tu cuenta. Escoge tu favorita y sigue
+                los pasos que te indicarán.<br />
+                <br />
+                Te recomendamos pensar con anticipación en un <span class="text_bold">"nombre"</span>
+                para tu cuenta y una <span class="text_bold">"contraseña"</span> o <span class="text_bold">
+                    "clave secreta"</span>.
+            </div>
+            <div id="botones">
+                <a href="#" class="gmail" onclick="Correo(1);"></a><a href="#" class="yahoo" onclick="Correo(2);">
+                </a><a href="#" class="hotmail" onclick="Correo(3);"></a><a href="#" class="outlook"
+                    onclick="Correo(4);"></a>
+            </div>
+        </div>
+        <div id="bg_2">
+        </div>
+    </div>
+    <!--CIERRA POPUP-->
+    <!-- wrapper -->
+    <div class="wrapper">
+        <!-- top -->
+        <div class="top">
+            <div class="logo">
+                <img src="images/logo.png" alt="">
+            </div>
+            <div class="boxMenu">
+                <div class="nav">
+                    <div class="slogan" style="width:400px;left:410px;">
+                        <!-- <span>Ingresa a <b>una celebración</b> como nunca</span>
+			<span>habías visto, desde este año <b>cada 7 de Julio</b></span>
+			<span style="color: #b042b0"><b>¡CELEBRAMOS JUNTAS!</b></span> -->
+                    </div>
+                    <a id="RecuadroComunidad" href="http://comunidad.somosbelcorp.com" title="DESCUBRE NUESTRA COMUNIDAD SOMOS BELCORP" class="nav3" role="menu" region="Superior" parent="DESCUBRE NUESTRA COMUNIDAD SOMOS BELCORP"><i>
+                        <img src="images/ico3.png" alt="" /></i> <span>DESCUBRE NUESTRA</span> COMUNIDAD
+                        SOMOS BELCORP </a>
+                    <a href="javascript:openDialog()" rel="banner-login" title="CREA TU CORREO AQUÍ" class="nav2" role="menu" region="Superior" parent="CREA TU CORREO AQUÍ"><i>
+                        <img src="images/ico2.png" alt="" /></i> <span>CREA TU</span> CORREO AQUÍ</a>
+                    <a href="#" onclick="return RedirectUneteaBelcorp();" rel="banner-login" title="ÚNETE A BELCORP" class="nav1" role="outbound-link" region="Outbound Link" parent="ÚNETE A BELCORP"><i>
+                        <img src="images/ico1.png" alt="" /></i> <span>ÚNETE A</span> BELCORP </a>
+                    <a id="PagoLinea" style="display:none;" href="#" onclick="return RedirectPagoLinea();" rel="banner-login" title="Pagos en Linea" class="nav0"><i>
+                        <img src="images/ico0.png" alt="" /></i> <span>PAGOS EN</span> LINEA AQUI </a>
+                </div>
+            </div>
+        </div>
+        <!-- cierra top -->
+        <form name="aspnetForm" method="post" action="/adfs/ls/?wa=wsignin1.0&amp;wtrealm=https%3a%2f%2fwww.somosbelcorp.com%2f&amp;wctx=rm%3d0%26id%3dpassive%26ru%3d%252f&amp;wct=2015-09-23T06%3a25%3a15Z" id="aspnetForm">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKLTU4NjcwOTIwNA9kFgJmD2QWAgIBD2QWAgIDDxYCHgZhY3Rpb24FigEvYWRmcy9scy8/d2E9d3NpZ25pbjEuMCZ3dHJlYWxtPWh0dHBzJTNhJTJmJTJmd3d3LnNvbW9zYmVsY29ycC5jb20lMmYmd2N0eD1ybSUzZDAlMjZpZCUzZHBhc3NpdmUlMjZydSUzZCUyNTJmJndjdD0yMDE1LTA5LTIzVDA2JTNhMjUlM2ExNVoWBAICDw8WAh4EVGV4dAUOLjo6IEJFTENPUlA6Oi5kZAIEDw8WAh8BBRRzdHMuc29tb3NiZWxjb3JwLmNvbWRkZA==" />
+</div>
+
+<div>
+
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWJgLW/pOgBALnmcnFAQL22OmICAKzwqjMBALsjcWZCgLP2/fJAQLQqr7hCAL/7sCMCgKa2JqzDgKa2N6hBAKa2IK3BALkhfPjAgLqxPXPBAKus4MFArzPvZMNAoWulwYCha7n8gICha7D+AsCyZyF4gUC47a08wUC8uSZxwcCvOTd2gcCvOSR2gcCv+TJ2gcCv+Td2gcCv+SR2gcCueTt2gcCj+Sh2gcCu+Sp2gcCgeT52wcCkuTV2gcCkuTl2gcCkuSR2gcCvuTd2gcCiOTl2gcCs6WujAcCyKDz7AQC6djJsgw=" />
+</div><input type="hidden" name="__db" value="14" />
+        
+        
+        
+    <!-- Qualaroo for somosbelcorp.com -->
+    <!-- Paste this code right after the <body> tag on every page of your site. -->
+    <script type="text/javascript">
+        var _kiq = _kiq || [];
+        $(document).ready(function () {
+            _gaq.push(['_trackPageview', '/Somosbelcorp/Login']);
+
+            //Req 1805
+            $("#ctl00_ContentPlaceHolder1_ddlPais").change(
+            function () {
+                if ($("#ctl00_ContentPlaceHolder1_ddlPais").val() == "MX") {
+                    $("#Aviso").css('display', 'block');
+                }
+                else {
+                    $("#Aviso").css('display', 'none');
+                }
+            });
+
+            $("#Aviso").css('display', 'none');
+            $("#dialogo").css('display', 'none');
+
+            $("#Aviso").click(
+            function () {
+                $("#dialogo").dialog('open');
+            });
+
+            $("#dialogo").dialog({
+                autoOpen: false,
+                resizable: true,
+                modal: true,
+                closeOnEscape: true,
+                width: 650,
+                title: "Aviso de Privacidad",
+                draggable: true
+            });
+
+            //Req 1805
+
+        });
+
+	$(document).keypress(function (e) {
+	    if(e.which == 13)
+		ValidarFormulario();
+	});
+
+        function ValidarFormulario() {
+            $('#ctl00_ContentPlaceHolder1_hdfContrasenia').val($('#ctl00_ContentPlaceHolder1_password').val());
+            $('#ctl00_ContentPlaceHolder1_SubmitButton').click();
+        }
+    </script>
+    <!-- wrapMain -->
+    <div class="wrapMain">
+        <input type="hidden" name="ctl00$ContentPlaceHolder1$hdfContrasenia" id="ctl00_ContentPlaceHolder1_hdfContrasenia" />
+        <div class="webForm">
+            <div class="title">
+                <img src="images/logo_welcome.png" alt="">
+            </div>
+            <div class="formCont">
+                <div class="boxform">
+                    <div class="formcontrol pais">
+                        <input type="hidden" name="ctl00$ContentPlaceHolder1$hdfPaisSelect" id="ctl00_ContentPlaceHolder1_hdfPaisSelect" value="00" />
+                        <input type="hidden" name="ctl00$ContentPlaceHolder1$hdfPaises" id="ctl00_ContentPlaceHolder1_hdfPaises" value="PE;BO;CL;PA;GT;CR;SV;PR;DO;MX;AR;EC;VE;CO" />
+                        <input type="hidden" name="ctl00$ContentPlaceHolder1$hdfURL" id="ctl00_ContentPlaceHolder1_hdfURL" value="https://www2.somosbelcorp.com" />
+                        <input type="hidden" name="ctl00$ContentPlaceHolder1$hdf_AR" id="ctl00_ContentPlaceHolder1_hdf_AR" value="fondo_default.jpg" />
+                        <input type="hidden" name="ctl00$ContentPlaceHolder1$hdf_BO" id="ctl00_ContentPlaceHolder1_hdf_BO" value="LoginMujer.jpg" />
+                        <input type="hidden" name="ctl00$ContentPlaceHolder1$hdf_CL" id="ctl00_ContentPlaceHolder1_hdf_CL" value="LoginMujer.jpg" />
+                        <input type="hidden" name="ctl00$ContentPlaceHolder1$hdf_CO" id="ctl00_ContentPlaceHolder1_hdf_CO" value="LoginMujer.jpg" />
+                        <input type="hidden" name="ctl00$ContentPlaceHolder1$hdf_CR" id="ctl00_ContentPlaceHolder1_hdf_CR" value="LoginMujer.jpg" />
+                        <input type="hidden" name="ctl00$ContentPlaceHolder1$hdf_EC" id="ctl00_ContentPlaceHolder1_hdf_EC" value="LoginMujer.jpg" />
+                        <input type="hidden" name="ctl00$ContentPlaceHolder1$hdf_SV" id="ctl00_ContentPlaceHolder1_hdf_SV" value="LoginMujer.jpg" />
+                        <input type="hidden" name="ctl00$ContentPlaceHolder1$hdf_GT" id="ctl00_ContentPlaceHolder1_hdf_GT" value="LoginMujer.jpg" />
+                        <input type="hidden" name="ctl00$ContentPlaceHolder1$hdf_MX" id="ctl00_ContentPlaceHolder1_hdf_MX" value="LoginMujer.jpg" />
+                        <input type="hidden" name="ctl00$ContentPlaceHolder1$hdf_PA" id="ctl00_ContentPlaceHolder1_hdf_PA" value="LoginMujer.jpg" />
+                        <input type="hidden" name="ctl00$ContentPlaceHolder1$hdf_PE" id="ctl00_ContentPlaceHolder1_hdf_PE" value="LoginMujer.jpg" />
+                        <input type="hidden" name="ctl00$ContentPlaceHolder1$hdf_PR" id="ctl00_ContentPlaceHolder1_hdf_PR" value="LoginMujer.jpg" />
+                        <input type="hidden" name="ctl00$ContentPlaceHolder1$hdf_DO" id="ctl00_ContentPlaceHolder1_hdf_DO" value="LoginMujer.jpg" />
+                        <input type="hidden" name="ctl00$ContentPlaceHolder1$hdf_VE" id="ctl00_ContentPlaceHolder1_hdf_VE" value="LoginMujer.jpg" />
+                        <select name="ctl00$ContentPlaceHolder1$ddlPais" id="ctl00_ContentPlaceHolder1_ddlPais" tabindex="1" class="DropDown">
+	<option value="00">Elige tu Pa&#237;s</option>
+	<option value="BO">Bolivia</option>
+	<option value="BR">Brasil</option>
+	<option value="CL">Chile</option>
+	<option value="CO">Colombia</option>
+	<option value="CR">Costa Rica</option>
+	<option value="EC">Ecuador</option>
+	<option value="SV">El Salvador</option>
+	<option value="GT">Guatemala</option>
+	<option value="MX">M&#233;xico</option>
+	<option value="PA">Panam&#225;</option>
+	<option value="PE">Per&#250;</option>
+	<option value="PR">Puerto Rico</option>
+	<option value="DO">Rep&#250;blica Dominicana</option>
+	<option value="VE">Venezuela</option>
+
+</select>
+                    </div>
+                </div>
+                <div class="boxform">
+                    <div class="formcontrol user">
+                        <input name="ctl00$ContentPlaceHolder1$UsernameTextBox" type="text" id="ctl00_ContentPlaceHolder1_UsernameTextBox" class="inputForm" value="Usuario" onfocus="if (this.value == 'Usuario') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Usuario';}" />
+                    </div>
+                    <div id="Div1" class="btn">
+                        <a href="#" onclick="AbrirMensajeLogin(1)">
+                            <img src="images/help.png" alt="">
+                        </a>
+                    </div>
+                    <div id="Div2" class="detalle">
+                        <div class="detalle_item">
+                            Si no tienes correo electrónico registrado escribe los digitos de tu código de consultora.
+                        </div>
+                    </div>
+                </div>
+                <div class="boxform">
+                    <div class="formcontrol pass">
+                        <input name="ctl00$ContentPlaceHolder1$password" type="text" id="ctl00_ContentPlaceHolder1_password" class="inputForm" placeholder="Contraseña" />
+                    </div>
+                    <div id="Div3" class="btn">
+                        <a href="#" onclick="AbrirMensajeLogin(2)">
+                            <img src="images/help.png" alt="">
+                        </a>
+                    </div>
+                    <div id="Div4" class="detalle">
+                        <div class="detalle_item">
+                            Si es la primera vez que ingresas debes escribir los digitos de tu documento de
+                            indentidad.
+                        </div>
+                    </div>
+                </div>
+                <div class="boxform">
+                    <div class="formbtn">
+                        <div style="color: Red; text-align:left; padding-left:4px;">
+                            <span id="ctl00_ContentPlaceHolder1_ErrorTextLabel"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="boxform">
+                    <div class="formbtn">
+                        <!-- Req 1805 -->
+                        <div style="text-align:left; padding-left:4px;">
+                            <a id="Aviso" href="javascript:void(0)" style="font-family: Arial; color: gray; font-weight: bold;
+                                text-decoration: none;">Aviso de Privacidad</a>
+                        </div>
+                        <!-- Req 1805 -->
+                    </div>
+                </div>
+                <div class="boxform">
+                    <div class="formbtn">
+                        <label for="">
+                            Olvidaste tu contraseña? <a href="#" onclick="return RedirectRecuperarClave();" rel="formulario-login" title="Recupérala aquí" role="menu" region="Lateral" parent="Recupérala aquí">
+                                Recupérala aquí</a>
+                        </label>
+                    </div>
+                </div>
+                <div class="boxform">
+                    <div class="formbtn">
+                        <input type="button" class="btnCrear" value="INGRESA A TU CUENTA" onclick="ValidarFormulario()">
+                    </div>
+                    <div style="display: none;">
+                        <input type="submit" name="ctl00$ContentPlaceHolder1$SubmitButton" value="" id="ctl00_ContentPlaceHolder1_SubmitButton" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Req 1805 -->
+    <div id="dialogo" style=" text-align:left;">
+        <div style="overflow: auto; height: 300px; padding-right: 10px;">
+            <div style="text-align: center;">
+                <h4>
+                    Aviso de Privacidad</h4>
+            </div>
+            <p>
+                <br />
+                Belcorp México, S.A. de C.V., con domicilio en Prolongación Paseo de la Reforma
+                No. 1015, Torre B, Piso 7, Col. Desarrollo Santa Fe C.P.01376 México, D.F., México
+                (en adelante “Belcorp”) pone a su disposición el presente Aviso de Privacidad, a
+                fin de dar cumplimiento a la Ley Federal de Protección de Datos Personales en Posesión
+                de los Particulares (en adelante la “Ley”).
+                <br />
+                <br />
+                Datos Personales que se recaban.- Nombre, fecha de nacimiento, documento de identidad,
+                domicilio, dirección de correo electrónico, número de teléfono fijo y celular.
+                <br />
+                Finalidades y/o Usos de los datos personales.- Los datos personales que recaba Belcorp
+                son utilizados para tramitar su solicitud de inscripción como consultora de Belcorp.
+                <br />
+                Transferencias de datos personales.- Belcorp no cederá o transferirá sus datos personales
+                a terceros ajenos a Belcorp sin su conocimiento previo. Sin embargo, Belcorp podrá
+                transferir sus datos personales cuando dicha transferencia esté prevista en la Ley.
+                <br />
+                Derechos que le corresponden respecto a sus datos personales.- Usted podrá ejercitar
+                ante la Persona responsable de Datos Personales de Belcorp los derechos de acceso,
+                rectificación cancelación y oposición (derechos ARCO), establecidos en la Ley. Asimismo,
+                podrá revocar, en todo momento, el consentimiento que haya otorgado y que fuese
+                necesario para el tratamiento de sus datos personales, así como solicitar que se
+                limite el uso o divulgación de sus datos personales. Lo anterior, enviando su petición
+                al correo electrónico: privacidadbelcorpmx@belcorp.biz o a Prolongación Paseo de
+                la Reforma No. 1015, Torre B, Piso 7, Col. Desarrollo Santa Fe C.P. 01376 México,
+                D.F., México.
+                <br />
+                <br />
+                Cambios al Aviso de Privacidad.- En caso de existir cambios en el presente se pondrá
+                a su disposición la versión actualizada del mismo a través de la página web www.somosbelcorp.com
+                - www.uneteabelcorp.com o se le enviará la versión actualizada al domicilio que
+                nos proporcionó.
+                <br />
+                <br />
+                En caso de no estar de acuerdo con los términos del presente, le pedimos que lo
+                informe a la Persona responsable de Datos Personales de Belcorp dentro de los 5
+                días hábiles siguientes a haber recibido este Aviso de Privacidad, de lo contario,
+                se entenderá que está de acuerdo en que sus datos personales sean tratados de conformidad
+                con el presente.
+                <br />
+                <br />
+                De haber proporcionado datos de terceros, usted garantiza que ha obtenido las autorizaciones
+                necesarias para tal efecto y que les ha informado del tratamiento que se les dará
+                a sus datos personales en los términos de este aviso de Privacidad. En término de
+                la Ley y su Reglamento, le informamos que, ante la negativa de respuesta a la solicitudes
+                de derechos ARCO o inconformidad con la misma, usted puede presentar ante el Instituto
+                Federal de Acceso a la información y Protección de Datos, la correspondiente Solicitud
+                de Protección de Derechos en los plazos y términos fijados por la Ley y su Reglamento.
+                <br />
+                <br />
+                HAGO CONSTAR BAJO PROTESTA DE DECIR VERDAD QUE TODOS LOS DATOS REGISTRADOS EN ESTA
+                SOLICITUD Y CONTRATO SON VERDADEROS; POR LO QUE ASUMO MI RESPONSABLIDAD CON TODAS
+                LAS CONSECUENCIAS JURIDICAS EN LA PARTE CIVIL, PENAL Y COMERCIAL SOBRE DATOS INCLUIDOS
+                EN ESTE DOCUMENTO.
+                <br />
+                <br />
+                AL PULSAR EN EL BOTÓN “ENVIAR EL FORMULARIO” USTED ACEPTA EL TRATAMIENTO DE SUS
+                DATOS PERSONALES DE CONFORMIDAD CON LOS TÉRMINOS DEL PRESENTE AVISO DE PRIVACIDAD.
+            </p>
+        </div>
+    </div>
+    <!-- Req 1805 -->
+    <!-- Cierra wrapMain -->
+
+        </form>
+        <div class="alerta_red_peru_user" style="display:none;"></div>
+        <div class="alerta_red_peru_clave" style="display:none;"></div>
+        <div class="alerta_red_bolivia_user" style="display:none;"></div>
+        <div class="alerta_red_bolivia" style="display:none;"></div>
+        <div class="alerta_red_chile_user" style="display:none;"></div>
+        <div class="alerta_red_chile_clave" style="display:none;"></div>
+        <div class="alerta_red_pr_user" style="display:none;"></div>
+        <div class="alerta_red_pr_clave" style="display:none;"></div>
+        <div class="alerta_red_do_user" style="display:none;"></div>
+        <div class="alerta_red_do_clave" style="display:none;"></div>
+        <div class="alerta_red_mx_user" style="display:none;"></div>
+        <div class="alerta_red_mx_clave" style="display:none;"></div>
+        <div class="alerta_red_ec_user" style="display:none;"></div>
+        <div class="alerta_red_ec_clave" style="display:none;"></div>
+        <div class="alerta_red_ve_user" style="display:none;"></div>
+        <div class="alerta_red_ve_clave" style="display:none;"></div>
+        <div class="alerta_red_cam_user7" style="display:none;"></div>
+        <div class="alerta_red_cam_user9" style="display:none;"></div>
+        <div class="alerta_red_cam_clave" style="display:none;"></div>
+        <div class="alerta_red_co_user" style="display:none;"></div>
+        <div class="alerta_red_co_clave" style="display:none;"></div>
+    </div>
+    <!-- wrapper -->
+    <div class="footer_admin">
+	<div class="admin">
+            <a href="#" onclick="return RedirectAdministrador();" rel="menu-superior" title="Administrador">ADMINISTRADOR</a>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footerWrap">
+            <div class="logoFoot">
+                <a href="#">
+                    <img src="images/logo_foot.png" alt="">
+                </a>
+            </div>
+            <div class="linkFoot">
+                
+            </div>
+            <div class="logosRight">
+		<a href="#" style="padding-right: 20px;" onclick="return AbrirFooter('Belcorp', 'http://www.Belcorp.biz');" rel="marcas-link-inferior" title="BELCORP">
+		    <img src="images/belcorp.png" alt=""></a> 
+		<a href="#" style="padding-right: 20px;" onclick="return AbrirFooter('LBel', 'http://www.lbel.com');" rel="marcas-link-inferior" title="LBEL">
+		    <img src="images/lbel.png" alt=""></a>
+		<a href="#" style="padding-right: 20px;" onclick="return AbrirFooter('Esika', 'http://www.esika.biz');" rel="marcas-link-inferior" title="ESIKA">
+                    <img src="images/esika.png" alt=""></a>
+                <a href="#" style="padding-right: 70px;" onclick="return AbrirFooter('Cyzone', 'http://www.cyzone.com');" rel="marcas-link-inferior" title="CYZONE">
+                    <img src="images/cyzone.png" alt=""></a> 
+		<a href="https://es-la.facebook.com/SomosBelcorpOficial" target="_blank">
+		    <img src="images/face.png" alt=""></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

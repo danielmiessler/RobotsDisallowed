@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /$
+Allow: /advertiser/advertising
+Allow: /advertising
+Allow: /rates
+Allow: /forum
+Allow: /dmca
+Allow: /abuse
+Allow: /privacy
+Allow: /terms
+Allow: /login
+Allow: /lostpass
+Disallow: /

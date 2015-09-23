@@ -1,0 +1,385 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- ClipBucket v2 -->
+<meta name="copyright" content="ClipBucket - PHPBucket ClipBucket 2007 - 2015" />
+<meta name="author" content="Arslan Hassan - http://clip-bucket.com/arslan-hassan" />
+<link rel="shortcut icon" href="http://livetvcafe.net/favicon.ico">
+<link rel="icon" type="image/ico" href="http://livetvcafe.net/favicon.ico" />
+
+<!-- RSS FEEDS -->
+<link rel="alternate" type="application/rss+xml"
+				title="Recently added videos" href="http://livetvcafe.net/rss/recent" />
+<link rel="alternate" type="application/rss+xml"
+				title="Most Viewed Videos" href="http://livetvcafe.net/rss/views" />
+<link rel="alternate" type="application/rss+xml"
+				title="Top Rated Videos" href="http://livetvcafe.net/rss/rating" />
+<link rel="alternate" type="application/rss+xml"
+				title="Videos Being Watched" href="http://livetvcafe.net/rss/watching" />
+
+
+<meta name="keywords" content="tv online, online free tv, livetvcafe, free satellite tv, live cricket, live sports, online tv stream, free tv online, live streaming, live tv stream, tv live" />
+<meta name="description" content="LiveTvCafe provides online free Live TV channels. Watch Free TV streams &amp; Live Tv Streams from around the world on your computer, free Live Streaming." />
+<meta name="distribution" content="global" />
+
+
+<title>LiveTvCafe.net - Watch Live Tv Channels Online Free - Watch and Broadcast Live Tv Channels Free Online  (Powered by FreeTvAll)</title>
+
+<link href="http://livetvcafe.net/styles/cbv2new/theme/main.css" rel="stylesheet" type="text/css" />
+
+<!-- Setting Template Variables -->
+<!-- Setting Template Variables -->
+
+
+<script type="text/javascript">
+var baseurl = 'http://livetvcafe.net';
+var imageurl = 'http://livetvcafe.net/styles/cbv2new/images';
+</script>
+
+<!-- Including JS Files-->
+   <script src="http://livetvcafe.net/js/jquery.js" type="text/javascript"></script>
+    
+    <script src="http://livetvcafe.net/js/jquery_plugs/cookie.js" type="text/javascript"></script>
+    <script src="http://livetvcafe.net/js/rating_update.js" type="text/javascript"></script>
+    <script src="http://livetvcafe.net/js/checkall.js" type="text/javascript"></script>
+    <script src="http://livetvcafe.net/js/functions.js" type="text/javascript"></script>
+    <script src="http://livetvcafe.net/js/bbcode_js/ed.js" type="text/javascript"></script>
+ <!-- Including JS Files-->
+
+
+<!-- Including Headers -->
+                    <!-- Ending Headers -->
+
+
+
+<script type="text/javascript">
+
+window.onload = function() {
+	load_quicklist_box();
+	ini_cookies();
+}
+
+</script>
+
+<!-- Including Plugin Headers -->
+	    	<script src="http://livetvcafe.net/js/embed_video_mod/functions.js"></script>    			    	
+<link href="http://livetvcafe.net/plugins/avatar_selection/avatar_selection.css" rel="stylesheet" type="text/css" />
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$('input[name=avatar_selection]:first').attr('checked','checked').parent().find('img').addClass('avatarSelected');
+
+	
+
+	$('input[name=avatar_selection]').bind('click',function(){ 
+
+	$('.avatarSelected').removeClass('avatarSelected');
+
+	$(this).parent().find('img').addClass('avatarSelected')})
+
+});
+</script>
+    	    	<!--Including Pak Player HTML -->
+<script src="http://livetvcafe.net/player/pak_player/pplayer.js" type="text/javascript"></script>    <!-- Including Plugin Headers -->
+
+
+
+<script type="text/javascript">
+	
+	function ToggleView(obj) {
+		var obj = $(obj),
+			obj_id = obj.attr('id'),
+			parent = obj.parent().attr('id'),
+			target = $("#"+parent).next().attr('id');
+			//alert('#'+parent+' #'+target+' .grid_view');
+			if(obj_id == "grid") {
+				$('#'+parent+' + #'+target+' .grid_view').removeClass('list_view');
+				$.cookie("current_style","grid_view")
+				$('.vid_sp').hide();				
+			} else {
+				$('#'+parent+' + #'+target+' .grid_view').addClass('list_view');
+				$.cookie("current_style","list_view")
+				$('.vid_sp').show();				
+			}
+	}
+	
+$(document).ready(function() {					   
+	$('.user_login').hide();					   
+	
+	$('#user_login').toggle(
+		function() {
+			$('.user_login').slideDown('normal');
+		},
+		function() {
+			$('.user_login').slideUp('normal');
+		}
+								
+	);
+	
+//	$('#grid').click(
+//		function() {
+//			$('.grid_view').removeClass('list_view');
+//			$.cookie("current_style","grid_view")
+//			$('.vid_sp').hide();
+//		}
+//	);
+//	
+//	$('#list').click(
+//		function() {
+//			$('.grid_view').addClass('list_view');
+//			$.cookie("current_style","list_view")
+//			$('.vid_sp').show();
+//		}
+//	);	
+	
+	$('.tabs li').click(
+		function() {
+			$('.tabs li').removeClass('selected')
+			$(this).addClass('selected');
+		}
+	);
+	$('#lang_selector').click(function(){
+  //do redirection
+});
+
+	$('#lang_selector').change(function(){
+	  var optionSelectedValue = $('#lang_selector option:selected').val();
+	  if(optionSelectedValue)
+	  window.location = "?set_site_lang="+optionSelectedValue;
+	});
+	get_video('recent_viewed_vids','#index_vid_container');
+	
+});
+
+
+</script>
+
+
+<!--[if lte IE 6]>
+<style type="text/css">
+.clearfix { height: 1%; }
+</style>
+<![endif]-->
+
+<!--[if IE 7]>
+<link href="http://livetvcafe.net/styles/cbv2new/theme/ie7.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+
+
+<script type="text/javascript">
+	<!--
+		if (top.location!= self.location) {
+			top.location = self.location.href
+		}
+	//-->
+</script>
+
+
+
+<script type="text/javascript">var switchTo5x=true;</script><script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher:'8c695dcd-964f-4c61-8e19-e3bc5b112b14'});</script>
+
+
+<script language=JavaScript> 
+<!--
+ 
+//Disable right mouse click Script
+<!-- var message="Function Disabled!"; -->
+///////////////////////////////////
+function clickIE() {if (document.all) {alert(message);return false;}}
+function clickNS(e) {if
+(document.layers||(document.getElementById&&!document.all)) {
+if (e.which==2||e.which==3) {alert(message);return false;}}}
+if (document.layers)
+{document.captureEvents(Event.MOUSEDOWN);document.onmousedown=clickNS;}
+else{document.onmouseup=clickNS;document.oncontextmenu=clickIE;}
+document.oncontextmenu=new Function("return false")
+// -->
+</script>
+    
+<script type="text/javascript">
+//<!--
+$(document).ready(function() {$(".w2bslikebox").hover(function() {$(this).stop().animate({right: "0"}, "medium");}, function() {$(this).stop().animate({right: "-250"}, "medium");}, 500);});
+//-->
+</script>
+<style type="text/css">
+.w2bslikebox{background: url("http://1.bp.blogspot.com/--tscpVzcBjo/TdUarKtcAlI/AAAAAAAAA3I/qVkypiYO9rc/s150/w2b_facebookbadge.pn") no-repeat scroll left center transparent !important;display: block;float: right;height: 270px;padding: 0 5px 0 46px;width: 245px;z-index: 99999;position:fixed;right:-250px;top:15%;}
+.w2bslikebox div{border:none;position:relative;display:block;}
+.w2bslikebox span{bottom: 12px;font: 8px "lucida grande",tahoma,verdana,arial,sans-serif;position: absolute;right: 6px;text-align: right;z-index: 99999;}
+.w2bslikebox span a{color: #808080;text-decoration:none;}
+.w2bslikebox span a:hover{text-decoration:underline;}
+</style><div class="w2bslikebox" style=""><div><iframe src="http://www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FLivetvcafe%2F205044779700485&amp;width=245&amp;colorscheme=light&amp;show_faces=true&amp;connections=9&amp;stream=false&amp;header=false&amp;height=270" scrolling="no" frameborder="0" scrolling="no" style="border: medium none; overflow: hidden; height: 270px; width: 245px;background:#fff;"></iframe></div></div>
+
+</head>
+
+<!-- Global Header Ends Here --><body>
+
+<!-- ADMIN BAR -->
+<!-- ADMIN BAR -->
+
+<!-- Including Commong header -->
+<div class="container_container">
+    <div id="container" class="clearfix">
+        <!-- Loading Quicklist Box -->
+<div id="quicklist_box"></div>
+
+<div id="header">
+	<div>
+    <a href="http://livetvcafe.net"><img src="http://livetvcafe.net/styles/cbv2new/images/dot.gif" alt="LiveTvCafe.net - Watch Live Tv Channels Online Free - Watch and Broadcast Live Tv Channels Free Online  (Powered by FreeTvAll)" name="logo_icon" width="348" height="53" border="0" id="logo_icon" title="LiveTvCafe.net - Watch Live Tv Channels Online Free - Watch and Broadcast Live Tv Channels Free Online  (Powered by FreeTvAll)"  class="logo"></a>
+</div> <!--LOGO END-->
+    <div class="login_con clearfix">
+        <div class="user_login clearfix">
+                	<a href="http://livetvcafe.net/forgot.php" class="forget" title="Forget Username/Password, Click Here"></a>
+            <form action="http://livetvcafe.net/signup.php" method="post" name="login" style="margin:0px; padding:0px;">
+                <input type="text" value="Username" id="username" name="username" onfocus="if(this.defaultValue == this.value) this.value = ''" onblur="if(this.value == '') this.value = this.defaultValue"  />
+                <input type="password" value="Password" id="password" name="password" onfocus="if(this.defaultValue == this.value) this.value = ''" onblur="if(this.value == '') this.value = this.defaultValue"  />                
+                <input type="submit" value="Login" id="login" name="login"  />
+                <input type="checkbox" name="rememberme" id="rememberme"  /> <span class="remember">Remember Me</span>
+			</form> 
+         
+        </div> <!--USER_LOGIN CLASS END-->
+      
+         <div id="user_login">
+            <a href="javascript:void(0)">
+                        	Login
+                
+            </a>
+        </div> <!--USER_LOGIN ID END-->
+    </div> <!--LOGIN_CON END-->    
+</div> <!--HEADER ID END-->
+
+<div class="top_tabs clearfix">
+    <ul>
+    	        
+                	            	<li><a href="http://livetvcafe.net"  class="selected"   >Home</a></li>
+                            	            	<li><a href="http://livetvcafe.net/videos"   >All Channels</a></li>
+                            	            	<li><a href="http://livetvcafe.net/page/20/tv-listings"   >What's on TV</a></li>
+                            	            	<li><a href="http://livetvcafe.net/channels"   >Members</a></li>
+                            	            	<li><a href="http://livetvcafe.net/signup"   >Signup</a></li>
+                            	            	<li><a href="http://livetvcafe.net/upload"   >Add Channel</a></li>
+                        </ul>
+	
+</div> <!--TOP_TABS END-->
+
+<div id="navi_con">
+    <div class="navi">
+        <ul>
+                
+        
+        	<li>Welcome Guest ! Please <a href="http://livetvcafe.net/signup.php">Login</a> or <a href="http://livetvcafe.net/signup.php">Register</a></li>
+             
+         </ul>
+<div class="search_con">
+    <div class="s_bg">	
+        <form action="http://livetvcafe.net/search_result.php" method="get" name="search" id="search" style="margin:0px; padding:0px;">               
+            <input name="query" id="query" type="text" class="searchbar" value="" />
+            <select name="type" class="s_type">
+                            <option value="videos" >videos</option>
+                            <option value="groups" >groups</option>
+                            <option value="users" >users</option>
+                        </select>                                 
+            <input name="submit" type="submit" class="searchbutton" value="Search" />
+        </form>
+    </div> <!--S_BG END-->    
+</div> <!--SEARCH_CON END-->
+    </div> <!--NAVI END-->
+</div> <!--NAVI_CON END-->        <div class="nav_shadow"></div>
+        <div id="content" style="">
+        
+        
+        
+        <!-- Message -->
+        
+
+
+
+
+                                        <h2>404 Error</h2>
+<p>Requested page not found.</p>                                        </div> <!--CONTENT END-->
+        <div class="clear"></div>
+        <div class="search_footer clearfix">
+            <div class="foot_s_con">
+                <div class="advance" title="Advanced Search"></div>
+                <form name="search-form" method="get" action="http://livetvcafe.net/search_result.php">
+                    <input type="text" name="query" value=""  />
+                    <input type="submit" value="Search" class="foot_s_btn" name="cbsearch" />
+                </form>            
+            </div> <!--FOOT_S_CON END-->
+        </div> <!--SEARCH_FOOTER END-->
+        <div id="footer">
+            <div class="changer">
+            <div class="copyright">Powered By FreeTvAll</div> 
+			           
+                <div class="ch_left"></div>        	
+                <div class="ch_right"></div>
+            </div> <!--CHANGER END-->
+            <div class="ch_shadow"></div>
+            <!--FOOTER CLASS END-->
+            <div class="footer">
+	<div class="footer_copyr">
+    	&copy; LiveTvCafe.net - Watch Live Tv Channels Online Free 2015
+   	</div>
+    <ul class="clearfix">
+    
+    	
+        
+                	            	<li><a href="http://livetvcafe.net"  >Home</a></li>
+                            	            	<li><a href="http://livetvcafe.net/contact"  >Contact Us</a></li>
+                            	            	<li><a href="http://livetvcafe.net/page/1/about-us"  >About Us</a></li>
+                            	            	<li><a href="http://livetvcafe.net/page/3/terms-of-serivce"  >Terms of services</a></li>
+                            	            	<li><a href="http://livetvcafe.net/page/4/help"  >Help</a></li>
+                        </ul>
+    <div class="clearfix"></div>
+
+	
+
+
+<!-- Histats.com  START  (standard)-->
+<script type="text/javascript">document.write(unescape("%3Cscript src=%27http://s10.histats.com/js15_gif.js%27 type=%27text/javascript%27%3E%3C/script%3E"));</script>
+<a href="http://www.histats.com" target="_blank" title="web statistic" ><script  type="text/javascript" >
+try {Histats.startgif(1,1516020,4,10042,"");
+Histats.track_hits();} catch(err){};
+</script></a>
+<noscript><a href="http://www.histats.com" alt="web statistic" target="_blank" ><div id="histatsC"><img border="0" src="http://s4is.histats.com/stats/i/1516020.gif?1516020&103"></div></a>
+</noscript>
+<!-- Histats.com  END  -->
+
+
+
+<span style="display: none; visibility: hidden; height: 0px;"><script type="text/javascript" src="http://widgets.amung.us/small.js"></script><script type="text/javascript">WAU_small('syurorb1fel8')</script></span>
+
+
+<b>All TV channels are third party links available free on the internet and we do not stream any of the channels for any information contact <a class="__cf_email__" href="/cdn-cgi/l/email-protection" data-cfemail="197f6b7c7c6d6f787575597e74787075377a7674">[email&#160;protected]</a><script data-cfhash='f9e31' type="text/javascript">
+/* <![CDATA[ */!function(){try{var t="currentScript"in document?document.currentScript:function(){for(var t=document.getElementsByTagName("script"),e=t.length;e--;)if(t[e].getAttribute("data-cfhash"))return t[e]}();if(t&&t.previousSibling){var e,r,n,i,c=t.previousSibling,a=c.getAttribute("data-cfemail");if(a){for(e="",r=parseInt(a.substr(0,2),16),n=2;a.length-n;n+=2)i=parseInt(a.substr(n,2),16)^r,e+=String.fromCharCode(i);e=document.createTextNode(e),c.parentNode.replaceChild(e,c)}t.parentNode.removeChild(t);}}catch(u){}}()/* ]]> */</script></b>
+
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-19595013-5']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+
+    <div class="footer_sp"></div>
+    <div align="center"><!-- Do not remove this copyright notice -->
+Powered by <a href="http://clip-bucket.com/">ClipBucket</a> 2.0.91 | <a href="http://clip-bucket.com/arslan-hassan">Arslan Hassan</a>
+<!-- Do not remove this copyright notice --></div>
+</div>        </div> <!--FOOTER ID END-->
+    </div>
+</div>
+</body>
+</html>

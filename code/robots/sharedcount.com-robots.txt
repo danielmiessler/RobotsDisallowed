@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>SharedCount: Social URL Analytics</title>
+<meta name="description" content="Track URL shares, likes, tweets, and more.">
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+<meta name="msapplication-square70x70logo" content="/smalltile.png"/>
+<meta name="msapplication-square150x150logo" content="/mediumtile.png"/>
+<meta name="msapplication-wide310x150logo" content="/widetile.png"/>
+<meta name="msapplication-square310x310logo" content="/largetile.png"/>
+<meta name="google-site-verification" content="3tNgTpoX37-FIc7VT3QcnbS61DKyapZ81aP1XZDz8yo"/>
+<link rel="stylesheet" href="/css/style.css?v=20150224">
+ 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+ 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+ 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script>
+window.SharedCount = { 
+		settings : {
+			host : "free.sharedcount.com",
+			apikey : "479dfb502221d2b4c4a0433c600e16ba5dc0df4e",
+			login : null
+		},
+		trackEvent: function(category, action, label, value){
+			if(SharedCount.settings.authenticated){
+				$.post("/admin/user/event.php", {category: category, action:action, label:label, value:value}, function(){});
+			}
+		}
+};
+</script>
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-19686383-1']);
+_gaq.push(['_addIgnoredRef', 'sharedcount.com']);
+_gaq.push(['_setDomainName', 'sharedcount.com']);
+_gaq.push(['_setSiteSpeedSampleRate', 100]);
+_gaq.push( ['_trackPageview', location.pathname + location.search + location.hash]);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+</script>
+<script src="/js/script.js?v=20150224"></script>
+<script>
+var domain = location.hostname === "www.sharedcount.com" ? "https://sharedcount-www.appspot.com" : "";
+$.get(domain + "/admin/user/info.php", function(data){
+	if(data.host && data.apikey){
+		SharedCount.settings = data;
+	}
+	$(document).trigger("authcheck");
+	$(function(){
+		if(SharedCount.settings.apikey){
+			$(".personalized-apikey").text(SharedCount.settings.apikey); 
+			$(".personalized-host").text(SharedCount.settings.host)	
+		}
+		$(".loggedout-controls span,.loggedin-controls span").removeClass("hidden");
+		if(SharedCount.settings.authenticated){
+			$(".loggedout-controls").hide();
+			$(".loggedin-controls").show();
+			var plan = data.host.split(".")[0];
+			(new Image()).src="https://docs.sharedcount.com/?app[plan]=" + plan + "&app[key]=" + data.apikey;
+		}
+		else{
+			$(".loggedout-controls").show();
+			$(".loggedin-controls").hide();
+		}
+		
+		
+	});
+	
+})
+</script>
+</head>
+<body>
+<div id="container" style="">
+<header>
+<a href="/"><img src="/logo.png" alt="Shared Count" style="
+		    width: 500px;
+		"></a>
+<h2>Track URL shares, likes, tweets, and more.</h2>
+</header>
+<div class="navbar navbar-fixed-top navbar-inverse" style="border: 0;">
+<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<div class="navbar-inner">
+<div class="container" style="	padding-left: 0;	margin-left: 0;">
+<a class="navbar-brand" href="/"><img style="margin-top: -2px;width:inherit; height:19px" src="/APpd7.png" alt="Shared Count"></a>
+<div class="nav-collapse collapse navbar-collapse bs-navbar-collapse">
+<ul class="nav navbar-nav">
+<li class=""><a href="/">Home</a></li>
+<li><a href="/dashboard.php" title="Multi-URL Dashboard">URL Dashboard</a></li>
+<li><a href="/faq.php" title="Frequently Asked Questions">FAQ</a></li>
+<li><a href="http://docs.sharedcount.com/">API Docs</a></li>
+<li><a href="/pricing.php">Pricing</a></li>
+<li><a href="mailto:info@sharedcount.com">Contact</a></li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li class="loggedin-controls"><a href="/admin/user/home.php"><span class="hidden">Account</span></a></li>
+<li class="loggedin-controls"><a href="/admin/logout.php"><span class="hidden">Logout</span></a></li>
+<li class="loggedout-controls"><a href="/admin/login.php"><span class="hidden">Login</span></a></li>
+<li class="loggedout-controls"><a href="/admin/signup.php"><span class="hidden">Sign Up</span></a></li>
+</ul>
+</div> 
+</div>
+</div>
+</div>
+<style>#stats{display:none;}</style>
+<script src="js/main.js"></script>
+<div class="row" id="main">
+<noscript>
+<h2>This site requires JavaScript to function.</h2>
+</noscript>
+<div id="main">
+<form action="index.php" method="get" id="mainform">
+<input type="url" name="url" id="url" required placeholder="http://www.example-url.com/"/>
+<input type="submit" class="btn-lg btn-primary" value="Analyze"/>
+</form>
+<div id="suggestion" class="alert alert-warning" style="display:none;">
+</div>
+<div id="stats">
+<h1>URL: <span id="urlfordata"></span></h1>
+<h3>Facebook</h3>
+Likes: <span id="fb-likes"></span> <br/>
+Shares: <span id="fb-shared"></span> <br/>
+Comments: <span id="fb-comments"></span> <br/>
+Total: <span id="fb-total"></span> <br/>
+<h3>Twitter</h3>
+Tweets: <span id="tweets"></span> <br/>
+<h3>Google +1</h3>
++1s: <span id="gplus"></span> <br/>
+<h3>Pinterest</h3>
+Pinned: <span id="pinterest"></span> <br/>
+<h3>LinkedIn</h3>
+Shares: <span id="linkedin"></span> <br/>
+<h3>StumbleUpon</h3>
+Stumbles: <span id="stumbles"></span> <br/>
+</div>
+</div>  
+</div>
+ 
+<footer class="footer">
+<div class="">
+<p>
+<p class="twitter-button"><a href="http://twitter.com/sharedcount" class="twitter-follow-button" data-width="160px" data-show-count="false" data-align="bottom">Follow @sharedcount</a></p>
+<p>&nbsp;</p>
+<p class="">
+<p class="">SharedCount, Inc.</p>
+<p><small><a href="/admin/docs/privacy.php">Privacy Policy</a> | <a href="/admin/docs/terms.php">Terms of Service</a></small></p>
+</p>
+</form>
+<script>
+if(!location.pathname.match(/^\/admin/)){
+	$(window).load(function(){		
+		!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+	});
+	
+}
+else{
+	$(function(){
+		$(".twitter-button").remove();
+		
+	});
+	
+}
+	</script>
+</div>
+</footer>
+ 
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-W8WDX9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-W8WDX9');</script>
+ 
+</body>
+</html>

@@ -1,0 +1,7 @@
+User-Agent: stress-agent
+Disallow: /
+
+User-agent: *
+Crawl-delay: 1
+Disallow: /ist/przekieruj.asp*
+Disallow: /ist/przekieruj_ftp.asp*

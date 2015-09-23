@@ -1,0 +1,19 @@
+User-agent: *
+Disallow: /index.php
+
+Disallow: /beta
+
+Disallow: /beta1
+
+Disallow: /beta2
+
+Disallow: /beta3
+
+Disallow: /banners/
+Disallow: /images/
+Disallow: /includes/
+Disallow: /languages/
+Disallow: /modules/
+Disallow: /plugins/
+Disallow: /skins/
+Disallow: /temp/

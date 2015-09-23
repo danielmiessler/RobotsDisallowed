@@ -1,0 +1,494 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>NICEMAIL(WSRV3) ver 6.0</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="SHORTCUT ICON" href="favicon.ico">
+        <style type="text/css">
+            .AlrtErrTxt {color:#C00;font-weight:bold;}
+			.bg_left {background-image:url(../imx/left_img.jpg); background-repeat:no-repeat;}
+			body {margin:0px;padding:0px;font-family:Verdana, Arial, Helvetica, sans-serif;font-size:11px;}
+			form {margin:0px;padding:0px;}
+			img { border:0px;}
+			a { color:#000000; text-decoration:none; }
+			a:hover { color:#000000; text-decoration:underline;}
+			.txt_enter {color:#d8d588;}
+			.txt_wht { color:#FFFFFF; font-size:12px; }
+			.txt_wht3 { color:#FFFFFF; }
+			.txt_wht3 a {font-size:12px; color:#FFFFFF; text-decoration:none; font-weight:bold;}
+			.txt_wht3 a:hover { color:#FFFFFF; text-decoration:underline;}
+			.txt_wht2 { color:#FFFFFF; }
+			.txt_wht2 a { color:#FFFFFF; text-decoration:none;}
+			.txt_wht2 a:hover { color:#FFFFFF; text-decoration:underline;}
+			.menu_txt { font-size:12px; color:#FFFFFF;}
+			.menu_txt a { color:#FFFFFF; text-decoration:none;}
+			.menu_txt a:hover { color:#a200ff; text-decoration:none;}
+			.txt_left {font-size:12px; color:#1f498f; font-weight:bold;}
+			.txt_left a {font-size:12px; color:#1f498f; text-decoration:none;}
+			.txt_left a:hover {font-size:12px; color:#1f498f; text-decoration:underline;}
+			.txt_left1 {font-size:18px; color:#1f498f; font-weight:bold;}
+			.txt_left1 a {font-size:18px; color:#1f498f; text-decoration:none;}
+			.txt_left1 a:hover {font-size:18px; color:#1f498f; text-decoration:underline;}
+			.txt_best { color:#8f7f76; }
+			.txt_best a { color:#8f7f76; text-decoration:none;}
+			.txt_best a:hover { color:#8f7f76; text-decoration:underline;}
+			.link_footer { color:#0d5558; font-weight:bold; font-size:10px;}
+			.link_footer a { color:#0d5558; text-decoration:none;}
+			.link_footer a:hover { color:#0d5558; text-decoration:underline;}
+
+			#container      { position:relative; width:390px; height:290px; z-index:100;}
+			#lyr0, #lyr1, #lyr2     { position:absolute; visibility:hidden; left:0px; top:0px; z-index:1 }
+			a:link.on, a:visited.on { color:#28319B; text-decoration:none; background-color:#d8bd88; display:block; height:25px; line-height:25px; vertical-align:middle;}
+			a:link.off, a:visited.off { color:#fff; text-decoration:none; display:block; height:25px; line-height:25px; vertical-align:middle; }
+			a:link.done, a:visited.done { color:#fff; text-decoration:none;}
+			a.on:hover, a.off:hover, a.done:hover { text-decoration:underline}
+        </style>
+		
+<script src = "browser.js"></script>
+<SCRIPT>
+var user = ''
+var error = ''
+var st = window.location.search
+var argv = ''
+
+if (st) {
+  var slen = st.length
+  var est = st.indexOf("&error")
+  var ust = st.indexOf("?user")
+  var ast = st.indexOf("?argv")
+  if (est > -1) {
+    error = st.substr(est+7)
+    slen = est
+  }
+  if (ust > -1)
+    user = st.substring(ust+6, slen)
+  if (ast > -1)
+    argv = st.substr(ast)
+}
+
+function selectField() {
+  var df = document.p
+  if (argv){
+    var ars = argv.split('&')
+    for (i=0; i<ars.length; i++)
+      df.argv[i].value = ars[i].substr(ars[i].indexOf('=')+1)
+  }
+  if (user) {
+    df.user.value = user
+    df.password.focus()
+  }
+  else
+    df.user.focus()
+}
+
+function errorHTML() {
+  var s=''
+  var s1=''
+  var i = 0;
+
+  if (error)
+    s1=unescape(error)
+
+  if(error && s1 && s1.length) {
+    for(i=0; i< s1.length; i++)
+    {
+      if((s1.charCodeAt(i) < 48) || (s1.charCodeAt(i) > 122) ||
+        ((s1.charCodeAt(i) > 57) && (s1.charCodeAt(i) < 65)) ||
+        ((s1.charCodeAt(i) > 90) && (s1.charCodeAt(i) < 97))   ) {
+        s1 = s1.substring(0, i) + " " + s1.substring(i + 1, s1.length);
+      }
+    }
+  }
+  if(error || s1)
+    error = s1
+  if (error || user)
+    s+='<tr><td>&nbsp;</td><td><div class="logErr">' + 
+        '<table border="0" cellspacing="0" cellpadding="0">' +
+        '<tr><td valign="top">' + 
+        '<img src="imx/Error_Large.gif" width="21" height="20" alt="Error" vspace="3">' +
+        '&#160;&#160;</td><td><span class="AlrtErrTxt">'
+
+  if (error) 
+    s+=error
+  
+  if (user && !error)
+    s+='Authentication Failed<br>Reenter your username and password.<br>&nbsp<br>'
+ 
+  if (error || user)
+    s+='</span></td></tr></table></div></td></tr>'
+
+  document.write(s)
+}
+
+function openPop(f, name) {
+  var lang ='en'
+  window.open(lang + '/' + f + '&lang=' + lang, name,
+    'resizable=yes, scrollbars=yes, width=650,height=460')
+}
+applyCSS();
+
+var origWidth, origHeight;
+if (document.layers) {
+	origWidth = window.innerWidth; origHeight = window.innerHeight;
+	window.onresize = function() { if (window.innerWidth != origWidth || window.innerHeight != origHeight) history.go(0); }
+}
+
+var cur_link;
+function doLinkClass(lnk) {
+  if (lnk && lnk.blur) lnk.blur();	
+  if (!lnk || cur_link == lnk) return;
+  if (cur_link) cur_link.className = "done";
+  lnk.className = "on";
+  cur_link = lnk;
+}
+
+var cur_lyr;	
+function swapLayers(lnk,id) {
+  doLinkClass(lnk);
+  if (cur_lyr) hideLayer(cur_lyr);
+  showLayer(id);
+  cur_lyr = id;
+}
+
+function showLayer(id) {
+  var lyr = getElemRefs(id);
+  if (lyr && lyr.css) lyr.css.visibility = "visible";
+}
+
+function hideLayer(id) {
+  var lyr = getElemRefs(id);
+  if (lyr && lyr.css) lyr.css.visibility = "hidden";
+}
+
+function getElemRefs(id) {
+	var el = (document.getElementById)? document.getElementById(id): (document.all)? document.all[id]: (document.layers)? getLyrRef(id,document): null;
+	if (el) el.css = (el.style)? el.style: el;
+	return el;
+}
+
+function getLyrRef(lyr,doc) {
+	if (document.layers) {
+		var theLyr;
+		for (var i=0; i<doc.layers.length; i++) {
+	  	theLyr = doc.layers[i];
+			if (theLyr.name == lyr) return theLyr;
+			else if (theLyr.document.layers.length > 0) 
+	    	if ((theLyr = getLyrRef(lyr,theLyr.document)) != null)
+					return theLyr;
+	  }
+		return null;
+  }
+}
+
+function init(id,lyr) {
+  var lnk = getElemRefs(id);
+  swapLayers(lnk,lyr);
+  handleLoad();
+}
+
+
+</SCRIPT>
+<script type="text/javascript">
+<!--
+                function handleLoad()
+                {
+                    if( "<%=userName%>" == "")
+                        document.form1.username.focus();
+                    else
+                        document.form1.password.focus();
+                }
+                
+                function setDomain() {
+                    var userIdField = document.form1.username;
+                    var domainName;
+                    if( userIdField != null )
+                    {
+                        username = userIdField.value;
+                        var userId = username;
+                        if( username != null ) {
+                            var sep = username.lastIndexOf("@");
+                            if (sep != -1) {
+                                userId = username.substring(0, sep);
+                                domainName = username.substring(sep +1);
+                                document.form1.username.value = userId;
+                            }
+                            else {
+                                domainName = "nic.in";
+                            }
+                        }
+
+                        if( domainName == null || (domainName != null && domainName == '') )
+                            domainName = "nic.in";
+                    }
+                    document.form1.domainName.value = domainName;
+                }
+                
+                
+            
+// -->
+
+        </script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" bgcolor="#FFFFFF" onLoad="javascript: selectField()">
+<center>
+            <table width="780" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>
+                        <!-- header -->
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td height="10"><img src="imx/spacer.gif" alt="spacer" width="1" height="5" /></td>
+                            </tr>
+                            <tr>
+                                <td><img src="imx/header.jpg" alt="NIC Email" width="800" height="55" /></td>
+                            </tr>
+                            <tr>
+                                <td height="16"><img src="imx/spacer.gif" alt="spacer" width="1" height="1" /></td>
+                            </tr>
+                        </table>
+                        
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td width="402" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        
+                                        <tr>
+                                           
+											<td height="296" align="center" valign="middle" bgcolor="#D5BE88" class="bg_left">
+                                            <!--td height="296" align="center" valign="middle" bgcolor="#D5BE88" class="bg_left"-->
+                                                
+                                                <div id="container">
+                                                    <!-- what's new -->
+                                                    <div id="lyr0">
+                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                            <tr>
+                                                               <!--  <td valign="middle" height="290" align="center"><img src="imx/txt.gif" alt="Experience the all new nic email" style="padding-top:32px;" /></td> -->
+
+
+                            <td align="left" valign="middle" height="290" style="padding-left:20px; padding-right:20px;">
+
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td height="20"><img src="imx/bullet2.gif" /></td>
+                                    <td class="txt_left"><a href="http://mail.nic.in/docs/whats_new.html#Ans1" target="_blank">Multi Language Support</a></td>
+                                  </tr>
+                                  <tr>
+                                    <td height="20"><img src="imx/bullet2.gif" /></td>
+                                    <td class="txt_left"><a href="https://mail.nic.in/docs/whats_new.html#Ans3" target="_blank">Instant Messenger</a></td>
+                                  </tr>
+                                  <tr>
+                                    <td height="20"><img src="imx/bullet2.gif" /></td>
+                                    <td class="txt_left"><a href="https://mail.nic.in/docs/whats_new.html#Ans5" target="_blank">Viewing selected mails e.g. All, Unread,Flagged</a></td>
+                                  </tr>
+                                  <tr>
+                                    <td height="20"><img src="imx/bullet2.gif" /></td>
+                                    <td class="txt_left"><a href="https://mail.nic.in/docs/whats_new.html#Ans6" target="_blank">Groups in Address book</a></td>
+                                  </tr>
+                                  <tr>
+                                    <td height="20"><img src="imx/bullet2.gif" /></td>
+                                    <td class="txt_left"><a href="https://mail.nic.in/docs/whats_new.html#Ans8" target="_blank">File Manager</a></td>
+                                  </tr>
+
+                                  <tr>
+                                    <td colspan="2" style="padding-top:10px;" align="right"><a href="https://mail.nic.in/docs/whats_new.html" target="_blank">more &raquo;</a></td>
+                                  </tr>
+                                </table>
+
+                            </td>
+
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                    
+                                                    <!-- nic email policy -->
+                                                    <div id="lyr1">
+                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                            <tr>
+                                                                <td align="left" valign="middle" height="290" style="padding-left:20px; padding-right:20px;">
+                                                                    
+                                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                        <tr>
+                                                                            <td height="20"><img src="imx/bullet2.gif" /></td>
+                                                                            <td class="txt_left"><a href="https://mail.nic.in/docs/MailService_e-mail_address_Policy_WithCodes.pdf" target="_blank">E-Mail Address Policy</a></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td height="20"><img src="imx/bullet2.gif" /></td>
+                                                                            <td class="txt_left"><a href="https://mail.nic.in/docs/MailService_UsageGuideline.pdf" target="_blank">E-Mail Usage Policy</a></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td height="20"><img src="imx/bullet2.gif" /></td>
+                                                                            <td class="txt_left"><a href="https://mail.nic.in/docs/mail_transaction_policy.pdf" target="_blank">Spam and Mail Policy</a></td>
+                                                                        </tr>
+<tr>
+                                                                            <td height="20"><img src="imx/bullet2.gif" /></td>
+                                                                            <td class="txt_left"><a href="https://mail.nic.in/docs/best_antivirus_practices_ver1.pdf" target="_blank">Best practices for AntiVirus</a></td>
+                                                                        </tr>
+																		<tr>
+                                                                            <td height="20"><img src="imx/bullet2.gif" /></td>
+                                                                            <td class="txt_left"><a href="https://mail.nic.in/docs/guidelines_for_antivirus_NICNET.pdf" target="_blank">Guidelines for Antivirus NICNET</a></td>
+                                                                        </tr>
+																		<tr>
+                                                                            <td height="20"><img src="imx/bullet2.gif" /></td>
+                                                                            <td class="txt_left"><a href="https://mail.nic.in/docs/Messaging_Policy_for_NICNET.pdf" target="_blank">Messaging Policy for NICNET</a></td>
+                                                                        </tr>
+
+                                                                        <tr>
+                                                                            <td colspan="2" style="padding-top:10px;">Users are requested to please read the mail transaction policy in order to understand mail flow in NICNET. Efforts are going on to make NICNET a spam free Network.</td>
+                                                                        </tr>
+                                                                    </table>
+                                                                    
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>	
+                                                    
+                                                    <!-- FAQ -->
+                                                    <div id="lyr2">
+                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                            <tr>
+                                                                <td align="left" valign="middle" height="290" style="padding-left:20px; padding-right:20px;">
+                                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                        <tr>
+                                                                            <td height="20" width="12"><img src="imx/bullet2.gif" /></td>
+                                                                            <td class="txt_left"><a href="https://mail.nic.in/docs/faq_new.html#Ans1" target="_blank">What is an Email address?</a></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td height="20"><img src="imx/bullet2.gif" /></td>
+                                                                            <td class="txt_left"><a href="https://mail.nic.in/docs/faq_new.html#Ans3" target="_blank">How to change the Email password?</a></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td height="20"><img src="imx/bullet2.gif" /></td>
+                                                                            <td class="txt_left"><a href="https://mail.nic.in/docs/faq_new.html#Ans4" target="_blank">How to create a new folder?</a></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td height="20"><img src="imx/bullet2.gif" /></td>
+                                                                            <td class="txt_left"><a href="https://mail.nic.in/docs/faq_new.html#Ans5" target="_blank">How to change the display preferences?</a></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td height="20"><img src="imx/bullet2.gif" /></td>
+                                                                            <td class="txt_left"><a href="https://mail.nic.in/docs/faq_new.html#Ans7" target="_blank">How to activate the vacation message?</a></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td colspan="2" style="padding-top:10px;" align="right"><a href="https://mail.nic.in/docs/faq_new.html" target="_blank">more &raquo;</a></td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="26" bgcolor="#c5ae7e"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        
+                                                        <td align="center" class="menu_txt"><a id="lnk0" class="off" href="javascript://" onclick="swapLayers(this,'lyr0'); return false"><strong>What's NEW!</strong></a></td>
+                                                        <td width="1" bgcolor="#FFFFFF"><img src="imx/spacer.gif" alt="spacer" width="1" height="1" /></td>
+                                                        <td align="center" class="menu_txt"><a class="off" href="javascript://" onclick="swapLayers(this,'lyr1'); return false"><strong>NICEMAIL Policies</strong></a></td>
+                                                        <td width="1" bgcolor="#FFFFFF"><img src="imx/spacer.gif" alt="spacer" width="1" height="1" /></td>
+                                                        <td align="center" class="menu_txt"><a class="off" href="javascript://" onclick="swapLayers(this,'lyr2'); return false"><strong>Nicemail FAQ </strong></a></td>
+                                                        
+                                                    </tr>
+                                            </table></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td width="1" valign="top"><img src="imx/spacer.gif" alt="spacer" width="1" height="1" /></td>
+                                <td valign="top">
+                                    <table width="100%" height="322" border="0" cellpadding="0" cellspacing="0" bgcolor="#476DAB">
+                                        <tr>
+                                            <td height="12" align="right"><img src="imx/corner_blue.gif" width="8" height="12" /></td>
+                                        </tr>
+                                        <!--tr>
+                                            <td height="42">&nbsp;</td>
+                                        </tr-->
+                                        
+                                        <tr>
+                                            <td height="42" align="center" valign="top" class="txt_enter"><strong>Enter your Nicemail ID and password to log in</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <!-- form to login -->
+                                               <!-- <form id="form1" name="form1" method="post" action="<%=path%>/mauth"  ONSUBMIT="handleSubmit()"> -->
+												<form Accept-Charset="UTF-8" name="p" action="login.msc" method="post">
+                                                    <input type="hidden" name="fromLogin" value="true">
+                                                    <input type="hidden" name="domainName" value=""> 
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="130" height="34" align="right" class="txt_wht" style="padding-right:12px;"><div class="logLblLst"><font color="white" size=2 label for="username">User Name:</label></div></td>
+                                                            <td align="left"><div class="logInp"> <input type=text name="user"> </div> <!--<input name="username" type="text" id="username" size="25" value="<%=userName%>"/> --></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="130" height="34" align="right" style="padding-right:12px;"><div class="logLblLst"><font color="white" size=2 label for="password">Password:</label></div></td>
+                                                            <td align="left"><div class="logInp"><input type=password name="password"></div> <!--<input name="password" type="password" id="password" size="25." /> --></td>
+                                                        </tr>
+                                                        
+                                                        <tr>
+                                                            <td>&nbsp;</td>
+                                                            <td height="36" align="left"><input type="submit" name="button" id="button" value="Sign In" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>&nbsp;</td>
+                                                            <td>&nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="3" align="center" style='color: white;'><a href="http://mail.nic.in/docs/subscriptionform1.htm">New User Subscription</a>   &nbsp; | 	&nbsp;   <a title="Contact Us" href="https://mail.nic.in/docs/contact.html">Contact Us</a> &nbsp; |  &nbsp;<b> <a href="https://passapp.nic.in" target=" ">Forgot Password</a></b> </td>
+
+                                                        </tr>
+														<tr>
+                                                            <td colspan="2" align="center" class="txt_wht3"><a href="http://msgapp.nic.in/certificate/" target="_blank">Install Security Certificate</a>&nbsp; |&nbsp;<b><a href="http://mail.nic.in/docs/links.html" target="_blank">EMAIL APPLICATIONS </a><sup><font color='red'>NEW</font></sup></b> </td>
+														</tr>
+                                                    </table>
+													<input type=hidden name="argv" value="">
+											        <input type=hidden name="argv" value="">
+                                                </form>                
+                                            </td>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <td height="10"><img src="imx/spacer.gif" width="6" height="1" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center"><a href="http://india.gov.in/" target="_blank"><img src="imx/380x66-mail.jpg" alt="National Portal of India" width="380" height="66" /></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td height="6" align="right"><img src="imx/corner_blue_btm.gif" width="8" height="6" /></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                        
+                        <!-- best practice -->
+                        <!-- <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td width="18" height="42" align="left"><img src="imx/bullet.gif" alt="bullet" width="5" height="9" /></td>
+                                <td align="left" class="txt_best"><strong><a href="/docs/best_antivirus_practices_ver1.pdf">Best practices for AntiVirus</a> </strong></td>
+                            </tr>
+                        </table> -->
+                        
+                        <!-- footer menu -->
+                        <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#bcbcbc">
+                            <tr>
+                                <td width="10" height="27" align="left"><img src="imx/grey_corner_left.gif" width="10" height="27" /></td>
+                                <td align="center" class="link_footer"><A title="site available for intranet users only" href="http://antivirus.nic.in/" target="_blank">NIC Antivirus</a> &nbsp; | &nbsp; <a title="site available for intranet users only" href="https://intranic.nic.in/" target="_blank">INTRANIC</a> &nbsp; | &nbsp; <a href="https://ehradm.nic.in/" target="_blank">NICEHRAdm</a> &nbsp; |  &nbsp; <a title="site available for intranet users only" href="http://inoc.nic.in" target="_blank">NIC INOC</a>  </td>
+                                <td width="10" align="right"><img src="imx/grey_corner_right.gif" width="10" height="27" /></td>
+                            </tr>
+                        </table>
+                        
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td height="60" align="center" style="line-height:15px;">Government Of India<br />
+                                    Ministry Of Communications and Information Technology<br />
+                                 Department of Information Technology<br />fe10</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </center>
+
+</body>
+</html>

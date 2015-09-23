@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: http://www.ciazowy.pl/sitemap.xml

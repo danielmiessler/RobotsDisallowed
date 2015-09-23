@@ -1,0 +1,4 @@
+Disallow: /szukaj/
+Disallow: /szukaj,
+Disallow: /embed-video?
+Disallow: /ajax

@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /cache/
+Disallow: /search.php

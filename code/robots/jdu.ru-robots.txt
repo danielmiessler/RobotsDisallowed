@@ -1,0 +1,14 @@
+User-agent: *
+Disallow: /search.phtml
+User-agent: Yandex
+Disallow: /top/
+Disallow: /tips/
+Disallow: /my/
+Disallow: /meet/
+Disallow: /diary/
+Disallow: /journal/
+Disallow: /games/
+Disallow: /versus/
+Disallow: /self/
+Disallow: /?
+Host: www.jdu.ru

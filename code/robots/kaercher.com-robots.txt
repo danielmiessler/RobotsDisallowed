@@ -1,0 +1,10 @@
+User-Agent: AhrefsBot
+Disallow: /
+
+User-agent: *
+Disallow: /*?query
+Disallow: /*?dboverride
+Disallow: /*?articlenumber
+Disallow: /typo3/
+
+Sitemap: https://www.kaercher.com/sitemap.xml

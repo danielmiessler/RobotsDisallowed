@@ -1,0 +1,354 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+	<title>ESM(Ebay Sales Manager)</title>
+    <link rel='shortcut icon' href='http://pics.esmplus.com/front/icon/esmplus.ico'>
+	<meta http-equiv="Cache-control" content="No-cache" />
+	<meta http-equiv="Expires" content="-1" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Cache-Control" content="No-Cache" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=7" />
+	<link rel="stylesheet" type="text/css" href="https://script.esmplus.com/css/ssl/login.css" />
+	<script type="text/javascript" src="https://script.esmplus.com/js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="https://script.esmplus.com/js/jquery-ui-1.8.17.min.js"></script>
+	<script type="text/javascript">
+	<!--
+	  /* 초기화 함수 */
+	  $(function () {
+
+
+	    //------------------------------------------------//
+	    //											Init											//
+	    //------------------------------------------------//
+	    var userAgent = navigator.userAgent.toLowerCase();
+	    var isIE = (/msie/gi.test(userAgent) && !/opera/gi.test(userAgent));
+
+	    if (isIE) {
+
+	      $("#btnCertificate").bind("click", function () {
+	        var certManObj = '<iframe src="/Member/SignIn/ConfirmActiveX" width="0" height="0" frameborder="0" scrolling="no"></iframe>';
+	        $("#activeXArea").append(certManObj);
+	      });
+	    }
+	    else {
+	      $("#btnCertificate").bind("click", function () {
+	        alert("공인인증서 로그인은 IE에서만 가능합니다.");
+	      });
+	    }
+
+	    // 툴팁 초기화
+	    $(".styleuitooltip").mouseover(function (e) {
+	      var tooltipID = $(this).attr("tooltipid");
+	      if (tooltipID == null || $.trim(tooltipID) == "") return;
+
+	      var layer = $("#" + tooltipID);
+
+	      $("body").append(layer[0]);
+
+	      layer.show();
+
+	      layer.position({
+	        of: $(this)
+				, my: "center top"
+				, at: "center bottom"
+				, offset: "0 -1"
+	      });
+
+	      $(this).bind("mouseleave", function () {
+	        layer.hide();
+	      });
+	      layer.bind("mouseenter", function () {
+	        layer.show();
+	      });
+	      layer.bind("mouseleave", function () {
+	        layer.hide();
+	      });
+	    });
+	  });
+	  var showCalendar = function (obj, tgs) {
+	    if (tgs != "close") {
+	      document.getElementById(obj).style.left = $(tgs).offset().left + "px";
+	      document.getElementById(obj).style.top = $(tgs).offset().top + 17 + "px";
+	      document.getElementById(obj).style.display = "block";
+	    } else {
+	      document.getElementById(obj).style.display = "none";
+	    }
+	  }
+
+
+	//-->
+	</script>
+	<!--[if IE 6]>
+	<script type="text/javascript" src="https://script.esmplus.com/js/DD_belatedPNG_0.0.8a.js"></script>
+	<script type="text/javascript" src="https://script.esmplus.com/js/fixed-1.8.js"></script>
+	<script type="text/javascript" src="https://script.esmplus.com/js/minmax.js"></script>
+	<script type="text/javascript">DD_belatedPNG.fix('.png24');</script>
+	<![endif]-->
+	
+	<script type="text/javascript" language="javascript" src="/Areas/Member/Views/SignIn/LogOn.js?dummy=20150624"></script>
+	<script type="text/javascript">
+	</script>
+
+</head>
+<body>
+	<div id="wrapC">
+		
+		<div id="header2_wrap">
+			<!-- 2012-08-10 주요기능 안내 추가 S -->
+           <div id="quick_guide" style="display:none"> <!-- 2013-01-18  TSP-3466 베너 삭제-->
+				<h1>
+					주요기능 안내 / ESM PLUS 사용에 앞서 꼭! 확인해주세요!</h1>
+				<ul class="quick_guide_btn">
+					<li><span class="css_btn9"><a href="http://doc.gmarket.co.kr/esmplus/OrderOptionGuide.pdf"
+						target="_blank">주문옵션설정</a></span></li>
+					<li><span class="css_btn9"><a href="http://doc.gmarket.co.kr/esmplus/SellingStatus_Setting_Guide.pdf"
+						target="_blank">판매기능/판매중지설정</a></span></li>
+					<li><span class="css_btn9"><a href="http://doc.gmarket.co.kr/esmplus/Item_Modify_Delete_Guide.pdf"
+						target="_blank">상품수정/삭제</a></span></li>
+					<li><span class="css_btn9"><a href="http://doc.gmarket.co.kr/esmplus/Qty_Price_Modify_Guide.pdf"
+						target="_blank">재고/가격수정</a></span></li>
+					<li><span class="css_btn9"><a href="http://doc.gmarket.co.kr/esmplus/PeriodExtend_Guide.pdf"
+						target="_blank">판매기간연장</a></span></li>
+					<li><span class="css_btn9"><a href="http://doc.gmarket.co.kr/esmplus/ServiceDelay_Guide.pdf"
+						target="_blank">서비스속도지연</a></span></li>
+					<li><span class="css_btn9"><a href="http://doc.gmarket.co.kr/esmplus/SettleMng_Guide.pdf"
+						target="_blank">정산관리기준</a></span></li>
+					<li><span class="css_btn9"><a href="http://doc.gmarket.co.kr/esmplus/AddtionalService_Guide.pdf"
+						target="_blank">부가서비스설정</a></span></li>
+				</ul>
+			</div>
+			<!-- 2012-08-10 주요기능 안내 추가 E -->
+			<div id="header2">
+				<h1>
+					<a href="https://www.esmplus.com"  target="_self">
+						<img src="https://pics.esmplus.com/front/common/logo2_plus.jpg" alt="e-bay korea" /></a></h1>
+				<div class="header2_util">
+					<span class="links">
+						<a href="http://www.ebayedu.com" target="_blank">
+							<img src="https://pics.esmplus.com/front/common/btn_header2_links6.gif" alt="G마켓,옥션 판매자 교육센터" /></a>	
+						<a href="http://www.gmarket.co.kr" target="_blank">
+							<img src="https://pics.esmplus.com/front/common/btn_header2_links2.gif" alt="지마켓" /></a>
+						<a href="http://www.auction.co.kr" target="_blank">
+							<img src="https://pics.esmplus.com/front/common/btn_header2_links3.gif" alt="옥션" /></a>
+					</span>
+					<!--<div class="alt_Obj" id="seller_edu_center">
+						 판매자 교육센터 말풍선 
+						<div class="contents">
+							<ul class="basic">
+								<li><a href="http://ecenter.auction.co.kr" target="_blank"><strong class="c_ff0909">
+									A</strong>옥션 판매자 교육센터</a></li>
+								<li><a href="http://www.gmarket.co.kr/ecenter/" target="_blank"><strong class="c_2c9500">
+									G</strong>마켓 판매자 교육센터</a></li>
+							</ul>
+							<span class="arrow"></span>
+						</div>
+					</div>-->
+				</div>
+			</div>
+		</div>
+		<hr />
+		
+
+
+<div id="login_middle">
+	<div id="login_wrap">
+		<div id="body_new">
+			<h2 class="login_title">
+				<img src="https://pics.esmplus.com/front/title/tit_welcome_esm.gif" alt="ESM(Ebay Sales Manager) 환영합니다." /></h2>
+			<div class="login_box">
+				<div class="login_box_inner">
+					<h3>
+						<img src="https://pics.esmplus.com/front/title/tit_login.gif" alt="로그인" /></h3>
+					<div class="ex_down">
+						<img src="https://pics.esmplus.com/front/icon/ico_explorer.gif" alt="" />
+						<span><strong>윈도우 7 / 인터넷 익스플로러 8 버전</strong> 이상을 권장합니다.</span> 
+					</div>
+					<div class="login_guide">
+						<ul>
+							<li>ESM PLUS에 <strong>가입하지 않은 경우</strong>, 좌측의 <strong>옥션</strong> 또는 <strong>G마켓</strong>을
+								선택하여 해당 영역에 로그인 해 주세요.</li>
+							<li>ESM PLUS 마스터 ID로 <strong>가입하신 경우 ESM PLUS 로그인 영역에만</strong> 계정을 입력 하시어 로그인 하시면
+								됩니다.</li>
+						</ul>
+					</div>
+					<!-- 00_로그인_00메인2 -->
+					<div class="login_form_section_new">
+						<div id="captchaLogin" class="login_form_section_rnd">
+						
+<div class="ag_login">
+	<div class="ag_login_cont">
+		<h3 class="login_select_way">
+			옥션/G마켓 로그인</h3>
+		<div class="login_slt">
+				<label><input class="rdo" id="rdoSiteSelect" name="rdoSiteSelect" onclick="rdoSiteSelect_OnClick(&#39;IAC&#39;,&#39;&#39;)" type="radio" value="IAC" />
+					옥션</label>
+				<label><input class="rdo" id="rdoSiteSelect" name="rdoSiteSelect" onclick="rdoSiteSelect_OnClick(&#39;GMKT&#39;,&#39;&#39;)" type="radio" value="GMKT" />
+					지마켓</label>
+		</div>
+			<div class="secutity">
+				<span>아이디/비밀번호를 입력해 주세요.</span>
+			</div>
+		<form method="post" name="form" id="frmSiteLogOn">
+        <input type="hidden" name="Password" id="hddSitePwd" value="" />
+		<input type="hidden" name="Type" value="S" />
+		<input type="hidden" name="ReturnUrl" value="" />
+		<input type="hidden" name="SiteType" value="UnKnown" />
+		<fieldset class="esm_id_pws">
+			<legend>로그인 입력</legend>
+			<div class="input">
+				<input class="id" id="SiteId" maxlength="15" name="Id" style="width: 126px;ime-mode:inactive;" type="text" value="아이디" />
+				<input type="password" id="SitePassword" class="pws bg_pw1" maxlength="15"
+					value="" style="width: 126px;ime-mode:inactive ;" />
+			</div>
+			<div class="btn">
+				<p class="check">
+					<label>
+						<input class="chk" id="SiteIdRememberMe" name="RememberMe" type="checkbox" value="true" /><input name="RememberMe" type="hidden" value="false" />
+						아이디 저장</label></p>
+				<a href="javascript:;" id="btnSiteLogOn">
+					<img src="https://pics.esmplus.com/front/btn/btn_loginesm.gif" alt="로그인" /></a>
+			</div>
+		</fieldset>
+		</form>
+	</div>
+	<ul class="esm_login_list">
+		<li class="fir"><a href="https://memberssl.auction.co.kr/Membership/Signup/ChoiceMemberType.aspx?frm=hometab"
+			target="_blank">옥션 회원가입</a></li>
+		<li><a href="http://member.gmarket.co.kr/challenge/neo_member/default.asp" target="_blank">
+			G마켓 회원가입</a></li>
+	</ul>
+</div>
+
+						<span class="login_select_way">or</span>
+						<div class="esm_login">
+							<div class="esm_login_cont">
+								<h3 class="login_select_way">
+									ESM PLUS 마스터 로그인</h3>
+								<strong class="tit">ESM PLUS 마스터 ID 로그인</strong>
+									<div class="secutity">
+										<span>아이디/비밀번호를 입력해 주세요.</span>
+									</div>
+								<form method="post" name="form" id="frmLogOn">
+                                <input type="hidden" name="Password" id="hddPwd" value="" />
+								<input type="hidden" name="Type" value="E" />
+								<input type="hidden" name="ReturnUrl" value="" />
+								<fieldset class="esm_id_pws">
+									<legend>로그인 입력</legend>
+									<div class="input">
+										<input class="id txt_b" id="Id" maxlength="15" name="Id" style="width: 164px;ime-mode:disabled;" type="text" value="아이디" />
+											<input type="password" id="Password" class="pws txt_b bg_pw2" maxlength="15"
+												value="" style="width: 164px; ime-mode: disabled;" />
+									</div>
+									<div class="btn">
+										<p class="check">
+											<label>
+												<input class="chk" id="RememberMe" name="RememberMe" type="checkbox" value="true" /><input name="RememberMe" type="hidden" value="false" />
+												아이디 저장</label></p>
+										<a href="#" id="btnLogOn">
+											<img src="https://pics.esmplus.com/front/btn/btn_login.gif" alt="로그인" /></a>
+									</div>
+								</fieldset>
+								</form>
+							</div>
+							<ul class="esm_login_list">
+								<li class="fir"><a href='/Member/SignIn/FindMasterId' >
+									아이디찾기</a></li>
+								<li><a href='/Member/SignIn/FindPassword'>비밀번호찾기</a></li>
+							</ul>
+						</div>
+						<form id="frmSign" name="form" method="post">
+<input name="__RequestVerificationToken" type="hidden" value="rMe0q94i0f+nLInLkc9WD/AtAGC2E41cBlbINzbLZw3lK2qqbuPyJFOeEImmFgRZcHToGHpW5+A04fPh8J+UBG4UnlEVPpaKjexz8VHpcJNiXuWnY9E0S0+8FUSwP9H+ESYqWA==" />
+<input id="hdnSignData" name="hdnSignData" type="hidden" value="" />
+</form>
+<div class="esm_login_certificate">
+	<div class="esm_login_certificate_cont">
+		<strong class="tit">범용 공인인증서 로그인</strong>
+		<p class="certificate_center">
+			<a href="http://www.signkorea.com/use/main.php" target="_blank">공인인증센터란?</a></p>
+		<p class="btn">
+			<a href="#" id="btnCertificate">
+				<img src= "https://pics.esmplus.com/front/btn/btn_certificate.gif" alt="인증서 로그인" /></a></p>
+		
+		<!-- 2012-10-31 정상현 수정 S -->
+		<h6 class="certificate_related">
+			* 인증서 발급/재발급/갱신</h6>
+		<ul class="login_kind">
+			<li><a href="http://www.tradesign.net/certification/new/ebayRegPay.jsp" target="_blank">
+				<img src="https://pics.esmplus.com/front/btn/btn_tradesign.gif" alt="한국공인인증" /></a></li><li>
+					<a href="https://wra.signkorea.com/newra/main.jsp?bpcode1=SKBP-2013-1209-01" target="_blank">
+						<img src="https://pics.esmplus.com/front/btn/btn_signkorea.gif" alt="코스콤" /></a></li>
+		</ul>
+	</div>
+	<p class="notice">
+		* 인증서 로그인 서비스</p>
+</div>
+
+					</div>
+					</div>
+					<div class="call_center">
+						<div class="call_center_inner">
+							<p class="txt_left">
+								<span>ID 연동</span>또는 <span>로그인</span>과 관련된 문의는 <a href="mailto:esmplus@corp.gmarket.co.kr">
+									esmplus@corp.gmarket.co.kr</a> 로 보내주시기 바랍니다 <a href="http://www.gmarket.co.kr/challenge/neo_bbs/faq_list.asp?SearchClass_3=2010101&seqno=9495&seqnoView=Y" target="_blank">
+                  <img src="https://pics.esmplus.com/front/btn/btn_gmkt_login_fail.gif" alt="로그인이 불가할 경우" /></a>
+							</p>
+						</div>
+					</div>
+				
+          <dl class="total_flatform">
+								<dt class="customer">회원정보와 관련하여 문의가있으신 경우 &nbsp;<span>판매자 상담센터 : G마켓 1566-5707  / 옥션 1588-6345</span> 를 이용하시기 바랍니다.</dt><!-- 2012-09-12 정상현 문구 수정 -->
+								<dt>ESM PLUS는, G마켓(GSM), 옥션(Sell plus)가 하나로 통합된 <em>‘통합 셀링 플렛폼’</em> 입니다.
+									<a href="javascript:void(0);"	id="btnGlobalSellerAsk" onclick="javascript:OpenPopup('/CommonPopup/Notice?nid=2',470,400);">
+                  <img src="https://pics.esmplus.com/front/btn/btn_global_seller_ask4.gif" alt="해외직구 입점안내" /></a>
+								</dt>
+								<dd>GSM, Sell plus 두 곳 모두 사용하셨던 판매자님도, 하나 이상의 판매자 계정을 사용하셨던 판매자님도, 간단한 판매자 확인 절차만으로 
+                마스터 ID 하나로<br>
+                로그인 하실 수 있습니다. 판매자 회원이 아니신가요? 옥션, G마켓 회원이시라면 로그인 후 판매자 회원 전환 을 통해 ESM PLUS 이용이 가능합니다.</dd>
+							</dl>
+				</div>
+			</div>
+			<!-- <p class="cstm_service">회원정보와 관련하여 문의가있으신 경우 <strong>고객센터(1588-6872)</strong>를 이용하시기 바립니다. </p> -->
+		</div>
+	</div>
+</div>
+
+		<hr />
+		<div id="footer_wrap2">
+			<div id="footer">
+				<div class="info">
+					<div class="menu">
+						<ul>
+							<li><a href="#">이용약관</a></li>
+							<li><a href="http://member.auction.co.kr/Membership/Signup/Privacy.aspx" target="_blank">
+								옥션 개인정보취급정책</a></li>
+
+							<li><a href="http://www.gmarket.co.kr/challenge/neo_help/policy01.asp" target="_blank">
+								지마켓 개인정보취급정책</a></li>
+							<li><a href="/CommonPopup/TPLTerms" target="_blank">
+							이베이물류서비스 이용약관</a></li>
+						</ul>
+					</div>
+				
+          <address>
+						<span>서울시 강남구 테헤란로 152 (역삼동 강남파이낸스센터)</span><span>대표자 : 변광윤</span><span>사업자등록번호 : 220-81-83676</span><span>통신판매업신고 : 강남 10630</span>ICP: B2-20090003-4<br>
+						<span>판매자 상담센터 : <strong>G마켓 1566-5707 / 옥션 1588-6345</strong></span>ESM PLUS 사용문의 : 1588-6872 /<a href="mailto:esmplus@corp.gmarket.co.kr">esmplus@corp.gmarket.co.kr</a><br>
+						<dfn>copyright(c) 1998~2010 ebay Inc. All Rights Reserved. Designated trade marks and brands are the property of their respective owners.</dfn>
+					</address>
+				</div>
+				<div class="family_logo">
+					<a href="http://www.ebay.co.kr">
+						<img src="https://pics.esmplus.com/front/common/footer_family1.jpg" alt="" /></a> <a href="http://www.auction.co.kr"
+							target="_blank">
+							<img src="https://pics.esmplus.com/front/common/footer_family2.jpg" alt="" /></a> <a href="http://www.gmarket.co.kr"
+								target="_blank">
+								<img src="https://pics.esmplus.com/front/common/footer_family3.jpg" alt="" /></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="activeXArea">
+	</div>
+</body>
+	<script type="text/javascript" src="https://script.esmplus.com/js/GoogleAnalytics.js"></script>
+</html>

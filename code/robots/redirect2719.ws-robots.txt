@@ -1,0 +1,1 @@
+No URL to redirect

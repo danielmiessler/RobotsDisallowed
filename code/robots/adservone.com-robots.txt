@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Adwise Language</title>
+	<link rel="stylesheet" href="stylesheets/screen.css">
+
+	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="javascripts/vendor/jquery.cookie.js"></script>
+
+	<script src="javascripts/vendor/jquery.flexslider-min.js"></script>
+	<script src="javascripts/vendor/jquery.validate.min.js"></script>
+	<script src="javascripts/vendor/messages_ru.min.js"></script>
+	<script src="javascripts/vendor/queryloader2.min.js"></script>
+	<script src="javascripts/vendor/jquery.cookie.js"></script>
+	<script src="javascripts/vendor/jquery.block.revealer.js"></script>
+	<script src="javascripts/main.js"></script>
+</head>
+<body>
+
+
+<script>
+	; 'use strict';
+
+
+	(function () {
+		var languages = ['az', 'be', 'hy', 'kk', 'ky', 'ro', 'ru', 'tg', 'tk', 'uk', 'uz'];
+		var agentLanguage = navigator.userLanguage || navigator.language;
+		var cookieLanguage;
+		var language;
+		var i;
+        var date = new Date();
+        date.setTime(date.getTime() + 672 * 3600 * 1000 );
+
+		cookieLanguage = $.cookie('language');
+
+		if ( typeof cookieLanguage !== 'undefined' && cookieLanguage !== 'null') {
+			window.location.href = './' + cookieLanguage + '.html';
+
+		} else {
+			for ( i = 0; i < languages.length; i++ ) {
+				if ( languages[i] === agentLanguage ) {
+					language = 'ru';
+					$.cookie('language', language, {expires: date });
+					window.location.href = './' + language + '.html';
+					return;
+				}
+			}
+			language = 'en';
+			$.cookie('language', language, {expires: date });
+			window.location.href = './' + language + '.html';
+		}
+	}());
+
+
+
+	function deleteLanguage () {
+		$.cookie('language', null);
+	};
+
+</script>
+</body>
+</html>

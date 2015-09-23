@@ -1,0 +1,571 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <title>Networx - Innovate Recruitment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Networx Recruitment Website" />
+    <meta property="og:description" content="Networx Recruitment Website" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="http://www.networxrecruitment.com/content/website/img/logo.png" />
+    <meta property="og:url" content="http://www.networxrecruitment.com" />
+    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+    <base href="/website/"/>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <script type="text/javascript">
+        var $buoop = { vs:{i:10,f:25,o:17,s:6},c:2, reminder: 0 }
+        $buoop.ol = window.onload;
+        window.onload = function () {
+            try { if ($buoop.ol) $buoop.ol(); } catch (e) { }
+            var e = document.createElement("script");
+            e.setAttribute("type", "text/javascript");
+            e.setAttribute("src", "https://browser-update.org/update.js");
+            document.body.appendChild(e);
+        } 
+    </script>
+    
+    <!-- Le styles -->
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,500,700|Oswald' rel='stylesheet' type='text/css'>
+    <link href="/content/website/css/bootstrap.css" rel="stylesheet">
+    <link href="/content/website/css/networx.css" rel="stylesheet">
+    <link href="/content/website/css/networx-tweaks.css" rel="stylesheet">
+    <link href="/content/css/user-bar.css" rel="stylesheet">
+    <link href="/css2/jquery-ui-1.8.9.custom.css" rel="stylesheet">    
+    <link href="https://plus.google.com/117556411922411752062" rel="publisher" />
+      
+      <script type="text/javascript">
+        (function () {
+            var po = document.createElement("script"); po.type = "text/javascript"; po.async = true;
+            po.src = "https://apis.google.com/js/plusone.js?publisherid=117556411922411752062";
+            var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(po, s);
+        })();
+    </script>
+          
+    <script language="javascript" src="/content/website/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script language="javascript" src="/content/website/js/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
+    <script language="javascript" src="/content/website/js/jcarousellite_1.0.1.min.js" type="text/javascript"></script>
+    <script language="javascript" src="/content/website/js/script.js" type="text/javascript"></script>
+
+      <link href="/Scripts/UISlider/jquery.nouislider.min.css" type="text/css" rel="stylesheet" />
+    <script src="/Scripts/UISlider/jquery.nouislider.all.min.js" type="text/javascript"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav -->
+    <link rel="shortcut icon" href="/content/website/img/favicon.ico">
+
+    <script type="text/javascript">
+
+        $(document).mouseup(function (e) {
+            var self = $(e.target).hasClass('drop-down') || $(e.target).hasClass('alert') || $(e.target).hasClass('alert-span');
+        
+            if (!self) {
+                $(".drop-down-options").hide();
+                $('.login-bar-popup').hide();
+            }
+        });
+        
+        var iFirstBandEnd = 0;
+        var iLastButOneBandEnd = 100000;
+        var iLastBandEnd = 100000;
+        var iStartSal = 0;
+               
+        iFirstBandEnd = 10000;
+        iLastButOneBandEnd = 150000;
+
+        function ShowHideSearchOptions(inDD) {
+            var bDisplayed = $("#div" + inDD).is(":visible");
+
+            if (bDisplayed) {
+                $("#div" + inDD + "Options").removeClass("hide");
+                $("#div" + inDD + "Options").addClass("show");
+                $("#div" + inDD).removeClass("selected");
+            }
+            else {
+                $("#div" + inDD + "Options").removeClass("show");
+                $("#div" + inDD + "Options").addClass("hide");
+                $("#div" + inDD).addClass("selected");
+            }
+        }
+       
+
+        
+       
+
+
+        function ShowMasterPopup() {
+
+            $("body").css("overflow-x", "hidden");
+            $("#masterPopup").dialog({
+                modal: true, resizable: false, closeOnEscape: true, show: 'blind',
+                close: function (event, ui) {
+                    $("body").css("overflow", "auto");
+                }
+            });
+        }
+        function masterPopupClient() {
+            window.open("http://www.google.com", "_new");
+            $("#masterPopup").dialog("close");
+        }
+        function masterPopupCand() {
+            window.open("http://www.hotmail.com", "_new");
+            $("#masterPopup").dialog("close");
+        }
+
+        function showUserBar() {
+            $("#user-bar-wrapper").show("slow");
+        }
+
+        function ShowPopupScreen(inTitle, inURL, puConf) {
+            $("#divPopup").puIF(inTitle, inURL, puConf);
+        }
+        function ShowFullScreen(inTitle, inURL) {
+            $("#divPopup").puIF(inTitle, inURL, { puwidth: document.documentElement.clientWidth, puheight: document.documentElement.clientHeight, puiwidth: document.documentElement.clientWidth - 30, puiheight: document.documentElement.clientHeight - 50 });
+        }
+        function PopupClose() {
+            $("#divPopup").dialog("close");
+        }
+        function SetPopupMenu() {
+            var sURL = '/OneAccount/Account/GetPopupMenu';
+            $.ajaxSetup({ cache: false });
+            $.getJSON(sURL, null, function (data) {
+                $("#AccountPopupMenuContainer").html(data.PopupMenu);
+                InitPopupMenu();
+            });
+        }
+        function SendEmail() {
+            var oForm = $("#SendEmailForm");
+            $.post(oForm.attr("action"), oForm.serializeArray(), function (data) {
+                if (data.OK) {
+                    $('#mailPopup').hide();
+                    $('#social-connect a:last-child').removeClass("on");
+                    $("#txtSendEmailName").val("");
+                    $("#txtSendEmailAddress").val("");
+                    $("#txtSendEmailMessage").val("");
+                    alert("Your email has been sent.");
+                } else {
+                    alert(data.ErrorMessage);
+                }
+            });
+        }
+        $(function () {
+            SetPopupMenu();
+            CheckNotice();
+        });
+        function CheckNotice() {
+            var today = new Date();
+            var expired = new Date("October, 5 2013 00:00:00");
+            if (today < expired) {
+                var sDay = today.getUTCDate();
+                var sChecked = getCookie("checked" + sDay);
+                if (sChecked != "yes") {
+                    setCookie("checked" + sDay, "yes", 30);
+                    $("#ImportantNotice").dialog({ modal: true, width: 500, resizable: false,
+                        buttons: {
+                            "Close": function () {
+                                $(this).dialog("close");
+                            }
+                        }
+                    });
+                }
+            }
+        }
+        function setCookie(c_name, value, exdays) {
+            var exdate = new Date();
+            exdate.setDate(exdate.getDate() + exdays);
+            var c_value = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toUTCString());
+            document.cookie = c_name + "=" + c_value;
+        }
+        function getCookie(c_name) {
+            var c_value = document.cookie;
+            var c_start = c_value.indexOf(" " + c_name + "=");
+            if (c_start == -1) {
+                c_start = c_value.indexOf(c_name + "=");
+            }
+            if (c_start == -1) {
+                c_value = null;
+            }
+            else {
+                c_start = c_value.indexOf("=", c_start) + 1;
+                var c_end = c_value.indexOf(";", c_start);
+                if (c_end == -1) {
+                    c_end = c_value.length;
+                }
+                c_value = unescape(c_value.substring(c_start, c_end));
+            }
+            return c_value;
+        }
+
+        function togglePop(inPop, inPos) {
+            if (inPos != 'side') {
+                $('.login-bar-popup:not(#' + inPop + ')').hide();
+
+                $('#' + inPop).css('position', 'absolute');
+                $('#' + inPop).css('left', 'initial');
+                $('#' + inPop).css('right', 0);
+                $('#' + inPop).css('top', 60);
+                $('#' + inPop).slideToggle();
+                $('.login-bar-popup-point').css('display', 'block');
+                $('.login-bar-popup-point-side').css('display', 'none');
+            }
+            else {
+                $('.login-bar-popup:not(#' + inPop + ')').hide();
+
+                $('#' + inPop).css('position', 'fixed');
+                $('#' + inPop).css('left', (sideNavWidth + 20));
+                $('#' + inPop).css('top', (myScreenHeight + 20));
+                $('#' + inPop).slideToggle();
+                $('.login-bar-popup-point').css('display', 'none');
+                $('.login-bar-popup-point-side').css('display', 'block');
+            }
+        };
+
+        $(window).scroll(function () {
+            if ($(window).scrollTop() >= $(document).height() - $(window).height() - 500) {
+                if ($('.load-more').length) {
+                    LoadMore();
+                }               
+            }
+        });
+
+    </script>
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-21825133-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+    <script type="text/javascript" src="/scripts/user-bar.js"></script>
+  </head>
+
+  <body>
+
+    <div id="ImportantNotice" title="Important Notice" style="display:none">
+        <table>
+            <tr>
+                <td><img src="/content/website/img\alert.png" alt="" /></td>
+                <td style="padding: 10px;">
+                    <div>Please note: our offices will be closed on Friday 4th October, 2013 for training and will reopen on Monday 7th October, 2013.</div>
+                    <br />
+                    <div>Job applications will not be affected.</div>
+                    <br />
+                    <div>Should you require technical support please email: <a href='mailto:support@networxrecruitment.com'>support@networxrecruitment.com</a> or contact the IT team directly on 01943 854 150</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    
+    
+    <div class="wrapper home-page ">
+	<div id="loginPopup">
+		<form>
+			<p>
+				<label for="username">Username</label>
+				<input type="text" name="username" />
+			</p>
+			<p>
+				<label for="password">Password</label>
+				<input type="password" name="password" />
+			</p>
+			<a href="" class="forgotPasswordLink">Forgotten your details?</a>
+			<input type="submit" value="Login" />
+		</form>
+	</div>
+	<div id="mailPopup">
+        <form action="/Website/SendEmail" id="SendEmailForm" method="post">
+			<p>
+				<label for="name">Name</label>
+                <input id="txtSendEmailName" name="txtSendEmailName" type="text" value="" />
+			</p>
+			<p>
+				<label for="email">Email address</label>
+                <input id="txtSendEmailAddress" name="txtSendEmailAddress" type="text" value="" />
+			</p>
+			<p>
+				<label for="message">Message</label>
+                <input id="txtSendEmailMessage" name="txtSendEmailMessage" type="text" value="" />
+			</p>
+			<input type="button" value="Send" onclick="SendEmail()" />
+		</form>
+	</div>
+    <div class="container">
+
+      <div class="row">
+        <div class="span4" style="width:221px;"><a href="index"><img src="/content/website/img/logo.png" alt="Networx Innovate Recruitment" class="logo"></a></div>
+        <div class="span8 mainnavarea" style="width:698px;">
+        
+        <ul id="utilitynav">
+            
+            <li>Login:</li>
+            <li><a href="http://www.networxrecruitment.net" target="_blank" class="bluelink">Client</a></li>
+            <li> | </li>
+            <li><a href="/oneaccount/account/logintype/0" class="bluelink">Jobseeker</a></li>
+            
+        </ul>
+        <div class="clearfix"></div>
+
+        <div class="navbar">
+          <div class="navbar-inner">
+              <ul class="nav">
+                <li ><a href="about">About us</a>
+					<ul class="subnav">
+						<li><a href="about-why-are-we-different">Why are we different</a></li>
+						<li><a href="about-our-people">Our People</a></li>
+						<li><a href="testimonials">Testimonials</a></li>  
+						<li><a href="workforus">Work at networx</a></li>
+						<li><a href="awards">Our Awards</a></li>
+						<li><a href="connectwithus">Latest News</a></li> 
+					</ul>
+				</li>
+                <li ><a href="our-solutions">Our solutions</a>
+            <ul class="subnav">
+    <a href="apoint-recruitment-technology" style="
+    background: none;
+    border: none;
+    color: #000000;
+    float: left;
+    text-align: left;
+">
+
+        <img src="/content/website/img/special-nav/apoint-logo.png" alt="Apoint Logo" style="
+    margin-right: 5px;
+    width: 20%;
+">
+
+
+        Recruitment Technology
+
+    </a>
+    <li><a href="our-solution-candidate-attraction">Candidate Attraction</a></li>
+    <li><a href="our-solution-candidate-management">Candidate Management</a></li>
+    <li><a href="our-solution-public-sector-recruitment">Public Sector Recruitment</a></li>
+    <li><a href="our-solution-public-sector-recruitment-apoint-combined-services">Combined Services</a></li>
+
+</ul>
+        </li>
+                <li ><a href="jobseekers">Job seekers</a></li>
+                <li ><a href="workforus">Work for us</a>
+					<ul class="subnav">
+						<li><a href="whyworkforus">Why work at networx</a></li>
+						<li><a href="ouraims">Our Aim</a></li>
+						<li><a href="meet-the-team">Meet the Team</a></li>
+						<li><a href="equality-diversity">Equality &amp; Diversity</a></li>
+						<li><a href="people-development">Development</a></li>
+						<li><a href="rewards">Rewards</a></li>
+						<li><a href="head-office">Head Office</a></li>
+					</ul>
+				</li>
+                <li ><a href="connectwithus">Connect with us</a></li>
+                <li ><a href="contact">Contact</a></li>
+                <!--<li><a onclick="window.open('/CandidateSupport', '', 'width=998,height=765,scrollbars,resizable'); win.focus();">Candidate Support</a></li>-->
+              </ul>
+            </div>
+          </div> <!-- /span8 -->
+        </div><!-- /.navbar -->
+     </div><!-- ./row -->
+</div> <!-- /container -->
+    <!-- Jumbotron -->
+    <div id="big-logomark"></div>
+    <div class="jumbotron">
+	<div class="jumbotron-controls">
+		<a href="#" class="prev"><img src="/content/website/img/btn-back.png" alt="back"></a>
+		<a href="#" class="next"> <img src="/content/website/img/btn-fwd.png" alt="fwd"></a>
+	</div>
+    <div id="social-connect">
+    <a href="https://plus.google.com/117556411922411752062" rel="publisher" target="_blank" class="googlePlus"></a>
+	<a href="http://www.youtube.com/user/networxrecruitment" target="_blank" class="youtube"></a>
+	<a href="http://www.facebook.com/#!/pages/networx-recruitment/318840226671" target="_blank" class="facebook"></a>
+	<a href="https://twitter.com/networx_recruit" target="_blank" class="twitter"></a>
+	<a href="http://www.LinkedIn.com/company/222378?trk=tyah" target="_blank" class="linkedin"></a>
+	<a href="#" class="mail"></a>
+</div>	
+	<div class="container">
+		<div class="bg"></div>
+		<ul>
+			<li class="span8 offset4 jumbotron-info on" rel="1">
+				<h1>THE UK'S LEADING END TO END RECRUITMENT SOLUTIONS PROVIDER</h1>
+				<p class="lead">Delivering tailored solutions designed to support every aspect of your recruitment process and the specific needs of your business.</p>
+				<a href="our-solutions"><img src="/content/website/img/btn-fom.png" alt="Find Out More"></a>
+			</li>
+			<li class="span8 offset4 jumbotron-info" rel="2">
+				<h1>ENGAGE THE POWER OF SOCIAL MEDIA AS A RECRUITMENT TOOL</h1>
+				<p class="lead">Tap into the wealth of top talent on LinkedIn, Twitter and Facebook.</p>
+				<a href="our-solution-candidate-attraction-social-media-advertising"><img src="/content/website/img/btn-fom.png" alt="Find Out More"></a>
+			</li>
+			<li class="span7 offset4 jumbotron-info" rel="3">
+				<h1>CANDIDATE ATTRACTION AND CANDIDATE MANAGEMENT </h1>
+				<p class="lead">Engage the skills of our talent team with a fully managed service that is proven to attract top talent and deliver a first class candidate experience on your behalf.</p>
+				<a href="our-solution-response-management-service"><img src="/content/website/img/btn-fom.png" alt="Find Out More"></a>
+			</li>
+			<li class="span7 offset4 jumbotron-info" rel="4">
+				<h1>SEARCH FOR JOBS</h1>
+				<p class="lead">Jobs across all levels, disciplines and locations updated daily. Start your search now.</p>
+				<a href="jobseekers"><img src="/content/website/img/btn-fom.png" alt="Search now"></a>
+			</li>
+			<li class="span8 offset2 jumbotron-info" rel="5">
+                <img src="/content/website/img/apoint-logo-split.png" alt="apoint Recruitment Technology" />
+				<p class="lead">Achieve your recruitment objectives with an ATS which works the way you require.</p>
+				<a href="apoint-recruitment-technology"><img src="/content/website/img/btn-fom.png" alt="Search now"></a>
+			</li>
+		</ul>
+	</div>
+</div>
+	
+
+
+<!-- SOLUTIONS -->
+<div class="container">
+	<div class="solution-box">
+        <a href='apoint-recruitment-technology'>
+    	<img src="/content/website/img/icon-rt.png" alt="icon">
+    	<h3>APOINT - RECRUITMENT TECHNOLOGY</h3>
+		<hr class="whiteline" />
+		<p>Built in house our modular technology can be configured to reflect the level of functionality you require</p>
+        </a>
+    </div>
+    <div class="solution-box">
+        <a href='our-solution-candidate-attraction'>
+    	<img src="/content/website/img/icon-ca.png" alt="icon">
+    	<h3>CANDIDATE ATTRACTION</h3>
+		<hr class="whiteline" />
+		<p>Attracting top talent on your behalf or providing the tools to support your own direct sourcing methods</p>
+        </a>
+    </div>
+    <div class="solution-box">
+        <a href='our-solution-candidate-management'>
+    	<img src="/content/website/img/icon-cm.png" alt="icon">
+    	<h3>CANDIDATE MANAGEMENT</h3>
+		<hr class="whiteline" />
+		<p>Delivering a 1st class service on your behalf our team offer support from receipt of application through to offer</p>
+        </a>
+    </div>
+    <div class="solution-box solution-box-last">
+        <a href='our-solution-public-sector-recruitment'>
+    	<img src="/content/website/img/icon-pr.png" alt="icon">
+    	<h3>PUBLIC SECTOR RECRUITMENT</h3>
+		<hr class="whiteline" />
+		<p>Our dedicated solutions are designed to ensure compliance and help promote equality and diversity across your business</p>
+        </a>
+    </div>
+    <div class="clearfix"></div>
+    <div class="combined-box">
+        <a href='our-solution-public-sector-recruitment-apoint-combined-services'>
+    	<h3>THE <strong>COMBINED</strong> SOLUTION</h3>
+		<p>
+			In order to reflect the diverse needs of our clients, our solutions can be combined to allow businesses to implement the required tools and specific level of service they require
+		</p>
+        </a>
+    </div>
+</div>
+<!-- /SOLUTIONS -->
+
+
+<!-- WELCOME WRAPPER-->
+<div id="welcome-wrapper">
+	<div class="container">
+        <div id="welcome">
+    			<h3 class="arrow">Welcome to networx</h3>
+       			<p>
+					Whether you’re a small local company or a large global brand, our flexible approach to recruitment is designed to provide you with the necessary tools and support to achieve your recruitment objectives.
+				</p>
+                <p>
+                    Combining an unrivalled level of recruitment expertise with cutting edge technology our team will consult with  your business to offer end to end recruitment solutions that reflect the specific needs of your business.
+                </p>
+       </div>
+       		<div class="side-buttons">
+            	<a href="jobseekers"><img src="/content/website/img/btn-search-jobs.png" alt="Search Jobs" ></a>
+                <a href="contact"><img src="/content/website/img/btn-request-demo.png" alt="Request a Demo" ></a>
+            </div> 
+    </div>
+</div>
+
+<!-- /WELCOME WRAPPER -->
+
+<!-- SOCIAL WRAPPER -->
+<div id="social-wrapper">
+	<div class="container">
+        <div class="social-box">
+            <img src="/content/website/img/icon-twitter-1.png" alt="twitter">
+            <p>On Twitter?  Follow <a target="_blank" href="https://twitter.com/networx_recruit">@networx_recruit</a> to receive notification of the latest vacancies and news from networx.</p>
+        </div>
+        <div class="social-box">
+            <img src="/content/website/img/icon-facebook-1.png" alt="facebook">
+            <p>Become a fan of <a target="_blank" href="http://www.facebook.com/#!/pages/networx-recruitment/318840226671">networx recruitment</a> to be updated with the latest jobs and to search and apply for vacancies via our Jobs APP.</p>
+        </div>
+        <div class="social-box">
+            <img src="/content/website/img/icon-LinkedIn-1.png" alt="linked in">
+            <p>Ensure you are notified of suitable vacancies by following <a target="_blank" href='http://www.LinkedIn.com/company/222378?trk=tyah'>our company page</a>, joining our groups or connecting with our team.</p>
+        </div>
+        <div class="social-box social-box-last">
+            <h3>LATEST NEWS</h3>
+            <h4>Latest apoint updates deliver exciting new functionality to clients.</h4>
+			<h5>06-Jul-2015</h5>
+			<p><a href="connectwithus" class="bluelink">Read more</a></p>
+        </div>
+	</div>
+</div>
+<!-- /SOCIAL WRAPPER -->
+
+<!-- PARTNER WRAPPER -->
+	<div id="partner-wrapper">
+    <div id="partner-inner">
+        <ul>
+		    <li class="footer_logo">
+			    <img class="footer_inactive" src="/content/website/img/thorntonsBW.png" alt="Thorntons" />
+			    <img class="footer_active" src="/content/website/img/thorntonsColour.png" alt="Thorntons" />
+		    </li>
+		    <li class="footer_logo">
+			    <img class="footer_inactive" src="/content/website/img/sheffieldColledgeBW.png" alt="The Sheffield College" />
+			    <img class="footer_active" src="/content/website/img/sheffieldCollegeColour.png" alt="The Sheffield College" />
+		    </li>
+		    <li class="footer_logo">
+			    <img class="footer_inactive" src="/content/website/img/ghdBW.png" alt="GHD" />
+			    <img class="footer_active" src="/content/website/img/ghdColour.png" alt="GHD" />
+		    </li>
+		    <li class="footer_logo">
+			    <img class="footer_inactive" src="/content/website/img/housingPlusBW.png" alt="Housing Plus" />
+			    <img class="footer_active" src="/content/website/img/housingPlusColour.png" alt="Housing Plus" />
+		    </li>
+		    <li class="footer_logo">
+			    <img class="footer_inactive" src="/content/website/img/tataBW.png" alt="TATA" />
+			    <img class="footer_active" src="/content/website/img/tataColour.png" alt="TATA" />
+		    </li>
+        </ul>
+    </div>
+    </div>
+<!-- /PARTNER WRAPPER -->
+
+
+
+<div id="footer-wrapper">
+      <div class="container footer">
+      	<div id="footer-info">
+      	<img src="/content/website/img/footer-logo2.png" alt="Networx">
+        <p>Registered office: The Engine House, Wharfebank Business Centre, Ilkley Road, Otley LS21 3JP. Company number: 4278636</p>
+        </div>
+      </div>
+
+    </div> <!-- /footer-wrapper -->
+</div>
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/content/website/js/bootstrap.min.js?v=1.0"></script>
+  </body>
+</html>

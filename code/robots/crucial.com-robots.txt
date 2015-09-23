@@ -1,0 +1,1755 @@
+<!doctype HTML>
+
+
+
+<html xmlns:wairole="http://www.w3.org/2005/01/wai-rdf/GUIRoleTaxonomy#" xmlns:waistate="http://www.w3.org/2005/07/aaa" lang="en" xml:lang="en">
+	<head>
+		<meta http-equiv="x-ua-compatible" content="IE=Edge" />
+		<meta charset="utf-8">	
+		<title>Crucial.com - DRAM, solid state drive (SSD) memory upgrades for Dell, Mac, Apple, HP, Compaq, Lenovo, Acer, ASUS </title>
+		<meta name="description" content="Find compatible memory and SSD upgrades with our Crucial Advisor tool and our Crucial System Scanner."/>
+		<meta name="keyword" content=""/>
+	    <link rel="canonical" href="http://www.crucial.com/usa/en/homepage" />
+				
+		
+
+<link rel="stylesheet" href="http://assets.crucial.com/wcsstore/CrucialSAS/css/ext/styles.css?v=2015081220">
+<!-- Include script files -->
+		<script type="text/javascript" src="http://assets.crucial.com/wcsstore/customdojosmall/dojo/dojo.js" djConfig="baseUrl: '/wcsstore/dojo18/dojo/', parseOnLoad: true, isDebug: false,  modulePaths: {storetext: '/wcsstore/CrucialSAS/', ext: '/wcsstore/CrucialSAS/javascript/ext'}, useCommentedJson: true,locale: 'en-us' "></script>
+		<!-- BEGIN CommonJSToInclude.jspf -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0;" />
+<meta name="CommerceSearch" content="storeId_10151" />
+
+
+<link rel="shortcut icon" href="http://pics.crucial.com/wcsstore/CrucialSAS/images/ext/favicon.png" mce_href="http://pics.crucial.com/wcsstore/CrucialSAS/images/ext/favicon.png"/>
+
+<script type="text/javascript">
+	// Convert the WCParam object which contains request properties into javascript object
+	var WCParamJS = {
+		"storeId":'10151',
+		"catalogId":'10151',
+		"langId":'-1',
+		"pageView":'grid',
+		"orderBy":'',
+		"orderByContent":'',
+		"searchTerm":''
+	};
+	var absoluteURL = "http://www.crucial.com/webapp/wcs/stores/servlet/";
+	var imageDirectoryPath = "http://pics.crucial.com/wcsstore/CrucialSAS/";
+	var styleDirectoryPath = "images/colors/color1/";
+	var supportPaymentTypePromotions = false;
+	
+	var subsFulfillmentFrequencyAttrName = "fulfillmentFrequency";
+	var subsPaymentFrequencyAttrName = "paymentFrequency";
+	var subsTimePeriodAttrName = "timePeriod";
+	
+	var storeNLS = null;
+	
+	/** 
+	 * This variable indicates whether a request has been submitted or not.
+	 * The value is initialized to true and resets to false on full page load.
+	 */
+	var requestSubmitted = true;
+	
+	/** 
+	 * This variable stores the id of the element (ex: button/link) which the user clicked.
+	 * This id is set when the user clicks an element which triggers an Ajax request.
+	 */
+	var currentId = "";
+	
+	//Summary: Returns the absolute URL to use for prefixing any Ajax URL call.
+	//Description: Dojo does not handle the case where the parameters in the URL are delimeted by the "/" forward slash. Therefore, in order to
+	//             workaround the issue, all AJAX requests must be done using absolute URLs rather than relative.
+	//Returns: The absolute URL to use for prefixing any Ajax URL call.
+	function getAbsoluteURL() {
+		if (absoluteURL != "") {
+			var currentURL = document.URL;
+			var currentProtocol = "";
+		
+			if (currentURL.indexOf("://") != -1) {
+				currentProtocol = currentURL.substring(0, currentURL.indexOf("://"));
+			}
+			
+			var savedProtocol = "";
+			if (absoluteURL.indexOf("://") != -1) {
+				savedProtocol = absoluteURL.substring(0, absoluteURL.indexOf("://"));
+			}
+			
+			if (currentProtocol != savedProtocol) {
+				absoluteURL = currentProtocol + absoluteURL.substring(absoluteURL.indexOf("://"));
+			}
+		}
+		
+		return absoluteURL;
+	}
+	//Summary: Returns the path pointing to the shared image directory.
+	//Description: In order to get the image directory path in any javascript file, this function can be used.
+	//Returns: The path to reference images.
+	function getImageDirectoryPath() {
+		return imageDirectoryPath;
+	}
+	//Summary: Returns the path pointing to the directory containing color-dependant image files.
+	//Description: In order to get the directory containing color-dependant image files in any javascript file, this function can be used.
+	//Returns: The path to reference color-dependant image files.
+	function getStyleDirectoryPath() {
+		return styleDirectoryPath;
+	}
+	
+	dojo.registerModulePath("wc", "../wc");
+	dojo.require("wc.service.common");
+	dojo.require("wc.widget.RefreshArea");
+	dojo.require("wc.render.RefreshController");
+	dojo.require("wc.render.Context");
+	dojo.require("dojo.cookie");
+	
+	/**
+	 * Submits the form parameter.
+	 * Requires a form element to be passed in and submits form with its inputs.
+	 * Used for Non-ajax calls that requires multiple clicks handling.
+	 *
+	 * @param {element} form The form to be submitted.
+	 */
+	function submitSpecifiedForm(form) {
+		if(!submitRequest()){
+			return;
+		}
+		//console.debug("form.action == "+form.action);
+		form.submit();
+	}
+
+	/**
+	 * Parses a Dojo widget.
+	 * Pass in the id of a dojo widget or a HTML container element containing a dojo widget, such as a div,
+	 * and this method will parse that widget, or all the widgets within that HTML container element.
+	 * 
+	 * @param {string} id The id of a dojo widget or a HTML container of a dojo widget to be parsed.
+	 */
+	function parseWidget(id)
+	{
+		var node;
+		var widget = dijit.byId(id);
+		
+		if (widget == null || widget == undefined)
+		{
+			if (id == null || id == undefined)
+			{	
+				node = dojo.body();
+			}
+			else
+			{
+				node = dojo.byId(id);
+			}
+			
+			if (node != null && node != undefined)
+			{
+				if (node.getAttribute("dojoType") != null && node.getAttribute("dojoType") != undefined)
+				{
+					dojo.parser.instantiate([node]);
+				}
+				else
+				{
+					dojo.parser.parse(node);
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Stores the id of the element (ex: button/link) that triggered the current submitted request.
+	 * Store the new element id only when no request is currently running.
+	 *
+	 * @param {string} id The id of element triggering the submitted request.
+	 */
+	function setCurrentId(id){
+		//If there is no request already submitted, update the id
+		if(!requestSubmitted && this.currentId == ""){
+			this.currentId = id;
+		}
+	}
+	
+	/**
+	 * This function trims the spaces from the pased in word.
+	 * Delete all pre and trailing spaces around the word.
+	 * 
+	 * @param {string} inword The word to trim.
+	 */
+	function trim(inword)
+	{
+		word = inword.toString();
+		var i=0;
+		var j=word.length-1;
+		while(word.charAt(i) == " ") i++;
+		while(word.charAt(j) == " ") j=j-1;
+		if (i > j) {
+			return word.substring(i,i);
+		} else {
+			return word.substring(i,j+1);
+		}
+	}
+	
+	/**
+	* Displays the progress bar dialog to indicate a request is currently running.
+	* There are certain cases where displaying the progress bar causes problems in Opera,
+	* the optional parameter "checkForOpera" is passed to specifically check if the browser used is Opera,
+	* if so, do not display the progress bar in these cases.
+	*
+	* @param {boolean} checkForOpera Indicates whether to check if the browser is Opera or not.
+	*/
+	function cursor_wait(checkForOpera) {
+		var showPopup = true;	
+	
+		//Since dijit does not support Opera
+		//Some progress bar dialog will be blocked in Opera to avoid error
+		if(checkForOpera == true){
+			if(dojo.isOpera > 0){
+				showPopup = false;
+			}
+		}
+		
+		//For all other browsers and pages that work with Opera
+		//Display the progress bar dialog
+		if(showPopup){
+			//Delay the progress bar from showing up
+			setTimeout('showProgressBar()',500);
+		}
+	}
+
+	/**
+	* Helper method for cursor_wait() to display the progress bar pop-up.
+	* Displays progress bar, next to the element if the element id was specified in currentId,
+	* or defaults to the center of the page if currentId is empty.
+	* Progress bar will only be displayed if the submitted request has not been completed.
+	* This method is only called implicitly by the cursor_wait() method, which is triggered before a request is submitted.
+	*/
+	function showProgressBar(){
+		//After the delay, if the request is still not finished
+		//Then continue and show the progress bar
+		//Otherwise, do not execute the following code
+		if(!requestSubmitted){
+			return;
+		}
+		
+		displayProgressBar();
+		
+	}
+
+
+	/**
+	* Helper method for showProgressBar() to display the progress bar pop-up.
+	* It can also be forced to show the progress bar directly in special cases.
+	* The function also displays the progress bar next to the element if the element id was specified in currentId,
+	* or defaults to the center of the page if currentId is empty.
+	* This method can be called implicitly by the cursor_wait() method or explicitly by itself.
+	*/
+	function displayProgressBar(){
+		var dialog = dijit.byId('progress_bar_dialog');
+		
+		//Make sure the dialog is created
+		if(dialog != null){
+				
+			//Hide the header for the close button
+			dialog.closeButtonNode.style.display='none';		
+			
+			var progressBar = document.getElementById('progress_bar');
+			progressBar.style.display = 'block';	
+					
+			//Check whether or not an element ID is provided
+			//If yes, point the progress bar to this element
+			//Otherwise, show the progress bar in a dialog
+			if(this.currentId != ""){
+				var element = document.getElementById(this.currentId);	
+				var pos = dijit.placeOnScreenAroundElement(progressBar,element,{'TR':'TL'});	
+			} else {
+				dialog.containerNode.innerHTML == "";
+				progressBar.style.left = '';
+				progressBar.style.top = '';
+				dialog.containerNode.appendChild(progressBar);
+				dialog.show();		
+			}
+			
+			//Make sure the progress bar dialog goes away after 30 minutes
+			//and does not hang if server calls does not return
+			//Assuming the longest server calls return before 30 minutes
+			setTimeout("cursor_clear()",1800000);
+		}
+	}
+
+	/**
+	 * Hides the progress bar dialog when the submitted request has completed.
+	 * Set the visibility of the progress bar dialog to hide from the page.
+	 */
+	function cursor_clear() {
+			//Reset the flag 
+			requestSubmitted = false;
+	
+			//Hide the progress bar dialog
+			var dialog = dijit.byId('progress_bar_dialog');
+			var progressBar = document.getElementById('progress_bar');
+			if(dialog != null){
+				if(progressBar != null){
+					progressBar.style.display = 'none';
+				}
+				dialog.hide();
+				this.currentId="";
+			}
+	}
+	
+	/**
+	 * Checks whether a request can be submitted or not.
+	 * A new request may only be submitted when no request is currently running.
+	 * If a request is already running, then the new request will be rejected.
+	 *
+	 * @return {boolean} Indicates whether the new request was submitted (true) or rejected (false).
+	 */
+	function submitRequest() {
+		if(!requestSubmitted) {
+			requestSubmitted  = true;
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * This function store a error key in the cookie. The error key will be used to retrieve error messages. 
+	 * @param {String} errorKey  The key used to retrieve error/warning messages. 
+	 */
+	function setWarningMessageCookie(errorKey) {
+		dojo.cookie("signon_warning_cookie",errorKey);
+	}
+	/**
+	* This function removes a cookie
+	* @param {String} name the name of the cookie to be removed. 
+	*/
+	function removeCookie(name) {
+		dojo.cookie(name, null, {expires: -1});
+	}
+	/**
+	* This function gets a cookie
+	* @param {String} c the name of the cookie to be get.
+	*/
+	function getCookie(c) {
+		var cookies = document.cookie.split(";");
+		for (var i = 0; i < cookies.length; i++) {
+			var index = cookies[i].indexOf("=");
+			var name = cookies[i].substr(0,index);
+			name = name.replace(/^\s+|\s+$/g,"");
+			if (name == c) {
+				return unescape(cookies[i].substr(index + 1));
+			}
+		}
+	}
+	
+	/**
+	 * checks if the store is in preview mode
+	 * @param {String} contextPathUsed The context path being used by the Store. 
+	 * @param {String} criteria criteria used to check if contextPathUsed is the preview context. 
+	 */
+	function isStorePreview(contextPathUsed,criteria) {
+		if(contextPathUsed.indexOf(criteria)>-1) {
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	* Validates if the input value is a non-negative integer using regular expression.
+	*
+	* @param {String} value The value to validate.
+	* 
+	* @return {Boolean} Indicates if the given value is a non-negative integer. 
+	*/
+	function isNonNegativeInteger(value){
+		var regExpTester = new RegExp(/^\d*$/);
+		return (value != null && value != "" && regExpTester.test(value));
+	}
+	
+	/**
+	* Validates if the input value is a positive integer.
+	*
+	* @param {String} value The value to validate.
+	* 
+	* @return {Boolean} Indicates if the given value is a positive integer. 
+	*/
+	function isPositiveInteger(value){
+		return (isNonNegativeInteger(value) && value != 0);
+	}
+</script>
+
+<script type="text/javascript" src="http://assets.crucial.com/wcsstore/CrucialSAS/javascript/Common/CrucialCommonScriptContentPage.js?v=2015081220"></script>
+
+
+
+<script type="text/javascript">
+ //Set the default NLS to use in the store.
+ if(storeNLS == null) {
+	 dojo.requireLocalization("storetext", "StoreText");
+	 storeNLS = dojo.i18n.getLocalization("storetext","StoreText");
+ }
+ 
+	// set user's default store
+	function rememberUserStore(){
+		var selectedOptionVal = dijit.byId('selectStore').attr('value');
+		var isRememberSelected = document.getElementById("remember").checked; 
+		
+		var cookieKey = "UserSelectedStore";
+		if(isRememberSelected){
+			var cookieValue = selectedOptionVal;					
+			dojo.cookie(cookieKey, cookieValue, {path:'/', expires:30});
+		}
+		window.location.href = selectedOptionVal;
+	}
+	//open user's default store if previously set
+	dojo.addOnLoad(function() {
+		var cookieKeyTemp = "UserSelectedStoreTemp";
+		var cookieValueTemp = dojo.cookie(cookieKeyTemp);
+		if(typeof cookieValueTemp == 'undefined'){
+			dojo.cookie(cookieKeyTemp, "1", {path:'/'});
+			
+			var cookieKey = "UserSelectedStore";
+			var cookieValue = dojo.cookie(cookieKey);
+			if((typeof cookieValue != 'undefined') && (window.location != cookieValue)){
+				window.location.href = cookieValue;
+			}
+		}
+	});
+</script>
+
+
+                                        <script type="text/javascript" src="//libs.coremetrics.com/eluminate.js"></script>
+                                        <script type="text/javascript">
+                                                cmSetupNormalization("krypto-_-krypto");
+                                                cmSetClientID ("50330000|crucial.com", true, "data.coremetrics.com", "crucial.com");
+                                                cmSetupOther({"cm_TrackImpressions":""});
+                                        </script>
+                                <!-- END CommonJSToInclude.jspf -->
+	</head>		
+	<body id="CrucialUSA" class="Prod">		
+		<!-- BEGIN CommonJSPFToInclude.jspf --><!--Start Changes for CR IP Overriding--><!--End Changes for CR IP Overriding--><!-- END CommonJSPFToInclude.jspf --><!-- Import Header Widget -->
+		<div>
+			<!-- BEGIN Header.jsp -->
+
+<script> require(["dijit/Dialog"]); </script>
+
+
+	<script type="text/javascript" src="http://assets.crucial.com/wcsstore/CrucialSAS/javascript/Analytics.js"></script>
+	<script type="text/javascript">
+	dojo.addOnLoad(function() {
+		analyticsJS.storeId=10151;
+		analyticsJS.catalogId=10151;
+		dojo.require("wc.analytics.CoremetricsEventListener");		
+			(new wc.analytics.CoremetricsEventListener()).load(true);
+	});
+	</script>
+	
+
+<script>
+	var isGuest = true;
+	function updateHeaderOrderCnt() {
+		var count =  dojo.byId("ordRowCount").value;
+		var cntLabel = document.getElementById('noOfLinesInCart');
+		cntLabel.innerHTML = count;
+	}
+</script>
+
+<!-- Toolbar -->
+<div id="toolbar">
+	<div class="center">
+		<ul class="user">
+			<li class="flag dialogTrigger" id="utilityBarCountry"><a href="javascript:void(0)" class="country" onclick="countryDialog.show();"><img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/ext/flag-us.png"> US</a></li>
+			
+			
+					<li><a id="SignInLink" href="LogonForm?catalogId=10151&myAcctMain=1&langId=-1&storeId=10151">sign in/register</a></li>
+				
+			
+			<li>800-336-8915</li>
+			
+	
+				<li class="chat"><a href="http://www.crucial.com/usa/en/support-contact">chat</a></li>
+	
+		</ul>
+		
+		
+			<div dojoType="wc.widget.RefreshArea" widgetId="HeaderCountDisplay" id="HeaderCountDisplay" controllerId="HeaderCountDisplayController" style="overflow:hidden; float:right;">
+			</div> 
+			<script type="text/javascript">
+				dojo.addOnLoad(function() { 
+					parseWidget("HeaderCountDisplay");
+					loadCartCountByStore(-1,10151,10151);
+				});
+			</script>
+		
+			<ul class="panel" style="*float: left !important; *position: relative; *top: -26px; *left: 100px;">
+				
+				
+			</ul>
+
+			<div class="dijitHidden">
+		<!-- MiniShopCart Widget -->
+		<div class="widget_minishopcart_position">	
+			<div data-dojo-type="dijit/Dialog" id="cartDialog" data-dojo-props="draggable: false" class="utility" data-dojo-id="cartDialog" title="Your cart has been updated">
+				
+<span id="MiniShoppingCart_Label" class="spanacce">Shopping Cart</span>
+<div dojoType="wc.widget.RefreshArea" id="MiniShoppingCart" widgetId="MiniShoppingCart" 
+	controllerId="MiniShoppingCartController" 
+	ariaMessage="Shopping Cart Display Updated" ariaLiveId="ariaMessage" 
+	role="region" aria-labelledby="MiniShoppingCart_Label">
+	<script type="text/javascript">
+		dojo.addOnLoad(function() {
+			setMiniShopCartControllerURL(getAbsoluteURL()+'MiniShopCartDisplayView?storeId=10151&catalogId=10151&langId=-1');
+		});
+	</script>
+</div>
+
+
+			</div>
+		</div>
+		<!-- End MiniShopCart Widget -->
+		</div>
+		<div class="dijitHidden">
+			<!-- Wish List -->
+			<div data-dojo-type="dijit/Dialog" id="wishListDialog" data-dojo-props="draggable: false" class="utility" data-dojo-id="wishListDialog" title="">
+				
+<span id="MiniWishList_Label" class="spanacce">???ACCE_Region_Wish_List_Content???</span>
+<div dojoType="wc.widget.RefreshArea" id="MiniWishList" widgetId="MiniWishList" 
+	controllerId="MiniWishListController" 
+	ariaMessage="???ACCE_Status_Wish_List_Content_Updated???" ariaLiveId="ariaMessage" 
+	role="region" aria-labelledby="MiniWishList_Label">
+	
+
+<script type="text/javascript">
+  dojo.addOnLoad(function() {
+ 		setMiniWishListControllerURL(getAbsoluteURL()+'MiniWishListDisplayView?storeId=10151&catalogId=10151&langId=-1');
+	});
+</script>
+
+<input type="hidden" name="wlRecCount" id="wlRecCount" value="0" />
+
+    <table><tr><td class="thumb">
+    	<div>no items in the wish list</div></td></tr></table>
+ 	
+<script type="text/javascript">
+function updateMiniWLTitle() {
+	var dialog = dijit.byId("wishListDialog");
+	var count =  dojo.byId("wlRecCount").value;
+	var itemsInWL = 'items <span>in your wish list</span>';
+	var message = '';
+	
+	if(count != '' && Number(count) > 0) {
+		message = count + ' ' + itemsInWL;
+	}
+	
+	dialog.set('title',message ); 
+}
+</script>
+</div>
+<script type="text/javascript">
+	dojo.addOnLoad(function() { 
+		parseWidget("MiniWishList");
+	});
+</script>
+
+
+			</div>
+			<!-- /Wish List -->
+		</div>
+		<div class="dijitHidden">
+			<!-- Store List -->
+			<div data-dojo-type="dijit/Dialog" id="countryDialog" data-dojo-props="draggable: false" class="countrySelect" data-dojo-id="countryDialog" title="Locations">
+				<h2>select a store</h2>
+				
+				<div id="selectStore" class="storeSelect" data-dojo-type="dijit/form/Select">
+					
+						
+						<span value="http://www.crucial.com/webapp/wcs/stores/servlet/StoreView?storeId=10151&catalogId=10151&langId=-1" selected="selected">United States (USD)</span>
+					
+						
+						<span value="http://eu.crucial.com/webapp/wcs/stores/servlet/StoreView?storeId=10152&catalogId=10152&langId=-1" >European Union (Euros)</span>
+					
+						
+						<span value="http://uk.crucial.com/webapp/wcs/stores/servlet/StoreView?storeId=10153&catalogId=10153&langId=-1" >United Kingdom (GBP)</span>
+					
+						
+						<span value="http://www.crucial.fr/webapp/wcs/stores/servlet/StoreView?storeId=10154&catalogId=10154&langId=-2" >Francais (Euros)</span>
+					
+						
+						<span value="http://it.crucial.com/webapp/wcs/stores/servlet/StoreView?storeId=10155&catalogId=10155&langId=-4" >Italiano (Euros)</span>
+					
+						
+						<span value="http://www.crucial.de/webapp/wcs/stores/servlet/StoreView?storeId=11152&catalogId=11152&langId=-3" >Germany (EURO)</span>
+					
+						<span value="http://www.crucial.cn/">&#20013;&#22269; (&#20122;&#27954;)</span>
+					
+				</div>
+								
+				<div class="clear"></div>
+					<input id="remember" type="checkbox"><label>remember this selection</label>
+				<div class="clear20"></div>
+				<div class="controls">
+					<div class="floatRight">
+						<a href="javascript:rememberUserStore();" class="btnGray">select</a>
+					</div>
+				</div>
+			</div>
+			
+			<!-- /Store List -->
+		</div>
+	</div>
+</div>
+
+<div class="shadow"></div>
+<!-- End: Toolbar --><!-- Header -->
+<div id="header">
+	<div id="logo">
+		
+				<a href="/"><img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/ext/crucial_logo.png" alt="Crucial_Logo"></a>
+				
+	</div>
+	<!-- google-translate --><!-- End google-translate -->
+	<div id="searchWrap">
+		<!-- BEGIN Search.jsp -->
+
+
+		<meta name="CommerceSearch" content="storeId_10151" />
+		<!-- Begin Search Widget -->
+		<script type="text/javascript">
+				dojo.addOnLoad(function(){
+					SearchJS.init();
+					SearchJS.setCachedSuggestionsURL('SearchComponentCachedSuggestionsView?langId=-1&amp;storeId=10151&amp;catalogId=10151');
+					SearchJS.setAutoSuggestURL('SearchComponentAutoSuggestView?coreName=MC_10001_CatalogEntry_en_US&amp;serverURL=http%3a%2f%2fsolr.micron.com%3a3737%2fsolr%2fMC_10001_CatalogEntry_en_US&amp;langId=-1&amp;storeId=10151&amp;catalogId=10151');
+					SearchJS.setViewAllURL('http://www.crucial.com/SearchDisplay?searchFor=Articles&storeId=10151&urlLangId=-1&urlRequestType=Base&sType=SimpleSearch&langId=-1&catalogId=10151');
+				});
+
+				// The primary Array to hold all static search suggestions
+				var staticContent = new Array();
+
+				// The titles of each search grouping
+				var staticContentHeaders = new Array();
+		</script>	
+	
+
+<form name="CatalogSearchForm" action="SearchDisplay?" method="get" id="CatalogSearchForm">
+	
+	<!-- Search Widget -->
+	<div role="search">
+		<div id="widget_search">
+			
+				<label for="SimpleSearchForm_SearchTerm" class="nodisplay">search</label>
+				<input type="text" placeholder="search" name="searchTerm" id="SimpleSearchForm_SearchTerm" autocomplete="off" maxlength="65" tabindex="0" title="Press the Up or Down Arrow keys to navigate through the search suggestions. Suggested site content and search history, if any, are included after the suggestions.  Press the Enter key for all search results." onkeypress="return SearchJS._onKeyPress(event);" value='search'></input>
+
+				<input id="search_categoryId" type="hidden" name="categoryId" value=""/>
+				
+				<input id="search_submit" type="image" alt="search" src="http://pics.crucial.com/wcsstore/CrucialSAS/images/ext/btn-search.png" value="search" />
+			
+			<div class="clear_float"></div>
+		</div>
+	</div>
+	<!-- Start SearchDropdownWidget -->
+	<div id="autoSuggest_Result_div" style="display:none;">
+
+		<div id="widget_search_dropdown" class="widget_search_dropdown_position">
+			<div class="widget_search_dropdown">
+		
+				<!-- Top Border Styling -->
+				<div class="top">
+					<div class="left_border"></div>
+					<div class="middle"></div>
+					<div class="right_border"></div>
+				</div>
+				<div class="clear_float"></div>
+				
+				<!-- Main Content Area -->
+				<div class="content_left_border">
+					<div class="content_right_border">
+		
+						<div id="AutoSuggestDiv" class="content" role="region" aria-required="true" aria-labelledby="AutoSuggestDiv" onmouseover="SearchJS.autoSuggestHover = true;" onmouseout="SearchJS.autoSuggestHover = false; document.getElementById('SimpleSearchForm_SearchTerm').focus();">
+							
+								<span id="autoSuggestDynamic_Result_div_ACCE_Label" class="spanacce">suggested keywords menu</span>  
+								<div dojoType="wc.widget.RefreshArea" widgetId="autoSuggestDisplay_Widget" controllerId="AutoSuggestDisplayController" id="autoSuggestDynamic_Result_div" role="region" aria-live="polite" aria-atomic="true" aria-relevant="all" aria-labelledby="autoSuggestDynamic_Result_div_ACCE_Label" >
+									
+								</div>
+		
+								<div id="autoSuggestStatic_1"></div>
+								<div id="autoSuggestStatic_2"></div>
+								<div id="autoSuggestStatic_3"></div>
+								<div id="autoSuggestHistory"></div>
+								 
+								<div class="heading" style="display: none;"> 
+									<a href="#" id="viewAllResults" >
+										<div>
+											
+										</div>
+									</a> 
+								</div>
+								
+						<!-- End content Section -->
+						</div>
+		
+					<!-- End content_right_border -->
+					</div>
+				<!-- End content_left_border -->
+				</div>
+				
+				<!-- Bottom Border Styling -->
+				<div class="bottom">
+					<div class="left_border"></div>
+					<div class="middle"></div>
+					<div class="right_border"></div>
+				</div>
+				
+			</div>
+		</div>
+	<!-- End SearchDropdownWidget -->
+	</div>
+	
+	<!-- Refresh area to retrieve cached suggestions -->
+	<span id="autoSuggestCachedSuggestions_div_ACCE_Label" class="spanacce">suggested site content and search history menu</span>
+	<div dojoType="wc.widget.RefreshArea" widgetId="AutoSuggestCachedSuggestions" controllerId="AutoSuggestCachedSuggestionsController" id="autoSuggestCachedSuggestions_div" role="region" aria-live="polite" aria-atomic="true" aria-relevant="all" style="display:none;" aria-labelledby="autoSuggestCachedSuggestions_div_ACCE_Label">
+	</div>
+
+	
+	<input type="hidden" name="storeId" value='10151' />
+	<input type="hidden" name="catalogId" value='10151' />
+	<input type="hidden" name="langId" value='-1' />
+	<input type="hidden" name="pageSize" value="10" />
+	<input type="hidden" name="beginIndex" value="0" />
+	<input type="hidden" name="sType" value="SimpleSearch" />
+	<input type="hidden" name="searchFor" value="Keyword" />
+	<input type="hidden" name="resultCatEntryType" value="2" />
+	<input type="hidden" name="showResultsPage" value="true" />
+	<input type="hidden" name="searchSource" value="Q" />
+	<input type="hidden" name="pageView" value="" />
+	<span id="searchTextHolder" class="nodisplay">search</span>
+</form><!-- End Search Widget --><!-- END Search.jsp -->
+	</div>
+</div>
+<!-- End: Header --><!-- Main Menu as Espot-->
+<div>
+	<!-- BEGIN ContentRecommendation.jsp --><!-- us-header-menu -->
+<div id="menuWrap" class="center">
+<ul id="menu" class="branded">
+<!-- store nav -->
+<li class="nav1">
+	<a href="/usa/en?cm_re=top-nav-_-flyout-store-_-us-store">store</a>
+	<div class="menuContent store-content">
+		<div class="tools-wide">
+			<img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/guarantee-badge.png" class="compatible-badge">
+			<h1>Compatible upgrades. Guaranteed.</h1>
+			<span class="action"><a href="/usa/en/advisor?cm_re=top-nav-_-flyout-store-_-us-store-advisor" class="btnGray">advisor tool</a><a href="/usa/en/systemscanner?cm_re=top-nav-_-flyout-store-_-us-store-scanner" class="btnGray">system scanner</a></span>
+		</div>
+		<div class="menuColumn">
+            <div class="sectionThumb">
+            	<a href="/usa/en/memory?cm_re=top-nav-_-flyout-store-_-us-store-memory">
+                	<span class="menu-title">memory</span>
+                    <img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/menu/menu-store-memory.png">
+                </a>
+            </div>
+            <div class="clear"></div>
+			<ul>
+				<li><a href="/usa/en/memory/DDR4?cm_re=top-nav-_-flyout-store-_-us-store-memory-ddr4">DDR4</a></li>
+                <li><a href="/usa/en/memory/DDR3?cm_re=top-nav-_-flyout-store-_-us-store-memory-ddr3">DDR3</a></li>
+				<li><a href="/usa/en/memory/DDR2?cm_re=top-nav-_-flyout-store-_-us-store-memory-ddr2">DDR2</a></li>
+				<li><a href="/usa/en/memory/DDR?cm_re=top-nav-_-flyout-store-_-us-store-memory-ddr">DDR</a></li>
+            </ul>
+            <ul>
+				<li><a href="/usa/en/memory/crucial?cm_re=top-nav-_-flyout-store-_-us-store-memory-crucial">Crucial memory</a></li>
+                <li><a href="/usa/en/memory/ballistix%20sport--ballistix%20tactical--ballistix%20elite?cm_re=top-nav-_-flyout-store-_-us-store-memory-bx">Ballistix memory</a></li>
+                <li><a href="/usa/en/memory/ecc--rdimm--fbdimm--lrdimm--udimm--sodimm?cm_re=top-nav-_-flyout-store-_-us-store-memory-server">server memory</a></li>
+				<li><a href="/usa/en/apple-memory?cm_re=top-nav-_-flyout-store-_-us-store-memory-mac">memory for Mac</a></li> <!-- don't really have a filter for these -->
+			</ul>
+		</div>
+		<div class="menuColumn">
+            <div class="sectionThumb">
+            	<a href="/usa/en/ssd?cm_re=top-nav-_-flyout-store-_-us-store-ssd">
+                	<span class="menu-title">solid state drives</span>
+                    <img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/menu/menu-store-ssd.png">
+                </a>
+            </div>
+            <div class="clear"></div>
+			<ul>
+				<li><a href="/usa/en/ssd/series/MX200?cm_re=top-nav-_-flyout-store-_-us-store-ssd-mx200">MX200 SSD</a></li>
+				<li><a href="/usa/en/ssd/series/BX100?cm_re=top-nav-_-flyout-store-_-us-store-ssd-bx100">BX100 SSD</a></li>
+				<li><a href="/usa/en/store-ssd-factory-recertified?cm_re=top-nav-_-flyout-store-_-us-store-ssd-recertified">factory recertified SSD</a></li>
+			</ul>
+		</div>
+		<div class="menuColumn">
+            <div class="sectionThumb">
+            	<a href="/usa/en/accessories?cm_re=top-nav-_-flyout-store-_-us-store-accessories">
+                	<span class="menu-title">accessories</span>
+                    <img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/menu/menu-accessories.png">
+                </a>
+            </div>
+            <div class="clear"></div>
+			<ul>
+				<li><a href="/usa/en/upgrade-tools?cm_re=top-nav-_-flyout-store-_-us-store-accessories-upgrade-tools">upgrade tools</a></li>
+				<li><a href="/usa/en/computer-components?cm_re=top-nav-_-flyout-store-_-us-store-accessories-computer-components">computer components</a></li>
+				<li><a href="/usa/en/usb-flash-drives?cm_re=top-nav-_-flyout-store-_-us-store-accessories-usb-drives">USB flash drives</a></li>
+				<li><a href="/usa/en/miscellaneous?cm_re=top-nav-_-flyout-store-_-us-store-accessories-miscellaneous">miscellaneous</a></li>
+			</ul>
+		</div>
+		<div class="menuColumn">
+            <div class="sectionThumb">
+                	<span class="menu-title"> shop by manufacturer</span>
+                    <img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/menu/menu-store-manufacturer.png">
+            </div>
+            <div class="clear"></div>
+            <ul>
+                <li><a href="/usa/en/acer-memory?cm_re=top-nav-_-flyout-store-_-us-store-manufacturer-acer">Acer</a></li>
+                <li><a href="/usa/en/apple-memory?cm_re=top-nav-_-flyout-store-_-us-store-manufacturer-apple">Apple</a></li>
+                <li><a href="/usa/en/asus-memory?cm_re=top-nav-_-flyout-store-_-us-store-manufacturer-asus">Asus</a></li>
+                <li><a href="/usa/en/dell-memory?cm_re=top-nav-_-flyout-store-_-us-store-manufacturer-dell">Dell</a></li>
+            </ul>
+            <ul>
+                <li><a href="/usa/en/gateway-memory?cm_re=top-nav-_-flyout-store-_-us-store-manufacturer-gateway">Gateway</a></li>
+                <li><a href="/usa/en/hp-memory?cm_re=top-nav-_-flyout-store-_-us-store-manufacturer-hp">HP</a></li>
+                <li><a href="/usa/en/lenovo-memory?cm_re=top-nav-_-flyout-store-_-us-store-manufacturer-lenovo">Lenovo</a></li>
+                <li><a href="/usa/en/toshiba-memory?cm_re=top-nav-_-flyout-store-_-us-store-manufacturer-toshiba">Toshiba</a></li>
+            </ul>
+	</div>
+    </div>
+</li>
+<!-- memory nav -->
+<li class="nav2">
+	<a href="/usa/en/memory-info?cm_re=top-nav-_-flyout-memory-_-us-memory">memory</a>
+	<div class="menuContent store-content">
+		<div class="menuColumn one-half">
+			<a href="/usa/en/memory?cm_re=top-nav-_-flyout-memory-_-us-memory-shop-for-memory"><h2 class="tools"> shop for memory</h2></a>
+            <div class="tools-wide">
+                <img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/guarantee-badge.png" class="compatible-badge">
+                <h3>Compatibility tools</h3>
+                <span class="action"><a href="/usa/en/advisor?cm_re=top-nav-_-flyout-memory-_-us-memory-advisor" class="btnGray">advisor tool</a><a href="/usa/en/systemscanner?cm_re=top-nav-_-flyout-memory-_-us-memory-scanner" class="btnGray">system scanner</a></span>
+            </div>
+			<ul><h4>category</h4>
+				<li><a href="/usa/en/memory/DDR4?cm_re=top-nav-_-flyout-memory-_-us-memory-shop-for-ddr4">DDR4</a></li>
+                <li><a href="/usa/en/memory/DDR3?cm_re=top-nav-_-flyout-memory-_-us-memory-shop-for-ddr3">DDR3</a></li>
+				<li><a href="/usa/en/memory/DDR2?cm_re=top-nav-_-flyout-memory-_-us-memory-shop-for-ddr2">DDR2</a></li>
+				<li><a href="/usa/en/memory/DDR?cm_re=top-nav-_-flyout-memory-_-us-memory-shop-for-ddr">DDR</a></li>
+			</ul>
+            <ul><h4>series</h4>
+                <li><a href="/usa/en/memory/crucial?cm_re=top-nav-_-flyout-memory-_-us-memory-shop-for-crucial">Crucial</a></li>
+                <li><a href="/usa/en/memory/ballistix sport?cm_re=top-nav-_-flyout-memory-_-us-memory-shop-for-bx-sport">Ballistix Sport</a></li>
+                <li><a href="/usa/en/memory/ballistix tactical?cm_re=top-nav-_-flyout-memory-_-us-memory-shop-for-bx-tactical">Ballistix Tactical</a></li>
+                <li><a href="/usa/en/memory/ballistix elite?cm_re=top-nav-_-flyout-memory-_-us-memory-shop-for-bx-elite">Ballistix Elite</a></li>
+            </ul>
+            <ul><h4>manufacturer</h4>
+                <li><a href="/usa/en/acer-memory?cm_re=top-nav-_-flyout-memory-_-us-memory-shop-for-acer">Acer</a></li>
+                <li><a href="/usa/en/apple-memory?cm_re=top-nav-_-flyout-memory-_-us-memory-shop-for-apple">Apple</a></li>
+                <li><a href="/usa/en/asus-memory?cm_re=top-nav-_-flyout-memory-_-us-memory-shop-for-asus">Asus</a></li>
+                <li><a href="/usa/en/dell-memory?cm_re=top-nav-_-flyout-memory-_-us-memory-shop-for-dell">Dell</a></li>
+                <li><a href="/usa/en/gateway-memory?cm_re=top-nav-_-flyout-memory-_-us-memory-shop-for-gateway">Gateway</a></li>
+                <li><a href="/usa/en/hp-memory?cm_re=top-nav-_-flyout-memory-_-us-memory-shop-for-hp">HP</a></li>
+                <li><a href="/usa/en/lenovo-memory?cm_re=top-nav-_-flyout-memory-_-us-memory-shop-for-lenovo">Lenovo</a></li>
+                <li><a href="/usa/en/toshiba-memory?cm_re=top-nav-_-flyout-memory-_-us-memory-shop-for-toshiba">Toshiba</a></li>
+            </ul>
+		</div>
+		<div class="menuColumn one-half">
+			<a href="/usa/en/memory-info?cm_re=top-nav-_-flyout-memory-_-us-memory-learn-about-memory"><h2> learn about memory</h2></a>
+			<ul><a href="/usa/en/memory-premium?cm_re=top-nav-_-flyout-memory-_-us-memory-learn-about-premium"><h4>Crucial memory</h4></a>
+				<li><a href="/usa/en/memory-desktop?cm_re=top-nav-_-flyout-memory-_-us-memory-learn-about-desktop">for desktops</a></li>
+				<li><a href="/usa/en/memory-laptop?cm_re=top-nav-_-flyout-memory-_-us-memory-learn-about-laptop">for laptops</a></li>
+                <li><a href="/usa/en/memory-server?cm_re=top-nav-_-flyout-memory-_-us-memory-learn-about-server">for servers</a></li>
+                <li><a href="/usa/en/memory-mac-apple?cm_re=top-nav-_-flyout-memory-_-us-memory-learn-about-mac">for Mac systems</a></li>
+                <li><a href="/usa/en/memory-dram-comparison?cm_re=top-nav-_-flyout-memory-_-us-memory-learn-about-compare"><strong>compare all</strong></a></li>
+            </ul>
+			<ul><a href="/usa/en/memory-ballistix?cm_re=top-nav-_-flyout-memory-_-us-memory-learn-about-bx"><h4>Ballistix<sup>&reg;</sup> memory</h4></a>
+				<li><a href="/usa/en/memory-ballistix-elite?cm_re=top-nav-_-flyout-memory-_-us-memory-learn-about-bx-elite">Elite</a></li>
+				<li><a href="/usa/en/memory-ballistix-tactical?cm_re=top-nav-_-flyout-memory-_-us-memory-learn-about-bx-tactical">Tactical</a></li>
+				<li><a href="/usa/en/memory-ballistix-sport?cm_re=top-nav-_-flyout-memory-_-us-memory-learn-about-bx-sport">Sport</a></li>
+                <li><a href="/usa/en/memory-ballistix-comparison?cm_re=top-nav-_-flyout-memory-_-us-memory-learn-about-compare-bx"><strong>compare Ballistix</strong></a></li>
+            </ul>
+            <ul><h4>resources</h4>
+				<li><a href="/usa/en/memory-ddr4-info?cm_re=top-nav-_-flyout-memory-_-us-memory-learn-about-ddr4">DDR4 overview</a></li>            
+				<li><a href="/usa/en/memory-buying-guide?cm_re=top-nav-_-flyout-memory-_-us-memory-learn-about-buying-guide">buying guide</a></li>
+                <li><a href="/usa/en/memory-ballistix-mod-utility?cm_re=top-nav-_-flyout-memory-_-us-memory-learn-about-bx-mod-utility">Ballistix MOD utility</a></li>            
+            </ul>
+
+		</div>
+	</div>
+</li>
+<!-- solid state drives nav -->
+<li class="nav3">
+	<a href="/usa/en/storage-info?cm_re=top-nav-_-flyout-ssd-_-us-ssd">solid state drives</a>
+	<div class="menuContent store-content">
+		<div class="menuColumn one-half">
+			<a href="/usa/en/ssd?cm_re=top-nav-_-flyout-ssd-_-us-ssd-shop-for-ssd"><h2 class="tools"> shop for ssds</h2></a>
+            <div class="tools-wide">
+                <img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/guarantee-badge.png" class="compatible-badge">
+                <h3>Compatibility tools</h3>
+                <span class="action"><a href="/usa/en/advisor?cm_re=top-nav-_-flyout-ssd-_-us-ssd-advisor" class="btnGray">advisor tool</a><a href="/usa/en/systemscanner?cm_re=top-nav-_-flyout-ssd-_-us-ssd-scanner" class="btnGray">system scanner</a></span>
+            </div>
+			<ul><a href="/usa/en/storage/ssd?cm_re=top-nav-_-flyout-ssd-_-us-ssd-shop-for-storage-ssd"><h4>solid state drives</h4></a>
+				<li><a href="/usa/en/ssd/series/MX200?cm_re=top-nav-_-flyout-ssd-_-us-ssd-shop-for-mx200">MX200 SSD</a></li>
+                <li><a href="/usa/en/ssd/series/BX100?cm_re=top-nav-_-flyout-ssd-_-us-ssd-shop-for-bx100">BX100 SSD</a></li>
+                <li><a href="/usa/en/store-ssd-factory-recertified?cm_re=top-nav-_-flyout-ssd-_-us-ssd-shop-for-recertified">factory recertified</a></li>
+			</ul>
+            <ul><h4>manufacturer</h4>
+                <li><a href="/usa/en/acer-memory?cm_re=top-nav-_-flyout-ssd-_-us-ssd-shop-for-acer">Acer</a></li>
+                <li><a href="/usa/en/apple-memory?cm_re=top-nav-_-flyout-ssd-_-us-ssd-shop-for-apple">Apple</a></li>
+                <li><a href="/usa/en/asus-memory?cm_re=top-nav-_-flyout-ssd-_-us-ssd-shop-for-asus">Asus</a></li>
+                <li><a href="/usa/en/dell-memory?cm_re=top-nav-_-flyout-ssd-_-us-ssd-shop-for-dell">Dell</a></li>
+                <li><a href="/usa/en/gateway-memory?cm_re=top-nav-_-flyout-ssd-_-us-ssd-shop-for-gateway">Gateway</a></li>
+                <li><a href="/usa/en/hp-memory?cm_re=top-nav-_-flyout-ssd-_-us-ssd-shop-for-hp">HP</a></li>
+                <li><a href="/usa/en/lenovo-memory?cm_re=top-nav-_-flyout-ssd-_-us-ssd-shop-for-lenovo">Lenovo</a></li>
+                <li><a href="/usa/en/toshiba-memory?cm_re=top-nav-_-flyout-ssd-_-us-ssd-shop-for-toshiba">Toshiba</a></li>
+            </ul>
+		</div>
+		<div class="menuColumn one-half">
+			<a href="/usa/en/storage-info?cm_re=top-nav-_-flyout-ssd-_-us-ssd-learn-about-ssd"><h2> learn about ssds</h2></a>
+			<ul><a href="/usa/en/storage-info?cm_re=top-nav-_-flyout-ssd-_-us-ssd-learn-about-storage-ssd"><h4>solid state drives</h4></a>
+				<li><a href="/usa/en/storage-ssd-mx200?cm_re=top-nav-_-flyout-ssd-_-us-ssd-learn-about-mx200">Crucial MX200 SSD</a></li>
+				<li><a href="/usa/en/storage-ssd-mx100?cm_re=top-nav-_-flyout-ssd-_-us-ssd-learn-about-mx100">Crucial MX100 SSD</a></li>
+				<li><a href="/usa/en/storage-ssd-bx100?cm_re=top-nav-_-flyout-ssd-_-us-ssd-learn-about-bx100">Crucial BX100 SSD</a></li>
+                <li><a href="/usa/en/storage-ssd-comparison?cm_re=top-nav-_-flyout-ssd-_-us-ssd-learn-about-compare"><strong>compare all</strong></a></li>
+				<li>&nbsp;</li>
+				<li><a href="/usa/en/storage-ssd-m550?cm_re=top-nav-_-flyout-ssd-_-us-ssd-learn-about-m550">Crucial M550 SSD</a></li>
+                <li><a href="/usa/en/storage-ssd-m500?cm_re=top-nav-_-flyout-ssd-_-us-ssd-learn-about-m500">Crucial M500 SSD</a></li>
+			</ul>
+            <ul style="width: 32%;"><h4>resources</h4>
+                <li><a href="/usa/en/storage-ssd-buying-guide?cm_re=top-nav-_-flyout-ssd-_-us-ssd-learn-about-buying-guide">SSD buying guide</a></li>
+            	<li><a href="/usa/en/support-ssd?cm_re=top-nav-_-flyout-ssd-_-us-ssd-learn-about-support">SSD support</a></li>
+                <li><a href="/usa/en/support-ssd?cm_re=top-nav-_-flyout-ssd-_-us-ssd-learn-about-firmware">SSD firmware updates</a></li>
+                <li><a href="/usa/en/support-storage-executive?cm_re=top-nav-_-flyout-ssd-_-us-ssd-learn-about-storage-executive">Crucial&nbsp;Storage&nbsp;Executive</a></li>
+            </ul>
+		</div>
+	</div>
+</li>
+<!-- community nav -->
+<li class="nav4">
+	<a href="http://forum.crucial.com/crucial/?cm_re=top-nav-_-flyout-community-_-us-community">community</a>
+	<div class="menuContent">
+		<div class="menuColumn">
+			<div class="sectionThumb">
+            	<a href="http://forum.crucial.com/crucial/?cm_re=top-nav-_-flyout-community-_-us-community-forum">
+                	<span class="menu-title">community forum</span>
+                    <img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/menu/menu-forums.png">
+                 </a>
+            </div>
+		</div>
+		<div class="menuColumn">
+			<div class="sectionThumb">
+            	<a href="http://forum.crucial.com/t5/tkb/communitypage?cm_re=top-nav-_-flyout-community-_-us-community-tkb">
+                	<span class="menu-title">knowledge base</span>
+                    <img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/menu/menu-kb.png">
+                </a>
+            </div>
+			<ul>
+				<li><a href="http://forum.crucial.com/t5/Standard-DRAM-Memory-Knowledge/tkb-p/dram%40tkb?cm_re=top-nav-_-flyout-community-_-us-community-tkb-memory">memory</a></li>
+				<li><a href="http://forum.crucial.com/t5/Solid-State-Drives-SSD-Knowledge/tkb-p/ssd%40tkb?cm_re=top-nav-_-flyout-community-_-us-community-tkb-ssd">solid state drives</a></li>
+				<li><a href="http://forum.crucial.com/t5/Installation-troubleshooting/tkb-p/install%40tkb?cm_re=top-nav-_-flyout-community-_-us-community-tkb-videos">crucial videos</a></li>
+				<li><a href="http://forum.crucial.com/t5/tkb/communitypage?cm_re=top-nav-_-flyout-community-_-us-community-tkb-more-crucial">more from crucial</a></li>
+			</ul>
+		</div>
+		<div class="menuColumn">
+			<div class="sectionThumb"><a href="https://www.facebook.com/CrucialMemory?cm_re=top-nav-_-flyout-community-_-us-community-social"><span class="menu-title">social</span><img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/menu/menu-social.png"></a></div>
+			<ul>
+				<li><a href="https://www.facebook.com/CrucialMemory?cm_re=top-nav-_-flyout-community-_-us-community-social-facebook">facebook</a></li>
+				<li><a href="https://twitter.com/CrucialMemory?cm_re=top-nav-_-flyout-community-_-us-community-social-twitter">twitter</a></li>
+				<li><a href="http://www.youtube.com/user/CrucialMemory?cm_re=top-nav-_-flyout-community-_-us-community-social-youtube">youtube</a></li>
+			<li><a href="https://plus.google.com/+crucial?cm_re=top-nav-_-flyout-community-_-us-community-social-google-plus">google+</a></li>
+			</ul>
+		</div>
+	</div>
+</li>
+<!-- support nav -->
+<li class="nav5">
+	<a href="/usa/en/support?cm_re=top-nav-_-flyout-support-_-us-support">support</a>
+	<div class="menuContent">
+	<div class="menuColumn">
+			<div class="sectionThumb"><a href="/usa/en/support?cm_re=top-nav-_-flyout-support-_-us-support-product-support"><span class="menu-title">product support</span><img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/menu/menu-product-support.png">
+</a></div>
+			<ul>
+				<li><a href="/usa/en/support-memory?cm_re=top-nav-_-flyout-support-_-us-support-product-support-memory">memory support</a></li>
+                <li><a href="/usa/en/support-ssd?cm_re=top-nav-_-flyout-support-_-us-support-product-support-ssd">SSD support</a></li>
+			</ul>
+		</div>
+		<div class="menuColumn">
+
+			<div class="sectionThumb"><a href="/usa/en/support-contact?cm_re=top-nav-_-flyout-support-_-us-support-store-help"><span class="menu-title">store help</span><img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/menu/menu-support.png"></a></div>
+			<ul>
+			<li><a href="/webapp/wcs/stores/servlet/OrderHistoryDisplayView?catalogId=10151&langId=-1&storeId=10151&krypto=b3HCyB87Xyx7wthwdxl0BQ%3D%3D&ddkey=http:OrderHistoryDisplayView&cm_re=top-nav-_-flyout-support-_-us-support-store-help-order-status">order status</a></li>
+            <li><a href="/usa/en/support-contact?cm_re=top-nav-_-flyout-support-_-us-support-store-help-customer-service">customer service</a></li>
+            <li><a href="/usa/en/returns?cm_re=top-nav-_-flyout-support-_-us-support-store-help-returns">returns</a></li>
+            <li><a href="/usa/en/store-payment?cm_re=top-nav-_-flyout-support-_-us-support-store-help-payment-options">payment options</a></li>
+            <li><a href="/usa/en/store-shipping?cm_re=top-nav-_-flyout-support-_-us-support-store-help-shipping-options">shipping policy</a></li>
+            <li><a href="/usa/en/company-terms-of-sale?cm_re=top-nav-_-flyout-support-_-us-support-store-help-terms-of-sale">terms of sale</a></li>
+            <li><a href="/usa/en/store-partners-where-to-buy?cm_re=top-nav-_-flyout-support-_-us-support-store-help-where-to-buy">Crucial partners</a></li>
+			</ul>
+		</div>
+		<div class="menuColumn">
+			<div class="sectionThumb"><a href="http://forum.crucial.com/?cm_re=top-nav-_-flyout-support-_-us-support-learn"><span class="menu-title">learn</span><img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/menu/menu-kb.png"></a></div>
+			<ul>
+			<li><a href="http://forum.crucial.com/?cm_re=top-nav-_-flyout-support-_-us-support-learn-community-forum">community forum</a></li>
+            <li><a href="http://forum.crucial.com/t5/tkb/communitypage?cm_re=top-nav-_-flyout-support-_-us-support-learn-knowledge-base">knowledge base</a></li>
+            <li><a href="/usa/en/memory-buying-guide?cm_re=top-nav-_-flyout-support-_-us-support-learn-memory-guide">memory guide</a></li>
+            <li><a href="/usa/en/storage-ssd-buying-guide?cm_re=top-nav-_-flyout-support-_-us-support-learn-ssd-guide">solid state drive guide</a></li>
+            <li><a href="/usa/en/store-partners-business-resellers?cm_re=top-nav-_-flyout-support-_-us-support-learn-business">business solutions</a></li>
+            <li><a href="/usa/en/store-partners-gov-ed?cm_re=top-nav-_-flyout-support-_-us-support-learn-gov-ed">gov-ed solutions</a></li>
+			</ul>
+		</div>
+		<div class="menuColumn">
+			<div class="sectionThumb"><a href="/usa/en/support-contact?cm_re=top-nav-_-flyout-support-_-us-support-contact"><span class="menu-title">contact us</span><img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/menu/menu-contact.png"></a></div>
+			<ul>
+				<li><a href="/usa/en/support-contact?cm_re=top-nav-_-flyout-support-_-us-support-contact-email">email</a></li>
+            	<li><a href="/usa/en/support-contact?cm_re=top-nav-_-flyout-support-_-us-support-chat">chat</a></li>
+            	<li><a href="/usa/en/support-contact?cm_re=top-nav-_-flyout-support-_-us-support-contact-phone">phone</a></li>
+			</ul>
+		</div>
+	</div>
+</li>
+</ul>
+</div>
+<!--  end branded-menu --><!-- END ContentRecommendation.jsp -->
+</div>
+<!-- /Main Menu -->
+
+<div id="productIdQuickInfo" style="display:none"></div><!-- END Header.jsp -->
+		</div>
+		
+		<!-- Begin Page -->
+		<div class="center">
+
+			<div id="page">
+				<div id="banner940">
+				<!--top banner --><!-- BEGIN ContentRecommendation.jsp --><!--us-homepage-top-banner -->
+
+<div data-dojo-type="dojox.widget.AutoRotator" id="HeroRotator" data-dojo-props="transition: 'dojox.widget.rotator.fade', duration:7000, random:false, pauseOnManualChange:true," class="rotator">
+
+<div class="pane">
+	<img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/hero-promo-storage-executive.jpg" alt="Crucial Storage Executive">
+	<div class="content">
+		<h1>Crucial Storage Executive –<br />Now compatible with Windows<small><sup>&reg;</sup></small> 10!</h1>
+		<p>Increase your drive's performance by up to 10x</p>
+		<a href="/usa/en/support-storage-executive" class="btnBlue">learn more</a>
+		<a href="/usa/en/support-storage-executive" class="btnBlue">Download now – free</a>
+	</div>
+</div>
+
+<div class="pane"> 
+	<img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/campaigns/c7/c7-promo-hero.png" alt="Make a slow computer fast with a simple memory upgrade">
+	<div class="content">
+    	<h1>The 5 Minute Upgrade</h1>
+    	<h2>Make a slow computer fast with<br />a simple memory upgrade</h2>
+        <br />
+    	<a href="/usa/en/easy-5-minute-computer-upgrade-memory" class="btnBlue">learn more</a>
+        <a href="/usa/en/memory" class="btnBlue">shop now</a>
+    </div>
+</div>
+
+<div class="pane">
+	<img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/campaigns/c6/c6-espot-en.jpg" alt="Unlock the gaming potential of Windows 10">
+	<div class="content">
+		<h1>Unlock the gaming<br />
+        potential of Windows<small><sup>&reg;</sup></small> 10</h1>
+        <br />
+		<a href="/usa/en/campaigns/win-with-gaming-on-windows-10-crucial-ballistix-memory" class="btnBlue">learn more</a>
+	</div>
+</div>
+    
+
+  
+</div>
+
+<div class="controls control-buttons control-bar" id="HeroRotator-controls">
+  <div onClick="dojo.publish('HeroRotator/rotator/control', ['go', 0]);" class="selected"></div>
+  <div onClick="dojo.publish('HeroRotator/rotator/control', ['go', 1]);"></div>
+  <div onClick="dojo.publish('HeroRotator/rotator/control', ['go', 2]);"></div>
+</div>
+
+
+<script type="text/javascript" >
+	require([
+		'dojo/parser',
+		'dojo/domReady!',
+		'dojox/widget/AutoRotator',
+		'dojox/widget/rotator/Fade'
+], function (parser) {
+  parser.parse();
+});
+</script>
+<script type="text/javascript" >	
+require([
+    'dojo/dom-class',
+    'dojo/query',
+    'dojo/topic',
+    'dojo/domReady!'
+], function (domClass, query, topic) {
+    // Subscribe to the "update" event to react to rotator updates
+    topic.subscribe('HeroRotator/rotator/update', function (action, rotator) {
+        var buttons;
+        var i;
+        // Only pay attention to the "onAfterTransition" action
+        if (action !== 'onAfterTransition') {
+            return;
+        }
+        // Get the set of buttons (DIV elements in this case) contained in the element with ID "HeroRotator-controls" 
+        buttons = query('div', 'HeroRotator-controls');
+        for (i = 0; i < buttons.length; i++) {
+            domClass.remove(buttons[i], 'selected'); 
+        }
+        domClass.add(buttons[rotator.idx], 'selected');
+    });
+});
+</script>
+
+<!-- END ContentRecommendation.jsp --><!--/top banner -->
+				</div>
+				<!-- Left Side Specs -->
+				<div id="leftColumn720">
+					<div id="espot1">
+						<!-- BEGIN ContentRecommendation.jsp --><!-- us-main-advisor-scanner -->
+<div class="compatibleModule versionTwo">
+  <div class="title">
+    <div class="icon"><img src="/wcsstore/CrucialSAS/images/icon-compatible-gray.png"></div>
+    <h3>Two ways to find compatible upgrades</h3>
+  </div>
+  <div class="details">
+    <div class="columnOne">
+      <h3>Crucial Advisor tool</h3>
+      <h4>If you <em>know</em> &nbsp;your system's specs, use this tool.</h4>
+      <p>Tell us your system's manufacturer, make, and model, and we'll provide a list of compatible upgrades that will work best with your system's specs and capabilities.</p>
+      <!--  Depending upon number of parameters, pass the corresponding parameter list
+										There is no way to use c:foreach or c:if in c:import which cause following multiple if conditions --><!--  if all five parameter found --><!--  if first four parameter found --><!--  if first three parameter found --><!-- BEGIN MemorySelectorTool.jsp -->
+
+<input type="hidden" value="12506" 		id="mCategoryId" 	name="mCategoryId"/>
+<input type="hidden" value="All" 	id="modelType1" 		name="modelType1"/>
+<input type="hidden" value="" 	id="manufacturer1" 	name="manufacturer1"/>
+<input type="hidden" value="" 	id="productLine1" 	name="productLine1"/>
+<input type="hidden" value="false" 	id="modelTypeDisplay1" 	name="modelTypeDisplay1"/>
+<input type="hidden" value="" 		id="editable1" 		name="editable1"/>
+
+<input type="hidden" value="MemorySelectorToolDataView?catalogId=10151&protocol=http&langId=-1&modelTypeDisplayFlag=false&storeId=10151" 	id="MemorySelectorToolDataViewURL" 	name="MemorySelectorToolDataViewURL"/>
+<input type="hidden" value="PartCompatibilityCheckView?baseCatId=&catalogId=10151&langId=-1&storeId=10151" 	id="PartCompatibilityCheckViewURL" 	name="PartCompatibilityCheckViewURL"/>
+
+<div id="modelTypeDisplayArea1">	
+	<div id="modelTypeDIV1" style="display:none" class="advisor">
+
+		<span class="labelactive" name="singleDDLstep">1 &mdash;</span>
+
+		
+		
+		<select id="modelTypeSelect1" onchange='javaScript:load("MF",this.value, null, this);' class="selectbox">
+			<option value="-1">select model type</option>
+			<option value="ALL">all</option>
+
+			
+						<option value="ads_f11501_ntk_cs:Blade">Blade</option>					
+					
+						<option value="ads_f11501_ntk_cs:Coprocessor Card">Coprocessor Card</option>					
+					
+						<option value="ads_f11501_ntk_cs:Desktop/PC">Desktop/PC</option>					
+					
+						<option value="ads_f11501_ntk_cs:Digital Camcorder">Digital Camcorder</option>					
+					
+						<option value="ads_f11501_ntk_cs:Digital Camera">Digital Camera</option>					
+					
+						<option value="ads_f11501_ntk_cs:Digital Devices (Misc)">Digital Devices (Misc)</option>					
+					
+						<option value="ads_f11501_ntk_cs:Handheld PC/PDA">Handheld PC/PDA</option>					
+					
+						<option value="ads_f11501_ntk_cs:Laptop/Notebook">Laptop/Notebook</option>					
+					
+						<option value="ads_f11501_ntk_cs:MP3 Player">MP3 Player</option>					
+					
+						<option value="ads_f11501_ntk_cs:Motherboard">Motherboard</option>					
+					
+						<option value="ads_f11501_ntk_cs:Multimedia Projectors">Multimedia Projectors</option>					
+					
+						<option value="ads_f11501_ntk_cs:Netbook">Netbook</option>					
+					
+						<option value="ads_f11501_ntk_cs:Networking Devices">Networking Devices</option>					
+					
+						<option value="ads_f11501_ntk_cs:Phone">Phone</option>					
+					
+						<option value="ads_f11501_ntk_cs:Printer">Printer</option>					
+					
+						<option value="ads_f11501_ntk_cs:RAID, Sound, and Video Cards">RAID, Sound, and Video Cards</option>					
+					
+						<option value="ads_f11501_ntk_cs:Server">Server</option>					
+					
+						<option value="ads_f11501_ntk_cs:Tablet">Tablet</option>					
+					
+						<option value="ads_f11501_ntk_cs:Thin Client/Network Terminal">Thin Client/Network Terminal</option>					
+					
+						<option value="ads_f11501_ntk_cs:Unknown">Unknown</option>					
+					
+						<option value="ads_f11501_ntk_cs:Workstation">Workstation</option>					
+					
+		</select>
+		<script type="text/javascript">
+			sortList(document.getElementById("modelTypeSelect1"));
+		</script>
+	</div>
+</div>
+<div id="modelTypeTextDIV1" style="display:none" onclick="javascript:toggleTextSelectBox(this);">
+	<div name="memorySelectorStatus"></div>
+	<span class="labelactive" name="singleDDLstep">1 &mdash;</span><span id="modelTypeText1"></span>
+	<span class="editSelector">&nbsp;edit</span>
+</div>
+
+<div id="manufacturerDisplayArea1" dojoType="wc.widget.RefreshArea" controllerId="manufacturerDisplayArea_Controller1" role="wairole:region" waistate:live="polite" waistate:atomic="false" waistate:relevant="all">	
+	<div id="manufacturerDIV1" style="display:none">
+	<span class="labelactive" name="singleDDLstep">
+	
+			1 &mdash;
+			
+			</span>
+		<select id="manufacturerSelect1" class="selectbox">
+			<option>select manufacturer</option>
+		</select>
+	</div>
+</div>
+
+<div id="manufacturerTextDIV1" style="display:none" onclick="javascript:toggleTextSelectBox(this);">
+	<div name="memorySelectorStatus"></div>
+	<span class="labelactive" name="singleDDLstep">
+	
+	
+			1 &mdash;
+			
+	
+	</span><span id="manufacturerText1"></span>
+	<span class="editSelector">&nbsp;edit</span>
+</div>
+
+<div id="productLineDisplayArea1" dojoType="wc.widget.RefreshArea" controllerId="productLineDisplayArea_Controller1" role="wairole:region" waistate:live="polite" waistate:atomic="false" waistate:relevant="all">	
+	<div id="productLineDIV1" style="display:none">
+		<select id="productLineSelect1" class="selectbox">
+			<option>select product line</option>
+		</select>
+	</div>
+</div>
+<div id="productLineTextDIV1" style="display:none" onclick="javascript:toggleTextSelectBox(this);">
+	<div name="memorySelectorStatus"></div>
+	<span class="labelactive" name="singleDDLstep">
+	
+	
+			2 &mdash;
+			
+	</span><span id="productLineText1"></span>
+	<span class="editSelector">&nbsp;edit</span>
+</div>
+
+<div id="modelDisplayArea1" dojoType="wc.widget.RefreshArea" controllerId="modelDisplayArea_Controller1" role="wairole:region" waistate:live="polite" waistate:atomic="false" waistate:relevant="all">	
+	<div id="modelDIV1">
+		<select id="modelSelect1" class="selectbox" style="display:none">
+			<option>select model</option>
+		</select>
+	</div>
+</div>
+<div id="modelTextDIV1" style="display:none" onclick="javascript:toggleTextSelectBox(this);">
+	<div name="memorySelectorStatus"></div>
+	<span class="labelactive" name="singleDDLstep">
+	
+			3 &mdash;
+			
+	
+	</span><span id="modelText1"></span>
+	<span class="editSelector">&nbsp;edit</span>
+</div>
+
+	
+			
+	<input type="hidden" name="modelForBP"  id="modelForBP"  value=""	/>
+<div id="buttonDisplayArea1" style="display:none">
+	<div id="compatibleCheckButtonDIV1">
+		<a href="javascript:setCurrentId('compatibleCheckButtonDIV1');javascript:showScannerResults('1','ScannerRedirectView?displayCompatibleLogo=1&catalogId=10151&langId=-1&storeId=10151');" class="btnBlue">
+			find upgrade
+		</a>
+	</div>
+</div>
+<div class="clear"></div>
+<script type="text/javascript">
+	setMemorySelectorSeq(1);
+</script>
+
+<script type="text/javascript">
+	dojo.addOnLoad(function() {
+	
+		var modelTypeVal = document.getElementById("modelType1").value;
+		var manufacturerVal = document.getElementById("manufacturer1").value;
+		var modelTypeDisplayFlag = document.getElementById("modelTypeDisplay1").value;
+
+		if(modelTypeVal.length == 0){
+			if (manufacturerVal.length > 0) {
+				load("MF","ALL", null, document.getElementById("modelTypeDIV1"));
+				
+				if (modelTypeDisplayFlag == "false") {
+					document.getElementById("modelTypeTextDIV1").style.display="none";
+					document.getElementById("modelTypeDIV1").style.display="none";
+				} else {
+					document.getElementById("modelTypeTextDIV1").style.display="block";
+				}
+			}
+			else {
+				// When modelType, manufacturer NOT passed. But modelTypeDisplay flag is passed, then this flag loses it's meaning.
+				document.getElementById("modelTypeDIV1").style.display="block";
+			}
+		}
+		else {
+			document.getElementById("modelTypeDIV1").style.display="block";
+			var modelTypeFacetVal = document.getElementById("modelTypeSelect1").options[document.getElementById("modelTypeSelect1").options.selectedIndex].value;
+			if (modelTypeDisplayFlag == "false") {
+				modelTypeFacetVal = "ALL";
+			}
+			load("MF",modelTypeFacetVal, null, document.getElementById("modelTypeDIV1"));
+			
+			document.getElementById("modelTypeText1").innerHTML=modelTypeVal;
+			
+			if (modelTypeDisplayFlag == "false") {
+				document.getElementById("modelTypeTextDIV1").style.display="none";
+				document.getElementById("modelTypeDIV1").style.display="none";
+				
+				
+			} else {
+				document.getElementById("modelTypeTextDIV1").style.display="block";
+			}
+		}
+		parseWidget("manufacturerDisplayArea1");
+		parseWidget("productLineDisplayArea1");
+		parseWidget("modelDisplayArea1");
+		
+	});
+</script>
+<script type="text/javascript" src="http://assets.crucial.com/wcsstore/CrucialSAS/javascript/Widgets/MemorySelectorTool/DeclareRefreshAreaContext.js"/></script><!-- END MemorySelectorTool.jsp --><!--  if first two parameter found --><!--  if first parameter found --><!--  if no parameter found -->
+    </div>
+    <div class="orSpacer"><img src="/wcsstore/CrucialSAS/images/or-gray.gif"></div>
+        <!-- right column: system scanner -->
+        <div class="columnTwo">
+          <h3>Crucial System Scanner</h3>
+          <h4>If you <em>don't know</em> &nbsp;your system's specs, use this.</h4>
+          <p>Download and use our scanner tool, which will analyze your system's hardware and provide a list of compatible upgrades that will work best with your system's specs and capabilities. </p>
+          <div class="error" id="errorMsg"></div>
+          <p>
+<br>
+            <input type="checkbox" name="agreeTC" id="agreeTC" value="" class="agreeTC_Class"/>
+            I agree to the <a href="javascript:void(0);" id="ScannerTerms" onClick="javascript:dijit.byId('ScannerTerms').show();" style="color: #fff;"><u>terms & conditions</u></a>
+            <input type="hidden" name="scannerUrl" id="scannerUrlId" value="/wcsstore/CrucialSAS/drivers/qa/CrucialScan.exe" class="scannerUrl_Class"/>
+            <input type="hidden" name="scannerMacUrl" id="scannerMacUrlId" value="/wcsstore/CrucialSAS/drivers/qa/CrucialMacScanner.zip" class="scannerUrl_Class"/>
+            <input type="hidden" name="termsCond" id="termsCondId" value="Please agree to the terms and conditions." class="termsCond_Class"/>
+          </p>
+          <div id="ScannerTerms" role="dialog" dojoType="dijit.Dialog" style="display:none;" title="Online System Scanner Software License Agreement">
+            <div class="dijitDialogPaneContent" data-dojo-attach-point="containerNode" style="width: auto; height: auto;">
+              <div style="width: 500px;">
+                <p>BEFORE DOWNLOADING, INSTALLING, ACCESSING OR USING THE MICRON TECHNOLOGY, INC. ("MTI") SYSTEM SCANNER SOFTWARE ("SOFTWARE") OR CLICKING ON "ACCEPT", PLEASE CAREFULLY READ THIS ON-LINE SYSTEM SCANNER SOFTWARE LICENSE AGREEMENT ("AGREEMENT") WHICH CONTAINS THE TERMS AND CONDITIONS UNDER WHICH YOU ("LICENSEE") ARE ACQUIRING A LICENSE TO USE THE SOFTWARE. IF LICENSEE DOES NOT ACCEPT THE TERMS AND CONDITIONS OF THIS AGREEMENT, PLEASE DO NOT DOWNLOAD, INSTALL, ACCESS OR USE THE SOFTWARE, AND DO NOT CLICK ON "ACCEPT". IF LICENSEE DOWNLOADS, INSTALLS, ACCESSES OR USES THE SOFTWARE OR CLICKS ON "ACCEPT", LICENSEE WILL BE ACQUIRING A LICENSE TO USE THE SOFTWARE IN OBJECT CODE FORM ONLY IN ACCORDANCE WITH THE TERMS AND CONDITIONS OF THIS AGREEMENT, AND LICENSEE WILL BE CONSIDERED TO HAVE ACCEPTED AND AGREED TO ALL THE TERMS AND CONDITIONS OF THIS AGREEMENT.</p>
+                <ol>
+                  <li>
+                    <h4>License</h4>
+                    <p>MTI grants to Licensee during the term of this Agreement a non-exclusive, non-transferable, revocable and restricted license to use internally the Software strictly for the purposes of determining possible memory upgrades to Licensee's personal computer. No resale, relicensing, export, re-export or other redistribution of the Software in any way is permitted. Licensee acknowledges and agrees that it is solely responsible for the provision, maintenance and operation of all software (including without limitation all operating systems, web browsers, and network software), hardware, firmware, computer and telecommunications equipment and services, and all other third party products, materials and services necessary or useful for the proper download, installation, operation, access and/or use of the Software, and for paying any and all fees, costs and expenses associated with any and all of the foregoing.</p>
+                  </li>
+                  <li>
+                    <h4>Ownership</h4>
+                    <p>All right, title and interest in and to the Software, including without limitation all patent, copyright, trademark, trade secret and all other proprietary and intellectual property rights, shall at all times remain with MTI (or its licensors). Licensee acknowledges and agrees that no ownership interest in or to the Software is transferred to Licensee hereunder, and that the Software is provided to Licensee during the term of this Agreement only and strictly on a license basis as provided for within this Agreement. MTI (or its licensors) reserves all rights not expressly granted.</p>
+                  </li>
+                  <li>
+                    <h4>Permitted Uses</h4>
+<ol type="a">
+                      <li>Licensee may:</li>
+                      <ol type="i">
+                        <li>download, install and use one (1) copy of the Software on one (1) personal computer of Licensee; and</li>
+                        <li>make one (1) additional copy of the Software in machine readable format for backup purposes only.</li>
+                      </ol>
+                      <li>Licensee is prohibited to the fullest extent permitted by applicable law from doing any of the following:</li>
+                      <ol type="i">
+                        <li>sublicense, sublease, lease, sell, distribute, rent, permit concurrent use of or grant other rights in the Software; </li>
+                        <li>provide use of the Software in a computer service business, network, time sharing or interactive cable television arrangement;</li>
+                        <li>transfer or assign this Agreement; or</li>
+                        <li>translate, copy, modify, adapt, alter, reverse engineer, create derivative works, decompile or disassemble any part of the Software.</li>
+                      </ol>
+                    </ol>
+                    </p>
+                  </li>
+                  <li>
+                    <h4>NO WARRANTIES</h4>
+                    <p>THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT ANY REPRESENTATIONS OR WARRANTIES WHATSOEVER. MTI DOES NOT REPRESENT OR WARRANT THAT THE SOFTWARE WILL BE ERROR-FREE, BUG-FREE, UNINTERRUPTED, TIMELY, COMPLETE, ACCURATE OR SECURE. WITHOUT LIMITING THE FOREGOING, MTI EXPRESSLY DISCLAIMS ANY AND ALL REPRESENTATIONS AND WARRANTIES, WHETHER EXPRESS OR IMPLIED, ORAL OR WRITTEN, STATUTORY OR OTHERWISE, INCLUDING, BUT NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, TITLE, AND THOSE ARISING FROM A COURSE OF DEALING, USAGE, TRADE CUSTOM OR PRACTICE. THESE DISCLAIMERS SHALL APPLY TO THE MAXIMUM EXTENT PERMISSABLE UNDER APPLICABLE LAW.</p>
+                  </li>
+                  <li>
+                    <h4>LIMITATION OF LIABILITY</h4>
+                    <p>THE ENTIRE RISK AS TO THE DOWNLOAD, INSTALLATION, ACCESS, USE, RESULTS AND PERFORMANCE OF THE SOFTWARE IS ASSUMED BY LICENSEE. MTI SHALL NOT BE LIABLE UNDER ANY CIRCUMSTANCES OR ANY LEGAL OR EQUITABLE THEORY, WHETHER IN CONTRACT, TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY OR OTHERWISE, FOR ANY LOST REVENUE OR PROFITS, LOST OR DAMAGED DATA OR ANY OTHER COMMERCIAL OR ECONOMIC LOSS, OR FOR ANY DIRECT, INDIRECT, INCIDENTAL, CONSEQUENTIAL, EXEMPLARY, PUNITIVE OR SPECIAL DAMAGES WHATSOEVER ARISING OUT OF OR RELATING TO THE SOFTWARE OR TO THIS AGREEMENT, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. THESE LIMITATIONS SHALL APPLY NOTWITHSTANDING ANY FAILURE OF ESSENTIAL PURPOSE OF ANY LIMITED REMEDY. NOTHING IN THIS AGREEMENT SHALL RESTRICT MTI'S LIABILITY IN A MANNER WHICH IS EXPRESSLY PROHIBITED BY APPLICABLE LAW.</p>
+                  </li>
+                  <li>
+                    <h4>Term and Termination</h4>
+                    <p>This Agreement is effective until terminated. Licensee may terminate this Agreement at any time by ceasing all use of the Software. This Agreement shall terminate immediately without notice from MTI if Licensee fails to comply with any provision of this Agreement. Upon termination, Licensee must destroy all copies of the Software.</p>
+                  </li>
+                  <li>
+                    <h4>U.S. Government Licensees</h4>
+                    <p>Any download, installation, access or use of the Software for or on behalf of the United States of America, its agencies and/or instrumentalities ("U.S. Government"), is provided with Restricted Rights. Use, duplication, or disclosure by the U.S. Government is subject to restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in Technical Data and Computer Software clause at DFARS 252.227-7013 or subparagraphs (c)(1) and (2) of the Commercial Computer Software - Restricted Rights at 48 CFR 52.227-19, as applicable. Manufacturer is Micron Technology, Inc., 8000 S. Federal Way, Boise, Idaho 83707-0006.</p>
+                  </li>
+                  <li>
+                    <h4>Export Restrictions</h4>
+                    <p>The Software and technical data delivered under this Agreement are subject to U.S. export control laws and may be subject to export or import regulations in other countries. Licensee agrees to comply strictly with all such laws and regulations and acknowledges that Licensee has the responsibility to obtain such licenses to export, re-export, or import as may be required.</p>
+                  </li>
+                  <li>
+                    <h4>Governing Law</h4>
+                    <p>This Agreement shall be governed by the laws of the State of Idaho and controlling U.S. federal law. No choice of law or conflict of law principles shall apply, and the 1980 United Nations Convention on Contracts for the International Sale of Goods, if applicable, is expressly excluded. Licensee agrees that the state and federal courts located in Idaho constitute a convenient forum for any litigation and Licensee submits to the exclusive and personal jurisdiction and venue of such courts. This transaction is void wherever such transaction is prohibited.</p>
+                  </li>
+                  <li>
+                    <h4>General</h4>
+                    <p>Any provision of this Agreement which is held to be prohibited or unenforceable in any jurisdiction shall, as to such jurisdiction, be severed from this Agreement and ineffective to the extent of such prohibition or unenforceability without invalidating the remaining portions hereof or affecting the validity or enforceability of such provision in any other jurisdiction. This Agreement sets forth the entire agreement and understanding of the parties relating to the subject matter herein and merges all prior discussions and understandings between the parties relating to the subject matter herein. No modification of or amendment to this Agreement, nor any waiver of any rights under this Agreement, shall be effective unless in writing signed by MTI.</p>
+                  </li>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <a href="#" onclick="javascript:downloadExe();return false" class="btnGray">download the scanner</a>
+          <div class="clear"></div>
+        </div>
+        <!-- /right column --> 
+    <div class="clear"></div>
+  </div>
+  <div class="boxFooter">
+    <p> Using either tool <a href="javascript:void(0);" id="guaranteedCompatibleId" onClick="javascript:dijit.byId('guaranteedCompatibleId').show();"><u>guarantees compatibility</u></a> when you order on Crucial.com </p>
+    <div id="guaranteedCompatibleId" role="dialog" dojoType="dijit.Dialog" style="display:none;" title="100% compatibility - guaranteed!">
+      <div class="dijitDialogPaneContent" data-dojo-attach-point="containerNode" style="width: auto; height: auto;">
+        <div style="width: 350px;">Without a doubt, compatibility is the most important factor in buying a memory upgrade for your laptop or computer. Your RAM must be compatible with your system &mdash; or your system just won't work.  With so many variations in memory, it's important to understand just exactly what will work &mdash; and what won't &mdash; in your system. Using the Memory Advisor or Scanner on Crucial.com is the best way to ensure compatibility. 100% guaranteed. Or your money back.</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- scanner script --> 
+<script type="text/javascript">
+		function downloadExe(){
+			var chkStatus = document.getElementById('agreeTC').checked ;
+			var finalURL;
+		
+			if (navigator.appVersion.indexOf("Win")!=-1){
+				if(document.getElementById("scannerUrlId") != null){
+					finalURL =   document.getElementById("scannerUrlId").value ;
+					console.debug("windows url ="+ finalURL);			
+				}
+			} else if (navigator.appVersion.indexOf("Mac")!=-1){
+				if(document.getElementById("scannerMacUrlId") != null){
+					finalURL =  document.getElementById("scannerMacUrlId").value ;
+					console.debug("mac url ="+ finalURL);			
+				}
+			} else{
+				if(document.getElementById("scannerUrlId") != null){
+					finalURL =   document.getElementById("scannerUrlId").value ;
+					console.debug("windows url ="+ finalURL);			
+				}
+			}
+		
+		
+			if(chkStatus){
+				if(finalURL != null){
+					window.location.href=finalURL;
+				}
+				 
+			}else{
+				var termsCond =  document.getElementById("termsCondId").value;
+				if(termsCond == null || termsCond == ''  || termsCond  == "undefined" ){
+					termsCond = "Please agree to the terms and condition";
+				}
+				document.getElementById('errorMsg').innerHTML ='<span class="errorMessage roundborder">'+termsCond+'</span> ';
+			}
+		}
+
+	</script> 
+<!-- /scanner script --> <!--  remove the parameters at the end of for loop --><!-- END ContentRecommendation.jsp -->
+					</div>
+					<div id="espot2">
+						<!-- BEGIN ContentRecommendation.jsp --><!-- us-homepage-mid   -->
+<a href="/usa/en/ssd/series/BX100">
+	<div class="visual-espot">
+		<img src="/wcsstore/CrucialSAS/images/visualespot-bx100.png" alt="Crucial BX100 SSD" width="235" height="148">
+		<div class="title-area">
+			<h2>BX100 SSD<br />
+            Outlast and outperform your hard drive</h2>
+		</div>
+	</div>
+</a>
+
+<!--<a href="/GuestEmailPreferencesView?catalogId=10151&langId=-1&storeId=10151">
+<div class="visual-espot">
+        <img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/visualespot-newsletter2.png" alt="visualespot-accessories" width="235" height="148">
+        <div class="title-area">
+            <h2>Exclusive offers, inside info & more: subscribe to the Crucial Insider</h2>
+        </div>
+</div>
+</a> -->
+
+<a href="/usa/en/business-case-for-ssd">
+	<div class="visual-espot">
+		<img src="/wcsstore/CrucialSAS/images/visualespot-b4.png" alt="Why SSDs are an essential investment" height="148" width="235">
+		<div class="title-area">
+			<h2>Why SSDs are an essential investment</h2>
+		</div>
+	</div>
+</a>
+
+<a href="/usa/en/apple-memory">
+	<div class="visual-espot last">
+		<img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/visualespot-memoryformac.png" alt="Memory for Mac" width="235" height="148">
+		<div class="title-area">
+			<h2>Mac memory &mdash;<br />Guaranteed compatible!</h2>
+		</div>
+	</div>
+</a><!-- END ContentRecommendation.jsp -->
+					</div>
+					<div id="espot3">
+						<!-- BEGIN ContentRecommendation.jsp --><h2 class="titleBox" style="margin-top: 20px; ">we take care of our customers</h2>
+<a class="trust-icon"><img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/trust-bbb.png" alt="trust-bbb"></a>
+<a href="/usa/en/company-awards" class="trust-icon"><img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/awards/coe-2014.png" alt="circle of excellence bizrate"></a>
+<a href="/usa/en/store-shipping" class="trust-icon"><img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/trust-freeship.png" alt="trust-freeship"></a>
+<a href="/usa/en/store-returns-policy" class="trust-icon"><img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/trust-freereturns.png" alt="trust-freereturns"></a>
+<a href="/usa/en/support" class="trust-icon"><img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/trust-freesupport.png" alt="trust-freesupport"></a>
+<a href="/webapp/wcs/stores/servlet/OrderHistoryDisplayView?storeId=10151&langId=-1&catalogId=10151&krypto=b3HCyB87Xyx7wthwdxl0BQ%3D%3D&ddkey=http:OrderHistoryDisplayView" class="trust-icon last"><img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/trust-tracking.png" alt="trust-tracking"></a>
+<img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/icon-cards.png" style="clear: both; padding-top:20px;"><!-- END ContentRecommendation.jsp -->
+					</div>
+				</div>
+				<!-- /Left Side Specs --><!-- Right Content Area -->
+				<div id="rightColumn200">
+					<!-- BEGIN ContentRecommendation.jsp --><div class="box ctg-nav">
+<h2>Memory</h2>
+<img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/homepg-navmemory.png" width="200" height="102" alt="Crucial Memory">
+<div class="ctg-buttons">
+<a href="/usa/en/memory/ddr4--ddr3--ddr2--ddr--sdram--crucial">shop now</a>
+<a href="/usa/en/memory-info">learn more</a>
+<a href="/usa/en/support-memory" class="last">support</a>
+</div>
+</div>
+
+<div class="box ctg-nav">
+<h2>Solid State Drives</h2>
+<img src="http://pics.crucial.com/wcsstore/CrucialSAS/images/homepg-navssd.png" width="200" height="102" alt="Crucial Solid State Drives">
+<div class="ctg-buttons">
+<a href="/usa/en/ssd">shop now</a>
+<a href="/usa/en/storage-info">learn more</a>
+<a href="/usa/en/support-ssd" class="last">support</a>
+</div>
+</div><!-- END ContentRecommendation.jsp -->
+				</div>
+				<!-- /Right Content Area -->
+			</div>
+		</div>
+		<!-- /Main Content --><!-- Footer -->
+	<div id="footer">
+		<!-- BEGIN ContentRecommendation.jsp --><!-- us Footer -->
+<div id="footer">
+	<div class="footerLinks">
+		<ul>
+			<li><a href="/usa/en/company-about">about</a></li>
+			<li><a href="/usa/en/company-warranty">warranty</a></li>
+			<li><a href="/GuestEmailPreferencesView?catalogId=10151&langId=-1&storeId=10151">email preferences</a></li>
+		</ul>
+	</div>
+	<!-- Social Links -->
+	<div class="social">
+		<ul>
+			<li><a href="http://www.youtube.com/user/CrucialMemory" class="youtube" target="_blank">YouTube</a></li>
+			<li><a href="https://www.facebook.com/CrucialMemory" class="facebook" target="_blank">Facebook</a></li>
+			<li><a href="https://twitter.com/CrucialMemory" class="twitter" target="_blank">Twitter</a></li>
+			<li><a href="https://plus.google.com/+crucial" class="gplus" target="_blank">Google Plus</a></li>
+		</ul>
+	</div>
+	<!-- /Social -->
+	<!-- Copyright -->
+	<div class="copyright">
+		<ul>
+			<li>&copy; 2015 Micron Technology, Inc. All rights reserved <a href="http://www.micron.com/about/our-commitment">Our Commitment</a></li>
+			<li><a href="/usa/en/company-terms-of-sale">terms</a></li>
+			<li><a href="/usa/en/company-privacy">privacy</a></li>
+			<li><a href="/usa/en/company-environmental">environmental</a></li>
+		</ul>
+	</div>
+	<!-- /Copyright -->
+
+</div>
+<!-- /Footer -->
+<!-- script for modal videos --> 
+<script type="text/javascript">
+	function showVideo(dialogID, iframeID, srcID) {
+		dialogID.show();
+		document.getElementById(iframeID).src = srcID;
+	}
+
+function showVideoCM(dialogID, iframeID, srcID, cmName,cmCategory, cmAttrs) 
+{
+dialogID.show();	
+document.getElementById(iframeID).src = srcID;
+cmCreateElementTag(cmName,cmCategory,cmAttrs);	
+}	
+
+</script> 
+<!-- /script for modal videos --><!-- END ContentRecommendation.jsp -->
+	</div>
+	<!-- 
+This a tracking pixel jspf file that is being included from all the JSPs.
+This jspf is container of all the JS that would be using for tracking pixel. 
+These JS would be including from different JSPs based upon the country and/or some of the country's related pages 
+
+Valid Country Code: US, UK, EU, FR, IT
+Valid Page Name: 
+		CartPage - Shopping cart page
+		OrdConf - Order confirmation page
+		PDP - Product detail page
+		PLP - Category navigation page
+		SSP - Search summary page
+		SRP - Search result page
+		AdvisoryResult - Advisory result page
+		ScanResult - Scan result page		
+-->
+
+<script type='text/javascript'>
+	//console.debug("Start : TrackingPixel");
+	//console.debug("Current URL : "+document.location.href);
+	var pageName_js = '';
+	if(("CategoryPage" == '') || ("CategoryPage" == 'CatalogEntryPage') || ("CategoryPage" == 'CategoryPage')){
+		if(document.getElementById("pageName")){
+			pageName_js = document.getElementById("pageName").value;//for caching related page this will be considered			
+		}
+	}else{
+		pageName_js = "CategoryPage";
+	}
+	//console.debug("Hosted store name : CrucialUSA");
+	//console.debug("Current Page Name : "+pageName_js);
+	//console.debug("Is CSR Flow : false");
+	
+	// This variable will be available from PDP, PLP, SSP, SRP, AdvisoryResult and ScanResult
+	var BasePartList_js = '';
+	if(document.getElementById("TP_PartNumberList")){
+		BasePartList_js = document.getElementById("TP_PartNumberList").value;		
+	}
+	//alert(pageName_js+" : "+BasePartList_js);
+	
+	var TP_CategoryIdentifier = '';
+	if(document.getElementById('TP_CategoryIdentifier')){
+		TP_CategoryIdentifier = document.getElementById('TP_CategoryIdentifier').value;
+	}
+	
+	var TP_ProductType = '';
+	if(document.getElementById('TP_ProductType')){
+		TP_ProductType = document.getElementById('TP_ProductType').value;
+	}
+</script>
+
+<!-- Unique Order ID --><!-- Comma separated list of different values of a order --><!-- Customer segment --><!-- Price List --><!-- Number of item in cart --><!-- Value of item in cart in USD --><!-- Value of item in cart --><!-- Transaction amount i.e. with shipping and tax  --><!-- Transaction amount i.e. without shipping and tax  --><!-- Shipping charge --><!-- Sale tax or VAT for the order --><!-- Ship to city --><!-- Ship to state --><!-- Ship to country --><!-- Foresee --><!-- End Foresee --><!-- Chat Interface -->
+			<script type="text/javascript">
+			    var lhnAccountN = "20810-1";
+			    var lhnButtonN = -1;
+			    var lhnChatPosition = 'default';
+			    var lhnInviteEnabled = 1;
+			    var lhnDepartmentN = 23048;
+			    var lhnWindowN = 22347;
+			    var lhnInviteN = 38529;
+			</script>
+			<script type="text/javascript">
+			    var lhnAccountN = "20810";
+			    var lhnInviteEnabled = 1;
+			    var lhnDepartmentN = 23048;
+			    var lhnWindowN = 22347;
+			    var lhnInviteN = 38529;
+			    var lhnTheme = 'blue';
+			    var lhnHPPanel = false;
+			</script>
+			<script src="//www.livehelpnow.net/lhn/widgets/helpouttab/lhnhelpouttab-current.min.js"; type="text/javascript" id="lhnscriptho"></script>
+                <script type="text/javascript">
+				        function LHN_button_onLoad() {
+				        	var helpBtn = document.getElementById('lhn_help_btn');
+				        	if(helpBtn != null){				        	
+					            if (bLHNOnline == 0) {
+					                helpBtn.style.display = 'none';
+					            } else{
+					                helpBtn.style.display = 'block';
+					            }
+				            }
+				        }
+				</script>
+         <!-- End Chat Interface --><!-- Commission Junction --><!-- End Commission Junction --><!-- WebGainLink --><!-- End WebGainLink --><!-- Criteo --><!-- End Criteo --><!-- SaleCycle code --><!-- End SaleCycle code --><!-- Channel Analytics --><!-- End Channel Analytics --><!-- SmartAdserver --><!-- End SmartAdserver --><!-- Google Tag Manager -->
+		<script>
+			if((pageName_js == 'SSP') || (pageName_js == 'SRP')){
+				dataLayer = [{
+				  'transactionCurrency': 'USD',
+				  'productListPagePartList': ""+BasePartList_js
+				}];
+			}else if (pageName_js == 'PLP'){
+				dataLayer = [{
+				  'transactionCurrency': 'USD',
+				  'productPagePartID': ""+BasePartList_js+"",
+				  'pageType': 'product-list',
+				  'productType': ""+TP_CategoryIdentifier
+				}];
+			}else if (pageName_js == 'PDP'){
+				dataLayer = [{
+				  'transactionCurrency': 'USD',
+				  'productPagePartID': ""+BasePartList_js+"",
+				  'pageType': 'product-detail',
+			      'productType': ""+TP_ProductType
+				}];
+			}else if (pageName_js == 'AdvisoryResult'){
+				dataLayer = [{
+				  'transactionCurrency': 'USD',
+				  'productPagePartID': ""+BasePartList_js+"",
+				  'pageType': 'listparts'
+				}];
+			}else if (pageName_js == 'ScanResult'){
+				dataLayer = [{
+				  'transactionCurrency': 'USD',
+				  'productPagePartID': ""+BasePartList_js+"",
+				  'pageType': 'scan-results'
+				}];
+			}else if((pageName_js == 'OrdConf') || (pageName_js == 'CartPage')){
+				var conversionType = '';
+				if(pageName_js == 'OrdConf'){
+					conversionType = 'order';
+				}
+				dataLayer = [{						
+					'transactionId': '',
+					
+							'transactionTotalUSD': '0',
+						
+							'Visitoremail':  '',
+							'transactionCurrency': 'USD',
+							'transactionquantity':  '0',
+							'Visitorsegment':  '',
+							'Visitorpl':  '',
+							'shipRate' : '',
+							'shipCity' : '',
+							'ShipState' : '',
+							'ShipCountry' : '',
+							'tax' : '',
+							'conversionType': ""+conversionType+"",
+							'transactionProducts': []
+				}];
+			}else{
+				dataLayer = [{
+				  'transactionCurrency': 'USD'
+				}];
+			}
+		
+		</script>
+		<noscript>
+			<iframe src='//www.googletagmanager.com/ns.html?id=GTM-RS3G' height='0' width='0' style='display:none;visibility:hidden'>
+			</iframe>
+		</noscript>
+		<script>
+			(function(w,d,s,l,i){
+				w[l]=w[l]||[];
+				w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+				var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+				j.async=true;
+				j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;
+				f.parentNode.insertBefore(j,f);
+			})
+			(window,document,'script','dataLayer','GTM-RS3G');
+		</script>
+	<!-- End Google Tag Manager --><!-- Search Agency -->
+			<script language="javascript"> 
+				var _maCookieDays =30; 
+				(function(){ 
+					if(document.URL.indexOf('zmam=')>0 || document.URL.indexOf('ZMAM=')>0) { 
+						var ma = document.createElement('script');
+						ma.type = 'text/javascript'; 
+						ma.async = true; 
+						ma.src = (document.location.protocol=='https:'?'https://secure':'http://chanalytics')+'.merchantadvantage.com/inchannel/maclick.js'; 
+						var s =document.getElementsByTagName('script')[0];
+						s.parentNode.insertBefore(ma,s); 
+					} 
+				})(); 
+			</script>
+		<!-- End Search Agency --><script type="text/JavaScript">
+<!--
+cmCreatePageviewTag("US:Content:Crucial Home Page", "Crucial Home Page", null, null, "NO");
+//-->
+</script>
+</body>
+</html>

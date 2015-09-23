@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="euc-kr" />
+<link rel="shortcut icon" type="image/x-icon" href="http://www.maxmovie.com/img/favicon.ico" />
+<title>맥스무비 - 영화 No.1</title>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<style>
+    a.ext{display:inline-block;width:69px !important;height:13px !important;margin-top:-2px;background:url('http://www.maxmovie.com/img/mainTopIcon_ext.gif') no-repeat 0 0 !important;vertical-align:middle}
+	a.ext:hover{display:inline-block;width:69px !important;height:13px !important;background:url('http://www.maxmovie.com/img/mainTopIcon_ext.gif') no-repeat 0 -13px !important}
+	a.ext span{display:none !important}
+</style>
+<script language="javascript" type="text/javascript" charset="UTF-8" src="/js/jquery-1.9.1.min.js"></script>
+<script language="javascript" type="text/javascript" charset="UTF-8" src="/js/jquery.tmpl.min.js"></script>
+<script language="javascript" type="text/javascript" charset="UTF-8" src="/js/jquery.bxslider/jquery.bxslider.min.js"></script>
+<script language="javascript" type="text/javascript" charset="UTF-8" src="/js/newMain.js"></script>
+<script language="javascript">
+    document.domain = "maxmovie.com";
+    max_refresh = window.setTimeout(function () { window.location.href = window.location.href }, 180000);
+
+    function simpleLogger(trkCode, trkTitle) {
+        try {
+            simpleTrkClickTrace(trkCode, trkTitle);
+        } catch (ex) { }
+    }
+
+    /* 암전 배너 하루에 한번 자동 노출 20150521 서미래 */
+	/* 암전 배너 권지민 요청 실행 해제 20150603 이경덕  
+    $(function () {
+		var today_date = new Date();
+		var today_date_str = String(today_date.getFullYear()) + String(today_date.getMonth()) + String(today_date.getDate());
+
+        if (getCookie("mainFlashCtrl") != today_date_str) {
+			setCookie("mainFlashCtrl", today_date_str, 1, "maxmovie.com");
+			$('#mzBglayer').show();
+        }
+    });
+	*/
+
+    //Google Analytics Tracking Script
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+	  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-43873223-3', 'maxmovie.com');
+    ga('send', 'pageview');
+
+</script>
+<script language="javascript" type="text/javascript" src="/js/mobile_device_redirection.js?v=20140321"></script>
+</head>
+
+<body>
+<div id="wrapper">
+	<a href="#container" id="accessibility">본문 바로가기</a>
+	<div id="header">
+		<div class="h_inner">
+			<h1 id="maxmovie_logo"><a href="http://www.maxmovie.com"><img src="images/common/logo_main.png" alt="맥스무비"></a></h1>
+			<script language="javascript" src="/preLoadData/maxSeasonalLogo.asp" charset="UTF-8"></script>
+			<!-- GNB -->
+			<div id="GNB">
+				<h2 class="blind">대메뉴</h2>
+				<dl class="main_menu">
+					<dt><a href="http://news.maxmovie.com/movie_info/sha_news_list.asp?menu=news&menuCode=19"><img src="images/common/GNB01.gif" alt="뉴스"></a></dt>
+					<dt><a href="/movie_info/max_chart.asp"><img src="images/common/GNB02.gif" alt="차트"></a></dt>
+					<dt><a href="https://rs.maxmovie.com/movie_reservation/reserve.aspx"><img src="images/common/GNB03.gif" alt="예매"></a></dt>
+					<dt><div class="gnbIco_vip"><img src="/images/gnbIco_vip.png" alt="VIP"/></div><a href="http://www.maxmovie.com/giftbox/lounge_main.asp"><img src="/images/common/GNB07.gif" alt="라운지"></a></dt>
+				</dl>
+			</div>
+			<!--<div style="position:absolute;left:500px;"><a href="javascript:void(0);" onclick="location.href='http://www.maxmovie.com/magazine/magazine.asp';"><img src="/magazine/img/gnb.png" alt="맥스무비 매거진" /></a></div>-->
+			<!-- GNB 배너 광고 영역  -->
+            <iframe title="GNB배너광고" style="position:absolute;left:500px;" width="214" height="60"  noresize scrolling="No" frameborder="0" marginheight="0" marginwidth="0" src="http://add.maxmovie.com/RealMedia/ads/adstream_sx.ads/maxmovie/index@Contents13"></iframe>
+			<!-- GNB 배너 광고 영역 끝  -->
+			<!-- //GNB -->
+			<!-- 검색영역 -->
+			<div class="top_search">
+				<fieldset>
+					<legend>통합 검색</legend>
+					<label for="top_search" class="blind">영화명, 인물, 뉴스 검색</label> <input type="text" class="text" id="searchKEywordStr" name="query" value="영화명, 인물, 뉴스 검색" onfocus="searchQueryChk(this, true);" onblur="searchQueryChk(this, false);" onkeydown="if(event.keyCode == 13){maxTotSearch();return false;}">
+					<img src="images/btn/btn_top_search.gif" alt="검색하기" style="cursor:pointer;" onclick="maxTotSearch();return false;">
+				</fieldset>
+			</div>
+			<!-- //검색영역 -->
+			<!-- 상단 메뉴 -->
+			<div class="top_menu">
+				<h2 class="blind">소메뉴</h2>
+				<a href="http://www.maxmovie.com/magazine/magazine.asp" class="maxm"><span>maxmovie 매거진</span></a><!-- 오버시 .mov -->
+				<a href="http://extmovie.maxmovie.com/xe/home" target="_blank" class="ext <%= TOP_MAGAZINE_CLASS_OPT %>"><span>익스트림무비</span></a>
+				<a href="/coupon/adticket_default.asp" class="first">예매권/할인쿠폰 등록</a>
+				<a href="/sisa/sisa_ing.asp">시사회/이벤트</a>
+				<a href="/discount/card_list.asp">할인정보</a>
+				<a href="http://my.maxmovie.com">마이맥스</a>
+				<a href="https://www.facebook.com/MaxmovieCom" target="_blank" style="color:#607fbf;"><img src="http://image.maxmovie.com/common/sns/top_facebook.png" style="vertical-align:middle;margin-top:-4px;"></a>
+				<a href="https://twitter.com/maxmovie_com" target="_blank" style="color:#5a9fba;"><img src="http://image.maxmovie.com/common/sns/top_twitter.png" style="vertical-align:middle;margin-top:-4px;"></a>
+			</div>
+			<!-- //상단 메뉴 -->
+		</div>
+	</div>
+	<!-- //header -->
+
+	<!-- container -->
+	<div id="container">
+		<div class="section_top_area">
+			<div class="section_top_wrap">
+				<!-- 상단1 -->
+				<div class="section_top">
+					<div id="userLogout" class="login_area">
+						<form id="frmLogin" name="frmLogin" method="post" action="https://id.maxmovie.com/member/login_process.asp" onSubmit="return checkThisForm();" target="_parent" autocomplete="off">
+						<input type="hidden" name="returl" value="http://www.maxmovie.com">
+						<input type="hidden" name="LoginType" value="MAINBOX">
+						<fieldset>
+							<legend>로그인하기</legend>
+							<div class="input_wrap">
+								<label for="uid" class="blind">아이디</label> <input type="text" class="text input_id" name="user_id" id="uid" value="" onfocus="idInsChk(this, true);" onblur="idInsChk(this, false);" onkeydown="if(event.keyCode == 13){checkThisForm();return false;}">
+								<label for="upw" class="blind">비밀번호</label> <input type="password" class="text input_pwd" name="passwd" id="upw" onfocus="pwdInsChk(this, true);" onblur="pwdInsChk(this, false);">
+							</div>
+							<span class="remember"><input type="checkbox" id="keep_id" name="SaveID"> <label for="SaveID">아이디 저장</label></span>
+							<span class="btn_login"><button type="submit">로그인</button></span>
+							<strong class="join"><a href="https://id.maxmovie.com/member/joinMember/join_member.asp">회원가입</a></strong>
+							<span class="find"><a href="https://id.maxmovie.com/member/find_id_process.asp">ID</a>/<a href="https://id.maxmovie.com/member/find_pw_process.asp">PW찾기</a></span>
+						</fieldset>
+						</form>
+					</div>
+					<div id="userLogin" class="personal_info">
+						<h2 class="blind">개인정보</h2>
+						<div class="my_info">
+							<em><strong id="userName"></strong>님</em>
+							<a href="http://my.maxmovie.com/MyMax_Member.aspx">내정보</a>
+							<div>
+								<a href="http://my.maxmovie.com/MyMax_Bank.aspx?dirUrl=3">예매권<em id="userTicket"></em></a>
+								<a href="http://my.maxmovie.com/MyMax_Bank.aspx?dirUrl=2">할인쿠폰<em id="userCoupon"></em></a>
+								<a href="http://my.maxmovie.com/MyMax_Bank.aspx?dirUrl=1">마일리지<em id="userMileage"></em></a>
+							</div>
+							<span class="btn_logout"><button type="submit" onclick="location.replace('https://id.maxmovie.com/member/logout.asp');">로그아웃</button></span>
+						</div>
+						<div class="my_link">
+							<a href="http://my.maxmovie.com/MyMax_Ticket.aspx" class="ico1">예매내역</a>
+							<a href="/movie_speak/movie/40talk_list.asp" class="ico2">영화평점</a>
+							<a href="/event/event_clickquiz.asp" class="ico3">클릭퀴즈</a>
+							<a href="/movie_speak/poll/poll_main.asp" class="ico4">관객설문</a>
+						</div>
+					</div>
+					<!-- 상단배너 -->
+					<div class="top_bnr">
+						<h2 class="blind">광고</h2>
+						<div id="big_ex_banner"></div>
+						<iframe id="big_nomal" name="big_nomal" title="메인빅 광고" width="695" height="100" noresize scrolling="no" frameborder="0" marginheight="0" marginwidth="0" src="http://add.maxmovie.com/RealMedia/ads/adstream_sx.ads/maxmovie/index@Big"></iframe>
+						<div class="ad_over">
+							<img src="images/@thumb/@bnr_top_on.jpg" alt="">
+						</div>
+					</div>
+					<!-- //상단배너 -->
+				</div>
+				<!-- //상단1 -->
+
+				<!-- 상단비쥬얼 -->
+				<div class="section_visual">
+					<!-- 커버뉴스 -->
+					<div class="cover_news">
+						<h2 class="blind">커버뉴스</h2>
+						<div class="main_img" id="spotLightCont">
+						</div>
+						<script id="spotLightMainImgTmpl" type="text/x-jquery-tmpl">
+							<div>
+								<a href="${LANDING_URL}" target="${TARGET}">
+									<span id="mainImg"><img src="${MAINIMG}" alt=""></span>
+									<span class="txt">
+										<span class="bg"></span>
+										<span class="tit">${TITLE} <strong>${HEADLINE}</strong></span>
+									</span>
+								</a>
+							</div>
+						</script>
+						<div class="cover_list">
+							<ul id="spotLightThumbCont">
+							</ul>
+							<script id="spotLightThumbImgTmpl" type="text/x-jquery-tmpl">
+								<li><a href="${LANDING_URL}"><img src="${THUBMNAIL}" alt="@커버뉴스 리스트 이미지"><span></span></a></li>
+							</script>
+							<script type="text/javascript" charset="UTF-8" src="/preLoadData/mainSpotLight.asp"></script>
+						</div>
+					</div>
+					<!-- //커버뉴스 -->
+					<!-- 이미지뉴스 -->
+					<div id="hotNcoolMainCont" class="img_news">
+						<h2 class="blind">이미지뉴스</h2>
+						<div id="newsClipCtrlBtn" class="btn_control btn_hidden">
+							<span class="prev"><button type="button" onclick="hotNcoolSlider.goToPrevSlide();">이전목록보기</button></span>
+							<span class="next"><button type="button" onclick="hotNcoolSlider.goToNextSlide();">다음목록보기</button></span>
+						</div>
+						<div id="newClipPager" class="img_paging" style="display:none;">
+							<strong id="newsClipCurSlide"> </strong>/<span id="newsClipTotSlide"> </span>
+						</div>
+						<div class="img_list">
+							<div id="newsClipCont">
+							</div>
+							<script type="text/javascript" charset="UTF-8" src="/preLoadData/mainNewsClip.asp"></script>
+						</div>
+					</div>
+					<!-- //이미지뉴스 -->
+				</div>
+				<!-- //상단비쥬얼 -->
+
+				<!-- 떠있는 배너 -->
+				<div id="floatLt_bnr" style="background-color:transparent;">
+					<h2 class="blind">광고</h2>
+					<iframe title="좌측여백광고" id="Characterflash_nomal" width="0" height="0" noresize scrolling="no" frameborder="0" marginheight="0" marginwidth="0" src="http://add.maxmovie.com/RealMedia/ads/adstream_sx.ads/maxmovie/index@Characterflash"></iframe>
+				</div>
+				<div id="floatRt_bnr_t">
+					<h2 class="blind">광고</h2>
+					<iframe title="우측여백 브로마이드 광고" id="Characterimg_nomal" width="0" height="0" noresize scrolling="no" frameborder="0" marginheight="0" marginwidth="0" src="http://add.maxmovie.com/RealMedia/ads/adstream_sx.ads/maxmovie/index@Characterimg"></iframe>
+				</div>
+				<div id="floatRt_bnr_b">
+					<h2 class="blind">광고</h2>
+					<iframe title="우측여백 브랜딩 광고" width="0" height="0" id="branding_nomal" name="branding_nomal" src="http://add.maxmovie.com/RealMedia/ads/adstream_sx.ads/maxmovie/index@Branding" frameBorder="0" marginWidth="0" marginHeight="0" noResize="noresize" scrolling="no"></iframe>
+				</div>
+				<!-- //떠있는 배너 -->
+				<div id="branding_ex_banner"></div>
+				<div id="Fx">
+					<script language="javascript1.1">
+						adURL = "http://add.maxmovie.com/RealMedia/ads/adstream_jx.ads/maxmovie/index@Screenfx";
+						adURL = adURL.replace(/@/, "/1" + ((String)(Math.random())).substring(2, 11) + "@");
+						//alert("<scr" + "ipt lang" + "uage='javas" + "cript1.1' src='" + adURL + "'></scr" + "ipt>");
+						document.write("<scr" + "ipt lang" + "uage='javas" + "cript1.1' src='" + adURL + "'></scr" + "ipt>");
+					</script>
+				</div>
+				<div id="skin_ex_banner"></div>
+				<!--좌측(125x445) -->
+				<div id="float_top_left">
+					<iframe title="좌측스킨광고" id="SkinLeft_nomal" name="SkinLeft_nomal" width="0" height="0" noresize scrolling="no" frameborder="0" marginheight="0" marginwidth="0" src="http://add.maxmovie.com/RealMedia/ads/adstream_sx.ads/maxmovie/index@Contents06"></iframe>
+				</div>
+				<!--우측(125x445)-->
+				<div id="float_top_right">
+					<iframe title="우측스킨광고" id="SkinRight_nomal" name="SkinRight_nomal" width="0" height="0" noresize scrolling="no" frameborder="0" marginheight="0" marginwidth="0" src="http://add.maxmovie.com/RealMedia/ads/adstream_sx.ads/maxmovie/index@Contents07"></iframe>
+				</div>
+				<!--메인아이콘/최상단스킨-->
+				<div id ="top_ad_Content">
+					<script language="JavaScript1.1">
+						adURL = "http://add.maxmovie.com/RealMedia/ads/adstream_jx.ads/maxmovie/index@Contents08";
+						adURL = adURL.replace(/@/, "/1" + ((String)(Math.random())).substring(2, 11) + "@");
+						document.write("<SCR" + "IPT LANG" + "UAGE='JAVAS" + "CRIPT1.1' SRC='" + adURL + "'></SCR" + "IPT>");
+					</script>
+				</div>
+
+				<!-- 슬라이드 옆 배너
+				<p style="position:absolute;right:-9px;top:319px;z-index:-1px"><a href="http://add.maxmovie.com/RealMedia/ads/click_lx.ads/maxmovie/click/545987/Screen/OasDefault/1504_Max_ClickTag/dot_img_3.gif/257416"><img src="http://image.maxmovie.com/lounge_201309/gift/main_vod_link.png" alt="이 달의 VOD"></a></p>
+				 //슬라이드 옆 배너 -->
+			</div>
+
+		</div>
+
+		<!-- 띠배너 -->
+		<div id="middle_nomal" class="belt_bnr" style="height:0px;">
+			<h2 class="blind">광고</h2><!--띠 배너 광고 -->
+			<div style="position:absolute; bottom:0; left:0; width:100%; height:0; z-index:100" title="">
+				<script language="javascript1.1">
+					adURL = "http://add.maxmovie.com/RealMedia/ads/adstream_jx.ads/maxmovie/index@Middle";
+					adURL = adURL.replace(/@/, "/1" + ((String)(Math.random())).substring(2, 11) + "@");
+					document.write("<scr" + "ipt lang" + "uage='javas" + "cript1.1' src='" + adURL + "'></scr" + "ipt>");
+				</script>
+			</div>
+		</div>
+
+		<!-- //띠배너 -->
+
+		<!-- 영화차트 -->
+		<div id="maxChartArea" class="section_ranking_area" style="position:relative;">
+			<div id="maxRainkingSection" class="section_ranking">
+				<!-- 좌측 영역
+				<div class="siderankleft">
+					<a href="/event/eventsub/2014/140613_worldcup_event.asp" target="_self"><img src="http://image.maxmovie.com/event/eventsub/2014/140613_worldcup_event/worldcup_left.jpg" alt="월드컵 예매 이벤트" /></a>
+				</div>-->
+				<div class="siderankright">
+					<!-- <a href="http://news.maxmovie.com/movie_info/sha_news_view.asp?menuCode=19&subMenuCode=1&mi_id=MI0100999372&contain=&keyword=&page=1"><img src="http://image.maxmovie.com/www_maxmovie_com_2013/magazine/main_rightBox_news.png" alt="맥스무비 매거진" /></a> -->
+					<a href="javascript:void(0);" onclick="javascript:void($('#mzBglayer').show());"><img src="/magazine/img/main_rightBox.png" alt="맥스무비 매거진" /></a>
+				</div>
+				<h2><img src="images/main/tit_ranking.gif" alt="영화차트"></h2>
+				<h3 id="maxClickMenu" class="first"><a id="chartFirstInd" href="javascript:dispMaxChart(0, this);" class="chart_index">맥스순위</a></h3>
+				<h3 id="rsvClickMenu" style="display:none;"><a href="javascript:dispMaxChart(1, this);" class="chart_index">예매순위</a></h3>
+				<h3 id="voteClickMenu" style="display:none;"><a href="javascript:dispMaxChart(2, this);" class="chart_index">평점순위</a></h3>
+				<h3 id="hopeClickMenu" style="display:none;"><a href="javascript:dispMaxChart(3, this);" class="chart_index">개봉예정</a></h3>
+				<div class="cont_wrap" id="ranking1">
+					<div id="maxRankBtnCtrl" class="btn_control btn_hidden">
+						<span class="prev"><button onclick="maxRankMainSliderCtrl('prev');" type="button">이전목록보기</button></span>
+						<span class="next"><button onclick="maxRankMainSliderCtrl('next');" type="button">다음목록보기</button></span>
+					</div>
+					<div class="ranking_list">
+						<ol id="maxRankCont">
+						</ol>
+						<script type="text/javascript" charset="UTF-8" src="/preLoadData/maxMaxChart.asp"></script>
+					</div>
+				</div>
+
+				<!-- 차트 광고 영역 -->
+				<!-- 동영상 광고 배너 // 210150911 적용 --> 
+				<div id ="mainVideoDiv" style="position:absolute;left:0;top:23px;width:965px;z-index: 100;">
+				<script language="JavaScript1.1">
+					adURL = "http://add.maxmovie.com/RealMedia/ads/adstream_jx.ads/maxmovie/index@Frame1";
+					adURL = adURL.replace(/@/, "/1" + ((String)(Math.random())).substring(2, 11) + "@");
+					document.write("<SCR" + "IPT LANG" + "UAGE='JAVAS" + "CRIPT1.1' SRC='" + adURL + "'></SCR" + "IPT>");
+				</script>
+				<!--
+				<p>
+					<a href="#">
+						<img src="http://image.maxmovie.com/www_maxmovie_com_2013/ad/ch_ad_bg.jpg" alt="" />
+					</a>
+				</p>
+				<p style="position:absolute;left:15px;top:17px;width:395px;height:220px">
+					<iframe width="395" height="220" src="https://www.youtube.com/embed/dAyzRNu0YYQ" frameborder="0" allowfullscreen></iframe>
+				</p>
+				<p style="position:absolute;right:10px;top:10px;">
+					<a href="#">
+						<img src="http://image.maxmovie.com/www_maxmovie_com_2013/ad/ch_ad_close.png" alt="닫기" />
+					</a>
+				</p>
+				-->
+				</div>
+				<!-- //차트 광고 영역 -->
+
+			</div>
+		</div>
+		<!-- //영화차트 -->
+
+		<div id="maxSisaEventArea" class="section_event_ad">
+			<!-- 시사회&이벤트 -->
+			<div class="section_event">
+				<h2><img src="images/main/tit_event.gif" alt="시사회 &amp; 이벤트"></h2>
+				<div class="btn_control">
+					<span class="prev"><button type="button" onclick="sliderEvent.goToSlide(0);">이전목록보기</button></span>
+					<span class="next"><button type="button" onclick="sliderEvent.goToNextSlide(1);">다음목록보기</button></span>
+				</div>
+				<div class="event_list">
+					<ul id="eventCont">
+					</ul>
+					<script id="eventTmpl" type="text/x-jquery-tmpl">
+						<li onmouseover="curContDecoration(this);" onmouseout="curContReSet(this);" style="width:200px; display:block;">
+							<span class="thumb"><a href="${LANDING_URL}" target="${TARGET}"><img src="${IMAGE}" alt="${TITLE} 이미지"></a></span>
+							<br >
+							<span class="txt">
+								<a href="${LANDING_URL}" target="${TARGET}"><b>${TITLE}</b></a>
+								<a href="${LANDING_URL}" target="${TARGET}">${HEADLINE}</a>
+							</span>
+						</li>
+					</script>
+					<script type="text/javascript" charset="UTF-8" src="/preLoadData/mainEvent.asp"></script>
+				</div>
+				<!-- AD 광고 레이어 -->
+				<div id="movie_ad_Area" style="overflow:hidden">
+					<script language="JavaScript1.1">
+						adURL = "http://add.maxmovie.com/RealMedia/ads/adstream_jx.ads/maxmovie/index@Contents09";
+						adURL = adURL.replace(/@/, "/1" + ((String)(Math.random())).substring(2, 11) + "@");
+						document.write("<SCR" + "IPT LANG" + "UAGE='JAVAS" + "CRIPT1.1' SRC='" + adURL + "'></SCR" + "IPT>");
+					</script>
+				</div>
+				<!-- //AD 광고 레이어 -->
+			</div>
+		</div>
+
+		<!-- 하단배너 -->
+		<div id="footBannerArea" class="foot_bnr">
+			<h2 class="blind">광고</h2>
+			<div id="wide_ex_banner"></div>
+			<iframe id="wide_nomal" name="wide_nomal" title="와이드 광고" width="965" height="50" noresize scrolling="no" frameborder="0" marginheight="0" marginwidth="0" src="http://add.maxmovie.com/RealMedia/ads/adstream_sx.ads/maxmovie/index@Wide"></iframe>
+		</div>
+		<!-- //하단배너 -->
+
+		<!-- 공지사항	-->
+		<div class="section_notice">
+			<h2>공지사항</h2>
+			<ul id="mainNoticeCont">
+			</ul>
+			<span class="btn_more"><a href="/customer/notice_list.asp">더보기</a></span>
+			<script id="noticeMainImgTmpl" type="text/x-jquery-tmpl">
+				<!-- //<li style="width:100%"><a href="/customer/notice_view.asp?num=4082">[알림] 3월 11일(수) LG U+ 휴대폰 본인인증 서비스 일시 중단 안내</a></li>-->
+				<li style="width:100%"><a href="/customer/notice_view.asp?num=${NUM}">${SUBJECT}</a></li>
+			</script>
+		</div>
+		<!-- //공지사항 -->
+		<script type="text/javascript" charset="UTF-8" src="/preLoadData/mainAnnounce.asp"></script>
+
+
+	</div>
+	<!-- //container -->
+
+	<!-- footer -->
+	<div id="footer">
+		<div id="f_inner">
+			<h2><img src="images/common/logo.png" alt="K&amp;Group"></h2>
+			<!-- 하단 메뉴 -->
+			<div class="foot_menu">
+				<a href="/company/intro.asp">회사소개</a>
+				<a href="/etc/footer_agreement_res.asp">이용약관</a>
+				<a href="/etc/footer_protect_rule.asp"><strong>개인정보 취급방침</strong></a>
+				<a href="/etc/footer_protect_rule_young.asp">청소년보호정책</a>
+				<a href="/etc/footer_ask_partner.asp">제휴/예매권문의</a>
+				<a href="/etc/footer_ask_ad_02.asp?menu=1&guide=1_1_1">광고안내</a>
+				<a href="/discount/default.asp">할인정보</a>
+				<a href="/max_search/max_sitemap.asp">사이트맵</a>
+				<a href="/customer/faq_list.asp">고객센터</a>
+			</div>
+			<p class="fcle"><a href="http://www.cleansite.org/" target="_blank"><img src="http://www.maxmovie.com/images/common/footer_cleansite.png" alt="클린사이트"></a></p>
+			<p class="fgood"><a href="javascript:void(0);" onclick="window.open('http://www.goodcontent.kr/user/certi/certiFormView.do?certiNo=2013-12-0018&checkCode=CGMTOE08KO9RWI4A3I3N', 'goodcontent', 'width=760, height=900, menubar=no, status=no, toolbak=no, scrollbars=yes');"><img src="http://www.maxmovie.com/images/common/footer_good.png" alt="콘텐츠제공서비스 품질 인증"></a></p>
+			<!-- //하단 메뉴 -->
+			<!-- 회사정보 -->
+			<div class="company_info">
+				<address>121-804 서울시 마포구 마포대로 115-12 6층 케이앤그룹㈜</address>
+				<p>사업자등록번호 211-88-91225</p>
+				<p>대표이사 박광원</p><br />
+				<p class="first">통신판매업 신고번호 제2013-서울마포-0969호</p>
+				<p>고객지원 <span style="letter-spacing:0px">1666-1070</span> (운영시간 09:00~18:00)</p>
+				<p>Copyright (c) K&amp;Group Inc. All rights reserved.</p>
+			</div>
+			<!-- //회사정보 -->
+			<!--광고노출Tag--><img  width="0" height="0" src="http://add.maxmovie.com/RealMedia/ads/adstream_nx.ads/heyjude/ad@Contents40"><!--//광고노출Tag-->
+			<!-- AD팝업-->
+			<script language="javascript1.1">adURL = "http://add.maxmovie.com/RealMedia/ads/adstream_jx.ads/maxmovie/index@Popup";adURL = adURL.replace(/@/, "/1" + ((String)(Math.random())).substring (2, 11) + "@");document.write ("<scr" + "ipt lang" + "uage='javas" + "cript1.1' src='" + adURL + "'></scr" + "ipt>");</script>
+			<!-- //AD팝업-->
+		</div>
+	</div>
+	<!-- //footer -->
+	<script type="text/javascript" charset="UTF-8" src="/preLoadData/maxRsvChart.asp"></script>
+	<script type="text/javascript" charset="UTF-8" src="/preLoadData/maxHopeChart.asp"></script>
+	<script type="text/javascript" charset="UTF-8" src="/preLoadData/maxVoteChart.asp"></script>
+
+	<!-- LOGGER TRACKING SCRIPT V.27 : FAIL-SAFE TYPE / DO NOT MODIFY THIS SCRIPT. -->
+	<!-- COPYRIGHT (C) 2002-2004 BIZSPRING INC. LOGGER(TM) ALL RIGHTS RESERVED. -->
+	<script	language="JavaScript">	    /* LOGGER TRACKING SCRIPT V.27 : 11 *//*X*//* COPYRIGHT 2002-2004 BIZSPRING INC. *//*X*//* DO NOT MODIFY THIS SCRIPT. *//*X*/var _TRK_DOMAIN = "maxmovie.com"; var _trk_bMSIE = (document.all) ? true : false; var _trk_bJS12 = (window.screen) ? true : false; function _trk_escape(_str) { var str, ch; var bEncURI = "N"; eval("try{bEncURI=encodeURI('Y');}catch(_e){ }"); if (bEncURI == "Y") str = encodeURI(_str); else str = escape(_str); while ((ch = str.indexOf("+")) > 0) str = str.substr(0, ch) + "%2B" + str.substr(ch + 1, str.length); while ((ch = str.indexOf("/")) > 0) str = str.substr(0, ch) + "%2F" + str.substr(ch + 1, str.length); while ((ch = str.indexOf("&")) > 0) str = str.substr(0, ch) + "%26" + str.substr(ch + 1, str.length); while ((ch = str.indexOf("?")) > 0) str = str.substr(0, ch) + "%3F" + str.substr(ch + 1, str.length); while ((ch = str.indexOf(":")) > 0) str = str.substr(0, ch) + "%3A" + str.substr(ch + 1, str.length); while ((ch = str.indexOf("#")) > 0) str = str.substr(0, ch) + "%23" + str.substr(ch + 1, str.length); return str; } function _trk_setCookie(name, value, expire) { var today = new Date(); today.setDate(today.getDate() + parseInt(expire)); document.cookie = name + "=" + escape(value) + "; path=/; expires=" + today.toGMTString() + ";"; } function _trk_getCookie(name) { var cookieName = name + "="; var x = 0; while (x <= document.cookie.length) { var y = (x + cookieName.length); if (document.cookie.substring(x, y) == cookieName) { if ((endOfCookie = document.cookie.indexOf(";", y)) == -1) endOfCookie = document.cookie.length; return unescape(document.cookie.substring(y, endOfCookie)); } x = document.cookie.indexOf(" ", x) + 1; if (x == 0) break; } return ""; } function _trk_getParameter(name) { var paraName = name + "="; var URL = "" + self.document.location.search; var tURL = ""; eval("try{ tURL=top.document.location.search; }catch(_e){}"); URL = URL + "&" + tURL; if (URL.indexOf(paraName) != -1) { var x = URL.indexOf(paraName) + paraName.length; var y = URL.substr(x).indexOf("&"); if (y != -1) return URL.substring(x, x + y); else return URL.substr(x); } return ""; } function _trk_make_code(_TRK_SERVER, _TRK_U) { var dt = document.title.toString(); dt = dt.substr(0, 128); var dr = self.document.referrer; var tdr = ""; eval("try{ tdr=top.document.referrer; }catch(_e){}"); var tdu = ""; eval("try{ tdu=top.document.location.href; }catch(_e){}"); if (dr == tdu) dr = tdr; if (dr == "undefined") dr = ""; var du = self.document.location.href; if (du.substr(0, 4) == "file") return ""; var adKeyVal = ""; adKeyVal = _trk_getParameter("OVKEY"); if (adKeyVal != "" && du.indexOf("OVKEY=") < 0) if (du.indexOf("?") != -1) du = du + "&OVKEY=" + adKeyVal; else du = du + "?OVKEY=" + adKeyVal; adKeyVal = _trk_getParameter("netpia"); if (adKeyVal != "" && du.indexOf("netpia=") < 0) if (du.indexOf("?") != -1) du = du + "&netpia=" + adKeyVal; else du = du + "?netpia=" + adKeyVal; adKeyVal = _trk_getParameter("logger_kw"); if (adKeyVal != "" && du.indexOf("logger_kw=") < 0) if (du.indexOf("?") != -1) du = du + "&logger_kw=" + adKeyVal; else du = du + "?logger_kw=" + adKeyVal; adKeyVal = _trk_getParameter("source"); if (adKeyVal != "" && du.indexOf("source=") < 0) if (du.indexOf("?") != -1) du = du + "&source=" + adKeyVal; else du = du + "?source=" + adKeyVal; var ce = navigator.cookieEnabled ? "Y" : "N"; var je = navigator.javaEnabled() ? "Y" : "N"; var ss = ""; var cd = ""; if (_trk_bJS12) { ss = screen.width + "x" + screen.height; cd = screen.colorDepth; } if (!dt) dt = ""; if (!dr) dr = ""; if (!du) du = ""; if (!ce) ce = ""; if (!je) je = ""; var t = new Date; var tye = (_trk_bMSIE) ? (t.getYear()) : (t.getFullYear()); var tmo = t.getMonth() + 1; var tda = t.getDate(); var tho = t.getHours(); var tmi = t.getMinutes(); var tse = t.getSeconds(); var tzo = t.getTimezoneOffset(); var tc = ""; var prtcl = document.location.protocol.indexOf("https") != -1 ? "https://" : "http://"; /* if(prtcl=="https://") _TRK_SERVER="ssl."+_TRK_DOMAIN; */tc = tc + prtcl + _TRK_SERVER; var bPNF = ((typeof _TRK_PI) != "undefined" && _TRK_PI == "PNF") ? true : false; if (bPNF) tc = tc + "/tracker_click.tsp"; else tc = tc + "/tracker.tsp"; tc = tc + "?u=" + _TRK_U + "&XU="; if (bPNF) { tc = tc + "&rnd=" + Math.random() + "&CKFL=" + _TRK_PI + "&CKDATA=" + _trk_escape(du); } else { tc = tc + "&dr=" + _trk_escape(dr) + "&XDR=" + "&dt=" + _trk_escape(dt) + "&du=" + _trk_escape(du); if ((typeof _TRK_CP) != "undefined" && _TRK_CP != "") tc = tc + "&CP=" + _trk_escape(_TRK_CP) + "&XCP="; if ((typeof _TRK_PI) != "undefined" && _TRK_PI != "") tc = tc + "&PI=" + _TRK_PI; if ((typeof _TRK_PN) != "undefined" && _TRK_PN != "") tc = tc + "&PN=" + _trk_escape(_TRK_PN); if ((typeof _TRK_MF) != "undefined" && _TRK_MF != "") tc = tc + "&MF=" + _trk_escape(_TRK_MF); if ((typeof _TRK_OA) != "undefined" && _TRK_OA != "") tc = tc + "&OA=" + _TRK_OA; if ((typeof _TRK_OP) != "undefined" && _TRK_OP != "") tc = tc + "&OP=" + _trk_escape(_TRK_OP); if ((typeof _TRK_OE) != "undefined" && _TRK_OE != "") tc = tc + "&OE=" + _TRK_OE; if ((typeof _TRK_CC) != "undefined" && _TRK_CC != "") tc = tc + "&CC=" + _TRK_CC; if ((typeof _TRK_RK) != "undefined" && _TRK_RK != "") tc = tc + "&RK=" + _trk_escape(_TRK_RK); if ((typeof _TRK_SX) != "undefined" && _TRK_SX != "") tc = tc + "&SX=" + _TRK_SX; if ((typeof _TRK_AG) != "undefined" && _TRK_AG != "") tc = tc + "&AG=" + _TRK_AG; if ((typeof _TRK_IK) != "undefined" && _TRK_IK != "") tc = tc + "&IK=" + _trk_escape(_TRK_IK); tc = tc + "&js=Y" + "&ss=" + escape(ss) + "&cd=" + cd + "&ce=" + ce + "&je=" + je + "&tzo=" + tzo + "&tye=" + tye + "&tmo=" + tmo + "&tda=" + tda + "&tho=" + tho + "&tmi=" + tmi + "&tse=" + tse; } return tc; } var _TRK_LIFE = _trk_getParameter("_L_"); if (_TRK_LIFE == "") _TRK_LIFE = 14; var _TRK_U = ""; var _TRK_U_P = _trk_getParameter("_U_"); var _TRK_U_C = _trk_getCookie("_TRK_U"); if (_TRK_U_C != "") _TRK_U = _TRK_U_C; if (_TRK_U_P != "") _TRK_U = _TRK_U_P; if (_TRK_U != "" && _TRK_U_P != "") _trk_setCookie("_TRK_U", _TRK_U, _TRK_LIFE); var _TRK_CC_C = _trk_getCookie("_TRK_CC"); var _TRK_CC_P = _trk_getParameter("_C_"); if ((typeof _TRK_CC) != "undefined" && _TRK_CC != "") _TRK_CC_P = _TRK_CC; if (_TRK_CC_C != "") _TRK_CC = _TRK_CC_C; if (_TRK_CC_P != "") _TRK_CC = _TRK_CC_P; if ((typeof _TRK_CC) != "undefined" && _TRK_CC != "" && _TRK_CC_P != "") _trk_setCookie("_TRK_CC", _TRK_CC, _TRK_LIFE); var _TRK_RK_C = _trk_getCookie("_TRK_RK"); var _TRK_RK_P = _trk_getParameter("_R_"); if ((typeof _TRK_RK) != "undefined" && _TRK_RK != "") _TRK_RK_P = _TRK_RK; if (_TRK_RK_C != "") _TRK_RK = _TRK_RK_C; if (_TRK_RK_P != "") _TRK_RK = _TRK_RK_P; if ((typeof _TRK_RK) != "undefined" && _TRK_RK != "" && _TRK_RK_P != "") _trk_setCookie("_TRK_RK", _TRK_RK, _TRK_LIFE); var _trk_code_base = _trk_make_code("log.maxmovie.com", "11"); var _trk_code_chan = ""; if (_TRK_U != "") _trk_code_chan = _trk_code_base.replace(/\?u=11&XU=/g, "?u=" + _TRK_U + "&XU="); var _trk_img_base = new Image(); var _trk_img_chan = new Image(); var _trk_img_base_click = new Image(); var _trk_img_chan_click = new Image(); if (_trk_bJS12 == true) { if (_trk_bMSIE) { _trk_img_base.src = _trk_code_base; if (_TRK_U != "") _trk_img_chan.src = _trk_code_chan; } else { setTimeout("_trk_img_base.src=_trk_code_base;", 1); if (_TRK_U != "") setTimeout("_trk_img_chan.src=_trk_code_chan;", 1); } } else { if (_trk_bMSIE) document.write('<div style=\"display: none\">'); document.write('<img src=\"' + _trk_code_base + '\" height=\"0\" width=\"0\">'); if (_TRK_U != "") document.write('<img src=\"' + _trk_code_chan + '\" height=\"0\" width=\"0\">'); if (_trk_bMSIE) document.write('</div>'); } function _trk_flashContentsView(_TRK_CP) { var _trk_code_flash = _trk_code_base; _trk_code_flash = _trk_code_flash.replace(/&CP=.*&XCP=/g, "&XCP="); _trk_code_flash = _trk_code_flash.replace(/&dr=.*&XDR=/g, "&XDR="); _trk_img_base_click.src = _trk_code_flash + "&dr=&CP=" + _trk_escape(_TRK_CP) + "&rnd=" + Math.random(); if (_TRK_U != "") { _trk_code_flash = _trk_code_flash.replace(/\?u=11&XU=/g, "?u=" + _TRK_U + "&XU="); _trk_img_chan_click.src = _trk_code_flash + "&dr=&CP=" + _trk_escape(_TRK_CP) + "&rnd=" + Math.random(); } } function _trk_clickTrace(_TRK_CKFL, _TRK_CKDATA) { var _trk_code_click = _trk_code_base.substr(0, _trk_code_base.indexOf("tracker.tsp")); _trk_code_click = _trk_code_click + "tracker_click.tsp?rnd=" + Math.random() + "&CKFL=" + _TRK_CKFL + "&CKDATA=" + _trk_escape(_TRK_CKDATA); _trk_img_base_click.src = _trk_code_click + "&u=11"; if (_TRK_U != "") _trk_img_chan_click.src = _trk_code_click + "&u=" + _TRK_U; } function simpleTrkClickTrace(trkCode, trkTitle) { try { _trk_clickTrace(trkCode, trkTitle); } catch (_e) { } }</script>
+	<noscript><img src="http://log.maxmovie.com/tracker.tsp?u=11&js=N" width="0" height="0" alt=""></noscript>
+	<!-- END OF LOGGER TRACKING SCRIPT -->
+
+	<!-- 호핀 쿠폰 이벤트 레이어
+	<script type="text/javascript" src="/event/eventsub/2014/140630_hoppin_event.js" ></script>
+	<div class="hoplay" id="hoplay" style="display:none;"><!-- 숨기기  style="bottom:-234px"
+		<p><img id="ly_hoppin" style="cursor:pointer;" src="http://image.maxmovie.com/event/eventsub/2014/140630_hoppin_event/top_lay.png"></p>
+		<p class="hopbox" id="hopbox">
+			<a href="http://www.maxmovie.com/event/eventsub/2014/140630_hoppin_event.asp"><img src="http://image.maxmovie.com/event/eventsub/2014/140630_hoppin_event/middle_lay.png"></a>
+			<a href="http://www.maxmovie.com/event/eventsub/2014/140630_hoppin_event.asp" class="hopbtn"><img src="http://image.maxmovie.com/event/eventsub/2014/140630_hoppin_event/btn_bottom_lay.png" alt="포인트 받기"></a></p>
+		<p class="hopcheck" id="hopcheck">
+			<img src="http://image.maxmovie.com/event/eventsub/2014/140630_hoppin_event/cl_lay.png">
+			<span><input type="checkbox" id="notToday" name="notToday" /> <label for="">오늘 다시 열지 않기</label></span>
+			<a href="javascript: controlCookie('#notToday', 'hoppin_1000');">
+				<img src="http://image.maxmovie.com/event/eventsub/2014/140630_hoppin_event/btn_lay_close.gif">
+			</a>
+		</p>
+	</div>
+	<!--// 호핀 쿠폰 이벤트 레이어 -->
+</div>
+
+	<!--	매거진 암전 확장	-->
+	<div id="mzBglayer" style="display:none;position:absolute;width:100%;top:10%;z-index:2000001;">
+		<div class="layer_bg" style="position:fixed;width:100%;height:100%;left:0;top:0;margin-bottom:30px;background:#000;filter:alpha(opacity=80);opacity:0.8;z-index:2000002;"></div>
+			<div class="eventContflash" style="width:965px !important; position:relative;margin:0 auto;z-index:2000003;">
+				<object width="965" height="800" title="" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
+				<param value="/magazine/img/main_ban_01.swf" name="movie" />
+				<param value="high" name="quality" />
+				<param value="transparent" name="wmode" />
+				<param value="9.0.45.0" name="swfversion" />
+				<!--[if !IE]>-->
+				<object width="965" height="800" data="/magazine/img/main_ban_01.swf" type="application/x-shockwave-flash">
+				<!--<![endif]-->
+					<param value="high" name="quality" />
+					<param value="transparent" name="wmode" />
+					<param value="9.0.45.0" name="swfversion" />
+				<!--[if !IE]>-->
+				</object>
+				<!--<![endif]-->
+				</object>
+				<p style="position:absolute;right:10px;top:50px;z-index:3000003;"><a href="javascript:void($('#mzBglayer').hide());"><img src="http://image.maxmovie.com/www_maxmovie_com_2013/main/btn_mcl.png" alt="레이어 닫기"></a></p>
+			</div>
+	</div>
+	<!--	//매거진 암전 확장	-->
+
+</body>
+</html>

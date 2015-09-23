@@ -1,0 +1,224 @@
+
+  
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>欢迎登录金蝶员工门户</title>
+<link href="/styles/v3/reset.css" rel="stylesheet" type="text/css" />
+<link href="/styles/v3/login_qrcode.css" rel="stylesheet" type="text/css" />
+</head>
+<!--[if IE 6]>
+			<script src="/scripts/pngfix.js" type="text/javascript"></script>
+			<script type="text/javascript">
+			DD_belatedPNG.fix('.pngfix');
+</script>
+<![endif]-->
+<body>
+	<div class="main">
+			<!--登录背景模块-->
+            <div id="site-bgs">
+                <ul>
+                <!--
+                  <li class="bg1"></li>
+                  <li class="bg2" style="display:none"></li>
+                  <li class="bg3" style="display:none"></li>
+                  -->
+                </ul> 
+            </div>
+            <!-- End 背景 -->
+            <!--内容模块-->
+           <div class="content">
+           
+           		<div class="w-960">
+                	<!--登录框-->
+                	<form id="fm1" class="fm-v clearfix" action="/login;jsessionid=83C3EBF41230535E15D8A899793563E0?service=http%3A%2F%2Fwww.mykingdee.com%2Fj_acegi_cas_security_check%3Bjsessionid%3D9EF7109D78752E21A3F1DB86ECA72D5F" method="post">
+                	<input name="loginDomain" type="hidden" id="loginDomain" value="" />
+                	<input name="token" type="hidden" id="token"  />
+                    <div class="login-text pngfix"> 
+                    	<div class="login-box">
+
+
+                        	  <div class="box-top"><a id="erwei" href="javascript:void(0);">扫一扫登录</a></div>
+
+                              <div class="login-text-h1 pngfix"></div>
+                              <ul>
+                                    <li><span class="label">动态密码锁用户：</span><input name="username" class="user-name" type="text" id="userName"/></li>
+                                    <li><span class="label">动态密码锁密码：</span><input name="password" class="user-pass" type="text" id="pwd"/><span><a href="helper.action" target="_blank" style=" margin-left:10px; font-size:12px; color:#666;">帮助</a><img width="14" height="14" align="absmiddle" style="margin-left:3px;margin-bottom:3px important;" src="http://login.mykingdee.com/images/home/suo.gif"></span></li>
+                              </ul>
+                              <div><input name="login" type="submit" value="" class="login-bt pngfix"/><br/></div>
+                         </div>
+
+                         <div class="erwei-box">
+                        	  <div class="box-top"><a id="pinlogin" href="javascript:void(0);">帐号登录</a></div>
+                              <div class="erwei-pic-box"><img height="150" width="150" src="/qrcode/qr-code.action" alt="二维码登录" /></div>
+                              <p id="scanResult" >云之家扫码登录或<a href="http://imobile.app.mykingdee.com/install/product/sms/2339" target="_blank" >动态密码客户端</a>扫码登录</p>
+                         </div> 
+
+                    </div>
+                     <input type="hidden" name="lt" value="e1s1" />
+  					 <input type="hidden" name="_eventId" value="submit" />
+                    </form>
+                    <!--End 登录框-->
+                    <div class="login-bottom pngfix">
+                        <div id="jsNav">
+                        	<!--<div class="ico1 ico"><span class="" ></span></div>--></div>
+                    </div>
+                    <div class="footer">	
+           		&copy;1993-2014&nbsp;金蝶国际软件集团有限公司版权所有&nbsp;<a style="color:#999" href="http://www.miitbeian.gov.cn" target="_blank" >粤ICP备05041751号</a><br />
+请使用IE6.0 SP1以上浏览器，最佳显示分辨率1024*768
+           </div>
+                 </div>
+           </div>
+           <!--End 内容模块-->
+	</div>
+</body>
+</html>
+<script src="/scripts/jquery/jquery-1.6.1.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="/scripts/jquery/jquery-cookieplug.js"></script>
+<script type="text/javascript" src="http://st.app.mykingdee.com/st/static/sdk/js/sdk.js?2331365619" ></script>
+<script>
+$(function(){
+	var imgSize = 0;
+	var url =  "http://console.app.mykingdee.com/api/login-img.action?callback=?";
+	$.getJSON(url,{'ts':new Date().getTime()},
+		function(s){
+			if(s.success){
+				var imglist = s.imgList;
+				var banner = "";
+				var icon = "";
+				imgSize = imglist.length;
+				for(var i = 0; i < imglist.length; i++){
+					
+					banner += "<li class='bg"+(i+1)+" bg' style='background-image: url("+imglist[i].banner_path+");";
+					icon += "<div class='ico"+(i+1)+" ico' style='background-image: url("+imglist[i].icon_path+");'><span ";
+					if(i!=0){
+						banner +=  "display:none;";
+						icon += " class='trigger'";
+					}
+					banner +=  "'></li>";
+					icon +=  " ></span></div>";
+					/*
+					$("#site-bgs .bg"+(i+1)).css("background-image","url("+imglist[i].banner_path+")");
+					$("#jsNav .ico"+(i+1)).css("background-image","url("+imglist[i].icon_path+")");
+					*/
+				}
+				$("#site-bgs").find("ul").html(banner);
+				$("#jsNav").html(icon);
+				page();	
+			}
+		}
+	);
+	var page = function(){
+		var curr = 0;
+		
+		$("#jsNav div").each(function(i){
+			$(this).click(function(){
+				curr = i;
+				//$("#site-bgs ul li").eq(i).fadeIn("slow").siblings("li").hide();
+				$("#site-bgs ul li").eq(i).fadeIn(2500).siblings("li").fadeOut(300);
+				$(this).siblings().find("span").addClass("trigger");
+				$(this).find("span").removeClass("trigger");
+			});
+		});
+		
+		var pg = function(flag){
+			//flag:true表示前翻， false表示后翻
+			if (flag) {
+				if (curr == 0) {
+					todo = 2;
+				} else {
+					todo = (curr - 1) % imgSize;
+				}
+			} else {
+				todo = (curr + 1) % imgSize;
+			}
+			$("#jsNav div").eq(todo).click();
+		};
+		
+		
+		//自动翻
+		var timer = setInterval(function(){
+			todo = (curr + 1) % imgSize;
+			$("#jsNav div").eq(todo).click();
+		},8000);
+		
+		//鼠标悬停在触发器上时停止自动翻
+		$("#jsNav span").hover(function(){
+				clearInterval(timer);
+			},
+			function(){
+				timer = setInterval(function(){
+					todo = (curr + 1) % imgSize;
+					$("#jsNav div").eq(todo).click();
+				},8000);			
+			}
+		);
+	}
+});
+
+
+$(document).ready(function(){
+	$("#userName").val($.cookie('userName'));
+	
+	if($("#userName").val()==''){
+		$("#userName").focus();
+	}else{
+		$("#pwd").focus();
+	}
+
+	var timer;
+	var handleRet = function() {
+		App.ajaxPost("/qrcode/check.action", null, null, function(ret) {
+			if (ret.result == "success") {
+				$("#userName").val(ret.userName);
+				$("#pwd").val(ret.pwd);
+				$("#loginDomain").val(ret.loginDomain);
+				$("#token").val(ret.token);
+				$("#fm1").submit();
+			} else if (ret.result == "scaned") {
+				$("#scanResult").html("成功扫描，按确认登录");
+			}
+		});
+	};
+	
+	
+	$("#erwei").click(function(){
+		$(".login-box").fadeOut("fast", function(){
+			$(".erwei-box").fadeIn("fast");
+			});
+		timer = window.setInterval(handleRet, 1000);
+		});
+	$("#pinlogin").click(function(){
+		$(".erwei-box").fadeOut("fast", function(){
+			$(".login-box").fadeIn("fast");
+			});
+		window.clearInterval(timer);
+		});
+	
+});
+
+function checkForm(){
+	var doc = document.forms[0];
+	if(doc.userName.value==""){
+		alert("请输入用户名");
+		doc.userName.focus();
+		return false;
+	}else if(doc.password.value==""){
+		alert("密码不能为空");
+		doc.password.focus();
+		return false;
+	}else{
+		//document.getElementById("login").style.display= "none";
+		//document.getElementById("loading").style.display= "block";
+		doc.action=doc.action+'?time=' + new Date().getTime();
+		
+		return true;
+	}
+}
+</script>
+

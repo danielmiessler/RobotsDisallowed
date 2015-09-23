@@ -1,0 +1,889 @@
+    	<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ClipBucket - Free Video Sharing Website Script, Youtube, Daily-motion Clone, PHP Video Script, Media Sharing CMS, Best PHP Solution for Social Networking</title>
+        <!-- Bootstrap -->
+    <link href="http://clip-bucket.com/styles/default/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://clip-bucket.com/styles/default/css/all.css" rel="stylesheet">
+    <!-- <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'> -->
+    <script type="text/javascript" src="http://clip-bucket.com/styles/default/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="http://clip-bucket.com/styles/default/js/jquery.main.js"></script>
+    <script type="text/javascript" src="http://clip-bucket.com/styles/default/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://clip-bucket.com/styles/default/js/custom.js"></script>
+    <link rel="icon" type="image/png" href="http://clip-bucket.com/styles/clipbucket_2015/images/favicon.png">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+    <div id="wrapper" class="home"><!-- wrapper -->
+        <header id="header"><!-- header -->
+            <nav id="main_navi" class="navbar navbar-default" role="navigation">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <h1 class="logo pull-left">
+                           <a href="http://clip-bucket.com">ClipBucket</a>
+                        </h1> 
+                    </div>
+                    
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav main-nav">
+                            <li id="w_cb"><a href="#whycb">Why ClipBucket</a></li>
+                            <li id="t_prods"><a href="#products">Top Products</a></li>
+                            <li><a href="index.php?mode=products&action=list">Products</a></li>
+                            <li><a href="http://discourse.clipbucket.com">Discourse</a></li>
+                            <li><a href="index.php?mode=page&action=page_view&id=107">Certified Hosting</a></li>
+<!--                             <li> <a href="#" id="live-help" class="live-help pull-right">Live Help!</a> </li> -->
+                            <li><a href="http://client.clip-bucket.com">Client Area</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right right-menu">
+                                    <!-- <li class="search-opner hidden-xs">
+                                        <button class="btn btn-primary btn-togglesearch"></button>
+                                    </li> -->
+                                    <li class="search">
+                                        <form class="search-form" id="search_form" method="get" action="index.php">
+                                            <input type="hidden" name="mode" value="products">
+                                            <input type="text" id="query" class="form-control pull-left" id="search_box" name="query">
+                                            <input type="hidden" name="search_type" value="products">
+                                            <input class="btn-search pull-right" type="button" value="search">
+                                        </form>
+                                    </li>
+                                </ul>
+                    </div><!--navbar-collapse-->
+                </div><!--container-fluid-->
+            </nav>
+        </header><!-- end of header -->
+        <style type="text/css">
+        
+        </style>
+        <script>
+        var baseurl = 'http://clip-bucket.com/';
+        var current_url = window.location;
+
+        // hide why and hot products tab if home page
+        if (baseurl != current_url)
+        {
+          $('#w_cb').hide();
+          $('#t_prods').hide();
+        }
+            $(document).ready(function(){
+            $('#search_form').on("submit",function(e){
+                if ( $('#search_box').val() == '' )
+                {
+                    e.preventDefault();
+                    alert("Type something in search box!");
+                }  
+            });
+            $('#sort_product').change(function(){
+                $('#dear_sort_btn').trigger("click");
+            });
+        });
+
+
+$("#live-help").click(function(event) {
+    $zopim.livechat.window.show();
+});
+
+
+
+
+window.$zopim||(function(d,s){ var z=$zopim=function(c){z._.push(c)},$=z.s=
+d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+_.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
+$.src='//v2.zopim.com/?2nKqxl8fOyAFNyVZVH10AugpneuB2LcO';z.t=+new Date;$.
+type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
+
+<!--End of Zopim Live Chat Script-->
+$(window).scroll(function(){
+      var topOfWindow = $(window).scrollTop();
+      var slider_hieght = $(".slideshow").height() - 20;
+      //console.log(slider_hieght + "as")
+      if( topOfWindow > slider_hieght){
+      $("#main_navi").addClass("navbar-fixed-top");
+      $("#main_navi").css("background-color","#027FB5");
+      $("#main_navi").css("height","60px");
+      $(".main-nav > li").css("margin-top","10px");
+      $('.logo').css("margin-top","10px");
+/*      $(".btn-search").css("margin-top","14px");*/
+      $('#search_form').css("margin-top","10px");
+      }
+      else {
+      $("#main_navi").removeClass("navbar-fixed-top");
+      $("#main_navi").css("height","38px");
+           $(".main-nav > li").css("margin-top","-10px");
+      $('.logo').css("margin-top","-10px");
+      $('#search_form').css("margin-top","-10px");
+/*      $(".btn-search").css("margin-top","-14px");*/
+      }
+      //console.log(topOfWindow);
+    });
+
+
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12212755-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+    $('.download_button').on("click",function(){
+        ga('send', 'event', 'button', 'click', 'download_button');
+    }); 
+    $('.subscribe_btn_click').on("click",function(){
+        ga('send', 'event', 'button', 'click', 'subscribe_button');
+    }); 
+        
+        </script>
+
+        
+			<section class="slideshow parallax clearfix">
+			<div class="slideset">
+				<div class="slide clearfix">
+					<div class="text-box col-lg-5 col-md-5 col-sm-12">
+						<h2>Have you ever wondered if you canhave your own youtube?</h2>
+						<div class="text">
+							<p><span>Clipbucket</span> is an open-source video sharing script that let you create youtube, your own youtube in minutes.</p>
+						</div>
+						<div class="clearfix btn-holder">
+							<a class="btn btn-default" href="http://demo.clipbucket.com">Live Demo</a>
+							<a class="btn btn-success" href="">Downlaod</a>
+						</div>
+					</div>
+					<div class="col-lg-7 col-md-7 col-sm-12 img-holder">
+						<div class="ipad-holder">
+							<img src="http://clip-bucket.com/styles/default/images/ipad2.png" alt="" class="ipad img-responsive">
+						</div>
+						<div class="pc-holder">
+							<img src="http://clip-bucket.com/styles/default/images/laptop-large2.png" alt="" class="pc img-responsive">
+						</div>
+						<div class="iphone-holder">
+							<img src="http://clip-bucket.com/styles/default/images/iphone2.png" alt="" class="iphone img-responsive">
+						</div>
+					</div>
+				</div>
+				<div class="slide clearfix">
+					<div class="text-box col-lg-5 col-md-5 col-sm-12">
+						<h2>World's best video players</h2>
+						<div class="text">
+							<p><span>Clipbucket</span> has multiple worldclass video players to allow you to present videos in the best way possible.</p>
+						</div>
+						<div class="clearfix btn-holder">
+							<a class="btn btn-default" href="http://demo.clip-bucket.com">Live Demo</a>
+							<a class="btn btn-success" href="">Downlaod</a>
+						</div>
+					</div>
+					<div class="col-lg-7 col-md-7 col-sm-12 img-holder">
+						<div class="player-frame">
+							<img src="http://clip-bucket.com/styles/default/images/player1.jpg" alt="" class="img-responsive">
+						</div>
+						<div class="player-frame">
+							<img src="http://clip-bucket.com/styles/default/images/player2.jpg" alt="" class="img-responsive">
+						</div>
+					</div>
+				</div>
+				<div class="slide clearfix">
+					<div class="text-box col-lg-5 col-md-5 col-sm-12">
+						<h2>World's best video players</h2>
+						<div class="text">
+							<p><span>Clipbucket</span> has multiple worldclass video players to allow you to present videos in the best way possible.</p>
+						</div>
+						<div class="clearfix btn-holder">
+							<a class="btn btn-default" href="http://demo.clip-bucket.com">Live Demo</a>
+							<a class="btn btn-success" href="">Downlaod</a>
+						</div>
+					</div>
+					<div class="col-lg-7 col-md-7 col-sm-12 img-holder">
+						<div class="player-frame">
+							<img src="http://clip-bucket.com/styles/default/images/multi-upload.png" alt="" class="img-responsive">
+						</div>
+						<div class="player-frame">
+							<img src="http://clip-bucket.com/styles/default/images/multi-upload2.png" alt="" class="img-responsive">
+						</div>
+					</div>
+				</div>
+			</div>
+			<ul class="clearfix slideshow-pagination">
+				<li><a href="javascript:void(0)">1</a></li>
+				<li><a href="javascript:void(0)">2</a></li>
+				<li><a href="javascript:void(0)">3</a></li>
+			</ul>
+		</section> 
+			
+		<div class="container clearfix content">
+			<div class="row">
+				<div class="features-block clearfix" >
+					<section id="whycb" class="intro clearfix">
+						<div class="clearfix">
+							<div class="clearfix feature" style="margin-top:20px">
+								<div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 animatedElement img-holder">
+									<img src="http://clip-bucket.com/styles/default/images/videos-image.jpg" alt="" class="img-responsive">
+								</div>
+								<div class="text-box animatedElement">
+									<h2>#1 Video Sharing Script</h2>
+									<p class="read-less">ClipBucket is an OpenSource Multimedia Management Script Provided Free to the Community.This script comes with all the bells &amp; whistles required to start your own Video Sharing website. 
+									</p>
+									<p class="read-more">
+									Even a website like Youtube, Metacafe, Veoh, Hulu or any other top video distribution application in matter of minutes. ClipBucket is fastest growing script which was first started as Youtube Clone but now its advance features &amp; enhancements makes it the most versatile, reliable &amp; scalable media distribution platform with latest social networking features, while staying light on your pockets. Whether you are a small fan club or a big Multi Tier Network operator, Clipbucket will fulfill your video management needs.
+									 </p>
+									 
+								</div>
+							</div>
+							<div class="clearfix feature">
+								<div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 animatedElement img-holder">
+									<img src="http://clip-bucket.com/styles/default/images/mobile-app.jpg" alt="" class="img-responsive">
+								</div>
+								<div class="text-box animatedElement">
+									<h2>Happiness for Mobile Users</h2>
+									<p class="read-less">
+									With rapid increase in number of mobile web surfers it has become extremely important for webmasters to make their website mobile friendly. They are trying but more of them fail.</p>
+									<p class="read-more">
+									 It can be hard and painful to do so as there are countless different sizes and types of mobile devices that are currently out there. However, with ClipBucket you don't have to worry about that part at all as we take out that pain for you. ClipBucket is 100% responsive and works smoothly on all types of devices and screen sizes. It means that your website will smoothly work exactly like it does on desktop.
+									 </p>
+									 
+								</div>
+							</div>
+							<div class="clearfix feature">
+								<div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 animatedElement img-holder">
+									<img src="http://clip-bucket.com/styles/default/images/admin-area.jpg" alt="" class="img-responsive">
+								</div>
+								<div class="text-box animatedElement">
+									<h2>Extensive Admin Area</h2>
+									<p class="read-less">
+									ClipBucket is an otherwise extremely complex product made simple with its admin area. ClipBucket comes with an extensive admin area to put everything under your control.
+									</p>
+									<p class="read-more">
+									 You can make all kinds of changes from as small as changing your website slogan to changing entire theme. You are always just a few click away from making your website look and behave in way you like. You can change themes, manage plugins, manage videos, users, photos, collections, tools, website settings and much more. In simple words, you don't need to have any kind of programming knowledge in order to be able to run a giant sized video sharing website. 
+									 </p>
+
+									 
+
+								</div>
+							</div>
+							<div class="clearfix feature">
+								<div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 animatedElement img-holder">
+									<img src="http://clip-bucket.com/styles/default/images/home_image.jpg" alt="" class="img-responsive">
+								</div>
+								<div class="text-box animatedElement">
+									<h2>Templates and Players</h2>
+									<p class="read-less">Templates make it much easier for you to make small or drastic changes to your website. Long are the days gone where you will need to hire designer to get changes done.
+									</p>
+									<p class="read-more">
+									 With ClipBucket, you get to use dozen of amazing themes that can help you turn your website into any taste you like. You want to run a school website, small organization video platform or a giant sized video sharing portal such as YouTube and Tune.pk, you have themes to do just that. We also offer variety in video players. Almost all popular video players in world right now are supported such as VideoJs and FlowPlayer.
+									 </p>
+									 
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+				<script>
+				//code to show read more / less button
+				/*$('.read-btn').css("border-radius","20px");
+				$(document).ready(function(){
+			
+					$('.read-btn').on("click",function(){
+						var _this = $(this);
+
+						if (_this.text() == "Read More")
+							_this.text("Read Less");
+						else
+							_this.text("Read More");
+
+						
+						_this.prev().slideToggle();
+					});
+				});*/
+		</script>
+
+			   <!--  <section class="clearfix whyclipbucket">
+					<h2>Why you should use <span>ClipBucket</span></h2>
+					<div class="clearfix three-col row">
+						<div class="col col-sm-4 col-xs-12">
+							<div class="img-holder">
+								<img src="images/icon-video.png" alt="" class="img-responsive">
+							</div>
+							<h2>Videos</h2>
+							<div class="text">
+								<p>Allow users to upload and stream videos directly from your website and share them on the web.</p>
+							</div>
+						</div>
+						<div class="col col-sm-4 col-xs-12">
+							<div class="img-holder photos-icon">
+								<img src="images/icon-photos.png" alt="" class="img-responsive">
+							</div>
+							<h2>Photos</h2>
+							<div class="text">
+								<p>Let your users to upload and view photos. Create photo albums and share it with your friends</p>
+							</div>
+						</div>
+						<div class="col col-sm-4 col-xs-12">
+							<div class="img-holder music-icon">
+								<img src="images/icon-music.png" alt="" class="img-responsive">
+							</div>
+							<h2>Music</h2>
+							<div class="text">
+								<p>Newly added feature of ClipBucket, now your users can upload and listen to the audios also</p>
+							</div>
+						</div>
+					</div>
+				</section> -->
+				
+				<div id="products" class="hot-products-new clearfix" id="products">
+					<h2><span>Hot</span> Products</h2>
+					<div class="row clearfix">
+						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 pro-col">
+							<div class="prod-box grow clearfix">
+								<div class="icon-holder clearfix">
+									<span class="starter-circle">
+										<i class="icon icon-ComputerMouse">
+											<img src="http://clip-bucket.com/images/icon-paid.jpg" class="img-responsive" alt="">
+										</i>
+									</span>	
+								</div>
+								<div class="success clearfix">
+									<div class="clearfix">
+										<h4>CB Multiserver</h4>
+										<p>Multi-Server is an essential plug-in for heavy traffic websites and we always suggest you to use</p>
+									</div>
+								</div>
+								<div class="links-holder clearfix">
+									<p class="price">$350</p>
+									<a class="btn btn-success btn-block" href="http://clip-bucket.com/index.php?mode=products&action=view&id=16">View</a>
+									<a href="http://client.clip-bucket.com/cart.php?a=add&pid=34" class="btn btn-danger btn-block">Buy Now</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 pro-col">
+							<div class="prod-box grow clearfix">
+								<div class="icon-holder clearfix">
+									<span class="advanced-circle">
+										<i class="icon icon-Cup">
+											<img src="http://clip-bucket.com/images/icon-brand.jpg" class="img-responsive" alt="">
+										</i>
+									</span>	
+								</div>
+								<div class="success clearfix">
+									<div class="clearfix">
+										<h4>ClipBucket Branding Removals</h4>
+										<p>if you want to remove Powered by ClipBucket from ClipBucket v2 and replace it with your own</p>
+									</div>
+								</div>
+								<div class="links-holder clearfix">
+									<p class="price">$90</p>
+									<a class="btn btn-success btn-block" href="http://clip-bucket.com/index.php?mode=products&action=view&id=18">View</a>
+									<a href="http://client.clip-bucket.com/cart.php?a=add&pid=64" class="btn btn-danger btn-block">Buy Now</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 pro-col">
+							<div class="prod-box grow clearfix">
+								<div class="icon-holder clearfix">
+									<span class="premium-circle">
+										<i class="icon icon-SettingTool">
+											<img src="http://clip-bucket.com/images/icon-massembed.jpg" class="img-responsive" alt="">
+										</i>
+									</span>
+								</div>
+								<div class="success clearfix">
+									<div class="clearfix">
+										<h4>ClipBucket Mass Embedder Pro</h4>
+										<p>ClipBucket Mass Embedder, it will populate your website with videos from your favorite sites</p>
+									</div>
+								</div>
+								<div class="links-holder clearfix">
+									<p class="price">$49</p>
+									<a class="btn btn-success btn-block" href="http://clip-bucket.com/index.php?mode=products&action=view&id=19">View</a>
+									<a href="http://client.clip-bucket.com/cart.php?a=add&pid=19" class="btn btn-danger btn-block">Buy Now</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 pro-col">
+							<div class="prod-box grow clearfix">
+								<div class="icon-holder clearfix">
+									<span class="proffecional-circle">
+										<i class="icon icon-Television">
+											<img src="http://clip-bucket.com/images/icon-professional.jpg" class="img-responsive" alt="">
+										</i>
+									</span>
+								</div>
+								<div class="success clearfix">
+									<div class="clearfix">
+										<h4>ClipBucket Professional Installation</h4>
+										<p>By Purchasing This, We Will install a ClipBucket on your Website in a the best way possible</p>
+									</div>
+								</div>
+								<div class="links-holder clearfix">
+									<p class="price">$50</p>
+									<a class="btn btn-success btn-block" href="http://clip-bucket.com/index.php?mode=products&action=view&id=21">View</a>
+									<a href="http://client.clip-bucket.com/cart.php?a=add&pid=5" class="btn btn-danger btn-block">Buy Now</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="visual clearfix">
+			<div class="slideset clearfix">
+				<div class="slide">
+					<header class="clearfix text-center">
+						<h2>No worries about data scaling when using <span>ClipBucket</span></h2>
+						<p>See how ClipBucket integrates into product experiences and results into real time fun for users and money for admins</p>
+					</header>
+					<div class="clearfix two-col">
+						<div class="text-box col-sm-4 col-xs-12 pull-right">
+							<strong class="title">tune.pk</strong>
+							<p><a href="http://tune.pk">tune.pk</a> serves over 50 millions users every month and streams countless videos all powered by ClipBucket.</p>
+						</div>
+						<div class="img-holder col-sm-8 col-xs-12">
+							<img class="img-responsive animate-up" src="images/img2.jpg" alt="">
+						</div>
+					</div>
+				</div>
+				<div class="slide">
+					<header class="clearfix text-center">
+						<h2>it’s endless what you can <span>build</span></h2>
+						<p>Videos are definitely the stronger point but there is more too..</p>
+					</header>
+					<div class="clearfix two-col">
+						<div class="text-box col-sm-4 col-xs-12 pull-right">
+							<strong class="title">Players, Themes</strong>
+							<p>ClipBucket comes with more than one video players, themes and plugins to help you build</p>
+						</div>
+						<div class="img-holder col-sm-8 col-xs-12">
+							<img class="img-responsive animate-up" src="images/img22.jpg" alt="">
+						</div>
+					</div>
+				</div>
+				<div class="slide">
+					<header class="clearfix text-center">
+						<h2>An interesting touch to web are <span>Photos</span></h2>
+						<p>Did you know???? More than 70% of internet is made of Photos.</p>
+					</header>
+					<div class="clearfix two-col">
+						<div class="text-box col-sm-4 col-xs-12 pull-right">
+							<strong class="title">Photos Fun!</strong>
+							<p>With ClipBucket you can create a world class photo sharing website in minutes.</p>
+						</div>
+						<div class="img-holder col-sm-8 col-xs-12">
+							<img class="img-responsive animate-up" src="images/img33.jpg" alt="">
+						</div>
+					</div>
+				</div>
+				<div class="slide">
+					<header class="clearfix text-center">
+						<h2>Use ClipBucket to build your very own <span>Social Network</span></h2>
+						<p>Ever wanted to start your own social networking or dating website?.</p>
+					</header>
+					<div class="clearfix two-col">
+						<div class="text-box col-sm-4 col-xs-12 pull-right">
+							<strong class="title">Social Networking</strong>
+							<p>ClipBucket can power your social network with its powerful features and enhanced functionality.</p>
+						</div>
+						<div class="img-holder col-sm-8 col-xs-12">
+							<img class="img-responsive animate-up" src="images/socialmedia.jpg" alt="">
+						</div>
+					</div>
+				</div>
+				<div class="btn-holder">
+					<a class="btn-prev" href="#">Previous</a>
+					<a class="btn-next" href="#">Next</a>
+				</div>
+			</div>
+		</div> -->
+
+		<!-- <div id="clients" class="slider clearfix">
+			<h2>Some amazing websites are being built using <span>ClipBucket</span></h2>
+			<div class="mask">
+				<div class="slideset">
+					<div class="slide">
+						<img src="images/img-github.png" alt="" class="img-responsive">
+					</div>
+					<div class="slide">
+						<img src="images/img-soundcloud.png" alt="" class="img-responsive">
+					</div>
+					<div class="slide">
+						<img src="images/img-github.png" alt="" class="img-responsive">
+					</div>
+					<div class="slide">
+						<img src="images/img-soundcloud.png" alt="" class="img-responsive">
+					</div>
+					<div class="slide">
+						<img src="images/img-github.png" alt="" class="img-responsive">
+					</div>
+					<div class="slide">
+						<img src="images/img-soundcloud.png" alt="" class="img-responsive">
+					</div>
+					<div class="slide">
+						<img src="images/img-github.png" alt="" class="img-responsive">
+					</div>
+
+					<div class="slide">
+						<img src="images/img-github.png" alt="" class="img-responsive">
+					</div>
+					<div class="slide">
+						<img src="images/img-soundcloud.png" alt="" class="img-responsive">
+					</div>
+					<div class="slide">
+						<img src="images/img-github.png" alt="" class="img-responsive">
+					</div>
+					<div class="slide">
+						<img src="images/img-soundcloud.png" alt="" class="img-responsive">
+					</div>
+					<div class="slide">
+						<img src="images/img-github.png" alt="" class="img-responsive">
+					</div>
+					<div class="slide">
+						<img src="images/img-soundcloud.png" alt="" class="img-responsive">
+					</div>
+					<div class="slide">
+						<img src="images/img-github.png" alt="" class="img-responsive">
+					</div>
+
+					<div class="slide">
+						<img src="images/img-github.png" alt="" class="img-responsive">
+					</div>
+					<div class="slide">
+						<img src="images/img-soundcloud.png" alt="" class="img-responsive">
+					</div>
+					<div class="slide">
+						<img src="images/img-github.png" alt="" class="img-responsive">
+					</div>
+					<div class="slide">
+						<img src="images/img-soundcloud.png" alt="" class="img-responsive">
+					</div>
+					<div class="slide">
+						<img src="images/img-github.png" alt="" class="img-responsive">
+					</div>
+					<div class="slide">
+						<img src="images/img-soundcloud.png" alt="" class="img-responsive">
+					</div>
+					<div class="slide">
+						<img src="images/img-github.png" alt="" class="img-responsive">
+					</div>
+
+				</div> -->
+				<!-- <ul class="carousel-pagination">
+					<li><a href="javascript:voide(0)">1</a></li>
+					<li><a href="javascript:voide(0)">2</a></li>
+					<li><a href="javascript:voide(0)">3</a></li>
+				</ul> -->
+			<!-- </div>
+		</div> -->
+	   <!--  <section class="clearfix container support">
+			<div class="row">
+				<div class="clearfix three-col row">
+					<div class="col col-sm-4 col-xs-12">
+						<span class="support-icon">training</span>
+						<div class="box">
+							<h3>Easy To Learn</h3>
+							<div class="text">
+								<p>Plenty of documentation and guides to help you learn fast!</p>
+							</div>
+							<a href="http://docs.clip-bucket.com" class="btn btn-more">Learn</a>
+						</div>
+					</div>
+					<div class="col dev col-sm-4 col-xs-12">
+						<span class="support-icon">dev support</span>
+						<div class="box">
+							<h3>Live & Ticket support</h3>
+							<div class="text">
+								<p>ClipBucket provides 24x7 live support for its loyal users</p>
+							</div>
+							<a href="http://client.clip-bucket.com" class="btn btn-more">Get Help</a>
+						</div>
+					</div>
+					<div class="col production col-sm-4 col-xs-12">
+						<span class="support-icon">products support</span>
+						<div class="box">
+							<h3>Discourse</h3>
+							<div class="text">
+								<p>Amazing community to interact with to get your problems solved quicker</span></p>
+							</div>
+							<a href="http://discourse.clipbucket.com" class="btn btn-more">Ask</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section> -->
+  <footer id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="six-columns">
+                        <div class="column">
+                            <h3>ClipBucket</h3>
+                            <ul>
+                                <li><a href="http://clip-bucket.com">Home</a></li>
+                                <li><a href="http://clip-bucket.com/index.php?mode=page&action=page_view&id=100">About</a></li>
+                                <li><a href="http://clip-bucket.com/contact">Contact</a></li>
+                                <li><a href="http://blog.clip-bucket.com/">Blog</a></li>
+                            </ul>
+                        </div>
+                        <div class="column">
+                            <h3>Developers</h3>
+                            <ul>
+                                <li><a href="http://docs.clip-bucket.com/">Documentation</a></li>
+                                <li><a href="http://client.clip-bucket.com/">Join ClipBucket</a></li>
+                                <li><a href="http://sourceforge.net/projects/clipbucket/">Contribute</a></li>
+                                <li><a href="">SVN</a></li>
+                            </ul>
+                        </div>
+                        <div class="column">
+                            <h3>Policy</h3>
+                            <ul>
+                                <li><a href="http://clip-bucket.com/index.php?mode=page&action=list">All Pages</a></li>
+                                <li><a href="http://clip-bucket.com/index.php?mode=page&action=page_view&id=104">Team</a></li>
+                                
+                            </ul>
+                        </div>
+                        <div class="column">
+                            <h3>Partners</h3>
+                            <ul>
+                                <li><a href="http://phpbucket.com/">PHP Bucket</a></li>
+                                <li><a href="http://iu.com.pk">Integrated Units</a></li>
+                                <li><a href="http://tune.pk">Tune.pk</a></li>
+                                <li><a href="http://clipbucket.net/">Clipbucket.net</a></li>
+                            </ul>
+                        </div>
+                        <div class="column">
+                            <h3>Help</h3>
+                            <ul>
+                                <li><a href="http://docs.clip-bucket.com/clipbucket-faqs">FAQs</a></li>
+                                <li><a href="http://discourse.clip-bucket.com">Forums</a></li>
+                                <li><a href="">premium support</a></li>
+                                <li><a href="">live support</a></li>
+                            </ul>
+                        </div>
+                        <div class="column inspiration">
+                            <div class="text-box">
+                                <h3>proud pakistani</h3>
+                                <p>"Think 100 times before you take a decision, But once that decision is taken, stand by it as one man"<br>Quaid-e-Azam</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div><!--wrapper-->
+    <script src="http://clip-bucket.com/styles/default/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    	function prodBox(){
+    		var proColPadding = "";
+    		proColPadding = $(".pro-col .links-holder").outerHeight();
+    		$(".pro-col .prod-box").css('padding-bottom',proColPadding+'px');
+    	}
+
+    	function footerbottom(){
+    		footerheight = "";
+            var footerheight = $("#footer").outerHeight();
+            $("#wrapper").css('padding-bottom',footerheight+'px');
+    	}
+    	//on scroll menu fixed
+    	$(window).scroll(function(){
+			var topOfWindow = $(window).scrollTop();
+			var slider_hieght = $(".slideshow").height();
+			//console.log(slider_hieght + "as")
+			if( topOfWindow > slider_hieght){
+			$(".top-links").css("position","fixed");
+			}
+			else {
+			$(".top-links").css("position","static");
+			}
+			//console.log(topOfWindow);
+		});
+        $(document).ready(function() {
+        	//features animations
+        	$(".feature:nth-child(2n+1) .img-holder").addClass('slidefromleft');
+        	$(".feature:nth-child(2n) .img-holder").addClass('slidefromright');
+        	$(".feature:nth-child(2n+1) .text-box").addClass('slidefromright');
+        	$(".feature:nth-child(2n) .text-box").addClass('slidefromleft');
+
+            //
+            prodBox();
+            footerbottom();
+            $("#query").hide();
+            $('.btn-search').click(function(){
+                $('#search_form').toggleClass('resize');
+                var width  = $(window).width();
+                console.log(width+' / '+ $('#query').val().length );
+                if( $('#query').val().length < 3 && width > 767){
+                    $("#query").toggle('slow');
+                }
+                else
+                {
+                    $('#search_form').submit();
+                }
+            });
+            // switch grid-view and list view
+            $("#grid-view").click(function(){
+                $("#btn-select").html("Grid View <span class='caret'></span>");
+                $(".content").addClass('grid-view');
+                $(".product-box").removeClass('col-xs-12');
+                $(".product-box").addClass('col-sm-4');
+
+                var winWidth = $(window).width();
+
+                if(winWidth < 992){
+                    $(".product-box").removeClass('col-sm-4');
+                    $(".product-box").addClass('col-sm-6');
+                }
+            });
+
+            $("#list-view").click(function(){
+                $("#btn-select").html("List View <span class='caret'></span>");
+                $(".content").removeClass('grid-view');
+                $(".product-box").removeClass('col-sm-4');
+                $(".product-box").addClass('col-xs-12');
+
+                
+            });
+
+            $(window).resize(function(){
+                footerbottom();
+                prodBox();
+            });
+
+            // // on resizing window to tablet
+            // $(window).resize(function(){
+            //  resizeWindow();
+            // });
+
+            // function resizeWindow(){
+            //  var winWidth = $(window).width();
+
+            //  if(winWidth < 992){
+            //      if($(".content").hasClass('grid-view')){
+            //          $(".product-box").removeClass('col-sm-4');
+            //          $(".product-box").addClass('col-sm-6');
+            //      }
+            //  }
+            //  else{
+            //      if($(".content").hasClass('grid-view')){
+            //          $(".product-box").removeClass('col-sm-6');
+            //          $(".product-box").addClass('col-sm-4');
+            //      }
+            //  }
+            // }
+
+            //hover on toggle-ascend
+          
+            /*$(".toggle-ascend").hover(
+                function(){
+                    //$(this).removeClass('glyphicon-arrow-down');
+                    $(this).addClass('glyphicon-arrow-up');
+                },
+                function(){
+                    //$(this).removeClass('glyphicon-arrow-up');
+                    $(this).addClass('glyphicon-arrow-down');
+                }
+            );*/
+
+        
+            $('.toggle-ascend').on('click', function () {
+                
+                var mode = getUrlParameter('mode');
+                var action = getUrlParameter('action');
+        
+             if($('#order_by').val()=='desc')
+             {
+                  //alert('test---------');
+                  $(this).removeClass('glyphicon-arrow-down');
+                  $(this).addClass('glyphicon-arrow-up');
+                  $('#order_by').val('asc');
+                  var sort_by=$('.sort_product').val();
+
+                var category_id = getUrlParameter('id');  
+                var search = getUrlParameter('search_type');  
+                var query = getUrlParameter('query');  
+                if(category_id!==undefined)
+                {
+                    window.location="index.php?mode="+mode+"&action="+action+"&id="+category_id+"&orderby="+"asc&sort_by="+sort_by;
+                }
+                else if(search!==undefined && query!==undefined)
+                {
+                    window.location="index.php?mode="+mode+"&query="+query+"&search_type="+search+"&orderby="+"asc&sort_by="+sort_by;
+                }
+                else
+                {
+                  window.location="index.php?mode="+mode+"&action="+action+"&orderby="+"asc&sort_by="+sort_by;
+                }
+
+                  return false;
+                 
+             }
+             else if($('#order_by').val()=='asc')
+             {
+                //alert('test2---------');
+                  
+                  $(this).removeClass('glyphicon-arrow-up');
+                  $(this).addClass('glyphicon-arrow-down');
+                  $('#order_by').val('desc');
+                    var sort_by=$('#sort_product').val();
+
+                    //window.location="index.php?mode="+mode+"&action="+action+"&orderby="+"desc&sort_by="+sort_by;
+
+                    var category_id = getUrlParameter('id');  
+                    var search = getUrlParameter('search_type');  
+                    var query = getUrlParameter('query');  
+                    if(category_id!==undefined)
+                    {
+                        window.location="index.php?mode="+mode+"&action="+action+"&id="+category_id+"&orderby="+"desc&sort_by="+sort_by;
+                    }
+                    else if(search!==undefined && query!==undefined)
+                    {
+                        window.location="index.php?mode="+mode+"&query="+query+"&search_type="+search+"&orderby="+"desc&sort_by="+sort_by;
+                    }
+                    else
+                    {
+                      window.location="index.php?mode="+mode+"&action="+action+"&orderby="+"desc&sort_by="+sort_by;
+                    }
+
+
+                    return false;
+                 
+             }
+
+            });
+
+      
+            // active class for widget links
+            $(".widget ul a").click(function(e){
+                $(".widget ul li").removeClass('active');
+                $(this).parent().addClass('active');
+            });
+        
+        });
+
+    function getUrlParameter(sParam)
+    {
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++) 
+        {
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam) 
+            {
+                return sParameterName[1];
+            }
+        }
+    }      
+
+      
+    </script>

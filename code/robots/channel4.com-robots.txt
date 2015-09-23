@@ -1,0 +1,21 @@
+# robots.txt for channel4.com
+User-agent: *
+Crawl-delay: 5
+Sitemap: http://www.channel4.com/news/sitemap.xml
+Sitemap: http://www.channel4.com/t4/sitemap.xml
+Sitemap: http://www.channel4.com/4homes/sitemap.xml
+Sitemap: http://www.channel4.com/4food/sitemap.xml
+Disallow: /culture/microsites/C/can_you_believe_it/debates/angry.html
+Disallow: /culture/microsites/C/can_you_believe_it/debates/angry1.html
+Disallow: /culture/microsites/C/can_you_believe_it/debates/angry2.html
+Disallow: /event.ng/
+Disallow: /html.ng/
+Disallow: /js.ng/
+Disallow: /click.ng/
+Disallow: /image.ng/
+Disallow: /ads/
+Disallow: /ping.ng/
+Disallow: /food/competition/thankyou_p_1.html
+Disallow: /food/competition/sorry_p_1.html
+Disallow: /player/v2/player.jsp?showId=11662
+Disallow: /search/

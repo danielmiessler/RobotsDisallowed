@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+sitemap: https://www.sociomantic.*/sitemapindex.xml

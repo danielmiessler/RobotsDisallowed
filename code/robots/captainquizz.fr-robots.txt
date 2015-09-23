@@ -1,0 +1,916 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Captain Quizz France</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<link href="http://www.captainquizz.fr/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<script src="http://captainquizz.s3.amazonaws.com/js/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="http://captainquizz.s3.amazonaws.com/img/cp.ico">
+<style>
+body {background-color: #f5f6f7;font-family: 'Roboto', sans-serif;}
+.wrapper {max-width: 980px;margin: 0 auto;clear: both;position: relative;}
+#sidebar {width: 300px;position: absolute;right: 0;top: 0;text-align:center;}
+#main {margin-right: 320px;position: relative;padding:0}
+h1 {margin-top: 0;}
+#header .details {color: #888;margin-bottom:20px;}
+#intro .cover {width:60%;float:left;}
+#intro .cover>img {width:100%;}
+#intro .description {margin-left: 62%;font-size: 18px;color: #888;line-height: 24px;}
+#start {margin:20px 0;width: 60%;}
+.Share {overflow: hidden;display:none;position: absolute;bottom: 10px;left:0;right:0;background: white;margin: 10px;padding: 10px;z-index: 15;box-shadow: 0 2px 6px rgba(0,0,0,0.8);}
+.Share .title {display:none;color:#444;font-size:18px;margin-bottom: 10px;}
+.Share .btn {color:white;width: 49.5%;float: left;}
+.btn.facebook {background-color: #3b5998;margin-right:1%;color:white;}
+.Share .twitter {background-color: #1dadeb;}
+.Share.final {padding: 10px 20px;border: 1px solid #ddd;border-top: 0;background: #eee;margin-bottom:30px;}
+.Share.final .title {display:block;}
+#comments {padding-top:30px;}
+#timeline {width: 100%;height: 50px;overflow: hidden;position: absolute;top: 0;left: 0;z-index: 2;}
+#timeline .steps {width: 1500px;}
+#timeline .steps .step {width: 30px;line-height: 30px;text-align: center;float: left;margin: 10px;color: #888;font-weight: bold;}
+#timeline .steps .step.done {background: rgba(74,163,252,1);border-radius: 15px;color: white;}
+#questions .question .cover {position: relative;}
+#questions .question .cover .text {position: absolute;bottom: 0;left: 0;background-color: rgba(74,163,252,.9);color: #fff;padding: 9px 20px;font-size: 22px;}
+#questions .question .cover>img {width:100%;}
+.navbar {border-radius:0;}
+.navbar.navbar-custom {background-color: #fff;-webkit-box-shadow: 0 1px 8px rgba(0,0,0,.2);-moz-box-shadow: 0 1px 8px rgba(0,0,0,.2);box-shadow: 0 1px 8px rgba(0,0,0,.2);}
+.navbar-brand {padding:2px 20px;}
+.navbar-brand>img {width:180px;margin-top:7px}
+.navbar-right {padding: 8px 0;}
+.glyphicon-plus-sign {top: 2px;}
+.answers {overflow: hidden;}
+.answer.text {border: 1px solid #888;border-top: 0;padding: 8px 20px;font-size: 16px;cursor: pointer;}
+.answer:hover, .answer.selected {background-color: rgba(74,163,252,1);color:#fff;}
+.answer.illustrated {border: 1px solid #888;font-size: 16px;cursor: pointer;width: 24%;padding: 1.5%;margin-right: 1%;margin-top: 10px;float: left;text-align: center;}
+.answer.illustrated>img {width:100%;margin-bottom: 10px;}
+#results .result {border: 1px solid #ddd;position: relative;}
+#results .result .cover {position:relative;}
+#results .result .cover>img {width:100%;}
+#results .result .cover .text {font-size: 16px;color: #888;line-height: 20px;padding: 10px;position: absolute;bottom: 0;background: white;z-index: 15;margin: 10px;box-shadow: 0 2px 6px rgba(0,0,0,0.8);}
+#results .result .cover .text>h3 {color: #4797e7;margin: 0 0 10px 0;}
+#loading {text-align:center;color:#4AA3FC;font-size:18px;padding-top: 100px;}
+#loading>img {display: block;margin: 10px auto;}
+#questions, .question, #results, #loading, #intro {-webkit-transition: all 0.3s linear; /* For Safari 3.1 to 6.0 */transition: all 0.3s linear;position: relative;}
+.invisible {opacity:0;}
+.alternating-thumbnails-a {padding:20px 0 0 0 !important;}
+#blackBG {background:rgba(0,0,0,0.8);display:none;position: fixed;top: 0;left: 0;bottom: 0;right: 0;z-index: 9050;}
+.blackBG_small {position: absolute;display:none;top: 0;left: 0;right: 0;bottom: 0;background: rgba(0,0,0,0.5);z-index: 10;}
+#LikePopup {position:fixed;z-index: 9051;top:10%;background-color: #ffffff;box-shadow: 0 2px 6px rgba(0,0,0,0.3);display:none;text-align: center;margin: auto;left: 0;right: 0;width: 500px;padding: 20px;}
+#LikePopup .title {position:absolute;font-size:16px;color:#3b5998;font-weight:bold;margin-right:35px;}
+#LikePopup .fb-like-box {margin-top:20px;}
+#LikePopup .subtitle {padding-top:20px;}
+#LikePopup .text {padding: 20px;}
+#LikePopup .footer {margin-top:20px}
+#LikePopup .footer>span {display:block;margin-bottom:10px}
+.btn {display: inline-block;text-shadow: 0 -1px 0 rgba(0,0,0,.5);margin-bottom: 0;border-radius:4px;border: 1px solid;text-align: center;vertical-align: middle;font-weight: bold;line-height: 1.43;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;white-space: nowrap;cursor: pointer;}
+.btn-lg{padding:10px 0}
+.btn.btn-grey {border-color: #c4c4c4;background: white;color: #565a5c;}
+.btn.btn-big {padding: 9px 25px;font-size:18px;}
+.btn.btn-pink {border-color: #ff5a5f;border-bottom-color: #e00007;background-color: #ff5a5f;color: #fff;}
+.btn.btn-pink:hover,.btn.btn-pink:focus{border-color:#ff7e82;border-bottom-color:#fa0008;background-color:#ff7e82;}
+#filter {overflow:hidden;background-color:#fff;-webkit-box-shadow: 0 0 10px rgba(0,0,0,.2);-moz-box-shadow: 0 0 10px rgba(0,0,0,.2);box-shadow: 0 0 10px rgba(0,0,0,.2);}
+#filter>div {float: left;height: 40px;width: 50%;font-size:16px;text-align: center;}
+#filter>div.active {padding:10px;box-shadow: 0 0px 10px rgba(0,0,0,.2);border-bottom: 1px solid #ddd;}
+#filter>div.passive {padding:8px;border-bottom: 1px solid #ddd;color: #888;}
+#filter>.top.active {border-right: 1px solid #ddd;}
+#filter>.top.passive {border-left: 2px solid #ddd;box-shadow: -4px 0px 10px rgba(0,0,0,.2);cursor:pointer}
+#filter>.last.active {border-left: 1px solid #ddd;}
+#filter>.last.passive {border-right:0;box-shadow: 4px 0px 10px rgba(0,0,0,.2);cursor:pointer}
+#quizzList {position:relative;list-style-type: none;padding: 0;margin-top: 10px;}
+#quizzList .quizz {overflow: hidden;background:#fff;border: 1px solid;border-color: #e5e6e9 #dfe0e4 #d0d1d5;-webkit-border-radius: 3px;padding:0;margin:0;margin-bottom:10px}
+#quizzList .quizz .cover {float:left;width:280px}
+#quizzList .quizz .cover img {width:100%;}
+#quizzList .quizz .infos {margin-left:280px;padding:10px;height: 150px;position: relative;}
+#quizzList .quizz.quizzv2 .infos {height:147px}
+#quizzList .quizz.quizzv2 .white_shadow {position:absolute;
+-webkit-box-shadow:20px 0 15px 15px rgba(255,255,255,1);
+-moz-box-shadow:20px 0 15px 15px rgba(255,255,255,1);box-shadow:20px 0 15px 15px rgba(255,255,255,1);left:0;right:0;bottom:0}
+#quizzList .quizz .infos .title {font-size: 20px;margin-top: -5px;}
+#quizzList .quizz .infos .description {font-size: 14px;margin: 10px 0;color: #555;}
+#quizzList .quizz .infos .time {color: #999;position: absolute;bottom: 0;background: #fff;left: 0;right: 0;padding:12px 10px}
+#quizzList .quizz .cover .innertitle{display:none;position: absolute;bottom: 0;left: 0;background-color: rgba(74,163,252,.9);color: #fff;padding: 9px 20px;font-size: 22px;}
+@media (min-width:768px) and (max-width:900px) {.answer.illustrated {width: 32.3%;}}
+@media screen and (max-width:768px){
+	body {background-color:#e9eaed}
+	#filter {-webkit-box-shadow: none;-moz-box-shadow: none;box-shadow: none;}
+	#main {margin:0}
+	.navbar.navbar-custom {margin-bottom: 0;border-bottom: 1px solid #ddd;}
+	#quizzList {padding:5px;margin:0}
+	#quizzList .quizz {padding:7px}
+	#quizzList .quizz .cover {float:none;width: 100%;position: relative}
+	#quizzList .quizz .infos {margin:0;padding-bottom: 0;height:auto}	
+	#quizzList .quizz.quizzv2 .infos {max-height:90px}
+	#quizzList .quizz .infos .time {padding-top:5px}
+	#quizzList .quizz .infos .title {display:none}
+	#quizzList .quizz .cover .innertitle{display:block}
+	#quizzList .quizz.quizzv2 .cover .innertitle {position:relative}
+	#quizzList .quizz .infos .description {margin:0}
+	#quizzList .quizz .infos .time {position:relative;padding:0}
+	.Share .btn>span {display:none;}
+	#questions .question .cover {margin:0 -20px;}
+	#questions .question .cover .text {left:10px;right:10px;}
+	#sidebar {width: 100%;position: relative;padding: 0 20px 20px 20px;}
+	#intro .cover {width: inherit;float: none;margin: 0 -20px;}
+	#intro .description {margin: 20px 0 0 0;}#start {width: 100%;}
+	#results .result .cover .text {position: relative;margin:0;box-shadow:none;font-size:16px;}
+	#results .result .cover .text>h3 {font-size: 22px;}
+	#LikePopup {width:95%;}
+}
+@media screen and (max-width:600px){.answer.illustrated {width: 32.3%;}}
+@media screen and (max-width:340px){.navbar-brand>img {width:150px;margin-top:11px}}
+@media screen and (max-width:320px){.navbar-brand>img {width:120px;margin-top:15px;}#newsletter>.subscribe{display:none}#quizzList .quizz .cover .innertitle {font-size:20px}}
+@media screen and (max-width:280px){.navbar-brand>img {width:90px;margin-top:16px}#quizzList .quizz .cover .innertitle {font-size:18px}}
+.navbar-nav>li {float: left;line-height: 52px;padding: 0 15px;margin: -1px 0;border-right: 1px solid #ddd;font-weight:300;color: #555;cursor: pointer;font-size: 16px;}
+.navbar-undermenu {display:none;position: absolute;top: 52px;left:-1px;background: white;z-index: 10;border: 1px solid #ddd;}
+.navbar-undermenu>ul {padding-left: 0;list-style: none;min-width: 120px;}
+.navbar-undermenu>ul>a>li {padding: 7px 15px;line-height: 20px;color:#555}
+.navbar-undermenu>ul>a>li:hover {background-color: #ff5a5f;color:white}
+.navbar-undermenu>ul>a:hover {text-decoration:none}
+#loadMoreQuizz {text-align:center}
+#megabanner {margin-right:320px;position: relative;background-color: #fff;-webkit-box-shadow: 0 4px 10px rgba(0,0,0,.2);-moz-box-shadow: 0 4px 10px rgba(0,0,0,.2);box-shadow: 0 4px 10px rgba(0,0,0,.2);margin-bottom:0;overflow: hidden;}
+#megabanner>.promotion {width: 100%;height: 300px;margin-top: -50px;position: relative;}
+#megabanner>.promotion>a>.item {width: 100%;position: absolute;height: 300px;left:0;}
+#megabanner>.promotion>a>.item>.cover {width:100%;}
+#megabanner>.promotion>a>.item>.cover>img {width:100%;}
+#megabanner>.promotion>a>.item>.title {position: absolute;bottom: 0;z-index: 1;width:100%;background-color: rgba(74,163,252,.8);color: white;padding: 10px;padding-bottom: 35px;font-size:20px;}
+.carousel-indicators {bottom: 0 !important;}
+#legal {margin-top: 20px;font-size: 13px;padding: 20px;background-color: #fff;-webkit-box-shadow: 0 4px 10px rgba(0,0,0,.2);-moz-box-shadow: 0 4px 10px rgba(0,0,0,.2);box-shadow: 0 4px 10px rgba(0,0,0,.2);}
+#legal>.copyright {margin-top:10px}
+#newsletter {background:#fff;overflow:hidden;margin:10px 0;padding:0;-webkit-box-shadow: 0px 0 20px rgba(59,89,152,0.5);-moz-box-shadow: 0px 0 20px rgba(59,89,152,0.5);box-shadow: 0px 0 20px rgba(59,89,152,0.5);text-align:center;-webkit-transition: all 0.3s linear;transition: all 0.3s linear;}
+#newsletter.flash {height:223px}
+#newsletter>.facebook {padding:0;overflow:hidden}
+#newsletter>.facebook>.fb-like-box {margin-left:-9px !important}
+#newsletter>.subscribe {padding:10px}
+#newsletter>.subscribe>.input-block {overflow:hidden}
+#newsletter>.subscribe>.input-block>input{width:55%;float:left;border:1px solid #bbb;border-right:0;padding:5px 10px;font-size: 16px;-webkit-box-shadow: inset 0 1px 1px 0 rgba(195,195,195,.5);}
+#newsletter>.subscribe>.subtitle {font-size:10px;color:#FE2E2E;}
+#submitEmail{width:45%;float:left;background-color: #5dab30;border: 1px solid #2fab40;border-radius: 2px;border-top-left-radius: 0;border-bottom-left-radius: 0;text-shadow: 1px 1px 1px rgba(0,0,0,.2);cursor: pointer;text-align: center;line-height: 32px;color: #fff;font-size: 16px;}
+#submitEmail:hover{text-shadow: 0px 0px 10px rgba(255,255,255,.8);border-color: #bbb;}
+#newsletter>.subscribe>.confirm {font-size:16px;text-shadow: 1px 1px 1px rgba(0,0,0,.2)}
+#newsletter>.subscribe>.confirm>.glyphicon.glyphicon-ok {background-color: #5dab30;border: 1px solid #2fab40;width: 34px;color: #fff;line-height: 32px;text-align: center;border-radius: 17px;margin-right:10px;}
+</style>
+	<script type='text/javascript'>
+	var googletag = googletag || {};
+	googletag.cmd = googletag.cmd || [];
+	(function() {
+	var gads = document.createElement('script');
+	gads.async = true;
+	gads.type = 'text/javascript';
+	var useSSL = 'https:' == document.location.protocol;
+	gads.src = (useSSL ? 'https:' : 'http:') + 
+	'//www.googletagservices.com/tag/js/gpt.js';
+	var node = document.getElementsByTagName('script')[0];
+	node.parentNode.insertBefore(gads, node);
+	})();
+	</script>
+	<script type='text/javascript'>
+	googletag.cmd.push(function() {
+	if ($(window).width() < 769) {
+		googletag.defineSlot('/18318703/CQ-FR-HP-300x250', [300, 250], 'div-gpt-ad-1422116175345-0').addService(googletag.pubads());
+	} else {
+		googletag.defineSlot('/18318703/CQ-FR-HP-300x600', [300, 600], 'div-gpt-ad-1422116175345-1').addService(googletag.pubads());
+	}
+	googletag.pubads().enableSingleRequest();
+	googletag.enableServices();
+	});
+	</script>
+</head>
+<body>
+
+<script>
+window.fbAsyncInit = function() {
+	FB.init({
+		appId      : '793330124041563>',
+		cookie     : false,
+		xfbml      : true,
+		version    : 'v2.3'
+	});
+};
+(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = "//connect.facebook.net/fr_FR/sdk.js";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-56554518-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<nav class="navbar navbar-custom" role="navigation">
+  <div class="wrapper">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="http://www.captainquizz.fr/">
+					<img src="http://captainquizz.s3.amazonaws.com/img/logo4.png?v4">
+		      </a>
+	  <div class="navbar-right visible-xs" style="float:right;padding:15px 10px 0 0">
+		<div class="fb-like" data-href="https://www.facebook.com/pages/Captain-Quizz/576297429138317" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+	  </div>
+    </div>
+  </div>
+</nav>
+<div class="wrapper">
+	<div id="main">
+		<ul id="quizzList">
+							<li class="quizz quizzv2" data-quizzid="romanticmovie">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/q/romanticmovie/r/0">
+							<img src="http://captainquizz.s3.amazonaws.com/thumbnails/420x220/romanticmovie.jpg">
+							<div class="innertitle">Quel film raconte l'histoire de votre vie amoureuse?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="white_shadow"></div>
+						<div class="title"><a href="http://www.captainquizz.fr/q/romanticmovie/r/0">Quel film raconte l'histoire de votre vie amoureuse?</a></div>
+						<div class="description">Vous avez peut-être beaucoup souffert lors de votre vie amoureuse, ou alors vous avez été chanceuse dès le premier regard. En analysant comment vous intéragissez avec vos amis, nous pouvons deviner à quoi ressemble plus ou moins votre vie romantique!</div>
+					</div>
+				</li>
+								<li class="quizz quizzv2" data-quizzid="businesscard">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/q/businesscard/r/0">
+							<img src="http://captainquizz.s3.amazonaws.com/thumbnails/420x220/businesscard.jpg">
+							<div class="innertitle">A quoi ressemblera votre carte de visite dans 10 ans?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="white_shadow"></div>
+						<div class="title"><a href="http://www.captainquizz.fr/q/businesscard/r/0">A quoi ressemblera votre carte de visite dans 10 ans?</a></div>
+						<div class="description">Vous êtes peut-être très heureux(se) de votre carrière jusqu'à présent, ou vous avez des doutes et des peurs? Voyons voir ce que le futur vous réserve!</div>
+					</div>
+				</li>
+								<li class="quizz quizzv2" data-quizzid="devilangel">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/q/devilangel/r/0">
+							<img src="http://captainquizz.s3.amazonaws.com/thumbnails/420x220/devilangel.jpg">
+							<div class="innertitle">Parmi vos amis, qui est votre diable et qui est votre ange?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="white_shadow"></div>
+						<div class="title"><a href="http://www.captainquizz.fr/q/devilangel/r/0">Parmi vos amis, qui est votre diable et qui est votre ange?</a></div>
+						<div class="description">Nous avons tous des amis gentils, sages et discrets qui nous conseillent et veillent sur nous. Mais tout le monde connaît aussi quelqu'un qui les pousse en dehors de sa zone de confort, et nous emmène dans des endroits incensés. Nous pouvons analyser vos photos de groupes Facebook et vous dire qui parmi vos amis est votre diable, et qui est votre ange.</div>
+					</div>
+				</li>
+								<li class="quizz quizzv2" data-quizzid="alien">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/q/alien/r/0">
+							<img src="http://captainquizz.s3.amazonaws.com/thumbnails/420x220/alien.jpg">
+							<div class="innertitle">Qui parmi vos amis est un alien (et à quoi ressemblent-ils)?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="white_shadow"></div>
+						<div class="title"><a href="http://www.captainquizz.fr/q/alien/r/0">Qui parmi vos amis est un alien (et à quoi ressemblent-ils)?</a></div>
+						<div class="description">Vous pensez que tous vos amis sont des êtres humains légitimies? En analysant le profil Facebook de vos amis, nous pouvons vous révéler qui ment dans votre entourage, et quelle est leur réelle apparence!</div>
+					</div>
+				</li>
+								<li class="quizz quizzv2" data-quizzid="pixar">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/q/pixar/r/0">
+							<img src="http://captainquizz.s3.amazonaws.com/thumbnails/420x220/pixar.jpg">
+							<div class="innertitle">Qui est votre sosie Pixar?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="white_shadow"></div>
+						<div class="title"><a href="http://www.captainquizz.fr/q/pixar/r/0">Qui est votre sosie Pixar?</a></div>
+						<div class="description">Grâce à l'analyse de votre profil Facebook et votre personnalité en ligne, nous pouvons deviner plus ou moins à quel personnage connu de Pixar vous ressemblez. Alors, êtes-vous plus un ratatouille ou un Buzz l'Eclair? A vous de voir!</div>
+					</div>
+				</li>
+								<li class="quizz quizzv2" data-quizzid="wanted">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/q/wanted/r/0">
+							<img src="http://captainquizz.s3.amazonaws.com/thumbnails/420x220/wanted.jpg">
+							<div class="innertitle">A quoi aurait ressemblé votre avis de recherche?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="white_shadow"></div>
+						<div class="title"><a href="http://www.captainquizz.fr/q/wanted/r/0">A quoi aurait ressemblé votre avis de recherche?</a></div>
+						<div class="description">Le Far Ouest était un endroit sauvage et dangereux, des gangsters voyageaient de ville en ville, dévalisant les banques, chansant l'or et la gloire. Et on a le sentiment que vous auriez pu être un de ceux-là! Grâce à votre profil et vos intéractions sociales, nous pouvons recréer le poster qui aurait été affiché dans tous les bureaux de shérifs de l'Ouest.</div>
+					</div>
+				</li>
+								<li class="quizz quizzv2" data-quizzid="stalker">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/q/stalker/r/0">
+							<img src="http://captainquizz.s3.amazonaws.com/thumbnails/420x220/stalker.jpg">
+							<div class="innertitle">Qui vous traque sur Facebook?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="white_shadow"></div>
+						<div class="title"><a href="http://www.captainquizz.fr/q/stalker/r/0">Qui vous traque sur Facebook?</a></div>
+						<div class="description">Vous vous êtes toujours demandé qui regardait votre profil? Et bien regardez! En analysant votre profil Facebook et son activité, on est à peu prêt sûr de pouvoir trouver qui vous traque sans arrêt!</div>
+					</div>
+				</li>
+								<li class="quizz quizzv2" data-quizzid="disneymom">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/q/disneymom/r/0">
+							<img src="http://captainquizz.s3.amazonaws.com/thumbnails/420x220/disneymom.jpg">
+							<div class="innertitle">Quelle maman Disney êtes-vous?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="white_shadow"></div>
+						<div class="title"><a href="http://www.captainquizz.fr/q/disneymom/r/0">Quelle maman Disney êtes-vous?</a></div>
+						<div class="description"></div>
+					</div>
+				</li>
+								<li class="quizz quizzv2" data-quizzid="friendsthoughts">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/q/friendsthoughts/r/0">
+							<img src="http://captainquizz.s3.amazonaws.com/thumbnails/420x220/friendsthoughts.jpg">
+							<div class="innertitle">Qu'est-ce que vos amis Facebook pensent de vous?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="white_shadow"></div>
+						<div class="title"><a href="http://www.captainquizz.fr/q/friendsthoughts/r/0">Qu'est-ce que vos amis Facebook pensent de vous?</a></div>
+						<div class="description">Grâce à notre application, vous pouvez choisir l'ami de votre choix dans vos contacts Facebook, et nous pourrons estimer plus ou moins précisémment ce que il ou elle pense de vous. Choisissez avec soin!</div>
+					</div>
+				</li>
+								<li class="quizz quizzv2" data-quizzid="wolf">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/q/wolf/r/0">
+							<img src="http://captainquizz.s3.amazonaws.com/thumbnails/420x220/wolf.jpg">
+							<div class="innertitle">Quel Genre De Loup êtes-vous ?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="white_shadow"></div>
+						<div class="title"><a href="http://www.captainquizz.fr/q/wolf/r/0">Quel Genre De Loup êtes-vous ?</a></div>
+						<div class="description">Vous ne vous êtes jamais demandé le genre de loup que vous seriez ?</div>
+					</div>
+				</li>
+								<li class="quizz quizzv2" data-quizzid="orangeisthenewblack">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/q/orangeisthenewblack/r/0">
+							<img src="http://captainquizz.s3.amazonaws.com/thumbnails/420x220/orangeisthenewblack.jpg">
+							<div class="innertitle">Quel personnage de "Orange is the New Black" êtes-vous?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="white_shadow"></div>
+						<div class="title"><a href="http://www.captainquizz.fr/q/orangeisthenewblack/r/0">Quel personnage de "Orange is the New Black" êtes-vous?</a></div>
+						<div class="description">En analysant votre compte Facebook et en le combinant à la liste de personnages de "Orange is the new black", nous pouvons déterminer plus ou moins précisémment à quel personnalité de la série TV vous ressemblez le plus!</div>
+					</div>
+				</li>
+								<li class="quizz quizzv2" data-quizzid="animalpastlife">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/q/animalpastlife/r/0">
+							<img src="http://captainquizz.s3.amazonaws.com/thumbnails/420x220/animalpastlife.jpg">
+							<div class="innertitle">Quel Animal Etais-tu Dans Une Vie Antérieure ?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="white_shadow"></div>
+						<div class="title"><a href="http://www.captainquizz.fr/q/animalpastlife/r/0">Quel Animal Etais-tu Dans Une Vie Antérieure ?</a></div>
+						<div class="description">Quel animal représente le mieux tes sentiments, ton attitude et ton énergie ? Es-tu gentil ? Intelligent ? Introverti ? Malin ?</div>
+					</div>
+				</li>
+								<li class="quizz quizzv2" data-quizzid="travel">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/q/travel/r/0">
+							<img src="http://captainquizz.s3.amazonaws.com/thumbnails/420x220/travel.jpg">
+							<div class="innertitle">Où partirez-vous en vacances et avec qui?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="white_shadow"></div>
+						<div class="title"><a href="http://www.captainquizz.fr/q/travel/r/0">Où partirez-vous en vacances et avec qui?</a></div>
+						<div class="description">L'été est presque fini. Temps de planifier vos prochaines vacances?</div>
+					</div>
+				</li>
+								<li class="quizz quizzv2" data-quizzid="eviltwin">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/q/eviltwin/r/0">
+							<img src="http://captainquizz.s3.amazonaws.com/thumbnails/420x220/eviltwin.jpg">
+							<div class="innertitle">Qui est votre jumeau maléfique Disney?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="white_shadow"></div>
+						<div class="title"><a href="http://www.captainquizz.fr/q/eviltwin/r/0">Qui est votre jumeau maléfique Disney?</a></div>
+						<div class="description">Est-ce qu'il vous arrive de totalement perdre le contrôle lorsque vous êtes en colère ? Découvrez alors quel est votre jumeau maléfique Disney, celui à qui vous ressemblez le plus dans vos pires moments !</div>
+					</div>
+				</li>
+								<li class="quizz quizzv2" data-quizzid="dream">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/q/dream/r/0">
+							<img src="http://captainquizz.s3.amazonaws.com/thumbnails/420x220/dream.jpg">
+							<div class="innertitle">Qui a rêvé de vous la nuit dernière?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="white_shadow"></div>
+						<div class="title"><a href="http://www.captainquizz.fr/q/dream/r/0">Qui a rêvé de vous la nuit dernière?</a></div>
+						<div class="description">Si vous venez de vous levez, ce quizz est fait pour vous. En analysant votre profil et celui de vos amis, nous pouvons vous révéler lequel d'entre eux a rêvé de vous la nuit dernière.</div>
+					</div>
+				</li>
+								<li class="quizz quizzv2" data-quizzid="hungergames">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/q/hungergames/r/0">
+							<img src="http://captainquizz.s3.amazonaws.com/thumbnails/420x220/hungergames.jpg">
+							<div class="innertitle">Survivriez-vous les Hunger Games?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="white_shadow"></div>
+						<div class="title"><a href="http://www.captainquizz.fr/q/hungergames/r/0">Survivriez-vous les Hunger Games?</a></div>
+						<div class="description">En analysant votre profil Facebook, nous pouvons deviner plus ou moins précisément combien de temps vous survivriez dans les Hunger Games et comment vous seriez tué.</div>
+					</div>
+				</li>
+								<li class="quizz quizzv2" data-quizzid="fireletters">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/q/fireletters/r/0">
+							<img src="http://captainquizz.s3.amazonaws.com/thumbnails/420x220/fireletters.jpg">
+							<div class="innertitle">Découvre ton nom en lettres de feu</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="white_shadow"></div>
+						<div class="title"><a href="http://www.captainquizz.fr/q/fireletters/r/0">Découvre ton nom en lettres de feu</a></div>
+						<div class="description"></div>
+					</div>
+				</li>
+								<li class="quizz quizzv2" data-quizzid="tabloid">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/q/tabloid/r/0">
+							<img src="http://captainquizz.s3.amazonaws.com/thumbnails/420x220/tabloid.jpg">
+							<div class="innertitle">A quoi ressemblerait votre Une de Closer?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="white_shadow"></div>
+						<div class="title"><a href="http://www.captainquizz.fr/q/tabloid/r/0">A quoi ressemblerait votre Une de Closer?</a></div>
+						<div class="description">Vous êtes vous déjà imaginé à la une des journaux  ? En analysant votre profil, nous arrivons à déterminer plus ou moins précisément ce à quoi vous ressembleriez si vous faisiez la une de Public. Essayez et vous verrez !</div>
+					</div>
+				</li>
+								<li class="quizz quizzv2" data-quizzid="ninemonths">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/q/ninemonths/r/0">
+							<img src="http://captainquizz.s3.amazonaws.com/thumbnails/420x220/ninemonths.jpg">
+							<div class="innertitle">Quelle était la chanson numéro 1 des charts, 9 mois avant votre naissance ?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="white_shadow"></div>
+						<div class="title"><a href="http://www.captainquizz.fr/q/ninemonths/r/0">Quelle était la chanson numéro 1 des charts, 9 mois avant votre naissance ?</a></div>
+						<div class="description">Grâce à notre base de donnée contenant tous les numéros uns des charts depuis leur création, il nous est très facile de retrouver quelle chanson était numéro 1, 9 mois avant votre naissance. Ça vous intéresse de savoir ?</div>
+					</div>
+				</li>
+								<li class="quizz quizzv2" data-quizzid="car">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/q/car/r/0">
+							<img src="http://captainquizz.s3.amazonaws.com/thumbnails/420x220/car.jpg">
+							<div class="innertitle">Quelle voiture est faîte pour vous ?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="white_shadow"></div>
+						<div class="title"><a href="http://www.captainquizz.fr/q/car/r/0">Quelle voiture est faîte pour vous ?</a></div>
+						<div class="description">Sur le point d'acheter une nouvelle voiture ? Attendez avant de faire ce test avant d'acheter ! En scannant votre profil Facebook et en analysant vos centres d'intérêt, nous pouvons identifier la voiture faîte pour vous. Vous ne nous croyez pas ? Essayez !</div>
+					</div>
+				</li>
+								<li class="quizz quizzv2" data-quizzid="roommate">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/q/roommate/r/0">
+							<img src="http://captainquizz.s3.amazonaws.com/thumbnails/420x220/roommate.jpg">
+							<div class="innertitle">Qui seraient vos colocataires idéaux?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="white_shadow"></div>
+						<div class="title"><a href="http://www.captainquizz.fr/q/roommate/r/0">Qui seraient vos colocataires idéaux?</a></div>
+						<div class="description">Vous avez dans l'idée de prendre une coloc mais vous hésitez encore ? Heureusement Captain Quizz est là pour vous aider à vous décider ! En analysant votre profil Facebook et vos comportements sur les réseaux sociaux, nous pouvons déterminer qui seraient vos parfaits colocs. Essayez, vous verrez !</div>
+					</div>
+				</li>
+								<li class="quizz quizzv2" data-quizzid="simpsons">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/special/simpsons/r/0">
+							<img src="http://captainquizz.s3.amazonaws.com/thumbnails/420x220/simpsons.jpg">
+							<div class="innertitle">Quel Personnage Des Simpsons êtes-vous?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="white_shadow"></div>
+						<div class="title"><a href="http://www.captainquizz.fr/special/simpsons/r/0">Quel Personnage Des Simpsons êtes-vous?</a></div>
+						<div class="description">Vous mourrez d'envie de deviner quel personnage vous êtes !</div>
+					</div>
+				</li>
+								<li class="quizz quizzv2" data-quizzid="secretlover">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/special/secretlover/r/0">
+							<img src="http://captainquizz.s3.amazonaws.com/thumbnails/420x220/secretlover.jpg">
+							<div class="innertitle">Qui est secrètement amoureux de vous?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="white_shadow"></div>
+						<div class="title"><a href="http://www.captainquizz.fr/special/secretlover/r/0">Qui est secrètement amoureux de vous?</a></div>
+						<div class="description">Vous souhaitez savoir qui est secrètement amoureux de vous? CaptainQuizz analyse votre liste d'amis, vos posts et vos photos pour savoir qui  cherche désespérément votre attention. Qui sait, c'est peut-être le début d'une formidable histoire d'amour?</div>
+					</div>
+				</li>
+								<li class="quizz quizzv2" data-quizzid="disneyduo">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/special/disneyduo/r/0">
+							<img src="http://captainquizz.s3.amazonaws.com/thumbnails/420x220/disneyduo.jpg">
+							<div class="innertitle">Quel duo Disney formez-vous avec vos amis?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="white_shadow"></div>
+						<div class="title"><a href="http://www.captainquizz.fr/special/disneyduo/r/0">Quel duo Disney formez-vous avec vos amis?</a></div>
+						<div class="description">En analysant les personnages Disney de notre base de données, ainsi que vote profil Facebook et celui de votre ami, nous pouvons déterminer quel duo Disney vous représenter dans la vraie vie.</div>
+					</div>
+				</li>
+								<li class="quizz quizzv2" data-quizzid="soulmate">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/special/soulmate/r/0">
+							<img src="http://captainquizz.s3.amazonaws.com/thumbnails/420x220/soulmate.jpg">
+							<div class="innertitle">Qui est votre véritable âme soeur?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="white_shadow"></div>
+						<div class="title"><a href="http://www.captainquizz.fr/special/soulmate/r/0">Qui est votre véritable âme soeur?</a></div>
+						<div class="description"></div>
+					</div>
+				</li>
+								<li class="quizz quizzv2" data-quizzid="cards">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/q/cards/r/0">
+							<img src="http://captainquizz.s3.amazonaws.com/thumbnails/420x220/cards.jpg">
+							<div class="innertitle">Quelle Carte Correspond à Votre Personnalité ?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="white_shadow"></div>
+						<div class="title"><a href="http://www.captainquizz.fr/q/cards/r/0">Quelle Carte Correspond à Votre Personnalité ?</a></div>
+						<div class="description">Les jeux de cartes contiennent un symbolisme profond qui peut révéler nos vraies personnalités. Savez-vous quelle carte correspond le mieux à votre personnalité ? Êtes-vous un Joker, la Dame de cœur, ou peut être un As ?</div>
+					</div>
+				</li>
+								<li class="quizz quizzv2" data-quizzid="gameofthrones">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/special/gameofthrones/r/0">
+							<img src="http://captainquizz.s3.amazonaws.com/thumbnails/420x220/gameofthrones.jpg">
+							<div class="innertitle">Quel personnage de Game of Thrones êtes-vous?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="white_shadow"></div>
+						<div class="title"><a href="http://www.captainquizz.fr/special/gameofthrones/r/0">Quel personnage de Game of Thrones êtes-vous?</a></div>
+						<div class="description">En analysant votre profil Facebook et en le combinant à notre base de données Game of Thrones, nous arrivons à déterminer avec plus ou moins de précision quel personnage de Game of Thrones vous incarne le mieux!</div>
+					</div>
+				</li>
+								<li class="quizz quizzv2" data-quizzid="opposite">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/special/opposite/r/0">
+							<img src="http://captainquizz.s3.amazonaws.com/thumbnails/420x220/opposite.jpg">
+							<div class="innertitle">A quoi ressembleriez-vous si vous étiez né du sexe opposé?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="white_shadow"></div>
+						<div class="title"><a href="http://www.captainquizz.fr/special/opposite/r/0">A quoi ressembleriez-vous si vous étiez né du sexe opposé?</a></div>
+						<div class="description">On ne vous garantit pas ce que ça marche à tous les coups, mais on pense avoir une idée assez précise de ce à quoi vous ressembleriez si vous étiez né du sexe opposé !</div>
+					</div>
+				</li>
+								<li class="quizz quizzv2" data-quizzid="pokemon">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/special/pokemon/r/0">
+							<img src="http://captainquizz.s3.amazonaws.com/thumbnails/420x220/pokemon.jpg">
+							<div class="innertitle">Quel Pokémon devrais-tu entraîner?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="white_shadow"></div>
+						<div class="title"><a href="http://www.captainquizz.fr/special/pokemon/r/0">Quel Pokémon devrais-tu entraîner?</a></div>
+						<div class="description">Il y a plus de 720 Pokémons à attraper, mais seulement un qui convient vraiment à ta personnalité. Pour gagner les tournois, il te faut le meilleur partenaire et les meilleures techniques d'entraînement! Alors à quoi ressemblerait ton Pokémon idéal? Quelle Pokéball aurais-tu et quel entraîneur serais-tu? Découvre le en analysant ton profil Facebook.</div>
+					</div>
+				</li>
+											<li class="quizz" data-quizzid="551c2b7623c8d2.34692331">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/quizz/quelle-emotion-votre-subconscient-cache-t-il">
+							<img src="http://captainquizz.s3.amazonaws.com/quizz/551c2b7623c8d2.34692331.jpg">
+							<div class="innertitle">Quelle Émotion Votre Subconscient Cache-t-il ?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="title"><a href="http://www.captainquizz.fr/quizz/quelle-emotion-votre-subconscient-cache-t-il">Quelle Émotion Votre Subconscient Cache-t-il ?</a></div>
+						<div class="description">Le tarot ne ment jamais ! Révélez vos émotions subconscientes cachées en choisissant les cartes de tarot qui attirent votre attention et qui parlent à votre âme ! Une émotion est cachée au fond de nous tous. Faites-vous confiance au tarot pour révéler la vérité ?</div>
+					</div>
+				</li>
+							<li class="quizz" data-quizzid="551c26521c7626.53691792">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/quizz/quel-roman-classique-decrit-votre-vie">
+							<img src="http://captainquizz.s3.amazonaws.com/quizz/551c26521c7626.53691792.jpg">
+							<div class="innertitle">Quel Roman Classique Décrit Votre Vie ?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="title"><a href="http://www.captainquizz.fr/quizz/quel-roman-classique-decrit-votre-vie">Quel Roman Classique Décrit Votre Vie ?</a></div>
+						<div class="description">Venez faire un voyage dans la littérature classique pour savoir quelle intrigue de roman durable décrit votre vie fantastique!</div>
+					</div>
+				</li>
+							<li class="quizz" data-quizzid="551c260f021c89.67153321">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/quizz/peut-on-deviner-lors-de-quelle-decennie-vous-etes-ne">
+							<img src="http://captainquizz.s3.amazonaws.com/quizz/551c260f021c89.67153321.jpg">
+							<div class="innertitle">Peut-on Deviner Lors De Quelle Décennie Vous Êtes Né ?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="title"><a href="http://www.captainquizz.fr/quizz/peut-on-deviner-lors-de-quelle-decennie-vous-etes-ne">Peut-on Deviner Lors De Quelle Décennie Vous Êtes Né ?</a></div>
+						<div class="description">Êtes-vous un bébé des années 90 ? En enfant de fleur des années 60 ? Laissez-nous vous dire quand vous êtes né !</div>
+					</div>
+				</li>
+							<li class="quizz" data-quizzid="551c259ac0c6c9.88309934">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/quizz/quel-archetype-de-jung-vous-decrit-le-mieux">
+							<img src="http://captainquizz.s3.amazonaws.com/quizz/551c259ac0c6c9.88309934.jpg">
+							<div class="innertitle">Quel Archétype De Jung Vous Décrit Le Mieux ?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="title"><a href="http://www.captainquizz.fr/quizz/quel-archetype-de-jung-vous-decrit-le-mieux">Quel Archétype De Jung Vous Décrit Le Mieux ?</a></div>
+						<div class="description">Carl Jung, le célèbre psychologue et philosophe suisse, croit que nous avons tous des archétypes inconscients qui affectent profondément notre comportement. Nous trouvons ces archétypes dans les mythes, les contes de fées, et même au sein de nous-mêmes ! Êtes-vous l'explorateur ou le héros ? Peut-être même le rebelle ?</div>
+					</div>
+				</li>
+							<li class="quizz" data-quizzid="551c1ab37ae1d0.88303422">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/quizz/quel-arcane-majeur-etes-vous">
+							<img src="http://captainquizz.s3.amazonaws.com/quizz/551c1ab37ae1d0.88303422.jpg">
+							<div class="innertitle">Quel Arcane Majeur Êtes-vous ?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="title"><a href="http://www.captainquizz.fr/quizz/quel-arcane-majeur-etes-vous">Quel Arcane Majeur Êtes-vous ?</a></div>
+						<div class="description">Le tarot n'est pas seulement là pour prédire votre avenir. Tout le monde est né avec un arcane majeur. Il décrit qui vous êtes à un niveau plus profond depuis la naissance. Alors qu'est-ce que votre âme dit sur vous ?</div>
+					</div>
+				</li>
+							<li class="quizz" data-quizzid="551c2be39e4795.96648503">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/quizz/etes-vous-le-tueur-la-victime-ou-le-survivant">
+							<img src="http://captainquizz.s3.amazonaws.com/quizz/551c2be39e4795.96648503.jpg">
+							<div class="innertitle">Êtes-vous Le Tueur, La Victime Ou Le Survivant ?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="title"><a href="http://www.captainquizz.fr/quizz/etes-vous-le-tueur-la-victime-ou-le-survivant">Êtes-vous Le Tueur, La Victime Ou Le Survivant ?</a></div>
+						<div class="description">Vous êtes dans le contexte d'un film d'horreur et vous allez découvrir quel personnage vous seriez. Vous avez 10 questions et trois résultats.</div>
+					</div>
+				</li>
+							<li class="quizz" data-quizzid="551c2cb3cf3a32.24174451">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/quizz/peut-on-deviner-votre-taille">
+							<img src="http://captainquizz.s3.amazonaws.com/quizz/551c2cb3cf3a32.24174451.jpg">
+							<div class="innertitle">Peut-on Deviner Votre Taille ?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="title"><a href="http://www.captainquizz.fr/quizz/peut-on-deviner-votre-taille">Peut-on Deviner Votre Taille ?</a></div>
+						<div class="description">Laissez-nous deviner votre taille avec seulement 9 petites questions et la comparer à celle de célébrités !</div>
+					</div>
+				</li>
+							<li class="quizz" data-quizzid="551c2cad4c3f35.21545490">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/quizz/quel-est-votre-talon-dachille">
+							<img src="http://captainquizz.s3.amazonaws.com/quizz/551c2cad4c3f35.21545490.jpg">
+							<div class="innertitle">Quel Est Votre Talon D'achille ?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="title"><a href="http://www.captainquizz.fr/quizz/quel-est-votre-talon-dachille">Quel Est Votre Talon D'achille ?</a></div>
+						<div class="description">Nous en avons tous un… Quelle est votre vraie faiblesse ?</div>
+					</div>
+				</li>
+							<li class="quizz" data-quizzid="551c2c296c2aa3.49140397">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/quizz/quel-est-votre-trait-de-caractere-le-plus-dominant">
+							<img src="http://captainquizz.s3.amazonaws.com/quizz/551c2c296c2aa3.49140397.jpg">
+							<div class="innertitle">Quel Est Votre Trait De Caractère Le Plus Dominant ?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="title"><a href="http://www.captainquizz.fr/quizz/quel-est-votre-trait-de-caractere-le-plus-dominant">Quel Est Votre Trait De Caractère Le Plus Dominant ?</a></div>
+						<div class="description">Quel est votre trait de personnalité qui ressort le plus parmi les autres ?</div>
+					</div>
+				</li>
+							<li class="quizz" data-quizzid="551c2bf8ba8312.03266832">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/quizz/who-is-your-alter-ego-2">
+							<img src="http://captainquizz.s3.amazonaws.com/quizz/551c2bf8ba8312.03266832.jpg">
+							<div class="innertitle">Qui Est Votre Alter-ego ?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="title"><a href="http://www.captainquizz.fr/quizz/who-is-your-alter-ego-2">Qui Est Votre Alter-ego ?</a></div>
+						<div class="description">En quelle autre moitié célèbre vous déguisez-vous ?</div>
+					</div>
+				</li>
+							<li class="quizz" data-quizzid="551c2b82856c61.55225965">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/quizz/quel-rang-auriez-vous-dans-une-meute-de-loups">
+							<img src="http://captainquizz.s3.amazonaws.com/quizz/551c2b82856c61.55225965.jpg">
+							<div class="innertitle">Quel Rang Auriez-vous Dans Une Meute De Loups ?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="title"><a href="http://www.captainquizz.fr/quizz/quel-rang-auriez-vous-dans-une-meute-de-loups">Quel Rang Auriez-vous Dans Une Meute De Loups ?</a></div>
+						<div class="description">Êtes-vous l'Alpha féroce et plein de fierté ? Ou le lent et faible Oméga ?</div>
+					</div>
+				</li>
+							<li class="quizz" data-quizzid="551c29c004d363.46318959">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/quizz/quelle-est-la-chose-la-plus-sexy-chez-vous">
+							<img src="http://captainquizz.s3.amazonaws.com/quizz/551c29c004d363.46318959.jpg">
+							<div class="innertitle">Quelle Est La Chose La Plus Sexy Chez Vous ?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="title"><a href="http://www.captainquizz.fr/quizz/quelle-est-la-chose-la-plus-sexy-chez-vous">Quelle Est La Chose La Plus Sexy Chez Vous ?</a></div>
+						<div class="description">Découvrez ce qui vous rend irrésistible !</div>
+					</div>
+				</li>
+							<li class="quizz" data-quizzid="551c27b1ce3135.26661481">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/quizz/a-quelle-heroine-de-conte-de-fees-ressembles-tu-le-plus">
+							<img src="http://captainquizz.s3.amazonaws.com/quizz/551c27b1ce3135.26661481.jpg">
+							<div class="innertitle">A Quelle Héroïne De Conte De Fées Ressembles-tu Le Plus ?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="title"><a href="http://www.captainquizz.fr/quizz/a-quelle-heroine-de-conte-de-fees-ressembles-tu-le-plus">A Quelle Héroïne De Conte De Fées Ressembles-tu Le Plus ?</a></div>
+						<div class="description">Ce quizz se base à la fois sur l'apparence physique et sur les réactions.</div>
+					</div>
+				</li>
+							<li class="quizz" data-quizzid="551c273403c0f7.55701558">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/quizz/quelle-est-la-partie-de-votre-corps-que-les-autres-remarquent-en-premier">
+							<img src="http://captainquizz.s3.amazonaws.com/quizz/551c273403c0f7.55701558.jpg">
+							<div class="innertitle">Quelle Est La Partie De Votre Corps Que Les Autres Remarquent En Premier ?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="title"><a href="http://www.captainquizz.fr/quizz/quelle-est-la-partie-de-votre-corps-que-les-autres-remarquent-en-premier">Quelle Est La Partie De Votre Corps Que Les Autres Remarquent En Premier ?</a></div>
+						<div class="description">Vous êtes-vous déjà demandé lequel de vos traits physiques ressortait le plus ? Découvrez ici quelle partie de votre corps est la plus remarquable !</div>
+					</div>
+				</li>
+							<li class="quizz" data-quizzid="551c26e63a3580.94776771">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/quizz/quelle-serait-votre-sorcellerie">
+							<img src="http://captainquizz.s3.amazonaws.com/quizz/551c26e63a3580.94776771.jpg">
+							<div class="innertitle">Quelle Serait Votre Sorcellerie ?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="title"><a href="http://www.captainquizz.fr/quizz/quelle-serait-votre-sorcellerie">Quelle Serait Votre Sorcellerie ?</a></div>
+						<div class="description">Si vous aviez des pouvoirs magiques, pour quoi les utiliseriez-vous ? Découvrez ici quelle sorcellerie vous utiliseriez !</div>
+					</div>
+				</li>
+							<li class="quizz" data-quizzid="551c269ad5eb40.26934816">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/quizz/peut-on-deviner-avec-combien-de-personnes-vous-avez-couche">
+							<img src="http://captainquizz.s3.amazonaws.com/quizz/551c269ad5eb40.26934816.jpg">
+							<div class="innertitle">Peut-on Deviner Avec Combien De Personnes Vous Avez Couché ?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="title"><a href="http://www.captainquizz.fr/quizz/peut-on-deviner-avec-combien-de-personnes-vous-avez-couche">Peut-on Deviner Avec Combien De Personnes Vous Avez Couché ?</a></div>
+						<div class="description">Nous savons tout sur votre vie sexuelle !</div>
+					</div>
+				</li>
+							<li class="quizz" data-quizzid="551c26950a34d3.76865240">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/quizz/quel-travail-auriez-vous-dans-le-monde-dharry-potter">
+							<img src="http://captainquizz.s3.amazonaws.com/quizz/551c26950a34d3.76865240.jpg">
+							<div class="innertitle">Quel Travail Auriez-vous Dans Le Monde D'harry Potter ?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="title"><a href="http://www.captainquizz.fr/quizz/quel-travail-auriez-vous-dans-le-monde-dharry-potter">Quel Travail Auriez-vous Dans Le Monde D'harry Potter ?</a></div>
+						<div class="description">Que ce serait-il passé si vous aviez reçu votre lettre pour Poudlard ?</div>
+					</div>
+				</li>
+							<li class="quizz" data-quizzid="551c266c5805b3.94138712">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/quizz/a-quel-groupe-appartenez-vous">
+							<img src="http://captainquizz.s3.amazonaws.com/quizz/551c266c5805b3.94138712.jpg">
+							<div class="innertitle">À Quel Groupe Appartenez-vous ?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="title"><a href="http://www.captainquizz.fr/quizz/a-quel-groupe-appartenez-vous">À Quel Groupe Appartenez-vous ?</a></div>
+						<div class="description">Il y'a beaucoup de bons groupes, mais auquel appartenez-vous ?</div>
+					</div>
+				</li>
+							<li class="quizz" data-quizzid="551c25c835eda4.55250070">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/quizz/etes-vous-un-heros-ou-un-vilain">
+							<img src="http://captainquizz.s3.amazonaws.com/quizz/551c25c835eda4.55250070.jpg">
+							<div class="innertitle">Êtes-vous Un Héros Ou Un Vilain ?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="title"><a href="http://www.captainquizz.fr/quizz/etes-vous-un-heros-ou-un-vilain">Êtes-vous Un Héros Ou Un Vilain ?</a></div>
+						<div class="description">Ah… la vieille question. Êtes-vous une vaillante et infaillible sentinelle de la vérité et de la justice ? Ou est-ce que tout ça vous semble être des bêtises, pour un vilain comme vous ?</div>
+					</div>
+				</li>
+							<li class="quizz" data-quizzid="551c1b16aa7cb1.55345017">
+					<div class="cover">
+						<a href="http://www.captainquizz.fr/quizz/quand-mourrez-vous">
+							<img src="http://captainquizz.s3.amazonaws.com/quizz/551c1b16aa7cb1.55345017.jpg">
+							<div class="innertitle">Quand Mourrez-vous ?</div>
+						</a>
+					</div>
+					<div class="infos">
+						<div class="title"><a href="http://www.captainquizz.fr/quizz/quand-mourrez-vous">Quand Mourrez-vous ?</a></div>
+						<div class="description">Vous connaissez déjà votre date de naissance, pourquoi ne devriez-vous pas savoir celle de votre mort ?</div>
+					</div>
+				</li>
+										<!-- DFP-300x250 -->
+				<div id='div-gpt-ad-1422116175345-0' class="visible-xs" style='width:300px; height:250px;margin: 0 auto;'>
+				<script type='text/javascript'>
+				if ($(window).width() < 769) {
+					googletag.cmd.push(function() { googletag.display('div-gpt-ad-1422116175345-0'); });
+				}
+				</script>
+				</div>
+						<div id="last"></div><!--infinite scroll-->
+		</ul>
+		<div id="loadMoreQuizz"><img src="http://captainquizz.s3.amazonaws.com/img/ajax-loader.gif"></div>
+	</div>
+	<div id="sidebar">
+					<!-- DFP-300x600 -->
+			<div id='div-gpt-ad-1422116175345-1' class="hidden-xs" style='width:300px; height:600px;'>
+			<script type='text/javascript'>
+			if ($(window).width() > 768) {
+				googletag.cmd.push(function() { googletag.display('div-gpt-ad-1422116175345-1'); });
+			}
+			</script>
+			</div>
+				
+		<div id="newsletter">
+			<div class="facebook">
+				<div class="fb-page" data-href="https://www.facebook.com/pages/Captain-Quizz/576297429138317" data-width="300px" data-height="230px" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/pages/Captain-Quizz/576297429138317"><a href="https://www.facebook.com/pages/Captain-Quizz/576297429138317">Captain Quizz</a></blockquote></div></div>
+			</div>
+		</div>
+
+		<div id="legal">
+			<a href="/privacy.php">Confidentialité</a> - 
+			<a href="/EULA.php">Conditions d'utilisation</a>
+			<div class="copyright">© 2015 Iguazu Limited Ltd.</div>
+		</div>
+	</div>
+</div>
+<script>
+var premium = 1;
+
+$(document).ready(function() {
+	infinite = 1;
+    doMouseWheel = 1 ;
+    $(window).scroll(function() {
+        if (!doMouseWheel) return;
+        var distanceTop = $('#last').offset().top - $(window).height();
+        if  (($(window).scrollTop() > distanceTop) && (infinite==1)) {
+			infinite=0;
+            $('#loadMoreQuizz').show();
+			doMouseWheel = 0 ;
+            $.ajax({
+				type: "POST",
+				url: '/infinite.php',
+				data: {last:$("#quizzList>.quizz:last").attr('data-quizzid'), premium:premium},
+                success: function(html) {
+                    doMouseWheel = 1 ;
+                    if (html) {
+                        $("#last").before(html);
+                        $('#loadMoreQuizz').hide();
+						setTimeout(function() {infinite = 1;},1000);
+                    } else {
+						$('#loadMoreQuizz').remove();
+                        doMouseWheel = 0 ;
+                    }
+                }
+            });
+        }
+    });
+});
+</script>
+
+</body>
+</html>
+<!-- Cached LB 23rd September 2015 04:47-->

@@ -1,0 +1,248 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/resources/css/mod2012/main_gm.css">
+<title>车问</title>
+</head>
+
+<body>
+<div class="top clearfix" style="padding-top:20px; border-bottom:2px solid #f1f1f1">
+  <a href="http://www.chewen.com" class="logo"><img src="/resources/images/mod2012/logo.jpg" width="144" height="42" /></a>
+  <span class="cw_logo_ms"></span>
+</div>
+<div style=" margin:0 auto; width:960px; height:400px; color:#333; font-size:14px;">
+  <p style="font-family:Arial; font-size:26px; font-weight:bold; line-height:80px;">Not Found</p>
+  <p style="font-family:Microsoft YaHei">你要的东西不在这, 到别处看看吧。</p><br>
+  <p style="font-family:Microsoft YaHei; color:#666;">&bull; &nbsp;&nbsp;<a href="http://www.chewen.com">首页</a></p><br>
+  <p style="font-family:Microsoft YaHei;color:#666;">&bull; &nbsp;&nbsp;<a href="http://www.chewen.com/brand.html">汽车大全</a></p><br>
+  <p style="font-family:Microsoft YaHei;color:#666;">&bull; &nbsp;&nbsp;<a href="http://www.chewen.com/topic.html">话题大全</a></p><br>
+</div>
+
+
+<div class="footer clearfix">
+  <div class="r">
+  <a rel="nofollow" href="http://www.chewen.com/about/about.html" target="_blank">关于我们</a>
+  <a href="http://www.chewen.com/about/links.html" target="_blank">友情链接</a>
+  <a href="http://www.chewen.com/about/sitemap.html" target="_blank">网站地图</a>
+  <a href="http://ask.chewen.com" target="_blank">友问友答</a>
+  <a rel="nofollow" href="http://www.chewen.com/about/privacy.html" target="_blank">隐私声明</a>
+  </div>
+  <div class="l">旗下网站© 2014</div>
+</div>
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="http://www.chewen.com/resources/css/mod2012/cw_user.css?v=1">
+
+
+
+<script type="text/javascript">
+var textLogin = ["邮箱/手机","密码"];
+var checkMail_when_rtn = true;
+function checkMail_when(email){
+	var re = /^([a-zA-Z0-9]+[_|\-|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\-|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/; 
+	var objExp=new RegExp(re);
+	checkMail_when_rtn = objExp.test(email);
+	if(!checkMail_when_rtn){
+		checkMail_when_rtn = !isNaN(email)
+	}
+}
+</script>
+
+<script type="text/javascript">
+$=jQuery;
+
+function doLogin(e){
+	var password 	= jQuery("#login_password").val();
+	var account 	= jQuery("#login_account").val();
+	checkMail_when(account);
+	if(!checkMail_when_rtn){
+		alert("请输入正确的邮件格式");
+	}
+	
+	jQuery.ajax({
+		  url: "/doLogin",
+		  data: {"b":password,"a":account},
+		  type:"POST",
+		  dataType:"json",
+		  success: function(data){
+			  if(data.rtn==true){
+				  if(data.isRedirect){
+					  window.location.href = data.redirectUrl+"?phoneNum="+data.phoneNum;
+					  return;
+				  }
+				  if(data.isCheck==true){
+					  jQuery(".lia").hide();
+					  location.reload();
+					  return;
+				  }else{
+					  jQuery("#email_span").html(data.email);
+					  jQuery("#mail_btn").attr("href","http://"+data.email);
+					  jQuery("#isCheck").show();
+				  }
+			  }
+			  else{
+				  if(data.isCheck==false){
+					  alert("没有您的密码信息，请从其他方式登陆后修改密码或者点击忘记密码");
+				  }
+				  jQuery("#loginErrMsg").show();
+			  }
+		  }
+		});
+}
+
+function clearInput(e){
+	//e.target.value = "";
+	if(e.target.id=="login_password_text"){
+		jQuery("#login_password").show();
+		jQuery("#login_password").focus();
+		jQuery("#login_password_text").hide();
+	}else if(e.target.id=="login_password"){
+		return;
+	}else if(e.target.id=="login_account"){
+		if(e.target.value==textLogin[0]){
+			e.target.value = "";
+		}
+	}
+}
+function fillInput(e){
+	//e.target.value = "";
+	if(e.target.id=="login_password_text"){
+		return;
+	}else if(e.target.id=="login_password"){
+		if(e.target.value==""){
+			jQuery("#login_password_text").show();
+			jQuery("#login_password").hide();
+		}
+	}else if(e.target.id=="login_account"){
+		if(e.target.value==""){
+			e.target.value = textLogin[0];
+		}
+	}
+}
+function login_reload(){
+	var url = location.href;
+	var index = url.indexOf("isLogin=0");
+	if(index>0){
+		url = url.substring(0,index);
+		setTimeout("location.href = '"+url+"';", 1000 );
+	}else{
+		setTimeout("location.reload()", 1000 );
+	}
+}
+function login3rdClick(e){
+	var type = e.target.type;
+	var url = "";
+	if(type=="renren"){
+		XN.Connect.requireSession(function() {
+	        if (typeof gonewpage !== "undefined") {
+	        	gonewpage()
+	        }
+	    });
+		return;
+	}else if(type=="qq"){
+		url = "http://www.chewen.com/login3rd/QQ/code";
+	}else if(type=="weibo"){
+		url = "https://api.weibo.com/oauth2/authorize?client_id=2089003856&response_type=code&redirect_uri=http://www.chewen.com/login3rd/weibo"; 
+	}
+	var left = ($(window).width() - 575)/2;
+	var paramers = "location=yes,left=200,top=100,width=575,height=450,resizable=yes";
+	//var paramers="dialogLeft:"+left+";";
+    var workerId = window.open(url,"",paramers);
+    //if(workerId){
+    	//location.reload();
+    //}else{
+    //	alert("第三方登录失败");
+    //}
+}
+jQuery(document).ready(function(){
+	jQuery("#loginBtn").click(doLogin);
+	jQuery("input[jclass='login']").focus(clearInput);
+	jQuery("input[jclass='login']").blur(fillInput);
+	jQuery("a[name='login_btn_3rd']").click(login3rdClick);
+	//初始化函数
+	$(window).resize();
+	
+});
+$(window).resize(function(){
+	$('#login_div').css({
+	position:'absolute',
+	left: ($(window).width() - $('#login_div').outerWidth())/2,
+	top: ($(window).height() - $('#login_div').outerHeight())/2 + $(document).scrollTop()
+	});
+	});
+</script>
+<form id="blankForm" action="" target="_blank"></form>
+<a id="hide_a" href="" target="_blank" style="display: none;">
+<span>hide</span> </a>
+
+<div id="login_div" class="chewen_login_box" style="top:0; left:0;width:700px;display: none;">
+  <div class="login_msg_top" style="width:660px"><a href="javascript:;" onclick="jQuery('#login_div').hide()">关闭</a><strong>登录</strong></div>
+  <ul style="float:left;">
+    <li class="lia"><span id="loginErrMsg" style="display: none;">账户或密码错误</span></li>
+    <li class="lib">
+    <input id="login_account" jclass="login" name="" val="0" type="text" class="user_inpa1" value="邮箱/手机" /><a style="display: none;" href="#" class="cw_rong_abox"></a></li>
+    <li class="lic">
+    <input id="login_password_text" jclass="login" name="password" val="1" type="text" class="pw_inpa" value="密码"/>
+    <input id="login_password" jclass="login" name="password" val="1" type="password" class="pw_inpa" value="" style="display: none;"/>
+    <a style="display: none;" href="#" class="cw_rong_abox"></a></li>
+    <li class="lid"><a href="/resetPassword">忘记密码？</a><input name="" type="checkbox" value="" class="ck_a" />下次自动登录</li>
+    <li class="lie"><a id="loginBtn" class="cw_login_btn" href="javaScript:;">登录</a></li>
+    <li class="lif"><a href="/register">立即注册</a></li>
+  </ul>
+  <dl>
+    <dt>使用合作网站帐号登录</dt>
+    <dd><a name="login_btn_3rd" class="login_btn_renren" type="renren" 	href="javaScript:;"></a></dd>
+    <dd><a name="login_btn_3rd" class="login_btn_qq" 	 type="qq" 		href="javaScript:;"></a></dd>
+    <dd><a name="login_btn_3rd" class="login_btn_weibo"  type="weibo" 	href="javaScript:;"></a></dd>
+  </dl>
+</div>
+
+<div id="isCheck" class="chewen_login_box" style="top:0;left:400px;display: none;">
+  <div class="login_msg_top"><a href="javascript:;" onclick="jQuery('#isCheck').hide()">关闭</a><strong>提醒信息</strong></div>
+  <ul>
+    <li class="lig" style="padding-top:20px;">登录邮箱已被注册但未激活，激活邮件</li>
+    <li class="lig">已发送至您的邮箱：<span id="email_span"></span></li>
+    <li class="lig"  style="padding-bottom:20px;">按照邮箱中的提示完成激活</li>
+    <li class="lie"><a id="mail_btn" href="#" class="cw_login_btn">邮箱登录</a></li>
+    <li class="lih" style="padding-top:20px;"><b>没有收到邮件怎么办？</b></li>
+    <li class="lih">看看是否在邮箱的广告邮件、垃圾邮件中</li>
+    <li class="lih">确认没收到，<a href="#">点击这里</a>重新发送一封激活邮件</li>
+  </ul>
+</div>
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F0307aa14789d87b39d3972f62a766567' type='text/javascript'%3E%3C/script%3E"));
+
+/*以下是google的统计*/
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-41242434-1', 'chewen.com');
+  ga('send', 'pageview');
+</script>
+<script type="text/javascript" src="http://static.connect.renren.com/js/v1.0/FeatureLoader.jsp"></script>
+
+<script type="text/javascript">
+
+	XN_RequireFeatures(["Connect"], function() {
+	    XN.Main.init("91c7efe6dfc7460296cbf0f0d3bf567a", "/xd_receiver.html", {ifUserConnected:'http://www.chewen.com/renrenlogin.jsp?url=http%3A%2F%2Fwww.chewen.com%2Frobots.txt','permsToRequestOnConnect':'publish_feed,email'});
+	});
+	
+
+	 jQuery("#top_nav_in_a").click(function() {
+		return connectLogin("请先登录车问网");
+	}); 
+	/* jQuery(".top_nav_in a").click(function() {
+		return connectLogin();
+	}); */
+</script>
+</body>
+</html>

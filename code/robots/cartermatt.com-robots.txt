@@ -1,0 +1,9 @@
+#Googlebot
+User-agent: Googlebot
+Allow: *.css
+Allow: *.js
+
+# Other bot spider
+User-agent: *
+Disallow: /wp-admin/
+Disallow: /wp-includes/

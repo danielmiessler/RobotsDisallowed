@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /search
+Disallow: /signup
+Disallow: /login
+Disallow: /user
+Disallow: /jl/
+# Google is crawling the Ad defineSlot() parameters.  Exclude them so we don't get a bunch of 404s.
+Disallow: /8264/
+Disallow: /7336/
+Sitemap: http://www.metacritic.com/siteindex.xml

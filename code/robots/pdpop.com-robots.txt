@@ -1,0 +1,599 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko" class="yscroll">
+<head>
+<title>▒ 피디팝 - 세상의 모든 자료 ▒</title>
+<meta name="description" content="피디팝은 최신영화, 드라마, 예능, 애니, 만화, 음악, 게임 등 다운로드 서비스 및 실시간 스마트폰 스트리밍 서비스를 하는 파일공유 웹하드 사이트입니다.">
+<meta name="Keywords" content="최신영화, 드라마, 예능, 애니, 게임, 유틸, 음악, 만화, 무료다운, 무료영화, 미드, 파일공유, tv다시보기, 애니추천, 무료다운로드 쿠폰">
+
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="google-site-verification" content="rwjpGgN0vS6HmQECvER7U6zRDuIrOfF2LdoCjjKXZNM" />
+<link href='http://www.pdpop.com/favicon.ico?v=2' rel='shortcut icon' type='image/x-icon'/>
+
+<link href="/images/css/pd_common.css" rel="stylesheet" type="text/css"/>
+<link href="/images/css/pd_main2.css" rel="stylesheet" type="text/css"/>
+<link href="/images/css/pd_layer.css" rel="stylesheet" type="text/css"/>
+<link href="/images/css/slides2.css" rel="stylesheet" type="text/css"/><!--left/main banner jquery css-->
+<!--link href="/images/images_re/event/may/may_evt.css" rel="stylesheet" type="text/css"-->
+
+<script type='text/javascript' src='http://pdpop.com/mobile.php'></script>
+<script type='text/javascript' src="/images/script/flash.js"></script>
+<script type='text/javascript' src="/images/script/popup.js"></script>
+<script type='text/javascript' src="/images/script/common.js"></script>
+<script type='text/javascript' src='/images/script/prototype.js'></script>
+<script type='text/javascript' src="/images/script/jquery-1.7.1.min.js"></script>
+<script type='text/javascript' src="http://www.pdpop.com/script/msg_chk_mini_re.js"></script>
+<script src="/images/script/jquery.slides.js"></script>
+
+<script type="text/javascript"> 
+	var $J = jQuery.noConflict();
+</script>
+<!--script type='text/javascript' src='/images/include/maincenter_layout.html'></script-->
+<script>
+	var taborderby='';
+	var listcnt=20;
+	var nowpage=1;
+
+	$J(function(){
+
+	  $J('#layout').fadeIn(100);	
+		//날개배너 슬라이드
+		$J('#lfwing').lslides({
+			preload: false,
+			preloadImage: '/images/images_re/banner/loading.gif',
+			play: 5000,    
+			pause: 2500,
+			hoverPause: false
+		});
+		
+		//메인배너 슬라이드
+		$J('#slides').slides({
+			preload: true,
+			preloadImage: '/images/images_re/banner/loading.gif',
+			play: 5000,
+			pause: 2500,
+			hoverPause: true
+		});
+		$J(".shlist2 .sbj a").click(function(){
+			$J(".shlist2 .sbj a").css("text-decoration","none");
+			$J(this).css("text-decoration","underline");
+		});
+
+	});
+
+nereidFadeObjects = new Object();
+nereidFadeTimers = new Object();
+
+function nereidFade(object1, destOp, rate, delta){
+	var object=document.getElementById('poster_'+object1);
+
+	if (!document.all)
+	return
+	var ie_ver;
+	if(navigator.appName.match(/Explorer/i)){
+   ie_ver= navigator.appVersion.match(/MSIE \d+.\d+/)[0].split(" ")[1];
+  }
+  if(ie_ver<10){
+    if (typeof(object) != "[object]"){  
+        setTimeout("nereidFade("+object1+","+destOp+","+rate+","+delta+")",0);
+        return;
+    }
+        
+    clearTimeout(nereidFadeTimers[object.sourceIndex]);
+    
+    diff = destOp-object.filters.alpha.opacity;
+    direction = 1;
+    if (object.filters.alpha.opacity > destOp){
+        direction = -1;
+    }
+    delta=Math.min(direction*diff,delta);
+    object.filters.alpha.opacity+=direction*delta;
+
+    if (object.filters.alpha.opacity != destOp){
+        nereidFadeObjects[object.sourceIndex]=object;
+        nereidFadeTimers[object.sourceIndex]=setTimeout("nereidFade(nereidFadeObjects["+object.sourceIndex+"],"+destOp+","+rate+","+delta+")",rate);
+    }
+  }else{
+    if (typeof(object) != "[object]"){  
+        //setTimeout("nereidFade("+object1+","+destOp+","+rate+","+delta+")",0);
+        return;
+    }
+        
+    clearTimeout(nereidFadeTimers[object.sourceIndex]);
+    diff = destOp-object.style.opacity;
+    
+    direction = 1;
+    if (object.style.opacity > destOp){
+        direction = -1;
+    }
+    delta=Math.min(direction*diff,delta);
+    object.style.opacity += (direction*delta);
+
+    if (object.style.opacity != destOp){
+        nereidFadeObjects[object.sourceIndex]=object1;
+        nereidFadeTimers[object.sourceIndex]=setTimeout("nereidFade(nereidFadeObjects["+object.sourceIndex+"],"+destOp+","+rate+","+delta+")",rate);
+    }
+  }
+}
+
+function pop_view(url){
+	var abs = window.open('http://bbs.pdpop.com/'+url,'file','scrollbars=yes,width=812,height=799,top=0,left=0');
+	abs.focus();
+}
+
+function goEventURL(url)
+{
+	if (notice_getCookie('uid') != "") {
+		ab = window.open(url, 'wndEvent', 'width='+screen.width+',height='+screen.height+',resizable=yes,scrollbars=yes');
+		ab.focus();
+	}
+	else {
+		alert('로그인 후에 참여하세요');
+	}
+}
+
+//피디팝 회원 레벨 정책
+function pop(){
+	window.open('http://member.pdpop.com/mypage/member/pop_member_level_re.html','level','scrollbars=yes,width=747,height=600');
+}
+
+function chkLogin(url){
+	if(notice_getCookie("uid")){
+		document.location.replace(url);
+	}else{
+	  document.location.replace(url);
+		//alert("로그인이 필요한 페이지입니다.");
+	}
+}
+
+//미니홈피 추천인 관련 팝업오픈 추가 20100818 add by chang 
+var huid = notice_getCookie("huid");
+if(huid && huid > 0)
+{
+	//window.open('http://mini.pdpop.com/?huid='+huid, 'pdpop_mini', 'toolbar=no,menubar=no,location=no,status=no,scrollbars=no,resizable=no,width=1000,height=571')
+}
+//end add
+
+function couponChk()
+{
+	var frm = document.frmCoupon;
+	frm.code.value = frm.coupon.value.substring(0,4);
+	var serial = document.getElementsByName("serial[]"); 
+	serial[0].value = frm.coupon.value.substring(4,8);
+	serial[1].value = frm.coupon.value.substring(8,12);
+	serial[2].value = frm.coupon.value.substring(12,16);
+
+	frm.submit();
+}
+var urlk=document.domain;
+if(urlk=='pdpop.net' || urlk=='www.pdpop.net'){
+  document.write("<iframe name='exurl' width='0' height='0' src='http://www.pdpop.com/pdpopnet.php?url=pdpop.net' style='display:none;' title='피디팝닷넷링크'></iframe>");
+}else{
+
+  document.write("<iframe name='exurl' width='0' height='0' src='http://www.pdpop.com/pdpopnet.php?url=pdpop.com' style='display:none;' title='피디팝닷넷링크'></iframe>");
+}
+
+$J(function(){
+	/*
+	if(getCookie("noticepop")!="Y"){
+		$J(".close>a").click(function(){
+			if($J("#closechk").is(":checked")){
+				setCookie("noticepop","Y",1);
+			}
+			$J(".noticepop").hide();	
+		});	
+		
+		$J(".noticepop").css("display","inline-block");	
+	}	
+	
+	function setCookie(cname, cvalue, exdays) {
+	    var d = new Date();
+	    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+	    var expires = "expires="+d.toUTCString();
+	    document.cookie = cname + "=" + cvalue + "; " + expires;
+	}
+	
+	
+	function getCookie(cname) {
+	    var name = cname + "=";
+	    var ca = document.cookie.split(';');
+	    for(var i=0; i<ca.length; i++) {
+	        var c = ca[i];
+	        while (c.charAt(0)==' ') c = c.substring(1);
+	        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+	    }
+	    return "";
+	}	
+	*/
+});
+
+</script> 
+
+<!--style type="text/css">
+
+*{margin:0;padding:0}
+
+html,body{width:100%;height:100%}
+
+img{border:0;vertical-align:top}
+
+/* 공지팝업 */
+
+.noticepop{position:absolute;width:420px; border:1px solid #999;left:50%; top:80px; margin-left:-210px;z-index:9999;}
+
+.noticepop .top{position:relative;height:57px;background:url(/images/images_re/notice/type1_topbg.gif) repeat-x 0 0}
+
+.noticepop .top h3{position:absolute;top:18px;left:20px}
+
+.noticepop .inner{overflow:hidden;background:#fff}
+
+.noticepop .title{display:block;padding:16px 0 13px 20px;background:#dedede;font-size:14px !important;line-height:21px !important;font-size:15px;font-family:'맑은 고딕','Malgun Gothic'; font-weight:bold;}
+
+.noticepop .content{display:block;padding:20px 0;margin:0 20px}
+
+.noticepop .sign{display:block;padding:25px 0 25px;margin:0 20px;border-top:1px solid #bcbcbc;text-align:right;line-height:20px !important}
+
+.noticepop .inner,.noticepop .title,.noticepop .content,.noticepop .sign{color:#666;font-family:'맑은 고딕','Malgun Gothic';font-size:12px;line-height:18px; color:#222222;}
+
+.noticepop .chk_box{position:relative;height:33px;background:#dedede}
+
+.noticepop .chk_box a{color:#666;text-decoration:none}
+
+.noticepop .chk_box input{width:13px;height:13px;vertical-align:middle;margin:2px 3px 0 0}
+
+.noticepop .chk_box label{vertical-align:middle;cursor:pointer}
+
+.noticepop .chk_box img{vertical-align:middle;margin:-1px 3px 0 0}
+
+.noticepop .chk_box .check,.noticepop .chk_box .close{display:inline-block;position:absolute;top:8px;color:#666;font-size:11px;font-family:'맑은 고딕','Malgun Gothic';line-height:15px;letter-spacing:-1px;color:#555;}
+
+.noticepop .chk_box .check{left:20px}
+
+.noticepop .chk_box .close{right:20px}
+
+</style-->
+
+
+</head>
+
+<body>
+	<div id="skipnavi">
+		<a href="javascript:document.getElementById('firstmenu').focus();" ><span>메뉴 바로가기</span></a>
+	</div>			
+
+	<script type='text/javascript' src='http://www.pdpop.com/images/include/top_re.html?gubun=mypage'></script>
+
+	<!-- //왼쪽 날개 배너 -->
+	<div id="lfwing" >
+		<h2 class="blind">날개 배너</h2>
+		<div id="layout" class="lslides_container" style="width:94px; height:242px;display:none;">
+			<a href="http://www.pdpop.com/event/free_movie_re.html"><img id="lslides1" src="/images/images_re/event/free/wing_freemovie.jpg" width="94" height="242" alt="무료상영관"></a>
+			<a href="http://www.pdpop.com/event/201412_kbs_enddm_re.html"><img id="lslides2" src="/images/images_re/event/kbsevt/20141210_enddm_wing.jpg" width="94" height="242" alt="KBS 종영작인기드라마 가격지원다운로드! 200편"></a>
+									<a href="http://bbs.pdpop.com/search_re.php?mode=list&szSearch=bbs_subject&code=F_03&szSearchWord=%EB%8D%94%EB%9F%AC%EB%B2%84&hash=0.9933032023254782"><img id="lslides4" src="/images/images_re/event/mnetevt/20150708_evt_bn.jpg" width="94" height="242" alt="순결한 동거드라마 더러버 무삭제판 1원 가격지원"></a>
+					</div>
+		<div align="center" style="margin-top:247px;">
+			<a href="javascript://;" class="prev" style="vertical-align:middle;"><img src="/images/images_re/banner/left.gif" alt="날개배너 스크롤왼쪽방향 버튼"></a>
+			<a href="javascript://;" class="next" style="vertical-align:middle;"><img src="/images/images_re/banner/right.gif" alt="날개배너 스크롤오른쪽방향 버튼"></a>
+		</div>
+	</div>
+	<!-- //왼쪽 날개 배너 -->
+    
+	<div id="container">
+		<!-- // 왼쪽 영역 lfarea-->
+		<div class="lfarea">
+			<!--로그인-->
+			<script type='text/javascript' src='http://member.pdpop.com/login/left_login_main_re.html?url=http%3A%2F%2Fwww.pdpop.com'></script> 
+			<!--메인 배너 -->
+			<div class="main_lf_bn">
+				<h2 class="blind">피디팝 이벤트</h2>
+				<ul>
+					<li><a href="http://bill.pdpop.com/mypage/event/event_oneplus_re.php"><img src="/images/images_re/banner/main_charge_1n1.jpg" alt="정액제1+1이벤트"/></a></li>
+					<!--20150330 맥다운로드 클라이언트  -->
+					<li><a href="http://www.pdpop.com/event/multidown_event_re.html"><img src='http://www.pdpop.com/images/images_re/event/multidown/multi_bn_alldown.gif' alt='피디팝 Mac,Windows OS와 모든 브라우저를 지원합니다.' width='188' height='88'/></a></li>
+				</ul>
+			</div>
+            <!-- 공지사항 -->
+            <div class="notibox2">
+                <h2 class="blind">공지사항</h2>
+                <span class="st"><a href="http://bbs.pdpop.com/board_re.php?code=C_01_01" class="more">더보기</a></span>
+                <div class="notilst2">
+                    <ul>
+										<li><a href="http://bbs.pdpop.com/board_re.php?mode=view&code=C_01_01&no=280864">[(주)한국모바일인증] KMC 본인확..</a></li>
+										<li><a href="http://bbs.pdpop.com/board_re.php?mode=view&code=C_01_01&no=280663">[(주)한국모바일인증] SKT(법인폰)..</a></li>
+										<li><a href="http://bbs.pdpop.com/board_re.php?mode=view&code=C_01_01&no=280554">[(주)한국모바일인증] 본인확인서..</a></li>
+										<li><a href="http://bbs.pdpop.com/board_re.php?mode=view&code=C_01_01&no=279869">[(주)한국모바일인증] SKT 본인확..</a></li>
+										<li><a href="http://bbs.pdpop.com/board_re.php?mode=view&code=C_01_01&no=279777">[(주)한국모바일인증] 본인확인서..</a></li>
+					                    </ul>
+               </div>
+            </div>
+            <!-- //공지사항 -->
+			<!-- 고객센터 -->
+			<div class="help">
+				<h2 class="blind">고객센터</h2>
+				<span class="st"><a href="http://bbs.pdpop.com/board_re.php?code=C_01_02" class="more" title="고객센터내용보기">더보기</a></span>
+				<span class="tel"><img src="/images/images_re/common/main_helpnum.gif" alt="고객센터 1600-8744"/></span>
+				<span class="btn"><a href="http://bbs.pdpop.com/board/one/one_re.php?code=C_01_03"><img src="/images/images_re/common/help_1_1.gif" alt="1:1고객상담"/></a><a href="http://bbs.pdpop.com/board_re.php?mode=remote"><img src="/images/images_re/common/help_suport.gif" alt="원격지원" style="margin-left:3px;"/></a></span>
+				<ul>
+					<li><a href="http://www.pdpop.com/smartmobile/downclient.php"><img src="/images/images_re/common/help_download.gif" alt="다운로드 프로그램 수동 설치"/></a></li>
+					<li><a href="http://bbs.pdpop.com/board_re.php?code=C_01_02"><img src="/images/images_re/common/help_faq.gif" alt="자주하는 질문"/></a></li>
+				</ul>
+			</div>
+			<!-- //고객센터 -->
+		</div><!--lfarea//-->
+        <!-- 중앙 콘텐츠 -->
+        <div class="mn_center">
+         <!-- mbanner -->
+            <div class="mbanner" >
+                <h4 class="blind">이벤트 홍보</h4>
+                <div id="slides">
+                    <div class="slides_container" id="maincenter_banner">
+						<script type='text/javascript' src='http://www.pdpop.com/images/include/maincenter_banner_re.html'></script>
+                    </div>
+                    <!-- //slides_container -->
+                    <a href="#" class="prev" id="maincenter_bannerArr1" style="display:none;"><img src="/images/images_re/banner/arrow-prev.png" width="22" height="32" alt="Arrow Prev"></a>
+                    <a href="#" class="next" id="maincenter_bannerArr2" style="display:none;"><img src="/images/images_re/banner/arrow-next.png" width="22" height="32" alt="Arrow Next"></a>
+                </div>
+                <!-- //slides -->
+            </div>
+            <!-- //mbanner -->
+            <!-- 메인리스트-->
+            <div class="mn_cntlst">
+            	<h2 class="blind">파일공유 최신등록자료</h2>
+                <span class="st"><a href="http://bbs.pdpop.com/board_re.php?code=F_02" class="more">더보기</a></span>
+                <ul class="lstth">
+                <li class="sbjcon">제목</li>
+                <li class="sizecon">용량</li>
+                <li class="catecon">분류</li>
+                </ul>
+               	<div class="shlist2">
+                    <ul>
+					                    <li >
+                    <span class="kind"><img src='/images/images_re/ico/ico_lst_liance.gif' alt='제휴'/></span>
+                    <span class="sbj"><a href="javascript:pop_view('board_re.php?mode=view&code=F_03_14&no=49674251&state=main')"><b><font color='#F04F84'>이경규의 진짜카메라.E02.150922.HDTV.H264.450p-WITH</font></b></a><img src="/images/images_re/ico/ico_new.gif" alt="새로올라온 게시물" class="new"/></span>
+                    <span class="size">667 MB</span>
+                    <span class="sort">방송</span>  
+                    </li>
+					                    <li  class='bglst'>
+                    <span class="kind"><img src='/images/images_re/ico/ico_lst_liance.gif' alt='제휴'/></span>
+                    <span class="sbj"><a href="javascript:pop_view('board_re.php?mode=view&code=F_03_14&no=49674223&state=main')"><b><font color='#DCAC35'>내 나이가 어때서.E04.150922.HDTV.H264.450p-WITH</font></b></a><img src="/images/images_re/ico/ico_new.gif" alt="새로올라온 게시물" class="new"/></span>
+                    <span class="size">715 MB</span>
+                    <span class="sort">방송</span>  
+                    </li>
+					                    <li >
+                    <span class="kind"><img src='/images/images_re/ico/ico_lst_noliance.gif' alt='비제휴'></span>
+                    <span class="sbj"><a href="javascript:pop_view('board_re.php?mode=view&code=F_02_01&no=49674207&state=main')">딱한달이라구.2015.480p.HDRip.DIVX.MP3</a><img src="/images/images_re/ico/ico_new.gif" alt="새로올라온 게시물" class="new"/></span>
+                    <span class="size">1.48 GB</span>
+                    <span class="sort">영화</span>  
+                    </li>
+					                    <li  class='bglst'>
+                    <span class="kind"><img src='/images/images_re/ico/ico_lst_noliance.gif' alt='비제휴'></span>
+                    <span class="sbj"><a href="javascript:pop_view('board_re.php?mode=view&code=F_03_14&no=49674199&state=main')"><b><font color='#6C8EFA'>채널A 종합뉴스.150922.HDTV.H264.540p-GCrel</font></b></a><img src="/images/images_re/ico/ico_new.gif" alt="새로올라온 게시물" class="new"/></span>
+                    <span class="size">908 MB</span>
+                    <span class="sort">방송</span>  
+                    </li>
+					                    <li >
+                    <span class="kind"><img src='/images/images_re/ico/ico_lst_liance.gif' alt='제휴'/></span>
+                    <span class="sbj"><a href="javascript:pop_view('board_re.php?mode=view&code=F_03_14&no=49674168&state=main')"><b><font color='#A44ED8'>휴먼다큐 사노라면.E189.150922.HDTV.H264.540p-GCrel</font></b></a><img src="/images/images_re/ico/ico_new.gif" alt="새로올라온 게시물" class="new"/></span>
+                    <span class="size">714 MB</span>
+                    <span class="sort">방송</span>  
+                    </li>
+					                    <li  class='bglst'>
+                    <span class="kind"><img src='/images/images_re/ico/ico_lst_liance.gif' alt='제휴'/></span>
+                    <span class="sbj"><a href="javascript:pop_view('board_re.php?mode=view&code=F_03_03&no=49674166&state=main')"><b><font color='#FA816C'>인간극장.150923.굳세어라 보람아 3부.HDTV.H264.720p-LIMO</font></b></a><img src="/images/images_re/ico/ico_new.gif" alt="새로올라온 게시물" class="new"/></span>
+                    <span class="size">679 MB</span>
+                    <span class="sort">방송</span>  
+                    </li>
+					                    <li >
+                    <span class="kind"><img src='/images/images_re/ico/ico_lst_liance.gif' alt='제휴'/></span>
+                    <span class="sbj"><a href="javascript:pop_view('board_re.php?mode=view&code=F_03_14&no=49674147&state=main')"><b><font color='#59B32F'>이경규의 진짜카메라.E2.150922.HDTV.H264.540p-GCrel</font></b></a><img src="/images/images_re/ico/ico_new.gif" alt="새로올라온 게시물" class="new"/></span>
+                    <span class="size">705 MB</span>
+                    <span class="sort">방송</span>  
+                    </li>
+					                    <li  class='bglst'>
+                    <span class="kind"><img src='/images/images_re/ico/ico_lst_liance.gif' alt='제휴'/></span>
+                    <span class="sbj"><a href="javascript:pop_view('board_re.php?mode=view&code=F_02_05&no=49674134&state=main')">미쓰 와이프 엄정화, 송승헌, 김상호, 라미란 Wonderful Nig..</a><img src="/images/images_re/ico/ico_new.gif" alt="새로올라온 게시물" class="new"/></span>
+                    <span class="size">1.52 GB</span>
+                    <span class="sort">영화</span>  
+                    </li>
+					                    <li >
+                    <span class="kind"><img src='/images/images_re/ico/ico_lst_liance.gif' alt='제휴'/></span>
+                    <span class="sbj"><a href="javascript:pop_view('board_re.php?mode=view&code=F_03_03&no=49674126&state=main')"><b><font color='#DCAC35'>아침마당.150923.HDTV.H264.720P-ENT</font></b></a><img src="/images/images_re/ico/ico_new.gif" alt="새로올라온 게시물" class="new"/></span>
+                    <span class="size">1.09 GB</span>
+                    <span class="sort">방송</span>  
+                    </li>
+					                    <li  class='bglst'>
+                    <span class="kind"><img src='/images/images_re/ico/ico_lst_liance.gif' alt='제휴'/></span>
+                    <span class="sbj"><a href="javascript:pop_view('board_re.php?mode=view&code=F_03_14&no=49674124&state=main')"><b><font color='#6C8EFA'>올리브쇼 2015.E30.150922.HDTV.H264.450p-WITH</font></b></a><img src="/images/images_re/ico/ico_new.gif" alt="새로올라온 게시물" class="new"/></span>
+                    <span class="size">672 MB</span>
+                    <span class="sort">방송</span>  
+                    </li>
+					                    <li >
+                    <span class="kind"><img src='/images/images_re/ico/ico_lst_liance.gif' alt='제휴'/></span>
+                    <span class="sbj"><a href="javascript:pop_view('board_re.php?mode=view&code=F_03_03&no=49674113&state=main')">아침마당.150923.HDTV.XViD-ENT</a><img src="/images/images_re/ico/ico_new.gif" alt="새로올라온 게시물" class="new"/></span>
+                    <span class="size">624 MB</span>
+                    <span class="sort">방송</span>  
+                    </li>
+					                    <li  class='bglst'>
+                    <span class="kind"><img src='/images/images_re/ico/ico_lst_liance.gif' alt='제휴'/></span>
+                    <span class="sbj"><a href="javascript:pop_view('board_re.php?mode=view&code=F_03_14&no=49674109&state=main')"><b><font color='#DCAC35'>살아보니 어때.E02.150922.HDTV.H264.450p-WITH</font></b></a><img src="/images/images_re/ico/ico_new.gif" alt="새로올라온 게시물" class="new"/></span>
+                    <span class="size">598 MB</span>
+                    <span class="sort">방송</span>  
+                    </li>
+					                    <li >
+                    <span class="kind"><img src='/images/images_re/ico/ico_lst_liance.gif' alt='제휴'/></span>
+                    <span class="sbj"><a href="javascript:pop_view('board_re.php?mode=view&code=F_03_02&no=49674084&state=main')">우리동네 예체능.E124.150922.HDTV.H264.720p-NURI</a><img src="/images/images_re/ico/ico_new.gif" alt="새로올라온 게시물" class="new"/></span>
+                    <span class="size">1.37 GB</span>
+                    <span class="sort">방송</span>  
+                    </li>
+					                    <li  class='bglst'>
+                    <span class="kind"><img src='/images/images_re/ico/ico_lst_liance.gif' alt='제휴'/></span>
+                    <span class="sbj"><a href="javascript:pop_view('board_re.php?mode=view&code=F_02_05&no=49674079&state=main')">연평해전 김무열, 진구, 이현우, 이완 .BRrip.720p</a><img src="/images/images_re/ico/ico_new.gif" alt="새로올라온 게시물" class="new"/></span>
+                    <span class="size">2.70 GB</span>
+                    <span class="sort">영화</span>  
+                    </li>
+					                    <li >
+                    <span class="kind"><img src='/images/images_re/ico/ico_lst_liance.gif' alt='제휴'/></span>
+                    <span class="sbj"><a href="javascript:pop_view('board_re.php?mode=view&code=F_03_14&no=49674077&state=main')"><b><font color='#FA816C'>내 나이가 어때서.E4.150922.HDTV.H264.540p-GCrel</font></b></a><img src="/images/images_re/ico/ico_new.gif" alt="새로올라온 게시물" class="new"/></span>
+                    <span class="size">764 MB</span>
+                    <span class="sort">방송</span>  
+                    </li>
+					                    <li  class='bglst'>
+                    <span class="kind"><img src='/images/images_re/ico/ico_lst_liance.gif' alt='제휴'/></span>
+                    <span class="sbj"><a href="javascript:pop_view('board_re.php?mode=view&code=F_03_02&no=49674068&state=main')">불타는 청춘.E27.150922.HDTV.H264.720p-NURI</a><img src="/images/images_re/ico/ico_new.gif" alt="새로올라온 게시물" class="new"/></span>
+                    <span class="size">1.39 GB</span>
+                    <span class="sort">방송</span>  
+                    </li>
+					                    </ul>
+                </div><!--리스트 shlist2//-->
+    
+            </div><!-- 메인리스트mn_cntlst-->
+
+			<!-- 공지팝업 -->
+			<!--div class="noticepop" style="background:#ffffff;display:none;">
+			    <div class="top"><h3><img src="/images/images_re/notice/type1_logo.gif" alt="피디팝 공지사항"/></h3></div>
+			    <div class="inner" style="">
+			        <span class="title">[긴급 공지] 파밍사이트 유도 악성코드 감염시 조치방법 안내</span>
+			        <span class="content">안녕하세요.<br>피디팝 운영팀입니다.<br><br>
+
+지난 28일 이후 파밍사이트로 유도하는 악성코드가 발견되어 해당 서버에 대한 보안 업데이트를 완료하였습니다.<br><br>
+
+그러나 현재는 극히 일부 사용자 PC에 대해 간헐적으로 악성코드를 배포하려는 시도를 하고 있습니다.<br>
+이에 회원님들께서는 다운로드시에 에러 메세지나 파밍을 유도하는 금융사이트가 노출 될 경우 아래의 조치를 해 주시기 바랍니다.<br><br>
+
+<a href="http://bbs.pdpop.com/board_re.php?mode=view&code=C_01_01&szSearchCategory=subject&szSearchWord=&nListPerPage=12&nPage=1&hash=0.5658887645695359&no=273808" ><span style="color:#5680FA;font-weight:bold;font-family:'맑은 고딕','Malgun Gothic';font-size:12px;">예방 및 치료방법 자세히 보기</span></a>
+</span>
+			        <span class="sign">2015년 7월3일 피디팝 운영자</span>
+			    </div>
+			    <div class="chk_box">
+			        <form name="form1" method="post" action="">
+			            <span class="check"><input type="checkbox" name="closechk" id="closechk"><label for="chk">더 이상 보지 않기</label></span>
+			            <span class="close"><a href="#"><img src="/images/images_re/notice/ico_clse.png" alt="닫기"/>닫기</a></span>
+			        </form>
+			    </div>
+			</div-->
+			<!-- //공지팝업 -->
+			
+			<div id="mayevt" style="display:none;margin:100px;background:#ffffff;top:75px;left:95px;">
+				<div class="sect1">
+			    	<span class="maytit"><img src="/images/images_re/event/may/mayevt_tt.png"  alt="어린이날 볼만한 영화/애니"/></span>
+					<ul id="selPoster1" class="lst"></ul>
+			    </div><!--sect1//-->
+			<div class="sect2">
+			  	<div class="btncls"><a href="javascript://;"><img src="/images/images_re/event/may/mayevt_btncls.gif" alt="이벤트 닫기"/></a></div>
+				 	<div class="tablst">
+				        <div class="sect2_tab">
+				            <ul>
+				            <li><a href="javascript://;" class="on">영화</a></li>
+				            <li><a href="javascript://;" class="">애니</a></li>
+				            </ul>
+				        </div>
+				        <ul id="tap1Ul" class="lst" ></ul>
+				        <ul id="tap2Ul" class="lst" style="display:none;"></ul>
+				    </div>   <!--tablst//-->                 
+			  	</div><!--sect2//-->
+			    <div class="sect3">
+			   		<ul id="selPoster2" class="lst"></ul>
+			    	<ul id="selPoster3" class="lst"></ul>
+			    </div><!--sect3//-->
+			    <div class="sect4">
+			    <span class="chk"><input type="checkbox" id="oneDayHide"> <span>오늘 하루 열지 않기</span></span>
+			    <span class="lycls"><span>닫기</span> <a href="javascript://;"><img src="images/images_re/event/may/mayevt_btncls2.gif" alt="닫기" align="abbmiddle"/></a></span>
+			    </div>
+			</div><!--mayevt//-->              
+        </div> <!--중앙콘텐츠nm_center//-->
+        
+        <!-- 오른쪽 영역mn_right-->
+      <div class="mn_right">
+        	<!--상품권등록-->
+        	<div class="main_rt_bn"><a href="javascript:chkLogin('http://bill.pdpop.com/mypage/coupon/coupon_re.php?mode=pdpop');"><img src="/images/images_re/banner/main_gift_bn.jpg" alt="무료 다운로드 상품권등록"/></a></div>
+            
+             <!-- 무료자료실 -->
+            <div class="freedt2">
+                <h2 class="blind">무료자료실</h2>
+                <span class="st"><a href="http://bbs.pdpop.com/board_re.php?code=C_01_05" class="more">더보기</a></span>
+                <ul>
+                <li><a href="http://bbs.pdpop.com/board_re.php?mode=view&code=C_01_05&no=160000"><img src="/images/images_re/main/free_date_01.gif" alt="데몬툴"/></a></li>
+                <li><a href="http://bbs.pdpop.com/board_re.php?mode=view&code=C_01_05&no=162227"><img src="/images/images_re/main/free_date_02.gif" alt="반디집"/></a></li>
+                <li class="pdnone"><a href="http://bbs.pdpop.com/board_re.php?mode=view&code=C_01_05&no=123057"><img src="/images/images_re/main/free_date_03.gif" alt="다음팟"/></a></li>
+                </ul>
+                
+                <ul class="freelst">
+				                	<li><a href="http://bbs.pdpop.com/board_re.php?mode=view&code=C_01_05&no=281173">원격지원 TeamViewer 정식 버전 -..</a></li>
+				                	<li><a href="http://bbs.pdpop.com/board_re.php?mode=view&code=C_01_05&no=202728">IE10 에서 ActiveX가 설치되지 않..</a></li>
+				                	<li><a href="http://bbs.pdpop.com/board_re.php?mode=view&code=C_01_05&no=166989">Z통합코덱-자막,소리가 안나올 때..</a></li>
+				                </ul>                            
+            </div>
+            <!-- //무료자료실 -->
+            
+            <!-- 클럽랭킹TOT7 -->
+            <div class="main_club">
+             	<h2 class="blind">클럽 랭킹 TOT 7</h2>
+                <span class="st"></span>
+                <ul>
+				                <li>
+                    <span class="rank  rank_top1s">1위</span>
+                    <a href="http://club.pdpop.com/pdpop">★★ 천사클럽 ★★</a>
+                </li>
+				                <li>
+                    <span class="rank  rank_top2s">2위</span>
+                    <a href="http://club.pdpop.com/kbszkdl">▶ Khai Broadcasting S..</a>
+                </li>
+				                <li>
+                    <span class="rank  rank_top3s">3위</span>
+                    <a href="http://club.pdpop.com/x2ok00">HDTV 휴게소</a>
+                </li>
+				                <li>
+                    <span class="rank  rank4s">4위</span>
+                    <a href="http://club.pdpop.com/royalclub2">♡로얄클럽♡</a>
+                </li>
+				                <li>
+                    <span class="rank  rank5s">5위</span>
+                    <a href="http://club.pdpop.com/wawaone">◆ 무한공유엔젤 씨즌2 ◆</a>
+                </li>
+				                <li>
+                    <span class="rank  rank6s">6위</span>
+                    <a href="http://club.pdpop.com/wawajjang">▒▒ ☆ 미리내클럽 ☆ ..</a>
+                </li>
+				                <li>
+                    <span class="rank  rank7s">7위</span>
+                    <a href="http://club.pdpop.com/korea">┃피디팝 DS 코리아┃</a>
+                </li>
+				                </ul>
+            </div>
+            <!-- //클럽랭킹TOT7 -->
+            
+              <!-- 저작권 -->
+            <div class="copylst2">
+                <h2 class="blind">저작권보호목록</h2>
+                <span class="st"><a href="http://bbs.pdpop.com/board_re.php?code=C_01_04" class="more">더보기</a></span>
+                <div class="notilst2">
+                    <ul>
+										<li><a href="http://bbs.pdpop.com/board_re.php?mode=view&code=C_01_04&no=281270">[라온컴퍼니] 영화 [ 돼지같은 여..</a></li>
+										<li><a href="http://bbs.pdpop.com/board_re.php?mode=view&code=C_01_04&no=281168">[엔케이콘텐츠] 애니 [ 나루토 극..</a></li>
+										<li><a href="http://bbs.pdpop.com/board_re.php?mode=view&code=C_01_04&no=281096">[미디어이야기] 영화 [ 칼릴 지브..</a></li>
+										<li><a href="http://bbs.pdpop.com/board_re.php?mode=view&code=C_01_04&no=281074">[씨네그루] 영화 [ 트랜스포터: 리..</a></li>
+										<li><a href="http://bbs.pdpop.com/board_re.php?mode=view&code=C_01_04&no=280873">[다우기술] 영화 [ 아델라인 : 멈..</a></li>
+					                    </ul>
+               </div>
+            </div>
+            <!-- //저작권 -->
+            
+            <!--오른쪽 배너리스트-->
+            <div class="main_rt_copybn">
+             <h2 class="blind">피디팝 저작권, 클린 캠페인</h2>
+            <ul>
+            <li><a href="http://copyright.pdpop.com/" target="_blank"><img src="/images/images_re/banner/main_copy_bn.jpg" alt="저작권보호센터 깨끗하고 건전한 인터넷 문화"/></a></li>
+            <li><a href="http://www.dcna.or.kr/campaign2/" target="_blank"><img src="/images/images_re/banner/main_clean_bn.jpg" alt="클린 인터넷 갬패인 DCNA&지란지교 소프트"/></a></li>
+            </ul>
+            </div>
+        </div><!--오늘쪽영역mn_right//-->		
+		<!-- 오른쪽 영역 rightarea -->
+		<div class="rightarea">
+		</div><!--rightarea//-->
+	</div><!-- container//-->
+	<script type='text/javascript' src='/images/include/bottom_re.html'></script>
+	<script type="text/javascript" src="http://webmail.pdpop.com/UserMailCreate.php"></script>
+<div id='member_info' class='ly_popup ly_mb' style='display:none'></div>
+<!-- 전체 wrap//-->
+</body>
+</html>

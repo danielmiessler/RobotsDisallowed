@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<title>Virgilio - Page Not Found</title>
+<style type="text/css">
+	@font-face {font-family:'RokkittRegular';src:url('http://i.plug.it/iplug/font/rokkitt/Rokkitt.eot');src:url('http://i.plug.it/iplug/font/rokkitt/Rokkitt.eot?#iefix') format('eot'), url('http://i.plug.it/iplug/font/rokkitt/Rokkitt.woff') format('woff'), url('http://i.plug.it/iplug/font/rokkitt/Rokkitt.ttf') format('truetype'), url('http://i.plug.it/iplug/font/rokkitt/Rokkitt.svg#RokkittRegular') format('svg');font-weight:400;font-style:normal}
+	* { margin:0; padding:0; outline:0 }
+	html, body { width:100%; height:100%; overflow:hidden }
+	body { font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333; background:#FFF; overflow-x:auto; overflow-y:scroll }
+	img, input { border:0 }
+	a { color:#0043a8; text-decoration:none; -webkit-transition:color .2s ease;-moz-transition:color .3s ease;-o-transition:color .3s ease;transition:color .3s ease}
+	a:hover { color:#adadad!important }
+	.clear { clear:both; height:0; line-height:0; font-size:0; overflow:hidden }
+	h1, .cerca, #originale, .imposta a, .ricarica a { background:url("http://images.virgilio.it/VIRGILIO/errors/sprite_header_footer.png") no-repeat }
+	#superheader { border-bottom:1px solid #a3a9af; text-align:right; padding:4px 10px; min-width:935px }
+	#superheader a { color:#666 }
+	#wrapper { width:980px; margin:0 auto }
+	#wrapper .content { width:980px; height:496px; position:relative; background:url("http://images.virgilio.it/VIRGILIO/errors/skin.jpg") no-repeat; }
+	#wrapper .content h1 { width:135px; height:57px; position:absolute; left:0; top:0; text-indent:-9999px; background-position:0 -21px; margin-top:21px; z-index:10000 }
+	#wrapper .content #skin { display:block }
+	#wrapper .tool { width:980px; }
+	#wrapper .tool .imposta { width:279px; float:left;visibility:hidden;}
+	#wrapper .tool .imposta a { width:130px; height:37px; display:block; background-position:-321px -155px; margin-top:29px; margin-left:850px; }
+	#wrapper .tool .imposta a:hover { opacity:.7 }
+	#wrapper .content h2 { font-family:"RokkittRegular", Arial, serif; font-weight:normal; font-size:43px; margin:239px 0 0 0px; text-align:center }
+	#wrapper .content p { font-family: Arial, serif; font-size:14px; font-weight:normal; position:absolute; left:2px; top:0; margin:350px 0 0 285px; }
+	#wrapper .content h2 span, p span { color:#ff6600; }
+	#show-time { width:39px; display:inline-block; text-align:center; position:relative; left:0px; top:6px; font-size:36px; font-family:"RokkittRegular", Arial, serif; }
+	#wrapper .content .bt_vai { width:341px; height:44px; margin:60px 0 0 323px; cursor:pointer; }
+	.footer .link { width:955px; text-align:center; font-size:12px; padding:10px 0; color:#666; line-height:19px }
+	.footer .link a { color:#666; font-weight:bold }
+	.footer .link a.note { font-style:italic; font-weight:normal }
+	#shr_box { margin-top:5px }
+</style>
+<script src="http://i.plug.it/iplug/js/lib/std/jquery/jquery-1.7.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+        $(function(){
+                //set VIRGILIO HP
+		//funzione controllo browser
+		var BrowserDetect = {
+				init: function () {
+					this.browser = this.searchString(this.dataBrowser) || "An unknown browser";
+					this.version = this.searchVersion(navigator.userAgent)
+						|| this.searchVersion(navigator.appVersion)
+						|| "an unknown version";
+					this.OS = this.searchString(this.dataOS) || "an unknown OS";
+				},
+				searchString: function (data) {
+					for (var i=0;i<data.length;i++)	{
+						var dataString = data[i].string;
+						var dataProp = data[i].prop;
+						this.versionSearchString = data[i].versionSearch || data[i].identity;
+						if (dataString) {
+							if (dataString.indexOf(data[i].subString) != -1)
+								return data[i].identity;
+						}
+						else if (dataProp)
+							return data[i].identity;
+					}
+				},
+				searchVersion: function (dataString) {
+					var index = dataString.indexOf(this.versionSearchString);
+					if (index == -1) return;
+					return parseFloat(dataString.substring(index+this.versionSearchString.length+1));
+				},
+				dataBrowser: [
+					{
+						string: navigator.userAgent,
+						subString: "Chrome",
+						identity: "Chrome"
+					},
+					{ 	string: navigator.userAgent,
+						subString: "OmniWeb",
+						versionSearch: "OmniWeb/",
+						identity: "OmniWeb"
+					},
+					{
+						string: navigator.vendor,
+						subString: "Apple",
+						identity: "Safari",
+						versionSearch: "Version"
+					},
+					{
+						prop: window.opera,
+						identity: "Opera"
+					},
+					{
+						string: navigator.vendor,
+						subString: "iCab",
+						identity: "iCab"
+					},
+					{
+						string: navigator.vendor,
+						subString: "KDE",
+						identity: "Konqueror"
+					},
+					{
+						string: navigator.userAgent,
+						subString: "Firefox",
+						identity: "Firefox"
+					},
+					{
+						string: navigator.vendor,
+						subString: "Camino",
+						identity: "Camino"
+					},
+					{		// for newer Netscapes (6+)
+						string: navigator.userAgent,
+						subString: "Netscape",
+						identity: "Netscape"
+					},
+					{
+						string: navigator.userAgent,
+						subString: "MSIE",
+						identity: "Explorer",
+						versionSearch: "MSIE"
+					},
+					{
+						string: navigator.userAgent,
+						subString: "Gecko",
+						identity: "Mozilla",
+						versionSearch: "rv"
+					},
+					{ 		// for older Netscapes (4-)
+						string: navigator.userAgent,
+						subString: "Mozilla",
+						identity: "Netscape",
+						versionSearch: "Mozilla"
+					}
+				],
+				dataOS : [
+					{
+						string: navigator.platform,
+						subString: "Win",
+						identity: "Windows"
+					},
+					{
+						string: navigator.platform,
+						subString: "Mac",
+						identity: "Mac"
+					},
+					{
+						   string: navigator.userAgent,
+						   subString: "iPhone",
+						   identity: "iPhone/iPod"
+					},
+					{
+						string: navigator.platform,
+						subString: "Linux",
+						identity: "Linux"
+					}
+				]
+			
+			};
+			BrowserDetect.init();
+		
+			//scelta del componente in base al browser
+			switch (BrowserDetect.browser){
+				case 'Explorer':
+					$('.imposta').css('visibility','visible');
+					$('.imposta A').bind('click', function(){this.style.behavior='url(#default#homepage)';this.setHomePage('http://www.virgilio.it');});
+				break;
+
+			}
+				
+				
+			window.setInterval(function() {
+                    var timeCounter = $("span[id=show-time]").html();
+                    if(timeCounter == 0){
+                        timeCounter = 6;}
+                    var updateTime = eval(timeCounter)- eval(1);
+                    $("span[id=show-time]").html(updateTime);
+                    if(updateTime == 0){
+						$("div[id=my-timer]").html();
+                   window.location = ("http://www.virgilio.it");
+				
+				   }
+                }, 1000);
+        });
+	});
+</script>
+</head>
+<body>
+<div id="superheader"><a href="http://www.virgilio.it">Virgilio</a> | <a href="http://mail.virgilio.it">Mail</a></div>
+<div id="wrapper">
+  <div class="content">
+    <h1>Virgilio Ricerca</h1>
+    <div class="tool">
+      <div class="imposta"><a href="#"></a></div>
+      <div class="clear"></div>
+    </div>
+    <h2><span>OPS!</span> LA PAGINA NON ESISTE</h2>
+    <div id="my-timer">
+      <p><strong>NIENTE PAURA</strong>, FRA <span id="show-time">5</span> SECONDI <strong>ATTERRERAI SUL MORBIDO!</strong></p>
+    </div>
+    <div class="bt_vai"><a href="http://www.virgilio.it"></a><a href="http://www.virgilio.it"><img src="http://images.virgilio.it/VIRGILIO/errors/butt_vai.png" alt="Vai alla Homepage di Virgilio" /></a></div>
+  </div>
+  <!--fine content-->
+  <div class="clear"></div>
+  <!--footer-->
+  <div class="footer">
+    <div class="link">
+      &copy; ITALIAONLINE <script>document.write(new Date().getFullYear())</script><noscript>2014</noscript> - P. IVA 11352961004 | <a class="note" href="http://www.virgilio.it/note_legali.html" onclick="window.open('http://www.virgilio.it/note_legali.html','','scrollbars=no,width=480,height=390');return false;">Note Legali</a><br/>
+    </div>
+  </div>
+  <!--footer-->
+  <div class="footer"> </div>
+</div>
+<!--fine wrapper-->
+</body>
+</html>

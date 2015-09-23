@@ -1,0 +1,2074 @@
+<html>
+<head>
+<title>Index BBVA Net</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<script type="text/javascript"><!--
+
+//Funcisn que deshabilita Esc.
+document.onkeydown = function() {
+	if (window.event && window.event.keyCode == 27) {
+		window.event.keyCode =  505;
+	}
+	
+	if (window.event && window.event.keyCode == 505) {
+		return false;
+	}
+}
+
+document.writeln("<link rel='stylesheet'  type='text/css' href='https://" + location.host + "/estilos/ban_styles.css'>");
+
+var nombrewebseal = window.location.host;
+var altaswebseal = nombrewebseal;
+
+var cadVariables = "";
+var arrVariables = "";
+
+cadVariables = location.search.substring(1); // sin ?
+arrVariables = cadVariables.split("&"); // array de cadenas de tipo "var1=valor1"
+
+var sError = "";
+var yaSeEnvio = false; // Controla que la pagina solo sea enviada una vez
+var acceso = "";
+var usuario = "false";
+var servicio = "n";
+var tarjeta = "";
+var entrada = "";
+var cuenta = "";
+var echeque = "false";
+var ech_empresa = "";
+var ech_numero_convenio = "";
+var ech_referencia = "";
+var ech_concepto = "";
+var ech_importe = "";
+var ech_fecha = "";
+var ech_fecha_prog = ""; //DABP 2006/08/16 Se agraga para SUA
+var numeroPoliza = "";
+var pagoSubsecuente = "";
+var admonConvenios = "";
+var buzon ="";
+var admonBanners = "";
+var sat = "false";
+var anual = "false";
+var valida_campos = "true";
+var pcol = "";
+var vida_bancomer = "";
+var nvoportal = "";
+var Mundo_Tarjeta = "";
+var ntogrup = "";
+var hipotecario = "";
+var TPwidth = "";
+var TPheight = "";
+var portalsat="false";
+
+if (arrVariables != "") {
+   for (i = 0; i < arrVariables.length; i++) {
+       arrVariableActual = arrVariables[i].split("=");
+       if (isNaN(arrVariableActual[1]))
+          window[arrVariableActual[0]] = unescape(arrVariableActual[1]);
+       else
+          window[arrVariableActual[0]] = arrVariableActual[1];
+   } 
+}
+//funcion de enmascarado versionado ago 2011
+if (tarjeta != "" )
+{	
+	tarjeta = (tarjeta.indexOf('AB') == -1) ? tarjeta : enmascara(tarjeta);	
+}
+
+if (cuenta != "")
+{	
+	cuenta = (cuenta.indexOf('AB') == -1) ? cuenta : enmascara(cuenta);	
+}
+
+function enmascara(n)
+{		
+		
+		var param;
+		var ck;
+		var ts;
+		var k;
+		var chk=0;
+		var ch;
+		var param2;
+		var sparams;
+		var dverif;
+		var key;		
+		sparams = n.split("AB");
+		param = sparams[0];
+		dverif = sparams[1];
+		ck = sparams[2];		
+		key = ck;		
+		if (key.length >0) {			
+			do{					
+				key=key+key;
+			}
+			while (key.length <= param.length)			
+			for (k=1; k<=(param.length)/3; k++)
+			{						
+					ch = parseInt(param.substring(k*3-3,k*3)) - parseInt(key.substring(k-1,k*1)) - 100;
+					param2=param2+""+String.fromCharCode(ch);					
+					chk=(chk+ch)%256;					
+			}			
+		}
+		
+		if (chk!= dverif) {			
+			param2=""
+			alert("N\u00FAmero inv\u00E1lido");
+			top.location.href="http://www.bancomer.com.mx"
+			return(false);
+		}
+		else {
+			param2 = param2.replace("undefined","");
+			return(param2);
+		}
+}
+//termina funcion de enmascarado
+function MascaraPublica(strDato){
+if (strDato.length < 1) return "" ;
+var Diccionario = new Array();
+Diccionario[0] = new Array("a", "m", "I", "R", "X", "Y");
+Diccionario[1] = new Array("Q", "n", "b", "A", "W", "1");
+Diccionario[2] = new Array("E", "P", "y", "o", "c", "7");
+Diccionario[3] = new Array("r", "d", "F", "p", "e", "6");
+Diccionario[4] = new Array("D", "O", "q", "f", "J", "2");
+Diccionario[5] = new Array("g", "s", "z", "L", "V", "5");
+Diccionario[6] = new Array("t", "h", "B", "S", "U", "4");
+Diccionario[7] = new Array("i", "j", "u", "H", "k", "3");
+Diccionario[8] = new Array("N", "K", "C", "v", "T", "9");
+Diccionario[9] = new Array("l", "w", "M", "G", "x", "Z");
+var strUnid = "";
+var strAcum = "";
+var bolBrea = false;
+for (i=0;i<strDato.length;i++){
+  strUnid = strDato.substr(i,1);
+  bolBrea = false;
+  for (j=0;j<Diccionario.length;j++){
+    for (k=0;k<Diccionario[j].length;k++){
+      if (strUnid == Diccionario[j][k]){
+        strAcum += j + "";
+        bolBrea = true;
+        break;
+        }
+      }
+    if (bolBrea) break;
+    }
+  if(!bolBrea)strAcum += strUnid
+  }
+return strAcum;
+}
+
+if (tarjeta=="")tarjeta=MascaraPublica(ntogrup)
+if (tarjeta.length == 11)
+   tarjeta = tarjeta.substring(0,8) + "-" + tarjeta.substring(8);
+
+var maxTarjeta;
+if(tarjeta.length < 10 || tarjeta.length > 21){
+    maxTarjeta = 16;
+} else {
+    maxTarjeta = tarjeta.length;
+}
+
+function configurar() {
+   if (cadVariables.indexOf('servicio') == -1)
+       window.location.replace("http://www.bancomer.com.mx");
+}
+
+function enviarAdmon() {
+
+   if (yaSeEnvio) return false;
+
+   document.forms[0].username2.value = document.forms[0].username2.value.toUpperCase();
+   document.forms[0].username.value = document.forms[0].username2.value;
+
+   yaSeEnvio = true;
+
+   return true;
+}
+
+
+function VerificaDatosEntrada() {
+
+   if (yaSeEnvio) return false;
+
+   var ok = true;
+   var yaFallo = false;
+   var cveSec = document.forms[0].password.value;
+   var errores = 'Estimado cliente:\n\n';
+
+   var nTarj = document.forms[0].username2.value;
+   var numero = '0123456789';
+   var cont = 0;
+   var tipotarjeta = acceso != "" ? "cr\u00e9dito" : "d\u00e9bito";
+
+if (valida_campos=="true") {
+
+if (nTarj.length==0) {
+ok=false;
+errores += "Es necesario introducir el n\u00famero de tarjeta de " + tipotarjeta + " (16 d\u00edgitos) ";
+yaFallo=true;
+} else if (nTarj.length < 16 && nTarj.length > 12) {
+alert("Estimado cliente:\nEl n\u00famero de tu tarjeta de " + tipotarjeta + " debe ser de 16 d\u00edgitos");
+ok=false;
+} else if (nTarj.length < 12) {
+alert("Estimado cliente:\nEl n\u00famero de servicio debe ser de 12 d\u00edgitos");
+ok=false;
+} else {
+for (var i=0; i<nTarj.length; i++)
+if (numero.indexOf(nTarj.charAt(i))!=-1)
+cont++;
+
+if (nTarj.charAt(8)=="-")
+cont++
+
+if (cont!=nTarj.length) {
+ok=false;
+errores += "El n\u00famero de tu tarjeta de " + tipotarjeta + " debe ser de 16 d\u00edgitos\n";
+}
+}
+
+if (cveSec.length==0) {
+if (yaFallo)
+errores += "y la clave de acceso"
+else
+errores += 'Es necesario introducir la clave de acceso';
+ok=false;
+} else if (cveSec.length<4) {
+errores+='La clave de acceso debe ser de 4 a 10 caracteres';
+ok=false;
+}
+}
+
+var sinGuion=document.forms[0].username2.value;
+if (sinGuion.charAt(8)=="-")
+sinGuion=sinGuion.substring(0,8) + sinGuion.substring(9);
+
+if(!ok)
+alert(errores)
+else if (servicio!="b")
+document.forms[0].username.value=sinGuion + document.forms[0].nombre.value;
+else
+document.forms[0].username.value=sinGuion;
+
+yaSeEnvio=ok;
+
+return ok;
+}
+function DesbloqueoHipo(){
+window.open('https://' + location.host + '/nhhpp_mx_web/AtpnLogon','_blank','scrollbars=no,resizable=yes,status=yes,width=750,height=500,left=5,top=5')
+}
+function VerificaDatosEntradaHipo() {
+
+   if (yaSeEnvio) return false;
+
+   var ok = true;
+   var yaFallo = false;
+   var cveSec = document.forms[0].password.value;
+   var errores = 'Estimado Cliente:\n\n';
+
+   var nTarj = document.forms[0].username2.value;
+   var numero = '0123456789';
+   var cont = 0;
+
+if (valida_campos=="true") {
+
+if (nTarj.length==0) {
+ok=false;
+errores += "Es necesario introducir el n\u00famero de cr\u00e9dito";
+yaFallo=true;
+} else if (nTarj.length != 20) {
+alert("Estimado cliente:\nEl n\u00famero de tu cr\u00e9dito debe ser de 20 d\u00edgitos");
+ok=false;
+}else {
+for (var i=0; i<nTarj.length; i++)
+if (numero.indexOf(nTarj.charAt(i))!=-1)
+cont++;
+
+if (cont!=nTarj.length) {
+ok=false;
+errores += "El n\u00famero de tu cr\u00e9dito debe ser de 20 d\u00edgitos\n";
+}
+}
+
+if (cveSec.length==0) {
+if (yaFallo)
+errores += " y la clave de acceso"
+else
+errores += 'Es necesario introducir la clave de acceso';
+ok=false;
+}
+}
+if(!ok)
+alert(errores)
+yaSeEnvio=ok;
+document.forms[0].username.value = document.forms[0].username2.value + "ADMINF";
+return ok;
+}
+function inicio() {
+// Inicio unificacion login.html
+if (nombrewebseal != "bbvanet.com.mx" )
+{
+document.cookie="PD-S-SESSION-ID=; Domain=bbvanet.com.mx; expires=-1; path=/";
+}
+// Termina unificacion login.html
+
+document.forms[0].username2.value=tarjeta;
+
+if (servicio=="e") {
+document.forms[0].usuario.value="ADMINF";
+document.forms[0].usuario.focus();
+} else {
+document.forms[0].action="/pkmslogin.form";
+document.forms[0].password.focus();
+}
+if (admonConvenios=="true" || acceso == "tdc01" || acceso == "tdc02" || acceso == "tdc03" || acceso == "tdc04" || acceso == "tdc05" || acceso == "tdc06" || acceso == "tdc07") {
+//document.forms[0].username2.focus();
+document.getElementById('password_CodTarj').focus();
+}
+}
+
+function enviaDefineclavesEmp()
+{
+// 2005-06-15 AME1
+//var host="https://" + altaswebseal + "/portalnet3/portalnet3/LogonAnonimoServlet?proceso=activausuario_pr&operacion=dadefineacceso_op&accion=inicio";
+//var host="http://bal3.bbvanet.com.mx/LogonAnonimoServlet?proceso=activausuario_pr&operacion=dadefineacceso_op&accion=inicio&txtNumTarjetaBAT="+document.forms[0].username2.value+"&txtIdUsuario="+document.forms[0].usuario.value.toUpperCase();
+//2005-06-15
+document.forms[0].txtNumTarjetaBAT.value=document.forms[0].username2.value;
+document.forms[0].txtIdUsuario.value=document.forms[0].usuario.value.toUpperCase();
+var sUser=document.forms[0].txtIdUsuario.value;
+if(sUser=="ADMINF" || sUser=="CLAVE2"){
+var w=window.screen.availWidth-5;
+var h=window.screen.availHeight-5;
+
+//var Ventana=window.open("",'DefEmp','screenX=0,screenY=0,left=0,top=0,width=' + w + ',height=' + h + ',resizable=1,status=yes,toolbar=no,menubar=no,location=no');
+window.open("http://bal3.bbvanet.com.mx/LogonAnonimoServlet?proceso=activausuario_pr&operacion=dadefineacceso_op&accion=inicio&txtNumTarjetaBAT="+document.forms[0].username2.value+"&txtIdUsuario="+document.forms[0].usuario.value.toUpperCase(),'_blank','screenX=0,screenY=0,left=0,top=0,width=' + w + ',height=' + h + ',resizable=1,status=yes,toolbar=no,menubar=no,location=no');
+//document.forms[0].action=host;
+//document.forms[0].method="post";
+//document.forms[0].target="DefEmp";
+//document.forms[0].submit;
+document.forms[0].target="_self";
+
+document.forms[0].action ="/pkmslogin.form";
+}else{
+if(sUser!=null && sUser != "")
+alert("Apreciable cliente: \nEl usuario: "+ sUser+" no puede accesar a este proceso, por favor acuda con su administrador para que le reasigne claves nuevas");
+else
+alert("Apreciable cliente: \nEs requerido capturar el identificador de usuario para accesar a este proceso");
+}
+}
+
+// ------------- Inicio  --------------------
+function VerificaDatosEmpresa() {
+
+if (yaSeEnvio) return false;
+
+if (!valida_campos)
+return true;
+
+var cont=0;
+var ok=true;
+var numeros='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+document.forms[0].usuario.value=document.forms[0].usuario.value.toUpperCase();
+
+  var numCta=document.forms[0].username2.value;
+var cveSec=document.forms[0].password.value;
+var idUsr=document.forms[0].usuario.value;
+var errores='';
+
+for (var i=0; i<numCta.length; i++)
+if (numeros.indexOf(numCta.charAt(i))!= -1)
+cont++;
+
+if(numCta.substring(8,9)== "-"&&numCta.length==12){
+   cont++;
+}
+
+switch(numCta.length) {
+    case 0:
+   errores='\nIntroduzca el n\u00famero de Acceso';
+ok = false;
+break;
+case 12:break;
+case 16:break;
+    default:
+   errores='\nLa longitud del acceso es incorrecta';
+ok=false;
+break;
+}
+if (cont != numCta.length) {
+  errores+='\nEl N\u00famero de acceso contiene caracteres no validos, o el formato no es el adecuado';
+ok=false;
+}
+
+if (idUsr=="" || idUsr==null) {
+errores+='\nIntroduzca su Identificador de Usuario';
+ok=false;
+}
+
+if (cveSec=="" || cveSec==null) {
+errores+='\nIntroduzca la clave secreta';
+ok=false;
+}
+
+var sinGuion=document.forms[0].username2.value;
+if (sinGuion.charAt(8)=="-")
+sinGuion=sinGuion.substring(0,8) + sinGuion.substring(9);
+
+if(!ok)
+alert("Estimado Cliente \n "+ errores);
+else
+document.forms[0].username.value=sinGuion + document.forms[0].usuario.value;
+
+yaSeEnvio=ok;
+
+return ok;
+}
+// ------------- Fin empresas --------------------
+
+function Concatena() {
+document.forms[0].username.value=document.forms[0].username2.value + document.forms[0].nombre.value;
+}
+
+function desbloqueo_tdc() {
+if (servicio=="n") {
+//2005-06-15 AME1
+//document.forms[0].action="https://" + altaswebseal + "/portalnet2/portalnet2/LogonAnonimoServlet?proceso=nuevas_claves_tdc_pr&operacion=nuevas_claves_tdc_op&accion=inicio&acceso=" + acceso;
+//document.forms[0].action="http://bal6.bbvanet.com.mx/LogonAnonimoServlet?proceso=nuevas_claves_tdc_pr&operacion=nuevas_claves_tdc_op&accion=inicio&acceso="+acceso+"&username="+document.forms[0].username2.value;
+//2005-06-15 AME1
+///-document.forms[0].action="https://a1.bbvanet.com.mx/portalblg/portalblg/public/desbloqueousuario";
+//2014/01/25
+///-document.forms[0].username.value=document.forms[0].username2.value;
+///-document.forms[0].submit;
+///-document.forms[0].target="_top";
+///-document.forms[0].action ="/pkmslogin.form";
+
+
+/////////////////
+ var w=window.screen.availWidth-5;
+var h=window.screen.availHeight-5;
+window.open("https://a1.bbvanet.com.mx/portalblg/portalblg/public/desbloqueousuario?username="+document.forms[0].username2.value,'_blank','screenX=0,screenY=0,left=0,top=0,width=' + w + ',height=' + h + ',resizable=1,status=yes,toolbar=no,menubar=no,location=no');
+//document.forms[0].action = "https://a1.bbvanet.com.mx/portalblg/portalblg/public/desbloqueousuario";
+//document.forms[0].username.value=document.forms[0].username2.value;
+//document.forms[0].username.value=document.forms[0].username2.value;
+//document.forms[0].target="Def";
+//document.forms[0].submit;
+document.forms[0].action ="/pkmslogin.form";
+document.forms[0].target="_top"; 
+
+}
+}
+
+function desbloqueo_tp() {
+        if (servicio == "n") {
+                //2009-01-13 JMF
+                //document.forms[0].action="http://bal6.bbvanet.com.mx/LogonAnonimoServlet?proceso=nuevas_claves_tp_pr&operacion=nuevas_claves_tp_op&accion=inicio&acceso="+acceso+"&username="+document.forms[0].username2.value;
+				/////////////////
+var w=window.screen.availWidth-5;
+var h=window.screen.availHeight-5;
+//var Ventana=window.open("",'Def','screenX=0,screenY=0,left=0,top=0,width=' + w + ',height=' + h +',resizable=1,status=yes,toolbar=no,menubar=no,location=no');
+window.open("https://a1.bbvanet.com.mx/portalblg/portalblg/public/desbloqueousuario?username"+document.forms[0].username2.value,'_blank','screenX=0,screenY=0,left=0,top=0,width=' + w + ',height=' + h +',resizable=1,status=yes,toolbar=no,menubar=no,location=no');
+//document.forms[0].action="https://a1.bbvanet.com.mx/portalblg/portalblg/public/desbloqueousuario";
+//document.forms[0].username.value=document.forms[0].username2.value;
+//document.forms[0].target="Def";
+//document.forms[0].submit;
+document.forms[0].action ="/pkmslogin.form";
+document.forms[0].target="_top"; 
+				//2014/01/25
+                ///-document.forms[0].username.value=document.forms[0].username2.value;
+                ///-document.forms[0].submit;
+                ///-document.forms[0].target="_top";
+                ///-document.forms[0].action ="/pkmslogin.form";
+
+        }
+}
+
+
+function registro_tdc() {
+        if (servicio == "n") {
+                document.forms[0].action = "http://bal6.bbvanet.com.mx/LogonAnonimoServlet?proceso=registro_tdc_pr&operacion=registro_tdc_op&accion=inicio&acceso=" + acceso;
+                document.forms[0].submit;
+                document.forms[0].target="_top";
+                document.forms[0].action ="/pkmslogin.form";
+        }
+}
+
+function desbloqueo() {
+var ok=true;
+var nTarj=document.forms[0].username2.value;
+var numero='0123456789';
+var cont=0;
+
+if (nTarj.length==0) {
+alert("Estimado cliente:\nFavor de proporcionar el n\u00famero de tu tarjeta de d\u00e9bito");
+ok=false;
+} else if (nTarj.length < 16 && nTarj.length > 12) {
+alert("Estimado cliente:\nEl n\u00famero de tu tarjeta de d\u00e9bito debe ser de 16 d\u00edgitos");
+ok=false;
+} else if (nTarj.length < 12) {
+alert("Estimado cliente:\nEl n\u00famero de servicio debe ser de 12 d\u00edgitos");
+ok=false;
+} else {
+for (var i=0; i<nTarj.length; i++)
+if (numero.indexOf(nTarj.charAt(i))!=-1)
+cont++;
+if (cont!=nTarj.length) {
+ok=false;
+alert ("Estimado cliente:\nEl n\u00famero de tu tarjeta de d\u00e9bito solo debe tener n\u00fameros");
+}
+}
+/////*******************************************************************cambio everis
+if (ok) {
+if (servicio=="n") {
+  var w=window.screen.availWidth-5;
+  var h=window.screen.availHeight-5;
+  var direccionConCuenta="https://a1.bbvanet.com.mx/portalblg/portalblg/public/desbloqueousuario";
+	window.open(direccionConCuenta,'Def','screenX=0,screenY=0,left=0,top=0,width=' + w + ',height=' + h + ',resizable=1,status=yes,toolbar=no,menubar=no,location=no');
+//2005-06-15 AME1
+//document.forms[0].action="https://" + altaswebseal + "/portalnet2/portalnet2/LogonAnonimoServlet?proceso=desbloqueo_olvido_claves_pr&operacion=desbloqueo_claves_op&accion=entrada_desbloqueo";
+//document.forms[0].action="http://bal6.bbvanet.com.mx/LogonAnonimoServlet?proceso=desbloqueo_olvido_claves_pr&operacion=desbloqueo_claves_op&accion=entrada_desbloqueo&username="+document.forms[0].username2.value;
+//2005-06-15
+//document.forms[0].action="https://a1.bbvanet.com.mx/portalblg/portalblg/public/desbloqueousuario";
+//2014-01-25
+//document.forms[0].username.value=document.forms[0].username2.value;
+//document.forms[0].target="Def";
+//document.forms[0].submit;
+//document.forms[0].action ="/pkmslogin.form";
+//document.forms[0].target="_top";
+} else if (servicio=="b")
+//window.location.replace("https://" + altaswebseal + "/portalnet2/portalnet2/olvido.html");
+window.location.replace("http://bal6.bbvanet.com.mx/olvido.html");
+}
+/////*******************************************************************cambio everis
+}
+
+function netscapeKeyPress(e) {
+if (e.which==13)
+document.forms[0].btn_Entrar.click();
+}
+function microsoftKeyPress() {
+if (window.event.keyCode==13)
+document.forms[0].btn_Entrar.click();
+}
+if (navigator.appName=='Netscape') {
+window.captureEvents(Event.KEYPRESS);
+window.onKeyPress=netscapeKeyPress;
+} else
+document.onKeyPress=microsoftKeyPress;
+
+var tablaEstilos = "tablas.css"
+
+if (acceso == 'tdc01')
+	tablaEstilos = "tablas_walmart.css";
+else if (acceso == 'tdc02')
+	tablaEstilos = "tablas_soriana.css";
+else if (acceso == 'tdc03')
+	tablaEstilos = "tablas_heb.css";
+else if (acceso == 'tdc04')
+	tablaEstilos = "tablas_chedraui.css";
+else if (acceso == 'tdc05')
+	tablaEstilos = "tablas_suburbia.css";
+else if (acceso == 'tdc06')
+	tablaEstilos = "tablas_honda.css";
+else if (acceso == 'tdc07')
+	tablaEstilos = "tablas_sams.css";
+
+
+document.writeln("<link rel='STYLESHEET' type='text/css' href='https://" + location.host + "/images/" + tablaEstilos + "'>");
+
+//-->
+</script>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/jQuery.dPassword.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready( function() {
+        jQuery("#CodTarj").dPassword();
+		jQuery("#password_username2").dPassword();
+    });
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="configurar();inicio();">
+<script type="text/javascript"><!--
+
+if (sError!="")
+if (sError.indexOf("Authentication failed")!=-1) {
+var sUrl="/";
+sUrl=sUrl.replace("%20", " ");
+alert("Apreciable cliente:\nEs necesario introducir la clave de acceso correctamente");
+history.go(-1);
+/*
+if (confirm("Apreciable cliente:\nEs necesario introducir la clave de acceso correctamente" ))
+history.go(-1);
+else {
+history.go(-1);
+alert(sError);
+}
+*/
+                } else if (sError.indexOf("disabled")!=-1 || sError.indexOf("expired")!=-1 ) {
+                        var sUrl="/";
+                        sUrl=sUrl.replace("%20", " ");
+                        alert("Apreciable cliente:\nPor su seguridad su contrase\u00f1a ha sido bloqueada.");
+                        history.go(-1);
+                        /*
+                        if (confirm("Apreciable cliente:\nPor su seguridad su contrase\u00f1a ha sido bloqueada." ))
+                                history.go(-1);
+                        else
+                                history.go(-1);
+                         */
+                        } else
+alert(sError);
+
+// --- DABP 20060816 Se modifica para pintar la Fecha de Programaci&oacute;n para el caso de SUA programadas.
+// --------------------------------- Echeque -----------------------------------
+if (echeque=="true") {
+
+
+document.writeln("<form action='/pkmslogin.form' method='post' onsubmit='return VerificaDatosEntrada()'>" +
+"<table width='100%' border='0' cellspacing='0' cellpadding='0' align='center'>" +
+"<tr>" +
+"<td width='53' bgcolor='#FFFFFF'>" +
+"<img src='https://" + location.host + "/images/lgBBVATp.gif' width='230' height='53' border='0'>" +
+//"<img src='http://bal2.bbvanet.com.mx/config/_img/lgBBVATp.gif' width='230' height='53' border='0'>" +
+"</td>" +
+"<td><img src='https://" + location.host + "/images/cheque_en_linea.jpg' width='510' height='53'></td>" +
+//"<td><img src='http://bal2.bbvanet.com.mx/config/_img/cheque_en_linea.jpg' width='510' height='53'></td>" +
+"</tr>" +
+"</table>" +
+"<table width='740' cellspacing='1' cellpadding='0' border='0'>" +
+"<tr valign='top'>" +
+"<td width='35'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>" +
+"<td width='180'>" +
+"<table cellpadding='2' cellspacing='1' border='0' width='200' align='center'>" +
+"<tr>" +
+"<td height='20'></td>" +
+"</tr>" +
+"<tr>" +
+"<td><img src='https://" + location.host + "/images/txt_cheque.gif' border='0'></td>" +
+//"<td><img src='http://bal2.bbvanet.com.mx/config/_img/txt_cheque.gif' border='0'></td>" +
+"</tr>" +
+"<tr>" +
+"<td>" +
+"<p>" +
+"<br>" +
+"<font face=verdana size=1 color='#003366'>" +
+"Servicio exclusivo para clientes <br>" +
+"de Bancomer.com (Contratado<br>" +
+"en sucursal) y de Bancomer<br>" +
+"NetCash.<br>" +
+"<br>" +
+"En caso de duda o aclaraci&oacute;n,<br>" +
+"llama al centro de atenci&oacute;n<br>" +
+"telef&oacute;nica que te corresponda: <br>" +
+"<br>" +
+"Bancomer.com:<br>" +
+"56-24-11-99 o al<br>" +
+"01-800-11-22-999<br>" +
+"</font>" +
+"</p>" +
+"</td>" +
+"</tr>" +
+"</table>" +
+"</td>" +
+"<td width='15'>&nbsp;</td>" +
+"<td>" +
+"<table cellpadding='2' cellspacing='1' border='0' width='400'>" +
+"<tr><td colspan='4' height='20'></td></tr>" +
+"<tr>" +
+"<td colspan='4' class='cabeceratitulo'>" +
+"<p class='textablacabecera' align='center'><b>Proceso de pago</b></p>" +
+"</td>" +
+"</tr>" +
+"<tr>" +
+"<td class='fila' align='center' height='30'><p class='textablacabecera'>Paso 1 de 4</p></td>" +
+"<td class='cabecera'><p class='textablacabecera'><b>Paso 2 de 4</b></p></td>" +
+"<td class='fila' align='center'><p class='textablacabecera'>Paso 3 de 4</p></td>" +
+"<td class='fila' align='center'><p class='textablacabecera'>Paso 4 de 4</p></td>" +
+"</tr>" +
+"</table>" +
+
+"<input type='Hidden' name='username'>" +
+"<table width='510' cellspacing='1' cellpadding='0' border='0'>" +
+"<tr><td colspan='2' height='5'></td></tr>" +
+"<tr>" +
+"<td class='cabeceratitulo' colspan='2'><p class='dato2'>Datos del pago a realizar</p></td>" +
+"</tr>" +
+"<tr>" +
+"<td class='cabecera2' width='50%'><p class='dato2'>Empresa</p></td>" +
+"<td class='fila' width='50%'><p class='dato2'>" + ech_empresa + "</p></td>" +
+"</tr>" +
+"<tr>" +
+"<td class='cabecera2'><p class='dato2'>Convenio</p></td>" +
+"<td class='fila'><p class='dato2'>" + ech_numero_convenio + "</p></td>" +
+"</tr>" +
+"<tr>" +
+"<td class='cabecera2'><p class='dato2'>Referencia</p></td>" +
+"<td class='fila'><p class='dato2'>" + ech_referencia + "</p></td>" +
+"</tr>" +
+"<tr>" +
+"<td class='cabecera2'><p class='dato2'>Concepto</p></td>" +
+"<td class='fila'><p class='dato2'>" + ech_concepto + "</p></td>" +
+"</tr>" +
+"<tr>" +
+"<td class='cabecera2'><p class='dato2'>Importe</p></td>" +
+"<td class='fila'><p class='dato2'>" + ech_importe + "</p></td>" +
+"</tr>" +
+"<tr>" +
+"<td class='cabecera2'><p class='dato2'>Fecha de Operaci&oacute;n</p></td>" +
+"<td class='fila'><p class='dato2'>" + ech_fecha + "</p></td>" +
+"</tr>");
+//Inicio DABP 20060816 Pinta fecha de programaci&oacute;n
+if (ech_fecha_prog.length == 8) {
+document.writeln(
+"<tr>" +
+"<td class='cabecera2'><p class='dato2'>Fecha de Programaci&oacute;n</p></td>" +
+"<td class='fila'><p class='dato2'>" + ech_fecha_prog.substring(6) + "/" +ech_fecha_prog.substring(4,6)  + "/" + ech_fecha_prog.substring(0,4)  + "</p></td>" +
+"</tr>");
+}
+//Fin DABP 20060816
+document.writeln(
+"</table><br>" +
+"<table width='510' cellspacing='1' cellpadding='0' border='0'>" +
+"<tr>" +
+"<td class='cabeceratitulo' colspan='2'><p class='dato2'>Teclear la clave de acceso a Banca en L&iacute;nea</p></td>" +
+"</tr>" +
+"<tr>" +
+"<td class='cabecera2' width='50%'><p class='dato2'>N&uacute;mero de Tarjeta</p></td>" +
+"<td class='fila'><input type='Text' name='username2' size='16' maxlength='" + maxTarjeta + "' id='CodTarj'></td>" +
+"</tr>");
+
+if (usuario=="true") {
+document.writeln(
+"<tr>" +
+"<td class='cabecera2' width='50%'><p class='dato2'>Identificador de usuario</p></td>" +
+"<td class='fila'><input type='Text' name='nombre' size='16' maxlength='8' value='ADMINF'></td>" +
+"</tr>");
+} else
+document.writeln("<input type='Hidden' name='nombre' value='ADMINF'>");
+document.writeln(
+"<tr>" +
+"<td class='cabecera2' width='50%'><p class='dato2'>Clave de Acceso</p></td>" +
+"<td class='fila'><input type='password' name='password' size='10' maxlength='10'></td>" +
+        "                       <INPUT TYPE='HIDDEN' NAME='login-form-type' VALUE='pwd'>" +
+"</tr>" +
+"</table><br>" +
+"<table width='510' cellspacing='1' cellpadding='0' border='0'>" +
+"<tr>" +
+"<td align='center'><input type='Submit' value='Continuar' name='btn_Entrar'></td>" +
+"</tr>" +
+"</table>" +
+"</td>" +
+"</tr>" +
+"</table>" +
+"</form>");
+}
+//--------------------PortalSAT Julio 2014-------------------------------
+else if(portalsat=="true"){
+document.writeln("<form action='/pkmslogin.form' method='post' onsubmit='return VerificaDatosEntrada()'>"+
+"<input type='Hidden' name='usuario1'>" +
+"<input type='Hidden' name='servicio1'>" +
+"<input type='Hidden' name='username'>" +
+"<table width='100%' border='0' cellspacing='1' cellpadding='1' bordercolor=#ffffff>	"+
+"<tr>"+
+"<td colspan=2 class='cabeceratitulo'><p class='dato2'><b>Acceso al servicio de SAT en L&iacute;nea</b></p></td>"+
+"</tr>"+
+"<tr>"+
+"<td  class='cabecera2' width='50%'><p class='dato2'>&nbsp;N&uacute;mero de Tarjeta o Referencia</p></td>"+
+"<td valign=middle width=50% class='fila'><input type='Text' name='username2' size='16' maxlength='" + maxTarjeta + "' id='CodTarj'></td>"+
+"</tr>");
+if (servicio=="e") {
+document.writeln("<tr>"+
+"<td  class='cabecera2' width='50%'><p class='dato2'>&nbsp;Usuario</p></td>"+
+"<td valign=middle width=50% class='fila'><input type='Text' name='nombre' size='16' maxlength='8' value='ADMINF'></td>"+
+"</tr>");
+} else{
+ document.writeln("<input type='Hidden' name='nombre' value='ADMINF'>");}
+ 
+document.writeln("<td  class='cabecera2' width='50%'><p class='dato2'>&nbsp;Clave de Acceso</p></td>"+
+"<td valign=middle width=50% class='fila'><input type='password' name='password' size='10' maxlength='10'></td>"+
+"<input type='hidden' name='login-form-type' value='pwd'>"+
+"</tr>"+
+"</table><br />"+
+"<table width='100%' cellspacing='1' cellpadding='0' border='0'>"+
+"<tr>"+
+"<td align='center'><input type='Submit' value='Continuar' name='btn_Entrar'></td>"+
+"</tr>"+
+"</table>"+
+"</form>");
+}
+// --------------------------------- Buzsn Bancomer ---------------------------
+else if (buzon=="true") {
+var tipoAcceso = "personas";
+var funcionSubmit = "VerificaDatosEntrada()";
+var liga_definicion_desbloqueo = acceso.length == 0 ? "desbloqueo()" : "desbloqueo_tdc()";
+var ventana_objetivo = "";
+var alto_tabla = "height='127'";
+var gif_entrar;
+var TD_width = "15";
+document.writeln(
+"<style type='text/css'>" +
+".TituloLogin {font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; font-weight:bold; text-transform: none; color:#003399;}" +
+"</style>" +
+"<form method=post action='pkmslogin.form' " + ventana_objetivo + " onSubmit='return " + funcionSubmit + ";'>" +
+"<input type='Hidden' name='usuario1'>" +
+"<input type='Hidden' name='servicio1'>" +
+"<input type='Hidden' name='txtNumTarjetaBAT'>" +
+"<input type='Hidden' name='txtIdUsuario'>" +
+"<input type='Hidden' name='nombre' value='BUZONBCM'>" +
+"<input type='Hidden' name='login-form-type' value='pwd'>" +
+"<input type='Hidden' name='username'>");
+//-----------------------------
+document.writeln(
+"<table width='150' border='0' cellpadding='0' cellspacing='0'>");
+document.writeln(
+"  <tr>" +
+"    <td class='TituloLogin'>N&uacute;mero de Tarjeta</td>" +
+"  </tr>" +
+"  <tr>" +
+"    <td height='49' valign='top'>" +
+"      <input class='tx_gral' type='text' name='username2' maxlength='" + maxTarjeta + "' id='CodTarj' border='1'>" +
+"    </td>" +
+"  </tr>");
+document.writeln(
+"  <tr>" +
+"    <td class='TituloLogin'>Contrase&ntilde;a</td>" +
+"  </tr>"+
+"  <tr>" +
+"    <td height='49' valign='top'>" +
+"      <input class='tx_gral' type='password' name='password' maxlength='16' border='1'>" +
+"    </td>" +
+"  </tr>" +
+"  <tr>" +
+"    <td align='right'>"+
+"      <input type='image' name='btn_Entrar' src='https://" + location.host + "/images/Bentrar.gif'>" +
+"    </td>" +
+"  </tr>"+
+"</table>");
+}
+// --------------------------------- Admon Convenios ---------------------------
+else if (admonConvenios=="true") {
+document.writeln(
+"<form method=post action='/pkmslogin.form' onSubmit='return enviarAdmon()' target='_top' >" +
+"<input type='Hidden' name='username'>");
+
+
+document.writeln(
+"<p align='center'><FONT face=Verdana color=#3366ff size=4>Administraci&oacute;n de Convenios CIE</FONT></p>" +
+"<table border='0' cellspacing='1' cellpadding='3' align='center'>" +
+"<tr>" +
+"<td class='cabeceratitulo' height='25' colspan='2'><p class='titulotabla'>Llena los siguientes datos</p></td>" +
+"</tr>" +
+"<tr>" +
+"<td class='cabecera'><p class='textablacabecera'>Nombre de Usuario</p></td>" +
+"<td class='cabecera'><p class='textablacabecera'>Clave Secreta</p></td>" +
+"</tr>" +
+"<tr>" +
+"<td class='fila' align='middle'><input name='username2' size='16' maxlength='' value=''></td>" +
+"<td class='fila' align='middle'><input type='password' name='password' size='16' value=''></td>" +
+"                       <INPUT TYPE='HIDDEN' NAME='login-form-type' VALUE='pwd'>" +
+"</tr>" +
+"</table><br>" +
+"<table width='335' border='0' cellspacing='1' cellpadding='0' align='center'>" +
+"<tr>" +
+"<td align='middle'><input type='button' value='Salir' onClick='javascript:parent.close()'></td>" +
+"<td align='middle'><input type='submit'  value='Entrar' name='btn_Entrar'></td>" +
+"</tr>" +
+"</table><br>" +
+"</form>");
+}
+// --------------------------------- Admon Banners ---------------------------
+else if (admonBanners=="true") {
+document.writeln(
+"<form method=post action='/pkmslogin.form' onSubmit='return enviarAdmon()' target='_top' >" +
+"<input type='Hidden' name='username'>");
+
+
+document.writeln(
+"<p align='center'><FONT face=Verdana color=#3366ff size=4>Administraci&oacute;n de Banners</FONT></p>" +
+"<table border='0' cellspacing='1' cellpadding='3' align='center'>" +
+"<tr>" +
+"<td class='cabeceratitulo' height='25' colspan='2'><p class='titulotabla'>Llena los siguientes datos</p></td>" +
+"</tr>" +
+"<tr>" +
+"<td class='cabecera'><p class='textablacabecera'>Nombre de Usuario</p></td>" +
+"<td class='cabecera'><p class='textablacabecera'>Clave Secreta</p></td>" +
+"</tr>" +
+"<tr>" +
+"<td class='fila' align='middle'><input name='username2' size='16' maxlength='' value=''></td>" +
+"<td class='fila' align='middle'><input type='password' name='password' size='16' value=''></td>" +
+"                       <INPUT TYPE='HIDDEN' NAME='login-form-type' VALUE='pwd'>" +
+"</tr>" +
+"</table><br>" +
+"<table width='335' border='0' cellspacing='1' cellpadding='0' align='center'>" +
+"<tr>" +
+"<td align='middle'><input type='button' value='Salir' onClick='javascript:parent.close()'></td>" +
+"<td align='middle'><input type='submit'  value='Entrar' name='btn_Entrar'></td>" +
+"</tr>" +
+"</table><br>" +
+"</form>");
+}
+// ---------------------------------- SAT --------------------------------------
+else if (sat=="true") {
+document.writeln(
+"<form method=post action='/pkmslogin.form' target='_top' onSubmit='return VerificaDatosEntrada();'>" +
+"<input type='Hidden' name='usuario1'>" +
+"<input type='Hidden' name='servicio1'>" +
+"<input type='Hidden' name='username'>" +
+"<input type='Hidden' name='anual' value='" + anual + "'>" +
+
+"<table border='0' cellspacing='1' cellpadding='1' width='510'>" +
+"<tr valign='top'>" +
+"<td>" +
+
+" <td width='15'>&nbsp;</td>" +
+"<td width='200'>" +
+"<table cellpadding='2' cellspacing='1' border='0' width='200' align='center'>" +
+"<tr>" +
+"<td>" +
+"<p>" +
+"<font face=verdana size=1 color='#003366'>" +
+"<br>Instrucciones:<br><br>" +
+"</font>" +
+"<font face=verdana size=1 color='#FF9900'>" +
+"<b>Verifique los datos y teclee la " +
+"clave de acceso al servicio" +
+"Banca en L&iacute;nea.<br><br>" +
+"La clave de acceso es sensible" +
+"al uso de MAY&Uacute;SCULAS y" +
+"min&uacute;sculas, favor de capturarla" +
+"como fue registrada</b>" +
+"<br><br>" +
+ "</font>" +
+"<font face=verdana size=1 color='#003366'>" +
+"Servicio exclusivo para usuarios de Bancomer.com contratado en sucursal<br>" +
+"<br>" +
+"Para cualquier duda o aclaraci&oacute;n, llama al Centro de Atenci&oacute;n Telef&oacute;nica al" +
+"<b>5624-1199</b> del Interior <b>01-800-112-2999</b>" +
+"</font>" +
+"</p>" +
+"</td>" +
+"</tr>" +
+"</table>" +
+"</td>" +
+"<td width='15'>&nbsp;</td>" +
+"<td>" +
+
+"<table cellpadding='2' cellspacing='1' border='0' width='400'>" +
+"<tr><td colspan='4' height='20'></td></tr>" +
+"<tr>" +
+"<td colspan='4' class='cabeceratitulo'>" +
+"<p class='textablacabecera' align='center'><b>Proceso de pago</b></p>" +
+"</td>" +
+"</tr>" +
+"<tr>" +
+"<td class='fila' align='center' height='30'><p class='textablacabecera'>Paso 1 de 4</p></td>" +
+"<td class='fila' align='center'><p class='textablacabecera'>Paso 2 de 4</p></td>" +
+"<td class='cabecera'><p class='textablacabecera'><b>Paso 3 de 4</b></p></td>" +
+"<td class='fila' align='center'><p class='textablacabecera'>Paso 4 de 4</p></td>" +
+"</tr>" +
+"<tr>" +
+"<td colspan='4' height='10'></td>" +
+"</tr>" +
+"</table>" +
+
+"<table border='0' cellspacing='1' cellpadding='1' width='510'>" +
+"<tr>");
+
+
+document.writeln(
+"</tr>" +
+"<tr>" +
+"<td colspan='2' class='cabeceratitulo'><p class='titulotabla'>Datos del pago realizado</p></td>" +
+"</tr>");
+
+var sDatImp=DatosImp;
+
+var arrVariables=sDatImp.split("|");
+var varActual="";
+
+for (i=0; i<arrVariables.length; i++) {
+varActual=arrVariables[i];
+
+if (varActual != "EOF") {
+document.writeln("<tr>");
+if (varActual.indexOf(':')==-1) {
+document.writeln(
+"<tr><td colspan='2' height='5'></td></tr>" +
+"<td class='cabeceratitulo'><p class='titulotabla'><b>Tipo de impuesto</b></p></td>" +
+"<td class='cabeceratitulo'><p class='titulotabla'><b>" + varActual + "</b></p></td>");
+} else {
+document.writeln(
+"<td class='cabecera2'><p class='textablacabecera'>" + varActual.substring(0, varActual.indexOf(':')) + "</p></td>" +
+"<td class='fila'><p class='dato'>" + varActual.substring(varActual.indexOf(':')+1, varActual.length) + "</p></td>");
+}
+document.writeln("</tr>")
+} else i=arrVariables.length;
+}
+
+document.writeln(
+"<td class='cabeceratitulo' height='25' colspan='2'><p class='titulotabla'>Captura los siguientes datos</p></td>" +
+"</tr>" +
+"<tr>" +
+"<td class='cabecera2'><p class='dato2'>N&uacute;mero de servicio o tarjeta</p></td>" +
+"<td class='fila'><input type='Text' name='username2' value='' size='16' maxlength='" + maxTarjeta + "' id='CodTarj'></td>" +
+"</tr>");
+
+//Verificar si es necesario capturar el nombre
+if (usuario=="true") {
+document.writeln(
+"<tr>" +
+"<td class='cabecera2'><p class='textablacabecera'>Identificador de usuario</p></td>" +
+"<td class='fila'><input type='Text' name='nombre' value='ADMINF' size='10' maxlength='10'></td>" +
+"</tr>");
+} else
+document.writeln("<input type='Hidden' name='nombre' value='ADMINF'>");
+
+
+document.writeln(
+"<tr>" +
+"<td class='cabecera2'><p class='textablacabecera'>Clave de acceso</p></td>" +
+"<td class='fila'>");
+
+if (servicio=="b")
+document.writeln("<input type='password' name='password' size='9' maxlength='9'>");
+else
+document.writeln("<input type='password' name='password' size='10' maxlength='10'>");
+
+document.writeln("<input type='HIDDEN' name='login-form-type' value='pwd'>" +
+"</td>" +
+"</tr>" +
+"<tr>" +
+"<td colspan='2'>" +
+"<p class='dato2'><b><font color='#ff0000'>Importante:</font></b><br><br>" +
+"La clave de acceso es sensible al uso de MAY&Uacute;SCULAS y min&uacute;sculas, favor de capturarla como fue registrada.</p>" +
+"</td>" +
+"</tr>" +
+"<tr><td height='10'></td></tr>" +
+"</table><br>" +
+"<table width='510' border='0' cellspacing='1' cellpadding='0' align='center'>" +
+"<tr>" +
+"<td align='center'><input type='button' value='Regresar' onClick='javascript:history.go(-2)' name='Regresar'></td>" +
+"<td align='center'><input type='submit' value='Entrar' name='btn_Entrar'></td>" +
+"</tr>" +
+"</table><br>" +
+"</td>" +
+"</tr>" +
+"</table>" +
+"</form>");
+}
+//--------------------WALMART---SORIANA-----------------------------
+else if (acceso == "tdc01" || acceso == "tdc02") {
+    //AME1 2005-06-16 Para enviar a balanceo de portales.
+//var liga_registro="../../portalnet2/portalnet2/LogonAnonimoServlet?proceso=registro_tdc_pr&operacion=registro_tdc_op&accion=inicio&acceso=" + acceso;
+var liga_registro="registro_tdc()";
+var metodo_nuevas_claves="desbloqueo_tdc()";
+var solicitud="Tarjeta de Cr&eacute;dito";
+
+document.writeln(
+"<form method=post action='/pkmslogin.form' target='_top' onSubmit='return VerificaDatosEntrada();'>" +
+"<input type='Hidden' name='usuario1'>" +
+"<input type='Hidden' name='servicio1'>" +
+"<input type='Hidden' name='username'>" +
+"<table border='0' cellspacing='1' cellpadding='3' width='350'>" +
+"<tr>" +
+"<td class='cabeceratitulo' height='25' colspan='2'><p class='titulotabla'>Captura los siguientes datos</p></td>" +
+"</tr>" +
+"<tr>" +
+"<td class='cabecera'><p class='dato2' align='center'>" + solicitud + "</p></td>" +
+"<td class='cabecera'><p class='dato2' align='center'>Clave de acceso</p></td>" +
+"</tr>" +
+"<tr>" +
+"<td class='fila' align='center'><input type='Text' name='username2' value='' size='16' maxlength='16' id='CodTarj'></td>" +
+"<td class='fila' align='center'>" +
+"<input type='password' name='password' size='10' maxlength='10'>" +
+        "                       <INPUT TYPE='HIDDEN' NAME='login-form-type' VALUE='pwd'>" +
+"</td>" +
+"</tr>" +
+"<tr>" +
+"<td colspan='2' class='total'>" +
+"<p class='dato'><b><font color='#ff0000'>Importante:</font></b></p>" +
+"<p class='dato'>La clave de acceso es sensible al uso de MAY&Uacute;SCULAS y min&uacute;sculas, favor de capturarla como fue registrada.</p>" +
+"</td>" +
+"</tr>" +
+"<tr><td height='10'></td></tr>" +
+"<input type='Hidden' name='nombre' value='ADMINF'>" +
+"</table>" +
+"<table width='350' border='0' cellspacing='1' cellpadding='0'>" +
+"<tr>" +
+"<td align='center'><input type='button' value='Salir' onClick='parent.close()'></td>" +
+"<td align='center'><input type='submit' value='Entrar' name='btn_Entrar'></td>" +
+"</tr>" +
+"</table><br>" +
+"<table width='350' border='0' cellspacing='0' cellpadding='0'>" +
+"<tr valign='middle'>" +
+"<td>" +
+"<a href='javascript:" + liga_registro + "' style='font-family:Verdana, Arial, Helvetica, sans-serif; font-size:11pt; text-decoration:none'>" +
+"<img src='https://" + location.host + "/images/flechadown.gif' border='0' border='noborder'>" +
+"Reg&iacute;strate aqu&iacute;</a>" +
+"</td>" +
+"</tr>" +
+"<tr valign='middle'>" +
+"<td>" +
+"<a href='javascript:" + metodo_nuevas_claves + "' style='font-family:Verdana, Arial, Helvetica, sans-serif; font-size:11pt; text-decoration:none'>" +
+"¿Olvidaste o bloqueaste tus claves?" +
+"<img src='https://" + location.host + "/images/flechadown.gif' border='0' border='noborder'>" +
+"</a>" +
+"</td>" +
+"</tr>" +
+"</table><br>" +
+"<table width='350' border='0' cellspacing='0' cellpadding='0'>" +
+"<tr>" +
+"<td>" +
+"<p class='leyenda' style='font-weight: bold'>?Tienes dudas para realizar tu registro?</p>" +
+"<p class='leyenda'>Comun&iacute;cate a los Tel&eacute;fonos:</p>" +
+"<p class='leyenda'>Area Metropolitana 5624 11 99 y del Interior de la Rep&uacute;blica 01800 1122999</p>" +
+"</td>" +
+"</tr>" +
+"</table>" +
+"</form>");
+
+//--------------------HEB-----------------------------
+} else if (acceso == "tdc03") {
+    //AME1 2005-06-16 Para enviar a balanceo de portales.
+//var liga_registro="../../portalnet2/portalnet2/LogonAnonimoServlet?proceso=registro_tdc_pr&operacion=registro_tdc_op&accion=inicio&acceso=" + acceso;
+var liga_registro="registro_tdc()";
+var metodo_nuevas_claves="desbloqueo_tdc()";
+var solicitud="Tarjeta de Cr&eacute;dito";
+
+document.writeln(
+"<form method=post action='/pkmslogin.form' target='_top' onSubmit='return VerificaDatosEntrada();'>" +
+"<input type='Hidden' name='usuario1'>" +
+"<input type='Hidden' name='servicio1'>" +
+"<input type='Hidden' name='username'>" +
+"<table border='0' cellspacing='1' cellpadding='3' width='350'>" +
+"<tr>" +
+"<td class='cabeceratitulo' height='25' colspan='2'><p class='titulotabla'>Captura los siguientes datos</p></td>" +
+"</tr>" +
+"<tr>" +
+"<td class='cabecera'><p class='dato2' align='center'>" + solicitud + "</p></td>" +
+"<td class='cabecera'><p class='dato2' align='center'>Clave de acceso</p></td>" +
+"</tr>" +
+"<tr>" +
+"<td class='fila' align='center'><input type='Text' name='username2' value='' size='16' maxlength='16' id='CodTarj'></td>" +
+"<td class='fila' align='center'>" +
+"<input type='password' name='password' size='10' maxlength='10'>" +
+        "                       <INPUT TYPE='HIDDEN' NAME='login-form-type' VALUE='pwd'>" +
+"</td>" +
+"</tr>" +
+"<tr>" +
+"<td colspan='2' class='total'>" +
+"<p class='dato'><b><font color='#ff0000'>Importante:</font></b></p>" +
+"<p class='dato'>La clave de acceso es sensible al uso de MAY&Uacute;SCULAS y min&uacute;sculas, favor de capturarla como fue registrada.</p>" +
+"</td>" +
+"</tr>" +
+"<tr><td height='10'></td></tr>" +
+"<input type='Hidden' name='nombre' value='ADMINF'>" +
+"</table>" +
+"<table width='350' border='0' cellspacing='1' cellpadding='0'>" +
+"<tr>" +
+"<td align='center'><input type='button' value='Salir' onClick='parent.close()'></td>" +
+"<td align='center'><input type='submit' value='Entrar' name='btn_Entrar'></td>" +
+"</tr>" +
+"</table><br>" +
+"<table width='350' border='0' cellspacing='0' cellpadding='0'>" +
+"<tr valign='middle'>" +
+"<td>" +
+"<a href='javascript:" + liga_registro + "' style='font-family:Verdana, Arial, Helvetica, sans-serif; font-size:11pt; text-decoration:none'>" +
+"<img src='https://" + location.host + "/images/flechadown.gif' border='0' border='noborder'>" +
+"Reg&iacute;strate aqu&iacute;</a>" +
+"</td>" +
+"</tr>" +
+"<tr valign='middle'>" +
+"<td>" +
+"<a href='javascript:" + metodo_nuevas_claves + "' style='font-family:Verdana, Arial, Helvetica, sans-serif; font-size:11pt; text-decoration:none'>" +
+"<img src='https://" + location.host + "/images/flechadown.gif' border='0' border='noborder'>" +
+"¿Olvidaste o bloqueaste tus claves?" +
+"</a>" +
+"</td>" +
+"</tr>" +
+"</table><br>" +
+"<table width='350' border='0' cellspacing='0' cellpadding='0'>" +
+"<tr>" +
+"<td>" +
+"<p class='leyenda' style='font-weight: bold'>?Tienes dudas para realizar tu registro?</p>" +
+"<p class='leyenda'>Comun&iacute;cate a los Tel&eacute;fonos:</p>" +
+"<p class='leyenda'>Area Metropolitana 5624 11 99 y del Interior de la Rep&uacute;blica 01800 1122999</p>" +
+"</td>" +
+"</tr>" +
+"</table>" +
+"</form>");
+//--------------------CHEDRAUI-----------------------------
+
+} else if (acceso == "tdc04") {
+    //AME1 2005-06-16 Para enviar a balanceo de portales.
+//var liga_registro="../../portalnet2/portalnet2/LogonAnonimoServlet?proceso=registro_tdc_pr&operacion=registro_tdc_op&accion=inicio&acceso=" + acceso;
+var liga_registro="registro_tdc()";
+var metodo_nuevas_claves="desbloqueo_tdc()";
+var solicitud="Tarjeta de Cr&eacute;dito";
+
+document.writeln(
+"<form method=post action='/pkmslogin.form' target='_top' onSubmit='return VerificaDatosEntrada();'>" +
+"<input type='Hidden' name='usuario1'>" +
+"<input type='Hidden' name='servicio1'>" +
+"<input type='Hidden' name='username'>" +
+"<table border='0' cellspacing='1' cellpadding='3' width='350'>" +
+"<tr>" +
+"<td class='cabeceratitulo' height='25' colspan='2'><p class='titulotabla'>Captura los siguientes datos</p></td>" +
+"</tr>" +
+"<tr>" +
+"<td class='cabecera'><p class='dato2' align='center'>" + solicitud + "</p></td>" +
+"<td class='cabecera'><p class='dato2' align='center'>Clave de acceso</p></td>" +
+"</tr>" +
+"<tr>" +
+"<td class='fila' align='center'><input type='Text' name='username2' value='' size='16' maxlength='16' id='CodTarj'></td>" +
+"<td class='fila' align='center'>" +
+"<input type='password' name='password' size='10' maxlength='10'>" +
+        "                       <INPUT TYPE='HIDDEN' NAME='login-form-type' VALUE='pwd'>" +
+"</td>" +
+"</tr>" +
+"<tr>" +
+"<td colspan='2' class='total'>" +
+"<p class='dato'><b><font color='#ff0000'>Importante:</font></b></p>" +
+"<p class='dato'>La clave de acceso es sensible al uso de MAY&Uacute;SCULAS y min&uacute;sculas, favor de capturarla como fue registrada.</p>" +
+"</td>" +
+"</tr>" +
+"<tr><td height='10'></td></tr>" +
+"<input type='Hidden' name='nombre' value='ADMINF'>" +
+"</table>" +
+"<table width='350' border='0' cellspacing='1' cellpadding='0'>" +
+"<tr>" +
+"<td align='center'><input type='button' value='Salir' onClick='parent.close()'></td>" +
+"<td align='center'><input type='submit' value='Entrar' name='btn_Entrar'></td>" +
+"</tr>" +
+"</table><br>" +
+"<table width='350' border='0' cellspacing='0' cellpadding='0'>" +
+"<tr valign='middle'>" +
+"<td>" +
+"<a href='javascript:" + liga_registro + "' style='font-family:Verdana, Arial, Helvetica, sans-serif; font-size:11pt; text-decoration:none'>" +
+"<img src='https://" + location.host + "/images/flechadown.gif' border='0' border='noborder'>" +
+"Reg&iacute;strate aqu&iacute;</a>" +
+"</td>" +
+"</tr>" +
+"<tr valign='middle'>" +
+"<td>" +
+"<a href='javascript:" + metodo_nuevas_claves + "' style='font-family:Verdana, Arial, Helvetica, sans-serif; font-size:11pt; text-decoration:none'>" +
+"<img src='https://" + location.host + "/images/flechadown.gif' border='0' border='noborder'>" +
+"¿Olvidaste o bloqueaste tus claves?" +
+"</a>" +
+"</td>" +
+"</tr>" +
+"</table><br>" +
+"<table width='350' border='0' cellspacing='0' cellpadding='0'>" +
+"<tr>" +
+"<td>" +
+"<p class='leyenda' style='font-weight: bold'>?Tienes dudas para realizar tu registro?</p>" +
+"<p class='leyenda'>Comun&iacute;cate a los Tel&eacute;fonos:</p>" +
+"<p class='leyenda'>Area Metropolitana 5624 11 99 y del Interior de la Rep&uacute;blica 01800 1122999</p>" +
+"</td>" +
+"</tr>" +
+"</table>" +
+"</form>");
+//--------------------SUBURBIA-----------------------------
+
+} else if (acceso == "tdc05") {
+    //AME1 2005-06-16 Para enviar a balanceo de portales.
+//var liga_registro="../../portalnet2/portalnet2/LogonAnonimoServlet?proceso=registro_tdc_pr&operacion=registro_tdc_op&accion=inicio&acceso=" + acceso;
+var liga_registro="registro_tdc()";
+var metodo_nuevas_claves="desbloqueo_tdc()";
+var solicitud="Tarjeta de Cr&eacute;dito";
+
+document.writeln(
+"<form method=post action='/pkmslogin.form' target='_top' onSubmit='return VerificaDatosEntrada();'>" +
+"<input type='Hidden' name='usuario1'>" +
+"<input type='Hidden' name='servicio1'>" +
+"<input type='Hidden' name='username'>" +
+"<table border='0' cellspacing='1' cellpadding='3' width='350'>" +
+"<tr>" +
+"<td class='cabeceratitulo' height='25' colspan='2'><p class='titulotabla'>Captura los siguientes datos</p></td>" +
+"</tr>" +
+"<tr>" +
+"<td class='cabecera'><p class='dato2' align='center'>" + solicitud + "</p></td>" +
+"<td class='cabecera'><p class='dato2' align='center'>Clave de acceso</p></td>" +
+"</tr>" +
+"<tr>" +
+"<td class='fila' align='center'><input type='Text' name='username2' value='' size='16' maxlength='16' id='CodTarj'></td>" +
+"<td class='fila' align='center'>" +
+"<input type='password' name='password' size='10' maxlength='10'>" +
+        "                       <INPUT TYPE='HIDDEN' NAME='login-form-type' VALUE='pwd'>" +
+"</td>" +
+"</tr>" +
+"<tr>" +
+"<td colspan='2' class='total'>" +
+"<p class='dato'><b><font color='#ff0000'>Importante:</font></b></p>" +
+"<p class='dato'>La clave de acceso es sensible al uso de MAY&Uacute;SCULAS y min&uacute;sculas, favor de capturarla como fue registrada.</p>" +
+"</td>" +
+"</tr>" +
+"<tr><td height='10'></td></tr>" +
+"<input type='Hidden' name='nombre' value='ADMINF'>" +
+"</table>" +
+"<table width='350' border='0' cellspacing='1' cellpadding='0'>" +
+"<tr>" +
+"<td align='center'><input type='button' value='Salir' onClick='parent.close()'></td>" +
+"<td align='center'><input type='submit' value='Entrar' name='btn_Entrar'></td>" +
+"</tr>" +
+"</table><br>" +
+"<table width='350' border='0' cellspacing='0' cellpadding='0'>" +
+"<tr valign='middle'>" +
+"<td>" +
+"<a href='javascript:" + liga_registro + "' style='font-family:Verdana, Arial, Helvetica, sans-serif; font-size:11pt; text-decoration:none'>" +
+"<img src='https://" + location.host + "/images/flechadown.gif' border='0' border='noborder'>" +
+"Reg&iacute;strate aqu&iacute;</a>" +
+"</td>" +
+"</tr>" +
+"<tr valign='middle'>" +
+"<td>" +
+"<a href='javascript:" + metodo_nuevas_claves + "' style='font-family:Verdana, Arial, Helvetica, sans-serif; font-size:11pt; text-decoration:none'>" +
+"<img src='https://" + location.host + "/images/flechadown.gif' border='0' border='noborder'>" +
+"¿Olvidaste o bloqueaste tus claves?" +
+"</a>" +
+"</td>" +
+"</tr>" +
+"</table><br>" +
+"<table width='350' border='0' cellspacing='0' cellpadding='0'>" +
+"<tr>" +
+"<td>" +
+"<p class='leyenda' style='font-weight: bold'>?Tienes dudas para realizar tu registro?</p>" +
+"<p class='leyenda'>Comun&iacute;cate a los Tel&eacute;fonos:</p>" +
+"<p class='leyenda'>Area Metropolitana 5624 11 99 y del Interior de la Rep&uacute;blica 01800 1122999</p>" +
+"</td>" +
+"</tr>" +
+"</table>" +
+"</form>");
+//--------------------HONDA-----------------------------
+
+} else if (acceso == "tdc06") {
+    //AME1 2005-06-16 Para enviar a balanceo de portales.
+//var liga_registro="../../portalnet2/portalnet2/LogonAnonimoServlet?proceso=registro_tdc_pr&operacion=registro_tdc_op&accion=inicio&acceso=" + acceso;
+var liga_registro="registro_tdc()";
+var metodo_nuevas_claves="desbloqueo_tdc()";
+var solicitud="Tarjeta de Cr&eacute;dito";
+
+document.writeln(
+"<form method=post action='/pkmslogin.form' target='_top' onSubmit='return VerificaDatosEntrada();'>" +
+"<input type='Hidden' name='usuario1'>" +
+"<input type='Hidden' name='servicio1'>" +
+"<input type='Hidden' name='username'>" +
+"<table border='0' cellspacing='1' cellpadding='3' width='350'>" +
+"<tr>" +
+"<td class='cabeceratitulo' height='25' colspan='2'><p class='titulotabla'>Captura los siguientes datos</p></td>" +
+"</tr>" +
+"<tr>" +
+"<td class='cabecera'><p class='dato2' align='center'>" + solicitud + "</p></td>" +
+"<td class='cabecera'><p class='dato2' align='center'>Clave de acceso</p></td>" +
+"</tr>" +
+"<tr>" +
+"<td class='fila' align='center'><input type='Text' name='username2' value='' size='16' maxlength='16' id='CodTarj'></td>" +
+"<td class='fila' align='center'>" +
+"<input type='password' name='password' size='10' maxlength='10'>" +
+        "                       <INPUT TYPE='HIDDEN' NAME='login-form-type' VALUE='pwd'>" +
+"</td>" +
+"</tr>" +
+"<tr>" +
+"<td colspan='2' class='total'>" +
+"<p class='dato'><b><font color='#ff0000'>Importante:</font></b></p>" +
+"<p class='dato'>La clave de acceso es sensible al uso de MAY&Uacute;SCULAS y min&uacute;sculas, favor de capturarla como fue registrada.</p>" +
+"</td>" +
+"</tr>" +
+"<tr><td height='10'></td></tr>" +
+"<input type='Hidden' name='nombre' value='ADMINF'>" +
+"</table>" +
+"<table width='350' border='0' cellspacing='1' cellpadding='0'>" +
+"<tr>" +
+"<td align='center'><input type='button' value='Salir' onClick='parent.close()'></td>" +
+"<td align='center'><input type='submit' value='Entrar' name='btn_Entrar'></td>" +
+"</tr>" +
+"</table><br>" +
+"<table width='350' border='0' cellspacing='0' cellpadding='0'>" +
+"<tr valign='middle'>" +
+"<td>" +
+"<a href='javascript:" + liga_registro + "' style='font-family:Verdana, Arial, Helvetica, sans-serif; font-size:11pt; text-decoration:none'>" +
+"<img src='https://" + location.host + "/images/flechadown.gif' border='0' border='noborder'>" +
+"Reg&iacute;strate aqu&iacute;</a>" +
+"</td>" +
+"</tr>" +
+"<tr valign='middle'>" +
+"<td>" +
+"<a href='javascript:" + metodo_nuevas_claves + "' style='font-family:Verdana, Arial, Helvetica, sans-serif; font-size:11pt; text-decoration:none'>" +
+"<img src='https://" + location.host + "/images/flechadown.gif' border='0' border='noborder'>" +
+"¿Olvidaste o bloqueaste tus claves?" +
+"</a>" +
+"</td>" +
+"</tr>" +
+"</table><br>" +
+"<table width='350' border='0' cellspacing='0' cellpadding='0'>" +
+"<tr>" +
+"<td>" +
+"<p class='leyenda' style='font-weight: bold'>?Tienes dudas para realizar tu registro?</p>" +
+"<p class='leyenda'>Comun&iacute;cate a los Tel&eacute;fonos:</p>" +
+"<p class='leyenda'>Area Metropolitana 5624 11 99 y del Interior de la Rep&uacute;blica 01800 1122999</p>" +
+"</td>" +
+"</tr>" +
+"</table>" +
+"</form>");
+
+//--------------------SAMS-----------------------------
+
+} else if (acceso == "tdc07") {
+    //AME1 2005-06-16 Para enviar a balanceo de portales.
+//var liga_registro="../../portalnet2/portalnet2/LogonAnonimoServlet?proceso=registro_tdc_pr&operacion=registro_tdc_op&accion=inicio&acceso=" + acceso;
+var liga_registro="registro_tdc()";
+var metodo_nuevas_claves="desbloqueo_tdc()";
+var solicitud="Tarjeta de Cr&eacute;dito";
+
+document.writeln(
+"<form method=post action='/pkmslogin.form' target='_top' onSubmit='return VerificaDatosEntrada();'>" +
+"<input type='Hidden' name='usuario1'>" +
+"<input type='Hidden' name='servicio1'>" +
+"<input type='Hidden' name='username'>" +
+"<table border='0' cellspacing='1' cellpadding='3' width='350'>" +
+"<tr>" +
+"<td class='cabeceratitulo' height='25' colspan='2'><p class='titulotabla'>Captura los siguientes datos</p></td>" +
+"</tr>" +
+"<tr>" +
+"<td class='cabecera'><p class='dato2' align='center'>" + solicitud + "</p></td>" +
+"<td class='cabecera'><p class='dato2' align='center'>Clave de acceso</p></td>" +
+"</tr>" +
+"<tr>" +
+"<td class='fila' align='center'><input type='Text' name='username2' value='' size='16' maxlength='16' id='CodTarj'></td>" +
+"<td class='fila' align='center'>" +
+"<input type='password' name='password' size='10' maxlength='10'>" +
+"<INPUT TYPE='HIDDEN' NAME='login-form-type' VALUE='pwd'>" +
+"</td>" +
+"</tr>" +
+"<tr>" +
+"<td colspan='2' class='total'>" +
+"<p class='dato'><b><font color='#ff0000'>Importante:</font></b></p>" +
+"<p class='dato'>La clave de acceso es sensible al uso de MAY&Uacute;SCULAS y min&uacute;sculas, favor de capturarla como fue registrada.</p>" +
+"</td>" +
+"</tr>" +
+"<tr><td height='10'></td></tr>" +
+"<input type='Hidden' name='nombre' value='ADMINF'>" +
+"</table>" +
+"<table width='350' border='0' cellspacing='1' cellpadding='0'>" +
+"<tr>" +
+"<td align='center'><input type='button' value='Salir' onClick='parent.close()'></td>" +
+"<td align='center'><input type='submit' value='Entrar' name='btn_Entrar'></td>" +
+"</tr>" +
+"</table><br>" +
+"<table width='350' border='0' cellspacing='0' cellpadding='0'>" +
+"<tr valign='middle'>" +
+"<td>" +
+"<a href='javascript:" + liga_registro + "' style='font-family:Verdana, Arial, Helvetica, sans-serif; font-size:11pt; text-decoration:none; color: #C5CD8D;'>" +
+"<img src='https://" + location.host + "/images/flechadown.gif' border='0' border='noborder'>" +
+"Reg&iacute;strate aqu&iacute;</a>" +
+"</td>" +
+"</tr>" +
+"<tr valign='middle'>" +
+"<td>" +
+"<a href='javascript:" + metodo_nuevas_claves + "' style='font-family:Verdana, Arial, Helvetica, sans-serif; font-size:11pt; text-decoration:none; color: #C5CD8D;'>" +
+"<img src='https://" + location.host + "/images/flechadown.gif' border='0' border='noborder'>" +
+"¿Olvidaste o bloqueaste tus claves?" +
+"</a>" +
+"</td>" +
+"</tr>" +
+"</table><br>" +
+"<table width='350' border='0' cellspacing='0' cellpadding='0'>" +
+"<tr>" +
+"<td>" +
+"<p class='leyenda' style='font-weight: bold'>?Tienes dudas para realizar tu registro?</p>" +
+"<p class='leyenda'>Comun&iacute;cate a los Tel&eacute;fonos:</p>" +
+"<p class='leyenda'>Area Metropolitana 5624 1199 y del Interior de la Rep&uacute;blica 01 800 112 29 99</p>" +
+"</td>" +
+"</tr>" +
+"</table>" +
+"</form>");
+
+
+} else if (vida_bancomer == "true") {
+
+// ------------------ Vida Bancomer -------------------------
+var liga_definicion_desbloqueo = acceso.length == 0 ? "desbloqueo()" : "desbloqueo_tdc()";
+
+document.writeln(
+"<form method=post action='/pkmslogin.form' onSubmit='return VerificaDatosEntrada();'>" +
+"<input type='Hidden' name='usuario1'>" +
+"<input type='Hidden' name='servicio1'>" +
+"<input type='Hidden' name='txtNumTarjetaBAT'>" +
+"<input type='Hidden' name='txtIdUsuario'>" +
+"<input type='Hidden' name='username'>");
+//-----------------------------
+document.writeln(
+"<div align='left'>" +
+"  <table border='0' cellspacing='0' cellpadding='0' align='left'>" +
+"    <tr>" +
+"      <td width='20'>&nbsp;</td>" +
+"      <td>" +
+"        <table width='138' border='0' cellspacing='0' cellpadding='0' background='https://" + location.host + "/images/bk_acc.gif' align='left'>");
+document.writeln(
+"        <tr><td colspan='2' height='20'></td></tr>" +
+"          <tr>" +
+"            <td width='11'>&nbsp;</td>" +
+"            <td colspan='2' align='left' valign='top'>" +
+"              <span class='txacceso'>Tarjeta de acceso</span><br>" +
+"              <input type='text' name='username2' size='16' maxlength='" + maxTarjeta + "' id='CodTarj'>" +
+"            </td>" +
+"          </tr>");
+document.writeln("<input type='Hidden' name='nombre' value='ADMINF'>");
+document.writeln(
+"          <tr>" +
+"            <td width='11' height='41'>&nbsp;</td>" +
+"            <td colspan='2' height='41'><span class='txacceso'>Clave de acceso</span> <br>" +
+"              <input type='password' name='password' size='16' maxlength='10'>" +
+"              <input type='hidden' name='login-form-type' value='pwd'>" +
+"            </td>" +
+"          </tr>" +
+"          <tr>" +
+"            <td colspan='3' align='center'>" +
+"                               <input type='image' name='btn_Entrar' src='https://" + location.host + "/images/perso_acces_entra.gif' width='40' height='19' align='center' border='0'>" +
+"            </td>" +
+"          </tr>" +
+"          <tr>" +
+"            <td colspan='3' height='1'></td>" +
+"          </tr>" +
+"          <tr>" +
+"            <td width='11'>&nbsp;</td>"+
+"            <td align='left' valign='bottom' colspan='2'><a href='javascript:" + liga_definicion_desbloqueo + "'><span class='txacceso'>¿Olvidaste o bloqueaste tus claves?</span></a>" +
+"            </td>" +
+"          </tr>" +
+"          <tr>" +
+"            <td height='60' colspan='3'>&nbsp;</td>" +
+"          </tr>" +
+"        </table> " +
+"      </td>" +
+"    </tr>" +
+"  </table>" +
+"</div>");
+
+}  else if (Mundo_Tarjeta == "true") {
+// ------------------ Mundo Tarjeta -------------------------
+var liga_definicion_desbloqueo = acceso.length == 0 ? "desbloqueo()" : "desbloqueo_tdc()";
+
+document.writeln('<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border-top: 1px solid #3a6fa5; border-bottom: 1px solid #3a6fa5; border-right: 1px solid #3a6fa5; border-left: 1px solid #3a6fa5; font-family: Verdana, Arial, Helvetica, sans-serif; font-size:10px; color:#3a6fa5; line-height: 11px;"  width="190" height="199" background: #FFFFFF>' +
+    '<tr><td width="11">&nbsp;</td><td align="center" valign="top">' +
+    '<form method="post" action="/pkmslogin.form" onSubmit="return VerificaDatosEntrada();">' +
+    '<input type="Hidden" name="usuario1">' +
+    '<input type="Hidden" name="servicio1">' +
+    '<input type="Hidden" name="txtNumTarjetaBAT">' +
+    '<input type="Hidden" name="txtIdUsuario">' +
+    '<input type="Hidden" name="username">' +
+    '<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; font-family: Verdana, Arial, Helvetica, sans-serif; font-size:10px; color:#3a6af5; line-height: 11px;" background: #FFFFFF width="100%">' +
+	'<tr>&nbsp;</tr>' +
+    '<tr><td align="center" colspan="3"><img src="https://' + location.host + '/images/img_leyenda.gif"></td></tr>' +
+	'<tr><td align="center" colspan="3">&nbsp;</td></tr>' +
+    '<tr><td align="left" colspan="2">Ingresa el n&uacute;mero de tu Tarjeta que utilizas para Banca en L&iacute;nea</td></tr><tr><td height="12" colspan="2"></td></tr><tr><td colspan="2" align="left">' +
+    '<input type="text" name="username2" maxlength="' + maxTarjeta + '" autocomplete="off" size="22" id="CodTarj" style="border-top: 1px solid #3a6fa5; border-bottom: 1px solid #3a6fa5; border-right: 1px solid #3a6fa5; border-left: 1px solid #3a6fa5;">' +
+    '<input type="Hidden" name="nombre" value="ADMINF"></td></tr>' +
+    '<tr><td height="12" colspan="2" align="left"></td></tr><tr><td colspan="2" align="left">Clave de acceso</td></tr><tr><td valign="bottom" align="left">' +
+    '<input type="password" name="password" maxlength="10" autocomplete="off" size="16" style="border-top: 1px solid #3a6fa5; border-bottom: 1px solid #3a6fa5; border-right: 1px solid #3a6fa5; border-left: 1px solid #3a6fa5;">' +
+	'<input type="hidden" name="login-form-type" value="pwd"></td>' +
+    '<td valign="bottom"><input name="image" type="image" width="47" height="19" border="0" src="https://' + location.host + '/images/boton_entrar_vida.gif"></td>' +
+    '</tr></table>' +
+    '</form></td><td width="9">&nbsp;</td></tr>' +
+    '<tr><td align="center" bgcolor="#006EC1" height="10" colspan="3"></td></tr></table>');
+	
+	// ------------------ Login Responsivo-------------------------
+	}else if(Mundo_Tarjeta == "resp"){	
+document.writeln('<div id="form-client-access-ext">'+
+		'<form action="/pkmslogin.form" onSubmit="return VerificaDatosEntrada();" name="login" id="nvologin">'+
+			'<input type="Hidden" name="usuario1">'+
+		    '<input type="Hidden" name="servicio1">'+
+		    '<input type="Hidden" name="txtNumTarjetaBAT">'+
+		    '<input type="Hidden" name="txtIdUsuario">'+
+		    '<input type="Hidden" name="username">'+
+			'<input type="hidden" name="login-form-type" value="pwd">'+
+			'<h2 class="header-login">Bienvenido (a)</h2>'+
+			'<div class="form-group">'+
+			'	<p><b>N&uacute;mero de Tarjeta</b></p>'+
+			'	<input type="text" name="username2" maxlength="' + maxTarjeta + '" autocomplete="off" class="form-control" id="password_username2" value="" placeholder="Tarjeta" />'+
+			'<p></p>');
+			document.writeln("<input type='Hidden' name='nombre' value='ADMINF'>");
+			document.writeln('	<p><b>Contrase&ntilde;a</b></p>'+
+			'	<input type="password" name="password" id="password" class="form-control" autocomplete="off" value="" maxlength="10" placeholder="Contrase&ntilde;a" />'+
+			'</div>'+
+			'<hr>'+
+			'<div class="form-group"><button type="submit" id="loginButton" name="loginButton" class="btn large">Ingresar</button>'+
+			'</div>'+
+		'</form>'+		
+	'</div>');	
+}else if (hipotecario=="true"){
+document.writeln(
+"<style type='text/css'>" +
+".txacc {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9px; line-height: 11px; color: #064F8A; border-top: 1px solid #C4D0E8; border-bottom: 1px solid #C4D0E8; border-right: 1px solid #C4D0E8; border-left: 1px solid #C4D0E8}" +
+".tx_gral {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; line-height: 10px; color: #000000}" +
+"</style>" +
+"<form method=post action='/pkmslogin.form' onSubmit='return VerificaDatosEntradaHipo();'>" +
+"<input type='Hidden' name='usuario1'>" +
+"<input type='Hidden' name='servicio1'>" +
+"<input type='Hidden' name='txtNumTarjetaBAT'>" +
+"<input type='Hidden' name='txtIdUsuario'>" +
+"<input type='Hidden' name='username'>" +
+"<table width='141' height='129' border='0' cellpadding='0' cellspacing='0' bgcolor='F0F3FB' class='txacc'>" +
+"  <tr>" +
+"    <td width='3'colspan='2' height='15'></td>"+
+"  </tr>"+
+"  <tr>" +
+"    <td width='3'>&nbsp;</td>" +
+"    <td align='left' valign='baseline'>N&uacute;mero de Cr&eacute;dito Hipotecario</td>" +
+"  </tr>" +
+"  <tr>" +
+"    <td width='3'>&nbsp;</td>" +
+"    <td align='left' valign='top'>" +
+"      <input class='tx_gral' type='text' name='username2' size='23' maxlength='20' id='CodTarj'>" +
+"    </td>" +
+"  </tr>" +
+"<input type='Hidden' name='nombre' value='ADMINF'>" +
+"  <tr>" +
+"    <td width='3'>&nbsp;</td>" +
+"    <td align='left' valign='baseline'>Contrase&ntilde;a</td>" +
+"  </tr>"+
+"  <tr>" +
+"    <td width='3'>&nbsp;</td>" +
+"    <td align='left' valign='top'>" +
+"      <input class='tx_gral' type='password' name='password' size='16' maxlength='10'>" +
+"      <input type='image' name='btn_Entrar' src='https://" + location.host + "/images/bot_entrar.gif' width='36' height='14' border='0'>" +
+"      <input type='hidden' name='login-form-type' value='pwd'>" +
+"    </td>" +
+"  </tr>" +
+"  <tr>" +
+"    <td width='3'colspan='2' height='15'></td>"+
+"  </tr>"+
+"  <tr>" +
+"    <td width='3'colspan='2' height='3'></td>"+
+"  </tr>"+
+"  <tr>" +
+"    <td width='3'>&nbsp;</td>"+
+"    <td align='left' valign='bottom'><a href='javascript:DesbloqueoHipo();'><span class='txacceso'>¿Olvidaste o bloqueaste tus claves?</span></a></td>" +
+"  </tr>" +
+"  <tr>" +
+"    <td width='3'colspan='2' height='7'></td>"+
+"  </tr>" +
+"</table>");
+
+// Login de acceso para tarjeta prepagada 20090113 JMF
+
+}  else if (acceso == 'tp00'){
+
+document.writeln(
+"<style type='text/css'>" +
+".txacc {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9px; line-height: 11px; color: #064F8A; border-top: 1px solid #C4D0E8; border-bottom: 1px solid #C4D0E8; border-right: 1px solid #C4D0E8; border-left: 1px solid #C4D0E8}" +
+".tx_gral {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; line-height: 10px; color: #000000}" +
+"</style>" +
+"<form method=post action='/pkmslogin.form'  onSubmit='return VerificaDatosEntrada();'>" +
+"<input type='Hidden' name='usuario1'>" +
+"<input type='Hidden' name='servicio1'>" +
+"<input type='Hidden' name='txtNumTarjetaBAT'>" +
+"<input type='Hidden' name='txtIdUsuario'>" +
+"<input type='Hidden' name='username'>");
+//-----------------------------
+document.writeln(
+"<table width='141' height='129' border='0' cellpadding='0' cellspacing='0' bgcolor='F0F3FB' class='txacc'>");
+document.writeln(
+"  <tr>" +
+"    <td width='3'colspan='2' height='15'></td>"+
+"  </tr>"+
+"  <tr>" +
+"    <td width='3'>&nbsp;</td>" +
+"    <td align='left' valign='baseline'>N&uacute;mero de Tarjeta</td>" +
+"  </tr>" +
+"  <tr>" +
+"    <td width='3'>&nbsp;</td>" +
+"    <td align='left' valign='top'>" +
+"      <input class='tx_gral' type='text' name='username2' size='16' maxlength='16' id='CodTarj'>" +
+"    </td>" +
+"  </tr>");
+
+document.writeln("<input type='Hidden' name='nombre' value='ADMINF'>");
+
+document.writeln(
+"  <tr>" +
+"    <td width='3'>&nbsp;</td>" +
+"    <td align='left' valign='baseline'>Contrase&ntilde;a</td>" +
+"  </tr>"+
+"  <tr>" +
+"    <td width='3'>&nbsp;</td>" +
+"    <td align='left' valign='top'>" +
+"      <input class='tx_gral' type='password' name='password' size='16' maxlength='10'>" +
+"      <input type='image' name='btn_Entrar' src='https://" + location.host + "/images/bot_entrar.gif' width='36' height='14' border='0'>" +
+"      <input type='hidden' name='login-form-type' value='pwd'>" +
+"    </td>" +
+"  </tr>" +
+"  <tr>" +
+"    <td width='3'colspan='2' height='15'></td>"+
+"  </tr>"+
+"  <tr>" +
+"    <td width='3'colspan='2' height='3'></td>"+
+"  </tr>"+
+"  <tr>" +
+"    <td width='3'>&nbsp;</td>"+
+"    <td align='left' valign='bottom'><a href=javascript:desbloqueo_tp() ><span class='txacceso'>¿Olvidaste o bloqueaste tus claves?</span></a></td>" +
+"  </tr>" +
+"  <tr>" +
+"    <td width='3'colspan='2' height='7'></td>"+
+"  </tr>" +
+"</table>");
+}  else if (nvoportal == "true"){
+var tipoAcceso = "personas";
+var funcionSubmit = "VerificaDatosEntrada()";
+var liga_definicion_desbloqueo = acceso.length == 0 ? "desbloqueo()" : "desbloqueo_tdc()";
+var ventana_objetivo = "";
+var alto_tabla = "height='127'";
+var gif_entrar;
+var TD_width = "15";
+if (servicio == "e") {
+        tipoAcceso = "empresas";
+        funcionSubmit = "VerificaDatosEmpresa();";
+        liga_definicion_desbloqueo = "enviaDefineclavesEmp();";
+        ventana_objetivo = "";
+        alto_tabla = "";
+        TD_width = "0";
+  }
+document.writeln(
+"<style type='text/css'>" +
+".txacc {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9px; line-height: 11px; color: #064F8A;}" +
+".tx_gral {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; line-height: 10px; color: #000000}" +
+"</style>" +
+"<form method=post action='/pkmslogin.form' " + ventana_objetivo + " onSubmit='return " + funcionSubmit + ";'>" +
+"<input type='Hidden' name='usuario1'>" +
+"<input type='Hidden' name='servicio1'>" +
+"<input type='Hidden' name='txtNumTarjetaBAT'>" +
+"<input type='Hidden' name='txtIdUsuario'>" +
+"<input type='Hidden' name='username'>");
+//-----------------------------
+document.writeln(
+"<table width='239' height='270' border='0' cellpadding='0' cellspacing='0' class='txacc'>");
+document.writeln(
+"  <tr>" +
+"    <td width='3'colspan='2' height='" + TD_width + "'></td>"+
+"  </tr>"+
+"  <tr>" +
+"    <td width='3'>&nbsp;</td>" +
+"    <td align='center' valign='baseline' style='font-family:Arial,Verdana;font-size:16px;font-weight:bold;color:#009EE5;'>N&uacute;mero de Tarjeta</td>" +
+"  </tr>" +
+"  <tr>" +
+"    <td width='3'>&nbsp;</td>" +
+"    <td align='center' valign='top'>" +
+"      <input class='tx_gral' type='text' name='username2' size='18' maxlength='" + maxTarjeta + "' id='CodTarj' style='-webkit-appearance: none;-webkit-box-shadow: rgb(197, 197, 195) 0px 2px 3px 1px inset;-webkit-rtl-ordering: logical;-webkit-user-select: text;-webkit-writing-mode: horizontal-tb;background-color: rgb(255, 255, 255);border-bottom-color: rgb(233, 233, 231);border-bottom-left-radius: 3.8000001907348633px;border-bottom-right-radius: 3.8000001907348633px;border-bottom-style: solid;border-bottom-width: 1px;border-image-outset: 0px;border-image-repeat: stretch;border-image-slice: 100%;border-image-source: none;border-image-width: 1;border-left-color: rgb(207, 207, 207);border-left-style: none;border-left-width: 0px;border-right-color: rgb(207, 207, 207);border-right-style: none;border-right-width: 0px;border-top-color: rgb(207, 207, 207);border-top-left-radius: 3.8000001907348633px;border-top-right-radius: 3.8000001907348633px;border-top-style: none;border-top-width: 0px;box-shadow: rgb(197, 197, 195) 0px 2px 3px 1px inset;color: rgb(207, 207, 207);cursor: auto;display: inline-block;height: 30px;letter-spacing: normal;line-height: normal;margin-bottom: 5px;margin-left: 0px;margin-right: 0px;margin-top: 0px;padding-bottom: 2px;padding-left: 2px;padding-right: 2px;padding-top: 2px;text-align: start;text-indent: 0px;text-shadow: none;text-transform: none;width: 200px;word-spacing: 0px;writing-mode: lr-tb;'>" +
+"    </td>" +
+"  </tr>");
+if (tipoAcceso == "empresas") {
+document.writeln(
+"  <tr>" +
+"    <td width='3'>&nbsp;</td>" +
+"    <td align='center' valign='baseline' style='font-family:Arial,Verdana;font-size:16px;font-weight:bold;color:#009EE5;'>Usuario</td>" +
+"  </tr>"+
+"  <tr>" +
+"    <td width='3'>&nbsp;</td>" +
+"    <td align='center' valign='top'>" +
+"      <input class='tx_gral' type='text' name='usuario' size='16' maxlength='8' style='-webkit-appearance: none;-webkit-box-shadow: rgb(197, 197, 195) 0px 2px 3px 1px inset;-webkit-rtl-ordering: logical;-webkit-user-select: text;-webkit-writing-mode: horizontal-tb;background-color: rgb(255, 255, 255);border-bottom-color: rgb(233, 233, 231);border-bottom-left-radius: 3.8000001907348633px;border-bottom-right-radius: 3.8000001907348633px;border-bottom-style: solid;border-bottom-width: 1px;border-image-outset: 0px;border-image-repeat: stretch;border-image-slice: 100%;border-image-source: none;border-image-width: 1;border-left-color: rgb(207, 207, 207);border-left-style: none;border-left-width: 0px;border-right-color: rgb(207, 207, 207);border-right-style: none;border-right-width: 0px;border-top-color: rgb(207, 207, 207);border-top-left-radius: 3.8000001907348633px;border-top-right-radius: 3.8000001907348633px;border-top-style: none;border-top-width: 0px;box-shadow: rgb(197, 197, 195) 0px 2px 3px 1px inset;color: rgb(207, 207, 207);cursor: auto;display: inline-block;height: 30px;letter-spacing: normal;line-height: normal;margin-bottom: 5px;margin-left: 0px;margin-right: 0px;margin-top: 0px;padding-bottom: 2px;padding-left: 2px;padding-right: 2px;padding-top: 2px;text-align: start;text-indent: 0px;text-shadow: none;text-transform: none;width: 200px;word-spacing: 0px;writing-mode: lr-tb;'>" +
+"    </td>" +
+"  </tr>");
+} else if (usuario == "true") {
+document.writeln(
+"  <tr>" +
+"    <td width='3'>&nbsp;</td>" +
+"    <td align='center' valign='baseline' style='font-family:Arial,Verdana;font-size:16px;font-weight:bold;color:#009EE5;'>Usuario</td>" +
+"  </tr>"+
+"  <tr>" +
+"    <td width='3'>&nbsp;</td>" +
+"    <td align='center' valign='top'>" +
+"      <input class='tx_gral' type='text' name='nombre' size='16' maxlength='10' value='ADMINF' style='-webkit-appearance: none;-webkit-box-shadow: rgb(197, 197, 195) 0px 2px 3px 1px inset;-webkit-rtl-ordering: logical;-webkit-user-select: text;-webkit-writing-mode: horizontal-tb;background-color: rgb(255, 255, 255);border-bottom-color: rgb(233, 233, 231);border-bottom-left-radius: 3.8000001907348633px;border-bottom-right-radius: 3.8000001907348633px;border-bottom-style: solid;border-bottom-width: 1px;border-image-outset: 0px;border-image-repeat: stretch;border-image-slice: 100%;border-image-source: none;border-image-width: 1;border-left-color: rgb(207, 207, 207);border-left-style: none;border-left-width: 0px;border-right-color: rgb(207, 207, 207);border-right-style: none;border-right-width: 0px;border-top-color: rgb(207, 207, 207);border-top-left-radius: 3.8000001907348633px;border-top-right-radius: 3.8000001907348633px;border-top-style: none;border-top-width: 0px;box-shadow: rgb(197, 197, 195) 0px 2px 3px 1px inset;color: rgb(207, 207, 207);cursor: auto;display: inline-block;height: 30px;letter-spacing: normal;line-height: normal;margin-bottom: 5px;margin-left: 0px;margin-right: 0px;margin-top: 0px;padding-bottom: 2px;padding-left: 2px;padding-right: 2px;padding-top: 2px;text-align: start;text-indent: 0px;text-shadow: none;text-transform: none;width: 200px;word-spacing: 0px;writing-mode: lr-tb;'>" +
+"    </td>" +
+"  </tr>");
+} else {
+document.writeln("<input type='Hidden' name='nombre' value='ADMINF'>");
+}
+document.writeln(
+"  <tr>" +
+"    <td width='3'>&nbsp;</td>" +
+"    <td align='center' valign='baseline' style='font-family:Arial,Verdana;font-size:16px;font-weight:bold;color:#009EE5;'>Contrase&ntilde;a</td>" +
+"  </tr>"+
+"  <tr>" +
+"    <td width='3'>&nbsp;</td>" +
+"    <td align='center' valign='top'>" +
+"      <input class='tx_gral' type='password' name='password' size='16' maxlength='10' style='-webkit-appearance: none;-webkit-box-shadow: rgb(197, 197, 195) 0px 2px 3px 1px inset;-webkit-rtl-ordering: logical;-webkit-user-select: text;-webkit-writing-mode: horizontal-tb;background-color: rgb(255, 255, 255);border-bottom-color: rgb(233, 233, 231);border-bottom-left-radius: 3.8000001907348633px;border-bottom-right-radius: 3.8000001907348633px;border-bottom-style: solid;border-bottom-width: 1px;border-image-outset: 0px;border-image-repeat: stretch;border-image-slice: 100%;border-image-source: none;border-image-width: 1;border-left-color: rgb(207, 207, 207);border-left-style: none;border-left-width: 0px;border-right-color: rgb(207, 207, 207);border-right-style: none;border-right-width: 0px;border-top-color: rgb(207, 207, 207);border-top-left-radius: 3.8000001907348633px;border-top-right-radius: 3.8000001907348633px;border-top-style: none;border-top-width: 0px;box-shadow: rgb(197, 197, 195) 0px 2px 3px 1px inset;color: rgb(207, 207, 207);cursor: auto;display: inline-block;height: 30px;letter-spacing: normal;line-height: normal;margin-bottom: 5px;margin-left: 0px;margin-right: 0px;margin-top: 0px;padding-bottom: 2px;padding-left: 2px;padding-right: 2px;padding-top: 2px;text-align: start;text-indent: 0px;text-shadow: none;text-transform: none;width: 200px;word-spacing: 0px;writing-mode: lr-tb;'>" +
+//"      <input type='image' name='btn_Entrar' src='https://" + location.host + "/images/bot_entrar.gif' width='36' height='14' border='0'>" +
+"      <button type='submit' name='btn_Entrar' style='-webkit-appearance: none;-webkit-background-size: 100%;-webkit-writing-mode: horizontal-tb;align-items: flex-start;background-color: rgb(0, 82, 155);background-size: 100%;border-bottom-color: rgb(255, 255, 255);border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border-bottom-style: none;border-bottom-width: 0px;border-image-outset: 0px;border-image-repeat: stretch;border-image-slice: 100%;border-image-source: none;border-image-width: 1;border-left-color: rgb(255, 255, 255);border-left-style: none;border-left-width: 0px;border-right-color: rgb(255, 255, 255);border-right-style: none;border-right-width: 0px;border-top-color: rgb(255, 255, 255);border-top-left-radius: 5px;border-top-right-radius: 5px;border-top-style: none;border-top-width: 0px;box-sizing: border-box;color: rgb(255, 255, 255);cursor: default;display: inline-block;font-weight: bold;height: 35.46875px;letter-spacing: normal;line-height: normal;margin-bottom: 2px;margin-top: 30px;padding-bottom: 9.740667343139648px;padding-left: 0px;padding-right: 0px;padding-top: 9.740667343139648px;text-align: center;text-indent: 0px;text-shadow: none;text-transform: none;width: 200px;word-spacing: 0px;writing-mode: lr-tb;'>Entrar</button>" +
+"      <input type='hidden' name='login-form-type' value='pwd'>" +
+"    </td>" +
+"  </tr>" +
+"  <tr>" +
+"    <td width='3'colspan='2' height='" + TD_width + "'></td>"+
+"  </tr>"+
+"  <tr>" +
+"    <td width='3'colspan='2' height='3'></td>"+
+"  </tr>"+
+"  <tr>" +
+"    <td width='3'>&nbsp;</td>"+
+"    <td align='center' valign='bottom'><a href=javascript:" + liga_definicion_desbloqueo + " style='text-decoration:none;'><span class='txacceso' style='font-size:11px;font-weight:bold;color:#009EE5;'>¿Olvidaste o bloqueaste tus claves?</span></a></td>" +
+"  </tr>" +
+"  <tr>" +
+"    <td width='3'colspan='2' height='7'></td>"+
+"  </tr>" +
+"</table>");
+}  
+else if (nvoportal == "resp"){//portal responsivo
+	var tipoAcceso = "personas";
+	var funcionSubmit = "VerificaDatosEntrada()";
+	var liga_definicion_desbloqueo = acceso.length == 0 ? "desbloqueo()" : "desbloqueo_tdc()";
+	var ventana_objetivo = "";
+	if (servicio == "e") {
+	        tipoAcceso = "empresas";
+	        funcionSubmit = "VerificaDatosEmpresa();";
+	        liga_definicion_desbloqueo = "enviaDefineclavesEmp();";
+	        ventana_objetivo = "";
+	  }
+	document.writeln(
+	"<div id='form-client-access-ext'>"+
+	"<form method=post action='/pkmslogin.form' " + ventana_objetivo + " onSubmit='return " + funcionSubmit + ";'>" +
+	"<input type='hidden' name='usuario1'>"+
+	"<input type='hidden' name='servicio1'>"+
+	"<input type='hidden' name='txtNumTarjetaBAT'>"+
+	"<input type='hidden' name='txtIdUsuario'>"+
+	"<input type='hidden' name='username'>"+
+	"<input type='hidden' name='login-form-type' value='pwd'>"+
+	"<h2 class='header-login'>Bienvenido (a)</h2>"+
+	"<p></p>"+
+	"<div class='form-group'>"+
+	"<p><b>N&uacute;mero de Tarjeta</b></p>"+
+	"<input type='text' name='username2' maxlength='" + maxTarjeta + "' autocomplete='off' class='form-control' id='password_username2' value='' placeholder='Tarjeta' />"+
+	"<p></p>");
+	if(servicio=="n"){
+		document.writeln("<input type='hidden' name='nombre' value='ADMINF'/>");		
+	}
+	else{
+		document.writeln(
+				"<p><b>Usuario</b></p>"+
+				"<input type='text' name='usuario' maxlength='8' value='ADMINF' class='form-control' placeholder='Usuario' />"+
+				"<p></p>");
+	}
+	document.writeln(
+			"<p><b>Contrase&ntilde;a</b></p>"+
+			"<input type='password' name='password' id='password' class='form-control' autocomplete='off' value='' maxlength='10' placeholder='Contrase&ntilde;a' />"+
+			"</div>"+
+			"<hr>"+
+			"<div class='form-group'><button type='submit' id='loginButton' name='loginButton' class='btn large'>Ingresar</button>"+
+			"</div>"+
+			"</form>"+
+			"<a href='javascript:" + liga_definicion_desbloqueo + "' >¿Olvidaste o bloqueaste tus claves?</a>"+
+			"</div>");
+	
+}
+else if (nvoportal == "TampPers"){
+var tipoAcceso = "personas";
+var funcionSubmit = "VerificaDatosEntrada()";
+var liga_definicion_desbloqueo = acceso.length == 0 ? "desbloqueo()" : "desbloqueo_tdc()";
+var ventana_objetivo = "";
+var TD_width = "15";
+if (TPwidth == "") TPwidth = "189";
+if (TPheight == "") TPheight = "124";
+if (servicio == "e") {
+        tipoAcceso = "empresas";
+        funcionSubmit = "VerificaDatosEmpresa();";
+        liga_definicion_desbloqueo = "enviaDefineclavesEmp();";
+        ventana_objetivo = "";
+        TD_width = "0";
+  }
+document.writeln(
+"<style type='text/css'>" +
+".txacc {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9px; line-height: 11px; color: #064F8A; border-top: 1px solid #C4D0E8; border-bottom: 1px solid #C4D0E8; border-right: 1px solid #C4D0E8; border-left: 1px solid #C4D0E8}" +
+".tx_gral {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; line-height: 10px; color: #000000}" +
+"</style>" +
+"<form method=post action='/pkmslogin.form' " + ventana_objetivo + " onSubmit='return " + funcionSubmit + ";'>" +
+"<input type='Hidden' name='usuario1'>" +
+"<input type='Hidden' name='servicio1'>" +
+"<input type='Hidden' name='txtNumTarjetaBAT'>" +
+"<input type='Hidden' name='txtIdUsuario'>" +
+"<input type='Hidden' name='username'>");
+//-----------------------------
+document.writeln(
+"<table width='" + TPwidth + "' height='" + TPheight + "' border='0' cellpadding='0' cellspacing='0' bgcolor='F0F3FB' class='txacc'>");
+document.writeln(
+"  <tr>" +
+"    <td width='3'colspan='2' height='" + TD_width + "'></td>"+
+"  </tr>"+
+"  <tr>" +
+"    <td width='3'>&nbsp;</td>" +
+"    <td align='left' valign='baseline'>N&uacute;mero de Tarjeta</td>" +
+"  </tr>" +
+"  <tr>" +
+"    <td width='3'>&nbsp;</td>" +
+"    <td align='left' valign='top'>" +
+"      <input class='tx_gral' type='text' name='username2' size='25' maxlength='" + maxTarjeta + "' id='CodTarj'>" +
+"    </td>" +
+"  </tr>");
+if (tipoAcceso == "empresas") {
+document.writeln(
+"  <tr>" +
+"    <td width='3'>&nbsp;</td>" +
+"    <td align='left' valign='baseline'>Usuario</td>" +
+"  </tr>"+
+"  <tr>" +
+"    <td width='3'>&nbsp;</td>" +
+"    <td align='left' valign='top'>" +
+"      <input class='tx_gral' type='text' name='usuario' size='16' maxlength='8'>" +
+"    </td>" +
+"  </tr>");
+} else if (usuario == "true") {
+document.writeln(
+"  <tr>" +
+"    <td width='3'>&nbsp;</td>" +
+"    <td align='left' valign='baseline'>Usuario</td>" +
+"  </tr>"+
+"  <tr>" +
+"    <td width='3'>&nbsp;</td>" +
+"    <td align='left' valign='top'>" +
+"      <input class='tx_gral' type='text' name='nombre' size='16' maxlength='10' value='ADMINF'>" +
+"    </td>" +
+"  </tr>");
+} else {
+document.writeln("<input type='Hidden' name='nombre' value='ADMINF'>");
+}
+document.writeln(
+"  <tr>" +
+"    <td width='3'>&nbsp;</td>" +
+"    <td align='left' valign='baseline'>Contrase&ntilde;a</td>" +
+"  </tr>"+
+"  <tr>" +
+"    <td width='3'>&nbsp;</td>" +
+"    <td align='left' valign='top'>" +
+"      <input class='tx_gral' type='password' name='password' size='16' maxlength='10'>" +
+"      <input type='image' name='btn_Entrar' src='https://" + location.host + "/images/bot_entrar.gif' width='36' height='14' border='0'>" +
+"      <input type='hidden' name='login-form-type' value='pwd'>" +
+"    </td>" +
+"  </tr>" +
+"  <tr>" +
+"    <td width='3'colspan='2' height='3'></td>"+
+"  </tr>"+
+"  <tr>" +
+"    <td width='3'>&nbsp;</td>"+
+"    <td align='left' valign='bottom'><a href=javascript:" + liga_definicion_desbloqueo + " ><span class='txacceso'>¿Olvidaste o bloqueaste tus claves?</span></a></td>" +
+"  </tr>" +
+"  <tr>" +
+"    <td width='3'colspan='2' height='7'></td>"+
+"  </tr>" +
+"</table>");
+} else {
+
+var tipoAcceso = "personas";
+var funcionSubmit = "VerificaDatosEntrada()";
+var liga_definicion_desbloqueo = acceso.length == 0 ? "desbloqueo()" : "desbloqueo_tdc()";
+var ventana_objetivo = "";
+var alto_tabla = "height='140'";
+var gif_entrar;
+
+if (pcol == "IF00" || pcol == "IF01" || pcol == "IF02" || pcol == "IF04" || pcol == "IF12") {
+        gif_entrar = "perso_acces_entra.gif";
+} else if (pcol == "IF03") {
+        gif_entrar = "patri_acces_ir.gif";
+} else if (pcol == "IC00") {
+        gif_entrar = "impue_acces_ir.gif";
+} else if (pcol == "IF07") {
+    gif_entrar = "priva_acces_ir.gif";
+} else {
+        gif_entrar = "perso_acces_entra.gif";
+}
+
+// Si el acceso es empresarial cambiamos los parametros para que sean los adecuados
+
+if (servicio == "e") {
+        tipoAcceso = "empresas";
+        funcionSubmit = "VerificaDatosEmpresa();";
+        liga_definicion_desbloqueo = "enviaDefineclavesEmp();";
+        ventana_objetivo = "";
+        if (pcol == "IM01" ){
+                gif_entrar = "negoc_acces_ir.gif";
+        } else if (pcol == "IM02") {
+                gif_entrar = "empre_acces_ir.gif";
+        } else if (pcol == "IM03") {
+                gif_entrar = "corpo_acces_ir.gif";
+        } else if (pcol == "IM04") {
+                gif_entrar = "gobie_acces_ir.gif";
+        } else if (pcol == "IC00") {
+                gif_entrar = "impue_acces_ir.gif";
+        } else {
+                gif_entrar = "empre_acces_ir.gif";
+        }
+        alto_tabla = "";
+}
+
+document.writeln(
+"<form method=post action='/pkmslogin.form' " + ventana_objetivo + " onSubmit='return " + funcionSubmit + ";' style='margin-top: 0; margin-bottom: 0'>" +
+"<input type='Hidden' name='usuario1'>" +
+"<input type='Hidden' name='servicio1'>" +
+"<input type='Hidden' name='txtNumTarjetaBAT'>" +
+"<input type='Hidden' name='txtIdUsuario'>" +
+"<input type='Hidden' name='username'>");
+//-----------------------------
+document.writeln(
+"<div align='left'>" +
+"  <table width='145' border='0' cellspacing='0' cellpadding='0' align='right'>" +
+"    <tr>" +
+"      <td width='3'></td>" +
+"      <td>" +
+"        <table width='140' " + alto_tabla + " border='0' cellspacing='0' cellpadding='0' background='https://" + location.host + "/images/empre_acces_fondo.gif'>");
+
+document.writeln(
+"          <tr>" +
+"            <td width='11'>&nbsp;</td>" +
+"            <td colspan='2' align='left' valign='top'>" +
+"              <span class='txacceso'>No. de tarjeta de acceso</span><br>" +
+"              <input type='text' name='username2' size='16' maxlength='" + maxTarjeta + "' id='CodTarj'>" +
+"            </td>" +
+"          </tr>");
+if (tipoAcceso == "empresas") {
+document.writeln(
+"          <tr>" +
+"            <td width='11'>&nbsp;</td>" +
+"            <td colspan='2'><span class='txacceso'>Usuario</span><br>" +
+"              <input type='text' name='usuario' size='16' maxlength='8'>" +
+"            </td>" +
+"          </tr>");
+} else if (usuario == "true") {
+document.writeln(
+"          <tr> " +
+"            <td width='11'>&nbsp;</td>" +
+"            <td colspan='2'><span class='txacceso'>Usuario</span><br>" +
+"              <input type='text' name='nombre' size='10' maxlength='10' value='ADMINF'>" +
+"            </td>" +
+"          </tr>");
+} else{
+document.writeln("<input type='Hidden' name='nombre' value='ADMINF'>");
+}
+
+document.writeln(
+"          <tr> " +
+"            <td width='11' height='41'>&nbsp;</td>" +
+"            <td colspan='2' height='41'><span class='txacceso'>Clave de acceso</span> <br>" +
+"              <input type='password' name='password' size='10' maxlength='10'>" +
+"              <input type='image' name='btn_Entrar' src='https://" + location.host + "/images/" + gif_entrar + "' width='40' height='19' align='center' border='0'>" +
+"              <input type='hidden' name='login-form-type' value='pwd'>" +
+"            </td>" +
+"          </tr>" +
+"          <tr>" +
+"            <td width='11' height='1'></td>" +
+"               <td colspan='2' align='left' valign='bottom' height='1'></td>" +
+"          </tr>" +
+"          <tr>" +
+"            <td width='11'>&nbsp;</td>"+
+"            <td align='left' valign='bottom' colspan='2'><a href=javascript:" + liga_definicion_desbloqueo + " ><span class='txacceso'>¿Olvidaste o bloqueaste tus claves?</span></a>" +
+"            </td>" +
+"          </tr>" +
+"          <tr>" +
+"            <td height='1' colspan='3'>&nbsp;</td>" +
+"          </tr>" +
+"        </table> " +
+"      </td>" +
+"    </tr>" +
+"  </table>" +
+"</div>");
+}
+try{document.forms[0].username2.value = tarjeta;}catch(e){}
+//om-->
+</script>
+</body>
+
+
+

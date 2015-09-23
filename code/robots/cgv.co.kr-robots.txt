@@ -1,0 +1,813 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Expires" content="-1" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="No-Cache" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="keywords" content="CGV, 시지브이, 영화관, 극장, 영화, 티켓, 박스오피스, 극장, Movie, Theater, Cinema, Cgv, cgv, 예매, 상영작" />
+    <meta name="description" content="CGV는 선진화된 관람문화와 최고의 서비스로 고객에게 잊을 수 없는 감동을 선사합니다. CGV홈페이지를 통해 영화 예매뿐만 아니라 그 이상의 서비스와 감동을 전달하고, 다양한 즐거움과 특별한 경험을 제공하고자 합니다." />
+    <meta property="og:site_name" content="영화 그 이상의 감동. CGV"/>
+    <meta id="ctl00_og_title" property="og:title" content="영화 그 이상의 감동. CGV"></meta>
+    
+    <meta id="ctl00_og_image" property="og:image" content="http://img.cgv.co.kr/common/cgv_200x200.jpg"></meta>
+
+    <link rel="shortcut icon" href="http://img.cgv.co.kr/theater_img/favicon.ico" type="image/x-icon" />
+    <title id="ctl00_headerTitle"></title>
+    <link rel="shortcut icon" type="image/x-icon" href="http://img.cgv.co.kr/R2014/images/favicon.ico" />
+    <link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/reset.css" />
+    <link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/layout.css" />
+    <link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/module.css" />
+    <link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/common.css" />
+    <link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/content.css" />
+    <link rel="stylesheet" media="print" type="text/css" href="http://img.cgv.co.kr/R2014/css/print.css" />
+    <link rel="stylesheet" type="text/css" href="http://img.cgv.co.kr/R2014/js/jquery.ui/smoothness/jquery-ui-1.10.4.custom.min.css" />
+    <script type="text/javascript" src="http://img.cgv.co.kr/R2014/js/app.config.js"></script>
+    <script type="text/javascript" src="/common/js/extraTheaters.js"></script>
+    <script type="text/javascript" src="http://img.cgv.co.kr/R2014/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="http://img.cgv.co.kr/R2014/js/jquery.plugin/jquery.tmpl.min.js"></script>
+    <script type="text/javascript" src="http://img.cgv.co.kr/R2014/js/jquery.plugin/jquery.validate.js"></script>
+    <script type="text/javascript" src="http://img.cgv.co.kr/R2014/js/jquery.plugin/jquery.paging.min.js"></script>
+    <script type="text/javascript" src="http://img.cgv.co.kr/R2014/js/jquery.ui/jquery-ui-1.10.4.custom.min.js"></script>
+    <script type="text/javascript" src="http://img.cgv.co.kr/R2014/js/jquery.utils.js"></script>
+    <script type="text/javascript" src="http://img.cgv.co.kr/R2014/js/app.utils.js"></script>
+    <script type="text/javascript" src="http://img.cgv.co.kr/R2014/js/app.init.js"></script>
+    <!--[if lte IE 9]><script type="text/javascript" src="http://img.cgv.co.kr/R2014/js/jquery.plugin/jquery.placeholder.js"></script><![endif]-->
+    <script type="text/javascript" src="http://img.cgv.co.kr/R2014/js/jquery.plugin/jquery.dotdotdot.min.js"></script>
+    <script type="text/javascript" src="http://img.cgv.co.kr/R2014/js/silverlight_link.js"></script>
+    
+    <!-- 각페이지 Header Start--> 
+    
+    <!--/각페이지 Header End--> 
+    <script type="text/javascript">
+        //<![CDATA[
+
+        _TRK_CP = "/홈";
+
+        app.config('staticDomain', 'http://img.cgv.co.kr/R2014/')
+            .config('imageDomain', 'http://img.cgv.co.kr')
+            .config('isLogin', 'False');
+
+        // AD FLOAT
+        // 암호화 할 문자열과 키값(상수값)을 매개변수로 받는다.
+        function EncryptAD(str, key) {
+            output = new String;
+            Temp = new Array();
+            TextSize = str.length;
+            for (i = 0; i < TextSize; i++) {
+                // key 값을 원하는 대로 연산을 한다
+                output += String.fromCharCode(str.charCodeAt(i) + parseInt(key) + 123 + i);
+            }
+            return output;
+        }
+        // 복호화
+        // 암호화 된 문자열과 키값(상수값)을 매개변수로 받는다.
+        function DecryptAD(str, key) {
+            output = new String;
+            Temp = new Array();
+            TextSize = str.length;
+            for (i = 0; i < TextSize; i++) {
+                // 암호화시 사용한 연산과 같아야 한다.
+                output += String.fromCharCode(str.charCodeAt(i) - (parseInt(key) + 123 + i));
+            }
+
+            return output;
+        }
+
+        function getCookieVal(offset) {
+            var endstr = document.cookie.indexOf(";", offset);
+            if (endstr == -1) endstr = document.cookie.length;
+            return unescape(document.cookie.substring(offset, endstr));
+        }
+        function GetCookieAd(name) {
+            var arg = name + "=";
+            var alen = arg.length;
+            var clen = document.cookie.length;
+            var i = 0;
+            while (i < clen) { //while open
+                var j = i + alen;
+                if (document.cookie.substring(i, j) == arg)
+                    return getCookieVal(j);
+                i = document.cookie.indexOf(" ", i) + 1;
+                if (i == 0) break;
+            } //while close
+            return null;
+        }
+        function setCookieAD(name, value, expiredays) {
+            var todayDate = new Date();
+            todayDate.setTime(todayDate.getTime() + (expiredays * 24 * 60 * 60 * 1000));
+            document.cookie = name + "=" + escape(value) + "; expires=" + todayDate.toGMTString() + "; path=/; domain=cgv.co.kr";
+        }
+        function CloseAD() {
+            var AdUrl = window.location.href;
+            var ArrAdUrl = AdUrl.split("/");
+
+            var CurCookieName = 'CgvPopAd-' + ArrAdUrl[3];
+            var CurCookieUrl = GetCookieAd(CurCookieName);
+            var CookieUrl = ArrAdUrl[3];
+
+            CookieUrl = EncryptAD(CookieUrl, "15442280");
+            setCookieAD(CurCookieName, CookieUrl, '1');
+            $(document).find('#ad_float1').hide();
+        }
+        function OpenAD() {
+            var AdUrl = window.location.href;
+            var ArrAdUrl = AdUrl.split("/");
+            var CookieUrl = ArrAdUrl[3];
+            var CurCookieName = 'CgvPopAd-' + ArrAdUrl[3];
+            var CurCookieUrl = GetCookieAd(CurCookieName);
+
+            if (CurCookieUrl == null) {
+                CurCookieUrl = "";
+            }
+            else {
+                CurCookieUrl = DecryptAD(CurCookieUrl, "15442280");
+            }
+
+            if (CurCookieUrl.indexOf(CookieUrl) != -1) {
+                $(document).find('#ad_float1').hide();
+            }
+
+            //section.cgv.co.kr 매거진 체크
+            var magazineckurl = GetCookieAd("CgvPopAd-magazine");
+            if (magazineckurl != null) {
+                var magazineck = DecryptAD(magazineckurl, "15442280");
+                if (magazineck != null && magazineck == "magazine") {
+                    //값이있는경우 표시하지않음
+                    $(document).find('#ad_float1').hide();
+                }
+            }
+        }
+
+
+
+        //상단 키워드 광고 (S)
+        function AdSearchExt(txt, SearchText) {
+            $('#header_keyword').attr('placeholder', txt);
+            $('#header_ad_keyword').val(SearchText);
+        }
+
+        function hdIcoSet(left, sh) { }
+        //상단 키워드 광고 (E)
+
+
+        //특별관 클럽 팝업
+        function openSpecialClub() {
+            //            var win = window.open('http://section.cgv.co.kr/event/SpecialClub/2014clubInfo_pop.aspx', 'winSpecialClub', 'left=0,top=0,width=670,height=800,toolbar=no,scrollbars=yes');
+            var win = window.open('http://www.cgv.co.kr/event/develop/1503_CLUB_Info.aspx', 'winSpecialClub', 'left=0,top=0,width=580,height=700,toolbar=no,scrollbars=yes'); 
+            win.focus();
+        }
+
+        //동성로타운
+        function openDownTown() {
+            var win = window.open('http://section.cgv.co.kr/event/dongsungroTown/serviceInfo.aspx', 'winDownTown', 'left=0,top=0,width=670,height=800,toolbar=no,scrollbars=yes');
+            win.focus();
+        }
+
+        //노원타운
+        function openNowonTown() {
+            var win = window.open('http://section.cgv.co.kr/event/NowonTown/serviceInfo.aspx', 'winNowonTown', 'left=0,top=0,width=700,height=800,toolbar=no,scrollbars=yes');
+            win.focus();
+        }
+
+
+        //상단광고닫기
+        function hideCgvTopAd() {
+            $(".cgv-ad-wrap").hide();
+            $('#wrap_main_notice').parent('div').css('top', 280);
+        }
+
+        //비즈스프링 클릭로그
+        function setClickLog(title) {
+            eval("try{trk_clickTrace('EVT', '" + title + "')}catch(_e){}");
+        }
+
+        //]]>
+    </script>
+    <script type="text/javascript" src="https://nsso.cjone.com/findCookieSecured.jsp?cjssoq=kOrrMtxLuWGiRjYB0IIDA7EUhoynjc%2bbKguJOggJEgktCxWG0aCQPQBlUer7dLqIJSLz9bp5NwSvr2X0RKIm5TFmVFFzbHA1a214MDhiSEx6NTV5MWtPdmdEOXllamJvUEVycHR4eTRlV2RYRW9uVkhZaHNMYjVNdk9OMFI0R3c%3d"></script>
+</head>
+<body class="">
+
+    <form name="ssologinfrm" action="https://www.cgv.co.kr/user/login/login-sso.aspx" method="post">
+        <input type="hidden" id="cjssoq" name="cjssoq" />
+        <input type="hidden" name="returnURL" value="/error/default.aspx" />
+    </form>
+    <script type="text/javascript">
+        function cjsso() {
+            if ((typeof _cjssoEncData) != "undefined" && _cjssoEncData != "") {
+                document.getElementById("cjssoq").value = _cjssoEncData;
+                document.ssologinfrm.submit();
+            }
+        }
+
+        cjsso();
+    </script>
+
+<div class="skipnaiv">
+	<a href="#contents" id="skipHeader">메인 컨텐츠 바로가기</a>
+</div>
+<div id="cgvwrap">
+    <div class="cgv-ad-wrap" id="cgv_main_ad">
+        <div id="TopBarWrapper" class="sect-head-ad">
+            <div class="top_extend_ad_wrap">
+                <div class="adreduce" id="adReduce">                    
+                    <iframe src="http://ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/sub@TopBar_EX" width="100%" height="80" title="" frameborder="0" scrolling="no" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" name="TopBanner" id="TopBanner"></iframe>
+                </div> 
+                <div class="adextend" id="adExtend"></div>
+            </div><!-- //.top_extend_ad_wrap -->
+        </div>    
+    </div>    
+	<!-- Header -->
+	<div id="header">
+		<div class="head">
+			<h1><a href="/" onclick="setClickLog('/메인/GNB/로고');"><img src="http://img.cgv.co.kr/R2014/images/title/h1_cgv.png" alt="CGV" /></a></h1>
+			<div class="sect-service">
+				<h2>서비스 메뉴</h2>
+				<ul class="util">
+					<li><a href="http://section.cgv.co.kr/event/appRenewal/default.aspx" class="app" target="_blank" title="CGV앱 4.0 설치 새창"  onclick="setClickLog('/GNB/CGV앱4.0설치');"><span>CGV앱 4.0 설치</span></a></li>
+					<li><a href="https://www.facebook.com/CJCGV" class="like" target="_blank" title="Facebook 좋아요! 새창" onclick="setClickLog('/GNB/Facebook좋아요!');"><span>Facebook 좋아요!</span></a></li>
+					<li><a href="/discount/" class="frugal" onclick="setClickLog('/GNB/알뜰한영화관랍법!');"><span>알뜰한 영화관람법!</span></a></li> <!-- 할인카드 -->
+				</ul>
+				<ul class="gnb">
+                
+                    <li><a href="/user/login/?returnURL=http%3a%2f%2fwww.cgv.co.kr%2ferror%2fdefault.aspx" class="login" onclick="setClickLog('/GNB/로그인');"><span>로그인</span></a></li>
+					<li><a href="/user/join/" class="join" onclick="setClickLog('/GNB/회원가입');"><span>회원가입</span></a></li>
+                    
+                
+
+					<li><a href="/user/mycgv/" class="mycgv required-login" data-url="/user/mycgv/" onclick="setClickLog('/GNB/MYCGV');"><span>MY CGV</span></a></li>
+					<li><a href="/user/vip-lounge/" class="vip" onclick="setClickLog('/GNB/VIPLOUNGE');"><span>VIP LOUNGE</span></a></li>
+					<li><a href="/user/memberShip/ClubService.aspx" title="새창" class="club specialclub" onclick="setClickLog('/GNB/Club서비스');" ><span>CLUB 서비스</span></a></li>
+					<!-- 2014.12.8 리뉴얼-->
+					<li><a href="/support/default.aspx" class="customer" onclick="setClickLog('/GNB/고객센터');"><span>고객센터</span></a></li>
+				    <!-- 2014.12.8 리뉴얼-->
+					<li><a href="/ticket/eng/newdefault.aspx" class="showtimes"  onclick="setClickLog('/GNB/EnglishTicketing');"  ><span>ENGLISH TICKETING</span></a></li>
+				</ul>
+			</div>
+            
+            <div class="im-wrap"> <!-- Important wrap -->
+				<h2><img src="http://img.cgv.co.kr/R2014/images/title/h2_cultureplex.png" alt="CULTUREPLEX" /></h2>
+				<!-- Local Navigation Bar -->
+				<div class="lnb">
+					<h2>CGV 주메뉴</h2>
+					<ul id="gnb_list">
+						<li class="movie"><a href="/movies/">영화</a>
+							<div class="sub-wrap">
+								<i></i>
+								<div class="smenu">
+									<ul>
+										<li><a href="/movies/?ft=0" onclick="setClickLog('/GNB/영화/무비차트');">무비차트</a></li>
+										<li><a href="/movies/hd-trailer.aspx" onclick="setClickLog('/GNB/영화/HD트레일러');">HD 트레일러</a></li>
+										<li><a href="/movies/finder.aspx" onclick="setClickLog('/GNB/영화/무비파인더');">무비파인더</a></li>
+										<li><a href="/movies/point/" onclick="setClickLog('/GNB/영화/평점');">평점</a></li>
+										<li class="last"><a href="/arthouse/" onclick="setClickLog('/GNB/영화/아트하우스');">CGV아트하우스</a></li>
+									</ul>
+								</div>
+							</div>
+						</li>
+						<li class="booking"><a href="/ticket/">예매</a>
+							<div class="sub-wrap">
+								<i></i>
+								<div class="smenu">
+									<ul>
+										<li><a href="/ticket/" onclick="setClickLog('/GNB/예매/빠른예매');">빠른예매</a></li>
+										<li><a href="/reserve/show-times/" onclick="setClickLog('/GNB/예매/상영시간표');">상영시간표</a></li>
+									</ul>
+								</div>
+							</div>
+						</li>
+						<li class="theaters"><a href="/theaters/">극장</a>
+							<div class="sub-wrap">
+								<i></i>
+								<div class="smenu">
+									<ul>
+										<li><a href="/theaters/" onclick="setClickLog('/GNB/극장/CGV극장');">CGV 극장</a></li>
+										<li><a href="/theaters/special/" onclick="setClickLog('/GNB/극장/특별관');">특별관</a></li>
+										<li class="last"><a href="/user/memberShip/ClubService.aspx" title="새창" class="specialclub" onclick="setClickLog('/GNB/극장/Club서비스');">Club서비스</a></li>
+									</ul>
+								</div>
+							</div>
+						</li>
+                        <li class="culture"><a href="/culture-event/event/">이벤트&amp;컬쳐</a>
+							<div class="sub-wrap">
+								<i></i>
+								<div class="smenu">
+									<ul>
+										<li><a href="/culture-event/event/" onclick="setClickLog('/GNB/이벤트');">이벤트</a></li>
+										<li><a href="/culture-event/culture-shop/" onclick="setClickLog('/GNB/티켓팝콘스토어');">티켓·팝콘스토어</a></li>
+										<li><a href="/magazine/" onclick="setClickLog('/GNB/매거진');">매거진</a></li>
+										<li><a href="/culture-event/cultureplex/" onclick="setClickLog('/GNB/컬처플렉스');">컬처플렉스</a></li>
+										
+									</ul>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!-- /Local Navigation Bar -->
+                <!-- Integrated search(통합검색) -->
+                <div class="sect-srh">
+					<h2>통합검색서비스</h2>
+					<fieldset>
+						<legend>통합검색</legend>
+						<input type="text" title="통합검색" id="header_keyword" name="header_keyword" minlength="2" maxlength="20" />
+                        <input type="hidden" id="header_ad_keyword" name="header_ad_keyword" />
+						<button type="button" class="btn-go-search" id="btn_header_search" onblur="setClickLog('/GNB/검색아이콘');">검색</button>
+                        <iframe src="http://ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/main@Search_txt" width="0" height="0" title="" frameborder="0" scrolling="no" marginwidth="0" marginheight="0"></iframe>
+					</fieldset>
+				</div>
+				<!-- /Integrated search(통합검색) -->
+				<!-- Quick Phototicket -->
+				<div class="sect-phototicket">
+					<h2>CGV 포토티켓</h2>
+					<a href="http://phototicket.cgv.co.kr/" onclick="setClickLog('/GNB/포토티켓');" target="_blank">CGV 포토티켓</a>
+				</div>
+				<!-- /Quick Phototicket -->
+				<!-- Advertisement -->
+                
+				<div class="ad-partner">
+                    <a href="http://section.cgv.co.kr/discount/Special/discount/Default.aspx"  onclick="setClickLog('/GNB/제휴배너(검색)');">
+                        <img src="http://img.cgv.co.kr/Event/Event/JehuBanner/2015/0917/web_BC_133.png" alt="비씨카드" />
+                    </a>
+					 <!-- 외부광고영역 -->
+				</div>
+                
+				<!-- /Advertisement -->
+			</div>
+		</div>
+        <!-- Personalization -->
+		
+		<!-- /Personalization -->        
+        <!-- txt banner -->
+        
+        <!-- /text banner -->
+	</div>
+	<!-- /Header -->
+	<!-- Contaniner -->
+	<div id="contaniner" class=""><!-- 벽돌 배경이미지 사용 시 class="bg-bricks" 적용 / 배경이미지가 없을 경우 class 삭제  -->
+
+        <!-- LineMap -->
+
+        <div id="ctl00_navigation_line" class="linemap-wrap">
+            <div class="sect-linemap">
+                <div class="sect-bcrumb">
+                    <ul>
+                        <li><a href="/"><img alt="home" src="http://img.cgv.co.kr/R2014/images/common/btn/btn_home.png" /></a></li>
+                        
+                        
+                    </ul>
+                </div>
+                <div class="sect-special">
+                    <ul>
+                       
+                        <li><a href="/user/vip-lounge/">VIP LOUNGE</a></li>
+                        <li><a href="/user/memberShip/ClubService.aspx" title="새창" class="specialclub">Club서비스</a></li>
+                        <li><a href="http://phototicket.cgv.co.kr/" title="새창" class="photi" target="_blank">포토티켓</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- //LineMap -->
+
+		<!-- Contents Area -->
+		<div id="contents" class="">
+            
+            <!-- Contents Start -->
+			
+<div class="sect-error">
+    <h3>이용에 불편을 드려 죄송합니다.</h3>
+    <p>방문하시려는 웹 페이지의 주소가 잘못 입력되었거나 변경 또는 삭제되어 요청하신 페이지를 찾을 수 없습니다.<br />입력하신 주소가 정확한지 다시 한 번 확인해 주시기 바랍니다. 감사합니다.</p>
+    <a href="javascript:history.back()" class="round red history_back"><span>이전 페이지 이동</span></a>
+    <a href="/support/default.aspx" onclick="setClickLog('/GNB/고객센터');" class="round red second"><span>고객센터(1544-1122)</span></a>
+	<a href="/" class="round inred"><span>CGV 첫 화면 이동</span></a>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+    (function ($) {
+        $(function () {
+
+        });
+    })(jQuery);
+
+//]]>
+</script>
+
+            <!--/ Contents End -->
+
+		</div>
+		<!-- /Contents Area -->
+	</div>
+	<!-- /Contaniner -->
+	<!-- Footer -->
+	<div id="footer">
+		<div id="BottomWrapper" class="sect-ad">
+            <iframe src="http://ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/main@Bottom" width="100%" height="240" title="" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="Bottom" id="Bottom"></iframe>
+		</div>
+		<div class="foot">
+			<div class="sect-smuse">
+				<h2>특별관 리스트</h2>
+				<ul>
+					<li><a href="/theaters/special/?regioncode=4D14" class="dx" onclick="setClickLog('/특별관/로고/4DX');">4DX</a></li>
+					<li><a href="/theaters/special/?regioncode=07" class="imax" onclick="setClickLog('/특별관/로고/IMAX');">IMAX</a></li>
+					<li><a href="/theaters/special/?regioncode=110" class="star" onclick="setClickLog('/특별관/로고/STARIUM');">STARIUM</a></li>
+					<li><a href="/theaters/special/?regioncode=SCX" class="screenx" onclick="setClickLog('/특별관/로고/SCREENX');">SCREENX</a></li>
+					<li><a href="/theaters/special/?regioncode=SDX" class="soundx" onclick="setClickLog('/특별관/로고/SOUNDX');">SOUNDX</a></li>
+					<li><a href="/theaters/special/?regioncode=99" class="gold" onclick="setClickLog('/특별관/로고/GOLDCLASS');">GOLDCLASS</a></li>
+					<li><a href="/theaters/special/?regioncode=103" class="cine" onclick="setClickLog('/특별관/로고/CINEdeCHEF');">CINE de CHEF</a></li>
+					<li><a href="/theaters/special/?regioncode=pc" class="cinema" onclick="setClickLog('/특별관/로고/THEPRIVATECINEMA');">THE PRIVATE CINEMA</a></li>
+					<li><a href="/theaters/special/?regioncode=09" class="sweet" onclick="setClickLog('/특별관/로고/SWEETBOX');">SWEETBOX</a></li>
+					<li><a href="/theaters/special/?regioncode=VB" class="veat" onclick="setClickLog('/특별관/로고/VEATBOX');">VEATBOX</a></li>
+				</ul>
+			</div>
+			<div class="sect-cinfo">
+				<p class="logo">CJ CGV 로고</p>
+				<h2>CJ CGV 회사소개 및 정책</h2>
+				<div class="policy">
+					<ul>
+						<li><a href="http://corp.cgv.co.kr/company/" target="_blank">회사소개</a></li>
+						<li><a href="http://corp.cgv.co.kr/company/ir/financial/financial_list.aspx" target="_blank">IR</a></li>
+						<li><a href="http://corp.cgv.co.kr/company/recruit/step/default.aspx" target="_blank">채용정보</a></li>
+						<li><a href="http://corp.cgv.co.kr/company/advertize/ad_Default.aspx" target="_blank">광고문의</a></li>
+						<li><a href="http://corp.cgv.co.kr/company/advertize/af_default.aspx" target="_blank">제휴문의</a></li>
+						<li><a href="/rules/service.aspx">이용약관</a></li>
+                        <li><a href="/rules/organized.aspx">편성기준</a></li>
+						<li><a href="/rules/privacy.aspx" class="empha-red">개인정보처리(취급)방침</a></li>
+						<li><a href="/rules/disclaimer.aspx">법적고지</a></li>
+						<li><a href="/rules/emreject.aspx">이메일주소무단수집거부</a></li>
+						<li><a href="/company/coexist.aspx">상생경영</a></li>
+						<li><a href="/guide/sitemap.aspx">사이트맵</a></li>
+					</ul>
+				</div>
+				<div class="share">
+					<a href="https://www.facebook.com/CJCGV" target="_blank" class="facebook" title="새창">페이스북</a><a href="https://twitter.com/cj_cgv" target="_blank" class="twitter" title="새창">트위터</a>
+				</div>
+				<div class="address">
+					<address>121-835 서울특별시 마포구 월드컵북로 434, 상암 IT타워(상암동) 9~10층 / 대표이사 : 서정 / 사업자등록번호 : 104-81-45690 / 통신판매업신고번호 : 마포 0586</address>
+					<p>개인정보관리 책임자 : 마케팅 실장 정종민 / 대표이메일 : cjcgvmaster@cj.net / CGV고객센터 : 1544-1122 / ARS예매 : 1544-2280</p>
+					<p class="copyright">COPYRIGHT 2004-2015. CJ CGV All RIGHTS RESERVED.</p>
+				</div>
+				<div class="familysite">
+					<label for="familysite" class="hidden">CJ그룹 계열사 바로가기</label>
+					<select id="familysite">
+						<option value="">계열사 바로가기</option>
+                        <optgroup label="CJ그룹">
+<option value="http://www.cj.net/">CJ주식회사</option>
+</optgroup><optgroup label="엔터테인먼트 & 미디어">
+<option value="http://www.cjenm.com/">CJ E&amp;M </option>
+<option value="http://www.cgv.co.kr/">CJ CGV</option>
+<option value="http://www.cjhellovision.com/">CJ헬로비전</option>
+<option value="http://www.cjpowercast.com/">CJ파워캐스트</option>
+</optgroup><optgroup label="식품 & 식품서비스">
+<option value="http://www.cj.co.kr/">CJ제일제당</option>
+<option value="http://www.cjfreshway.com/">CJ프레시웨이</option>
+<option value="http://www.cjfoodville.co.kr/">CJ푸드빌</option>
+<option value="http://www.md1.co.kr/">CJ엠디원</option>
+</optgroup><optgroup label="생명공학">
+<option value="http://www.cj.co.kr/cj-kr/businesses/4/main">CJ제일제당</option>
+<option value="http://www.cjp.co.kr/">CJ헬스케어</option>
+</optgroup><optgroup label="신유통">
+<option value="http://www.cjoshopping.com/index.asp">CJ오쇼핑</option>
+<option value="http://www.cjkoreaexpress.co.kr/">CJ대한통운</option>
+<option value="http://www.cjtelenix.com/">CJ텔레닉스</option>
+<option value="http://www.cjolivenetworks.co.kr/">CJ올리브네트웍스</option>
+</optgroup><optgroup label="인프라">
+<option value="http://www.cjenc.co.kr/">CJ건설</option>
+</optgroup>
+					</select>
+					<button type="button" title="새창" onclick="goFamilySite()">GO</button>
+				</div>
+			</div>
+		</div>
+        <!-- Float Ad -->
+
+        <div class="adFloat" style="display:block">
+
+            <iframe src='http://ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/sub@Popicon' width='154' height='182' frameborder='0' scrolling='no' topmargin='0' leftmargin='0' marginwidth='0' marginheight='0' allowTransparency="true" id="ad_float1"></iframe>
+        </div>
+        <script type="text/javascript">            OpenAD();</script>
+        <!-- //Float Ad -->
+	</div>
+	<!-- /Footer -->
+
+    <!-- Aside Banner :  -->
+	<div id="ctl00_sect_person_right" class="sect-aside-banner" style="padding:0; margin:0; position:fixed; z-index:1;">
+		<div class="aside-content-top">
+			<div class="aside-content-btm">
+				<a href="/theaters/" onclick="setClickLog('/서브/퀵링크/CGV극장');"><img src="http://img.cgv.co.kr/R2014/images/common/btn/btn_person_theater.gif" alt="CGV THEATER" /></a>
+				<a href="/arthouse/" onclick="setClickLog('/서브/퀵링크/CGV이벤트');"><img src="http://img.cgv.co.kr/R2014/images/common/btn/btn_person_arthouse.gif" alt="CGV arthouse" /></a>
+				<a href="/theaters/special/" onclick="setClickLog('/서브/퀵링크/CGV특별관');"><img src="http://img.cgv.co.kr/R2014/images/common/btn/btn_person_special.gif" alt="CGV SPECIAL" /></a>
+				<a href="http://phototicket.cgv.co.kr/" target="_blank"><img src="http://img.cgv.co.kr/R2014/images/common/btn/btn_person_phototicket.gif" alt="CGV 포토티켓" /></a>
+				<a href="/user/mycgv/reserve/" class="required-login" data-url="/user/mycgv/reserve/" onclick="setClickLog('/서브/퀵링크/CGV예매내역');"><img src="http://img.cgv.co.kr/R2014/images/common/btn/btn_person_ticket.gif" alt="CGV TICKET INFO" /></a>
+				<a href="http://section.cgv.co.kr/discount/Special/discount/Default.aspx" onclick="setClickLog('/서브/퀵링크/CGV할인정보');"><img src="http://img.cgv.co.kr/R2014/images/common/btn/btn_person_discount.gif" alt="CGV DISCOUNT INFO" /></a>
+			</div>
+		</div>
+		<div class="btn-top">
+			<a href="#" onclick="scrollTo(0,0);return false;" onclick="setClickLog('/서브/퀵링크/TOP버튼);"><span>최상단으로 이동</span></a>
+		</div>
+	</div>
+	<!-- //Aside Banner -->
+    
+</div>
+
+
+<script type="text/template" id="temp_popup_movie_player">
+<div class="popwrap">
+    <div class="sect-layerplayer">
+        <div class="cols-pop-player">
+            <h1 class="title" id="movie_player_popup_title"></h1>
+            <div class="col-pop-player">
+                <div class="warp-pop-player" style="position: relative;">
+                    <iframe id="ifrm_movie_player_popup" name="ifrm_movie_player_popup" src="about:blank" style="width:800px;height:450px;" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe>
+					
+					<div class="sect-replay" style="display:none" id="pop_player_relation_wrap">
+						<button class="btn-replay movie_player_inner_popup" type="button" data-gallery-idx="0" id="btn_movie_replay">다시보기</button>
+						<!-- 없어지는 영역 -->
+						<div class="wrap-relationmovie" id="pop_player_relation_item_wrap">
+							<strong class="title">관련영상</strong>
+							<ul id="pop_player_relation_movie">
+                                <li></li>
+                            </ul>
+						</div><!-- .wrap-relationmovie -->
+					</div><!-- .sect-replay -->
+					
+                </div><!-- .warp-pop-player -->
+                <div class="descri-trailer">
+                    <strong class="title">영상설명</strong>
+                    <textarea readonly="readonly" id="movie_player_popup_caption"></textarea>
+                </div>
+            </div><!-- .col-player -->
+            <div class="col-pop-playerinfo">
+                <div id="movie_player_popup_movie_info"></div>
+                <div class="sect-trailer">
+                    <strong class="title">신규영상</strong>
+                    <ul>
+                        
+                        <li>
+                            <div class="box-image" style="margin-bottom:0px;">
+                                <a href="#" title="[함정]예고편 영상보기" class="movie_player_inner_popup" data-gallery-idx="129741">
+                                    <span class="thumb-image">
+                                        <img src="http://img.cgv.co.kr/Movie/Thumbnail/Trailer/78416/78416129741_148.jpg" 
+                                        alt="함정_트레일러" />
+                                        <span class="ico-play">영상보기</span>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="box-contents">
+                                <a href="#" title="[함정]예고편 영상보기" class="movie_player_inner_popup" data-gallery-idx="129741">
+                                    <strong class="title">
+                                                                        
+                                        [함정]
+                                        예고편
+                                    </strong>
+                                </a>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <div class="box-image" style="margin-bottom:0px;">
+                                <a href="#" title="[앙: 단팥 인생 이야기]메인 예고편 영상보기" class="movie_player_inner_popup" data-gallery-idx="129699">
+                                    <span class="thumb-image">
+                                        <img src="http://img.cgv.co.kr/Movie/Thumbnail/Trailer/78396/78396129699_148.jpg" 
+                                        alt="앙: 단팥 인생 이야기_트레일러" />
+                                        <span class="ico-play">영상보기</span>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="box-contents">
+                                <a href="#" title="[앙: 단팥 인생 이야기]메인 예고편 영상보기" class="movie_player_inner_popup" data-gallery-idx="129699">
+                                    <strong class="title">
+                                                                        
+                                        [앙: 단팥 인생 이야기]
+                                        메인 예고편
+                                    </strong>
+                                </a>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <div class="box-image" style="margin-bottom:0px;">
+                                <a href="#" title="[성실한 나라의 앨리스]성실한 인터뷰 영상 영상보기" class="movie_player_inner_popup" data-gallery-idx="129681">
+                                    <span class="thumb-image">
+                                        <img src="http://img.cgv.co.kr/Movie/Thumbnail/Trailer/78379/78379129681_148.jpg" 
+                                        alt="성실한 나라의 앨리스_트레일러" />
+                                        <span class="ico-play">영상보기</span>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="box-contents">
+                                <a href="#" title="[성실한 나라의 앨리스]성실한 인터뷰 영상 영상보기" class="movie_player_inner_popup" data-gallery-idx="129681">
+                                    <strong class="title">
+                                                                        
+                                        [성실한 나라의 앨리스]
+                                        성실한 인터뷰 영상
+                                    </strong>
+                                </a>
+                            </div>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div><!-- .col-playerinfo -->
+        </div><!-- .cols-player -->
+        <button type="button" class="btn-close">닫기</button>
+    </div>
+</div>
+</script>
+
+<script id="temp_popup_movie_player_movie_info" type="text/x-jquery-tmpl">
+<div class="box-image">
+    <a href="/movies/detail-view/?midx=${MovieIdx}" title="${Title} 상세보기 새창">
+        <span class="thumb-image">
+            <img src="${PosterImage.MiddleImage}" alt="${Title} 포스터" />
+            <span class="ico-grade ${MovieGrade.StyleClassName}">${MovieGrade.GradeText}</span>
+        </span>
+    </a>   
+</div>
+<div class="box-contents">
+    <a href="/movies/detail-view/?midx=${MovieIdx}" title="${Title} 상세보기 새창">
+        <strong class="title">${Title}</strong>
+    </a>
+    <span class="txt-info" style="margin-bottom:2px;">
+        <em class="genre">${GenreText}</em>
+        <span>
+            <i>${OpenDate}</i>
+            <strong>${OpenText}</strong>
+            {{if D_Day > 0}}
+                <em class="dday">D-${D_Day}</em>
+            {{/if}}
+        </span>
+    </span>
+{{if IsTicketing }}
+    <a class="link-reservation" href="/ticket/?MOVIE_CD=${CGVCode}&MOVIE_CD_GROUP=${CGVCode}">예매</a> 
+{{/if}}
+</div>
+</script>
+
+<script id="temp_popup_movie_player_relation_movie_item" type="text/x-jquery-tmpl">
+<li>
+    <div class="box-image">
+        <a href="#" title="${Title} 영상보기" class="movie_player_inner_popup" data-gallery-idx="${GalleryIdx}">
+            <span class="thumb-image">
+                <img src="${ImageUrl}" 
+                alt="${Title}_트레일러" />
+                <span class="ico-play">영상보기</span>
+            </span>
+        </a>
+    </div>
+</li>
+</script>
+
+<script type="text/javascript">
+    //<![CDATA[
+    function closeBanner(){        
+        $('#cgv_main_ad').remove();     
+        for(var i = 0; i < 2; i++) {
+            window.setTimeout(function(){
+                $(window).resize()                
+            }, 30)
+        }
+    }
+    function showPlayEndEvent() {
+        $('#pop_player_relation_wrap').show();
+        $('#btn_movie_replay').focus();
+    }
+
+    (function ($) {
+        $(function () {
+
+            /* side menu move script */
+            var isBricks = false;
+            $('.sect-aside-banner').asideMenu({'isBricks': isBricks });            
+            $('.movie_player_popup').moviePlayer();     //동영상플레이어                       
+            //특별관 클럽
+//            $('#header a.specialclub').on('click', function() { 
+//                openSpecialClub();
+//                return false;
+//            });
+
+//            //특별관 클럽
+//            $('.sect-special a.specialclub').on('click', function() {
+//                openSpecialClub();
+//                return false;
+//            });
+//            
+
+            //동성로타운
+            $('.special1_pop').on('click', function () {
+                openDownTown();
+                return false;
+            });    
+            //노원타운
+            $('.special5_pop').on('click', function () {
+                openNowonTown();
+                return false;
+            });           
+            // 검색 auto validate version.
+            $('.btn-go-search').on('click', function () {
+                var $frmSearch = $(this).parent().parent('form');
+                $frmSearch.submit();
+                return false;
+            });
+
+            //검색 입력창 클릭 시 광고값 reset
+            $('#header_keyword').on('click', function() {
+                $(this).attr('placeholder', '');
+                $('#header_ad_keyword').val('');
+            });
+
+            //통합검색 상단 검색 버튼
+            $('#btn_header_search').on('click', function() {
+                if($('#header_ad_keyword').val() != "")
+                    goSearch($('#header_ad_keyword'));      //광고
+                else
+                    goSearch($('#header_keyword'));
+
+                return false;
+            });
+
+
+            //통합검색 검색어 입력창
+            $('#header_keyword').keyup(function(e) {
+                if (e.keyCode == 13) goSearch($('#header_keyword'));        
+            });
+
+            //통합검색
+            function goSearch($objKeyword) {
+                
+                if($objKeyword.val() == "") {
+                    alert("검색어를 입력해 주세요");
+                    $objKeyword.focus();
+                    return false;
+                }
+
+                location = "/search/?query=" + escape($objKeyword.val());
+            }
+			
+            //메인스킵네비
+            $('#skipHeader').on('click', function(){
+                var $ctn = $('#contents');
+                $ctn.attr({
+                    tabIndex : -1
+                }).focus();				
+                return false;
+            });
+
+            //현재 URL 해당파라미터 교체
+            function updateQueryStringParameter(uri, key, value) {
+                var re = new RegExp("([?|&])" + key + "=.*?(&|#|$)", "i");
+                if (uri.match(re)) {
+                    return uri.replace(re, '$1' + key + "=" + value + '$2');
+                } else {
+                    var hash =  '';
+                    var separator = uri.indexOf('?') !== -1 ? "&" : "?";    
+                    if( uri.indexOf('#') !== -1 ){
+                        hash = uri.replace(/.*#/, '#');
+                        uri = uri.replace(/#.*/, '');
+                    }
+                    return uri + separator + key + "=" + value + hash;
+                }
+            }
+            //모바일버전 가기
+            $('.go-mobile').on('click', function() {
+                location.replace(updateQueryStringParameter(location.href, "IsMobile", "N"));
+                return false;
+            });
+
+        });
+    })(jQuery);
+	
+    function goFamilySite() {
+        var famulySiteURL = $(familysite).val();
+        if (famulySiteURL != "") {
+            var win = window.open(famulySiteURL, 'winFamilySite')
+            win.focus();
+        }
+    }
+    
+    //]]>
+</script>
+
+
+
+<script language="javascript" type="text/javascript">
+    //201402 SYH GA추가
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o), m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-47126437-1', 'cgv.co.kr');
+    ga('create', 'UA-47951671-5', 'cgv.co.kr', { 'name': 'cgvTracker' });
+    ga('send', 'pageview');
+    ga('cgvTracker.send', 'pageview'); 
+</script>
+
+<!-- 비즈스프링 통계태그 -->
+<script type="text/javascript" language="javascript" src="http://img.cgv.co.kr/common/js/insightIS.js"></script>
+
+</body>
+</html>

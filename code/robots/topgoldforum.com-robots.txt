@@ -1,0 +1,53 @@
+# HOW TO USE THIS FILE:
+# 1) Edit this file to change "/forum/" to the correct relative path from your base URL, for example if your forum was at "domain.com/sites/community", then you'd use "/sites/community/"
+# 2) Rename the file to 'robots.txt' and move it to your web root (public_html, www, or htdocs)
+# 3) Edit the file to remove this comment (anything above the dashed line, including the dashed line
+#
+# NOTES:
+# Even though wild cards and pattern matching are not part of the robots.txt specification, many search bots understand and make use of them
+#------------------------ REMOVE THIS LINE AND EVERYTHING ABOVE SO THAT User-agent: * IS THE FIRST LINE ------------------------------------------
+User-agent: *
+Disallow: /forum/admin/
+Disallow: /forum/cache/
+Disallow: /forum/converge_local/
+Disallow: /forum/hooks/
+Disallow: /forum/ips_kernel/
+Disallow: /forum/retail/
+Disallow: /forum/public/style_captcha/
+Disallow: /forum/index.php?app=core&module=task
+Disallow: /forum/index.php?app=forums&module=moderate&section=moderate
+Disallow: /forum/index.php?app=forums&module=extras&section=forward
+Disallow: /forum/index.php?app=members&module=chat
+Disallow: /forum/index.php?&unlockUserAgent=1
+Disallow: /forum/*&module=search
+Allow:	  /forum/*&search_tags=
+Disallow: /forum/*app=core&module=global&section=reputation
+Disallow: /forum/*app=core&module=usercp
+Disallow: /forum/*app=members&module=messaging
+Disallow: /forum/*&p=
+Disallow: /forum/*&pid=
+Disallow: /forum/*&hl=
+Disallow: /forum/*&start=
+Disallow: /forum/*view__getnewpost$
+Disallow: /forum/*view__getlastpost$
+Disallow: /forum/*view__old$
+Disallow: /forum/*view__new$
+Disallow: /forum/*view__getfirst$
+Disallow: /forum/*view__getprevious$
+Disallow: /forum/*view__getnext$
+Disallow: /forum/*view__getlast$
+Disallow: /forum/*&view=getnewpost$
+Disallow: /forum/*&view=getlastpost$
+Disallow: /forum/*&view=old$
+Disallow: /forum/*&view=new$
+Disallow: /forum/*&view=getfirst$
+Disallow: /forum/*&view=getprevious$
+Disallow: /forum/*&view=getnext$
+Disallow: /forum/*&view=getlast$
+Disallow: /forum/*?s=
+Disallow: /forum/*&s=
+Disallow: /forum/index.php?app=core&module=global&section=login&do=deleteCookies
+Disallow: /forum/index.php?app=forums&module=extras&section=rating
+Disallow: /forum/index.php?app=forums&module=forums&section=markasread
+Disallow: /forum/*&do=who
+Disallow: /forum/*&section=dname

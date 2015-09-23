@@ -1,0 +1,1528 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>兔玩网 tuwan.com 最任性的游戏媒体</title>
+<meta name="keywords" content="兔玩网,tuwan,网络游戏,暴雪游戏,腾讯游戏,游戏库" />
+<meta name="description" content="兔玩网是国内优秀的综合游戏媒体之一,致力于研究和向玩家提供高品质的游戏新闻,评测和攻略,以及分享好玩,有意思的游戏内容,展示游戏文化的美妙,让玩家从分享中获得快乐。" />
+<link rel="icon" href="" sizes="16x16">
+<link rel="stylesheet" type="text/css" href="http://static.tuwan.com/css/config.css"/>
+<link rel="stylesheet" type="text/css" href="http://static.tuwan.com/v3/homepage/css/style.css" />
+<script type="text/javascript" src="http://static.tuwan.com/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="http://static.tuwan.com/js/config.js"></script>
+<script type="text/javascript" src="http://static.tuwan.com/v3/homepage/js/main.js"></script>
+<script type="text/javascript" src="http://vista.tuwan.com/s.js" charset="gb2312"></script>
+</head>
+<style>
+.Content-box { background: url("http://static.tuwan.com/v3/homepage/images/content-bg.jpg") 0 -15px no-repeat;}
+</style>
+<body>
+<script type="text/javascript">
+if((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|wOSBrowser|BrowserNG|WebOS)/i))) {
+	document.write('<style>.Header-box,.Nav-box,.Gaming-box,.New-game-box,.Foot-box,.Content-box{width: 1135px;}</style>');
+}
+</script>
+<script type="text/javascript">
+	function s() {
+		if ($("#search_kwd").val() == '' || $("#search_kwd").val() == '请输入搜索内容') {
+			alert('请输入搜索内容');
+		} else {
+			window.open("http://s.tuwan.com/?keyword=" + $("#search_kwd").val());
+		}
+	}
+</script>
+<div class="Header-box">
+     <div class="Header cf">
+          <div class="Logo"><a href="http://www.tuwan.com/"><img src="http://static.tuwan.com/v3/homepage/images/logo-index.png" alt="兔玩网"></a></div>
+          <div class="Search cf">
+              <div class="User-btn">
+                  <a href="http://user.tuwan.com" class="Ico-bg Login" target="_blank">登录</a>
+                  <span>|</span>
+                  <a href="http://bbs.tuwan.com/member.php?mod=register" class="Ico-bg Signup" target="_blank">注册</a>
+              </div>
+              <form class="cf" action="#" method="post" target="_blank">
+                  <input id="search_kwd" class="Ico-bg Search-text" type="text" name="keyword" value="请输入搜索内容" onclick="this.value=''">
+                  <input class="Ico-bg Search-btn" type="button" value="GO" onclick="s();" />
+              </form>
+              <div class="Hot-word"><span>热搜：</span><a href="http://wow.tuwan.com/" target="_blank">魔兽世界</a><a href="http://fb.tuwan.com/" target="_blank">风暴英雄</a><a href="http://www.tuwan.com/game/tymyd/" target="_blank">天涯明月刀</a></div>
+          </div><!-- End of Search -->
+     </div><!-- End of Header -->
+</div><!-- End of Header-box -->
+<script type="text/javascript">
+	$("#search_kwd").bind('keydown', function (e) {
+        var key = e.which;
+        if (key == 13) {
+			s();
+			return false;				
+        }
+    });
+	
+	$(function () {
+		$.ajax({
+			url: 'http://user.tuwan.com/api/action.ashx?T=userinfo',
+			dataType: "jsonp",
+			jsonp: "callback",
+			success: function (data) {
+				if (data.code == "0") {
+					$(".User-btn").html('<a href="http://user.tuwan.com" class="Ico-bg Login"><font style="color:red;">'+ data.data.username +'</font></a><span>|</span><a href="javascript:;" onclick="Logout()" class="Ico-bg Signup">退出</a>');
+				}else{
+					$(".User-btn").html('<a href="http://user.tuwan.com" class="Ico-bg Login">登录</a><span>|</span><a href="http://bbs.tuwan.com/member.php?mod=register" class="Ico-bg Signup">注册</a>');
+				}
+			}
+		});
+	});
+
+	function Logout(){
+		$.ajax({
+			url: 'http://app.tuwan.com/comment2/api/useraction.ashx?method=loginout',
+			dataType: "jsonp",
+			jsonp: "callback",
+			success: function (data) {
+				$(".User-btn").html('<a href="http://user.tuwan.com" class="Ico-bg Login">登录</a><span>|</span><a href="http://bbs.tuwan.com/member.php?mod=register" class="Ico-bg Signup">注册</a>');
+			}
+		});
+	}
+</script>
+<div class="Nav-box">
+    <div class="Nav">
+        <a href="http://www.tuwan.com/">首页</a>
+        <a href="http://www.tuwan.com/news/" target="_blank">新闻</a>
+        <a href="http://www.tuwan.com/video/" target="_blank">视频</a>
+        <a href="http://www.tuwan.com/guide/" target="_blank">攻略</a>
+        <a href="http://www.tuwan.com/pic/" target="_blank">图片</a>
+        <a href="http://www.tuwan.com/game/" target="_blank">游戏库</a>
+        <a href="http://fb.tuwan.com/fblx/" target="_blank">数据</a>
+        <a href="http://www.douyutv.com/tuwan/" target="_blank"  rel="nofollow">直播</a>
+        <a href="http://www.tuwan.com/topic/jifen/" target="_blank"><span>送Q币<strong>H</strong></span></a>
+        <a class="Ico-bg App-tuwan" href="http://m.tuwan.com/" target="_blank">手机看兔玩</a>
+    </div><!-- End of Nav -->
+</div><!-- End of Nav-box -->
+<div id="cbody" class="Content-box">
+    <div class="Content">
+        <div class="Hot-game mb10">
+            <a href="http://wow.tuwan.com" target="_blank"><img src="http://static.tuwan.com/v3/homepage/images/index/h1.jpg" alt="魔兽世界"><span>魔兽世界</span></a>
+            <a href="http://lol.tuwan.com" target="_blank"><img src="http://static.tuwan.com/v3/homepage/images/index/h2.jpg" alt="英雄联盟"><span>英雄联盟</span></a>
+            <a href="http://dnf.tuwan.com" target="_blank"><img src="http://static.tuwan.com/v3/homepage/images/index/h3.jpg" alt="地下城与勇士"><span>地下城与勇士</span></a>
+            <a href="http://fb.tuwan.com" target="_blank"><img src="http://static.tuwan.com/v3/homepage/images/index/h4.jpg" alt="风暴英雄"><span>风暴英雄</span></a>
+            <a href="http://hs.tuwan.com" target="_blank"><img src="http://static.tuwan.com/v3/homepage/images/index/h5.jpg" alt="炉石传说"><span>炉石传说</span></a>
+            <a href="http://ow.tuwan.com" target="_blank"><img src="http://static.tuwan.com/v3/homepage/images/index/h6.jpg" alt="守望先锋"><span>守望先锋</span></a>
+            <a href="http://d3.tuwan.com" target="_blank"><img src="http://static.tuwan.com/v3/homepage/images/index/h7.jpg" alt="暗黑破坏神3"><span>暗黑破坏神3</span></a> 
+        </div><!-- End of Hot-game -->
+        <div class="Content-top cf">
+            <div class="Content-top-left">
+                <div class="Banner-box" id="Banner-box">
+                   <ul class="B-img cf">
+				   		
+							<li><a href="http://lol.tuwan.com/185629/" target="_blank" title="童颜巨乳美如画 甜美萝莉COS电玩女神娑娜"><img src="http://img.tuwandata.com/v2/thumb/all/ZThmYiwzODEsMzA3LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1509/21/1-1509211JI6145.jpg" alt="童颜巨乳美如画 甜美萝莉COS电玩女神娑娜"></a><div class="B-text">童颜巨乳美如画 甜美萝莉COS电玩女神娑娜</div></li>
+						
+							<li><a href="http://lol.tuwan.com/183984/" target="_blank" title="致敬英雄联盟官方COS团队 华丽背后的艰辛"><img src="http://img.tuwandata.com/v2/thumb/all/ZTE3ZSwzODEsMzA3LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1509/19/1-150919101Fa19.jpg" alt="致敬英雄联盟官方COS团队 华丽背后的艰辛"></a><div class="B-text">致敬英雄联盟官方COS团队 华丽背后的艰辛</div></li>
+						
+							<li><a href="http://lol.tuwan.com/182102/" target="_blank" title="二分钟带你了解永恒猎手 LOL永恒猎手技能出装"><img src="http://img.tuwandata.com/v2/thumb/all/NTZmZCwzODEsMzA3LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1509/17/1-15091G05SU52.jpg" alt="二分钟带你了解永恒猎手 LOL永恒猎手技能出装"></a><div class="B-text">二分钟带你了解永恒猎手 LOL永恒猎手技能出装</div></li>
+						
+							<li><a href="http://wow.tuwan.com/176347/" target="_blank" title="你造吗？鱼人宝宝奔波儿可以这么Show！"><img src="http://img.tuwandata.com/v2/thumb/all/Y2E2YiwzODEsMzA3LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1509/10/807-1509101I124237.jpg" alt="你造吗？鱼人宝宝奔波儿可以这么Show！"></a><div class="B-text">你造吗？鱼人宝宝奔波儿可以这么Show！</div></li>
+						
+                   </ul>
+                   <ul class="B-index cf">
+				   		
+							<li ><a href="http://lol.tuwan.com/185629/" target="_blank"  title="童颜巨乳美如画 甜美萝莉COS电玩女神娑娜"><img src="http://img.tuwandata.com/v2/thumb/all/ZThmYiw4NSw2MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1509/21/1-1509211JI6145.jpg" alt="童颜巨乳美如画 甜美萝莉COS电玩女神娑娜"/></a></li>
+						
+							<li  class="choose"><a href="http://lol.tuwan.com/183984/" target="_blank"  title="致敬英雄联盟官方COS团队 华丽背后的艰辛"><img src="http://img.tuwandata.com/v2/thumb/all/ZTE3ZSw4NSw2MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1509/19/1-150919101Fa19.jpg" alt="致敬英雄联盟官方COS团队 华丽背后的艰辛"/></a></li>
+						
+							<li ><a href="http://lol.tuwan.com/182102/" target="_blank"  title="二分钟带你了解永恒猎手 LOL永恒猎手技能出装"><img src="http://img.tuwandata.com/v2/thumb/all/NTZmZCw4NSw2MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1509/17/1-15091G05SU52.jpg" alt="二分钟带你了解永恒猎手 LOL永恒猎手技能出装"/></a></li>
+						
+							<li ><a href="http://wow.tuwan.com/176347/" target="_blank"  title="你造吗？鱼人宝宝奔波儿可以这么Show！"><img src="http://img.tuwandata.com/v2/thumb/all/Y2E2Yiw4NSw2MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1509/10/807-1509101I124237.jpg" alt="你造吗？鱼人宝宝奔波儿可以这么Show！"/></a></li>
+						
+                       <div class="Kuang"></div>
+                   </ul>
+               </div><!-- End of Banner-box -->
+			   <!-- 左侧活动，工具 -->
+<div class="Recommend-box">
+	<div class="Activity-box">
+		<h3>
+			兔玩活动推荐
+			<div class="Btn-box"><a class="Ico-bg Go-left" href="javascript:;"></a><a class="Ico-bg Go-right" href="javascript:;"></a></div>
+		</h3>
+		<div class="Go-box">
+			<ul class="cf" page="0">
+			
+				<li><a href="http://www.tuwan.com/topic/jifen/" target="_blank"><img src="http://img.tuwandata.com/v2/thumb/all/NTY5YSwxMTYsODksOSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1509/05/1-150Z522142YI.jpg" alt="简单做任务 轻松挣QB 长期进行…"/><p>简单做任务 轻松挣QB 长期进行…</p></a></li>
+			
+				<li><a href="http://wow.tuwan.com/165208/" target="_blank"><img src="http://img.tuwandata.com/v2/thumb/all/OWNkMiwxMTYsODksOSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1508/31/1-150S11P03R31.jpg" alt="下载“游戏头条”手机APP 5星好评豪礼相送"/><p>下载“游戏头条”手机APP 5星好评豪礼相送</p></a></li>
+			
+				<li><a href="http://bbs.tuwan.com/thread-46952-1-1.html" target="_blank"><img src="http://img.tuwandata.com/v2/thumb/all/MjhmZCwxMTYsODksOSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1507/20/1-150H0101529E0.jpg" alt="窝窝人物志话题讨论赢魔兽点卡"/><p>窝窝人物志话题讨论赢魔兽点卡</p></a></li>
+			
+				<li><a href="http://fb.tuwan.com/116364/" target="_blank"><img src="http://img.tuwandata.com/v2/thumb/all/OGRiYywxMTYsODksOSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1507/20/1-150H0101233104.jpg" alt="拿下永恒之战 赢取北海巨妖及点卡奖励！"/><p>拿下永恒之战 赢取北海巨妖及点卡奖励！</p></a></li>
+			
+			</ul>
+		</div>
+	</div>
+	<div class="Tool-box">
+		<h3>兔玩工具推荐</h3>
+		<ul class="cf">
+			<li class="Img-loading" style="margin-bottom:9px"><a href="http://fb.tuwan.com/fblx/" target="_blank"><img src="http://static.tuwan.com/v3/homepage/images/index/gongju01.jpg" alt="风暴英雄倒影大厅"></a></li>
+			<li class="Img-loading"><a href="http://fb.tuwan.com/56584/" target="_blank"><img src="http://static.tuwan.com/v3/homepage/images/index/gongju02.jpg" alt="风暴英雄伴侣"></a></li>
+			<li class="Img-loading" style="margin-left:9px"><a href="http://wow.tuwan.com/shiguang/" target="_blank"><img src="http://static.tuwan.com/v3/homepage/images/index/gongju03.jpg" alt="魔兽世界时光徽章监控局"></a></li>
+		</ul>
+	</div>
+</div>
+            </div><!-- End of Content-top-left -->
+            <div class="Content-top-con">
+                <div class="News-hot">
+                    <h3 class="News-banner"><span class="choose">今日要闻</span><a href="http://www.tuwan.com/news/" target="_blank">更多</a></h3>
+                    <ul style="display:block;">
+                        <li>						
+							
+                            <strong><a href="http://ow.tuwan.com/186890/" target="_blank"  title="守望先锋全新英雄预告：犯罪时刻 特别报道">守望先锋全新英雄预告：犯罪时刻 特别报道</a></strong>
+							
+                            <p>
+							
+							[<a href="http://ow.tuwan.com/185070/" target="_blank"  title="守望先锋官方解惑：BETA测试会如期开展">守望先锋官方：测试如期展开</a>]&nbsp;
+							
+							[<a href="http://ow.tuwan.com/187300/" target="_blank"  title="守望先锋是暴雪数年来最激动人心的作品">守望先锋近年激动人心的游戏</a>]&nbsp;
+							
+							</p>
+                        </li>
+						<li>
+							
+                            <strong><a href="http://lol.tuwan.com/186919/" target="_blank"  title="赛季末最强冲分指南——五大辅助强力上钻">赛季末最强冲分指南——五大辅助强力上钻</a></strong>
+							
+                            <p>
+							
+							[<a href="http://lol.tuwan.com/187149/" target="_blank"  title="特色造就不一样的LOL 十大最有趣的技能盘点">十大最有趣的技能盘点</a>]&nbsp;
+							
+							[<a href="http://lol.tuwan.com/186895/" target="_blank"  title="你看见我的伙伴了么？盘点LOL中双生英雄">盘点LOL中双生英雄</a>]&nbsp;
+							
+							</p>
+                        </li>
+                    </ul>
+                </div><!-- End of News-hot -->
+                <div class="News-list">				
+					
+                    <li class="first">
+                        <p><a href="http://fb.tuwan.com/187190/" target="_blank"  title="魔兽3回归 《魔兽争霸》将加入战网大家庭">魔兽3回归 《魔兽争霸》将加入战网大家庭</a></p>
+                        <div class="first-info cf">
+                            <a href="http://fb.tuwan.com/187190/" target="_blank"  title="魔兽3回归 《魔兽争霸》将加入战网大家庭"><img src="http://img.tuwandata.com/v2/thumb/all/ZWNlMCwxMzcsOTksOSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/allimg/1509/22/22Sep20151410091946.jpg" alt="魔兽3回归 《魔兽争霸》将加入战网大家庭"></a>
+                            <span>9月21日深夜，网易副总裁李日强在自己的个人微博上发布了一条耐人寻味的信息，此条微博内容一出便引起了众多玩家的猜测... <a href="http://fb.tuwan.com/187190/" title="魔兽3回归 《魔兽争霸》将加入战网大家庭" target="_blank">【详情】</a>
+                            </span>
+                        </div>
+                    </li>
+					
+					<li><span class="news-type">资讯</span><a href="http://wow.tuwan.com/188060/" target="_blank"  title="周末活动：9月23日-28日宠物对战假日活动">周末活动：9月23日-28日宠物对战假日活动</a></li><li><span class="news-type">资讯</span><a href="http://lol.tuwan.com/188046/" target="_blank"  title="LOL官方解读：2015全球总决赛B组详细分析">LOL官方解读：2015全球总决赛B组详细分析</a></li><li><span class="news-type">视频</span><a href="http://lol.tuwan.com/188041/" target="_blank"  title="SKT T1 Faker 中单维克托疯狂输出瞬间爆炸">SKT T1 Faker 中单维克托疯狂输出瞬间爆炸</a><span class="Ico-bg dujia"></span></li><li><span class="news-type">图片</span><a href="http://wow.tuwan.com/188028/" target="_blank"  title="玩家作画：蛋总你的双刀咋不大对劲呢？">玩家作画：蛋总你的双刀咋不大对劲呢？</a></li><li><span class="news-type">图片</span><a href="http://wow.tuwan.com/188018/" target="_blank"  title="中性笔手绘帝新作：笔记本上的希尔瓦娜斯">中性笔手绘帝新作：笔记本上的希尔瓦娜斯</a></li>
+                </div><!-- End of News-list -->
+                <div class="News-list" style="border:none; padding:0;">
+					
+                    <li class="first">
+                        <p><a href="http://hs.tuwan.com/187174/" target="_blank"  title="炉石传说新手玩家 容易忽视的七个重要功能">炉石传说新手玩家 容易忽视的七个重要功能</a></p>
+                        <div class="first-info cf">
+                            <a href="http://hs.tuwan.com/187174/" target="_blank"  title="炉石传说新手玩家 容易忽视的七个重要功能"><img src="http://img.tuwandata.com/v2/thumb/all/NmJkNywxMzcsOTksOSwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/1509/22/748-150922140002Y1.jpg" alt="炉石传说新手玩家 容易忽视的七个重要功能"></a>
+                            <span>有些功能明显比其他功能更加重要，而它们既包括依然可以提升你游戏体验的细节，也包括一些非常重要的内容。所以无论您... <a href="http://hs.tuwan.com/187174/"  title="炉石传说新手玩家 容易忽视的七个重要功能" target="_blank">【详情】</a>
+                            </span>
+                        </div>
+                    </li>
+					
+					<li><span class="news-type">图集</span><a href="http://lol.tuwan.com/188016/" target="_blank"  title="LOL玩家手绘英雄：沙皇、复仇之矛、瑞文">LOL玩家手绘英雄：沙皇、复仇之矛、瑞文</a><span class="Ico-bg dujia"></span></li><li><span class="news-type">资讯</span><a href="http://wow.tuwan.com/187954/" target="_blank"  title="绝对不能错过！魔兽世界九大趣味玩法盘点">绝对不能错过！魔兽世界九大趣味玩法盘点</a></li><li><span class="news-type">原创</span><a href="http://lol.tuwan.com/187953/" target="_blank"  title="S5总决赛战队巡礼之SKT：无懈可击的霸主">S5总决赛战队巡礼之SKT：无懈可击的霸主</a><span class="Ico-bg dujia"></span></li><li><span class="news-type">资讯</span><a href="http://lol.tuwan.com/187933/" target="_blank"  title="LOL韩国职业选手遍布全球 韩援现状大盘点">LOL韩国职业选手遍布全球 韩援现状大盘点</a></li><li><span class="news-type">图片</span><a href="http://ow.tuwan.com/187907/" target="_blank"  title="守望先锋新英雄狂鼠、路霸精美艺术壁纸">守望先锋新英雄狂鼠、路霸精美艺术壁纸</a></li>
+                </div><!-- End of News-list -->
+            </div><!-- End of Content-top-con -->
+            <div class="Content-top-right">
+				<!-- 右侧四个APP地址 -->
+<ul class="Original-tool cf">
+	<li>
+		<div class="Game-box">
+		  <img src="http://static.tuwan.com/v3/homepage/images/icon175x175.png" alt="游戏头条" width="57" height="57"/>
+		  <p>游戏头条</p>
+		</div>
+		<div class="Game-download">
+			<a href="http://vista.tuwan.com/hit.ashx?pid=24&aid=41&mid=135&rid=41&url=http://www.tuwan.com/view/150609/" target="_blank"  rel="nofollow">IOS下载</a>
+			<a href="javascript:;" onclick="alert('正在加紧研发，敬请期待！');return false;" target="_blank">安卓下载</a>
+		</div>
+	</li>
+	<li>
+		<div class="Game-box">
+		  <img src="http://static.tuwan.com/v3/homepage/images/tuwan-game.png" alt="兔玩游戏"/>
+		  <p>兔玩游戏</p>
+		</div>
+		<div class="Game-download">
+			<a href="http://wow.tuwan.com/96958/" target="_blank"  rel="nofollow">IOS下载</a>
+			<a href="javascript:;" onclick="alert('正在加紧研发，敬请期待！');return false;" target="_blank">安卓下载</a>
+		</div>
+	</li>
+	<li>
+		<div class="Game-box">
+		  <img src="http://static.tuwan.com/v3/homepage/images/rounded_img_atool.png" width="57" height="57" alt="涂话"/>
+		  <p>涂话</p>
+		</div>
+		<div class="Game-download">
+			<a href="https://itunes.apple.com/cn/app/tu-hua/id1013334416?mt=8" target="_blank"  rel="nofollow">IOS下载</a>
+			<a href="javascript:;" onclick="alert('正在加紧研发，敬请期待！');return false;" target="_blank">安卓下载</a>
+		</div>
+	</li>
+	<li>
+		<div class="Game-box">
+		  <img src="http://static.tuwan.com/v3/homepage/images/dnf-game.png" width="57" height="57" alt="DNF伴侣"/>
+		  <p>DNF伴侣</p>
+		</div>
+		<div class="Game-download">
+			<a href="http://dnf.tuwan.com/59191/" target="_blank"  rel="nofollow">IOS下载</a>
+			<a href="javascript:;" onclick="alert('正在加紧研发，敬请期待！');return false;" target="_blank">安卓下载</a>
+		</div>
+	</li>
+	<li style="display:none">
+		<div class="Game-box">
+		  <img src="http://static.tuwan.com/v3/homepage/images/fengbao-game.png" width="57" height="57" alt="风暴伴侣"/>
+		  <p>风暴伴侣</p>
+		</div>
+		<div class="Game-download">
+			<a href="https://itunes.apple.com/cn/app/tu-wan-you-xi-ban-lu-for-feng/id898494234?mt=8" target="_blank"  rel="nofollow">IOS下载</a>
+			<a href="javascript:;" onclick="alert('正在加紧研发，敬请期待！');return false;" target="_blank">安卓下载</a>
+		</div>
+	</li>
+</ul>
+				<script type="text/javascript">
+					function zangspan(id,title){
+						var url="http://app.tuwandata.com/comment2/api/vote_new.ashx?type=get&title=" + encodeURI(title) + "&callback=?";
+						$.getJSON(url,function(strJSON){
+							var count=strJSON['count'];
+							$(".writer" + id).html(count);
+						});
+					}					
+					var gi=1;
+					function addzangspan(id,title){
+						if(window.gi==1){
+							var cid=$(".writer" + id).html();
+							cid=parseInt(cid)+1;
+							$(".writer" + id).html(cid);
+							
+							window.gi=window.gi+1;							
+							var url="http://app.tuwandata.com/comment2/api/vote_new.ashx?type=add&title=" + encodeURI(title) + "&callback=?";
+							$.getJSON(url);
+							alert("点赞成功");
+							return false;
+						}else{
+							alert("谢谢，你已经赞过了");
+							return false;
+						}
+					
+					}
+
+				</script>	
+                <div class="Original-writer mt10">
+                    <h3><a href="http://www.tuwan.com/user/" target="_blank">加入联盟赚工资 ></a>原创作者联盟</h3>
+                    <ul class="Zan-nav Banner-text-text cf">
+                        <li class="choose">最新文章</li>
+                        <li>文章排行</li>
+                    </ul><!-- End of Zan-nav -->
+                    <div class="Zan-nav-con">					
+                        <ul class="cf" style="display:block">
+							<li class="choose">
+					<a href="http://www.tuwan.com/user/49794/" target="_blank"><img src="http://img.tuwandata.com/v2/thumb/jpg/ZmM1NSw4MCw4MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1409/03/691-140Z31U024115.jpg"  alt="tomoyo"></a>
+					<span class="Name">tomoyo</span>
+					<a class="Zan" onClick="addzangspan('49794','tomoyo')">赞<span class="writer49794">0</span></a>
+					<div class="Biao"></div>
+					<div class="Info">
+						<span>新作&nbsp;&nbsp;|</span><a href="http://wow.tuwan.com/188060/" target="_blank">9月23-28日宠物对战假日活动</a>
+					</div>
+				</li><script type="text/javascript">zangspan("49794","tomoyo");</script><li>
+					<a href="http://www.tuwan.com/user/76220/" target="_blank"><img src="http://img.tuwandata.com/v2/thumb/jpg/MDFmYyw4MCw4MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1502/04/693-1502041QP1N3.jpg"  alt="孟德"></a>
+					<span class="Name">孟德</span>
+					<a class="Zan" onClick="addzangspan('76220','孟德')">赞<span class="writer76220">0</span></a>
+					<div class="Biao"></div>
+					<div class="Info">
+						<span>新作&nbsp;&nbsp;|</span><a href="http://lol.tuwan.com/187875/" target="_blank">版本热门英雄克制指南</a>
+					</div>
+				</li><script type="text/javascript">zangspan("76220","孟德");</script><li>
+					<a href="http://www.tuwan.com/user/49778/" target="_blank"><img src="http://img.tuwandata.com/v2/thumb/jpg/MTcyMCw4MCw4MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1409/04/693-140Z4091424344.jpg"  alt="啃包菜的猫"></a>
+					<span class="Name">啃包菜的猫</span>
+					<a class="Zan" onClick="addzangspan('49778','啃包菜的猫')">赞<span class="writer49778">0</span></a>
+					<div class="Biao"></div>
+					<div class="Info">
+						<span>新作&nbsp;&nbsp;|</span><a href="http://lol.tuwan.com/187261/" target="_blank">SSUMDAY墨菲特教学</a>
+					</div>
+				</li><script type="text/javascript">zangspan("49778","啃包菜的猫");</script><li>
+					<a href="http://www.tuwan.com/user/49812/" target="_blank"><img src="http://img.tuwandata.com/v2/thumb/jpg/OWM0ZCw4MCw4MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1409/02/694-140Z21551192J.jpg"  alt="逝去的零碎"></a>
+					<span class="Name">逝去的零碎</span>
+					<a class="Zan" onClick="addzangspan('49812','逝去的零碎')">赞<span class="writer49812">0</span></a>
+					<div class="Biao"></div>
+					<div class="Info">
+						<span>新作&nbsp;&nbsp;|</span><a href="http://hs.tuwan.com/187174/" target="_blank">容易忽视的七个重要功能</a>
+					</div>
+				</li><script type="text/javascript">zangspan("49812","逝去的零碎");</script><li>
+					<a href="http://www.tuwan.com/user/183015/" target="_blank"><img src="http://img.tuwandata.com/v2/thumb/jpg/NmU1NCw4MCw4MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/allimg/1509/17/693_150917145608_2.jpg"  alt="浪子也"></a>
+					<span class="Name">浪子也</span>
+					<a class="Zan" onClick="addzangspan('183015','浪子也')">赞<span class="writer183015">0</span></a>
+					<div class="Biao"></div>
+					<div class="Info">
+						<span>新作&nbsp;&nbsp;|</span><a href="http://lol.tuwan.com/187149/" target="_blank">十大最有趣的技能盘点</a>
+					</div>
+				</li><script type="text/javascript">zangspan("183015","浪子也");</script><li>
+					<a href="http://www.tuwan.com/user/160644/" target="_blank"><img src="http://img.tuwandata.com/v2/thumb/jpg/YWNlNyw4MCw4MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1508/22/693-150R2155GK96.jpg"  alt="zxczxc"></a>
+					<span class="Name">zxczxc</span>
+					<a class="Zan" onClick="addzangspan('160644','zxczxc')">赞<span class="writer160644">0</span></a>
+					<div class="Biao"></div>
+					<div class="Info">
+						<span>新作&nbsp;&nbsp;|</span><a href="http://lol.tuwan.com/186501/" target="_blank">兔玩小编带你领皮肤</a>
+					</div>
+				</li><script type="text/javascript">zangspan("160644","zxczxc");</script><li>
+					<a href="http://www.tuwan.com/user/185091/" target="_blank"><img src="http://img.tuwandata.com/v2/thumb/jpg/YjAyMiw4MCw4MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1509/19/693-150919124535S1.jpg"  alt="风云"></a>
+					<span class="Name">风云</span>
+					<a class="Zan" onClick="addzangspan('185091','风云')">赞<span class="writer185091">0</span></a>
+					<div class="Biao"></div>
+					<div class="Info">
+						<span>新作&nbsp;&nbsp;|</span><a href="http://lol.tuwan.com/179263/" target="_blank">总决赛C组队伍实力大解析</a>
+					</div>
+				</li><script type="text/javascript">zangspan("185091","风云");</script>
+                        </ul>
+                        <ul class="cf">
+							<li class="choose">
+					<a href="http://www.tuwan.com/user/50034/" target="_blank"><img src="http://img.tuwandata.com/v2/thumb/jpg/MTQwOCw4MCw4MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1409/04/693-140Z40S91I50.jpg"  alt="niuniu"></a>
+					<span class="Name">niuniu</span>
+					<a class="Zan" onClick="addzangspan('50034','niuniu')">赞<span class="writer50034">0</span></a>
+					<div class="Biao"></div>
+					<div class="Info">
+						<span>新作&nbsp;&nbsp;|</span><a href="http://dnf.tuwan.com/117667/" target="_blank">人品帝又一天的斩获秀</a>
+					</div>
+				</li><script type="text/javascript">zangspan("50034","niuniu");</script><li>
+					<a href="http://www.tuwan.com/user/49794/" target="_blank"><img src="http://img.tuwandata.com/v2/thumb/jpg/ZmM1NSw4MCw4MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1409/03/691-140Z31U024115.jpg"  alt="tomoyo"></a>
+					<span class="Name">tomoyo</span>
+					<a class="Zan" onClick="addzangspan('49794','tomoyo')">赞<span class="writer49794">0</span></a>
+					<div class="Biao"></div>
+					<div class="Info">
+						<span>新作&nbsp;&nbsp;|</span><a href="http://wow.tuwan.com/188060/" target="_blank">9月23-28日宠物对战假日活动</a>
+					</div>
+				</li><script type="text/javascript">zangspan("49794","tomoyo");</script><li>
+					<a href="http://www.tuwan.com/user/49800/" target="_blank"><img src="http://img.tuwandata.com/v2/thumb/jpg/MzY3OSw4MCw4MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1409/03/1-140Z31S001638.jpg"  alt="大工匠梅卡托克"></a>
+					<span class="Name">大工匠梅卡托克</span>
+					<a class="Zan" onClick="addzangspan('49800','大工匠梅卡托克')">赞<span class="writer49800">0</span></a>
+					<div class="Biao"></div>
+					<div class="Info">
+						<span>新作&nbsp;&nbsp;|</span><a href="http://wow.tuwan.com/173743/" target="_blank">Method史诗地狱火回忆录</a>
+					</div>
+				</li><script type="text/javascript">zangspan("49800","大工匠梅卡托克");</script><li>
+					<a href="http://www.tuwan.com/user/50035/" target="_blank"><img src="http://img.tuwandata.com/v2/thumb/jpg/MDUwOCw4MCw4MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1409/04/710-140Z409121BJ.jpg"  alt="lkx901214"></a>
+					<span class="Name">lkx901214</span>
+					<a class="Zan" onClick="addzangspan('50035','lkx901214')">赞<span class="writer50035">0</span></a>
+					<div class="Biao"></div>
+					<div class="Info">
+						<span>新作&nbsp;&nbsp;|</span><a href="http://lol.tuwan.com/100219/" target="_blank">鼻队亲临MSI季中赛解说</a>
+					</div>
+				</li><script type="text/javascript">zangspan("50035","lkx901214");</script><li>
+					<a href="http://www.tuwan.com/user/49796/" target="_blank"><img src="http://img.tuwandata.com/v2/thumb/jpg/YjEzMSw4MCw4MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1409/02/694-140Z215194KH.jpg"  alt="endure"></a>
+					<span class="Name">endure</span>
+					<a class="Zan" onClick="addzangspan('49796','endure')">赞<span class="writer49796">0</span></a>
+					<div class="Biao"></div>
+					<div class="Info">
+						<span>新作&nbsp;&nbsp;|</span><a href="http://hs.tuwan.com/99587/" target="_blank">WCA小鱼鱼大仙人对阵弱鸡</a>
+					</div>
+				</li><script type="text/javascript">zangspan("49796","endure");</script><li>
+					<a href="http://www.tuwan.com/user/49778/" target="_blank"><img src="http://img.tuwandata.com/v2/thumb/jpg/MTcyMCw4MCw4MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1409/04/693-140Z4091424344.jpg"  alt="啃包菜的猫"></a>
+					<span class="Name">啃包菜的猫</span>
+					<a class="Zan" onClick="addzangspan('49778','啃包菜的猫')">赞<span class="writer49778">0</span></a>
+					<div class="Biao"></div>
+					<div class="Info">
+						<span>新作&nbsp;&nbsp;|</span><a href="http://lol.tuwan.com/187261/" target="_blank">SSUMDAY墨菲特教学</a>
+					</div>
+				</li><script type="text/javascript">zangspan("49778","啃包菜的猫");</script><li>
+					<a href="http://www.tuwan.com/user/49783/" target="_blank"><img src="http://img.tuwandata.com/v2/thumb/jpg/N2Q4MSw4MCw4MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1409/02/729-140Z21514002N.jpg"  alt="神韵"></a>
+					<span class="Name">神韵</span>
+					<a class="Zan" onClick="addzangspan('49783','神韵')">赞<span class="writer49783">0</span></a>
+					<div class="Biao"></div>
+					<div class="Info">
+						<span>新作&nbsp;&nbsp;|</span><a href="http://dnf.tuwan.com/117370/" target="_blank">DNF美服FACEBOOK消息</a>
+					</div>
+				</li><script type="text/javascript">zangspan("49783","神韵");</script>
+                        </ul>
+                    </div><!-- End of Zan-nav-con -->
+                </div><!-- End of Original-writer -->
+            </div><!-- End of Content-top-right -->
+        </div><!-- End of Content-top -->
+        <div class="Live-box">
+            <a href="http://www.douyutv.com/tuwan" class="Go-live" target="_blank" rel="nofollow"></a>
+            <h3><a class="Ico-bg Ajax" style="margin-top:4px;" href="javascript:;" onClick="gethomepagetag()">换一批</a>兔玩视频工坊</h3>
+            <ul class="Live-nav cf Live-tag Banner-text-text">
+                <li class="choose">窝窝人物志</li>
+                <li>炉石档案馆</li>
+                <li>三分钟冷知识</li>
+                <li>女神来了</li>
+                <li>爆笑聊天室</li>
+            </ul><!-- End of Live-nav -->
+            <div class="Live-nav-con">  
+                <a href="javascript:;" class="Ico-bg Previous"></a>
+                <a href="javascript:;" class="Ico-bg Next"></a>
+                <div class="Ul-box">              
+                    <ul class="cf" page="0" style="display:block">
+					
+						<li><a href="http://wow.tuwan.com/113110/" target="_blank"  title="窝窝人物志第十八期：浅谈巫妖王阿尔萨斯"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/MGY3MCwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1506/15/1-150615113G5K9.jpg" alt="窝窝人物志第十八期：浅谈巫妖王阿尔萨斯"><p>窝窝人物志第十八期：浅谈巫妖王阿尔萨斯</p></a></li>
+					
+						<li><a href="http://wow.tuwan.com/105279/" target="_blank"  title="窝窝人物志第十七期：魔兽中的苦逼巨魔们"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/ZjdmZSwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1505/15/1-150515132T2325.jpg" alt="窝窝人物志第十七期：魔兽中的苦逼巨魔们"><p>窝窝人物志第十七期：魔兽中的苦逼巨魔们</p></a></li>
+					
+						<li><a href="http://wow.tuwan.com/99728/" target="_blank"  title="老三新作吐槽：FC版魔兽世界你怕不怕！"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/MmU2YywxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1504/28/1-15042R04532X4.jpg" alt="老三新作吐槽：FC版魔兽世界你怕不怕！"><p>老三新作吐槽：FC版魔兽世界你怕不怕！</p></a></li>
+					
+						<li><a href="http://wow.tuwan.com/96506/" target="_blank"  title="窝窝人物志第十六期：魔兽中的黑化人物"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/ZWYxMywxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1504/17/1-15041G33644939.jpg" alt="窝窝人物志第十六期：魔兽中的黑化人物"><p>窝窝人物志第十六期：魔兽中的黑化人物</p></a></li>
+					
+						<li><a href="http://wow.tuwan.com/86670/" target="_blank"  title="窝窝人物志第十五期：魔兽中的经典三大战场"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/YzE4NCwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1503/13/1-1503131159135K.jpg" alt="窝窝人物志第十五期：魔兽中的经典三大战场"><p>窝窝人物志第十五期：魔兽中的经典三大战场</p></a></li>
+					
+						<li><a href="http://wow.tuwan.com/76670/" target="_blank"  title="窝窝人物志第十四期：魔兽中的衍生文化"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/MmYxOCwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1502/05/1-150205150211E7.jpg" alt="窝窝人物志第十四期：魔兽中的衍生文化"><p>窝窝人物志第十四期：魔兽中的衍生文化</p></a></li>
+					
+						<li><a href="http://wow.tuwan.com/67492/" target="_blank"  title="窝窝人物志第十三期：魔兽中的经典遗憾"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/NWRjYywxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1501/12/1-150112111G33c.jpg" alt="窝窝人物志第十三期：魔兽中的经典遗憾"><p>窝窝人物志第十三期：魔兽中的经典遗憾</p></a></li>
+					
+						<li><a href="http://wow.tuwan.com/61938/" target="_blank"  title="窝窝人物志第十二期：魔兽中调皮的熊孩子们"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/ZDY3YSwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1412/15/1-141215161415X9.jpg" alt="窝窝人物志第十二期：魔兽中调皮的熊孩子们"><p>窝窝人物志第十二期：魔兽中调皮的熊孩子们</p></a></li>
+					
+						<li><a href="http://wow.tuwan.com/58178/" target="_blank"  title="窝窝人物志11期：让人想入非非的女性角色"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/NzVhZiwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1411/18/1-14111QH13U60.jpg" alt="窝窝人物志11期：让人想入非非的女性角色"><p>窝窝人物志11期：让人想入非非的女性角色</p></a></li>
+					
+						<li><a href="http://wow.tuwan.com/54831/" target="_blank"  title="窝窝人物志第十期：魔兽世界中的名胜古迹！"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/MTAyOCwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1410/22/1-141022120409534.jpg" alt="窝窝人物志第十期：魔兽世界中的名胜古迹！"><p>窝窝人物志第十期：魔兽世界中的名胜古迹！</p></a></li>
+					
+						<li><a href="http://wow.tuwan.com/52198/" target="_blank"  title="窝窝人物志第九期：死后团圆的黑龙一家！"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/MzhiYSwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1409/24/1-1409241S606261.jpg" alt="窝窝人物志第九期：死后团圆的黑龙一家！"><p>窝窝人物志第九期：死后团圆的黑龙一家！</p></a></li>
+					
+						<li><a href="http://wow.tuwan.com/49089/" target="_blank"  title="窝窝人物志第八期：魔兽世界中的民族英雄"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/YjQ1MywxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1408/27/732-140RG049392b.jpg" alt="窝窝人物志第八期：魔兽世界中的民族英雄"><p>窝窝人物志第八期：魔兽世界中的民族英雄</p></a></li>
+					
+						<li><a href="http://wow.tuwan.com/45921/" target="_blank"  title="窝窝人物志第七期：艾泽拉斯的生态报告！"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/YjI2NSwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1408/07/1-140PG4464aY.jpg" alt="窝窝人物志第七期：艾泽拉斯的生态报告！"><p>窝窝人物志第七期：艾泽拉斯的生态报告！</p></a></li>
+					
+						<li><a href="http://wow.tuwan.com/43692/" target="_blank"  title="窝窝人物志：那些魔兽世界中的争议角色！"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/NmFiZiwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1407/15/692-140G510233c41.jpg" alt="窝窝人物志：那些魔兽世界中的争议角色！"><p>窝窝人物志：那些魔兽世界中的争议角色！</p></a></li>
+					
+						<li><a href="http://wow.tuwan.com/41098/" target="_blank"  title="坑爹还是拼爹！魔兽世界中那些伟大的父亲！"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/M2EwMSwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1406/25/1-1406251R011296.jpg" alt="坑爹还是拼爹！魔兽世界中那些伟大的父亲！"><p>坑爹还是拼爹！魔兽世界中那些伟大的父亲！</p></a></li>
+					
+						<li><a href="http://wow.tuwan.com/39361/" target="_blank"  title="窝窝人物志：诅咒！姓阿的都没有好下场！"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/MzBjMiwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1406/06/692-140606154S6408.jpg" alt="窝窝人物志：诅咒！姓阿的都没有好下场！"><p>窝窝人物志：诅咒！姓阿的都没有好下场！</p></a></li>
+					
+						<li><a href="http://wow.tuwan.com/38042/" target="_blank"  title="窝窝人物志：盘点那些窝窝中的绝世法爷！"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/YzFlZSwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1405/20/692-14052016205I22.jpg" alt="窝窝人物志：盘点那些窝窝中的绝世法爷！"><p>窝窝人物志：盘点那些窝窝中的绝世法爷！</p></a></li>
+					
+						<li><a href="http://wow.tuwan.com/37434/" target="_blank"  title="窝窝人物志：这不是TD！海加尔圣战那点事"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/NTMwNiwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1405/12/692-140512161219104.jpg" alt="窝窝人物志：这不是TD！海加尔圣战那点事"><p>窝窝人物志：这不是TD！海加尔圣战那点事</p></a></li>
+					
+						<li><a href="http://wow.tuwan.com/36568/" target="_blank"  title="窝窝人物志：劳动最光荣 那些WOW的劳模们"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/NDU2OSwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1405/04/691-140504092HC64.jpg" alt="窝窝人物志：劳动最光荣 那些WOW的劳模们"><p>窝窝人物志：劳动最光荣 那些WOW的劳模们</p></a></li>
+					
+                    </ul>
+                    <ul class="cf" page="0">
+					
+						<li><a href="http://hs.tuwan.com/113909/" target="_blank"  title="炉石档案馆第十八期：穆克拉、公主与你"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/YTA2OSwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1506/18/1-15061QJ532b7.jpg" alt="炉石档案馆第十八期：穆克拉、公主与你"><p>炉石档案馆第十八期：穆克拉、公主与你</p></a></li>
+					
+						<li><a href="http://hs.tuwan.com/90197/" target="_blank"  title="兔玩炉石档案馆第十七期：黑石山的火焰"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/OWU0ZiwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1505/06/1-15050619312Q24.jpg" alt="兔玩炉石档案馆第十七期：黑石山的火焰"><p>兔玩炉石档案馆第十七期：黑石山的火焰</p></a></li>
+					
+						<li><a href="http://hs.tuwan.com/73520/" target="_blank"  title="炉石档案馆番外篇 2014炉石传说大事记"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/MTUyMywxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1501/29/1-15012911222L14.jpg" alt="炉石档案馆番外篇 2014炉石传说大事记"><p>炉石档案馆番外篇 2014炉石传说大事记</p></a></li>
+					
+						<li><a href="http://hs.tuwan.com/72030/" target="_blank"  title="背后的故事：炉石档案馆2015新年特别版"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/OGEyMiwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1501/24/1-1501241IF2c8.jpg" alt="背后的故事：炉石档案馆2015新年特别版"><p>背后的故事：炉石档案馆2015新年特别版</p></a></li>
+					
+						<li><a href="http://hs.tuwan.com/62413/" target="_blank"  title="兔玩炉石档案馆第十六期：地精大战侏儒"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/ZTFkMywxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1412/18/1-14121Q6160L37.jpg" alt="兔玩炉石档案馆第十六期：地精大战侏儒"><p>兔玩炉石档案馆第十六期：地精大战侏儒</p></a></li>
+					
+						<li><a href="http://hs.tuwan.com/55834/" target="_blank"  title="兔玩炉石档案馆第十五期 walalalalalala"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/ZWM2NywxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1410/31/1-14103109211V36.jpg" alt="兔玩炉石档案馆第十五期 walalalalalala"><p>兔玩炉石档案馆第十五期 walalalalalala</p></a></li>
+					
+						<li><a href="http://hs.tuwan.com/50051/" target="_blank"  title="炉石档案馆第十四期 加尔鲁什的战士之路"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/ZGYxNywxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1409/04/1-140Z4133PM26.jpg" alt="炉石档案馆第十四期 加尔鲁什的战士之路"><p>炉石档案馆第十四期 加尔鲁什的战士之路</p></a></li>
+					
+						<li><a href="http://hs.tuwan.com/47298/" target="_blank"  title="兔玩出品炉石档案馆第十三期：瘟疫、军事区"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/YmViNCwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1408/12/1-140Q210591L23.jpg" alt="兔玩出品炉石档案馆第十三期：瘟疫、军事区"><p>兔玩出品炉石档案馆第十三期：瘟疫、军事区</p></a></li>
+					
+						<li><a href="http://hs.tuwan.com/46205/" target="_blank"  title="兔玩炉石档案馆第十二期 冒险模式之蜘蛛区"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/YWMyYiwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1408/07/1-140PG44635392.jpg" alt="兔玩炉石档案馆第十二期 冒险模式之蜘蛛区"><p>兔玩炉石档案馆第十二期 冒险模式之蜘蛛区</p></a></li>
+					
+						<li><a href="http://hs.tuwan.com/44013/" target="_blank"  title="兔玩出品炉石档案馆第十一期：灰烬使者"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/ZmU0YiwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1407/17/709-140GG01ZV61.jpg" alt="兔玩出品炉石档案馆第十一期：灰烬使者"><p>兔玩出品炉石档案馆第十一期：灰烬使者</p></a></li>
+					
+						<li><a href="http://hs.tuwan.com/41536/" target="_blank"  title="兔玩炉石档案馆第十期:希尔瓦娜斯·风行者"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/NWRlNSwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1406/30/709-140630140GAa.jpg" alt="兔玩炉石档案馆第十期:希尔瓦娜斯·风行者"><p>兔玩炉石档案馆第十期:希尔瓦娜斯·风行者</p></a></li>
+					
+						<li><a href="http://hs.tuwan.com/39551/" target="_blank"  title="兔玩炉石档案馆第九期：王牌猎人奈辛瓦里"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/ZTY4MSwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1406/09/709-140609111353419.jpg" alt="兔玩炉石档案馆第九期：王牌猎人奈辛瓦里"><p>兔玩炉石档案馆第九期：王牌猎人奈辛瓦里</p></a></li>
+					
+						<li><a href="http://hs.tuwan.com/37978/" target="_blank"  title="兔玩网炉石档案馆第八期：我是火车王"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/NmEzMCwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1405/20/709-14052011562KJ.jpg" alt="兔玩网炉石档案馆第八期：我是火车王"><p>兔玩网炉石档案馆第八期：我是火车王</p></a></li>
+					
+						<li><a href="http://hs.tuwan.com/36310/" target="_blank"  title="兔玩炉石档案馆第七期：纳克萨玛斯之影"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/ZTlkYSwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1404/30/709-140430163P1162.jpg" alt="兔玩炉石档案馆第七期：纳克萨玛斯之影"><p>兔玩炉石档案馆第七期：纳克萨玛斯之影</p></a></li>
+					
+						<li><a href="http://hs.tuwan.com/35571/" target="_blank"  title="兔玩炉石档案馆第四期：吉安娜的法师公寓"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/NGJlNiwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1404/19/709-14041911055X34.jpg" alt="兔玩炉石档案馆第四期：吉安娜的法师公寓"><p>兔玩炉石档案馆第四期：吉安娜的法师公寓</p></a></li>
+					
+						<li><a href="http://hs.tuwan.com/35569/" target="_blank"  title="兔玩炉石档案馆第三期：钓鱼之神纳特·帕格"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/ZGJjNCwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1404/19/709-140419110343P1.jpg" alt="兔玩炉石档案馆第三期：钓鱼之神纳特·帕格"><p>兔玩炉石档案馆第三期：钓鱼之神纳特·帕格</p></a></li>
+					
+						<li><a href="http://hs.tuwan.com/35568/" target="_blank"  title="兔玩炉石档案馆第二期：老弗丁和银色北伐军"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/ODc0NCwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1404/19/709-14041911004Q59.jpg" alt="兔玩炉石档案馆第二期：老弗丁和银色北伐军"><p>兔玩炉石档案馆第二期：老弗丁和银色北伐军</p></a></li>
+					
+						<li><a href="http://hs.tuwan.com/35566/" target="_blank"  title="兔玩出品炉石档案馆第一期：不一样的炉石"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/ZDQ3MCwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1404/19/709-14041910552Y21.jpg" alt="兔玩出品炉石档案馆第一期：不一样的炉石"><p>兔玩出品炉石档案馆第一期：不一样的炉石</p></a></li>
+					
+						<li><a href="http://hs.tuwan.com/35551/" target="_blank"  title="兔玩出品炉石档案馆第六期：战栗的暴风城"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/MjE3NiwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1404/19/709-140419111044608.jpg" alt="兔玩出品炉石档案馆第六期：战栗的暴风城"><p>兔玩出品炉石档案馆第六期：战栗的暴风城</p></a></li>
+					
+						<li><a href="http://hs.tuwan.com/34250/" target="_blank"  title="兔玩炉石档案馆第五期：绝逼大乱斗"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/Mzk1YiwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1404/19/709-140419111022612.jpg" alt="兔玩炉石档案馆第五期：绝逼大乱斗"><p>兔玩炉石档案馆第五期：绝逼大乱斗</p></a></li>
+					
+                    </ul>
+                    <ul class="cf" page="0">
+					
+						<li><a href="http://lol.tuwan.com/169396/" target="_blank"  title="三分钟冷知识5：发条最新黑科技“带球过人”"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/ZjdjNiwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1509/02/693-150Z2164140V5.jpg" alt="三分钟冷知识5：发条最新黑科技“带球过人”"><p>三分钟冷知识5：发条最新黑科技“带球过人”</p></a></li>
+					
+						<li><a href="http://lol.tuwan.com/163574/" target="_blank"  title="三分钟冷知识：一秒两Q！劫最快技能释放方法"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/MzllZSwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1508/31/1-150S11J54KF.jpg" alt="三分钟冷知识：一秒两Q！劫最快技能释放方法"><p>三分钟冷知识：一秒两Q！劫最快技能释放方法</p></a></li>
+					
+						<li><a href="http://lol.tuwan.com/133735/" target="_blank"  title="lol三分钟冷知识3：如何用塔姆肯奇坑队友"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/YzA5MywxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1507/31/693-150I11SQ1D0.jpg" alt="lol三分钟冷知识3：如何用塔姆肯奇坑队友"><p>lol三分钟冷知识3：如何用塔姆肯奇坑队友</p></a></li>
+					
+						<li><a href="http://lol.tuwan.com/116242/" target="_blank"  title="兔玩出品《三分钟冷知识》之瓦洛兰大陆第一惨案"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/Njk2ZiwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1507/20/1-150H0135535532.jpg" alt="兔玩出品《三分钟冷知识》之瓦洛兰大陆第一惨案"><p>兔玩出品《三分钟冷知识》之瓦洛兰大陆第一惨案</p></a></li>
+					
+						<li><a href="http://lol.tuwan.com/110529/" target="_blank"  title="兔玩网出品LOL《三分钟冷知识》-台服英雄翻译"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/YTJkNiwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1506/03/1-1506031ZAc11.jpg" alt="兔玩网出品LOL《三分钟冷知识》-台服英雄翻译"><p>兔玩网出品LOL《三分钟冷知识》-台服英雄翻译</p></a></li>
+					
+                    </ul>
+                    <ul class="cf" page="0">
+					
+						<li><a href="http://lol.tuwan.com/162210/" target="_blank"  title="颜值最高LOL比赛实录 众女神祝福四周年"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/Zjk0ZiwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1508/24/802-150R4200553355.jpg" alt="颜值最高LOL比赛实录 众女神祝福四周年"><p>颜值最高LOL比赛实录 众女神祝福四周年</p></a></li>
+					
+						<li><a href="http://lol.tuwan.com/115788/" target="_blank"  title="女神来了特别篇 OMG女队小游戏之提莫必须死"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/ZWQ2MiwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1506/30/1-15063012025E49.jpg" alt="女神来了特别篇 OMG女队小游戏之提莫必须死"><p>女神来了特别篇 OMG女队小游戏之提莫必须死</p></a></li>
+					
+						<li><a href="http://lol.tuwan.com/114902/" target="_blank"  title="女子战队的闺房之乐 小龙女战队终极跟拍"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/MjUyMiwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1506/25/693-150625211111C3.jpg" alt="女子战队的闺房之乐 小龙女战队终极跟拍"><p>女子战队的闺房之乐 小龙女战队终极跟拍</p></a></li>
+					
+                    </ul>
+                    <ul class="cf" page="0">
+					
+						<li><a href="http://lol.tuwan.com/169095/" target="_blank"  title="爆笑聊天室4：千万别用女友QQ玩英雄联盟"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/NDU1OCwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1509/04/1-150Z4134003E3.jpg" alt="爆笑聊天室4：千万别用女友QQ玩英雄联盟"><p>爆笑聊天室4：千万别用女友QQ玩英雄联盟</p></a></li>
+					
+						<li><a href="http://lol.tuwan.com/146089/" target="_blank"  title="【爆笑聊天室3】:你最怕队友一级做什么？"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/YjRkNywxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1508/10/693-150Q013242c37.jpg" alt="【爆笑聊天室3】:你最怕队友一级做什么？"><p>【爆笑聊天室3】:你最怕队友一级做什么？</p></a></li>
+					
+						<li><a href="http://lol.tuwan.com/134736/" target="_blank"  title="lol爆笑聊天室2：天了噜 小智误闯聊天室？"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/MWEyMiwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1507/31/693-150I1192G2128.jpg" alt="lol爆笑聊天室2：天了噜 小智误闯聊天室？"><p>lol爆笑聊天室2：天了噜 小智误闯聊天室？</p></a></li>
+					
+						<li><a href="http://lol.tuwan.com/131916/" target="_blank"  title="lol爆笑聊天室NO.1：防御喷子最正确方法！"><img width="170" height="104" src="http://img.tuwandata.com/v2/thumb/all/NTU0YSwxNzAsMTA0LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1507/27/693-150HG43Q6121.jpg" alt="lol爆笑聊天室NO.1：防御喷子最正确方法！"><p>lol爆笑聊天室NO.1：防御喷子最正确方法！</p></a></li>
+					
+                    </ul>
+                  </div>
+            </div>
+        </div>
+		<script type="text/javascript">
+			function gethomepagetag(){
+				var tagname=$(".Live-nav .choose").html();
+				var tagid=0;
+				$(".Live-tag li").each(function(ii){
+					if($(this).hasClass("choose")){
+						tagid=ii;
+					}			
+				});
+				var url='http://api.tuwan.com/homepage/?model=hometag&tagname='+ tagname +'&num=30&w=170&h=104&callback=?';
+				//console.log(url);
+				$.getJSON(url,function(result){						
+					$(".Live-box .Ul-box").html(result['html']);
+					$(".Live-box .Ul-box ul").css("display","none");
+					$(".Live-box .Ul-box ul").eq(tagid).css("display","block");
+					
+					$(".Live-tag li").each(function(ii){
+						$(".Live-tag li").eq(ii).html(result['tagname'][ii]);
+					});
+					
+				});
+			}
+		</script>	
+    </div>
+</div>
+        <div class="Ad-box" style="margin:30px auto;"><!--首页横幅2-->
+<iframe src="http://www.feitian001.com/html/click/7243_669.html" width="960" height="90" marginheight="0" marginwidth="0" scrolling="no" frameborder="0"></iframe> </div>
+<div class="Gaming-box">
+    <div class="Gaming">
+        <div class="Gaming-title"><img src="http://static.tuwan.com/v3/homepage/images/gaming-title.png" alt=""></div>
+		<style>
+.nomatch{
+	width: 233px;
+	overflow: hidden; 
+	display: list-item;
+	color:#ababab;;
+}
+
+.nomatch .Ico-bg2{
+	margin-left:45px;
+	margin-top:-5px;
+}
+</style>		
+<!-- 电竞 -->
+<div class="Match-box">
+	<ul class="Match-nav">
+		<li class="choose" title="2015-08-23"><strong>08月23日</strong><span>星期日</span></li><li title="2015-08-29"><strong>08月29日</strong><span>星期六</span></li><li title="2015-09-02"><strong>09月02日</strong><span>星期三</span></li><li title="2015-09-04"><strong>09月04日</strong><span>星期五</span></li><li title="2015-09-05"><strong>09月05日</strong><span>星期六</span></li><li title="2015-10-01"><strong>10月01日</strong><span>星期四</span></li><li title="2015-10-02"><strong>10月02日</strong><span>星期五</span></li>
+	</ul><!-- End of Live-nav -->
+	<script type="text/javascript">
+		var dayarr=new Array();
+		dayarr.push('2015-08-23');dayarr.push('2015-08-29');dayarr.push('2015-09-02');dayarr.push('2015-09-04');dayarr.push('2015-09-05');dayarr.push('2015-10-01');dayarr.push('2015-10-02');	
+	</script>	
+	<div class="Match-nav-con" style="padding-top:70px">
+		<ul class="matchgame" id="Banner-text">
+		    <li class="choose"><span>全部赛程</span></li>
+            <li class="lol" game="lol"><span><img src="http://static.tuwan.com/v3/homepage/images/lol-h.png" on="lol.png" off="lol-h.png" alt="英雄联盟">英雄联盟</span></li>
+            <li class="fb" game="fb"><span><img src="http://static.tuwan.com/v3/homepage/images/fb-h.png" on="fb.png" off="fb-h.png"  alt="风暴英雄">风暴英雄</span></li>
+            <li class="dota2" game="dota2"><span><img src="http://static.tuwan.com/v3/homepage/images/dota2-h.png" on="dota2.png"  off="dota2-h.png" alt="DOTA2">DOTA2</span></li>
+        </ul>
+		<div class="Ico-bg MatchPrev"></div>
+		<div class="Ico-bg MatchNext"></div>
+		<div class="Ul-box">  
+			<ul page="0" style="display:block;width:7000px"><li ii="0" game="fb" class="2015-08-23" day="2015-08-23" style="width:233px;overflow:hidden">
+							<div class="title"><span class="Ico-bg">已结束</span><img src="http://static.tuwan.com/v3/homepage/images/fb.png"/>&nbsp;&nbsp;时空杯&nbsp;14:00</div>
+							<div class="Team-score">
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/ZDljYSw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1508/12/807-150Q2110GO21.jpg" alt="8月23日 Snake vs  DK"/>Snake.KR</span>
+								<span class="Score"><strong>2</strong>&nbsp;&nbsp;VS&nbsp;&nbsp;<strong>0</strong></span>
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/ODc0MCw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1508/11/807-150Q1163221295.jpg" alt="8月23日 Snake vs  DK"/>DK</span>
+							</div>								
+							<a class="On-btn" href="http://fb.tuwan.com/161727/" target="_blank">录像</a>							
+						</li><li ii="1" game="lol" class="" day="2015-08-23" style="width:233px;overflow:hidden">
+							<div class="title"><span class="Ico-bg">已结束</span><img src="http://static.tuwan.com/v3/homepage/images/lol.png"/>&nbsp;&nbsp;决赛&nbsp;17:00</div>
+							<div class="Team-score">
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/MzU5ZCw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1506/08/693-15060Q5433X41.png" alt="8月23日 LGD vs QG"/>LGD</span>
+								<span class="Score"><strong>3</strong>&nbsp;&nbsp;VS&nbsp;&nbsp;<strong>2</strong></span>
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/NDNhYSw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1506/08/693-15060Q556145H.png" alt="8月23日 LGD vs QG"/>QG</span>
+							</div>								
+							<a class="On-btn" href="http://lol.tuwan.com/161179/" target="_blank">录像</a>							
+						</li><li ii="2" game="fb" class="" day="2015-08-23" style="width:233px;overflow:hidden">
+							<div class="title"><span class="Ico-bg">已结束</span><img src="http://static.tuwan.com/v3/homepage/images/fb.png"/>&nbsp;&nbsp;时空杯&nbsp;19:00</div>
+							<div class="Team-score">
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/YzgzNiw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1508/11/807-150Q1163333H3.jpg" alt="8月23日 EDG vs  Snake"/>EDG</span>
+								<span class="Score"><strong>4</strong>&nbsp;&nbsp;VS&nbsp;&nbsp;<strong>2</strong></span>
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/ZDljYSw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1508/12/807-150Q2110GO21.jpg" alt="8月23日 EDG vs  Snake"/>Snake.KR</span>
+							</div>								
+							<a class="On-btn" href="http://lol.tuwan.com/161750/" target="_blank">录像</a>							
+						</li><li class="nomatch"  ii="3" style="width:233px;overflow:hidden">
+									<div class="title"><span style="color:#ababab;"><img src="http://img.tuwandata.com/v2/thumb/all/ZDFlNCwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_2.png"> 未开播</span><img src="http://img.tuwandata.com/v2/thumb/all/ZjVkZSwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_1.png"></div>
+									<div class="Team-score">								
+										<span class="Ico-bg2"><img src="http://img.tuwandata.com/v2/thumb/all/NmY0NCwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_3.png"></span>
+									</div>				
+								</li><li ii="4" game="lol" class="2015-08-29" day="2015-08-29" style="width:233px;overflow:hidden">
+							<div class="title"><span class="Ico-bg">已结束</span><img src="http://static.tuwan.com/v3/homepage/images/lol.png"/>&nbsp;&nbsp;LCK&nbsp;16:00</div>
+							<div class="Team-score">
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/MzM5ZSw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1509/01/802-150Z109414Q35.png" alt="8月29日 SKT vs KT"/>SKT</span>
+								<span class="Score"><strong>3</strong>&nbsp;&nbsp;VS&nbsp;&nbsp;<strong>0</strong></span>
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/YmVlNyw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1509/01/802-150Z109405c32.png" alt="8月29日 SKT vs KT"/>KT</span>
+							</div>								
+							<a class="On-btn" href="http://lol.tuwan.com/168378/" target="_blank">录像</a>							
+						</li><li class="nomatch"  ii="5" style="width:233px;overflow:hidden">
+									<div class="title"><span style="color:#ababab;"><img src="http://img.tuwandata.com/v2/thumb/all/ZDFlNCwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_2.png"> 未开播</span><img src="http://img.tuwandata.com/v2/thumb/all/ZjVkZSwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_1.png"></div>
+									<div class="Team-score">								
+										<span class="Ico-bg2"><img src="http://img.tuwandata.com/v2/thumb/all/NmY0NCwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_3.png"></span>
+									</div>				
+								</li><li class="nomatch"  ii="6" style="width:233px;overflow:hidden">
+									<div class="title"><span style="color:#ababab;"><img src="http://img.tuwandata.com/v2/thumb/all/ZDFlNCwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_2.png"> 未开播</span><img src="http://img.tuwandata.com/v2/thumb/all/ZjVkZSwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_1.png"></div>
+									<div class="Team-score">								
+										<span class="Ico-bg2"><img src="http://img.tuwandata.com/v2/thumb/all/NmY0NCwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_3.png"></span>
+									</div>				
+								</li><li class="nomatch"  ii="7" style="width:233px;overflow:hidden">
+									<div class="title"><span style="color:#ababab;"><img src="http://img.tuwandata.com/v2/thumb/all/ZDFlNCwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_2.png"> 未开播</span><img src="http://img.tuwandata.com/v2/thumb/all/ZjVkZSwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_1.png"></div>
+									<div class="Team-score">								
+										<span class="Ico-bg2"><img src="http://img.tuwandata.com/v2/thumb/all/NmY0NCwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_3.png"></span>
+									</div>				
+								</li><li ii="8" game="lol" class="2015-09-02" day="2015-09-02" style="width:233px;overflow:hidden">
+							<div class="title"><span class="Ico-bg">已结束</span><img src="http://static.tuwan.com/v3/homepage/images/lol.png"/>&nbsp;&nbsp;LCK&nbsp;17:00</div>
+							<div class="Team-score">
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/NjhiNSw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1509/01/802-150Z1100615351.png" alt="9月2日 JAG vs NJE"/>JAG</span>
+								<span class="Score"><strong>3</strong>&nbsp;&nbsp;VS&nbsp;&nbsp;<strong>0</strong></span>
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/MDZiOSw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1509/01/802-150Z1101216132.png" alt="9月2日 JAG vs NJE"/>NJE</span>
+							</div>								
+							<a class="On-btn" href="http://lol.tuwan.com/170516/" target="_blank">录像</a>							
+						</li><li class="nomatch"  ii="9" style="width:233px;overflow:hidden">
+									<div class="title"><span style="color:#ababab;"><img src="http://img.tuwandata.com/v2/thumb/all/ZDFlNCwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_2.png"> 未开播</span><img src="http://img.tuwandata.com/v2/thumb/all/ZjVkZSwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_1.png"></div>
+									<div class="Team-score">								
+										<span class="Ico-bg2"><img src="http://img.tuwandata.com/v2/thumb/all/NmY0NCwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_3.png"></span>
+									</div>				
+								</li><li class="nomatch"  ii="10" style="width:233px;overflow:hidden">
+									<div class="title"><span style="color:#ababab;"><img src="http://img.tuwandata.com/v2/thumb/all/ZDFlNCwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_2.png"> 未开播</span><img src="http://img.tuwandata.com/v2/thumb/all/ZjVkZSwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_1.png"></div>
+									<div class="Team-score">								
+										<span class="Ico-bg2"><img src="http://img.tuwandata.com/v2/thumb/all/NmY0NCwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_3.png"></span>
+									</div>				
+								</li><li class="nomatch"  ii="11" style="width:233px;overflow:hidden">
+									<div class="title"><span style="color:#ababab;"><img src="http://img.tuwandata.com/v2/thumb/all/ZDFlNCwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_2.png"> 未开播</span><img src="http://img.tuwandata.com/v2/thumb/all/ZjVkZSwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_1.png"></div>
+									<div class="Team-score">								
+										<span class="Ico-bg2"><img src="http://img.tuwandata.com/v2/thumb/all/NmY0NCwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_3.png"></span>
+									</div>				
+								</li><li ii="12" game="lol" class="2015-09-04" day="2015-09-04" style="width:233px;overflow:hidden">
+							<div class="title"><span class="Ico-bg">已结束</span><img src="http://static.tuwan.com/v3/homepage/images/lol.png"/>&nbsp;&nbsp;LPL&nbsp;13:20</div>
+							<div class="Team-score">
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/N2NlNSw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1506/08/693-15060Q54443243.png" alt="9月4日 EDG vs Snake"/>EDG</span>
+								<span class="Score"><strong>2</strong>&nbsp;&nbsp;VS&nbsp;&nbsp;<strong>0</strong></span>
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/Y2IzZCw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1506/08/693-15060Q541522X.png" alt="9月4日 EDG vs Snake"/>Snake</span>
+							</div>								
+							<a class="On-btn" href="http://lol.tuwan.com/171478/" target="_blank">录像</a>							
+						</li><li ii="13" game="lol" class="" day="2015-09-04" style="width:233px;overflow:hidden">
+							<div class="title"><span class="Ico-bg">已结束</span><img src="http://static.tuwan.com/v3/homepage/images/lol.png"/>&nbsp;&nbsp;LPL&nbsp;15:55</div>
+							<div class="Team-score">
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/N2U4Nyw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1506/08/693-15060Q54351I8.png" alt="9月4日 IG vs QG"/>IG</span>
+								<span class="Score"><strong>2</strong>&nbsp;&nbsp;VS&nbsp;&nbsp;<strong>0</strong></span>
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/NDNhYSw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1506/08/693-15060Q556145H.png" alt="9月4日 IG vs QG"/>QG</span>
+							</div>								
+							<a class="On-btn" href="http://lol.tuwan.com/171487/" target="_blank">录像</a>							
+						</li><li ii="14" game="lol" class="" day="2015-09-04" style="width:233px;overflow:hidden">
+							<div class="title"><span class="Ico-bg">已结束</span><img src="http://static.tuwan.com/v3/homepage/images/lol.png"/>&nbsp;&nbsp;LCK&nbsp;17:00</div>
+							<div class="Team-score">
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/M2JjMyw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1509/01/802-150Z109345N19.png" alt="9月4日 CJ vs JAG"/>CJ</span>
+								<span class="Score"><strong>2</strong>&nbsp;&nbsp;VS&nbsp;&nbsp;<strong>3</strong></span>
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/NjhiNSw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1509/01/802-150Z1100615351.png" alt="9月4日 CJ vs JAG"/>JAG</span>
+							</div>								
+							<a class="On-btn" href="http://lol.tuwan.com/171724/" target="_blank">录像</a>							
+						</li><li ii="15" game="lol" class="" day="2015-09-04" style="width:233px;overflow:hidden">
+							<div class="title"><span class="Ico-bg">已结束</span><img src="http://static.tuwan.com/v3/homepage/images/lol.png"/>&nbsp;&nbsp;LPL&nbsp;19:40</div>
+							<div class="Team-score">
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/N2U4Nyw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1506/08/693-15060Q54351I8.png" alt="9月4日 IG vs EDG"/>IG</span>
+								<span class="Score"><strong>1</strong>&nbsp;&nbsp;VS&nbsp;&nbsp;<strong>3</strong></span>
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/N2NlNSw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1506/08/693-15060Q54443243.png" alt="9月4日 IG vs EDG"/>EDG</span>
+							</div>								
+							<a class="On-btn" href="http://lol.tuwan.com/171547/" target="_blank">录像</a>							
+						</li><li ii="16" game="lol" class="2015-09-05" day="2015-09-05" style="width:233px;overflow:hidden">
+							<div class="title"><span class="Ico-bg">已结束</span><img src="http://static.tuwan.com/v3/homepage/images/lol.png"/>&nbsp;&nbsp;LPL&nbsp;13:20</div>
+							<div class="Team-score">
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/NDNhYSw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1506/08/693-15060Q556145H.png" alt="9月5日 QG vs Snake"/>QG</span>
+								<span class="Score"><strong>3</strong>&nbsp;&nbsp;VS&nbsp;&nbsp;<strong>0</strong></span>
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/Y2IzZCw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1506/08/693-15060Q541522X.png" alt="9月5日 QG vs Snake"/>Snake</span>
+							</div>								
+							<a class="On-btn" href="http://lol.tuwan.com/107337/" target="_blank">录像</a>							
+						</li><li ii="17" game="lol" class="" day="2015-09-05" style="width:233px;overflow:hidden">
+							<div class="title"><span class="Ico-bg">已结束</span><img src="http://static.tuwan.com/v3/homepage/images/lol.png"/>&nbsp;&nbsp;LCK&nbsp;17:00</div>
+							<div class="Team-score">
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/YmVlNyw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1509/01/802-150Z109405c32.png" alt="9月5日 KT vs JAG"/>KT</span>
+								<span class="Score"><strong>3</strong>&nbsp;&nbsp;VS&nbsp;&nbsp;<strong>1</strong></span>
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/NjhiNSw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1509/01/802-150Z1100615351.png" alt="9月5日 KT vs JAG"/>JAG</span>
+							</div>								
+							<a class="On-btn" href="http://lol.tuwan.com/173211" target="_blank">录像</a>							
+						</li><li ii="18" game="lol" class="" day="2015-09-05" style="width:233px;overflow:hidden">
+							<div class="title"><span class="Ico-bg">已结束</span><img src="http://static.tuwan.com/v3/homepage/images/lol.png"/>&nbsp;&nbsp;LPL&nbsp;17:30</div>
+							<div class="Team-score">
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/NDNhYSw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1506/08/693-15060Q556145H.png" alt="9月5日 QG vs IG"/>QG</span>
+								<span class="Score"><strong>0</strong>&nbsp;&nbsp;VS&nbsp;&nbsp;<strong>3</strong></span>
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/N2U4Nyw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1506/08/693-15060Q54351I8.png" alt="9月5日 QG vs IG"/>IG</span>
+							</div>								
+							<a class="On-btn" href="http://lol.tuwan.com/171990/" target="_blank">录像</a>							
+						</li><li class="nomatch"  ii="19" style="width:233px;overflow:hidden">
+									<div class="title"><span style="color:#ababab;"><img src="http://img.tuwandata.com/v2/thumb/all/ZDFlNCwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_2.png"> 未开播</span><img src="http://img.tuwandata.com/v2/thumb/all/ZjVkZSwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_1.png"></div>
+									<div class="Team-score">								
+										<span class="Ico-bg2"><img src="http://img.tuwandata.com/v2/thumb/all/NmY0NCwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_3.png"></span>
+									</div>				
+								</li><li ii="20" game="lol" class="2015-10-01" day="2015-10-01" style="width:233px;overflow:hidden">
+							<div class="title"><span class="Ico-bg">即将开始</span><img src="http://static.tuwan.com/v3/homepage/images/lol.png"/>&nbsp;&nbsp;S5&nbsp;22:30</div>
+							<div class="Team-score">
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/Njk5MCw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1509/01/802-150Z1145015149.png" alt="10月1日 FNC vs IG"/>FNC</span>
+								<span class="Score"><strong>0</strong>&nbsp;&nbsp;VS&nbsp;&nbsp;<strong>0</strong></span>
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/N2U4Nyw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1506/08/693-15060Q54351I8.png" alt="10月1日 FNC vs IG"/>IG</span>
+							</div>								
+							<a class="On-btn" href="http://lol.tuwan.com/107337/" target="_blank">即将直播</a>							
+						</li><li ii="21" game="lol" class="" day="2015-10-01" style="width:233px;overflow:hidden">
+							<div class="title"><span class="Ico-bg">即将开始</span><img src="http://static.tuwan.com/v3/homepage/images/lol.png"/>&nbsp;&nbsp;S5&nbsp;23:30</div>
+							<div class="Team-score">
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/MDY1OSw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1509/22/802-1509221FQM91.png" alt="10月1日 AHQ vs C9"/>AHQ</span>
+								<span class="Score"><strong>0</strong>&nbsp;&nbsp;VS&nbsp;&nbsp;<strong>0</strong></span>
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/MzgwYiw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1509/01/802-150Z1150615222.png" alt="10月1日 AHQ vs C9"/>C9</span>
+							</div>								
+							<a class="On-btn" href="http://lol.tuwan.com/107337/" target="_blank">即将直播</a>							
+						</li><li class="nomatch"  ii="22" style="width:233px;overflow:hidden">
+									<div class="title"><span style="color:#ababab;"><img src="http://img.tuwandata.com/v2/thumb/all/ZDFlNCwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_2.png"> 未开播</span><img src="http://img.tuwandata.com/v2/thumb/all/ZjVkZSwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_1.png"></div>
+									<div class="Team-score">								
+										<span class="Ico-bg2"><img src="http://img.tuwandata.com/v2/thumb/all/NmY0NCwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_3.png"></span>
+									</div>				
+								</li><li class="nomatch"  ii="23" style="width:233px;overflow:hidden">
+									<div class="title"><span style="color:#ababab;"><img src="http://img.tuwandata.com/v2/thumb/all/ZDFlNCwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_2.png"> 未开播</span><img src="http://img.tuwandata.com/v2/thumb/all/ZjVkZSwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_1.png"></div>
+									<div class="Team-score">								
+										<span class="Ico-bg2"><img src="http://img.tuwandata.com/v2/thumb/all/NmY0NCwwLDAsNCwzLDEsLTEsMSw=/u/www.tuwan.com/uploads/allimg/1508/18/693_150818200048_3.png"></span>
+									</div>				
+								</li><li ii="24" game="lol" class="2015-10-02" day="2015-10-02" style="width:233px;overflow:hidden">
+							<div class="title"><span class="Ico-bg">即将开始</span><img src="http://static.tuwan.com/v3/homepage/images/lol.png"/>&nbsp;&nbsp;S5&nbsp;00:30</div>
+							<div class="Team-score">
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/MzM5ZSw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1509/01/802-150Z109414Q35.png" alt="10月1日 SKT vs H2K"/>SKT</span>
+								<span class="Score"><strong>0</strong>&nbsp;&nbsp;VS&nbsp;&nbsp;<strong>0</strong></span>
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/NTQzNiw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1509/01/802-150Z1145623524.png" alt="10月1日 SKT vs H2K"/>H2K</span>
+							</div>								
+							<a class="On-btn" href="http://lol.tuwan.com/107337/" target="_blank">即将直播</a>							
+						</li><li ii="25" game="lol" class="" day="2015-10-02" style="width:233px;overflow:hidden">
+							<div class="title"><span class="Ico-bg">即将开始</span><img src="http://static.tuwan.com/v3/homepage/images/lol.png"/>&nbsp;&nbsp;S5&nbsp;01:30</div>
+							<div class="Team-score">
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/N2NlNSw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1506/08/693-15060Q54443243.png" alt="10月1日 EDG vs BKT"/>EDG</span>
+								<span class="Score"><strong>0</strong>&nbsp;&nbsp;VS&nbsp;&nbsp;<strong>0</strong></span>
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/ZDc4Niw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1509/01/802-150Z1150R0B6.png" alt="10月1日 EDG vs BKT"/>BKT</span>
+							</div>								
+							<a class="On-btn" href="http://lol.tuwan.com/107337/" target="_blank">即将直播</a>							
+						</li><li ii="26" game="lol" class="" day="2015-10-02" style="width:233px;overflow:hidden">
+							<div class="title"><span class="Ico-bg">即将开始</span><img src="http://static.tuwan.com/v3/homepage/images/lol.png"/>&nbsp;&nbsp;S5&nbsp;02:30</div>
+							<div class="Team-score">
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/ZDM5Nyw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1509/01/802-150Z1145246302.png" alt="10月1日 CLG vs FW"/>CLG</span>
+								<span class="Score"><strong>0</strong>&nbsp;&nbsp;VS&nbsp;&nbsp;<strong>0</strong></span>
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/MmQzNyw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1509/01/802-150Z115030O19.png" alt="10月1日 CLG vs FW"/>FW</span>
+							</div>								
+							<a class="On-btn" href="http://lol.tuwan.com/107337/" target="_blank">即将直播</a>							
+						</li><li ii="27" game="lol" class="" day="2015-10-02" style="width:233px;overflow:hidden">
+							<div class="title"><span class="Ico-bg">即将开始</span><img src="http://static.tuwan.com/v3/homepage/images/lol.png"/>&nbsp;&nbsp;S5&nbsp;03:30</div>
+							<div class="Team-score">
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/YmU5Miw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1509/01/802-150Z1094135954.png" alt="10月1日 KOO vs PNG"/>KOO</span>
+								<span class="Score"><strong>0</strong>&nbsp;&nbsp;VS&nbsp;&nbsp;<strong>0</strong></span>
+								<span class="tname"><img src="http://img.tuwandata.com/v2/thumb/jpg/MjlmYiw0Miw1MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1509/23/802-15092309203U01.png" alt="10月1日 KOO vs PNG"/>PNG</span>
+							</div>								
+							<a class="On-btn" href="http://lol.tuwan.com/107337/" target="_blank">即将直播</a>							
+						</li></ul>
+		  </div><!-- End of Ul-box -->
+	</div><!-- End of Live-nav-con -->
+</div><!-- End of Match-box -->
+<script type="text/javascript">
+	var dayjsarr=new Array();
+	var daychoose="2015-09-05";var daychoosenum="4";var totalli="28";var dqli="18";dayjsarr.push('0');dayjsarr.push('4');dayjsarr.push('8');dayjsarr.push('12');dayjsarr.push('16');dayjsarr.push('20');dayjsarr.push('24');
+</script>
+<script type="text/javascript" src="http://static.tuwan.com/v3/homepage/js/sport.js?v=11"></script>
+<!-- 电竞结束 -->
+        <div class="Match-news cf">
+            <div class="Ui-box" style="margin-left:14px;">
+                <h3 class="title">赛事看点</h3>
+                <div class="Banner-box" id="Other-banner-box">
+                   <ul class="B-img cf">
+				   
+					<li><a href="http://lol.tuwan.com/179387/" target="_blank"  title="中文解说：英雄联盟2015全球总决赛抽签仪式"><img src="http://img.tuwandata.com/v2/thumb/all/NTRiMSwzNTgsMjEwLDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1509/14/802-150914132S2A4.jpg" alt="中文解说：英雄联盟2015全球总决赛抽签仪式"></a></li>
+				   
+					<li><a href="http://lol.tuwan.com/177543/" target="_blank"  title="OMGirls双子星出征 第二届英雄联盟女神赛"><img src="http://img.tuwandata.com/v2/thumb/all/ODBlYywzNTgsMjEwLDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1509/11/693-1509111441561M.jpg" alt="OMGirls双子星出征 第二届英雄联盟女神赛"></a></li>
+				   
+					<li><a href="http://lol.tuwan.com/172604/" target="_blank"  title="LPL顶尖三强出征S5总决赛 电竞健儿为国争光"><img src="http://img.tuwandata.com/v2/thumb/all/MmI1YiwzNTgsMjEwLDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1509/09/693-150Z9114102V0.jpg" alt="LPL顶尖三强出征S5总决赛 电竞健儿为国争光"></a></li>
+				   
+					<li><a href="http://lol.tuwan.com/163841/" target="_blank"  title="S5各大赛区谁主沉浮 S5选拔赛最新进度报告"><img src="http://img.tuwandata.com/v2/thumb/all/NjI2ZCwzNTgsMjEwLDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1508/31/693-150S109105b06.jpg" alt="S5各大赛区谁主沉浮 S5选拔赛最新进度报告"></a></li>
+				   
+                   </ul>
+                   <ul class="B-index cf">
+                       <li class="choose"></li>
+                       <li></li>
+                       <li></li>
+                       <li></li>
+                   </ul>
+               </div>
+               <div class="League-box">
+                   <h3><a class="Ico-bg Ajax" href="javascript:;" onClick="gethomepagehjls()" style="margin-top:3px;">换一批</a>黄金联赛</h3>
+                   <ul class="Banner-text cf Banner-hjls" id="Ajax-box">
+					
+                       <li><a href="http://fb.tuwan.com/132747/" target="_blank"  title="总决赛直播视频Snake夺冠"><img src="http://img.tuwandata.com/v2/thumb/all/OTBkMCwxMTYsODksOSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1507/27/748-150HGU942K6.png" alt="2015黄金风暴联赛总决赛直播视频Snake夺冠"><p>总决赛直播视频Snake夺冠</p></a></li>
+                    
+                       <li><a href="http://fb.tuwan.com/131678/" target="_blank"  title="风暴英雄GHL冠军Snake专访"><img src="http://img.tuwandata.com/v2/thumb/all/YmQ4ZCwxMTYsODksOSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/allimg/1507/27/27Jul20151008161406.jpg" alt="《风暴英雄》黄金联赛：冠军队伍Snake专访"><p>风暴英雄GHL冠军Snake专访</p></a></li>
+                    
+                       <li><a href="http://fb.tuwan.com/131524/" target="_blank"  title="风暴黄金联赛Snake夺冠"><img src="http://img.tuwandata.com/v2/thumb/all/NDczNywxMTYsODksOSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/allimg/1507/27/27Jul20150513441849.jpg" alt="《风暴英雄》黄金联赛：韩国战队Snake夺冠"><p>风暴黄金联赛Snake夺冠</p></a></li>
+                    
+                   </ul>
+               </div><!-- End of League-box -->  
+            </div><!-- End of Ui-box -->
+			<script type="text/javascript">
+				function gethomepagehjls(){				
+					var url='http://api.tuwan.com/homepage/?model=hometag&tagname=黄金联赛&num=3&w=116&h=89&callback=?';
+					//console.log(url);
+					$.getJSON(url,function(result){						
+						$(".Banner-hjls").html(result['html']);
+					});
+				}
+			</script>	
+            <div class="Ui-box">
+                <h3 class="title"><a href="http://www.tuwan.com/tag_%E8%B5%9B%E4%BA%8B/" target="_blank">更多</a>赛事资讯</h3>
+                <ul class="League-news-list">
+				
+                    <li class="Top-news"><strong class="Ico-bg">赛事</strong><a href="http://lol.tuwan.com/179387/" target="_blank"  title="中文解说：英雄联盟2015全球总决赛抽签仪式">中文解说：英雄联盟2015全球总决赛抽签仪式</a></li>
+				
+				
+					<li class="Ico-bg"><a href="http://lol.tuwan.com/188069/" target="_blank"  title="LOL世界总决赛回顾：英雄联盟S2精彩瞬间">LOL世界总决赛回顾：英雄联盟S2精彩瞬间</a></li>
+				
+					<li class="Ico-bg"><a href="http://lol.tuwan.com/188031/" target="_blank"  title="英雄联盟S1世界总决赛：Fnatic vs aAa">英雄联盟S1世界总决赛：Fnatic vs aAa</a></li>
+				
+					<li class="Ico-bg"><a href="http://lol.tuwan.com/185159/" target="_blank"  title="LGQ S2决赛C、D组小组赛打响 比拼愈演愈烈">LGQ S2决赛C、D组小组赛打响 比拼愈演愈烈</a></li>
+				
+					<li class="Ico-bg"><a href="http://lol.tuwan.com/184046/" target="_blank"  title="拳头解读2015参赛队伍：SKT战队唯一的真神">拳头解读2015参赛队伍：SKT战队唯一的真神</a></li>
+				
+					<li class="Ico-bg"><a href="http://lol.tuwan.com/183938/" target="_blank"  title="LOL次级联赛TGA禁用外援 对错与否引发讨论">LOL次级联赛TGA禁用外援 对错与否引发讨论</a></li>
+				
+					<li class="Ico-bg"><a href="http://lol.tuwan.com/183931/" target="_blank"  title="拳头官方撰文B组分析 IG战队有望创造奇迹">拳头官方撰文B组分析 IG战队有望创造奇迹</a></li>
+				
+					<li class="Ico-bg"><a href="http://lol.tuwan.com/183320/" target="_blank"  title="电竞女神挑战赛白热化 激烈争夺A组头名诞生">电竞女神挑战赛白热化 激烈争夺A组头名诞生</a></li>
+				
+					<li class="Ico-bg"><a href="http://dnf.tuwan.com/183254/" target="_blank"  title="DNF9月25日职业联赛第3季倾力开战宣传视频">DNF9月25日职业联赛第3季倾力开战宣传视频</a></li>
+				
+					<li class="Ico-bg"><a href="http://lol.tuwan.com/181467/" target="_blank"  title="残酷的历练! 盘点历年止步小组赛的夺冠热门">残酷的历练! 盘点历年止步小组赛的夺冠热门</a></li>
+				
+					<li class="Ico-bg"><a href="http://lol.tuwan.com/179387/" target="_blank"  title="中文解说：英雄联盟2015全球总决赛抽签仪式">中文解说：英雄联盟2015全球总决赛抽签仪式</a></li>
+				
+					<li class="Ico-bg"><a href="http://lol.tuwan.com/178754/" target="_blank"  title="S5世界总决赛小组赛抽签分组以及官方分析">S5世界总决赛小组赛抽签分组以及官方分析</a></li>
+				
+					<li class="Ico-bg"><a href="http://lol.tuwan.com/177543/" target="_blank"  title="OMGirls双子星出征 第二届英雄联盟女神赛">OMGirls双子星出征 第二届英雄联盟女神赛</a></li>
+				
+                </ul>
+            </div><!-- End of Ui-box -->
+            <div class="Ui-box">
+                <h3 class="title">选手资料</h3>
+                <ul class="Dynamic-nav Banner-text-text cf">
+                    <li class="choose" dtid="31540"><span><img src="http://static.tuwan.com/v3/homepage/images/lol.png" alt="英雄联盟"></span></li>
+                    <li dtid="31528"><span><img src="http://static.tuwan.com/v3/homepage/images/hs.png" alt="炉石传说"></span></li>
+                    <li dtid="31538"><span><img src="http://static.tuwan.com/v3/homepage/images/fb.png" alt="风暴英雄"></span></li>
+					<li dtid="71304"><span><img src="http://static.tuwan.com/v3/homepage/images/dota2.png" alt="Dota2"></span></li>
+                    <div class="Huan"><a class="Ico-bg Ajax" style="margin-top:6px;" href="javascript:;" onClick="gethomepageplayer()">换一批</a></div>
+                </ul><!-- End of Dynamic-nav -->
+                <div class="Dynamic-nav-con">
+                    <ul class="cf" style="display:block">
+						
+							<li><a href="http://lol.tuwan.com/123451/" target="_blank"  title="WE战队Spirit资料"><img src="http://img.tuwandata.com/v2/thumb/all/OTA2ZiwxMDQsMTQ1LDI1NSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1507/17/808-150GG9212E22.jpg" alt="WE战队Spirit资料"/></a><span>Spirit</span></li>
+						
+							<li><a href="http://lol.tuwan.com/123447/" target="_blank"  title="WE战队Aluka资料"><img src="http://img.tuwandata.com/v2/thumb/all/MDNjZiwxMDQsMTQ1LDI1NSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1507/17/808-150GG9203R27.jpg" alt="WE战队Aluka资料"/></a><span>Aluka</span></li>
+						
+							<li><a href="http://lol.tuwan.com/123440/" target="_blank"  title="IG战队小孩游神资料"><img src="http://img.tuwandata.com/v2/thumb/all/YTZhNCwxMDQsMTQ1LDI1NSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1507/17/808-150GG91230532.jpg" alt="IG战队小孩游神资料"/></a><span>小孩</span></li>
+						
+							<li><a href="http://lol.tuwan.com/123433/" target="_blank"  title="LGD战队平野绫资料"><img src="http://img.tuwandata.com/v2/thumb/all/MDk4ZSwxMDQsMTQ1LDI1NSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1507/17/808-150GG91152441.jpg" alt="LGD战队平野绫资料"/></a><span>平野绫</span></li>
+						
+							<li><a href="http://lol.tuwan.com/123415/" target="_blank"  title="Snake战队U神资料"><img src="http://img.tuwandata.com/v2/thumb/all/MzRlNSwxMDQsMTQ1LDI1NSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1507/17/808-150GGU02AW.jpg" alt="Snake战队U神资料"/></a><span>U</span></li>
+						
+							<li><a href="http://lol.tuwan.com/123356/" target="_blank"  title="OMG战队UZI资料"><img src="http://img.tuwandata.com/v2/thumb/all/MWNlNiwxMDQsMTQ1LDI1NSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1507/17/808-150GGTP2511.jpg" alt="OMG战队UZI资料"/></a><span>UZI</span></li>
+						
+                    </ul>
+					<ul class="cf">
+						
+							<li><a href="http://hs.tuwan.com/123488/" target="_blank"  title="Firebat"><img src="http://img.tuwandata.com/v2/thumb/all/ZGViMSwxMDQsMTQ1LDI1NSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1507/21/748-150H1115343336.jpg" alt="Firebat"/></a><span>Firebat</span></li>
+						
+							<li><a href="http://hs.tuwan.com/123475/" target="_blank"  title="乱世灭神"><img src="http://img.tuwandata.com/v2/thumb/all/MDQ5MSwxMDQsMTQ1LDI1NSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1507/21/748-150H1115532456.jpg" alt="乱世灭神"/></a><span>乱世灭神</span></li>
+						
+							<li><a href="http://hs.tuwan.com/123467/" target="_blank"  title="弱鸡"><img src="http://img.tuwandata.com/v2/thumb/all/MTA0MSwxMDQsMTQ1LDI1NSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1507/21/748-150H1115AD14.jpg" alt="弱鸡"/></a><span>弱鸡</span></li>
+						
+							<li><a href="http://hs.tuwan.com/123400/" target="_blank"  title="囚徒"><img src="http://img.tuwandata.com/v2/thumb/all/NDliOCwxMDQsMTQ1LDI1NSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1507/21/748-150H1114Q1563.png" alt="囚徒"/></a><span>囚徒</span></li>
+						
+							<li><a href="http://hs.tuwan.com/123362/" target="_blank"  title="董重"><img src="http://img.tuwandata.com/v2/thumb/all/MTUwMCwxMDQsMTQ1LDI1NSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1507/17/748-150GGH504494.png" alt="董重"/></a><span>董重</span></li>
+						
+							<li><a href="http://hs.tuwan.com/123347/" target="_blank"  title="小鱼鱼大仙人"><img src="http://img.tuwandata.com/v2/thumb/all/ZWYwZiwxMDQsMTQ1LDI1NSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1507/21/748-150H11144393C.jpg" alt="小鱼鱼大仙人"/></a><span>小鱼鱼大仙人</span></li>
+						
+                    </ul>
+					<ul class="cf">
+						
+							<li><a href="http://fb.tuwan.com/123448/" target="_blank"  title="eStar战队XingC资料"><img src="http://img.tuwandata.com/v2/thumb/all/MWFhNSwxMDQsMTQ1LDI1NSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1507/21/720-150H11Q213G2.jpg" alt="eStar战队XingC资料"/></a><span>eStarXingC</span></li>
+						
+							<li><a href="http://fb.tuwan.com/123441/" target="_blank"  title="eStar战队NccCc资料"><img src="http://img.tuwandata.com/v2/thumb/all/YzI4ZCwxMDQsMTQ1LDI1NSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1507/21/720-150H11Q34RE.jpg" alt="eStar战队NccCc资料"/></a><span>eStarNccCc</span></li>
+						
+							<li><a href="http://fb.tuwan.com/123439/" target="_blank"  title="eStar战队Tumi资料"><img src="http://img.tuwandata.com/v2/thumb/all/NjY4YywxMDQsMTQ1LDI1NSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1507/21/720-150H11Q445S0.jpg" alt="eStar战队Tumi资料"/></a><span>eStarTumi</span></li>
+						
+							<li><a href="http://fb.tuwan.com/123435/" target="_blank"  title="eStar战队xiaOt资料"><img src="http://img.tuwandata.com/v2/thumb/all/YmNjNSwxMDQsMTQ1LDI1NSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1507/21/720-150H11Q532194.jpg" alt="eStar战队xiaOt资料"/></a><span>eStarxiaOt</span></li>
+						
+							<li><a href="http://fb.tuwan.com/123419/" target="_blank"  title="X-team战队Tao资料"><img src="http://img.tuwandata.com/v2/thumb/all/MTA2NSwxMDQsMTQ1LDI1NSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1507/21/720-150H11R031a1.jpg" alt="X-team战队Tao资料"/></a><span>Tao</span></li>
+						
+							<li><a href="http://fb.tuwan.com/123417/" target="_blank"  title="X-team战队Paradise资料"><img src="http://img.tuwandata.com/v2/thumb/all/NTBmMiwxMDQsMTQ1LDI1NSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1507/21/720-150H11R1363D.jpg" alt="X-team战队Paradise资料"/></a><span>Paradise</span></li>
+						
+                    </ul>
+					<ul class="cf">
+						
+							<li><a href="http://www.tuwan.com/game/dota2/123512/" target="_blank"  title="DotA2 VG战队HAO资料 中文名陈智豪"><img src="http://img.tuwandata.com/v2/thumb/all/OTIzYywxMDQsMTQ1LDI1NSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/allimg/1507/17/807-150GGZZ10-L.jpg" alt="DotA2 VG战队HAO资料 中文名陈智豪"/></a><span>HAO</span></li>
+						
+							<li><a href="http://www.tuwan.com/game/dota2/123505/" target="_blank"  title="DotA2 IG战队430资料 中文名骆非池"><img src="http://img.tuwandata.com/v2/thumb/all/Y2MyMSwxMDQsMTQ1LDI1NSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/allimg/1507/17/807-150GGUQ10-L.jpg" alt="DotA2 IG战队430资料 中文名骆非池"/></a><span>430</span></li>
+						
+							<li><a href="http://www.tuwan.com/game/dota2/123490/" target="_blank"  title="DotA2 IG战队BurNing资料 中文名徐志雷"><img src="http://img.tuwandata.com/v2/thumb/all/MTQ3MCwxMDQsMTQ1LDI1NSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/allimg/1507/17/807-150GGU3190-L.jpg" alt="DotA2 IG战队BurNing资料 中文名徐志雷"/></a><span>BurNing</span></li>
+						
+							<li><a href="http://www.tuwan.com/game/dota2/123470/" target="_blank"  title="DotA2 LGD战队Sylar资料 中文名刘嘉俊"><img src="http://img.tuwandata.com/v2/thumb/all/N2VkYywxMDQsMTQ1LDI1NSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/allimg/1507/17/807-150GGS4250-L.jpg" alt="DotA2 LGD战队Sylar资料 中文名刘嘉俊"/></a><span>Sylar</span></li>
+						
+							<li><a href="http://www.tuwan.com/game/dota2/123445/" target="_blank"  title="DotA2 LGD战队MMY资料 中文名雷增荣"><img src="http://img.tuwandata.com/v2/thumb/all/NzhiZCwxMDQsMTQ1LDI1NSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/allimg/1507/17/807-150GGR0380-L.jpg" alt="DotA2 LGD战队MMY资料 中文名雷增荣"/></a><span>MMY</span></li>
+						
+							<li><a href="http://www.tuwan.com/game/dota2/123420/" target="_blank"  title="DotA2 LGD战队XIAO8资料 中文名张宁"><img src="http://img.tuwandata.com/v2/thumb/all/NTYxZCwxMDQsMTQ1LDI1NSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/allimg/1507/17/807-150GGP5340-L.jpg" alt="DotA2 LGD战队XIAO8资料 中文名张宁"/></a><span>XIAO8</span></li>
+						
+                    </ul>
+                </div><!-- End of Dynamic-nav-con -->
+            </div><!-- End of Ui-box --> 
+			<script type="text/javascript">
+				function gethomepageplayer(){
+					var dtid=31540;
+					var tagii=0;
+					$(".Dynamic-nav li").each(function(ii){
+						if($(this).hasClass("choose")){
+							tagid=ii;
+							dtid=$(this).attr("dtid");
+						}			
+					});				
+					var url='http://api.tuwan.com/homepage/?model=homepageplayer&dtid='+ dtid +'&callback=?';					
+					//console.log(url);
+					$.getJSON(url,function(result){						
+						$(".Dynamic-nav-con ul").eq(tagid).html(result['html']);
+					});
+				}
+			</script>			
+        </div><!-- End of Match-news -->
+        <div class="Ad-box" style="margin:30px 0 15px;"><!--首页横幅2-->
+<iframe src="http://www.feitian001.com/html/click/7243_669.html" width="960" height="90" marginheight="0" marginwidth="0" scrolling="no" frameborder="0"></iframe> </div>
+        <div class="Company-game">
+            <div class="Title Blizzard">
+                <strong>暴雪游戏</strong><span>BLIZZARD</span>
+                <div class="Game-nav">
+                    <a href="http://wow.tuwan.com" target="_blank" style="border:none;">魔兽世界<i class="Ico-bg hot"></i></a>
+                    <a href="http://hs.tuwan.com" target="_blank">炉石传说</a>
+                    <a href="http://fb.tuwan.com" target="_blank">风暴英雄</a>
+                    <a href="http://d3.tuwan.com" target="_blank">暗黑破坏神3</a>
+                    <a href="http://ow.tuwan.com" target="_blank">守望先锋<i class="Ico-bg new"></i></a>
+                </div>
+            </div><!-- End of Title -->
+            <div class="Company-game-con">
+                <div class="Ui-box" style="margin-left:14px;">
+                    <h3 class="title none-b">兔玩网出品</h3>
+                    <div class="Banner-box" id="Other-banner-box">
+                        <ul class="B-img cf">
+						
+							<li class="Img-loading"><a href="http://wow.tuwan.com/128090/" target="_blank"  title="魔兽世界竞技场中国锦标赛外卡赛四强产生！"><img src="http://img.tuwandata.com/v2/thumb/all/MzFhMywzNTgsMjEwLDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1507/25/1-150H515260cZ.jpg" alt="魔兽世界竞技场中国锦标赛外卡赛四强产生！"/></a></li>
+						
+                        </ul>
+                    </div><!-- End of Banner-box -->
+                    <ul class="Other-box cf">
+						
+							<li class="Img-loading"><a href="http://wow.tuwan.com/117826/" target="_blank"  title="两分钟教你打地狱火之全部BOSS攻略汇总"><img width="174" height="89" src="http://img.tuwandata.com/v2/thumb/all/YWZiNywxNzQsODksOSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1507/20/1-150H01323021H.jpg" alt="两分钟教你打地狱火之全部BOSS攻略汇总"></a></li>
+						
+							<li class="Img-loading"><a href="http://wow.tuwan.com/huizong/" target="_blank"  title="兔玩网出品：魔兽世界6.2版本攻略汇总"><img width="174" height="89" src="http://img.tuwandata.com/v2/thumb/all/NTk1ZCwxNzQsODksOSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1507/20/1-150H0132411954.jpg" alt="兔玩网出品：魔兽世界6.2版本攻略汇总"></a></li>
+						
+                    </ul><!-- End of Other-box -->
+                    <div class="Activity-last">
+                        <h3 class="title none-b">活动速递
+                            <div class="Btn-box">
+                                <a class="Ico-bg Go-left" href="javascript:;"></a>
+                                <a class="Ico-bg Go-right" href="javascript:;"></a>
+                            </div>
+                        </h3>
+                        <div class="Banner-text-box">
+                            <ul class="Banner-text cf" page="0">
+							
+								<li><a href="http://d3.tuwan.com/174527/" target="_blank"  title="暗黑3魔兽世界联动活动开启 最多8000白金币"><img src="http://img.tuwandata.com/v2/thumb/all/YTM3ZCwxMTYsODksOSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1509/08/748-150ZQ51219209.jpg" alt="暗黑3魔兽世界联动活动开启 最多8000白金币"><p>暗黑3魔兽世界联动活动开启</p></a></li>
+							
+								<li><a href="http://fb.tuwan.com/173246/" target="_blank"  title="每周特惠9月9日：铁爪雷加尔和月光虎坐骑"><img src="http://img.tuwandata.com/v2/thumb/all/MTg0MCwxMTYsODksOSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1509/07/748-150ZG32245H5.jpg" alt="每周特惠9月9日：铁爪雷加尔和月光虎坐骑"><p>每周特惠9月9日 月光虎坐骑</p></a></li>
+							
+								<li><a href="http://fb.tuwan.com/172326/" target="_blank"  title="《风暴英雄》官网 永恒之战活动9月8日结束"><img src="http://img.tuwandata.com/v2/thumb/all/ZTg5NSwxMTYsODksOSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1509/06/748-150Z61G545334.jpg" alt="《风暴英雄》官网 永恒之战活动9月8日结束"><p>永恒之战活动9月8日结束</p></a></li>
+							
+								<li><a href="http://hs.tuwan.com/171849/" target="_blank"  title="炉石传说官网活动 上传冠军的试炼截图活动"><img src="http://img.tuwandata.com/v2/thumb/all/ZTcyMSwxMTYsODksOSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1509/05/748-150Z512250b47.png" alt="炉石传说官网活动 上传冠军的试炼截图活动"><p>炉石传说官网活动</p></a></li>
+							
+								<li><a href="http://fb.tuwan.com/171303/" target="_blank"  title="消灭50盗宝地精任务结束 盗宝地精头像绝版"><img src="http://img.tuwandata.com/v2/thumb/all/NjM3YywxMTYsODksOSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1509/04/748-150Z4161U0O2-lp.jpg" alt="消灭50盗宝地精任务结束 盗宝地精头像绝版"><p>消灭50盗宝地精任务将结束</p></a></li>
+							
+								<li><a href="http://d3.tuwan.com/169888/" target="_blank"  title="暗黑3联动魔兽世界在线活动领取8000白金币"><img src="http://img.tuwandata.com/v2/thumb/all/Y2E5MiwxMTYsODksOSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1509/02/748-150Z2192529211.jpg" alt="暗黑3联动魔兽世界在线活动领取8000白金币"><p>暗黑3联动魔兽世界活动</p></a></li>
+							
+                            </ul>
+                        </div><!-- End of Banner-text-box -->
+                    </div><!-- End of Activity-last -->
+                </div><!-- End of Ui-box -->
+                <div class="Ui-box">
+                    <h3 class="title none-b">WOW天天看</h3>
+                    <ul class="League-news-list Ico-other">
+						<li class="Top-news"><strong class="Ico-bg">头条</strong><a href="http://wow.tuwan.com/182859/" target="_blank"  title="Serenity公会访谈：将是超越Method的存在">Serenity公会访谈：将是超越Method的存在</a></li>						
+						<li><a href="http://wow.tuwan.com/188060/" target="_blank"  title="周末活动：9月23日-28日宠物对战假日活动"><font color="#11b475">|&nbsp;资讯&nbsp;|</font>&nbsp;&nbsp;周末活动：9月23日-28日宠物对战假日活动</a></li><li><a href="http://wow.tuwan.com/188028/" target="_blank"  title="玩家作画：蛋总你的双刀咋不大对劲呢？"><font color="#11b475">|&nbsp;图片&nbsp;|</font>&nbsp;&nbsp;玩家作画：蛋总你的双刀咋不大对劲呢？</a></li><li><a href="http://wow.tuwan.com/188018/" target="_blank"  title="中性笔手绘帝新作：笔记本上的希尔瓦娜斯"><font color="#11b475">|&nbsp;图片&nbsp;|</font>&nbsp;&nbsp;中性笔手绘帝新作：笔记本上的希尔瓦娜斯</a></li><li><a href="http://wow.tuwan.com/187954/" target="_blank"  title="绝对不能错过！魔兽世界九大趣味玩法盘点"><font color="#11b475">|&nbsp;资讯&nbsp;|</font>&nbsp;&nbsp;绝对不能错过！魔兽世界九大趣味玩法盘点</a></li>
+                    </ul>
+                    <h3 class="title none-b mt15">暴雪其他</h3>
+                    <ul class="League-news-list Ico-other">
+						<li class="Top-news"><strong class="Ico-bg">头条</strong><a href="http://fb.tuwan.com/187975/" target="_blank"  title="风暴英雄商城更新 中秋特惠搞笑兔奔波尔霸">风暴英雄商城更新 中秋特惠搞笑兔奔波尔霸</a></li>	
+						<li><a href="http://fb.tuwan.com/187975/" target="_blank"  title="风暴英雄商城更新 中秋特惠搞笑兔奔波尔霸"><img class="ico" src="http://www.tuwan.com/images/bbsico/fb.jpg" alt="风暴英雄商城更新 中秋特惠搞笑兔奔波尔霸">风暴英雄商城更新 中秋特惠搞笑兔奔波尔霸</a></li><li><a href="http://fb.tuwan.com/187948/" target="_blank"  title="盘点双人开黑最强英雄组合 最稳定双人配合"><img class="ico" src="http://www.tuwan.com/images/bbsico/fb.jpg" alt="盘点双人开黑最强英雄组合 最稳定双人配合">盘点双人开黑最强英雄组合 最稳定双人配合</a></li><li><a href="http://fb.tuwan.com/187937/" target="_blank"  title="风暴英雄蛋疼时刻 弗斯塔德越塔强杀四人组"><img class="ico" src="http://www.tuwan.com/images/bbsico/fb.jpg" alt="风暴英雄蛋疼时刻 弗斯塔德越塔强杀四人组">风暴英雄蛋疼时刻 弗斯塔德越塔强杀四人组</a></li><li><a href="http://d3.tuwan.com/187909/" target="_blank"  title="暗黑3设计师爆料2.4补丁 数件套装都会重做"><img class="ico" src="http://www.tuwan.com/images/bbsico/d3.jpg" alt="暗黑3设计师爆料2.4补丁 数件套装都会重做">暗黑3设计师爆料2.4补丁 数件套装都会重做</a></li><li><a href="http://ow.tuwan.com/187907/" target="_blank"  title="守望先锋新英雄狂鼠、路霸精美艺术壁纸"><img class="ico" src="http://www.tuwan.com/images/bbsico/ow.jpg" alt="守望先锋新英雄狂鼠、路霸精美艺术壁纸">守望先锋新英雄狂鼠、路霸精美艺术壁纸</a></li><li><a href="http://ow.tuwan.com/187851/" target="_blank"  title="《守望先锋》新英雄“狂鼠”“路霸”介绍"><img class="ico" src="http://www.tuwan.com/images/bbsico/ow.jpg" alt="《守望先锋》新英雄“狂鼠”“路霸”介绍">《守望先锋》新英雄“狂鼠”“路霸”介绍</a></li><li><a href="http://d3.tuwan.com/187833/" target="_blank"  title="腐化至高天！暗黑3玩家设计全新圣教军套装"><img class="ico" src="http://www.tuwan.com/images/bbsico/d3.jpg" alt="腐化至高天！暗黑3玩家设计全新圣教军套装">腐化至高天！暗黑3玩家设计全新圣教军套装</a></li><li><a href="http://fb.tuwan.com/187804/" target="_blank"  title="风暴设计师阿塔尼斯接近完成 缝合怪将增强"><img class="ico" src="http://www.tuwan.com/images/bbsico/fb.jpg" alt="风暴设计师阿塔尼斯接近完成 缝合怪将增强">风暴设计师阿塔尼斯接近完成 缝合怪将增强</a></li>
+                    </ul>
+                </div><!-- End of Ui-box -->
+				<div class="Ui-box">
+	<h3 class="title none-b">暴雪游戏专题</h3>
+	<div class="Gm-img Img-loading"><a href="http://ow.tuwan.com/142563/" target="_blank"><img width="358" height="120" src="http://static.tuwan.com/v3/homepage/images/index/baoxue06.jpg" alt=""></a></div>
+	<div class="Gm-img Img-loading"><a href="http://wow.tuwan.com/waika/" target="_blank"><img width="358" height="120" src="http://static.tuwan.com/v3/homepage/images/index/baoxue01.jpg" alt=""></a></div>
+	<div class="Gm-img Img-loading"><a href="http://wow.tuwan.com/118596/" target="_blank"><img width="358" height="120" src="http://static.tuwan.com/v3/homepage/images/index/baoxue02.jpg" alt=""></a></div>
+	<div class="Gm-img Img-loading"><a href="http://fb.tuwan.com/betadata/" target="_blank"><img width="358" height="120" src="http://static.tuwan.com/v3/homepage/images/index/baoxue04.jpg" alt=""></a></div>
+</div><!-- End of Ui-box -->
+            </div><!-- End of Company-game-con -->
+        </div><!-- End of Company-game -->
+        <div class="Company-game mt25">
+            <div class="Title Tencent">
+                <strong>腾讯游戏</strong><span>TENCENT</span>
+                <div class="Game-nav">
+                    <a href="http://lol.tuwan.com" target="_blank" style="border:none;">英雄联盟<i class="Ico-bg hot"></i></a>
+                    <a href="http://dnf.tuwan.com" target="_blank">地下城与勇士</a>
+					<a href="http://www.tuwan.com/game/tymyd/" target="_blank">天涯明月刀</a>  
+					<a href="http://www.tuwan.com/game/age/" target="_blank">上古世纪</a>				
+                </div>
+            </div><!-- End of Title -->
+            <div class="Company-game-con">
+                <div class="Ui-box" style="margin-left:14px;">
+                    <h3 class="title none-b">兔玩网出品</h3>
+                    <div class="Banner-box" id="Other-banner-box">
+                        <ul class="B-img cf">
+							
+								<li class="Img-loading"><a href="http://lol.tuwan.com/166534/" target="_blank"  title="《英雄约不约》第二期 枪炮玫瑰厨艺大考验"><img src="http://img.tuwandata.com/v2/thumb/all/M2I2OCwzNTgsMjEwLDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1508/31/1-150S11J519629.jpg" alt="《英雄约不约》第二期 枪炮玫瑰厨艺大考验"/></a></li>
+							
+                        </ul>
+                    </div><!-- End of Banner-box -->
+                    <ul class="Other-box cf">
+						
+                        <li class="Img-loading"><a href="http://lol.tuwan.com/163574/" target="_blank"  title="三分钟冷知识：一秒两Q！劫最快技能释放方法"><img width="174" height="89" src="http://img.tuwandata.com/v2/thumb/all/MzllZSwxNzQsODksOSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1508/31/1-150S11J54KF.jpg" alt="三分钟冷知识：一秒两Q！劫最快技能释放方法"></a></li>
+						
+                        <li class="Img-loading"><a href="http://lol.tuwan.com/157175/" target="_blank"  title="《我是路人王》2：国服第一沙皇 银剑的狂妄"><img width="174" height="89" src="http://img.tuwandata.com/v2/thumb/all/NzJmMSwxNzQsODksOSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1508/31/1-150S11J630556.jpg" alt="《我是路人王》2：国服第一沙皇 银剑的狂妄"></a></li>
+						
+                    </ul><!-- End of Other-box -->
+                    <div class="Activity-last">
+                        <h3 class="title none-b">活动速递
+                            <div class="Btn-box">
+                                <a class="Ico-bg Go-left" href="javascript:;"></a>
+                                <a class="Ico-bg Go-right" href="javascript:;"></a>
+                            </div>
+                        </h3>
+                        <div class="Banner-text-box">
+                            <ul class="Banner-text cf" page="0">
+								
+									<li><a href="http://lol.tuwan.com/187775/" target="_blank"  title="英雄联盟肯德基套餐介绍：海量皮肤相送"><img src="http://img.tuwandata.com/v2/thumb/all/MzI4ZiwxMTYsODksOSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/allimg/1509/23/P2_0923101333GR.jpg" alt="英雄联盟肯德基套餐介绍：海量皮肤相送"><p>英雄联盟肯德基套餐介绍</p></a></li>
+								
+									<li><a href="http://www.tuwan.com/game/tymyd/187729/" target="_blank"  title="天涯明月刀商城促销活动 天刀商城节前促销"><img src="http://img.tuwandata.com/v2/thumb/all/ZTFmNCwxMTYsODksOSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/allimg/1509/23/09291J000-0-lp.png" alt="天涯明月刀商城促销活动 天刀商城节前促销"><p>天涯明月刀商城促销活动</p></a></li>
+								
+									<li><a href="http://dnf.tuwan.com/187535/" target="_blank"  title="DNF众神之墓活动副本详解 掉落材料数量统计"><img src="http://img.tuwandata.com/v2/thumb/all/Zjk1OSwxMTYsODksOSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/allimg/1509/22/693_150922182157_1.jpg" alt="DNF众神之墓活动副本详解 掉落材料数量统计"><p>众神之墓活动副本详解</p></a></li>
+								
+									<li><a href="http://dnf.tuwan.com/187304/" target="_blank"  title="9月22日以后DNF登录游戏领升级券时装券地址"><img src="http://img.tuwandata.com/v2/thumb/all/OTE5YiwxMTYsODksOSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/1509/22/693-150922154259625.jpg" alt="9月22日以后DNF登录游戏领升级券时装券地址"><p>登录游戏可以领取升级券</p></a></li>
+								
+									<li><a href="http://dnf.tuwan.com/187252/" target="_blank"  title="DNF2015年国庆节纪念雷米开售 能开绝版装备"><img src="http://img.tuwandata.com/v2/thumb/all/MTNlZiwxMTYsODksOSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/allimg/1509/22/693_150922145543_1.jpg" alt="DNF2015年国庆节纪念雷米开售 能开绝版装备"><p>2015年国庆节纪念雷米</p></a></li>
+								
+									<li><a href="http://dnf.tuwan.com/187233/" target="_blank"  title="DNF红红火火度国庆活动 连续7天道具拿不停"><img src="http://img.tuwandata.com/v2/thumb/all/OTE2MSwxMTYsODksOSwzLDEsLTEsTk9ORSw=/u/www.tuwan.com/uploads/allimg/1509/22/693_150922144254_1.jpg" alt="DNF红红火火度国庆活动 连续7天道具拿不停"><p>红红火火度国庆活动</p></a></li>
+								
+                            </ul>
+                        </div><!-- End of Banner-text-box -->
+                    </div><!-- End of Activity-last -->
+                </div><!-- End of Ui-box -->
+                <div class="Ui-box">
+                    <h3 class="title none-b">LOL天天看</h3>
+                    <ul class="League-news-list Ico-other">
+						<li class="Top-news"><strong class="Ico-bg">头条</strong><a href="http://lol.tuwan.com/185271/" target="_blank"  title="2015全球总决赛赛程公布 首战IG vs Fnatic">2015全球总决赛赛程公布 首战IG vs Fnatic</a></li>	
+						<li><a href="http://lol.tuwan.com/188046/" target="_blank"  title="LOL官方解读：2015全球总决赛B组详细分析"><font color="#11b475">|&nbsp;资讯&nbsp;|</font>&nbsp;&nbsp;LOL官方解读：2015全球总决赛B组详细分析</a></li><li><a href="http://lol.tuwan.com/188041/" target="_blank"  title="SKT T1 Faker 中单维克托疯狂输出瞬间爆炸"><font color="#11b475">|&nbsp;视频&nbsp;|</font>&nbsp;&nbsp;SKT T1 Faker 中单维克托疯狂输出瞬间爆炸</a></li><li><a href="http://lol.tuwan.com/188016/" target="_blank"  title="LOL玩家手绘英雄：沙皇、复仇之矛、瑞文"><font color="#11b475">|&nbsp;图片&nbsp;|</font>&nbsp;&nbsp;LOL玩家手绘英雄：沙皇、复仇之矛、瑞文</a></li><li><a href="http://lol.tuwan.com/187953/" target="_blank"  title="S5总决赛战队巡礼之SKT：无懈可击的霸主"><font color="#11b475">|&nbsp;资讯&nbsp;|</font>&nbsp;&nbsp;S5总决赛战队巡礼之SKT：无懈可击的霸主</a></li>
+                    </ul>
+                    <h3 class="title none-b mt15">腾讯其他</h3>
+                    <ul class="League-news-list Ico-other">
+						<li class="Top-news"><strong class="Ico-bg">头条</strong><a href="http://dnf.tuwan.com/187414/" target="_blank"  title="盘点DNF2015年国庆礼包必须购买的四大理由">盘点DNF2015年国庆礼包必须购买的四大理由</a></li>	
+						<li><a href="http://dnf.tuwan.com/187535/" target="_blank"  title="DNF众神之墓活动副本详解 掉落材料数量统计"><img class="ico" src="http://www.tuwan.com/images/bbsico/dnf.jpg" alt="DNF众神之墓活动副本详解 掉落材料数量统计">DNF众神之墓活动副本详解 掉落材料数量统计</a></li><li><a href="http://dnf.tuwan.com/187414/" target="_blank"  title="盘点DNF2015年国庆礼包必须购买的四大理由"><img class="ico" src="http://www.tuwan.com/images/bbsico/dnf.jpg" alt="盘点DNF2015年国庆礼包必须购买的四大理由">盘点DNF2015年国庆礼包必须购买的四大理由</a></li><li><a href="http://dnf.tuwan.com/187020/" target="_blank"  title="9月22日DNF便利性改版内容整理 游戏系统优化"><img class="ico" src="http://www.tuwan.com/images/bbsico/dnf.jpg" alt="9月22日DNF便利性改版内容整理 游戏系统优化">9月22日DNF便利性改版内容整理 游戏系统优化</a></li><li><a href="http://www.tuwan.com/game/tymyd/186858/" target="_blank"  title="天涯明月刀怎么获得修为 天刀获得修为方式"><img class="ico" src="http://www.tuwan.com/images/bbsico/tymyd.jpg" alt="天涯明月刀怎么获得修为 天刀获得修为方式">天涯明月刀怎么获得修为 天刀获得修为方式</a></li><li><a href="http://dnf.tuwan.com/186854/" target="_blank"  title="小号福利 DNF暗夜使者二次觉醒相关活动整理"><img class="ico" src="http://www.tuwan.com/images/bbsico/dnf.jpg" alt="小号福利 DNF暗夜使者二次觉醒相关活动整理">小号福利 DNF暗夜使者二次觉醒相关活动整理</a></li><li><a href="http://www.tuwan.com/game/age/186846/" target="_blank"  title="上古世纪怎么赚钱 上古世纪赚钱方法介绍"><img class="ico" src="http://www.tuwan.com/images/bbsico/age.jpg" alt="上古世纪怎么赚钱 上古世纪赚钱方法介绍">上古世纪怎么赚钱 上古世纪赚钱方法介绍</a></li><li><a href="http://dnf.tuwan.com/186828/" target="_blank"  title="DNF9月22日00:00停机更新公告 国庆礼包上架"><img class="ico" src="http://www.tuwan.com/images/bbsico/dnf.jpg" alt="DNF9月22日00:00停机更新公告 国庆礼包上架">DNF9月22日00:00停机更新公告 国庆礼包上架</a></li><li><a href="http://dnf.tuwan.com/186629/" target="_blank"  title="DNF新版决斗场S3新增传说装备属性介绍"><img class="ico" src="http://www.tuwan.com/images/bbsico/dnf.jpg" alt="DNF新版决斗场S3新增传说装备属性介绍">DNF新版决斗场S3新增传说装备属性介绍</a></li>
+                    </ul>
+                </div><!-- End of Ui-box -->
+				<div class="Ui-box">
+	<h3 class="title none-b">腾讯游戏专题</h3>
+	<div class="Gm-img Img-loading"><a href="http://lol.tuwan.com/tag_%E8%8B%B1%E9%9B%84%E7%BA%A6%E4%B8%8D%E7%BA%A6/" target="_blank"><img width="358" height="120" src="http://static.tuwan.com/v3/homepage/images/index/tengxun01.jpg" alt=""></a></div>
+	<div class="Gm-img Img-loading"><a href="http://lol.tuwan.com/114902/" target="_blank"><img width="358" height="120" src="http://static.tuwan.com/v3/homepage/images/index/tengxun02.jpg" alt=""></a></div>
+	<div class="Gm-img Img-loading"><a href="http://dnf.tuwan.com/tag_体验服/" target="_blank"><img width="358" height="120" src="http://static.tuwan.com/v3/homepage/images/index/tengxun03.jpg" alt=""></a></div>
+	<div class="Gm-img Img-loading"><a href="http://dnf.tuwan.com/120004/" target="_blank"><img width="358" height="120" src="http://static.tuwan.com/v3/homepage/images/index/tengxun04.jpg" alt=""></a></div>
+</div><!-- End of Ui-box -->
+            </div><!-- End of Company-game-con -->
+        </div><!-- End of Company-game -->
+    </div><!-- End of Gaming -->
+</div><!-- End of Gaming-box -->
+<div class="New-game-box">
+    <div class="Banner-new-game">
+        <div class="N-btn-box">
+            <a class="N-Previous Ico-bg" href="javascript:;"></a>
+            <a class="N-Next Ico-bg" href="javascript:;"></a>
+        </div>
+        <div class="Ul-box">
+            <ul class="cf">
+			<li  class="choose"><a href="http://www.tuwan.com/game/cf/" target="_blank"  title="穿越火线"><img src="http://img.tuwandata.com/v2/thumb/all/OWM0NiwxOTIwLDQ0MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1507/20/807-150H019292M07.jpg" alt="穿越火线"/></a></li><li ><a href="http://www.tuwan.com/game/tymyd/" target="_blank"  title="天涯明月刀"><img src="http://img.tuwandata.com/v2/thumb/all/ZGUxMywxOTIwLDQ0MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1507/20/807-150H01T543E1.jpg" alt="天涯明月刀"/></a></li><li ><a href="http://www.tuwan.com/game/mho/" target="_blank"  title="怪物猎人OL"><img src="http://img.tuwandata.com/v2/thumb/all/YTg1NSwxOTIwLDQ0MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1507/20/807-150H0194020964.jpg" alt="怪物猎人OL"/></a></li><li ><a href="http://www.tuwan.com/game/age/" target="_blank"  title="上古世纪"><img src="http://img.tuwandata.com/v2/thumb/all/M2RkZCwxOTIwLDQ0MCw5LDMsMSwtMSxOT05FLA==/u/www.tuwan.com/uploads/1508/13/807-150Q3163J3408.jpg" alt="上古世纪"/></a></li>
+            </ul>
+        </div>
+    </div><!-- End of Banner-new-game -->
+	<script type="text/javascript">
+	function getaidcount(aid,obj){
+		var url="http://app.tuwandata.com/comment2/api/count.ashx?callback=?&aid=" + aid; 
+		var count=0;
+		$.getJSON(url,function(strJSON){
+			count=strJSON['count'];
+			//console.log(count);
+			obj.html(count);
+		});	
+	}
+	</script>
+    <div class="New-game">
+        <h3 class="Title">游戏库<span>GAME LIBRARY</span></h3>
+        <div class="New-game-con">
+            <ul class="Ngc-top-box">
+			<div class="Ngc-top cf"  style="display:block;">
+                    <div class="Type-img">
+                    	<a href="http://www.tuwan.com/game/cf/" target="_blank"  title="穿越火线"><img width="239" height="297" src="http://img.tuwandata.com/v2/thumb/all/Y2NlNSwyMzksMjk3LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1506/23/807-1506231Z62G30.jpg" alt="穿越火线"></a>
+                        <p>  <span>经典</span>   <span>动作</span>   <span>第一人称射击</span> </p>
+                    </div>
+                    <div class="Type-info">
+                        <div class="Score">评分<span>8.8</span></div>
+                        <div class="Name"><a href="http://www.tuwan.com/game/cf/" target="_blank"  title="穿越火线">穿越火线</a><p>Cross Fire</p></div>						
+                        <div class="Fu"><a href="http://www.tuwan.com/game/cf/list_news/" target="_blank">1558</a>篇文章&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.tuwan.com/game/cf/list_video/" target="_blank">507</a>个视频&nbsp;&nbsp;&nbsp;&nbsp;<a  href="http://www.tuwan.com/game/cf/list_pic/" target="_blank">15</a>套图集&nbsp;&nbsp;&nbsp;&nbsp;<a class="game75344" href="javascript:;">1</a>条评论</div>
+                        <div class="Zonghe">						
+                            <div class="cf"><span>推荐</span><p class="cf"><i class="red" style="width:90%"></i></p></div>
+                            <div class="cf"><span>操作</span><p class="cf"><i class="cheng" style="width:100%"></i></p></div>
+                            <div class="cf"><span>音效</span><p class="cf"><i class="green" style="width:90%"></i></p></div>
+                            <div class="cf"><span>画面</span><p class="cf"><i class="blue" style="width:70%"></i></p></div>
+                        </div>
+                        <div class="Game-b">						
+                            <li><strong>运营公司：</strong>射击</li>
+                            <li><strong>游戏画面：</strong>3D</li>
+                            <li><strong>游戏类型：</strong>射击</li>
+                            <li><strong>官方网站：</strong><a href="http://cf.qq.com/" target="_blank" rel="nofollow">点击进入</a></li>
+                            <li><strong>游戏状态：</strong>公测</li>
+                        </div>
+                        <div class="Info-text">《穿越火线》简称CF，从2008年公测以来，受到了中国所有FPS游戏玩家的欢迎，是中国目前最火爆的FPS网游，没有之一！《穿越火线》作为一款第一人称射击... <a href="http://www.tuwan.com/game/cf/" target="_blank">[详情]</a></div>
+                    </div><!-- End of Type-info -->
+					<script type="text/javascript">var plobj=$(".game75344");getaidcount("75344",plobj);</script>
+                </div><!-- End of Ngc-top --><div class="Ngc-top cf" >
+                    <div class="Type-img">
+                    	<a href="http://www.tuwan.com/game/tymyd/" target="_blank"  title="天涯明月刀"><img width="239" height="297" src="http://img.tuwandata.com/v2/thumb/all/ZWRmMCwyMzksMjk3LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1506/21/807-150621145913913.jpg" alt="天涯明月刀"></a>
+                        <p>  <span>3D</span>   <span>武侠</span>   <span>大型角色扮演</span> </p>
+                    </div>
+                    <div class="Type-info">
+                        <div class="Score">评分<span>9.0</span></div>
+                        <div class="Name"><a href="http://www.tuwan.com/game/tymyd/" target="_blank"  title="天涯明月刀">天涯明月刀</a><p>Moonlight Blade</p></div>						
+                        <div class="Fu"><a href="http://www.tuwan.com/game/tymyd/list_news/" target="_blank">1528</a>篇文章&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.tuwan.com/game/tymyd/list_video/" target="_blank">232</a>个视频&nbsp;&nbsp;&nbsp;&nbsp;<a  href="http://www.tuwan.com/game/tymyd/list_pic/" target="_blank">25</a>套图集&nbsp;&nbsp;&nbsp;&nbsp;<a class="game75047" href="javascript:;">1</a>条评论</div>
+                        <div class="Zonghe">						
+                            <div class="cf"><span>推荐</span><p class="cf"><i class="red" style="width:90%"></i></p></div>
+                            <div class="cf"><span>操作</span><p class="cf"><i class="cheng" style="width:90%"></i></p></div>
+                            <div class="cf"><span>音效</span><p class="cf"><i class="green" style="width:90%"></i></p></div>
+                            <div class="cf"><span>画面</span><p class="cf"><i class="blue" style="width:90%"></i></p></div>
+                        </div>
+                        <div class="Game-b">						
+                            <li><strong>运营公司：</strong>角色扮演</li>
+                            <li><strong>游戏画面：</strong>3D</li>
+                            <li><strong>游戏类型：</strong>角色扮演</li>
+                            <li><strong>官方网站：</strong><a href="http://wuxia.qq.com/" target="_blank" rel="nofollow">点击进入</a></li>
+                            <li><strong>游戏状态：</strong>公测</li>
+                        </div>
+                        <div class="Info-text">《天涯明月刀OL》是腾讯自研的全3D武侠题材MMORPG网络游戏。以中华武侠文化为创意基础，结合国际先进的次世代技术运用，具有纯正中国风画面和丰富武侠... <a href="http://www.tuwan.com/game/tymyd/" target="_blank">[详情]</a></div>
+                    </div><!-- End of Type-info -->
+					<script type="text/javascript">var plobj=$(".game75047");getaidcount("75047",plobj);</script>
+                </div><!-- End of Ngc-top --><div class="Ngc-top cf" >
+                    <div class="Type-img">
+                    	<a href="http://www.tuwan.com/game/mho/" target="_blank"  title="怪物猎人OL"><img width="239" height="297" src="http://img.tuwandata.com/v2/thumb/all/ODQ3MywyMzksMjk3LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1506/21/807-150621162523H0.jpg" alt="怪物猎人OL"></a>
+                        <p>  <span>冒险</span>   <span>pk</span>   <span>奇幻</span> </p>
+                    </div>
+                    <div class="Type-info">
+                        <div class="Score">评分<span>8.8</span></div>
+                        <div class="Name"><a href="http://www.tuwan.com/game/mho/" target="_blank"  title="怪物猎人OL">怪物猎人OL</a><p>MHO</p></div>						
+                        <div class="Fu"><a href="http://www.tuwan.com/game/mho/list_news/" target="_blank">248</a>篇文章&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.tuwan.com/game/mho/list_video/" target="_blank">87</a>个视频&nbsp;&nbsp;&nbsp;&nbsp;<a  href="http://www.tuwan.com/game/mho/list_pic/" target="_blank">4</a>套图集&nbsp;&nbsp;&nbsp;&nbsp;<a class="game64840" href="javascript:;">1</a>条评论</div>
+                        <div class="Zonghe">						
+                            <div class="cf"><span>推荐</span><p class="cf"><i class="red" style="width:90%"></i></p></div>
+                            <div class="cf"><span>操作</span><p class="cf"><i class="cheng" style="width:80%"></i></p></div>
+                            <div class="cf"><span>音效</span><p class="cf"><i class="green" style="width:80%"></i></p></div>
+                            <div class="cf"><span>画面</span><p class="cf"><i class="blue" style="width:100%"></i></p></div>
+                        </div>
+                        <div class="Game-b">						
+                            <li><strong>运营公司：</strong>动作</li>
+                            <li><strong>游戏画面：</strong>3D</li>
+                            <li><strong>游戏类型：</strong>动作</li>
+                            <li><strong>官方网站：</strong><a href="http://mho.qq.com/" target="_blank" rel="nofollow">点击进入</a></li>
+                            <li><strong>游戏状态：</strong>内测</li>
+                        </div>
+                        <div class="Info-text">《怪物猎人Online》（日文：モンスターハンターオンライン），官方简称为MHO。是一款由CAPCOM授权，腾讯游戏和CAPCOM联合开发，腾讯游戏发行的网络游戏，... <a href="http://www.tuwan.com/game/mho/" target="_blank">[详情]</a></div>
+                    </div><!-- End of Type-info -->
+					<script type="text/javascript">var plobj=$(".game64840");getaidcount("64840",plobj);</script>
+                </div><!-- End of Ngc-top --><div class="Ngc-top cf" >
+                    <div class="Type-img">
+                    	<a href="http://www.tuwan.com/game/age/" target="_blank"  title="上古世纪"><img width="239" height="297" src="http://img.tuwandata.com/v2/thumb/all/MzMwOCwyMzksMjk3LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1506/18/807-15061Q21S5335.jpg" alt="上古世纪"></a>
+                        <p>  <span>第三代网游</span>   <span>魔幻</span>   <span>海战</span> </p>
+                    </div>
+                    <div class="Type-info">
+                        <div class="Score">评分<span>9.0</span></div>
+                        <div class="Name"><a href="http://www.tuwan.com/game/age/" target="_blank"  title="上古世纪">上古世纪</a><p>ArcheAge</p></div>						
+                        <div class="Fu"><a href="http://www.tuwan.com/game/age/list_news/" target="_blank">512</a>篇文章&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.tuwan.com/game/age/list_video/" target="_blank">164</a>个视频&nbsp;&nbsp;&nbsp;&nbsp;<a  href="http://www.tuwan.com/game/age/list_pic/" target="_blank">4</a>套图集&nbsp;&nbsp;&nbsp;&nbsp;<a class="game63678" href="javascript:;">1</a>条评论</div>
+                        <div class="Zonghe">						
+                            <div class="cf"><span>推荐</span><p class="cf"><i class="red" style="width:90%"></i></p></div>
+                            <div class="cf"><span>操作</span><p class="cf"><i class="cheng" style="width:90%"></i></p></div>
+                            <div class="cf"><span>音效</span><p class="cf"><i class="green" style="width:90%"></i></p></div>
+                            <div class="cf"><span>画面</span><p class="cf"><i class="blue" style="width:90%"></i></p></div>
+                        </div>
+                        <div class="Game-b">						
+                            <li><strong>运营公司：</strong>角色扮演</li>
+                            <li><strong>游戏画面：</strong>3D</li>
+                            <li><strong>游戏类型：</strong>角色扮演</li>
+                            <li><strong>官方网站：</strong><a href="http://age.qq.com/" target="_blank" rel="nofollow">点击进入</a></li>
+                            <li><strong>游戏状态：</strong>内测</li>
+                        </div>
+                        <div class="Info-text">《上古世纪》是韩国网游第一人宋在京开发的第三代网游。游戏采用世界最顶尖的CryEngine3引擎开发，百余种自定义职业，电影级的视觉效果和画面表现力... <a href="http://www.tuwan.com/game/age/" target="_blank">[详情]</a></div>
+                    </div><!-- End of Type-info -->
+					<script type="text/javascript">var plobj=$(".game63678");getaidcount("63678",plobj);</script>
+                </div><!-- End of Ngc-top -->
+            </ul><!-- End of Ngc-top-box -->
+            <div class="Ngc-con cf">
+                <div class="Ngc-news-list">
+                    <h3 class="T-title">游戏资讯</h3>
+                    <ul class="League-news-list">
+						<li class="Top-news"><strong class="Ico-bg">头条</strong><a href="http://www.tuwan.com/game/age/174767/" target="_blank"  title="上古世纪不限号测试活动大全 不限号活动合集">上古世纪不限号测试活动大全 不限号活动合集</a></li>	
+						<li class="Ico-bg"><a href="http://www.tuwan.com/game/age/187723/" target="_blank"  title="上古世纪魔剑士玩法攻略 上古世纪魔剑士加点">上古世纪魔剑士玩法攻略 上古世纪魔剑士加点</a></li><li class="Ico-bg"><a href="http://www.tuwan.com/game/dota2/187549/" target="_blank"  title="视频: VR体验《DOTA2》商店 全新体验">视频: VR体验《DOTA2》商店 全新体验</a></li><li class="Ico-bg"><a href="http://www.tuwan.com/game/jpcj/187373/" target="_blank"  title="众人拾柴火焰高《剑破苍穹》家族任务齐分享">众人拾柴火焰高《剑破苍穹》家族任务齐分享</a></li><li class="Ico-bg"><a href="http://www.tuwan.com/game/wd/187326/" target="_blank"  title="《问道》送红包100%中奖 侠义公测捍卫主场">《问道》送红包100%中奖 侠义公测捍卫主场</a></li><li class="Ico-bg"><a href="http://www.tuwan.com/game/age/186846/" target="_blank"  title="上古世纪怎么赚钱 上古世纪赚钱方法介绍">上古世纪怎么赚钱 上古世纪赚钱方法介绍</a></li><li class="Ico-bg"><a href="http://www.tuwan.com/game/wd/186540/" target="_blank"  title="我捍卫我自豪 网友响应《问道》捍卫主场">我捍卫我自豪 网友响应《问道》捍卫主场</a></li><li class="Ico-bg"><a href="http://www.tuwan.com/game/dota2/186500/" target="_blank"  title="DOTA2 6.84更新文档偷跑翻译 英雄削弱力度不够">DOTA2 6.84更新文档偷跑翻译 英雄削弱力度不够</a></li><li class="Ico-bg"><a href="http://www.tuwan.com/game/dota2/186377/" target="_blank"  title="dota2 2015ESL ONE 中国区预选赛 B神VG首秀">dota2 2015ESL ONE 中国区预选赛 B神VG首秀</a></li>
+                    </ul>
+                </div><!-- End of Ngc-news-list -->				
+                <div class="Ngc-img-list">
+                    <h3 class="T-title"><a href="javascript:;" onClick="gethomepagegame()" class="Ico-bg Ajax" style="margin-top:8px;">换一批</a>游戏推荐</h3>
+                    <ul class="Ngc-img-list-con">					   
+					   	<li><a href="http://www.tuwan.com/game/xyws/" target="_blank">
+										<img src="http://img.tuwandata.com/v2/thumb/jpg/OGZjNSwxNzcsMjI2LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1506/10/768-150610105G4296.jpg" alt="西游无双">
+										<div class="Score">评分<span>6.0</span></div>
+										<p>西游无双<span>08-27内测</span></p>
+									<div class="Hover-bg"></div></a></li><li><a href="http://www.tuwan.com/game/gshx/" target="_blank">
+										<img src="http://img.tuwandata.com/v2/thumb/jpg/MjZlMCwxNzcsMjI2LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1501/08/771-15010QI502246.jpg" alt="盖世豪侠">
+										<div class="Score">评分<span>7.8</span></div>
+										<p>盖世豪侠<span>08-27内测</span></p>
+									<div class="Hover-bg"></div></a></li><li><a href="http://www.tuwan.com/game/dg/" target="_blank">
+										<img src="http://img.tuwandata.com/v2/thumb/jpg/ZjBhNSwxNzcsMjI2LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1507/14/807-150G41AJ44X.jpg" alt="大国">
+										<div class="Score">评分<span>6.0</span></div>
+										<p>大国<span>08-27内测</span></p>
+									<div class="Hover-bg"></div></a></li><li><a href="http://www.tuwan.com/game/zaizhan/" target="_blank">
+										<img src="http://img.tuwandata.com/v2/thumb/jpg/NGQ0OSwxNzcsMjI2LDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1507/06/807-150F612332D18.jpg" alt="再战">
+										<div class="Score">评分<span>6.0</span></div>
+										<p>再战<span>08-26封测</span></p>
+									<div class="Hover-bg"></div></a></li>					   
+                    </ul>
+                </div><!-- End of Ngc-img-list -->
+				<script type="text/javascript">
+				function gethomepagegame(){
+					var url='http://api.tuwan.com/homepage/?model=homegame&callback=?';
+					$.getJSON(url,function(result){						
+						$(".Ngc-img-list-con").html(result['html']);
+					});	
+				}
+				</script>				
+            </div><!-- End of Ngc-con -->
+            <div class="Meitu-box">
+                <div class="Gaming-title"><a href="http://www.tuwan.com/pic/" target="_blank">>>>进入图片频道</a><img src="http://static.tuwan.com/v3/homepage/images/meitu.jpg" alt="图片频道"></div>
+                <ul class="Meitu-con cf">				
+					<li class="Mt1"><a href="http://www.tuwan.com/view/187766/" target="_blank" title="#死库水##白丝##福利#"><img src="http://img.tuwandata.com/v2/thumb/jpg/YmUyMCwxNzcsMjQwLDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1509/23/793-15092310013TK.jpg" alt="#死库水##白丝##福利#"><span>#死库水##白丝##福利#</span><div class="Hover-mt-bg"></div></a></li><li class="Mt2"><a href="http://www.tuwan.com/view/187748/" target="_blank" title="nico nico ni~"><img src="http://img.tuwandata.com/v2/thumb/jpg/YTFmNiwxNzcsMjQwLDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1509/23/793-150923094Z93Q.jpg" alt="nico nico ni~"><span>nico nico ni~</span><div class="Hover-mt-bg"></div></a></li><li class="Mt3"><a href="http://www.tuwan.com/view/187661/" target="_blank" title="白丝足控福利"><img src="http://img.tuwandata.com/v2/thumb/jpg/OWQ2ZiwzNTUsMjQxLDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1509/23/793-1509230010254Y.jpg" alt="白丝足控福利"><span>白丝足控福利</span><div class="Hover-mt-bg"></div></a></li><li class="Mt4"><a href="http://www.tuwan.com/view/187375/" target="_blank" title="JK/DKの日常"><img src="http://img.tuwandata.com/v2/thumb/jpg/NTIzNywzNTUsNDgyLDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1509/22/793-1509221A25L19.jpg" alt="JK/DKの日常"><span>JK/DKの日常</span><div class="Hover-mt-bg"></div></a></li><li class="Mt5"><a href="http://www.tuwan.com/view/187132/" target="_blank" title="lovelive魔术师觉醒花阳"><img src="http://img.tuwandata.com/v2/thumb/jpg/NzM2MywyMTAsMjQwLDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1509/22/793-15092213162T00.jpg" alt="lovelive魔术师觉醒花阳"><span>lovelive魔术师觉醒花阳</span><div class="Hover-mt-bg"></div></a></li><li class="Mt6"><a href="http://www.tuwan.com/view/187044/" target="_blank" title="#五芒星死库水#"><img src="http://img.tuwandata.com/v2/thumb/jpg/NjYzMCwyMTAsMjQwLDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1509/22/793-15092211320LV.jpg" alt="#五芒星死库水#"><span>#五芒星死库水#</span><div class="Hover-mt-bg"></div></a></li><li class="Mt7"><a href="http://www.tuwan.com/view/187021/" target="_blank" title="黑色蕾丝性感诱人"><img src="http://img.tuwandata.com/v2/thumb/jpg/YWI2MCwyMTAsMjQxLDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1509/22/793-150922111422436.jpg" alt="黑色蕾丝性感诱人"><span>黑色蕾丝性感诱人</span><div class="Hover-mt-bg"></div></a></li><li class="Mt8"><a href="http://www.tuwan.com/view/187011/" target="_blank" title="EVA芭蕾——明日香 绫波丽"><img src="http://img.tuwandata.com/v2/thumb/jpg/ZTBjZCwyMTAsMjQxLDksMywxLC0xLE5PTkUs/u/www.tuwan.com/uploads/1509/22/793-150922110J15M.jpg" alt="EVA芭蕾——明日香 绫波丽"><span>EVA芭蕾——明日香 绫波丽</span><div class="Hover-mt-bg"></div></a></li>
+                </ul><!-- End of Meitu-con -->
+            </div>
+        </div><!-- End of New-game-con -->
+    </div><!-- End of New-game -->
+</div><!-- End of New-game-box -->
+<div class="Foot-box">
+    <div class="Foot-nav-box">
+        <ul class="Foot-nav">
+            <li class="About"><a href="http://www.tuwan.com/topic/about/" target="_blank" rel="nofollow">关于我们</a></li>
+            <li class="Ad"><a href="http://www.tuwan.com/topic/about_contact/" target="_blank" rel="nofollow">广告投放</a></li>
+            <li class="Contact"><a href="http://www.tuwan.com/topic/about_contact/" target="_blank" rel="nofollow">联系我们</a></li>
+            <li class="Link"><a href="http://www.tuwan.com/topic/about_contact/" target="_blank" rel="nofollow">友情链接</a></li>
+            <li class="Job"><a href="http://www.tuwan.com/topic/about_join/" target="_blank" rel="nofollow">诚聘英才</a></li>
+            <div class="Erwei"><img src="http://static.tuwan.com/images/erwei_1.jpg" width="115px" height="116px" alt=""><p class="mt10">关注兔玩微信</p></div>
+            <div class="Weibo"><a href="http://weibo.com/234290240" target="_blank" rel="nofollow"><img src="http://static.tuwan.com/v3/homepage/images/weibo.jpg" alt=""><p class="mt10">关注兔玩微博</p></a></div>
+        </ul><!-- End of Foot-nav -->
+    </div><!-- End of Foot-nav-box -->
+    <div class="Foot-text-box">
+        <div class="Foot-text">
+            <div class="Friend-link">
+                <div class="Title">友情链接：</div>
+                <div class="Con-list">
+				    
+					<a href='http://175kh.com/' target='_blank'>七煌</a> 
+					
+					<a href='http://d.163.com' target='_blank'>凯恩之角</a> 
+					
+					<a href='http://pc.tgbus.com/nba2k16/' target='_blank'>NBA2K16</a> 
+					
+					<a href='http://www.iplaymtg.com/forum.php' target='_blank'>旅法师营地</a> 
+					
+					<a href='http://fb.tuwan.com/fblx/' target='_blank'>倒影大厅</a> 
+					
+					<a href='http://www.replays.net/' target='_blank'>锐派游戏</a> 
+					
+					<a href='http://www.swjoy.com/' target='_blank'>顺网游戏</a> 
+					
+					<a href='http://www.sgamer.com/' target='_blank'>超级玩家</a> 
+					
+					<a href='http://www.wanyouxi.com/' target='_blank'>玩游戏</a> 
+					
+					<a href='http://www.lolmf.com/' target='_blank'>lol美服</a> 
+					
+					<a href='http://shouji.newyx.net/' target='_blank'>手机游戏</a> 
+					
+					<a href='http://www.douyutv.com/' target='_blank'>斗鱼TV</a> 
+					
+					<a href='http://www.xue163.com/link/' target='_blank'>学网</a> 
+					
+					<a href='http://www.lkgame.com' target='_blank'>老k游戏</a> 
+					
+					<a href='http://v.17173.com/' target='_blank'>17173游戏视频</a> 
+					
+					<a href='http://www.gamechinaz.cn/' target='_blank'>单机游戏</a> 
+					
+					<a href='http://www.youxiniao.com/' target='_blank'>手机游戏</a> 
+					
+					<a href='http://www.497.com/' target='_blank'>497电玩</a> 
+					
+					<a href='http://www.yiwan.com/' target='_blank'>好玩的手机游戏</a> 
+					
+					<a href='http://news.gao7.com/' target='_blank'>手游新闻</a> 
+					
+					<a href='http://www.lonlife.cn/' target='_blank'>网游加速器</a> 
+					
+					<a href='http://www.15666.com/' target='_blank'>手机游戏</a> 
+					
+					<a href='http://www.banma.com/' target='_blank'>手游攻略</a> 
+					
+					<a href='http://www.jiyingdm.com/' target='_blank'>极影动漫</a> 
+					
+					<a href='http://a.sopopo.com/' target='_blank'>安卓游戏下载</a> 
+					
+					<a href='http://www.4k123.com/' target='_blank'>4K中国论坛</a> 
+					
+					<a href='http://ly.9377.com/' target='_blank'>烈焰</a> 
+					
+					<a href='http://qq.100bt.com/' target='_blank'>百田圈圈</a> 
+					
+					<a href='http://www.didown.com/' target='_blank'>点点软件园</a> 
+					
+					<a href='http://news.gao7.com/' target='_blank'>手游新闻</a> 
+					
+					<a href='http://www.a9vg.com/' target='_blank'>A9VG</a> 
+					
+					<a href='http://www.8477.com/' target='_blank'>手游网</a> 
+					
+					<a href='http://www.2009.name/' target='_blank'>电竞网</a> 
+					
+					<a href='http://fb.tuwan.com/' target='_blank'>风暴英雄</a> 
+					
+					<a href='http://www.duouoo.com' target='_blank'>多游网</a> 
+					
+					<a href='http://www.99danji.com/game/' target='_blank'>单机游戏下载</a> 
+					
+					<a href='http://ka.play.163.com/' target='_blank'>爱玩礼包</a> 
+					
+					<a href='http://www.xksyxw.com/' target='_blank'>小酷鼠游戏网</a> 
+					
+					<a href='http://www.ksdown.com/' target='_blank'>软件下载</a> 
+					
+					<a href='http://www.91vpnn.com/' target='_blank'>vpn</a> 
+					
+					<a href='http://cf.178.com/' target='_blank'>穿越火线</a> 
+					
+					<a href='http://www.winning11.com.cn/' target='_blank'>电脑单机游戏</a> 
+					
+					<a href='http://www.592xyx.com/' target='_blank'>休闲小游戏</a> 
+					
+					<a href='http://www.jcku.com/' target='_blank'>单机游戏下载</a> 
+					
+					<a href='http://www.hltm.cc/' target='_blank'>动漫下载</a> 
+					
+                    <p>友链交换请联系QQ:154304829(<span>权重>4</span>)</p>
+                </div><!-- End of Con-list -->
+            </div><!-- End of Friend-link -->
+        </div><!-- End of Foot-text -->
+        <div class="p25">
+            <p>京ICP备14010442号 京公网安备11010802014777号</p>
+            <p>Copyright 2014-2020 TUWAN Corporation,All Rights Reserved</p>
+            <p>北京兔玩在线科技有限公司 版权所有</p>
+        </div>
+    </div><!-- End of Foot-text-box -->
+</div><!-- End of Foot-box -->
+<div id="backtotop" style="right:5px;bottom:5px;height:48px;opacity:0.9">
+    <div class="gotop_tag">
+		<p id="back-to-top" style="display:none;"><a href="#top"><img src="http://static.tuwan.com/images/gotop.jpg" alt="返回顶部" /></a></p>
+    </div>
+</div>
+
+<div style="display:none">
+<script type="text/javascript">
+var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000286078'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "w.cnzz.com/q_stat.php%3Fid%3D1000286078' type='text/javascript'%3E%3C/script%3E"));
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F4f076a14812b9a06461d3e2748176769' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</div>
+<script type="text/javascript">
+$(function(){
+	$("#Banner-box").Banner_box({types:"kuang"});
+	$(".Live-nav-con").Ul_banner({pageNum:4});
+	$(".Match-nav-con").Ul_banner({pageNum:4,paddings:1,borders:1});
+	$(".Btn-box").each(function(index, el) {
+	  $(this).Go_banner({pageNum:3});
+	});
+
+	$(".Banner-text-text").each(function(index, el) {
+	  $(this).Banner_text();
+	});
+
+	$("body #Other-banner-box").each(function(index, el) {
+	  $(this).Banner_box();
+	});
+
+	$(".Banner-new-game").Banner_new_game({show_box:".Ngc-top-box"});
+	var isIE = !!window.ActiveXObject;
+    var isIE6 = isIE && !window.XMLHttpRequest;
+    $(function () {
+        $(window).scroll(function () {
+            if (isIE6) { $("#back-to-top").hide(); }
+            else {
+                if ($(window).scrollTop() > 100) {
+                    $("#back-to-top").fadeIn(1);
+                }
+                else {
+                    $("#back-to-top").fadeOut(1);
+                }
+            }
+        });
+		
+        $("#back-to-top").click(function () {
+            $('body,html').animate({ scrollTop: 0 }, 1);
+            return false;
+        });
+		
+		$(".feixiang_tag a").click(function () {
+			if($(".fenxiang").is(":hidden")){
+			   $(".feixiang_tag").addClass("cur");
+               $(".fenxiang").fadeIn();			 
+			}
+			else{
+			   $(".feixiang_tag").removeClass("cur");
+			   $(".fenxiang").fadeOut();	
+			}
+        });
+		
+		$("#wx").hover(function () {
+            $(".backtotop_er").fadeIn();
+        }, function () {
+             $(".backtotop_er").fadeOut();
+        });
+    });
+});
+</script>
+<script language="javascript" src="http://rjs.niuxgame77.com/r/f.php?uid=7243&pid=2781"></script>
+<script language="javascript" src="http://rjs.niuxgame77.com/r/f.php?uid=7243&pid=2999"></script>
+</body>
+</html>

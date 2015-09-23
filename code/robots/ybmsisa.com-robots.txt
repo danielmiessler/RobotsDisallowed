@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta content="YBM Sisa.com" name="title">
+<link rel="stylesheet" href="/welcome_2014/css/main.css" type="text/css">
+<link rel="shortcut icon" href="favicon.ico">
+<script src="/welcome_2014/js/placeholders.min.js"></script>
+<script type="text/javascript" src="/welcome_2014/js/jquery-1.8.1.js"></script>
+<script type="text/javascript" src="/welcome_2014/js/jquery-ui-1.10.3.custom.min.js"></script>
+<script type="text/javascript" src="/welcome_2014/js/jquery.banner.js"></script>
+<script type="text/javascript" src="/welcome_2014/js/mobile.js"></script>
+<script language="javascript">
+<!--	
+
+	$(document).ready(function(){
+
+		var filter = "win16|win32|win64|mac";
+
+		if( navigator.platform  ){
+
+			if( filter.indexOf(navigator.platform.toLowerCase())<0 ){ // 모바일 일때
+
+				//뉴스
+				$('.newsTitle').click(function(){
+					$('.news_open').css("display","none");
+					$(".smenu").css("display","none");
+					$('.news_open').toggle();
+				})
+
+
+				$('.main_menu ul > li').click(function() {
+					$('.news_open').css("display","none");
+					$(".smenu").css("display","none");
+					$('div',this).toggle();
+				});
+
+				$('.wp_add_btn').css("display","");
+
+
+			}else{
+
+				//뉴스
+				$('.newsTitle').hover(function(){
+					$('.news_open').css("display","block");
+				})
+				$('.news_open').hover(function(){
+				}
+				,function(){
+					$('.news_open').css("display","none");
+				})
+
+				$('.main_menu ul > li').hover(function() {
+					$('div',this).css("display","block");
+				}, function() {
+					$('div',this).css("display","none");
+				});
+
+				$('.wp_add_btn').css("display","none");
+
+			}
+		}
+
+
+		//전체메뉴보기
+		$('.menuall').click(function () {    
+			var maskHeight = $(document).height();
+			var maskWidth = $(window).width();
+			$('.all_menu_wrap').css("display","block");
+			$('.modal').css({'width':maskWidth,'height':maskHeight});
+			$('.modal').fadeTo("fast",0.6);	
+		});
+		//전체메뉴닫기
+		$('.all_menu_wrap span.close >a').click(function () {    
+			closeAllMenu();
+		});
+		$('.modal').click(function(){
+			closeAllMenu();
+		})
+
+		//$('.newsTitle').jQBanner({nWidth:450,nHeight:40,nCount:total_idx,isActType:"left",nOrderNo:1,isStartAct:"N",isStartDelay:"Y",nDelay:2000,isBtnType:"img"});
+		//뉴스 top1 랜덤으로 가져오기
+		var Newstop1Text = $('ul.newsArr > li >a').find(':last-child').eq(Math.floor(Math.random()*$('ul.newsArr > li').length)).html();
+		$('.newsTitle').html(Newstop1Text);
+	})
+
+	function closeAllMenu(){
+		$('.modal').hide();	
+		$('.all_menu_wrap').css("display","none");
+	}
+	function openWin(theURL,winName,features){
+		var joinWin = window.open(theURL,winName,features);
+	}
+	
+	function goToLogout(){
+		var f = document.frm;
+		f.action="/html/logout.asp";
+		f.submit();
+		return true;
+	}
+
+	function go_mypage(){
+		top.location.href="/notice/notice_cnt_20091113.asp?po_code=3004&n_url=%2Fmypage%2Fmypage%2Easp";
+	}
+
+//--->
+</script>
+<script src="/welcome_2014/js/placeholders.min.js"></script>
+<script>
+  function totalsearch(po_code,kwdvalue) {
+	var f = document.forms["SearchForm"];
+	var AKCKwd = document.getElementById("AKCKwd");
+	var path = "";
+	var valKey, tmpKey
+
+
+	// 한글인 경우 escape 로 인코딩하면 tomcat 에서 디코딩 하지 못함
+	// 그래서 별도의 인코딩 함수 이용
+	function encodeURL(str){
+	     var s0, i, s, u;
+	     s0 = "";                // encoded str
+	     for (i = 0; i < str.length; i++){   // scan the source
+		 s = str.charAt(i);
+		 u = str.charCodeAt(i);          // get unicode of the char
+		 if (s == " "){s0 += "+";}       // SP should be converted to "+"
+		 else {
+		     if ( u == 0x2a || u == 0x2d || u == 0x2e || u == 0x5f || ((u >= 0x30) && (u <= 0x39)) || ((u >= 0x41) && (u <= 0x5a)) || ((u >= 0x61) && (u <= 0x7a))){       // check for escape
+			 s0 = s0 + s;            // don't escape
+		     }
+		     else {                  // escape
+			 if ((u >= 0x0) && (u <= 0x7f)){     // single byte format
+			     s = "0"+u.toString(16);
+			     s0 += "%"+ s.substr(s.length-2);
+			 }
+			 else if (u > 0x1fffff){     // quaternary byte format (extended)
+			     s0 += "%" + (oxf0 + ((u & 0x1c0000) >> 18)).toString(16);
+			     s0 += "%" + (0x80 + ((u & 0x3f000) >> 12)).toString(16);
+			     s0 += "%" + (0x80 + ((u & 0xfc0) >> 6)).toString(16);
+			     s0 += "%" + (0x80 + (u & 0x3f)).toString(16);
+			 }
+			 else if (u > 0x7ff){        // triple byte format
+			     s0 += "%" + (0xe0 + ((u & 0xf000) >> 12)).toString(16);
+			     s0 += "%" + (0x80 + ((u & 0xfc0) >> 6)).toString(16);
+			     s0 += "%" + (0x80 + (u & 0x3f)).toString(16);
+			 }
+			 else {                      // double byte format
+			     s0 += "%" + (0xc0 + ((u & 0x7c0) >> 6)).toString(16);
+			     s0 += "%" + (0x80 + (u & 0x3f)).toString(16);
+			 }
+		     }
+		 }
+	     }
+	     return s0;
+	 }
+
+	if (AKCKwd.getAttribute("linkkwd") != "" && f.kwd.value == AKCKwd.getAttribute("defaultValue"))
+		valKey=encodeURIComponent ("?kwd="+ encodeURL(AKCKwd.getAttribute("linkkwd")));
+	else
+		valKey=encodeURIComponent ("?kwd="+ encodeURL(f.kwd.value));
+
+
+	f.action = "/notice/notice_cnt_20091113.asp";
+
+	if (typeof po_code == "undefined")
+	{
+		f.po_code.value = "3005";
+	}else{
+		f.po_code.value = po_code;
+	}
+
+
+	if (typeof kwdvalue != "undefined")
+	{
+		valKey=encodeURIComponent ("?kwd="+ encodeURL(kwdvalue));
+	}
+
+
+	tmpKey = "/ybmsisacom.asp?siteurl=" + f.siteURL.value +"&pageurl="+f.pageURL.value;
+	f.n_url.value = tmpKey+valKey;
+
+	f.target = '_self';
+	f.submit();
+  }
+
+</script>
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<title>YBM Sisa.com</title>
+<!-- Google Analytics 작업-->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+//  ga('create', 'UA-53428075-1', 'auto');
+  ga('create', 'UA-55278078-3', 'auto');
+  ga('require', 'displayfeatures');
+  ga('require', 'linkid', 'linkid.js');
+  ga('send', 'pageview');
+</script>
+<!-- Google Analytics 작업-->
+</head>
+
+<body>
+<div id="wrap">
+  <h1 class="hide">YBM Sisa.com</h1>
+  <!-- Top-->
+  <header id="header">
+    <section class="header_in">
+      <h2 class="hide">탑메뉴</h2>
+      <!-- News -->
+      <aside class="news">
+        <h3>NEWS</h3>
+        <a href="javascript:void(0);" class="newsTitle" id="newsTop1">       
+        </a> 
+        <!-- News open -->
+        <div class="news_open" id="menu1" style="display:none;">
+          <div class="news_tit">YBM NEWS</div>
+          <ul class="newsArr">
+            <li><a title='2015 경기북부지역 Microsoft Office Specialist 경진대회' href='http://www.ybmsisa.com/notice/notice_cnt_20091113.asp?po_code=3001&ck_Sno=7053&n_url=http%3A%2F%2Fwww%2Eybmit%2Ecom%2Fmos%2Fnotice%2Fnotice%5Fview%2Easp%3Fn%5Fseq%3D2362'  ><span>YBM IT</span><p>2015 경기북부지역 Microsoft Office Specialist 경진대회</p></a></li><li><a title='스피드토익 배동희 강사, 추석 토익특강 안내' href='http://www.ybmsisa.com/notice/notice_cnt_20091113.asp?po_code=3001&ck_Sno=7054&n_url=http%3A%2F%2Fwww%2Eybmclass%2Ecom%2Fcs%2Fnotice%5Fview%2Easp%3FbIdx%3D1202'  ><span>YBM CLASS</span><p>스피드토익 배동희 강사, 추석 토익특강 안내</p></a></li><li><a title='TV방영안내[EBS 다큐프라임]' href='http://www.ybmsisa.com/notice/notice_cnt_20091113.asp?po_code=3001&ck_Sno=7055&n_url=http%3A%2F%2Fwww%2Eybmecc%2Ecom%2Fofficial%2Finfo%2Finfo%5Fnotice%5Fview%2Easp%3Fseq%3D375742'  ><span>ECC</span><p>TV방영안내[EBS 다큐프라임]</p></a></li><li><a title='NCS기반 국비지원 직무강의 개설' href='http://www.ybmsisa.com/notice/notice_cnt_20091113.asp?po_code=3001&ck_Sno=7047&n_url=http%3A%2F%2Fwww%2Eybmsisa%2Ecom%2Fcompany%2Fpress%5Fread%5Fnew%2Easp%3Fseq%3D7046'  ><span>커리어캠퍼스</span><p>NCS기반 국비지원 직무강의 개설</p></a></li><li><a title='토익공식블로그 토익STORY 오픈' href='http://www.ybmsisa.com/notice/notice_cnt_20091113.asp?po_code=3001&ck_Sno=7048&n_url=http%3A%2F%2Fwww%2Etoeicstory%2Eco%2Ekr%2F'  ><span>EXAM</span><p>토익공식블로그 토익STORY 오픈</p></a></li><li><a title='항공승무원 취업특강 개최' href='http://www.ybmsisa.com/notice/notice_cnt_20091113.asp?po_code=3001&ck_Sno=7041&n_url=http%3A%2F%2Fwww%2Eybmsisa%2Ecom%2Fcompany%2Fpress%5Fread%5Fnew%2Easp%3Fseq%3D7040'  ><span>YBM CLASS</span><p>항공승무원 취업특강 개최</p></a></li><li><a title='초급용 기초영어회화 ‘정말 재밌는 영어’ 신규 오픈' href='http://www.ybmsisa.com/notice/notice_cnt_20091113.asp?po_code=3001&ck_Sno=7033&n_url=http%3A%2F%2Fwww%2Eybmsisa%2Ecom%2Fcompany%2Fpress%5Fread%5Fnew%2Easp%3Fseq%3D7028'  ><span>e4u</span><p>초급용 기초영어회화 ‘정말 재밌는 영어’ 신규 오픈</p></a></li><li><a title='9월 사이트 서비스 점검 안내' href='http://www.ybmsisa.com/notice/notice_cnt_20091113.asp?po_code=3001&ck_Sno=7023&n_url=http%3A%2F%2Fwww%2Eybmsisa%2Ecom%2Fsystest%2Easp'  ><span>안내</span><p>9월 사이트 서비스 점검 안내</p></a></li><li><a title='면접영어 신규 오픈 기념 이벤트 실시' href='http://www.ybmsisa.com/notice/notice_cnt_20091113.asp?po_code=3001&ck_Sno=7020&n_url=http%3A%2F%2Fwww%2Eybmsisa%2Ecom%2Fcompany%2Fpress%5Fread%5Fnew%2Easp%3Fseq%3D7019'  ><span>YBM전화영어</span><p>면접영어 신규 오픈 기념 이벤트 실시</p></a></li><li><a title='대기업 채용담당자 초청 2015년 하반기 공채 대비 취업설명회' href='http://www.ybmsisa.com/notice/notice_cnt_20091113.asp?po_code=3001&ck_Sno=7016&n_url=http%3A%2F%2Fexam%2Eybmsisa%2Ecom%2Fevent%2Fevent%5Fpresentation%2Easp'  ><span>EXAM</span><p>대기업 채용담당자 초청 2015년 하반기 공채 대비 취업설명회</p></a></li>
+          </ul>
+          <div class="more"><a href="/notice/notice_cnt_20091113.asp?po_code=3007&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmsisa%2Ecom%2F%26pageurl%3Dcenter%5F2014%2FnewsList%2Easp">more</a></div>
+        </div>
+        <!-- //News open --> 
+      </aside>
+      <!-- //News --> 
+      <!-- Util menu -->
+	  <iframe src="/html/inc_login_v9.asp" frameborder="0" scrolling="no" height="50px" style="position:absolute; right:0; height:50px"></iframe>
+      <!-- //Util menu --> 
+
+    </section>
+  </header>
+  <!-- //Top--> 
+  <!-- Contents -->
+  <section id="contents">
+    <div class="contents_in">
+	<div class="pop_promo_btn" id="pop_promo_btn">
+		<div style="display:none;" class="pop_promo_btn_img"><a href="http://www.asktoeic.co.kr/?utm_campaign=AskToeic&utm_content=all&utm_medium=Video&utm_source=Youtube" target="new"><img src="/welcome_2014/images/welcome_bn_ailee.png" alt="YBM광고"></a> </div>
+		<div style="display:none;" class="pop_promo_btn_img"><a href="http://www.asktoeic.co.kr/?utm_campaign=AskToeic&utm_content=all&utm_medium=Video&utm_source=Youtube" target="new"><img src="/welcome_2014/images/welcome_bn_jjy.png" alt="YBM광고"></a> </div>
+	</div>
+      <div class="search">
+        <h2><a href="/notice/notice_cnt_20091113.asp?po_code=3000&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmsisa%2Ecom%2F%26pageurl%3D"><img src="/welcome_2014/images/logo.png" alt="YBM Sisa.com"></a></h2>
+        <!-- Search -->
+        <form name="SearchForm" id="AKCFrm" method=get onSubmit="totalsearch();return false;" class="niceform">
+          <input type="hidden" name="newWin" value="o">
+          <input type="hidden" name="bannerURL" value="">
+          <input type="hidden" name="siteURL" value="totalsearch.ybmsisa.com">
+          <input type="hidden" name="pageURL" value="/search/search.jsp">
+          <input type="hidden" name="po_code" value="3005">
+          <input type="hidden" name="n_url" value="">
+          <input type="hidden" name="q" value="">
+          <input type="hidden" name="ck_Sno" value="3924">
+          <div class="search_form">
+            <input id="AKCKwd" name="kwd" class="search_input" title="검색어 입력창"  type="text" accesskey="s" autocomplete="off" value=""  />
+            <span class="btn_sm">
+            <button title="검색" onclick="" type="submit"><span>검색</span></button>
+            </span> </div>
+        </form>
+        <div class="auto"><a href="#"><img id="AKCArrow" class="acimg" src="/welcome_2014/images/btn_arrow_down.png" alt="자동완성기능 열기"  style="cursor:pointer"></a></div>
+        <!-- 자동완성기능 열기 -->
+        <div id="AKCDiv">
+          <iframe id="AKCIfrm" style="width: 484px; height: 0px; POSITION:absolute; top:107px; z-index:999; left:258px;"  name="AKCIfrm" marginwidth="0" marginheight="0" src="/common/lib/search2/akc_2014_utf.htm" frameborder="0" scrolling="no" allowTransparency=＂true＂> </iframe>
+        </div>
+        <!-- //자동완성기능 열기 --> 
+        <!-- //Search --> 
+        <!-- Keywords -->
+        <div class="search_txt"><span><a href="/notice/notice_cnt_20091113.asp?po_code=3008&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dappexam%2Eybmsisa%2Ecom%26pageurl%3Dtoeic%2Freceipt%2Freceipt%2Easp" target="_blank"><strong>토익접수</strong></a></span><span><a href="/notice/notice_cnt_20091113.asp?po_code=3009&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dexam%2Eybmsisa%2Ecom%26pageurl%3Dscore%2F" target="_blank"><strong>성적확인</strong></a></span><span><a title='' href='http://www.ybmsisa.com/notice/notice_cnt_20091113.asp?po_code=3006&ck_Sno=4418&n_url=http%3A%2F%2Ftotalsearch%2Eybmsisa%2Ecom%2Fsearch%2Fsearch%2Ejsp%3Fkwd%3D%25EC%2598%2581%25EC%2596%25B4%25ED%2595%2599%25EC%258A%25B5%25ED%2583%259C%25EB%25B8%2594%25EB%25A6%25BF%26x%3D0%26y%3D0%26category%3DTOTAL%26pageSize%3D10%26pageNum%3D1'  onfocus=blur() >영어학습태블릿</a></span> <span><a title='' href='http://www.ybmsisa.com/notice/notice_cnt_20091113.asp?po_code=3006&ck_Sno=4346&n_url=http%3A%2F%2Ftotalsearch%2Eybmsisa%2Ecom%2Fsearch%2Fsearch%2Ejsp%3Fkwd%3DYBM%2BCLASS%26category%3DTOTAL%26pageSize%3D10%26pageNum%3D1'  onfocus=blur() >YBM CLASS</a></span> <span><a title='' href='http://www.ybmsisa.com/notice/notice_cnt_20091113.asp?po_code=3006&ck_Sno=4429&n_url=http%3A%2F%2Ftotalsearch%2Eybmsisa%2Ecom%2Fsearch%2Fsearch%2Ejsp%3Fkwd%3DYBM%25EA%25B8%25B0%25EC%25B4%2588%25EC%2598%2581%25EC%2596%25B4'  onfocus=blur() >YBM기초영어</a></span> </div>
+        <!-- //Keywords --> 
+      </div>
+      <!-- Navigation -->
+      <div class="main_menu">
+        <h2 class="hide">메인메뉴</h2>
+        <nav>
+          <ul>
+            <li class="menu1"><a href="#">인터넷 강의</a> 
+              <!-- 인터넷 강의 서브메뉴 -->
+              <div class="smenu smenu_l2 sm1">
+                <h3>인터넷 강의</h3>
+                <ul>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3102&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmclass%2Ecom%2F%26pageurl%3D"><span class="lt0">TOEIC<sup>®</sup></span></a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3108&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmclass%2Ecom%2F%26pageurl%3D"><span class="lt0">TOEIC<sup>®</sup> Speaking</span></a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3109&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3De4u%2Eybmsisa%2Ecom%2F%26pageurl%3Dchannel%5Fmain%2Fenglish%5Fmain%5Fmap%2Easp">영어 <span class="stxt">(회화 / 문법)</span></a></li>
+				  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3110&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3De4u%2Eybmsisa%2Ecom%2F%26pageurl%3DEngPhone%2Fmain%2Easp">전화영어</a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3101&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmbasiceng%2Ecom%2F%26pageurl%3D">기초영어</a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3103&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3De4u%2Eybmsisa%2Ecom%2F%26pageurl%3Dchannel%5Fmain%2Fjap%5Fmain%5Fmap%2Easp">일본어</a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3104&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3De4u%2Eybmsisa%2Ecom%2F%26pageurl%3Dchannel%5Fmain%2Fchi%5Fmain%5Fmap%2Easp">중국어</a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3105&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmcc%2Ecom%2F%26pageurl%3Dmain%2Fmain%2Easp">취업 / 자격증</a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3106&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmteachers%2Ecom%2F%26pageurl%3D">교원연수</a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3107&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmhakjum%2Ecom%2F%26pageurl%3D">학점은행</a></li>
+                </ul>
+              </div>
+              <!-- //인터넷 강의 서브메뉴 --> 
+            </li>
+            <li class="menu2"><a href="#">학원 <span class="stxt">(성인 / 어린이)</span></a> 
+              <!-- 학원 강의 서브메뉴 -->
+              <div class="smenu sm2">
+                <h3>학원 <span>(성인 / 어린이)</span></h3>
+                <ul class="smenu_top">
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3201&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmedu%2Ecom%2F%26pageurl%3D">성인어학원</a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3203&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmcc%2Ecom%2F%26pageurl%3Dmain%2Fmain%2Easp">취업 / 자격증</a></li>
+                </ul>
+                <ul class="smenu_bottom">
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3202&n_url=http%3A%2F%2Fwww%2Eybmpine%2Ecom%2Fschools%2Foverview%2Easp">영유아전문 영어학원<img src="/welcome_2014/images/logo_psa.png" alt="PSA" ></a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3206&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmecc%2Ecom%2F%26pageurl%3Dofficial%2Findex%2Easp">어린이영어학원 <img src="/welcome_2014/images/logo_ecc.png" alt="ECC" ></a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3204&n_url=http%3A%2F%2Fwww%2Eybmengloo%2Ecom%2F">초 · 중등 영어캠퍼스<img src="/welcome_2014/images/logo_engloo.png" alt="잉글루" ></a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3205&n_url=http%3A%2F%2Fwww%2Eybmsuplus%2Ecom">초 · 중등 수학학습관<img src="/welcome_2014/images/logo_soo.png" alt="수플러스" ></a></li>
+                </ul>
+              </div>
+              <!-- //학원 강의 서브메뉴 --> 
+            </li>
+            <li class="menu3"><a href="#"><span class="lt0">TOEIC<sup>®</sup></span> · 기타시험 <span class="stxt">(접수 / 성적)</span></a> 
+              <!-- 시험 서브메뉴 -->
+              <div class="smenu sm3">
+                <h3><em class="lt0">TOEIC<sup>®</sup></em> · 기타시험 <span>(접수/성적)</span></h3>
+                <ul>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3301&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dexam%2Eybmsisa%2Ecom%2F%26pageurl%3D"><span class="lt0">TOEIC<sup>®</sup></span></a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3302&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dexam%2Eybmsisa%2Ecom%2F%26pageurl%3Dtoeicswt%2Findex%2Easp"><span class="lt0">TOEIC<sup>®</sup> Speaking</span></a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3303&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dexam%2Eybmsisa%2Ecom%2F%26pageurl%3Djunior%2F">초 · 중 · 고 영어시험</a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3304&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dexam%2Eybmsisa%2Ecom%2F%26pageurl%3Djpt%2F"><span class="lt0">JPT</span> 일본어 능력시험</a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3305&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dexam%2Eybmsisa%2Ecom%2F%26pageurl%3Dtsc%2F"><span class="lt0">TSC</span> 중국어 말하기시험</a></li>
+				  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3306&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dexam%2Eybmsisa%2Ecom%2F%26pageurl%3Dbizhanja%2F"><span class="lt0">YBM</span> 상무한검</a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3307&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmit%2Ecom%2F%26pageurl%3D"><span class="lt0">MOS</span> 활용능력시험</a></li>
+                </ul>
+              </div>
+              <!-- //시험 서브메뉴 --> 
+            </li>
+            <li class="menu4"><a href="#">도서 / <span class="lt0">e-book</span> / 콘텐츠</a> 
+              <!--- 도서 서브메뉴 -->
+              <div class="smenu smenu_l2 sm4">
+                <h3>도서 / <em class="lt0">e-book</em> / 콘텐츠</h3>
+                <ul>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3401&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmbooks%2Ecom%2F%26pageurl%3D">학습교재</a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3402&n_url=http%3A%2F%2Fwww%2Ey2books%2Ecom%2F">전자책 <span class="lt0">Y2BOOKS</span></a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3403&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmmastery%2Ecom%2F%26pageurl%3D">영어학습태블릿</a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3404&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmtouch%2Ecom%2F%26pageurl%3D">어린이영어학습태블릿</a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3405&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmallinall%2Ecom%2F%26pageurl%3D">올인올 사전</a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3406&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dcnn%2Eybmsisa%2Ecom%2F%26pageurl%3D"><span class="lt0">CNN</span> 뉴스</a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3407&n_url=http%3A%2F%2Fwww%2Enationalgeographic%2Eco%2Ekr">내셔널지오그래픽</a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3408&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3De4u%2Eybmsisa%2Ecom%2F%26pageurl%3DFreeZone%2Fwebzine%2Flist%2Easp">웹진 <span class="lt0">See英</span></a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3409&n_url=http%3A%2F%2Fmagazine%2Eybmsisa%2Ecom%2F"><span class="lt0">CNNez · 매거진</span></a></li>
+				  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3410&n_url=http%3A%2F%2Fwww%2Eybmsisatne%2Ecom%2F"><span class="lt0">회원제프로그램 </span></a></li>
+                </ul>
+              </div>
+              <!-- //도서 서브 메뉴 --> 
+            </li>
+            <li class="menu5"><a href="#">기업교육 / 단체교육</a> 
+              <!-- 기업교육 서브 메뉴 -->
+              <div class="smenu smenu_s sm5">
+                <h3>기업교육 / 단체교육</h3>
+                <ul>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3501&n_url=http%3A%2F%2Fwww%2Eybmbiz%2Eco%2Ekr%2F">기업교육</a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3502&n_url=http%3A%2F%2Fwww%2Eybmb2b%2Ecom%2F">인재교육센터</a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3504&n_url=http%3A%2F%2Fwww%2Ecattoeic%2Ecom%2Feslscat%2Ftoeicintro%2F">이스쿨 대학영어</a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3505&n_url=http%3A%2F%2Fwww%2Eybmuniv%2Ecom%2F">티앤이 대학특강</a></li>
+                </ul>
+              </div>
+              <!-- //기업교육 서브 메뉴 --> 
+            </li>
+            <li class="menu6"><a href="#"><span class="lt0">KIS</span>국제학교 / 유학</a> 
+              
+              <!-- KIS 유학 서브 메뉴 -->
+              <div class="smenu smenu_s sm6">
+                <h3><em class="lt0">KIS</em>국제학교 / 유학</h3>
+                <ul>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3601&n_url=http%3A%2F%2Fwww%2Ekis%2Eor%2Ekr%2F">한국외국인학교</a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3602&n_url=http%3A%2F%2Fwww%2Ekis%2Eac%2F">제주외국인학교</a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3603&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmuhak%2Ecom%2F%26pageurl%3D">유학센터</a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3604&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmteensuhak%2Ecom%2F%26pageurl%3Dteens%2F">조기유학센터</a></li>
+                </ul>
+              </div>
+              <!-- //KIS 유학 서브 메뉴 --> 
+              
+            </li>
+            <li class="menu7"><a href="#">학습지 / 영어마을</a> 
+              <!-- 어린이 학습지 서브 메뉴 -->
+              <div class="smenu smenu_s2 sm7" >
+                <h3>학습지 / 영어마을</h3>
+                <ul>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3705&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Esisajunior%2Ecom%2F%26pageurl%3D">방문학습지</a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3706&n_url=http%3A%2F%2Fwww%2Esisaphone%2Ecom">전화 / 화상</a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3707&n_url=http%3A%2F%2Fwww%2Eybmreadingclub%2Ecom">공부방</a></li>
+				  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3708&n_url=http%3A%2F%2Fsuyu%2Esev%2Ego%2Ekr">수유영어마을</a></li>
+				  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3709&n_url=http%3A%2F%2Fnev%2Enowon%2Ekr">노원영어마을</a></li>
+                </ul>
+              </div>
+              <!-- //어린이 학습지 서브 메뉴 --> 
+              
+            </li>
+            <li class="menu8"><a href="#">그 외 서비스</a> 
+              <!-- 그 외 서비스 서브 메뉴 -->
+              <div class="smenu smenu_s sm8" >
+                <h3>그 외 서비스</h3>
+                <ul>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3801&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Ecnnthebiz%2Ecom%2F%26pageurl%3D">모임공간 <span class="lt0">CNN the Biz</span></a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3802&n_url=http%3A%2F%2Fcnn%2Dcafe%2Ecom%2F"><span class="lt0">CNN Cafe</span></a></li>
+                  <li><a href="/notice/notice_cnt_20091113.asp?po_code=3803&n_url=http%3A%2F%2Fcnstore%2Eco%2Ekr%2Fmain%2Fmain%5Freal%2Easp"><span class="lt0">Cartoon Network Shop</span></a></li>
+                </ul>
+              </div>
+              
+              <!-- //그 외 서비스 서브 메뉴 --> 
+            </li>
+          </ul>
+          <div class="menuall"><a href="#">전체보기</a></div>
+          <!-- 전체보기 -->
+          <div class="modal"></div>
+          <div class="all_menu_wrap">
+            <div class="all_menu_in">
+              <h2>전체보기 <span class="close"><a href="#">창닫기</a></span></h2>
+              <div class="all_menu_cont">
+                <div class="section">
+                  <ul>
+                    <li>인터넷 강의
+                      <ul>
+                        <li>영어
+                          <ul>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4001&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmbasiceng%2Ecom%2F%26pageurl%3D">- 왕초보 기초영어</a></li>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4002&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3De4u%2Eybmsisa%2Ecom%2F%26pageurl%3Dchannel%5Fmain%2Fenglish%5Fmain%5Fmap%2Easp">- 회화 문법 비즈니스</a></li>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4003&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3De4u%2Eybmsisa%2Ecom%2F%26pageurl%3DEngPhone%2Fmain%2Easp">- 전화영어</a></li>
+                          </ul>
+                        </li>
+                        <li>토익
+                          <ul>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4004&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmclass%2Ecom%2F%26pageurl%3Dtoeic%2Ftoeic900%2Easp"><span>- TOEIC<sup>®</sup></span></a></li>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4005&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmclass%2Ecom%2F%26pageurl%3Dtoeicspeaking%2Ftoeiclv6%2Easp"><span>- TOEIC<sup>®</sup> Speaking</span></a></li>
+                          </ul>
+                        </li>
+                        <li>기타 언어
+                          <ul>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4006&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3De4u%2Eybmsisa%2Ecom%2F%26pageurl%3Dchannel%5Fmain%2Fjap%5Fmain%5Fmap%2Easp">- 일본어</a></li>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4007&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3De4u%2Eybmsisa%2Ecom%2F%26pageurl%3Dchannel%5Fmain%2Fchi%5Fmain%5Fmap%2Easp">- 중국어</a></li>
+                          </ul>
+                        </li>
+                        <li><a href="/notice/notice_cnt_20091113.asp?po_code=4008&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmcc%2Ecom%2F%26pageurl%3Dmain%2Fmain%2Easp">취업 / 자격증</a></li>
+                        <li><a href="/notice/notice_cnt_20091113.asp?po_code=4009&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmteachers%2Ecom%2F%26pageurl%3D">교원연수</a></li>
+                        <li><a href="/notice/notice_cnt_20091113.asp?po_code=4010&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmhakjum%2Ecom%2F%26pageurl%3D">학점은행</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+                <div class="section">
+                  <ul>
+                    <li>학원
+                      <ul>
+                        <li>성인 학원
+                          <ul>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4101&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmedu%2Ecom%2F%26pageurl%3D">- 성인어학원</a></li>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4102&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmcc%2Ecom%2F%26pageurl%3Doffline%2Fmain%2Easp">- 취업 / 자격증</a></li>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4103&n_url=http%3A%2F%2Fwww%2Eybmjapanese%2Ecom%2F">- 일어 전문학원</a></li>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4104&n_url=http%3A%2F%2Fcchongno%2Eybmedu%2Ecom%2Fhakwon%2Fcenter%2Fcenter%5Fmain%2Easp">- 중국어 전문학원</a></li>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4105&n_url=http%3A%2F%2Fwww%2Eybm1to1%2Ecom">- 1 : 1 회화 전문학원</a></li>
+                          </ul>
+                        </li>
+                        <li>어린이 학원
+                          <ul>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4106&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmecc%2Ecom%2F%26pageurl%3Dofficial%2Findex%2Easp">- 어린이영어학원 <span>ECC</span></a></li>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4107&n_url=http%3A%2F%2Fwww%2Eybmengloo%2Ecom%2F">- 초 · 중등 영어캠퍼스 잉글루</a></li>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4108&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmpsa%2Ecom%2F%26pageurl%3D">- 영유아전문 <span>PSA</span></a></li>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4109&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmlia%2Ecom%2F%26pageurl%3D">- 미국교과서 전문 <span>LIA</span></a></li>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4110&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmleader%2Ecom%2F%26pageurl%3D">- 청소년리더십아카데미</a></li>
+							<li><a href="/notice/notice_cnt_20091113.asp?po_code=4111&n_url=http%3A%2F%2Fwww%2Eybmperfectenglish%2Ecom">- 초등 · 중등 영어</a></li>
+							<li><a href="/notice/notice_cnt_20091113.asp?po_code=4112&n_url=http%3A%2F%2Fwww%2Eybmsuplus%2Ecom">- 초등 · 중등 수학</a></li>
+							<li><a href="/notice/notice_cnt_20091113.asp?po_code=4113&n_url=http%3A%2F%2Fafter%2Eybmperfectenglish%2Ecom">- 방과후 교실 영어</a></li>
+							<li><a href="/notice/notice_cnt_20091113.asp?po_code=4114&n_url=http%3A%2F%2Fafter%2Eybmsuplus%2Ecom">- 방과후 교실 수학</a></li>				
+							<li><a href="/notice/notice_cnt_20091113.asp?po_code=4115&n_url=http%3A%2F%2Fwww%2Emystorymath%2Ecom">- 초등 수학 (마이스토리)</a></li>		
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+                <div class="section">
+                  <ul>
+                    <li><span class="lt0">TOEIC<sup>®</sup></span>ㆍ기타시험
+                      <ul>
+                        <li>영어
+                          <ul>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4201&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dexam%2Eybmsisa%2Ecom%2F%26pageurl%3D"><span>- TOEIC<sup>®</sup></span></a></li>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4202&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dexam%2Eybmsisa%2Ecom%2F%26pageurl%3Dtoeicswt%2Findex%2Easp"><span>- TOEIC<sup>®</sup> Speaking</span></a></li>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4203&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dexam%2Eybmsisa%2Ecom%2F%26pageurl%3Dtoeflitp%2F"><span>- TOEFL<sup>®</sup> ITP</span></a></li>
+                          </ul>
+                        </li>
+                        <li>기타 언어
+                          <ul>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4204&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dexam%2Eybmsisa%2Ecom%2F%26pageurl%3Djpt%2F"><span>- JPT</span> 일본어 능력시험</a></li>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4205&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dexam%2Eybmsisa%2Ecom%2F%26pageurl%3Dtsc%2F"><span>- TSC</span> 중국어 말하기시험</a></li>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4206&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dexam%2Eybmsisa%2Ecom%2F%26pageurl%3Dsjpt%2F"><span>- SJPT</span> 일본어 말하기시험</a></li>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4207&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dexam%2Eybmsisa%2Ecom%2F%26pageurl%3Dnihongo%2F">- 日本語檢定</a></li>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4208&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dexam%2Eybmsisa%2Ecom%2F%26pageurl%3Dbizhanja%2F"><span>- YBM</span>상무한검</a></li>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4209&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dexam%2Eybmsisa%2Ecom%2F%26pageurl%3Dkpe%2F"><span>- KPE</span> 한국어 능력시험</a></li>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4210&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dexam%2Eybmsisa%2Ecom%2F%26pageurl%3Dtfi%2F"><span>- TFI</span> 프랑스어 시험</a></li>
+                          </ul>
+                        </li>
+                        <li>초ㆍ중ㆍ고 영어시험
+                          <ul>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4211&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dexam%2Eybmsisa%2Ecom%2F%26pageurl%3Dtbridge%2F"><span>- TOEIC Bridge<sup>®</sup></span></a></li>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4212&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dexam%2Eybmsisa%2Ecom%2F%26pageurl%3Djet%2F"><span>- JET</span></a></li>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4213&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dexam%2Eybmsisa%2Ecom%2F%26pageurl%3Djetspeaking%2F"><span>- JET S-W</span></a></li>
+                          </ul>
+                        </li>
+                        <li><a href="/notice/notice_cnt_20091113.asp?po_code=4214&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmit%2Ecom%2F%26pageurl%3D"><span>MOS</span> 활용능력시험</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+                <div class="section">
+                  <ul>
+                    <li>도서 / <span class="lt0">e-book</span> / 콘텐츠
+                      <ul>
+                        <li>도서 / e-book
+                          <ul>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4301&n_url=https%3A%2F%2Fwww%2Eybmbooks%2Ecom%2F">- 학습교재</a> / <a href="/notice/notice_cnt_20091113.asp?po_code=4314&n_url=http%3A%2F%2Fwww%2Eybmbooks%2Ecom%2Freader%2Freader%2Easp">MP3자료</a></li>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4302&n_url=http%3A%2F%2Fwww%2Ey2books%2Ecom%2F">- 전자책 <span>Y2BOOKS<span></a></li>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4303&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmtext%2Ecom%2F%26pageurl%3D">- <span>The TEXT<span> 교과서</a></li>
+                          </ul>
+                        </li>
+                        <li>매거진
+                          <ul>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4304&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3De4u%2Eybmsisa%2Ecom%2F%26pageurl%3DFreeZone%2Fwebzine%2Flist%2Easp">- 웹진 see英</a></li>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4305&n_url=http%3A%2F%2Fwww%2Enationalgeographic%2Eco%2Ekr">- 내셔널지오그래픽</a></li>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4306&n_url=http%3A%2F%2Fmagazine%2Eybmsisa%2Ecom%2F"><span>- CNNez · 매거진</span></a></li>
+                          </ul>
+                        </li>
+                        <li>학습태블릿
+                          <ul>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4307&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmmastery%2Ecom%2F%26pageurl%3D">- 영어학습태블릿</a></li>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4308&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmtouch%2Ecom%2F%26pageurl%3D">- 어린이영어학습태블릿</a></li>
+                          </ul>
+                        </li>
+                        <li>사전 / 뉴스 / 영어검색
+                          <ul>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4309&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmallinall%2Ecom%2F%26pageurl%3D">- 올인올 사전</a></li>
+                            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4310&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dcnn%2Eybmsisa%2Ecom%2F%26pageurl%3D"><span>- CNN </span>뉴스</a></li>
+							<li><a href="/notice/notice_cnt_20091113.asp?po_code=4312&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dezin%2Eybmsisa%2Ecom%2F%26pageurl%3D">- 영어검색 e知인</a></li>
+                          </ul>
+                        </li>                        
+						<li><a href="/notice/notice_cnt_20091113.asp?po_code=4313&n_url=http%3A%2F%2Fwww%2Eybmsisatne%2Ecom%2F">회원제프로그램</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+                <div class="section last">
+                  <ul>
+                    <li>기업교육 / 단체교육
+                      <ul>
+                        <li><a href="/notice/notice_cnt_20091113.asp?po_code=4401&n_url=http%3A%2F%2Fwww%2Eybmbiz%2Eco%2Ekr%2F">기업교육</a></li>
+                        <li><a href="/notice/notice_cnt_20091113.asp?po_code=4402&n_url=http%3A%2F%2Fwww%2Eybmb2b%2Ecom%2F">인재교육센터</a></li>
+                        <li><a href="/notice/notice_cnt_20091113.asp?po_code=4403&n_url=http%3A%2F%2Fwww%2Ecattoeic%2Ecom%2Feslscat%2Ftoeicintro%2F">이스쿨 대학영어</a></li>
+                        <li><a href="/notice/notice_cnt_20091113.asp?po_code=4404&n_url=http%3A%2F%2Fwww%2Eybmuniv%2Ecom">티앤이 대학특강</a></li>
+                      </ul>
+                    </li>
+                    <li><span class="lt0">KIS</span>국제학교 / 유학
+                      <ul>
+                        <li><a href="/notice/notice_cnt_20091113.asp?po_code=4405&n_url=http%3A%2F%2Fwww%2Ekis%2Eor%2Ekr%2F">한국외국인학교</a></li>
+                        <li><a href="/notice/notice_cnt_20091113.asp?po_code=4406&n_url=http%3A%2F%2Fwww%2Ekis%2Eac%2F">제주외국인학교</a></li>
+                        <li><a href="/notice/notice_cnt_20091113.asp?po_code=4407&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmuhak%2Ecom%2F%26pageurl%3D">유학센터</a></li>
+                        <li><a href="/notice/notice_cnt_20091113.asp?po_code=4408&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Eybmteensuhak%2Ecom%2F%26pageurl%3Dteens%2F">조기유학센터</a></li>
+                      </ul>
+                    </li>
+                    <li>학습지 / 영어마을
+                      <ul>
+                        <li><a href="/notice/notice_cnt_20091113.asp?po_code=4409&n_url=%2Fybmsisacom%2Easp%3Fsiteurl%3Dwww%2Esisajunior%2Ecom%2F%26pageurl%3D">방문학습지</a></li>
+                        <li><a href="/notice/notice_cnt_20091113.asp?po_code=4410&n_url=http%3A%2F%2Fwww%2Esisaphone%2Ecom">전화 / 화상</a></li>
+                        <li><a href="/notice/notice_cnt_20091113.asp?po_code=4411&n_url=http%3A%2F%2Fwww%2Eybmreadingclub%2Ecom">공부방</a></li>
+						<li><a href="/notice/notice_cnt_20091113.asp?po_code=4412&n_url=http%3A%2F%2Fsuyu%2Esev%2Ego%2Ekr">수유영어마을 </a></li>
+						<li><a href="/notice/notice_cnt_20091113.asp?po_code=4413&n_url=http%3A%2F%2Fnev%2Enowon%2Ekr">노원영어마을 </a></li>					
+                      </ul>
+                    </li>
+                    <li>그 외 서비스
+                      <ul>
+                        <li><a href="/notice/notice_cnt_20091113.asp?po_code=4414&n_url=http%3A%2F%2Fwww%2Ecnnthebiz%2Ecom%2F">모임공간 <span>CNN the Biz</span></a></li>
+                        <li><a href="/notice/notice_cnt_20091113.asp?po_code=4415&n_url=http%3A%2F%2Fcnn%2Dcafe%2Ecom%2F"><span>CNN Cafe</span></a></li>
+                        <li><a href="/notice/notice_cnt_20091113.asp?po_code=4416&n_url=http%3A%2F%2Fcnstore%2Eco%2Ekr%2Fmain%2Fmain%5Freal%2Easp"><span>Cartoon Network Shop</span></a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- //전체보기 --> 
+        </nav>
+      </div>
+      <!-- //Navigation --> 
+    </div>
+    <!-- footer -->
+    <footer id="footer">
+      <div class="footer_in">      
+        <div class="footer_util">
+          <ul>
+            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4902&n_url=%2FYBMSisacom%2Easp%3FSiteURL%3Dhttp%3A%2F%2Fwww%2Eybmsisa%2Ecom%26PageURL%3Dfooter%2Fsafety%5F03%2Easp%26newWin%3Do" target="_blank" onclick="window.open(this.href, 'popupNam1', 'width=830, height=609, statusbar=0, scrollbars=0'); return false;" title="새창"><strong>개인정보취급방침</strong></a></li>
+            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4903&n_url=%2FYBMSisacom%2Easp%3FSiteURL%3Dhttp%3A%2F%2Fwww%2Eybmsisa%2Ecom%26PageURL%3Dfooter%2Fagree%2Easp%26newWin%3Do" target="_blank" onclick="window.open(this.href, 'popupName2', 'width=820, height=629, statusbar=0, scrollbars=0'); return false;" title="새창">이용자약관</a></li>
+            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4904&n_url=%2FYBMSisacom%2Easp%3FSiteURL%3Dhttp%3A%2F%2Fwww%2Eybmsisa%2Ecom%26PageURL%3Dcompany%2Fmain%2Easp">회사소개</a></li>
+            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4905&n_url=%2FYBMSisacom%2Easp%3FSiteURL%3Dhttp%3A%2F%2Fwww%2Eybmsisa%2Ecom%26PageURL%3Dcompany%2Fpress%5Fnew%2Easp">보도자료</a></li>
+            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4906&n_url=%2FYBMSisacom%2Easp%3FSiteURL%3Dhttp%3A%2F%2Fwww%2Eybmsisa%2Ecom%26PageURL%3Dcompany%2Fpartner%5Fnew%2Easp">제휴문의</a></li>
+            <li><a href="/notice/notice_cnt_20091113.asp?po_code=4907&n_url=%2FYBMSisacom%2Easp%3FSiteURL%3Dhttp%3A%2F%2Fwww%2Eybmsisa%2Ecom%26PageURL%3Dcompany%2Fir%5Fstock%5Finfo%5Fnew%2Easp">IR</a></li>
+          </ul>
+        </div>
+        <span class="com">&copy; (주)YBM시사닷컴</span>
+		<div class="ets_copy">ETS, the ETS logo, TOEIC, 토익, TOEIC Bridge and TOEFL ITP are registered trademarks of Educational Testing Service (ETS),<br>
+		and used in the Republic of Korea under license.</div>		
+		<!-- 모바일 버전 버튼 추가 -->
+		<div class="wp_add_btn" style="display:none"><a href="/notice/notice_cnt_20091113.asp?po_code=4414&n_url=http%3A%2F%2Fm%2Eybmsisa%2Ecom"><img src="/welcome_2014/images/btn_m_go.png" alt="모바일버전"></a></div>
+				
+		<!-- 모바일 버전 버튼 추가 // -->
+	  </div>	
+    </footer>
+    <!-- //footer --> 
+  </section>
+  <!-- //Contents --> 
+</div>
+
+<!----  
+안녕하세요 뉴미디어사업팀 손정은 입니다. 
+마스터리2 언론사 리타겟팅 광고 관련하여, 시사닷컴 사이트 메인 내 스크립트를 심고자 합니다. 
+---->
+<!-- WIDERPLANET  SCRIPT START 2014.12.17 -->
+<div id="wp_tg_cts" style="display:none;"></div>
+<script type="text/javascript">
+   $(function(){	
+
+	var totalRandom = $('#pop_promo_btn .pop_promo_btn_img').length;
+	$('#pop_promo_btn .pop_promo_btn_img').eq(Math.floor(Math.random()*totalRandom)).show();			
+   
+	$(".pop_promo_btn").animate({marginRight:'20'},700);	
+	//$(".pop_promo_btn").fadeIn(3000);	
+   });
+</script>
+<script type="text/javascript">
+var wptg_tagscript_vars = wptg_tagscript_vars || [];
+wptg_tagscript_vars.push(
+(function() {
+	return {
+		ti:"21293",	/*광고주 코드*/
+		ty:"Home",	/*트래킹태그 타입*/
+		device:"web"	/*디바이스 종류 (web 또는 mobile)*/
+	}; 
+}));
+</script> 
+<script type="text/javascript" async defer  src="//astg.widerplanet.com/js/wp_astg_3.0.js"></script>
+<!-- // WIDERPLANET  SCRIPT END 2014.12.17 -->
+
+<!----  
+e4u마케팅팀 장경원입니다. 2012-06-14 
+1. YBM시사닷컴 웰컴페이지 푸터에 픽셀과 태그 삽입 
+2. YBM시사닷컴 웰컴을 방문한 방문자(토익접수, 점수 확인 목적 등)의 정보 확인 
+3. 온라인 커뮤니티 방문자의 IP 정보를 확인하여 해당자에게 토익보장코스 배너 노출 
+---->
+
+<!-- Google Code for YBM&#49884;&#49324;&#45815;&#52980;E4U &#47532;&#47560;&#52992;&#54021; Remarketing List -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1037588615;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "Amx4CLXVmQYQh7Hh7gM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="http://www.googleadservices.com/pagead/conversion/1037588615/?value=0&amp;label=Amx4CLXVmQYQh7Hh7gM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+<!-- Advertiser 'Emforce_YBMSisa_DXR',  Include user in segment 'KR_SEGMENT_YBMSisa' - DO NOT MODIFY THIS PIXEL IN ANY WAY -->
+<img src="https://ad.yieldmanager.com/pixel?id=1831622&t=2" width="1" height="1" />
+<!-- End of segment tag -->
+
+
+<!----  
+전화영어팀 권은영입니다. 2012-09-03
+웰컴 방문자 대상으로 구글 리마케팅(IP 연동) 작업을 진행코자 합니다. 
+---->
+
+<!-- Google Code for &#47532;&#47560;&#52992;&#54021; &#53468;&#44536; -->
+<!-- Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. For instructions on adding this tag and more information on the above requirements, read the setup guide: google.com/ads/remarketingsetup -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 999343545;
+var google_conversion_label = "r7l8CL-fvgMQuYvD3AM";
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/999343545/?value=0&amp;label=r7l8CL-fvgMQuYvD3AM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+
+<!----  시작	마스터리 전략기획팀 김성렬	2013-11-18	---->
+
+<!-- Google Code for &#47532;&#47560;&#52992;&#54021; &#53468;&#44536; -->
+<!-- Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. For instructions on adding this tag and more information on the above requirements, read the setup guide: google.com/ads/remarketingsetup -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 989338943;
+var google_conversion_label = "7Dg9CKnLygUQv7rg1wM";
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/989338943/?value=0&amp;label=7Dg9CKnLygUQv7rg1wM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+<!---* nTree 모수 수집용 태그---> 
+<iframe src="http://adn.nsmartad.com/imp_cnt?ads=48248" frameborder=0 width=0 height=0 ></iframe>
+<img border="0" src="http://r.turn.com/r/beacon?b2=jmxbKuEVWRqspP4eM-j4tLjpZv063eASVDBshPBNB8cu-_Q76i-QEV7cazakZegCNMeK5G72Qtx5ady6gu-0Sg&cid=">
+<img src="http://tags.rtbidder.net/track?sid=52832a6755314bd4c06d476a" width="0" height="0" border="0" alt="" />
+
+<!----  끝		마스터리 전략기획팀 김성렬	2013-11-18---->
+
+
+<!----  시작	기초영어 - 리마케팅 광고용 태그추가 박나영 작업요청 2013-12-11	---->
+
+<!-- GDN -->
+<script type="text/javascript">	
+/* <![CDATA[ */	
+var google_conversion_id = 988858552;	
+var google_conversion_label = "leEwCLjQ6QYQuJHD1wM";	
+var google_custom_params = window.google_tag_params;	
+var google_remarketing_only = true;	
+/* ]]> */	
+</script>	
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">	
+</script>	
+<noscript>	
+<div style="display:inline;">	
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/988858552/?value=0&amp;label=leEwCLjQ6QYQuJHD1wM&amp;guid=ON&amp;script=0"/>	
+</div>	
+</noscript>	
+
+<!--엔트리-->
+<iframe src="http://adn.nsmartad.com/imp_cnt?ads=47946" frameborder=0 width=0 height=0></iframe>
+<img border="0" src="http://r.turn.com/r/beacon?b2=Wt7WWTd8LtU2afXIVWdzUVK_SXvk5WcSY4b5mf3ACwku-_Q76i-QEV7cazakZegCpoVVPej59rwgbJhtIw7q6Q&cid=">
+<img src="http://tags.rtbidder.net/track?sid=528064838bc06f1070851b91" width="0" height="0" border="0" alt="" />
+
+<!----  끝 	기초영어 - 리마케팅 광고용 태그추가 박나영 작업요청 2013-12-11	---->
+
+<!----  시작	YBMCLASS의 유입 및 마케팅 효과 극대화를 위하여 임준형 작업요청 2014-12-10	---->
+<!-- Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. For instructions on adding this tag and more information on the above requirements, read the setup guide: google.com/ads/remarketingsetup -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 967258769;
+var google_conversion_label = "gs57CKbvg1gQkeWczQM";
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/967258769/?value=1.00&amp;currency_code=KRW&amp;label=gs57CKbvg1gQkeWczQM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+<!----  끝 	YBMCLASS의 유입 및 마케팅 효과 극대화를 위하여 임준형 작업요청 2014-12-10	---->
+
+</body>
+</html>
+
+<!-- 웹메트릭스 방문자수 체크 2003-07-21 이성광 -->
+<!-- 웹메트릭스 방문자수 체크 수정 2007-03-20 최동일 -->
+<!-- LOGGER TRACKING SCRIPT V.31 FOR www.ybmsisa.com / 18459 : FAIL-SAFE TYPE / DO NOT ALTER THIS SCRIPT. -->
+<!-- COPYRIGHT (C) 2002-2007 BIZSPRING INC. LOGGER(TM) ALL RIGHTS RESERVED. -->
+<script language="JavaScript">/* LOGGER TRACKING SCRIPT V.31 : 18459 *//*X*//* COPYRIGHT 2002-2007 BIZSPRING INC. *//*X*//* DO NOT MODIFY THIS SCRIPT. *//*X*/var _TRK_DOMAIN="logger.co.kr";var _trk_bMSIE=(document.all)?true:false;var _trk_bJS12=(window.screen)?true:false;function _trk_escape(_str) { var str, ch; var bEncURI = "N"; eval("try{bEncURI=encodeURI('Y');}catch(_e){ }" ); if( bEncURI == "Y" ) str=encodeURI(_str); else str = escape(_str); str=str.split("+").join("%2B"); str=str.split("/").join("%2F"); str=str.split("&").join("%26"); str=str.split("?").join("%3F"); str=str.split(":").join("%3A"); str=str.split("#").join("%23"); return str;}function _trk_setCookie(name,value,expire) { var today=new Date(); today.setTime(today.getTime()+ expire ); document.cookie=name+"="+value+"; path=/; expires="+today.toGMTString()+";";}function _trk_getCookie(name) { var cookieName=name+"="; var x=0; while(x<=document.cookie.length) { var y=(x+cookieName.length); if(document.cookie.substring(x,y)==cookieName) {  if((endOfCookie=document.cookie.indexOf(";",y))==-1) endOfCookie=document.cookie.length;  return unescape(document.cookie.substring(y,endOfCookie)); } x=document.cookie.indexOf(" ",x)+1; if(x == 0) break; } return "";}function _trk_getParameter(name) { var paraName=name+"="; var URL=""+self.document.location.search; var tURL=""; eval("try{ tURL=top.document.location.search; }catch(_e){}"); URL=URL+"&"+tURL; if(URL.indexOf(paraName)!=-1) { var x=URL.indexOf(paraName)+paraName.length; var y=URL.substr(x).indexOf("&"); if(y!=-1) return URL.substring(x,x+y); else return URL.substr(x); } return "";}function _trk_make_code(_TRK_SERVER,_TRK_U) { var dt=document.title.toString(); dt=dt.substr(0,128); var dr=self.document.referrer; var tdr=""; eval("try{ tdr=top.document.referrer; }catch(_e){}"); var tdu=""; eval("try{ tdu=top.document.location.href; }catch(_e){}"); var bFrm=false; if(dr==tdu) { dr=tdr; bFrm=true; } if(dr=="undefined") dr=""; var du=self.document.location.href; if(du.substr(0,4)=="file") return ""; var adKeyVal = ""; if(bFrm) { adKeyVal=_trk_getParameter("OVKEY"); if(adKeyVal!="" && du.indexOf("OVKEY=")<0) {  if(du.indexOf("?")!=-1) du=du+"&OVKEY="+adKeyVal; else du=du+"?OVKEY="+adKeyVal;  adKeyVal=_trk_getParameter("OVRAW");  if(adKeyVal!="" && du.indexOf("OVRAW=")<0 ) if(du.indexOf("?")!=-1) du=du+"&OVRAW="+adKeyVal; else du=du+"?OVRAW="+adKeyVal; } else {  adKeyVal=_trk_getParameter("netpia");  if(adKeyVal!="" && du.indexOf("netpia=")<0 ) if(du.indexOf("?")!=-1) du=du+"&netpia="+adKeyVal; else du=du+"?netpia="+adKeyVal; } adKeyVal=_trk_getParameter("logger_kw"); if(adKeyVal!="" && du.indexOf("logger_kw=")<0 )  if(du.indexOf("?")!=-1) du=du+"&logger_kw="+adKeyVal; else du=du+"?logger_kw="+adKeyVal; adKeyVal=_trk_getParameter("source"); if(adKeyVal!="" && du.indexOf("source=")<0 )  if(du.indexOf("?")!=-1) du=du+"&source="+adKeyVal; else du=du+"?source="+adKeyVal; adKeyVal=_trk_getParameter("keywd"); if(adKeyVal!="" && du.indexOf("keywd=")<0 )  if(du.indexOf("?")!=-1) du=du+"&keywd="+adKeyVal; else du=du+"?keywd="+adKeyVal; } var ce=navigator.cookieEnabled?"Y":"N"; var je=navigator.javaEnabled()?"Y":"N"; var ss=""; var cd = ""; if(_trk_bJS12) { ss=screen.width+"x"+screen.height; cd=screen.colorDepth; } if(!dt) dt=""; if(!dr) dr=""; if(!du) du=""; if(!ce) ce=""; if(!je) je=""; var t = new Date; var tye=(_trk_bMSIE)?(t.getYear()):(t.getFullYear()); var tmo=t.getMonth()+1; var tda=t.getDate(); var tho=t.getHours(); var tmi=t.getMinutes(); var tse=t.getSeconds(); var tzo=t.getTimezoneOffset(); var tc = ""; var prtcl=document.location.protocol.indexOf("https")!=-1?"https://":"http://"; if(prtcl=="https://") _TRK_SERVER="ssl."+_TRK_DOMAIN; tc=tc+prtcl+_TRK_SERVER; var bPNF=((typeof _TRK_PI)!="undefined" && _TRK_PI=="PNF")?true:false; if(bPNF) tc=tc+"/tracker_click.tsp"; else tc=tc+"/tracker.tsp"; tc=tc+"?u="+_TRK_U+"&XU=&EXEN="+_EXEN; if(bPNF) { tc=tc+"&rnd="+Math.random()+"&CKFL="+_TRK_PI+"&CKDATA="+_trk_escape(du); } else { tc=tc+"&dr="+_trk_escape(dr)+"&XDR="+"&dt="+_trk_escape(dt)+"&du="+_trk_escape(du); if((typeof _TRK_CP)!="undefined" && _TRK_CP!="") tc=tc+"&CP="+_trk_escape(_TRK_CP)+"&XCP="; if((typeof _TRK_PI)!="undefined" && _TRK_PI!="") tc=tc+"&PI="+_TRK_PI; if((typeof _TRK_PN)!="undefined" && _TRK_PN!="") tc=tc+"&PN="+_trk_escape(_TRK_PN); if((typeof _TRK_MF)!="undefined" && _TRK_MF!="") tc=tc+"&MF="+_trk_escape(_TRK_MF); if((typeof _TRK_OA)!="undefined" && _TRK_OA!="") tc=tc+"&OA="+_TRK_OA; if((typeof _TRK_OP)!="undefined" && _TRK_OP!="") tc=tc+"&OP="+_trk_escape(_TRK_OP); if((typeof _TRK_OE)!="undefined" && _TRK_OE!="") tc=tc+"&OE="+_TRK_OE; if((typeof _TRK_CC)!="undefined" && _TRK_CC!="") tc=tc+"&CC="+_TRK_CC; if((typeof _TRK_RK)!="undefined" && _TRK_RK!="") tc=tc+"&RK="+_trk_escape(_TRK_RK); if((typeof _TRK_SX)!="undefined" && _TRK_SX!="") tc=tc+"&SX="+_TRK_SX; if((typeof _TRK_AG)!="undefined" && _TRK_AG!="") tc=tc+"&AG="+_TRK_AG; if((typeof _TRK_IK)!="undefined" && _TRK_IK!="") tc=tc+"&IK="+_trk_escape(_TRK_IK); tc=tc+"&js=Y"+"&ss="+escape(ss)+"&cd="+cd+"&ce="+ce+"&je="+je+"&tzo="+tzo+"&tye="+tye+"&tmo="+tmo+"&tda="+tda+"&tho="+tho+"&tmi="+tmi+"&tse="+tse; } return tc;}var _TRK_LIFE=_trk_getParameter("_L_");if(_TRK_LIFE=="") _TRK_LIFE=14;_TRK_LIFE = parseInt(_TRK_LIFE)*24*60*60*1000;var _TRK_U="";var _TRK_U_P=_trk_getParameter("_U_");var _TRK_U_C= _trk_getCookie("_TRK_U");if(_TRK_U_C!="") _TRK_U=_TRK_U_C;if(_TRK_U_P!="") _TRK_U=_TRK_U_P;if(_TRK_U!="" && _TRK_U_P!="") _trk_setCookie("_TRK_U",_TRK_U,_TRK_LIFE);var _TRK_CC_C=_trk_getCookie("_TRK_CC");var _TRK_CC_P=_trk_getParameter("_C_");if((typeof _TRK_CC)!="undefined" && _TRK_CC!="") _TRK_CC_P=_TRK_CC;if(_TRK_CC_C!="") _TRK_CC=_TRK_CC_C;if(_TRK_CC_P!="") _TRK_CC=_TRK_CC_P;if((typeof _TRK_CC)!="undefined" && _TRK_CC!="" && _TRK_CC_P!="") _trk_setCookie("_TRK_CC",_TRK_CC,_TRK_LIFE);var _TRK_RK_C=_trk_getCookie("_TRK_RK");var _TRK_RK_P=_trk_getParameter("_R_");if((typeof _TRK_RK)!="undefined" && _TRK_RK!="") _TRK_RK_P=_TRK_RK;if(_TRK_RK_C!="") _TRK_RK=_TRK_RK_C;if(_TRK_RK_P!="") _TRK_RK=_TRK_RK_P;if((typeof _TRK_RK)!="undefined" && _TRK_RK!="" && _TRK_RK_P!="") _trk_setCookie("_TRK_RK",_TRK_RK,_TRK_LIFE);var _SS_LIFE = 30*60*1000;var _EXEN = _trk_getCookie("_EXEN");if( _EXEN == "" ) _EXEN = 0; _EXEN ++;_trk_setCookie("_EXEN",_EXEN,_SS_LIFE);var _trk_code_base=_trk_make_code("trk1.logger.co.kr","18459");var _trk_code_chan="";if(_TRK_U!="") _trk_code_chan=_trk_code_base.replace(/\?u=18459&XU=/g,"?u="+_TRK_U+"&XU=");var _trk_img_base=new Image();var _trk_img_chan=new Image();var _trk_img_base_click=new Image();var _trk_img_chan_click=new Image();if(_trk_bJS12==true) { if(_trk_bMSIE) { _trk_img_base.src=_trk_code_base; if(_TRK_U!="") _trk_img_chan.src=_trk_code_chan; } else { setTimeout("_trk_img_base.src=_trk_code_base;",1); if(_TRK_U!="") setTimeout("_trk_img_chan.src=_trk_code_chan;",1); }} else { if(_trk_bMSIE) document.write('<div style=\"display: none\">'); document.write('<img src=\"'+_trk_code_base+'\" height=\"0\" width=\"0\">'); if(_TRK_U!="") document.write('<img src=\"'+_trk_code_chan+'\" height=\"0\" width=\"0\">'); if(_trk_bMSIE) document.write('</div>');}function _trk_flashContentsView(_TRK_CP) { var _trk_code_flash=_trk_code_base; _trk_code_flash=_trk_code_flash.replace(/&CP=.*&XCP=/g,"&XCP="); _trk_code_flash=_trk_code_flash.replace(/&dr=.*&XDR=/g,"&XDR="); _trk_img_base_click.src=_trk_code_flash+"&dr=&CP="+_trk_escape(_TRK_CP)+"&rnd="+Math.random(); if(_TRK_U!="") { _trk_code_flash=_trk_code_flash.replace(/\?u=18459&XU=/g,"?u="+_TRK_U+"&XU="); _trk_img_chan_click.src=_trk_code_flash+"&dr=&CP="+_trk_escape(_TRK_CP)+"&rnd="+Math.random(); }}function _trk_clickTrace(_TRK_CKFL,_TRK_CKDATA) { var _trk_code_click=_trk_code_base.substr(0,_trk_code_base.indexOf("tracker.tsp")); _trk_code_click=_trk_code_click+"tracker_click.tsp?rnd="+Math.random()+"&CKFL="+_TRK_CKFL+"&CKDATA="+_trk_escape(_TRK_CKDATA); _trk_img_base_click.src=_trk_code_click+"&u=18459"; if(_TRK_U!="") _trk_img_chan_click.src=_trk_code_click+"&u="+_TRK_U;}function _trk_adClick( adSvr, svcCode, adCode ) { var ac = ""; var prtcl=document.location.protocol.indexOf("https")!=-1?"https://":"http://"; if(prtcl=="https://") adSvr="ssl."+_TRK_DOMAIN; ac=ac+prtcl+adSvr; _trk_img_base_click.src=ac+"/tracker_ad.tsp?u="+svcCode+"&mode=C&adCode="+adCode;}</script>
+<noscript>
+<img src="http://trk1.logger.co.kr/tracker.tsp?u=18459&js=N" width=0 height=0>
+</noscript>
+<!-- END OF LOGGER TRACKING SCRIPT -->
+<!-- 웹메트릭스 방문자수 체크 2003-07-21 이성광 여기까지.. -->
+
+
+
+<!-- 키워드 광고 트래킹을 위한 일반 Tag  시작...  -->
+<!-- Emforce General Tag -->
+<script language="javascript"> 
+var _ekamsAdvertiserID = 533;
+var _protocol = document.location.protocol.indexOf('https') != -1 ? 'https://roi' : 'http://js1';
+document.write("<SCR" + "IPT language='JavaScript' type='text/javascript' " 
++ "SRC=" + _protocol + ".emforce.co.kr" + "/roiJsNewScript.emf" + "?CODE=" + 533 
++ "></SCR" + "IPT>");
+
+</script> 
+<!-- 키워드 광고 트래킹을 위한 일반 Tag  끝..  -->
+
+<!--  메인 페이지 트래커 -->
+<script type="text/javascript" src="criteo_ld.js" async="true"></script>
+<script type="text/javascript">var CRITEO_CONF = [[{
+
+    pageType: 'home'
+
+}], [8554, 'pyz', 'as.', '010', [[7725908, 7725909]]]];
+if (typeof (CRITEO) != "undefined") { CRITEO.Load(false); }
+</script>
+<!--//  메인 페이지 트래커 -->
+<!-- CHK_END_STRING -->
+ <!-- e900 리얼타겟팅. -->
+<!-- Google Code for &#47532;&#47560;&#52992;&#54021; &#53468;&#44536; -->
+<!-- Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. For instructions on adding this tag and more information on the above requirements, read the setup guide: google.com/ads/remarketingsetup -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 989338943;
+var google_conversion_label = "7Dg9CKnLygUQv7rg1wM";
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/989338943/?value=0&amp;label=7Dg9CKnLygUQv7rg1wM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+ 
+<!-- e900 리얼타겟팅.-->
+
+<!-- Google Code for YBM&#49884;&#49324;&#45815;&#52980; &#48169;&#47928;&#51088; -->
+<!-- Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. For instructions on adding this tag and more information on the above requirements, read the setup guide: google.com/ads/remarketingsetup -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 986853470;
+var google_conversion_label = "GeFNCMLl6gYQ3uDI1gM";
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/986853470/?value=0&amp;label=GeFNCMLl6gYQ3uDI1gM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+<div id='wp_tg_cts' style='display:none;'></div>
+<script type='text/javascript'>
+if(typeof(wp_pars)=='undefined'){var wp_pars = [];} if(typeof(wp_page_type)=='undefined'){var wp_page_type = 'Home';}
+var wp_conf = 'ti=19525&v=1';
+if(typeof(WPTG) =='undefined'){
+var WPTG=function(){var wa={Track:function(wb){ var wc=window.onload;window.onload=function() { if(wc) { wc(); } wb(); } } };
+function wd(we){if(document.createElement){var wf=document.createElement("IFRAME");if(wf){we+='?'+wp_conf;we+='&ty='+wp_page_type;var wp_param_exist=false;for(var key in wp_pars){if(typeof(wp_pars[key])!='undefined'&&wp_pars[key]!=''&&wp_pars.hasOwnProperty(key)&&key!=='length'){we+='&'+key+'='+encodeURIComponent(wp_pars[key]);wp_param_exist=true; } }
+we+=document.charset?'&charset='+document.charset:(parent.document.characterSet?'&charset='+parent.document.characterSet:'');we+='&tc='+new Date().getTime();if(document.referrer){we+="&ref="+encodeURIComponent(document.referrer);}
+if(document.location){we+="&loc="+encodeURIComponent(document.location);}
+we.substring(0,2000);wf.width="1px";wf.height="1px";wf.style.display="none";wf.src=we; wf.title="tgtracking";var wg=document.getElementById("wp_tg_cts");if(wg!=null&&wg.appendChild){wg.appendChild(wf) } } } }
+return{Track:function(wh){ wa.Track(function(){wd(wh)}) } } }();
+WPTG.Track(document.location.protocol+'//astg.widerplanet.com/delivery/wpc.php');
+}
+</script>
+
+
+<!-- RealClick 리얼타겟팅 Checking Script V.20130115 Start-->
+<script type='text/javascript'>
+function loadrtgJS(b,c){var d=document.getElementsByTagName("head")[0],a=document.createElement("script");a.type="text/javascript";null!=c&&(a.charset="euc-kr");a.src=b;d.appendChild(a)}function load_rtg(b){loadrtgJS(("https:"==document.location.protocol?" https://":" http://")+b,"euc-kr")}load_rtg("event.realclick.co.kr/rtarget/rtget.js?rtcode=ybmsisa2");
+</script>
+<!-- RealClick 리얼타겟팅 Checking Script V.20130115 End -->
+

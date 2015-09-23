@@ -1,0 +1,775 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>KingCMS内容管理系统 - CMS界的轻骑士</title>
+	<meta name="keywords" content="CMS,KingCMS,内容管理系统,建站系统" />
+	<meta name="description" content="【KingCMS】内容管理系统：是一套简单易学,操作简单的开源内容管理系统(CMS),支持PHP+sqLite3/MySQL和ASP+ACCESS/MSSQL，致力于专业的定向程序开发和企业网站建设系统。" />
+	<script type="text/javascript" charset="UTF-8" src="/js/jquery.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="/js/system.js"></script>
+	<link href="/images/system.css" rel="stylesheet" type="text/css"/>
+	<link href="/images/style.css" rel="stylesheet" type="text/css"/>
+	<link href="/images/home.css" rel="stylesheet" type="text/css"/>
+	<script type="text/javascript">
+	jQuery.fn.loadthumb = function(options) {
+		options = $.extend({
+			 src : ""
+		},options);
+		var _self = this;
+		_self.hide();
+		var img = new Image();
+		$(img).load(function(){
+			_self.attr("src", options.src);
+			_self.fadeIn("slow");
+		}).attr("src", options.src);
+		return _self;
+	}
+
+	$(document).ready(function(){
+		 var len  = $(".num > li").length;
+		 var index = 0;
+		 var adTimer;
+		 $(".num li").mouseover(function(){
+			index  =   $(".num li").index(this);
+			showImg(index);
+		 }).eq(0).mouseover();
+		$('#home1slide').hover(function(){
+				clearInterval(adTimer);
+			},function(){
+				adTimer = setInterval(function(){
+					index++;
+					if(index==len){index=0;}
+					showImg(index);
+				} , 5000);
+		}).trigger("mouseleave");
+	});
+	</script>
+</head>
+<body>
+	
+
+<div id="logo" class="frame">
+	<a href="/" title="KingCMS官方网站" class="left">
+		King<strong>CMS</strong>
+	</a>
+
+	<div class="right">
+		<a href="/" title="首页" class="sel">首页</a>
+				<a href="/download/" title="下载">
+			下载					</a>
+							<a href="/blog/" title="博客">
+			博客					</a>
+					<a href="http://www.focuznet.com/case/" target="_blank" title="成功案例">案例</a>
+							<a href="/blog/show/" title="模板">
+			模板					</a>
+							<a href="/buy/" title="服务">
+			服务					</a>
+							<a href="/forums/" title="主题">
+			主题							<i class="hot"></i>
+					</a>
+						</div>
+</div>
+
+<div id="board" class="frame">
+	<div class="left">
+		<strong>
+						<em>K9</em>
+					</strong>
+		<span>
+									<a href="/forums/k9/">通用版</a>
+									<a href="/forums/blog/">博客版</a>
+									<a href="/forums/forum/">论坛版</a>
+									<a href="/forums/local/">地方门户版</a>
+									<a href="/forums/php/">企业版</a>
+						|&nbsp;&nbsp;			<a href="/forums/asp/">企业(ASP)</a>
+					</span>
+		
+		<strong>
+						<em>分类</em>
+				</strong>
+		<span>
+						<a href="/forums/Use/">使用</a>
+						<a href="/forums/Share/">分享</a>
+						<a href="/forums/Ask/">疑问</a>
+						<a href="/forums/Template/">模板</a>
+						<a href="/forums/View/">建议</a>
+						<a href="/forums/Comment/">评论</a>
+						<a href="/forums/Bug/">错误</a>
+						<a href="/forums/Water/">水坊</a>
+					</span>
+	</div>
+	<div class="right">
+		<a href="/forums/_edit/" class="nonemargin" title="新建主题">+新建主题</a>
+		<a href="javascript:;" onclick="$.kc_ajax({URL:'/forums/_edit/index.php',CMD:'edt'})" class="ajax" title="Ajax方式新建主题">[Ajax]</a>
+	</div>
+</div>
+
+<div class="frame box mb10" id="logout">
+	<div class="left">
+		<form action="" method="get" id="formLogin">
+			<label>用户名</label>
+			<input type="text" id="username" name="username" size="5" maxlength="12"/>
+			<label>密码</label>
+			<input type="password" id="userpass" name="userpass" size="5" maxlength="30"/>
+			<input type="submit" value="登录" onclick="$.kc_ajax({URL:'/user/manage.php',CMD:'login',FORM:'formLogin',METHOD:'POST'});return false;" />
+			<input type="submit" value="注册" onclick="$.kc_ajax({URL:'/user/manage.php',CMD:'register',FORM:'formLogin'});return false;" />
+		</form>
+	</div>
+	<div class="right">
+		填写帐号密码即可完成注册	</div>
+</div>
+
+<div class="frame" id="googlead" style="display:none;">
+	<a href="/sale/"><img src="/banner/kcsale.jpg" alt=""/></a>
+</div>
+
+
+
+	<div class="frame" id="nav">
+		<div class="left">
+			<strong>新手阅读：</strong>
+			<a href="http://go.focuznet.com/kfaq">常见问题</a>
+			|
+			<a href="http://go.focuznet.com/kphpstudy">本地PHP环境配置</a>
+			 |
+			<a href="http://go.focuznet.com/kvipmedal">自助领取VIP勋章</a>
+			 | 
+			<a href="http://go.focuznet.com/k100">选择KingCMS的100个理由</a>
+		</div>
+		<div class="right">
+			<form action="/search/" method="get" class="search">
+	<label>搜索</label>
+		<input type="text" maxlength="50" id="query" name="query" size="5" value="www.KingCMS.com" onclick="$(this).val('')"/>
+	<select name="cat">
+				<option value="cert">授权</option>
+				<option value="forums">论坛</option>
+				<option value="blog">博客</option>
+				<option value="user">会员</option>
+			</select>
+	<input type="submit" id="query_submit" value="搜索"/>
+</form>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+	function showImg(index){
+		var src={};
+		var url={};
+		src[0]='/banner/k9release.jpg';url[0]='http://www.kingcms.com/download/k9/';		//var href= ['#','javascript:;','','',''];
+		$('#home1slide a').attr('href',url[index]);
+		$("#home1slide img").loadthumb({src:  src[index] });
+		$(".num li").removeClass("on")
+			.eq(index).addClass("on");
+	}
+	</script>
+	
+	<div class="frame mt10" id="home1">
+		<div class="left" id="home1slide">
+						<a href="http://www.kingcms.com/download/k9/">
+				<img src="/banner/k9release.jpg" alt="K9通用系统"/>
+			</a>
+						<ul class="num">
+			<li>1</li>			</ul>
+		</div>
+		<div class="center box">
+			<h2>黑板报</h2>
+			<ul class="blog">
+									<li class="top">
+							<a href="/blog/show/blue/" title="发布：地方门户模板blue">发布：地方门户模板blue</a>
+							<span>blue模板是橙色风格的地方门户蓝色模板，不仅能拥有一个功能强大的分类信息网站，同时也拥有了一个行业或..</span>
+						</li>
+												<li>
+							<a href="/blog/webmaster/" class="cat" title="需求调用及运营">[需求调用及运营]</a>
+							<a href="/blog/webmaster/blogintolocal/" title="地方门户版整合博客应用及模板指南">地方门户版整合博客应用及模板指南</a>
+						</li>
+												<li>
+							<a href="/blog/other/" class="cat" title="杂谈其他">[杂谈其他]</a>
+							<a href="/blog/other/bloginsite/" title="为何重复造轮？论博客在网站中的角色">为何重复造轮？论博客在网站中的角色</a>
+						</li>
+												<li>
+							<a href="/blog/show/" class="cat" title="K9模板更新">[K9模板更新]</a>
+							<a href="/blog/show/bluish/" title="发布：K9博客模板bluish">发布：K9博客模板bluish</a>
+						</li>
+												<li>
+							<a href="/blog/develop/" class="cat" title="开发及问题解答">[开发及问题解答]</a>
+							<a href="/blog/develop/forumcs/" title="K9地方门户版论坛应用发帖时提示超时">K9地方门户版论坛应用发帖时提示超时</a>
+						</li>
+												<li>
+							<a href="/blog/news/" class="cat" title="KingCMS公告栏">[KingCMS公告栏]</a>
+							<a href="/blog/news/neworange/" title="发布：K9地方门户+orange模板新版">发布：K9地方门户+orange模板新版</a>
+						</li>
+									</ul>
+		</div>
+		<div class="right">
+			<ul>
+				<li><a class="b1" href="/download/" title="下载KingCMS">下载KingCMS</a></li>
+				<li><a class="b2" href="/blog/" title="KingCMS黑板报">KingCMS黑板报</a></li>
+				<li><a class="b3" href="/forums/" title="讨论交流">KingCMS主题</a></li>
+				<li><a class="b4" href="/forums/Template/" title="KingCMS模板">KingCMS模板</a></li>
+				<li><a class="b5" href="/forums/Bug/" title="反馈Bug">反馈Bug</a></li>
+				<li><a class="b6" href="/forums/Share/" title="经验分享">经验分享</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="frame mt10" id="home2">
+		<div class="left box">
+			<h2>博客导航</h2>
+			<span class="top">
+							<a href="/blog/news/">KingCMS公告栏</a>
+							<a href="/blog/log/">K9更新日志</a>
+							<a href="/blog/show/">K9模板更新</a>
+							<a href="/blog/webmaster/">需求调用及运营</a>
+							<a href="/blog/develop/">开发及问题解答</a>
+							<a href="/blog/use/">产品介绍栏</a>
+							<a href="/blog/soft/">工具/云推荐</a>
+							<a href="/blog/media/">媒体报道</a>
+							<a href="/blog/other/">杂谈其他</a>
+						</span>
+			<span class="bottom">
+						<a href="/blog/2015-07/">2015-07</a>
+						<a href="/blog/2015-04/">2015-04</a>
+						<a href="/blog/2015-03/">2015-03</a>
+						<a href="/blog/2015-01/">2015-01</a>
+						<a href="/blog/2014-12/">2014-12</a>
+						</span>
+		</div>
+		<div class="center box">
+			<ul class="blog">
+							<li>
+					<a href="/blog/show/" class="cat" title="K9模板更新">[K9模板更新]</a>
+					<a href="/blog/show/orange/" title="K9新版地方门户模板orange发布">K9新版地方门户模板orange发布</a>
+				</li>
+								<li>
+					<a href="/blog/show/" class="cat" title="K9模板更新">[K9模板更新]</a>
+					<a href="/blog/show/yellow/" title="K9企业模板yellow发布">K9企业模板yellow发布</a>
+				</li>
+								<li>
+					<a href="/blog/show/" class="cat" title="K9模板更新">[K9模板更新]</a>
+					<a href="/blog/show/wathet/" title="K9企业模板wathet发布">K9企业模板wathet发布</a>
+				</li>
+								<li>
+					<a href="/blog/show/" class="cat" title="K9模板更新">[K9模板更新]</a>
+					<a href="/blog/show/red/" title="K9企业模板red发布">K9企业模板red发布</a>
+				</li>
+								<li>
+					<a href="/blog/show/" class="cat" title="K9模板更新">[K9模板更新]</a>
+					<a href="/blog/show/teal/" title="K9企业模板teal发布">K9企业模板teal发布</a>
+				</li>
+								<li>
+					<a href="/blog/show/" class="cat" title="K9模板更新">[K9模板更新]</a>
+					<a href="/blog/show/azure/" title="K9企业模板azure发布">K9企业模板azure发布</a>
+				</li>
+							</ul>
+		</div>
+		<div class="right box">
+			<span>
+								<a href="/forums/u10171/" title="luke">
+					<img src="/user/m10171.jpg" alt="luke"/>
+				</a>
+							</span>
+		</div>
+	</div>
+
+	<div class="frame banner mt10">
+						<a href="javascript:;" onclick="$.kc_ajax({URL:'/ad/index.php',CMD:'add','type':'A1'})" title="预定广告位" id="ad_A1">
+			预定广告位：A1		</a>
+		</div>
+
+	<div class="frame mt10" id="php">
+		<div class="left box">
+			<h2>K9通用版精选话题</h2>
+			<div class="left">
+				<span class="top">
+									<a class="img" href="/forums/Share/t30195/" title="K9标签笔记：留言反馈应用（feedback）详解">
+						<img src="/images/13562/100x80.jpg" alt="K9标签笔记：留言反馈应用（feedback）详解"/>
+					</a>
+					<span class="tit">
+						<a href="/forums/Share/t30195/" title="K9标签笔记：留言反馈应用（feedback）详解">
+							K9标签笔记：留言反馈应用（feedback..						</a>
+						<em>留言反馈应用使用步骤：1.在模板目录下建立feedback文件名，feedback文件下default...</em>
+					</span>
+									</span>
+				<ul class="bottom">
+									<li>
+						<a class="tit" href="/forums/Share/t22752/" title="K9标签笔记：K9详情页面调用多图字段标签">
+							K9标签笔记：K9详情页面调用多..						</a>
+					</li>
+										<li>
+						<a class="tit" href="/forums/Comment/t22728/" title="K9帮助文档从零开始连载中">
+							K9帮助文档从零开始连载中						</a>
+					</li>
+										<li>
+						<a class="tit" href="/forums/Comment/t22716/" title="关于参与K9内测用户的奖励公告">
+							关于参与K9内测用户的奖励公告						</a>
+					</li>
+										<li>
+						<a class="tit" href="/forums/Comment/t22709/" title="邮件订阅方式发布：KingCMS 9.0（K9通用版）">
+							邮件订阅方式发布：KingCMS 9...						</a>
+					</li>
+										<li>
+						<a class="tit" href="/forums/Share/t17344/" title="K9内测中经常用到的标签 拿来给大家分享下">
+							K9内测中经常用到的标签 拿来..						</a>
+					</li>
+									</ul>
+			</div>
+			<ul class="right">
+							<li>
+					<a class="img" href="/forums/Bug/t30385/" title="Table 'test2.king_content_isimage' doesn't exist">
+						<img src="/images/13635/90x80.jpg" alt="Table 'test2.king_content_isimage' doesn't exist"/>
+					</a>
+					<a class="tit" href="/forums/Bug/t30385/" title="Table 'test2.king_content_isimage' doesn't exist">
+						Table 'test2..					</a>
+				</li>
+								<li>
+					<a class="img" href="/forums/Comment/t30363/" title="关于模板logo在云端的上传问题">
+						<img src="/images/13617/90x80.jpg" alt="关于模板logo在云端的上传问题"/>
+					</a>
+					<a class="tit" href="/forums/Comment/t30363/" title="关于模板logo在云端的上传问题">
+						关于模板logo..					</a>
+				</li>
+								<li>
+					<a class="img" href="/forums/Template/t30323/" title="K9论坛模板，这可以有">
+						<img src="/images/13612/90x80.jpg" alt="K9论坛模板，这可以有"/>
+					</a>
+					<a class="tit" href="/forums/Template/t30323/" title="K9论坛模板，这可以有">
+						K9论坛模板，..					</a>
+				</li>
+								<li>
+					<a class="img" href="/forums/Use/t30204/" title="后台会员管理，添加角色提示如下：天气的没解决">
+						<img src="/images/13565/90x80.jpg" alt="后台会员管理，添加角色提示如下：天气的没解决"/>
+					</a>
+					<a class="tit" href="/forums/Use/t30204/" title="后台会员管理，添加角色提示如下：天气的没解决">
+						后台会员管理..					</a>
+				</li>
+							</ul>
+		</div>
+		<div class="right box">
+			<h2>K9通用版最新更新</h2>
+			<ul>
+							<li>
+					<a class="tit" href="/forums/Comment/t30367/" title="关于老用户补贴K币公告">
+						关于老用户补贴K币公告					</a>
+				</li>
+								<li>
+					<a class="tit" href="/forums/Bug/t30366/" title="CMS无法安装">
+						CMS无法安装					</a>
+				</li>
+								<li>
+					<a class="tit" href="/forums/Water/t30358/" title="K9的模板应该多出几个响应式的模板">
+						K9的模板应该多出几个响..					</a>
+				</li>
+								<li>
+					<a class="tit" href="/forums/Share/t30340/" title="第三方登陆应用测试中...">
+						第三方登陆应用测试中....					</a>
+				</li>
+								<li>
+					<a class="tit" href="/forums/Ask/t30296/" title="KingCMS 企业版 9.0和KingCMS 通用版 K9有什么关系吗?">
+						KingCMS 企业版 9.0和Ki..					</a>
+				</li>
+								<li>
+					<a class="tit" href="/forums/Comment/t30293/" title="K9网站激活自动赠送K币变更通知">
+						K9网站激活自动赠送K币..					</a>
+				</li>
+								<li>
+					<a class="tit" href="/forums/Bug/t30291/" title="K9错误代码：getRows() on a non-object">
+						K9错误代码：getRows() ..					</a>
+				</li>
+								<li>
+					<a class="tit" href="/forums/Ask/t30290/" title="通用版安装在二级目录下，要怎么安装？">
+						通用版安装在二级目录下..					</a>
+				</li>
+								<li>
+					<a class="tit" href="/forums/Ask/t30266/" title="想做自动搜索框提示 php 求大神">
+						想做自动搜索框提示    ..					</a>
+				</li>
+							</ul>
+		</div>
+	</div>
+	
+	
+
+	<div class="frame mt10" id="ad2">
+		<div class="left banner">
+							<a href="javascript:;" onclick="$.kc_ajax({URL:'/ad/index.php',CMD:'add','type':'B1'})" title="预定广告位" id="ad_B1">
+			预定广告位：B1		</a>
+			</div>
+		<div class="right banner">
+							<a href="javascript:;" onclick="$.kc_ajax({URL:'/ad/index.php',CMD:'add','type':'C1'})" title="预定广告位" id="ad_C1">
+			预定广告位：C1		</a>
+			</div>
+	</div>
+	
+	<div class="frame mt10" id="k9">
+		<div class="left box">
+			<h2>K9地方门户版精选话题</h2>
+			<div>
+				<ul class="left">
+									<li>
+						<a href="/forums/Use/t22281/" title="论坛版块功能有子目录了，顶起，感谢升级！">
+							<img src="/images/13337/120x90.jpg" alt="论坛版块功能有子目录了，顶起，感谢升级！"/>
+						</a>
+						<a class="tit" href="/forums/Use/t22281/" title="论坛版块功能有子目录了，顶起，感谢升级！">
+							论坛版块功能..						</a>
+					</li>
+										<li>
+						<a href="/forums/Share/t19098/" title="德阳123真的改版了">
+							<img src="/images/12739/120x90.jpg" alt="德阳123真的改版了"/>
+						</a>
+						<a class="tit" href="/forums/Share/t19098/" title="德阳123真的改版了">
+							德阳123真的..						</a>
+					</li>
+									</ul>
+				<ul class="right">
+									<li class="top">
+						<a href="/forums/View/t19732/" title="鉴于目前的氛围，我们来签名请愿K9尽快推出。">
+							鉴于目前的氛围，我们来签名请愿..						</a>
+						<em>
+							是时候了，来吧。						</em>
+					</li>
+										<li>
+						<a href="/forums/localUse/" class="cat" title="使用">
+							使用						</a>
+						<i>|</i>
+						<a href="/forums/Use/t19703/" title="【一起来挖掘】KingCMS地方门户系统有多大潜力？">
+							【一起来挖掘】KingCMS地方门户系统..						</a>
+					</li>
+										<li>
+						<a href="/forums/localShare/" class="cat" title="分享">
+							分享						</a>
+						<i>|</i>
+						<a href="/forums/Share/t19693/" title="KingCMS地方门户版v2.2帮助文档【在线版本】目录">
+							KingCMS地方门户版v2.2帮助文档【在..						</a>
+					</li>
+										<li>
+						<a href="/forums/localAsk/" class="cat" title="疑问">
+							疑问						</a>
+						<i>|</i>
+						<a href="/forums/Ask/t19132/" title="调查：地方门户版的站长们，你们的网站有多少栏目空置？">
+							调查：地方门户版的站长们，你们的网..						</a>
+					</li>
+										<li>
+						<a href="/forums/localView/" class="cat" title="建议">
+							建议						</a>
+						<i>|</i>
+						<a href="/forums/View/t18924/" title="中国PHP地方门户程序中的三国演义">
+							中国PHP地方门户程序中的三国演义						</a>
+					</li>
+										<li>
+						<a href="/forums/localShare/" class="cat" title="分享">
+							分享						</a>
+						<i>|</i>
+						<a href="/forums/Share/t18675/" title="论坛内容实现关键词自动加链接，适合所有版本！">
+							论坛内容实现关键词自动加链接，适合..						</a>
+					</li>
+										<li>
+						<a href="/forums/localShare/" class="cat" title="分享">
+							分享						</a>
+						<i>|</i>
+						<a href="/forums/Share/t18615/" title="[德阳123]地方门户版实现论坛帖子定位教程">
+							[德阳123]地方门户版实现论坛帖子定..						</a>
+					</li>
+										<li>
+						<a href="/forums/localView/" class="cat" title="建议">
+							建议						</a>
+						<i>|</i>
+						<a href="/forums/View/t18369/" title="可否在地方门户里面添加DM广告图片系统">
+							可否在地方门户里面添加DM广告图片系..						</a>
+					</li>
+									</ul>
+			</div>
+		</div>
+		<div class="right box">
+			<h2>K9企业版精选话题</h2>
+			<ul class="left">
+									<li>
+						<a href="/forums/phpComment/" class="cat" title="评论">
+							[评论]
+						</a>
+						<a href="/forums/Comment/t22998/" title="K9企业模板sky发布">
+							K9企业模板sky发布						</a>
+					</li>
+										<li>
+						<a href="/forums/phpShare/" class="cat" title="分享">
+							[分享]
+						</a>
+						<a href="/forums/Share/t21796/" title="kingcms php实现新闻按照自定日期字段倒序排列">
+							kingcms php实现新闻按照自定日期字..						</a>
+					</li>
+										<li>
+						<a href="/forums/phpShare/" class="cat" title="分享">
+							[分享]
+						</a>
+						<a href="/forums/Share/t21529/" title="关于弹窗提示遮罩层位置不同浏览器兼容解决的小经验">
+							关于弹窗提示遮罩层位置不同浏览器兼..						</a>
+					</li>
+										<li>
+						<a href="/forums/phpShare/" class="cat" title="分享">
+							[分享]
+						</a>
+						<a href="/forums/Share/t21391/" title="实用碎片，如果你要做类似论坛的楼层判断">
+							实用碎片，如果你要做类似论坛的楼层..						</a>
+					</li>
+										<li>
+						<a href="/forums/phpView/" class="cat" title="建议">
+							[建议]
+						</a>
+						<a href="/forums/View/t21253/" title="支招！KINGCMS如何盈利？">
+							支招！KINGCMS如何盈利？						</a>
+					</li>
+										<li>
+						<a href="/forums/phpShare/" class="cat" title="分享">
+							[分享]
+						</a>
+						<a href="/forums/Share/t21216/" title="将下拉列表绑定栏目(原创)">
+							将下拉列表绑定栏目(原创)						</a>
+					</li>
+										<li>
+						<a href="/forums/phpShare/" class="cat" title="分享">
+							[分享]
+						</a>
+						<a href="/forums/Share/t20941/" title="推荐个qq在线客服代码">
+							推荐个qq在线客服代码						</a>
+					</li>
+										<li>
+						<a href="/forums/phpShare/" class="cat" title="分享">
+							[分享]
+						</a>
+						<a href="/forums/Share/t20868/" title="当把系统jquery版本换为1.7.2后">
+							当把系统jquery版本换为1.7.2后						</a>
+					</li>
+										<li>
+						<a href="/forums/phpShare/" class="cat" title="分享">
+							[分享]
+						</a>
+						<a href="/forums/Share/t19816/" title="KINGCMS PHP 支持添加水印 ">
+							KINGCMS PHP 支持添加水印 						</a>
+					</li>
+								</ul>
+
+			<ul class="right">
+									<li>
+						<a href="/forums/Share/t22361/" title="KC自动采集插件">
+							<img src="/images/13373/140x90.jpg" alt="KC自动采集插件"/>
+						</a>
+						<a class="tit" href="/forums/Share/t22361/" title="KC自动采集插件">
+							KC自动采集插件						</a>
+					</li>
+										<li>
+						<a href="/forums/Ask/t21779/" title="会员登录自动跳转">
+							<img src="/images/13268/140x90.jpg" alt="会员登录自动跳转"/>
+						</a>
+						<a class="tit" href="/forums/Ask/t21779/" title="会员登录自动跳转">
+							会员登录自动跳转						</a>
+					</li>
+								</ul>
+			
+		</div>
+	</div>
+
+	<div class="frame mt10 banner" id="ad3">
+						<a href="javascript:;" onclick="$.kc_ajax({URL:'/ad/index.php',CMD:'add','type':'A2'})" title="预定广告位" id="ad_A2">
+			预定广告位：A2		</a>
+		</div>
+
+	<div class="frame mt10" id="asp">
+		<div class="left box">
+			<h2>企业(ASP)精选话题</h2>
+			<span class="top">
+							<a class="img" href="/forums/Template/t21880/" title="网站psd分层素材">
+					<img src="/images/13278/100x80.jpg" alt="网站psd分层素材"/>
+				</a>
+				<span class="tit">
+					<a href="/forums/Template/t21880/" title="网站psd分层素材">
+						网站psd分层素材					</a>
+					<em>点击打开链接点击打开链接</em>
+				</span>
+							</span>
+			<ul class="bottom">
+							<li>
+					<a class="tit" href="/forums/Share/t20943/" title="kingcms asp自定义一个无链接的面包屑导航">
+						kingcms asp自定义一个无链接..					</a>
+				</li>
+								<li>
+					<a class="tit" href="/forums/Share/t20794/" title="KingCMS文章插件标签完全解析">
+						KingCMS文章插件标签完全解析					</a>
+				</li>
+								<li>
+					<a class="tit" href="/forums/Share/t19747/" title="通过sql判断语句实现if判断达到不同样式效果">
+						通过sql判断语句实现if判断达..					</a>
+				</li>
+								<li>
+					<a class="tit" href="/forums/Ask/t17318/" title="产品二分类调用不出来,代码放上去也调用不出来">
+						产品二分类调用不出来,代码放..					</a>
+				</li>
+								<li>
+					<a class="tit" href="/forums/Ask/t16502/" title="求助网站的新闻模块是怎么调用的">
+						求助网站的新闻模块是怎么调用..					</a>
+				</li>
+								<li>
+					<a class="tit" href="/forums/Template/t15669/" title="求政府类板子">
+						求政府类板子					</a>
+				</li>
+								<li>
+					<a class="tit" href="/forums/Share/t15663/" title="king做的一个简单，大气的机械类网站">
+						king做的一个简单，大气的机械..					</a>
+				</li>
+								<li>
+					<a class="tit" href="/forums/Use/t15384/" title="fck是否能升级到ckeditor？">
+						fck是否能升级到ckeditor？					</a>
+				</li>
+								<li>
+					<a class="tit" href="/forums/Ask/t15374/" title="请问KINGCMS免费版和授权版的区别">
+						请问KINGCMS免费版和授权版的..					</a>
+				</li>
+								<li>
+					<a class="tit" href="/forums/Use/t15312/" title="kingcms 二次开发 投票模块">
+						kingcms 二次开发 投票模块					</a>
+				</li>
+								<li>
+					<a class="tit" href="/forums/Use/t15255/" title="用kingcms asp二次开发，订房信息直接发送到手机">
+						用kingcms asp二次开发，订房..					</a>
+				</li>
+								<li>
+					<a class="tit" href="/forums/Share/t15250/" title="在单页面或列表页调用文章正文内容的实际方法">
+						在单页面或列表页调用文章正文..					</a>
+				</li>
+							</ul>
+		</div>
+		<div class="right box">
+			<h2>全部帖子最新更新</h2>
+			
+			<ul class="left">
+									<li>
+						<a href="/forums/localTemplate/" class="cat" title="模板">
+							[模板]
+						</a>
+						<a href="/forums/Template/t30400/" title="地方门户新模板会员中心及微信平台功能（试鲜版）">
+							地方门户新模板会员中心及微信平台功..						</a>
+					</li>
+										<li>
+						<a href="/forums/localAsk/" class="cat" title="疑问">
+							[疑问]
+						</a>
+						<a href="/forums/Ask/t30397/" title="想问下用这个建地方门户好用吗">
+							想问下用这个建地方门户好用吗						</a>
+					</li>
+										<li>
+						<a href="/forums/aspAsk/" class="cat" title="疑问">
+							[疑问]
+						</a>
+						<a href="/forums/Ask/t30391/" title="kingcms asp搜索框怎么用">
+							kingcms asp搜索框怎么用						</a>
+					</li>
+										<li>
+						<a href="/forums/localShare/" class="cat" title="分享">
+							[分享]
+						</a>
+						<a href="/forums/Share/t30387/" title="地方门户新模板亮相，欢迎围观！">
+							地方门户新模板亮相，欢迎围观！						</a>
+					</li>
+										<li>
+						<a href="/forums/phpAsk/" class="cat" title="疑问">
+							[疑问]
+						</a>
+						<a href="/forums/Ask/t30386/" title="请问默认模版首页里的文章总数怎么调用不出来">
+							请问默认模版首页里的文章总数怎么调..						</a>
+					</li>
+										<li>
+						<a href="/forums/k9Bug/" class="cat" title="错误">
+							[错误]
+						</a>
+						<a href="/forums/Bug/t30385/" title="Table 'test2.king_content_isimage' doesn't exist">
+							Table 'test2.king_content_isimage'..						</a>
+					</li>
+										<li>
+						<a href="/forums/localShare/" class="cat" title="分享">
+							[分享]
+						</a>
+						<a href="/forums/Share/t30382/" title="地方门户新版本的帮助中心模块添加步骤">
+							地方门户新版本的帮助中心模块添加步..						</a>
+					</li>
+										<li>
+						<a href="/forums/localTemplate/" class="cat" title="模板">
+							[模板]
+						</a>
+						<a href="/forums/Template/t30381/" title="更新orange模板1.09及blue模板1.04版本">
+							更新orange模板1.09及blue模板1.04版..						</a>
+					</li>
+										<li>
+						<a href="/forums/localAsk/" class="cat" title="疑问">
+							[疑问]
+						</a>
+						<a href="/forums/Ask/t30379/" title="动了几下，又不动了？">
+							动了几下，又不动了？						</a>
+					</li>
+								</ul>
+
+			<ul class="right">
+									<li>
+						<a href="/forums/Ask/t30359/" title="asp文件上传问题">
+							<img src="/images/13616/140x90.jpg" alt="asp文件上传问题"/>
+						</a>
+						<a class="tit" href="/forums/Ask/t30359/" title="asp文件上传问题">
+							asp文件上传问题						</a>
+					</li>
+										<li>
+						<a href="/forums/Template/t30285/" title="八梦网络工作室源码 网络工作室源码下载">
+							<img src="/images/13592/140x90.jpg" alt="八梦网络工作室源码 网络工作室源码下载"/>
+						</a>
+						<a class="tit" href="/forums/Template/t30285/" title="八梦网络工作室源码 网络工作室源码下载">
+							八梦网络工作室源码  网络工作..						</a>
+					</li>
+								</ul>
+
+		</div>
+	</div>
+
+	<div id="friendlink">
+		<div class="frame">
+			<strong class="left">友情链接</strong>
+			<ul class="right">
+						<li>
+								<a href="http://www.imhdr.com/" target="_blank" title="HDR的Blog">HDR的Blog</a>
+			</li>
+						<li>
+								<a href="http://www.tuocou.com/" target="_blank" title="纤尘博客">纤尘博客</a>
+			</li>
+						<li>
+								<a href="http://www.chinahtml.com/" target="_blank" title="站长资讯">站长资讯</a>
+			</li>
+						<li>
+								<a href="http://www.scalachina.com" target="_blank" title="Scala中文">Scala中文</a>
+			</li>
+						<li><a href="javascript:;" onclick="$.kc_ajax({URL:'/link/manage.php',CMD:'add'})" title="交换友情链接">交换链接</a></li>
+						</ul>
+
+		</div>
+	</div>
+
+
+
+	<!--bottom-->
+<div id="bottom" class="frame">
+	<div class="left">
+		<a title="KingCMS内容管理系统" href="/">King<strong>CMS</strong> 内容管理系统</a>
+	</div>
+	<div class="right">
+		<p>
+						<a href="/about/" title="关于我们">关于我们</a>
+						<a href="/contact/" title="联系我们">联系我们</a>
+						<a href="/ad/" title="广告报价">广告报价</a>
+						<a href="/payment/" title="付款方式">付款方式</a>
+						<a href="/sitemaps/" title="站点导航">站点导航</a>
+						<script type="text/javascript">
+			var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+			document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F4330a932db28aa7b087147de264dd0a0' type='text/javascript'%3E%3C/script%3E"));
+			</script>
+		</p>
+		<p>Copyright &copy; 2004-2015 <a href="http://www.focuznet.com/" target="_blank" style="font-weight:bold;">Focuznet</a> All rights reserved. </p>
+		<p><a rel="nofollow" href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备08008106号</a></p>
+	</div>
+</div>
+
+</body>
+</html>

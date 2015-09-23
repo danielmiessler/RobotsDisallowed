@@ -1,0 +1,311 @@
+<!DOCTYPE html><html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <title>BB BackBookme</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- Le styles -->
+        <link href="/css/layout.css" media="screen" rel="stylesheet" type="text/css">
+<link href="/css/reset.css" media="screen" rel="stylesheet" type="text/css">
+<link href="/img/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">
+        <!-- Scripts -->
+                <!--[if lt IE 9]><script type="text/javascript" src="/js/html5shiv.js"></script><![endif]-->
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/jquery-ui-1.10.4.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/markup.min.js"></script>
+<script type="text/javascript" src="/js/jquery.form.min.js"></script>    </head>
+    <body class="bckbk main guest          ">
+        <div id="fb-root"></div>
+        <script>
+        $(window).ready(function(){
+	        (function(d, s, id) {
+	          var js, fjs = d.getElementsByTagName(s)[0];
+	          if (d.getElementById(id)) return;
+	          js = d.createElement(s); js.id = id;
+	          js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&appId=403680293128009&version=v2.3";
+	          fjs.parentNode.insertBefore(js, fjs);
+	        }(document, 'script', 'facebook-jssdk'));
+	    });</script>
+        <script src="https://apis.google.com/js/platform.js" async defer>
+          {lang: 'ru'}
+        </script>
+
+        <div class="header-pane cf">
+            <div class="container">
+                <!-- 
+                <div class="language-pane cf">
+                  <div class="selected cf ru"><div class="flag"></div><div class="arrow-down"></div>RU</div>
+                  <div class="dropdown cf">
+                    <a href="#" class="item en"><div class="flag"></div>EN</a>
+                  </div>
+                </div>
+                -->
+                <div class="search-pane cf">
+                  <input id="search-input" type="text" placeholder="Найти"/>
+                  <div class="magnifier"></div>
+                </div>
+                <div class="search-result hidden"></div>
+
+                <a href="http://www.backbook.me/" class="logo"></a>
+                <div class="user-pane cf">
+                        <a href="http://www.backbook.me/user/sign">Вход</a>
+    <br/>
+    <a href="http://www.backbook.me/user/sign">Регистрация</a>
+                </div>
+            </div>
+        </div>
+        
+        <h1>Ошибка 404</h1>
+<h3>Страница не найдена</h3>
+
+    
+
+
+
+        <div class="footer">
+    <div class="container">
+        <ul>
+                        <li><a href="/page/rules.html">Правила</a></li>
+        </ul>
+    </div>
+</div>        <script type="text/template" id="big_photo_template">
+<div class="big-photo-popup popup-resize-height {{if photos|more>1}}popup-photo-many{{/if}}" data-id="{{photos.0.id}}" data-set-id="{{set_id}}">
+    <div class="fullres-container">
+        <div class="fullres-photo"></div>
+        <div class="close">×</div>
+    </div>
+    <div class="scroll-to-top">Наверх</div>
+    <div class="set-arrow-left-container"><div class="image"></div></div>
+    <div class="set-arrow-right-container"><div class="image"></div></div>
+    {{photos}}
+        <div class="codes-block" id="codes_block_photo_id_{{id}}">
+            <div class="codes-block-close">×</div>
+            <div class="row">
+                <label>Ссылка на фото</label>
+                <input type="text" value="{{url}}">
+            </div>
+            <div class="row">
+                <label>HTML-ссылка на фото</label>
+                <textarea rows="3"><a href="{{url}}"><img src="{{host}}{{if thumb_rect}}{{thumb_rect}}{{else}}{{thumb}}{{/if}}"/></a></textarea>
+            </div>
+            <div class="row">
+                <label>Код для форумов IPB</label>
+                <textarea rows="4">[URL={{url}}][IMG]{{host}}{{if thumb_rect}}{{thumb_rect}}{{else}}{{thumb}}{{/if}}[/IMG][/URL]</textarea>
+            </div>
+            <div class="row">
+                <label>Код для форумов phpBB</label>
+                <textarea rows="4">[URL={{url}}][img={{host}}{{if thumb_rect}}{{thumb_rect}}{{else}}{{thumb}}{{/if}}][/URL]</textarea>
+            </div>
+        </div>
+    {{/photos}}
+    <div class="left-pane">
+        <div class="details">
+            <span class="show-fullres"><i></i><a>На весь экран</a></span>
+            <div class="share-code">
+                <button class="code-btn btn">Код для размещения фото</button>
+            </div>
+            {{photos}}
+                <div class="share-container" id="share_link_id_{{id}}">
+                </div>
+            {{/photos}}
+        </div>
+        <div class="photo-container">
+            <div class="photo-arrows">
+                {{if photos|more>1}}
+                    <div class="photo-arrows-left"></div>
+                {{/if}}
+                <div class="photo-zoom"></div>
+                {{if photos|more>1}}
+                    <div class="photo-arrows-right"></div>
+                {{/if}}
+            </div>
+            <div class="photo"></div>
+            <div class="photo-loading"></div>
+            {{if photos|more>1}}
+                <div class="photo next-photo"></div>
+            {{/if}}
+        </div>
+        <div class="thumbs reached-left reached-right">
+            <div class="thumbs-container">
+                {{if photos|more>1}}
+                    {{photos}}
+                        <div style="background-image:url({{host}}{{thumb}});"></div>
+                    {{/photos}}
+                {{/if}}
+            </div>
+            <div class="thumbs-arrow-left"></div>
+            <div class="thumbs-arrow-right"></div>
+        </div>
+    </div>
+    <div class="right-pane">
+        <div class="user-block" data-id="{{user.id}}">
+            <a href="{{user.url}}" class="avatar"><img src="{{user.avatar}}" alt="{{user.name}}"></a>
+            {{if user.id|more>0}}<span class="online-status {{user.online}}">{{user.online}}</span>{{/if}}
+            <a href="{{user.url}}" class="user-name">{{user.name}}</a>
+            {{if date_create}}<span class="date">{{date_create}}</span>{{/if}}
+            {{if user.id|equals>0}}
+                <div class="delete">
+                    <a>Удалить</a>
+                    <ul class="dropdown">
+                        <li class="delete-photo">Удалить фотографию</li>
+                        {{if photos|more>1}}
+                        <li class="delete-set">Удалить сет</li>
+                        {{/if}}
+                    </ul>
+                </div>
+            {{else}}
+                                <a class="abuse">Пожаловаться</a>
+                <div class="abuse-container">
+                </div>
+            {{/if}}
+        </div>
+        <div class="fap-block {{if user.id|equals>0}}fap-block-me{{/if}}">
+            <div class="repost-container">
+                Добавить описание:
+                <textarea></textarea>
+                <span>Ошибка.</span>
+                <button class="btn">Сохранить</button>
+            </div>
+            <div class="like-block {{if liked}}liked{{/if}}">
+                <span>{{likes_count}}</span>
+            </div>
+            <div class="repost">Репост</div>
+            <div class="favorite {{if favorited}}active{{/if}}">В избранное</div>
+            <div class="handshakers">
+                {{if last_likes}}
+                Понравилось: {{last_likes}}<span class="liked-user-id-{{id}}"><a href="{{url}}">{{login}}</a>{{if #|last}}{{else}}, {{/if}}</span>{{/last_likes}}{{if other_likes}} и еще {{other_likes}}{{/if}}
+                {{/if}}
+            </div>
+            <div class="add-favorite-message">Добавлено в <a href="0">Избранное</a></div>
+        </div>
+        <div class="comment-block">
+            <form action="/photo/commentAdd/{{set_id}}" method="post" class="comment-add">
+                <textarea name="text"></textarea>
+                Гость                <button type="submit" class="btn">Отправить</button>
+            </form>
+        </div>
+        <div class="comments">
+            {{if description|notempty }}
+                <div class="comment">
+                    <a href="{{user.url}}" class="avatar"><img src="{{user.avatar}}" alt="{{user.name}}"/></a>
+                    <div class="comment-body">
+                        <a href="{{user.url}}" class="name">{{user.name}}</a>
+                        <span class="online-status {{user.online}}">{{user.online}}</span>
+                        <span class="date">{{date_create}}</span>
+                        <div class="comment-content">{{description}}</div>
+                    </div>
+                </div>
+            {{/if}}
+            {{if comments_more|more>0}}
+                <div class="comments-more">Загрузить еще {{comments_more}} комментариев<i class="loading"></i></div>
+            {{/if}}
+            {{comments}}
+                <div class="comment {{if justAdded}}comment-new{{/if}}">
+                    <a href="{{user.url}}" class="avatar"><img src="{{user.avatar}}" alt="{{user.name}}"/></a>
+                    <div class="comment-body">
+                        <a href="{{user.url}}" class="name">{{user.name}}</a>
+                        <span class="online-status {{user.online}}">{{user.online}}</span>
+                        <span class="date">{{date}}</span>
+                        <div class="comment-content">{{text}}</div>
+                    </div>
+                </div>
+            {{/comments}}
+        </div>
+    </div>
+</div>
+<!-- gapi.plus.go(); -->
+</script>
+<script type="text/template" id="big_photo_likes">
+<span>Рассказать друзьям</span>
+<div class="share-inner">
+    <div class="share-btn share-btn-fb">
+        <div class="fb-like" data-href="{{url}}" data-layout="button" data-action="like" data-show-faces="true" data-share="false"></div>
+    </div>
+    <!-- <div class="share-btn share-btn-fb">
+        <a class="share-fb btn" target="_blank" id="photo-popup-link-{{id}}" href="{{share_fb}}">Like</a>
+    </div> -->
+    <div class="share-btn share-btn-vk">
+        <a class="share-vk btn" target="_blank" id="photo-popup-link-{{id}}" href="{{share_vk}}">Нравится</a>
+    </div>
+    <div class="share-btn share-btn-tw">
+        <a class="share-tw btn" target="_blank" id="photo-popup-link-{{id}}" href="{{share_tw}}">Твитнуть</a>
+    </div>
+    <div class="share-btn share-btn-ok">
+        <a class="share-ok btn" target="_blank" id="photo-popup-link-{{id}}" href="{{share_ok}}">Класс!</a>
+    </div>
+    <div class="share-btn share-btn-gp">
+        <div class="g-plus share-plus" data-action="share" data-href="{{url}}.html" data-annotation="none" data-height="29"></div>
+    </div>
+</div>
+</script>        <script type="text/template" id="popup_template">
+    <div class="popup-background">
+    </div>
+    <div class="popup-container">
+        <div class="popup-inner">
+            <div class="popup-close">×</div>
+            <div class="popup-content"></div>
+        </div>
+    </div>
+</script>
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-58967456-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+        <div class="block403-container">
+    <div class="close">×</div>
+    <h3>У вас нет прав для этого действия, войдите или зарегистрируйтесь.</h3>
+    <div class="social-networks">
+        <a href="http://oauth.vk.com/authorize?client_id=4444872&response_type=code&redirect_uri=http://www.backbook.me/user/vk&scope=email"><div class="icon vk"></div></a>
+        <a href="http://www.odnoklassniki.ru/oauth/authorize?client_id=1118255616&response_type=code&redirect_uri=http://www.backbook.me/user/ok&scope=VALUABLE_ACCESS"><div class="icon ok"></div></a>
+        <a href="https://oauth.yandex.ru/authorize?response_type=code&client_id=cf3ed61887a44f8fa355d409ce64187e&display=popup"><div class="icon yandex"></div></a>
+        <a href="https://connect.mail.ru/oauth/authorize?client_id=721806&response_type=code&redirect_uri=http://www.backbook.me/user/mailru"><div class="icon mailru"></div></a>
+        <a href="https://accounts.google.com/o/oauth2/auth?redirect_uri=http://www.backbook.me/user/google&response_type=code&client_id=493066380872-fanbo47s6c4fr1c3nhv6pjp7v8pti88c.apps.googleusercontent.com&scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"><div class="icon google"></div></a>
+        <a href="https://www.facebook.com/dialog/oauth?scope=email&redirect_uri=http://www.backbook.me/user/fb&response_type=code&client_id=403680293128009"><div class="icon fb"></div></a>
+        <a href="https://www.linkedin.com/uas/oauth2/authorization?client_id=75riu4p1qy474s&redirect_uri=http://www.backbook.me/user/linkedin&response_type=code&scope=r_basicprofile r_emailaddress&state=u87zhuyzQD"><div class="icon linkedin"></div></a>
+        <a href="/user/twitter"><div class="icon twitter"></div></a>
+        <a href="https://www.linkedin.com/uas/oauth2/authorization?client_id=752xm361l9e434&redirect_uri=http://www.backbook.me/user/instagram&response_type=code&scope=r_basicprofile&state=u87zhuyzQD"><div class="icon instagram"></div></a>
+        <a><div class="icon livejournal"></div></a>
+    </div>
+    <div class="login-container">
+        <h4>Вход с паролем</h4>
+        <form action="/user/sign" method="post" name="user">
+            <div class="row">
+                <label><span>E-mail</span><input name="email" type="email" value=""></label>        
+            </div>
+            <div class="row">
+                <label><span>Пароль</span><input name="password" type="password" value=""></label>        
+            </div>
+            <div class="row">
+                <button name="submit" type="submit" class="btn">Войти</button>
+            </div>
+        </form>
+    </div>
+    <div class="register-container">
+        <h4>Регистрация</h4>
+        <form action="/user/reg" method="post" name="user" id="user">                
+            <div class="row">
+                <label><span>E-mail</span><input name="email" type="email" value=""></label>                
+            </div>
+            <!-- <div class="row">
+                <label>Введите код с картинки</label>
+                 <div class="captcha-box">
+                    <img width="100" height="32" alt="" src="/data/cache/captcha/9a9c022ed3e20aa3b4f65c1b02e2d2dc.png">
+                    <input name="captcha[id]" class="float-right" type="hidden" value="9a9c022ed3e20aa3b4f65c1b02e2d2dc"><input name="captcha[input]" class="float-right" type="text">                    
+                </div> 
+            </div> -->
+
+            <div class="row">
+                <button name="submit" type="submit" class="btn btn-register">Зарегистрировать</button>
+            </div>
+        </form>        
+    </div>
+</div>
+    </body>
+</html>

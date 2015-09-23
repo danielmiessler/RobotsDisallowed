@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="eng" lang="eng">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>404 Not Found</title>
+	<meta name="keywords" content="" />
+	<meta name="viewport" content="width = 320" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="icon" type="image/png" href="favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="styles/reset.css" />	
+	<link rel="stylesheet" type="text/css" href="styles/main.css" />
+	<link href="http://fonts.googleapis.com/css?family=Inconsolata&amp;v1" rel="stylesheet" type="text/css" />
+	
+	<!-- IE6 fixes are found in styles/ie6.css -->
+	<!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="styles/ie6.css" /><![endif]-->
+	
+	<script src="scripts/jquery-1.6.2.js" type="text/javascript"></script>
+	<script src="scripts/jquery-ui-1.7.2.spritely.custom.min.html" type="text/javascript"></script>
+	<script src="scripts/jquery.spritely-0.5.js" type="text/javascript"></script>
+
+	<script type="text/javascript">
+
+		(function($) {
+			$(document).ready(function() {
+				$('#logo').click(function() {
+					document.location.href = 'http://www.spritely.net/';
+				});
+			
+				$('#bird')
+					.sprite({fps: 9, no_of_frames: 3})
+					.spRandom({top: 50, bottom: 200, left: 300, right: 320})
+					.isDraggable()
+					.activeOnClick()
+					.active();
+				$('#clouds').pan({fps: 30, speed: 0.7, dir: 'left', depth: 10});
+				$('#cloud_2').pan({fps: 30, speed: 2, dir: 'left', depth: 30});
+				$('#cloud_1').pan({fps: 30, speed: 3, dir: 'left', depth: 70});
+                                $('#balloons').pan({fps: 30, speed: 3, dir: 'up', depth: 70});
+				$('#cloud_1, #cloud_2, #clouds').spRelSpeed(8);
+				
+				window.actions = {
+					fly_slowly_forwards: function() {
+						$('#bird')
+							.fps(10)
+							.spState(1);
+						$('#cloud_1, #cloud_2, #clouds')
+							.spRelSpeed(10)
+							.spChangeDir('left');
+					},
+					fly_slowly_backwards: function() {
+						$('#bird')
+							.fps(10)
+							.spState(2);
+						$('#cloud_1, #cloud_2, #clouds')
+							.spRelSpeed(10)
+							.spChangeDir('right');
+					},
+					fly_quickly_forwards: function() {
+						$('#bird')
+							.fps(20)
+							.spState(1);
+						$('#cloud_1, #cloud_2, #clouds')
+							.spRelSpeed(30)
+							.spChangeDir('left');
+					},
+					fly_quickly_backwards: function() {
+						$('#bird')
+							.fps(20)
+							.spState(2);
+						$('#cloud_1, #cloud_2, #clouds')
+							.spRelSpeed(30)
+							.spChangeDir('right');
+					},
+					fly_like_lightning_forwards: function() {
+						$('#bird')
+							.fps(25)
+							.spState(1);
+						$('#cloud_1, #cloud_2, #clouds')
+							.spSpeed(40)
+							.spChangeDir('left');
+					},
+					fly_like_lightning_backwards: function() {
+						$('#bird')
+							.fps(25)
+							.spState(2);
+						$('#cloud_1, #cloud_2, #clouds')
+							.spSpeed(40)
+							.spChangeDir('right');
+					}
+				};
+				
+				window.page = {
+					hide_panels: function() {
+						$('.panel').hide(300);
+					},
+					show_panel: function(el_id) {
+						this.hide_panels();
+						$(el_id).show(300);
+					}
+				}
+				
+			});
+		})(jQuery);
+	
+	</script>
+
+
+<center>
+</center>
+
+
+</head>
+<body>
+<div id="container">
+	<div id="stage" class="stage">
+		<div id="clouds" class="stage"></div>
+	</div>
+	<div id="ticket">
+		<div id="ticket_left">
+			<p class="text1_a">POLECIAŁEŚ</p>
+			<p class="text2_a">ZA DALEKO</p>
+			<p class="text3_a">BŁĄD</p>
+			<p class="text4_a">DVHK</p>
+			<p class="text5_a">Z:</p>
+			<p class="text6_a">208.66.26.99</p>
+			<p class="text7_a">Do:</p>
+			<p class="text8_a">DVHK ERROR</p>			
+			<p class="text9_a">Miejsce</p>
+			<p class="text10_a">VIP</p>
+			<p class="text11_a">Wybierz inny lot:</p>
+			<p class="text12_a"><a href="http://forum.dvhk.to/">DVHK FORUM</a> | <a href="http://portal.dvhk.to/">LAKI PORTAL</a></p>			
+		</div>
+		<div id="ticket_right">
+			<p class="text1_b">1 klasa</p>
+			<p class="text2_b">DVHK</p>
+			<p class="text3_b">Z:</p>
+			<p class="text4_b">208.66.26.99</p>
+			<p class="text5_b">Do:</p>
+			<p class="text6_b">DVHK ERROR</p>
+			<p class="text7_b">Miejsce</p>
+			<p class="text8_b">404</p>
+			<p class="text9_b">1</p>
+			<p class="text10_b">103076498</p>
+		</div>
+	</div>
+</div>
+
+</body>
+
+</html>

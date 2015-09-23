@@ -1,0 +1,13 @@
+# robotstxt.org/
+
+User-agent: *
+Disallow: /_mypdf/
+Disallow: /_tcpdf/
+Disallow: /css/
+Disallow: /langues/
+Disallow: /js/
+Disallow: /core/
+Disallow: /img/
+Disallow: /lang/
+Disallow: /langues/
+Disallow: /temp/

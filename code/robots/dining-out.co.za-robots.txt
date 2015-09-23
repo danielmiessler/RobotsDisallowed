@@ -1,0 +1,971 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
+<head>
+<title>Dining-OUT.co.za - Your Southern African Restaurant Guide</title>
+<meta name="description" content="Find Restaurants in Southern Africa complete with Pictures, Editorials, Videos, Directions, Menus with Prices and Online Booking." />
+<meta name="keywords" content="cape town restaurants,johannesburg restaurants,pretoria restaurants,durban restaurants,garden route restaurants,eating out,eat out,dine,dining,eating,restaurants,menus,prices" />
+<meta name="title" content="Dining-OUT.co.za - Your Southern African Restaurant Guide" />
+<meta name="verify-v1" content="iQ7S0sJH+V/4jj3XWs46cEAbanUu/jXzJbVKZTOgTq0=" />
+<meta name="robots" content="all" />
+<meta name="robots" content="index,follow" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="copyright" content="All rights reserved. No part of this website may be reproduced, stored in a retrieval system, copied or transmitted in any form or by any means, electronic, magnetic, mechanical, on computer, in hard copy, in a database or otherwise without permission in writing from Dining Out Web Services CC. Failure to comply will result in legal steps being taken against you." />
+<meta property="og:title" content=" Restaurants" />
+<meta property="og:description" content="Find Restaurants in Southern Africa complete with Pictures, Editorials, Videos, Directions, Menus with Prices and Online Booking." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://www.dining-out.co.za/" />
+<meta property="og:image" content="http://www.dining-out.co.za/Themes/Default/Lang-1/images/diningoutlogo.jpg" />
+<meta property="og:site_name" content="Dining-OUT" />
+<meta property="fb:admins" content="730131154,732230536" />
+<meta property="fb:app_id" content="360954630610652" />
+<link rel="shortcut icon" href="Dining-OUT.ico" />
+<link rel="canonical" href="http://www.dining-out.co.za/" />
+<link rel="alternate" media="handheld" href="http://m.dining-out.co.za/" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!--//<link href="http://www.dining-out.co.za/themes/default/Lang-1/assets/body.css" rel="stylesheet" type="text/css" />//-->
+<!--[if IE]>
+<style type="text/css" media="screen">
+.menu{float:none;} /* This is required for IE to avoid positioning bug when placing content first in source. */
+/* IE Menu CSS */
+/* csshover.htc file version: V1.21.041022 - Available for download from: http://www.xs4all.nl/~peterned/csshover.html */
+body{behavior:url(/_includes/csshover2.htc);
+font-size:100%; /* to enable text resizing in IE */
+}
+.menu ul li{float:left;width:100%;}
+.menu a{height:1%;font:bold 10px/14px Verdana, Arial, Helvetica, sans-serif;}
+</style>
+<![endif]-->
+<script type="text/javascript">
+//<![CDATA[
+var loadAsync = {
+	js:function(url,delay){
+		if(typeof(delay)!="undefined"){
+			jst = window.setTimeout("loadAsync.loadjs('"+url+"')", delay);
+			}
+		else{
+			loadAsync.loadjs(url);
+			}
+		},
+	css:function(url,delay){
+		if(typeof(delay)!="undefined"){
+			csst = window.setTimeout("loadAsync.loadcss('"+url+"')", 0);
+			}
+		else{
+			loadAsync.loadcss(url);
+			}
+		},
+	loadjs:function(url){
+		var _js = document.createElement('script'); _js.type = 'text/javascript'; _js.src = url;
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(_js); 
+		},
+	loadcss:function(url){
+		var _css = document.createElement('link'); _css.type = 'text/css'; _css.rel = 'stylesheet'; _css.href = url; 
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(_css); 
+		}
+	}
+loadAsync.js("/_includes/pagefunctions.js");
+//]]>
+</script>
+<!--//<script src="http://www.dining-out.co.za/_includes/pagefunctions.js" type="text/javascript"></script>//-->
+<script type="text/javascript">
+//<![CDATA[
+var BaseThemeURL="http://www.dining-out.co.za/themes/default/Lang-1/";
+var isReady = false;
+loadAsync.css("http://www.dining-out.co.za/themes/default/Lang-1/assets/body.css");
+loadAsync.js("AScripts/Loc.js");
+loadAsync.js("/_includes/stats.min.js",100);
+function calcDistance(lat1,lon1,lat2,lon2){
+//	var R = 6371; // km
+//	var d = Math.acos(Math.sin(Slat)*Math.sin(Dlat)+Math.cos(Slat)*Math.cos(Dlat)*Math.cos(Dlng-Slng))*R;
+//	return (d);
+	var R = 6371; // km
+	var dLat = (lat2-lat1).toRad();
+	var dLon = (lon2-lon1).toRad(); 
+	var a = Math.sin(dLat/2) * Math.sin(dLat/2) +  Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * Math.sin(dLon/2) * Math.sin(dLon/2);
+	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+	var d = R * c;
+	return (d);
+	}
+
+/**
+ * Returns the distance from this point to the supplied point, in km 
+ * (using Haversine formula)
+ *
+ * from: Haversine formula - R. W. Sinnott, "Virtues of the Haversine",
+ *       Sky and Telescope, vol 68, no 2, 1984
+ *
+ * @param   {LatLon} point: Latitude/longitude of destination point
+ * @param   {Number} [precision=4]: no of significant digits to use for returned value
+ * @returns {Number} Distance in km between this point and destination point
+ */
+LatLon.prototype.distanceTo = function(point) {
+  var R = this._radius;
+  var lat1 = this._lat.toRad(), lon1 = this._lon.toRad();
+  var lat2 = point._lat.toRad(), lon2 = point._lon.toRad();
+  var dLat = lat2 - lat1;
+  var dLon = lon2 - lon1;
+ 
+  var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+          Math.cos(lat1) * Math.cos(lat2) * 
+          Math.sin(dLon/2) * Math.sin(dLon/2);
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  var d = R * c;
+  return d
+}
+
+// extend Number object with methods for converting degrees/radians
+ 
+/** Convert numeric degrees to radians */
+if (typeof(String.prototype.toRad) === "undefined") {
+  Number.prototype.toRad = function() {
+    return this * Math.PI / 180;
+  }
+}
+ 
+/** Convert radians to numeric (signed) degrees */
+if (typeof(String.prototype.toDeg) === "undefined") {
+  Number.prototype.toDeg = function() {
+    return this * 180 / Math.PI;
+  }
+}
+
+function LatLon(lat, lon, rad) {
+  if (typeof rad === "undefined") rad = 6371;  // earth's mean radius in km
+  this._lat = lat;
+  this._lon = lon;
+  this._radius = rad;
+}
+//]]>
+</script>
+<!--<script type="text/javascript" src="AScripts/Loc.js"></script>//-->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-889505-2', 'auto');
+  ga('send', 'pageview');
+  ga('require', 'displayfeatures');
+  ga('require', 'linkid', 'linkid.js');
+</script>
+
+</head>
+<body onload="self.focus;if(!document.getElementById){init()};">
+<form action="default.asp" name="InputForm" method="post" onsubmit="ChangeAction()">
+<div id="mainholder">
+<h1 class="TITLETXT">Dining-OUT.co.za - Your Southern African Restaurant Guide</h1>
+
+<script type="text/javascript">
+//<![CDATA[
+var addthis_pub="diningout";
+var addthis_hover_delay="500";
+var addthis_disable_flash = true;
+var addthis_config = { 
+    ui_click: true /* normally would disable mouseover behavior */ 
+} 
+loadAsync.js("http://s7.addthis.com/js/250/addthis_widget.js",1000);
+//]]>
+</script>
+<a name="top"></a>
+ 
+<table class="header">	
+<tr>
+<td id="logo"><a href="http://www.dining-out.co.za/" title="Powered by Dining-OUT – South Africa’s premier on-line restaurant guide."><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/diningoutlogo.jpg" border="0"  alt="Dining-OUT.co.za - Your Southern African Restaurant Guide" /></a></td>
+<td class="HPAD"><img src="http://www.dining-out.co.za/images/spacer.gif" border="0" width="5" height="127" /></td>
+<td>
+<div class="HAD"><a href="javascript:window.location='http://www.dining-out.co.za/ClickThru.asp?AddID=350'" target="_blank" rel="nofollow"><div class="HADname">Sotano by Caveau</div><img align="center" src="http://www.dining-out.co.za/ftp/banpic/Sotano-by-Caveau.jpg" alt="Sotano by Caveau"  height="127"  width="193"  border="0" style="display:block;" /></a></div>
+<div class="HAD"><a href="javascript:window.location='http://www.dining-out.co.za/ClickThru.asp?AddID=351'" target="_blank" rel="nofollow"><div class="HADname">Bodega @ Dornier Wines</div><img align="center" src="http://www.dining-out.co.za/ftp/banpic/Bodega-@-Dornier-Wines.jpg" alt="Bodega @ Dornier Wines"  height="127"  width="193"  border="0" style="display:block;" /></a></div>
+<div class="HAD"><a href="javascript:window.location='http://www.dining-out.co.za/ClickThru.asp?AddID=352'" target="_blank" rel="nofollow"><div class="HADname">Basilico - Steenberg</div><img align="center" src="http://www.dining-out.co.za/ftp/banpic/Basilico-Steenberg.jpg" alt="Basilico - Steenberg"  height="127"  width="193"  border="0" style="display:block;" /></a></div>
+<div class="HAD"><a href="javascript:window.location='http://www.dining-out.co.za/ClickThru.asp?AddID=353'" target="_blank" rel="nofollow"><div class="HADname">Ayoba!</div><img align="center" src="http://www.dining-out.co.za/ftp/banpic/Ayoba!.jpg" alt="Ayoba!"  height="127"  width="193"  border="0" style="display:block;" /></a></div>
+</td></tr></table>
+<div id="topmenuheader" style="margin-left: auto;margin-right: auto;">
+<div class="menu">
+<ul class="menuheader"><li><a href="/" class="menuheaderbtn">Home</a></li></ul><ul class="menuheader" onmouseover="return" onmouseout="return"><li><div class="menuheaderbtn">Guest Services</div><ul><li><a href="/">Restaurant Search</a></li><li><a href="/South-Africa-Map.asp">Map Search</a></li><li><a href="/restmapsearch.asp">Google Map Search</a></li><!--//<li><a href="/PromoSpecialsSearch.asp">Promo Specials</a></li>//--><li><a href="http://news.dining-out.co.za">News &amp; Events</a></li><li><a href="http://news.dining-out.co.za/smarter-seafood-choices-with-sassi/">Sustainable seafood (SASSI)</a></li><li><a href="/wc.asp">Wine Cellar</a></li><!--//<li><a href="/sf.asp">School Feeding Project</a></li>//--><!--//<li><a href="/news.asp?AID=125">Weather Forecast</a></li>//--><li><a href="/guestbook.asp">Guest Book</a></li><li><a class="x" onmouseover="return" onmouseout="return">Quick links</a><ul><li><a href="/Cape-Town-restaurants.asp" title="Cape Town restaurants">Cape Town restaurants</a></li><li><a href="/Durban-restaurants.asp" title="Durban restaurants">Durban restaurants</a></li><li><a href="/Garden-Route-restaurants.asp" title="Garden Route restaurants">Garden Route restaurants</a></li><li><a href="/Sandton-Restaurants.asp" title="Sandton restaurants">Sandton restaurants</a></li><li><a href="/Port-Elizabeth-restaurants.asp" title="Port Elizabeth restaurants">Port Elizabeth restaurants</a></li><li><a href="/Pretoria-restaurants.asp" title="Pretoria restaurants">Pretoria restaurants</a></li></ul></li><li><a href="http://m.dining-out.co.za/">Dining-OUT Mobile</a></li></ul></li></ul><ul class="menuheader" onmouseover="return" onmouseout="return"><li><div class="menuheaderbtn">Restaurant Owners</div><ul><li><a href="/members/">View my Dashboard</a></li><li><a href="/members/">Load Entertainment</a></li><li><a href="/owners.asp">Intro to Dining-OUT</a></li><li><a href="/owners.asp">List your restaurant</a></li><li><a href="/ps.asp">Products &amp; Services</a></li><li><a href="/RSales.asp">Restaurants for Sale</a></li></ul></li></ul><ul class="menuheader" onmouseover="return" onmouseout="return"><li><a href="http://news.dining-out.co.za" class="menuheaderbtn">News &amp; Events</a></li></ul><ul class="menuheader" onmouseover="return" onmouseout="return"><li><div class="menuheaderbtn">Search</div><ul><li><a href="/">Power Search</a></li><li><a href="/South-Africa-Map.asp">Normal Map Search</a></li><li><a href="/restmapsearch.asp">Google Map Search</a></li><li><a href="/GSearch.asp">Site Search</a></li></ul></li></ul>
+</div>
+</div>
+<div id="botmenuheader" style="margin-left: auto;margin-right: auto;">
+<div class="menu">
+<ul class="menuheader"><li><a href="/owners.asp" class="menuheaderbtn">List your Restaurant</a></li></ul><ul class="menuheader"><li><a href="/news.asp?AID=112" class="menuheaderbtn">Latest listings</a></li></ul><ul class="menuheader"><li><a href="/wc.asp" class="menuheaderbtn">Wine Cellar</a></li></ul><ul class="menuheader"><li onmouseover="//if(/MSIE (5|6)/.test(navigator.userAgent)){addthis_timer = window.setTimeout('addthis_showselect()',500);hideElm('select','')};return addthis_open(this,'', '[URL]', '[TITLE]');" onmouseout="//addthis_close();" onclick="return addthis_open(this,'', '[URL]', '[TITLE]');//return addthis_sendto();"><div class="menuheaderbtn">Bookmark Share</div></li></ul><ul class="menuheader"><li><a href="/ps.asp?AID=260" class="menuheaderbtn">Advertise with us</a></li></ul>
+</div>
+</div>
+
+<div id="contentholder">
+ <table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr><td class="catcol" valign="top">
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr><td>
+   <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+     <td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/memtcleft.jpg" style="display:block;" width="8" height="8" /></td>
+     <td style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memtop.jpg); background-repeat:repeat-x;"></td>
+     <td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/memtcright.jpg" style="display:block;" width="8" height="8" /></td>
+     <td colspan="2"></td>
+    </tr>
+    <tr>
+     <td width="8" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memleft.jpg); background-repeat:repeat-y;"></td>
+     <td valign="top" class="cattab"><span class="tabtxt">Facilities</span></td>
+     <td width="8" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memright.jpg); background-repeat:repeat-y;"></td>
+     <td class="catshol"></td>
+     <td width="8"></td>
+    </tr>
+    <tr>
+     <td width="8" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memleft.jpg); background-repeat:repeat-y;"></td>
+     <td colspan="2"></td>
+     <td style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memtop.jpg); background-repeat:repeat-x;"></td>
+     <td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/memtcright.jpg" style="display:block;" width="8" height="8" /></td>
+    </tr>
+    <tr>
+     <td width="8" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memleft.jpg); background-repeat:repeat-y;"></td>
+     <td colspan="3" valign="top" class="catsel" align="center">
+	     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td height="25" width="20"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/catmenu_icon1.gif" width="20" height="20" alt="Specials" /></td>
+				<td height="25" width="20"><input type="checkbox" alt="Specials" name="Specials"  onclick="InputForm.Keyword.value='Type Restaurant Name';" /></td>
+				<td height="25" width="137" align="left">Specials</td>
+			</tr>
+			<tr>
+				<td height="25" width="20"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/catmenu_icon9.gif" width="20" height="20" alt="Live Entertainment" /></td>
+				<td height="25" width="20"><input type="checkbox" alt="Live Entertainment" name="LiveE"  onclick="InputForm.Keyword.value='Type Restaurant Name';" /></td>
+				<td height="25" width="137" align="left">Live Entertainment</td>
+			</tr>
+			<tr height="25">
+			<td height="25" width="20"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/iconLoadShedding.gif" width="20" height="20" alt="Load Shedding" /></td>
+			<td height="25" width="21"><input type="checkbox" name="CategoryID" alt="Load Shedding"  value="20"  onclick="InputForm.Keyword.value='Type Restaurant Name';" /></td>
+			<td height="25" width="137" align="left">Load Shedding</td>
+			</tr>		
+			<tr height="25">
+			<td height="25" width="20"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/icon_cat2.gif" width="20" height="20" alt="Take Out" /></td>
+			<td height="25" width="21"><input type="checkbox" name="CategoryID" alt="Take Out"  value="4"  onclick="InputForm.Keyword.value='Type Restaurant Name';" /></td>
+			<td height="25" width="137" align="left">Take Out</td>
+			</tr>		
+			<tr height="25">
+			<td height="25" width="20"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/icon_cat5.gif" width="20" height="20" alt="Secure Parking" /></td>
+			<td height="25" width="21"><input type="checkbox" name="CategoryID" alt="Secure Parking"  value="9"  onclick="InputForm.Keyword.value='Type Restaurant Name';" /></td>
+			<td height="25" width="137" align="left">Secure Parking</td>
+			</tr>		
+			<tr height="25">
+			<td height="25" width="20"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/Icon-ChildF.gif" width="20" height="20" alt="Child Friendly" /></td>
+			<td height="25" width="21"><input type="checkbox" name="CategoryID" alt="Child Friendly"  value="18"  onclick="InputForm.Keyword.value='Type Restaurant Name';" /></td>
+			<td height="25" width="137" align="left">Child Friendly</td>
+			</tr>		
+			<tr height="25">
+			<td height="25" width="20"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/icon_cat4.gif" width="20" height="20" alt="TV/Sports" /></td>
+			<td height="25" width="21"><input type="checkbox" name="CategoryID" alt="TV/Sports"  value="5"  onclick="InputForm.Keyword.value='Type Restaurant Name';" /></td>
+			<td height="25" width="137" align="left">TV/Sports</td>
+			</tr>		
+			<tr height="25">
+			<td height="25" width="20"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/icon_cat6.gif" width="20" height="20" alt="Outside Seating" /></td>
+			<td height="25" width="21"><input type="checkbox" name="CategoryID" alt="Outside Seating"  value="10"  onclick="InputForm.Keyword.value='Type Restaurant Name';" /></td>
+			<td height="25" width="137" align="left">Outside Seating</td>
+			</tr>		
+			<tr height="25">
+			<td height="25" width="20"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/icon_cat7.gif" width="20" height="20" alt="Fireplace" /></td>
+			<td height="25" width="21"><input type="checkbox" name="CategoryID" alt="Fireplace"  value="8"  onclick="InputForm.Keyword.value='Type Restaurant Name';" /></td>
+			<td height="25" width="137" align="left">Fireplace</td>
+			</tr>		
+			<tr height="25">
+			<td height="25" width="20"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/icon_cat8.gif" width="20" height="20" alt="Dancefloor" /></td>
+			<td height="25" width="21"><input type="checkbox" name="CategoryID" alt="Dancefloor"  value="2"  onclick="InputForm.Keyword.value='Type Restaurant Name';" /></td>
+			<td height="25" width="137" align="left">Dancefloor</td>
+			</tr>		
+			<tr height="25">
+			<td height="25" width="20"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/icon_cat10.gif" width="20" height="20" alt="Disabled" /></td>
+			<td height="25" width="21"><input type="checkbox" name="CategoryID" alt="Disabled"  value="7"  onclick="InputForm.Keyword.value='Type Restaurant Name';" /></td>
+			<td height="25" width="137" align="left">Disabled</td>
+			</tr>		
+			<tr height="25">
+			<td height="25" width="20"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/icon_cat3.gif" width="20" height="20" alt="Smoking Section" /></td>
+			<td height="25" width="21"><input type="checkbox" name="CategoryID" alt="Smoking Section"  value="1"  onclick="InputForm.Keyword.value='Type Restaurant Name';" /></td>
+			<td height="25" width="137" align="left">Smoking Section</td>
+			</tr>		
+			<tr height="25">
+			<td height="25" width="20"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/cat_iconfunc.gif" width="20" height="20" alt="Functions" /></td>
+			<td height="25" width="21"><input type="checkbox" name="CategoryID" alt="Functions"  value="12"  onclick="InputForm.Keyword.value='Type Restaurant Name';" /></td>
+			<td height="25" width="137" align="left">Functions</td>
+			</tr>		
+			<tr height="25">
+			<td height="25" width="20"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/wifi_icon.gif" width="20" height="20" alt="Wi-Fi" /></td>
+			<td height="25" width="21"><input type="checkbox" name="CategoryID" alt="Wi-Fi"  value="19"  onclick="InputForm.Keyword.value='Type Restaurant Name';" /></td>
+			<td height="25" width="137" align="left">Wi-Fi</td>
+			</tr>		
+			<tr height="25">
+			<td height="25" width="20"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/icon_wedding.gif" width="20" height="20" alt="Weddings" /></td>
+			<td height="25" width="21"><input type="checkbox" name="CategoryID" alt="Weddings"  value="15"  onclick="InputForm.Keyword.value='Type Restaurant Name';" /></td>
+			<td height="25" width="137" align="left">Weddings</td>
+			</tr>		
+			<tr height="25">
+			<td height="25" width="20"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/cat_iconacc.gif" width="20" height="20" alt="Accommodation" /></td>
+			<td height="25" width="21"><input type="checkbox" name="CategoryID" alt="Accommodation"  value="14"  onclick="InputForm.Keyword.value='Type Restaurant Name';" /></td>
+			<td height="25" width="137" align="left">Accommodation</td>
+			</tr>		
+			<tr height="25">
+			<td height="25" width="20"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/icon_outcater.gif" width="20" height="20" alt="Outside Catering" /></td>
+			<td height="25" width="21"><input type="checkbox" name="CategoryID" alt="Outside Catering"  value="17"  onclick="InputForm.Keyword.value='Type Restaurant Name';" /></td>
+			<td height="25" width="137" align="left">Outside Catering</td>
+			</tr>		
+			
+			<tr>
+				<td height="25" width="20"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/catmenu_iconvtour.gif" width="20" height="20" alt="VTour / Video" /></td>
+				<td height="25" width="20"><input type="checkbox" alt="Video" name="VTour"  onclick="InputForm.Keyword.value='Type Restaurant Name';" /></td>
+				<td height="25" width="137" align="left">VTour / Video</td>
+			</tr>
+			<tr>
+				<td height="25" width="20"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/catmenu_iconconf.gif" width="20" height="20" alt="Conferences" /></td>
+				<td height="25" width="20"><input type="checkbox" alt="Conferences" name="Conference"  onclick="InputForm.Keyword.value='Type Restaurant Name';" /></td>
+				<td height="25" width="137" align="left">Conferences</td>
+			</tr>
+		  </table>
+	</td>
+     <td width="8" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memright.jpg); background-repeat:repeat-y;"></td>
+    </tr>
+    <tr><td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/membcleft.jpg" style="display:block;" width="8" height="8" /></td><td colspan="3" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/membottom.jpg); background-repeat:repeat-x;"></td><td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/membcright.jpg" style="display:block;" width="8" height="8" /></td></tr>
+   </table>
+   </td></tr>
+	<tr><td style="padding-top:10px;">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/memtcleft.jpg" style="display:block;" width="8" height="8" /></td>
+				<td style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memtop.jpg); background-repeat:repeat-x;"></td>
+				<td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/memtcright.jpg" style="display:block;" width="8" height="8" /></td>
+				<td colspan="2"></td>
+			</tr>
+			<tr>
+				<td width="8" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memleft.jpg); background-repeat:repeat-y;"></td>
+				<td valign="top" class="loctab"><span class="tabtxt">Quick Links</span></td>
+				<td width="8" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memright.jpg); background-repeat:repeat-y;"></td>
+				<td class="locshol"></td>
+				<td width="8"></td>
+			</tr>
+			<tr>
+				<td width="8" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memleft.jpg); background-repeat:repeat-y;"></td>
+				<td colspan="2"></td>
+				<td style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memtop.jpg); background-repeat:repeat-x;"></td>
+				<td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/memtcright.jpg" style="display:block;" width="8" height="8" /></td>
+			</tr>
+			<tr>
+				<td width="8" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memleft.jpg); background-repeat:repeat-y;"></td>
+				<td colspan="3" valign="top" class="locsel" align="center">
+					
+	<table border="0" align="center" cellpadding="0" cellspacing="0" width="90%"><tr><td width="100%"><a href="Cape-Town-restaurants.asp" title="Cape Town ">Cape Town</a></td></tr><tr><td width="100%"><a href="Durban-Restaurants.asp" title="Durban ">Durban</a></td></tr><tr><td width="100%"><a href="Garden-Route-Restaurants.asp" title="Garden Route ">Garden Route</a></td></tr><tr><td width="100%"><a href="Hermanus-Restaurants.asp" title="Hermanus ">Hermanus</a></td></tr><tr><td width="100%"><a href="Port-Elizabeth-restaurants.asp" title="Port Elizabeth ">Port Elizabeth</a></td></tr><tr><td width="100%"><a href="Tshwane-Restaurants.asp" title="Pretoria / Tshwane ">Pretoria / Tshwane</a></td></tr><tr><td width="100%"><a href="Sandton-Restaurants.asp" title="Sandton ">Sandton</a></td></tr><tr><td width="100%"><a href="Stellenbosch-Restaurants.asp" title="Stellenbosch ">Stellenbosch</a></td></tr><tr><td width="100%"><a href="South-Africa-restaurants-LocationID-171.html" title="West Coast (WC) ">West Coast (WC)</a></td></tr></table>
+				</td>
+				<td width="8" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memright.jpg); background-repeat:repeat-y;"></td>
+			</tr>
+			<tr><td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/membcleft.jpg" style="display:block;" width="8" height="8" /></td><td colspan="3" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/membottom.jpg); background-repeat:repeat-x;"></td><td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/membcright.jpg" style="display:block;" width="8" height="8" /></td></tr>
+		</table>
+	</td></tr>
+	<tr><td style="padding-top:10px;">
+	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	    <tr><td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/memtcleft.jpg" style="display:block;" width="8" height="8" /></td><td style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memtop.jpg); background-repeat:repeat-x;"></td><td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/memtcright.jpg" style="display:block;" width="8" height="8" /></td></tr>
+	    <tr><td width="8" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memleft.jpg); background-repeat:repeat-y;"></td>
+	     <td valign="top" class="othersel">
+				<table width="100%" border="0" cellpadding="0" cellspacing="5" align="center">
+					<tr>
+						<td class="smlbluetxt">Total Table Bookings in August</td>
+					</tr>
+					<tr>
+						<td class="smlblacktxt">
+18,227. <br/><span style="font-size: 7pt;">Average of 12 bookings per restaurant.</span></td>
+					</tr>
+				</table>
+			</td>	
+		  <td width="8" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memright.jpg); background-repeat:repeat-y;"></td></tr>
+	    <tr><td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/membcleft.jpg" style="display:block;" width="8" height="8" /></td><td style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/membottom.jpg); background-repeat:repeat-x;"></td><td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/membcright.jpg" style="display:block;" width="8" height="8" /></td></tr>
+	 </table>
+	</td></tr>
+	<tr><td style="padding-top:10px;">
+	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	    <tr><td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/memtcleft.jpg" style="display:block;" width="8" height="8" /></td><td style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memtop.jpg); background-repeat:repeat-x;"></td><td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/memtcright.jpg" style="display:block;" width="8" height="8" /></td></tr>
+	    <tr><td width="8" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memleft.jpg); background-repeat:repeat-y;"></td>
+	     <td valign="top" class="othersel">
+				<table width="100%" border="0" cellpadding="0" cellspacing="5" align="center">
+					<tr>
+						<td class="smlbluetxt"><a href="/news.asp?AID=112" class="smlbluetxt">Restaurants Last added on.</a></td>
+					</tr>
+					<tr>
+						<td class="smlblacktxt"><a href="/news.asp?AID=112" class="smlblacktxt">Tue&nbsp;22<sup>nd</sup>&nbsp;Sep&nbsp;2015</a></td>
+					</tr>
+				</table>
+			</td>	
+		  <td width="8" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memright.jpg); background-repeat:repeat-y;"></td></tr>
+	    <tr><td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/membcleft.jpg" style="display:block;" width="8" height="8" /></td><td style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/membottom.jpg); background-repeat:repeat-x;"></td><td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/membcright.jpg" style="display:block;" width="8" height="8" /></td></tr>
+	 </table>
+	</td></tr>
+   </table>
+  </td>
+  <td valign="top" class="searchmap">
+   <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+     <td class="searchcol" valign="top" rowspan="2">
+      <table width="100%" border="0" cellpadding="0" cellspacing="0">
+       <tr><td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/memtcleft.jpg" style="display:block;" width="8" height="8" /></td>
+        <td style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memtop.jpg); background-repeat:repeat-x;"></td>
+        <td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/memtcright.jpg" style="display:block;" width="8" height="8" /></td>
+        <td colspan="2"></td>
+       </tr>
+       <tr><td width="8" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memleft.jpg); background-repeat:repeat-y;"></td>
+        <td valign="top" class="searchtab"><span class="tabtxt">Find a Restaurant</span></td>
+        <td width="8" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memright.jpg); background-repeat:repeat-y;"></td>
+        <td class="searchshol"></td>
+        <td width="8"></td>
+       </tr>
+       <tr><td width="8" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memleft.jpg); background-repeat:repeat-y;"></td>
+        <td colspan="2"></td>
+        <td style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memtop.jpg); background-repeat:repeat-x;"></td>
+        <td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/memtcright.jpg" style="display:block;" width="8" height="8" /></td>
+       </tr>
+       <tr>
+        <td width="8" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memleft.jpg); background-repeat:repeat-y;"></td>
+        <td colspan="3" valign="top" class="searchsel">
+			<table width="100%" border="0" cellpadding="2" cellspacing="0">
+			<tr><td>
+              <table width="100%" border="0" cellpadding="2" cellspacing="0">
+				<tr>
+				<td>Location</td>
+				<td width="150" valign="middle" align="right"><input type="text" id="SelectedLocation" name="SelectedLocation" value="" class="greyverdana" onkeyup="return openautocomplete(event);" onfocus="document.InputForm.Keyword.value=dKeywords;if(this.value==sAll){this.value='';}" onblur="onBlurautocomp()" style="width:150px;padding-left:3px;" title="" autocomplete="off" /><input type="hidden" id="LocationID" name="LocationID" value="" /></td>
+                <td width="10%"><img src="/images/up.gif" alt="Up One Level" name="rollover_up" onclick="LocationUpLevel();" onmouseout="LocationUpOut()" onmouseover="LocationUpOver()" border="0" style="cursor:pointer;" /></td>
+                </tr>
+				<tr>
+					<td>Food Types</td>
+					<td width="150">       
+						<select name="FoodTypeID" onclick="InputForm.Keyword.value='Type Restaurant Name';" style="width:150px;" class="greyverdana">
+							<option value="ALL">ALL</option>
+										<option value="39">
+				African
+			</option>
+			<option value="5">
+				American
+			</option>
+			<option value="105">
+				Asian
+			</option>
+			<option value="103">
+				Austrian
+			</option>
+			<option value="183">
+				Bakery / Patisserie
+			</option>
+			<option value="25">
+				Belgian
+			</option>
+			<option value="125">
+				Bistro
+			</option>
+			<option value="166">
+				Brazilian
+			</option>
+			<option value="67">
+				Breakfast
+			</option>
+			<option value="24">
+				Buffet
+			</option>
+			<option value="64">
+				Cajun/Creole
+			</option>
+			<option value="43">
+				Cape Malay
+			</option>
+			<option value="60">
+				Cape Provencale
+			</option>
+			<option value="127">
+				Caribbean
+			</option>
+			<option value="8">
+				Chinese
+			</option>
+			<option value="66">
+				Coffee Shop
+			</option>
+			<option value="144">
+				Contemporary
+			</option>
+			<option value="15">
+				Continental
+			</option>
+			<option value="44">
+				Country
+			</option>
+			<option value="168">
+				Cuban
+			</option>
+			<option value="173">
+				Deli
+			</option>
+			<option value="17">
+				Fine Dining
+			</option>
+			<option value="4">
+				French
+			</option>
+			<option value="58">
+				Fusion
+			</option>
+			<option value="130">
+				Game
+			</option>
+			<option value="184">
+				Gastropub
+			</option>
+			<option value="22">
+				German
+			</option>
+			<option value="59">
+				Global/International
+			</option>
+			<option value="182">
+				Gourmet Burgers
+			</option>
+			<option value="2">
+				Greek
+			</option>
+			<option value="76">
+				Grills
+			</option>
+			<option value="111">
+				Halaal
+			</option>
+			<option value="110">
+				Health
+			</option>
+			<option value="174">
+				High Tea
+			</option>
+			<option value="10">
+				Indian
+			</option>
+			<option value="114">
+				Indonesian
+			</option>
+			<option value="1">
+				Italian
+			</option>
+			<option value="36">
+				Japanese
+			</option>
+			<option value="175">
+				Korean
+			</option>
+			<option value="178">
+				Latin American
+			</option>
+			<option value="97">
+				Light Meals
+			</option>
+			<option value="147">
+				Medieval
+			</option>
+			<option value="26">
+				Mediterranean
+			</option>
+			<option value="100">
+				Mexican
+			</option>
+			<option value="156">
+				Middle Eastern
+			</option>
+			<option value="131">
+				Moroccan
+			</option>
+			<option value="179">
+				Organic
+			</option>
+			<option value="116">
+				Pastas
+			</option>
+			<option value="176">
+				Peruvian
+			</option>
+			<option value="136">
+				Picnics
+			</option>
+			<option value="81">
+				Pizzas
+			</option>
+			<option value="102">
+				Portuguese
+			</option>
+			<option value="119">
+				Pub Meals
+			</option>
+				<option value="3">
+					Sustainable Seafood
+				</option>
+			<option value="14">
+				Seafood
+			</option>
+			<option value="6">
+				South African
+			</option>
+			<option value="129">
+				Spanish
+			</option>
+			<option value="98">
+				Steakhouse
+			</option>
+			<option value="109">
+				Sushi
+			</option>
+			<option value="135">
+				Swiss
+			</option>
+			<option value="165">
+				Tapas
+			</option>
+			<option value="9">
+				Thai
+			</option>
+			<option value="120">
+				Traditional
+			</option>
+			<option value="167">
+				Turkish
+			</option>
+			<option value="65">
+				Vegetarian
+			</option>
+			<option value="21">
+				Vietnamese
+			</option>
+
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Ambience</td>
+					<td width="150"> 
+						<select name="AmbienceID" onclick="InputForm.Keyword.value='Type Restaurant Name';" style="width:150px;" class="greyverdana">
+							<option value="ALL">ALL</option>
+										<option value="6">
+				Bustling
+			</option>
+			<option value="18">
+				Family
+			</option>
+			<option value="22">
+				Intimate
+			</option>
+			<option value="19">
+				Relaxed
+			</option>
+			<option value="9">
+				Traditional
+			</option>
+			<option value="5">
+				Trendy
+			</option>
+			<option value="3">
+				Upmarket
+			</option>
+			<option value="21">
+				Wine Farm
+			</option>
+
+						</select>
+					</td>
+				</tr>
+			</table>
+			</td></tr>
+			<tr><td>
+			<table width="100%" border="0" cellpadding="2" cellspacing="0">
+				<tr>
+					<td>Or</td>
+					<td height="34" width="200"><input type="text" size="12" value="Type Restaurant Name" name="Keyword" onclick="ResetForm()" style="text-align:center; width:200px;" class="greyverdana" /></td>
+				</tr>
+			</table>
+			</td></tr>
+			<tr><td>
+			<table width="100%" border="0" cellpadding="2" cellspacing="0">
+				<tr>
+					<td width="50%" class="smlbluetxt" align="left">Refine your search<br /> by ticking category <br />buttons to the left</td>
+					<td width="50%" align="right"><a href="javascript:if(isReady){ChangeAction()}else{location.href=location.href}" onclick="this.style.cursor='wait'" class="btnsearch">Search</a></td>
+				</tr>
+			</table>
+			</td></tr>
+		</table>
+        </td>
+        <td width="8" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memright.jpg); background-repeat:repeat-y;"></td>
+       </tr>
+       <tr><td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/membcleft.jpg" style="display:block;" width="8" height="8" /></td><td colspan="3" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/membottom.jpg); background-repeat:repeat-x;"></td><td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/membcright.jpg" style="display:block;" width="8" height="8" /></td></tr>
+      </table>
+     </td>
+     <td class="othercol" valign="top">
+	  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+       <tr><td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/memtcleft.jpg" style="display:block;" width="8" height="8" /></td><td style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memtop.jpg); background-repeat:repeat-x;"></td><td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/memtcright.jpg" style="display:block;" width="8" height="8" /></td></tr>
+       <tr><td width="8" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memleft.jpg); background-repeat:repeat-y;"></td>
+        <td valign="top" class="othersel">
+			<table width="100%" border="0" cellpadding="2" cellspacing="0">
+				<tr>
+					<td width="100%" class="smlbluetxt" align="center" colspan="4">Select Search Results View</td>
+				</tr>
+				<tr>
+					<td width="25%" align="center">Picture</td>
+					<td width="25%" align="center"><input type="radio" value="Graphic" checked="checked"  onclick="setCookie('Resview','Graphic');" name="Resview"  /></td>
+					<td width="25%" align="center">List</td>	
+					<td width="25%" align="center"><input type="radio" value="Normal" onclick="setCookie('Resview','Normal');" name="Resview"  /></td>
+				</tr>
+			</table>
+		</td>
+        <td width="8" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memright.jpg); background-repeat:repeat-y;"></td></tr>
+       <tr><td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/membcleft.jpg" style="display:block;" width="8" height="8" /></td><td style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/membottom.jpg); background-repeat:repeat-x;"></td><td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/membcright.jpg" style="display:block;" width="8" height="8" /></td></tr>
+      </table>	
+     </td>
+     <td valign="top" class="mapcol">
+      <table width="100%" border="0" cellpadding="0" cellspacing="0">
+       <tr><td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/memtcleft.jpg" style="display:block;" width="8" height="8" /></td>
+        <td style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memtop.jpg); background-repeat:repeat-x;"></td>
+        <td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/memtcright.jpg" style="display:block;" width="8" height="8" /></td>
+        <td colspan="2"></td>
+       </tr>
+       <tr><td width="8" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memleft.jpg); background-repeat:repeat-y;"></td>
+        <td valign="top" class="maptab"><span class="tabtxt">Map</span></td>
+        <td width="8" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memright.jpg); background-repeat:repeat-y;"></td>
+        <td class="mapshol"></td>
+        <td width="8"></td>
+       </tr>
+       <tr><td width="8" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memleft.jpg); background-repeat:repeat-y;"></td>
+        <td colspan="2"></td>
+        <td style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memtop.jpg); background-repeat:repeat-x;"></td>
+        <td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/memtcright.jpg" style="display:block;" width="8" height="8" /></td>
+       </tr>
+       <tr>
+        <td width="8" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memleft.jpg); background-repeat:repeat-y;"></td>
+        <td colspan="3" valign="top" class="mapsel">
+			<table width="100%" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="10%">
+					<a href="/South-Africa-Map.asp"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/btn_mapsa.jpg" vspace="5" title="South Africa restaurant Map Search" align="left" border="0" /></a>
+					</td>
+					<td width="40%"><a href="/South-Africa-Map.asp" class="maptxt" title="South Africa restaurant Map Search">Map Search</a><br /><a href="/South-Africa-Map.asp" class="mapsubtxt" title="South Africa restaurant Map Search">Click Here</a></td>
+					<td width="10%">
+					<a href="/restmapsearch.asp" title="South Africa restaurant Google Map Search"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/btn_googlemapsearch.gif" align="right" border="0" /></a>
+					</td>
+					<td width="40%"><a href="/restmapsearch.asp" title="South Africa restaurant Google Map Search" class="maptxt">Google Map Search</a></td>
+				</tr>
+			</table>		
+        </td>
+        <td width="8" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memright.jpg); background-repeat:repeat-y;"></td>
+       </tr>
+       <tr><td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/membcleft.jpg" style="display:block;" width="8" height="8" /></td><td colspan="3" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/membottom.jpg); background-repeat:repeat-x;"></td><td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/membcright.jpg" style="display:block;" width="8" height="8" /></td></tr>
+      </table>
+     </td>
+    </tr>
+    <tr><td colspan="2" valign="top" class="adcol">
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr><td align="center">
+<a href="javascript:window.location='http://www.dining-out.co.za/ClickThru.asp?AddID=147'" target="_blank" rel="nofollow"><img align="center" src="http://www.dining-out.co.za/ftp/banpic/AD1-468X60.jpg"  height="60"  width="468"  border="0" style="display:block;" /></a>
+</td></tr>
+<tr><td><img align="center" src="http://www.dining-out.co.za/images/spacer.gif" width="468" height="60" border="0" style="display:block;" /></td></tr>
+    </table>
+    </td></tr>
+    <tr><td colspan="3">
+    <div style="margin-top: 5px;margin-bottom: 0px;display: block;">
+    <div style="float:left;margin-right: 5px;padding-top: 4px;">
+    <a href="https://twitter.com/DiningOUT_SA" class="twitter-follow-button" data-show-count="false" data-count="none" data-via="DiningOUT_SA" data-related="DiningOUT_SA">Follow @DiningOUT_SA</a>
+    </div>
+    <div style="float:left;margin-right: 5px;padding-top: 4px;">
+    <div class="g-plusone" data-size="medium" data-annotation="none"></div>
+    </div>
+    <div style="float:left;margin-right: 5px;padding-top: 3px;">
+	<div class="fb-like" data-send="true" data-href="http://www.facebook.com/DiningOutSA" data-width="510" data-show-faces="false"></div>
+    </div>
+    <div id="fb-root"></div>
+	
+	<div style="float:right;">
+	<a href="http://twitter.com/DiningOUT_SA" target="_blank" title="Follow Dining-OUT on Twitter"><img src="/images/twitter25X25.gif" width="25" height="25" border="0" hspace="2" alt="Follow Dining-OUT on Twitter" /></a>
+	</div>
+	
+	<div style="float:right;">
+    <a href="http://www.facebook.com/DiningOutSA" target="_blank" title="Follow Dining-OUT on Facebook"><img src="/images/faceBook25X25.gif" width="25" height="25" border="0" hspace="2" alt="Follow Dining-OUT on Facebook" /></a>
+    </div>
+    
+    </div>
+    </td></tr>
+    <tr><td colspan="3">
+    <table width="773" border="0" cellpadding="0" cellspacing="0">
+    <tr><td valign="top" colspan="3" class="srcontent">
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr><td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/memtcleft.jpg" style="display:block;" width="8" height="8" /></td><td style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memtop.jpg); background-repeat:repeat-x;"></td><td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/memtcright.jpg" style="display:block;" width="8" height="8" /></td></tr>
+      <tr><td width="8" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memleft.jpg); background-repeat:repeat-y;"></td>
+       <td valign="top">
+		<table border="0" cellpadding="1" cellspacing="0" width="100%">
+	
+				<tr><td>
+						<table border="0" cellpadding="1" cellspacing="0" width="100%">
+							<tr><td valign="top">
+								<img src="http://www.dining-out.co.za/themes/default/Lang-1/images/DODefPic.jpg"  width="753" height="147" alt="Restaurants in South Africa" />
+								</td>
+							</tr>	
+							<tr>
+								<td valign="top">
+								<div align="justify">
+Looking for the perfect place to dine? Dining-OUT's powerful search engine will find you the restaurant you've been looking for. Listed restaurants are featured complete with Contact Details, Photos, Editorial, Maps and Directions. You can even see the full menu with prices as well as the corkage charge. 
+<br /><br />Restaurant owners can list with Dining-OUT and should <a href="owners.asp"><u>click here</u></a> to go to the Restaurant Owners Page. Dining-OUT’s restaurants had a total of 18,227  bookings in August. Our top positions on search engines coupled with our detailed restaurant menus have made Dining-OUT the choice for restaurant owners countrywide.
+<br /><br />
+Dining-OUT updates the restaurant database daily. Just fax or email changes and updates and we do the rest. Please visit our Stats Page for the latest stats and other information. You can also access Dining-OUT from your cell phone. Just go to <a href="http://m.dining-out.co.za"><u>m.dining-out.co.za</u></a>.  
+<br /><br />
+DINING-OUT - SOUTH AFRICA'S PREMIER ON-LINE RESTAURANT GUIDE
+<br />
+<br />
+</div>
+								</td>
+							</tr>	
+						</table>
+				
+					</td>
+				</tr>
+		</table>
+       </td>
+       <td width="8" style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/memright.jpg); background-repeat:repeat-y;"></td></tr>
+      <tr><td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/membcleft.jpg" style="display:block;" width="8" height="8" /></td><td style="background:url(http://www.dining-out.co.za/themes/default/Lang-1/images/membottom.jpg); background-repeat:repeat-x;"></td><td width="8"><img src="http://www.dining-out.co.za/themes/default/Lang-1/images/membcright.jpg" style="display:block;" width="8" height="8" /></td></tr>
+     </table>
+     </td></tr>
+    </table>
+	</td></tr>
+   </table>
+   </td>
+  </tr>
+ </table>
+</div>
+</div>
+<input type="hidden" name="SearchS" value="" />
+<input name="Page" value="1" type="hidden" />
+<input name="Order" value="" type="hidden" />
+</form>
+<div id="locpop" style="position:absolute; left:350px; top:20px;"></div>
+<div id="locpoparrow" style="position:absolute; left:410px; top:40px;"></div>
+<div id="footer">
+ <table width="980" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+  <tr><td align="center">
+   <table width="850" border="0" cellpadding="0" cellspacing="0">
+<tr><td>&nbsp;</td></tr>
+</table>
+
+<table width="980" border="0" cellspacing="0" cellpadding="0" vspace="0" hspace="0">	
+<tr>
+	<td width="300" align="center" valign="top">
+	<script type="text/javascript"><!--
+google_ad_client = "ca-pub-1107988828626791";
+/* Bottom Middle */
+google_ad_slot = "8461568415";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+	</td>
+	<td width="40"><img align="center" src="http://www.dining-out.co.za/images/spacer.gif" width="10" height="250" border="0" style="display:block;" />
+	</td>
+	<td width="300" align="center" valign="top">
+	<script type="text/javascript"><!--
+google_ad_client = "ca-pub-1107988828626791";
+/* Bottom Left */
+google_ad_slot = "6984835219";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+	</td>
+	<td width="40"><img align="center" src="http://www.dining-out.co.za/images/spacer.gif" width="10" height="250" border="0" style="display:block;" />
+  </td>
+	<td width="300" align="center" valign="top">
+	<script type="text/javascript"><!--
+google_ad_client = "ca-pub-1107988828626791";
+/* Bottom Right */
+google_ad_slot = "3442502413";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+	</td>
+</tr>
+<tr><td>&nbsp;</td></tr>
+</table>
+<br />
+
+  </td>
+ </tr>
+ <tr>
+  <td align="center">&nbsp;</td>
+ </tr>
+ <tr>
+  <td align="center">
+   <table width="100%" border="0" cellspacing="0" cellpadding="0" class="footernavbar">
+<tr>
+<td align="center"><a href="/Owners.asp">List your Restaurant</a></td>
+<td width="30" align="center">*</td>
+<td align="center"><a href="javascript:SmallWindow('/Copyright.asp','Copyright','scrollbars=yes,resizable',800,600)">Copyright</a></td>
+<td width="30" align="center">*</td>
+<td align="center"><a href="javascript:SmallWindow('/PrivacyPolicy.asp','PrivacyPolicy','scrollbars=yes,resizable',800,600)">Privacy Policy</a></td>
+<td width="30" align="center">*</td>
+<!--<td align="center"><a href="/Stats.asp">SiteStats</a></td>
+<td width="30" align="center">*</td>-->
+<td align="center"><a href="/SiteMap.asp" title="Site Map">Site Map</a></td>
+<td width="30" align="center">*</td>
+<td align="center"><a href="javascript:SmallWindow('/ContactUS.asp','ContactUS','scrollbars=yes,resizable',800,600)">Contact Dining-OUT</a></td>
+</tr>
+<tr>
+<td colspan="11" align="center">
+sister sites : <a href="http://www.uk.sleeping-out.com" rel="nofollow">www.uk.sleeping-out.com</a> : <a href="http://www.au.sleeping-out.com" rel="nofollow">www.au.sleeping-out.com</a> : <a href="http://www.us.sleeping-out.com" rel="nofollow">www.us.sleeping-out.com</a> : <a href="http://www.sleeping-out.co.za" rel="nofollow">www.sleeping-out.co.za</a> : <a href="http://www.eating-out.co.pt" rel="nofollow">www.eating-out.co.pt</a><br />
+2015 - <a href="http://www.dining-out.co.za/" title="South Africa restaurants">South Africa restaurants</a> - Dining-OUT
+</td>
+</tr>
+</table>
+
+  </td>
+ </tr>
+ </table>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+var dKeywords="Type Restaurant Name";
+var sAll="ALL";
+var CLoc=0;
+function pc(){
+	if(typeof(LA)!="undefined"){
+		loadAsync.js("_includes/Pagecontrols.js");
+		}
+	else{
+		pct=window.setTimeout("pc()",500);
+		}
+	}
+pc();
+
+//Start Twitter Code
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+//End Twitter Code
+
+//Start Google + Code
+(function() {
+  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+  po.src = 'https://apis.google.com/js/plusone.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+})();
+// End  Google + Code
+
+//Start Facebook Code
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=360954630610652";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+//End Facebook Code
+
+//]]>
+</script>
+
+</body>
+</html>

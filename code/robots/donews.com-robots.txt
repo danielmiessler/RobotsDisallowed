@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>donews</title>
+
+<style type="text/css">
+#wrap { height:100%; width:100%;}
+.errormod { width:670px; margin:0 auto; font-family:"Microsoft Yahei","冬青黑体简体中文 w3"; padding-top:90px;}
+.errormod .logo { background:url(http://ui.donews.com/donews2013/img/donews_logo.png) no-repeat 100% 0; height:70px;}
+.errormod h1 { color:#004090; font-size:18px; line-height:28px;}
+.errormod h1 strong { font-size:50px; display:block; float:left; height:56px; line-height:50px; margin-right:25px;}
+.errormod h1 span,.errormod h1 em { color:#f00; font-style:normal;}
+.errormod p,.errornav { font-size:14px;}
+.errormod p { text-align:center; padding:10px 0;}
+.errornav a { margin:0 10px; color:#014190; text-decoration:none;}
+.errornav a:hover { text-decoration:underline;}
+</style>
+</head>
+<body style="background:url(http://ui.donews.com/donews2013/img/bg_error.jpg) repeat;">
+<div id="wrap">
+<div class="errormod">
+	<div class="logo"></div>
+	<h1><strong>网页出错</strong>抱歉，您所查看的页面无法浏览或已不存在。<span id="totalSecond">5</span><em>秒</em>后跳转到首页。</h1>
+ 	<img src="http://ui.donews.com/donews2013/img/error-img.png" width="626" height="258" alt="error">
+    <p>点击一下链接继续浏览DoNews的其他相关内容：</p>
+    <div class="errornav"><a href="http://www.donews.com/" target="_blank">首页</a><a href="http://www.donews.com/original" target="_blank">原创</a><a href="http://home.donews.com" target="_blank">社区</a><a href="http://www.donews.com/special/" target="_blank">专题</a><a href="http://www.donews.com/net" target="_blank">互联网</a><a href="http://m.donews.com" target="_blank">移动互联网</a><a href="http://game.donews.com" target="_blank">游戏</a><a href="http://ec.donews.com" target="_blank">电商</a><a href="http://x.donews.com/" target="_blank">创业</a><a href="http://blog.donews.com/" target="_blank">博客</a><a href="http://www.donews.com/scroll/" target="_blank">滚动</a>
+</div>
+</div>
+
+
+
+
+
+ <!--定义js变量及方法-->
+
+<script language="javascript" type="text/javascript">
+var second = document.getElementById('totalSecond').textContent;
+
+if (navigator.appName.indexOf("Explorer") > -1)
+{
+second = document.getElementById('totalSecond').innerText; 
+} else
+{
+second = document.getElementById('totalSecond').textContent; 
+}
+
+
+setInterval("redirect()", 1000); 
+function redirect()
+{
+if (second < 0)
+{
+
+ <!--定义倒计时后跳转页面-->
+location.href = 'http://www.donews.com/'; 
+} else
+{
+if (navigator.appName.indexOf("Explorer") > -1)
+{
+document.getElementById('totalSecond').innerText = second--; 
+} else
+{
+document.getElementById('totalSecond').textContent = second--; 
+}
+}
+}
+</script>
+</div>
+</body>
+</html>

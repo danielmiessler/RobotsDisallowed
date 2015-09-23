@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+
+<!-- en -->
+          
+
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="gwt:property" content="locale=pl">
+<meta name="robots" content="noimageindex" />
+<link href="img/favicon.ico" rel="Shortcut icon" />
+<title>jakdojade.pl - Public transport journey planner and timetables</title>
+<meta name="description" content="Innovative public transport journey planner - Check public transport timetables, find stops and plan your optimal journey" />
+<meta name="keywords" content="jakdojade.pl, journey planner, public transport, transit, map, stops, navigation, how to get, go to, MPK Poznań, MPK Wrocław, ZTM Warszawa, ZDiTM Szczecin, MPK Kraków, MPK Łódź" />
+<link rel="image_src" href="img/others/screen.jpg" />
+<link href="css/welcome.css" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="js/slides.min.jquery.js" type="text/javascript"></script>
+<script src="js/jquery.jcarousel.min.js" type="text/javascript"></script>
+<script src="js/jquery.cookie.js" type="text/javascript"></script>
+<script type="text/javascript">
+	function mycarousel_initCallback(carousel) {
+		// Pause autoscrolling if the user moves with the cursor over the clip.
+		carousel.clip.hover(function() {
+			carousel.stopAuto();
+		}, function() {
+			carousel.startAuto();
+		});
+	};
+	$(function(){
+		$('#slides').slides({
+			preload: true,
+			preloadImage: 'img/loading.gif',
+			play: 5000,
+			pause: 2500,
+			hoverPause: true
+		});
+		$('#partners').jcarousel({
+			auto: 1,
+			scroll:1,
+			animation:500,
+			wrap: 'circular',
+			initCallback: mycarousel_initCallback
+		});
+		$('#EUCookieAccept').click(function(event) {			
+			event.preventDefault();
+			$.cookie('EUCookie', '1', { expires: 365 });
+			$('#EUCookie').fadeOut();
+		});
+	});	
+	function hoverCity(cityId, name) {
+		element = document.getElementById('cityPoint' + cityId);
+		element.style.backgroundPosition='bottom';
+		cityLabel = document.getElementById('cityNameBox');
+		cityLabel.style.display = 'block';
+		cityLabel.style.left = element.style.left;
+		cityLabel.style.top = element.offsetTop - 23 + 'px';
+		cityLabel.innerHTML = name;
+	}
+	function houtCity(cityId, name) {
+		element = document.getElementById('cityPoint' + cityId);
+		element.style.backgroundPosition='top';
+	}
+
+	var isAndroid = navigator.userAgent.toLowerCase().search("android") > -1;
+	if(isAndroid) {
+		if(confirm("Ta strona udostępnia aplikację dla systemu Android.\nPrzejść do aplikacji w Android Market?")) {
+			window.location="market://details?id=com.citynav.jakdojade.pl.android";
+		}
+	} else if (screen != null && screen.width < 800) {
+		if(confirm("Czy chcesz skorzystać z mobilnej wersji strony przeznaczonej dla przeglądarek telefonów komórkowych?")) {
+			window.location="http://m.jakdojade.pl";
+		}
+	}
+</script>
+
+<style></style>
+
+</head>
+
+<body>
+
+<div id="main">
+	<div id="bar1">
+		<div class="content">
+			
+			<style>#EUCookie {line-height: 21px; color: white; opacity: 0.7;} #EUCookie a, #EUCookie a:visited{color: white;}</style>
+			<span id="EUCookie"><b>Uwaga! Ta strona wykorzystuje pliki Cookie.</b> Szczegółowe informacje znajdziecie państwo w <a href="http://jakdojade.pl/pages/tos.html#privacy_policy">polityce prywatności</a> - <a id="EUCookieAccept" href="http://jakdojade.pl">Akcepuję</a>. </span>
+			
+			<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fjakdojade&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=tahoma&amp;height=21"
+		 scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:125px; margin-top: 1px; float:right;" allowTransparency="true"></iframe>
+		 </div>
+	</div>
+	<div id="bar2"></div>
+	<div id="content" class="content">
+		<img src="img/jakdojade-logo.png" width="367" height="113" alt="jakdojade.pl" id="logo">
+
+		<img src="img/slider-frame.png" width="608" height="285" id="slidesFrame">
+		<div id="slides">
+			<div class="slides_container"> 
+				<div class="slide" style="background: url('img/others/news-logo.png') right no-repeat white">
+					<div style="color:#7777A2; font-size: 16px; margin: 50px 10px">
+						Najpopularniejsza wyszukiwarka połączeń <br/> komunikacji miejskiej
+						<br/><br/>
+						<span style="font-size:14px">Ponad 5mln odwiedzin miesięcznie!</span>
+					</div>
+				</div>
+				<div class="slide" style="background: url('img/others/slide-access.jpg')">
+					<div style="color:#7777A2; font-size: 16px; margin: 14px 0 0 145px;">
+						Swobodny dostęp w domu i podróży
+					</div>
+					<a href="http://jakdojade.pl" title="jakdojade.pl - strona główna systemu" style="position: absolute; width: 190px; height: 170px; left: 10px; top: 24px"></a>
+					<a href="http://m.jakdojade.pl" title="m.jakdojade.pl - wersja mobilna na przeglądarki telefonów komórkowych" style="position: absolute; width: 99px; height: 124px; left: 203px; top: 43px"></a>
+					<a href="http://market.android.com/details?id=com.citynav.jakdojade.pl.android" title="zaawansowana aplikacja na system android" style="position: absolute; width: 99px; height: 35px; left: 315px; top: 49px"></a>
+					<a href="http://itunes.apple.com/pl/app/jakdojade.pl/id506760190?mt=8" title="zaawansowana aplikacja na system iOS (iPhone)" style="position: absolute; width: 101px; height: 34px; left: 315px; top: 86px"></a>
+					<a href="http://www.windowsphone.com/s?appid=c2eb426a-dd93-42c7-a8fe-f73a019635ad" title="zaawansowana aplikacja na system Windows Phone" style="position: absolute; width: 101px; height: 34px; left: 315px; top: 122px"></a>
+					<a href="http://store.ovi.com/content/235432" title="zaawansowana aplikacja na system Symbian (Nokia)" style="position: absolute; width: 101px; height: 34px; left: 315px; top: 157px"></a>
+				</div>
+				<div class="slide" style="background: url('img/others/slide-timetable.png') no-repeat white">
+					<ul class="features" style="margin: 20px 0 0 185px">
+						<li><b>aktualne rozkłady jazdy</b> dzięki współpracy z przewoźnikami, organizatorami transportu</li>
+						<li><b>integracja</b> wielu przewoźników</li>
+						<li>dokładne <b>schematy linii i mapy przystanków</b></li>
+					</ul>
+				</div>				
+				<div class="slide" style="background: url('img/others/slide-trip.png') no-repeat white">			
+					<ul class="features" style="margin: 20px 0 0 185px">
+						<li><b>zaawansowane algorytmy</b> wyszukiwania</li>	
+						<li>nowoczesny <b>intuicyjny interfejs</b></li>						
+						<li>wyszukiwanie <b>"od drzwi do drzwi"</b></li>
+						<li>wygodne <b>parametry wyszukiwania</b></li>
+					</ul>	
+				</div>
+			</div>
+			<a href="#" class="prev"><img src="img/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
+			<a href="#" class="next"><img src="img/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
+		</div>
+		 
+		<div id="cities">
+			<div id="citiesList">
+				<ul>
+					<li><a href="http://bialystok.jakdojade.pl"
+						 onmouseover="hoverCity(11000, 'Białystok')" onmouseout="houtCity(11000)">
+						 Białystok</a></li>
+				
+					<li><a href="http://bydgoszcz.jakdojade.pl"
+						 onmouseover="hoverCity(8000, 'Bydgoszcz')" onmouseout="houtCity(8000)">
+						 Bydgoszcz</a></li>
+				
+					<li><a href="http://gop.jakdojade.pl"
+						 onmouseover="hoverCity(9000, 'GOP')" onmouseout="houtCity(9000)">
+						 Górnośląski Okręg Przemysłowy (GOP)</a></li>
+				
+					<li><a href="http://gorzow.jakdojade.pl"
+						 onmouseover="hoverCity(17000, 'Gorzów Wlkp.')" onmouseout="houtCity(17000)">
+						 Gorzów Wlkp.</a></li>
+				
+					<li><a href="http://grudziadz.jakdojade.pl"
+						 onmouseover="hoverCity(14000, 'Grudziądz')" onmouseout="houtCity(14000)">
+						 Grudziądz</a></li>
+				
+					<li><a href="http://inowroclaw.jakdojade.pl"
+						 onmouseover="hoverCity(22000, 'Inowrocław')" onmouseout="houtCity(22000)">
+						 Inowrocław</a></li>
+				
+					<li><a href="http://krakow.jakdojade.pl"
+						 onmouseover="hoverCity(5000, 'Kraków')" onmouseout="houtCity(5000)">
+						 Kraków</a></li>
+				
+					<li><a href="http://leszno.jakdojade.pl"
+						 onmouseover="hoverCity(19000, 'Leszno')" onmouseout="houtCity(19000)">
+						 Leszno</a></li>
+				
+					<li><a href="http://lodz.jakdojade.pl"
+						 onmouseover="hoverCity(6000, 'Łódź')" onmouseout="houtCity(6000)">
+						 Łódź</a></li>
+				
+					<li><a href="http://lublin.jakdojade.pl"
+						 onmouseover="hoverCity(12000, 'Lublin')" onmouseout="houtCity(12000)">
+						 Lublin</a></li>
+				
+					<li><a href="http://trojmiasto.jakdojade.pl"
+						 onmouseover="hoverCity(7000, 'MZKZG (Trójmiasto)')" onmouseout="houtCity(7000)">
+						 MZKZG (Trójmiasto)</a></li>
+				
+					<li><a href="http://olsztyn.jakdojade.pl"
+						 onmouseover="hoverCity(16000, 'Olsztyn')" onmouseout="houtCity(16000)">
+						 Olsztyn</a></li>
+				
+					<li><a href="http://pila.jakdojade.pl"
+						 onmouseover="hoverCity(21000, 'Piła')" onmouseout="houtCity(21000)">
+						 Piła</a></li>
+				
+					<li><a href="http://poznan.jakdojade.pl"
+						 onmouseover="hoverCity(1000, 'Poznań')" onmouseout="houtCity(1000)">
+						 Poznań</a></li>
+				
+					<li><a href="http://radom.jakdojade.pl"
+						 onmouseover="hoverCity(10000, 'Radom')" onmouseout="houtCity(10000)">
+						 Radom</a></li>
+				
+					<li><a href="http://rzeszow.jakdojade.pl"
+						 onmouseover="hoverCity(13000, 'Rzeszów')" onmouseout="houtCity(13000)">
+						 Rzeszów</a></li>
+				
+					<li><a href="http://szczecin.jakdojade.pl"
+						 onmouseover="hoverCity(4000, 'Szczecin')" onmouseout="houtCity(4000)">
+						 Szczecin</a></li>
+				
+					<li><a href="http://torun.jakdojade.pl"
+						 onmouseover="hoverCity(8001, 'Toruń')" onmouseout="houtCity(8001)">
+						 Toruń</a></li>
+				
+					<li><a href="http://warszawa.jakdojade.pl"
+						 onmouseover="hoverCity(3000, 'Warszawa')" onmouseout="houtCity(3000)">
+						 Warszawa</a></li>
+				
+					<li><a href="http://wroclaw.jakdojade.pl"
+						 onmouseover="hoverCity(2000, 'Wrocław')" onmouseout="houtCity(2000)">
+						 Wrocław</a></li>
+				
+					<li><a href="http://zielonagora.jakdojade.pl"
+						 onmouseover="hoverCity(18000, 'Zielona Góra')" onmouseout="houtCity(18000)">
+						 Zielona Góra</a></li>
+				</ul>
+			</div>
+		</div>
+		<div id="map">
+			<div id="cityNameBox"></div>
+			
+				<a href="http://bialystok.jakdojade.pl">
+					<div id="cityPoint11000" class="cityPoint" style="left:505px;top:160px"
+				onmouseover="hoverCity(11000, 'Białystok')" onmouseout="houtCity(11000)"></div></a>
+			
+				<a href="http://bydgoszcz.jakdojade.pl">
+					<div id="cityPoint8000" class="cityPoint" style="left:226px;top:160px"
+				onmouseover="hoverCity(8000, 'Bydgoszcz')" onmouseout="houtCity(8000)"></div></a>
+			
+				<a href="http://gop.jakdojade.pl">
+					<div id="cityPoint9000" class="cityPoint" style="left:281px;top:418px"
+				onmouseover="hoverCity(9000, 'GOP')" onmouseout="houtCity(9000)"></div></a>
+			
+				<a href="http://gorzow.jakdojade.pl">
+					<div id="cityPoint17000" class="cityPoint" style="left:76px;top:196px"
+				onmouseover="hoverCity(17000, 'Gorzów Wlkp.')" onmouseout="houtCity(17000)"></div></a>
+			
+				<a href="http://grudziadz.jakdojade.pl">
+					<div id="cityPoint14000" class="cityPoint" style="left:267px;top:128px"
+				onmouseover="hoverCity(14000, 'Grudziądz')" onmouseout="houtCity(14000)"></div></a>
+			
+				<a href="http://inowroclaw.jakdojade.pl">
+					<div id="cityPoint22000" class="cityPoint" style="left:240px;top:190px"
+				onmouseover="hoverCity(22000, 'Inowrocław')" onmouseout="houtCity(22000)"></div></a>
+			
+				<a href="http://krakow.jakdojade.pl">
+					<div id="cityPoint5000" class="cityPoint" style="left:331px;top:436px"
+				onmouseover="hoverCity(5000, 'Kraków')" onmouseout="houtCity(5000)"></div></a>
+			
+				<a href="http://leszno.jakdojade.pl">
+					<div id="cityPoint19000" class="cityPoint" style="left:149px;top:276px"
+				onmouseover="hoverCity(19000, 'Leszno')" onmouseout="houtCity(19000)"></div></a>
+			
+				<a href="http://lodz.jakdojade.pl">
+					<div id="cityPoint6000" class="cityPoint" style="left:305px;top:283px"
+				onmouseover="hoverCity(6000, 'Łódź')" onmouseout="houtCity(6000)"></div></a>
+			
+				<a href="http://lublin.jakdojade.pl">
+					<div id="cityPoint12000" class="cityPoint" style="left:473px;top:330px"
+				onmouseover="hoverCity(12000, 'Lublin')" onmouseout="houtCity(12000)"></div></a>
+			
+				<a href="http://trojmiasto.jakdojade.pl">
+					<div id="cityPoint7000" class="cityPoint" style="left:256px;top:42px"
+				onmouseover="hoverCity(7000, 'MZKZG (Trójmiasto)')" onmouseout="houtCity(7000)"></div></a>
+			
+				<a href="http://olsztyn.jakdojade.pl">
+					<div id="cityPoint16000" class="cityPoint" style="left:360px;top:102px"
+				onmouseover="hoverCity(16000, 'Olsztyn')" onmouseout="houtCity(16000)"></div></a>
+			
+				<a href="http://pila.jakdojade.pl">
+					<div id="cityPoint21000" class="cityPoint" style="left:157px;top:158px"
+				onmouseover="hoverCity(21000, 'Piła')" onmouseout="houtCity(21000)"></div></a>
+			
+				<a href="http://poznan.jakdojade.pl">
+					<div id="cityPoint1000" class="cityPoint" style="left:167px;top:225px"
+				onmouseover="hoverCity(1000, 'Poznań')" onmouseout="houtCity(1000)"></div></a>
+			
+				<a href="http://radom.jakdojade.pl">
+					<div id="cityPoint10000" class="cityPoint" style="left:397px;top:315px"
+				onmouseover="hoverCity(10000, 'Radom')" onmouseout="houtCity(10000)"></div></a>
+			
+				<a href="http://rzeszow.jakdojade.pl">
+					<div id="cityPoint13000" class="cityPoint" style="left:443px;top:438px"
+				onmouseover="hoverCity(13000, 'Rzeszów')" onmouseout="houtCity(13000)"></div></a>
+			
+				<a href="http://szczecin.jakdojade.pl">
+					<div id="cityPoint4000" class="cityPoint" style="left:38px;top:133px"
+				onmouseover="hoverCity(4000, 'Szczecin')" onmouseout="houtCity(4000)"></div></a>
+			
+				<a href="http://torun.jakdojade.pl">
+					<div id="cityPoint8001" class="cityPoint" style="left:258px;top:170px"
+				onmouseover="hoverCity(8001, 'Toruń')" onmouseout="houtCity(8001)"></div></a>
+			
+				<a href="http://warszawa.jakdojade.pl">
+					<div id="cityPoint3000" class="cityPoint" style="left:389px;top:241px"
+				onmouseover="hoverCity(3000, 'Warszawa')" onmouseout="houtCity(3000)"></div></a>
+			
+				<a href="http://wroclaw.jakdojade.pl">
+					<div id="cityPoint2000" class="cityPoint" style="left:173px;top:342px"
+				onmouseover="hoverCity(2000, 'Wrocław')" onmouseout="houtCity(2000)"></div></a>
+			
+				<a href="http://zielonagora.jakdojade.pl">
+					<div id="cityPoint18000" class="cityPoint" style="left:90px;top:267px"
+				onmouseover="hoverCity(18000, 'Zielona Góra')" onmouseout="houtCity(18000)"></div></a>
+			
+		</div>
+	</div>	
+	<div id="partnersBar">
+		<div class="content">
+			<div id="partners">
+				<ul>
+					<li><a href="http://ztm.waw.pl" title="ZTM Warszawa"><img src="img/operators/ZTM_WARSZAWA.png" width="48" height="40"></a></li>
+					<li><a href="http://mzkzg.org" title="Metropolitalny Związek Komunikacyjny Zatoki Gdańskiej"><img src="img/operators/METROPOLITALNY_ZWIAZEK_KOMUNIKACYJNY_ZATOKI_GDANSKIEJ.png" width="29" height="40"></a></li>
+					<li><a href="http://ztm.poznan.pl" title="ZTM Poznań"><img src="img/operators/MPK_POZNAN.png" width="105" height="40"></a></li>
+					<li><a href="http://mpk.wroc.pl" title="MPK Wrocław"><img src="img/operators/MPK_WROCLAW.png" width="100" height="40"></a></li>
+					<li><a href="http://kmkrakow.pl" title="Komunikacja Miejska w Krakowie"><img src="img/operators/KOMUNIKACJA_MIEJSKA_W_KRAKOWIE.png" width="94" height="40"></a></li>
+					<li><a href="http://zditm.szczecin.pl" title="ZDiTM Szczecin" ><img src="img/operators/ZDITM_SZCZECIN.png" width="84" height="40"></a></li>
+					<li><a href="http://przewozyregionalne.pl" title="Przewozy Regionalne" ><img src="img/operators/PR.png" width="80" height="40"></a></li>
+					<li><a href="http://www.kzkgop.com.pl" title="KZK GOP - Komunikacyjny Związek Komunalny Górnosląskiego Okręgu Przemysłowego" ><img src="img/operators/KZK_GOP.png" width="105" height="40"></a></li>
+					<li><a href="http://kolejeslaskie.com" title="Koleje Śląskie" ><img src="img/operators/KS.png" width="160" height="40"></a></li>
+					<li><a href="http://mpk.lodz.pl" title="MPK Łódź"><img src="img/operators/MPK_LODZ.png" width="56" height="40"></a></li>
+					<li><a href="http://zdmikp.bydgoszcz.pl" title="Zarząd Dróg Miejskich i Komunikacji Publicznej w Bydgoszczy"><img src="img/operators/ZDMIKP_BYDGOSZCZ.png" width="44" height="40"></a></li>
+					<li><a href="http://mzk.torun.pl" title="MZK Toruń"><img src="img/operators/MZK_TORUN.png" width="51" height="40"></a></li>
+					<li><a href="http://mzdik.pl" title="MZDiK Radom"><img src="img/operators/MZDIK_RADOM.png" width="99" height="40"></a></li>
+					<li><a href="http://www.komunikacja.bialystok.pl" title="Białostocka Komunikacja Miejska"><img src="img/operators/BKM_BIALYSTOK.png" width="113" height="40"></a></li>
+					<li><a href="http://www.ztm.erzeszow.pl" title="Zarząd Transportu Miejskiego w Rzeszowie"><img src="img/operators/ZTM_RZESZOW.png" width="92" height="40"></a></li>
+					<li><a href="http://www.zkm.olsztyn.eu" title="Zarząd Komunikacji Miejskiej w Olsztynie"><img src="img/operators/ZKM_OLSZTYN.png" width="113" height="40"></a></li>
+					<li><a href="http://www.mzk.zgora.pl" title="Miejski Zakład Komunikacji w Zielonej Górze"><img src="img/operators/MZK_ZIELONA_GORA.png" width="83" height="40"></a></li>
+				</ul>	
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="footer">
+	<div class="content">
+		<div id="links">
+			<ul>
+				<li><h5>MOBILE</h5></li>
+				<li><a href="http://m.jakdojade.pl" title="wersja mobilna, na przeglądarki telefonów">m.jakdojade.pl</a></li>
+				<li><a href="http://market.android.com/details?id=com.citynav.jakdojade.pl.android">Aplikacja Android</a></li>
+				<li><a href="http://m.jakdojade.pl/public/compare/index_pl.html">Aplikacja iPhone</a></li>
+				<li><a href="http://store.ovi.com/content/235432">Aplikacja Nokia/Symbian</a></li>
+				<li><a href="http://amsdigital.pl/">Czytniki QR</a></li>
+			</ul>
+			<ul>
+				<li><h5>KONTAKT</h5></li>
+				<li><a href="http://city-nav.com/web/blog/news">Blog</a></li>
+				<li><a href="http://www.facebook.com/jakdojade" title="jakdojade.pl na facebook">jakdojade.pl na facebook</a></li>
+				<li><a href="http://city-nav.com/web/guest/contact">Kontakt</a></li>
+				<li><a href="http://jakdojade-pl.sugester.pl">Forum sugestii</a></li>
+			</ul>
+			<ul>
+				<li><h5>WIĘCEJ</h5></li>
+				<li><a href="http://city-nav.com/web/guest/reklama" target="_blank">Reklama</a></li>
+				<li><a href="http://jakdojade.pl/pages/tos.html" target="_blank">Regulamin</a></li>
+				<li><a href="http://jakdojade.pl/pages/api/" target="_blank">API</a></li>
+			</ul>
+		</div>
+		<hr/>
+		<div style="margin:5px">Copyright &copy; 2008 - 2014 <a href="http://city-nav.com" target="_blank">CITY-NAV</a></div>
+	</div>
+</div>
+
+<script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+var hndl = window.setTimeout("StartTracking()", 1000);
+var pageTracker;
+function StartTracking(){
+	if (typeof(_gat) == 'object')
+	{
+		window.clearTimeout(hndl);
+		pageTracker = _gat._getTracker("UA-5518773-1");
+		pageTracker._setDomainName(".jakdojade.pl");
+		pageTracker._initData();
+		pageTracker._setAllowAnchor(true);
+		pageTracker._trackPageview();
+	} else {
+		hndl = window.setTimeout("StartTracking()", 1000);
+	}
+}
+</script>
+	
+</body>
+</html>

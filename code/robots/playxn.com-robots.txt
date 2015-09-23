@@ -1,0 +1,6 @@
+User-agent: Mediapartners-Google
+Disallow:
+User-agent: *
+Disallow: /inc/
+Disallow: /templates/
+Disallow: /out.php

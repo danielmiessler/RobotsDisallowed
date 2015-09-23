@@ -1,0 +1,1186 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="ie" lang="ja"><![endif]-->
+<!--[if IE 7]><html class="ie ie7" lang="ja"><![endif]-->
+<!--[if IE 8]><html class="ie ie8" lang="ja"><![endif]-->
+<!--[if IE 9]><html class="ie ie9" lang="ja"><![endif]-->
+<html lang="ja"><!--<![endif]-->
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>ワイン通販エノテカ・オンライン ENOTECA online for all wine lovers</title>
+<meta name="description" content="ワインショップエノテカのオンラインショップ。毎日更新、毎日配送で迅速にお届け。エノテカのワインは、基本、シャトー蔵出し直送。ワインの輸入・卸・小売販売を行う輸入元ならではの確かな品質、品揃え(常時約2000アイテム)の多さが自慢のショップです。豊富な品と専門知識で皆様のワイン選びをサポートいたします。レンタルセラーサービス、ボルドーワインのプリムール販売も行っております。">
+<meta name="keywords" content="ワイン,wine,おすすめ,ワイン通販,通販ワイン,通販,格安ワイン,高級ワイン,プレゼント,">
+<meta name="google-site-verification" content="yUHYJL-Jylm-pqYnKv_CEKQ8iZpiHnpXBbQsZ1p69qk" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta property="og:url" content="">
+<meta property="og:title" content="">
+<meta property="og:description" content="">
+<meta property="og:image" content="">
+<meta property="og:site_name" content="">
+<link media="screen,print" type="text/css" rel="stylesheet" href="http://enoteca.co.jp/common/css/common.css">
+<link media="screen,print" type="text/css" rel="stylesheet" href="http://enoteca.co.jp/common/css/item.css">
+<link media="screen,print" type="text/css" rel="stylesheet" href="http://enoteca.co.jp/common/css/item_enoteca.css">
+<link media="screen,print" type="text/css" rel="stylesheet" href="http://enoteca.co.jp/css/pc_top.css">
+<link media="screen,print" type="text/css" rel="stylesheet" href="http://enoteca.co.jp/packages/aq/css/pc.css">
+
+<script type="text/javascript" src="http://enoteca.co.jp/common/js/jquery.js"></script>
+<script type="text/javascript" src="http://enoteca.co.jp/common/js/plugin.js"></script>
+<script type="text/javascript" src="http://enoteca.co.jp/common/js/common.js"></script>
+<!--[if lt IE 9]>
+<script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<!--[if IE 6]>
+<script type="text/javascript" src="http://enoteca.co.jp/common/js/DD_belatedPNG.js"></script>
+<script>
+  DD_belatedPNG.fix('img, dl');
+</script>
+<![endif]-->
+<script type="text/javascript" src="http://enoteca.co.jp/common/js/jquery.bxslider.min.js"></script>
+<script type='text/javascript'>
+$(document).ready(function() {
+  $('.gallery ul').bxSlider({
+    auto: true,          // 自動スタート
+    autoControls: false, // スタート、ストップボタン
+    controls: false,     // 前へ、次へ 表示
+    prevText: '&lt;',    // 前へのテキスト
+    nextText: '&gt;',    // 次へのテキスト
+    pager: true,         // ページャーの表示
+    mode: 'fade',        // エフェクト
+    speed: 1000,         // エフェクトのスピード
+    autoHover: true,     // マウスホバー時の一時停止
+    pause: 8000,         // 間隔の時間
+    easing: 'swing'      // Easing
+  });
+});
+</script>
+</head>
+<body>
+<div class="container">
+<div class="container-inner">
+<!-- header -->
+      <header class="global">
+  <a href="http://enoteca.co.jp"><img src="/common/img/header-logo.png" alt="" /></a>
+  <div class="description">安心の自社輸入・自社直販、毎日出荷！<br>ワイン通販はエノテカ・オンライン</div>
+  <div class="links">
+    <ul>
+      <li><a href="/lang/en"><img src="/common/img/header-links-english.png" alt="English" /></a></li>
+      <li><a href="/guide/"><img src="/common/img/header-links-guide.png" alt="ご利用ガイド" /></a></li>
+      <li><a href="https://enoteca.co.jp/auth/login"><img src="/common/img/header-links-login.png" alt="ログイン" /></a></li>
+      <li><a href="https://enoteca.co.jp/signup/form"><img src="/common/img/header-links-register.png" alt="会員登録" /></a></li>
+      <li><a href="https://enoteca.co.jp/mypage"><img src="/common/img/header-links-mypage.png" alt="マイページ" /></a></li>
+    </ul>
+    <div class="clubenoteca"><a href="/club/index.html" target="_blank"><img src="/common/img/header-clubenoteca.png" alt="CLUB ENOTECA" /></a></div>
+  </div>
+  <div class="usermenu">
+    <div class="user-name">ゲスト　様</div>
+    <div class="user-fav"><span class="fav-num png">0</span> <a href="http://enoteca.co.jp/favorite/list"><img src="/common/img/header-user-fav-ttl.png" alt="" /></a></div>
+    <div class="user-cart"><span class="cart-num png">0</span> <a id="cartlink" href="https://enoteca.co.jp/cart"><img src="/common/img/header-user-cart-ttl.png" alt="" /></a>( &yen; <span class="cart-yen">0</span> ) 税抜1万円で送料無料</div>
+  </div>
+  <ul id="gnav">
+    <li><a href="/about/index.html"><img src="/common/img/gnav-01.png" alt="エノテカのこだわり" /></a></li>
+    <li><a href="/wineset/index.html"><img src="/common/img/gnav-02.png" alt="厳選ワインセット" /></a></li>
+    <li><a href="/brand/index.html"><img src="/common/img/gnav-03.png" alt="定番ワイナリー" /></a></li>
+    <li><a href="/gift/index.html"><img src="/common/img/gnav-04.png" alt="ギフト" /></a></li>
+    <li><a href="/gourmet/index.html"><img src="/common/img/gnav-05.png" alt="グルメブティック" /></a></li>
+    <li><a href="/shop/" target="_blank"><img src="/common/img/gnav-06.png" alt="店舗案内" /></a></li>
+  </ul>
+</header>
+  <!-- /header  -->
+<section class="contents">
+  <div class="contents-inner">
+    <div class="main">
+<!-- messages -->
+<!-- /messages  -->
+<section class="bnr ">
+  <a href="http://www.enoteca.co.jp/silver/index.html?&amp;banner=TOP" target="_blank"><img src="/banner/800_silver.jpg" alt="シルバーウィーク" /></a>
+</section>
+      <section class="pickup padding">
+<div class="gallery">
+  <ul>
+    <li><a href="http://www.enoteca.co.jp/item/list?_label=P6&amp;banner=SL" target="_self"><img src="/banner/slider_bourgognefair1509.jpg" alt="ブルゴーニュワインフェア！対象商品2本以上で15％OFF" /></a></li>
+    <li><a href="http://www.enoteca.co.jp/item/detail/00YDR0150920?&amp;banner=SL" target="_self"><img src="/banner/2015.9yoridori_slider.jpg" alt="2015.9よりどり3本5万円" /></a></li>
+    <li><a href="http://www.enoteca.co.jp/item/detail/0565401113A9" target="_self"><img src="/banner/dominus2009_640.jpg" alt="ドミナス2009" /></a></li>
+    <li><a href="http://www.enoteca.co.jp/item/list?_label=HR&amp;banner=SL" target="_self"><img src="/banner/HR2015_640.jpg" alt="201509品種飲み比べセット" /></a></li>
+    <li><a href="/item/list?_label=RF1&amp;banner=SL" target="_self"><img src="/banner/slider_rf1.jpg" alt="RF1 おうちデリ" /></a></li>
+    <li><a href="http://www.enoteca.co.jp/hanpu/index.html?&amp;banner=SL" target="_self"><img src="/banner/zentenhanpu_640.jpg" alt="全店頒布会" /></a></li>
+  </ul>
+</div>
+<div class="pickupbnr1"><a href="/highend/index2.html" target="_self"><img src="/banner/highend_usual.jpg" alt="ハイエンドセレクション エノテカが誇る世界屈指のプレミアムワインリスト" class="nosp" /><img src="/banner/highend_usual.jpg" alt="ハイエンドセレクション エノテカが誇る世界屈指のプレミアムワインリスト" class="forsp" /></a></div>
+<div class="pickupbnr2"><a href="/wineset/index.html?&amp;banner=PC2" target="_self"><img src="/banner/wineset_.jpg" alt="ワインセット" class="nosp" /><img src="/banner/wineset_2.jpg" alt="ワインセット" class="forsp" /></a></div>
+      </section>
+<div style="background:#ffffff; padding-bottom:30px;">
+<a href="http://www.enoteca.co.jp/allegrini/index.html?&banner=TOP" title="アレグリーニキャンペーン" target="_blank"><img src="/banner/allegrini_topbanner.jpg" border="0" class="auto"></a><br>
+<br>
+<br>
+</div>
+<section class="ranking shadow">
+  <div class="ttl"><img src="img/ranking-ttl.png" alt="ランキング" class="nosp" /><img src="spimg/ranking-ttl.png" alt="ランキング" class="forsp" /><span>2015年9月22日更新</span></div>
+  <div class="tabs">
+    <ul>
+    <li><a href="#ranking01" class="noscrl"><img src="img/ranking-ttl-01.png" alt="赤ワイン" class="nosp" /><img src="spimg/ranking-ttl-01.png" alt="赤ワイン" class="forsp" /></a></li>
+    <li><a href="#ranking02" class="noscrl"><img src="img/ranking-ttl-02.png" alt="白ワイン" class="nosp" /><img src="spimg/ranking-ttl-02.png" alt="白ワイン" class="forsp" /></a></li>
+    <li><a href="#ranking03" class="noscrl"><img src="img/ranking-ttl-03.png" alt="スパークリングワイン" class="nosp" /><img src="spimg/ranking-ttl-03.png" alt="スパークリングワイン" class="forsp" /></a></li>
+    <li><a href="#ranking04" class="noscrl"><img src="img/ranking-ttl-04.png" alt="ワインセット" class="nosp" /><img src="spimg/ranking-ttl-04.png" alt="ワインセット" class="forsp" /></a></li>
+    </ul>
+<div id="ranking01" class="ranking-tab">
+  <ul>
+    <li >
+      <img src="img/ranking-num01.png" alt="" class="ranking-num" />
+      <div class="productimg">
+        <a href="/item/detail/0453433713B2" target="_self"><img src="/banner/0453433713B2_2.png" height="143" alt="" /></a>
+      </div>
+      <div class="product-ttl">
+        <a href="/item/detail/0453433713B2" target="_self" title=""></a>
+      </div>
+      <div class="product-txt" title="2012年【9月ハッピーワイン！】パラッツォ・デッラ・トーレ /アレグリーニ ">
+        2012年【9月ハッピーワイン！】パラッツォ・デッラ・トーレ /ア...      </div>
+      <div class="product-price">
+        3,040円
+      </div>
+      <div class="product-review">
+        <div class="review-stars">
+          <img src="/common/img/review-stars.png" alt="" />
+          <span><img src="/common/img/review-stars_full.png" alt="" /></span>
+        </div>
+        [<span class="ratingValue">4.7</span>]
+      </div>
+    </li>
+    <li >
+      <img src="img/ranking-num02.png" alt="" class="ranking-num" />
+      <div class="productimg">
+        <a href="/item/detail/0769010113B2" target="_self"><img src="/banner/CABERNET-RESERVA2.png" height="143" alt="" /></a>
+      </div>
+      <div class="product-ttl">
+        <a href="/item/detail/0769010113B2" target="_self" title=""></a>
+      </div>
+      <div class="product-txt" title="2012年カベルネ・ソーヴィニヨン・レゼルヴァ /ボデガ・ノートン">
+        2012年カベルネ・ソーヴィニヨン・レゼルヴァ /ボデガ・ノートン      </div>
+      <div class="product-price">
+        1,900円
+      </div>
+      <div class="product-review">
+        <div class="review-stars">
+          <img src="/common/img/review-stars.png" alt="" />
+          <span><img src="/common/img/review-stars_full.png" alt="" /></span>
+        </div>
+        [<span class="ratingValue">4.5</span>]
+      </div>
+    </li>
+    <li >
+      <img src="img/ranking-num03.png" alt="" class="ranking-num" />
+      <div class="productimg">
+        <a href="/item/detail/AS15020013B5" target="_self"><img src="/banner/AS15020013B5_2.png" height="143" alt="" /></a>
+      </div>
+      <div class="product-ttl">
+        <a href="/item/detail/AS15020013B5" target="_self" title=""></a>
+      </div>
+      <div class="product-txt" title="2015年ボジョレー・ヴィラージュ・ヌーヴォー・アンフォゲッタブル　(スクリューキャップ）) /アンリ・フェッシ">
+        2015年ボジョレー・ヴィラージュ・ヌーヴォー・アンフォゲッタ...      </div>
+      <div class="product-price">
+        2,375円
+      </div>
+      <div class="product-review">
+        <div class="review-stars">
+          <img src="/common/img/review-stars.png" alt="" />
+          <span><img src="/common/img/review-stars_full.png" alt="" /></span>
+        </div>
+        [<span class="ratingValue">0</span>]
+      </div>
+    </li>
+    <li  class="nosp" >
+      <img src="img/ranking-num04.png" alt="" class="ranking-num" />
+      <div class="productimg">
+        <a href="/item/detail/0668101213B2" target="_self"><img src="/banner/0668101213B1_2.jpg" height="143" alt="" /></a>
+      </div>
+      <div class="product-ttl">
+        <a href="/item/detail/0668101213B2" target="_self" title=""></a>
+      </div>
+      <div class="product-txt" title="2012年モンテス・アルファ・カベルネ・ソーヴィニヨン /モンテス">
+        2012年モンテス・アルファ・カベルネ・ソーヴィニヨン /モンテス      </div>
+      <div class="product-price">
+        2,200円
+      </div>
+      <div class="product-review">
+        <div class="review-stars">
+          <img src="/common/img/review-stars.png" alt="" />
+          <span><img src="/common/img/review-stars_full.png" alt="" /></span>
+        </div>
+        [<span class="ratingValue">4.3</span>]
+      </div>
+    </li>
+    <li  class="nosp" >
+      <img src="img/ranking-num05.png" alt="" class="ranking-num" />
+      <div class="productimg">
+        <a href="/item/detail/0100508213B0" target="_self"><img src="/banner/0100508213A9_2.png" height="143" alt="" /></a>
+      </div>
+      <div class="product-ttl">
+        <a href="/item/detail/0100508213B0" target="_self" title=""></a>
+      </div>
+      <div class="product-txt" title="2010年ル・オー・メドック・ド・ジスクール /">
+        2010年ル・オー・メドック・ド・ジスクール /      </div>
+      <div class="product-price">
+        2,800円
+      </div>
+      <div class="product-review">
+        <div class="review-stars">
+          <img src="/common/img/review-stars.png" alt="" />
+          <span><img src="/common/img/review-stars_full.png" alt="" /></span>
+        </div>
+        [<span class="ratingValue">4.2</span>]
+      </div>
+    </li>
+  </ul>
+  <div class="otherbtn btn_ranking">
+    <a href="/item/list?_color=1&_qty=1"><img src="/img/ranking-checkother-red.png" alt="" /></a>
+  </div>
+</div>
+<div id="ranking02" class="ranking-tab">
+  <ul>
+    <li >
+      <img src="img/ranking-num01.png" alt="" class="ranking-num" />
+      <div class="productimg">
+        <a href="/item/detail/0986301423B4" target="_self"><img src="/banner/0986301423B3_2.png" height="143" alt="" /></a>
+      </div>
+      <div class="product-ttl">
+        <a href="/item/detail/0986301423B4" target="_self" title=""></a>
+      </div>
+      <div class="product-txt" title="2014年セラー・セレクション・ソーヴィニヨン・ブラン（スクリューキャップ） /シレーニ">
+        2014年セラー・セレクション・ソーヴィニヨン・ブラン（スクリ...      </div>
+      <div class="product-price">
+        1,850円
+      </div>
+      <div class="product-review">
+        <div class="review-stars">
+          <img src="/common/img/review-stars.png" alt="" />
+          <span><img src="/common/img/review-stars_full.png" alt="" /></span>
+        </div>
+        [<span class="ratingValue">4.5</span>]
+      </div>
+    </li>
+    <li >
+      <img src="img/ranking-num02.png" alt="" class="ranking-num" />
+      <div class="productimg">
+        <a href="/item/detail/0668101223B3" target="_self"><img src="/banner/0668101223B2_2.png" height="143" alt="" /></a>
+      </div>
+      <div class="product-ttl">
+        <a href="/item/detail/0668101223B3" target="_self" title=""></a>
+      </div>
+      <div class="product-txt" title="2013年モンテス・アルファ・シャルドネ /モンテス">
+        2013年モンテス・アルファ・シャルドネ /モンテス      </div>
+      <div class="product-price">
+        2,200円
+      </div>
+      <div class="product-review">
+        <div class="review-stars">
+          <img src="/common/img/review-stars.png" alt="" />
+          <span><img src="/common/img/review-stars_full.png" alt="" /></span>
+        </div>
+        [<span class="ratingValue">4.5</span>]
+      </div>
+    </li>
+    <li >
+      <img src="img/ranking-num03.png" alt="" class="ranking-num" />
+      <div class="productimg">
+        <a href="/item/detail/0514325023B3" target="_self"><img src="/banner/0514325023B3_2.png" height="143" alt="" /></a>
+      </div>
+      <div class="product-ttl">
+        <a href="/item/detail/0514325023B3" target="_self" title=""></a>
+      </div>
+      <div class="product-txt" title="2013年マーフィー・グッド・シャルドネ（スクリューキャップ） /マーフィー・グッド">
+        2013年マーフィー・グッド・シャルドネ（スクリューキャップ） ...      </div>
+      <div class="product-price">
+        2,500円
+      </div>
+      <div class="product-review">
+        <div class="review-stars">
+          <img src="/common/img/review-stars.png" alt="" />
+          <span><img src="/common/img/review-stars_full.png" alt="" /></span>
+        </div>
+        [<span class="ratingValue">0</span>]
+      </div>
+    </li>
+    <li  class="nosp" >
+      <img src="img/ranking-num04.png" alt="" class="ranking-num" />
+      <div class="productimg">
+        <a href="/item/detail/AS00101123B4" target="_self"><img src="/banner/AS00101123B4_2.png" height="143" alt="" /></a>
+      </div>
+      <div class="product-ttl">
+        <a href="/item/detail/AS00101123B4" target="_self" title=""></a>
+      </div>
+      <div class="product-txt" title="2014年【9月25日以降出荷】サントネージュ エクセラント 牧丘 倉科畑収穫シャルドネ /サントネージュワイン">
+        2014年【9月25日以降出荷】サントネージュ エクセラント 牧丘 ...      </div>
+      <div class="product-price">
+        3,700円
+      </div>
+      <div class="product-review">
+        <div class="review-stars">
+          <img src="/common/img/review-stars.png" alt="" />
+          <span><img src="/common/img/review-stars_full.png" alt="" /></span>
+        </div>
+        [<span class="ratingValue">0</span>]
+      </div>
+    </li>
+    <li  class="nosp" >
+      <img src="img/ranking-num05.png" alt="" class="ranking-num" />
+      <div class="productimg">
+        <a href="/item/detail/0271040123B5" target="_self"><img src="/banner/0271040123B5_2.png" height="143" alt="" /></a>
+      </div>
+      <div class="product-ttl">
+        <a href="/item/detail/0271040123B5" target="_self" title=""></a>
+      </div>
+      <div class="product-txt" title="2015年マコン・ヴィラージュ・ヌーヴォー　ヴィエイユ・ヴィーニュ / タイユヴァン ">
+        2015年マコン・ヴィラージュ・ヌーヴォー　ヴィエイユ・ヴィー...      </div>
+      <div class="product-price">
+        3,325円
+      </div>
+      <div class="product-review">
+        <div class="review-stars">
+          <img src="/common/img/review-stars.png" alt="" />
+          <span><img src="/common/img/review-stars_full.png" alt="" /></span>
+        </div>
+        [<span class="ratingValue">0</span>]
+      </div>
+    </li>
+  </ul>
+  <div class="otherbtn btn_ranking">
+    <a href="/item/list?_color=2&_qty=1"><img src="/img/ranking-checkother-white.png" alt="" /></a>
+  </div>
+</div>
+<div id="ranking03" class="ranking-tab">
+  <ul>
+    <li >
+      <img src="img/ranking-num01.png" alt="" class="ranking-num" />
+      <div class="productimg">
+        <a href="/item/detail/066901042300" target="_self"><img src="/banner/066901042300_2.png" height="143" alt="" /></a>
+      </div>
+      <div class="product-ttl">
+        <a href="/item/detail/066901042300" target="_self" title=""></a>
+      </div>
+      <div class="product-txt" title="エスパス・オブ・リマリ・ブリュット/エスパス・オブ・リマリ・ブリュット">
+        エスパス・オブ・リマリ・ブリュット/エスパス・オブ・リマリ・...      </div>
+      <div class="product-price">
+        1,500円
+      </div>
+      <div class="product-review">
+        <div class="review-stars">
+          <img src="/common/img/review-stars.png" alt="" />
+          <span><img src="/common/img/review-stars_full.png" alt="" /></span>
+        </div>
+        [<span class="ratingValue">0</span>]
+      </div>
+    </li>
+    <li >
+      <img src="img/ranking-num02.png" alt="" class="ranking-num" />
+      <div class="productimg">
+        <a href="/item/detail/066811002300" target="_self"><img src="/banner/066811002300_2.png" height="143" alt="" /></a>
+      </div>
+      <div class="product-ttl">
+        <a href="/item/detail/066811002300" target="_self" title=""></a>
+      </div>
+      <div class="product-txt" title="モンテス・スパークリング・エンジェル・ブリュット/ モンテス S.A. ">
+        モンテス・スパークリング・エンジェル・ブリュット/ モンテス ...      </div>
+      <div class="product-price">
+        2,500円
+      </div>
+      <div class="product-review">
+        <div class="review-stars">
+          <img src="/common/img/review-stars.png" alt="" />
+          <span><img src="/common/img/review-stars_full.png" alt="" /></span>
+        </div>
+        [<span class="ratingValue">4.3</span>]
+      </div>
+    </li>
+    <li >
+      <img src="img/ranking-num03.png" alt="" class="ranking-num" />
+      <div class="productimg">
+        <a href="/item/detail/086982922300" target="_self"><img src="/banner/086982922300_2.png" height="143" alt="" /></a>
+      </div>
+      <div class="product-ttl">
+        <a href="/item/detail/086982922300" target="_self" title=""></a>
+      </div>
+      <div class="product-txt" title="プロジェクト・クワトロ・カヴァ/ クロ・モンブラン">
+        プロジェクト・クワトロ・カヴァ/ クロ・モンブラン      </div>
+      <div class="product-price">
+        1,900円
+      </div>
+      <div class="product-review">
+        <div class="review-stars">
+          <img src="/common/img/review-stars.png" alt="" />
+          <span><img src="/common/img/review-stars_full.png" alt="" /></span>
+        </div>
+        [<span class="ratingValue">4.3</span>]
+      </div>
+    </li>
+    <li  class="nosp" >
+      <img src="img/ranking-num04.png" alt="" class="ranking-num" />
+      <div class="productimg">
+        <a href="/item/detail/056702252300" target="_self"><img src="/banner/056702252300_2.png" height="143" alt="" /></a>
+      </div>
+      <div class="product-ttl">
+        <a href="/item/detail/056702252300" target="_self" title=""></a>
+      </div>
+      <div class="product-txt" title="カルテット・アンダーソン・ヴァレー・ブリュット/ ロデレール・エステート ">
+        カルテット・アンダーソン・ヴァレー・ブリュット/ ロデレール...      </div>
+      <div class="product-price">
+        3,500円
+      </div>
+      <div class="product-review">
+        <div class="review-stars">
+          <img src="/common/img/review-stars.png" alt="" />
+          <span><img src="/common/img/review-stars_full.png" alt="" /></span>
+        </div>
+        [<span class="ratingValue">4.7</span>]
+      </div>
+    </li>
+    <li  class="nosp" >
+      <img src="img/ranking-num05.png" alt="" class="ranking-num" />
+      <div class="productimg">
+        <a href="/item/detail/NV1530012300" target="_self"><img src="/banner/NV1530012300_2.png" height="143" alt="" /></a>
+      </div>
+      <div class="product-ttl">
+        <a href="/item/detail/NV1530012300" target="_self" title=""></a>
+      </div>
+      <div class="product-txt" title="ガスパール・エ・リサ ブラン・ド・ブラン ブリュット/ C. F. G. V. ">
+        ガスパール・エ・リサ ブラン・ド・ブラン ブリュット/ C. F. G...      </div>
+      <div class="product-price">
+        2,100円
+      </div>
+      <div class="product-review">
+        <div class="review-stars">
+          <img src="/common/img/review-stars.png" alt="" />
+          <span><img src="/common/img/review-stars_full.png" alt="" /></span>
+        </div>
+        [<span class="ratingValue">3</span>]
+      </div>
+    </li>
+  </ul>
+  <div class="otherbtn btn_ranking">
+    <a href="/item/list?_color=5&_qty=1"><img src="/img/ranking-checkother-sparkling.png" alt="" /></a>
+  </div>
+</div>
+<div id="ranking04" class="ranking-tab">
+  <ul>
+    <li >
+      <img src="img/ranking-num01.png" alt="" class="ranking-num" />
+      <div class="productimg">
+        <a href="/item/detail/880810MQ4AB5" target="_self"><img src="/banner/NEW_MQ.jpg" height="143" alt="" /></a>
+      </div>
+      <div class="product-ttl">
+        <a href="/item/detail/880810MQ4AB5" target="_self" title=""></a>
+      </div>
+      <div class="product-txt" title="パーティーパック ミックス10本 MQ8-1 [750mlx10] &lt;br&gt;">
+        パーティーパック ミックス10本 MQ8-1 [750mlx10] <br>      </div>
+      <div class="product-price">
+        9,800円
+      </div>
+      <div class="product-review">
+        <div class="review-stars">
+          <img src="/common/img/review-stars.png" alt="" />
+          <span><img src="/common/img/review-stars_full.png" alt="" /></span>
+        </div>
+        [<span class="ratingValue">4.1</span>]
+      </div>
+    </li>
+    <li >
+      <img src="img/ranking-num02.png" alt="" class="ranking-num" />
+      <div class="productimg">
+        <a href="/item/detail/880910VB17B5" target="_self"><img src="/banner/VB9_1.jpg" height="143" alt="" /></a>
+      </div>
+      <div class="product-ttl">
+        <a href="/item/detail/880910VB17B5" target="_self" title=""></a>
+      </div>
+      <div class="product-txt" title="イタリア周遊赤ワイン6本セット VB9-1 [750ml x 6]  &lt;br&gt;">
+        イタリア周遊赤ワイン6本セット VB9-1 [750ml x 6]  <br>      </div>
+      <div class="product-price">
+        12,000円
+      </div>
+      <div class="product-review">
+        <div class="review-stars">
+          <img src="/common/img/review-stars.png" alt="" />
+          <span><img src="/common/img/review-stars_full.png" alt="" /></span>
+        </div>
+        [<span class="ratingValue">4.3</span>]
+      </div>
+    </li>
+    <li >
+      <img src="img/ranking-num03.png" alt="" class="ranking-num" />
+      <div class="productimg">
+        <a href="/item/detail/880810BQ2AB5" target="_self"><img src="/banner/NEW_BQ.jpg" height="143" alt="" /></a>
+      </div>
+      <div class="product-ttl">
+        <a href="/item/detail/880810BQ2AB5" target="_self" title=""></a>
+      </div>
+      <div class="product-txt" title="パーティーパック 白だけ10本 BQ8-1 [750mlx10] &lt;br&gt;">
+        パーティーパック 白だけ10本 BQ8-1 [750mlx10] <br>      </div>
+      <div class="product-price">
+        9,800円
+      </div>
+      <div class="product-review">
+        <div class="review-stars">
+          <img src="/common/img/review-stars.png" alt="" />
+          <span><img src="/common/img/review-stars_full.png" alt="" /></span>
+        </div>
+        [<span class="ratingValue">4.4</span>]
+      </div>
+    </li>
+    <li  class="nosp" >
+      <img src="img/ranking-num04.png" alt="" class="ranking-num" />
+      <div class="productimg">
+        <a href="/item/detail/880910AQ1AB5" target="_self"><img src="/banner/NEW_AQ.jpg" height="143" alt="" /></a>
+      </div>
+      <div class="product-ttl">
+        <a href="/item/detail/880910AQ1AB5" target="_self" title=""></a>
+      </div>
+      <div class="product-txt" title="パーティーパック 赤だけ10本 AQ9-1 [750mlx10] &lt;br&gt;">
+        パーティーパック 赤だけ10本 AQ9-1 [750mlx10] <br>      </div>
+      <div class="product-price">
+        9,800円
+      </div>
+      <div class="product-review">
+        <div class="review-stars">
+          <img src="/common/img/review-stars.png" alt="" />
+          <span><img src="/common/img/review-stars_full.png" alt="" /></span>
+        </div>
+        [<span class="ratingValue">4.3</span>]
+      </div>
+    </li>
+    <li  class="nosp" >
+      <img src="img/ranking-num05.png" alt="" class="ranking-num" />
+      <div class="productimg">
+        <a href="/item/detail/880910WW27B5" target="_self"><img src="/banner/WW9-_1.jpg" height="143" alt="" /></a>
+      </div>
+      <div class="product-ttl">
+        <a href="/item/detail/880910WW27B5" target="_self" title=""></a>
+      </div>
+      <div class="product-txt" title="イタリア白ワイン飲み比べ6本セット WW9-1 [750ml x 6] ">
+        イタリア白ワイン飲み比べ6本セット WW9-1 [750ml x 6]       </div>
+      <div class="product-price">
+        10,000円
+      </div>
+      <div class="product-review">
+        <div class="review-stars">
+          <img src="/common/img/review-stars.png" alt="" />
+          <span><img src="/common/img/review-stars_full.png" alt="" /></span>
+        </div>
+        [<span class="ratingValue">4.4</span>]
+      </div>
+    </li>
+  </ul>
+  <div class="otherbtn btn_ranking">
+    <a href="/wineset/index.html"><img src="/img/ranking-checkother-set.png" alt="" /></a>
+  </div>
+</div>
+  </div>
+</section>
+<script type="text/javascript">
+<!--
+var selectId = 3;
+jQuery( function() {
+  jQuery( '.tabs' ) . tabs( {
+    selected: selectId,
+  } );
+} );
+// -->
+</script>
+<section class="recommend padding shadow">
+  <div class="ttl"><img src="/img/recommend-ttl.png" alt="おすすめ特集" class="nosp" /><img src="/spimg/recommend-ttl.png" alt="おすすめ特集" class="forsp" /></div>
+           <ul class="recommend1">
+          <li>
+        <div class="img">
+          <a href="/gift/index.html?&amp;banner=OS" target="_self"><img src="/banner/177_gift2015summer.jpg" alt="2015年ワインギフト" /></a>
+        </div>
+        <div class="midasi"><a href="/gift/index.html?&amp;banner=OS" target="_self"> ≪全国送料無料≫<br>ワインギフト </a></div>
+        <div class="txt"> 定番ギフトからシチュエーション別ギフトまで。
+ </div>
+      </li>
+                   <li>
+        <div class="img">
+          <a href="http://www.enoteca.co.jp/2015BJN/index.html?&amp;banner=OS" target="_self"><img src="/banner/2015BJN_177.jpg" alt="2015ボジョレー・ヌーヴォー" /></a>
+        </div>
+        <div class="midasi"><a href="http://www.enoteca.co.jp/2015BJN/index.html?&amp;banner=OS" target="_self"> 先行割引5%OFF！ボジョレー・ヌーヴォー </a></div>
+        <div class="txt"> 2015年は記憶に残る素晴らしい出来栄え！ </div>
+      </li>
+                   <li>
+        <div class="img">
+          <a href="http://www.enoteca.co.jp/item/detail/HMPPR0000004?&amp;banner=OS" target="_self"><img src="/banner/177_premiumhanpu.jpg" alt="プレミアム頒布会" /></a>
+        </div>
+        <div class="midasi"><a href="http://www.enoteca.co.jp/item/detail/HMPPR0000004?&amp;banner=OS" target="_self"> <秋冬コース>9月末までご予約受付中！ </a></div>
+        <div class="txt"> ワインラヴァーのためのプレミアムな頒布会。 </div>
+      </li>
+                   <li>
+        <div class="img">
+          <a href="http://www.enoteca.co.jp/item/list?_label=5M&amp;banner=OS" target="_self"><img src="/banner/long-seller_177.jpg" alt="ロングセラー" /></a>
+        </div>
+        <div class="midasi"><a href="http://www.enoteca.co.jp/item/list?_label=5M&amp;banner=OS" target="_self"> ALL3,000円以下！<br>
+ロングセラーワイン </a></div>
+        <div class="txt"> お客様＆エノテカスタッフお墨付き！ </div>
+      </li>
+                   <li>
+        <div class="img">
+          <a href="http://www.enoteca.co.jp/item/list?_label=EF&amp;banner=OS" target="_self"><img src="/banner/ef_177.jpg" alt="今飲みボルドー！3本以上で送料無料" /></a>
+        </div>
+        <div class="midasi"><a href="http://www.enoteca.co.jp/item/list?_label=EF&amp;banner=OS" target="_self"> 3本以上で送料無料！今飲みボルドー </a></div>
+        <div class="txt"> まろやかでこなれた味わいが秋にぴったり！ </div>
+      </li>
+                   <li>
+        <div class="img">
+          <a href="http://www.enoteca.co.jp/item/list?_label=4I&amp;_qty=1&amp;banner=OS" target="_self"><img src="/banner/encore_177.jpg" alt="アンコールボックス" /></a>
+        </div>
+        <div class="midasi"><a href="http://www.enoteca.co.jp/item/list?_label=4I&amp;_qty=1&amp;banner=OS" target="_self"> アンコールボックス </a></div>
+        <div class="txt"> 在庫僅か！懐かしいセットがさらにお得に手に入るチャンス！ </div>
+      </li>
+                   <li>
+        <div class="img">
+          <a href="http://www.enoteca.co.jp/item/detail/wc/backvintage_bordeaux/index.html?&amp;banner=OS" target="_self"><img src="/banner/backbordeaux2015_9_177.jpg" alt="【2015年9月入荷！】バックヴィンテージボルドー" /></a>
+        </div>
+        <div class="midasi"><a href="http://www.enoteca.co.jp/item/detail/wc/backvintage_bordeaux/index.html?&amp;banner=OS" target="_self"> 新着！バックヴィンテージボルドー </a></div>
+        <div class="txt"> 1970年~2005年まで飲み頃ヴィンテージ多数入荷！ </div>
+      </li>
+                   <li>
+        <div class="img">
+          <a href="/item/list?_label=LS&amp;_qty=1&amp;banner=OS" target="_self"><img src="/banner/177_last_zaiko.jpg" alt="ラスト在庫セール" /></a>
+        </div>
+        <div class="midasi"><a href="/item/list?_label=LS&amp;_qty=1&amp;banner=OS" target="_self"> 20％OFF！ラスト在庫セール </a></div>
+        <div class="txt"> 品質、外観ともに問題なしの最終在庫をで一斉放出！ </div>
+      </li>
+                   <li>
+        <div class="img">
+          <a href="http://www.enoteca.co.jp/item/list?_producer=987&amp;banner=OS" target="_self"><img src="/banner/excellant_177.jpg" alt="サントネージュ　エクセラント" /></a>
+        </div>
+        <div class="midasi"><a href="http://www.enoteca.co.jp/item/list?_producer=987&amp;banner=OS" target="_self"> エノテカ独占発売！の日本ワイン </a></div>
+        <div class="txt"> 生産本数僅か1500本、エレガントで透明感溢れるワイン。 </div>
+      </li>
+                   <li>
+        <div class="img">
+          <a href="/item/list?_label=5L&amp;banner=OS" target="_self"><img src="/banner/177_nikkei2015.jpg" alt="日経プラス1何でもランキング2015" /></a>
+        </div>
+        <div class="midasi"><a href="/item/list?_label=5L&amp;banner=OS" target="_self"> 日本経済新聞NIKKEIプラス1登場 </a></div>
+        <div class="txt"> 何でもランキングでエノテカの赤ワインが1位を獲得！ </div>
+      </li>
+                   <li>
+        <div class="img">
+          <a href="http://www.enoteca.co.jp/opera/index.html?&amp;banner=OS" target="_self"><img src="/banner/177_operawine.jpg" alt="オペラワイン" /></a>
+        </div>
+        <div class="midasi"><a href="http://www.enoteca.co.jp/opera/index.html?&amp;banner=OS" target="_self"> 豪華競演! オペラワイン </a></div>
+        <div class="txt"> イタリアのトップ100生産者が集結する豪華イベント。お得なセットも登場。 </div>
+      </li>
+                   <li>
+        <div class="img">
+          <a href="http://www.enoteca.co.jp/item/list?_label=XP&amp;banner=OS" target="_self"><img src="/banner/177_koshu.jpg" alt="甲州特集" /></a>
+        </div>
+        <div class="midasi"><a href="http://www.enoteca.co.jp/item/list?_label=XP&amp;banner=OS" target="_self"> 日本ワイン </a></div>
+        <div class="txt"> 今注目の「甲州ワイン」を含む新作アイテムが多数入荷！ </div>
+      </li>
+                   <li>
+        <div class="img">
+          <a href="/vintage/index.html?&amp;banner=OS" target="_self"><img src="/banner/177_vintage_library.jpg" alt="ヴィンテージライブラリー" /></a>
+        </div>
+        <div class="midasi"><a href="/vintage/index.html?&amp;banner=OS" target="_self"> ヴィンテージワイン・ライブラリー </a></div>
+        <div class="txt"> 1950年代から揃う豊富なラインナップ。熟成ワインの飲み方や熟成の解説も。 </div>
+      </li>
+                   <li>
+        <div class="img">
+          <a href="http://www.enoteca.co.jp/item/list?_label=KL&amp;banner=OS" target="_self"><img src="/banner/kistler_177.jpg" alt="キスラー・スタンダードキュヴェ" /></a>
+        </div>
+        <div class="midasi"><a href="http://www.enoteca.co.jp/item/list?_label=KL&amp;banner=OS" target="_self"> 最新2013年ヴィンテージ再入荷! </a></div>
+        <div class="txt"> キスラー・ヴィンヤードの単一畑を含むキュヴェ3銘柄。 </div>
+      </li>
+                   <li>
+        <div class="img">
+          <a href="http://www.enoteca.co.jp/item/list?_producer=263&amp;banner=OS" target="_self"><img src="/banner/sauzet.jpg" alt="ソゼ2013年" /></a>
+        </div>
+        <div class="midasi"><a href="http://www.enoteca.co.jp/item/list?_producer=263&amp;banner=OS" target="_self"> エティエンヌ・ソゼ </a></div>
+        <div class="txt"> 待望の最新2013年ヴィンテージ入荷！ </div>
+      </li>
+                   <li>
+        <div class="img">
+          <a href="http://www.enoteca.co.jp/item/list?_producer=229&amp;banner=OS" target="_self"><img src="/banner/mikulski2013_177.jpg" alt="フランソワ・ミクルスキ2013" /></a>
+        </div>
+        <div class="midasi"><a href="http://www.enoteca.co.jp/item/list?_producer=229&amp;banner=OS" target="_self"> フランソワ・ミクルスキ最新2013年入荷！ </a></div>
+        <div class="txt"> 上品でしなやかなムルソー。全5銘柄限定入荷！ </div>
+      </li>
+        </ul>
+                 <ul class="recommend2 nosp">
+          <li >         <div><a href="http://www.enoteca.co.jp/item/list?_producer=227&amp;banner=OS" target="_self"> ジャック・プリウール </a></div>
+         最新2012年全5銘柄入荷！女性醸造家がビオで仕立てる白ワイン。       </li>
+                   <li >         <div><a href="http://www.enoteca.co.jp/item/list?_producer=386&amp;banner=OS" target="_self"> ミッシェル・ニーヨン </a></div>
+         2006年～バックヴィンテージも到着。シャサーニュ・モンラッシェの名品。       </li>
+                   <li >         <div><a href="http://www.enoteca.co.jp/item/list?_sp=asc&amp;_label=RM&amp;banner=OS" target="_self"> RMシャンパーニュ </a></div>
+         限定商品多数！個性豊かなＲＭシャンパーニュの世界へようこそ。       </li>
+                   <li >         <div><a href="http://www.enoteca.co.jp/item/list?_label=C0&amp;banner=OS" target="_self"> 生産量、世界No.１！フレンチロゼ </a></div>
+         人気ワインの最新ヴィンテージがぞくぞく入荷中！       </li>
+                   <li >         <div><a href="/item/list?_label=TE&amp;banner=OS" target="_self"> リサとガスパールの<br>スパークリングワイン </a></div>
+         大人気キャラクターのキュートなスパークリングが登場！       </li>
+                   <li >         <div><a href="http://www.enoteca.co.jp/item/list?_label=GQ&amp;banner=OS" target="_self"> 2012年ボルドー第2弾！ </a></div>
+         パルメやピション・バロンを筆頭に、全16銘柄が新入荷！       </li>
+                   <li >         <div><a href="http://www.enoteca.co.jp/item/list?_producer=958&amp;banner=OS" target="_blanc"> フランシス・コッポラ・ソフィア </a></div>
+         キリット冷やして飲み疲れすることなくお楽しみいただけます。       </li>
+                   <li >         <div><a href="/item/list?_label=C5&amp;banner=OS" target="_self"> ロワールワイン </a></div>
+         絶対に飲んでおくべき、各地域を代表する6つのアペラシオンをご紹介。       </li>
+                   <li >         <div><a href="http://www.enoteca.co.jp/item/list?_label=5U&amp;banner=OS" target="_self"> やっぱり肉が好き！<br>お肉料理と合うワイン </a></div>
+         これで間違いなし！お肉とワインの絶品マリアージュ。       </li>
+                   <li  class="noborder" >         <div><a href="http://www.enoteca.co.jp/item/list?_label=G6&amp;banner=OS" target="_self"> オマール海老の新作デリ！ </a></div>
+         グロワ・エ・ナチュールからオマール海老の贅沢デリが新登場！       </li>
+                   <li  class="noborder" >         <div><a href="http://www.enoteca.co.jp/item/list?_producer=955&amp;banner=OS" target="_self"> 千円台で買えるクリスタルグラス「ロナ」 </a></div>
+         初入荷！プロが愛用するタフなワイングラス。       </li>
+                   <li  class="noborder" >         <div><a href="http://www.enoteca.co.jp/item/list?_label=EX&amp;banner=OS" target="_self"> 人気イタリアワイン10銘柄価格見直し！ </a></div>
+         在庫は今ある限りとなりますので、ぜひこの機会をお見逃しなく。       </li>
+        </ul>
+        <div class="otherbtn">
+    <a href="/futures/index.html"><img src="/img/recommend-checkother.png" alt="ほかの特集もチェック！" /></a>
+  </div>
+</section>
+<section class="monthly">
+  <div class="ttl"><img src="/img/monthly-ttl.png" alt="毎月更新" class="nosp" /><img src="/spimg/monthly-ttl.png" alt="毎月更新" class="forsp" /></div>
+  <ul>
+    <li >
+      <div class="img">
+        <a href="http://www.enoteca.co.jp/item/list?_label=SH9" target="_self">
+          <img src="/banner/monthly-15_09.jpg" alt="旬の食材" class="nosp" />
+          <img src="/banner/monthly-15_09.jpg" alt="旬の食材" class="forsp" />
+        </a>
+      </div>
+      <a href="http://www.enoteca.co.jp/item/list?_label=SH9" target="_self"> 9月の旬の食材<br>
+エレガントなスパークリング<br>
+ｘいちじく <br></a>
+            </li>
+    <li >
+      <div class="img">
+        <a href="/item/list?_label=KK" target="_self">
+          <img src="/banner/kkmonthly_red.jpg" alt="今月の3本セット" class="nosp" />
+          <img src="/banner/kkmonthly_red.jpg" alt="今月の3本セット" class="forsp" />
+        </a>
+      </div>
+      <a href="/item/list?_label=KK" target="_self"> 今月は赤・白の2つのセットご用意。<br>
+ご自宅でゆっくりとお楽しみください。 <br></a>
+            </li>
+    <li  class="noborder" >
+      <div class="img">
+        <a href="/item/list?_label=MH" target="_self">
+          <img src="/banner/happy_09.jpg" alt="ハッピーワイン" class="nosp" />
+          <img src="/banner/happy_09.jpg" alt="ハッピーワイン" class="forsp" />
+        </a>
+      </div>
+      <a href="/item/list?_label=MH" target="_self"> 20%OFF！ヴェネト州No.1ワイナリー<br>「アレグリーニ」 <br></a>
+            </li>
+  </ul>
+</section>
+
+      <section class="news shadow">
+                <ul class="news2 padding">
+          <li><a href="/wineset/index.html"><img src="/img/news-bnr01.png" alt="厳選クオリティのワインセット" /></a></li>
+          <li><a href="/hamp/"><img src="/img/news-bnr02.png" alt="美味しいワインを毎月お届け 頒布会" /></a></li>
+        </ul>
+      </section>
+
+      <section class="sns padding shadow">
+        <div class="ttl">
+          <img src="/img/sns-ttl.png" alt="エノテカの公式ブログ、Twitter、facebook" class="nosp" />
+          <img src="/spimg/sns-ttl.png" alt="エノテカの公式ブログ、Twitter、facebook" class="forsp" />
+          &nbsp;<a href="https://twitter.com/enoteca_online/" target="_blank"><img src="/common/img/icn/twit_32.png" alt="Twitter" /></a>
+          <a href="https://www.facebook.com/Enoteca.Co" target="_blank"><img src="/common/img/icn/fb_32.png" alt="facebook" /></a>
+        </div>
+        <p class="forsp">ワインのある生活や、ワインへのこだわり、お得情報などをご紹介しています。</p>
+<div class="col col1">
+  <div class="firstChild">
+    <a href="http://blog.enoteca.co.jp/" target="_blank">
+      <img src="/banner/lifebrog0919.jpg" alt=" エノテカワインライフブログ " />
+    </a>
+    <div class="midasi"><a href="http://blog.enoteca.co.jp/" target="_blank"> エノテカワインライフブログ </a></div>
+    <div class="txt"> 鰹の美味しい季節になりました♪  </div>
+  </div>
+  <div class="firstChild">
+    <a href="http://winetsushin.blogspot.jp/" target="_blank">
+      <img src="/banner/winetsushin0915.jpg" alt=" エノテカワイン通信ブログ " />
+    </a>
+    <div class="midasi"><a href="http://winetsushin.blogspot.jp/" target="_blank"> エノテカワイン通信ブログ </a></div>
+    <div class="txt"> ワインジャーナリスト山本昭彦さん『50語でわかる！ 最初で最後のシャンパン入門』トークイベント開催 </div>
+  </div>
+</div>
+<!-- twitter -->
+<div class="col twitter">
+  <a class="twitter-timeline" href="https://twitter.com/enoteca_online" data-widget-id="367127469972672512">@enoteca_online からのツイート</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div>
+<!-- /twitter -->
+<!-- facebook -->
+<div class="col">
+<iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2FEnoteca.Co&amp;width=256&amp;height=256&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:256px; height:256px;" allowTransparency="true"></iframe>
+<br>
+<a href="https://enoteca.co.jp/magazine/form" target="_blank"><img src="/banner/mailmagazin_256.jpg" alt="" /></a>
+</div>
+<!-- /facebook -->
+      </section>
+<section class="bnr bnr1">
+  <a href="/primeur/index.html" target="_blank"><img src="/banner/824_primeur_all.jpg" alt="" /></a>
+</section>
+<section class="bnr bnr1">
+  <a href="http://cellar.enoteca.co.jp/" target="_blank"><img src="/banner/bnr-rentalceller.png" alt="" /></a>
+</section>
+<section class="bnr ">
+  <a href="http://beer.asahishop.net/?sc_cid=ca_entc_ba_22746" target="_blank"><img src="/banner/ENOTECA_TOP_824_116.jpg" alt="" /></a>
+</section>
+    </div><!-- /.main -->
+<!-- .side -->
+      <div class="side">
+  <section class="search">
+    <div class="ttl"><img src="/common/img/side/side-search-type.gif" alt="種類から探す" /></div>
+    <ul>
+      <li class="redwine"><a href="/item/list?_color=1&_qty=1">赤ワイン</a></li>
+      <li class="whitewine"><a href="/item/list?_color=2&_qty=1">白ワイン</a></li>
+      <li class="sparklingwine"><a href="/item/list?_color=5&_qty=1">スパークリングワイン</a></li>
+      <li class="wineset"><a href="/wineset/index.html">ワインセット</a></li>
+      <li class="goods"><a href="/winegoods/index.html">ワイングッズ</a></li>
+      <li class="winecellar"><a href="/winecellar/index.html">ワインセラー</a></li>
+      <li class="food"><a href="/gourmet/index.html">食品</a></li>
+      <li class="ticket"><a href="/item/list?_label=ST">イベントチケット</a></li>
+    </ul>
+  </section>
+  <section class="search">
+    <div class="ttl"><img src="/common/img/side/side-search-scene.gif" alt="シーンから探す" /></div>
+    <ul>
+      <li><a href="http://enoteca.co.jp/gift/index.html">ギフト</a></li>
+      <li><a href="http://enoteca.co.jp/wine1000/index.html">1,000円台ワイン</a></li>
+      <li><a href="http://enoteca.co.jp/dish/index.html">食事に合わせて楽しむ</a></li>
+      <li><a href="http://enoteca.co.jp/vintage/index.html">記念日のヴィンテージワイン</a></li>
+    </ul>
+  </section>
+<section class="search">
+  <div class="ttl"><img src="/common/img/side/side-search-location.gif" alt="産地から探す" /></div>
+  <ul>
+    <li>
+      <a class="arrow2" href="http://enoteca.co.jp/search/search_france.html">フランスワインを探す</a>
+      <ul>
+        <li><a href="http://enoteca.co.jp/item/list?_area=1000&_qty=1#list">ボルドー地方</a></li>
+        <li><a href="http://enoteca.co.jp/item/list?_area=2000&_qty=1#list">ブルゴーニュ地方</a></li>
+        <li><a href="http://enoteca.co.jp/item/list?_area=3001&_qty=1#list">シャンパーニュ地方</a></li>
+        <li><a href="http://enoteca.co.jp/item/list?_area=3100&_qty=1#list">ロワール地方</a></li>
+        <li><a href="http://enoteca.co.jp/item/list?_area=3200&_qty=1#list">ローヌ地方</a></li>
+        <li><a href="http://enoteca.co.jp/item/list?_area=3300&_qty=1#list">ラングドック・ルーション地方</a></li>
+        <li><a href="http://enoteca.co.jp/item/list?_area=3400&_qty=1#list">プロヴァンス地方</a></li>
+        <li><a href="http://enoteca.co.jp/item/list?_area=3500&_qty=1#list">アルザス地方</a></li>
+        <li><a href="http://enoteca.co.jp/item/list?_area=3900&_qty=1#list">その他地方</a></li>
+      </ul>
+    </li>
+  </ul>
+  <ul class="toggle bd">
+    <li>
+      <a href="" class="more"> その他の国 </a>
+      <ul>
+        <li><a href="http://enoteca.co.jp/item/list?_area=4000&_qty=1#list">イタリア</a></li>
+        <li><a href="http://enoteca.co.jp/item/list?_area=5000&_qty=1#list">アメリカ</a></li>
+        <li><a href="http://enoteca.co.jp/item/list?_area=6000&_qty=1#list">チリ</a></li>
+        <li><a href="http://enoteca.co.jp/item/list?_area=7000&_qty=1#list">アルゼンチン</a></li>
+        <li><a href="http://enoteca.co.jp/item/list?_area=8000&_qty=1#list">スペイン</a></li>
+        <li><a href="http://enoteca.co.jp/item/list?_area=9000&_qty=1#list">ニュージーランド</a></li>
+        <li><a href="http://enoteca.co.jp/item/list?_area=10000&_qty=1#list">ドイツ</a></li>
+        <li><a href="http://enoteca.co.jp/item/list?_area=11000&_qty=1#list">オーストラリア</a></li>
+        <li><a href="http://enoteca.co.jp/item/list?_area=12000&_qty=1#list">ポルトガル</a></li>
+        <li><a href="http://enoteca.co.jp/item/list?_area=13000&_qty=1#list">南アフリカ</a></li>
+        <li><a href="http://enoteca.co.jp/item/list?_area=15000&_qty=1#list">ハンガリー</a></li>
+        <li><a href="http://enoteca.co.jp/item/list?_area=16000&_qty=1#list">イギリス</a></li>
+        <li><a href="http://enoteca.co.jp/item/list?_area=17000&_qty=1#list">ベルギー</a></li>
+        <li><a href="http://enoteca.co.jp/item/list?_area=20001&_qty=1#list">レバノン</a></li>
+        <li><a href="http://enoteca.co.jp/item/list?_area=80000&_qty=1#list">日本</a></li>
+        <li><a href="http://enoteca.co.jp/item/list?_area=80029&_qty=1#list">ギリシャ</a></li>
+        <li><a href="http://enoteca.co.jp/item/list?_area=80043&_qty=1#list">スイス</a></li>
+        <li><a href="http://enoteca.co.jp/item/list?_area=80045&_qty=1#list">オーストリア</a></li>
+      </ul>
+    </li>
+  </ul>
+</section>
+<form method="GET" action="http://enoteca.co.jp/item/list" accept-charset="UTF-8"><section class="search">
+  <div class="ttl"><img src="/common/img/side/side-search-kodawari.gif" alt="こだわり検索" /></div>
+  <div class="txt">
+    <table>
+      <tr>
+        <th>タイプ</th>
+        <td><select style="width:180px;" name="_color"><option value="" selected="selected">-- 選択してください --</option><option value="1">赤ワイン</option><option value="2">白ワイン</option><option value="3">ロゼ</option><option value="5">スパークリングワイン</option><option value="8">酒精強化・蒸留酒</option><option value="9">オリーブオイル</option><option value="10">ビール</option><option value="11">ノン・アルコール</option></select></td>
+      </tr>
+      <tr>
+        <th>産地</th>
+        <td><select style="width:180px;" name="_area"><option value="" selected="selected">-- 選択してください --</option><option value="100">&gt; フランス</option><option value="1000">&gt; フランス &gt; ボルドー</option><option value="2000">&gt; フランス &gt; ブルゴーニュ</option><option value="3001">&gt; フランス &gt; シャンパーニュ</option><option value="3100">&gt; フランス &gt; ロワール</option><option value="3200">&gt; フランス &gt; ローヌ</option><option value="3300">&gt; フランス &gt; ラングドック・ルーション</option><option value="3400">&gt; フランス &gt; プロヴァンス</option><option value="3500">&gt; フランス &gt; アルザス</option><option value="3900">&gt; フランス &gt; その他</option><option value="4000">&gt; イタリア</option><option value="4001">&gt; イタリア &gt; ヴァッレ・ダオスタ</option><option value="4002">&gt; イタリア &gt; ピエモンテ</option><option value="4003">&gt; イタリア &gt; ロンバルディア</option><option value="4004">&gt; イタリア &gt; トレンティーノ・アルト・アディジェ</option><option value="4005">&gt; イタリア &gt; ヴェネト</option><option value="4006">&gt; イタリア &gt; フリウリ・ヴェネツィア・ジュリア</option><option value="4007">&gt; イタリア &gt; エミリア・ロマーニャ</option><option value="4008">&gt; イタリア &gt; リグーリア</option><option value="4009">&gt; イタリア &gt; トスカーナ</option><option value="4010">&gt; イタリア &gt; ウンブリア</option><option value="4011">&gt; イタリア &gt; ラツィオ</option><option value="4012">&gt; イタリア &gt; カンパーニア</option><option value="4013">&gt; イタリア &gt; バジリカータ</option><option value="4014">&gt; イタリア &gt; カラブリア</option><option value="4015">&gt; イタリア &gt; マルケ</option><option value="4016">&gt; イタリア &gt; アブルッツォ</option><option value="4017">&gt; イタリア &gt; モリーゼ</option><option value="4018">&gt; イタリア &gt; プーリア</option><option value="4019">&gt; イタリア &gt; シチリア</option><option value="4021">&gt; イタリア &gt; サルデーニャ</option><option value="5000">&gt; アメリカ</option><option value="5001">&gt; アメリカ &gt; カリフォルニア</option><option value="5002">&gt; アメリカ &gt; オレゴン</option><option value="6000">&gt; チリ</option><option value="6001">&gt; チリ &gt; ラペル・ヴァレー</option><option value="6002">&gt; チリ &gt; クリコ・ヴァレー</option><option value="6003">&gt; チリ &gt; カサブランカ・ヴァレー</option><option value="6004">&gt; チリ &gt; レイダ・ヴァレー</option><option value="6005">&gt; チリ &gt; マイポ・ヴァレー</option><option value="6006">&gt; チリ &gt; アコンカグア・ヴァレー</option><option value="6007">&gt; チリ &gt; コルチャグア・ヴァレー</option><option value="6008">&gt; チリ &gt; プエンテ・アルト</option><option value="6009">&gt; チリ &gt; サンタ・クルス</option><option value="6010">&gt; チリ &gt; セントラル・ヴァレー</option><option value="6011">&gt; チリ &gt; アパルタ・ヴァレー</option><option value="7000">&gt; アルゼンチン</option><option value="8000">&gt; スペイン</option><option value="8001">&gt; スペイン &gt; カタルーニャ</option><option value="8002">&gt; スペイン &gt; カタラユド</option><option value="8003">&gt; スペイン &gt; ラ・マンチャ</option><option value="8004">&gt; スペイン &gt; バルデベーニャス</option><option value="8005">&gt; スペイン &gt; アリカンテ</option><option value="8006">&gt; スペイン &gt; トロ</option><option value="8007">&gt; スペイン &gt; リベラ・デル・ドゥエロ</option><option value="8009">&gt; スペイン &gt; リオハ</option><option value="8010">&gt; スペイン &gt; アラゴン</option><option value="8011">&gt; スペイン &gt; ガリシア</option><option value="8012">&gt; スペイン &gt; フミーリャ</option><option value="8013">&gt; スペイン &gt; カステーリャ・イ・レオン</option><option value="9000">&gt; ニュージーランド</option><option value="10000">&gt; ドイツ</option><option value="11000">&gt; オーストラリア</option><option value="12000">&gt; ポルトガル</option><option value="13000">&gt; 南アフリカ</option><option value="15000">&gt; ハンガリー</option><option value="16000">&gt; イギリス</option><option value="17000">&gt; ベルギー</option><option value="20001">&gt; レバノン</option><option value="80000">&gt; 日本</option><option value="80001">&gt; 日本 &gt; 山形県</option><option value="80002">&gt; 日本 &gt; 長野県</option><option value="80003">&gt; 日本 &gt; 山梨県</option><option value="80004">&gt; 日本 &gt; 北海道</option><option value="80005">&gt; 日本 &gt; 広島県</option><option value="80006">&gt; 日本 &gt; 島根県</option><option value="80007">&gt; 日本 &gt; 岡山県</option><option value="80008">&gt; 日本 &gt; 京都府</option><option value="80009">&gt; 日本 &gt; 宮崎県</option><option value="80020">&gt; 日本 &gt; 宮城県</option><option value="80021">&gt; スペイン &gt; ルエダ</option><option value="80023">&gt; スペイン &gt; リアス・バイシャス</option><option value="80025">&gt; チリ &gt; マウレ・ヴァレー</option><option value="80026">&gt; チリ &gt; リマリ・ヴァレー</option><option value="80029">&gt; ギリシャ</option><option value="80034">&gt; 日本 &gt; 青森県</option><option value="80037">&gt; ドイツ &gt; ラインガウ</option><option value="80038">&gt; スペイン &gt; ソモンターノ</option><option value="80043">&gt; スイス</option><option value="80044">&gt; ニュージーランド &gt; マールボロ</option><option value="80045">&gt; オーストリア</option><option value="80047">&gt; 日本 &gt; 岩手県</option><option value="80048">&gt; アルゼンチン &gt; メンドーサ</option><option value="80050">&gt; ニュージーランド &gt; ホークス・ベイ</option></select></td>
+      </tr>
+      <tr>
+        <th>価格</th>
+        <td><input style="width:60px;" maxlength="8" name="_price1" type="text">&nbsp;～&nbsp;<input style="width:60px;" maxlength="8" name="_price2" type="text"></td>
+      </tr>
+      <tr>
+        <th>生産年</th>
+        <td><input style="width:60px;" maxlength="8" name="_vintage1" type="text">&nbsp;～&nbsp;<input style="width:60px;" maxlength="8" name="_vintage2" type="text"></td>
+      </tr>
+      <tr>
+        <th>サイズ</th>
+        <td><select style="width:180px;" name="_size"><option value="" selected="selected">-- 選択してください --</option><option value="375">375ml[ハーフ]</option><option value="750">750ml[フル]</option><option value="1500">1500ml</option></select></td>
+      </tr>
+      <tr>
+        <th colspan="2" class="thttl">キーワード</th>
+      </tr>
+      <tr>
+        <td colspan="2">
+        <input checked="checked" name="_searchtype" type="radio" value="2"> 商品名        <input name="_searchtype" type="radio" value="3"> 品種        <input name="_searchtype" type="radio" value="4"> 生産者        <input name="_searchtype" type="radio" value="1"> すべて        </td>
+      </tr>
+      <tr>
+        <td colspan="2"><input style="width:200px;" maxlength="500" name="_word" type="text"></td>
+      </tr>
+      <tr>
+        <th>在庫</th>
+        <td>
+          <label><input name="_qty" type="checkbox" value="1"> 在庫あり</label>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2"><input class="side-search-submit" type="submit" value="この条件でさがす"></td>
+      </tr>
+      <tr>
+        <td colspan="2"><a href="http://enoteca.co.jp/item/list?_reset=true" class="search-clear">条件をクリアする</a></td>
+      </tr>
+    </table>
+  </div>
+</section>
+</form><section class="search ">
+  <div class="ttl"><img  src="/common/img/side/side-keyword.gif"  alt="人気キーワード" /></div>
+  <div class="txt">
+    <a href="/item/list?_sp=asc&amp;_word=ラスト在庫&amp;_qty=1&amp;_searchtype=1#list" target="_self">ラスト在庫セール最大30％OFF！</a>&nbsp;/&nbsp;    <a href="http://www.enoteca.co.jp/item/list?_producer=63" target="_self">グルメポップコーンPOP!20％OFF</a>&nbsp;/&nbsp;    <a href="/item/list?_color=1_size=750&amp;_qty=1&amp;_vintage1=1950&amp;_vintage2=1999&amp;_word=CH.#list" target="_self">バックヴィンテージボルドー</a>&nbsp;/&nbsp;    <a href="/item/list?_producer=29" target="_self">プレミアムビール</a>&nbsp;/&nbsp;    <a href="/item/list?_color=11&amp;_qty=1" target="_self">ノンアルコール</a>&nbsp;/&nbsp;    <a href="/item/list?_label=4U" target="_self">シードル</a>&nbsp;/&nbsp;    <a href="/item/list?_color=8&amp;_area=12000&amp;_qty=1" target="_self">ポートワイン</a>&nbsp;/&nbsp;    <a href="/item/list?_label=J6" target="_self">ソムリエナイフ</a>  </div>
+</section>
+<section class="banner " >
+  <a href="http://www.enoteca.co.jp/new_customer/index.html?&amp;banner=LF" target="_self"><img src="/banner/2015.09NC_210_180.jpg" alt="" /></a>
+  <a href="http://www.enoteca.co.jp/item/detail/0668603513A7?&amp;banner=LF" target="_self"><img src="/banner/210_escudov.jpg" alt="" /></a>
+  <a href="http://www.enoteca.co.jp/item/detail/NS0760052300?&amp;banner=LF" target="_self"><img src="/banner/210.jpg" alt="" /></a>
+  <a href="http://www.enoteca.co.jp/item/detail/0769010113B2?&amp;banner=LF" target="_self"><img src="/banner/NORTON_210.jpg" alt="" /></a>
+  <a href="http://www.enoteca.co.jp/item/list?_label=TE" target="_self"><img src="/banner/lisagas_left.jpg" alt="" /></a>
+  <a href="/item/detail/0344913723A6?&amp;banner=LF" target="_self"><img src="/banner/210_brut-nature2.jpg" alt="" /></a>
+  <a href="http://www.enoteca.co.jp/item/detail/0565501213B1?&amp;banner=LF" target="_self"><img src="/banner/opusone2011_left.jpg" alt="" /></a>
+  <a href="/gourmet/index.html" target="_blank"><img src="/banner/left_gourmet.jpg" alt="" /></a>
+  <a href="http://www.enoteca.co.jp/item/detail/999968544000_10?&amp;banner=LF" target="_self"><img src="/banner/left_fermier_set.jpg" alt="" /></a>
+  <a href="/club/" target="_blank"><img src="/banner/clubenoteca.jpg" alt="" /></a>
+  <a href="http://www.enoteca.co.jp/review/index.html" target="_blank"><img src="/banner/kuchikomi_210.jpg" alt="" /></a>
+  <a href="http://intercontinental-strings.jp/restaurant/the_dining/d_plan/post_54.html" target="_blank"><img src="/banner/intercontinental-strings.jpg" alt="" /></a>
+  <a href="/ishida_column/" target="_blank"><img src="/banner/ishida_column.jpg" alt="" /></a>
+  <a href="https://www.americanexpress.com/japan/personal/rewards/bonus_point_detail.shtml?id=2015I39a&amp;todofuken=00" target="_self"><img src="/banner/amex_point_210_100.jpg" alt="" /></a>
+</section>
+
+  <section class="banner">
+    <div align="center"><img src="/common/img/side/side-bnr-member.gif" width="125" height="125"></div>
+      </section>
+
+<!-- おまかせ！ログレコメンダー -->
+<div id="history_placeholder"></div>
+<div id="history_side_placeholder"></div>
+<div id="logrecom"></div>
+<script type="text/javascript" src="https://log10.recommender.jp/js/logrecom.js"></script>
+<script type="text/javascript" src="https://log10.recommender.jp/js/logrecom_target.js"></script>
+<script type="text/javascript">
+  LogRecommender.pageType = 'renew_side'
+  LogRecommender.target.view_history('enoteca',5,1);
+</script>
+<!-- /おまかせ！ログレコメンダー -->
+
+<script type="text/javascript">
+$(function(){
+  setTimeout(function(){
+    $(".product-review, .review-result").each(function(){
+      ratingValue = $(this).find(".ratingValue").text();
+      $(this).find(".review-stars span").width(13.8*ratingValue);
+    });
+  },1000);
+});
+</script>
+
+</div>
+  <!-- /.side  -->
+  </div>
+<!-- contensfooter -->
+      <footer class="contents-footer">
+  <div class="pagetop"><a href="javascript:void(0)"><img src="/common/img/btn-pagetop.png" alt="↑PAGETOP" /></a></div>
+  <div class="col col1">
+    <div class="ttl delivery">お届けについて</div>
+    <div class="txt">
+      <p class="midasi">●毎日出荷、即日出荷可能！</p>
+      <p>
+        完全温度・湿度管理のワイン専用倉庫から、<font color="#bf0000" size="3">毎日出荷しています。</font>
+        午前9:00までのご注文に限り、即日出荷可能！
+      </p>
+      <p class="arrow"><a href="http://enoteca.co.jp/guide/index.html#delivery">お届け日数はこちら</a></p>
+      <p class="midasi">●配送料金</p>
+      <p>
+        <span class="midasi2">配送料</span>：<strong>600</strong>円 (<strong>648</strong>円 税込)<br>
+        <span class="midasi2">クール代</span>：<strong>200</strong>円 (<strong>216</strong>円 税込) <br>
+        <span class="midasi2">代引き手数料</span>：<strong>300</strong>円 (<strong>324</strong>円 税込)<br>
+        <span class="free">税抜き<strong>1万円</strong>以上お買い上げの方は<strong>送料無料</strong>！</span>
+      </p>
+    </div>
+  </div>
+  <div class="col col2">
+    <div class="ttl payment">お支払い方法について</div>
+    <div class="txt">
+      <p class="midasi">●クレジットカード払い</p>
+      <p>
+        ご利用頂けるクレジットカードはVISA、MASTER、JCB、AMERICANEXPRESS、DINERSとなります。<br>
+        <img src="/common/img/icn/notice-creditcard.png" alt="VISA/Master Card/JCB/American Express/Diners Club" vspace="10" /><br>
+        ほか、代金引換、ECON、コンビニ後払い、銀行振り込みでのお支払いが可能です。
+      </p>
+      <a href="http://enoteca.co.jp/club/index.html#visa" class="arrowbtn"><img src="/common/img/icn/notice-txt-enotecavisa.png" alt="クラブエノテカVISAカードならとってもお得！" /></a>
+    </div>
+  </div>
+  <div class="col col3">
+    <div class="ttl faq">よくあるご質問</div>
+    <div class="txt">
+      <p>エノテカでのお買い物について、よくあるご質問とその答えをご用意しました。</p>
+      <a href="http://enoteca.co.jp/guide/index.html#faq" class="arrowbtn"><img src="/common/img/icn/notice-txt-faq.png" alt="よくあるご質問" /></a>
+    </div>
+    <div class="ttl contact">お問い合わせ</div>
+    <div class="txt">
+      <p>
+        <strong>0120-81-3634 </strong><br>
+        [ 受付時間 10:00-18:00 ] (年中無休)
+      </p>
+      <p class="arrow"><a href="https://enoteca.co.jp/contact/form">メールでのお問い合わせ</a></p>
+    </div>
+  </div>
+</footer>
+  <!-- /.contensfooter  -->
+</section>
+<!-- footer -->
+      <footer class="global">
+  <div class="col col1">
+    <div class="ttl"><img src="/common/img/footer-ttl1.png" alt="種類一覧" /></div>
+    <ul>
+      <li><a href="/item/list?_color=1&_qty=1">赤ワイン</a></li>
+      <li><a href="/item/list?_color=2&_qty=1">白ワイン</a></li>
+      <li><a href="/item/list?_color=5&_qty=1">スパークリングワイン</a></li>
+      <li><a href="/wineset/index.html">ワインセット</a></li>
+      <li><a href="/winegoods/index.html">ワイングッズ</a></li>
+      <li><a href="/winecellar/index.html">ワインセラー</a></li>
+      <li><a href="/gourmet/index.html">食品</a></li>
+    </ul>
+    <div class="ttl"><img src="/common/img/footer-ttl1-2.png" alt="シーン一覧" /></div>
+    <ul>
+      <li><a href="http://enoteca.co.jp/gift/index.html">ギフト</a></li>
+      <li><a href="http://enoteca.co.jp/wine1000/index.html">1,000円台ワイン</a></li>
+      <li><a href="http://enoteca.co.jp/dish/index.html">食事に合わせて楽しむ</a></li>
+      <li><a href="http://enoteca.co.jp/vintage/index.html">記念日のヴィンテージワイン</a></li>
+    </ul>
+  </div>
+  <div class="col col2">
+    <div class="ttl"><img src="/common/img/footer-ttl2.png" alt="産地一覧" /></div>
+    <ul class="ul1">
+      <li><a href="http://enoteca.co.jp/item/list?_area=100&_qty=1">フランス</a>
+        <ul>
+          <li><a href="http://enoteca.co.jp/item/list?_area=1000&_qty=1">ボルドー地方</a></li>
+          <li><a href="http://enoteca.co.jp/item/list?_area=2000&_qty=1">ブルゴーニュ地方</a></li>
+          <li><a href="http://enoteca.co.jp/item/list?_area=3001&_qty=1">シャンパーニュ地方</a></li>
+          <li><a href="http://enoteca.co.jp/item/list?_area=3100&_qty=1">ロワール地方</a></li>
+          <li><a href="http://enoteca.co.jp/item/list?_area=3200&_qty=1">ローヌ地方</a></li>
+          <li><a href="http://enoteca.co.jp/item/list?_area=3300&_qty=1">ラングドック・ルーション地方</a></li>
+          <li><a href="http://enoteca.co.jp/item/list?_area=3400&_qty=1">プロヴァンス地方</a></li>
+          <li><a href="http://enoteca.co.jp/item/list?_area=3500&_qty=1">アルザス地方</a></li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="ul2">
+      <li><a href="http://enoteca.co.jp/item/list?_area=4000&_qty=1">イタリア</a></li>
+      <li><a href="http://enoteca.co.jp/item/list?_area=8000&_qty=1">スペイン</a></li>
+      <li><a href="http://enoteca.co.jp/item/list?_area=12000&_qty=1">ポルトガル</a></li>
+      <li><a href="http://enoteca.co.jp/item/list?_area=10000&_qty=1">ドイツ</a></li>
+      <li><a href="http://enoteca.co.jp/item/list?_area=9000&_qty=1">ニュージーランド</a></li>
+      <li><a href="http://enoteca.co.jp/item/list?_area=11000&_qty=1">オーストラリア</a></li>
+      <li><a href="http://enoteca.co.jp/item/list?_area=6000&_qty=1">チリ</a></li>
+      <li><a href="http://enoteca.co.jp/item/list?_area=7000&_qty=1">アルゼンチン</a></li>
+      <li><a href="http://enoteca.co.jp/item/list?_area=5000&_qty=1">アメリカ</a></li>
+      <li><a href="http://enoteca.co.jp/item/list?_area=13000&_qty=1">南アフリカ</a></li>
+      <li><a href="http://enoteca.co.jp/item/list?_area=80000&_qty=1">日本</a></li>
+    </ul>
+  </div>
+  <div class="col col3">
+    <div class="ttl"><img src="/common/img/footer-ttl3.png" alt="サービス" /></div>
+    <ul>
+      <li><a href="http://enoteca.co.jp/cellar" target="_blank">レンタルセラー</a></li>
+      <li><a href="http://enoteca.co.jp/hanpu/index.html">定期お届け便</a></li>
+      <li><a href="http://enoteca.co.jp/primeur" target="_blank">先行販売（プリムール）</a></li>
+      <li><a href="http://www.enoteca.co.jp/shop">ワインショップ店舗情報</a></li>
+      <li><a href="http://enoteca.co.jp/en">English Site</a></li>
+    </ul>
+  </div>
+  <div class="col col4">
+    <div class="ttl"><img src="/common/img/footer-ttl4.png" alt="その他 " /></div>
+    <ul>
+      <li><a href="https://enoteca.co.jp/contact/form">お問い合わせ</a></li>
+      <li><a href="http://enoteca.co.jp/tokushoho/index.html">特定商取引法に基づく表示</a></li>
+      <li><a href="http://www.asahigroup-holdings.com/privacy_policy/" target="_blank">プライバシー･ポリシー</a></li>
+      <li><a href="http://enoteca.co.jp/about/index.html">エノテカ･オンラインについて</a></li>
+      <li><a href="http://enoteca.co.jp/guide/index.html">ご利用ガイド</a></li>
+      <li><a href="http://www.enoteca.jp/" target="_blank">会社概要</a></li>
+      <li><a href="http://www.enoteca.jp/recruit/" target="_blank">採用情報</a></li>
+      <li><a href="https://enoteca.co.jp/magazine/form">メールマガジン登録/解除</a></li>
+    </ul>
+  </div>
+  <div class="footer-txt">
+    <p class="txt1">
+      未成年者の飲酒は法律で禁止されています。ご購入は20才以上の方に限らせていただきます。
+    </p>
+    <p class="copyright">
+      <a href="http://www.asahibeer.co.jp/" target="_blank" style="text-decoration: none;">エノテカ株式会社はアサヒグループです。</a>&nbsp;
+      Copyright&copy; 1998-ENOTECA CO., LTD. All right reserved.
+    </p>
+  </div>
+</footer>
+  <!-- /footer  -->
+</div>
+</div>
+<!-- ワンタグCV -->
+<script language='JavaScript' type='text/javascript' src='//track.mk.impact-ad.jp/ad/js/cjs.js'></script>
+<script language='JavaScript' type='text/javascript'><!--
+admage_onetag('//track.mk.impact-ad.jp/ad/p/ot', '_aid=29&_oid=110',false);
+ --></script>
+<noscript>
+<iframe src='//track.mk.impact-ad.jp/ad/p/ot?_aid=29&_oid=110' width='0' height='0' marginwidth='0' marginheight='0' hspace='0' vspace='0' frameborder='0' scrolling='no' bordercolor='#000000'></iframe>
+</noscript>
+<!-- /ワンタグCV -->
+<!-- Google Code for default Conversion Page -->
+<script language="JavaScript" type="text/javascript">
+<!--
+var google_conversion_type = 'landing';
+var google_conversion_id = 1065420284;
+var google_conversion_language = "ja";
+var google_conversion_format = "1";
+var google_conversion_color = "FFFFFF";
+//-->
+</script>
+<script language="JavaScript" src="https://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<img height=1 width=1 border=0 src="https://www.googleadservices.com/pagead/conversion/1065420284/extclk?script=0">
+</noscript>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try{
+var pageTracker = _gat._getTracker("UA-26832243-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+<!-- /Google Code for default Conversion Page -->
+<!-- Yahoo!タグマネージャー -->
+<script type="text/javascript">
+  (function () {
+    var tagjs = document.createElement("script");
+    var s = document.getElementsByTagName("script")[0];
+    tagjs.async = true;
+    tagjs.src = "//s.yjtag.jp/tag.js#site=oi2X6zM";
+    s.parentNode.insertBefore(tagjs, s);
+  }());
+</script>
+<noscript>
+  <iframe src="//b.yjtag.jp/iframe?c=oi2X6zM" width="1" height="1" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+</noscript>
+<!-- /Yahoo!タグマネージャー -->
+<script type="text/javascript">
+(function(w, d, s, u, o) {w[o] = w[o] || function() {(w[o].data = w[o].data || []).push(arguments)};a = d.createElement(s),m = d.getElementsByTagName(s)[0];a.async = 1;a.src = u;m.parentNode.insertBefore(a, m)
+})(window, document, 'script', '//analytics.people.st/js/ps_analytics.js', 'psa');
+</script>
+</body>
+</html>

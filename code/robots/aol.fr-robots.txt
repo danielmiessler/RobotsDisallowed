@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /backstage/
+Disallow: /blackberry/
+Disallow: /users/becomeFan.php
+Disallow: /users/logout/
+Disallow: /contact/pop/
+Disallow: /social/
+Disallow: /search/video/*?q
+Disallow: /search/video/*&q

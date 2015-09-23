@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE"></META><meta name="google-site-verification" content="46NzAfy0ivZQs0Xs982NnQF6T__6weFmbvDTNiDUqi0" /><link href="/images/favicon.ico" rel="icon" type="image/x-icon" /><link href="/css/style_update.css?v=0.0.5" rel="stylesheet" type="text/css" /><link href="/css/layout.css?v=0.2.2.6" rel="stylesheet" type="text/css" /><link href="/css/stylesheet.css?v=0.0.2" rel="stylesheet" type="text/css" /><link href="/css/links.css" rel="stylesheet" type="text/css" /><link href="/css/global.css" rel="stylesheet" type="text/css" /><link href="/css/style_custom.css?v=1.0.4" rel="stylesheet" type="text/css" /><link href="/css/pagination.css" rel="stylesheet" type="text/css" /><link href="/css/validationEngine.jquery.css" rel="stylesheet" type="text/css" /><link href="/css/facebox.css" rel="stylesheet" type="text/css" media="screen" /><link href="/css/datePicker.css" rel="stylesheet" type="text/css" /><script type="text/javascript" src="/js/jquery1.7.1.min.js"></script><script type="text/javascript" src="/js/menu.js"></script><script type="text/javascript" src="/js/common.js?v=0.2.4.6"></script><script type="text/javascript" src="/js/jquery.blockUI.js"></script><script src="/js/jquery.validationEngine.js?v=0.0.3" type="text/javascript" charset="utf-8"></script><script src="/js/jquery.validationEngine-en.js?v=0.0.8" type="text/javascript" charset="utf-8"></script><script src="/js/formprocess.js" charset="utf-8"></script><script type="text/javascript">
+			jQuery(document).ready( function() {
+			    // binds form submission and fields to the validation engine
+                        jQuery("#add_new_employer").validationEngine();
+                    });
+		</script><script type="text/javascript">
+			function submit_add_employer() {
+				jQuery(document).trigger('close.facebox');
+			}
+		</script><script src="/js/facebox.js" type="text/javascript"></script><script type="text/javascript">
+			$(function () {
+				$('a[rel*=facebox]').facebox();
+				$('a[rel*=facebox]').live('click', function() {
+					var $currentFaceboxEle = $(this);
+					var $currentFaceboxEleHref = $currentFaceboxEle.attr('href');
+					$currentFaceboxEle.facebox();
+					if ($currentFaceboxEleHref.match(/#/)) {
+						var url    = window.location.href.split('#')[0];
+						var target = $currentFaceboxEleHref.replace(url,'');
+						if (target == '#') return;
+						jQuery.facebox({ div: '#' + target });
+					// image
+					} else if ($currentFaceboxEleHref.match($.facebox.settings.imageTypesRegexp)) {
+						jQuery.facebox({ image: $currentFaceboxEleHref });
+					// ajax
+					} else {
+						jQuery.facebox({ ajax: $currentFaceboxEleHref });
+					}
+					return false;
+				});
+			});
+		</script><script type="text/javascript" src="/js/jquery.datePicker.js"></script><script type="text/javascript" src="/js/date.js"></script><script type="text/javascript" src="/js/jquery.color.js"></script><script type="text/javascript">
+			$( function () {
+				$('.textright').live( 'click', function () {
+					if( $(this).val() == 0) {
+						var readOnlyCheck = $(this).attr('readonly');
+						if(readOnlyCheck != true) {
+							$(this).val('');
+						}
+					}
+				});
+				$('.textright').live( 'blur', function () {
+					if( $(this).val() == "" ) {
+						$(this).val(0);
+					}
+				});
+				$('.tablebox').live( 'click', function () {
+					$(this).parents('tr:eq(0)').addClass('inputboxselected');
+				});
+				$('.tablebox').live( 'blur', function () {
+					$(this).parents('tr:eq(0)').removeClass('inputboxselected');
+				});
+				$('.textright').each(function(index) {
+					if($(this).val() == '') {
+						var readOnlyCheck = $(this).attr('readonly');
+						if(readOnlyCheck != 'true') {
+							$(this).val(0);
+						}
+					}
+				});
+				$('.inputbox').live( 'focus',  function () {
+					$(this).addClass('inputboxselected');
+				});
+				$('.inputbox').live( 'blur', function () {
+					$(this).removeClass('inputboxselected');
+				});
+			});
+
+			// for Facebox input boxes
+			$(document).bind('reveal.facebox', function() {
+				$( function () {
+					$('.textright').live( 'click', function () {
+					if( $(this).val() == 0) {
+						var readOnlyCheck = $(this).attr('readonly');
+						if(readOnlyCheck != true) {
+							$(this).val('');
+						}
+					}
+				});
+				$('.textright').live( 'blur', function () {
+					if( $(this).val() == "" ) {
+						$(this).val(0);
+					}
+				});
+				$('.tablebox').live( 'click', function () {
+					$(this).parents('tr').addClass('inputboxselected');
+				});
+				$('.tablebox').live( 'blur', function () {
+					$(this).parents('tr').removeClass('inputboxselected');
+				});
+				$('.textright').each(function(index) {
+					if($(this).val() == '') {
+						var readOnlyCheck = $(this).attr('readonly');
+						if(readOnlyCheck != 'true') {
+							$(this).val(0);
+						}
+					}
+				});
+				$('.inputbox').live( 'focus',  function () {
+					$(this).addClass('inputboxselected');
+				});
+				$('.inputbox').live( 'blur', function () {
+					$(this).removeClass('inputboxselected');
+				});
+				});
+			});
+			// Messages
+			var messageAdd = '';
+			var messageUpdate = '';
+			var messageSaved = '';
+			var messageDelete = '';
+			var messageError = '';
+			var messageWait = '';
+			var messageNoRecord = '';
+			var delayVal = '';
+			var delayWait = '';
+		</script><script type="text/javascript" src="/js/jquery.tablesorter.min.js"></script><script type="text/javascript">
+			var dateLower = '';
+			var dateUpper = '';
+			var fdateLower = '';
+			var fdateUpper = '';
+			var assessment_year_common = '';
+			var financial_year_common = '';
+		</script><script type="text/javascript">
+			$( function () {
+				$('#pincode').live('blur', function() {
+					var pincode = parseInt($(this).val());
+					if(pincode == 0) {
+						$(this).val('');
+						showNotification('Please enter valid pincode.');
+					}
+				});
+				$('#input_pincode').live('blur', function() {
+					var pincode = parseInt($(this).val());
+					if(pincode == 0) {
+						$(this).val('');
+						showNotification('Please enter valid pincode.');
+					}
+				});
+				$('#pin').live('blur', function() {
+					var pincode = parseInt($(this).val());
+					if(pincode == 0) {
+						$(this).val('');
+						showNotification('Please enter valid pincode.');
+					}
+				});
+
+				$('#incometax_menu a').live('click', function() {
+					if( $('#save').is(':visible') || $('#update').is(':visible') ) {
+						var check = confirm("All the unsaved changes if any will be lost. Continue?");
+						if(!check) {
+							return false;
+						}
+					}
+					if( $('#save_button').is(':visible') || $('#update_button').is(':visible') ) {
+						var check = confirm("All the unsaved changes if any will be lost. Continue?");
+						if(!check) {
+							return false;
+						}
+					}
+				});
+
+			});
+		</script><script type="text/javascript">
+            function attachAjaxLoader() {
+                var timeout = 300;
+                var timestart = 0;
+                $(document).ajaxStart(function(event){
+                    var d = new Date();
+                    timestart = d.getTime();
+                    $('#wizardContent').hide();
+                    $('#wizardContent_alt').show();
+                }).ajaxStop(function(){
+                    $('#wizardContent_alt').hide();
+                    $('#wizardContent').show();
+                });
+            }
+
+            function detachAjaxLoader() {
+                $(document).unbind('ajaxStart');
+                $(document).unbind('ajaxStop');
+            }
+
+            jQuery(document).ready( function() {
+                attachAjaxLoader();
+                var tabindex = reassignTabOrders();
+                $('#wizardNext_button').attr('tabindex', tabindex+1);
+
+            });
+        </script><script type="text/javascript" src="/js/jquery.corner.js"></script><script src="/js/jquery.easing.1.3.js"></script><script src="/js/slides.min.jquery.js"></script><script type="text/javascript" src="/js/json2.js"></script><link href="/css/normalize.css" rel="stylesheet" type="text/css" /><script type="text/javascript">
+
+                $(document).ready(function(){
+                    $(document).mousemove(function(e){
+                        swapScreen(e);
+                    });
+                });
+			</script><div class="bodyback none" id="div_block"><div class="bg-gradient"></div><div class="container"><br /><br /><br /><br /><div class="h1div">Need Help?</div><div class="h2div">e-mail: myITreturn@skorydov.com</div><br /><br /><br /><div class="footerdiv"><p><img src="/images/myITreturnlogo.png" height="26" border="0" alt="" /></p><br /><p>
+							© 2015. myITreturn.com | Skorydov Systems Private Limited. All rights reserved.
+						</p></div></div></div><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Skorydov myITreturn | Online Income Tax Return Filing Solution for Individuals | Income Tax India | Income Tax Refunds | Tax Preparation | Efiling of Tax Returns</title><script type="text/javascript" src="js/users.js"></script><style type="text/css">
+		#msg_form_reportissue {
+			background-color: #f9ffc7;
+			height: 100px;
+			width: 300px;
+			-moz-border-radius: 10px;
+			-webkit-border-radius: 10px;
+			border-radius: 10px;
+			padding: 10px;
+			display: none;
+		}
+	</style></head><body><div id="main"><noscript><div style="margin:10px auto; width: 940px; padding:10px; background-color: #ffd8d8; border: 1px solid #ce0000; text-align: center;">Sorry, your browser does not support JavaScript! Please enable Javascript to access this website.</div></noscript><div id="homeTopBlock"><div id="myItLogo"><a href="/"><img src="/images/myItLogo.jpg" alt="myITreturn.com" title="myITreturn.com" /></a></div><div id="topBlockRest"><div id="topMenu"><div id="homeBtn"><a href="/" onmouseover="roll('homeLink', '/images/topMenu/homerollover.jpg')" onmouseout="roll('homeLink', '/images/topMenu/home.jpg')"><img src="/images/topMenu/home.jpg" width="50" height="45" border="0" name="homeLink" id="homeLink" /></a></div><div id="mainMenu"><ul><li><a href="/aboutus.php">About us</a></li><li><a href="/pricing.php">Compare Plans</a></li><li><a href="/faq.php">FAQ</a></li><li><a href="/registration.php">Sign In</a></li></ul></div><div id="searchs"><form name="form_search" id="form_search" action="faq.php" method="get"><div id="searchCurve"><img src="/images/topMenu/searchCurve.jpg" width="25" height="45" /></div><div id="searchTextField"><input name="searchField" type="text" class="searchField" id="searchField" value="Search" /></div><div id="searchCurve"><a href="#search" onClick="$('#form_search').submit();" onmouseover="roll('searchIcon', '/images/topMenu/searchIconrollover.jpg')" onmouseout="roll('searchIcon', '/images/topMenu/searchIcon.jpg')"><img src="/images/topMenu/searchIcon.jpg" name="searchIcon" border="0" id="searchIcon" /></a></div><div id="searchCurve"><img src="/images/topMenu/searchCurveRight.jpg" /></div><div id="menuCurve"><img src="/images/topMenu/rightCurve.jpg" /></div></form></div></div></div></div><script type="text/javascript">
+			$(function() {
+				$('#searchField').click( function() {
+					var searchText = $(this).val();
+					if(searchText == 'Search') {
+						$(this).val("");
+					}
+				});
+				$('#searchField').blur( function() {
+					var searchText = $(this).val();
+					if(searchText == '') {
+						$(this).val("Search");
+					}
+				});
+			});
+		</script><div id="innerContainer" style="height: 425px;"><div class="newForums"><div class="whiteBG"><div class="forumsHeading">
+						Page Not Found
+					</div><div class="Forrmussearch"><table style="margin: 0px auto;"><tr valign="middle" height="200"><td align="center" style="text-align:center; font-size: 18px;" width="600">
+									We are sorry, the page you are looking for does not exists, please click <a href="https://myitreturn.com">myITreturn.com</a> to go to home page.
+								</td><td><img src="images/mitra-round.png" /></td></tr></table></div><div class="Forrmussearch" style="display: none;" id="div_Forrmussearch"><table><tr><td><div id="div_form"></div></td><td width="50"></td><td><div id="msg_form_reportissue"></div></td></tr></table></div></div></div></div><div id="insideBtnMenu"><div id="insideBtnMenuContent"><div id="homeLinksBannersText"><span class="fontVerdana fontSize11 siteLinksColor"> All rights reserved.</span></div><div id="homeLinksBannersRightLogo"><div class="btnLogo1"><img src="/images/btnLogo1.jpg" alt="Authorised e-Return Intermediary" title="Authorised e-Return Intermediary" width="37" height="40" /></div><div class="btnLogoGap"></div><div class="btnLogo2"><img src="/images/home/ERILogo_new.png" alt="Authorised eRI, Government of India for Income tax return filing" title="Authorised eRI, Government of India for Income tax return filing" width="110" /></div><div class="btnLogoGap"></div><div class="btnLogo3"><img src="/images/btnLogo3.jpg" alt="e-file - all smiles" title="e-file - all smiles" width="55" height="40" /></div><div class="btnLogoGap"></div><div class="btnLogo4"><img src="/images/btnLogo4.jpg" alt="Skorydov" title="Skorydov" width="85" height="40" /></div></div></div><script type="text/javascript">
+
+				var _gaq = _gaq || [];
+				_gaq.push(['_setAccount', 'UA-20375362-1']);
+				_gaq.push(['_trackPageview']);
+
+				(function() {
+					var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+					ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+					var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+				})();
+
+			</script><script language="javascript">
+                var UserName = '';
+            </script><script type="text/javascript">
+                /*  */
+                var google_conversion_id = 1005603249;
+                var google_custom_params = window.google_tag_params;
+                var google_remarketing_only = true;
+                /*  */
+            </script><script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script><noscript><div style="display:inline;"><img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1005603249/?value=0&amp;guid=ON&amp;script=0" /></div></noscript></div></div></body></html>

@@ -1,0 +1,7 @@
+# www.robotstxt.org/
+
+# Allow crawling of all content
+User-agent: *
+
+# Ads landings
+Disallow: /l/

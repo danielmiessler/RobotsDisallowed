@@ -1,0 +1,626 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="icon" href="/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta name="description" content="淘名网致力于为域名投资机构、个人和域名购买者提供一个集域名交易、域名拍卖、域名中介、域名经纪于一体的域名二级市场服务平台，向全球客户提供域名二级市场相关服务。" />
+<meta name="keywords" content="域名交易,域名拍卖,域名中介,域名经纪,域名代购,购买域名,卖域名,域名评估" />
+<title>淘名网 - 域名交易 域名拍卖 域名中介 域名经纪首选平台</title>
+<link href="/style/css.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<script type="text/javascript" src="/style/menu.js"></script>
+<script language="javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+function getLogin() {
+$.getJSON("ajax.php", {ac: "GET_LOGIN", time:new Date()},
+  function(data){
+var html = '';
+if( data.uid > 0 ){
+html ='<li style="padding:0 2px" class="bg2"><img src="/images/phone.gif"/></li><li style="padding:0 8px" class="bg">欢迎您 <b>'+ data.uname +' </b></li>';
+if( data.msg > 0 ){
+html += '<li style="padding:0 8px"><a href="/message.php?read=no" style="background:url(/images/message1.gif) no-repeat left center; padding-left:18px;">未读短信('+ data.msg +')条</a></li>';
+} else {
+html += '<li style="padding:0 8px"><a href="/message.php?read=no">短消息</a></li>';
+}
+html += '<li style="padding:0 8px"><a href="/account-support.php">有问必答</a></li><li style="padding:0 8px"><a href="/help.php">帮助</a></li><li style="padding:0 8px"><a href="/list-news.php">淘名资讯</a></li><li style="padding:0 8px"><a href="/logout.php">退出</a></li>';
+} else {
+html = '<li class="bg2"><img src="/images/phone.gif"/></li><li class="bg"><a href="/reg.php">注册</a></li><li><a href="/login.php">登录</a></li><li><a href="/help.php">帮助</a></li>';
+}
+
+$('#showUserInfo').html(html);
+});
+}
+$(document).ready(function(){
+getLogin();
+});
+</script>
+<script type="text/javascript">
+var domain_type = '1';
+function getDomainType(ext){
+type = 1024;
+switch(ext){
+case '.com':{
+type = 1;
+}break;
+case '.cn':{
+type = 2;
+}break;
+case '.com.cn':{
+type = 8;
+}break;
+case '.net':{
+type = 128;
+}break;
+case '.org':{
+type = 32;
+}break;
+case '.mobi':{
+type = 16;
+}break;
+case '.cc':{
+type = 256;
+}break;
+case '.tv':{
+type = 512;
+}break;
+default:{
+type = 1024;
+}break;
+}
+return type;
+}
+function clearExt(d){
+var val = d;
+pos = d.indexOf('.');
+domain_type = 1024;
+if( pos != -1 ){
+val = d.substring(0, pos);
+domain_type = getDomainType(d.substring(pos));
+}
+return val;
+}
+
+function goto_search() {
+var kw = document.getElementById('keyword');
+if (kw.value == '' || kw.value == '请输入域名...' || kw.value.match(/\s+/g)) {
+alert('请填写要搜索的关键字');
+kw.focus();
+return false;
+}
+val = clearExt(kw.value);
+var href = 'buy-domains.php?k=1_' + val + '&s=' + domain_type;
+location.href=href;
+return true;
+}
+</script>
+<div id="header">
+<div class="logo"><a href="http://www.taoming.com/" title="淘名网" alt="淘名网"><img src="/images/logo.jpg" border="0" /></a></div>
+<div class="topnav">
+<ul id="showUserInfo"></ul>
+</div>
+<div class="search">
+<form action="show-domain.php" method="get" onsubmit="goto_search();return false;">
+<div class="searchTool">
+<input class="input" value="输入您想购买的域名" onfocus="this.value='';" id="keyword" />
+</div>
+<div class="sear_btn"><input class="button" type="submit" value="" /></div>
+</form>
+</div>
+</div>
+
+<div id="nav">
+<div class="body">
+<ul>
+<li><a class="hover" href="/">淘名首页</a></li>
+<li><a  href="/auctions/">域名拍卖</a></li>
+<li><a  href="/buy-domains.php">购买域名</a></li>
+            <li><a  href="/escrow/">域名中介</a></li>
+<li><a  href="/broker/">域名经纪</a></li>
+<li><a  href="/seller-offers.php">域名卖家</a></li>
+            <li><a  href="http://parking.taoming.com/">域名停放</a></li>
+            <!--<li><a  href="/dai/">域名贷款</a></li>-->
+<li><a href="http://news.taoming.com">域名资讯</a></li>
+<li><a  href="/account-default.php">我的账户</a></li>
+</ul>
+</div>
+</div>
+
+<script type="text/javascript" src="/js/BubbleTooltips.js"></script>
+<script type="text/javascript" src="/js/showpic.js"></script>
+<script type="text/javascript" src="/js/gray.js"></script>
+<script type="text/javascript">
+grayscale.prepare( document.getElementById('myEl') );
+</script>
+<div id="main" style="width: 930px;">
+<div class="content1">
+<div class="left">
+<script language="javascript" type="text/javascript">
+var imageURL = new Array();
+var imageLink = new Array();
+var imageAlt = new Array();
+imageURL[0]  = new Array('./upload/indexpic/2012/05/08/13364704826355.jpg','./upload/indexpic/2012/05/08/13364704694972.jpg');
+imageLink[0] = new Array('http://www.taoming.com/escrow/','http://www.taoming.com/broker/');
+imageAlt[0] = new Array('淘名中介','淘名经纪');
+ImageShow(0);
+</script>
+</div>
+<div class="right">
+<div class="two">
+<dl><dt><a href="http://news.taoming.com/"><img alt="淘名热点" title="淘名热点" src="images/ymrd.jpg" /></a></dt></dl><label><a href="http://news.taoming.com/">更多&gt;&gt;</a></label>
+            <ul>
+        <li class="icon"><a href="http://news.taoming.com">淘名助力京东完成域名升级引领电商域名大战</a></li><!--li>2013/07/25</li-->
+    </ul>
+        <ul>
+        <li class="icon"><a href="http://news.taoming.com">百度通过淘名网购得duoku.com进军网络文学</a></li><!--li>2013/10/28</li-->
+    </ul>
+        <ul>
+        <li class="icon"><a href="http://parking.taoming.com">淘名网域名停放平台上线淘金用户可优先体验</a></li><!--li>2014/04/08</li-->
+    </ul>
+        </div>
+</div>
+</div>
+<!--<div class="content_top">
+<ul>
+<li>
+<div class="ymzj"></div>
+<div class="jianjie1"></div>
+<div class="jrzj"><input name="" type="button" /></div>
+</li>
+<li class="content_line">
+<div class="ymjj"></div>
+<div class="jianjie1"></div>
+<div class="jrzj"><input name="" type="button" /></div>
+</li>
+<li class="content_line">
+<div class="ymdk"></div>
+<div class="jianjie1"></div>
+<div class="jrzj"><input name="" type="button" /></div>
+</li>
+</ul>
+</div>-->
+<div class="content2">
+<div class="left clearfix">
+    <div class="bjym_box">
+        <div class="bjym_box_tit"><span><img src="images/bjymtj.jpg"></span><i><a href="/buy-domains.php">更多>></a></i></div>
+        <div class="bjym_list">
+                        <ul class="clearfix" style="padding:11px 0px;">
+                                <li>
+                    <h3><a href=""><a href="/liwu.com/">liwu.com</a></a></h3>
+                    <p>礼物</p>
+                    <em>买方报价</em>
+                </li>
+                                <li>
+                    <h3><a href=""><a href="/shequ.com/">shequ.com</a></a></h3>
+                    <p>社区</p>
+                    <em>买方报价</em>
+                </li>
+                                <li>
+                    <h3><a href=""><a href="/jiandan.com/">jiandan.com</a></a></h3>
+                    <p>简单、煎蛋</p>
+                    <em>买方报价</em>
+                </li>
+                                <li>
+                    <h3><a href=""><a href="/5199.com/">5199.com</a></a></h3>
+                    <p></p>
+                    <em>买方报价</em>
+                </li>
+                            </ul>
+                                    <ul class="clearfix" style="padding:11px 0px;">
+                                <li>
+                    <h3><a href=""><a href="/xiuqiu.com/">xiuqiu.com</a></a></h3>
+                    <p>绣球</p>
+                    <em>买方报价</em>
+                </li>
+                                <li>
+                    <h3><a href=""><a href="/8668.com/">8668.com</a></a></h3>
+                    <p>极品四数字</p>
+                    <em>买方报价</em>
+                </li>
+                                <li>
+                    <h3><a href=""><a href="/queqiao.com/">queqiao.com</a></a></h3>
+                    <p>鹊桥</p>
+                    <em>买方报价</em>
+                </li>
+                                <li>
+                    <h3><a href=""><a href="/naifen.com/">naifen.com</a></a></h3>
+                    <p>奶粉</p>
+                    <em>买方报价</em>
+                </li>
+                            </ul>
+                                    <ul class="clearfix" style="padding:11px 0px;">
+                                <li>
+                    <h3><a href=""><a href="/5191.com/">5191.com</a></a></h3>
+                    <p></p>
+                    <em>买方报价</em>
+                </li>
+                                <li>
+                    <h3><a href=""><a href="/yaoxiang.com/">yaoxiang.com</a></a></h3>
+                    <p>药箱，药品导购</p>
+                    <em>买方报价</em>
+                </li>
+                                <li>
+                    <h3><a href=""><a href="/1618.com/">1618.com</a></a></h3>
+                    <p>极品四数字</p>
+                    <em>买方报价</em>
+                </li>
+                                <li>
+                    <h3><a href=""><a href="/wuxi.com/">wuxi.com</a></a></h3>
+                    <p>无锡、巫溪、乌溪</p>
+                    <em>买方报价</em>
+                </li>
+                            </ul>
+                    </div>
+        <div class="left_title0"><img src="images/left_title0.jpg"></div>
+    </div>
+    <div class="box wp">
+        <h3><img src="images/ym_cs.jpg"></h3>
+        <label><a href="http://www.taoming.com/domains-recommend.php" target="_blank">更多&gt;&gt;</a></label>
+        <div class="ny">
+            <table border=0 cellSpacing=0 cellPadding=0 width=298 align="left">
+                <tbody>
+                <tr>
+                    <td bgColor="#ffffff" height=25 width=12>&nbsp;</td>
+                    <td class="font1" bgColor="#ffffff" width=120>域名</td>
+                    <td class="font1" bgColor="#ffffff" width=104 align="left">描述</td>
+                    <td class="font1" bgColor="#ffffff" width=57 align="middle">标价</td>
+                </tr>
+                                <tr bgcolor="#f6f7f9">
+                    <td height="28">&nbsp;</td>
+                    <td height="28" class="font2_big"><a href="/6363.com/" title="6363.COM">6363.com</a></td>
+                    <td align="left">com域名</td>
+                    <td align="middle">买方报价</td>
+                </tr>
+                                <tr bgcolor="#FFFFFF">
+                    <td height="28">&nbsp;</td>
+                    <td height="28" class="font2_big"><a href="/6321.com/" title="6321.COM">6321.com</a></td>
+                    <td align="left">com域名</td>
+                    <td align="middle">买方报价</td>
+                </tr>
+                                <tr bgcolor="#f6f7f9">
+                    <td height="28">&nbsp;</td>
+                    <td height="28" class="font2_big"><a href="/aixian.com/" title="AIXIAN.COM">aixian.com</a></td>
+                    <td align="left">com域名</td>
+                    <td align="middle">买方报价</td>
+                </tr>
+                                <tr bgcolor="#FFFFFF">
+                    <td height="28">&nbsp;</td>
+                    <td height="28" class="font2_big"><a href="/160.com/" title="160.COM">160.com</a></td>
+                    <td align="left">com域名</td>
+                    <td align="middle">买方报价</td>
+                </tr>
+                                <tr bgcolor="#f6f7f9">
+                    <td height="28">&nbsp;</td>
+                    <td height="28" class="font2_big"><a href="/6555.com/" title="6555.COM">6555.com</a></td>
+                    <td align="left">com域名</td>
+                    <td align="middle">买方报价</td>
+                </tr>
+                                <tr bgcolor="#FFFFFF">
+                    <td height="28">&nbsp;</td>
+                    <td height="28" class="font2_big"><a href="/youtuan.com/" title="YOUTUAN.COM">youtuan.com</a></td>
+                    <td align="left">com域名</td>
+                    <td align="middle">买方报价</td>
+                </tr>
+                                <tr bgcolor="#f6f7f9">
+                    <td height="28">&nbsp;</td>
+                    <td height="28" class="font2_big"><a href="/qiubo.com/" title="QIUBO.COM">qiubo.com</a></td>
+                    <td align="left">com域名</td>
+                    <td align="middle">买方报价</td>
+                </tr>
+                                <tr bgcolor="#FFFFFF">
+                    <td height="28">&nbsp;</td>
+                    <td height="28" class="font2_big"><a href="/591.com/" title="591.COM">591.com</a></td>
+                    <td align="left">com域名</td>
+                    <td align="middle">买方报价</td>
+                </tr>
+                                <tr bgcolor="#f6f7f9">
+                    <td height="28">&nbsp;</td>
+                    <td height="28" class="font2_big"><a href="/936.com/" title="936.COM">936.com</a></td>
+                    <td align="left">www.936.com</td>
+                    <td align="middle">买方报价</td>
+                </tr>
+                                <tr bgcolor="#FFFFFF">
+                    <td height="28">&nbsp;</td>
+                    <td height="28" class="font2_big"><a href="/763.com/" title="763.COM">763.com</a></td>
+                    <td align="left">www.763.com</td>
+                    <td align="middle">买方报价</td>
+                </tr>
+                                <tr bgcolor="#f6f7f9">
+                    <td height="28">&nbsp;</td>
+                    <td height="28" class="font2_big"><a href="/heidou.com/" title="HEIDOU.COM">heidou.com</a></td>
+                    <td align="left">com域名</td>
+                    <td align="middle">买方报价</td>
+                </tr>
+                                <tr bgcolor="#FFFFFF">
+                    <td height="28">&nbsp;</td>
+                    <td height="28" class="font2_big"><a href="/787.com/" title="787.COM">787.com</a></td>
+                    <td align="left">com域名</td>
+                    <td align="middle">买方报价</td>
+                </tr>
+                                <tr bgcolor="#f6f7f9">
+                    <td height="28">&nbsp;</td>
+                    <td height="28" class="font2_big"><a href="/687.com/" title="687.COM">687.com</a></td>
+                    <td align="left">就爱乐，就爱溜</td>
+                    <td align="middle">买方报价</td>
+                </tr>
+                                <tr bgcolor="#FFFFFF">
+                    <td height="28">&nbsp;</td>
+                    <td height="28" class="font2_big"><a href="/726.com/" title="726.COM">726.com</a></td>
+                    <td align="left">com域名</td>
+                    <td align="middle">买方报价</td>
+                </tr>
+                                <tr bgcolor="#f6f7f9">
+                    <td height="28">&nbsp;</td>
+                    <td height="28" class="font2_big"><a href="/ggj.com/" title="GGJ.COM">ggj.com</a></td>
+                    <td align="left">com域名</td>
+                    <td align="middle">买方报价</td>
+                </tr>
+                                <tr bgcolor="#FFFFFF">
+                    <td height="28">&nbsp;</td>
+                    <td height="28" class="font2_big"><a href="/qxw.com/" title="QXW.COM">qxw.com</a></td>
+                    <td align="left">com域名</td>
+                    <td align="middle">买方报价</td>
+                </tr>
+                                <tr bgcolor="#f6f7f9">
+                    <td height="28">&nbsp;</td>
+                    <td height="28" class="font2_big"><a href="/2998.com/" title="2998.COM">2998.com</a></td>
+                    <td align="left">com域名</td>
+                    <td align="middle">买方报价</td>
+                </tr>
+                                <tr bgcolor="#FFFFFF">
+                    <td height="28">&nbsp;</td>
+                    <td height="28" class="font2_big"><a href="/qiti.com/" title="QITI.COM">qiti.com</a></td>
+                    <td align="left">气体行业</td>
+                    <td align="middle">买方报价</td>
+                </tr>
+                                <tr bgcolor="#f6f7f9">
+                    <td height="28">&nbsp;</td>
+                    <td height="28" class="font2_big"><a href="/bixu.com/" title="BIXU.COM">bixu.com</a></td>
+                    <td align="left">必需</td>
+                    <td align="middle">买方报价</td>
+                </tr>
+                                <tr bgcolor="#FFFFFF">
+                    <td height="28">&nbsp;</td>
+                    <td height="28" class="font2_big"><a href="/虚位以待/" title="虚位以待">虚位以待</a></td>
+                    <td align="left">虚位以待域名</td>
+                    <td align="middle">N/A</td>
+                </tr>
+                                <tr bgcolor="#f6f7f9">
+                    <td height="28">&nbsp;</td>
+                    <td height="28" class="font2_big"><a href="/虚位以待/" title="虚位以待">虚位以待</a></td>
+                    <td align="left">虚位以待域名</td>
+                    <td align="middle">N/A</td>
+                </tr>
+                                <tr bgcolor="#FFFFFF">
+                    <td height="28">&nbsp;</td>
+                    <td height="28" class="font2_big"><a href="/虚位以待/" title="虚位以待">虚位以待</a></td>
+                    <td align="left">虚位以待域名</td>
+                    <td align="middle">N/A</td>
+                </tr>
+                                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="box wp">
+        <h3><img src="images/ym_pm.jpg"></h3>
+        <label><a href="http://www.taoming.com/auctions/" target="_blank">更多&gt;&gt;</a></label>
+        <div class="ny">
+            <table border=0 cellSpacing=0 cellPadding=0 width=298 align="left">
+                <tbody>
+                    <tr>
+                        <td bgColor="#ffffff" height=25 width=12>&nbsp;</td>
+                        <td class="font1" bgColor="#ffffff" width=169>域名</td>
+                        <td class="font1" bgColor="#ffffff" width=55 align="middle">当前价格</td>
+                        <td class="font1" bgColor="#ffffff" width=57 align="middle">剩余时间</td>
+                    </tr>
+                                                            <tr bgcolor="#f6f7f9">
+                        <td height="28">&nbsp;</td>
+                        <td height="28" class="font2_big"><a href="/auction/12786/" title="YPKZ.COM">ypkz.com</a>
+                                                </td>
+                        <td class="font5" align="middle">58元</td>
+                        <td align="middle">5天6时</td>
+                    </tr>
+                                                            <tr bgcolor="#FFFFFF">
+                        <td height="28">&nbsp;</td>
+                        <td height="28" class="font2_big"><a href="/auction/12788/" title="PZYP.COM">pzyp.com</a>
+                                                </td>
+                        <td class="font5" align="middle">58元</td>
+                        <td align="middle">5天6时</td>
+                    </tr>
+                                                            <tr bgcolor="#f6f7f9">
+                        <td height="28">&nbsp;</td>
+                        <td height="28" class="font2_big"><a href="/auction/12789/" title="FHQW.COM">fhqw.com</a>
+                                                </td>
+                        <td class="font5" align="middle">58元</td>
+                        <td align="middle">5天6时</td>
+                    </tr>
+                                                            <tr bgcolor="#FFFFFF">
+                        <td height="28">&nbsp;</td>
+                        <td height="28" class="font2_big"><a href="/auction/12792/" title="YPKM.COM">ypkm.com</a>
+                                                </td>
+                        <td class="font5" align="middle">58元</td>
+                        <td align="middle">19天6时</td>
+                    </tr>
+                                                            <tr bgcolor="#f6f7f9">
+                        <td height="28">&nbsp;</td>
+                        <td height="28" class="font2_big"><a href="/auction/12791/" title="ZDPG.COM">zdpg.com</a>
+                                                </td>
+                        <td class="font5" align="middle">58元</td>
+                        <td align="middle">19天6时</td>
+                    </tr>
+                                                            <tr bgcolor="#FFFFFF">
+                        <td height="28">&nbsp;</td>
+                        <td height="28" class="font2_big"><a href="/auction/12795/" title="QMYP.COM">qmyp.com</a>
+                                                </td>
+                        <td class="font5" align="middle">58元</td>
+                        <td align="middle">19天6时</td>
+                    </tr>
+                                                            <tr bgcolor="#f6f7f9">
+                        <td height="28">&nbsp;</td>
+                        <td height="28" class="font2_big"><a href="/auction/12787/" title="YPNL.COM">ypnl.com</a>
+                                                </td>
+                        <td class="font5" align="middle">58元</td>
+                        <td align="middle">26天6时</td>
+                    </tr>
+                                                            <tr bgcolor="#FFFFFF">
+                        <td height="28">&nbsp;</td>
+                        <td height="28" class="font2_big"><a href="/auction/12790/" title="ZLSZ.COM">zlsz.com</a>
+                                                </td>
+                        <td class="font5" align="middle">58元</td>
+                        <td align="middle">26天6时</td>
+                    </tr>
+                                                            <tr bgcolor="#f6f7f9">
+                        <td height="28">&nbsp;</td>
+                        <td height="28" class="font2_big"><a href="/auction/12796/" title="YPFK.COM">ypfk.com</a>
+                                                </td>
+                        <td class="font5" align="middle">58元</td>
+                        <td align="middle">26天6时</td>
+                    </tr>
+                                                            <tr bgcolor="#FFFFFF">
+                        <td height="28">&nbsp;</td>
+                        <td height="28" class="font2_big"><a href="/auction/12797/" title="QTAJ.COM">qtaj.com</a>
+                                                </td>
+                        <td class="font5" align="middle">58元</td>
+                        <td align="middle">33天6时</td>
+                    </tr>
+                                                        </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="box wp" style="margin-top:15px;">
+        <h3><img src="images/ym_tj.jpg"></h3>
+        <label><a href="/buy-domains.php" target="_blank">更多&gt;&gt;</a></label>
+        <div class="ny">
+            <table align="left" border="0" cellpadding="0" cellspacing="0" width="298">
+                <tbody>
+                <tr>
+                    <td bgcolor="#ffffff" height="25" width="12">&nbsp;</td>
+                    <td class="font1" bgcolor="#ffffff" width="120">域名</td>
+                    <td class="font1" align="left" bgcolor="#ffffff" width="104">描述</td>
+                    <td class="font1" align="center" bgcolor="#ffffff" width="57">标价</td>
+                </tr>
+                                <tr bgcolor="#f6f7f9">
+                    <td height="27">&nbsp;</td>
+                    <td height="27" class="font2_big"><a href="/pu58.com/" title="PU58.COM">pu58.com</a></td>
+                    <td align="left">com域名</td>
+                    <td align="middle">买方报价</td>
+                </tr>
+                                <tr bgcolor="#FFFFFF">
+                    <td height="27">&nbsp;</td>
+                    <td height="27" class="font2_big"><a href="/taobaohu.com/" title="TAOBAOHU.COM">taobaohu.com</a></td>
+                    <td align="left">com域名</td>
+                    <td align="middle">买方报价</td>
+                </tr>
+                                <tr bgcolor="#f6f7f9">
+                    <td height="27">&nbsp;</td>
+                    <td height="27" class="font2_big"><a href="/98kg.com/" title="98KG.COM">98kg.com</a></td>
+                    <td align="left">com域名</td>
+                    <td align="middle">买方报价</td>
+                </tr>
+                                <tr bgcolor="#FFFFFF">
+                    <td height="27">&nbsp;</td>
+                    <td height="27" class="font2_big"><a href="/600li.com/" title="600LI.COM">600li.com</a></td>
+                    <td align="left">com域名</td>
+                    <td align="middle">买方报价</td>
+                </tr>
+                                <tr bgcolor="#f6f7f9">
+                    <td height="27">&nbsp;</td>
+                    <td height="27" class="font2_big"><a href="/51zhihua.com/" title="51ZHIHUA.COM">51zhihua.com</a></td>
+                    <td align="left">com域名</td>
+                    <td align="middle">买方报价</td>
+                </tr>
+                                <tr bgcolor="#FFFFFF">
+                    <td height="27">&nbsp;</td>
+                    <td height="27" class="font2_big"><a href="/500pp.com/" title="500PP.COM">500pp.com</a></td>
+                    <td align="left">com域名</td>
+                    <td align="middle">买方报价</td>
+                </tr>
+                                <tr bgcolor="#f6f7f9">
+                    <td height="27">&nbsp;</td>
+                    <td height="27" class="font2_big"><a href="/bao59.com/" title="BAO59.COM">bao59.com</a></td>
+                    <td align="left">com域名</td>
+                    <td align="middle">买方报价</td>
+                </tr>
+                                <tr bgcolor="#FFFFFF">
+                    <td height="27">&nbsp;</td>
+                    <td height="27" class="font2_big"><a href="/wu16.com/" title="WU16.COM">wu16.com</a></td>
+                    <td align="left">com域名</td>
+                    <td align="middle">买方报价</td>
+                </tr>
+                                <tr bgcolor="#f6f7f9">
+                    <td height="27">&nbsp;</td>
+                    <td height="27" class="font2_big"><a href="/bang6.com/" title="BANG6.COM">bang6.com</a></td>
+                    <td align="left">com域名</td>
+                    <td align="middle">买方报价</td>
+                </tr>
+                                <tr bgcolor="#FFFFFF">
+                    <td height="27">&nbsp;</td>
+                    <td height="27" class="font2_big"><a href="/81ji.com/" title="81JI.COM">81ji.com</a></td>
+                    <td align="left">com域名</td>
+                    <td align="middle">买方报价</td>
+                </tr>
+                                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<div class="right">
+<div class="two">
+<dl><dt><a href="http://news.taoming.com/"><img alt="域名资讯" title="域名资讯" src="images/ymzx.jpg" /></a></dt></dl><label><a href="http://news.taoming.com/">更多&gt;&gt;</a></label>
+</div>
+<div id="news"></div>
+<script type="text/javascript">
+$.ajax({
+    url: "http://news.taoming.com/api.php?do=getTopNews",
+    dataType: "jsonp",
+    success: function(r) {
+        if(!r.flag) return;
+        var wrap = $("#news");
+        var div = $('<div class="zixun_top"></div>');
+        div.append($('<h1/>').append($('<a/>').attr({href: r.data.link, title: r.data.title, target: '_blank'}).html(r.data.title)));
+        div.append('<div class="pic"><a href="'+r.data.link+'" target="_blank"><img width="276" height="135" src="'+r.data.image+'" /></a></div>');
+        div.append($('<p/>').html(r.data.desc));
+        wrap.prepend(div);
+    }
+});
+$.ajax({
+    url: "http://news.taoming.com/api.php?do=getLatestNews&each=6",
+    dataType: "jsonp",
+    success: function(r) {
+        if(!r.flag) return;
+        for(var i=0; i<r.data.length; i++) {
+            var _date = new Date();
+            _date.setTime(r.data[i].date * 1000);
+            var d = _date.getDate();
+            var m = _date.getMonth()+1;
+            var desc = r.data[i].desc.length > 70 ? r.data[i].desc.substr(0, 70)+"..." : r.data[i].desc;
+            var wrap = $("#news");
+            var div = $('<div class="zixun_ny">');
+            div.append($('<h1/>').append($('<a/>').attr({href: r.data[i].link, title: r.data[i].title, target: '_blank'}).html(r.data[i].title)));
+            div.append('<div class="pic"><a href="'+r.data[i].link+'" target="_blank"><img width="123" height="89" src="'+r.data[i].image+'" /></a></div>');
+            div.append($('<p/>').html(desc+'<span>'+m+'-'+d+'</span>'));
+            wrap.append(div);
+        }
+    }
+});
+</script>
+</div>
+</div>
+</div>
+<div id="footer">
+<div class="bottom">
+<div class="left">
+<span>推荐注册商:</span><a href="http://www.hupo.com/" target="_blank" title="域名注册商:琥珀网"><img src="images/hupo_logo.jpg" /></a><a href="http://www.enom.com/" target="_blank" title="enom"><img src="images/enom_logo.jpg" /></a>      </div>
+<div class="right">
+<div class="one"><a href="http://www.taoming.com/terms/aboutus.php">关于我们</a>|<a href="http://www.taoming.com/terms/support.php">联系我们</a>|<a href="http://www.taoming.com/terms/terms.php">服务条款</a>|<a href="http://www.taoming.com/terms/Copyright.php">版权声明</a>|<a href="http://www.taoming.com/terms/privacy.php">隐私政策</a>|<a href="http://www.taoming.com/account-addfunds.php">支付方式</a>|<a href="http://www.hupo.com/whois.php">Whois</a></div>
+<a href="http://www.gz.com/" title="GZ.com 名扬控股"><img src="images/gz_logo.jpg" /></a><span>©<a href="http://www.taoming.com/">Taoming.com</a> <a href="http://www.taoming.com/">淘名网</a> 粤ICP证: <a href="http://www.miitbeian.gov.cn/" target="_blank">粤B2-20050580-2</a></span></div>
+</div>
+</div>
+<script type="text/javascript" src="http://js.tongji.linezing.com/2198939/tongji.js"></script><noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/2198939/tongji.gif"/></a></noscript>
+</body>
+</html>
+

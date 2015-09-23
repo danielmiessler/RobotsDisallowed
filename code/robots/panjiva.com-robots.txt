@@ -1,0 +1,198 @@
+# Bots won't visit the links below but they will index them so they can still
+# show up in search results albeit without snippets or cache (and probably at
+# fairly low rank).  For google we could use the Noindex: directive instead of
+# disallow, though that's experimental.  That'll force pages out very quickly
+# so need to be very careful with that...
+
+# The matched string is prefix so /help blocks /help.html and /help/foo
+# So if disallowing an action avoid the trailing slash when there's no conflict
+# to avoid parameter/route changes breaking the match.
+
+# Note you can have multiple sitemaps listed in robots.txt and across domains
+# too. Everything is valid across domains/subdomains to an organic crawler iff
+# for sitemap A on host B that contains a url on host C the robots.txt file
+# on host C point to sitemap A on host B. Submitted sitemaps must generally
+# only contain urls that match the site they are on.  We split our sitemaps
+# by sub-domain so we can still submit them separately, but list them all here
+# so that they are easy to find oganically too (much like if they were all
+# combined into one).
+
+User-agent: *
+
+sitemap: https://panjiva.com/sitemap.xml
+sitemap: https://cn.panjiva.com/sitemap_cn.xml
+sitemap: https://es.panjiva.com/sitemap_es.xml
+
+Disallow: /charts/fusion_charts/
+Disallow: /assets/amcharts
+
+# Extra profile information
+Disallow: /profile/arrival_port_data
+Disallow: /profile/departure_port_data
+Disallow: /profile/expertise_search
+Disallow: /profile/final_destination_data
+Disallow: /profile/save_profile
+Disallow: /profile/shipment_date_data
+Disallow: /profile/shipment_size_histogram
+Disallow: /profile/shipment_weight_date_data
+Disallow: /profile/svg_to_png
+Disallow: /public_profile/product_catalog/
+
+# Disallow sample companies so they don't show up in google (and complain)
+Disallow: /sample/supplier
+Disallow: /sample/buyer
+
+# Forms - note that we don't really need to exclude the _submit form because
+# no trailing slash in the previous rule covers it and they're all posts anyways
+Disallow: /profile/add_to_cart_pp
+Disallow: /profile/add_to_cart_pp4
+Disallow: /profile/ajax_news
+Disallow: /profile/buy_full_profile
+Disallow: /profile/buyer_contact_info_report_request_facebox
+Disallow: /profile/supplier_contact_info_report_request_facebox
+Disallow: /profile/buyer_contact_info_report_request
+Disallow: /profile/supplier_contact_info_report_request
+Disallow: /profile/buy_full_profile_facebox
+Disallow: /profile/certification_report_request
+Disallow: /profile/certification_report_request_submit
+Disallow: /profile/contact_info_report_request
+Disallow: /profile/contact_info_report_request_submit
+Disallow: /profile/continue_after_add_to_cart
+Disallow: /profile/credit_report_request
+Disallow: /profile/credit_report_request_submit
+Disallow: /profile/customer_report_request
+Disallow: /profile/customer_report_request_submit
+Disallow: /profile/customs_record_field_details
+Disallow: /profile/delete_from_cart_pp
+Disallow: /profile/denied_parties_lists_request
+Disallow: /profile/denied_parties_lists_request_submit
+Disallow: /profile/dp_info_credit_report_request
+Disallow: /profile/dp_info_credit_report_request_submit
+Disallow: /profile/eba_engage_request
+Disallow: /profile/eba_engage_request_submit
+Disallow: /profile/eba_engage_suggest
+Disallow: /profile/eba_engage_suggest_submit
+Disallow: /profile/edit
+Disallow: /profile/get_employee_contact_partial
+Disallow: /profile/international_credit_report_request
+Disallow: /profile/international_credit_report_request_submit
+Disallow: /profile/jigsaw_employee_contact_info_request
+Disallow: /profile/jigsaw_employee_contact_info_request_submit
+Disallow: /profile/leave_message_for_supplier_submit
+Disallow: /profile/modify_alerts_submit
+Disallow: /profile/product_catalog
+Disallow: /profile/red_flag_report_request
+Disallow: /profile/red_flag_report_request_submit
+Disallow: /profile/register_for_alerts
+Disallow: /profile/register_for_alerts_submit
+Disallow: /profile/request_a_demo_submit
+Disallow: /profile/request_an_intro_submit
+Disallow: /profile/request_buyer_subscription_submit
+Disallow: /profile/send_confirmation_email
+Disallow: /profile/shipment_report_request
+Disallow: /profile/shipment_report_request_submit
+Disallow: /profile/sinosure_credit_report_request
+Disallow: /profile/sinosure_credit_report_request_submit
+Disallow: /profile/supplier_profile_edit_request_submit
+Disallow: /profile/thomasnet_data
+Disallow: /external/
+Disallow: /external_site_browser/
+
+# Deprecated
+Disallow: /profile/contact_info_request_submit
+Disallow: /profile/resend_registration_email
+Disallow: /profile/submit_supplier_info
+# Excel export
+Disallow: /profile/excel_export_supplier_customer_table
+
+# Search
+Disallow: /search/company_name_auto_complete
+Disallow: /search/refine_results
+Disallow: /search/refine_results_v3
+Disallow: /search/get_snippets
+Disallow: /search/save_search
+Disallow: /search/saved_search
+Disallow: /search/excel_export_search_table
+Disallow: /search/signup_for_feature_submit
+Disallow: /search/get_v2_counts
+Disallow: /search/tab_click
+# Block product search and dead search landing pages
+Disallow: /search/products
+Disallow: /lead/search_tab
+Disallow: /search/inquiries
+
+# Shipment search
+Disallow: /shipment_search/
+
+# SPPs
+Disallow: /panjiva_profile/
+Disallow: /supplier_profiles/subscribe_submit
+Disallow: /supplier_profiles/purchase_contact_info
+Disallow: /supplier_profiles/cpp_show_product/SCR
+
+# Trends
+Disallow: /executive/country_market_share_data
+Disallow: /executive/absolute_map
+Disallow: /executive/country_shipment_volume_data
+Disallow: /executive/get_snippets_for_country
+Disallow: /executive/get_snippets_for_month
+Disallow: /trends/product_trend_widget
+
+# Trendspotting
+Disallow: /macro_data/hts_code_search_choices
+Disallow: /macro_data/trendline
+Disallow: /macro_data/exporter_graph
+Disallow: /macro_data/changed_graph
+
+# Mekong Visor
+Disallow: /external
+
+# Mekong - this needs to be in the robots.text served
+# from china-cdn-proxy.panjiva.com, but added here for
+# completeness
+Disallow: /spp/external_product_images/
+
+# Checkout form submission
+Disallow: /store/checkout_field_completed
+
+# Other
+Disallow: /info/block_billboard
+Disallow: /info/deprecated_browser
+Disallow: /info/get_billboard
+Disallow: /info/set_key_action
+Disallow: /info/to_translate
+Disallow: /info/sn
+Disallow: /event_log/log
+Disallow: /buyer_leads/create
+Disallow: /pubsup/
+Disallow: /pubbuy/
+Disallow: /sresults/
+Disallow: /lp/
+Disallow: /goals/
+Disallow: /client_error/
+Disallow: /account/subscribe_submit
+Disallow: /account/me
+Disallow: /product_announcements/
+Disallow: /third_party_login/
+
+# These aren't actually urls, but / delimited keys that appear in json
+# Google still pulls them out and tries to call them though
+Disallow: /chat/
+
+Disallow: /unv/
+
+Disallow: /pc/
+
+# We have some challenge problems that use some publicly-visible data.
+# We don't want search engines crawling that data and pointing searches
+# there instead of at our actual site content.
+Disallow: /blog/wp-content/uploads/2011/04/companies_and_addresses1.txt
+Disallow: /blog/wp-content/uploads/2011/04/challenge_products.txt
+
+# specific pages that we want to force out of the indicies (use Noindex:?)
+
+# allow rules
+Allow: /
+
+
+User-agent: *

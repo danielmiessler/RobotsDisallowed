@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /opt-out-interface/
+Disallow: /opt-out/

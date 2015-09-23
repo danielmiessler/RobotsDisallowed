@@ -1,0 +1,116 @@
+User-agent: MJ12bot
+Disallow: /
+
+
+# according to http://www.sitepoint.com/googles-hidden-protocol/ wildcard only supported by google...
+User-agent: Googlebot
+Disallow: /flatshare/search.pl?*action=search
+# don't add that in yet till be have replacement browse versions of the 'rooms for couples' links etc
+# (google submits forms on 'high quality sites'. Trouble is it creates a 'session' of sorts with the search_id, so we don't want it crawling that - plus effectively duplicate content to the browse pages
+# Added now just before merge
+Disallow: /flatshare/*filter=showall
+# (out of date ppc links linking to /flatshare/?city_id=9&sort_by=popularity would have next links that spit out all the form vars eg /flatshare/?offset=10&mode=list&count=11143&sort_by=popularity&showme_buddyup_properties=Y&maxlat=51.5518322599406&filter=showall&minlat=51.4629950827988&minlong=-0.151129994046676&showme_1beds=Y&search=London&page=flatshares&location_type=area&rss_compatible=1&showme_rooms=Y&show_results=as+a+list&flatshare_type=offered&maxlong=-0.0638730016528356&city_id=9&nmsq_mode=normal )
+# now fixed that so it only carries forward vars on the orginal query string - think that should be ok
+# sort by duplicate content...
+# sort_by=age is default so should permit it
+Disallow: /flatshare/*sort_by=days_since_placed
+Disallow: /flatshare/*sort_by=last_updated
+Disallow: /flatshare/*sort_by=price_low_to_high
+Disallow: /flatshare/*sort_by=price_high_to_low
+# hopefully search_id should only appear when there actually is an id present - just checked 100k log lines and yes
+Disallow: /flatshare/*search_id=
+# it's still finding loads of invalid old urls containing posttown_ids and postcode_ids
+Disallow: /flatshare/*postcode_id=
+Disallow: /flatshare/*posttown_id=
+# should only be looking at the seo room urls now
+Disallow: /flatshare/flatshare_detail.pl
+# (but canonical meta tags should be sorting that now?)
+Disallow: /flatshare/upload-photo-request.pl*
+
+# same for other bots who now recognise wildcards (some docs say you can lisr user agents line after line, but inconclusive if it's supported across the board)
+User-agent: Slurp
+Disallow: /flatshare/search.pl?*action=search
+Disallow: /flatshare/*filter=showall
+Disallow: /flatshare/*sort_by=days_since_placed
+Disallow: /flatshare/*sort_by=last_updated
+Disallow: /flatshare/*sort_by=price_low_to_high
+Disallow: /flatshare/*sort_by=price_high_to_low
+Disallow: /flatshare/*search_id=
+Disallow: /flatshare/*postcode_id=
+Disallow: /flatshare/*posttown_id=
+Disallow: /flatshare/flatshare_detail.pl
+Disallow: /flatshare/upload-photo-request.pl*
+
+User-agent: bingbot
+Disallow: /flatshare/search.pl?*action=search
+Disallow: /flatshare/*filter=showall
+Disallow: /flatshare/*sort_by=days_since_placed
+Disallow: /flatshare/*sort_by=last_updated
+Disallow: /flatshare/*sort_by=price_low_to_high
+Disallow: /flatshare/*sort_by=price_high_to_low
+Disallow: /flatshare/*search_id=
+Disallow: /flatshare/*postcode_id=
+Disallow: /flatshare/*posttown_id=
+Disallow: /flatshare/flatshare_detail.pl
+Disallow: /flatshare/upload-photo-request.pl*
+
+User-agent: msnbot
+Disallow: /flatshare/search.pl?*action=search
+Disallow: /flatshare/*filter=showall
+Disallow: /flatshare/*sort_by=days_since_placed
+Disallow: /flatshare/*sort_by=last_updated
+Disallow: /flatshare/*sort_by=price_low_to_high
+Disallow: /flatshare/*sort_by=price_high_to_low
+Disallow: /flatshare/*search_id=
+Disallow: /flatshare/*postcode_id=
+Disallow: /flatshare/*posttown_id=
+Disallow: /flatshare/flatshare_detail.pl
+Disallow: /flatshare/upload-photo-request.pl*
+
+User-agent: teoma
+Disallow: /flatshare/search.pl?*action=search
+Disallow: /flatshare/*filter=showall
+Disallow: /flatshare/*sort_by=days_since_placed
+Disallow: /flatshare/*sort_by=last_updated
+Disallow: /flatshare/*sort_by=price_low_to_high
+Disallow: /flatshare/*sort_by=price_high_to_low
+Disallow: /flatshare/*search_id=
+Disallow: /flatshare/*postcode_id=
+Disallow: /flatshare/*posttown_id=
+Disallow: /flatshare/flatshare_detail.pl
+Disallow: /flatshare/upload-photo-request.pl*
+
+User-agent: Yandex
+Disallow: /flatshare/search.pl?*action=search
+Disallow: /flatshare/*filter=showall
+Disallow: /flatshare/*sort_by=days_since_placed
+Disallow: /flatshare/*sort_by=last_updated
+Disallow: /flatshare/*sort_by=price_low_to_high
+Disallow: /flatshare/*sort_by=price_high_to_low
+Disallow: /flatshare/*search_id=
+Disallow: /flatshare/*postcode_id=
+Disallow: /flatshare/*posttown_id=
+Disallow: /flatshare/flatshare_detail.pl
+Disallow: /flatshare/upload-photo-request.pl*
+
+
+User-agent: *
+Disallow: /flatshare/search_copy_n_edit.pl # not appropriate for robots - can create infinte loops
+Disallow: /flatshare/wanted_listing_step1.pl?* #lots of query versions coming from search results pages, when the default (no query) is only appropriate one for google
+Disallow: /flatshare/facebook_connect.pl # google keeps finding this somehow! must follow javascript links too
+Disallow: /flatshare/savesearch.pl
+Disallow: /flatshare/savesearch_confirm.pl
+Disallow: /flatshare/fad_click.pl
+Disallow: /flatshare/upload-photo-request.pl
+Disallow: /virtual/
+Disallow: /www.googletagmanager.com
+Disallow: /ajax.googleapis.com
+Disallow: /cdn.optimizely.com
+Disallow: /flatshare/api.pl
+Disallow: /pro/yourlondonroom
+Disallow: /pro/roomsinkent
+Disallow: /pro/sheffieldrooms
+Disallow: /pro/skyline-estates
+Disallow: /pro/xpresslink
+Disallow: /pro/rentroom
+Disallow: /pro/letaplace

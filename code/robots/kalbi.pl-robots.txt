@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+User-agent: bingbot
+Crawl-delay: 10
+
+User-agent: msnbot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Crawl-delay: 10
+
+User-agent: googlebot
+Crawl-delay: 10

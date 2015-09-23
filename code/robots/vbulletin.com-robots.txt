@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /issue.php*
+Disallow: /r.php
+Disallow: /links.php?displayid=*
+Disallow: /beta/
+Disallow: /vbcms/

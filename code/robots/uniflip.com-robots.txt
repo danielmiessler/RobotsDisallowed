@@ -1,0 +1,19 @@
+<?php ob_start("ob_gzhandler"); ?>
+<?php
+
+include($_SERVER["APPL_PHYSICAL_PATH"] . "_conf.php");
+header("Content-Type: text/plain");
+header("keep-alive: timeout=15, max=99");
+
+$serverhost = ($_SERVER["HTTPS"] == "on" ? "https" : "http") . "://" . $_SERVER["SERVER_NAME"] . "/";
+
+?>
+
+# robots.txt for <?php echo $serverhost; ?>
+
+
+User-Agent: *
+Allow: /
+Disallow: /include/
+Disallow: /member/
+Disallow: /member2/

@@ -1,0 +1,2703 @@
+
+
+
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9, requiresActiveX=true">
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta name="msapplication-task" content="name=한게임; action-uri=http://www.hangame.com; icon-uri=/favicon.ico" />
+<title>한게임 - 즐거운 쉼표, Go 한게임!</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+<link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+<link rel="stylesheet" type="text/css" href="/share/css/portal.css?20141126" />
+
+<script language="javascript" type="text/javascript" src="/common/js/jsurls.jsp" charset="euc-kr"></script>
+
+<script language="javascript" type="text/javascript" src="/share/js/www_main_builded.js?20140917" charset="UTF-8"></script>
+
+
+
+
+
+
+
+<script type="text/javascript" language="javascript">
+
+var __imgPrefix =  (__bDevZone || __bAlphaZone) ? "alpha-" : "";
+
+// 스마트 팝업
+loadSmartPopup();
+
+//AJAX를 통한 lazy loading 처리
+var isLazyLoaded = false;
+var MainUtil = {};
+MainUtil.loadLazy = function(_url, _oInfo) {
+	if(_oInfo.isLoaded) return;
+
+	var ajaxOptions = {
+		method: "get",
+		url: _url,
+		div: _oInfo.divId,
+		callback: function(){
+			_oInfo.isLoaded = true;
+		}
+	};
+	
+	AJAX.send(ajaxOptions, null);
+}
+
+var chinaFooter = new (function(){
+	var chinaFooterInfo = {
+			divId : 'chinaFooter',
+			isLoaded : false
+	}
+	this.load = function() {
+		C.debug("china footer!");
+		MainUtil.loadLazy('/lazyLoading.nhn?m=chinaFooter', chinaFooterInfo);
+	}
+})();
+
+
+function getLinkTarget(target) {
+	switch (target) {
+		case "T" :
+			return "_top";
+		case "B" :
+			return "_blank";
+	}
+}
+
+function goAllGameList(){ 
+	$j('html, body').animate({scrollTop:$j('#gamelist_wrap').offset().top},'slow');
+	$j('#h_gamelist_tit').focus();
+};
+	
+// 메인 우측 영역의 script
+//추천 스마트폰 게임 영역 rolling
+var cPage = 1;
+function preRecSmartPhoneGame() {
+	
+	cPage--;
+	if (cPage <= 0) {
+		cPage = 1;
+	}
+	$j('.recSmartPhoneGame').each(function(n) {
+		if ((cPage - 1) * 3 <= n && n < (cPage * 3)) $j('.recSmartPhoneGame').eq(n).show();
+		else $j('.recSmartPhoneGame').eq(n).hide();
+	});	
+}
+
+function nextRecSmartPhoneGame() {
+	
+	var size = $j('.recSmartPhoneGame').size();
+	var maxPage = Math.floor(size / 3);
+	if ((size % 3) > 0) maxPage++;
+
+	cPage++;
+	
+	if (cPage > maxPage) cPage = maxPage;
+	
+	$j('.recSmartPhoneGame').each(function(n) {
+		if ((cPage - 1) * 3 <= n && n < (cPage * 3)) $j('.recSmartPhoneGame').eq(n).show();
+		else $j('.recSmartPhoneGame').eq(n).hide();
+	});	
+}
+
+function clAdLayer(){
+	$j('.ly_ad').hide();
+}
+
+var RankingRecommandArea = new (function(){
+	var current = "ranking";
+	
+	this.clickTab = function (id){
+		if(current == id)
+			return;
+		
+		var tab = document.getElementById(id+'Tab');
+		tab.childNodes[0].className="selected";
+		tab.innerHTML = '<str' + 'ong>'+tab.innerHTML+'</str' + 'ong>';
+		
+		var currentTab = document.getElementById(current+'Tab');
+		currentTab.innerHTML = currentTab.childNodes[0].innerHTML;
+
+		currentTab.childNodes[0].className="";
+		
+		$j('#'+id+'Area').show();
+		$j('#'+current+'Area').hide();
+		current=id;
+	}
+});
+
+
+
+//비로그인 장르별 인기게임 네비게이터
+
+var PopularNavigator = new (function(){
+	var keys = {"ALL":0, "M":1, "WEB":2, "A":3, "CA":4, "BO":5, "S":6, "GO":7, "PO":8, "SMART":9};
+	var currentTabIdx = keys['PO'];
+	var intervalId;
+	var activate = true;
+	var that = this;
+	this.clickNavi = function (idx, force){
+		if(!force && !activate)
+			return;
+		document.getElementById('pnavi'+currentTabIdx).className="";
+		document.getElementById('pnavi'+idx).className="on";
+		$j('#top_lst_'+currentTabIdx).hide();
+		currentTabIdx = idx;
+		$j('#top_lst_'+idx).show();
+	}
+	
+	this.rollingGenreTab = function(){
+		intervalId = setInterval(
+								function(){
+									that.clickNavi(that.nextGenre(), false);
+								}, 5000);
+	}
+	
+	this.nextGenre = function(){
+		if(currentTabIdx == 9){
+			return 0;
+		} else {
+			return currentTabIdx+1;
+		}
+	}
+	
+	this.clickNaviWithClearInterval = function (idx){
+		clearInterval(intervalId);
+		that.clickNavi(idx, true);
+		that.rollingGenreTab();
+	}
+	
+	this.stopRolling = function(){
+		activate = false;
+	}
+	
+	this.resumeRolling = function(){
+		activate = true;
+	}
+});
+
+</script>
+</head>
+<body>
+<!-- ie6 대응 -->
+<div id="ie6banner" class="browser_upgrade" style="display:none;">
+	<div class="txt">
+		<p><span class="blind">지금 사용하고 계신 구형 웹브라우저는 해킹 위험으로부터 안전하지 않습니다.</span><a href="javascript:GBIE6.goEventPage();" class="upgrade">최신 웹브라우저로 업그레이드</a></p>
+		<a href="javascript:GBIE6.slidePushUp('ie6banner');" class="clse">닫기</a>
+	</div>
+</div>
+
+<!-- 프로모션 및 배경 이미지 -->
+
+
+
+
+	
+	
+	
+	
+
+
+
+<div id="wrap" class="wrap_inner" style="background-image:url('http://images.hangame.co.kr/hangame/main/renew2012/bg/bg_skin3.jpg');">
+	
+	
+	
+		<div class="bg_l" style="background-image:url('http://images.hangame.co.kr/hangame/main/renew2012/bg/bg_skin3_l.jpg')"></div> 
+		<div class="bg_r" style="background-image:url('http://images.hangame.co.kr/hangame/main/renew2012/bg/bg_skin3_r.jpg')"></div>	
+	
+	
+	
+	<!-- header --> 
+	
+
+
+
+<!-- header -->
+<div id="header">
+	<a href="#content" class="blind">본문 바로가기</a>
+	
+		
+		
+			<h1 class="logo"><a href="http://www.hangame.com" onclick="clickcr(this,'gnb.logo','','',event);" target="_top"><img src="http://images.hangame.co.kr/hangame/main/renew2012/blank.gif" width="208" height="80" alt="HANGAME" style="background:url(http://images.hangame.co.kr/hangame/main/renew2012/logo.png) no-repeat;_background:0;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://images.hangame.co.kr/hangame/main/renew2012/logo.png',sizingMethod='crop')"></a></h1>
+		
+	
+	<div class="lnb">
+		<ul>
+		
+		<li class="m3"><a href="http://avatar.hangame.com/index.nhn" onclick="clickcr(this,'gnb.shop','','',event);"><span>한게임상점</span></a></li>
+		<li class="m4"><a href="http://sponsor.hangame.com/sponsor.nhn?method=ingAppEvent" onclick="clickcr(this,'gnb.free','','',event);"><span>무료충전소</span></a></li>
+		<li class="m5"><a href="http://cs.hangame.com" onclick="clickcr(this,'gnb.cs','','',event);"><span>고객센터</span></a></li>
+		</ul>
+	</div>		
+	
+	<div class="srch_top">			
+		<span class="srch_go">			
+			<input id="inputGameSearch" type="text" class="input_kwd" value="게임명을 입력하세요." onclick="clickcr(this,'gnb.schclick','','',event);" /><button id="imgTopSearchGo" class="off"  style='cursor:pointer;'><span class="blind">바로가기</span></button>
+		</span>				
+		<!-- a id="goAllGameList" href="#" class="btn_game_all" onclick="goAllGameList();clickcr(this,'gnb.allgame','','',event);return false;" ><span class="blind">전체게임보기</span></a-->
+		<a href="http://www.toast.com/mobile.nhn" class="toast"><span class="blind">토스트</span></a>
+
+		<!-- 게임 바로가기 검색 결과 -->			
+		<div id="gameSearchResultDiv" class="srch_lst" style="display:none;">
+			<div id='divSearchResultContent' class="srch_inner">
+				<ul id='divSearchResultContentUl' class="top_lst2 scrl">
+				</ul>
+			</div>
+			<span class="bg"></span>
+			<iframe id='ifrmSearchResultPanel' frameborder=0 width='265' height='350' style='position:absolute;top:0px;left:5px;z-index:55555;' title='빈프레임'></iframe>
+		</div>	
+					
+	</div>
+</div>
+<!-- //header -->
+	<!-- container -->
+<div id="container">
+	<!-- 긴급 공지 레이어 -->
+	<div id="urgency_area" class="ly_notice" style='display:none'></div>
+	<!-- //긴급 공지 레이어 -->
+
+	<!-- content -->
+	<div class="content">
+		
+
+
+
+<!-- content -->
+<div id="content">
+	<div class="spot">
+		<div id="_promotionSpecialBannerPlaceholder" style="display:none;"></div>
+		
+	<!-- 비로그인 -->
+	
+	    <div class="top_menu">
+		<ul id="popularNavi">
+		<li class="m1"><a id="pnavi0" href="#" onclick="clickcr(this,'hot.genre0','','',event);PopularNavigator.clickNaviWithClearInterval(0);return false;" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" ><span class="blind">전체</span></a></li>
+		<li class="m2"><a id="pnavi1" href="#" onclick="clickcr(this,'hot.genre1','','',event);PopularNavigator.clickNaviWithClearInterval(1);return false;" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" ><span class="blind">RPG</span></a></li>
+		<li class="m3"><a id="pnavi2" href="#" onclick="clickcr(this,'hot.genre9','','',event);PopularNavigator.clickNaviWithClearInterval(2);return false;" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" ><span class="blind">웹게임</span></a></li>
+		<li class="m4"><a id="pnavi3" href="#" onclick="clickcr(this,'hot.genre2','','',event);PopularNavigator.clickNaviWithClearInterval(3);return false;" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" ><span class="blind">FPS/레이싱</span></a></li>
+		<li class="m5"><a id="pnavi4" href="#" onclick="clickcr(this,'hot.genre5','','',event);PopularNavigator.clickNaviWithClearInterval(4);return false;" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" ><span class="blind">캐쥬얼</span></a></li>
+		<li class="m6"><a id="pnavi5" href="#" onclick="clickcr(this,'hot.genre4','','',event);PopularNavigator.clickNaviWithClearInterval(5);return false;" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" ><span class="blind">보드</span></a></li>
+		<li class="m7"><a id="pnavi6" href="#" onclick="clickcr(this,'hot.genre3','','',event);PopularNavigator.clickNaviWithClearInterval(6);return false;" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" ><span class="blind">스포츠</span></a></li>
+		<li class="m8"><a id="pnavi7" href="#" onclick="clickcr(this,'hot.genre6','','',event);PopularNavigator.clickNaviWithClearInterval(7);return false;" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" ><span class="blind">고스톱</span></a></li>
+		<li class="m9"><a id="pnavi8" href="#" onclick="clickcr(this,'hot.genre7','','',event);PopularNavigator.clickNaviWithClearInterval(8);return false;" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" class="on"><span class="blind">포커</span></a></li>
+		<li class="m10"><a id="pnavi9" href="#" onclick="clickcr(this,'hot.genre8','','',event);PopularNavigator.clickNaviWithClearInterval(9);return false;" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" ><span class="blind">스마트폰 게임</span></a></li>
+		</ul>
+		<span class="shadow"></span>
+		</div>
+
+		
+		
+		
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		
+		<h2 class="blind">전체 게임</h2>
+			
+		<ol class="top_lst" id="top_lst_0" style="display:none;">
+		<!-- 인기게임 리스트 -->
+		
+		<li class="n1 ">
+		
+			
+			
+			
+			
+			<a href="http://gostop.hangame.com/msduelgo.nhn" onclick="clickcr(this,'hot.game1','msduelgo','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>1</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/default/152x198/ssduelgo.jpg" width="152" height="198" alt="신맞고">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>신맞고</strong>
+					<em>고스톱/18세이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">오늘은 흔들고 쓰리고!<br>치는 맛이 좋은 신맞고!</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		<li class="n2 ">
+		
+			
+			
+			
+			
+			<a href="http://baduk.hangame.com/" onclick="clickcr(this,'hot.game2','baduk','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>2</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/default/152x198/baduk.jpg" width="152" height="198" alt="바둑">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>바둑</strong>
+					<em>보드/전체이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">즐거운 반상여행<br>진정한 승부의 세계로!</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		<li class="n3 ">
+		
+			
+			
+			
+			
+			<a href="http://tr.hangame.com" onclick="clickcr(this,'hot.game3','TR','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>3</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/gameinfo/talesrunner_chu_20150923.png" width="152" height="198" alt="테일즈런너">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>테일즈런너</strong>
+					<em>FPS/레이싱/전체이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">5년만에 세계왕 업데이트!<br>국기 맞히고 템도 받고!</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		<li class="n4 ">
+		
+			
+			
+			
+			
+			<a href="http://tera.hangame.com/" onclick="clickcr(this,'hot.game4','K_TERA','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>4</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/gameinfo/tera_chu_20150714.png" width="152" height="198" alt="TERA">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>TERA</strong>
+					<em>RPG/18세이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">파격 업데이트<br>신규 클래스를 생성하라!</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		</ol>
+		
+		
+		
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		
+		<h2 class="blind">RPG 게임</h2>
+			
+		<ol class="top_lst" id="top_lst_1" style="display:none;">
+		<!-- 인기게임 리스트 -->
+		
+		<li class="n1 ">
+		
+			
+			
+			
+			
+			<a href="http://tera.hangame.com/" onclick="clickcr(this,'hot.game1','K_TERA','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>1</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/gameinfo/tera_chu_20150714.png" width="152" height="198" alt="TERA">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>TERA</strong>
+					<em>18세이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">파격 업데이트<br>신규 클래스를 생성하라!</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		<li class="n2 ">
+		
+			
+			
+			
+			
+			<a href="http://kt.hangame.com" onclick="clickcr(this,'hot.game2','K_KRITIKA','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>2</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/default/152x198/kritika.jpg" width="152" height="198" alt="크리티카">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>크리티카</strong>
+					<em>15세이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">빠르고 통쾌한<br>초(超) 액션 MORPG</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		<li class="n3 ">
+		
+			
+			
+			
+			
+			<a href="http://pristontale.hangame.com/" onclick="clickcr(this,'hot.game3','k_priston','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>3</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/default/152x198/pristontale.jpg" width="152" height="198" alt="프리스톤테일">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>프리스톤테일</strong>
+					<em>12세이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">프리스톤 대륙에서 펼쳐지는<br>Full 3D MMORPG</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		<li class="n4 ">
+		
+			
+			
+			
+			
+			<a href="http://sunonline.hangame.com/" onclick="clickcr(this,'hot.game4','k_sunonline','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>4</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/gameinfo/sunlimited_chu_20140415.png" width="152" height="198" alt="썬:리미티드에디션">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>썬:리미티드에디션</strong>
+					<em>18세이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">대대적인 클래스 리뉴얼!<br>그 시작에 전율하라!</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		</ol>
+		
+		
+		
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		
+		<h2 class="blind">웹 게임</h2>
+			
+		<ol class="top_lst" id="top_lst_2" style="display:none;">
+		<!-- 인기게임 리스트 -->
+		
+		<li class="n1 ">
+		
+			
+			
+			
+			
+			<a href="http://jk.hangame.com" onclick="clickcr(this,'hot.game1','K_JK','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>1</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/gameinfo/jg_chu_20150611.png" width="152" height="198" alt="전장의 군주">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>전장의 군주</strong>
+					<em>18세이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">여름맞이 특별 보상 이벤트<br>출석과 레벨업만하면 끝!</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		<li class="n2 ">
+		
+			
+			
+			
+			
+			<a href="http://dk.hangame.com/" onclick="clickcr(this,'hot.game2','K_DK','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>2</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.com/hangame/main2012/default/152x198/dark3.jpg" width="152" height="198" alt="암흑삼국">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>암흑삼국</strong>
+					<em>12세이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">악녀들의 삼국지<br>암흑삼국</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		<li class="n3 ">
+		
+			
+			
+			
+			
+			<a href="http://ssd2.hangame.com" onclick="clickcr(this,'hot.game3','K_SSD2','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>3</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/gameinfo/1000years_chu_20150611.jpg" width="152" height="198" alt="천년도">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>천년도</strong>
+					<em>12세이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">국민 웹게임 신선도 후속작<br>신선도 천년의 이야기!</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		<li class="n4 recomm">
+		
+			
+			
+			
+			
+			<a href="http://st.hangame.com" onclick="clickcr(this,'hot.game4','K_ST','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/default/152x198/로그인전_인기게임_152x198.jpg" width="152" height="198" alt="사투">
+					<span class="line"></span>
+					
+					
+					<em class="ico_label ico_label_v1"><span class="best2">추천</span></em>
+					
+				</span>
+				<span class="tit">
+					
+					<strong>사투</strong>
+					<em>18세이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">화려하고 개성있는 전투!<br>영웅들의 무한전투가시작된다</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		</ol>
+		
+		
+		
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		
+		<h2 class="blind">FPS/레이싱 게임</h2>
+			
+		<ol class="top_lst" id="top_lst_3" style="display:none;">
+		<!-- 인기게임 리스트 -->
+		
+		<li class="n1 ">
+		
+			
+			
+			
+			
+			<a href="http://tr.hangame.com" onclick="clickcr(this,'hot.game1','TR','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>1</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/gameinfo/talesrunner_chu_20150923.png" width="152" height="198" alt="테일즈런너">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>테일즈런너</strong>
+					<em>전체이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">5년만에 세계왕 업데이트!<br>국기 맞히고 템도 받고!</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		<li class="n2 ">
+		
+			
+			
+			
+			
+			<a href="http://sf2.hangame.com" onclick="clickcr(this,'hot.game2','K_SF2','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>2</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.com/hangame/main2012/default/152x198/sf2.jpg" width="152" height="198" alt="스페셜포스2">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>스페셜포스2</strong>
+					<em>15세이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">대한민국 FPS의 종결<br>더욱 리얼한 박진감의 향연</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		<li class="n3 recomm">
+		
+		
+		<span class="thmb"><img src="http://images.hangame.co.kr/hangame/main/renew2012/thmb_comming_soon.png" width="152" height="198" alt="준비중"></span>
+		
+		</li>
+		
+		<li class="n4 recomm">
+		
+		
+		<span class="thmb"><img src="http://images.hangame.co.kr/hangame/main/renew2012/thmb_comming_soon.png" width="152" height="198" alt="준비중"></span>
+		
+		</li>
+		
+		</ol>
+		
+		
+		
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		
+		<h2 class="blind">캐주얼 게임</h2>
+			
+		<ol class="top_lst" id="top_lst_4" style="display:none;">
+		<!-- 인기게임 리스트 -->
+		
+		<li class="n1 ">
+		
+			
+			
+			
+			
+			<a href="http://audition.hangame.com" onclick="clickcr(this,'hot.game1','K_AUDITION','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>1</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/default/152x198/audition.jpg" width="152" height="198" alt="오디션">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>오디션</strong>
+					<em>전체이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">키패드와 스페이스바로<br>춤을 추는 온라인 댄스게임</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		<li class="n2 ">
+		
+			
+			
+			
+			
+			<a href="http://puppyred.hangame.com" onclick="clickcr(this,'hot.game2','puppyred','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>2</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/default/152x198/puppyred.jpg" width="152" height="198" alt="퍼피레드">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>퍼피레드</strong>
+					<em>전체이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">가상 생활공간 미니파크에서<br>사이버라이프를 즐기는 게임</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		<li class="n3 ">
+		
+			
+			
+			
+			
+			<a href="http://modoo.hangame.com" onclick="clickcr(this,'hot.game3','K_MODOO','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>3</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/default/152x198/modoo.jpg" width="152" height="198" alt="모두의마블">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>모두의마블</strong>
+					<em>전체이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">전 세계 도시를 소유하라!<br>모두가 즐기는 캐주얼게임</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		<li class="n4 recomm">
+		
+		
+		<span class="thmb"><img src="http://images.hangame.co.kr/hangame/main/renew2012/thmb_comming_soon.png" width="152" height="198" alt="준비중"></span>
+		
+		</li>
+		
+		</ol>
+		
+		
+		
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		
+		<h2 class="blind">보드 게임</h2>
+			
+		<ol class="top_lst" id="top_lst_5" style="display:none;">
+		<!-- 인기게임 리스트 -->
+		
+		<li class="n1 ">
+		
+			
+			
+			
+			
+			<a href="http://baduk.hangame.com/" onclick="clickcr(this,'hot.game1','baduk','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>1</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/default/152x198/baduk.jpg" width="152" height="198" alt="바둑">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>바둑</strong>
+					<em>전체이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">즐거운 반상여행<br>진정한 승부의 세계로!</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		<li class="n2 ">
+		
+			
+			
+			
+			
+			<a href="http://janggi.hangame.com/" onclick="clickcr(this,'hot.game2','janggi','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>2</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/default/152x198/janggi.jpg" width="152" height="198" alt="장기">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>장기</strong>
+					<em>전체이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">장기로 즐기는 파워게임!<br>초,한나라의 숨막히는 전투</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		<li class="n3 ">
+		
+			
+			
+			
+			
+			<a href="http://game1.hangame.com/gmahjong.nhn" onclick="clickcr(this,'hot.game3','gmahjong','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>3</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/default/152x198/gmahjong.jpg" width="152" height="198" alt="사천성">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>사천성</strong>
+					<em>전체이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">퍼즐게임의 최강자<br>짝맞추기 한판 승부!</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		<li class="n4 ">
+		
+			
+			
+			
+			
+			<a href="http://game1.hangame.com/sinyutnori.nhn" onclick="clickcr(this,'hot.game4','sinyutnori','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>4</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/default/152x198/sinyutnori.jpg" width="152" height="198" alt="신윷놀이">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>신윷놀이</strong>
+					<em>18세이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">달콤살벌한 반전드라마<br>짜릿한 역전의 재미</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		</ol>
+		
+		
+		
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		
+		<h2 class="blind">스포츠 게임</h2>
+			
+		<ol class="top_lst" id="top_lst_6" style="display:none;">
+		<!-- 인기게임 리스트 -->
+		
+		<li class="n1 ">
+		
+			
+			
+			
+			
+			<a href="http://pangya.hangame.com" onclick="clickcr(this,'hot.game1','K_PANGYA','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>1</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/default/152x198/pangya.jpg" width="152" height="198" alt="팡야">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>팡야</strong>
+					<em>전체이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">동화같은 팡야섬에서 즐기는<br>온라인 캐주얼 골프 게임</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		<li class="n2 ">
+		
+			
+			
+			
+			
+			<a href="http://shotonline.hangame.com/" onclick="clickcr(this,'hot.game2','shotonline','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>2</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/gameinfo/shotonline_chu_20150616.jpg" width="152" height="198" alt="샷온라인">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>샷온라인</strong>
+					<em>18세이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">리얼 골프의 자존심!<br>무료 골프 게임 샷온라인!</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		<li class="n3 ">
+		
+			
+			
+			
+			
+			<a href="http://ma9.hangame.com/main.asp" onclick="clickcr(this,'hot.game3','k_ma9','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>3</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/gameinfo/magumagu_chu_20150513.png" width="152" height="198" alt="마구마구">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>마구마구</strong>
+					<em>전체이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">마구마구 : 진화의 시작<br>레전드등급 카드 업데이트</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		<li class="n4 ">
+		
+			
+			
+			
+			
+			<a href="http://wp.hangame.com" onclick="clickcr(this,'hot.game4','K_PUTT','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>4</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.com/hangame/main2012/default/152x198/putt_2.jpg" width="152" height="198" alt="위닝펏">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>위닝펏</strong>
+					<em>전체이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">가장 짜릿한 스포츠게임!<br>온라인 골프 위닝펏</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		</ol>
+		
+		
+		
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		
+		<h2 class="blind">고스톱 게임</h2>
+			
+		<ol class="top_lst" id="top_lst_7" style="display:none;">
+		<!-- 인기게임 리스트 -->
+		
+		<li class="n1 ">
+		
+			
+			
+			
+			
+			<a href="http://gostop.hangame.com/msduelgo.nhn" onclick="clickcr(this,'hot.game1','msduelgo','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>1</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/default/152x198/ssduelgo.jpg" width="152" height="198" alt="신맞고">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>신맞고</strong>
+					<em>18세이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">오늘은 흔들고 쓰리고!<br>치는 맛이 좋은 신맞고!</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		<li class="n2 ">
+		
+			
+			
+			
+			
+			<a href="http://gostop.hangame.com/duelgo.nhn" onclick="clickcr(this,'hot.game2','duelgo','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>2</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/default/152x198/duelgo.jpg" width="152" height="198" alt="맞고">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>맞고</strong>
+					<em>18세이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">오프라인 느낌 그대로~<br>둘이 치는 맞고의 즐거움</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		<li class="n3 ">
+		
+			
+			
+			
+			
+			<a href="http://gostop.hangame.com/gostop.nhn" onclick="clickcr(this,'hot.game3','gostop','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>3</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/default/152x198/gostop.jpg" width="152" height="198" alt="고스톱">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>고스톱</strong>
+					<em>18세이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">진정한 오리지널을 원하는가<br>그렇다면 3인 고스톱으로!</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		<li class="n4 ">
+		
+			
+			
+			
+			
+			<a href="http://gostop.hangame.com/tournament/index.nhn" onclick="clickcr(this,'hot.game4','DUELGOTNMT','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>4</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/default/152x198/duelgotnmt.jpg" width="152" height="198" alt="신맞고 토너먼트">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>신맞고 토너먼트</strong>
+					<em>18세이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">최고상금 10억에 도전하라<br>1대128의 숨막히는 대결</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		</ol>
+		
+		
+		
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		
+		<h2 class="blind">포커 게임</h2>
+			
+		<ol class="top_lst" id="top_lst_8" >
+		<!-- 인기게임 리스트 -->
+		
+		<li class="n1 ">
+		
+			
+			
+			
+			
+			<a href="http://poker.hangame.com/index.nhn?gameid=baduki" onclick="clickcr(this,'hot.game1','baduki','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>1</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/gameinfo/mp_chu2_20140321.png" width="152" height="198" alt="로우바둑이">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>로우바둑이</strong>
+					<em>18세이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">전략적인 베팅으로 승부하라<br>포커의 진정한 진검 승부</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		<li class="n2 ">
+		
+			
+			
+			
+			
+			<a href="http://poker.hangame.com/index.nhn?gameid=poker7" onclick="clickcr(this,'hot.game2','poker7','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>2</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/default/152x198/7poker.jpg" width="152" height="198" alt="7포커">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>7포커</strong>
+					<em>18세이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">이것이 포커 게임의 기본<br>지상최고의 포커 게임</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		<li class="n3 ">
+		
+			
+			
+			
+			
+			<a href="http://poker.hangame.com/index.nhn?gameid=highlow2" onclick="clickcr(this,'hot.game3','highlow2','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>3</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/default/152x198/highlow.jpg" width="152" height="198" alt="하이로우">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>하이로우</strong>
+					<em>18세이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">끝까지 방심하지 마라<br>반전의 재미, 스윙!</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		<li class="n4 ">
+		
+			
+			
+			
+			
+			<a href="http://poker.hangame.com/index.nhn?gameid=laspoker" onclick="clickcr(this,'hot.game4','laspoker','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>4</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/default/152x198/laspoker.jpg" width="152" height="198" alt="라스베가스포커">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					
+					<strong>라스베가스포커</strong>
+					<em>18세이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">World Class<br>화려한 홀덤의 세계</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		</ol>
+		
+		
+		
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		
+		<h2 class="blind">스마트폰 게임</h2>
+			
+		<ol class="top_lst" id="top_lst_9" style="display:none;">
+		<!-- 인기게임 리스트 -->
+		
+		<li class="n1 ">
+		
+			
+			
+			
+			
+			<a href="http://hgurl.me/alT" onclick="clickcr(this,'hot.game1','SKQUEST','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>1</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/gameinfo/cq_chu_20150416.png" width="152" height="198" alt="크루세이더 퀘스트">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					<span class="ico_phone"></span>
+					<strong>크루세이더 퀘스트</strong>
+					<em>12세이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">이보다 강력한충격은 없었다<br>초월무기 업데이트!</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		<li class="n2 ">
+		
+			
+			
+			
+			
+			<a href="http://eventpark.hangame.com/event/mobileduelgo/season2pc.nhn" onclick="clickcr(this,'hot.game2','10001','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>2</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/gameinfo/sinmatgo_chu_20150624.png" width="152" height="198" alt="한게임신맞고">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					<span class="ico_phone"></span>
+					<strong>한게임신맞고</strong>
+					<em>18세이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">원조 손맛의 위엄<br>맞고의 절대 강자!</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		<li class="n3 ">
+		
+			
+			
+			
+			
+			<a href="http://www.toast.com/mobile.nhn?gameNo=10156" onclick="clickcr(this,'hot.game3','10156','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				<span class="no"><strong>3</strong></span>
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/default/152x198/k_woo.jpg" width="152" height="198" alt="우파루마운틴">
+					<span class="line"></span>
+					
+					
+					
+					
+				</span>
+				<span class="tit">
+					<span class="ico_phone"></span>
+					<strong>우파루마운틴</strong>
+					<em>전체이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">대한민국 No.1 SNG<br>내 손안의 귀요미~</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		<li class="n4 recomm">
+		
+			
+			
+			
+			
+			<a href="http://www.toast.com/gameDetail.nhn?gameId=FriendsPop" onclick="clickcr(this,'hot.game4','10399','',event);" onmouseover="PopularNavigator.stopRolling()" onmouseout="PopularNavigator.resumeRolling()" onfocus="PopularNavigator.stopRolling()" onblur="PopularNavigator.resumeRolling()" >
+				
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/gameinfo/friendspop_chu_20150918.jpg" width="152" height="198" alt="프렌즈팝">
+					<span class="line"></span>
+					
+					
+					<em class="ico_label ico_label_v1"><span class="best2">추천</span></em>
+					
+				</span>
+				<span class="tit">
+					<span class="ico_phone"></span>
+					<strong>프렌즈팝</strong>
+					<em>전체이용가</em>
+				</span>
+				<span class="info">							
+					<span class="txt">귀욤 카카오프렌즈 블록들의<br>숨겨진 얼굴을 찾아보자!</span>
+				</span>
+			</a>
+		
+		
+		</li>
+		
+		</ol>
+		
+		<!-- //인기게임 리스트 -->
+	
+	<!-- 로그인 -->
+	
+	</div>
+	
+	
+	<div class="recomd_area">
+		
+		<h2 class="h_new"><span class="blind">게임 정보</span></h2>
+		<ul class="top_lst lst_type">
+		<!-- [D] 분류아이콘 (.cate_new(신규),.cate_recomd(추천),.cate_updt(업데이트),.cate_event(이벤트),.cate_issue(이슈),.cate_cbt(CBT) -->
+		
+		<li>
+			
+			
+			
+			
+			<a href="http://tr.hangame.com"  onclick="clickcr(this,'gif.game1','TR','',event);" >
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/gameinfo/talesrunner_gi_20150923.jpg" width="152" height="94" alt="테일즈런너">
+					
+					<em class="ico_label"><span class="updt">updt</span></em>
+					
+				</span>
+				<span class="tit">
+					
+					<strong>테일즈런너</strong>
+				</span>
+				<span class="info">							
+					<span class="txt">5년만에 세계왕 업데이트!<br>국가 맞히고 템도 받고!</span>
+				</span>
+			</a>
+		</li>
+		
+		<li>
+			
+			
+			
+			
+			<a href="http://st.hangame.com"  onclick="clickcr(this,'gif.game2','K_ST','',event);" >
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/gameinfo/satu_gi_20150918.jpg" width="152" height="94" alt="사투">
+					
+					<em class="ico_label"><span class="new">new</span></em>
+					
+				</span>
+				<span class="tit">
+					
+					<strong>사투</strong>
+				</span>
+				<span class="info">							
+					<span class="txt">화려하고 개성있는 전투!<br>영웅들의 무한전투가시작된다</span>
+				</span>
+			</a>
+		</li>
+		
+		<li>
+			
+			
+			
+			
+			<a href="https://play.google.com/store/apps/details?id=com.nhnent.SKPOKOPOKO"  onclick="clickcr(this,'gif.game3','SKPOKOPOKO','',event);" >
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/gameinfo/pokopoko_gi_20150701.jpg" width="152" height="94" alt="포코포코 for Kakao">
+					
+					<em class="ico_label"><span class="new">new</span></em>
+					
+				</span>
+				<span class="tit">
+					<span class="ico_phone2"></span>
+					<strong>포코포코 for Kakao</strong>
+				</span>
+				<span class="info">							
+					<span class="txt">포코팡 캐릭터 총 출동!<br>1천만 다운로드 히트작</span>
+				</span>
+			</a>
+		</li>
+		
+		<li>
+			
+			
+			
+			
+			<a href="http://www.toast.com/gameDetail.nhn?gameId=FriendsPop"  onclick="clickcr(this,'gif.game4','10399','',event);" >
+				<span class="thmb">
+					<img src="http://images.hangame.co.kr/hangame/main2012/gameinfo/friendspop_gi_20150918.jpg" width="152" height="94" alt="프렌즈팝">
+					
+					<em class="ico_label"><span class="new">new</span></em>
+					
+				</span>
+				<span class="tit">
+					<span class="ico_phone2"></span>
+					<strong>프렌즈팝</strong>
+				</span>
+				<span class="info">							
+					<span class="txt">카카오프렌즈 귀욤 블록들과<br>즐거워 지는 시간!</span>
+				</span>
+			</a>
+		</li>
+		
+		</ul>
+		
+		
+	</div>
+	
+
+
+
+
+
+
+
+
+	<script type="text/javascript">
+	
+		$j(document).ready(function() {
+			$j("#eventBanner").jBanner();
+		});
+		
+		function moveToBanner(number) {
+			$j("#eventBanner").moveTo(number);
+			bannerBullet(number);
+		}
+		
+		function bannerBullet (number) {
+			//console.log($j("#paging a"));
+			$j("#paging a").each(
+				function(i){
+					$j(this).removeClass("on");
+					if (number == i)
+						$j(this).addClass("on");
+				}
+			)
+		}
+		
+		function stopBanner() {
+			$j("#banner").stopBanner();
+		}
+		
+		function reRunBanner() {
+			$j("#banner").reRunBanner();
+		}
+	</script>
+
+
+	<script type="text/javascript">
+		function openEventBannerPopup(popupUrl, popupWidth, popupHeight, needLogin){
+
+			if(needLogin && true){
+				alert('로그인이 필요합니다.');
+				openPopupLoginForm();
+			} else {
+				var sizeOption = 'width=' + popupWidth + ', height=' + popupHeight +', resizable=no, scrollbars=no'
+				window.open(popupUrl, 'eventBannerPopup', sizeOption);
+			}
+		}
+	</script>
+
+<div class="event_area">
+	<a class="btn_event" href="http://eventpark.hangame.com/eventpark/eventlist.nhn" onclick="clickcr(this,'evb.eventpark','','',event);" style="z-index:3;">이벤트 파크</a>
+	<ul class="ad_banner" id="eventBanner">
+	<!-- [D] 배너이미지- li에 inline-style 배경이미지주소 적용 -->
+		
+			
+				
+			
+			
+			
+			
+			
+			
+			 
+			<li   onmouseover="stopBanner();" onmouseout="reRunBanner();" >
+			
+			
+			
+			<a href="http://px.hangame.com"  onclick="clickcr(this,'evb.banner','5229','',event);" onfocus="stopBanner();" onblur="reRunBanner();">
+				<img src="http://images.hangame.co.kr/hangame/main/renew2012/blank.gif" width="680" height="166" alt="혼연일체 RPG, 불사조 온라인 신규캐릭터 성장 지원 이벤트" style="background-image:url(http://images.hangame.co.kr/hangame/main2012/eventbanner/firebird_eb_20150909.png);_background:0;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://images.hangame.co.kr/hangame/main2012/eventbanner/firebird_eb_20150909.png',sizingMethod='crop')">
+			</a>
+			
+			
+			
+			</li>
+		
+			
+			
+				
+			
+			
+			
+			
+			
+			 
+			<li style="display:none;"  onmouseover="stopBanner();" onmouseout="reRunBanner();" >
+			
+			
+			
+			<a href="http://www.toast.com/gameDetail.nhn?gameId=FriendsPop"  onclick="clickcr(this,'evb.banner','5234','',event);" onfocus="stopBanner();" onblur="reRunBanner();">
+				<img src="http://images.hangame.co.kr/hangame/main/renew2012/blank.gif" width="680" height="166" alt="잠들 수 없는 재미! 프렌즈 컬렉션을 시작해보자!" style="background-image:url(http://images.hangame.co.kr/hangame/main2012/eventbanner/friendspop_eb_20150918.png);_background:0;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://images.hangame.co.kr/hangame/main2012/eventbanner/friendspop_eb_20150918.png',sizingMethod='crop')">
+			</a>
+			
+			
+			
+			</li>
+		
+			
+			
+				
+			
+			
+			
+			
+			
+			 
+			<li style="display:none;"  onmouseover="stopBanner();" onmouseout="reRunBanner();" >
+			
+			
+			
+			<a href="http://eventpark.hangame.com/event/gostop/fullMoon.nhn"  onclick="clickcr(this,'evb.banner','5231','',event);" onfocus="stopBanner();" onblur="reRunBanner();">
+				<img src="http://images.hangame.co.kr/hangame/main/renew2012/blank.gif" width="680" height="166" alt="조재현을 찾고 소원을 빌어봐! 참여만해도 매주 1명씩 순금열쇠 1돈의 행운이~" style="background-image:url(http://images.hangame.co.kr/hangame/main2012/eventbanner/sinmatgo_eb_20150909.png);_background:0;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://images.hangame.co.kr/hangame/main2012/eventbanner/sinmatgo_eb_20150909.png',sizingMethod='crop')">
+			</a>
+			
+			
+			
+			</li>
+		
+			
+			
+				
+			
+			
+			
+			
+			
+			 
+			<li style="display:none;"  onmouseover="stopBanner();" onmouseout="reRunBanner();" >
+			
+			
+			
+			<a href="https://bill.hangame.com/pay/template/pay2/popup/hangameCouponEvent.html"  onclick="clickcr(this,'evb.banner','5227','',event);" onfocus="stopBanner();" onblur="reRunBanner();">
+				<img src="http://images.hangame.co.kr/hangame/main/renew2012/blank.gif" width="680" height="166" alt="한게임 상품권, 한게임 ID직접충전 한코인+10% 추가충전 꿀 이벤트!" style="background-image:url(http://images.hangame.co.kr/hangame/main2012/eventbanner/hangamegift_eb_20150922.png);_background:0;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://images.hangame.co.kr/hangame/main2012/eventbanner/hangamegift_eb_20150922.png',sizingMethod='crop')">
+			</a>
+			
+			
+			
+			</li>
+		
+			
+			
+				
+			
+			
+			
+			
+			
+			 
+			<li style="display:none;"  onmouseover="stopBanner();" onmouseout="reRunBanner();" >
+			
+			
+			
+			<a href="http://tr.hangame.com"  onclick="clickcr(this,'evb.banner','5238','',event);" onfocus="stopBanner();" onblur="reRunBanner();">
+				<img src="http://images.hangame.co.kr/hangame/main/renew2012/blank.gif" width="680" height="166" alt="신규 서바이벌 모드! 달려라! 세계왕! 전격 업데이트!" style="background-image:url(http://images.hangame.co.kr/hangame/main2012/eventbanner/talesrunner_eb_20150923.png);_background:0;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://images.hangame.co.kr/hangame/main2012/eventbanner/talesrunner_eb_20150923.png',sizingMethod='crop')">
+			</a>
+			
+			
+			
+			</li>
+		
+		
+		
+		
+	</ul>
+	
+		<div class="paging" id="paging">
+			
+				
+					
+				
+				
+				
+				<a id="but0" class="on" href="#" onclick="moveToBanner(0);clickcr(this,'evb.navigation','','',event);return false;"><span>1</span></a>
+			
+				
+				
+					
+				
+				
+				<a id="but1"  href="#" onclick="moveToBanner(1);clickcr(this,'evb.navigation','','',event);return false;"><span>2</span></a>
+			
+				
+				
+					
+				
+				
+				<a id="but2"  href="#" onclick="moveToBanner(2);clickcr(this,'evb.navigation','','',event);return false;"><span>3</span></a>
+			
+				
+				
+					
+				
+				
+				<a id="but3"  href="#" onclick="moveToBanner(3);clickcr(this,'evb.navigation','','',event);return false;"><span>4</span></a>
+			
+				
+				
+					
+				
+				
+				<a id="but4"  href="#" onclick="moveToBanner(4);clickcr(this,'evb.navigation','','',event);return false;"><span>5</span></a>
+			
+			<!-- [D] 선택된 버튼 클래스 on추가 -->
+		</div>
+	
+</div>
+
+</div>
+
+
+			
+	</div>	
+	<!-- //content -->
+	
+	<!-- aside -->
+	<div class="aside">
+		
+
+
+
+
+
+
+
+<div class="aside_top">		
+	
+	<div class="login_area">
+		<div class="notice">
+			<h2 class="h_notice"><a href="#" onclick="NoticeBoard.go();clickcr(this,'hna.ttl','','',event);return false;" class="a_notice"><span class="tit">공지</span></a></h2>
+			<ul id="olNoticeList" class="lst_noti elis">
+			
+				
+					
+					<li class="noticeRoll"><a href="#" onclick="NoticeBoard.read(124700);clickcr(this,'hna.text','','',event);return false;" class="elis_t">[안내] 8월18일 한게임 휴면 아이디 분리보관 시행</a></li>
+					
+				
+				
+			
+			</ul>
+		</div>
+		
+		<!-- 로그인전 -->		
+		
+		<div class="conbox">
+			
+
+
+
+
+
+
+<div id="login_common_ly" class="step02">
+
+ 	<!-- message Layer -->
+	
+
+
+	<div class="ly_lgtxt_area" id="ly_lgtxt_area" style="display:none;">
+	<div class="ly_inbox">
+		<p><img src="http://images.hangame.co.kr/hangame/renewal_2007/common/login/hidden.gif" id="ly_inbox_img" class="" alt=""/></p>
+		<div class="ly_btn_area" id="ly_btn_area">
+			<a id="ly_btn_area_btn01"><img src="http://images.hangame.co.kr/hangame/renewal_2007/common/login/hidden.gif" id="ly_btn_area_btn01_img" class="" style="cursor:pointer;" alt="사용안함"/></a>
+			<a id="ly_btn_area_btn02"><img src="http://images.hangame.co.kr/hangame/renewal_2007/common/login/hidden.gif" id="ly_btn_area_btn02_img" class="" style="cursor:pointer;" alt="사용안함"/></a>
+		</div>
+		<a class="ly_topclose" id="ly_topclose"><img src="http://images.hangame.co.kr/hangame/renewal_2007/common/login/hidden.gif" alt="닫기" style="cursor:pointer;"></a>	
+	</div>
+	</div>
+	<!--// message Layer -->
+	
+	<div id='CapslockInfo' class="ly_lgtxt_capslock" style="display:none; margin-top:3px;"><img src="http://images.hangame.co.kr/hangame/renewal_2007/common/login/hidden.gif" alt="Caps Lock이 켜져있습니다."></div>
+ 
+	<div class="slider" id='new_login_slider'>
+		<div class="slider-thumb">&nbsp;</div>
+	</div>
+
+	<div class="lg_steptxt"><a href="#" onclick="clickLoginCommonCount('minilogin-ssl');clickcr(this,'lgn.security','','',event); gomember(3); return false;" title="보안단계별 도움말을 보실 수 있습니다" target="_blank">보안<em><span id='login_steptxt'>1</span></em>단계</a></div>		
+	<div class="lg_iptxt">
+		<span class="ajax_checkbox" id="ajax_checkbox"><span class="checkbox-mark"></span><input type="checkbox" name="agree" id="agree" style="visibility:hidden;" title="IP보안"/></span>
+		<label><a href="#" onclick="clickLoginCommonCount('minilogin-ssl');clickcr(this,'lgn.iphelp','','',event); gomember(4); return false;" title="IP 보안에 대한 도움말을 보실 수 있습니다">IP보안</a></label>
+		
+	</div>		
+	<fieldset>
+	<!-- TODO :: target을 parent로 해야할 필요 없을지 확인필요 -->
+	<form name='loginform' id='loginform'  method='post' AUTOCOMPLETE='off' action='' target='_top'>
+	<input type='hidden' name='nxtURL'   value=''>
+	<input type='hidden' name='from'     value=''>
+	<input type='hidden' name='info'     value=''>
+	<input type='hidden' name='seqno'    value=''>
+	<input type='hidden' name='popup'    value=''>
+ 
+	<input type='hidden' name='popclose'  value=''>
+	<input type='hidden' name='closemove' value=''>
+ 
+	<input type='hidden' name='turtle'     id='turtle'     value=''> 
+	<input type='hidden' name='keyname'    id='keyname'    value=''> 
+	<input type='hidden' name='earthworm'  id='pwdObj'     value='earthworm'> 
+	<input type='hidden' name='seculogin'  id='seculogin'  value='true'>
+	<input type='hidden' name='hanilogin'  value=''>
+	<input type='hidden' name='force'      value=''>
+	<input type='hidden' name='renewal'      value='Y'>
+	<input type='hidden' name='secukey'    value=''>
+	<input type='hidden' name='secutype'   value=''>			
+	<input type='hidden' name='strjumin1' value=''>
+	<input type='hidden' name='strjumin2' value=''>
+	<input type='hidden' name='strjumin'  value=''>
+	<input type='hidden' name='strname'   id='name'   value=''>
+    <input type='hidden' name='ipinreqnum'>
+    <input type='hidden' name='bartype' value=''>
+	<div class="idpw_area" style='background-color: #3b3b3b;'>
+
+		<div id='login_flash' class="input_form" style='display:none;'>
+			<div class='flash_area'></div>
+		</div>
+		<div id='login_activex' style='display:none;'>
+			<iframe id='activexframe' src='about:blank' class="iframe_step3" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="true" title="보안3단계"></iframe>
+		</div>
+		<div id='login_box' style='display:block;'>
+			<div class="input_form">
+				<div id='input_id' class="input_id"><input type="text" name="turtle2" id="turtle2" maxlength="12" value="" title="아이디"></div>
+				<div id='input_pw' class="input_pw"><input type="password" name="earthworm2" id="earthworm2" class="pw" maxlength="15" Enc="on" title="비밀번호"></div>
+			</div>
+		</div>
+		<div id="btnLogin" class="lg_input_btn"><img src="http://images.hangame.co.kr/hangame/renewal_2007/common/login/hidden.gif" alt="로그인" title="로그인"></div>	
+	</div> 
+	</form>
+	</fieldset>		
+	<ul class="lg_member_con">
+	<li class="mem_id_search"><a href="#" onclick="clickLoginCommonCount('minilogin-lostidpwd');clickcr(this,'lgn.idfind','','',event);gomember(5); return false;">아이디 찾기</a></li>
+	<li class="mem_pw_search"><a href="#" onclick="clickLoginCommonCount('minilogin-lostidpwd');clickcr(this,'lgn.pwfind','','',event);gomember(6); return false;">비밀번호 찾기</a></li>
+	<li class="mem_join"><a href="#" onclick="clickLoginCommonCount('minilogin-reg');clickcr(this,'lgn.join','','',event);gomember(0); return false;">회원가입</a></li>
+	</ul>
+</div>
+
+
+
+
+		</div>
+		
+		<!-- 로그인후 - 내정보 -->
+		
+	</div>
+	
+	<div class="ad_area">
+		<ul class="li_ad">
+			<li>
+				<a href="http://www.toast.com/mobile.nhn" target="_blank"><img src="http://images.hangame.co.kr/hangame/main/renew2012/banner/main_right_banner.png"  width="276" height="70" /></a>
+			</li>
+		</ul>
+		
+
+	</div>	
+</div>
+<div class="aside_mid">
+	<div class="recomd_area">
+		<ul class="tab">
+		
+		<li class="f"><strong>추천 게임</strong></li>
+		
+		
+		</ul>
+		
+		<ul class="lst_recomd"  id="recommendArea">
+		
+			<li><a href="http://dv.hangame.com"  onclick="clickcr(this,'rcg.rlist','K_DEVIL','1',event);"><strong>데빌리언</strong> <span>RPG</span></a></li>
+		
+			<li><a href="http://eos.hangame.com"  onclick="clickcr(this,'rcg.rlist','K_EOS','2',event);"><strong>에오스</strong> <span>RPG</span></a></li>
+		
+			<li><a href="http://tera.hangame.com/"  onclick="clickcr(this,'rcg.rlist','K_TERA','3',event);"><strong>TERA</strong> <span>RPG</span></a></li>
+		
+			<li><a href="http://baduk.hangame.com/"  onclick="clickcr(this,'rcg.rlist','baduk','4',event);"><strong>바둑</strong> <span>보드</span></a></li>
+		
+			<li><a href="http://gostop.hangame.com/tournament/index.nhn"  onclick="clickcr(this,'rcg.rlist','DUELGOTNMT','5',event);"><strong>신맞고 토너먼트</strong> <span>고스톱</span></a></li>
+		
+		</ul>
+		<div class="banner_area">
+			<a href="http://comico.toast.com" target="_blank"><img src="http://images.hangame.co.kr/hangame/main/renew2012/banner/img_banner_comico.png" width="278" height="120" alt="웹툰보다 재미있는 comico"></a>
+		</div>
+	</div>				
+</div>
+<div class="flash_area">
+
+	<div class="aside_ad2" id="da_280150" name="da_280150"><script language='javascript' src="http://da.nhnent.com/event.ems/site=Hangame&pid=335C"></script></div>
+</div>
+
+		
+
+	</div>
+	<!-- //aside -->
+	
+	<!-- gamelist -->
+	<div id="gamelist_wrap">
+		
+
+
+
+
+<!-- gamelist -->
+<div class="gamelist_fl">
+	<div class="top_tit">
+		<h2 class="h_gamelist"><a id="h_gamelist_tit" href="#"><em><span>전체 게임 리스트</span></em></a></h2>
+		<p id="noti_p" class="noti" style="display:none;"></p>
+		<div id="view_type_btn_ctl" class="view_type">
+			<!-- 뷰 타입 선택 시 클래스 뒤 _on 적용 -->
+			<a href="#" id="gamelist_list" style="cursor:pointer;" class="btn_lst_on" onclick="GameListView.loadGameList('list');GameListView.filteredResultView();resizeSnsDiv('divAllGameList');clickcr(this,'agl.listview','','',event);return false;" title="리스트형"><span class="blind">리스트형</span></a>
+			<a href="#" id="gamelist_thumbnail" style="cursor:pointer;" class="btn_thmb" onclick="GameListView.loadGameList('thumbnail');GameListView.filteredResultView();resizeSnsDiv('divAllGameListThumbnail');clickcr(this,'agl.thumbnailview','','',event);return false;" title="이미지형"><span class="blind">썸네일형</span></a>
+		</div>
+	</div>
+	<div id="game_cont_div" class="game_cont">
+		<div class="game_menu">
+			<!-- [D] 서비스상태/이용등급 선택시 game_type 다음에 selected 추가  -->
+			<dl id="game_type_svc_status" class="game_type selected">
+				<dt class="h_svc"><span>서비스상태</span></dt>
+				<dd>
+					<ul>
+					<li class="frst"><a href="#" id="svcstatus_whole" style='cursor:pointer;' onclick="GameListView.loadGameList();GameListView.filterSvcStatus('whole');resizeSnsDiv();clickcr(this,'agl.state','','',event);return false;" class="on">전체</a></li>
+					<li><a href="#" id="svcstatus_open" style='cursor:pointer;' onclick="GameListView.filterSvcStatus('open');GameListView.loadGameList();resizeSnsDiv();clickcr(this,'agl.staterelease','','',event);return false;">정식 서비스</a></li>
+					<li><a href="#" id="svcstatus_obt" style='cursor:pointer;' onclick="GameListView.filterSvcStatus('obt');GameListView.loadGameList();resizeSnsDiv();clickcr(this,'agl.stateobt','','',event);return false;">OBT</a></li>
+					<li><a href="#" id="svcstatus_cbt" style='cursor:pointer;' onclick="GameListView.filterSvcStatus('cbt');GameListView.loadGameList();resizeSnsDiv();clickcr(this,'agl.statecbt','','',event);return false;">CBT</a></li>
+					<li><a href="#" id="svcstatus_plan" style='cursor:pointer;' onclick="GameListView.filterSvcStatus('plan');GameListView.loadGameList();resizeSnsDiv();clickcr(this,'agl.statesoon','','',event);return false;">출시 예정</a></li>
+					</ul>
+				</dd>
+				<dt class="h_svc2"><span>이용등급</span></dt>
+				<dd>
+					<ul>
+					<li class="frst"><a href="#" id="agegrade_whole" style='cursor:pointer;' onclick="GameListView.loadGameList();GameListView.filterAgeGrade('whole');resizeSnsDiv();clickcr(this,'agl.grade','','',event);return false;" class="on">전체</a></li>
+					<li><a href="#" id="agegrade_all" style='cursor:pointer;' onclick="GameListView.filterAgeGrade('all');GameListView.loadGameList();resizeSnsDiv();clickcr(this,'agl.gradeall','','',event);return false;">전체 이용가</a></li>
+					<li><a href="#" id="agegrade_12" style='cursor:pointer;' onclick="GameListView.filterAgeGrade('12');GameListView.loadGameList();resizeSnsDiv();clickcr(this,'agl.grade12','','',event);return false;">12세 이용가</a></li>
+					<li><a href="#" id="agegrade_15" style='cursor:pointer;' onclick="GameListView.filterAgeGrade('15');GameListView.loadGameList();resizeSnsDiv();clickcr(this,'agl.grade15','','',event);return false;">15세 이용가</a></li>
+					<li><a href="#" id="agegrade_18" style='cursor:pointer;' onclick="GameListView.filterAgeGrade('18');GameListView.loadGameList();resizeSnsDiv();clickcr(this,'agl.grade18','','',event);return false;">청소년 이용불가</a></li>
+					</ul>
+				</dd>
+			</dl>
+			<ul class="game_type2">
+			
+			
+				
+				
+					<li><a href="#" id="gamelist_mygame" style="cursor:pointer;" onclick="clickcr(this,'agl.played','','',event);openPopupLoginForm();return false;">실행한 게임</a></li>
+				
+			
+			<li><a href="#" id="gamelist_popular" style="cursor:pointer;" onclick="GameListView.loadGameList('popular');resizeSnsDiv('divPopularGameList');clickcr(this,'agl.hot','','',event);return false;">인기게임</a></li>
+			<li><a href="#" id="gamelist_dailyhot" style="cursor:pointer;" onclick="GameListView.loadGameList('dailyhot');resizeSnsDiv('divDailyHotGameList');clickcr(this,'agl.rt','','',event);return false;">일간 급상승 게임</a></li>
+			<li><a href="#" id="gamelist_new" style="cursor:pointer;" onclick="GameListView.loadGameList('new');resizeSnsDiv('divNewGameList');clickcr(this,'agl.new','','',event);return false;">신규/업데이트 게임</a></li>
+			<li><a href="#" id="gamelist_event" style="cursor:pointer;" onclick="GameListView.loadGameList('event');resizeSnsDiv('divEventGameList');clickcr(this,'agl.event','','',event);return false;">이벤트 중 게임</a></li>
+			</ul>
+		</div>
+
+		<!-- 리스트형 -->			
+		<div id="divAllGameList" class="game_view"></div>
+		<!-- 썸네일형 -->
+		<div id="divAllGameListThumbnail" class="game_view"></div>
+		<!-- 내가 실행한 게임 -->
+		<div id="divMyGameList" class="game_view"></div>	
+		<!-- 인기 게임 -->
+		<div id="divPopularGameList" class="game_view"></div>
+		<!-- 일간급상승게임 -->
+		<div id="divDailyHotGameList" class="game_view"></div>
+		<!-- 신규/업데이트 -->
+		<div id="divNewGameList" class="game_view"></div>
+		<!-- 이벤트 -->
+		<div id="divEventGameList" class="game_view s_event"></div>
+		
+		<div class="game_etc">
+			<dl>
+			<dt class="h_toast"><a href="http://www.toast.com/mobile.nhn" target="_top" onclick="clickcr(this,'agl.smarttit','','',event);">스마트폰게임</a></dt>
+			
+			<dd>
+				
+				<a href="http://hgurl.me/alT" onclick="clickcr(this,'agl.smartlist','SKQUEST','1',event);" title="이보다 강력한충격은 없었다 초월무기 업데이트!"  target='_top'>크루세이더 퀘스트</a>
+			</dd>
+			
+			<dd>
+				, 
+				<a href="http://goo.gl/OBX7hM" onclick="clickcr(this,'agl.smartlist','SK10254','2',event);" title="드디어 시작된 정면승부 드리프트걸즈 월드투어 개막"  target='_top'>드리프트 걸즈</a>
+			</dd>
+			
+			<dd>
+				, 
+				<a href="http://www.toast.com/mobile.nhn?gameNo=10156" onclick="clickcr(this,'agl.smartlist','10156','3',event);" title="대한민국 No.1 SNG 내 손안의 귀요미~"  target='_top'>우파루마운틴</a>
+			</dd>
+			
+			<dd>
+				, 
+				<a href="http://www.toast.com/gameDetail.nhn?gameId=PokoPang" onclick="clickcr(this,'agl.smartlist','SKPOCO','4',event);" title="신들이 남긴 유물을 찾아 더욱 강력해진 그들이왔다!"  target='_top'>포코팡</a>
+			</dd>
+			
+			<dd>
+				, 
+				<a href="http://www.toast.com/gameDetail.nhn?gameId=CookieRun" onclick="clickcr(this,'agl.smartlist','10284','5',event);" title="쿠키대회에 참여하여 실력을 뽐내주세요!"  target='_top'>쿠키런 문질문질</a>
+			</dd>
+			
+			<dd>
+				, 
+				<a href="http://www.toast.com/mobile.nhn?gameNo=10278" onclick="clickcr(this,'agl.smartlist','10278','6',event);" title="완전무장 기요미들의 100vs100 무한대전"  target='_top'>우파루사가</a>
+			</dd>
+			
+			<dd>
+				, 
+				<a href="https://play.google.com/store/apps/details?id=com.nhnpixelcube.friendspop" onclick="clickcr(this,'agl.smartlist','10399','7',event);" title="카카오프렌즈 첫 게임 프렌즈팝 오픈!"  target='_top'>프렌즈팝</a>
+			</dd>
+			
+			</dl>
+		</div>
+	</div>
+</div>
+
+<div class="gamelist_fr">
+	<div class="top_tit">
+		<h2 class="h_service"><em><span>서비스 바로가기</span></em></h2>
+	</div>
+	<div id="service_cont_div" class="service_cont">
+		<ul class="scv_type">
+		
+		<li>
+			
+			<a href="http://member.hangame.com/securitycenter.nhn?menuCode=uotp_main" onclick="clickcr(this,'svc.otp','','',event);"  target="_top">한게임 U-OTP</a>
+			
+		</li>
+		
+		<li>
+			
+			<a href="http://member.hangame.com/securitycenter.nhn?menuCode=pc_main" onclick="clickcr(this,'svc.pc','','',event);"  target="_top">한게임 지정 PC</a>
+			
+		</li>
+		
+		<li>
+			
+			<a href="http://hmember.hangame.com/shutdown/main.nhn?menuCode=pc_main" onclick="clickcr(this,'svc.ts','','',event);"  target="_top">게임시간 선택제</a>
+			
+		</li>
+		
+		</ul>
+		<ul class="scv_type scv_type_v1">
+		
+		<li>
+			
+			<a href="http://cs.hangame.com/content/index.do" onclick="clickcr(this,'svc.cs','','',event);"  target="_top">고객센터</a>
+			
+		</li>
+		
+		<li>
+			
+			<a href="http://eventpark.hangame.com/" onclick="clickcr(this,'svc.eventpark','','',event);"  target="_top">이벤트 파크</a>
+			
+		</li>
+		
+		<li>
+			
+			<a href="http://member.hangame.com/myinfo/friendfind.nhn" onclick="clickcr(this,'svc.friendfind','','',event);"  target="_top">친구찾기</a>
+			
+		</li>
+		
+		<li>
+			
+			<a href="http://toolbar.naver.com/theme/detail.nhn?categoryId=26" onclick="clickcr(this,'svc.toolbar','','',event);"  target="_blank">툴바</a>
+			
+		</li>
+		
+		</ul>
+		<ul class="scv_type2">
+		<li><a href="http://www.hangame.com/siteMap.nhn" onclick="clickcr(this,'svc.more','','',event);" target="_top"><strong>서비스 전체보기</strong></a></li>
+		<li><a href="http://pcbang.hangame.com" onclick="clickcr(this,'svc.hpc','','',event);" target="_blank"><strong>한게임 PC방</strong></a></li>
+		</ul>
+		<div id="sns_area_div" class="sns_area">
+			<h3 class="h_snsite"><span>SNS 공식 사이트</span></h3>	
+			<div id="snsScrlDiv" class="scrl">
+				<ul class="scv_type3">
+				
+				<li>
+					<em class="sns_f"><span class="blind">facebook</span></em>
+					<a href="https://www.facebook.com/ChoKritika " onclick="clickcr(this,'svc.sns','','1',event);" target="_blank">크리티카</a>
+				</li>
+				
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+function resizeSnsDiv (divId){
+	// 좌 우 영역 맞춤
+	var elLeft = $j('#service_cont_div'),
+	elScr = $j('#snsScrlDiv'),
+	rHeight = $j('#game_cont_div').height(),
+	lHeight = elLeft.height(),
+	scrHeight = elScr.height(),
+	upDivHeight = rHeight - $j('#service_cont_div .scv_type').eq(0).height() - $j('#service_cont_div .scv_type').eq(1).height() - $j('#service_cont_div .scv_type2').height() - 24;
+	$j('#sns_area_div').height(upDivHeight);
+	elLeft.height(rHeight > lHeight ? rHeight - 1 : rHeight);
+	elScr.height(upDivHeight - 55);
+	scrHeight = elScr.height();
+	isTaller = scrHeight <= $j('#snsScrlDiv .scv_type3').height();
+	elScr.toggleClass("scrl", isTaller);
+}		
+</script>					
+	</div>
+	
+	<!-- right promotion --> 
+	<div id="_promotionNormalBannerPlaceholder" style="display:none;"></div>   
+	<!-- //right promotion --> 
+
+</div>	
+<!-- //container -->
+	<!-- footer -->
+	
+
+
+
+<!-- footer -->
+<div id="footer">
+	<div class="svc_info">
+		<h4 class="logo"><a href="http://www.nhnent.com/" onclick="clickcr(this,'ftr.corp','','',event);" target="_blank">NHN ENTERTAINMENT</a></h4>
+		<ul class="policy">
+		<li><a href="http://nhnent.com/" target="company" onclick="clickcr(this,'ftr.corp','','',event);">회사소개</a></li>
+		<li><a href="/agreement.nhn?code=1" onclick="clickcr(this,'ftr.agree','','',event);">이용약관</a></li>
+        <li><a href="/agreement.nhn?code=2" onclick="clickcr(this,'ftr.privacy','','',event);"><strong>개인정보취급방침</strong></a></li>
+        <li><a href="/agreement.nhn?code=3" onclick="clickcr(this,'ftr.youth','','',event);">청소년보호정책</a></li>
+        <li><a href="#" onclick="openWin('popup/emailhack.htm','emailhack',400,270,'no');clickcr(this,'ftr.emailhack','','',event);return false;">이메일 주소무단수집거부</a></li>
+        <li><a href="/siteMap.nhn" onclick="clickcr(this,'ftr.map','','',event);">사이트맵</a></li>
+        <li><a href="http://displayad.hangame.com" target="company" onclick="clickcr(this,'ftr.ad','','',event);">광고안내</a></li>
+        <li><a href="#" onclick="openWin('http://www.nhnent.com/footer/proposal/proposalRegister.nhn', 'proposal', 877, 660, 'yes'); clickcr(this,'ftr.contactus','','',event); return false;"> 제휴안내</a></li>
+		</ul>			
+		<ul class="svc_go">
+		<li class="m1"><a href="http://www.naver.com/" target="naver" onclick="clickcr(this,'ftr.naver','','',event);"><span class="blind">네이버</span></a></li>
+		</ul>			
+	</div>
+	<p class="txt">엔에이치엔엔터테인먼트는 한게임 내 채널링 게임 및 스폰서 충전소 영역의 통신판매를 중개하고 있습니다.<br>해당 서비스의 제공과 관련된 모든 의무와 책임은 개별 통신판매업자에게 있으며 이용 중 발생하는 문제에 대해 당사는 법적 책임을 부담하지 않습니다.</p>
+	<address>
+		<dl>
+		<dt>상호 :</dt>
+		<dd>엔에이치엔엔터테인먼트(주)</dd>
+		<dt>대표 :</dt>
+		<dd>정우진</dd>
+		</dl>
+		<dl>
+		<dt>주소 :</dt>
+		<dd>경기도 성남시 분당구 대왕판교로 645번길 16 NHN엔터테인먼트 플레이뮤지엄</dd>  
+        <dt>고객센터 :</dt>
+        <dd><em>1588-3810</em></dd>
+		<dt>기업대표 :</dt>
+		<dd><em>1544-6859</em></dd>
+		</dl>
+        <dl>
+        <dt>Email :</dt>
+        <dd><a href="http://cs.hangame.com/content/mail/mailInquiry.do" onclick="clickcr(this,'ftr.email','','',event);" target="nhn" title="E-mail:helpdesk@hangame.com" class="mail">helpdesk@hangame.com</a></dd>
+        <dt>사업자 등록번호 :</dt>                               
+        <dd><em>144-81-15549</em></dd>
+        <dt>통신판매업신고번호 :</dt>                          
+        <dd class="v2">제<em>2013</em>-경기성남-<em>1067호</em></dd>
+        <dt><a href="http://ftc.go.kr/info/bizinfo/communicationList.jsp" target="_blank" class="adr_cfm">사업자 정보확인</a></dt>
+        </dl>                
+        <p class="copyright">Copyright &copy; <a href="http://www.nhnent.com" onclick="clickcr(this,'ftr.nhn','','',event);" target="_blank">NHN Entertainment Corp</a>. All Rights Reserved.</p>
+	</address>
+	<p class="chn" id="chinaFooter"></p>
+</div>
+<!-- //footer -->	
+	
+<div id="mobileArea" align="center" class="go_mobilehome" style="display:none;"><a href="/"><img src="http://images.hangame.co.kr/hangame/main/smartPhone/go_mobilehome.gif" width="960" height="132" alt="모바일 웹 포털 홈으로 이동"></a></div>
+ 
+<script type='text/javascript'>
+function show_tips() {
+	top.location = 'http://www.hangame.com/';
+	top.alert('죄송합니다.\n\n귀하의 브라우져에서는 자동으로 환경설정을 바뀌지 못하도록 지정되어 있으므로,\n수동으로 시작페이지 설정을 하시기 바랍니다.');
+}
+
+function makeMobileBanner() {
+	var userAgent = navigator.userAgent;
+	var regExp2 = new RegExp("^.*Mobile.*Safari.*|^Mozilla.*POLAR.*|^Mozilla.*NATEBrowser.*|^Opera.*SKT.*|^.*Windows\ CE.*Opera.*|^.*IEMobile.*|^.*iPhone.*|^.*iPod.*|^.*Android.*|^.*Windows\ CE.*POLAR.*|^.*Dolfin.*");
+
+	if (typeof(userAgent) != "undefined") {
+		if (regExp2.test(userAgent) && userAgent.indexOf('iPad') == -1) {
+			$j('#mobileArea').show();
+		}
+	}
+}
+
+</script>
+</div>
+
+
+
+
+
+
+
+
+<!--	<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">-->
+<!--	<meta http-equiv=Cache-Control content=No-Cache>-->
+<!--	<meta http-equiv=Pragma	content=No-Cache>-->
+	
+	<!-- common에 올린 CSS,JS는 추후 static 서버로 이전할 예정입니다. -->
+	<link rel="stylesheet" type="text/css" href="/common/login/loginui/css/loginskin_pub_www3.css">
+
+	<!-- Scripts -->
+	<script type="text/javascript" src="/common/clientscript/builded/login/login_env.js" charset="UTF-8"></script>
+
+	<!-- 빌드된 JS -->
+	<script type="text/javascript" src="/common/clientscript/builded/login/login-v20091214.js?v=20150519" charset="UTF-8"></script>
+	
+	<!-- flash UI -->	
+	<script type="text/javascript" src="/common/login/loginui/js/flashLoginUIStyle_www3.js" charset="UTF-8"></script>
+ 
+	<!-- 로그인 폼 관련 설정 -->
+	<script type="text/javascript"><!--
+	
+	// 에러 처리용 콜백
+	// err:object
+	LOGIN.displayError = function(errCode, arg2) {
+
+		if( errCode == 20 ) {
+			alert( LOGIN.VALIDATE_EMPTY_ID );
+		} else if( errCode == 21 ) {
+			alert( LOGIN.VALIDATE_EMPTY_PW );
+		} else if( errCode == 22 ) {
+			alert( LOGIN.VALIDATE_SPECIALCHAR_ID );
+		} else if( errCode == 23 ) {
+			alert( LOGIN.VALIDATE_SPECIALCHAR_PW );
+		} else if( errCode == 1 ) {
+			alert( "보안키를 가져오는 데 실패하였습니다." );
+		} else if( errCode == 2 ) {
+			alert( "보안키를 가져왔으나 처리하는데 실패하였습니다." );
+		} else {
+			alert( "displayError :: " + errCode );
+		}
+		
+	};
+
+	// ID, Password값 입력 상태 콜백
+	// objSrc : dom element
+	// fieldType : "ID" or "PASSWORD" or ...
+	// isDefault : 디폴트 상태 여부
+	LOGIN.doDefaultStatusChange = function(objSrc, fieldType, isDefault) {
+		if( typeof objSrc === "undefined" ) {
+			return;
+		}
+		//var isDefault = STR.isBlank(objSrc.value) & !isFocused ? true : false;
+		C.debug("objSrc.value", objSrc.value, "isDefault", isDefault);
+		
+		if (fieldType === "ID") {
+			if (isDefault) {
+				C.get("input_id").className = "input_id input_mouseover";
+			} else {
+				if ( STR.isBlank(objSrc.value) ) {
+					C.get("input_id").className = "input_id";
+				} else {
+					C.get("input_id").className = "input_id input_writeafter";
+				}
+			}
+		} else if (fieldType === "PASSWORD") {
+			if (isDefault) {
+				C.get("input_pw").className = "input_pw input_mouseover";
+			} else {
+				if ( STR.isBlank(objSrc.value) ) {
+					C.get("input_pw").className = "input_pw";
+				} else {
+					C.get("input_pw").className = "input_pw input_writeafter";
+				}
+			}
+		}
+	}	
+
+
+	LOGIN.init = function() {
+		// 로그인 폼 설정.
+		// 아래 옵션에 슬라이더 관련 설정도 넣을 수 있을지 검토해보자.
+		var bindOptionsLoginForm = {};
+
+		// IP보안 checkbx 설정
+		bindOptionsLoginForm.CHECKBOX = "ajax_checkbox";
+		
+		// 슬라이더 설정
+		bindOptionsLoginForm.SLIDER = "new_login_slider";
+
+		//2009.12.14  보안로그인폼 확대적용을 위해 jsp로 빼냄
+		var objOption = {"bgColor":"#3d3d3d", "wmode":"window", "quality":"high", "allowScriptAccess":"always", "menu":"false", "swliveconnect":"true",
+				"wheelHandler":"flashWheelListener","flashVars":"","display":"inline-block" };
+		var flashTag = nhn.FlashObject.generateTag(LOGIN._FLASH_SWF_RENEWAL_URL, LOGIN._FLASH_ID, "117", "55", objOption);
+		
+		// 플래시폼 설정
+		bindOptionsLoginForm.FLASH_TAG = flashTag;
+		
+		// 로그인 입력 폼
+		// 아래 로그인폼을 표시하고 숨기는 것도 콜백으로 지정할지, 아니면 로그인 폼 기본 동작으로 남길것인지는 좀 더 고민해보자.
+		bindOptionsLoginForm.AREA_IDPW = "login_box";
+		bindOptionsLoginForm.AREA_FLASH = "login_flash";
+		bindOptionsLoginForm.AREA_ACTIVEX = "login_activex";
+		bindOptionsLoginForm.ACTIVEX_IFRAME = "activexframe";
+		bindOptionsLoginForm.ACTIVEX_IFRAME_URL = "/common/login/loginui/iframe_activex_step03.jsp?gameid=www3";
+		
+		bindOptionsLoginForm.SUBMIT_BUTTON = "btnLogin";
+		
+		// UI 처리를 위한 콜백 지정
+		// TODO: 디폴트 입력값을 처리하는 것도 콜백 구조로 재설계 할 것. 
+		bindOptionsLoginForm.onCapslock = LOGIN.DO_CAPSLOCK;	// capslock 처리 콜백
+		bindOptionsLoginForm.onPhaseChange = LOGIN.DO_PHASE_CHANGE;	// 보안 단계 변화시 콜백
+		bindOptionsLoginForm.onError = LOGIN.displayError;	// 에러 발생시 처리할 콜백
+
+		bindOptionsLoginForm.onDefaultStatusChange = LOGIN.doDefaultStatusChange;	// ID, Password 백그라운드text 처리용 콜백)
+		
+		LOGIN.FLAGS.MAIN = true;
+			
+		// binding
+		LOGIN.bindElement('loginform', bindOptionsLoginForm);
+	}
+
+	C.addOnReady(LOGIN.init);
+	LOGIN.IS_MOBILE_CHECK = true;
+	--></script>
+
+
+
+
+
+	
+
+	<embed src='http://images.hangame.co.kr/upload/etc/bs_standard_128s.swf' name='main' quality='high' width='0' height='0' type='application/x-shockwave-flash' pluginspage='http://www.macromedia.com/go/getflashplayer' />
+	
+	
+
+
+<script type='text/javascript'>
+var nsc = "hangame.nologin"; //nClicks 서비스 코드
+var ccsrv="cc.hangame.com";
+
+//goodbye IE6
+if (GBIE6.getBrowser() == "ie6") {
+	if (GBIE6.getCookie("GBIE6") != "done") {
+		GBIE6.addOnLoadEvent(function() {
+			GBIE6.slidePushDown('ie6banner');
+			GBIE6.setCookie("GBIE6", "done", undefined, "hangame.com");
+		});
+	}
+}
+
+//비로그인 인기게임 영역 네비게이터 롤링
+
+PopularNavigator.rollingGenreTab();
+
+
+C.addOnReady( function() {
+
+	//__ndsLoadHeader();
+	lcs_do();
+
+	setTimeout(function(){
+		GameListView.loadGameList('list');
+	}, 400);
+
+	// 2012-02-13 by eproable
+	setTimeout(function(){
+		chinaFooter.load();
+	}, 500);
+
+	// 공지사항 롤링
+	NoticeBoard.touch();
+
+	// 모바일 기기 여부 판별
+	makeMobileBanner();
+});
+
+// 메인 상단 - 우측 검색 
+var SearchBox = {};
+//초기화
+SearchBox.init = function() {
+	//처음에는 빈 배열로 설정후, lazy loading 방식 적용
+	SearchBox.gameCodes = [];
+
+	//검색박스 설정
+	SearchBox.mySearchBox = new GameSearchBox( 'SearchBox.mySearchBox', 'inputGameSearch', 'imgTopSearchGo', 'gameSearchResultDiv', 'ifrmSearchResultPanel' );
+	SearchBox.mySearchBox.setList( this.gameCodes );
+	
+	SearchBox.mySearchBox.clickCode = { whenFocus : "gnb.schclick",
+		whenEnter : "gnb.schgo",
+		whenClickList : "gnb.schlist"};
+	
+	//검색 입력창 포커스 이벤트 처리 (게임코드를 lazy loading 하기 위한)
+	C('inputGameSearch').addEvent("focus", function() {
+		SearchBox.lazyLoading();
+	});
+	
+}
+//AJAX를 통한 lazy loading 처리
+SearchBox.lazyLoading = function() {
+	//이미 로딩이 완료되었다면 처리 중지함
+	if(SearchBox.gameCodes.length > 0) return;
+
+	var ajaxOptions = {
+		method: "get",
+		url: "/lazyLoading.nhn", 
+		callback: SearchBox.onLazyLoad
+	};
+
+	var ajaxParams = { "m" : "gameInfosForSearch" };
+	
+	//결과로 리턴된는 자바스크립트를 로드한다
+	AJAX.loadScript(ajaxOptions, ajaxParams);
+}
+//AJAX 결과 처리
+SearchBox.onLazyLoad = function(resultText) {
+	SearchBox.mySearchBox.setList( SearchBox.gameCodes );	
+}
+//<!--// 검색 박스 -->
+
+// 검색창 초기화
+SearchBox.init();
+SearchBox.mySearchBox.setDefaultMsg('text', '게임명을 입력하세요.', null);
+
+</script>
+
+
+
+
+
+
+	
+	
+	
+	<div id="_promotionNormalBanner" class="r_pomotion" style="display:none;">
+			<ul>
+			 	
+				<li class="on"><a href="http://st.hangame.com" onclick="clickcr(this,'pr1.bgright','706','',event);"  style="background:url(http://images.hangame.co.kr/hangame/main2012/promotionbanner/satu_pb_20150918.png) no-repeat;_background:0;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://images.hangame.co.kr/hangame/main2012/promotionbanner/satu_pb_20150918.png',sizingMethod='crop')">남자의 사투</a></li> 
+				
+				<li ><a href="http://tr.hangame.com/" onclick="clickcr(this,'pr1.bgright','711','',event);"  style="background:url(http://images.hangame.co.kr/hangame/main2012/promotionbanner/talesrunner_pb_20150923.png) no-repeat;_background:0;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://images.hangame.co.kr/hangame/main2012/promotionbanner/talesrunner_pb_20150923.png',sizingMethod='crop')">신규 서바이벌 모드 달려라 세계왕 전격 업데이트</a></li> 
+				
+				<li ><a href="http://px.hangame.com/" onclick="clickcr(this,'pr1.bgright','702','',event);"  style="background:url(http://images.hangame.co.kr/hangame/main2012/promotionbanner/firebird_pb_20150909.png) no-repeat;_background:0;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://images.hangame.co.kr/hangame/main2012/promotionbanner/firebird_pb_20150909.png',sizingMethod='crop')">혼열일체 RPG 불사조 온라인 신규 캐릭터 성장 지원</a></li> 
+				
+				<li ><a href="http://hgurl.me/atV" onclick="clickcr(this,'pr1.bgright','685','',event);"  style="background:url(http://images.hangame.co.kr/hangame/main2012/promotionbanner/pokopoko_pb_20150728.png) no-repeat;_background:0;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://images.hangame.co.kr/hangame/main2012/promotionbanner/pokopoko_pb_20150728.png',sizingMethod='crop')">포코팡에 이은 흥행 포코포코!</a></li> 
+				
+				<li ><a href="https://bill.hangame.com/pay/template/pay2/popup/hangameCouponEvent.html" onclick="clickcr(this,'pr1.bgright','701','',event);"  style="background:url(http://images.hangame.co.kr/hangame/main2012/promotionbanner/hangamegift_pb_20150831.png) no-repeat;_background:0;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://images.hangame.co.kr/hangame/main2012/promotionbanner/hangamegift_pb_20150831.png',sizingMethod='crop')">한코인+10% 추가충전 꿀 이벤트!</a></li> 
+				 
+			</ul> 
+			<div class="page"> 
+				
+				<span><a href="#" class="on" onclick="clickNavigation(0);return false;">0</a></span> 
+				
+				<span><a href="#"  onclick="clickNavigation(1);return false;">1</a></span> 
+				
+				<span><a href="#"  onclick="clickNavigation(2);return false;">2</a></span> 
+				
+				<span><a href="#"  onclick="clickNavigation(3);return false;">3</a></span> 
+				
+				<span><a href="#"  onclick="clickNavigation(4);return false;">4</a></span> 
+				 
+			</div> 
+			<span class="bg"></span> 
+	</div>
+	
+	
+
+
+
+	<script type="text/javascript">
+		$j(function () {
+			var banner = $j('#_promotionNormalBanner');
+			$j('#_promotionNormalBannerPlaceholder').replaceWith(banner);
+			banner.show();
+		});
+		
+		function clickNavigation(bannerIndex){
+			$j('#_promotionNormalBanner ul li').removeClass("on").eq(bannerIndex).addClass("on");
+			$j('#_promotionNormalBanner .page span a').removeClass("on").eq(bannerIndex).addClass("on");
+		}
+		
+		
+	</script>
+
+
+
+
+</body>
+</html>
+<!-- dwlog 커스텀 태그로 생성된 자바스크립트 -->
+<script>
+function setLog(arg)
+{
+     if(arg !=null)
+     {
+      }
+}
+function removeEachString(str)
+{
+	var index  = str.indexOf("docref=");
+	if(index==-1)
+		return str;
+	var removeStr = str.substring(0,index);
+	return removeStr;
+}
+function makeLogArg()
+{
+	var arg="";
+	var docref = "";
+	if(docref=='icon')
+		docref = 'icon://'+window.location.href.split('/')[2]+'/'+window.location.href.split('/')[3];
+	if(docref==""||docref==null)
+		docref = document.referrer;
+	arg += "&docref=" + escape(removeEachString(docref));
+	arg = arg.substring(1);
+	setLog(arg);
+}
+makeLogArg();
+</script>
+<!--//dwlog 커스텀 태그로 생성된 자바스크립트 -->

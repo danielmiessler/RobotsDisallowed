@@ -1,0 +1,82 @@
+<html>
+	<head>
+		<title>Redirecting you to www.gettysburg.edu</title>
+		<META HTTP-EQUIV="Refresh" CONTENT="5; URL=http://www.gettysburg.edu/">
+	 </head>
+	<body bgcolor="#003399" style="color: #FFFFFF;">
+		<script language="javascript">
+
+			function getDomain()
+			{
+				var result = document.domain;
+				return result;
+			}
+
+			function getUrlVar( key )
+			{
+				var result = new RegExp( key + "=([^&]*)", "i" ).exec( window.location.search );
+				return result && unescape( result[ 1 ] ) || "";
+			}
+
+			function navigateTo( nextUrl )
+			{
+				var nextActionString = 'window.location = ' + '"' + nextUrl + '"';
+				setTimeout ( nextActionString, 1 );
+			}
+
+			//check every 5 seconds
+			var pageRefresherInterval = setInterval( "pageRefresher()", 1000 );
+
+			function pageRefresher()
+			{
+				//get the page data
+				var domain = getDomain();
+				var ts = getUrlVar( 'ts' );
+
+				//get the current date
+				var now = new Date();
+
+				//get the milliseconds
+				var nowTimeMillis = now.getTime();
+
+				//build the new url				
+				var newUrl = "http://www.gettysburg.edu" + window.location.pathname;
+				
+				//add any search parameters if they exist
+				if ( window.location.search != '' )
+				{
+					newUrl = newUrl + window.location.search  + '&ts=' + nowTimeMillis + '';
+				}
+				else
+				{
+					newUrl = newUrl + '?ts=' + nowTimeMillis + '';
+				}
+				
+				if ( ts == '' )
+				{
+					navigateTo( newUrl );
+				}
+				else
+				{
+					var timeDifference = nowTimeMillis - ts;
+
+					if ( timeDifference > 1000 )
+					{
+						navigateTo( newUrl );
+					}
+				}
+			}
+
+		</script>
+		<h1>
+			<center>Redirecting you to www.gettysburg.edu</center>
+		</h1>
+		<p align="center">
+			You will be automatically redirected to the official Gettysburg College homepage in 1 seconds, if this fails please, <a href="http://www.gettysburg.edu" style="color: #FFFFFF;"><b>click here</b></a> to navigate to that server.
+		</p>
+	</body>
+</html>
+<HR>
+<ADDRESS><A HREF="http://www.acme.com/software/thttpd/">thttpd/2.25b 29dec2003</A></ADDRESS>
+</BODY>
+</HTML>

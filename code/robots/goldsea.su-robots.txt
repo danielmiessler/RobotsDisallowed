@@ -1,0 +1,483 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru-ru" lang="ru-ru">
+<head>
+<title>Аквариум</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251"/>
+<link rel="stylesheet" href="/css/new_design/system.css" type="text/css"/>
+<link rel="stylesheet" href="/css/new_design/general.css" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="/css/new_design/template.css" media="screen"/>
+<link rel="stylesheet" href="/css/jquery-ui.css" type="text/css"/>
+<link rel='icon' href='/favicon.ico' type='image/x-icon'/>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/js/jquery.simplemodal.js"></script>
+<script type="text/javascript" src="/js/swfobject.js"></script>
+<link rel="stylesheet" href="/css/cons.css" type="text/css"/>
+<script type="text/javascript" src="/js/bonus.js"></script>
+<script type="text/javascript" src="/js/c.js"></script>
+<script>
+$(document).ready(function() {
+	onlineConsulInit();
+});		
+	</script>
+<script>
+	function passwBlock(name) {
+       
+        if (!name) name = 'form';
+     
+					$('#' + name).submit();
+			}
+	
+	function registerBlock() {
+		$('#register_block').modal();
+	}
+
+</script>
+</head>
+<body>
+<script>
+var	onlineConsulTicketId = 0;
+</script>
+<div id='online_consul'>
+<div id='online_consul_main'>
+<a id="online_consul_close" href="/"></a>
+<input id='online_consul_email' value="" placeholder="email" disabled />
+<input id='online_consul_username' value="" placeholder="Гость" disabled />
+<select id='online_consul_tickets'></select>
+<input type="hidden" id="online_consul_theme"/>
+<input id="online_consul_new_ticket_button" type='button' value='Новый диалог'/>
+<div id='online_consul_ticket_contents'></div>
+<textarea id='online_consul_new_message' placeholder="Напишите здесь ваш вопрос"></textarea>
+<input id="online_consul_send_message" type='button' value='Отправить'/>
+<div id='online_consul_capthcha'>
+<img src="/captcha/index.php"/>
+<span style='vertical-align:140%;'>
+<input type="text" id="online_consul_capthcha_text" placeholder="Введите число с картинки"/>
+<input type="hidden" id="online_consul_capthcha_hash"/>
+</span>
+</div>
+<div id="online_consul_please_wait">
+Пожалуйста ожидайте. Вам ответит первый освободившийся оператор.
+</div>
+</div>
+<div id='online_consul_bookmark'></div>
+<div id='online_consul_new_ticket'>
+<h1>Выберите тему для нового диалога</h1>
+<br/>
+<select id="online_consul_new_ticket_theme">
+<option value="Техническая поддержка">Техническая поддержка</option>
+<option value="Финансовые вопросы">Финансовые вопросы</option>
+<option value="Сотрудничество и партнерство">Сотрудничество и партнерство</option>
+<option value="Пожелания и предложения">Пожелания и предложения</option>
+<option value="Ошибки на сайте">Ошибки на сайте</option>
+</select>
+<div id='online_consul_capthcha2'>
+<img src="/captcha/index.php"/>
+<span style='vertical-align:140%'>
+<input type="text" id="online_consul_capthcha_text2" placeholder="Введите число с картинки"/>
+<input type="hidden" id="online_consul_capthcha_hash2"/>
+</span>
+</div>
+<br/><br/>
+<input id="online_consul_new_ticket_create" type='button' value="Продолжить"/>
+<input type='button' value="Отмена" onclick="$('#online_consul_new_ticket').slideUp()"/>
+</div>
+<div id='online_consul_introduce'>
+<h1>Представьтесь, пожалуйста</h1>
+<br/>
+<form id="online_consul_introduce_form">
+Ваше имя: <input id='online_consul_introduce_username' type='text' required />
+<br/><br/>
+Ваш email: <input id='online_consul_introduce_email' type="email" required />
+<br/><br/>
+<input type='submit' value="Продолжить"/>
+<input type='button' value="Отмена" onclick="$('#online_consul_introduce').slideUp()"/>
+</form>
+</div>
+</div>
+<div id="pay_passw_block" style="display: none; height: 190px; width: 400px; color: #333;">
+<b>Подтверждение операции</b><br/><br/>
+Для подтверждения операции введите Ваш платежный пароль и нажмите кнопку "Подтверждаю".<br/><br/>
+<table>
+<tr>
+<td>Пароль: </td>
+<td><input type="password" id="write_passw" style="width: 150px;"/></td>
+</tr>
+</table>
+<br/>
+<input type="button" id="submit_button" value="Подтверждаю"/>
+</div>
+<div id="register_block" style="display: none; height: 280px; width: 400px; color: #333;">
+</div>
+<div id="art-page-background-middle-texture">
+<div id="art-page-background-glare">
+<div id="art-page-background-glare-image">
+<div id="art-main">
+<div class="art-sheet">
+<div class="art-sheet-tl"></div>
+<div class="art-sheet-tr"></div>
+<div class="art-sheet-bl"></div>
+<div class="art-sheet-br"></div>
+<div class="art-sheet-tc"></div>
+<div class="art-sheet-bc"></div>
+<div class="art-sheet-cl"></div>
+<div class="art-sheet-cr"></div>
+<div class="art-sheet-cc"></div>
+<div class="art-sheet-body">
+<div class="art-nav">
+<a href='/pages/language/ru'><img src='/images/new_design/ru.png' class='flag'/></a>
+<a href='/pages/language/en'><img src='/images/new_design/en.png' class='flag'/></a>
+<a href='/china'><img src='/images/new_design/ch.png' class='flag' title="Перевод на китайский язык доступен только для сервера «Хищные пресноводные»"/></a>
+<div class='authorized'>
+</div>
+<ul class="art-menu" style='width:400px'>
+<li>
+<a href="/"><img src="/images/main-page.png" hspace="15"/></a>
+</li>
+<li>
+<a href="/game/square/"><img src="/images/aquachat.png" hspace="15"/></a>
+</li>
+<li>
+<a href="/game/news/"><img src="/images/news.png" hspace="15"/></a>
+</li>
+<li>
+<a href="/game/gallery/"><img src="/images/gallery/gallery.png" hspace="15"/></a>
+</li>
+</ul>
+</div>
+<div class="art-header">
+<div class="art-header-png"></div>
+<div id="art-flash-area">
+<div id="art-flash-container">
+<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="972" height="270" id="art-flash-object">
+<param name="movie" value="/images/new_design/flash.swf"/>
+<param name="quality" value="high"/>
+<param name="scale" value="exactfit"/>
+<param name="wmode" value="transparent"/>
+<param name="flashvars" value="color1=0xFFFFFF&amp;alpha1=.0&amp;framerate1=24&amp;loop=true&amp;wmode=transparent"/>
+<param name="swfliveconnect" value="true"/>
+<!--[if !IE]>-->
+<object type="application/x-shockwave-flash" data="/images/new_design/flash.swf" width="972" height="270">
+<param name="quality" value="high"/>
+<param name="scale" value="exactfit"/>
+<param name="wmode" value="transparent"/>
+<param name="flashvars" value="color1=0xFFFFFF&amp;alpha1=.0&amp;framerate1=24&amp;loop=true&amp;wmode=transparent"/>
+<param name="swfliveconnect" value="true"/>
+<!--<![endif]-->
+<div class="art-flash-alt">
+<a href="http://www.adobe.com/go/getflashplayer">
+<img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player"/>
+</a>
+</div>
+<!--[if !IE]>-->
+</object>
+<!--<![endif]-->
+</object>
+</div>
+</div>
+<div class="art-headerobject"></div>
+<div class="art-logo"></div>
+</div>
+<div class="art-content-layout">
+<div class="art-content-layout-row">
+<div class="art-layout-cell art-sidebar1">
+<div class="art-layout-bg"></div>
+<div class="art-block">
+<div class="art-block-tl"></div>
+<div class="art-block-tr"></div>
+<div class="art-block-bl"></div>
+<div class="art-block-br"></div>
+<div class="art-block-tc"></div>
+<div class="art-block-bc"></div>
+<div class="art-block-cl"></div>
+<div class="art-block-cr"></div>
+<div class="art-block-cc"></div>
+<div class="art-block-body">
+<div class="art-blockheader">
+<center><h3 class="t"><img src="/images/private.png" vspace="10"/></h3></center>
+</div>
+<div class="art-blockcontent">
+<div class="art-blockcontent-tl"></div>
+<div class="art-blockcontent-tr"></div>
+<div class="art-blockcontent-bl"></div>
+<div class="art-blockcontent-br"></div>
+<div class="art-blockcontent-tc"></div>
+<div class="art-blockcontent-bc"></div>
+<div class="art-blockcontent-cl"></div>
+<div class="art-blockcontent-cr"></div>
+<div class="art-blockcontent-cc"></div>
+<div class="art-blockcontent-body">
+<form id='enterform' class='button_block' action="/users/login/" method="post" style='color:#fff;text-align:center'>
+Email:<br>
+<input type="text" name="email" style="height: 30px; font-size: 15px; width: 160px; margin-left: 5px;"><div style="height: 10px;"></div>
+Пароль:<br>
+<input type="password" name="passw" style="height:30px;font-size:15px;width:160px;margin-left:5px;"><div style="height: 10px;"></div>
+<a class='button' href='#' onclick="$('#enterform').submit()">Войти</a>
+<a class="button-grow-big" href="/users/register" style="margin:3px 3px 0">Регистрация</a>
+</form>
+<div style="height:7px"></div>
+<a href="/users/resetpassword/">Забыли пароль?</a>
+<div class="cleared"></div>
+</div>
+</div>
+</div>
+</div> <div class="art-block">
+<div class="art-block-tl"></div>
+<div class="art-block-tr"></div>
+<div class="art-block-bl"></div>
+<div class="art-block-br"></div>
+<div class="art-block-tc"></div>
+<div class="art-block-bc"></div>
+<div class="art-block-cl"></div>
+<div class="art-block-cr"></div>
+<div class="art-block-cc"></div>
+<div class="art-block-body">
+<div class="art-blockheader">
+<center><h3 class="t"><img src="/images/stat.png" vspace="10"/></h3></center>
+</div>
+<div class="art-blockcontent">
+<div class="art-blockcontent-tl"></div>
+<div class="art-blockcontent-tr"></div>
+<div class="art-blockcontent-bl"></div>
+<div class="art-blockcontent-br"></div>
+<div class="art-blockcontent-tc"></div>
+<div class="art-blockcontent-bc"></div>
+<div class="art-blockcontent-cl"></div>
+<div class="art-blockcontent-cr"></div>
+<div class="art-blockcontent-cc"></div>
+<div class="art-blockcontent-body" style='background: url(/images/new_design/stat-board.jpg) center no-repeat;
+																background-size: 100% 210px;
+																height:210px'>
+<div id='reg-count'>114836</div>
+<div id='pay-count'>864473</div>
+</div>
+</div>
+</div>
+</div>
+<div class="art-block">
+<div class="art-block-tl"></div>
+<div class="art-block-tr"></div>
+<div class="art-block-bl"></div>
+<div class="art-block-br"></div>
+<div class="art-block-tc"></div>
+<div class="art-block-bc"></div>
+<div class="art-block-cl"></div>
+<div class="art-block-cr"></div>
+<div class="art-block-cc"></div>
+<div class="art-block-body">
+<div class="art-blockheader">
+<center><h3 class="t"><img src="/images/uptime.png" vspace="10"></h3></center>
+</div>
+<div class="art-blockcontent">
+<div class="art-blockcontent-tl"></div>
+<div class="art-blockcontent-tr"></div>
+<div class="art-blockcontent-bl"></div>
+<div class="art-blockcontent-br"></div>
+<div class="art-blockcontent-tc"></div>
+<div class="art-blockcontent-bc"></div>
+<div class="art-blockcontent-cl"></div>
+<div class="art-blockcontent-cr"></div>
+<div class="art-blockcontent-cc"></div>
+<div class="art-blockcontent-body">
+<p style='color:#fff'>
+Дата запуска проекта:
+01.01.2014<br/><br/>
+Проект работает <b>630</b>
+дней </p>
+<div class="cleared"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="art-block">
+<div class="art-block-tl"></div>
+<div class="art-block-tr"></div>
+<div class="art-block-bl"></div>
+<div class="art-block-br"></div>
+<div class="art-block-tc"></div>
+<div class="art-block-bc"></div>
+<div class="art-block-cl"></div>
+<div class="art-block-cr"></div>
+<div class="art-block-cc"></div>
+<div class="art-block-body">
+<div class="art-blockheader">
+<center><h3 class="t"><img src="/images/server-time.png" vspace="10"></h3></center>
+</div>
+<div class="art-blockcontent">
+<div class="art-blockcontent-tl"></div>
+<div class="art-blockcontent-tr"></div>
+<div class="art-blockcontent-bl"></div>
+<div class="art-blockcontent-br"></div>
+<div class="art-blockcontent-tc"></div>
+<div class="art-blockcontent-bc"></div>
+<div class="art-blockcontent-cl"></div>
+<div class="art-blockcontent-cr"></div>
+<div class="art-blockcontent-cc"></div>
+<div class="art-blockcontent-body">
+<table>
+<tr>
+<td width="100">
+<embed src="http://chasikov.net.ru/flash/digital/dg3_7.swf" width="100" height="44" wmode="transparent" type="application/x-shockwave-flash"></embed>
+</td>
+<td width="100" align="center" style='color:#fff'>
+Серверное<br/> время:
+<br/> <span style="font-size: 14px; font-weight: bold;">09:32</span>
+</td>
+</tr>
+</table>
+<div class="cleared"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="art-block">
+<div class="art-block-tl"></div>
+<div class="art-block-tr"></div>
+<div class="art-block-bl"></div>
+<div class="art-block-br"></div>
+<div class="art-block-tc"></div>
+<div class="art-block-bc"></div>
+<div class="art-block-cl"></div>
+<div class="art-block-cr"></div>
+<div class="art-block-cc"></div>
+<div class="art-block-body">
+<div class="art-blockheader">
+<center><h3 class="t"><img src="/images/new-users.png" vspace="10"/></h3></center>
+</div>
+<div class="art-blockcontent">
+<div class="art-blockcontent-tl"></div>
+<div class="art-blockcontent-tr"></div>
+<div class="art-blockcontent-bl"></div>
+<div class="art-blockcontent-br"></div>
+<div class="art-blockcontent-tc"></div>
+<div class="art-blockcontent-bc"></div>
+<div class="art-blockcontent-cl"></div>
+<div class="art-blockcontent-cr"></div>
+<div class="art-blockcontent-cc"></div>
+<div class="art-blockcontent-body">
+<table style="color:#fff;text-align:center;width:100%">
+<tr valign="top">
+<td width="33%">
+<a href='/game/profile/Kassta59'>
+<img src="/images/avatars/no-avatar.jpg" class='avatar'/>
+</a>
+</td>
+<td width="33%">
+<a href='/game/profile/252525'>
+<img src="/images/avatars/no-avatar.jpg" class='avatar'/>
+</a>
+</td>
+<td width="33%">
+<a href='/game/profile/liana123'>
+<img src="/images/avatars/no-avatar.jpg" class='avatar'/>
+</a>
+</td>
+</tr>
+<tr valign="top">
+<td width="33%">
+Kassta5 </td>
+<td width="33%">
+252525 </td>
+<td width="33%">
+liana12 </td>
+</tr>
+<tr>
+<td colspan="3"><br/></td>
+</tr>
+<tr valign="top">
+<td width="33%">
+<a href='/game/profile/DENNIS13'>
+<img src="/images/avatars/no-avatar.jpg" class='avatar'/>
+</a>
+</td>
+<td width="33%">
+<a href='/game/profile/Trafalbgar'>
+<img src="/images/avatars/no-avatar.jpg" class='avatar'/>
+</a>
+</td>
+<td width="33%">
+<a href='/game/profile/Olesya76'>
+<img src="/images/avatars/no-avatar.jpg" class='avatar'/>
+</a>
+</td>
+</tr>
+<tr valign="top">
+<td width="33%">
+DENNIS1 </td>
+<td width="33%">
+Trafalb </td>
+<td width="33%">
+Olesya7 </td>
+</tr>
+</table>
+<div class="cleared"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="art-layout-cell art-content">
+<div class="art-post">
+<div class="art-post-cc"></div>
+<div class="art-post-body">
+<div class="art-post-inner">
+<div class="art-postcontent">
+<div class='button_block' style='margin:auto'>
+<table class='cooper' style='table-layout:fixed;width:100%'>
+<tr valign="bottom">
+<td>
+<a href='/pages/about'>
+<img src='/images/new_design/about.png' onmouseover="this.src='/images/new_design/about1.png'" onmouseout="this.src='/images/new_design/about.png'"/>
+</a>
+</td>
+<td>
+<a href='/users/register'>
+<img src='/images/new_design/aquarium.png' onmouseover="this.src='/images/new_design/aquarium1.png'" onmouseout="this.src='/images/new_design/aquarium.png'"/>
+</a>
+</td>
+<td>
+<a href='/pages/manual'>
+<img src='/images/new_design/instructions.png' onmouseover="this.src='/images/new_design/instructions1.png'" onmouseout="this.src='/images/new_design/instructions.png'"/>
+</a>
+</td>
+<td>
+<a href='/game/support'>
+<img src='/images/new_design/support.png' onmouseover="this.src='/images/new_design/support1.png'" onmouseout="this.src='/images/new_design/support.png'"/>
+</a>
+</td>
+</tr>
+<tr>
+<td><img src='/images/new_design/about2.png'/></td>
+<td><img src='/images/new_design/aquarium2.png'/></td>
+<td><img src='/images/new_design/instructions2.png'/></td>
+<td><img src='/images/new_design/support2.png'/></td>
+</tr>
+</table>
+</div>
+<br/>
+<iframe width="560" height="315" src="//www.youtube.com/embed/jiOmAUWsLQM" frameborder="0" allowfullscreen></iframe>
+<img src='/images/main2.png'/>
+<img src='/images/main3.png'/> </div>
+<div class="cleared"></div>
+</div>
+<div class="cleared"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cleared"></div>
+<div style="background-image: url(/images/background-bottom.png); height: 33px; width: 972px; display:table-cell; vertical-align:middle; text-align:center;">
+<img src="/images/copyright.png" style='margin-right:400px'/>
+<img src="/images/paysystems.png" style='margin-left:0px'/>
+</div>
+</div>
+</div>
+<div class="cleared"></div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

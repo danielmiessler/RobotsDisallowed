@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+	<html lang="en" >
+	<head>
+		<meta charset="UTF-8" />
+		<title>Ошибка - SEO форум вебмастеров</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<link rel="shortcut icon" href='http://talkwebber.ru/favicon.ico' />
+		<link rel="image_src" href='http://talkwebber.ru/public/style_images/prowebber20/meta_image.png' />
+		<script type='text/javascript'>
+		//<![CDATA[
+			jsDebug			= 0; /* Must come before JS includes */
+			DISABLE_AJAX	= parseInt(0); /* Disables ajax requests where text is sent to the DB; helpful for charset issues */
+			inACP			= false;
+			var isRTL		= false;
+			var rtlIe		= '';
+			var rtlFull		= '';
+		//]]>
+		</script>
+		
+	
+				
+	
+
+				
+	
+
+				
+	
+
+				
+	
+
+				
+	
+
+				
+	
+
+				
+	
+
+				
+	
+	
+		<link rel="stylesheet" type="text/css" media='screen,print' href="http://talkwebber.ru/public/min/index.php?ipbv=3c008ddda4091b01c291af3e04c55eb9&amp;f=public/style_css/css_38/ipb_mlist_addon.css,public/style_css/css_38/ipb_help.css,public/style_css/css_38/calendar_select.css,public/style_css/css_38/feedback.css,public/style_css/css_38/ipb_common.css,public/style_css/css_38/ipb_styles.css,public/style_css/css_38/ipshoutbox.css,public/style_css/css_38/custom_backgrounds.css" />
+	
+
+<!--[if lte IE 7]>
+	<link rel="stylesheet" type="text/css" title='Main' media="screen" href="http://talkwebber.ru/public/style_css/css_38/ipb_ie.css" />
+<![endif]-->
+<!--[if lte IE 8]>
+	<style type='text/css'>
+		.ipb_table { table-layout: fixed; }
+		.ipsLayout_content { width: 99.5%; }
+	</style>
+<![endif]-->
+
+	<style type='text/css'>
+		img.bbc_img { max-width: 100% !important; }
+	</style>
+
+		<meta property="og:title" content="Ошибка"/>
+		<meta property="og:site_name" content="SEO форум вебмастеров"/>
+		<meta property="og:type" content="article" />
+		<link href='//fonts.googleapis.com/css?family=Lato:700italic&v2' rel='stylesheet' type='text/css'>
+		
+	
+		
+		
+			<meta name="identifier-url" content="http://talkwebber.ru/robots.txt" />
+		
+		
+			<meta property="og:url" content="http://talkwebber.ru/robots.txt" />
+		
+		
+		
+	
+
+<meta property="og:image" content="http://talkwebber.ru/public/style_images/prowebber20/meta_image.png"/>
+		
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+		<script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+		<script type='text/javascript'>!window.jQuery && document.write('<script src="http://talkwebber.ru/public/style_images/prowebber20/js/jquery.min.js"><\/script>')</script>
+		<script type='text/javascript' src="http://talkwebber.ru/public/style_images/prowebber20/js/cookie.js"></script>
+		<script type='text/javascript' src="http://talkwebber.ru/public/style_images/prowebber20/js/ipbforumskins.js"></script>
+		<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/prototype/1.7.1.0/prototype.js'></script>
+		<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/scriptaculous/1.8/scriptaculous.js?load=effects,dragdrop,builder'></script>
+	<script type='text/javascript' src='http://talkwebber.ru/public/min/index.php?ipbv=3c008ddda4091b01c291af3e04c55eb9&amp;charset=UTF-8&amp;f=public/js/ipb.js,cache/lang_cache/1/ipb.lang.js,public/js/ips.hovercard.js,public/js/ips.quickpm.js' charset='UTF-8'></script><script type='text/javascript'>
+
+ipb.lang['en30_thanked_by'] 	= "";
+ipb.lang['en30_thank']		= "";
+ipb.lang['en30_thank_author']	= "";
+ipb.lang['en30_user']		= "";
+ipb.lang['en30_users']		= "";
+ipb.lang['en30_thanked']	= "";
+
+function ajaxThanksExpand( pid )
+{
+	var thankersBox 		= $( 'thankers_' + pid );
+	var showThankers 	= $( 'show_thankers_' + pid );
+	
+	showThankers.style.display = "none";
+	thankersBox.style.display = "block";
+}
+
+function ajaxRemoveThanks( pid )
+{
+		// Kill the thanks button of this specific post
+		
+		new Effect.DropOut( 'ajaxRemoveThanks_' + pid );
+		var url = ipb.vars['base_url'] + 'app=forums&module=ajax&section=stats&do=ajaxRemoveThanks';
+		
+		new Ajax.Request( url,
+							{
+								method: 'post',
+								evalJSON: 'force',
+								parameters: {
+									md5check: 		ipb.vars['secure_hash'],
+									pid:			pid,
+									tid:			ipb.topic.topic_id,
+									fid:			ipb.topic.forum_id
+								},
+								onSuccess: function(t)
+								{
+									if( t.responseJSON['error'] )
+									{
+										alert( t.responseJSON['error'] );
+									}
+									else
+									{
+										var thankers	= $( 'thankers_' + pid );
+										var thankedBy	= $( 'thankedBy_' + pid );
+										var thankersBox = $( 'thankersBox_' + pid );
+
+										if ( thankersBox.getAttribute( 'title' ) == 'hidden' )
+										{
+											thankersBox.style.display = "block";
+											
+											thankers.innerHTML = t.responseJSON['thankers'];
+										}
+										else
+										{
+											ajaxThanksExpand( pid );
+											thankers.innerHTML = t.responseJSON['thankers'];
+										}
+										
+										if ( thankersBox.getAttribute( 'title' ) == 'hidden' )
+										{
+											thankersBox.style.display = "block";
+										}
+										
+										// Update thanked by text (increment number show plural)
+										
+										if ( thankedBy.title != '0' )
+										{
+											var thankers = parseInt( thankedBy.title ) - 1;
+											
+											if ( thankers > 1 )
+											{
+												thankedBy.innerHTML = ipb.lang['en30_thanked_by'] + ' ' + thankers + ' ' + ipb.lang['en30_users'];
+												new Effect.Pulsate( thankersBox, { pulses: 3, duration: 1.5 } );
+											}
+											if ( thankers == 1 )
+											{
+												thankedBy.innerHTML = ipb.lang['en30_thanked_by'] + ' ' + thankers + ' ' + ipb.lang['en30_user'];
+												new Effect.Pulsate( thankersBox, { pulses: 3, duration: 1.5 } );
+											}
+											else
+											{
+												thankersBox.style.display = "none";
+											}
+										}
+									}
+								}
+							}
+						);
+}
+
+function ajaxThanks( pid )
+{
+		// Kill the thanks button of this specific post
+		
+		new Effect.DropOut( 'ajaxThanks_' + pid );
+		var url = ipb.vars['base_url'] + 'app=forums&module=ajax&section=stats&do=ajaxThanks';
+		
+		new Ajax.Request(	url,
+							{
+								method: 'post',
+								evalJSON: 'force',
+								parameters: {
+									md5check: 		ipb.vars['secure_hash'],
+									pid:			pid,
+									tid:			ipb.topic.topic_id,
+									fid:			ipb.topic.forum_id
+								},
+								onSuccess: function(t)
+								{
+									if( t.responseJSON['error'] )
+									{
+										alert( t.responseJSON['error'] );
+									}
+									else
+									{
+										var thankers	= $( 'thankers_' + pid );
+										var thankedBy	= $( 'thankedBy_' + pid );
+										var thankersBox = $( 'thankersBox_' + pid );
+										
+										var newLink	= "<a href='" + ipb.vars['base_url'] + "showuser=" + t.responseJSON['member_id'] + "' title='" + t.responseJSON['members_display_name'] + "'>" + t.responseJSON['members_display_name'] + "</a>" + "&nbsp;<a href='" + ipb.vars['base_url'] + "showuser=" + t.responseJSON['member_id'] + "' class='__user __id" + t.responseJSON['member_id'] + "' title='Просмотр профиля'><img src='http://talkwebber.ru/public/style_images/prowebber20/user_popup.png' alt='' /></a>";
+										if ( thankersBox.getAttribute( 'title' ) == 'hidden' )
+										{
+											thankersBox.style.display = "block";
+											
+											thankers.innerHTML = newLink;
+										}
+										else
+										{
+											ajaxThanksExpand( pid );
+											thankers.innerHTML = newLink + ", " + thankers.innerHTML;
+										}
+										
+										if ( thankersBox.getAttribute( 'title' ) == 'hidden' )
+										{
+											thankersBox.style.display = "block";
+										}
+										
+										// Update thanked by text (increment number show plural)
+										
+										if ( thankedBy.title != '0' )
+										{
+											thankedBy.innerHTML = ipb.lang['en30_thanked_by'] + ' ' + ( parseInt( thankedBy.title ) + 1 ) + ' ' + ipb.lang['en30_users'];
+										}
+										
+										// Update post content for hide hack
+										
+										if ( t.responseJSON['post'] != "" )
+										{
+											// Editless attempt to reach the post content
+
+											var postDivider = $( 'post_id_' + pid ).children[1].children[2].children[1];
+											postDivider.innerHTML = t.responseJSON['post'];
+											
+											new Effect.Pulsate( postDivider, { duration: 1.5,  pulses: 3 } );
+										}
+
+										new Effect.Pulsate( thankersBox, { pulses: 3, duration: 1.5 } );
+									}
+								}
+							}
+						);
+}
+
+</script>
+
+
+	
+		
+			
+			
+				<link rel="alternate" type="application/rss+xml" title="RSS канал форума" href="http://talkwebber.ru/rss/forums/1-kanalforuma/" />
+			
+			
+			
+		
+
+			
+			
+				<link rel="alternate" type="application/rss+xml" title="SEO форум вебмастеров RSS" href="http://talkwebber.ru/rss/blog/" />
+			
+			
+			
+		
+	
+
+	
+
+
+
+		
+		<script type='text/javascript'>
+	//<![CDATA[
+		/* ---- URLs ---- */
+		ipb.vars['base_url'] 			= 'http://talkwebber.ru/index.php?s=fdc8c1a9f833340b71bddf2195c5df7a&';
+		ipb.vars['board_url']			= 'http://talkwebber.ru';
+		ipb.vars['img_url'] 			= "http://talkwebber.ru/public/style_images/prowebber20";
+		ipb.vars['loading_img'] 		= 'http://talkwebber.ru/public/style_images/prowebber20/loading.gif';
+		ipb.vars['active_app']			= 'forums';
+		ipb.vars['upload_url']			= 'http://talkwebber.ru/uploads';
+		/* ---- Member ---- */
+		ipb.vars['member_id']			= parseInt( 0 );
+		ipb.vars['is_supmod']			= parseInt( 0 );
+		ipb.vars['is_admin']			= parseInt( 0 );
+		ipb.vars['secure_hash'] 		= '880ea6a14ea49e853634fbdc5015a024';
+		ipb.vars['session_id']			= 'fdc8c1a9f833340b71bddf2195c5df7a';
+		ipb.vars['twitter_id']			= 0;
+		ipb.vars['fb_uid']				= 0;
+		ipb.vars['auto_dst']			= parseInt( 0 );
+		ipb.vars['dst_in_use']			= parseInt(  );
+		ipb.vars['is_touch']			= false;
+		ipb.vars['member_group']		= {"g_mem_info":"1"}
+		/* ---- cookies ----- */
+		ipb.vars['cookie_id'] 			= '';
+		ipb.vars['cookie_domain'] 		= '';
+		ipb.vars['cookie_path']			= '/';
+		/* ---- Rate imgs ---- */
+		ipb.vars['rate_img_on']			= 'http://talkwebber.ru/public/style_images/prowebber20/star.png';
+		ipb.vars['rate_img_off']		= 'http://talkwebber.ru/public/style_images/prowebber20/star_off.png';
+		ipb.vars['rate_img_rated']		= 'http://talkwebber.ru/public/style_images/prowebber20/star_rated.png';
+		/* ---- Uploads ---- */
+		ipb.vars['swfupload_swf']		= 'http://talkwebber.ru/public/js/3rd_party/swfupload/swfupload.swf';
+		ipb.vars['swfupload_enabled']	= true;
+		ipb.vars['use_swf_upload']		= ( '' == 'flash' ) ? true : false;
+		ipb.vars['swfupload_debug']		= false;
+		/* ---- other ---- */
+		ipb.vars['highlight_color']     = "#ade57a";
+		ipb.vars['charset']				= "UTF-8";
+		ipb.vars['time_offset']			= "3";
+		ipb.vars['hour_format']			= "24";
+		ipb.vars['seo_enabled']			= 1;
+		
+		ipb.vars['seo_params']			= {"start":"-","end":"\/","varBlock":"?","varPage":"page-","varSep":"&","varJoin":"="};
+		
+		/* Templates/Language */
+		ipb.templates['inlineMsg']		= "";
+		ipb.templates['ajax_loading'] 	= "<div id='ajax_loading'><img src='http://talkwebber.ru/public/style_images/prowebber20/ajax_loading.gif' alt='" + ipb.lang['loading'] + "' /></div>";
+		ipb.templates['close_popup']	= "<img src='http://talkwebber.ru/public/style_images/prowebber20/close_popup.png' alt='x' />";
+		ipb.templates['rss_shell']		= new Template("<ul id='rss_menu' class='ipbmenu_content'>#{items}</ul>");
+		ipb.templates['rss_item']		= new Template("<li><a href='#{url}' title='#{title}'>#{title}</a></li>");
+		
+		ipb.templates['autocomplete_wrap'] = new Template("<ul id='#{id}' class='ipb_autocomplete' style='width: 250px;'></ul>");
+		ipb.templates['autocomplete_item'] = new Template("<li id='#{id}' data-url='#{url}'><img src='#{img}' alt='' class='ipsUserPhoto ipsUserPhoto_mini' />&nbsp;&nbsp;#{itemvalue}</li>");
+		ipb.templates['page_jump']		= new Template("<div id='#{id}_wrap' class='ipbmenu_content'><h3 class='bar'>Перейти к странице</h3><p class='ipsPad'><input type='text' class='input_text' id='#{id}_input' size='8' /> <input type='submit' value='ОК' class='input_submit add_folder' id='#{id}_submit' /></p></div>");
+		ipb.templates['global_notify'] 	= new Template("<div class='popupWrapper'><div class='popupInner'><div class='ipsPad'>#{message} #{close}</div></div></div>");
+		
+		
+		ipb.templates['header_menu'] 	= new Template("<div id='#{id}' class='ipsHeaderMenu boxShadow'></div>");
+		
+		Loader.boot();
+	//]]>
+	</script>
+	</head>
+	<body  id='ipboard_body'>
+<div class="pagebg">
+		<p id='content_jump' class='hide'><a href='#j_content' title='Перейти к содержимому' accesskey='m'>Перейти к содержимому</a></p>
+		<div id='ipbwrapper' class='wrapper'>
+			<!-- ::: BRANDING STRIP: Logo and search box ::: -->
+			<div id='branding'>
+            
+            <div id='user_navigation' class='not_logged_in'>
+                    
+                    <ul class='ipsList_inline'>
+                        <li>
+                            <span class='services'>
+                                
+                                
+                                
+                            </span>
+                            <a href='http://talkwebber.ru/index.php?app=core&amp;module=global&amp;section=login' title='Войти' id='sign_in'>Войти</a>
+                        </li>
+                        <li>
+                            <a href="http://talkwebber.ru/index.php?app=core&amp;module=global&amp;section=register" title='Регистрация' id='register_link'>Регистрация</a>
+                        </li>
+                    </ul>
+                </div>
+            
+                <div id='logo'>
+                    
+                        <a href='http://talkwebber.ru' title='Перейти к списку форумов' rel="home" accesskey='1'><img src='/public/style_images/30_logo.png' alt='Логотип' /></a>
+                    
+                </div>
+<center>
+<a href="https://mangohost.net/dedicated">
+<img src="https://mangohost.net/img/mangohost-720x90.jpg">
+</a>
+</center>
+</div>
+
+			<!-- ::: APPLICATION TABS ::: -->
+		<div id='primary_nav' class='clearfix'>
+		<div id='search'>
+	<form action="http://talkwebber.ru/index.php?app=core&amp;module=search&amp;do=search&amp;fromMainBar=1" method="post" id='search-box' >
+		<fieldset>
+			<label for='main_search' class='hide'>Поиск</label>
+			<a href='http://talkwebber.ru/index.php?app=core&amp;module=search&amp;search_in=forums' title='Расширенный поиск' accesskey='4' rel="search" id='adv_search'>Расширенный</a>
+<input type='submit' class='submit_input clickable' value='Поиск' />
+			<span id='search_wrap'>
+				<input type='text' id='main_search' name='search_term' class='inactive' size='17' tabindex='100' />
+				<span class='choice ipbmenu clickable' id='search_options' style='display: none'></span>
+				<ul id='search_options_menucontent' class='ipbmenu_content ipsPad' style='display: none'>
+					<li class='title'><strong>Искать в:</strong></li>
+					
+					
+					
+					<li class='app'><label for='s_forums' title='Все форумы'><input type='radio' name='search_app' class='input_radio' id='s_forums' value="forums" checked="checked" />Все форумы</label></li><li class='app'><label for='s_members' title='Пользователи'><input type='radio' name='search_app' class='input_radio' id='s_members' value="members"  />Пользователи</label></li><li class='app'><label for='s_core' title='Помощь'><input type='radio' name='search_app' class='input_radio' id='s_core' value="core"  />Помощь</label></li>
+						
+					
+
+						
+					
+
+						
+					
+
+						
+					
+
+						
+					
+
+						
+					
+
+						
+					
+
+						
+					
+
+						<li class='app'><label for='s_blog' title='Система блогов'>
+                                    <input type='radio' name='search_app' class='input_radio' id='s_blog' value="blog"  />
+                                    Система блогов</label></li>
+					
+
+						
+					
+
+						
+					
+				</ul>
+			</span>
+			
+		</fieldset>
+	</form>
+</div>
+		
+		
+		
+                <ul class='ipsList_inline' id='community_app_menu'>
+                    
+                        <li id='nav_home' class='left'><a href='http://talkwebber.ru/go/?http://prowebber.ru/' title='Перейти на сайт' rel="home">На главную</a></li>
+                    
+                    
+                        
+                            
+                        
+
+                            
+                                                                <li id='nav_app_forums' class="left active"><a href='http://talkwebber.ru/' title='Перейти к '>Все форумы</a></li>
+                            
+                        
+
+                            
+                                                                <li id='nav_app_members' class="left "><a href='http://talkwebber.ru/members/' title='Перейти к '>Пользователи</a></li>
+                            
+                        
+
+                            
+                                                                <li id='nav_app_feedback' class="left "><a href='http://talkwebber.ru/feedback/' title='Перейти к '>Отзывы</a></li>
+                            
+                        
+
+                            
+                                                                <li id='nav_app_blog' class="left "><a href='http://talkwebber.ru/blogs/' title='Перейти к '>Система блогов</a></li>
+                            
+                        
+
+                            
+                        
+
+                            
+                        
+                    
+                    
+<li class='left'><a href="http://talkwebber.ru/topic/17076-reklama-na-forume-talkwebberru/" class='ipbmenu' id='primary_extra'>Реклама</a></li>
+                </ul>
+                	</div>
+
+
+			
+            <div class='content'>
+            
+                <!-- ::: NAVIGATION BREADCRUMBS ::: -->
+
+                <div id='secondary_navigation' class='clearfix'>
+                
+                    <ol class='breadcrumb top ipsList_inline left' id='breadcrumb'>
+                                                <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class='first'>
+                                <a href='http://talkwebber.ru/' itemprop="url">
+                                    <span itemprop="title">SEO форум вебмастеров</span>
+                                </a>
+                            </li>
+                            
+                                            </ol>
+                    <ul id='secondary_links' class='ipsList_inline right'>
+<li><a href="http://talkwebber.ru/index.php?app=forums&amp;module=extras&amp;section=boardrules"><font color="red"><b>Правила форума!</b></font></a></li>
+                        <li><a href='http://talkwebber.ru/index.php?app=core&amp;module=search&amp;do=viewNewContent&amp;search_app=forums' accesskey='2'>Просмотр новых публикаций</a></li>
+                      <!---   <li data-tooltip="Правила форума!"><a href='http://talkwebber.ru/index.php?app=forums&amp;module=extras&amp;section=boardrules'><img src="http://talkwebber.ru/public/style_images/prowebber20/nav_rules.png" alt="" /></a></li>
+                         --->
+                        
+                        <li data-tooltip="Открыть быстрый переход"><a href="http://talkwebber.ru/index.php?app=core&amp;module=global&amp;section=navigation&amp;inapp=forums" rel="quickNavigation" accesskey='9' id='quickNavLaunch'><img src="http://talkwebber.ru/public/style_images/prowebber20/icon_quicknav.png" alt="" /></a></li>
+                        
+                        
+                       <!--- 
+                        <li data-tooltip="
+Мы в Twitter"><a href="http://talkwebber.ru/go/?http://twitter.com/#!/prowebberru"><img src="http://talkwebber.ru/public/style_images/prowebber20/social_twitter.png" alt="" /></a></li>
+                         --->
+                        
+                    </ul>
+                
+                </div>
+                
+
+                
+            
+			<!-- ::: MAIN CONTENT AREA ::: -->
+			<div id='content' class='clearfix'>
+            
+                
+            
+                
+				
+                <noscript>
+                    <div class='message error'>
+                        <strong>Отключен JavaScript</strong>
+                        <p>У вас отключен JavaScript. Некоторые возможности системы не будут работать. Пожалуйста, включите JavaScript для получения доступа ко всем функциям.</p>
+                    </div>
+                    <br />
+                </noscript>
+				<!-- ::: CONTENT ::: -->
+				
+					<div class='ipsAd'><style>
+#adw_header_tab { width: 940px !important; }
+.adw_header{
+    background: #2a6c9c;
+    color: white;
+    font-size: 32px;
+    text-align: center;
+    width: 470px;
+}
+.adw_header a{
+   color: white;
+}
+
+</style>
+
+<table id="adw_header_tab">
+<tr>
+
+<td width="470">
+<a href="http://gambling-partners.com/?utm_source=talkwebber&utm_medium=banner&utm_campaign=topleft" target="_blank">
+	<img src="http://talkwebber.ru/uploads/banners/gambling-partners.gif">
+</a>
+</td>
+
+<!--
+<td width="470">
+<a href="http://ros-bilet.ru/?ref=687">
+	<img src="http://ros-bilet.ru/sites/all/script/partner/images/default/mod/468_60.gif" alt="Продажа электронных билетов на автобусы Рос-Билет ру" title="Продажа электронных билетов на автобусы Рос-Билет ру">
+</a>
+</td>
+-->
+
+<td width="470">
+<a href="http://sms-area.org/?referrer=MQ==">
+	<img src="http://sms-area.org/images/banner_sao.gif">
+</a>
+</td>
+
+<!--
+<td width="470" class="adw_header">
+<a href="http://talkwebber.ru/topic/42032-reklama-na-forume-talkwebberru/">
+<div>Рекламное место свободно!</div>
+</a>
+</td>
+-->
+</tr>
+</table></div>
+				
+<!--included content-->
+<script type="text/javascript">
+<!--
+var _acic={dataProvider:10};(function(){var e=document.createElement("script");e.type="text/javascript";e.async=true;e.src="//www.acint.net/aci.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})()
+//-->
+</script>
+<!--/ included content--><br />
+				<script type="text/javascript">
+<!--
+function contact_admin() {
+  // Very basic spam bot stopper
+  admin_email_one = 'webmaster';
+  admin_email_two = 'talkwebber.ru';
+  window.location = 'mailto:'+admin_email_one+'@'+admin_email_two+'?subject=Ошибка на форуме';  
+}
+//-->
+</script>
+<br />
+<h1 class='ipsType_pagetitle'>Извините, мы не можем найти это!</h1>
+<br />
+<div class='ipsBox'>
+	<div class='ipsBox_container ipsPad'>
+		<span class="right desc ipsType_smaller ipsPad_top">[#404] </span>
+		<p class='ipsType_sectiontitle'>
+			К сожалению, не удалось найти запрашиваемую вами страницу. Пожалуйста вернитесь на <a href='#' onclick='window.location = ipb.vars.base_url'>главную страницу</a> форума.
+		</p>
+		<br />
+		<p>Полезные ссылки</p>
+		<ul class='ipsPad_top bullets'>
+			
+				<li><a href='http://talkwebber.ru/index.php?app=core&amp;module=global&amp;section=login' title='Войти'>Войти</a></li>
+			
+			<li><a href="http://talkwebber.ru/index.php?app=core&module=help" rel="help" title='Разделы помощи'>Разделы помощи</a></li>
+			<li><a href="javascript:contact_admin();" title='Связь с администрацией форума'>Связь с администрацией форума</a></li>
+		</ul>
+	</div>
+</div>
+
+
+				<ol class='breadcrumb bottom ipsList_inline left clearfix clear'>
+					
+						<li>&nbsp;</li>
+					
+				</ol>
+			</div>
+			<!-- ::: FOOTER (Change skin, language, mark as read, etc) ::: -->
+			<div id='footer_utilities' class='clearfix clear'>
+				<a rel="nofollow" href='#top' id='backtotop' title='Наверх'><img src='http://talkwebber.ru/public/style_images/prowebber20/top.png' alt='' /></a>
+<div style="float: right; margin: 6px 0 -1px 5px;">
+<!--LiveInternet counter--><script type="text/javascript"><!--
+document.write("<a href='http://www.liveinternet.ru/click' "+
+"target=_blank><img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random()+
+"' alt='' title='LiveInternet' "+
+"border='0' width='31' height='31'><\/a>")
+//--></script><!--/LiveInternet-->
+</div>
+				<!-- Copyright Information -->
+        				  <p id='copyright'>
+        				  	Система для сообществ IP.Board<br />Лицензия зарегистрирована на:  ProWebber Inc.</p>
+		<!-- / Copyright -->
+				<ul class='ipsList_inline left'>
+					<li>
+						<img src='http://talkwebber.ru/public/style_images/prowebber20/feed.png' alt='RSS поток' id='rss_feed' class='clickable' />
+					</li>
+					
+						
+							<li>
+								<a rel="nofollow" id='new_skin' href='#'>Изменить стиль</a>			
+								<ul id='new_skin_menucontent' class='ipbmenu_content with_checks' style='display: none'>
+									
+										<li >
+											<a href='#' data-clicklaunch='changeSkin' data-skinid='3'>IP.Board Mobile</a>
+										</li>
+									
+
+										<li class='selected'>
+											<a href='#' data-clicklaunch='changeSkin' data-skinid='38'>talkwebber v2.0</a>
+										</li>
+									
+								</ul>
+							</li>
+						
+					
+					
+					<li><a rel="nofollow" href='http://talkwebber.ru/privacypolicy/'>Политика конфиденциальности</a></li>
+					<li>
+						<a href="http://talkwebber.ru/index.php?app=core&amp;module=help" title='Перейти к помощи' rel="help" accesskey='6'>Помощь</a>
+					</li>				
+				</ul>
+			</div>
+			<div id='stats_div'><div><img src='http://talkwebber.ru/index.php?s=fdc8c1a9f833340b71bddf2195c5df7a&amp;app=core&amp;module=task' alt='' style='border: 0px;height:1px;width:1px;' /></div></div>
+			
+				<script type="text/javascript">
+					ipb.global.lightBoxIsOff();
+				</script>
+			<script src="http://talkwebber.ru/public/js/forumcore.anonymizer.js" type="text/javascript"></script>
+
+<script type="text/javascript"><!--
+ignore_links = "";
+link_service = "http://www.talkwebber.ru/go/?";
+forumcore_anonymizer_start();
+//--></script>
+<!-- Hook By Paradiizee, ForumCore.net -->
+            
+            </div>
+            
+		</div>
+<div id='inline_login_form' class='ipbfs_login' style='display: none'>
+		<form action="http://talkwebber.ru/index.php?app=core&amp;module=global&amp;section=login&amp;do=process" method="post" id='login'>
+			<input type='hidden' name='auth_key' value='880ea6a14ea49e853634fbdc5015a024' />
+			<input type="hidden" name="referer" value="http://talkwebber.ru/robots.txt" />
+			<h3>Войти</h3>
+			
+			
+            <div class='ipbfs_login_row'>
+
+                <div class='ipbfs_login_col'>
+                    <span class='right desc lighter blend_links'><a href="http://talkwebber.ru/index.php?app=core&amp;module=global&amp;section=register" title='Зарегистрируйтесь сейчас!'>Зарегистрируйтесь сейчас!</a></span>
+            		<strong><label for='ips_username'>Имя пользователя:</label></strong>
+                    <div class='ipsField_content'>
+                    	<input id='ips_username' type='text' class='input_text ipbfs_login_input ipbfs_luser' name='ips_username' placeholder="Имя пользователя:" size='30' tabindex='1' />
+                    </div>
+                </div>
+                
+                <div class='ipbfs_login_col'>
+                    <span class='right desc lighter blend_links'><a href='http://talkwebber.ru/index.php?app=core&amp;module=global&amp;section=lostpass' title='Запросить пароль'>Я забыл свой пароль</a></span>
+                    <strong><label for='ips_password'>Пароль</label></strong>
+                    <div class='ipsField_content'>
+                        <input id='ips_password' type='password' class='input_text ipbfs_login_input ipbfs_lpassword' name='ips_password' placeholder="Пароль" size='30' tabindex='2' /><br />
+                    </div>
+                </div>
+        
+            </div>
+            
+            <div class='clearfix'>
+        
+                <div class='ipbfs_login_col'>
+                    <input type='checkbox' id='inline_remember' checked='checked' name='rememberMe' value='1' class='input_check left' />
+                    <div style='padding-left: 20px;'>
+                        <label for='inline_remember'>
+                            <strong>Запомнить меня</strong>
+                            <span class='desc lighter' style='display: block; padding-top: 5px;'>Это не рекомендуется для публичных компьютеров</span>
+                        </label>
+                    </div>
+                </div>
+    
+                
+    
+            </div>
+            
+                        <div class='ipsPad ipsForm_center desc ipsType_smaller'>
+                            <a rel="nofollow" href='http://talkwebber.ru/privacypolicy/'>Политика конфиденциальности</a>
+                        </div>
+            
+            <div class='ipsForm_submit ipsForm_center clear'>
+                <input type='submit' class='input_submit' value='Войти' />
+            </div>
+
+		</form>
+	</div>		
+		
+
+
+
+
+	
+</div>
+	</body>
+</html>

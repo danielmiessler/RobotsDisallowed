@@ -1,0 +1,1247 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="火星360致力于为华语美剧英剧爱好者服务，提供美剧英剧资讯新闻、播出信息、评分、评论、评价、时间表、收视率、剧单、字幕组等内容，并为爱好者提供社交互动平台。">
+	<meta name="keywords" content="美剧,英剧,新闻,资讯,时间表,资料,评分,评论,评价,收视率,剧单,字幕,字幕组,僵尸,吸血鬼,科幻,喜剧,剧情,新剧,排行">
+	<link rel="shortcut icon" href="/images/favpng.png" /> 
+	<link rel="stylesheet" href="/www/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/www/css/10.css?24">
+<!--
+	<link rel="stylesheet/less" href="/www/css/10.less" />
+	<script src="/www/js/less-1.7.3.min.js"></script>
+-->
+  	<script src="/www/js/jquery-1.11.1.min.js"></script>
+	<script src="/www/js/bootstrap.min.js"></script>
+	<script src="/www/js/bootstrap-hover-dropdown.min.js"></script>
+	<script src="/www/js/respond.min.js"></script>
+	<script src="/www/js/10.min.js"></script>
+	<title>火星360 美剧英剧资讯追看讨论站 - 美剧英剧资讯追看讨论</title>
+</head>
+
+<body>
+
+	<nav class="navbar navbar-default" role="navigation">
+	  <div class="container">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/"><img src="/images/logo.png"></a>
+	    </div>
+	
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <li><a href="/">首页</a></li>
+	        
+	        <li class="dropdown">
+	        	<a href="/news" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">新闻</a>
+	            <ul class="dropdown-menu" role="menu">
+	                <li><a href="/news">新闻</a></li>
+	                <li><a href="/news/ratings">收视率</a></li>
+	                <li><a href="/news/pickup">续订取消</a></li>
+	                <li><a href="/news/special">特稿</a></li>
+	            </ul>
+	        </li>
+	        
+	        <li class="dropdown">
+	        	<a href="/news" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">资料</a>
+	            <ul class="dropdown-menu" role="menu">
+	                <li><a href="/lists">剧单</a></li>
+	                <li><a href="/show/find/">找剧</a></li>
+	                <li><a href="/ratings">收视率</a></li>
+	                <li><a href="/calendar">时间表</a></li>
+	            </ul>
+	        </li>
+	        
+	        <li class="dropdown">
+	        	<a href="/news" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">视频</a>
+	            <ul class="dropdown-menu" role="menu">
+	                <li><a href="/v">在线观看</a></li>
+	            </ul>
+	        </li>
+	        
+	        <li class="dropdown">
+	        	<a href="/news" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">讨论</a>
+	            <ul class="dropdown-menu" role="menu">
+	                <li><a href="/talk">短评</a></li>
+	                <li class="disabled"><a href="#">剧评</a></li>
+	                <li><a href="/g">小组</a></li>
+	            </ul>
+	        </li>
+	      </ul>
+	      <form class="navbar-form navbar-left" role="search" method="get" action="/search/" target="_blank">
+	        <div class="form-group input-group-sm">
+	          <input type="text" class="form-control" name="n" placeholder="剧集名称">
+	        </div>
+	      </form>
+	      <ul class="nav navbar-nav navbar-right huser">
+	        				<div class="hum">
+					<a href="/u/login/" id="check_login" login="false">登录</a>　<a href="/u/reg/">注册</a>　<a href="/sdk">微博登录</a>
+				</div>
+						<div style="clear:both;"></div>
+				      </ul>
+	    </div>
+	  </div>
+	</nav>
+
+<div class="container">
+<div style="margin-top:10px;">
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<!-- huo360 - header -->
+	<ins class="adsbygoogle"
+	     style="display:inline-block;width:970px;height:90px"
+	     data-ad-client="ca-pub-0665364311298141"
+	     data-ad-slot="8346393934"></ins>
+	<script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".zan").click(function(){
+			
+			var send = {ID:"",k:"",type:""};
+			send.ID  = $(this).attr("id");
+			send.k = $(this).find("d").text();
+			send.type = $(this).attr("ty");
+			
+			$.ajax({
+		       type: "POST",
+		       url: "/ajax/zan_ajax",
+		       cache:true,
+		       dataType:"json",
+		       data:send,
+		       context: this,
+		       success: function(data){
+		         if(data.success == true){
+					 $(this).text(eval(send.k)+1+" 有用");
+		          }else{
+		            alert(data.msg);
+		        }
+		        }
+		    });
+		});
+		
+		$(".new_c").click(function(){
+			var send = {type:""};
+			send.type = $(this).attr("id");
+			$(".new_c").removeClass("active");
+			$(this).addClass("active");
+			$.ajax({
+		       type: "POST",
+		       url: "/ajax/news_ajax",
+		       cache:true,
+		       dataType:"json",
+		       data:send,
+		       context: this,
+		       success: function(data){
+		         if(data.success == true){
+					$(".new_cd").html(data.datas);
+				//	$(".new_cm").html(data.menu);
+		          }else{
+		            alert("出错啦，请稍后重试~");
+		        }
+		        }
+		    });
+		});
+		
+	});	
+</script>
+
+<div class="container">
+
+<div class="row">
+<div class="col-md-8">
+	
+	<div class="m_header" style="margin-top:10px;">
+		<div class="new_cm pull-left">
+		<a class="new_c active" id="all">新闻资讯</a>　<a class="new_c" id="ratings">收视率</a>　<a class="new_c" id="pickup">续订取消</a>　<a class="new_c" id="special">特稿</a>
+		</div>
+		<div class="pull-right f12 gray" style="padding-top:12px;"><b><a href="/a/40683" target="_blank">招生啦</a></b></div>
+		<div style="clear:both"></div>
+	</div>
+	
+	<!-- 最新新闻 -->
+	
+	<div style="margin:0 -5px;" class="new_cd">
+	
+		
+	<div class="m_news">
+	
+	<a href="/a/42489" target="_blank"><img src="/uploads/2015/09/1442982888w.jpg" class="img-rounded" title="Maxine Peake ,Matt Lucas, Elaine Paige加盟BBC《仲夏夜之梦》"></a>
+	<h4><a href="/a/42489" target="_blank">Maxine Peake ,Matt Lucas, Elaine Paige加盟BBC《仲夏夜之梦》</a></h4>
+	<span>0 评论</span>
+	</div>
+	
+		
+		
+	<div class="m_news">
+	
+	<a href="/a/42488" target="_blank"><img src="/uploads/2015/09/1442974697w.jpg" class="img-rounded" title="Rob Morrow加盟《财富之战 Billions》"></a>
+	<h4><a href="/a/42488" target="_blank">Rob Morrow加盟《财富之战 Billions》</a></h4>
+	<span>0 评论</span>
+	</div>
+	
+		
+		
+	<div class="m_news">
+	
+	<a href="/a/42487" target="_blank"><img src="/uploads/2015/09/1442973691w.jpg" class="img-rounded" title="Stephanie Hsu将加入《圣路教》"></a>
+	<h4><a href="/a/42487" target="_blank">Stephanie Hsu将加入《圣路教》</a></h4>
+	<span>0 评论</span>
+	</div>
+	
+	<div style="clear:both"></div>	
+		
+	<div class="m_news">
+	
+	<a href="/a/42486" target="_blank"><img src="/uploads/2015/09/1442972806w.jpg" class="img-rounded" title="9月21日收视率报告 《盲点 Blindspot》首播表现理想 《少数派报告 Minority Report》取消已是倒数"></a>
+	<h4><a href="/a/42486" target="_blank">9月21日收视率报告 《盲点 Blindspot》首播表现理想 《少数派报告 Minority Report》取消已是倒数</a></h4>
+	<span>2 评论</span>
+	</div>
+	
+		
+		
+	<div class="m_news">
+	
+	<a href="/a/42485" target="_blank"><img src="/uploads/2015/09/1442942540w.jpg" class="img-rounded" title="9月20日收视率报告 《艾美奖 Emmys》被美式足球击倒"></a>
+	<h4><a href="/a/42485" target="_blank">9月20日收视率报告 《艾美奖 Emmys》被美式足球击倒</a></h4>
+	<span>0 评论</span>
+	</div>
+	
+		
+		
+	<div class="m_news">
+	
+	<a href="/a/42484" target="_blank"><img src="/uploads/2015/09/1442935702w.jpg" class="img-rounded" title="NBC开发杂志《Cosmopolitan》改编剧集"></a>
+	<h4><a href="/a/42484" target="_blank">NBC开发杂志《Cosmopolitan》改编剧集</a></h4>
+	<span>2 评论</span>
+	</div>
+	
+	<div style="clear:both"></div>	
+		
+	<div class="m_news">
+	
+	<a href="/a/42483" target="_blank"><img src="/uploads/2015/09/1442885960w.jpg" class="img-rounded" title="Vanessa Williams加盟《傲骨贤妻》（The Good Wife）"></a>
+	<h4><a href="/a/42483" target="_blank">Vanessa Williams加盟《傲骨贤妻》（The Good Wife）</a></h4>
+	<span>4 评论</span>
+	</div>
+	
+		
+		
+	<div class="m_news">
+	
+	<a href="/a/42482" target="_blank"><img src="/uploads/2015/09/1442883459w.jpg" class="img-rounded" title="Kevin Michael Martin及Bren Foster提升为《末日孤舰 The Last Ship》常规"></a>
+	<h4><a href="/a/42482" target="_blank">Kevin Michael Martin及Bren Foster提升为《末日孤舰 The Last Ship》常规</a></h4>
+	<span>2 评论</span>
+	</div>
+	
+		
+		
+	<div class="m_news">
+	
+	<a href="/a/42481" target="_blank"><img src="/uploads/2015/09/1442882316w.jpg" class="img-rounded" title="9月18日收视率报告 《僵尸国度 Z Nation》下跌"></a>
+	<h4><a href="/a/42481" target="_blank">9月18日收视率报告 《僵尸国度 Z Nation》下跌</a></h4>
+	<span>0 评论</span>
+	</div>
+	
+	<div style="clear:both"></div>	
+		
+	<div class="m_news">
+	
+	<a href="/a/42480" target="_blank"><img src="/uploads/2015/09/1442881818w.jpg" class="img-rounded" title="火星美剧送福利啦！"></a>
+	<h4><a href="/a/42480" target="_blank">火星美剧送福利啦！</a></h4>
+	<span>4 评论</span>
+	</div>
+	
+		
+		
+	<div class="m_news">
+	
+	<a href="/a/42479" target="_blank"><img src="/uploads/2015/09/1442849167w.jpg" class="img-rounded" title="Taran Killam将在SNL上扮演Donald Trump"></a>
+	<h4><a href="/a/42479" target="_blank">Taran Killam将在SNL上扮演Donald Trump</a></h4>
+	<span>0 评论</span>
+	</div>
+	
+		
+		
+	<div class="m_news">
+	
+	<a href="/a/42478" target="_blank"><img src="/uploads/2015/09/1442806342w.jpg" class="img-rounded" title="第67届艾美奖获奖名单"></a>
+	<h4><a href="/a/42478" target="_blank">第67届艾美奖获奖名单</a></h4>
+	<span>3 评论</span>
+	</div>
+	
+	<div style="clear:both"></div>	
+		
+	</div>
+	
+	<!-- 热门新闻 -->
+	
+	<div class="row hidden-xs">
+	<div class="col-md-6">
+
+	<div class="m_header" style="margin-bottom:10px;"><h5><a href="/news">热门新闻</a></h5></div>
+	
+	<ol class="m_news_top">
+		
+	<li><a href="/a/42480" target="_blank">火星美剧送福利啦！</a> <span>4 评论</span></li>
+	
+		
+	<li><a href="/a/42483" target="_blank">Vanessa Williams加盟《傲骨贤妻》（The Good Wife）</a> <span>4 评论</span></li>
+	
+		
+	<li><a href="/a/42457" target="_blank">奥斯卡得主Forest Whitaker和Anna Paquin携手翻拍经典美剧《根Roots》</a> <span>3 评论</span></li>
+	
+		
+	<li><a href="/a/42460" target="_blank">《路西法 Lucifer》首播日期被自家人曝光</a> <span>3 评论</span></li>
+	
+		
+	<li><a href="/a/42475" target="_blank">《神秘博士 Doctor Who》的Jenna Coleman已经加盟ITV迷你剧</a> <span>3 评论</span></li>
+	
+		</ol>
+	
+	</div>
+		
+	<!-- 专题特稿 -->
+	
+	<div class="col-md-6">
+
+	<div class="m_header" style="margin-bottom:10px;"><h5><a href="/news">专题特稿</a></h5></div>
+	
+	<ol class="m_news_top">
+		
+	<li><a href="/a/42136" target="_blank">特稿：第二季崩盘/水平下跌的剧集</a> <span>10 评论</span></li>
+	
+		
+	<li><a href="/a/41973" target="_blank">FOX公布秋季剧集首播日期</a> <span>2 评论</span></li>
+	
+		
+	<li><a href="/a/41964" target="_blank">CW公布秋季档时间安排</a> <span>2 评论</span></li>
+	
+		
+	<li><a href="/a/41949" target="_blank">NBC公布秋季档剧集首播日期</a> <span>0 评论</span></li>
+	
+		
+	<li><a href="/a/41940" target="_blank">ABC及CBS公布下季部份剧集数</a> <span>2 评论</span></li>
+	
+		</ol>
+	
+	</div>
+	</div>
+    
+</div>
+<div class="col-md-4" style="padding-left:40px">
+
+	<!-- 今日播出 -->
+
+	
+		<div class="m_header" style="margin-bottom:10px;"><h5><a href="/calendar/week">2015年9月23日 周三 播出剧集</a></h5></div>
+	
+			<div class="m_today">
+			<div class="mt1"><a href="/show/ncis-22"><img src="/uploads/poster/ncis-22.jpg"/></a></div>
+			<div class="mt2">
+				<a href="/show/ncis-22" class="black">海军犯罪调查处<br>NCIS</a><br>
+				<div style="padding-top:2px"><i><a href="/show/ncis-22/eps/s13e01">S13E01</a></i> <span>CBS</span></div>
+			</div>
+		<div style="clear:both"></div>
+		</div>
+			<div class="m_today">
+			<div class="mt1"><a href="/show/the-mindy-project-741"><img src="/uploads/poster/the-mindy-project-741.jpg"/></a></div>
+			<div class="mt2">
+				<a href="/show/the-mindy-project-741" class="black">明迪烦事多<br>The Mindy Project</a><br>
+				<div style="padding-top:2px"><i><a href="/show/the-mindy-project-741/eps/s04e02">S04E02</a></i> <span>Hulu</span></div>
+			</div>
+		<div style="clear:both"></div>
+		</div>
+			<div class="m_today">
+			<div class="mt1"><a href="/show/ncis-new-orleans-1102"><img src="/uploads/poster/ncis-new-orleans-1102.jpg"/></a></div>
+			<div class="mt2">
+				<a href="/show/ncis-new-orleans-1102" class="black">新奥尔良海军犯罪调查处<br>NCIS: New Orleans</a><br>
+				<div style="padding-top:2px"><i><a href="/show/ncis-new-orleans-1102/eps/s02e01">S02E01</a></i> <span>CBS</span></div>
+			</div>
+		<div style="clear:both"></div>
+		</div>
+			<div class="m_today">
+			<div class="mt1"><a href="/show/face-off-576"><img src="/uploads/poster/face-off-576.jpg"/></a></div>
+			<div class="mt2">
+				<a href="/show/face-off-576" class="black">特效化妆师大对决<br>Face Off</a><br>
+				<div style="padding-top:2px"><i><a href="/show/face-off-576/eps/s09e09">S09E09</a></i> <span>Syfy</span></div>
+			</div>
+		<div style="clear:both"></div>
+		</div>
+			<div class="m_today">
+			<div class="mt1"><a href="/show/the-voice-561"><img src="/uploads/poster/the-voice-561.jpg"/></a></div>
+			<div class="mt2">
+				<a href="/show/the-voice-561" class="black">美国之声<br>The Voice (US)</a><br>
+				<div style="padding-top:2px"><i><a href="/show/the-voice-561/eps/s09e02">S09E02</a></i> <span>NBC</span></div>
+			</div>
+		<div style="clear:both"></div>
+		</div>
+			<div class="m_today">
+			<div class="mt1"><a href="/show/fresh-off-the-boat-1088"><img src="/uploads/poster/fresh-off-the-boat-1088.jpg"/></a></div>
+			<div class="mt2">
+				<a href="/show/fresh-off-the-boat-1088" class="black">初来又乍到<br>Fresh Off the Boat</a><br>
+				<div style="padding-top:2px"><i><a href="/show/fresh-off-the-boat-1088/eps/s02e01">S02E01</a></i> <span>ABC (US)</span></div>
+			</div>
+		<div style="clear:both"></div>
+		</div>
+			<div class="m_today">
+			<div class="mt1"><a href="/show/from-dusk-till-dawn-the-series-997"><img src="/uploads/poster/from-dusk-till-dawn-the-series-997.jpg"/></a></div>
+			<div class="mt2">
+				<a href="/show/from-dusk-till-dawn-the-series-997" class="black">杀出个黎明<br>From Dusk Till Dawn: The Series</a><br>
+				<div style="padding-top:2px"><i><a href="/show/from-dusk-till-dawn-the-series-997/eps/s02e05">S02E05</a></i> <span>El Rey Network</span></div>
+			</div>
+		<div style="clear:both"></div>
+		</div>
+			<div class="m_today">
+			<div class="mt1"><a href="/show/dancing-with-the-stars-60"><img src="/uploads/poster/dancing-with-the-stars-60.jpg"/></a></div>
+			<div class="mt2">
+				<a href="/show/dancing-with-the-stars-60" class="black">与星共舞<br>Dancing With the Stars</a><br>
+				<div style="padding-top:2px"><i><a href="/show/dancing-with-the-stars-60/eps/s21e04">S21E04</a></i> <span>ABC (US)</span></div>
+			</div>
+		<div style="clear:both"></div>
+		</div>
+			<div class="m_today">
+			<div class="mt1"><a href="/show/best-time-ever-with-neil-patrick-harris-1459"><img src="/uploads/poster/best-time-ever-with-neil-patrick-harris-1459.jpg"/></a></div>
+			<div class="mt2">
+				<a href="/show/best-time-ever-with-neil-patrick-harris-1459" class="black">巴尼蜀黍的欢乐时光<br>Best Time Ever with Neil Patrick Harris</a><br>
+				<div style="padding-top:2px"><i><a href="/show/best-time-ever-with-neil-patrick-harris-1459/eps/s01e02">S01E02</a></i> <span>NBC</span></div>
+			</div>
+		<div style="clear:both"></div>
+		</div>
+			<div class="m_today">
+			<div class="mt1"><a href="/show/limitless-1393"><img src="/uploads/poster/limitless-1393.jpg"/></a></div>
+			<div class="mt2">
+				<a href="/show/limitless-1393" class="black">永无止境<br>Limitless</a><br>
+				<div style="padding-top:2px"><i><a href="/show/limitless-1393/eps/s01e01">S01E01</a></i> <span>CBS</span></div>
+			</div>
+		<div style="clear:both"></div>
+		</div>
+				
+	<p class="text-right" style="font-size:12px;clear:both"><a href="/calendar/week" class="gray">>> 还有13部</a></p>		<div style="clear:both;margin-bottom:40px"></div>
+
+	<!-- 即将开播 -->
+
+	
+	<div class="r_title">
+		<span><a href="/calendar/new" target="_blank">即将开播</a></span>
+		<div class="pull-right">> <a href="/calendar/new" class="black f12">美剧开播时间表</a></div>
+	</div>
+	
+			<div class="m_down">
+			<div class="pull-left"><a href="/show/law-ordersvu-266" class="black">法律与秩序：特殊受害者<br>Law &amp; Order: Special Victims Unit</a><br><span>NBC 第17季</span></div>
+			<div class="pull-right text-right red" style="padding-top:15px;"><b>明</b> 日</div>
+			<div style="clear:both"></div>
+		</div>
+			<div class="m_down">
+			<div class="pull-left"><a href="/show/black-ish-1085" class="black">奶茶咖啡<br>Black-Ish</a><br><span>ABC (US) 第2季</span></div>
+			<div class="pull-right text-right red" style="padding-top:15px;"><b>明</b> 日</div>
+			<div style="clear:both"></div>
+		</div>
+			<div class="m_down">
+			<div class="pull-left"><a href="/show/empire-1074" class="black">嘻哈帝国<br>Empire</a><br><span>FOX (US) 第2季</span></div>
+			<div class="pull-right text-right red" style="padding-top:15px;"><b>明</b> 日</div>
+			<div style="clear:both"></div>
+		</div>
+			<div class="m_down">
+			<div class="pull-left"><a href="/show/the-goldbergs-909" class="black">格尔伯格一家<br>The Goldbergs</a><br><span>ABC (US) 第3季</span></div>
+			<div class="pull-right text-right red" style="padding-top:15px;"><b>明</b> 日</div>
+			<div style="clear:both"></div>
+		</div>
+			<div class="m_down">
+			<div class="pull-left"><a href="/show/nashville-2012-747" class="black">后声可畏<br>Nashville (2012)</a><br><span>ABC (US) 第4季</span></div>
+			<div class="pull-right text-right red" style="padding-top:15px;"><b>明</b> 日</div>
+			<div style="clear:both"></div>
+		</div>
+		
+	<p class="text-right" style="font-size:12px;clear:both"><a href="/calendar/new" class="gray">>> 更多</a></p>	<div style="clear:both;margin-bottom:40px"></div>
+
+	
+</div>
+</div>
+</div>
+
+<div style="margin-top:40px;padding:20px 0;background:#f8f8f8;">
+<div class="container">
+	
+	<!-- 热门剧集 -->
+	
+	<div class="row">
+		<div class="col-md-8">
+	
+		<div class="m_header"><h5><a href="/show/week" target="_blank">本周热门剧集</a></h5></div>
+
+		<div class="m_show">
+			<ul>
+						<li>
+				<a href="/show/blindspot-1392/eps/s01e01" target="_blank"><img src="/uploads/poster/blindspot-1392.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"><span class='huors'>8.0</span></div>
+					<div class="noticeR">4 短评</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text"><a href="/show/blindspot-1392" target="_blank">盲点</a></div>
+				<i class="hidden-xs"><a href="/show/blindspot-1392/eps/s01e01">S01E01</a></i>
+			</li>
+									<li>
+				<a href="/show/big-brother-270/eps/s17e38" target="_blank"><img src="/uploads/poster/big-brother-270.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"></div>
+					<div class="noticeR">11 短评</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text"><a href="/show/big-brother-270" target="_blank">老大哥</a></div>
+				<i class="hidden-xs"><a href="/show/big-brother-270/eps/s17e38">S17E38</a></i>
+			</li>
+									<li>
+				<a href="/show/limitless-1393/eps/s01e01" target="_blank"><img src="/uploads/poster/limitless-1393.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"></div>
+					<div class="noticeR">5 短评</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text"><a href="/show/limitless-1393" target="_blank">永无止境</a></div>
+				<i class="hidden-xs"><a href="/show/limitless-1393/eps/s01e01">S01E01</a></i>
+			</li>
+									<li>
+				<a href="/show/minority-report-1372/eps/s01e01" target="_blank"><img src="/uploads/poster/minority-report-1372.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"></div>
+					<div class="noticeR">5 短评</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text"><a href="/show/minority-report-1372" target="_blank">少数派报告</a></div>
+				<i class="hidden-xs"><a href="/show/minority-report-1372/eps/s01e01">S01E01</a></i>
+			</li>
+									<li>
+				<a href="/show/scorpion-1106/eps/s02e01" target="_blank"><img src="/uploads/poster/scorpion-1106.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"></div>
+					<div class="noticeR">4 短评</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text"><a href="/show/scorpion-1106" target="_blank">天蝎</a></div>
+				<i class="hidden-xs"><a href="/show/scorpion-1106/eps/s02e01">S02E01</a></i>
+			</li>
+			<div style="clear:both"></div>						<li>
+				<a href="/show/doctor-who-144/eps/s09e01" target="_blank"><img src="/uploads/poster/doctor-who-144.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"></div>
+					<div class="noticeR">3 短评</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text"><a href="/show/doctor-who-144" target="_blank">神秘博士</a></div>
+				<i class="hidden-xs"><a href="/show/doctor-who-144/eps/s09e01">S09E01</a></i>
+			</li>
+									<li>
+				<a href="/show/the-big-bang-theory-148/eps/s09e01" target="_blank"><img src="/uploads/poster/the-big-bang-theory-148.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"></div>
+					<div class="noticeR">2 短评</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text"><a href="/show/the-big-bang-theory-148" target="_blank">生活大爆炸</a></div>
+				<i class="hidden-xs"><a href="/show/the-big-bang-theory-148/eps/s09e01">S09E01</a></i>
+			</li>
+									<li>
+				<a href="/show/awkward-645/eps/s05e04" target="_blank"><img src="/uploads/poster/awkward-645.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"></div>
+					<div class="noticeR">1 短评</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text"><a href="/show/awkward-645" target="_blank">尴哩个尬</a></div>
+				<i class="hidden-xs"><a href="/show/awkward-645/eps/s05e04">S05E04</a></i>
+			</li>
+									<li>
+				<a href="/show/switched-at-birth-590/eps/s04e15" target="_blank"><img src="/uploads/poster/switched-at-birth-590.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"></div>
+					<div class="noticeR">1 短评</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text"><a href="/show/switched-at-birth-590" target="_blank">交换命运</a></div>
+				<i class="hidden-xs"><a href="/show/switched-at-birth-590/eps/s04e15">S04E15</a></i>
+			</li>
+									<li>
+				<a href="/show/graceland-795/eps/s03e13" target="_blank"><img src="/uploads/poster/graceland-795.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"></div>
+					<div class="noticeR">1 短评</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text"><a href="/show/graceland-795" target="_blank">优雅之地</a></div>
+				<i class="hidden-xs"><a href="/show/graceland-795/eps/s03e13">S03E13</a></i>
+			</li>
+									</ul>
+		</div>
+		</div>
+		
+		<div class="col-md-4 hidden-xs" style="padding-left:40px;font-size:12px;">
+	
+		<!-- 收视率 -->
+	
+		<div class="m_header"><h5><a href="/ratings" target="_blank">上周公众电视网收视率</a></h5></div>
+			<ol class="m_rating">
+							<li><a href="/show/americas-got-talent-263/eps" target="_blank">美国达人</a> (NBC) <div class="pull-right green">1133万 2.4</div></li>
+							<li><a href="/show/big-brother-270/eps" target="_blank">老大哥</a> (CBS) <div class="pull-right green">702万 2.3</div></li>
+							<li><a href="/show/americas-got-talent-263/eps" target="_blank">美国达人</a> (NBC) <div class="pull-right green">954万 2.1</div></li>
+							<li><a href="/show/big-brother-270/eps" target="_blank">老大哥</a> (CBS) <div class="pull-right green">609万 2.0</div></li>
+							<li><a href="/show/big-brother-270/eps" target="_blank">老大哥</a> (CBS) <div class="pull-right green">586万 1.9</div></li>
+							<li><a href="/show/best-time-ever-with-neil-patrick-harris-1459/eps" target="_blank">巴尼蜀黍的欢乐时光</a> (NBC) <div class="pull-right green">679万 1.8</div></li>
+							<li><a href="/show/zoo-1314/eps" target="_blank">困兽</a> (CBS) <div class="pull-right green">481万 0.9</div></li>
+							<li><a href="/show/americas-next-top-model-125/eps" target="_blank">全美超级模特儿新秀大赛</a> (The CW) <div class="pull-right green">150万 0.6</div></li>
+							<li><a href="/show/whose-line-is-it-anyway-959/eps" target="_blank">台词落谁家</a> (The CW) <div class="pull-right green">106万 0.3</div></li>
+							<li><a href="/show/significant-mother-1399/eps" target="_blank">爱上朋友妈</a> (The CW) <div class="pull-right green">53万 0.2</div></li>
+						</ol>
+			
+		<div class="m_header"><h5><a href="/ratings" target="_blank">上周有线电视网收视率</a></h5></div>
+			<ol class="m_rating">
+							<li><a href="/show/fear-the-walking-dead-1349/eps" target="_blank">行尸之惧</a> (AMC) <div class="pull-right green">719万 3.6</div></li>
+							<li><a href="/show/masterchef-us-770/eps" target="_blank">厨艺大师</a> (FOX (US)) <div class="pull-right green">465万 1.5</div></li>
+							<li><a href="/show/masterchef-us-770/eps" target="_blank">厨艺大师</a> (FOX (US)) <div class="pull-right green">465万 1.5</div></li>
+							<li><a href="/show/rick-and_morty-1010/eps" target="_blank">瑞克和莫蒂</a> (Adult Swim) <div class="pull-right green">197万 1.0</div></li>
+							<li><a href="/show/so-you-think-you-can-dance-101/eps" target="_blank">舞池争锋</a> (FOX (US)) <div class="pull-right green">244万 0.8</div></li>
+							<li><a href="/show/the-bastard-executioner-1492/eps" target="_blank">暗黑刽子手</a> (FX) <div class="pull-right green">212万 0.8</div></li>
+							<li><a href="/show/the-bastard-executioner-1492/eps" target="_blank">暗黑刽子手</a> (FX) <div class="pull-right green">212万 0.8</div></li>
+							<li><a href="/show/the-strain-1117/eps" target="_blank">血族</a> (FX) <div class="pull-right green">130万 0.6</div></li>
+							<li><a href="/show/project-runway-62/eps" target="_blank">天桥骄子</a> (Lifetime) <div class="pull-right green">221万 0.6</div></li>
+							<li><a href="/show/ray-donovan-765/eps" target="_blank">清道夫</a> (Showtime) <div class="pull-right green">143万 0.5</div></li>
+						</ol>
+			
+		</div>
+		
+	<p class="text-right" style="font-size:12px;clear:both"><a href="/ratings" class="gray">>> 更多</a></p>
+		
+	</div>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="container" style="margin-top:20px;">
+<div class="row">
+
+	<div class="col-md-8">
+
+		<div class="m_header" style="margin:5px 0 10px 0;">
+			<h5 class="pull-left"><a href="/talk" target="_blank">热门短评</a></h5>
+			<div class="btn-group pull-right" style="margin-top:5px;">
+			  <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" style="padding:2px 4px;">
+			    发布短评 <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu" role="menu" style="font-size:12px;">
+			  				    	<li><a href="/show/blindspot-1392/eps/s01e01/" target="_blank">盲点</a></li>
+			    			    	<li><a href="/show/big-brother-270/eps/s17e38/" target="_blank">老大哥</a></li>
+			    			    	<li><a href="/show/limitless-1393/eps/s01e01/" target="_blank">永无止境</a></li>
+			    			    	<li><a href="/show/minority-report-1372/eps/s01e01/" target="_blank">少数派报告</a></li>
+			    			    	<li><a href="/show/scorpion-1106/eps/s02e01/" target="_blank">天蝎</a></li>
+			    			    	<li><a href="/show/doctor-who-144/eps/s09e01/" target="_blank">神秘博士</a></li>
+			    			    	<li><a href="/show/the-big-bang-theory-148/eps/s09e01/" target="_blank">生活大爆炸</a></li>
+			    			    	<li><a href="/show/awkward-645/eps/s05e04/" target="_blank">尴哩个尬</a></li>
+			    			    	<li><a href="/show/switched-at-birth-590/eps/s04e15/" target="_blank">交换命运</a></li>
+			    			    	<li><a href="/show/graceland-795/eps/s03e13/" target="_blank">优雅之地</a></li>
+			    			    	<li><a href="/show/gotham-1057/eps/s02e01/" target="_blank">哥谭</a></li>
+			    			    	<li><a href="/show/gravity-falls-842/eps/s02e16/" target="_blank">怪诞小镇</a></li>
+			    			    	<li><a href="/show/south-park-44/eps/s19e01/" target="_blank">南方公园</a></li>
+			    			    	<li><a href="/show/the-strain-1117/eps/s02e11/" target="_blank">血族</a></li>
+			    			    	<li><a href="/show/downton-abbey-524/eps/s06e01/" target="_blank">唐顿庄园</a></li>
+			    			  </ul>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+	
+		<!-- 热门短评 -->
+		
+		 
+		<ul class="media-list">
+			 <li class="media">
+			    <a class="pull-left" href="/show/big-brother-270" target="_blank">
+			      <img class="media-object" src="/uploads/poster/big-brother-270.jpg">
+			    </a>
+			    <div class="media-body">
+			    	<h6 class="media-heading"><a href="/enzo" target="_blank">enzo</a> <span>(傲骨冰与如血火之大爆炸。)</span> </h6>
+			        <p style="line-height:22px;"><a href="/show/big-brother-270/eps/s17e38/115323/">31岁的V姐留下只有22岁的Steve，和23岁的Liz，V的策略是在最后面对陪审团的时候，能够在演讲经验上压倒对方么？</a></p>
+			        <i><a href="/show/big-brother-270" target="_blank">老大哥</a></i> <i><a href="/show/big-brother-270/eps/s17e38">S17E38</a></i> <em>5天</em>
+					<div class="pull-right"><em><a href="/show/big-brother-270/eps/s17e38/115323/">5 回复</a> |</em> <a class="zan" id="115323" ty="talk"><d>0</d> 有用</a></div>
+			    </div>
+			 </li>
+		</ul>
+		 
+		<ul class="media-list">
+			 <li class="media">
+			    <a class="pull-left" href="/show/best-time-ever-with-neil-patrick-harris-1459" target="_blank">
+			      <img class="media-object" src="/uploads/poster/best-time-ever-with-neil-patrick-harris-1459.jpg">
+			    </a>
+			    <div class="media-body">
+			    	<h6 class="media-heading"><a href="/ttat" target="_blank">ttat</a> <span>(I love ROOT!)</span> <h8 class="huorss">9分</h8></h6>
+			        <p style="line-height:22px;"><a href="/show/best-time-ever-with-neil-patrick-harris-1459/eps/s01e01/115296/">首集还是很欢乐的，然后Neil的hubby也有去捧场噢，好可爱~~~~</a></p>
+			        <i><a href="/show/best-time-ever-with-neil-patrick-harris-1459" target="_blank">巴尼蜀黍的欢乐时光</a></i> <i><a href="/show/best-time-ever-with-neil-patrick-harris-1459/eps/s01e01">S01E01</a></i> <em>6天</em>
+					<div class="pull-right"><em><a href="/show/best-time-ever-with-neil-patrick-harris-1459/eps/s01e01/115296/">2 回复</a> |</em> <a class="zan" id="115296" ty="talk"><d>0</d> 有用</a></div>
+			    </div>
+			 </li>
+		</ul>
+		 
+		<ul class="media-list">
+			 <li class="media">
+			    <a class="pull-left" href="/show/big-brother-270" target="_blank">
+			      <img class="media-object" src="/uploads/poster/big-brother-270.jpg">
+			    </a>
+			    <div class="media-body">
+			    	<h6 class="media-heading"><a href="/美剧fans" target="_blank">美剧fans</a>  <h8 class="huorss">8分</h8></h6>
+			        <p style="line-height:22px;"><a href="/show/big-brother-270/eps/s17e37/115300/">V姐选择out了Austin，不知道她的选择是否对她有利？！</a></p>
+			        <i><a href="/show/big-brother-270" target="_blank">老大哥</a></i> <i><a href="/show/big-brother-270/eps/s17e37">S17E37</a></i> <em>6天</em>
+					<div class="pull-right"><em><a href="/show/big-brother-270/eps/s17e37/115300/">1 回复</a> |</em> <a class="zan" id="115300" ty="talk"><d>0</d> 有用</a></div>
+			    </div>
+			 </li>
+		</ul>
+		 
+		<ul class="media-list">
+			 <li class="media">
+			    <a class="pull-left" href="/show/big-brother-270" target="_blank">
+			      <img class="media-object" src="/uploads/poster/big-brother-270.jpg">
+			    </a>
+			    <div class="media-body">
+			    	<h6 class="media-heading"><a href="/美剧fans" target="_blank">美剧fans</a>  <h8 class="huorss">7分</h8></h6>
+			        <p style="line-height:22px;"><a href="/show/big-brother-270/eps/s17e38/115302/">V姐赢了Veto，她毫不犹豫的out了囧麦，与Steve，Liz三人争霸，谁将进入最后的冠亚决赛，拭目以待！</a></p>
+			        <i><a href="/show/big-brother-270" target="_blank">老大哥</a></i> <i><a href="/show/big-brother-270/eps/s17e38">S17E38</a></i> <em>6天</em>
+					<div class="pull-right"><em><a href="/show/big-brother-270/eps/s17e38/115302/">1 回复</a> |</em> <a class="zan" id="115302" ty="talk"><d>0</d> 有用</a></div>
+			    </div>
+			 </li>
+		</ul>
+		 
+		<ul class="media-list">
+			 <li class="media">
+			    <a class="pull-left" href="/show/big-brother-270" target="_blank">
+			      <img class="media-object" src="/uploads/poster/big-brother-270.jpg">
+			    </a>
+			    <div class="media-body">
+			    	<h6 class="media-heading"><a href="/enzo" target="_blank">enzo</a> <span>(傲骨冰与如血火之大爆炸。)</span> </h6>
+			        <p style="line-height:22px;"><a href="/show/big-brother-270/eps/s17e37/115304/">马桶台也是够了，这么要紧的比赛当前还在推广新剧。</a></p>
+			        <i><a href="/show/big-brother-270" target="_blank">老大哥</a></i> <i><a href="/show/big-brother-270/eps/s17e37">S17E37</a></i> <em>6天</em>
+					<div class="pull-right"><em><a href="/show/big-brother-270/eps/s17e37/115304/">1 回复</a> |</em> <a class="zan" id="115304" ty="talk"><d>0</d> 有用</a></div>
+			    </div>
+			 </li>
+		</ul>
+		 
+		<ul class="media-list">
+			 <li class="media">
+			    <a class="pull-left" href="/show/zoo-1314" target="_blank">
+			      <img class="media-object" src="/uploads/poster/zoo-1314.jpg">
+			    </a>
+			    <div class="media-body">
+			    	<h6 class="media-heading"><a href="/天之行者" target="_blank">天之行者</a> <span>(NCIS Supervisory Special Agent)</span> <h8 class="huorss">7分</h8></h6>
+			        <p style="line-height:22px;"><a href="/show/zoo-1314/eps/s01e13/115313/">季終集反而滿平淡的，難怪收視新低</a></p>
+			        <i><a href="/show/zoo-1314" target="_blank">困兽</a></i> <i><a href="/show/zoo-1314/eps/s01e13">S01E13</a></i> <em>6天</em>
+					<div class="pull-right"><em><a href="/show/zoo-1314/eps/s01e13/115313/">1 回复</a> |</em> <a class="zan" id="115313" ty="talk"><d>0</d> 有用</a></div>
+			    </div>
+			 </li>
+		</ul>
+				
+		
+	
+		<!-- 热门剧评 -->
+		
+		<div class="m_header" style="margin:55px 0 10px 0;">
+			<h5 class="pull-left">热门剧评</h5>
+			<div class="btn-group pull-right" style="margin-top:5px;">
+			  <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" style="padding:2px 4px;">
+			    发布剧评 <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu" role="menu" style="font-size:12px;">
+			  				    	<li><a href="/show/blindspot-1392/post" target="_blank">盲点</a></li>
+			    			    	<li><a href="/show/big-brother-270/post" target="_blank">老大哥</a></li>
+			    			    	<li><a href="/show/limitless-1393/post" target="_blank">永无止境</a></li>
+			    			    	<li><a href="/show/minority-report-1372/post" target="_blank">少数派报告</a></li>
+			    			    	<li><a href="/show/scorpion-1106/post" target="_blank">天蝎</a></li>
+			    			    	<li><a href="/show/doctor-who-144/post" target="_blank">神秘博士</a></li>
+			    			    	<li><a href="/show/the-big-bang-theory-148/post" target="_blank">生活大爆炸</a></li>
+			    			    	<li><a href="/show/awkward-645/post" target="_blank">尴哩个尬</a></li>
+			    			    	<li><a href="/show/switched-at-birth-590/post" target="_blank">交换命运</a></li>
+			    			    	<li><a href="/show/graceland-795/post" target="_blank">优雅之地</a></li>
+			    			    	<li><a href="/show/gotham-1057/post" target="_blank">哥谭</a></li>
+			    			    	<li><a href="/show/gravity-falls-842/post" target="_blank">怪诞小镇</a></li>
+			    			    	<li><a href="/show/south-park-44/post" target="_blank">南方公园</a></li>
+			    			    	<li><a href="/show/the-strain-1117/post" target="_blank">血族</a></li>
+			    			    	<li><a href="/show/downton-abbey-524/post" target="_blank">唐顿庄园</a></li>
+			    			  </ul>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+		
+		
+		 
+		<ul class="media-list">
+			 <li class="media"> 
+			    <a class="pull-left" href="/show/north-south-482" target="_blank">
+			      <img class="media-object" src="/uploads/poster/north-south-482.jpg">
+			    </a>
+			    <div class="media-body">
+			    	<p style="font-size:14px;margin-bottom:5px;font-weight:bold;"><a href="/show/north-south-482/a/42328">晚熟女</a></p>
+			    	<h6 class="media-heading" style="margin-bottom:5px;"><a href="/永生的坚果" target="_blank">永生的坚果</a> </h6>
+			        <p style="color:#555;line-height:22px;"><a href="/show/north-south-482/a/42328">我是昨天才看了这部剧，根本停不下来的赶脚啊，用其他人的话说就是希望自己每次看完都把剧情忘掉，然后再感动一次。想想剧中男女主角不辜负自己的青春年华，敢爱敢恨，我能体会那是年轻的心小鹿乱撞，然而自己已经错..</a></p>
+			        <i><a href="/show/north-south-482" target="_blank">南方与北方</a></i> <em>28天</em>
+					<div class="pull-right"><em><a href="/show/north-south-482/a/42328">0 回复</a> |</em> <a class="zan" id="42328" ty="art"><d>0</d> 有用</a></div>
+			    </div>
+			 </li>
+		</ul>
+		 
+		<ul class="media-list">
+			 <li class="media"> 
+			    <a class="pull-left" href="/show/tyrant-1110" target="_blank">
+			      <img class="media-object" src="/uploads/poster/tyrant-1110.jpg">
+			    </a>
+			    <div class="media-body">
+			    	<p style="font-size:14px;margin-bottom:5px;font-weight:bold;"><a href="/show/tyrant-1110/a/42319">终季猜想</a></p>
+			    	<h6 class="media-heading" style="margin-bottom:5px;"><a href="/天山小飞" target="_blank">天山小飞</a> </h6>
+			        <p style="color:#555;line-height:22px;"><a href="/show/tyrant-1110/a/42319">个人猜想是哥哥成为暴君身死而终剧，依剧就是第一季小时回忆哥哥杀人的那种冷静。。这过程要经过多少季就不知道人气如何，编剧脑洞是否够强，这一路剧情明显是哥哥成为总统的各种奇遇，好比武侠里的跌入深渊不死成就..</a></p>
+			        <i><a href="/show/tyrant-1110" target="_blank">暴君</a></i> <em>29天</em>
+					<div class="pull-right"><em><a href="/show/tyrant-1110/a/42319">0 回复</a> |</em> <a class="zan" id="42319" ty="art"><d>0</d> 有用</a></div>
+			    </div>
+			 </li>
+		</ul>
+		 
+		<ul class="media-list">
+			 <li class="media"> 
+			    <a class="pull-left" href="/show/extant-1013" target="_blank">
+			      <img class="media-object" src="/uploads/poster/extant-1013.jpg">
+			    </a>
+			    <div class="media-body">
+			    	<p style="font-size:14px;margin-bottom:5px;font-weight:bold;"><a href="/show/extant-1013/a/42036">深入浅出地探讨了机器人、外星生物的存在</a></p>
+			    	<h6 class="media-heading" style="margin-bottom:5px;"><a href="/MarktinJ" target="_blank">MarktinJ</a> </h6>
+			        <p style="color:#555;line-height:22px;"><a href="/show/extant-1013/a/42036">虽然看到第一季第一集感觉在挖深坑，看到Ethan也觉得有点无感；但是随着剧情展开，渐渐看到一个未来的科技发达的社会，看到社会伦理的矛盾与冲突的探讨。 该剧，真心话，是个良心剧，老皮没有辜负我对科幻剧的所有期待..</a></p>
+			        <i><a href="/show/extant-1013" target="_blank">传世</a></i> <em>7月10日 23:57</em>
+					<div class="pull-right"><em><a href="/show/extant-1013/a/42036">0 回复</a> |</em> <a class="zan" id="42036" ty="art"><d>1</d> 有用</a></div>
+			    </div>
+			 </li>
+		</ul>
+				
+	</div>
+	
+	<div class="col-md-4" style="padding-left:40px;">
+	
+	<!-- 最新短评 -->
+	
+	<div style="clear:both;margin-bottom:10px"></div>
+		
+	<div class="r_title"><span><a href="/talk" target="_blank">最新短评</a></span></div>
+	<ul class="list-unstyled m_newt">
+	 
+	
+		<li>
+			<p><a href="/show/awkward-645/eps/s05e04/115423/">Jenna的妆也太重了吧。。- - 。。</a></p>
+			<i><a href="/show/awkward-645" target="_blank">尴哩个尬</a></i> <i><a href="/show/awkward-645/eps/s05e04">S05E04</a></i> <a href="/liorste" target="_blank">liorste</a> <h8 class="huorss">6分</h8>		</li>
+	
+	 
+	
+		<li>
+			<p><a href="/show/minority-report-1372/eps/s01e01/115420/">这个案件分析的过程看起来很花哨，，但是 也就是加了点特效，分析的精妙程度上还是没</a></p>
+			<i><a href="/show/minority-report-1372" target="_blank">少数派报告</a></i> <i><a href="/show/minority-report-1372/eps/s01e01">S01E01</a></i> <a href="/joefsong" target="_blank">joefsong</a> 		</li>
+	
+	 
+	
+		<li>
+			<p><a href="/show/the-strain-1117/eps/s02e10/115418/">最后一幕蓦然有电锯惊魂的赶脚~~</a></p>
+			<i><a href="/show/the-strain-1117" target="_blank">血族</a></i> <i><a href="/show/the-strain-1117/eps/s02e10">S02E10</a></i> <a href="/哈尼" target="_blank">哈尼</a> 		</li>
+	
+	 
+	
+		<li>
+			<p><a href="/show/minority-report-1372/eps/s01e01/115417/">坐等被砍……</a></p>
+			<i><a href="/show/minority-report-1372" target="_blank">少数派报告</a></i> <i><a href="/show/minority-report-1372/eps/s01e01">S01E01</a></i> <a href="/天之行者" target="_blank">天之行者</a> <h8 class="huorss">6分</h8>		</li>
+	
+	 
+	
+		<li>
+			<p><a href="/show/scorpion-1106/eps/s02e01/115416/">這集還不錯</a></p>
+			<i><a href="/show/scorpion-1106" target="_blank">天蝎</a></i> <i><a href="/show/scorpion-1106/eps/s02e01">S02E01</a></i> <a href="/天之行者" target="_blank">天之行者</a> <h8 class="huorss">7分</h8>		</li>
+	
+	 
+	
+		<li>
+			<p><a href="/show/limitless-1393/eps/s01e01/115415/">俄文海报= =这逼装的我给10分= =不过这剧总体不错= =拍摄手法很用心！</a></p>
+			<i><a href="/show/limitless-1393" target="_blank">永无止境</a></i> <i><a href="/show/limitless-1393/eps/s01e01">S01E01</a></i> <a href="/Kimi_N" target="_blank">Kimi_N</a> <h8 class="huorss">9分</h8>		</li>
+	
+	 
+	
+		<li>
+			<p><a href="/show/the-neighbors-2012-751/eps/s02e06/115414/">这一集  刚刚知道。。他们居然不吃东西 的 。。。。</a></p>
+			<i><a href="/show/the-neighbors-2012-751" target="_blank">外星邻居</a></i> <i><a href="/show/the-neighbors-2012-751/eps/s02e06">S02E06</a></i> <a href="/joefsong" target="_blank">joefsong</a> 		</li>
+	
+	 
+	
+		<li>
+			<p><a href="/show/the-big-bang-theory-148/eps/s09e01/115408/">這集已經跟&quot;笑&quot;無關了</a></p>
+			<i><a href="/show/the-big-bang-theory-148" target="_blank">生活大爆炸</a></i> <i><a href="/show/the-big-bang-theory-148/eps/s09e01">S09E01</a></i> <a href="/天之行者" target="_blank">天之行者</a> <h8 class="huorss">6分</h8>		</li>
+	
+	 
+	
+		<li>
+			<p><a href="/show/blindspot-1392/eps/s01e01/115406/">這收視，能追</a></p>
+			<i><a href="/show/blindspot-1392" target="_blank">盲点</a></i> <i><a href="/show/blindspot-1392/eps/s01e01">S01E01</a></i> <a href="/天之行者" target="_blank">天之行者</a> <h8 class="huorss">7分</h8>		</li>
+	
+	 
+	
+		<li>
+			<p><a href="/show/awkward-645/eps/s05e02/115404/">转来转去感觉又要和matty在一起了。聚会很有意思，但感情线太乱了。</a></p>
+			<i><a href="/show/awkward-645" target="_blank">尴哩个尬</a></i> <i><a href="/show/awkward-645/eps/s05e02">S05E02</a></i> <a href="/enzo" target="_blank">enzo</a> 		</li>
+	
+		</ul>
+	<p class="text-right" style="font-size:12px;clear:both"><a href="/talk" class="gray">>> 更多</a></p>	<div style="clear:both;margin-bottom:40px"></div>
+
+	<!-- Fun Fact -->
+	
+	
+	<div class="r_title"><span>Fun Fact 你知道嘛？</span></div>
+
+	<ul class="list-unstyled m_newt">
+	 
+	
+		<li>
+			<p style="line-height:18px;"><a href="/show/friends-12/funfact/">纪念开播20周年，华纳联手Eight O’Clock Coffee在纽约也是故事发生的地方，完全按剧中的咖啡店打造了现实版Central Perk咖啡..</a></p>
+			<i><a href="/show/friends-12" target="_blank">六人行</a></i>
+		</li>
+	
+	 
+	
+		<li>
+			<p style="line-height:18px;"><a href="/show/breaking-bad-138/funfact/">Gus Fring这个角色原本叫做Kesyer Söze，会在第一季结尾出现，但是因为编剧罢工最终挪到了第二季，也改了名字。这个名字..</a></p>
+			<i><a href="/show/breaking-bad-138" target="_blank">绝命毒师</a></i>
+		</li>
+	
+	 
+	
+		<li>
+			<p style="line-height:18px;"><a href="/show/breaking-bad-138/funfact/">剧中的10位演员都曾出现在Vince Gilligan制作的《X档案》（The X-Files）中，Bryan Cranston出演"Drive"(Season 6)、Aaron Paul出演"Lord of t..</a></p>
+			<i><a href="/show/breaking-bad-138" target="_blank">绝命毒师</a></i>
+		</li>
+	
+	 
+	
+		<li>
+			<p style="line-height:18px;"><a href="/show/true-blood-193/funfact/">为了拍摄开篇的片头，制作团队用了四天时间走访了路易斯安那州、芝加哥（教堂等镜头）和西雅图（酒吧镜头及身体特..</a></p>
+			<i><a href="/show/true-blood-193" target="_blank">真爱如血</a></i>
+		</li>
+	
+	 
+	
+		<li>
+			<p style="line-height:18px;"><a href="/show/true-blood-193/funfact/">在Miss Jeanette的驱魔仪式上出现的石头是属于Chris Offutt的，他是剧组的一个编剧，他自打童年起就拥有一整套那样的石头。..</a></p>
+			<i><a href="/show/true-blood-193" target="_blank">真爱如血</a></i>
+		</li>
+	
+		
+	</ul>			
+	</div>
+
+</div>
+</div>
+
+
+
+
+
+
+
+<div style="margin-top:40px;padding:20px 0 40px 0;background:#f8f8f8;">
+<div class="container hidden-xs">
+	<div class="row">
+	<div class="col-md-8">
+
+	<!-- 热门剧集 -->
+	
+		<div class="m_header"><h5>热门剧集</h5></div>
+		
+		<div class="m_new">
+			<ul>
+							<li >	
+				<a href="/show/downton-abbey-524" target="_blank"><img src="/uploads/poster/downton-abbey-524.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"><span class="huors">9.3</span></div>
+					<div class="noticeR">ITV</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text text-center"><a href="/show/downton-abbey-524" target="_blank">唐顿庄园</a> (2010)</div>
+				</li>
+							<li >	
+				<a href="/show/game-of-thrones-319" target="_blank"><img src="/uploads/poster/game-of-thrones-319.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"><span class="huors">9.3</span></div>
+					<div class="noticeR">HBO</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text text-center"><a href="/show/game-of-thrones-319" target="_blank">权力的游戏</a> (2011)</div>
+				</li>
+							<li >	
+				<a href="/show/the-good-wife-256" target="_blank"><img src="/uploads/poster/the-good-wife-256.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"><span class="huors">9.2</span></div>
+					<div class="noticeR">CBS</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text text-center"><a href="/show/the-good-wife-256" target="_blank">傲骨贤妻</a> (2009)</div>
+				</li>
+							<li style="margin-right:0;">	
+				<a href="/show/sherlock-489" target="_blank"><img src="/uploads/poster/sherlock-489.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"><span class="huors">9.1</span></div>
+					<div class="noticeR">BBC One</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text text-center"><a href="/show/sherlock-489" target="_blank">神探夏洛克</a> (2010)</div>
+				</li>
+							<li >	
+				<a href="/show/shameless-459" target="_blank"><img src="/uploads/poster/shameless-459.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"><span class="huors">9.1</span></div>
+					<div class="noticeR">Showtime</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text text-center"><a href="/show/shameless-459" target="_blank">无耻之徒 (美版)</a> (2011)</div>
+				</li>
+							<li >	
+				<a href="/show/longmire-721" target="_blank"><img src="/uploads/poster/longmire-721.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"><span class="huors">9.0</span></div>
+					<div class="noticeR">Netflix</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text text-center"><a href="/show/longmire-721" target="_blank">西镇警魂</a> (2012)</div>
+				</li>
+							<li >	
+				<a href="/show/x-files-84" target="_blank"><img src="/uploads/poster/x-files-84.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"><span class="huors">9.0</span></div>
+					<div class="noticeR">FOX (US)</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text text-center"><a href="/show/x-files-84" target="_blank">X档案</a> (1993)</div>
+				</li>
+							<li style="margin-right:0;">	
+				<a href="/show/ncis-22" target="_blank"><img src="/uploads/poster/ncis-22.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"><span class="huors">9.0</span></div>
+					<div class="noticeR">CBS</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text text-center"><a href="/show/ncis-22" target="_blank">海军犯罪调查处</a> (2003)</div>
+				</li>
+							<li >	
+				<a href="/show/the-brink-1162" target="_blank"><img src="/uploads/poster/the-brink-1162.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"><span class="huors">9.0</span></div>
+					<div class="noticeR">HBO</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text text-center"><a href="/show/the-brink-1162" target="_blank">政局边缘</a> (2015)</div>
+				</li>
+							<li >	
+				<a href="/show/person-of-interest-617" target="_blank"><img src="/uploads/poster/person-of-interest-617.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"><span class="huors">8.9</span></div>
+					<div class="noticeR">CBS</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text text-center"><a href="/show/person-of-interest-617" target="_blank">疑犯追踪</a> (2011)</div>
+				</li>
+							<li >	
+				<a href="/show/true-detective-984" target="_blank"><img src="/uploads/poster/true-detective-984.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"><span class="huors">8.9</span></div>
+					<div class="noticeR">HBO</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text text-center"><a href="/show/true-detective-984" target="_blank">真探</a> (2014)</div>
+				</li>
+							<li style="margin-right:0;">	
+				<a href="/show/24-6" target="_blank"><img src="/uploads/poster/24-6.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"><span class="huors">8.9</span></div>
+					<div class="noticeR">FOX (US)</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text text-center"><a href="/show/24-6" target="_blank">24小时</a> (2001)</div>
+				</li>
+							<li >	
+				<a href="/show/rick-and_morty-1010" target="_blank"><img src="/uploads/poster/rick-and_morty-1010.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"><span class="huors">8.8</span></div>
+					<div class="noticeR">Adult Swim</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text text-center"><a href="/show/rick-and_morty-1010" target="_blank">瑞克和莫蒂</a> (2013)</div>
+				</li>
+							<li >	
+				<a href="/show/house-of-cards-805" target="_blank"><img src="/uploads/poster/house-of-cards-805.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"><span class="huors">8.8</span></div>
+					<div class="noticeR">Netflix</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text text-center"><a href="/show/house-of-cards-805" target="_blank">纸牌屋</a> (2013)</div>
+				</li>
+							<li >	
+				<a href="/show/fargo-1047" target="_blank"><img src="/uploads/poster/fargo-1047.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"><span class="huors">8.8</span></div>
+					<div class="noticeR">FX</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text text-center"><a href="/show/fargo-1047" target="_blank">冰血暴</a> (2014)</div>
+				</li>
+							<li style="margin-right:0;">	
+				<a href="/show/mythbusters-566" target="_blank"><img src="/uploads/poster/mythbusters-566.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"><span class="huors">8.8</span></div>
+					<div class="noticeR">Discovery</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text text-center"><a href="/show/mythbusters-566" target="_blank">流言终结者</a> (2003)</div>
+				</li>
+							<li >	
+				<a href="/show/the-walking-dead-327" target="_blank"><img src="/uploads/poster/the-walking-dead-327.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"><span class="huors">8.8</span></div>
+					<div class="noticeR">AMC</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text text-center"><a href="/show/the-walking-dead-327" target="_blank">行尸走肉</a> (2010)</div>
+				</li>
+							<li >	
+				<a href="/show/black-mirror-691" target="_blank"><img src="/uploads/poster/black-mirror-691.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"><span class="huors">8.8</span></div>
+					<div class="noticeR">Channel 4</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text text-center"><a href="/show/black-mirror-691" target="_blank">黑镜</a> (2011)</div>
+				</li>
+							<li >	
+				<a href="/show/doctor-who-144" target="_blank"><img src="/uploads/poster/doctor-who-144.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"><span class="huors">8.8</span></div>
+					<div class="noticeR">BBC One</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text text-center"><a href="/show/doctor-who-144" target="_blank">神秘博士</a> (2005)</div>
+				</li>
+							<li style="margin-right:0;">	
+				<a href="/show/daredevil-1150" target="_blank"><img src="/uploads/poster/daredevil-1150.jpg"></a>
+				<div class="notice hidden-xs">
+					<div class="noticeL"><span class="huors">8.7</span></div>
+					<div class="noticeR">Netflix</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="text text-center"><a href="/show/daredevil-1150" target="_blank">夜魔侠</a> (2015)</div>
+				</li>
+						</ul>
+		</div>
+	
+	</div>
+	
+	<div class="col-md-4" style="padding-left:40px;">
+	
+		<!--- 剧单 --->
+		
+		<div style="clear:both;margin-bottom:15px"></div>
+		
+<div class="r_title"><span><a href="/lists">美剧英剧剧单</a></span></div>
+	
+<div class="m_list">
+
+<p>最新剧单</p>
+
+
+> <a href="/lists/4">Marvel&DC真人动漫英雄剧集</a> <span class="gray"><span class="glyphicon glyphicon-film"></span> 21</span><br>
+
+
+> <a href="/lists/3">艾美奖历年最佳喜剧</a> <span class="gray"><span class="glyphicon glyphicon-film"></span> 18</span><br>
+
+
+> <a href="/lists/2">艾美奖历年最佳剧集</a> <span class="gray"><span class="glyphicon glyphicon-film"></span> 18</span><br>
+
+
+> <a href="/lists/1">吸血鬼主题剧集</a> <span class="gray"><span class="glyphicon glyphicon-film"></span> 23</span><br>
+
+<br>
+
+<p>火星官方剧单</p>
+
+> <a href="/lists/week">热播排行</a><br>
+> <a href="/lists/zhui">追看排行</a><br>
+> <a href="/lists/new">新剧排行</a><br>
+> <a href="/lists/top50">火星 Top50</a><br><br>
+
+<p>IMDb官方剧单</p>
+
+> <a href="/lists/imdb">回归剧排行</a><br>
+> <a href="/lists/imdbnew">新剧排行</a><br>
+> <a href="/lists/imdbtop50">IMDb Top50</a><br><br>
+
+<p>metacritic官方剧单</p>
+
+> <a href="/lists/meta">回归剧排行</a><br>
+> <a href="/lists/metanew">新剧排行</a><br>
+> <a href="/lists/metatop50">metacritic Top50</a> 
+
+</div>	
+		<div style="clear:both;margin-bottom:40px"></div>
+		<div class="r_title"><span>火星组织</span></div>
+		
+		<div style="font-size:12px;padding-top:10px;">QQ群：259810774<br>
+		新浪微博：<a href="http://weibo.com/huo360" target="_blank">火星美剧</a></div>
+	
+	</div>
+	
+	</div>
+		
+</div>
+</div>
+
+<div style="clear:both;padding-top:30px;"></div>
+<div id="footer">
+<div class="container">
+<div class="row">
+	<div class="col-md-7 hidden-xs">版权所有 <a href="http://huo360.com" target="_blank">火星360 huo360.com</a> 2005 - 2014 All Rights Reserved. 0.0778</div>
+	<div class="col-md-5 text-right">QQ群:259810774 | <a href="http://weibo.com/huo360" target="_blank">新浪微博</a> | <a href="/feed" target="_blank">RSS订阅</a> | <a href="/us" target="_blank">关于我们</a> | <a href="http://subhd.com" target="_blank">Sub HD字幕站</a></div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd06d367de5c285e8eeac877901f0626c' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-527047-1', 'huo360.com'); 
+  ga('send', 'pageview');
+
+</script>
+
+</body>
+</html>

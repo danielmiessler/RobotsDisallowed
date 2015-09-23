@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+		<title>畅游-ChangYou.com</title>
+		<meta name="keywords" content="畅游,搜狐畅游,changyou,GAME+" />
+		<meta name="description" content="畅游有限公司（纳斯达克股票交易代码：CYOU），中国在线游戏开发和运营商之一，自主研发的《新天龙八部》是中国最受欢迎的大型多人在线角色扮演游戏之一。畅游目前正在运营的还有《幻想神域》、《天神纪》、《灵魂回响》、《新水浒Q传》、《鹿鼎记》、《斗破苍穹OL》等多款游戏。畅游一直积极布局多元化发展，抓住国内网页游戏市场和手游市场爆发趋势，加快打造全球网络游戏玩家平台。" />
+		<script type="text/javascript">
+			var language = (navigator.language || navigator.userLanguage).toLowerCase(); // || navigator.systemLanguage;
+			if(language.indexOf('zh') == -1){ // zh-CN、zh-TW
+				window.location.href = '/en/index.shtml';	
+			}else{ // zh-CN、zh-TW
+				window.location.href = '/index.shtml';	
+			}
+		</script>
+		<link type="text/css" rel="stylesheet" href="/source/css/reset.css" />
+		<link type="text/css" rel="stylesheet" href="/css/index.css" />
+		</head>
+		<body>
+
+	<div class="all_game_box">
+        <div class="all_g_tit">
+            <h3 class="gtitle1">武侠游戏</h3>
+            <h3 class="gtitle2">奇幻游戏</h3>
+            <h3 class="gtitle4">单机游戏</h3>
+            <h3 class="gtitle3">竞技游戏</h3>
+            <h3 class="gtitle5">手机游戏</h3>
+            <h3 class="gtitle6">网页游戏</h3>
+        </div>
+        <div class="all_g_panel clearfix">
+            <ul class="gtype1 clearfix">
+                <li><a target="_blank" href="http://tl.changyou.com">新天龙八部</a><i><span class="ico ico_hot"></span></i></li>
+                <li><a target="_blank" href="http://dj.changyou.com/">刀剑英雄</a><i><span class="ico ico_hot"></span></i></li>
+                <li><a target="_blank" href="http://ldj.changyou.com/">鹿鼎记</a><i><span class="ico ico_hot"></span></i></li>
+                <li><a target="_blank" href="http://ty.playcool.com/">桃园2.0</a><i><span class="ico ico_hot"></span></i></li>
+                <li><a target="_blank" href="http://xsh.changyou.com/">新水浒Q传</a><i><span class="ico ico_hot"></span></i></li>
+                <li><a target="_blank" href="http://x7.changyou.com/">轩辕剑7</a><i><span class="ico ico_new"></span></i></li>
+                <li><a target="_blank" href="http://jd.changyou.com/">九鼎传说</a></li>
+            </ul>
+            <ul class="gtype2 clearfix">
+                <li><a target="_blank" href="http://ffo.changyou.com/">幻想神域</a><i><span class="ico ico_new"></span><span class="ico ico_hot"></span></i></li>
+                <li><a target="_blank" href="http://tsj.changyou.com/">天神纪</a><i><span class="ico ico_new"></span><span class="ico ico_beta"></span></i></li>      
+                <li><a target="_blank" href="http://eos.changyou.com/">灵魂回响</a><i><span class="ico ico_new"></span><span class="ico ico_beta"></span></i></li>                      
+                <li><a target="_blank" href="http://dpol.changyou.com/">斗破苍穹OL</a><i><span class="ico ico_hot"></span></i></li>
+                <li><a target="_blank" href="http://yz.changyou.com/">勇者之心</a><i><span class="ico ico_new"></span></i></li>
+                <!--<li><a href="http://tzcs.changyou.com/" target="_blank">天之传说</a></li>-->
+            </ul>
+            <ul class="gtype2 clearfix">
+                <li><a target="_blank" href="http://hz.changyou.com/">海战世界</a><i><span class="ico ico_new"></span></i></li>
+            </ul>
+            <ul class="gtype2 clearfix">
+                <li><a target="_blank" href="http://x6.changyou.com/">轩辕剑6</a><i><span class="ico ico_hot"></span></i></li>
+                 <li><a target="_blank" href="http://x.changyou.com/">轩辕剑外传：穹之扉</a><i><span class="ico ico_new"></span></i></li>
+            </ul>
+            <ul class="gtype2 clearfix">
+                <li><a target="_blank" href="http://tlyd.changyou.com/">天龙八部移动版</a><i><span class="ico ico_hot"></span></i></li>
+                <li><a target="_blank" href="http://hero.changyou.com/">谁是大英雄</a><i><span class="ico ico_new"></span></i></li>
+                <li><a target="_blank" href="http://sjhx.cy.com/">圣剑幻想</a><i><span class="ico ico_new"></span></i></li>
+                <li><a target="_blank" href="http://dota.changyou.com/">刀塔联盟</a><i><span class="ico ico_new"></span></i></li>
+                <li><a target="_blank" href="http://sg.changyou.com/">格斗三国</a><i><span class="ico ico_new"></span></i></li>
+                
+            </ul>
+            <ul class="gtype2 clearfix">
+                <li><a target="_blank" href="http://sq.wan.com/">神曲2</a></li>
+                <li><a target="_blank" href="http://jy.wan.com/">剑影</a></li>
+                <li><a target="_blank" href="http://q.wan.com/">秦时明月</a><i><span class="ico ico_new"></span></i></li>
+                <li><a target="_blank" href="http://fyws.wan.com/">风云无双</a></li>
+                <li><a target="_blank" href="http://www.wan.com/">查看全部  >></a></li>
+            </ul>
+        </div>
+        <div class="game_tag">
+            <div class="game_tag_demo">
+                <span class="ico ico_new"></span><b>最新游戏</b>
+                <span class="ico ico_beta"></span><b>测试游戏</b>
+                <span class="ico ico_hot"></span><b>热门游戏</b>
+            </div>
+        </div>
+    </div>
+
+	</body>
+</html>

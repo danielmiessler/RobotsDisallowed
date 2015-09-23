@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /front/search*
+Disallow: /pl/search*

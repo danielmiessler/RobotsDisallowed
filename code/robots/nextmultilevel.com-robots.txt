@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 
+<meta property="og:image" content="http://nextmultilevel.com/img/landing/fb_share_image.png"/>
+<meta property="og:title" content="The Next Sustainable Multilevel"/>
+<meta property="og:site_name" content="Nextlevel"/>
+<meta property="og:url" content="http://nextmultilevel.com/robots.txt"/>
+<meta property="og:image:width" content="header200">
+<meta property="og:image:height" content="200">
+<meta property="og:description" content="First sustainable Binary Plan! A new method to calculate the binary plan that guarantees the business sustainability!"/>
+<script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-64292813-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> <title>
+Nextlevel:
+Pages </title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="apple-touch-icon" href="img/favicon/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png">
+ 
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+ 
+<script type="text/javascript" src="/js/jquery/jquery-2.1.4.min.js"></script><script type="text/javascript" src="/js/jquery.countdown/jquery.countdown.min.js"></script><script type="text/javascript" src="/js/jquery.marquee/jquery.marquee.min.js"></script><script type="text/javascript" src="/js/bootstrap/bootstrap.min.js"></script><script type="text/javascript" src="/js/scrolling/jquery.easing.min.js"></script><script type="text/javascript" src="/js/scrolling/scrolling-nav.js"></script><script type="text/javascript" src="/js/select2/select2.min.js"></script><link rel="stylesheet" type="text/css" href="/css/landing/vendor.min.css"/><link rel="stylesheet" type="text/css" href="/css/landing/main.css"/>
+</head>
+<body class="site">
+ 
+<div id="modals">
+<div class="modal fade" id="joinModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="color-line"></div>
+<div class="modal-header">
+<h4 class="modal-title">Join</h4>
+</div>
+<div class="modal-body row">
+<button id="claimInvite" type="button" class="btn btn-default col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-1">I recieved an SMS</button>
+<button id="chooseSponsor" type="button" class="btn btn-default col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-2">Choose Sponsor</button>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+</div>
+</div>  
+</div>  
+</div>
+<div class="modal fade" id="inviteClaimModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="color-line"></div>
+<div class="modal-header">
+<h4 class="modal-title">I recieved a SMS</h4>
+</div>
+<div class="modal-body row">
+<div class="form-group">
+<div class="col-sm-2 control-label">Invitation Code</div>
+<div class="col-xs-12 col-sm-10">
+<div>
+<input name="data[invitationNumber]" autofocus="autofocus" class="form-control" type="text" id="invitationNumber"/>
+</div>
+</div>
+</div>
+<p class="hidden" id="invitationWarning">Invalid Invitation Code</p>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" id="invitationCancel">Cancel</button>
+<button type="button" class="btn btn-primary" id="inviteOkButton">Ok</button>
+</div>
+</div>  
+</div>  
+</div>
+<div class="modal fade" id="sponsorChoose" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="color-line"></div>
+<div class="modal-header">
+<h4 class="modal-title">Sponsor Choose</h4>
+</div>
+<div class="modal-body row">
+<div class="form-group">
+<label class="col-sm-3 control-label sponsor-label">Sponsor</label>
+<div class="col-xs-12 col-sm-9">
+<input name="data[sponsorName]" autofocus="autofocus" class="form-control" type="text" id="sponsorName"/>
+</div>
+</div>
+<p class="hidden" id="sponsorWarning">Invalid Sponsor</p>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" id="chooseSponsorCancel">Cancel</button>
+<button type="button" class="btn btn-primary" id="chooseSponsorButton">Ok</button>
+</div>
+</div>  
+</div>  
+</div>
+<script type="text/javascript">
+        (function () {
+            'use strict';
+
+            var joinModalHide = function () {
+                $('#joinModal').modal('toggle');
+            }
+
+            $('#claimInvite').click(function (event) {
+                joinModalHide();
+                $('#inviteClaimModal').modal('show');
+                $('#invitationNumber')[0].value = '';
+                $('#invitationWarning').addClass('hidden');
+
+                $('#invitationCancel').click(function(element){
+                    $('#inviteClaimModal').modal('hide');
+                })
+
+                $('#inviteOkButton').click(function(element){
+
+
+                    var inviteNumber = $('#invitationNumber')[0].value;
+
+                    if(inviteNumber != '') {
+                        $('#invitationNumber').prop('disabled', true);
+                        $('#invitationWarning').addClass('hidden');
+                        var redirectUrl = "http://nextmultilevel.com/users/register";
+                        var requestUrl = "http://nextmultilevel.com/users/invite";
+
+                        requestUrl = (requestUrl + '/{0}').format(inviteNumber);
+
+                        $.ajax(requestUrl).done(function (response) {
+                            var json = JSON.parse(response);
+                            var error = true;
+                            if (json != null) {
+                                if (json.Invite == 'true') {
+                                    error = false;
+                                    var newSponsor = json.Sponsor;
+                                }
+                            }
+
+                            $('#invitationNumber').prop('disabled', false);
+
+                            if (error) {
+                                $('#invitationWarning').removeClass('hidden');
+                                $('#invitationNumber').focus();
+                            } else {
+                                window.location.href = (redirectUrl + '/{0}?invite={1}').format(newSponsor, inviteNumber);
+                            }
+
+                        })
+                    }
+                })
+            });
+
+            $('#chooseSponsor').click(function (event) {
+                joinModalHide();
+                $('#sponsorChoose').modal('show');
+                $('#sponsorName')[0].value = '';
+                $('#sponsorWarning').addClass('hidden');
+
+
+                $('#chooseSponsorCancel').click(function(element){
+                    $('#sponsorChoose').modal('hide');
+                })
+
+                $('#chooseSponsorButton').click(function(element){
+
+                    var newSponsor = $('#sponsorName')[0].value;
+
+                    if(newSponsor != '') {
+                        $('#sponsorName').prop('disabled', true);
+                        $('#sponsorWarning').addClass('hidden');
+                        var redirectUrl = "http://nextmultilevel.com/users/register";
+                        var requestUrl = "http://nextmultilevel.com/users/exists";
+                        requestUrl = (requestUrl + '/{0}').format(newSponsor);
+
+                        $.ajax(requestUrl).done(function (response) {
+                            var json = JSON.parse(response);
+                            var error = true;
+                            if (json != null) {
+                                if (json.User == 'true') {
+                                    error = false;
+                                }
+                            }
+
+                            $('#sponsorName').prop('disabled', false);
+
+                            if (error) {
+                                $('#sponsorWarning').removeClass('hidden');
+                                $('#sponsorName').focus();
+                            } else {
+                                window.location.href = (redirectUrl + '/{0}').format(newSponsor);
+                            }
+                        })
+                    }
+
+                })
+            });
+
+            if (!String.prototype.format) {
+                String.prototype.format = function () {
+                    var args = arguments;
+                    return this.replace(/{(\d+)}/g, function (match, number) {
+                        return typeof args[number] != 'undefined'
+                            ? args[number]
+                            : match
+                            ;
+                    });
+                };
+            }
+
+        })();
+
+    </script>
+</div>
+<div id="top"></div>
+ 
+<div class="loader">
+<div class="loaderInner"></div>
+</div>
+<header id="header" class="header">
+<div class="container-fluid clearfix">
+<h1 class="header-logo clearfix">
+<a href="#top">
+<svg class="header-logo-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-241 382 128 30" enable-background="new -241 382 128 30" xml:space="preserve">
+<g>
+<path fill="#CC3333" d="M-232.5,383.8c-0.8-1.2-1.3-1.5-3.3-1.5h-2.6c-1.9,0-2.4,0.7-1.4,2.1l8.9,12.5l-9.3,13.3
+            		c-1.1,1.4-0.8,2.1,1.3,2.1h2.7c1.9,0,2.4-0.2,3.2-1.5l9.2-14L-232.5,383.8z"/>
+<path fill="#FFFFFF" d="M-183.3,401.1l1.4,2c0.4,0.6,0.6,0.7,1.5,0.7h1.3c0.9,0,1.1-0.3,0.6-1l-3.1-4.5L-183.3,401.1z"/>
+<path fill="#CC3333" d="M-187.5,390.4c-0.4-0.6-0.6-0.7-1.6-0.7h-1.2c-0.9,0-1.1,0.3-0.7,1l4.2,5.9l-4.4,6.3c-0.5,0.7-0.4,1,0.6,1
+            		h1.3c0.9,0,1.1-0.1,1.5-0.7l4.3-6.6L-187.5,390.4z"/>
+<path fill="#FFFFFF" d="M-180.6,389.7c-0.9,0-1.1,0.1-1.5,0.7l-1.2,1.7l1.8,2.6l2.8-4c0.4-0.7,0.2-1-0.6-1H-180.6z"/>
+<path fill="#FFFFFF" d="M-218.9,390.2c-0.9,0.4-1.1,0.7-1.1,1.6V403c0,0.6,0.2,0.8,0.8,0.8h1.5c0.6,0,0.8-0.2,0.8-0.8v-10.2
+            		c0-0.1,0.1-0.2,0.2-0.3c0.9-0.2,1.8-0.4,2.6-0.4c2,0,3,0.9,3,2.7v8.2c0,0.6,0.2,0.8,0.8,0.8h1.5c0.6,0,0.8-0.2,0.8-0.8v-8.2
+            		c0-3.5-1.9-5.5-5.7-5.5C-215.6,389.3-217.4,389.6-218.9,390.2z M-205.3,398.4c0,3.6,2,5.9,6.3,5.9c2.9,0,4.8-0.9,5.9-2.6
+            		c0.4-0.6,0.3-1.1-0.3-1.4l-1-0.5c-0.7-0.4-1-0.3-1.4,0.3c-0.6,1-1.7,1.5-3.2,1.5c-2,0-3.1-1-3.1-2.7v-1h8.3c0.8,0,1.2-0.4,1.2-1.2
+            		V395c0-3.3-2.2-5.7-6.3-5.7c-4.1,0-6.4,2.1-6.4,5.9V398.4z M-195.8,395.4h-6.3v-0.6c0-1.8,1.1-2.8,3.2-2.8c2.1,0,3.1,1,3.1,2.8
+            		V395.4z"/>
+<path fill="#FFFFFF" d="M-174.3,386.4c-0.6,0-0.8,0.2-0.8,0.8v2.5h-1.9c-0.6,0-0.8,0.2-0.8,0.8v1.3c0,0.6,0.2,0.8,0.8,0.8h1.9v5.6
+            		c0,2.3,0.5,3.9,1.4,4.8c0.9,0.9,2.5,1.3,4.8,1.2c0.7,0,0.9-0.2,0.9-0.9v-1.3c0-0.7-0.2-0.8-0.9-0.8c-1.2,0-2-0.2-2.4-0.6
+            		c-0.4-0.4-0.7-1.3-0.7-2.5v-5.5h3.1c0.6,0,0.8-0.2,0.8-0.8v-1.3c0-0.6-0.2-0.8-0.8-0.8h-3.1v-2.5c0-0.6-0.2-0.8-0.8-0.8H-174.3z
+            		 M-162.6,384.5c0-0.6-0.2-0.8-0.8-0.8h-1.5c-0.7,0-0.8,0.2-0.8,0.8V403c0,0.6,0.2,0.8,0.8,0.8h1.5c0.6,0,0.8-0.2,0.8-0.8V384.5z
+            		 M-159.9,398.4c0,3.6,2,5.9,6.3,5.9c2.9,0,4.8-0.9,5.9-2.6c0.4-0.6,0.3-1.1-0.3-1.4l-1-0.5c-0.7-0.4-1-0.3-1.4,0.3
+            		c-0.6,1-1.7,1.5-3.2,1.5c-2,0-3.1-1-3.1-2.7v-1h8.3c0.8,0,1.2-0.4,1.2-1.2V395c0-3.3-2.2-5.7-6.3-5.7c-4.1,0-6.4,2.1-6.4,5.9V398.4
+            		z M-150.4,395.4h-6.3v-0.6c0-1.8,1.1-2.8,3.2-2.8c2.1,0,3.1,1,3.1,2.8V395.4z M-134.5,389.7c-1,0-1.2,0.2-1.5,0.8l-2.5,6.6
+            		c-0.4,1.2-0.7,2.9-0.7,2.9h-0.1l0-0.2c-0.1-0.5-0.4-1.7-0.7-2.7l-2.5-6.6c-0.2-0.7-0.5-0.8-1.5-0.8h-1.1c-0.8,0-1,0.2-0.7,1l5,12.4
+            		c0.2,0.5,0.6,0.8,1.1,0.8h0.9c0.6,0,1-0.2,1.2-0.8l5.1-12.5c0.3-0.8,0.1-1-0.7-1H-134.5z M-131.7,398.4c0,3.6,2,5.9,6.3,5.9
+            		c2.9,0,4.8-0.9,5.9-2.6c0.4-0.6,0.3-1.1-0.3-1.4l-1-0.5c-0.7-0.4-1-0.3-1.4,0.3c-0.6,1-1.7,1.5-3.2,1.5c-2,0-3.1-1-3.1-2.7v-1h8.3
+            		c0.8,0,1.2-0.4,1.2-1.2V395c0-3.3-2.2-5.7-6.3-5.7c-4.1,0-6.4,2.1-6.4,5.9V398.4z M-122.2,395.4h-6.3v-0.6c0-1.8,1.1-2.8,3.2-2.8
+            		c2.1,0,3.1,1,3.1,2.8V395.4z M-113.3,384.5c0-0.6-0.2-0.8-0.8-0.8h-1.5c-0.7,0-0.8,0.2-0.8,0.8V403c0,0.6,0.2,0.8,0.8,0.8h1.5
+            		c0.6,0,0.8-0.2,0.8-0.8V384.5z"/>
+</g>
+</svg>
+</a>
+</h1>
+<a href="#" class="sandwich-menu"><i class="fa fa-bars"></i></a>
+<span class="separator"></span>
+<nav class="header-nav clearfix">
+<a href="#" class="nav-close"><i class="fa fa-times"></i></a>
+<ul class="nav-list clearfix">
+<li><a href="#top" title="Home">Home</a></li>
+<li><a href="#about" title="About Us">About Us</a></li>
+<li><a href="#binary" title="Binary">Binary</a></li>
+<li><a href="#evolution" title="The Evolution">The Evolution</a></li>
+<li><a href="#opportunity" title="Business Opportunity">Business Oportunity</a>
+</li>
+<li><a href="#faq" title="FAQ">FAQ</a></li>
+<li><a href="#future" title="The Future">The Future</a></li>
+<li class="dropdown language-selection">
+<a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown">
+<i class="famfamfam-flag-gb"></i>
+</a>
+<ul class="dropdown-menu hdropdown animated flipInX">
+<li class="selected-language">
+<a href="?language=eng">
+<i class="famfamfam-flag-gb"></i>
+</a>
+</li>
+<li>
+<a href="?language=por">
+<i class="famfamfam-flag-pt"></i>
+</a>
+</li>
+<li>
+<a href="?language=spa"><i class="famfamfam-flag-es"></i>
+</a>
+</li>
+</ul>
+</li>
+<script>
+$('.dropdown-toggle').dropdown();
+</script>
+</ul>
+</nav>
+ 
+<div class="registration">
+<a class="join" href="index.html#" data-toggle="modal" data-target="#joinModal">Join</a>
+<a href="/users/login" class="login">Login</a> </div>
+</div>
+</div>  
+</header>
+<div class="main site-content clearfix">
+<section class="cta clearfix">
+<div class="container-fluid clearfix">
+<div class="promotion-wrapper clearfix">
+ 
+<div class="timer" style="height: 50px;"></div>
+<div id="video-promotion" class="video-promo">
+<iframe width="480" height="280" frameborder="0" src="http://www.youtube.com/embed/HlROR_XkRSU?autoplay=1&controls=0&showinfo=0&loop=1&rel=0" allowfullscreen></iframe>
+ 
+<div class="join-button">
+<a href="/pages/index.html#" data-toggle="modal" data-target="#joinModal">Join the Evolution</a> </div>
+</div>  
+<div class="total-users">
+<span class="users-number">128496</span> Registered members </div>
+</div>  
+</div>  
+<div class="latest-users container-fluid clearfix">
+<span class="latest-users-header">Recent Members:</span>
+<div class="members clearfix">
+<span>aderval marques<i class="famfamfam-flag-br"></i></span><span>hassen ahmed<i class="famfamfam-flag-eg"></i></span><span>Lilya Popova<i class="famfamfam-flag-ua"></i></span><span>Sapna Bonthala<i class="famfamfam-flag-in"></i></span><span>eliezer almeida<i class="famfamfam-flag-br"></i></span><span>Yuriy Mazur<i class="famfamfam-flag-ua"></i></span><span>Viktoria Kostuyk<i class="famfamfam-flag-ua"></i></span><span>SELENA CEDEÑO<i class="famfamfam-flag-ec"></i></span><span>Ludmila Budnikova<i class="famfamfam-flag-ua"></i></span><span>GENESIS CEDEÑO<i class="famfamfam-flag-ec"></i></span><span>Oksana Bodoryak<i class="famfamfam-flag-ua"></i></span><span>Helena Inacio<i class="famfamfam-flag-be"></i></span><span>GLADYS MURE<i class="famfamfam-flag-ec"></i></span><span>FrancildoMoraes Pereira<i class="famfamfam-flag-br"></i></span><span>BrazOliveira Domingues<i class="famfamfam-flag-br"></i></span><span>marcoantonio rodrigues<i class="famfamfam-flag-br"></i></span><span>isabella carinaformento<i class="famfamfam-flag-br"></i></span><span>solangebernardes desousaformento<i class="famfamfam-flag-br"></i></span><span>Agnelo Pina<i class="famfamfam-flag-pt"></i></span><span>RUBEN CACERES<i class="famfamfam-flag-ec"></i></span><span>gesane malorevargas<i class="famfamfam-flag-br"></i></span><span>ADRIANO MANUEL<i class="famfamfam-flag-ec"></i></span><span>jacisdedrez decastro<i class="famfamfam-flag-br"></i></span><span>Kishore Kumar<i class="famfamfam-flag-in"></i></span><span>DARWIN AREVALO<i class="famfamfam-flag-ec"></i></span><span>LAURA CACERES<i class="famfamfam-flag-ec"></i></span><span>Eugenie BASTIN<i class="famfamfam-flag-mq"></i></span><span>jackelyn jimenez<i class="famfamfam-flag-ec"></i></span><span>lemuel vargas<i class="famfamfam-flag-br"></i></span><span>LILIAN CEDEÑO<i class="famfamfam-flag-ec"></i></span> </div>
+</div>
+</section>
+<section class="about clearfix" id="about">
+<div class="container-fluid clearfix">
+<h2><span class="about-header">About Us</span></h2>
+<p>NEXTLEVEL, actuate in the technology and services market, using direct sales model, providing business opportunities for leaders and sales teams, bring up a distribution network and business.</p>
+<p>Supported by experienced staff in the core business, provides for sales representatives safety to grow up your business with confidence and trust in the future.</p>
+<strong>VISION</strong>
+<p>To be recognized like, the best Multilevel Marketing services company and head of stabilization of multilevel marketing with in binary commissioning model.</p>
+<strong>MISSION</strong>
+<p>Recover the concept of multilevel marketing focus on our customers, representatives and their families. with the commitment to do the right thing, not what may work best or what is most profitable at any given time but feel proud of our business model.</p>
+<p>We work daily in a fair, transparent and integrates to give the POSSIBILITY of people around the world in achieving their objectives and so having a better quality of life and hope for a better future.</p>
+<strong>VALUES</strong>
+<p>NEXTLEVEL ethical pillars:</p>
+<strong class="friendship">Friendship, Honesty, Transparency and recognition.</strong>
+<p>NEXTLEVEL will always act in an honest and transparent way, thereby conserving friendly relations among ours representatives, friends and family.</p>
+<p>Expectation their representatives in a better future and the opportunity to have their deserved recognition depending on their dedication and hard work, and thus achieve their dreams.</p>
+<hr>
+<strong class="qoute">None of us is stronger as all of us together!</strong>
+</div>
+</section>
+<section class="binary clearfix" id="binary">
+<div class="container-fluid clearfix">
+<h2><span class="binary-header">Binary</span></h2>
+<p>Binary compensation plans have become the darling of startup multilevel marketing companies, they are relatively simple to understand and offer fast-paced growth opportunities.</p>
+<p>Companies find them attractive for the same reasons. In addition, several companies utilizing binary plans have recently entered the market and generated eye-popping sales and profits.</p>
+<p>Unfortunately, not all that glitters is gold. In the last 24 months, the multilevel marketing industry has seen a dramatic increase in regulatory actions.</p>
+<p>So what is the problem with binary plans? Why the governments attacked them with so much more vigor than companies using other compensation plans?</p>
+<p>Binaries are legal? Yes – but...</p>
+<p>Yes, they can be designed to operate legally, but in addition to proper design, companies must properly implement their programs so that they accurately follow the design. Several relatively new MLMs that entered the industry using binary plans simply failed to adhere to the legal principals governing the MLM industry in implementing their plans.</p>
+<p>Fortunately, solutions are available, but they require companies to carefully analyze their programs and make some painstaking changes.</p>
+<p> <center> JOIN THE EVOLUTION</center></p>
+</div>
+</section>
+<section class="evolution clearfix" id="evolution">
+<div class="container-fluid clearfix">
+<h2><span class="evolution-header">The Evolution </span></h2>
+<p>According to statistics, in the last 24 months, the multilevel marketing industry has seen a dramatic increase in regulatory actions based on the high volume of companies using binary model and accused of operate pyramid schemes.</p>
+<p>As entrepreneurs we need to understand the money flow and to calculate the profit of a business before start.</p>
+<p>The above statement seams to be simple but the binary model used nowadays is unsustainable! Is impossible to calculate with precision the profit or the expenses for any project based on this model.</p>
+<p>We made a little change on the way that Binary Plan is calculated that will definitely change the multilevel marketing industry!</p>
+<p>Follow us on Facebook!</p>
+<strong class="qoute">We create a new method to calculate the binary plan<br>that guarantees the business sustainability!</strong>
+</div>
+</section>
+<section class="opportunity clearfix" id="opportunity">
+<div class="container-fluid clearfix">
+<h2>Opportunity</h2>
+<p>UP TO 30% COMMISSIONS AS DIRECT SALES.</p>
+<p>THE FIRST 100% SUSTAINABLE BINARY PLAN IN THE INDUSTRY.</p>
+<p>REGULATED UNDER THE RIGID AND RELIABLE LAWS OF E.U.</p>
+<p>GLOBAL AUTOMATIC BILLING SYSTEM.</p>
+<p>DAILY PROFIT SHARE BONUS.</p>
+<p>FEEL THE FREEDOM AND CONFIDENCE TO BUILD YOUR TEAM WITHOUT SURPRISES!</p>
+<p>RECEIVE A SHARE OF COMPANY PROFITS AS PARTNER BONUS.</p>
+<p>AUTOMATIC COMMISSIONS TRANSFERS TO YOUR BANK ACCOUNT.</p>
+<p>NO VIRTUAL CREDITS AT YOUR BACKOFFICE.</p>
+<p>JOIN THE EVOLUTION!</p>
+</div>
+</section>
+<section class="faq clearfix" id="faq">
+<div class="container-fluid clearfix">
+<h2>FAQ</h2>
+<p class="question">Nextlevel offers Passive Income Bonus, Minimum Guaranteed Profits or Financial Products like ROI?</p>
+<p>No. Nextlevel does not own financial licenses to operate those types of products and there are no future plans to start operations this business area.</p>
+<p class="question">How my commissions will be paid?</p>
+<p>Through international bank transfer or to your SIMPLEX commission card. Whenever a commossion payment is made, an invoice will be automatically be generated so the representative can legally justify the profits related to their work.</p>
+<p class="question">Can buy or sell virtual credits or make payments with virtual credits?</p>
+<p>No. At your backoffice you will find a commissions history with dates of transfers to your bank account or to your Simplex card.</p>
+<p class="question">What payments methods are available?</p>
+<p>Credit Card (MBNET and Cartão Virtual NETELLER), Referência Multibanco and Boleto Bancário.</p>
+<p class="question">There are predefined packages like starter, silver and gold?</p>
+<p>No. You can make your free registration, resell our services and products and receive commissions for it. Also if you want to participate at our career plan you can place orders, accumulate points and according to the performed score you will be positioned in different status of commission.</p>
+</div>
+</section>
+<section class="future clearfix" id="future">
+<div class="container-fluid clearfix">
+<h2>Future</h2>
+<p>Be Careful! The future is full of surprises...</p>
+<p>Yes, but for those who are not in control of your own life, or do not give real attention to the signs around.</p>
+<p>The future belongs to those who govern thier lifes with principles such as:</p>
+<p><strong class="qoute">HONESTY - INTEGRITY - CONGRUENCE - RESPECT - FRIENDSHIP</strong></p>
+<p>Be honest, be kind, never do to others what you do not want for yourself.</p>
+<p>JOIN THE EVOLUTION!</p>
+</div>
+</section>
+</div>  
+<footer class="footer">
+<div class="container-fluid clearfix">
+<div class="social clearfix">
+<div class="follow-us clearfix">
+<span>Follow Us</span><a href="https://twitter.com/nextmultilevel" target="_blank"><img src="/img/social/tweet.png" alt=""/></a><a href="http://www.facebook.com/nextmultilevel" target="_blank"><img src="/img/social/face.png" alt=""/></a><a href="https://www.youtube.com/channel/UCNrjhKJ4Cq0JlcDWHQoItOg" target="_blank"><img src="/img/social/youtube.png" alt=""/></a> </div>
+<div class="social-icons">
+<span><img src="/img/social/tweet.png" alt=""/><a href="https://twitter.com/intent/tweet?url=http://www.nextmultilevel.com/&amp;text=The new Binary Plan which guarantees the business sustainability!&amp;hashtags=MLM,OnlineMarketing" target="_blank">Tweet this opportunity</a></span><span><img src="/img/social/face.png" alt=""/><a href="https://facebook.com/sharer.php?u=http://www.nextmultilevel.com/" target="_blank">Facebook this opportunity</a></span> </div>
+</div>
+</div>  
+<section class="copy">
+<div class="container-fluid clearfix">
+<div class="footer-logo">
+<a href="#top" class="scroll">
+<svg class="footer-logo-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-241 382 128 30" enable-background="new -241 382 128 30" xml:space="preserve">
+<g>
+<path fill="#CC3333" d="M-232.5,383.8c-0.8-1.2-1.3-1.5-3.3-1.5h-2.6c-1.9,0-2.4,0.7-1.4,2.1l8.9,12.5l-9.3,13.3
+              		c-1.1,1.4-0.8,2.1,1.3,2.1h2.7c1.9,0,2.4-0.2,3.2-1.5l9.2-14L-232.5,383.8z"/>
+<path fill="#FFFFFF" d="M-183.3,401.1l1.4,2c0.4,0.6,0.6,0.7,1.5,0.7h1.3c0.9,0,1.1-0.3,0.6-1l-3.1-4.5L-183.3,401.1z"/>
+<path fill="#CC3333" d="M-187.5,390.4c-0.4-0.6-0.6-0.7-1.6-0.7h-1.2c-0.9,0-1.1,0.3-0.7,1l4.2,5.9l-4.4,6.3c-0.5,0.7-0.4,1,0.6,1
+              		h1.3c0.9,0,1.1-0.1,1.5-0.7l4.3-6.6L-187.5,390.4z"/>
+<path fill="#FFFFFF" d="M-180.6,389.7c-0.9,0-1.1,0.1-1.5,0.7l-1.2,1.7l1.8,2.6l2.8-4c0.4-0.7,0.2-1-0.6-1H-180.6z"/>
+<path fill="#FFFFFF" d="M-218.9,390.2c-0.9,0.4-1.1,0.7-1.1,1.6V403c0,0.6,0.2,0.8,0.8,0.8h1.5c0.6,0,0.8-0.2,0.8-0.8v-10.2
+              		c0-0.1,0.1-0.2,0.2-0.3c0.9-0.2,1.8-0.4,2.6-0.4c2,0,3,0.9,3,2.7v8.2c0,0.6,0.2,0.8,0.8,0.8h1.5c0.6,0,0.8-0.2,0.8-0.8v-8.2
+              		c0-3.5-1.9-5.5-5.7-5.5C-215.6,389.3-217.4,389.6-218.9,390.2z M-205.3,398.4c0,3.6,2,5.9,6.3,5.9c2.9,0,4.8-0.9,5.9-2.6
+              		c0.4-0.6,0.3-1.1-0.3-1.4l-1-0.5c-0.7-0.4-1-0.3-1.4,0.3c-0.6,1-1.7,1.5-3.2,1.5c-2,0-3.1-1-3.1-2.7v-1h8.3c0.8,0,1.2-0.4,1.2-1.2
+              		V395c0-3.3-2.2-5.7-6.3-5.7c-4.1,0-6.4,2.1-6.4,5.9V398.4z M-195.8,395.4h-6.3v-0.6c0-1.8,1.1-2.8,3.2-2.8c2.1,0,3.1,1,3.1,2.8
+              		V395.4z"/>
+<path fill="#FFFFFF" d="M-174.3,386.4c-0.6,0-0.8,0.2-0.8,0.8v2.5h-1.9c-0.6,0-0.8,0.2-0.8,0.8v1.3c0,0.6,0.2,0.8,0.8,0.8h1.9v5.6
+              		c0,2.3,0.5,3.9,1.4,4.8c0.9,0.9,2.5,1.3,4.8,1.2c0.7,0,0.9-0.2,0.9-0.9v-1.3c0-0.7-0.2-0.8-0.9-0.8c-1.2,0-2-0.2-2.4-0.6
+              		c-0.4-0.4-0.7-1.3-0.7-2.5v-5.5h3.1c0.6,0,0.8-0.2,0.8-0.8v-1.3c0-0.6-0.2-0.8-0.8-0.8h-3.1v-2.5c0-0.6-0.2-0.8-0.8-0.8H-174.3z
+              		 M-162.6,384.5c0-0.6-0.2-0.8-0.8-0.8h-1.5c-0.7,0-0.8,0.2-0.8,0.8V403c0,0.6,0.2,0.8,0.8,0.8h1.5c0.6,0,0.8-0.2,0.8-0.8V384.5z
+              		 M-159.9,398.4c0,3.6,2,5.9,6.3,5.9c2.9,0,4.8-0.9,5.9-2.6c0.4-0.6,0.3-1.1-0.3-1.4l-1-0.5c-0.7-0.4-1-0.3-1.4,0.3
+              		c-0.6,1-1.7,1.5-3.2,1.5c-2,0-3.1-1-3.1-2.7v-1h8.3c0.8,0,1.2-0.4,1.2-1.2V395c0-3.3-2.2-5.7-6.3-5.7c-4.1,0-6.4,2.1-6.4,5.9V398.4
+              		z M-150.4,395.4h-6.3v-0.6c0-1.8,1.1-2.8,3.2-2.8c2.1,0,3.1,1,3.1,2.8V395.4z M-134.5,389.7c-1,0-1.2,0.2-1.5,0.8l-2.5,6.6
+              		c-0.4,1.2-0.7,2.9-0.7,2.9h-0.1l0-0.2c-0.1-0.5-0.4-1.7-0.7-2.7l-2.5-6.6c-0.2-0.7-0.5-0.8-1.5-0.8h-1.1c-0.8,0-1,0.2-0.7,1l5,12.4
+              		c0.2,0.5,0.6,0.8,1.1,0.8h0.9c0.6,0,1-0.2,1.2-0.8l5.1-12.5c0.3-0.8,0.1-1-0.7-1H-134.5z M-131.7,398.4c0,3.6,2,5.9,6.3,5.9
+              		c2.9,0,4.8-0.9,5.9-2.6c0.4-0.6,0.3-1.1-0.3-1.4l-1-0.5c-0.7-0.4-1-0.3-1.4,0.3c-0.6,1-1.7,1.5-3.2,1.5c-2,0-3.1-1-3.1-2.7v-1h8.3
+              		c0.8,0,1.2-0.4,1.2-1.2V395c0-3.3-2.2-5.7-6.3-5.7c-4.1,0-6.4,2.1-6.4,5.9V398.4z M-122.2,395.4h-6.3v-0.6c0-1.8,1.1-2.8,3.2-2.8
+              		c2.1,0,3.1,1,3.1,2.8V395.4z M-113.3,384.5c0-0.6-0.2-0.8-0.8-0.8h-1.5c-0.7,0-0.8,0.2-0.8,0.8V403c0,0.6,0.2,0.8,0.8,0.8h1.5
+              		c0.6,0,0.8-0.2,0.8-0.8V384.5z"/>
+</g>
+</svg>
+</a>
+</div>  
+<p class="address">NEXTMULTILEVEL - JOIN THE EVOLUTION</p>
+<div class="docs">
+</div>
+</div>
+</section>
+</footer>
+<!--[if lt IE 9]>
+<script src="libs/html5shiv/es5-shim.min.js"></script>
+<script src="libs/html5shiv/html5shiv.min.js"></script>
+<script src="libs/html5shiv/html5shiv-printshiv.min.js"></script>
+<script src="libs/respond/respond.min.js"></script>
+<![endif]-->
+ 
+ 
+ 
+ 
+<script src="js/landing/main.js"></script>
+<script type="text/javascript">
+
+    (function () {
+        'use strict';
+
+        var releaseDate = '2015/09/17';
+
+        $("#time-counter")
+            .countdown(releaseDate, function (event) {
+                $(this).html(
+                    event.strftime('<div class="time"><span>%D</span> Days</div>'
+                    + '<div class="time"><span>%H</span> Hours</div>'
+                    + '<div class="time"><span>%M</span> Minutes</div>'
+                    + '<div class="time"><span>%S</span> Seconds</div>')
+                );
+            });
+    })();
+
+</script>
+  
+  
+</body>
+</html>

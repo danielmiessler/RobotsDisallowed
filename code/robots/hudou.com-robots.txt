@@ -1,0 +1,877 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	竞拍网 竞拍 胡豆网 因免费而诚信！娱乐抢购可以不花一分钱！
+</title><meta name="keywords" content="竞拍网 竞拍" /><meta name="description" content="竞拍网|最专业的竞拍门户胡豆网" /><meta name="generator" content="5.1" /><meta name="author" content="竞拍网 竞拍" /><meta name="copyright" content="2005-2012" /><link rel="shortcut icon" href="favicon.ico" /><meta property="qc:admins" content="24650276336054756375" /><meta property="wb:webmaster" content="87476e352faca3e1" /><link href="/css/css.css" rel="stylesheet" type="text/css" /><link href="/css/form.css" rel="stylesheet" type="text/css" /><link href="/css/font.css" rel="stylesheet" type="text/css" /><link href="/css/font1.css" rel="stylesheet" type="text/css" /><link href="/css/tab.css" rel="stylesheet" type="text/css" /><link href="/css/green.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/js/jquery/jquery-1.4.2.js"></script>
+    <script type="text/javascript" src="/js/jquery/jquery.floatDiv.js"></script>
+    <script type="text/javascript" src="/js/jquery/jquery.plugins.js"></script>
+    <script type="text/javascript" src="/js/jquery/jquery.move.js"></script>
+    <script type="text/javascript" src="/js/common/Helper.js"></script>
+    <script type="text/javascript" src="/js/jquery/ajax_REST-1.0.js"></script>
+    <script type="text/javascript" src="/js/common/JSON2.js"></script>
+    <script type="text/javascript" src="/js/common/Cookie.js"></script>
+    <script type="text/javascript" src="/js/jquery/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/js/common/dialog.js"></script>
+    <script type="text/javascript" src="/js/common/CheckCommon.js"></script>
+    <script type="text/javascript" src="/js/common/StringUtility.js"></script>
+    <script type="text/javascript" src="/js/GlobalHref.js"></script>
+    <script type="text/javascript" src="/js/HeadNav.js"></script>
+    <script type="text/javascript" src="/jsc/Swao.js"></script>
+    <script type="text/javascript" src="/js/json/SnapJson.js"></script>
+    <script type="text/javascript" src="/js/ling.js"></script>
+    <script type="text/javascript" src="/Js/ClockDialog.js"></script>
+    <script type="text/javascript" src="/js/scrolltopcontrol.js"></script>
+    <script language="JavaScript">
+        function correctPNG() // correctly handle PNG transparency in Win IE 5.5 & 6. 
+        {
+            var arVersion = navigator.appVersion.split("MSIE")
+            var version = parseFloat(arVersion[1])
+            if ((version >= 5.5) && (document.body.filters)) {
+                for (var j = 0; j < document.images.length; j++) {
+                    var img = document.images[j]
+                    var imgName = img.src.toUpperCase()
+                    if (imgName.substring(imgName.length - 3, imgName.length) == "PNG") {
+                        var imgID = (img.id) ? "id='" + img.id + "' " : ""
+                        var imgClass = (img.className) ? "class='" + img.className + "' " : ""
+                        var imgTitle = (img.title) ? "title='" + img.title + "' " : "title='" + img.alt + "' "
+                        var imgStyle = "display:inline-block;" + img.style.cssText
+                        if (img.align == "left") imgStyle = "float:left;" + imgStyle
+                        if (img.align == "right") imgStyle = "float:right;" + imgStyle
+                        if (img.parentElement.href) imgStyle = "cursor:hand;" + imgStyle
+                        var strNewHTML = "<span " + imgID + imgClass + imgTitle
+             + " style=\"" + "width:" + img.width + "px; height:" + img.height + "px;" + imgStyle + ";"
+             + "filter:progid:DXImageTransform.Microsoft.AlphaImageLoader"
+             + "(src=\'" + img.src + "\', sizingMethod='scale');\"></span>"
+                        img.outerHTML = strNewHTML
+                        j = j - 1
+                    }
+                }
+            }
+        }
+        //window.attachEvent("onload", correctPNG); 
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            correctPNG();
+            $("#topPlan").floatdiv("rightbottom");
+            RefreshPageClock(); GetUserVipLevel();
+        });
+
+        function dateDiff(interval, date1, date2) {
+            var objInterval = { 'D': 1000 * 60 * 60 * 24, 'H': 1000 * 60 * 60, 'M': 1000 * 60, 'S': 1000, 'T': 1 };
+            interval = interval.toUpperCase();
+            var dt1 = new Date(Date.parse(date1.replace(/-/g, '/')));
+            var dt2 = new Date(Date.parse(date2.replace(/-/g, '/')));
+            try {
+                //alert(dt2.getTime() - dt1.getTime());
+                //alert(eval_r('objInterval.'+interval));
+                //alert((dt2.getTime() - dt1.getTime()) / eval_r('objInterval.'+interval));
+                return Math.round((dt2.getTime() - dt1.getTime()) / eval_r('objInterval.' + interval));
+            }
+            catch (e) {
+                return e.message;
+            }
+        }
+
+
+
+        function sortint() {
+            SearchEvent();
+            document.onkeydown = function (e) {
+                var ev = document.all ? window.event : e;
+                if (ev.keyCode == 13) {
+                    $("#BtWebSearch").click();
+                    return false;
+                }
+            }
+        }
+
+        function SearchEvent() {
+            if (document.all)
+                return window.event;
+            func = SearchEvent.caller;
+            while (func != null) {
+                var arg0 = func.arguments[0];
+                if (arg0) {
+                    if (arg0.constructor == Event || (typeof (arg0) == "object" && arg0.preventDefault && arg0.stopPropagation))
+                        return arg0;
+                }
+                func = func.caller;
+            }
+            return null;
+        }
+    </script>
+    <style>
+        .nz
+        {
+            position: fixed;
+            right: 120px;
+            bottom: 90px;
+            z-index: 1000;
+            _position: absolute;
+            _top: expression(documentElement.scrollTop+document.documentElement.clientHeight-160);
+        }
+        
+        #scrollBar
+        {
+            _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/top.png'); /* IE6 */
+            _background-image: none; /* IE6 */
+            text-indent: -2000em;
+            width: 35px;
+            display: block;
+            background: url(images/top.png) no-repeat;
+            height: 48px;
+            overflow: hidden;
+            cursor: pointer;
+            margin-right: 130px;
+            margin-bottom: 30px;
+        }
+    </style>
+    
+    <link href="assets/css/common.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/index.css" rel="stylesheet" type="text/css" />
+    <script src="assets/js/slider.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/Js/common/DateTimeUtility.js"></script>
+    <script type="text/javascript" src="/Js/json/GoodsJson.js"></script>
+    <script type="text/javascript" src="/Js/Ajax/Goods.js"></script>
+    <script type="text/javascript" src="/Js/Ajax/SnapAction.js"></script>
+    <script type="text/javascript" src="/Js/Ajax/SeatSnapAction.js"></script>
+    <script src="/Js/common/VerificationDialog.js" type="text/javascript"></script>
+    <script src="/Js/Notice.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var timer;
+        var snaps = {"sysT":6.3578620469e+17,"snapRecords":[{"gid":45186,"uid":0,"atp":3,"rse":0,"price":0,"una":"","lv":1,"urs":null,"lti":6.21355968e+17,"cti":188,"sbti":6.35792904e+17,"seti":6.623804147e+17,"st":2},{"gid":45160,"uid":0,"atp":3,"rse":0,"price":0,"una":"","lv":1,"urs":null,"lti":6.21355968e+17,"cti":88,"sbti":6.35793012e+17,"seti":6.623804135e+17,"st":2},{"gid":45181,"uid":0,"atp":3,"rse":0,"price":0,"una":"","lv":1,"urs":null,"lti":6.21355968e+17,"cti":88,"sbti":6.35793048e+17,"seti":6.623804147e+17,"st":2},{"gid":19501,"uid":0,"atp":2,"rse":386,"price":0,"una":"","lv":1,"urs":null,"lti":6.21355968e+17,"cti":90,"sbti":6.6203111874e+17,"seti":6.6234492555e+17,"st":2},{"gid":19500,"uid":0,"atp":2,"rse":30,"price":0,"una":"","lv":1,"urs":null,"lti":6.21355968e+17,"cti":60,"sbti":6.6203114413e+17,"seti":6.6234492555e+17,"st":2},{"gid":19608,"uid":0,"atp":2,"rse":28,"price":0,"una":"","lv":1,"urs":null,"lti":6.21355968e+17,"cti":40,"sbti":6.37734768e+17,"seti":6.6234706611e+17,"st":2},{"gid":45126,"uid":0,"atp":1,"rse":0,"price":0,"una":"","lv":1,"urs":null,"lti":6.21355968e+17,"cti":40,"sbti":6.35792904e+17,"seti":6.623804135e+17,"st":2},{"gid":45105,"uid":0,"atp":1,"rse":0,"price":0,"una":"","lv":1,"urs":null,"lti":6.21355968e+17,"cti":60,"sbti":6.3579294e+17,"seti":6.623804135e+17,"st":2},{"gid":45127,"uid":0,"atp":1,"rse":0,"price":0,"una":"","lv":1,"urs":null,"lti":6.21355968e+17,"cti":40,"sbti":6.3579303e+17,"seti":6.623804135e+17,"st":2},{"gid":45106,"uid":0,"atp":1,"rse":0,"price":0,"una":"","lv":1,"urs":null,"lti":6.21355968e+17,"cti":60,"sbti":6.35793048e+17,"seti":6.623804135e+17,"st":2},{"gid":45139,"uid":0,"atp":1,"rse":0,"price":0,"una":"","lv":1,"urs":null,"lti":6.21355968e+17,"cti":70,"sbti":6.3579312e+17,"seti":6.623804135e+17,"st":2},{"gid":45144,"uid":0,"atp":1,"rse":0,"price":0,"una":"","lv":1,"urs":null,"lti":6.21355968e+17,"cti":70,"sbti":6.35793192e+17,"seti":6.623804135e+17,"st":2},{"gid":45078,"uid":0,"atp":1,"rse":0,"price":0,"una":"","lv":1,"urs":null,"lti":6.21355968e+17,"cti":40,"sbti":6.35792904e+17,"seti":6.623804135e+17,"st":2},{"gid":45043,"uid":0,"atp":1,"rse":0,"price":0,"una":"","lv":1,"urs":null,"lti":6.21355968e+17,"cti":60,"sbti":6.3579294e+17,"seti":6.623804135e+17,"st":2},{"gid":45079,"uid":0,"atp":1,"rse":0,"price":0,"una":"","lv":1,"urs":null,"lti":6.21355968e+17,"cti":40,"sbti":6.35793012e+17,"seti":6.623804135e+17,"st":2}]};
+        var loginStatus = "out";
+        var query = '';
+        // JScript 文件
+        var intervalID = 0;
+        var actionIndex = 0;
+        var errorNum = 0;
+        var pageTimes = 0;
+        var usersnapstatus = false;
+        var requeststatus = false;
+        var ns = false;
+        var pttemp = 0; //抢购方式
+        var pageArea;
+        var freestatus=false;
+
+        function initAction(pa) {
+            pageArea = pa;
+            actionIndex = 0;
+            alist = new Object();
+            action_start();
+        }
+
+        function action_start() {
+            intervalID = window.setInterval("action_add()", 1000);
+        }
+
+        function action_add() {
+            try {
+                pageTimes += 1;
+                checkMouse();
+                if (pageTimes % 5 == 0) {
+                    changeimgpage();
+                }
+                if (pageTimes >= 300) {
+                    refPage();
+                }
+                if (pageTimes % 60 == 0) {
+                    freecheck();
+                }
+                //获取数据
+                if (!requeststatus) {
+                    getNewInfo(0);
+                    //根据snaps更新时间显示
+                    showSnapGoods();
+                }
+            }
+            catch (err) {
+                FailHandle(err);
+            }
+        }
+
+
+        function action_stop(err) {
+            window.clearInterval(intervalID);
+            //TODO:页面刷新
+        }
+
+        //添加
+        function snapSubmit(index,_free) {
+            var item = findSnapRecord(index);
+            if (item == null) {
+                return false;
+            }
+            switch (item.st) {
+                case 2: //竞拍开放
+                case 3: //竞拍暂停
+                    {
+                        var currentT;
+                        //判断是否处于抢购时间内
+
+                        if (snaps.sysT >= item.sbti && snaps.sysT <= item.seti) {
+                            if (!usersnapstatus) {
+                                var pt = 1;
+                                if ($("#dzselect" + index).attr("class") == "rb0") {
+                                    pt = 1;
+                                }
+                                if ($("#hdselect" + index).attr("class") == "rb0") {
+                                    pt = 2;
+                                }
+                                if(_free!=undefined&&_free==true)
+                                {
+                                    pt=11;
+                                }
+                                if (!isNaN(pt)) {
+                                    snapActionInfo(index, pt);
+                                }
+                                else {
+                                    xMsgBox.showMsgbox2("请选择抢购支付方式！", "提示", 0);
+                                }
+                            }
+                        }
+                        else if (snaps.sysT < item.sbti) {
+                            xMsgBox.showMsgbox2("商品未到开抢时间，请耐心等待！<br/>您可以参与其他即将开抢的其他商品。<br/><a href='" + GlobalHref.Default_R("DouZ") + "'>查看即将抢购的商品</a>", "提示", 0);
+                        } else if (snaps.sysT > item.seti) {
+                            xMsgBox.showMsgbox2("本日抢购已结束！", "提示", 0);
+                        }
+                    }
+                    break;
+                
+                    
+                case 4: //抢购结束
+                    {
+                        xMsgBox.showMsgbox2("已抢购结束！", "提示", 0);
+                    }
+                    break;
+                case 5:
+                    {
+                        xMsgBox.showMsgbox2("已流拍！", "提示", 0);
+                    }
+                    break;
+                default:
+                    xMsgBox.showMsgbox2("未知状态，请联系客服！", "提示", 0);
+                    break;
+            }
+        }
+
+
+        function snapActionInfo(gid, paytype) {
+            function snapEvents_success(data) {
+
+                if (!data || data == 'undefined') {
+                    return;
+                }
+                if (data.length == 0) {
+                    FailHandle();
+                }
+                else {
+                    if (data.action == "error") {
+                        if(paytype==11)
+                        {
+                            xMsgBox.showMsgbox2(data.reason, "复活提示-机会无限,请您等待!", 0);
+                        }
+                        else
+                        {
+                            xMsgBox.showMsgbox2(data.reason, "提示", 0);
+                        }
+                    }
+                    else {
+
+                        if (data.snapRecords.length > 0) {
+                            updateSnaps(data.snapRecords[0]);
+                            updateShowDiv(data.snapRecords[0]);
+                            if(paytype==11)
+                            {
+                                freestatus=false;
+                                setLamp(freestatus);
+                            }
+                        }
+
+                    }
+                }
+                usersnapstatus = false;
+                requeststatus = false;
+            }
+
+            function snapEvents_error() {
+                usersnapstatus = false;
+                requeststatus = false;
+                pttemp = 0;
+                FailHandle();
+            }
+
+            function snapEvents_before() {
+                //状态控制
+                usersnapstatus = true;
+                requeststatus = true;
+            }
+            pttemp = paytype;
+            ajax_json_getV1('Services/AddSnapActive.ashx?gid=' + gid + "&ptpye=" + paytype + "&r=" + Math.random(), 10000, true, snapEvents_success, snapEvents_error, snapEvents_before);
+        }
+
+        function findSnapRecord(index) {
+            for (i = 0; i < snaps.snapRecords.length; i++) {
+                if (snaps.snapRecords[i].gid == index) {
+                    return snaps.snapRecords[i];
+                }
+            }
+            return null;
+        }
+
+
+        //翻页广告
+        function changeimgpage() {
+            if (currentbanner >= arrbanner.length - 1) {
+                changeimg(0);
+            }
+            else {
+                changeimg(currentbanner + 1);
+            }
+        }
+        function changeimg(index) {
+            if (index == currentbanner) {
+                return;
+            }
+            for (var i = 0; i < 3; i++) {
+                $("#imgcontain" + i).remove(".jt");
+                $("#imgcontain" + i).removeClass().addClass("img");
+                if (i == index) {
+                    $("#imgcontain" + i).prepend('<div class="jt"></div>');
+                    $("#imgcontain" + i).removeClass().addClass("img_h bh");
+                    $("#abig").attr("href", arrbanner[Number(index)][3]);
+                    //var p=$("#imgbig").attr("src");
+                    //$("#imgbig1").attr("src",p);
+                    $("#imgbig").attr("src", arrbanner[Number(index)][1]).attr("alt", arrbanner[Number(index)][2]);
+                    $("#imgbig").stop().fadeTo(0, 0.5).fadeTo(500, 1);
+
+                    //$("#imgbigdiv1").show().animate({left: '-740px'}, "slow");
+                    // $("#imgbigdiv").hide().animate({left: '-740px'}, "slow");
+                    currentbanner = i;
+                }
+            }
+        }
+        var currentbanner = -1;
+        var arrbanner = new Array(
+                          new Array("images/banner/banner1s.jpg", "images/banner/banner1.jpg", "标题", "http://www.hudou.com/FreeSnap.html"),
+                          new Array("images/banner/banner2s.jpg", "images/banner/banner2.jpg", "标题", "http://www.hudou.com/MySnap.html"),
+                          new Array("images/banner/banner3s.jpg", "images/banner/banner3.jpg", "标题", "http://www.hudou.com/GoodsSeat-19505.html")
+                          );
+
+        function bannerInit() {
+            var leftBox = $('<div></div>').addClass("flash_left");
+            var bA = $('<a></a>').attr("id", "abig").attr("href", arrbanner[0][3]);
+            var bImg = $('<img width="740" height="286"></img>').attr("id", "imgbig").attr("src", arrbanner[0][1]).attr("alt", arrbanner[0][2]);
+            //var bImgTemp=$('<img width="740" height="286"></img>').attr("id", "imgbig1").attr("src",arrbanner[0][1]).attr("alt",arrbanner[0][2]);
+            //var bImgDiv=$('<div></div>').attr("id", "imgbigdiv").addClass("yc");
+            //var bImgDivTemp=$('<div></div>').attr("id", "imgbigdiv1").addClass("yc").hide();
+            var rightBox = $('<div></div>').addClass("flash_right");
+            for (var m = 0; m < arrbanner.length; m++) {
+                var sImgBox = $('<div></div>').attr("id", "imgcontain" + m).addClass("img");
+                var sImg = $('<img width="217" height="84"></img>').attr("id", "imgs" + m).attr("src", arrbanner[Number(m)][0]).attr("alt", arrbanner[Number(m)][2]);
+                sImg.bind('mouseover', { msg: m }, function (event) {
+                    changeimg(event.data.msg);
+                });
+
+                sImgBox.append(sImg);
+                rightBox.append(sImgBox);
+            }
+            //bA.append(bImgDiv.append(bImg)).append(bImgDivTemp.append(bImgTemp));
+            leftBox.append(bA.append(bImg));
+            $("#mainBanner").append(leftBox).append(rightBox);
+            changeimg(0);
+        }
+
+        $(document).ready(function () {
+            bindMouseEvent();
+            ChangeNav(1);
+            bannerInit();
+            initAction("list");
+            if (query != null && query != "") {
+                $("#GetDouZPlan").ScrollTo(100); //移动到锚点
+            }
+            
+            if(loginStatus == "in")
+            {
+                setInterval("CheckVerification();", 30000);
+            }
+            CreatClockDialog();
+        });
+
+
+    </script>
+</head>
+<body>
+    <form name="aspnetForm" method="post" action="" id="aspnetForm">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJMjAwMzMyMTU2ZGQAE9Z3wey5yFM75+pa3WrEJz47zYUTeFNrDV7Ijw5gpg==" />
+</div>
+
+    <div class="nz">
+        <img src="images/nz02.png" onclick="ClockOption();" class="cursor" id="naozhong" /></div>
+    <div id="div_main" class="bh">
+        <div class="mf">
+            <img style="width: 80px; height: 45px;" src="images/mf.png" /></div>
+        <div class="main_top bh">
+            <div class="logo">
+                <a href="#">
+                    <img src="/images/index_logo.jpg" width="201" height="83" title="竞拍" /></a></div>
+            <div class="grzx">
+                <div class="a">
+                    <div class="hbq_top">
+                        <div class="x">
+                        </div>
+                        <div class="z">
+                            <ul>
+                                <li><a href="/help/help_index_01.htm" target="_blank" class="zi_12red">如何抢购</a></li>
+                                <li><a href="HelpIndex.html" class="zi_12red">新手帮助</a></li>
+                                <li><a href="/MyInVite.html">邀请好友</a></li>
+                                <li class="li1"><a href="/Information-6.html">联系胡豆</a></li>
+                            </ul>
+                        </div>
+                        <div class="y">
+                        </div>
+                    </div>
+                    
+<div class="gwc">
+          <div class="left">您的购物车有：<a href="#" id="CartGoodsCountPlan">0</a>件商品</div>
+          <div class="right">
+          <a href="/ShoppingCart.html"><img src="/images/al_gwc.jpg" border="0" /></a>
+          </div>
+        </div>
+                </div>
+                
+<div class="b">
+    <div class="dlzc"><a href="/Register.html"><img src="/images/al_zc.gif" /></a><a href="/Login.html"><img src="/images/al_xdl.gif" /></a></div>
+</div>
+
+            </div>
+        </div>
+        
+<div class="main_dh bh clear">
+    <div class="dh">
+        <ul>
+            <li><a href="/Default.html">
+                <img src="/images/dh_01.jpg" width="112" height="48" border="0" id="NavImage1" onmouseover="NavMouseChange(1,1)" onmouseout="NavMouseChange(1,2)" /></a></li>
+               <li><a href="/FreeSnap.html">
+                <img src="/images/dh_06.jpg" width="120" height="48" border="0" id="NavImage6" onmouseover="NavMouseChange(6,1)" onmouseout="NavMouseChange(6,2)" /></a></li>
+            <li><a href="/SeatSnap.html">
+                <img src="/images/dh_02.jpg" width="120" height="48" border="0" id="NavImage2" onmouseover="NavMouseChange(2,1)" onmouseout="NavMouseChange(2,2)" /></a></li>
+            <li><a href="/Snap.html">
+                <img src="/images/dh_03.jpg" width="120" height="48" border="0" id="NavImage3" onmouseover="NavMouseChange(3,1)" onmouseout="NavMouseChange(3,2)" /></a></li>
+            <li><a href="/MallDefault.html">
+                <img src="/images/dh_04.jpg" width="121" height="48" border="0" id="NavImage4" onmouseover="NavMouseChange(4,1)" onmouseout="NavMouseChange(4,2)" /></a></li>
+            <li><a href="Http://bbs.hudou.com/ForumIndex.html">
+                <img src="/images/dh_05.jpg" width="120" height="48" border="0" id="NavImage5" onmouseover="NavMouseChange(5,1)" onmouseout="NavMouseChange(5,2)" /></a></li>
+         
+        </ul>
+    </div>
+    <div class="search">
+        <div class="xlc">
+            <div onclick="SearchType();" style="cursor:hand";>
+                <img src="/images/tb_q.jpg"  id="SearchTypeImg" class="cursor"/></div>
+            <div class="jt">
+                <a href="javascript:SearchType();">
+                    <img src="/images/tb_jtx.gif" /></a></div>
+        </div>
+        <div class="bd">
+            <input type="text" class="bd_text_wk" id="sp-searchtext" onkeydown="sortint()" />
+            <input type="button" id="BtWebSearch" class="al_search" title="搜索"onclick="BtHeadSearch();" />
+        </div>
+        <div class="tab_xlc" style="display:none;" id="loginFldselectop">
+            <div>
+                <div class="xq">
+                    <a href="javascript:ChooseSearchType(1);">
+                        <img src="/images/tb_qgtb.gif" class="middle" /><span class="middle">抢购信息搜索</span></a></div>
+                <div class="xq">
+                    <a href="javascript:ChooseSearchType(2);">
+                        <img src="/images/tb_zrtb.gif" class="middle" /><span class="middle">转让信息搜索</span></a></div>
+                <div class="xq">
+                    <a href="javascript:ChooseSearchType(3);">
+                        <img src="/images/tb_yhtb.gif" class="middle" /><span class="middle">用户信息搜索</span></a></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var _chooseSearchType = 1;
+    function SearchType() {
+        $("#loginFldselectop").show();
+    }
+
+    function ChooseSearchType(type) {
+        _chooseSearchType = type;
+        $("#loginFldselectop").hide();
+        if (type == 1) {
+            $("#SearchTypeImg").attr("src", "/images/tb_q.jpg");
+        }
+        else if (type == 2) {
+            $("#SearchTypeImg").attr("src", "/images/tb_z.gif");
+        }
+        else if (type == 3) {
+            $("#SearchTypeImg").attr("src", "/images/tb_y.gif");
+        }
+    }
+    function BtHeadSearch() {
+        var _key = $("#sp-searchtext").val();
+        if (_key.length > 0) {
+            if (_chooseSearchType == 1) {
+                window.location.href = GlobalHref.GoodsSearch(_key + "_1");
+            }
+            else if (_chooseSearchType == 2) {
+                window.location.href = GlobalHref.TransferSearch(_key + "_1");
+            }
+            else if (_chooseSearchType == 3) {
+                window.location.href = GlobalHref.UserSearch(_key + "_1");
+            }
+        }
+        else {
+            xMsgBox.showMsgbox2("请填写搜索内容！", "错误", 2000);
+        }
+    }
+</script>
+
+        
+    <div id="mainBanner" class="div_flash bh clear">
+    </div>
+    <div class="bh clear">
+        <div class="main_left bh">
+        <div class="div_dwqg bg_dwqg bh">
+                <div class="bt bh">
+                    <div class="lm"><a href="/FreeSnap.html">免费复活抢，不抢白不抢！</a><span id="tttt"></span></div>
+                    <div class="float_l left_20">
+                        <a href="/HelpIndex_10.html" class="zi_12hui_30">什么是“复活抢购”?</a></div>
+                    <div class="float_r right_15">
+                        <a href="/FreeSnap.html" class="zi_12hui_30 right_10">查看全部</a>|<a
+                            href="/FreeSnapHistory-1.html" class="zi_12hui_30 left_10">抢购记录</a></div>
+                </div>
+                <div class="bh">
+                    <div class="cp bh"> <div class="cp_bt"><a href="/Goods-45186.html">富士 instax mini7S 拍立得相机（蓝色）<span>立拍立得，玩味生活</span></a></div><div class="cp_nr bg_cpc bh"><div class="bq_13"></div><div class="img"><div class="spzs"><a href="/Goods-45186.html"><img src="images/tp_tm.gif" width="160" height="135" alt="富士 instax mini7S 拍立得相机（蓝色）" /></a></div><a href="/GoodsSeat-45186.html"><img src="http://image.hudou.com//product/middle_20121029104101717.jpg" alt="富士 instax mini7S 拍立得相机（蓝色）" width="160" height="120" /></a></div><div class="xq"><div class="lb bh"><div class="a">市 场 价：</div><div class="b">￥599.00</div></div><div class="lb bh"><div class="a">循环时间：</div><div class="b">188秒</div></div><div id="cdtime45186" class="wkq">正在读取……</div><div id="sprice45186" class="zi_25redc" align="center">￥0.00</div><div class="lb bh"><div class="a">抢购用户：</div><div class="b"><a id="suser45186" href="/usershow-0.html" class="zi_12hei">------</a></div></div><div class="xz bh"><div class="top_3 right_10"><a href="#" class="lampred">红绿灯：</a></div><div class="top_3"><a href="/HelpIndex_10.html" class="zi_12red_x">免费复活规则&gt;&gt;</a></div></div><div align="center" class="top_15"><a id="btn45186" href="/Login.html" class="al_qyx"></a></div></div><div class="al" style="height:25px;"></div></div></div>
+<div class="cp bh"> <div class="cp_bt"><a href="/Goods-45160.html">手机话费充值30元<span>移动/联通/电信（只能充注册手机号码）</span></a></div><div class="cp_nr bg_cpc bh"><div class="bq_11"></div><div class="img"><div class="spzs"><a href="/Goods-45160.html"><img src="images/tp_tm.gif" width="160" height="135" alt="手机话费充值30元" /></a></div><a href="/GoodsSeat-45160.html"><img src="http://image.hudou.com//product/middle_20120530014244678.jpg" alt="手机话费充值30元" width="160" height="120" /></a></div><div class="xq"><div class="lb bh"><div class="a">市 场 价：</div><div class="b">￥30.00</div></div><div class="lb bh"><div class="a">循环时间：</div><div class="b">88秒</div></div><div id="cdtime45160" class="wkq">正在读取……</div><div id="sprice45160" class="zi_25redc" align="center">￥0.00</div><div class="lb bh"><div class="a">抢购用户：</div><div class="b"><a id="suser45160" href="/usershow-0.html" class="zi_12hei">------</a></div></div><div class="xz bh"><div class="top_3 right_10"><a href="#" class="lampred">红绿灯：</a></div><div class="top_3"><a href="/HelpIndex_10.html" class="zi_12red_x">免费复活规则&gt;&gt;</a></div></div><div align="center" class="top_15"><a id="btn45160" href="/Login.html" class="al_qyx"></a></div></div><div class="al" style="height:25px;"></div></div></div>
+<div class="cp bh"> <div class="cp_bt"><a href="/Goods-45181.html">内衣收纳盒三件套<span>清洁 防虫 防潮</span></a></div><div class="cp_nr bg_cpc bh"><div class="bq_11"></div><div class="img"><div class="spzs"><a href="/Goods-45181.html"><img src="images/tp_tm.gif" width="160" height="135" alt="内衣收纳盒三件套" /></a></div><a href="/GoodsSeat-45181.html"><img src="http://image.hudou.com//product/middle_20130220035610184.jpg" alt="内衣收纳盒三件套" width="160" height="120" /></a></div><div class="xq"><div class="lb bh"><div class="a">市 场 价：</div><div class="b">￥78.00</div></div><div class="lb bh"><div class="a">循环时间：</div><div class="b">88秒</div></div><div id="cdtime45181" class="wkq">正在读取……</div><div id="sprice45181" class="zi_25redc" align="center">￥0.00</div><div class="lb bh"><div class="a">抢购用户：</div><div class="b"><a id="suser45181" href="/usershow-0.html" class="zi_12hei">------</a></div></div><div class="xz bh"><div class="top_3 right_10"><a href="#" class="lampred">红绿灯：</a></div><div class="top_3"><a href="/HelpIndex_10.html" class="zi_12red_x">免费复活规则&gt;&gt;</a></div></div><div align="center" class="top_15"><a id="btn45181" href="/Login.html" class="al_qyx"></a></div></div><div class="al" style="height:25px;"></div></div></div>
+
+                </div>
+            </div>
+
+            
+            <div class="div_dwqg bg_qg bh">
+                <div class="tb">
+                    <img src="images/tb_ssqg.jpg" /></div>
+                <div class="bt bh">
+                    <div class="lm">
+                        <a href="/Snap.html">实时抢购</a></div>
+                    <div class="float_l left_20">
+                        <a href="helpindex.html" class="zi_12hui_30">什么是“实时抢购”?</a></div>
+                    <div class="float_r right_15">
+                        <a href="/Snap.html" class="zi_12hui_30 right_10">查看全部</a>|<a
+                            href="/SnapHistory-1.html" class="zi_12hui_30 left_10">抢购记录</a></div>
+                </div>
+                <div class="bh">
+                    <div class="cp bh"> <div class="cp_bt"><a href="/Goods-45126.html">6积分提货卡（不可转让）<span>用积分去京东商城买商品</span></a></div><div class="cp_nr bg_cpc bh"><div class="bq_3"></div><div class="img"><div class="spzs"><a href="/Goods-45126.html"><img src="images/tp_tm.gif" width="160" height="135" alt="6积分提货卡（不可转让）" /></a></div><a href="/GoodsSeat-45126.html"><img src="http://image.hudou.com//product/middle_20120329032147765.jpg" alt="6积分提货卡（不可转让）" width="160" height="120" /></a></div><div class="xq"><div class="lb bh"><div class="a">市 场 价：</div><div class="b">￥24.00</div></div><div class="lb bh"><div class="a">循环时间：</div><div class="b">40秒</div></div><div id="cdtime45126" class="wkq">正在读取……</div><div id="sprice45126" class="zi_25redc" align="center">￥0.00</div><div class="lb bh"><div class="a">抢购用户：</div><div class="b"><a id="suser45126" href="/usershow-0.html" class="zi_12hei">------</a></div></div><div class="xz bh"><div class="top_3 right_5"><a id="dzselect45126" href="javascript:dzSelect('45126')" class="rb0">3豆渣/次</a></div><div class="top_3 right_5 left_20"><a id="hdselect45126" href="javascript:hdSelect('45126')" class="rb1">1胡豆/次</a></div></div><div align="center" class="top_5"><a id="btn45126" href="/Login.html" class="al_qyx"></a></div></div><div class="al"><div class=" float_l"><a href="javascript:CjBuy(45126)"><img src="images/al_cjgm.gif" /></a></div><a href="javascript:jcxz(45126)"><img src="images/al_jcxz.gif" /></a></div></div></div>
+<div class="cp bh"> <div class="cp_bt"><a href="/Goods-45105.html">8积分提货卡（不可转让）<span>用积分去京东商城买商品</span></a></div><div class="cp_nr bg_cpc bh"><div class="bq_3"></div><div class="img"><div class="spzs"><a href="/Goods-45105.html"><img src="images/tp_tm.gif" width="160" height="135" alt="8积分提货卡（不可转让）" /></a></div><a href="/GoodsSeat-45105.html"><img src="http://image.hudou.com//product/middle_20120329032739359.jpg" alt="8积分提货卡（不可转让）" width="160" height="120" /></a></div><div class="xq"><div class="lb bh"><div class="a">市 场 价：</div><div class="b">￥32.00</div></div><div class="lb bh"><div class="a">循环时间：</div><div class="b">60秒</div></div><div id="cdtime45105" class="wkq">正在读取……</div><div id="sprice45105" class="zi_25redc" align="center">￥0.00</div><div class="lb bh"><div class="a">抢购用户：</div><div class="b"><a id="suser45105" href="/usershow-0.html" class="zi_12hei">------</a></div></div><div class="xz bh"><div class="top_3 right_5"><a id="dzselect45105" href="javascript:dzSelect('45105')" class="rb0">5豆渣/次</a></div><div class="top_3 right_5 left_20"><a id="hdselect45105" href="javascript:hdSelect('45105')" class="rb1">1胡豆/次</a></div></div><div align="center" class="top_5"><a id="btn45105" href="/Login.html" class="al_qyx"></a></div></div><div class="al"><div class=" float_l"><a href="javascript:CjBuy(45105)"><img src="images/al_cjgm.gif" /></a></div><a href="javascript:jcxz(45105)"><img src="images/al_jcxz.gif" /></a></div></div></div>
+<div class="cp bh"> <div class="cp_bt"><a href="/Goods-45127.html">6积分提货卡（不可转让）<span>用积分去京东商城买商品</span></a></div><div class="cp_nr bg_cpc bh"><div class="bq_3"></div><div class="img"><div class="spzs"><a href="/Goods-45127.html"><img src="images/tp_tm.gif" width="160" height="135" alt="6积分提货卡（不可转让）" /></a></div><a href="/GoodsSeat-45127.html"><img src="http://image.hudou.com//product/middle_20120329032147765.jpg" alt="6积分提货卡（不可转让）" width="160" height="120" /></a></div><div class="xq"><div class="lb bh"><div class="a">市 场 价：</div><div class="b">￥24.00</div></div><div class="lb bh"><div class="a">循环时间：</div><div class="b">40秒</div></div><div id="cdtime45127" class="wkq">正在读取……</div><div id="sprice45127" class="zi_25redc" align="center">￥0.00</div><div class="lb bh"><div class="a">抢购用户：</div><div class="b"><a id="suser45127" href="/usershow-0.html" class="zi_12hei">------</a></div></div><div class="xz bh"><div class="top_3 right_5"><a id="dzselect45127" href="javascript:dzSelect('45127')" class="rb0">3豆渣/次</a></div><div class="top_3 right_5 left_20"><a id="hdselect45127" href="javascript:hdSelect('45127')" class="rb1">1胡豆/次</a></div></div><div align="center" class="top_5"><a id="btn45127" href="/Login.html" class="al_qyx"></a></div></div><div class="al"><div class=" float_l"><a href="javascript:CjBuy(45127)"><img src="images/al_cjgm.gif" /></a></div><a href="javascript:jcxz(45127)"><img src="images/al_jcxz.gif" /></a></div></div></div>
+<div class="cp bh"> <div class="cp_bt"><a href="/Goods-45106.html">8积分提货卡（不可转让）<span>用积分去京东商城买商品</span></a></div><div class="cp_nr bg_cpc bh"><div class="bq_3"></div><div class="img"><div class="spzs"><a href="/Goods-45106.html"><img src="images/tp_tm.gif" width="160" height="135" alt="8积分提货卡（不可转让）" /></a></div><a href="/GoodsSeat-45106.html"><img src="http://image.hudou.com//product/middle_20120329032739359.jpg" alt="8积分提货卡（不可转让）" width="160" height="120" /></a></div><div class="xq"><div class="lb bh"><div class="a">市 场 价：</div><div class="b">￥32.00</div></div><div class="lb bh"><div class="a">循环时间：</div><div class="b">60秒</div></div><div id="cdtime45106" class="wkq">正在读取……</div><div id="sprice45106" class="zi_25redc" align="center">￥0.00</div><div class="lb bh"><div class="a">抢购用户：</div><div class="b"><a id="suser45106" href="/usershow-0.html" class="zi_12hei">------</a></div></div><div class="xz bh"><div class="top_3 right_5"><a id="dzselect45106" href="javascript:dzSelect('45106')" class="rb0">5豆渣/次</a></div><div class="top_3 right_5 left_20"><a id="hdselect45106" href="javascript:hdSelect('45106')" class="rb1">1胡豆/次</a></div></div><div align="center" class="top_5"><a id="btn45106" href="/Login.html" class="al_qyx"></a></div></div><div class="al"><div class=" float_l"><a href="javascript:CjBuy(45106)"><img src="images/al_cjgm.gif" /></a></div><a href="javascript:jcxz(45106)"><img src="images/al_jcxz.gif" /></a></div></div></div>
+<div class="cp bh"> <div class="cp_bt"><a href="/Goods-45139.html">手机话费10元快充<span>移动/电信（只能充注册手机号码）</span></a></div><div class="cp_nr bg_cpc bh"><div class="bq_3"></div><div class="img"><div class="spzs"><a href="/Goods-45139.html"><img src="images/tp_tm.gif" width="160" height="135" alt="手机话费10元快充" /></a></div><a href="/GoodsSeat-45139.html"><img src="http://image.hudou.com//product/middle_20111212012504369.jpg" alt="手机话费10元快充" width="160" height="120" /></a></div><div class="xq"><div class="lb bh"><div class="a">市 场 价：</div><div class="b">￥10.00</div></div><div class="lb bh"><div class="a">循环时间：</div><div class="b">70秒</div></div><div id="cdtime45139" class="wkq">正在读取……</div><div id="sprice45139" class="zi_25redc" align="center">￥0.00</div><div class="lb bh"><div class="a">抢购用户：</div><div class="b"><a id="suser45139" href="/usershow-0.html" class="zi_12hei">------</a></div></div><div class="xz bh"><div class="top_3 right_5"><a id="dzselect45139" href="javascript:dzSelect('45139')" class="rb0">5豆渣/次</a></div><div class="top_3 right_5 left_20"><a id="hdselect45139" href="javascript:hdSelect('45139')" class="rb1">1胡豆/次</a></div></div><div align="center" class="top_5"><a id="btn45139" href="/Login.html" class="al_qyx"></a></div></div><div class="al"><div class=" float_l"><a href="javascript:CjBuy(45139)"><img src="images/al_cjgm.gif" /></a></div><a href="javascript:jcxz(45139)"><img src="images/al_jcxz.gif" /></a></div></div></div>
+<div class="cp bh"> <div class="cp_bt"><a href="/Goods-45144.html">手机话费10元快充<span>移动/电信（只能充注册手机号码）</span></a></div><div class="cp_nr bg_cpc bh"><div class="bq_3"></div><div class="img"><div class="spzs"><a href="/Goods-45144.html"><img src="images/tp_tm.gif" width="160" height="135" alt="手机话费10元快充" /></a></div><a href="/GoodsSeat-45144.html"><img src="http://image.hudou.com//product/middle_20111212012504369.jpg" alt="手机话费10元快充" width="160" height="120" /></a></div><div class="xq"><div class="lb bh"><div class="a">市 场 价：</div><div class="b">￥10.00</div></div><div class="lb bh"><div class="a">循环时间：</div><div class="b">70秒</div></div><div id="cdtime45144" class="wkq">正在读取……</div><div id="sprice45144" class="zi_25redc" align="center">￥0.00</div><div class="lb bh"><div class="a">抢购用户：</div><div class="b"><a id="suser45144" href="/usershow-0.html" class="zi_12hei">------</a></div></div><div class="xz bh"><div class="top_3 right_5"><a id="dzselect45144" href="javascript:dzSelect('45144')" class="rb0">5豆渣/次</a></div><div class="top_3 right_5 left_20"><a id="hdselect45144" href="javascript:hdSelect('45144')" class="rb1">1胡豆/次</a></div></div><div align="center" class="top_5"><a id="btn45144" href="/Login.html" class="al_qyx"></a></div></div><div class="al"><div class=" float_l"><a href="javascript:CjBuy(45144)"><img src="images/al_cjgm.gif" /></a></div><a href="javascript:jcxz(45144)"><img src="images/al_jcxz.gif" /></a></div></div></div>
+
+                </div>
+            </div>
+            <div class="div_dwqg bg_qg bh" id="GetDouZPlan">
+                <div class="tb">
+                    <img src="images/tb_djqg.jpg" /></div>
+                <div class="bt bh">
+                    <div class="lm">
+                        <a href="/Snap.html">豆渣补给站</a></div>
+                    <div class="float_l left_20">
+                        <a href="helpindex_2.html" class="zi_12hui_30">豆渣与胡豆有什么区别 ?</a></div>
+                    <div class="float_r right_15">
+                        <a href="/Snap.html" class="zi_12hui_30 right_10">查看全部</a>|<a
+                            href="/SnapHistory-1.html" class="zi_12hui_30 left_10">抢购记录</a></div>
+                </div>
+                <div class="bh">
+                    <div class="cp bh"> <div class="cp_bt"><a href="/Goods-45078.html">6粒豆渣<span>比人民币值钱喔</span></a></div><div class="cp_nr bg_cpc bh"><div class="bq_3"></div><div class="img"><div class="spzs"><a href="/Goods-45078.html"><img src="images/tp_tm.gif" width="160" height="135" alt="6粒豆渣" /></a></div><a href="/GoodsSeat-45078.html"><img src="http://image.hudou.com//product/middle_20111122103635778.jpg" alt="6粒豆渣" width="160" height="120" /></a></div><div class="xq"><div class="lb bh"><div class="a">市 场 价：</div><div class="b">￥6.00</div></div><div class="lb bh"><div class="a">循环时间：</div><div class="b">40秒</div></div><div id="cdtime45078" class="wkq">正在读取……</div><div id="sprice45078" class="zi_25redc" align="center">￥0.00</div><div class="lb bh"><div class="a">抢购用户：</div><div class="b"><a id="suser45078" href="/usershow-0.html" class="zi_12hei">------</a></div></div><div class="xz bh"><div class="top_3 right_5"><a id="dzselect45078" href="javascript:dzSelect('45078')" class="rb0">1豆渣/次</a></div><div class="top_3 right_5 left_20"><a id="hdselect45078" href="javascript:hdSelect('45078')" class="rb1">1胡豆/次</a></div></div><div align="center" class="top_5"><a id="btn45078" href="/Login.html" class="al_qyx"></a></div></div><div class="al"><div class=" float_l"><a href="javascript:CjBuy(45078)"><img src="images/al_cjgm.gif" /></a></div><a href="javascript:jcxz(45078)"><img src="images/al_jcxz.gif" /></a></div></div></div>
+<div class="cp bh"> <div class="cp_bt"><a href="/Goods-45043.html">9粒豆渣<span>堪比美元啊</span></a></div><div class="cp_nr bg_cpc bh"><div class="bq_3"></div><div class="img"><div class="spzs"><a href="/Goods-45043.html"><img src="images/tp_tm.gif" width="160" height="135" alt="9粒豆渣" /></a></div><a href="/GoodsSeat-45043.html"><img src="http://image.hudou.com//product/middle_20111122104143184.jpg" alt="9粒豆渣" width="160" height="120" /></a></div><div class="xq"><div class="lb bh"><div class="a">市 场 价：</div><div class="b">￥9.00</div></div><div class="lb bh"><div class="a">循环时间：</div><div class="b">60秒</div></div><div id="cdtime45043" class="wkq">正在读取……</div><div id="sprice45043" class="zi_25redc" align="center">￥0.00</div><div class="lb bh"><div class="a">抢购用户：</div><div class="b"><a id="suser45043" href="/usershow-0.html" class="zi_12hei">------</a></div></div><div class="xz bh"><div class="top_3 right_5"><a id="dzselect45043" href="javascript:dzSelect('45043')" class="rb0">2豆渣/次</a></div><div class="top_3 right_5 left_20"><a id="hdselect45043" href="javascript:hdSelect('45043')" class="rb1">1胡豆/次</a></div></div><div align="center" class="top_5"><a id="btn45043" href="/Login.html" class="al_qyx"></a></div></div><div class="al"><div class=" float_l"><a href="javascript:CjBuy(45043)"><img src="images/al_cjgm.gif" /></a></div><a href="javascript:jcxz(45043)"><img src="images/al_jcxz.gif" /></a></div></div></div>
+<div class="cp bh"> <div class="cp_bt"><a href="/Goods-45079.html">6粒豆渣<span>比人民币值钱喔</span></a></div><div class="cp_nr bg_cpc bh"><div class="bq_3"></div><div class="img"><div class="spzs"><a href="/Goods-45079.html"><img src="images/tp_tm.gif" width="160" height="135" alt="6粒豆渣" /></a></div><a href="/GoodsSeat-45079.html"><img src="http://image.hudou.com//product/middle_20111122103635778.jpg" alt="6粒豆渣" width="160" height="120" /></a></div><div class="xq"><div class="lb bh"><div class="a">市 场 价：</div><div class="b">￥6.00</div></div><div class="lb bh"><div class="a">循环时间：</div><div class="b">40秒</div></div><div id="cdtime45079" class="wkq">正在读取……</div><div id="sprice45079" class="zi_25redc" align="center">￥0.00</div><div class="lb bh"><div class="a">抢购用户：</div><div class="b"><a id="suser45079" href="/usershow-0.html" class="zi_12hei">------</a></div></div><div class="xz bh"><div class="top_3 right_5"><a id="dzselect45079" href="javascript:dzSelect('45079')" class="rb0">1豆渣/次</a></div><div class="top_3 right_5 left_20"><a id="hdselect45079" href="javascript:hdSelect('45079')" class="rb1">1胡豆/次</a></div></div><div align="center" class="top_5"><a id="btn45079" href="/Login.html" class="al_qyx"></a></div></div><div class="al"><div class=" float_l"><a href="javascript:CjBuy(45079)"><img src="images/al_cjgm.gif" /></a></div><a href="javascript:jcxz(45079)"><img src="images/al_jcxz.gif" /></a></div></div></div>
+
+                </div>
+            </div>
+            <div class="div_dwqg bg_dwqg bh">
+                <div class="bt bh">
+                    <div class="lm">
+                        <a href="/SeatSnap.html">订位抢购</a></div>
+                    <div class="float_l left_20">
+                        <a href="helpindex_1.html" class="zi_12hui_30">什么是“订位抢购”?</a></div>
+                    <div class="float_r right_15">
+                        <a href="/SeatSnap.html" class="zi_12hui_30 right_10">查看全部</a>|<a
+                            href="/SeatSnapHistory-1.html" class="zi_12hui_30 left_10">抢购记录</a></div>
+                </div>
+                <div class="bh">
+                    <div class="cp bh"> <div class="cp_bt"><a href="/GoodsSeat-19501.html">2011款通用别克凯越1.6LX-AT<span>4挡自动前置前驱</span></a></div><div class="cp_nr bg_cpc bh"><div class="bq_2"></div><div class="img"><div class="spzs"><a href="/GoodsSeat-19501.html"><img src="images/tp_tm.gif" width="160" height="135" alt="2011款通用别克凯越1.6LX-AT" /></a></div><a href="/GoodsSeat-19501.html"><img src="http://image.hudou.com//product/middle_20111122062319481.jpg" alt="2011款通用别克凯越1.6LX-AT" width="160" height="120" /></a></div><div class="xq"><div class="lb bh"><div class="a">市 场 价：</div><div class="b">￥104,900.00</div></div><div class="lb bh"><div class="a">循环时间：</div><div class="b">90秒</div></div><div id="cdtime19501" class="wkq">满389席后预告<span>24</span>小时开抢</div><div id="sprice19501" class="zi_25redc" align="center">￥0.00</div><div class="lb bh"><div class="a">抢购用户：</div><div class="b"><a id="suser19501" href="/usershow-0.html" class="zi_12hei">------</a></div></div><div class="lb top_5"><span id="snum19501" class="middle">已订席位：3 (299胡豆/席)</span><a href="/SeatHelp.html"><img src="images/tb_wh.gif" width="12" height="16" class="middle left_5" /></a></div><div id="sinfo19501" class="zi_12qhui" align="center">订位抢购<span id="myseat19501">不消耗</span>胡豆/豆渣</div><div align="center" class="top_5"><a id="btn19501" href="/Login.html" class="al_qyx"></a></div></div><div class="al"><div class=" float_l"><a href="javascript:CjBuy(19501)"><img src="images/al_cjgm.gif" /></a></div><div class="float_r"><a href="/GoodsBuySeat-19501.html"><img src="images/al_ydxw.gif" /></a></div></div></div></div>
+<div class="cp bh"> <div class="cp_bt"><a href="/GoodsSeat-19500.html">苹果 （Apple） iPhone 4S<span>16G双核 A5 芯片</span></a></div><div class="cp_nr bg_cpc bh"><div class="bq_1"></div><div class="img"><div class="spzs"><a href="/GoodsSeat-19500.html"><img src="images/tp_tm.gif" width="160" height="135" alt="苹果 （Apple） iPhone 4S" /></a></div><a href="/GoodsSeat-19500.html"><img src="http://image.hudou.com//product/middle_20111122075917544.jpg" alt="苹果 （Apple） iPhone 4S" width="160" height="120" /></a></div><div class="xq"><div class="lb bh"><div class="a">市 场 价：</div><div class="b">￥6,099.00</div></div><div class="lb bh"><div class="a">循环时间：</div><div class="b">60秒</div></div><div id="cdtime19500" class="wkq">满35席后预告<span>24</span>小时开抢</div><div id="sprice19500" class="zi_25redc" align="center">￥0.00</div><div class="lb bh"><div class="a">抢购用户：</div><div class="b"><a id="suser19500" href="/usershow-0.html" class="zi_12hei">------</a></div></div><div class="lb top_5"><span id="snum19500" class="middle">已订席位：5 (199胡豆/席)</span><a href="/SeatHelp.html"><img src="images/tb_wh.gif" width="12" height="16" class="middle left_5" /></a></div><div id="sinfo19500" class="zi_12qhui" align="center">订位抢购<span id="myseat19500">不消耗</span>胡豆/豆渣</div><div align="center" class="top_5"><a id="btn19500" href="/Login.html" class="al_qyx"></a></div></div><div class="al"><div class=" float_l"><a href="javascript:CjBuy(19500)"><img src="images/al_cjgm.gif" /></a></div><div class="float_r"><a href="/GoodsBuySeat-19500.html"><img src="images/al_ydxw.gif" /></a></div></div></div></div>
+<div class="cp bh"> <div class="cp_bt"><a href="/GoodsSeat-19608.html">九阳 DJ14B-D06D 豆浆机<span>全钢营养王</span></a></div><div class="cp_nr bg_cpc bh"><div class="bq_2"></div><div class="img"><div class="spzs"><a href="/GoodsSeat-19608.html"><img src="images/tp_tm.gif" width="160" height="135" alt="九阳 DJ14B-D06D 豆浆机" /></a></div><a href="/GoodsSeat-19608.html"><img src="http://image.hudou.com//product/middle_20111123050332825.jpg" alt="九阳 DJ14B-D06D 豆浆机" width="160" height="120" /></a></div><div class="xq"><div class="lb bh"><div class="a">市 场 价：</div><div class="b">￥430.00</div></div><div class="lb bh"><div class="a">循环时间：</div><div class="b">40秒</div></div><div id="cdtime19608" class="wkq">满30席后预告<span>24</span>小时开抢</div><div id="sprice19608" class="zi_25redc" align="center">￥0.00</div><div class="lb bh"><div class="a">抢购用户：</div><div class="b"><a id="suser19608" href="/usershow-0.html" class="zi_12hei">------</a></div></div><div class="lb top_5"><span id="snum19608" class="middle">已订席位：2 (25胡豆/席)</span><a href="/SeatHelp.html"><img src="images/tb_wh.gif" width="12" height="16" class="middle left_5" /></a></div><div id="sinfo19608" class="zi_12qhui" align="center">订位抢购<span id="myseat19608">不消耗</span>胡豆/豆渣</div><div align="center" class="top_5"><a id="btn19608" href="/Login.html" class="al_qyx"></a></div></div><div class="al"><div class=" float_l"><a href="javascript:CjBuy(19608)"><img src="images/al_cjgm.gif" /></a></div><div class="float_r"><a href="/GoodsBuySeat-19608.html"><img src="images/al_ydxw.gif" /></a></div></div></div></div>
+
+                </div>
+            </div>
+            <div class="div_dwqg bg_qg bh">
+                <div class="tb">
+                    <img src="images/tb_hdsc.jpg" /></div>
+                <div class="bt bh">
+                    <div class="lm">
+                        <a href="/MallDefault.html">胡豆商城</a></div>
+                    <div class="float_l left_20">
+                    </div>
+                    <div class="float_r right_15">
+                        <a href="/MallDefault.html" class="zi_12hui_30 right_10">查看全部</a>|<a
+                            href="/Transferred.html" class="zi_12hui_30 left_10">抢购记录</a></div>
+                </div>
+                <div class="bh">
+                    <div class="cp bh"><div class="cp_bt"><a href="/Goods-19276.html" title="御泥坊清爽矿物面膜">御泥坊清爽矿物面膜<span>御泥坊清爽矿物面膜</span></a></div><div class="cp_nr bg_cpd bh"><div class="bq_2"></div><div class="img"><div class="spzs"><a href="/Goods-19276.html"><img src="images/tp_tm.gif" width="160" height="135" /></a></div><img src="http://image.hudou.com/Product/Middle_20111115052040303.jpg" width="160" height="120" /></div><div class="xq"><div class="lb1 bh"><div class="a">市 场 价：</div><div class="b">￥99.00</div></div><div class="lb1 bh"><div class="a">购 买 价：</div><div class="b zi_20redc">￥0.80</div></div><div class="lb1 bh"><div class="a">购买权所有者：</div><div class="b"><a href="/usershow-13484.html" style="color:#333333;">WDY819</a></div></div><div class="lb1 bh"><div class="a">转让所需胡豆：</div><div class="b zi_12sju"><strong>40</strong> 胡豆</div></div><div align="center" class="top_12 p_bottom_30"><input type="button" id="BtBuy_19276" value=" " class="al_wy" onClick="ToTransferBuy(19276)" /></div></div></div></div><div class="cp bh"><div class="cp_bt"><a href="/Goods-19547.html" title="可爱人形分线器">可爱人形分线器<span>小人形USB扩展HUB USB2.0</span></a></div><div class="cp_nr bg_cpd bh"><div class="bq_1"></div><div class="img"><div class="spzs"><a href="/Goods-19547.html"><img src="images/tp_tm.gif" width="160" height="135" /></a></div><img src="http://image.hudou.com/Product/Middle_20110921022251629.jpg" width="160" height="120" /></div><div class="xq"><div class="lb1 bh"><div class="a">市 场 价：</div><div class="b">￥35.00</div></div><div class="lb1 bh"><div class="a">购 买 价：</div><div class="b zi_20redc">￥0.03</div></div><div class="lb1 bh"><div class="a">购买权所有者：</div><div class="b"><a href="/usershow-14888.html" style="color:#333333;">gokudo</a></div></div><div class="lb1 bh"><div class="a">转让所需胡豆：</div><div class="b zi_12sju"><strong>15</strong> 胡豆</div></div><div align="center" class="top_12 p_bottom_30"><input type="button" id="BtBuy_19547" value=" " class="al_wy" onClick="ToTransferBuy(19547)" /></div></div></div></div>
+                </div>
+            </div>
+        </div>
+        <div class="main_right bh">
+            
+<div class="div_gg">
+    <div class="bt">
+        <div class="a">
+            <img src="images/tb_gg.gif" /></div>
+        <div class="b">
+            公告栏</div>
+        <div class=" float_l top_10 left_10">
+            <img src="images/bg_x.gif" /></div>
+        <div class="c">
+            <a href="Http://bbs.hudou.com/ForumTopic-1002_1.html">
+                <img src="images/tb_more.gif" /></a></div>
+    </div>
+    <div class="div_newsx bg_yyhb">
+        <ul>
+            <li><a href="Http://bbs.hudou.com/ForumPost-10020702_0_1.html" class="a1">网站改版升级公告</a></li><li><a href="Http://bbs.hudou.com/ForumPost-10020637_0_1.html" >3.10、3.14商品抢购出价显示异常</a></li><li><a href="Http://bbs.hudou.com/ForumPost-10019381_0_1.html" class="a1">恶意组织群抢处理公告</a></li><li><a href="Http://bbs.hudou.com/ForumPost-10019191_0_1.html" class="a1">小号、恶意注册、恶意抢购处理公告</a></li><li><a href="Http://bbs.hudou.com/ForumPost-10019169_0_1.html" class="a1">【复活抢购参抢感受及改进建议收</a></li><li><a href="Http://bbs.hudou.com/ForumPost-10019149_0_1.html" >胡豆闹铃上线测试</a></li><li><a href="Http://bbs.hudou.com/ForumPost-10017843_0_1.html" >论坛文明发帖及回复公告</a></li><li><a href="Http://bbs.hudou.com/ForumPost-10017550_0_1.html" >2012-06-28法拉利香水违规抢购处</a></li><li><a href="Http://bbs.hudou.com/ForumPost-10016140_0_1.html" >【胡豆网】支付宝充值暂停使用公告</a></li><li><a href="Http://bbs.hudou.com/ForumPost-10015831_0_1.html" class="a1">复活抢购功能上线及规则说明</a></li>
+        </ul>
+    </div>
+</div>
+
+            
+<div class="div_xc bh">
+                <div class="bt bh">
+                    <div class="b">
+                        达人相册</div>
+                    <div class="c">
+                        <a href="/DarenAlbumList.html">
+                            <img src="images/tb_more.gif" /></a></div>
+                </div>
+                <div class="xctp">
+                    <div class="rm">
+                        <a href="#">河南-<a href="/usershow-20587.html"  style="color:#333333;">天下无</a></a></div>
+                    <div class="img">
+                        <a href="/DarenUserAlbum-20587.html"><img src="http://image.hudou.com/WinReport/Thumb_20130118041954973.jpg" width="110" height="110" border="0"/></a></div>
+                </div>
+                <div class="xq">
+                    <div class="top_5">
+                        <a href="/DarenUserAlbum-20587.html" class="zi_12lvc_18">支持胡豆，一切尽在</a></div>
+                    <div class="top_10">
+                        市场价：￥<span>45.00</span></div>
+                    <div>
+                        成交价：￥<span>0.13</span></div>
+                    <div align="right" class="zi_12qhui top_10">
+                        2013-1-11 17:06:43</div>
+                </div>
+            </div>
+            <div class="top_10 content_right">
+                <div class="ad">
+                    <ul class="slider">
+                        <li><a href="http://www.hudou.com/FreeSnap.html" target="_blank"><img src="http://image.hudou.com//Advertise/20120530055235663.gif" width="250" height="174" border="0" /></a></li><li><a href="http://www.hudou.com/MyInVite.html" target="_blank"><img src="http://image.hudou.com//Advertise/20120628033440778.jpg" width="250" height="174" border="0" /></a></li><li><a href="http://www.hudou.com/Register.html" target="_blank"><img src="http://image.hudou.com//Advertise/20121030053103248.jpg" width="250" height="174" border="0" /></a></li>
+                    </ul>
+                    <ul class="num">
+                        <li>1</li><li>2</li><li>3</li>
+                    </ul>
+                </div>
+            </div>
+            
+<div class="div_dmdx bg_yyl bh clear">
+                <div class="bt bh">
+                    <div class="qd">
+                    </div>
+                    <div class="a">
+                        <img src="images/tb_dm.gif" /></div>
+                    <div class="b">
+                        豆民动向</div>
+                    <div class="c">
+                        </div>
+                </div>
+                <div class="lb">
+                    <ul>
+                       <li><img class="h_pic" src="http://image.hudou.com//face/m_no.jpg" width="20" height="20" /><a href="/usershow-22280.html" style="color:#333333;" title="DANYUMEISE">DANYUM:</a>注册成为普通豆民</li><li><img class="h_pic" src="http://image.hudou.com//face/m_no.jpg" width="20" height="20" /><a href="/usershow-22279.html" style="color:#333333;" title="刘阿斗">刘阿斗:</a>注册成为普通豆民</li><li><img class="h_pic" src="http://image.hudou.com//face/m_no.jpg" width="20" height="20" /><a href="/usershow-22278.html" style="color:#333333;" title="864713250">864713:</a>注册成为普通豆民</li><li><img class="h_pic" src="http://image.hudou.com//face/m_no.jpg" width="20" height="20" /><a href="/usershow-22277.html" style="color:#333333;" title="122222a">122222:</a>注册成为普通豆民</li><li><img class="h_pic" src="http://image.hudou.com//face/m_no.jpg" width="20" height="20" /><a href="/usershow-22276.html" style="color:#333333;" title="h283020433">h28302:</a>注册成为普通豆民</li><li><img class="h_pic" src="http://image.hudou.com//face/m_no.jpg" width="20" height="20" /><a href="/usershow-22275.html" style="color:#333333;" title="liujie">liujie:</a>注册成为普通豆民</li><li><img class="h_pic" src="http://image.hudou.com//face/m_no.jpg" width="20" height="20" /><a href="/usershow-22274.html" style="color:#333333;" title="zhangling">zhangl:</a>注册成为普通豆民</li><li><img class="h_pic" src="http://image.hudou.com//face/m_no.jpg" width="20" height="20" /><a href="/usershow-22273.html" style="color:#333333;" title="啊啊长达">啊啊长:</a>注册成为普通豆民</li><li><img class="h_pic" src="http://image.hudou.com//face/m_no.jpg" width="20" height="20" /><a href="/usershow-22272.html" style="color:#333333;" title="李凤玲">李凤玲:</a>注册成为普通豆民</li><li><img class="h_pic" src="http://image.hudou.com//face/m_no.jpg" width="20" height="20" /><a href="/usershow-22271.html" style="color:#333333;" title="zonghongya">zongho:</a>通过手机验证，获赠10豆渣</li>
+                    </ul>
+                </div>
+            </div>
+            
+<div class="div_hddr bh bg_yyl">
+                <div class="bt bh">
+                    <div class="b">
+                        胡豆达人排行榜</div>
+                    <div class="c">
+                        <a href="/Ranking.html">
+                            <img src="images/tb_qbbd.gif" /></a></div>
+                </div>
+                <div class="nr">
+                    <div class="lbbt bh">
+                        <div class="a">
+                            名次</div>
+                        <div class="b">
+                            用户名</div>
+                        <div class="c">
+                            成功抢购</div>
+                    </div>
+                    <div class="lbx bh"><div class="a1"><img src="images/sz_01-1.gif" width="22" height="25" /></div><div class="b"><a href="/usershow-11841.html" class="zi_12hei_25" style="color:#333333;">opp01</a></div><div class="c">404次</div></div><div class="lbx bh"><div class="a1"><img src="images/sz_02-1.gif" width="22" height="25" /></div><div class="b"><a href="/usershow-11845.html" class="zi_12hei_25" style="color:#333333;">kkm01</a></div><div class="c">384次</div></div><div class="lbx bh"><div class="a1"><img src="images/sz_03-1.gif" width="22" height="25" /></div><div class="b"><a href="/usershow-12589.html" class="zi_12hei_25" style="color:#333333;">jn10001981</a></div><div class="c">322次</div></div><div class="lbx bh"><div class="a"><img src="images/sz_04.gif" width="18" height="14" /></div><div class="b"><a href="/usershow-12830.html" class="zi_12hei_25" style="color:#333333;">团购</a></div><div class="c">315次</div></div><div class="lbx bh"><div class="a"><img src="images/sz_05.gif" width="18" height="14" /></div><div class="b"><a href="/usershow-12540.html" class="zi_12hei_25" style="color:#333333;">yubao</a></div><div class="c">281次</div></div><div class="lbx bh"><div class="a"><img src="images/sz_06.gif" width="18" height="14" /></div><div class="b"><a href="/usershow-12834.html" class="zi_12hei_25" style="color:#333333;">laiml</a></div><div class="c">278次</div></div><div class="lbx bh"><div class="a"><img src="images/sz_07.gif" width="18" height="14" /></div><div class="b"><a href="/usershow-13970.html" class="zi_12hei_25" style="color:#333333;">tonywucj</a></div><div class="c">243次</div></div><div class="lbx bh"><div class="a"><img src="images/sz_08.gif" width="18" height="14" /></div><div class="b"><a href="/usershow-12811.html" class="zi_12hei_25" style="color:#333333;">成交结束</a></div><div class="c">239次</div></div><div class="lbx bh"><div class="a"><img src="images/sz_09.gif" width="18" height="14" /></div><div class="b"><a href="/usershow-13442.html" class="zi_12hei_25" style="color:#333333;">蓝天</a></div><div class="c">214次</div></div><div class="lbx bh"><div class="a"><img src="images/sz_10.gif" width="18" height="14" /></div><div class="b"><a href="/usershow-12843.html" class="zi_12hei_25" style="color:#333333;">chenxiaoxiao</a></div><div class="c">213次</div></div>
+                  </div>
+            </div>
+            
+<div class="div_hddr bh bg_yyl">
+      <div class="bt bh">
+        <div class="b">商品抢购上限</div>
+      </div>
+      <div class="nr" style="background:none;">
+        <div class="lbbt bh">
+          <div class="b2">商品金额</div>
+          <div class="b1">受限时间</div>
+          <div class="c">赢取次数</div>
+        </div>
+        <div class="lbx bh">
+          <div class="b2">20000元以上</div>
+          <div class="b1"><a href="#" class="zi_12hei_25">365天</a></div>
+          <div class="c">1 次</div>
+        </div>
+        <div class="lbx bh">
+          <div class="b2">10000元以上</div>
+          <div class="b1"><a href="#" class="zi_12hei_25">120天</a></div>
+          <div class="c">1 次</div>
+        </div>
+        <div class="lbx bh">
+          <div class="b2">5000元以上</div>
+          <div class="b1"><a href="#" class="zi_12hei_25">90天</a></div>
+          <div class="c">1 次</div>
+        </div>
+        <div class="lbx bh">
+          <div class="b2">2000元以上</div>
+          <div class="b1"><a href="#" class="zi_12hei_25">60天</a></div>
+          <div class="c">1 次</div>
+        </div>
+        <div class="lbx bh">
+          <div class="b2">1000元以上</div>
+          <div class="b1"><a href="#" class="zi_12hei_25">30天</a></div>
+          <div class="c">2 次</div>
+        </div>
+        <div class="lbx bh">
+          <div class="b2">500元以上</div>
+          <div class="b1"><a href="#" class="zi_12hei_25">30天</a></div>
+          <div class="c">3 次</div>
+        </div>
+        <div class="lbw bh">
+          <div class="b2">500元以内</div>
+          <div class="b1"><a href="#" class="zi_12hei_25">1.5天</a></div>
+          <div class="c">1 次</div>
+        </div>
+        </div>
+    </div>
+            
+<div class="div_gg">
+                <div class="bt">
+                    <div class="a">
+                        <img src="images/tb_dm.gif" /></div>
+                    <div class="b">
+                        火热新闻向导</div>
+                    <div class="c">
+                        <a href="Http://bbs.hudou.com/ForumTopic-1001_1.html">
+                            <img src="images/tb_more.gif" /></a></div>
+                </div>
+                <div class="div_news bg_yyhot">
+                    <ul>
+                    <li><a href="Http://bbs.hudou.com/ForumPost-10003217_0_1.html"  title="胡豆内讯：iPod Touch到货">胡豆内讯：iPod Touch到货</a></li><li><a href="Http://bbs.hudou.com/ForumPost-10002196_0_1.html" class="a1" title="团购模式入冬,胡豆商城遭抢购一空">团购模式入冬,胡豆商城遭抢购一</a></li><li><a href="Http://bbs.hudou.com/ForumPost-10000231_0_1.html"  title="胡豆内讯：胡豆网纪念品按摩器到货">胡豆内讯：胡豆网纪念品按摩器到</a></li><li><a href="Http://bbs.hudou.com/ForumPost-10000224_0_1.html" class="a1" title="胡豆网CEO田宇谈购物诚信 呼吁业内共赢发展">胡豆网CEO田宇谈购物诚信 呼吁业</a></li><li><a href="Http://bbs.hudou.com/ForumPost-10000127_0_1.html"  title="胡豆内讯：胡豆网个性纪念品到货">胡豆内讯：胡豆网个性纪念品到货</a></li><li><a href="Http://bbs.hudou.com/ForumPost-10000005_0_1.html"  title="胡豆内讯:超炫白色吉他到货胡豆网">胡豆内讯:超炫白色吉他到货胡豆</a></li><li><a href="Http://bbs.hudou.com/ForumPost-10000004_0_1.html" class="a1" title="HUDOU.COM几经转手成交价格成谜">HUDOU.COM几经转手成交价格成谜</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+<div class="div_gg">
+    <div class="bt">
+        <div class="a">
+            <img src="images/tb_dm.gif" /></div>
+        <div class="b">
+            论坛热帖</div>
+        <div class="c">
+            <a href="Http://bbs.hudou.com/ForumTopic-1000_1.html">
+                <img src="images/tb_more.gif" /></a></div>
+    </div>
+    <div class="div_ltnews bg_yylt">
+        <ul>
+            <li><a href="Http://bbs.hudou.com/ForumPost-10011917_0_1.html"  title="胡豆抢购心得体会">胡豆抢购心得体会</a></li><li><a href="Http://bbs.hudou.com/ForumPost-10008980_0_1.html"  title="我说！！！有点耐心好不好！！！">我说！！！有点耐心好不好！！！</a></li><li><a href="Http://bbs.hudou.com/ForumPost-10008835_0_1.html" class="a1" title="胡豆网抢购攻略--opp01">胡豆网抢购攻略--opp01</a></li><li><a href="Http://bbs.hudou.com/ForumPost-10008826_0_1.html"  title="胡豆网抢购攻略----111222">胡豆网抢购攻略----111222</a></li><li><a href="Http://bbs.hudou.com/ForumPost-10008807_0_1.html"  title="胡豆网抢购攻略-正在读取中">胡豆网抢购攻略-正在读取中</a></li><li><a href="Http://bbs.hudou.com/ForumPost-10008783_0_1.html"  title="国家食品安全风险评估中心称苏泊尔炊具锰无害">国家食品安全风险评估中心称苏泊</a></li><li><a href="Http://bbs.hudou.com/ForumPost-10008421_0_1.html" class="a1" title="新豆民必看：如何玩转胡豆网！零风险策略！">新豆民必看：如何玩转胡豆网！零风</a></li><li><a href="Http://bbs.hudou.com/ForumPost-10008408_0_1.html"  title="胡豆网快乐购物分享活动*4">胡豆网快乐购物分享活动*4</a></li><li><a href="Http://bbs.hudou.com/ForumPost-10008251_0_1.html"  title="胡豆网快乐购物分享活动*3">胡豆网快乐购物分享活动*3</a></li><li><a href="Http://bbs.hudou.com/ForumPost-10008243_0_1.html"  title="胡豆网快乐购物分享活动*2">胡豆网快乐购物分享活动*2</a></li>
+        </ul>
+    </div>
+</div>
+
+        </div>
+    </div>
+
+    </div>
+    <div id="foot">
+        <div class="foot_bottom">
+            <div class="logo clear bh">
+                <div>
+                    <a href="#">
+                        <img src="images/logo_04.jpg" width="180" height="50" /></a></div>
+                <div>
+                    <a href="http://www.alipay.com/" target="_blank">
+                        <img src="/images/logo_01.jpg" /></a></div>
+                <div>
+                    <a href="http://www.chinabank.com.cn/" target="_blank">
+                        <img src="/images/logo_02.jpg" /></a></div>
+                <div>
+                    <a href="http://beian.cqnet110.gov.cn/webrecord/innernet/Welcome.jsp?bano=50010601500174"
+                        target="_blank">
+                        <img src="/images/logo_03.jpg" /></a></div>
+            </div>
+            <div class="left">
+                <img src="/images/index_logoh.jpg" /></div>
+            <div class="right">
+                <ul class="bh">
+                    <li><a href="/Information-1.html">关于胡豆网</a></li>
+                    <li><a href="/Information-2.html">人才招聘</a></li>
+                    <li><a href="/Information-3.html">商业合作</a></li>
+                    <li><a href="/Information-4.html">常见问题</a></li>
+                    <li><a href="/FriendLink.html">友情链接</a></li>
+                    <li><a href="/Information-6.html">联系胡豆</a></li>
+                    <li class="li1"><a href="/Information-7.html">法律声明</a></li>
+                </ul>
+                <div align="center">
+                    Copyright &copy; 2013 重庆名多科技有限公司版权所有 www.hudou.com All Rights Reserved</div>
+                <div align="center">
+                    渝ICP备13000976号</div>
+            </div>
+        </div>
+        <div style="width: 1px; height: 1px; overflow: hidden;">
+            <script src="http://s22.cnzz.com/stat.php?id=3364916&web_id=3364916&show=pic1" language="JavaScript"></script>
+        </div>
+    </div>
+    </form>
+    
+    <div id="lingPlan">
+        <object id="flash_tixing" width="0" height="0" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0"
+            classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
+            <param value="/mp3/zuozaixiangkoudenaduinannv.swf" name="movie">
+            <param value="high" name="quality">
+            <embed width="0" height="0" name="flash_tixing" type="application/x-shockwave-flash"
+                pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash"
+                quality="high" src="/mp3/zuozaixiangkoudenaduinannv.swf">
+        </object>
+    </div>
+</body>
+</html>
+<script type='text/javascript' src='http://chat.53kf.com/kf.php?arg=hudou&style=1'></script>
+
+
+<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="0" height="0" id="flash_tixing"><param name="movie" value="http://www.naobiao.com/web_system/naobiao_com_www/img/swf/zuozaixiangkoudenaduinannv.swf" /><param name="quality" value="high" /><embed src="http://www.naobiao.com/web_system/naobiao_com_www/img/swf/zuozaixiangkoudenaduinannv.swf" width="0" height="0" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" name="flash_tixing"></embed></object>
+
+

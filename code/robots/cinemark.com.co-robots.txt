@@ -1,0 +1,868 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<script src="js/getpeliculas.js"></script>
+<script src="js/getFechas.js"></script>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+ <meta property="og:title" content="Cinemark" />
+<meta property="og:image" content="http://desarrollo.manimator.com.co/cinemark/images/generico.png" />
+<link rel="shortcut icon" href="images/favicon.ico">
+
+<title>Cinemark</title>
+
+<link href="css/estilos.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/jqtransform.css" type="text/css" media="all" />
+
+<script type="text/javascript" src="js/swfobject.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga'<http://www.google-analytics.com/analytics.js','ga'>);
+
+  ga('create', 'UA-1651874-5', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+<script type="text/JavaScript">
+
+    var teatros = {
+        "Bogotá": ["Atlantis", "San Rafael", "Floresta", "Imperial"],
+        "Bucaramanga": ["Florida", "Megamall", "Caracoli"],
+        "Cúcuta": ["Ventura"],
+        "Ibagué": ["Multicentro"],
+        "Manizales": ["Cable Plaza"],
+        "Medellín": ["El Tesoro"],
+        "Neiva": ["San Pedro"],
+        "Palmira": ["Llanogrande", "Unicentro Palmira"],
+        "Pereira": ["Arboleda", "Unicentro Pereira"],
+        "Santa Marta": ["Buenavista"],
+        "Tunja": ["Unicentro Tunja"],
+        "Valledupar": ["Guatapuri"],
+        "Armenia": ["Unicentro Armenia"],
+        "Florencia": ["Gran Plaza Florencia"],
+        "Soledad": ["Gran Plaza Del Sol"],
+        "Cali": ["Pacific Mall"],
+	"Ipiales": ["Gran Plaza Ipiales"],
+	"Monteria": ["BUenavista MOnteria"],
+	"Yopal": ["Unicentro Yopal"],
+	"Pasto": ["Unicentro Pasto"]
+    };
+    var codTeatros = {
+        "Bogotá": ["791", "793", "792", "797", "2406", "2406"],
+        "Bucaramanga": ["789", "787", "2408"],
+        "Cúcuta": ["799"],
+        "Ibagué": ["788"],
+        "Manizales": ["794"],
+        "Medellín": ["790"],
+        "Neiva": ["2404"],
+        "Palmira": ["2403","2412"],
+        "Pereira": ["673", "2402"],
+        "Santa Marta": ["2416"],
+        "Tunja": ["779"],
+        "Valledupar": ["786"],
+        "Armenia": ["2405"],
+        "Florencia": ["2410"],
+        "Soledad": ["2411"],
+        "Cali": ["2414"],
+        "Ipiales": ["2415"],
+        "Monteria": ["2409"],
+        "Yopal": ["2413"],
+        "Pasto": ["2400"]
+    };
+
+
+
+    function ShowTeatros() {
+        var listBox = document.getElementById("ciudadA");
+        var temp = '<ul style="width: 135px; visibility: visible; display: none;">';
+        temp += '<li><a index="0" href="#" onClick="ShowPeliculas(0,&quot;Todos&quot;)">Teatros de la Ciudad</a></li>';
+        for (i = 0; i < listBox.length; i++) {
+            if (listBox.options[i].selected) {
+                var key = listBox.options[i].text;
+                if (teatros[key]) {
+                    for (j = 0; j < teatros[key].length; j++) {
+                        temp += '<li><a index="0" href="#" onClick="ShowPeliculas(' + codTeatros[key][j] + ',&quot;' + teatros[key][j] + '&quot;)">' + teatros[key][j] + '</a></li>';
+                    }
+                    document.getElementById('elements_teater').innerHTML = temp + '</ul>';
+                }
+            }
+        }
+        document.getElementById('select_teatro').innerHTML = '<span style="width: 112px;">Seleccione...</span><a class="jqTransformSelectOpen" href="#" ></a>';
+        document.getElementById('select_pelicula').innerHTML = '<span style="width: 112px;">Debe Seleccionar teatro</span><a class="jqTransformSelectOpen" href="#" ></a>';
+        document.getElementById('select_fecha').innerHTML = '<span style="width: 112px;">Debe Seleccionar pelicula</span><a class="jqTransformSelectOpen" href="#" ></a>';
+        document.getElementById('botonBuscar').innerHTML = '<div style="visibility: hidden;" ><input name="buscar" type="button" value="Buscar" /></div>';
+
+    }
+
+    function ShowPeliculas(teatro, nomteatro) {
+        var listBox = document.getElementById("ciudadA");
+        document.getElementById('select_teatro').innerHTML = '<span style="width: 112px;">' + nomteatro + '</span><a class="jqTransformSelectOpen" href="#" onClick="ShowTeatros()"></a>'
+        var temp2 = '<ul style="width: 135px; visibility: hidden; display: none;">';
+        temp2 += '<li><a index="0" href="#" onClick="ShowPeliculas(0,&quot;Todos&quot;)">Teatros de la Ciudad</a></li>';
+        var ciudad;
+        for (i = 0; i < listBox.length; i++) {
+            if (listBox.options[i].selected) {
+                ciudad = listBox.options[i].value;
+                var key = listBox.options[i].text;
+                if (teatros[key]) {
+                    for (j = 0; j < teatros[key].length; j++) {
+                        temp2 += '<li><a index="0" href="#" onClick="ShowPeliculas(' + codTeatros[key][j] + ',&quot;' + teatros[key][j] + '&quot;)">' + teatros[key][j] + '</a></li>';
+                    }
+                    document.getElementById('elements_teater').innerHTML = temp2 + '</ul>';
+                }
+            }
+        }
+
+        document.getElementById('frameAvanzado').innerHTML = '<iframe style="visibility: hidden;" src="guardarDatosAvanzado.aspx?ciudad=' + ciudad + '&nomteatro=' + nomteatro + '&teatro=' + teatro + '" width="1" height="1" border="0" ></iframe>'
+
+        actualizarPeliculas(); //esto lleva el elements_pelicula
+        document.getElementById('select_fecha').innerHTML = '<span style="width: 112px;">Debe Seleccionar pelicula</span><a class="jqTransformSelectOpen" href="#" ></a>';
+        document.getElementById('botonBuscar').innerHTML = '<div style="visibility: hidden;" ><input name="buscar" type="submit" value="Buscar" /></div>';
+
+    }
+
+    function ShowFechas(teatro, nomteatro, pelicula, nompelicula) {
+
+        var listBox = document.getElementById("ciudadA");
+        var ciudad;
+        for (i = 0; i < listBox.length; i++) {
+            if (listBox.options[i].selected) {
+                ciudad = listBox.options[i].value;
+            }
+        }
+
+        document.getElementById('frameAvanzado').innerHTML = '<iframe style="visibility: hidden;" src="guardarDatosAvanzado.aspx?ciudad=' + ciudad + '&nomteatro=' + nomteatro + '&nompelicula=' + nompelicula + '&teatro=' + teatro + '&pelicula=' + pelicula + '" width="1" height="1" border="0" ></iframe>'
+
+
+        actualizarPeliculasNo();
+        document.getElementById('select_pelicula').innerHTML = '<span style="width: 112px;">' + nompelicula + '</span><a class="jqTransformSelectOpen" href="#"  onClick="ShowPeliculas(' + teatro + ',&quot;' + nomteatro + '&quot;)" ></a>'
+
+
+        actualizarFechas(); //esto lleva el elements_fecha
+        document.getElementById('botonBuscar').innerHTML = '<div style="visibility: hidden;" ><input name="buscar" type="submit" value="Buscar" /></div>';
+
+
+
+    }
+
+    function ShowHorarios(teatro, nomteatro, pelicula, nompelicula, fecha) {
+
+        var listBox = document.getElementById("ciudadA");
+        var ciudad;
+        for (i = 0; i < listBox.length; i++) {
+            if (listBox.options[i].selected) {
+                ciudad = listBox.options[i].value;
+            }
+        }
+        document.getElementById('frameAvanzado').innerHTML = '<iframe style="visibility: hidden;" src="guardarDatosAvanzado.aspx?ciudad=' + ciudad + '&nomteatro=' + nomteatro + '&nompelicula=' + nompelicula + '&teatro=' + teatro + '&pelicula=' + pelicula + '" width="1" height="1" border="0" ></iframe>'
+
+        actualizarFechasNo();
+        document.getElementById('select_fecha').innerHTML = '<span style="width: 112px;">' + fecha + '</span><a class="jqTransformSelectOpen" href="#" onClick="ShowFechas(' + teatro + ',&quot;' + nomteatro + '&quot;,' + pelicula + ',&quot;' + nompelicula + '&quot;)"></a>'
+
+        document.getElementById('botonBuscar').innerHTML = '<div style="visibility: visible; background-color: rgb(224, 57, 43); padding: 1px; border-radius: 4px 4px 4px 4px; font-family: HelveticaNeueLTStd57Condensed; width: 60px; text-align: center; margin: 0pt auto; color: rgb(255, 255, 255) ! important; cursor: pointer;" ><input class="jqtransform" name="buscar" type="button" value="Buscar" onClick="Buscar(' + teatro + ',&quot;' + nomteatro + '&quot;,' + pelicula + ',&quot;' + nompelicula + '&quot;,&quot;' + fecha + '&quot;)" style="color: rgb(255, 255, 255); cursor: pointer;" /></div>';
+
+
+    }
+
+    function Buscar(teatro, nomteatro, pelicula, nompelicula, fecha) {
+
+        var listBox = document.getElementById("ciudadA");
+        var ciudad;
+        for (i = 0; i < listBox.length; i++) {
+            if (listBox.options[i].selected) {
+                ciudad = listBox.options[i].value;
+            }
+        }
+
+        window.location = 'res_busqueda.aspx?ciudad=' + ciudad + '&teatro=' + teatro + '&pelicula=' + pelicula + '&fecha=' + fecha;
+
+    }
+
+    
+    </script>
+
+
+
+<body >
+
+ 
+
+<div class="contenedorc" style="position:relative;">
+ <a href="http://www.cinemark.com.co/newface/clasicos6.aspx"><div class="enlace" style="position:absolute;">  </div></a>
+
+
+<div class="sabana" style="left: 50%; margin-left: -511px; position: relative;">
+  <div class="head">
+    <div align="left"><img src="http://coimages.cinemark.com.co/newface/web/head_left.jpg" width="3" height="144" align="left" /></div>
+    <div class="backhead"> 
+   	 <div class="logohead"><a href="http://www.cinemark.com.co/newface/index.aspx"><img src="http://coimages.cinemark.com.co/newface/web/logocinemarkhead.png" width="302" height="30" align="left"/></a></div>
+      
+
+<div id="simple" class="busqueda">
+
+
+
+    <div class="menu-top">
+        <ul>
+            <li class="first">
+            
+            <a href="http://www.cinemark.com.co/newface/clubelite/autenticacion.aspx">Iniciar Sesión</a>
+            
+            </li>
+            <li><a href="http://www.cinemark.com.co/newface/clubelite/registro.aspx?mod=NO&pri=SI&current=socios">Regístrate</a></li>
+            <li class="last"><a href="http://www.cinemark.com.co/newface/contactanos.aspx">Contáctanos</a></li>
+        </ul>
+    </div>
+    <img src="http://coimages.cinemark.com.co/newface/web/encuentraleft.png" width="11" height="43" align="left" />
+    <div class="backbusqueda">
+        <span class="txt_top">SELECCIONA TU CIUDAD</span>
+        <div class="porciudad2">
+            <div class="selecity2">
+                <form class="jqtransform">
+                    
+
+                    <select name="ciudad" onChange="MM_jumpMenu('parent',this,0)">
+                        
+                                
+                                <option  value="http://www.cinemark.com.co/newface/teatros.aspx?ciudad=1" >Armenia</option>
+                                
+                                
+                                
+                                <option  value="http://www.cinemark.com.co/newface/teatros.aspx?ciudad=2" >Bogotá</option>
+                                
+                                
+                                
+                                <option  value="http://www.cinemark.com.co/newface/teatros.aspx?ciudad=3" >Bucaramanga</option>
+                                
+                                
+                                
+                                <option  value="http://www.cinemark.com.co/newface/teatros.aspx?ciudad=4" >Cali</option>
+                                
+                                
+                                
+                                <option  value="http://www.cinemark.com.co/newface/teatros.aspx?ciudad=5" >Cúcuta</option>
+                                
+                                
+                                
+                                <option  value="http://www.cinemark.com.co/newface/teatros.aspx?ciudad=6" >Florencia</option>
+                                
+                                
+                                
+                                <option  value="http://www.cinemark.com.co/newface/teatros.aspx?ciudad=7" >Ibagué</option>
+                                
+                                
+                                
+                                <option  value="http://www.cinemark.com.co/newface/teatros.aspx?ciudad=8" >Ipiales</option>
+                                
+                                
+                                
+                                <option  value="http://www.cinemark.com.co/newface/teatros.aspx?ciudad=9" >Manizales</option>
+                                
+                                
+                                
+                                <option  value="http://www.cinemark.com.co/newface/teatros.aspx?ciudad=10" >Medellín</option>
+                                
+                                
+                                
+                                <option  value="http://www.cinemark.com.co/newface/teatros.aspx?ciudad=11" >Montería</option>
+                                
+                                
+                                
+                                <option  value="http://www.cinemark.com.co/newface/teatros.aspx?ciudad=12" >Neiva</option>
+                                
+                                
+                                
+                                <option  value="http://www.cinemark.com.co/newface/teatros.aspx?ciudad=13" >Palmira</option>
+                                
+                                
+                                
+                                <option  value="http://www.cinemark.com.co/newface/teatros.aspx?ciudad=14" >Pasto</option>
+                                
+                                
+                                
+                                <option  value="http://www.cinemark.com.co/newface/teatros.aspx?ciudad=15" >Pereira</option>
+                                
+                                
+                                
+                                <option  value="http://www.cinemark.com.co/newface/teatros.aspx?ciudad=16" >Santa Marta</option>
+                                
+                                
+                                
+                                <option  value="http://www.cinemark.com.co/newface/teatros.aspx?ciudad=17" >Soledad</option>
+                                
+                                
+                                
+                                <option  value="http://www.cinemark.com.co/newface/teatros.aspx?ciudad=18" >Tunja</option>
+                                
+                                
+                                
+                                <option  value="http://www.cinemark.com.co/newface/teatros.aspx?ciudad=19" >Valledupar</option>
+                                
+                                
+                                
+                                <option  value="http://www.cinemark.com.co/newface/teatros.aspx?ciudad=20" >Yopal</option>
+                                
+                                
+                    </select>
+                   </form>
+            </div>
+        </div>
+    </div>
+    <img src="http://coimages.cinemark.com.co/newface/web/encuentraright.png" width="11" height="43" align="right" />
+</div>
+
+<div class="boton-compra">
+    <a href="http://www.cinemark.com.co/newface/clubelite/selecciontipocompra.aspx"><img src="images/btn-compra.png" width="147" height="47" /></a>
+</div>
+
+<div class="boton-reserva">
+    <a href="http://www.cinemark.com.co/newface/reservas.aspx?current=reservas"><img src="images/btn-reservas.png" width="197" height="63" /></a>
+</div>
+
+
+
+       <div class="menutop">
+       		<ul>
+            
+            
+            	<li><a href="http://www.cinemark.com.co/newface/index.aspx?current=home"><span>HOME</span></a></li>
+             
+                <li><a href="http://www.cinemark.com.co/newface/teatros.aspx?current=teatros"><span>TEATROS</span></a></li>
+             
+                <li><a href="http://www.cinemark.com.co/newface/promociones.aspx?current=socios"><span>ELITE GOLD</span></a></li>
+             
+                <li><a href="http://www.cinemark.com.co/newface/cartelera.aspx?current=cartelera"><span>CARTELERA</span></a></li>
+             
+                <li><a href="http://www.cinemark.com.co/newface/estrenos.aspx?current=estrenos"><span>ESTRENOS</span></a></li>
+             
+                <li><a href="http://www.cinemark.com.co/newface/tarifas.aspx?current=tarifas"><span>TARIFAS</span></a></li>
+             
+                <li><a href="http://www.cinemark.com.co/newface/reservas.aspx?current=reservas"><span>RESERVAS</span></a></li>
+             
+                <li><a href="http://www.cinemark.com.co/newface/ventas.aspx?current=ventas"><span>CINE MARKETING</span></a></li>
+             
+            </ul>
+      </div>
+       
+    </div>
+    	 	<div align="left"><img src="http://coimages.cinemark.com.co/newface/web/head_right.jpg" width="3" height="144" align="right" /></div>
+  </div>
+  <div class="contenido">
+        
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link type="text/css" href="js/theme.css" rel="stylesheet" />
+<link rel="stylesheet" href="themes/default/default.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="themes/pascal/pascal.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="themes/orman/orman.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="css/nivo-slider.css" type="text/css" media="screen" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="js/encuesta.js"></script>
+<script type="text/javascript" src="js/fancybox/fancybox.js"></script>
+<script type="text/javascript" src="javascript/funciones.js"></script>
+<!-- Mostrar teatros -->
+
+<!--CONTENIDO-->
+
+<div class="arrowmenu-home"></div>
+<div id="slider_home">
+	<a href="banners/slider1.aspx"><img src="http://coimages.cinemark.com.co/newface/banners/slide1.jpg"/></a>
+	<a href="banners/slider2.aspx"><img src="http://coimages.cinemark.com.co/newface/banners/slide2.jpg"/></a>
+	<a href="banners/slider3.aspx"><img src="http://coimages.cinemark.com.co/newface/banners/slide3.jpg"/></a>
+	<a href="banners/slider4.aspx"><img src="http://coimages.cinemark.com.co/newface/banners/slide4.jpg"/></a>
+</div>
+<div class="cartelera">
+	<div class="carteleratitulo"><a href="cartelera.aspx"><span>EN CARTELERA</span></a></div>   
+	<div style="display:none" class="pikachoose-baby">
+		<ul id="pikame1" >
+			
+					<li>
+						<a href="detallepelicula.aspx?comment=116990">
+							<img src="http://coimages.cinemark.com.co/newface/peliculas/116990.jpg"/>
+						</a>
+					</li>
+					
+					<li>
+						<a href="detallepelicula.aspx?comment=116986">
+							<img src="http://coimages.cinemark.com.co/newface/peliculas/116986.jpg"/>
+						</a>
+					</li>
+					
+					<li>
+						<a href="detallepelicula.aspx?comment=116980">
+							<img src="http://coimages.cinemark.com.co/newface/peliculas/116980.jpg"/>
+						</a>
+					</li>
+					
+					<li>
+						<a href="detallepelicula.aspx?comment=116976">
+							<img src="http://coimages.cinemark.com.co/newface/peliculas/116976.jpg"/>
+						</a>
+					</li>
+					
+					<li>
+						<a href="detallepelicula.aspx?comment=116972">
+							<img src="http://coimages.cinemark.com.co/newface/peliculas/116972.jpg"/>
+						</a>
+					</li>
+					
+					<li>
+						<a href="detallepelicula.aspx?comment=116503">
+							<img src="http://coimages.cinemark.com.co/newface/peliculas/116503.jpg"/>
+						</a>
+					</li>
+					
+					<li>
+						<a href="detallepelicula.aspx?comment=116472">
+							<img src="http://coimages.cinemark.com.co/newface/peliculas/116472.jpg"/>
+						</a>
+					</li>
+					
+					<li>
+						<a href="detallepelicula.aspx?comment=116267">
+							<img src="http://coimages.cinemark.com.co/newface/peliculas/116267.jpg"/>
+						</a>
+					</li>
+					
+		</ul>
+	</div>
+</div>
+<div class="cartelera">
+	<div class="carteleratitulo"><a href="estrenos.aspx"><span>PRÓXIMOS ESTRENOS</span></a></div>
+	<div style="display:none" class="pikachoose-baby">
+		<ul id="pikame2" >
+			
+					<li>
+						<a href="detalleestreno.aspx?comment=2564">
+							<img src="http://coimages.cinemark.com.co/newface/estrenos/2564.jpg" />
+						</a>
+					</li>
+					
+					<li>
+						<a href="detalleestreno.aspx?comment=2561">
+							<img src="http://coimages.cinemark.com.co/newface/estrenos/2561.jpg" />
+						</a>
+					</li>
+					
+					<li>
+						<a href="detalleestreno.aspx?comment=2512">
+							<img src="http://coimages.cinemark.com.co/newface/estrenos/2512.jpg" />
+						</a>
+					</li>
+					
+					<li>
+						<a href="detalleestreno.aspx?comment=2474">
+							<img src="http://coimages.cinemark.com.co/newface/estrenos/2474.jpg" />
+						</a>
+					</li>
+					
+		</ul>
+	</div>
+</div>
+
+    <!--<div class="cinemarksocial">    
+	<a href="http://www.cinemark.com.co/newface/res_busqueda.aspx"><img src="http://www.cinemark.com.co/newfaceimagenes/banners/busca.jpg" width="328" height="263" /></a>
+    </div>  -->
+
+<!-- INICIO DEL CONTENEDOR DEL BUSCADOR -->
+<div class="news">
+	<div class="encuesta_home">
+		<div class="top_encuesta">
+			<p class="redtex_encuesta">BUSCADOR DE PELÍCULAS</p>
+		</div>
+		<div class="c_ecuestas">
+			<iframe src="http://www.cinemark.com.co/buscador/index.asp" frameborder="0" width="325" height="219">
+				El Navegador no soporta iFrame
+			</iframe>
+			<img src="images/2_p_h.jpg" width="333" height="8" />
+		</div>
+	</div>
+</div>
+<!-- FIN DEL CONTENEDOR DEL BUSCADOR -->
+<div class="cinemarksocial">
+	<a href="http://www.cinemark.com.co/newface/banners/centro.aspx" >
+		<img src="http://coimages.cinemark.com.co/newface/banners/centro.jpg" width="328" height="263" />
+	</a>
+</div>
+<div class="horaloca">
+	<a href="http://www.cinemark.com.co/newface/banners/primero.aspx" >
+		<img src="http://coimages.cinemark.com.co/newface/banners/primero.jpg" width="300" height="250" />
+	</a>
+</div>
+<div class="news"> 
+	<div id="encuesta">
+		<div class="encuesta_home">
+			<div class="top_encuesta">
+				<p class="redtex_encuesta" id="encuestacinemark">CINEMARK PREGUNTA</p>
+			</div>
+			<div class="c_ecuestas">
+				<p class="pre_title">¿Cuál de los siguientes estrenos te genera mayor expectativa?</p>
+				<div class="encu_home">
+					<table width="234" border="0" cellspacing="3" cellpadding="0">
+						
+						<tr>
+							<td align="center" valign="top" ><input name='radiobutton' type='radio' value='radiobutton' onClick='actualizarEncuesta(&quot;NO&quot;,&quot;primera&quot;)' checked /></td>
+							<td class="tex-encuesta-homme"><label for="radio">Misión Rescate</label></td>
+						</tr>
+						
+						<tr>
+							<td align="center" valign="top" ><input name='radiobutton' type='radio' value='radiobutton' onClick='actualizarEncuesta(&quot;NO&quot;,&quot;segunda&quot;)' /></td>
+							<td class="tex-encuesta-homme"><label for="radio">Se Nos Armó La Gorda Al Doble</label></td>
+						</tr>
+						
+						<tr>
+							<td align="center" valign="top" ><input name='radiobutton' type='radio' value='radiobutton' onClick='actualizarEncuesta(&quot;NO&quot;,&quot;tercera&quot;)' /></td>
+							<td class="tex-encuesta-homme"><label for="radio">La Casa Del Demonio</label></td>
+						</tr>
+						
+						<tr>
+							<td align="center" valign="top" ><input name='radiobutton' type='radio' value='radiobutton' onClick='actualizarEncuesta(&quot;NO&quot;,&quot;cuarta&quot;)' /></td>
+							<td class="tex-encuesta-homme"><label for="radio">Sin Escape</label></td>
+						</tr>
+						
+						<tr>
+							<td align="center" valign="top" ><input name='radiobutton' type='radio' value='radiobutton' onClick='actualizarEncuesta(&quot;NO&quot;,&quot;quinta&quot;)'/></td>
+							<td class="tex-encuesta-homme"><label for="radio">Cuarto De Guerra</label></td>
+						</tr>
+						
+					</table>
+				</div>
+				<div class="botones_enc">
+					<div class="bt_encuesta">
+						<a href="#encuestacinemark"  onClick='actualizarEncuesta(&quot;SI&quot;,&quot;primera&quot;)'>
+							<span>Votar</span>
+						</a>
+					</div>
+					<div class="bt_encuesta">
+						<a href="#encuestacinemark"  onClick='actualizarEncuesta(&quot;NO&quot;,&quot;primera&quot;)'>
+							<span>Ver resultado</span>
+						</a>
+					</div>
+				</div>
+			</div>
+			<img src="http://coimages.cinemark.com.co/newface/web/2_p_h.jpg" width="333" height="8" />
+		</div>
+	</div>
+</div>
+<div class="redes">
+	<div class="cmfacebook">
+		<iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2FCinemark.Colombia&amp;width=333&amp;colorscheme=light&amp;connections=50&amp;stream=false&amp;header=false&amp;height=262" scrolling="no" frameborder="0" style="overflow: hidden; height: 160px; border: medium none ! important; width: 328px;" allowTransparency="true"></iframe>
+	</div>
+	<a href="https://twitter.com/#!/CinemarkCol" target="_blank">
+		<img src="http://coimages.cinemark.com.co/newface/web/twitter_btn.jpg" width="331" height="89" />
+	</a>   
+</div>
+<div class="targetaeg">
+	<a href="http://www.cinemark.com.co/newface/banners/segundo.aspx" >
+		<img src="http://coimages.cinemark.com.co/newface/banners/segundo.jpg" width="300" height="250" />
+	</a>
+</div>
+
+<div class="clear"></div>
+
+<div id="beneficios">
+
+</div>
+<!--CONTENIDO-->
+<script src="js/jquery.exposure.js?v=0.9" type="text/javascript"></script>
+<script type="text/javascript" src="js/jquery.jqtransform.js" ></script>
+<script language="javascript">
+	var tansform = jQuery.noConflict();
+	tansform(function () {
+		tansform("form.jqtransform").jqTransform();
+	});
+</script>
+<script type="text/javascript">
+	var buscar = jQuery.noConflict();
+	buscar(document).ready(function () {
+		buscar("#avanzado").hide();
+		buscar("#btn_avanzado").click(function () {
+			buscar("#simple").hide("slow");
+			buscar("#avanzado").show("slow");
+		});
+		buscar("#cerrar").click(function () {
+			buscar("#simple").show("slow");
+			buscar("#avanzado").hide("slow");
+		});
+	});
+</script>
+<script type="text/javascript" src="js/jquery-lib.js"></script>
+<script type="text/javascript" src="js/jquery.pikachoose.js"></script>
+<script type="text/javascript" src="js/jquery.nivo.slider.pack.js"></script>
+<script type="text/javascript">
+	var slide = jQuery.noConflict();
+	slide('#slider_home').nivoSlider({effect:'sliceDown',prevText:' ',nextText:' '});
+	slide(document).ready(function () {
+		slide(".pikachoose-baby").css('display', 'block');
+		slide("#pikame1").PikaChoose({ carousel: true, carouselVertical: true });
+		slide("#pikame2").PikaChoose({ carousel: true, carouselVertical: true });
+	});
+</script>
+<script type="text/javascript" src="fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+<script type="text/javascript" src="fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+
+    </div> 
+  <div class="clear"></div>
+ </div> 
+
+
+
+
+
+
+<script src="js/jquery.exposure.js?v=0.9" type="text/javascript"></script>
+<!--<script type="text/javascript" src="js/.js" ></script>-->
+<script type="text/javascript" src="js/jquery.jqtransform.js" ></script>
+	<script language="javascript">
+	    var tansform = jQuery.noConflict();
+	    tansform(function () {
+	        tansform("form.jqtransform").jqTransform();
+	    });
+	</script>
+    <script type="text/javascript">
+        var buscar = jQuery.noConflict();
+
+        // Use jQuery via jQuery(...)
+        buscar(document).ready(function () {
+
+            buscar("#avanzado").hide();
+
+            buscar("#btn_avanzado").click(function () {
+                buscar("#simple").hide("slow");
+                buscar("#avanzado").show("slow");
+            });
+
+            buscar("#cerrar").click(function () {
+                buscar("#simple").show("slow");
+                buscar("#avanzado").hide("slow");
+            });
+
+
+        });
+
+    </script>
+<script type="text/javascript" src="js/jquery-lib.js"></script>
+<script type="text/javascript" src="js/jquery.pikachoose.js"></script>
+<script type="text/javascript" src="js/jquery.nivo.slider.pack.js"></script>
+
+    <script type="text/javascript">
+        var slidep = jQuery.noConflict();
+        slidep('#slider').nivoSlider();
+        var slide = jQuery.noConflict();
+        slide(document).ready(function () {
+            slide(".pikachoose-baby").css('display', 'block');
+            slide("#pikame").PikaChoose({ carousel: true, carouselVertical: true });
+            slide("#pikameEs").PikaChoose({ carousel: true, carouselVertical: true });
+        });
+
+
+
+ </script>
+<script type="text/javascript" src="fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+  <script type="text/javascript" src="fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+   <link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox-1.3.4.css"
+        media="screen" />
+    
+    <!--script type="text/javascript" src="js/.js" ></script-->
+
+
+<div class="footer">
+    <div class="footerdegradado">
+        <div class="footerbox">
+            <div class="contactlogo">
+                <div class="logofooter">
+                    <a href="http://www.cinemark.com.co/newface/index.aspx"><img src="images/cinemark_footer.png" width="269" height="26" /></a>
+                </div>
+                <div class="footercontact">
+                    <p>© <strong>CINEMARK COLOMBIA 2012.</strong> Todos los derechos reservados.</p>
+                </div>
+            </div>
+            <div class="menufooter">
+                <a href="http://www.cinemark.com.co/newface/teatros.aspx"><p>Teatros</p></a>
+                <a href="http://www.cinemark.com.co/newface/cartelera.aspx"><p>Cartelera</p></a>
+                <a href="http://www.cinemark.com.co/newface/estrenos.aspx"><p>Estrenos</p></a>
+                <a href="http://www.cinemark.com.co/newface/tarifas.aspx"><p>Tarifas</p></a>
+                <a href="http://www.cinemark.com.co/newface/reservas.aspx"><p> Reservas</p></a>
+                <a href="http://www.cinemark.com.co/newface/clubelite/autenticacion.aspx"><p> Mi Cinemark</p></a>
+            </div>
+            <div class="menufooter2">
+                <div class="textofooter2">
+                    <a href="http://www.cinemark.com.co/newface/nosotros.aspx"><p>Quiénes somos</p></a>
+                    <a href="http://www.cinemark.com.co/newface/faq.aspx"><p>Preguntas frecuentes</p></a>
+                    <a href="http://www.cinemark.com.co/newface/contactanos.aspx"><p> Contáctanos</p></a>
+                    <a href="http://www.cinemark.com.co/newface/proteccion_empleado.aspx"><p> ¿Buscas empleo?</p></a>
+                    <a href="http://www.cinemark.com.co/newface/privacidad.aspx"><p>Términos y condiciones</p></a>
+		    <a href="http://www.cinemark.com.co/newface/avidatos.aspx"><p> Aviso de Protección de Datos</p></a>
+		    <a href="http://www.cinemark.com.co/newface/manual.aspx"><p>Manual Interno Para La Protección de Datos Personales</p></a>
+                </div>
+            </div>
+            <div class="siguenos">
+                <div class="textosiguenos">Síguenos en:</div>
+                <div class="logotwitter"><a href="http://twitter.com/#!/CinemarkCol" target="_blank"><img src="images/logo_twitter.png" width="26" height="26" /></a></div>
+                <div class="logofacebook"><a href="http://www.facebook.com/Cinemark.Colombia" target="_blank"><img src="images/logo_fb.png" width="26" height="26" /></a></div>
+                <div class="logocs"><a href="https://instagram.com/cinemark/" target="_blank"><img src="images/instagram.png" width="26" height="26" /></a></div>
+                <div class="logofacebook"><a href="https://www.youtube.com/user/cinemarkCOl" target="_blank"><img src="images/youtube.png" width="26" height="26" /></a></div>
+            </div>
+            <div class="logomanimator">
+                <a href="http://www.manimatorstudio.com/" target="_blank">
+                    <p>Powered by manimatorstudio</p>
+                    <img src="images/logo_manimator.jpg" width="22" height="20" align="left"/>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div></div>
+<script type="text/javascript" src="js/jquery.js" ></script>
+	<script type="text/javascript" src="js/jquery.jqtransform.js" ></script>
+
+<script language="javascript">
+    $(function () {
+        $("form.jqtransform").jqTransform();
+        $("#box-city div.jqTransformSelectWrapper ul li a").click(ShowTeatros);
+        $("#box-teater").click(function () {
+            $("#elements_teater ul").css("display", "block");
+        });
+
+        $("#box-teater div.jqTransformSelectWrapper ul li a").click(ShowPeliculas);
+        $("#box-peli").click(function () {
+            $("#elements_pelicula ul").css("display", "block");
+        });
+
+        $("#box-peli div.jqTransformSelectWrapper ul li a").click(ShowFechas);
+        $("#box-fec").click(function () {
+            $("#elements_fecha ul").css("display", "block");
+        });
+
+        $("#box-fec div.jqTransformSelectWrapper ul li a").click(ShowHorarios);
+    });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".cerrar").click(function () {
+                $(".boton").css('display', 'block');
+                $(".cerrado").css('display', 'none');
+                $("#desplegable").slideUp();
+            });
+            $(".boton").click(function () {
+                $(".boton").css('display', 'none');
+                $(".cerrado").css('display', 'block');
+                $("#desplegable").slideDown();
+            });
+        });
+    </script>
+    
+<!-- Dropdown menu -->
+<script language="JavaScript" type="text/JavaScript">
+    function MM_jumpMenu(targ, selObj, restore) { //v3.0
+        eval(targ + ".location='" + selObj.options[selObj.selectedIndex].value + "'");
+        if (restore) selObj.selectedIndex = 0;
+    }
+</script>
+<!-- End Dropdown menu -->
+
+<script type="text/javascript">
+    /* Use jQuery via jQuery(...)
+    $(document).ready(function () {
+        $("#avanzado").hide();
+        $("#btn_avanzado").click(function () {
+            $("#simple").hide("slow");
+            $("#avanzado").show("slow");
+        });
+        $("#cerrar").click(function () {
+            $("#simple").show("slow");
+            $("#avanzado").hide("slow");
+        });
+    }); */
+
+    ShowTeatros();
+</script>
+
+
+
+<script type="text/javascript">
+
+ 
+
+  var _gaq = _gaq || [];
+
+  _gaq.push(['_setAccount', 'UA-27918588-1']);
+
+  _gaq.push(['_setDomainName', 'cinemark.com.co']);
+
+  _gaq.push(['_trackPageview']);
+
+ 
+
+  (function() {
+
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+
+  })();
+
+ 
+
+</script>
+
+
+<select id="ciudadA" style="visibility: hidden;">
+<!--<option value="8">Armenia</option>
+<option selected="" value="7">Bogotá</option>
+<option value="4">Bucaramanga</option>
+<option value="9">Cúcuta</option>
+<option value="10">Florencia</option>
+<option value="5">Ibagué</option>
+<option value="11">Manizales</option>
+<option value="6">Medellín</option>
+<option value="12">Montería</option>
+<option value="13">Neiva</option>
+<option value="14">Palmira</option>
+<option value="15">Pasto</option>
+<option value="1">Pereira</option>
+<option value="16">Santa Marta</option>
+<option value="17">Soledad</option>
+<option value="2">Tunja</option>
+<option value="3">Valledupar</option>
+<option value="18">Yopal</option>-->
+
+<option value="1">Armenia</option>
+<option value="2">Bogotá</option>
+<option value="3">Bucaramanga</option>
+<option value="4">Cali</option>
+<option value="5">Cúcuta</option>
+<option value="6">Florencia</option>
+<option value="7">Ibagué</option>
+<option value="8">Ipiales</option>
+<option value="9">Manizales</option>
+<option value="10">Medellín</option>
+<option value="11">Montería</option>
+<option value="12">Neiva</option>
+<option value="13">Palmira</option>
+<option value="14">Pasto</option>
+<option value="15">Pereira</option>
+<option value="16">Santa Marta</option>
+<option value="17">Soledad</option>
+<option value="18">Tunja</option>
+<option value="19">Valledupar</option>
+<option value="20">Yopal</option>
+
+</select>
+
+</body>
+
+</html>
+

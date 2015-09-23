@@ -1,0 +1,326 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>比一比装修网—中国性价比高的装修网</title>
+    <meta name="author" content="比一比"/>
+	<meta name="robots" content="index, follow，archive " />
+	<meta name="googlebot" content="index, follow，archive " />
+	<meta  name="description"  content="中国装修行业性价比高的门户网站，已运营城市分站100多个，为业主推荐低廉的装修价格以及高品质装修质量的装修公司。装修之路，比一比相伴！"/>
+	<meta  name="keywords" content="装修网,装修,装修价格,家装网,比一比装修网"/>
+    <meta name="baidu-site-verification" content="0AbWSBwvkN" />
+    <link type="text/css" rel="stylesheet" href="/Public/css/common.css"/>
+    <link type="text/css" rel="stylesheet" href="/Public/css/artDialog.css"/>
+    <link type="text/css" rel="stylesheet" href="/Public/css/home/bybF.css"/>
+    <script type="text/javascript" src="/Public/js/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="/Public/js/jquery.artDialog.js"></script>
+    <script type="text/javascript" src="/Public/js/home/bybF.js"></script>
+
+<script>
+var ROOT = "";
+
+$(function(){
+	$("#c_search").submit(function(){
+		var ckey = $("input[name='company']").val();
+		if(ckey == '' || ckey == '输入你要搜索的装修公司名称'){return false;}
+	});
+
+	$(" select[name ='province'], select[name ='city']").change(function(){
+		var obj = $(this);
+		var level = $(this).attr('name');
+		if(level == 'province' || level == 'city'){
+			$("select[name ='district']").html("<option value='0'>区县</option>");
+			}else{
+				return false;
+	   }
+	   $.get("/ajax/getarea",{pid: this.value, level: level}, function(data){
+			if(level == 'province'){
+				$("select[name='city']").html(data);
+			}else if(level == 'city'){
+					$("select[name='district']").html(data);
+			}
+		});
+	});
+});
+</script>
+
+<script type="text/javascript">
+if(window.top && window.top !== window.self ){
+try{
+top.frames["clientFrame"].document.domain;
+}
+catch(e){
+	setTimeout(function(){
+		window.top.location = window.self.location;
+		document.body.innerHTML = '';
+	}, 0);
+	window.self.onload=function(){
+	document.body.innerHTML = '';
+	}
+  }
+}
+</script>
+<script language="javascript" type="text/javascript" src="/Public/js/uaredirect.js"></script>
+<script type="text/javascript">
+						uaredirect("http://m.biyebi.com/www","http://www.biyebi.com");
+	</script>
+</head>
+
+<body>
+<!--顶部  开始-->
+<div id="top_wrapper">
+    <div id="top">
+        <div class="left">你好，欢迎来到比一比装修网！</div>
+        <div class="right"><a href="http://www.biyebi.com">比一比首页</a>&nbsp;&nbsp;|&nbsp;
+        			<a href="http://www.biyebi.com/member/login">请登录</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.biyebi.com/member/reg/grouptype/company">公司注册</a>        &nbsp;|&nbsp;&nbsp;<a href="http://www.biyebi.com/contact/index">联系客服</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+       <a href="http://www.biyebi.com/localnews/index">本地资讯</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+         <a href="http://www.biyebi.com/baike" target="_blank">装修百科</a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;<span style="color:#4dbe26;">全国热线：</span><b style="color:#ff7d0a;">400-8035-266</b></div>
+    </div>
+</div>
+<!--顶部  结束-->
+<!--头部  开始-->
+<div id="header_wrapper">
+    <div id="header">
+        <a   href="http://www.biyebi.com" class="logo"><img src="/Public/images/home/logo.png"/></a>
+        <div class="search_wrap">
+            <form id="c_search" method="get" action="http://www.biyebi.com/company/index">
+                <div class="search_w">
+                    <input type="text"  name="company" class="search_text">
+                    <input type="submit" class="search_btn" value="">
+                </div>
+
+                
+                   <a  href="http://www.biyebi.com" class="signUp_btn" >立即发布需求</a>            </form>
+        </div>
+        <div class="changeCity">
+
+            <div class="name ellipsis"></div>
+           		        </div>
+    </div>
+</div>
+<!--头部  结束-->
+<!--导航  开始-->
+<div id="nav_wrapper">
+    <div id="nav_inside">
+        <div class="shengqian"></div>
+        <div id="nav">
+
+            <a href="http://www.biyebi.com" class="">首页</a>
+                               	<a href="http://www.biyebi.com" class="signUp_btn  ">我要比一比<span style="position:absolute;width:27px;height:18px;right:-20px;top:-10px;"><img src="/Public/images/home/mianfei.gif"/></span></a>
+            <a href="http://www.biyebi.com/newroad/index"  class="">新手上路</a>
+            <a href="http://www.biyebi.com/baozhang/index"  class="">业主保障</a>
+            <a  href="http://www.biyebi.com"  class="">装饰公司</a>
+        </div>
+        <div class="member_btn_wrap">
+            <a href="http://www.biyebi.com/signmember/index" class="member_btn"></a>
+        </div>
+    </div>
+</div>
+<!--导航  结束-->
+<script>
+// 城市页城市的选择
+$(function(){
+
+	$(" select[name ='newprovince']").change(function(){
+		var obj = $(this);
+	   $.get("/ajax/getBybArea",{pid: this.value}, function(data){
+	   		$("select[name='newcity']").html(data);
+
+		});
+	});
+});
+</script>
+<div id="csqh_wrapper">
+    <div style="margin-bottom:9px;"><img src="/Public/images/home/csqh_img.gif"/></div>
+    <div id="select_city_w">
+        <div style="font-weight:bold;font-size:14px;float:left;">按省份选择：</div>
+        <form method='post' action="http://www.biyebi.com/index.htm ">
+        	<div style="float:left;padding-left:5px;" class="clear;">
+            	<select style="display:inline-block;float:left;margin:15px 10px 0 0;" name="newprovince"  id="newprovince">
+            		<option value="1"  >北京</option><option value="2"  >上海</option><option value="3"  >天津</option><option value="4"  >重庆</option><option value="5"  >黑龙江</option><option value="6"  >吉林</option><option value="7"  >辽宁</option><option value="8"  >内蒙</option><option value="9"  >宁夏</option><option value="10"  >新疆</option><option value="11"  >青海</option><option value="12"  >甘肃</option><option value="13"  >陕西</option><option value="14"  >河北</option><option value="15" selected="selected" >河南</option><option value="16"  >山东</option><option value="17"  >山西</option><option value="18"  >湖北</option><option value="19"  >湖南</option><option value="20"  >安徽</option><option value="21"  >江苏</option><option value="22"  >浙江</option><option value="23"  >江西</option><option value="24"  >广东</option><option value="25"  >广西</option><option value="26"  >福建</option><option value="27"  >四川</option><option value="28"  >云南</option><option value="29"  >贵州</option><option value="31"  >海南</option>
+            	</select>
+            	<select style="display:inline;float:left;margin:15px 0 0 0;" name="newcity">
+            		<option value="104"  >郑州</option><option value="105"  >洛阳</option><option value="246"  >开封</option><option value="247"  >平顶山</option><option value="248"  >焦作</option><option value="249"  >鹤壁</option><option value="250"  >新乡</option><option value="251"  >安阳</option><option value="252"  >濮阳</option><option value="253"  >许昌</option><option value="254"  >漯河</option><option value="255"  >三门峡</option><option value="256"  >南阳</option><option value="257"  >商丘</option><option value="258"  >信阳</option><option value="259"  >周口</option><option value="260"  >驻马店</option>            </select>
+        </div>
+        <input type='submit' class="goLook" value=''></a>
+    </div>
+    <div id="changeCity_wrapper">
+        <div style="font-weight:bold;font-size:14px;padding:23px 0 25px 20px;">按拼音字母选择城市</div>
+        <div id="change_char">
+            <div class="char_wrap cur"><a>全部</a></div>
+            <div class="char_wrap"><a>ABC</a></div><div class="char_wrap"><a>DEF</a></div><div class="char_wrap"><a>GHI</a></div><div class="char_wrap"><a>JKL</a></div><div class="char_wrap"><a>MNO</a></div><div class="char_wrap"><a>PQR</a></div><div class="char_wrap"><a>STU</a></div><div class="char_wrap"><a>VWX</a></div><div class="char_wrap"><a>YZ</a></div>
+        </div>
+        <div id="city_content">
+            <!--全部-->
+            <div class="cityW" style="display:block;">
+            	<div class="char_line clear">
+                    	<span>ABC</span>
+                  	   <div class="char_line_left clear">
+                      	 <a href="http://anyang.biyebi.com/">安阳</a><a href="http://anshun.biyebi.com/">安顺</a><a href="http://anshan.biyebi.com/">鞍山</a><a href="http://anqing.biyebi.com/">安庆</a><a href="http://beijing.biyebi.com/">北京</a><a href="http://baoding.biyebi.com/">保定</a><a href="http://baotou.biyebi.com/">包头</a><a href="http://binzhou.biyebi.com/">滨州</a><a href="http://baoji.biyebi.com/">宝鸡</a><a href="http://chongqing.biyebi.com/">重庆</a><a href="http://changchun.biyebi.com/">长春</a><a href="http://changzhou.biyebi.com/">常州</a><a href="http://changsha.biyebi.com/">长沙</a><a href="http://chengde.biyebi.com/">承德</a><a href="http://changde.biyebi.com/">常德</a><a href="http://cangzhou.biyebi.com/">沧州</a><a href="http://chaozhou.biyebi.com/">潮州</a><a href="http://chengdu.biyebi.com/">成都</a><a href="http://chenzhou.biyebi.com/">郴州</a><a href="http://chizhou.biyebi.com/">池州</a><a href="http://chuzhou.biyebi.com/">滁州</a>                      </div>
+
+                   </div><div class="char_line clear">
+                    	<span>DEF</span>
+                  	   <div class="char_line_left clear">
+                      	 <a href="http://dongguan.biyebi.com/">东莞</a><a href="http://dalian.biyebi.com/">大连</a><a href="http://deyang.biyebi.com/">德阳</a><a href="http://datong.biyebi.com/">大同</a><a href="http://dezhou.biyebi.com/">德州</a><a href="http://dongying.biyebi.com/">东营</a><a href="http://ezhou.biyebi.com/">鄂州</a><a href="http://fuzhou.biyebi.com/">福州</a><a href="http://foshan.biyebi.com/">佛山</a><a href="http://fuzho.biyebi.com/">抚州</a><a href="http://fuyang.biyebi.com/">阜阳</a>                      </div>
+
+                   </div><div class="char_line clear">
+                    	<span>GHI</span>
+                  	   <div class="char_line_left clear">
+                      	 <a href="http://guangzhou.biyebi.com/">广州</a><a href="http://guiyang.biyebi.com/">贵阳</a><a href="http://guilin.biyebi.com/">桂林</a><a href="http://hefei.biyebi.com/">合肥</a><a href="http://hangzhou.biyebi.com/">杭州</a><a href="http://haikou.biyebi.com/">海口</a><a href="http://harbin.biyebi.com/">哈尔滨</a><a href="http://hohhot.biyebi.com/">呼和浩特</a><a href="http://huaian.biyebi.com/">淮安</a><a href="http://huzhou.biyebi.com/">湖州</a><a href="http://handan.biyebi.com/">邯郸</a><a href="http://hengyang.biyebi.com/">衡阳</a><a href="http://huizhou.biyebi.com/">惠州</a><a href="http://hengshui.biyebi.com/">衡水</a><a href="http://heze.biyebi.com/">菏泽</a><a href="http://heyuan.biyebi.com/">河源</a><a href="http://huangshi.biyebi.com/">黄石</a><a href="http://huangshan.biyebi.com/">黄山</a><a href="http://huainan.biyebi.com/">淮南</a><a href="http://huaihua.biyebi.com/">怀化</a><a href="http://hankou.biyebi.com/">汉口</a>                      </div>
+
+                   </div><div class="char_line clear">
+                    	<span>JKL</span>
+                  	   <div class="char_line_left clear">
+                      	 <a href="http://jinan.biyebi.com/">济南</a><a href="http://jinhua.biyebi.com/">金华</a><a href="http://jiangyin.biyebi.com/">江阴</a><a href="http://jiaxing.biyebi.com/">嘉兴</a><a href="http://jiaozuo.biyebi.com/">焦作</a><a href="http://jiujiang.biyebi.com/">九江</a><a href="http://jiangmen.biyebi.com/">江门</a><a href="http://jilin.biyebi.com/">吉林市</a><a href="http://jieyang.biyebi.com/">揭阳</a><a href="http://jingzhou.biyebi.com/">荆州</a><a href="http://jinzhou.biyebi.com/">锦州</a><a href="http://jian.biyebi.com/">吉安</a><a href="http://kunming.biyebi.com/">昆明</a><a href="http://kaifeng.biyebi.com/">开封</a><a href="http://kunshan.biyebi.com/">昆山</a><a href="http://lanzhou.biyebi.com/">兰州</a><a href="http://luoyang.biyebi.com/">洛阳</a><a href="http://linyi.biyebi.com/">临沂</a><a href="http://luzhou.biyebi.com/">泸州</a><a href="http://luohe.biyebi.com/">漯河</a><a href="http://lishui.biyebi.com/">丽水</a><a href="http://lianyungang.biyebi.com/">连云港</a><a href="http://langfang.biyebi.com/">廊坊</a><a href="http://leshan.biyebi.com/">乐山</a><a href="http://liuan.biyebi.com/">六安</a><a href="http://liuzhou.biyebi.com/">柳州</a>                      </div>
+
+                   </div><div class="char_line clear">
+                    	<span>MNO</span>
+                  	   <div class="char_line_left clear">
+                      	 <a href="http://mianyang.biyebi.com/">绵阳</a><a href="http://meizhou.biyebi.com/">梅州</a><a href="http://maoming.biyebi.com/">茂名</a><a href="http://nanjing.biyebi.com/">南京</a><a href="http://nanchang.biyebi.com/">南昌</a><a href="http://nanning.biyebi.com/">南宁</a><a href="http://ningbo.biyebi.com/">宁波</a><a href="http://nantong.biyebi.com/">南通</a><a href="http://nanyang.biyebi.com/">南阳</a><a href="http://nanchong.biyebi.com/">南充</a>                      </div>
+
+                   </div><div class="char_line clear">
+                    	<span>PQR</span>
+                  	   <div class="char_line_left clear">
+                      	 <a href="http://panzhihua.biyebi.com/">攀枝花</a><a href="http://puyang.biyebi.com/">濮阳</a><a href="http://pingdingshan.biyebi.com/">平顶山</a><a href="http://putian.biyebi.com/">莆田</a><a href="http://panjin.biyebi.com/">盘锦</a><a href="http://qingdao.biyebi.com/">青岛</a><a href="http://qinhuangdao.biyebi.com/">秦皇岛</a><a href="http://qingyuan.biyebi.com/">清远</a><a href="http://qiqihar.biyebi.com/">齐齐哈尔</a><a href="http://quzhou.biyebi.com/">衢州</a><a href="http://quanzhou.biyebi.com/">泉州</a><a href="http://qinzhou.biyebi.com/">钦州</a><a href="http://qianjiang.biyebi.com/">潜江</a><a href="http://rizhao.biyebi.com/">日照</a>                      </div>
+
+                   </div><div class="char_line clear">
+                    	<span>STU</span>
+                  	   <div class="char_line_left clear">
+                      	 <a href="http://shenzhen.biyebi.com/">深圳</a><a href="http://shanghai.biyebi.com/">上海</a><a href="http://suzhou.biyebi.com/">苏州</a><a href="http://shenyang.biyebi.com/">沈阳</a><a href="http://shantou.biyebi.com/">汕头</a><a href="http://shijiazhuang.biyebi.com/">石家庄</a><a href="http://suqian.biyebi.com/">宿迁</a><a href="http://shaoxing.biyebi.com/">绍兴</a><a href="http://shiyan.biyebi.com/">十堰</a><a href="http://shangqiu.biyebi.com/">商丘</a><a href="http://shaoyang.biyebi.com/">邵阳</a><a href="http://shaoguan.biyebi.com/">韶关</a><a href="http://shanwei.biyebi.com/">汕尾</a><a href="http://sanmenxia.biyebi.com/">三门峡</a><a href="http://suizhou.biyebi.com/">随州</a><a href="http://shangrao.biyebi.com/">上饶</a><a href="http://taiyuan.biyebi.com/">太原</a><a href="http://tianjin.biyebi.com/">天津</a><a href="http://taizhou.biyebi.com/">台州</a><a href="http://taizhouu.biyebi.com/">泰州</a><a href="http://tangshan.biyebi.com/">唐山</a><a href="http://urumqi.biyebi.com/">乌鲁木齐</a>                      </div>
+
+                   </div><div class="char_line clear">
+                    	<span>VWX</span>
+                  	   <div class="char_line_left clear">
+                      	 <a href="http://wuxi.biyebi.com/">无锡</a><a href="http://wuhan.biyebi.com/">武汉</a><a href="http://weihai.biyebi.com/">威海</a><a href="http://wenzhou.biyebi.com/">温州</a><a href="http://wuhu.biyebi.com/">芜湖</a><a href="http://weifang.biyebi.com/">潍坊</a><a href="http://xian.biyebi.com/">西安</a><a href="http://xining.biyebi.com/">西宁</a><a href="http://xiamen.biyebi.com/">厦门</a><a href="http://xuzhou.biyebi.com/">徐州</a><a href="http://xinyang.biyebi.com/">信阳</a><a href="http://xiangfan.biyebi.com/">襄樊</a><a href="http://xingtai.biyebi.com/">邢台</a><a href="http://xinxiang.biyebi.com/">新乡</a><a href="http://xuchang.biyebi.com/">许昌</a><a href="http://xiangtan.biyebi.com/">湘潭</a><a href="http://xinyu.biyebi.com/">新余</a><a href="http://xiantao.biyebi.com/">仙桃</a>                      </div>
+
+                   </div><div class="char_line clear">
+                    	<span>YZ</span>
+                  	   <div class="char_line_left clear">
+                      	 <a href="http://yinchuan.biyebi.com/">银川</a><a href="http://yangzhou.biyebi.com/">扬州</a><a href="http://yancheng.biyebi.com/">盐城</a><a href="http://yantai.biyebi.com/">烟台</a><a href="http://yangjiang.biyebi.com/">阳江</a><a href="http://yunfu.biyebi.com/">云浮</a><a href="http://yichang.biyebi.com/">宜昌</a><a href="http://yulin.biyebi.com/">玉林</a><a href="http://yueyang.biyebi.com/">岳阳</a><a href="http://yiyang.biyebi.com/">益阳</a><a href="http://zhengzhou.biyebi.com/">郑州</a><a href="http://zhongshan.biyebi.com/">中山</a><a href="http://zhuhai.biyebi.com/">珠海</a><a href="http://zibo.biyebi.com/">淄博</a><a href="http://zhanjiang.biyebi.com/">湛江</a><a href="http://zhangjiakou.biyebi.com/">张家口</a><a href="http://zhenjiang.biyebi.com/">镇江</a><a href="http://zhoushan.biyebi.com/">舟山</a><a href="http://zhaoqing.biyebi.com/">肇庆</a><a href="http://zhoukou.biyebi.com/">周口</a><a href="http://zaozhuang.biyebi.com/">枣庄</a><a href="http://zhumadian.biyebi.com/">驻马店</a><a href="http://zigong.biyebi.com/">自贡</a><a href="http://zhangzhou.biyebi.com/">漳州</a><a href="http://zunyi.biyebi.com/">遵义</a><a href="http://zhuzhou.biyebi.com/">株洲</a>                      </div>
+
+                   </div>
+            </div>
+
+            <div class="cityW" style="display:none;">
+                	<div class="char_line clear">
+                    	<span>ABC</span>
+                    	<div class="char_line_left clear">
+                     		<a href="http://anyang.biyebi.com/">安阳</a><a href="http://anshun.biyebi.com/">安顺</a><a href="http://anshan.biyebi.com/">鞍山</a><a href="http://anqing.biyebi.com/">安庆</a><a href="http://beijing.biyebi.com/">北京</a><a href="http://baoding.biyebi.com/">保定</a><a href="http://baotou.biyebi.com/">包头</a><a href="http://binzhou.biyebi.com/">滨州</a><a href="http://baoji.biyebi.com/">宝鸡</a><a href="http://chongqing.biyebi.com/">重庆</a><a href="http://changchun.biyebi.com/">长春</a><a href="http://changzhou.biyebi.com/">常州</a><a href="http://changsha.biyebi.com/">长沙</a><a href="http://chengde.biyebi.com/">承德</a><a href="http://changde.biyebi.com/">常德</a><a href="http://cangzhou.biyebi.com/">沧州</a><a href="http://chaozhou.biyebi.com/">潮州</a><a href="http://chengdu.biyebi.com/">成都</a><a href="http://chenzhou.biyebi.com/">郴州</a><a href="http://chizhou.biyebi.com/">池州</a><a href="http://chuzhou.biyebi.com/">滁州</a>                      </div>
+                    </div>
+               </div><div class="cityW" style="display:none;">
+                	<div class="char_line clear">
+                    	<span>DEF</span>
+                    	<div class="char_line_left clear">
+                     		<a href="http://dongguan.biyebi.com/">东莞</a><a href="http://dalian.biyebi.com/">大连</a><a href="http://deyang.biyebi.com/">德阳</a><a href="http://datong.biyebi.com/">大同</a><a href="http://dezhou.biyebi.com/">德州</a><a href="http://dongying.biyebi.com/">东营</a><a href="http://ezhou.biyebi.com/">鄂州</a><a href="http://fuzhou.biyebi.com/">福州</a><a href="http://foshan.biyebi.com/">佛山</a><a href="http://fuzho.biyebi.com/">抚州</a><a href="http://fuyang.biyebi.com/">阜阳</a>                      </div>
+                    </div>
+               </div><div class="cityW" style="display:none;">
+                	<div class="char_line clear">
+                    	<span>GHI</span>
+                    	<div class="char_line_left clear">
+                     		<a href="http://guangzhou.biyebi.com/">广州</a><a href="http://guiyang.biyebi.com/">贵阳</a><a href="http://guilin.biyebi.com/">桂林</a><a href="http://hefei.biyebi.com/">合肥</a><a href="http://hangzhou.biyebi.com/">杭州</a><a href="http://haikou.biyebi.com/">海口</a><a href="http://harbin.biyebi.com/">哈尔滨</a><a href="http://hohhot.biyebi.com/">呼和浩特</a><a href="http://huaian.biyebi.com/">淮安</a><a href="http://huzhou.biyebi.com/">湖州</a><a href="http://handan.biyebi.com/">邯郸</a><a href="http://hengyang.biyebi.com/">衡阳</a><a href="http://huizhou.biyebi.com/">惠州</a><a href="http://hengshui.biyebi.com/">衡水</a><a href="http://heze.biyebi.com/">菏泽</a><a href="http://heyuan.biyebi.com/">河源</a><a href="http://huangshi.biyebi.com/">黄石</a><a href="http://huangshan.biyebi.com/">黄山</a><a href="http://huainan.biyebi.com/">淮南</a><a href="http://huaihua.biyebi.com/">怀化</a><a href="http://hankou.biyebi.com/">汉口</a>                      </div>
+                    </div>
+               </div><div class="cityW" style="display:none;">
+                	<div class="char_line clear">
+                    	<span>JKL</span>
+                    	<div class="char_line_left clear">
+                     		<a href="http://jinan.biyebi.com/">济南</a><a href="http://jinhua.biyebi.com/">金华</a><a href="http://jiangyin.biyebi.com/">江阴</a><a href="http://jiaxing.biyebi.com/">嘉兴</a><a href="http://jiaozuo.biyebi.com/">焦作</a><a href="http://jiujiang.biyebi.com/">九江</a><a href="http://jiangmen.biyebi.com/">江门</a><a href="http://jilin.biyebi.com/">吉林市</a><a href="http://jieyang.biyebi.com/">揭阳</a><a href="http://jingzhou.biyebi.com/">荆州</a><a href="http://jinzhou.biyebi.com/">锦州</a><a href="http://jian.biyebi.com/">吉安</a><a href="http://kunming.biyebi.com/">昆明</a><a href="http://kaifeng.biyebi.com/">开封</a><a href="http://kunshan.biyebi.com/">昆山</a><a href="http://lanzhou.biyebi.com/">兰州</a><a href="http://luoyang.biyebi.com/">洛阳</a><a href="http://linyi.biyebi.com/">临沂</a><a href="http://luzhou.biyebi.com/">泸州</a><a href="http://luohe.biyebi.com/">漯河</a><a href="http://lishui.biyebi.com/">丽水</a><a href="http://lianyungang.biyebi.com/">连云港</a><a href="http://langfang.biyebi.com/">廊坊</a><a href="http://leshan.biyebi.com/">乐山</a><a href="http://liuan.biyebi.com/">六安</a><a href="http://liuzhou.biyebi.com/">柳州</a>                      </div>
+                    </div>
+               </div><div class="cityW" style="display:none;">
+                	<div class="char_line clear">
+                    	<span>MNO</span>
+                    	<div class="char_line_left clear">
+                     		<a href="http://mianyang.biyebi.com/">绵阳</a><a href="http://meizhou.biyebi.com/">梅州</a><a href="http://maoming.biyebi.com/">茂名</a><a href="http://nanjing.biyebi.com/">南京</a><a href="http://nanchang.biyebi.com/">南昌</a><a href="http://nanning.biyebi.com/">南宁</a><a href="http://ningbo.biyebi.com/">宁波</a><a href="http://nantong.biyebi.com/">南通</a><a href="http://nanyang.biyebi.com/">南阳</a><a href="http://nanchong.biyebi.com/">南充</a>                      </div>
+                    </div>
+               </div><div class="cityW" style="display:none;">
+                	<div class="char_line clear">
+                    	<span>PQR</span>
+                    	<div class="char_line_left clear">
+                     		<a href="http://panzhihua.biyebi.com/">攀枝花</a><a href="http://puyang.biyebi.com/">濮阳</a><a href="http://pingdingshan.biyebi.com/">平顶山</a><a href="http://putian.biyebi.com/">莆田</a><a href="http://panjin.biyebi.com/">盘锦</a><a href="http://qingdao.biyebi.com/">青岛</a><a href="http://qinhuangdao.biyebi.com/">秦皇岛</a><a href="http://qingyuan.biyebi.com/">清远</a><a href="http://qiqihar.biyebi.com/">齐齐哈尔</a><a href="http://quzhou.biyebi.com/">衢州</a><a href="http://quanzhou.biyebi.com/">泉州</a><a href="http://qinzhou.biyebi.com/">钦州</a><a href="http://qianjiang.biyebi.com/">潜江</a><a href="http://rizhao.biyebi.com/">日照</a>                      </div>
+                    </div>
+               </div><div class="cityW" style="display:none;">
+                	<div class="char_line clear">
+                    	<span>STU</span>
+                    	<div class="char_line_left clear">
+                     		<a href="http://shenzhen.biyebi.com/">深圳</a><a href="http://shanghai.biyebi.com/">上海</a><a href="http://suzhou.biyebi.com/">苏州</a><a href="http://shenyang.biyebi.com/">沈阳</a><a href="http://shantou.biyebi.com/">汕头</a><a href="http://shijiazhuang.biyebi.com/">石家庄</a><a href="http://suqian.biyebi.com/">宿迁</a><a href="http://shaoxing.biyebi.com/">绍兴</a><a href="http://shiyan.biyebi.com/">十堰</a><a href="http://shangqiu.biyebi.com/">商丘</a><a href="http://shaoyang.biyebi.com/">邵阳</a><a href="http://shaoguan.biyebi.com/">韶关</a><a href="http://shanwei.biyebi.com/">汕尾</a><a href="http://sanmenxia.biyebi.com/">三门峡</a><a href="http://suizhou.biyebi.com/">随州</a><a href="http://shangrao.biyebi.com/">上饶</a><a href="http://taiyuan.biyebi.com/">太原</a><a href="http://tianjin.biyebi.com/">天津</a><a href="http://taizhou.biyebi.com/">台州</a><a href="http://taizhouu.biyebi.com/">泰州</a><a href="http://tangshan.biyebi.com/">唐山</a><a href="http://urumqi.biyebi.com/">乌鲁木齐</a>                      </div>
+                    </div>
+               </div><div class="cityW" style="display:none;">
+                	<div class="char_line clear">
+                    	<span>VWX</span>
+                    	<div class="char_line_left clear">
+                     		<a href="http://wuxi.biyebi.com/">无锡</a><a href="http://wuhan.biyebi.com/">武汉</a><a href="http://weihai.biyebi.com/">威海</a><a href="http://wenzhou.biyebi.com/">温州</a><a href="http://wuhu.biyebi.com/">芜湖</a><a href="http://weifang.biyebi.com/">潍坊</a><a href="http://xian.biyebi.com/">西安</a><a href="http://xining.biyebi.com/">西宁</a><a href="http://xiamen.biyebi.com/">厦门</a><a href="http://xuzhou.biyebi.com/">徐州</a><a href="http://xinyang.biyebi.com/">信阳</a><a href="http://xiangfan.biyebi.com/">襄樊</a><a href="http://xingtai.biyebi.com/">邢台</a><a href="http://xinxiang.biyebi.com/">新乡</a><a href="http://xuchang.biyebi.com/">许昌</a><a href="http://xiangtan.biyebi.com/">湘潭</a><a href="http://xinyu.biyebi.com/">新余</a><a href="http://xiantao.biyebi.com/">仙桃</a>                      </div>
+                    </div>
+               </div><div class="cityW" style="display:none;">
+                	<div class="char_line clear">
+                    	<span>YZ</span>
+                    	<div class="char_line_left clear">
+                     		<a href="http://yinchuan.biyebi.com/">银川</a><a href="http://yangzhou.biyebi.com/">扬州</a><a href="http://yancheng.biyebi.com/">盐城</a><a href="http://yantai.biyebi.com/">烟台</a><a href="http://yangjiang.biyebi.com/">阳江</a><a href="http://yunfu.biyebi.com/">云浮</a><a href="http://yichang.biyebi.com/">宜昌</a><a href="http://yulin.biyebi.com/">玉林</a><a href="http://yueyang.biyebi.com/">岳阳</a><a href="http://yiyang.biyebi.com/">益阳</a><a href="http://zhengzhou.biyebi.com/">郑州</a><a href="http://zhongshan.biyebi.com/">中山</a><a href="http://zhuhai.biyebi.com/">珠海</a><a href="http://zibo.biyebi.com/">淄博</a><a href="http://zhanjiang.biyebi.com/">湛江</a><a href="http://zhangjiakou.biyebi.com/">张家口</a><a href="http://zhenjiang.biyebi.com/">镇江</a><a href="http://zhoushan.biyebi.com/">舟山</a><a href="http://zhaoqing.biyebi.com/">肇庆</a><a href="http://zhoukou.biyebi.com/">周口</a><a href="http://zaozhuang.biyebi.com/">枣庄</a><a href="http://zhumadian.biyebi.com/">驻马店</a><a href="http://zigong.biyebi.com/">自贡</a><a href="http://zhangzhou.biyebi.com/">漳州</a><a href="http://zunyi.biyebi.com/">遵义</a><a href="http://zhuzhou.biyebi.com/">株洲</a>                      </div>
+                    </div>
+               </div>        </div>
+    </div>
+ <script type="text/javascript">
+	$(function(){
+
+		// 改变城市
+        changeCity();
+        // 加载地区
+		$(" select[name ='province']").change(function(){
+			var obj = $(this);
+			var level = $(this).attr('name');
+
+			$.get("/ajax/getNewArea",{pid: this.value, level: level}, function(data){
+				if(level == 'province'){
+					$("select[name='city']").html(data);
+				}else if(level == 'city'){
+					$("select[name='district']").html(data);
+				}
+			});
+		});
+    });
+    </script>
+    <div id="threeWrapper">
+        <div class="threeCol" style="width:280px;margin-right:75px;">
+            <div class="title">
+                <div class="icon col1"></div>
+                <span>最新装修招标</span>
+            </div>
+            <ul class="links_list">
+            	<li><a href="http://weihai.biyebi.com/biao/show/bid/109364" class="ellipsis">威海环翠区 唐人海湾公馆 6室2厅3卫 220.00㎡</a><span class="date">2015-09-23</span></li><li><a href="http://luoyang.biyebi.com/biao/show/bid/109362" class="ellipsis">洛阳老城区 牡丹公馆 3室2厅2卫 114.00㎡</a><span class="date">2015-09-23</span></li><li><a href="http://jinan.biyebi.com/biao/show/bid/109358" class="ellipsis">济南市中区 世茂原山郡 3室2厅1卫 116.00㎡</a><span class="date">2015-09-23</span></li><li><a href="http://jingzhou.biyebi.com/biao/show/bid/109356" class="ellipsis">荆州 沙市 丽景嘉园 5室3厅3卫 260.00㎡</a><span class="date">2015-09-23</span></li><li><a href="http://nanchang.biyebi.com/biao/show/bid/109354" class="ellipsis">南昌南昌县 江铃瓦良格 3室2厅2卫 118.00㎡</a><span class="date">2015-09-23</span></li>
+            </ul>
+        </div>
+        <div class="threeCol" style="width:390px;margin-right:75px;">
+            <div class="title">
+                <div class="icon col2"></div>
+                <span>最新装修案例</span>
+            </div>
+            <ul class="links_list">
+            	<li><a href="http://beijing.biyebi.com/company/designercase/companyid/10929" class="ellipsis">金谷香郡 150坪 简欧风格 </a><span class="date ellipsis" style="width:150px;text-align:right;">北京高度国际工程装饰设计公司</span></li><li><a href="http://beijing.biyebi.com/company/designercase/companyid/10929" class="ellipsis">金隅翡丽 230坪 美式古典风格 </a><span class="date ellipsis" style="width:150px;text-align:right;">北京高度国际工程装饰设计公司</span></li><li><a href="http://beijing.biyebi.com/company/designercase/companyid/10929" class="ellipsis">筑华年 84坪 现代简约风格 </a><span class="date ellipsis" style="width:150px;text-align:right;">北京高度国际工程装饰设计公司</span></li><li><a href="http://jinan.biyebi.com/company/designercase/companyid/11923" class="ellipsis">明湖白鹭郡地中海风格雅居案例 </a><span class="date ellipsis" style="width:150px;text-align:right;">济南九创装饰工程有限公司</span></li><li><a href="http://xiamen.biyebi.com/company/designercase/companyid/6420" class="ellipsis">禹州城上城 </a><span class="date ellipsis" style="width:150px;text-align:right;">厦门有家装饰工程有限公司</span></li>
+            </ul>
+        </div>
+        <div class="threeCol" style="width:200px;">
+            <div class="title" style="width:200px;">
+                <div class="icon col3"></div>
+                <span>最新加入装修公司</span>
+            </div>
+            <ul class="links_list">
+            	<li><a href="http://foshan.biyebi.com/company/shopindex/companyid/11938"  class="ellipsis">佛山市四象空间装饰工程有限公司</a><span class="date"></span></li><li><a href="http://beijing.biyebi.com/company/shopindex/companyid/11867"  class="ellipsis">北京克洛尼装饰</a><span class="date"></span></li><li><a href="http://yueyang.biyebi.com/company/shopindex/companyid/11939"  class="ellipsis">岳阳尺度装饰工程有限公司</a><span class="date"></span></li><li><a href="http://hangzhou.biyebi.com/company/shopindex/companyid/11935"  class="ellipsis">杭州实创装饰有限公司</a><span class="date"></span></li><li><a href="http://dalian.biyebi.com/company/shopindex/companyid/11917"  class="ellipsis">大连审美装饰设计工程有限公司</a><span class="date"></span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 尾部 -->
+<!--底部 开始-->
+<div class="bottom"><div class="frlink">
+    	友情链接：
+	        	<a  href="http://www.shushi100.com/category-nuanqipian/" target="_blank">暖气片</a>&nbsp;&nbsp;&nbsp;<a  href="http://anshan.ganji.com/jiatingzhuangxiu/" target="_blank">鞍山家庭装修公司</a>&nbsp;&nbsp;&nbsp;	        
+    </div>	<div class="bot">
+    	<span class="floatleft">
+        	<a href="http://www.biyebi.com/about/index">关于比一比</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.biyebi.com/agreement/index">用户协议</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.biyebi.com/contact/index">联系我们</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.biyebi.com/law/index">免责声明</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.biyebi.com/signmember/index">装修公司合作</a><br />服务热线：400-8035-266&nbsp;&nbsp;ICP备案号:豫ICP备14001920号-1<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_3881489'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D3881489%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+        </span>
+        
+    </div>
+</div>
+<script type="text/javascript"> var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://"); document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F075f3cc05ee8600cb87ec51bb124ca46' type='text/javascript'%3E%3C/script%3E")) </script>
+<!--底部 结束-->
+</body>
+</html>

@@ -1,0 +1,15 @@
+User-agent: *
+Disallow: /admin.php
+Disallow: /admin/
+Disallow: /images/
+Disallow: /i/
+Disallow: /includes/
+Disallow: /themes/
+Disallow: /blocks/
+Disallow: /modules/
+Disallow: /language/
+Disallow: /comments.php
+Disallow: /top.php
+Disallow: /links2.php
+Disallow: /print.php
+Disallow: /friend.php

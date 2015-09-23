@@ -1,0 +1,20 @@
+User-Agent: *
+# Very old urls
+Disallow: /ajaxcontent/
+Disallow: /forum_admin/
+Disallow: /premium/
+Disallow: /pack/
+Disallow: /collection/market.php
+
+# Homepage de-duplicate
+Disallow: /player/welcome.php
+
+# Community
+Disallow: /community/search.php
+
+# Misc
+Disallow: /guild/list.php
+Disallow: /admin/
+Disallow: /ajax/
+Disallow: /player/cgv.php
+Disallow: /staff/

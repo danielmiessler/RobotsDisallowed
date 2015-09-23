@@ -1,0 +1,350 @@
+ <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML xmlns="http://www.w3.org/1999/xhtml" >
+
+	<HEAD>
+
+		<TITLE>UnfriendTracker</TITLE>
+		<meta name="format-detection" content="telephone=no">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+				
+				
+		<link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico" />
+
+				<link rel="icon" href="/favicon.ico">
+		
+											<link type="text/css" rel="stylesheet" href="http://www.unfriendtracker.com/js/jquery-ui/jquery-ui.css?v=20140131" />
+							<link type="text/css" rel="stylesheet" href="http://www.unfriendtracker.com/js/jquery-ui/jquery-ui.structure.css?v=20140131" />
+							<link type="text/css" rel="stylesheet" href="http://www.unfriendtracker.com/js/jquery-ui/jquery-ui.theme.css?v=20140131" />
+							<link type="text/css" rel="stylesheet" href="http://www.unfriendtracker.com/css/_general.css?v=20140131" />
+							
+						
+							<script type="text/javascript">
+												var desktopSite = "http://www.unfriendtracker.com";
+																var sImagePath = "http://www.unfriendtracker.com/images/";
+										</script>
+				
+											<script type="text/javascript" src="http://www.unfriendtracker.com/js/_general.js?v=20140131"></script>
+							<script type="text/javascript" src="http://www.unfriendtracker.com/js/jquery.js?v=20140131"></script>
+							<script type="text/javascript" src="http://www.unfriendtracker.com/js/jquery-ui/jquery-ui.js?v=20140131"></script>
+							
+				
+
+			<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-57284084-1', 'auto');
+			ga('require', 'displayfeatures');
+
+			
+							
+			
+			
+									ga('send', 'pageview');					
+							
+					
+			
+			// handle any desired events...
+			
+							
+
+
+			</script>
+			
+		
+
+				
+			<script>
+				var ajaxFormError = 'Error. Please try again.';
+			</script>
+		
+		
+	</HEAD>	
+	<BODY>
+
+	
+<script>
+$(document).ready(function() {
+
+	//config the dialogs				
+	$('#loginHolder').dialog({
+		autoOpen: false,
+		hide: 'blind',
+		resizable: false,
+		draggable: false,
+		modal: true,
+		width: 785
+	});
+
+	$('#passwordHolder').dialog({
+		autoOpen: false,
+		hide: 'blind',
+		resizable: false,
+		draggable: false,
+		modal: true,
+		width: 400
+	});
+
+	//hide title bar
+	$(".ui-widget-header").css('border', '0px');
+	$(".ui-widget-header").css('background', 'none');
+
+	////////////////
+	//FORM CONTROLS
+	////////////////
+	
+	//signup form
+	$('#form_signup').on('submit', function(e) { 
+        
+		//prevent form from submitting
+		e.preventDefault(); 
+
+		//prep form for submission
+		updateForSubmit("loginErrors", "form_signup");
+
+		//define callback for ajax
+		var callback =  function callbackSuccess(id_form, id_successUi, id_errorUi, callback, data) {
+    		window.location = '/tutorial';
+		} 
+
+		//send ajax
+		$.post(		
+			"/ajax/signup.php", 
+			$("#form_signup :input").serializeArray(),
+			function(data) { ajaxReturned("form_signup", null, "loginErrors", callback, data); },
+			'json'
+		)
+		.fail(function() { ajaxReturned("form_signup", null, "loginErrors"); });
+  		
+    });
+
+	//login form
+	$('#form_login').on('submit', function(e) { 
+        
+		//prevent form from submitting
+		e.preventDefault(); 
+
+		//prep form for submission
+		updateForSubmit("loginErrors", "form_login"); 
+
+		//define callback for ajax
+		var callback =  function callbackSuccess(id_form, id_successUi, id_errorUi, callback, data) {
+    		window.location = '/home';
+		}
+
+		//send ajax
+		$.post(		
+			"/ajax/login.php", 
+			$("#form_login :input").serializeArray(),
+			function(data) { ajaxReturned("form_login", null, "loginErrors", callback, data); },
+			'json'
+		)
+		.fail(function() {  ajaxReturned("form_login", null, "loginErrors"); });
+  		
+    });
+
+	//password reset form
+	$('#form_password').on('submit', function(e) { 
+        
+		//prevent form from submitting
+		e.preventDefault(); 
+
+		//prep form for submission
+		updateForSubmit("passwordErrors", "form_password");
+
+		//set callback for success
+		var callback =  function callbackSuccess(id_form, id_successUi, id_errorUi, callback, data) {
+
+    		updateForReturned(id_form);
+			
+			if (data.info != null) {  //must go after reset above
+				showInfo(id_successUi, data.info);
+				$("#form_password").children("input").css("display", "none");
+			}
+			
+		}
+
+		//send ajax
+		$.post(		
+			"/ajax/password_reset.php", 
+			$("#form_password :input").serializeArray(),
+			function(data) { ajaxReturned("form_password", "passwordSuccess", "passwordErrors", callback, data); },
+			'json'
+		)
+		.fail(function() {  ajaxReturned("form_password", "passwordSuccess", "passwordErrors"); });
+  		
+    });
+
+	//if needed then auto-open login
+	
+			
+	
+});
+
+function showLogin(type) {
+
+	//open dialog
+	$('#loginHolder').dialog('open');
+
+	if (type == null || type == "signup") {
+		$("#form_signup input[name=email]").focus();
+	} else {
+		$("#form_login input[name=email]").focus();	
+	}
+
+}
+
+function showPassword() {
+
+	//open dialog
+	$('#passwordHolder').dialog('open');
+	$("#form_password").children("input").css("display", "block");
+	$("#passwordSuccess").css("display", "none");
+
+}
+
+</script>
+<style>
+.loading {
+	margin-top: 45px;
+	margin-left: 5px;
+	float: right;
+}
+</style>
+
+
+<div id="loginHolder" style="display: none; text-align: left; padding: 60px; padding-top: 0px;">
+
+	<div id="loginErrors" class="showErrors" ></div>				
+	
+	<div style="float: left; width: 50%; padding-right: 60px; border-right: 1px solid #e0e0e0;">
+
+		<p class="formTitle">CREATE A NEW ACCOUNT</p>
+		
+		<form id="form_signup">
+			
+			<input type="text" name="email" value="" placeholder="Email" />
+			<input type="password" name="password" value="" placeholder="Password" />
+			<input type="password" name="verify_password" value="" placeholder="Verify Password" />
+			<input type="checkbox" name="remember_me" checked /> remember me
+			
+			<img src="/images/loading.gif" class="loadingForm"  />
+			<input style="margin-top: 15px; float: right;" type="submit" name="submit" value="CREATE ACCOUNT" />
+			
+		</form>
+
+	</div>
+
+	<div style="float: left; width: 50%; padding-left: 60px;">
+
+		<p class="formTitle">SIGN IN</p>
+
+		<form id="form_login">
+			
+			<input type="text" name="email" value="" placeholder="Email" />
+			<input type="password" name="password" value="" placeholder="Password" />			
+			<input type="checkbox" name="remember_me" checked /> remember me
+			
+			<a onclick="showPassword();" style="float: right; color: #369;">reset password</a>
+
+			<img src="/images/loading.gif" class="loadingForm" />
+			<input style="margin-top: 15px; float: right;" type="submit" name="submit" value="LOGIN" />			
+
+		</form>
+
+	</div>
+
+</div>
+
+<div id="passwordHolder" style="display: none; text-align: left; padding: 60px; padding-top: 0px;">
+
+	<div id="passwordErrors" class="showErrors"></div>		
+	<div id="passwordSuccess" class="showInfo"></div>		
+
+	<p class="formTitle">FORGOT YOUR PASSWORD?</p>
+	<p style="font-size: 10pt;">Send a link to reset your password to your email address.</p>
+
+	<form id="form_password">
+			
+		<input type="text" name="email" value="" placeholder="Email" />
+		
+		<img src="/images/loading.gif" class="loadingForm" />
+		<input style="margin-top: 15px; float: right;" type="submit" name="submit" value="SEND EMAIL" />
+		
+	</form>
+
+</div>	
+
+
+<!-- header gradient -->
+<div class="header_gradient" style="width: 100%; height: 300px; position: absolute;">
+
+	<div class="wrapper" style="padding-right: 15px;">
+
+		<div onclick="showLogin('login');" class="rounded blueButton" style="border: 1px solid #cccccc; cursor: pointer; padding: 8px; float: right; vertical-align: middle; margin-right: 10px; margin-top: 5px;">
+			<p style="cursor: pointer; margin: 0px; margin-top: 2px; color: #ffffff; font-size: 16px; font-weight: 700;">Login</p>
+		</div>
+
+	</div>
+
+
+</div>
+
+<!-- main content -->
+<div class="wrapper" style="padding-top: 120px; z-index: 10;">
+
+	<!-- left pane -->
+	<div style="position:absolute; width: 390px;">
+		<img src="/images/phone_compilation.png" style="text-align: left; margin-left: 0px;" />
+	</div>
+	
+	<!-- right pane -->
+	<div style="float: right; position:relative; width: 550px; padding-top: 47px;">
+	
+		<img src="/images/logo_large.png" style="width: 270px; margin-bottom: 5px; margin-left: 52px;" />
+		
+		
+		<!-- signup button -->
+		<div onclick="showLogin('signup');" class="rounded downloadButton" style="cursor: pointer; padding: 15px; float: right; vertical-align: middle; margin-right: 10px; margin-top: -76px;">
+			<img src="/images/down.png" style="float: left; margin-bottom: 0px; margin-right: 15px;" />
+			<p style="margin: 0px; margin-top: 7px; float: right; color: #ffffff; font-size: 24px; font-weight: 700;">Sign Up</p>
+		</div>
+		
+		
+		<!-- page text -->
+		<div class="rounded blendTab" style="padding: 30px; height: 475px; border: 1px solid #cccccc;">
+			<h1>Track Your Social Network Friends</h1>
+			<p class="desc">UnfriendTracker is a <b>fast</b>, <b>fun</b>, and <b>simple</b> way of tracking your social network friends.</p>
+			<p class="desc">
+			Keep track of who you are friends with and <u><i>who has unfriended you</i></u>.
+			See <b>illustrative graphs</b> of your friendship activity based on when <i>new connections</i> occur or <i>are removed</i>.
+			Works on all major social networks, so monitor your profile daily to stay in the know.</p>
+			<p class="desc" style="margin-bottom: 30px;">UnfriendTracker is a fantastic <b>social discovery tool</b>.  Jump in to track your friends today!</p>
+			
+			
+		<!-- bottom buttons -->
+			<div onclick="showLogin('signup');" class="rounded downloadButton" style="margin-left: auto; margin-right: auto; cursor: pointer; padding: 15px; width: 120px; vertical-align: middle;">
+				<p style="margin: 0px; text-align: center; color: #ffffff; font-size: 24px; font-weight: 700;">Sign Up</p>
+			</div>
+		
+	</div>
+
+</div>
+
+<!-- show links in footer if needed -->
+	<div id="footer" class="footer clearfix">
+		<ul>
+			<li><a class="footerLink" href="http://www.unfriendtracker.com/download?skip=1&source=footer">SIGN UP</a></li>			<li><a href="http://www.unfriendtracker.com/contact" target="_blank">CONTACT</a></li>
+			<li><a href="http://www.unfriendtracker.com/privacy" target="_blank">PRIVACY</a></li>
+			<li><a href="http://www.unfriendtracker.com/terms" target="_blank">TERMS</a></li>
+			<li style="padding-left: 10px;">&copy; 2015 UNFRIENDTRACKER</li>
+		</ul>
+	</div>
+
+
+
+		</BODY>
+</HTML>

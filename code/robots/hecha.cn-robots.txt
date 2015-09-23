@@ -1,0 +1,802 @@
+﻿<!DOCTYPE html>
+<html class="mm-light">
+ <head> 
+  <meta charset="utf-8" /> 
+  <link rel="dns-prefetch" href="http://www.hecha.cn/" /> 
+  <title></title> 
+  <meta name="Keywords" content="" /> 
+  <meta name="Description" content="" /> 
+  <link href="http://www.hecha.cn/" rel="canonical" /> 
+  <!--[if lt IE 9]><script src="themes/hechav3/skin1/js/css3-mediaqueries.js"></script><![endif]--> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /> 
+  <link rel="stylesheet" type="text/css" href="http://www.hecha.cn/themes/hechav3/skin1/style/extend.css" /> 
+  <link rel="stylesheet" type="text/css" href="http://www.hecha.cn/themes/hechav3/skin1/style/home.css" /> 
+  <script src="http://www.hecha.cn/js/jquery-1.4.4.min.js"></script> 
+  <script src="http://www.hecha.cn/themes/hechav3/skin1/js/jquery-1.11.0.min.js"></script> 
+  <script src="http://www.hecha.cn/themes/hechav3/skin1/js/common.js"></script> 
+  <script src="http://www.hecha.cn/js/common.js"></script> 
+  <script type="text/javascript" src="http://www.hecha.cn/js/cookies.js"></script> 
+  <script type="text/javascript" src="http://www.hecha.cn/js/source.js"></script> 
+  <script type="text/javascript">
+      $(function($) {
+          $.post("http://www.hecha.cn/Handler/LoginHandler/UserHandler.ashx", function(e) {
+              if (e != "false") {
+                  $("#wl").html(e + "&nbsp;欢迎登录和茶网！");
+                  $("#login").html("[退出登录]");
+                  $("#login").attr("href", "http://www.hecha.cn/Handler/LoginHandler/OutLoginHandler.ashx");
+                  $("#reg").html("我的账户");
+                  $("#reg").attr("href", "http://www.hecha.cn/cn/UserInfo/UserInfoIndex.html");
+              }
+          });
+
+          //右边栏登陆
+          $.post("http://www.hecha.cn/Handler/UserHandler/RightLoginHandler.ashx", function(e) {
+              if (e != "false") {
+                  $("#showuser").html(e);
+              }
+          });
+      });
+
+      var domainurl = 'http://localhost/Hecha.Web/';    //生成时网址
+      var url = window.location.href; //运行时网址
+      if (url.indexOf(domainurl) < 0) {   //如果生成时和运行时不一致
+          domainurl = "http://" + window.location.host;
+      }
+      saveCookie("siteid", '984eae3a-5eb1-4e80-8337-16ccdc6cdd2d', '', '/');
+    </script> 
+  <style type="text/css">
+        .hc_main .hc-404
+        {
+            position: relative;
+            width: 1190px;
+            height: 500px;
+            background-image: url(/themes/hechav3/images/404/pic404.jpg);
+        }
+        .hc_main .hc-404 a 
+        {
+            display: block;
+            padding-top: 360px;
+            margin-left: 390px;
+        }
+    </style> 
+  <meta property="qc:admins" content="250053074245346053016367" /> 
+ </head> 
+ <body class=""> 
+  <script type="text/javascript" src="http://www.hecha.cn/js/Common/Share.js"></script> 
+  <div class="hc_toolbar"> 
+   <div class="hc_main"> 
+    <div class="left" id="loginInfo"> 
+     <a href="javascript:addBookmark();" class="fav"><span>收藏</span></a> 
+     <span class="top_ex2"> <i class="gap"></i></span>
+     <span class="wel" id="wl">欢迎！</span> 
+     <a href="http://www.hecha.cn/cn/login.html" class="log" id="login">登录</a> 
+     <a href="http://www.hecha.cn/cn/register.html" class="log" id="reg">快速注册</a> 
+    </div> 
+    <div class="wx ixpop abgmove"> 
+     <a href="javascript:;">&nbsp;</a> 
+     <p class="wx2wm ixbox"> <i>&nbsp;</i> 微信扫描送大礼 </p> 
+    </div> 
+    <div class="right"> 
+     <a href="http://www.hecha.cn/cn/UserInfo/UserInfoIndex.html" target="_blank">我的和茶</a> 
+     <a href="http://www.hecha.cn/cn/UserInfo/OrderList.html" target="_blank">我的订单</a> 
+     <a href="http://www.hecha.cn/cn/about/hc_about.html" target="_blank">关于和茶</a> 
+     <a href="http://www.hecha.cn/ol/" target="_blank" style="display: none;">客服</a> 
+     <a href="http://www.hecha.cn/cn/help.html" target="_blank">帮助</a> 
+     <a href="http://www.hecha.cn/BaiKe/Index.html" target="_blank">茶百科</a> 
+     <i class="gap cart"></i> 
+    </div> 
+    <div class="topcart ixpop"> 
+     <div class="ti"> 
+      <a href="http://www.hecha.cn/cn/Cart.html" class="abgmove"><span class="ta">购物车</span><strong id="Strong1">0</strong><span>件</span></a>
+      <em class="icx">&nbsp;</em>
+     </div> 
+     <ul class="cart_list1 ixbox" id="cart_detail"> 
+      <h3> 购物车中还没有商品，赶紧选购吧!</h3> 
+      <div class="clr"> 
+      </div> 
+     </ul> 
+    </div> 
+    <div class="clr"> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="hc_header"> 
+   <div class="hc_main"> 
+    <div class="logo"> 
+     <div> 
+      <a href="http://www.hecha.cn/" title="茶叶_茶具_保健茶_和茶网－原产地 好品牌-网上购茶首选平台" target="_blank"> <img alt="茶叶_茶具_保健茶_和茶网－原产地 好品牌-网上购茶首选平台" src="http://www.hecha.cn/themes/hechav3/skin1/images/header/logo.png" /><span>和茶网 原产地 好品牌 可定制</span></a>
+     </div> 
+    </div> 
+    <div class="act">
+      &nbsp;
+    </div> 
+    <div class="search"> 
+     <dl> 
+      <dt> 
+       <input name="keywords" id="txtSearch" type="text" class="inp2" value="" onclick="inputKey();" />
+      </dt> 
+      <dd> 
+       <input id="btnSearch" type="image" />
+      </dd> 
+     </dl> 
+     <!--搜索热门标签--> 
+     <p> 热门：<a href="http://www.hecha.cn/remenjinjm_list.html">金骏眉</a> <a href="http://www.hecha.cn/rementiegt_list.html"> 铁观音</a> <a href="http://www.hecha.cn/remendahp_list.html">大红袍</a> <a href="http://www.hecha.cn/remenxihulj_list.html"> 西湖龙井</a> <a href="http://www.hecha.cn/heicha_list.html">普洱茶</a> </p> 
+    </div> 
+    <div class="right"> 
+     <p> <a class="tx1 ibgmove" href="javascript:;"><i>&nbsp;</i>100%原产地茶</a> <a class="tx2 ibgmove" href="javascript:;"><i>&nbsp;</i>品质有保障</a> <a class="tx3 ibgmove" href="javascript:;"> <i>&nbsp;</i>无理由退换货</a> <a class="tx4" href="javascript:;">400-8899-379</a> </p> 
+    </div> 
+    <div class="clr"> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="hc_menu"> 
+   <div class="hc_main"> 
+    <div class="mtouch"> 
+     <a href="#menu">menu</a>
+    </div> 
+    <div class="hc_lnav jslist"> 
+     <div class="allbtn"> 
+      <h2> <a href="#"><strong>&nbsp;</strong>全部商品分类<i>&nbsp;</i></a></h2> 
+      <ul class="jspop box" style="width: 190px;"> 
+       <li class="a1"> 
+        <div class="tx"> 
+         <a href="http://www.hecha.cn/chaye_list.html" target="_blank"><i>&nbsp;</i>各地名优茶</a> 
+        </div> 
+        <dl> 
+         <dt>
+          热门
+         </dt> 
+         <dd> 
+          <a href="http://www.hecha.cn/remenxihulj_list.html" target="_blank" class="#Class#"> 西湖龙井</a> 
+          <a href="http://www.hecha.cn/remenjinjm_list.html" target="_blank" class="#Class#"> 金骏眉</a> 
+          <a href="http://www.hecha.cn/remendahp_list.html" target="_blank" class="#Class#"> 大红袍</a> 
+          <a href="http://www.hecha.cn/rementiegt_list.html" target="_blank" class="#Class#"> 铁观音</a> 
+         </dd> 
+        </dl> 
+        <dl> 
+         <dt>
+          名茶
+         </dt> 
+         <dd> 
+          <a href="http://www.hecha.cn/hongcha1_list.html" target="_blank" class="#Class#">红茶</a> 
+          <a href="http://www.hecha.cn/lvcha1_list.html" target="_blank" class="#Class#">绿茶</a> 
+          <a href="http://www.hecha.cn/wulongcha_list.html" target="_blank" class="#Class#">乌龙茶</a> 
+          <a href="http://www.hecha.cn/heicha1_list.html" target="_blank" class="#Class#">黑茶</a> 
+          <a href="http://www.hecha.cn/baicha_list.html" target="_blank" class="#Class#">白茶 </a> 
+         </dd> 
+        </dl> 
+        <div class="pop"> 
+         <h3> <a href="http://www.hecha.cn/sgoods-5304.html" target="_blank">各地名优茶</a></h3> 
+         <dl> 
+          <dl> 
+           <dt>
+            <a href="http://www.hecha.cn/lvcha_list.html" target="_blank" class="ui-link" style="margin-left: 0">绿茶</a>
+           </dt> 
+           <dd> 
+            <a href="http://www.hecha.cn/longjing_list.html" target="_blank" class="ui-link">西湖龙井</a> 
+            <a href="http://www.hecha.cn/biluochun_list.html" target="_blank" class="ui-link">龙井</a> 
+            <a href="http://www.hecha.cn/maofeng_list.html" target="_blank" class="ui-link">黄山毛峰</a> 
+            <a href="http://www.hecha.cn/anjibaicha_list.html" target="_blank" class="ui-link">安吉白茶</a> 
+            <a href="http://www.hecha.cn/qitalvcha_list.html" target="_blank" class="ui-link">其他绿茶</a> 
+           </dd> 
+          </dl> 
+          <dl> 
+           <dt>
+            <a href="http://www.hecha.cn/wulong_list.html" target="_blank" class="ui-link" style="margin-left: 0">乌龙茶</a>
+           </dt> 
+           <dd> 
+            <a href="http://www.hecha.cn/tieguanyin_list.html" target="_blank" class="ui-link">铁观音</a> 
+            <a href="http://www.hecha.cn/dahongpao_list.html" target="_blank" class="ui-link">大红袍</a> 
+            <a href="http://www.hecha.cn/shuixian_list.html" target="_blank" class="un ui-link"> 水仙</a> 
+            <a href="http://www.hecha.cn/rougui_list.html" target="_blank" class="un ui-link"> 肉桂</a> 
+            <a href="http://www.hecha.cn/taiwanwulong_list.html" target="_blank" class="ui-link"> 台湾乌龙</a> 
+            <a href="http://www.hecha.cn/qitawulong_list.html" target="_blank" class="ui-link"> 其他乌龙茶</a> 
+           </dd> 
+          </dl> 
+          <dl> 
+           <dt>
+            <a href="http://www.hecha.cn/hongcha_list.html" target="_blank" class="ui-link" style="margin-left: 0">红茶</a>
+           </dt> 
+           <dd> 
+            <a href="http://www.hecha.cn/jinjunmei_list.html" target="_blank" class="ui-link">金骏眉</a> 
+            <a href="http://www.hecha.cn/xiaozhong_list.html" target="_blank" class="ui-link">正山小种</a> 
+            <a href="http://www.hecha.cn/qimen_list.html" target="_blank" class="ui-link">祁门红茶</a> 
+            <a href="http://www.hecha.cn/tanyang_list.html" target="_blank" class="ui-link">坦洋工夫</a> 
+            <a href="javascript:;" target="_blank" class="ui-link">其他红茶</a> 
+            <a href="http://www.hecha.cn/zhenghe_list.html" target="_blank" class="un ui-link">政和工夫</a> 
+            <a href="http://www.hecha.cn/dianhong_list.html" target="_blank" class="ui-link">滇红工夫</a> 
+           </dd> 
+          </dl> 
+          <dl> 
+           <dt>
+            <a href="http://www.hecha.cn/heicha_list.html" target="_blank" class="ui-link" style="margin-left: 0">黑茶</a>
+           </dt> 
+           <dd> 
+            <a href="http://www.hecha.cn/baishaxiheicha_list.html" target="_blank" class="ui-link"> 白沙溪黑茶</a> 
+            <a href="http://www.hecha.cn/puerchabing_list.html" target="_blank" class="ui-link"> 普洱茶饼</a> 
+            <a href="http://www.hecha.cn/puertuocha_list.html" target="_blank" class="ui-link"> 普洱沱茶</a> 
+            <a href="http://www.hecha.cn/puerchazhuan_list.html" target="_blank" class="ui-link"> 普洱茶砖</a> 
+            <a href="http://www.hecha.cn/puersancha_list.html" target="_blank" class="ui-link"> 普洱散茶</a> 
+            <a href="http://www.hecha.cn/qitaheicha_list.html" target="_blank" class="ui-link"> 其他黑茶</a> 
+           </dd> 
+          </dl> 
+          <dl> 
+           <dt>
+            <a href="http://www.hecha.cn/baicha_list.html" target="_blank" class="ui-link" style="margin-left: 0">白茶</a>
+           </dt> 
+           <dd> 
+            <a href="http://www.hecha.cn/baimudan_list.html" target="_blank" class="ui-link">白牡丹</a> 
+            <a href="http://www.hecha.cn/baihaoyinzhen_list.html" target="_blank" class="ui-link"> 白毫银针</a> 
+            <a href="http://www.hecha.cn/shoumei_list.html" target="_blank" class="ui-link"> 寿眉</a> 
+            <a href="http://www.hecha.cn/qitabaicha_list.html" target="_blank" class="ui-link"> 其他白茶</a> 
+           </dd> 
+          </dl> 
+         </dl> 
+         <dl> 
+          <dt>
+           品牌
+          </dt> 
+          <dd> 
+           <a href="http://www.hecha.cn/chaye_list.html?param=15E6E29D-23BA-48EC-9211-5BC3AFAEACB0" target="_blank">滋恩</a> 
+           <a href="http://www.hecha.cn/chaye_list.html?param=34491C91-6A5F-4B25-9E15-F3BF90FB2E36" target="_blank">远荣</a> 
+           <a href="http://www.hecha.cn/chaye_list.html?param=CDF03683-F13A-4B0D-99CC-3D1C114CBE90" target="_blank">顶峰</a> 
+           <a href="http://www.hecha.cn/chaye_list.html?param=93167DD1-6502-48D2-99D0-41B0819F3D54" target="_blank">公泰</a> 
+           <a href="http://www.hecha.cn/chaye_list.html?param=A90A85A4-F9A9-4B49-8707-83908444C269" target="_blank">一品堂</a> 
+           <a href="http://www.hecha.cn/chaye_list.html?param=6044797E-55D0-4913-A7B8-96A604427803" target="_blank">好吉</a> 
+           <a href="http://www.hecha.cn/chaye_list.html?param=59B20D30-E13C-45C5-B306-50D27AF048CB" target="_blank">绿雪芽</a> 
+           <a href="http://www.hecha.cn/chaye_list.html?param=A34632FF-15F3-4F1C-A04B-779F5E126642" target="_blank">台湾梅山制茶</a> 
+           <a href="http://www.hecha.cn/chaye_list.html?param=7E85D468-7C2D-4544-9405-A13AC79CC188" target="_blank">白沙溪</a> 
+           <a href="http://www.hecha.cn/chaye_list.html?param=E0020351-01C5-40A9-A629-6AE0D290BDCB" target="_blank">联兴茶叶</a> 
+           <a href="http://www.hecha.cn/chaye_list.html?param=b4268701-690e-4d72-9501-040f45414a26" target="_blank">元泰</a> 
+          </dd> 
+         </dl> 
+         <dl> 
+          <dt>
+           价格
+          </dt> 
+          <dd> 
+           <a href="http://www.hecha.cn/chaye_list.html?param=4831953F-4693-4ECF-89AD-D18145CC7A6C" target="_blank">100元及以下</a> 
+           <a href="http://www.hecha.cn/chaye_list.html?param=B4B5A38C-C294-40D2-97A0-E46B279ACCE2" target="_blank">100-300元</a> 
+           <a href="http://www.hecha.cn/chaye_list.html?param=B08F68E0-AE6E-40EE-8F9E-005D6AD95766" target="_blank">300元及以上</a> 
+          </dd> 
+         </dl> 
+         <dl> 
+          <dt>
+           净含量
+          </dt> 
+          <dd> 
+           <a href="http://www.hecha.cn/chaye_list.html?param=50CCB946-944F-4308-B6B6-9A296C81DB4D" target="_blank">50g及以下</a> 
+           <a href="http://www.hecha.cn/chaye_list.html?param=16E9D872-086D-4EEE-8A9F-C3FB7C1EE2F4" target="_blank">51-100g</a> 
+           <a href="http://www.hecha.cn/chaye_list.html?param=11D21950-D4E1-4E96-A49D-1ADDCC5A2D9D" target="_blank">101-250g</a> 
+           <a href="http://www.hecha.cn/chaye_list.html?param=65E0A4A3-5461-46B0-95A2-EDD16820290F" target="_blank">250g以上</a> 
+          </dd> 
+         </dl> 
+         <dl> 
+          <dt>
+           包装
+          </dt> 
+          <dd> 
+           <a href="http://www.hecha.cn/chaye_list.html?param=707B0882-0A49-4067-B83D-91D7780ABE77" target="_blank">经济自饮装</a> 
+           <a href="http://www.hecha.cn/chaye_list.html?param=38F1A9E4-7631-48B6-98DD-FEA6B6E59464" target="_blank">精美礼品装</a> 
+          </dd> 
+         </dl> 
+         <div class="clr"> 
+         </div> 
+         <div class="act"> 
+          <a href="http://www.hecha.cn/sgoods-5304.html" target="_blank"> <img alt="【元正】特级泛舟游湖正山小种罐装50g*2" src="http://img1.hecha.cn/UploadImages/20150521/20150521115255.JPG" /></a> 
+         </div> 
+        </div> </li> 
+       <li class="a2"> 
+        <div class="tx"> 
+         <a href="http://www.hecha.cn/huacaobaojian_list.html" target="_blank"><i>&nbsp;</i>花草保健茶</a> 
+        </div> 
+        <dl> 
+         <dt>
+          推荐
+         </dt> 
+         <dd> 
+          <a href="http://www.hecha.cn/damaicha_list.html" target="_blank" class="#Class#">大麦茶</a> 
+          <a href="http://www.hecha.cn/kuqiaomai_list.html" target="_blank" class="#Class#">苦荞茶</a> 
+          <a href="http://www.hecha.cn/meiguihuacha_list.html" target="_blank" class="#Class#"> 玫瑰花茶</a> 
+          <a href="http://www.hecha.cn/kunlunxueju_list.html" target="_blank" class="#Class#"> 雪菊</a> 
+          <a href="http://www.hecha.cn/fengmimuguafen_list.html" target="_blank" class="#Class#"> 蜂蜜木瓜粉</a> 
+         </dd> 
+        </dl> 
+        <div class="pop"> 
+         <h3> <a href="http://www.hecha.cn/sgoods-5420.html" target="_blank">花草保健茶</a></h3> 
+         <dl> 
+          <dl> 
+           <dt>
+            <a href="http://www.hecha.cn/shoushen_list.html" target="_blank" class="ui-link" style="margin-left: 0">瘦身</a>
+           </dt> 
+           <dd> 
+            <a href="http://www.hecha.cn/meiguiheyecha_list.html" target="_blank" class="ui-link"> 玫瑰荷叶茶</a> 
+            <a href="http://www.hecha.cn/luoshenhua_list.html" target="_blank" class="ui-link"> 洛神花</a> 
+            <a href="http://www.hecha.cn/lanxiangzi_list.html" target="_blank" class="ui-link"> 兰香子</a> 
+            <a href="http://www.hecha.cn/paotengpian_list.html" target="_blank" class="ui-link"> 纤维泡腾片</a> 
+           </dd> 
+          </dl> 
+          <dl> 
+           <dt>
+            <a href="http://www.hecha.cn/meirong_list.html" target="_blank" class="ui-link" style="margin-left: 0">美容</a>
+           </dt> 
+           <dd> 
+            <a href="http://www.hecha.cn/falanximeigui_list.html" target="_blank" class="ui-link"> 法兰西玫瑰</a> 
+            <a href="http://www.hecha.cn/dgnmmeirong_list.html" target="_blank" class="ui-link"> 冻干柠檬片</a> 
+            <a href="http://www.hecha.cn/guolicha_list.html" target="_blank" class="ui-link"> 果粒茶</a> 
+            <a href="http://www.hecha.cn/damaichameirong_list.html" target="_blank" class="ui-link"> 大麦茶</a> 
+           </dd> 
+          </dl> 
+          <dl> 
+           <dt>
+            <a href="http://www.hecha.cn/huacaobaojian_list.html" target="_blank" class="ui-link" style="margin-left: 0">丰胸</a>
+           </dt> 
+           <dd> 
+            <a href="http://www.hecha.cn/muguagegenfen_list.html" target="_blank" class="ui-link"> 木瓜葛根粉</a> 
+            <a href="http://www.hecha.cn/fengmimuguanfen_list.html" target="_blank" class="ui-link">蜂蜜木瓜粉</a> 
+            <a href="http://www.hecha.cn/hongjiumugua_list.html" target="_blank" class="ui-link">红酒木瓜丽人饮</a> 
+           </dd> 
+          </dl> 
+          <dl> 
+           <dt>
+            <a href="http://www.hecha.cn/jianghuo_list.html" target="_blank" class="ui-link" style="margin-left: 0">降火</a>
+           </dt> 
+           <dd> 
+            <a href="http://www.hecha.cn/taijuwang_list.html" target="_blank" class="ui-link">胎菊王</a> 
+            <a href="http://www.hecha.cn/jinyinhua_list.html" target="_blank" class="ui-link">金银花</a> 
+            <a href="http://www.hecha.cn/kuqiaomaijh_list.html" target="_blank" class="ui-link"> 苦荞茶</a> 
+            <a href="http://www.hecha.cn/donggannm_list.html" target="_blank" class="ui-link"> 冻干柠檬片</a> 
+           </dd> 
+          </dl> 
+          <dl> 
+           <dt>
+            <a href="http://www.hecha.cn/zibu_list.html" target="_blank" class="ui-link" style="margin-left: 0">滋补</a>
+           </dt> 
+           <dd> 
+            <a href="http://www.hecha.cn/gouqi_list.html" target="_blank" class="ui-link">枸杞</a> 
+            <a href="http://www.hecha.cn/htjiangcha_list.html" target="_blank" class="ui-link">红糖姜茶</a> 
+            <a href="http://www.hecha.cn/mingbaochaduof_list.html" target="_blank" class="ui-link"> 茗宝茶多酚</a> 
+           </dd> 
+          </dl> 
+          <dl> 
+           <dt>
+            <a href="http://www.hecha.cn/anshen_list.html" target="_blank" class="ui-link" style="margin-left: 0">安神</a>
+           </dt> 
+           <dd> 
+            <a href="http://www.hecha.cn/xueju_list.html" target="_blank" class="ui-link">雪菊</a> 
+           </dd> 
+          </dl> 
+         </dl> 
+         <dl> 
+          <dt>
+           品牌
+          </dt> 
+          <dd> 
+           <a href="http://www.hecha.cn/huacaobaojian_list.html?param=fa66cc4e-544f-4ca2-89b2-e18ce403555e" target="_blank">雅丽百花缘</a> 
+           <a href="http://www.hecha.cn/huacaobaojian_list.html?param=a167bb47-68ae-40b5-a1f1-6c379eb99c3c" target="_blank">大茗堂</a> 
+           <a href="http://www.hecha.cn/huacaobaojian_list.html?param=AF62D9DE-1626-4411-BD02-FE505B884B53" target="_blank">与花香</a> 
+           <a href="http://www.hecha.cn/huacaobaojian_list.html?param=4E7CF5FA-B316-4254-8E84-139884EBA18A" target="_blank">美丽快攻</a> 
+           <a href="http://www.hecha.cn/huacaobaojian_list.html?param=CDF03683-F13A-4B0D-99CC-3D1C114CBE90" target="_blank">顶峰</a> 
+          </dd> 
+         </dl> 
+         <dl> 
+          <dt>
+           价格
+          </dt> 
+          <dd> 
+           <a href="http://www.hecha.cn/huacaobaojian_list.html?param=4831953F-4693-4ECF-89AD-D18145CC7A6C" target="_blank">100元及以下</a> 
+           <a href="http://www.hecha.cn/huacaobaojian_list.html?param=B4B5A38C-C294-40D2-97A0-E46B279ACCE2" target="_blank">100-300元</a> 
+           <a href="http://www.hecha.cn/huacaobaojian_list.html?param=B08F68E0-AE6E-40EE-8F9E-005D6AD95766" target="_blank">300元及以上</a> 
+          </dd> 
+         </dl> 
+         <dl> 
+          <dt>
+           净含量
+          </dt> 
+          <dd> 
+           <a href="http://www.hecha.cn/huacaobaojian_list.html?param=50CCB946-944F-4308-B6B6-9A296C81DB4D" target="_blank">50g及以下</a> 
+           <a href="http://www.hecha.cn/huacaobaojian_list.html?param=16E9D872-086D-4EEE-8A9F-C3FB7C1EE2F4" target="_blank">51-100g</a> 
+           <a href="http://www.hecha.cn/huacaobaojian_list.html?param=11D21950-D4E1-4E96-A49D-1ADDCC5A2D9D" target="_blank">101-250g</a> 
+           <a href="http://www.hecha.cn/huacaobaojian_list.html?param=65E0A4A3-5461-46B0-95A2-EDD16820290F" target="_blank">250g以上</a> 
+          </dd> 
+         </dl> 
+         <dl> 
+          <dt>
+           包装
+          </dt> 
+          <dd> 
+           <a href="http://www.hecha.cn/huacaobaojian_list.html?param=707B0882-0A49-4067-B83D-91D7780ABE77" target="_blank">经济自饮装</a> 
+           <a href="http://www.hecha.cn/huacaobaojian_list.html?param=38F1A9E4-7631-48B6-98DD-FEA6B6E59464" target="_blank">精美礼品装</a> 
+          </dd> 
+         </dl> 
+         <div class="clr"> 
+         </div> 
+         <div class="act"> 
+          <a href="http://www.hecha.cn/sgoods-5420.html" target="_blank"> <img alt="天山雪菊时尚铁罐装50g" src="http://img1.hecha.cn/UploadImages/20150518/20150518092236.JPG" /></a> 
+         </div> 
+        </div> </li> 
+       <li class="a3"> 
+        <div class="tx"> 
+         <a href="http://www.hecha.cn/chaju_list.html" target="_blank"><i>&nbsp;</i>精选茶具</a> 
+        </div> 
+        <dl> 
+         <dt>
+          推荐
+         </dt> 
+         <dd> 
+          <a href="http://www.hecha.cn/tjgongfucj_list.html" target="_blank" class="#Class#">功夫茶具</a> 
+          <a href="http://www.hecha.cn/gerenbei_list.html" target="_blank" class="#Class#">个人杯</a> 
+          <a href="http://www.hecha.cn/tjchachong_list.html" target="_blank" class="#Class#">茶宠</a> 
+          <a href="http://www.hecha.cn/tjchayeguan_list.html" target="_blank" class="#Class#"> 茶叶罐</a> 
+         </dd> 
+        </dl> 
+        <div class="pop"> 
+         <h3> <a href="http://www.hecha.cn/sgoods-4907.html" target="_blank">精选茶具</a></h3> 
+         <dl> 
+          <dl> 
+           <dt>
+            <a href="http://www.hecha.cn/taoci_list.html" target="_blank" class="ui-link" style="margin-left: 0">陶瓷</a>
+           </dt> 
+           <dd> 
+            <a href="http://www.hecha.cn/tcchayeguan_list.html" target="_blank" class="ui-link"> 茶叶罐</a> 
+            <a href="http://www.hecha.cn/tcgongfu_list.html" target="_blank" class="ui-link"> 功夫茶具</a> 
+            <a href="http://www.hecha.cn/tcchahu_list.html" target="_blank" class="ui-link"> 茶壶</a> 
+            <a href="http://www.hecha.cn/tcchachong_list.html" target="_blank" class="ui-link"> 茶宠</a> 
+            <a href="http://www.hecha.cn/tcchabei_list.html" target="_blank" class="ui-link"> 茶杯</a> 
+            <a href="http://www.hecha.cn/tcchajulihe_list.html" target="_blank" class="ui-link"> 茶具礼盒</a> 
+           </dd> 
+          </dl> 
+          <dl> 
+           <dt>
+            <a href="http://www.hecha.cn/ciqi_list.html" target="_blank" class="ui-link" style="margin-left: 0">瓷器</a>
+           </dt> 
+           <dd> 
+            <a href="http://www.hecha.cn/ruyao_list.html" target="_blank" class="ui-link">汝窑</a> 
+            <a href="http://www.hecha.cn/geyao_list.html" target="_blank" class="un ui-link">哥窑</a> 
+            <a href="http://www.hecha.cn/dinyao_list.html" target="_blank" class="un ui-link">定窑</a> 
+           </dd> 
+          </dl> 
+         </dl> 
+         <dl> 
+          <dt>
+           品牌
+          </dt> 
+          <dd> 
+           <a href="http://www.hecha.cn/chaju_list.html?param=3452A882-D2A1-4D89-8A8E-72DB72D6959E" target="_blank">恒越</a> 
+           <a href="http://www.hecha.cn/chaju_list.html?param=899F8E43-F4A8-45AF-8B0D-B023F8326B7F" target="_blank">卓越</a> 
+           <a href="http://www.hecha.cn/chaju_list.html?param=D5D93F87-909C-4BB4-AB61-4C84CDF35DC8" target="_blank">国尊陶瓷</a> 
+           <a href="http://www.hecha.cn/chaju_list.html?param=B4F0ACC5-4FAE-4B33-A6DF-A95B3D7D2A21" target="_blank">宏远达</a> 
+           <a href="http://www.hecha.cn/chaju_list.html?param=2E23F7E4-21F1-4D22-A0D7-835F7273026B" target="_blank">福万利</a> 
+          </dd> 
+         </dl> 
+         <dl> 
+          <dt>
+           价格
+          </dt> 
+          <dd> 
+           <a href="http://www.hecha.cn/chaju_list.html?param=4831953F-4693-4ECF-89AD-D18145CC7A6C" target="_blank">100元及以下</a> 
+           <a href="http://www.hecha.cn/chaju_list.html?param=B4B5A38C-C294-40D2-97A0-E46B279ACCE2" target="_blank">100-300元</a> 
+           <a href="http://www.hecha.cn/chaju_list.html?param=B08F68E0-AE6E-40EE-8F9E-005D6AD95766" target="_blank">300元及以上</a> 
+          </dd> 
+         </dl> 
+         <dl> 
+          <dt>
+           包装
+          </dt> 
+          <dd> 
+           <a href="http://www.hecha.cn/chaju_list.html?param=707B0882-0A49-4067-B83D-91D7780ABE77" target="_blank">经济自饮装</a> 
+           <a href="http://www.hecha.cn/chaju_list.html?param=38F1A9E4-7631-48B6-98DD-FEA6B6E59464" target="_blank">精美礼品装</a> 
+          </dd> 
+         </dl> 
+         <div class="clr"> 
+         </div> 
+         <div class="act"> 
+          <a href="http://www.hecha.cn/sgoods-4907.html" target="_blank"> <img alt="蝶舞幸福组-品红" src="http://img1.hecha.cn/UploadImages/20150521/20150521115352.JPG" /></a> 
+         </div> 
+        </div> </li> 
+       <li class="a4"> 
+        <div class="tx"> 
+         <a href="http://www.hecha.cn/kekouchashi_list.html" target="_blank"><i>&nbsp;</i>可口茶食</a> 
+        </div> 
+        <dl> 
+         <dt>
+          推荐
+         </dt> 
+         <dd> 
+          <a href="http://www.hecha.cn/.html" target="_blank" class="#Class#">凤梨酥</a> 
+         </dd> 
+        </dl> 
+        <div class="pop"> 
+         <h3> <a href="http://www.hecha.cn/sgoods-5148.html" target="_blank">可口茶食</a></h3> 
+         <dl> 
+          <dl> 
+           <dt>
+            <a href="http://www.hecha.cn/guofu_list.html" target="_blank" class="ui-link" style="margin-left: 0">果脯</a>
+           </dt> 
+           <dd> 
+            <a href="http://www.hecha.cn/yangmei_list.html" target="_blank" class="un ui-link">杨梅</a> 
+            <a href="http://www.hecha.cn/gfsuantianmei_list.html" target="_blank" class="un ui-link"> 酸甜梅</a> 
+            <a href="http://www.hecha.cn/gfwumei_list.html" target="_blank" class="un ui-link"> 乌梅</a> 
+            <a href="http://www.hecha.cn/banhuamei_list.html" target="_blank" class="un ui-link"> 半话梅</a> 
+            <a href="http://www.hecha.cn/mangguotiao_list.html" target="_blank" class="un ui-link"> 芒果条</a> 
+            <a href="http://www.hecha.cn/heijialun_list.html" target="_blank" class="un ui-link"> 黑加仑</a> 
+           </dd> 
+          </dl> 
+          <dl> 
+           <dt>
+            <a href="http://www.hecha.cn/ganguo_list.html" target="_blank" class="ui-link" style="margin-left: 0">干果</a>
+           </dt> 
+           <dd> 
+            <a href="http://www.hecha.cn/xingren_list.html" target="_blank" class="un ui-link">杏仁</a> 
+            <a href="http://www.hecha.cn/guazi_list.html" target="_blank" class="un ui-link">瓜子</a> 
+            <a href="http://www.hecha.cn/kaixinguo_list.html" target="_blank" class="un ui-link"> 开心果</a> 
+           </dd> 
+          </dl> 
+          <dl> 
+           <dt>
+            <a href="http://www.hecha.cn/lingshi_list.html" target="_blank" class="ui-link" style="margin-left: 0">零食</a>
+           </dt> 
+           <dd> 
+            <a href="http://www.hecha.cn/shuijingnmp_list.html" target="_blank" class="un ui-link"> 水晶柠檬片</a> 
+            <a href="http://www.hecha.cn/fangkuaisu_list.html" target="_blank" class="un ui-link"> 方块酥</a> 
+            <a href="http://www.hecha.cn/.html" target="_blank" class="ui-link">凤梨酥</a> 
+            <a href="http://www.hecha.cn/ymqiaokeli_list.html" target="_blank" class="un ui-link"> 燕麦巧克力</a> 
+           </dd> 
+          </dl> 
+         </dl> 
+         <dl> 
+          <dt>
+           品牌
+          </dt> 
+          <dd> 
+           <a href="#" style="color: Gray">赛园</a> 
+           <a href="#" style="color: Gray">新味</a> 
+           <a href="http://www.hecha.cn/kekouchashi_list.html?param=666F3DB9-4091-46A2-8CE4-29207B473971" target="_blank">新味</a> 
+          </dd> 
+         </dl> 
+         <dl> 
+          <dt>
+           价格
+          </dt> 
+          <dd> 
+           <a href="http://www.hecha.cn/kekouchashi_list.html?param=4831953F-4693-4ECF-89AD-D18145CC7A6C" target="_blank">100元及以下</a> 
+           <a href="http://www.hecha.cn/kekouchashi_list.html?param=B4B5A38C-C294-40D2-97A0-E46B279ACCE2" target="_blank">100-300元</a> 
+           <a href="http://www.hecha.cn/kekouchashi_list.html?param=B08F68E0-AE6E-40EE-8F9E-005D6AD95766" target="_blank">300元及以上</a> 
+          </dd> 
+         </dl> 
+         <dl> 
+          <dt>
+           净含量
+          </dt> 
+          <dd> 
+           <a href="http://www.hecha.cn/kekouchashi_list.html?param=50CCB946-944F-4308-B6B6-9A296C81DB4D" target="_blank">50g及以下</a> 
+           <a href="http://www.hecha.cn/kekouchashi_list.html?param=16E9D872-086D-4EEE-8A9F-C3FB7C1EE2F4" target="_blank">51-100g</a> 
+           <a href="http://www.hecha.cn/kekouchashi_list.html?param=11D21950-D4E1-4E96-A49D-1ADDCC5A2D9D" target="_blank">101-250g</a> 
+           <a href="http://www.hecha.cn/kekouchashi_list.html?param=65E0A4A3-5461-46B0-95A2-EDD16820290F" target="_blank">250g以上</a> 
+          </dd> 
+         </dl> 
+         <dl> 
+          <dt>
+           包装
+          </dt> 
+          <dd> 
+           <a href="http://www.hecha.cn/kekouchashi_list.html?param=707B0882-0A49-4067-B83D-91D7780ABE77" target="_blank">经济自饮装</a> 
+           <a href="http://www.hecha.cn/kekouchashi_list.html?param=38F1A9E4-7631-48B6-98DD-FEA6B6E59464" target="_blank">精美礼品装</a> 
+          </dd> 
+         </dl> 
+         <div class="clr"> 
+         </div> 
+         <div class="act"> 
+          <a href="http://www.hecha.cn/sgoods-5148.html" target="_blank"> <img alt="【台湾梅山制茶】台湾凤梨酥盒装" src="http://img1.hecha.cn/UploadImages/20150521/20150521115408.JPG" /></a> 
+         </div> 
+        </div> </li> 
+      </ul> 
+     </div> 
+    </div> 
+    <div class="tnav"> 
+     <ul> 
+      <li><a href="http://www.hecha.cn/">首页</a></li>
+      <li><a href="http://www.hecha.cn/lvcha1_list.html"> 绿茶</a></li>
+      <li><a href="http://www.hecha.cn/wulongcha_list.html">乌龙茶</a></li>
+      <li><a href="http://www.hecha.cn/hongcha1_list.html">红茶</a></li>
+      <li><a href="http://www.hecha.cn/huacaobaojian_list.html"> 花草茶</a></li>
+      <li><a href="http://www.hecha.cn/ziyincha_list.html">自饮茶</a></li>
+      <li><a href="http://www.hecha.cn/lipincha_list.html">礼品茶</a></li>
+      <li><a href="http://www.hecha.cn/cn/active/2015dwj.html"> 端午节茶礼</a></li> 
+     </ul> 
+    </div> 
+   </div> 
+  </div> 
+  <link rel="stylesheet" type="text/css" href="../themes/hechav3/skin1/style/help.css" /> 
+  <div class="hc_main"> 
+   <div class="hc-404"> 
+    <span style="display: none;">很抱歉，你来晚了一步，它已经任性的消失了...<br /> 你要坚强些，继续发掘别的页面去吧</span> 
+    <a href="http://www.hecha.cn"> <img src="/themes/hechav3/images/404/index.gif" title="首页" /> </a> 
+   </div> 
+  </div> 
+  <!--右边栏---> 
+  <script src="http://www.hecha.cn/js/ProductListPage/list.js" type="text/javascript"></script> 
+  <script src="http://www.hecha.cn/js/LoginPage/LoginPageR.js" type="text/javascript"></script> 
+  <div class="hc_rnav my_hc_rnav"> 
+   <ol class="list"> 
+    <ul class="box"> 
+     <li class="close"> 
+      <div class="ti hiderbar rotate"> 
+       <a href="javascript:;" title="隐藏侧边栏"><i>&nbsp;</i><span>隐藏</span></a>
+      </div> </li> 
+     <li class="totop"> 
+      <div class="ti" id="toTop"> 
+       <a href="javascript:;"><i>&nbsp;</i><span>顶部</span></a>
+      </div> </li> 
+    </ul> 
+    <li class="blank">&nbsp;</li> 
+    <li class="user"> 
+     <div class="ti"> 
+      <a title="会员中心"><i>&nbsp;</i><span>会员</span></a>
+      <em class="icx">&nbsp;</em>
+     </div> 
+     <ul class="hc_user_pop1" id="showuser"> 
+      <form name="formLogin" method="post"> 
+       <h3> <em><a href="http://www.hecha.cn/cn/register.html" target="_blank">新用户注册</a></em><strong>用户登录</strong></h3> 
+       <li> 
+        <div class="left">
+          用户名
+        </div> 
+        <div class="right"> 
+         <input id="rightUserName" type="text" />
+         <i>手机/邮箱</i>
+        </div> 
+        <div class="clr"> 
+        </div> </li> 
+       <li> 
+        <div class="left">
+          密码
+        </div> 
+        <div class="right"> 
+         <input id="rightPassword" type="text" />
+         <i><a href="http://www.hecha.cn/cn/GetPassWord.html" target="_blank">找回密码</a></i>
+        </div> 
+        <div class="clr"> 
+        </div> </li> 
+       <li class="logingo"> 
+        <div class="left"> 
+         <img src="http://www.hecha.cn/themes/hechav3/skin1/images/user/login1.png" onclick="RightLogin();" /> 
+        </div> 
+        <div class="right">
+          &nbsp;
+        </div> </li> 
+       <li class="tx1">您还可以使用合作网站账号登录：</li> 
+       <li class="other"><a href="javascript:jointLoginr('alipay');" target="_blank">支付宝</a> <a href="javascript:jointLoginr('wb');" target="_blank">新浪微博</a> <a href="javascript:jointLoginr('qq');" target="_blank">QQ</a> <a href="javascript:jointLoginr('wx');" target="_blank">微信登陆</a> </li> 
+       <div class="clr"> 
+       </div> 
+      </form> 
+     </ul> </li> 
+    <li class="cart"> 
+     <div class="ti"> 
+      <a title="购物车" target="_blank"><i>&nbsp;</i><span>购物车</span></a>
+      <strong id="rcart">0</strong> 
+      <em class="icx">&nbsp;</em> 
+     </div> 
+     <ul class="cart_list1" id="rcart_detail"> 
+      <h3> 购物车中还没有商品，赶紧选购吧！</h3> 
+      <ul class="cart_list1 ixbox" id="cart_detail"> 
+       <h3> 购物车中还没有商品，赶紧选购吧！</h3> 
+      </ul> 
+     </ul> </li> 
+    <li class="hty"> 
+     <div class="ti"> 
+      <a class="rotate" title="购物车中还没有商品，赶紧选购吧" target="_blank"><i>&nbsp;</i><span>看过</span></a>
+      <em class="icx">&nbsp;</em>
+     </div> 
+     <ul class="cart_list2" id="user_view"> 
+      <h3> 我浏览过的商品</h3> 
+      <div class="more"> 
+       <a href="#" target="_blank">查看更多</a>
+      </div> 
+     </ul> </li> 
+    <li class="fav"> 
+     <div class="ti"> 
+      <a href="javascript:addBookmark();" class="rotate" title="收藏和茶网"><i>&nbsp;</i><span>收藏</span></a>
+     </div> </li> 
+   </ol> 
+  </div> 
+  <div class="my_right_bar"> 
+   <div class="hc_rnav"> 
+    <ol> 
+     <li class="close"> 
+      <div class="ti showrbar"> 
+       <a href="javascript:;" title="显示侧边栏"><i>&nbsp;</i><span>显示</span></a>
+      </div> </li> 
+    </ol> 
+   </div> 
+  </div> 
+  <div class="fotnav"> 
+   <div class="ico"> 
+    <div class="hc_main"> 
+     <p class="t1"> 100%原产地茶</p> 
+     <p class="t2"> 无理由退换货</p> 
+     <p class="t3"> 400城市货到付款</p> 
+     <p class="t4"> 支付宝签约商家</p> 
+    </div> 
+   </div> 
+   <div class="nav"> 
+    <div class="hc_main"> 
+     <div class="left"> 
+      <ul> 
+       <li><strong>购物指南</strong></li> 
+       <li><a href="http://www.hecha.cn/cn/help/778b024a-01f4-404b-99b9-dc89dbcedc52.html" target="_blank">帐户自助服务</a></li> 
+       <li><a href="http://www.hecha.cn/cn/help/17084462-b094-45fb-980b-084eedb471ac.html" target="_blank">新用户注册</a></li> 
+       <li><a href="http://www.hecha.cn/cn/help/e1900e2a-ed20-4c80-8795-896bbbbdbb5e.html" target="_blank">怎样下订单</a></li> 
+       <li><a href="http://www.hecha.cn/cn/help/e6eef9a3-f368-43a6-b837-ef3d3e7b2e89.html" target="_blank">注册常见问题</a></li> 
+      </ul> 
+      <ul> 
+       <li><strong>支付方式</strong></li> 
+       <li><a href="http://www.hecha.cn/cn/help/dfde0155-d989-434f-9120-f8504a69f3e0.html" target="_blank">支付方式</a></li> 
+       <li><a href="http://www.hecha.cn/cn/help/dbaaebe9-42ba-45a9-b517-9d1aaca41c63.html" target="_blank">在线支付介绍</a></li> 
+       <li><a href="http://www.hecha.cn" target="_blank">汇款单招领</a></li> 
+      </ul> 
+      <ul> 
+       <li><strong>配送说明</strong></li> 
+       <li><a href="http://www.hecha.cn/cn/help/797c90b4-7da1-49c5-82ee-55c087dcf58c.html" target="_blank">运费说明</a></li> 
+       <li><a href="http://www.hecha.cn/cn/help/65a39ac0-c258-4b91-9232-9cc718a9bf10.html" target="_blank">配送方式</a></li> 
+       <li><a href="http://www.hecha.cn/cn/help/fcbccf1b-8274-462c-888d-50f354974c99.html" target="_blank">配送范围</a></li> 
+      </ul> 
+      <ul> 
+       <li><strong>售后服务</strong></li> 
+       <li><a href="http://www.hecha.cn/cn/help/6e6b2acc-0806-4eb5-b3ce-0f48a1614148.html" target="_blank">退换货流程</a></li> 
+       <li><a href="http://www.hecha.cn/cn/help/21e6433e-d41d-4329-9d56-b8481a1d81c2.html" target="_blank">服务保障承诺</a></li> 
+       <li><a href="http://www.hecha.cn/cn/help/f9f92d6e-913c-4000-945e-b1a8440b486f.html" target="_blank">验货与签收</a></li> 
+      </ul> 
+      <ul> 
+       <li><strong>常见问题</strong></li> 
+       <li><a href="##" target="_blank">账号密码问题</a></li> 
+       <li><a href="http://www.hecha.cn/cn/help/7bf74c41-5fba-4db5-b713-4121d22a7e17.html" target="_blank">缺货登记</a></li> 
+       <li><a href="http://www.hecha.cn/baike/index.html" target="_blank">茶叶百科</a></li> 
+      </ul> 
+      <div class="clr"> 
+      </div> 
+     </div> 
+     <div class="right">
+       服务热线400-8899-379
+     </div> 
+     <div class="clr"> 
+     </div> 
+     <div class="menu"> 
+      <a href="http://www.hecha.cn" target="_blank">和茶网首页</a> 
+      <i class="gap"></i>
+      <a href="http://www.hecha.cn/cn/About/hc_about.html" target="_blank">关于和茶</a> 
+      <i class="gap"></i>
+      <a href="http://www.hecha.cn/cn/help.html" target="_blank">帮助中心</a> 
+      <i class="gap"></i>
+      <a href="http://www.hecha.cn/cn/help/deef8860-c1b0-40e8-9385-2ec1b66f09ad.html" target="_blank">交易条款</a> 
+      <i class="gap"></i>
+      <a href="http://www.hecha.cn/cn/help/20d17cf6-8359-492c-bd34-598a47f22896.html" target="_blank">诚征英才</a> 
+      <i class="gap"></i>
+      <a href="http://www.hecha.cn/cn/about/hc_addr.html" target="_blank">联系我们</a> 
+     </div> 
+    </div> 
+   </div> 
+   <div class="clr"> 
+   </div> 
+   <div class="copyright"> 
+    <div class="hc_main"> 
+     <div class="left"> 
+      <p> Copyright &copy; 2009-2015 hecha.cn All Rights Reserved. 闽ICP证：闽10202223-1号</p> 
+      <p> 福建和茶网络科技有限公司 版权所有 并保留所有权利 禁止非法复制</p> 
+     </div> 
+     <div class="right"> 
+      <p class="t2"> 国家级信息化示范试点项目</p> 
+      <p class="t1"> 福建经济和信息化委员会福建省电子商务示范平台</p> 
+     </div> 
+     <div class="clr"> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <script src="http://www.hecha.cn/js/cookies.js" type="text/javascript"></script> 
+  <script type="text/javascript">      var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://"); document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F9df85c98fdec938a14572469224a5c73' type='text/javascript'%3E%3C/script%3E")) </script> 
+  <script src=" http://hm.baidu.com/h.js?9df85c98fdec938a14572469224a5c73" type="text/javascript"></script> 
+  <a href="http://tongji.baidu.com/hm-web/welcome/ico?s=9df85c98fdec938a14572469224a5c73" target="_blank"></a>
+  <span style="display: none"> <script type="text/javascript">                                   var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://"); document.write(unescape("%3Cspan id='cnzz_stat_icon_1255383675'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1255383675' type='text/javascript'%3E%3C/script%3E"));</script> <span id="cnzz_stat_icon_1255383675"><a href="http://www.cnzz.com/stat/website.php?web_id=1255383675" target="_blank" title="站长统计">站长统计</a></span><script src=" http://s11.cnzz.com/z_stat.php?id=1255383675" type="text/javascript"></script><script src="http://c.cnzz.com/core.php?web_id=1255383675&amp;t=z" charset="utf-8" type="text/javascript"></script> </span>   
+ </body>
+</html>

@@ -1,0 +1,317 @@
+<!-- 0 --><html>
+    <head>
+        <title>Home - IceBitcoin</title>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+	$(function() {
+	//----- OPEN
+		$('[data-popup-open]').on('click', function(e)  {
+			var targeted_popup_class = jQuery(this).attr('data-popup-open');
+			$('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
+	
+			e.preventDefault();
+		});
+	
+		//----- CLOSE
+		$('[data-popup-close]').on('click', function(e)  {
+			var targeted_popup_class = jQuery(this).attr('data-popup-close');
+			$('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
+	
+			e.preventDefault();
+		});
+	});
+	</script>
+        <style type="text/css">
+        /* Outer */
+	.popup {
+		width:100%;
+		height:100%;
+		display:none;
+		position:fixed;
+		top:0px;
+		left:0px;
+		background:rgba(0,0,0,0.75);
+		z-index: 9999
+	}
+	
+	/* Inner */
+	.popup-inner {
+		width:360px;
+		padding:20px;
+		position:absolute;
+		top:50%;
+		left:50%;
+		-webkit-transform:translate(-50%, -50%);
+		transform:translate(-50%, -50%);
+		box-shadow:0px 2px 6px rgba(0,0,0,1);
+		border-radius:10px;
+		background:#fff;
+	}
+	
+	/* Close Button */
+	.popup-close {
+		width:30px;
+		height:30px;
+		padding-top:4px;
+		display:inline-block;
+		position:absolute;
+		top:0px;
+		right:0px;
+		transition:ease 0.25s all;
+		-webkit-transform:translate(50%, -50%);
+		transform:translate(50%, -50%);
+		border-radius:1000px;
+		background:rgba(0,0,0,0.8);
+		font-family:Arial, Sans-Serif;
+		font-size:20px;
+		text-align:center;
+		line-height:100%;
+		color:#fff;
+	}
+	
+	.popup-close:hover {
+		-webkit-transform:translate(50%, -50%) rotate(180deg);
+		transform:translate(50%, -50%) rotate(180deg);
+		background:rgba(0,0,0,1);
+		text-decoration:none;
+	}
+        </style>
+        <link href='http://icebitco.in/images/logo.png' rel='shortcut icon' type='image/png' />
+		<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700|Lobster' rel='stylesheet' type='text/css'>
+		<link href='http://icebitco.in/style.css' rel='stylesheet' type='text/css'>
+		<script>
+		 var keyStr = "ABCDEFGHIJKLMNOP" +
+               "QRSTUVWXYZabcdef" +
+               "ghijklmnopqrstuv" +
+               "wxyz0123456789+/" +
+               "=";
+			   
+	 function decode64(input) {
+     var output = "";
+     var chr1, chr2, chr3 = "";
+     var enc1, enc2, enc3, enc4 = "";
+     var i = 0;
+
+     // remove all characters that are not A-Z, a-z, 0-9, +, /, or =
+     var base64test = /[^A-Za-z0-9\+\/\=]/g;
+     if (base64test.exec(input)) {
+        alert("There were invalid base64 characters in the input text.\n" +
+              "Valid base64 characters are A-Z, a-z, 0-9, '+', '/',and '='\n" +
+              "Expect errors in decoding.");
+     }
+     input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+
+     do {
+        enc1 = keyStr.indexOf(input.charAt(i++));
+        enc2 = keyStr.indexOf(input.charAt(i++));
+        enc3 = keyStr.indexOf(input.charAt(i++));
+        enc4 = keyStr.indexOf(input.charAt(i++));
+
+        chr1 = (enc1 << 2) | (enc2 >> 4);
+        chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+        chr3 = ((enc3 & 3) << 6) | enc4;
+
+        output = output + String.fromCharCode(chr1);
+
+        if (enc3 != 64) {
+           output = output + String.fromCharCode(chr2);
+        }
+        if (enc4 != 64) {
+           output = output + String.fromCharCode(chr3);
+        }
+
+        chr1 = chr2 = chr3 = "";
+        enc1 = enc2 = enc3 = enc4 = "";
+
+     } while (i < input.length);
+
+     return unescape(output);
+  }
+	function usvsyuyas() {
+		if ($("#ayahInstructions").length){
+			$('#ayahInstructions').html(decode64('PHNjcmlwdCBhc3luYyBzcmM9Ii8vcGFnZWFkMi5nb29nbGVzeW5kaWNhdGlvbi5jb20vcGFnZWFkL2pzL2Fkc2J5Z29vZ2xlLmpzIj48L3NjcmlwdD4NCjwhLS0gSW5zaWRlIEljZUJUQyAtLT4NCjxpbnMgY2xhc3M9ImFkc2J5Z29vZ2xlIg0KICAgICBzdHlsZT0iZGlzcGxheTppbmxpbmUtYmxvY2s7d2lkdGg6MzM2cHg7aGVpZ2h0OjI4MHB4Ig0KICAgICBkYXRhLWFkLWNsaWVudD0iY2EtcHViLTc0NjAwMDkzMDU0NjM0MzYiDQogICAgIGRhdGEtYWQtc2xvdD0iOTczNjgwMjUwOCI+PC9pbnM+DQo8c2NyaXB0Pg0KKGFkc2J5Z29vZ2xlID0gd2luZG93LmFkc2J5Z29vZ2xlIHx8IFtdKS5wdXNoKHt9KTsNCjwvc2NyaXB0Pg=='));
+			
+		}else{
+			setTimeout(usvsyuyas, 100);
+		}
+	}
+	function sectotime(totalSec) {
+		var hours = parseInt( totalSec / 3600 ) % 24;
+		var minutes = parseInt( totalSec / 60 ) % 60;
+		var seconds = parseInt(totalSec % 60, 10);
+		if (hours < 10) {
+			hours = "0"+hours;
+		}
+		if (minutes < 10) {
+			minutes = "0"+minutes;
+		}
+		if (seconds < 10) {
+			seconds = "0"+seconds;
+		}
+		return hours+":"+minutes+":"+seconds;
+	}
+		</script>
+    </head>
+    <body>
+		<div class="navbar navbar-default" role="navigation">
+      <div class="container" style="width:1140px">
+	  <div class="navbar-header" style="float:left;">
+	  <a class="navbar-brand" href="/"><img src="http://icebitco.in/images/logo.png"> IceBitcoin</a>
+    </div>
+		<ul class="nav navbar-nav">
+        <li><a style="color: #fff;font-weight: bold;margin-left: 15px;" href="#" onclick="return false;" data-toggle="modal" data-target="#refer">Refer</a></li>
+		<li><a style="color: #fff;font-weight: bold;" href="/earn-more">Earn More</a></li>
+      </ul>
+        <div style="color: #fff;padding: 5px;display: inline-block;"></div>
+      </div>
+    </div>
+	<div class="modal fade" id="refer">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Refer</h4>
+      </div>
+      <div class="modal-body">
+        <p style="text-align:center">Refer your friends, enemies and everyone else to IceBitcoin and recieve 25% lifetime commission on all their faucet claims!<br/>
+All commission payments are added to your IceBitcoin account along with any faucet claims you make.<br/><br/>
+Ref link:<br/>http://icebitco.in/?id=BTCADDRESS<br/><br/>
+Our Banners:<br/>
+<img src="http://icebitco.in/banners/468x60_0.png"/><br/>
+http://icebitco.in/banners/468x60_0.png<br/>
+<img src="http://icebitco.in/banners/468x60_1.png"/><br/>
+http://icebitco.in/banners/468x60_1.png<br/>
+<img src="http://icebitco.in/banners/160x600_0.png"/><br/>
+http://icebitco.in/banners/160x600_0.png<br/>
+</p>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+        <div class='container' style="width:1140px">
+		
+			<div class='col-xs-12' style="margin-bottom:5px;">
+	
+<p><a href="https://www.genesis-mining.com/a/90576" target="_blank"><img alt="Genesis mining" src="http://icebitco.in/banners/genesis.jpg" style="width: 728px; height: 90px;" /></a></p>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Top IceBTC -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-7460009305463436"
+     data-ad-slot="6783336100"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<div style="text-align:center">
+    <iframe scrolling="no" frameborder="0" src="//mellowads.com/view/6E9EAFAB55CF" style="overflow:hidden;width:468px;height:60px;"></iframe>
+    <div>
+        <a href="//mellowads.com/networkspace/6E9EAFAB55CF" target="_blank">Advertise here</a>
+    </div>
+</div>	</div>
+                <div class='col-xs-4'>
+
+<div style="text-align:center">
+    <iframe scrolling="no" frameborder="0" src="//mellowads.com/view/A369F2A287CF" style="overflow:hidden;width:300px;height:600px;"></iframe>
+    <div>
+        <a href="//mellowads.com/networkspace/A369F2A287CF" target="_blank">Advertise here</a>
+    </div>
+</div>
+                </div>
+                <div class='col-xs-4'>
+
+
+
+               
+
+
+   <p><div style="font-family: 'Lobster', cursive;font-size:20px">
+<p >Earn 200-1,500 satoshi every hour.</p>
+<p>10,000 satoshi on jackpot!</p>
+<p>Cashout to Faucetbox or Paytoshi.</p>
+</div></p>
+
+		 <form action='/faucet' method='POST' id="56024353d34ed" style="margin:0 auto;margin-top:9px;">
+		 <input type='text' name='c1a8364f081fa8ce2762c8b3682d740deedc88cf4434ea282ed9e22c53b2cf89' class="form-control" placeholder='Your BTC Address' style="width:100%;max-width: 550px;margin: 0 auto;text-align: center;font-size: 20px;height: 40px;margin-bottom:8px">
+        <div><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Inside IceBTC -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:336px;height:280px"
+     data-ad-client="ca-pub-7460009305463436"
+     data-ad-slot="9736802508"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+		<input type='submit' class='hidead btn btn-primary buttonmargin input-block-level btn-lg' value='Enter The Faucet' style="font-size: 25px;padding: 8px 30px;margin-top:5px">
+		<br/><br/>
+		
+		  </form>
+
+
+                </div>
+                <div class='col-xs-4'>
+                   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Right IceBTC -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:300px;height:600px"
+     data-ad-client="ca-pub-7460009305463436"
+     data-ad-slot="8260069309"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>                </div>
+				<div class='col-xs-12' style="margin:5px auto;">
+	<script>
+var protocol = window.location.protocol;var host = window.location.hostname;var path = window.location.pathname;var params = encodeURIComponent(window.location.search);var referrer = encodeURIComponent(document.referrer);
+if (protocol == "https:"){ document.write('<iframe src="https://secureads.bitbillions.com/adsize-3/?resource=1429461597.8557&own=4200&protocol='+protocol+'&host='+host+'&path='+path+'¶ms='+params+'&referrer='+referrer+'" width="728" height="105" frameborder="0" scrolling="no"></iframe>');} else { document.write('<iframe src="http://ads.bitbillions.com/adsize-3/?resource=1429461597.8557&own=4200&protocol='+protocol+'&host='+host+'&path='+path+'¶ms='+params+'&referrer='+referrer+'" width="728" height="105" frameborder="0" scrolling="no"></iframe>');}
+</script>	</div>
+            </div>
+			
+        </div>
+				<div class="container" style="text-align:left;width:1140px">
+		<div class="well">
+		<h3>What is Bitcoin?</h3>
+	<p>Bitcoin is the first decentralized digital currency. Bitcoins are digital coins you can send through the internet. Compare to other alternatives Bitcoins have a number of advantages: Bitcoins are transferred directly from person to person within the net without going through a bank or a clearing house. This means that the fees are much lower.</p>
+	
+ <h3>What is Icebitcoin?</h3>
+  <p>Icebitcoin is a Bitcoin faucet. A Bitcoin faucet is a website which you can claim free Bitcoin from that for doing nothing. You just have to enter your Bitcoin address and slove a captcha to claim your free Bitcoin.</p>
+  
+  <div class="row">
+    <div class="col-md-4">
+      <h4>How much is rewards?</h4>
+      <p>Icebitcoin pays between 200-1500 satoshi normally and 10,000 satoshi on jackpot every hour!</p>
+    </div>
+    <div class="col-md-4">
+      <h4>Referral system</h4>
+      <p>Refer anyone using your referral link and earn 25% of their earnings for lifetime! For referral link and banners check "Refer" button.</p>
+    </div>
+    <div class="col-md-4">
+      <h4>Withdrawals</h4>
+      <p>You can cashout your earnings when its 5,500 satoshi or more. You can cashout to Faucetbox or Paytoshi. After that you will receive it in your BTC address from Faucetbox or Paytoshi.</p>
+    </div>
+  </div>
+  
+  <h3 style="margin-top: 0;">Contact us</h3>
+  <p>Contact us by following email: contact@icebitco.in</p>
+		</div>
+		<div class='col-xs-12' style="margin-bottom:5px;text-align:center"> 
+	<iframe data-aa='55511' src='//ad.a-ads.com/55511?size=468x60' scrolling='no' style='width:468px; height:60px; border:0px; padding:0;overflow:hidden' allowtransparency='true'></iframe>
+<!-- Yandex.Metrika counter --> <script type="text/javascript"> (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter28241421 = new Ya.Metrika({ id:28241421 }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); </script> <noscript><div><img src="//mc.yandex.ru/watch/28241421" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
+<a href="http://icebitco.in/ru" target="_blank">.</a>	</div>
+		<div class='col-xs-12'>
+<div class="footer">
+		Customized by <a target="_blank" href="http://temp4all.com/vcard" style="text-decoration: underline;">Raphael M.</a> & <a target="_blank" href="http://www.harshitpeer.com" style="text-decoration: underline;">Harshit Peer</a>
+	</div></div>
+	</div>
+
+<div style="display:none">
+<script id="_wau93p">var _wau = _wau || []; _wau.push(["small", "rdr3iutb61ek", "93p"]);
+(function() {var s=document.createElement("script"); s.async=true;
+s.src="http://widgets.amung.us/small.js";
+document.getElementsByTagName("head")[0].appendChild(s);
+})();</script>
+</div>
+	    </body>
+</html>

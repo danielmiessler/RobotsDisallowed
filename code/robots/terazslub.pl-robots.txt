@@ -1,0 +1,4 @@
+User-Agent: *
+Disallow:
+
+Sitemap: http://terazslub.pl/sitemap.xml

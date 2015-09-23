@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>CheckAnyEmail - Access All Your Emails Fast & Easy with One Click!</title>
+		<meta name="description" content="With CheckAnyEmail, you can instantly access all your email accounts with one click! Read emails, send emails, manage email settings, change your email password & more!"/>
+		<meta name="keywords" content=", email, read email, check email, login email, access email, email account, yahoo email, aol email, comcast email, bellsouth email, netzero email, outlook email"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta http-equiv="cleartype" content="on"/>
+				
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600' rel='stylesheet' type='text/css'>
+			
+
+
+		<link href="css/main.css" rel="stylesheet" type="text/css"/>
+
+
+	</head>
+	<body><div class="black-overlay" style="display:none;"></div>
+<div class="content">
+	<img src="img/avatar-circle.png" class="avatar"/>
+	<h1>
+		</h1>
+	<div class="input-wrap">
+		<img src="img/gray-arrow.png" class="arrow"/>
+		<input type="email" name="email" class="email focus" placeholder="Enter Your Email Address"/>
+		<img src="img/green-circle-check.png" class="valid" style="display:none;"/>
+	</div>
+	<a href="#" class="big-red-btn center" onclick="searchEmail();">Continue</a>
+
+	<ul class="checks">
+		<li><span class="check-icon"></span>Manage My Email</li>
+		<li><span class="check-icon"></span>Verify My Email</li>
+
+				<li><span class="check-icon"></span>Add Email to Spam Block List</li>
+			</ul>
+
+</div>
+
+<div class="spam-block">
+	<img src="img/spam-icon.png" class="spam-icon"/>
+	<h1>What is the CAN-SPAM Act?</h1>
+	<p>Do you use email in your business? The CAN-SPAM Act, a law that sets the rules for commercial email, 
+	establishes requirements for commercial messages, gives recipients the right to have you stop emailing them, 
+	and spells out tough penalties for violations.</p>
+
+	<p class="bottom">
+	Despite its name, the CAN-SPAM Act doesn’t apply just to bulk email. It covers all commercial messages, 
+	which the law defines as “any electronic mail message the primary purpose of which is the commercial 
+	advertisement or promotion of a commercial product or service,” including email that promotes content on 
+	commercial websites. The law makes no exception for business-to-business email. That means all email – for example, 
+	a message to former customers announcing a new product line – must comply with the law.</p>
+</div>
+
+<div class="modal-wrap"style="display:none;">
+	<div class="modal">
+		<div id="loading"  style="display:none;">
+			<h1>One Moment Please...</h1>
+			<img src="img/loadingBar.gif" class="loading"/>
+		</div>
+		<div id="cta" style="display:none;">
+			<h1>Access Your E-mail Account <img src="img/close-x.png" class="close reset-page"/></h1>
+			<p>Download the Free Email App for <span class="browser"></span>® to access all your E-mail accounts from one place, read emails, send emails and more directly from your computer.</p>
+			<a href="#" class="big-red-btn" onclick="install();">Install Free App</a>
+			<div class="email-submitted">
+				<img src="img/black-check.png" class="black-check"/>
+				Success! The email has been added to the National Spam Blocklist.			</div>
+		</div>
+		<div id="results" style="display:none;">
+			<h1>Check For Unread E-mail Messages... <img src="img/close-x.png" class="close reset-page"/></h1>
+			
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<!-- CheckAnyEmail_728x90_Results -->
+			<ins class="adsbygoogle"
+			     style="display:inline-block;width:728px;height:90px"
+			     data-ad-client="ca-pub-6408879613168613"
+			     data-ad-slot="6297975089"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+			
+
+			<p>Download the Free Email App for <span class="browser"></span>® to access all your E-mail accounts from one place, read emails, send emails and more directly from your computer.</p>
+			<a href="#" class="big-red-btn" onclick="install();">Access My E-Mail</a>
+		</div>
+	</div>
+</div>
+
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="js/tools.js"></script>
+<script src="js/modernizr.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$('.browser').html(getBrowserName());
+	$('.focus').focus();
+	if(!Modernizr.input.placeholder){
+
+		$('[placeholder]').focus(function() {
+		  var input = $(this);
+		  if (input.val() == input.attr('placeholder')) {
+			input.val('');
+			input.removeClass('placeholder');
+		  }
+		}).blur(function() {
+		  var input = $(this);
+		  if (input.val() == '' || input.val() == input.attr('placeholder')) {
+			input.addClass('placeholder');
+			input.val(input.attr('placeholder'));
+		  }
+		}).blur();
+	}
+
+	$('input').keydown(function (e){
+	    if(e.keyCode == 13){
+	        searchEmail();
+	    }
+	    if(validateEmail(this.value)){
+	    	$(this).closest('.input-wrap').addClass('valid');
+	    	$('.valid').show();
+	    }else{
+	    	$(this).closest('.input-wrap').removeClass('valid');
+	    	$('.valid').hide();
+	    }
+	}).change(function(){
+		if(validateEmail(this.value)){
+	    	$(this).closest('.input-wrap').addClass('valid');
+	    	$('.valid').show();
+	    }else{
+	    	$(this).closest('.input-wrap').removeClass('valid');
+	    	$('.valid').hide();
+	    }
+
+	})
+
+
+
+
+});
+
+$('.reset-page').click(function(){
+	$('.black-overlay').hide();
+	$('#loading').hide();
+	$('#cta').hide();
+	$('#results').hide();
+	$('.modal-wrap').hide();
+});
+
+
+function searchEmail(){
+	$('.black-overlay').show();
+	$('.modal-wrap').show();
+	$('#loading').show();
+
+
+	
+	var email = $('.email').val();
+	if(email != ''){
+		var email_parts = email.split('@');
+		if(email_parts.length > 1){
+			$('.domain').html(email_parts[1]);
+
+			$.ajax('_api.php?email=' + email + '&country=us');
+			$('.email-value').html(email);
+			$('.email-submitted').show();
+		}else{
+			$('.email-submitted').hide();
+		}
+		
+		
+	}else{
+		$('.email-submitted').hide();
+	}
+
+	setTimeout(function(){
+		$('#loading').hide();
+		$('#cta').show();
+
+
+	},1500);
+
+}
+
+function validateEmail(email) {
+    var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
+
+function install(){
+	$('#cta').hide();
+	$('#results').show();
+	$('.modal').addClass('results');
+	openURL('http://cdn.checkmyemails.co/of/group.php?og=122');
+}
+
+</script>
+
+
+
+
+
+<div id="footer">
+	<div class="text-center">
+		<p>Instantly access all your emails directly from your computer browser with just one click!You can manage all your email accounts from one place. Check your unread email messages, send an email, manage your email settings, change your email password and so much more! You can connect all your accounts from Outlook&reg;, Yahoo Mail&reg;, AOL Mail&reg;, Comcast Mail&reg;, BellSouth Mail&reg;, NetZero Mail&reg; and so much more! Never worry about missing another important message again!</p>
+	</div>
+	
+	
+	
+	
+</div>
+<div class="bottom-links">
+	<a href="about.php" target="_new">About</a> | 
+	<a href="contact.php" target="_new">Contact</a> | 
+	<a href="privacy.php" target="_new">Privacy Policy</a> | 
+	<a href="terms.php" target="_new">Terms of Service</a>
+</div>
+</body>
+</html>

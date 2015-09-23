@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Share Your Images</title>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+<meta name="description" content="Share your images"/>
+<meta name="keywords" content="images, share"/>
+<link href="assets/css/bootstrap.css" rel="stylesheet">
+<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+<link href="assets/css/pricing.css" rel="stylesheet">
+ 
+<link href="assets/css/style.css" rel="stylesheet">
+ 
+<link href="assets/css/font-awesome.min.css" rel="stylesheet">
+<link href="assets/css/prettyPhoto.css" rel="stylesheet" type="text/css"/>
+<link href="assets/js/uploadify/uploadify.css" rel="stylesheet" type="text/css"/>
+<link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+<link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+ 
+<!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+ 
+<link rel="shortcut icon" href="assets/ico/favicon.ico">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-58621944-1', 'auto');
+  ga('send', 'pageview');
+
+  Project = {};
+        Project.base_url = "http://istoreimg.com/";
+        Project.asset_url = Project.base_url + 'assets/';
+
+</script>
+<script type="text/javascript" src="/assets/js/uploadify/jquery.uploadify.min.js"></script>
+</head>
+<body data-spy="scroll" data-target=".scroller-spy" data-twttr-rendered="true">
+<!--[if IE]> <div id="ie_message"> For best experience, use other browser than IE</div> <![endif]-->
+ 
+<div class="main-wrapper">
+ 
+<div class="" id="nav"> 
+ 
+ 
+<nav class="nav-top">
+<div class="navbar navbar-static-top" id="topnavbar">
+ 
+<div class="navbar-inner" id="navbartop">
+<div class="container">
+<a class="brand" href="/">
+<span><i class="fa-icon-circle-arrow-down"></i> iStoreImg</span>
+ 
+</a>
+<div id="main-nav" class="scroller-spy">
+<nav class="nav-collapse collapse">
+<ul class="nav" id="nav">
+<li class="active"><a href="#upload-section">Upload</a></li>
+<li><a href="#contact-section">Contact</a></li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+</div>
+</nav>
+ 
+ </div>
+<section id="upload-section" class="section"><div class="container">
+<div class="row-fluid">
+<div class="span12 text-center page-header">
+<h3>
+<span class="white">
+<span class="main-color">Upload Images</span>
+</span>
+</h3>
+</div>
+</div>
+<form id="uploader">
+<fieldset>
+<div class="container-fluid">
+<legend class="row-fluid">
+<span class="span9">Content Type and Thumb Sizing</span>
+<span class="span3 hidden-tablet">BBCodes &amp; Links</span>
+</legend>
+<div class="span4 tabletNewRow">
+<div class="btn-toolbar tabletHalf">
+<div class="btn-group" data-toggle="buttons-radio">
+<button class="btn btn-primary toggleVal active btn-info" data-input="adult" data-value="0" data-selected="true">Clean Content</button>
+<button class="btn btn-primary toggleVal" data-input="adult" data-value="1">Adult Content</button>
+</div>
+</div>
+<div class="btn-toolbar tabletHalf">
+<div class="btn-group" data-toggle="buttons-radio">
+<button class="btn btn-primary toggleVal" data-input="thumb_size" data-value="1">100x100</button>
+<button class="btn btn-primary toggleVal active btn-info" data-input="thumb_size" data-value="2" data-selected="true">350x350</button>
+<button class="btn btn-primary toggleVal" data-input="thumb_size" data-value="3">250x250</button>
+<button class="btn btn-primary toggleVal" data-input="thumb_size" data-value="4">350x350</button>
+</div>
+</div>
+<div class="btn-toolbar">
+<div class="btn-group">
+<button onclick="jQuery('#file_upload').uploadify('upload', '*')" style="display: none; height: 42px; line-height: 40px; width: 147px; padding: 0; margin-left: 160px; float: right;" id="uploadNow" class="btn btn-success">Upload</button>
+<input id="file_upload" type="file" name="file_upload"/>
+</div>
+</div>
+<div id="fileQueue"></div>
+</div>
+<legend class="row-fluid hidden-desktop">
+<span class="span9">BBCodes &amp; Links</span>
+</legend>
+<div class="span7 tabletNewRow">
+<div id="responseVerb"></div>
+<div id="copyButtons">
+<span id="copyContents" style='display:none;'></span>
+<div class="btn-toolbar" id="copyAll">
+<div class="btn-group" data-toggle="buttons-radio">
+<span class="btn btn-disabled active" id="copyContainer">Clipboard</span>
+<button class="btn btn-primary toggleClip" data-input="codeType" data-value="bbCodes">BB Codes</button>
+<button class="btn btn-primary toggleClip" data-input="codeType" data-value="markdownLinks">MD Codes</button>
+<button class="btn btn-primary toggleClip" data-input="codeType" data-value="htmlCodes">HTML Codes</button>
+<button class="btn btn-primary toggleClip" data-input="codeType" data-value="directLinks">Hot Links</button>
+<button class="btn btn-primary toggleClip" data-input="codeType" data-value="normalLinks">Page Links</button>
+</div>
+</div>
+</div>
+<div id="responseData"></div>
+<div style='display:none;' id="ajax_allbbcodes">
+All BB Codes:<br/>
+<textarea onclick="this.select();" class='ajaxbbcodes' id="ajax_bbcodes" rows="5" cols="50"></textarea><br/><br/>
+All HTML Codes:<br/>
+<textarea onclick="this.select();" class='ajaxbbcodes' id="ajax_HTMLcodes" rows="5" cols="50"></textarea><br/><br/>
+All Direct Links:<br/>
+<textarea onclick="this.select();" class='ajaxbbcodes' id="ajax_DirectLinks" rows="5" cols="50"></textarea><br/><br/>
+</div>
+</div>
+</div>
+<input type="hidden" name="adult" value="0"/>
+<input type="hidden" name="thumb_size" value="2"/>
+</fieldset>
+</form>
+</div>
+<script type="text/javascript" src="/assets/js/jquery.zclip.min.js"></script>
+<script>
+    jQuery( document ).on( 'click', '.xclip', function ( e ) {
+        $( this ).zclip( { path: Project.base_url + '/assets/js/ZeroClipboard.swf', copy: function () { return $( this ).siblings( 'input' ).val(); } } );
+    });
+
+    jQuery(document ).ready(function(){
+        // copy to board
+        $( '#copyAll .toggleClip' ).zclip( { path: Project.base_url + '/assets/js/ZeroClipboard.swf', copy: function () { return  jQuery( '#copyContents' ).text(); } } );
+    });
+</script>
+<script type="text/javascript">
+    jQuery(document).on('click', '.toggleVal', function(event){
+        event.preventDefault();
+        $('input[name="'+$(this ).attr('data-input')+'"]' ).val( $(this ).attr('data-value') );
+
+        $(this ).addClass('btn-info').siblings('.btn' ).attr('data-selected', 'false' ).removeClass('btn-info');
+
+        fuckWithUploadify( jQuery( 'input[name="adult"]' ).val(), jQuery( 'input[name="thumb_size"]' ).val() );
+    });
+
+    jQuery(document).on('click', '.toggleClip', function(event){
+        event.preventDefault();
+
+        $(this ).addClass('btn-info').siblings('.btn' ).attr('data-selected', 'false' ).removeClass('btn-info');
+
+        var codeContainer = eval($(this ).attr('data-value') );
+
+        if( codeContainer.length )
+        {
+            var domContents = '';
+            for( var key in codeContainer )
+            {
+                domContents = domContents + codeContainer[key] + "\n";
+            }
+
+            // copy dom
+            jQuery( '#copyContents' ).text( domContents );
+        }
+
+
+    });
+
+    jQuery('#uploadNow' ).click(function(event){ event.preventDefault(); });
+</script>
+<script type="text/javascript">
+    // <![CDATA[
+    var bbCodes = [], htmlCodes = [],normalLinks = [], directLinks = [], markdownLinks = [];
+
+    jQuery( document ).ready( fuckWithUploadify( jQuery('input[name="adult"]').val(), jQuery('input[name="thumb_size"]' ).val() ) );
+
+    function buildImgResponse( id, json ) {
+
+        if ( json.status ) {
+            bbCodes.push( json.data.bbcode );
+            htmlCodes.push( json.data.html.replace( /</g, "&lt;" ).replace( />/g, "&gt;" ) );
+            normalLinks.push( json.data.link );
+            directLinks.push( json.data.direct );
+            markdownLinks.push( json.data.markdown );
+
+            // Write data to DOM
+            jQuery( '#responseData' ).append( '<div id="' + id + '">' +
+                '<div class="media">' + '<a class="pull-left" href="' + json.data.img.url + '"><img class="media-object" src="' + json.data.img.src + '"/></a>' +
+                '<div class="media-body">' +
+                '<div class="input-prepend"><span class="add-on xclip" title="Copy BBCode"><span class="span1">BB</span></span><input class="input-xlarge" id="prependedInput" type="text" value="' + json.data.bbcode + '" /></div >' +
+                '<div class="input-prepend"><span class="add-on xclip" title="Copy HTML Code"><span class="span1">HTML</span></span><input class="input-xlarge" id="prependedInput" type="text" value="' + json.data.html.replace( /</g, "&lt;" ).replace( />/g, "&gt;" ) + '" /></div >' +
+                '<div class="input-prepend"><span class="add-on xclip" title="Copy Page Link"><span class="span1">LINK</span></span><input class="input-xlarge" id="prependedInput" type="text" value="' + json.data.link + '" /></div >' +
+                '<div class="input-prepend"><span class="add-on xclip" title="Copy Direct Link"><span class="span1">DIRECT</span></span><input class="input-xlarge" id="prependedInput" type="text" value="' + json.data.direct + '" /></div >' +
+                '<div class="input-prepend"><span class="add-on xclip" title="Copy Markdown Code"><span class="span1">MD</span></span><input class="input-xlarge" id="prependedInput" type="text" value="' + json.data.markdown + '" /></div ></div></div>'
+            );
+
+        }
+
+        return false;
+    }
+
+    function initZclip( id )
+    {
+        console.log(id);
+        jQuery( '#'+id).find( '.xclip' ).each( function ( k ) {
+            console.log($(this) );
+            $( this ).zclip( { path: Project.base_url + '/assets/js/ZeroClipboard.swf', copy: function () { return $( this ).siblings( 'input' ).val(); } } );
+        } );
+
+    }
+
+    function fuckWithUploadify( adultVal, thumbVal ) {
+        jQuery( '#file_upload' ).uploadify( {
+            'formData'       : { 'multi_upload': '1', 'adult': adultVal, 'thumb_size_contaner': thumbVal },
+            'swf'            : '/assets/js/uploadify/uploadify.swf',
+            'uploader'       : Project.base_url + 'uploadify.php',
+            'debug'          : false,
+            'height'         : 40,
+            'width'          : 145,
+            'buttonClass'    : 'btn',
+            'auto'           : false,
+            'progressData'   : 'speed',
+            'multi'          : true,
+            'fileObjName'    : 'uploaded',
+            'fileTypeExts'   : '*.jpg;*.gif;*.png;*.jpeg',
+            'fileTypeDesc'   : 'Image Files',
+            'queueID'        : 'fileQueue',
+            'queueSizeLimit' : 30,
+            'fileSizeLimit'  : '10MB',
+            'removeCompleted': false,
+            'onSWFReady'      : function () {
+                jQuery('.uploadify-button' ).css('padding', 0);
+            },
+            'onDialogClose': function () {
+                if ( jQuery( '#fileQueue > div' ).length ) {
+                    jQuery( '#uploadNow' ).show();
+                }
+            },
+            'onUploadStart'   : function ( file ) {},
+            'onUploadProgress': function ( event, ID, fileObj, data ) {
+                var bytes = Math.round( data.bytesLoaded / 1024 );
+                jQuery( '#' + jQuery( event.target ).attr( 'id' ) + ID ).find( '.percentage' ).text( ' - ' + bytes + 'KB Uploaded' );
+                //document.getElementById('progressbarOver').style.cssText = 'display:inherit;';
+                jQuery( "#progressbar" ).animate( {
+                    width : data.percentage + "%",
+                    height: "20"
+                }, 200 );
+
+                return false;
+            },
+            'onUploadSuccess' : function ( fileObj, response, data ) {
+                jQuery('#copyButtons' ).show();
+                try{
+                    var json = jQuery.parseJSON(response);
+                    buildImgResponse( fileObj.name, json );
+
+                } catch( e ) {
+                    jQuery( '#responseVerb' ).append( response );
+                }
+            }
+        } );
+    }
+    // ]]>
+</script>
+</section>
+<footer class="footer">
+<section id="contact-section" class="arrow_box"><div class="container">
+<div class="row-fluid">  
+<ul class="nav" id="nav">
+<li class="active"><a href="#upload-section">Upload</a></li>
+<li><a href="#contact-section">Register</a></li>
+<li><a href="#features-section">Login</a></li>
+<li><a href="#contact-section">Contact</a></li>
+</ul>
+</div>
+<div class="row-fluid">  
+<div class="text-center">
+<div id="foot-head">
+<div class="span12 text-center page-header">
+<h3>
+<span class="white"><span class="main-color">CONTACT</span> INFORMATION</span>
+</h3>
+</div>
+</div>
+</div>
+</div>
+</div></section>
+</footer>
+</div>
+<script src="assets/js/google-code-prettify/prettify.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap-transition.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap-alert.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap-modal.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap-dropdown.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap-scrollspy.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap-tab.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap-tooltip.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap-popover.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap-button.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap-collapse.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap-carousel.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap-typeahead.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap-affix.js" type="text/javascript"></script>
+<script src="assets/js/application.js" type="text/javascript"></script>
+<script src="assets/js/jquery.prettyPhoto.js" type="text/javascript"></script>
+<script src="assets/js/tweetable.jquery.js" type="text/javascript"></script>
+<script src="assets/js/jquery.timeago.js" type="text/javascript"></script>
+ 
+<script type="text/javascript" src="assets/js/jquery.localscroll-1.2.7-min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.inview.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo-1.4.2-min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.parallax-1.1.3.js"></script>
+ 
+ 
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="assets/js/jquery.gmap.js"></script>
+ 
+<script src="assets/js/custom.js" type="text/javascript"></script>
+<script type="text/javascript">
+        jQuery( document ).ready( function () {
+            jQuery( '#nav' ).localScroll( 1000 );
+            jQuery( '#nav2' ).localScroll( 1000 );
+            jQuery( '#nav3' ).localScroll( 1000 );
+            jQuery( '#nav4' ).localScroll( 1000 );
+            jQuery( '#nav5' ).localScroll( 1000 );
+            //.parallax(xPosition, speedFactor, outerHeight) options:
+            //xPosition - Horizontal position of the element
+            //inertia - speed to move relative to vertical scroll. Example: 0.1 is one tenth the speed of scrolling, 2 is twice the speed of scrolling
+            //outerHeight (true/false) - Whether or not jQuery should use it's outerHeight option to determine when a section is in the viewport
+            jQuery( '#nav' ).parallax( "50%", 0.1 );
+            jQuery( '#features-section' ).parallax( "50%", 0.1 );
+            jQuery( '#team-section' ).parallax( "50%", 0.1 );
+            jQuery( '.bg' ).parallax( "50%", 0.3 );
+            jQuery( '#portfolio-section' ).parallax( "50%", 0.3 );
+            jQuery( '#price-section' ).parallax( "50%", 0.3 );
+            jQuery( '#contact-section' ).parallax( "50%", 0.1 );
+            jQuery( '#slogan-section-1' ).parallax( "50%", 0.3 );
+
+        } )
+    </script>
+<script>
+        jQuery( '#features-section .parallax-point-event' ).bind( 'inview', function ( event, visible ) {
+            if ( visible == true ) {
+                jQuery( '.effect-box-1' ).addClass( "active" );
+                jQuery( '.effect-box-2' ).addClass( "active" );
+                jQuery( '.effect-box-3' ).addClass( "active" );
+                jQuery( '.effect-box-4' ).addClass( "active" );
+            }
+            else {
+                jQuery( '.effect-box-1' ).removeClass( "active" );
+                jQuery( '.effect-box-2' ).removeClass( "active" );
+                jQuery( '.effect-box-3' ).removeClass( "active" );
+                jQuery( '.effect-box-4' ).removeClass( "active" );
+            }
+        } );
+    </script>
+<script>
+        // Toggle class for page scroller
+        jQuery( '#upload-section' ).bind( 'inview', function ( event, visible ) {
+            if ( visible == true ) {
+                jQuery( '.gobottom' ).addClass( "active" );
+                jQuery( '.hero-unit h1 span' ).addClass( "active" );
+
+            }
+            else {
+                jQuery( '.gobottom' ).removeClass( "active" );
+                jQuery( '.hero-unit h1 span' ).removeClass( "active" );
+            }
+        } );
+
+    </script>
+<script>
+        var navbar = jQuery( '#navbartop' );
+        var navbartop = jQuery( '#topnavbar' );
+        jQuery( window ).scroll( function () {
+            if ( jQuery( this ).scrollTop() > 40 ) {
+
+                navbar.addClass( "navbar-scroll" );
+                navbartop.removeClass( "navbar-static-top" );
+                navbartop.addClass( "navbar-fixed-top" );
+
+            }
+            else {
+                navbar.removeClass( "navbar-scroll" );
+                navbartop.removeClass( "navbar-fixed-top" );
+                navbartop.addClass( "navbar-static-top" );
+            }
+        } );
+    </script>
+<script>
+        jQuery('section' ).css('min-height', (jQuery(window).height() + 40) );
+    </script>
+</body>
+</html>

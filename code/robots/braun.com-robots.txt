@@ -1,0 +1,24 @@
+User-agent: *
+Disallow: http://www.braun.com/jp/male-grooming/14-days-campaign.html
+
+
+Sitemap: http://www.braun.com/global/sitemap_global.xml
+Sitemap: http://www.braun.com/uk/sitemap_uk.xml
+Sitemap: http://www.braun.com/fr/sitemap_fr.xml
+Sitemap: http://www.braun.com/jp/sitemap_jp.xml
+Sitemap: http://www.braun.com/us/sitemap_us.xml
+Sitemap: http://www.braun.com/de/sitemap_de.xml
+Sitemap: http://www.braun.com/cn/sitemap_cn.xml
+Sitemap: http://www.braun.com/ru/sitemap_ru.xml
+Sitemap: http://www.braun.com/tr/sitemap_tr.xml
+Sitemap: http://www.braun.com/kr/sitemap_kr.xml
+Sitemap: http://www.braun.com/global/image_sitemap_global.xml
+Sitemap: http://www.braun.com/us/image_sitemap_us.xml
+Sitemap: http://www.braun.com/uk/image_sitemap_uk.xml
+Sitemap: http://www.braun.com/cn/image_sitemap_cn.xml
+Sitemap: http://www.braun.com/jp/image_sitemap_jp.xml
+Sitemap: http://www.braun.com/de/image_sitemap_de.xml
+Sitemap: http://www.braun.com/fr/image_sitemap_fr.xml
+Sitemap: http://www.braun.com/ru/image_sitemap_ru.xml
+Sitemap: http://www.braun.com/tr/image_sitemap_tr.xml
+Sitemap: http://www.braun.com/kr/image_sitemap_kr.xml

@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"UgcBV1JQGwAGUFBbDwE="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t){try{i.console&&console.log(t)}catch(e){}}var n,r=t("ee"),o=t(1),i={};try{n=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(i.console=!0,-1!==n.indexOf("dev")&&(i.dev=!0),-1!==n.indexOf("nr_dev")&&(i.nrDev=!0))}catch(a){}i.nrDev&&r.on("internal-error",function(t){e(t.stack)}),i.dev&&r.on("fn-err",function(t,n,r){e(r.stack)}),i.dev&&(e("NR AGENT IN DEVELOPMENT MODE"),e("flags: "+o(i,function(t){return t}).join(", ")))},{1:20,ee:"QJf3ax"}],4:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(6),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,t(3),window.onerror=e;try{throw new Error}catch(u){"stack"in u&&(t(4),t(5),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:5,2:8,3:3,4:7,5:6,6:21,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],5:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:21,2:22,ee:"QJf3ax",gos:"7eSDFh"}],6:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:22,2:21,ee:"QJf3ax"}],7:[function(t,e){function n(t,e,n){t[0]=o(t[0],"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:22,2:21,ee:"QJf3ax"}],8:[function(t,e){function n(){u.inPlace(this,p,"fn-")}function r(t,e){u.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}function i(t,e){for(var n in t)e[n]=t[n];return e}var a=t("ee").create(),s=t(1),c=t(2),u=c(a),f=c(s),d=window.XMLHttpRequest,p=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=a,window.XMLHttpRequest=function(t){var e=new d(t);try{a.emit("new-xhr",[],e),f.inPlace(e,["addEventListener","removeEventListener"],"-",o),e.addEventListener("readystatechange",n,!1)}catch(r){try{a.emit("internal-error",[r])}catch(i){}}return e},i(d,XMLHttpRequest),XMLHttpRequest.prototype=d.prototype,u.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),a.on("send-xhr-start",r),a.on("open-xhr-start",r)},{1:5,2:22,ee:"QJf3ax"}],9:[function(t){function e(t){var e=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!e.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){e.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=n(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(e.cat=d.split(", ").pop())}}else e.status=0;r.cbTime=this.cbTime,o("xhr",[e,r,this.startTime])}}}function n(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=e,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,e){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=n(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof e.onload))&&i.end(e)}catch(n){try{a.emit("internal-error",[n])}catch(r){}}};for(var f=0;c>f;f++)e.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:10,3:8,4:5,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],10:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split("@").pop().split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,r.protocol=o[0],"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],11:[function(t,e){function n(t){return function(){r(t,[(new Date).getTime()].concat(i(arguments)))}}var r=t("handle"),o=t(1),i=t(2);"undefined"==typeof window.newrelic&&(newrelic=window.NREUM);var a=["setPageViewName","addPageAction","setCustomAttribute","finished","addToTrace","inlineHit","noticeError"];o(a,function(t,e){window.NREUM[e]=n("api-"+e)}),e.exports=window.NREUM},{1:20,2:21,handle:"D5DuLP"}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info,e=u.getElementsByTagName("script")[0];if(t&&t.licenseKey&&t.applicationID&&e){s(d,function(e,n){e in t||(t[e]=n)});var n="https"===f.split(":")[0]||t.sslForHttp;p.proto=n?"https://":"http://",a("mark",["onload",i()]);var r=u.createElement("script");r.src=p.proto+t.agent,e.parentNode.insertBefore(r,e)}}function r(){"complete"===u.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=t(1),c=(t(2),window),u=c.document,f=(""+location).split("?")[0],d={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-632.min.js"},p=e.exports={offset:i(),origin:f,features:{}};u.addEventListener?(u.addEventListener("DOMContentLoaded",o,!1),c.addEventListener("load",n,!1)):(u.attachEvent("onreadystatechange",r),c.attachEvent("onload",n)),a("mark",["firstbyte",i()])},{1:20,2:11,handle:"D5DuLP"}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],20:[function(t,e){function n(t,e){var n=[],o="",i=0;for(o in t)r.call(t,o)&&(n[i]=e(o,t[o]),i+=1);return n}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],21:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],22:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:21,ee:"QJf3ax"}]},{},["G9z0Bl",4,9]);</script>
+    <title>Red Giant | Filmmaking and Motion Graphics Software</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+<!-- This site is optimized with the Yoast SEO plugin v2.3.4 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="Red Giant delivers Production-proven special effects tools for digital video &amp; film professionals. Plug-ins built for Adobe After Effects, Premiere &amp; more."/>
+<link rel="canonical" href="http://www.redgiant.com/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Red Giant | Filmmaking and Motion Graphics Software" />
+<meta property="og:description" content="Red Giant delivers Production-proven special effects tools for digital video &amp; film professionals. Plug-ins built for Adobe After Effects, Premiere &amp; more." />
+<meta property="og:url" content="http://www.redgiant.com/" />
+<meta property="og:site_name" content="Red Giant" />
+<script type='application/ld+json'>{"@context":"http:\/\/schema.org","@type":"WebSite","url":"http:\/\/www.redgiant.com\/","name":"Red Giant","potentialAction":{"@type":"SearchAction","target":"http:\/\/www.redgiant.com\/?s={search_term_string}","query-input":"required name=search_term_string"}}</script>
+<!-- / Yoast SEO plugin. -->
+
+<link rel="alternate" type="application/rss+xml" title="Red Giant &raquo; Home Comments Feed" href="http://www.redgiant.com/home/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"http:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/www.redgiant.com\/wp-base\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.2.4"}};
+			!function(a,b,c){function d(a){var c=b.createElement("canvas"),d=c.getContext&&c.getContext("2d");return d&&d.fillText?(d.textBaseline="top",d.font="600 32px Arial","flag"===a?(d.fillText(String.fromCharCode(55356,56812,55356,56807),0,0),c.toDataURL().length>3e3):(d.fillText(String.fromCharCode(55357,56835),0,0),0!==d.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='redgiant_plugin-style-css'  href='http://cache.redgiant.com/wp-base/wp-content/plugins/redgiant/components/css/redgiant.css?ver=4.2.4' type='text/css' media='all' />
+<link rel='stylesheet' id='wpclef-main-css'  href='http://www.redgiant.com/wp-base/wp-content/plugins/wpclef/assets/dist/css/main.min.css?ver=2.3.0' type='text/css' media='all' />
+<link rel='stylesheet' id='rga-videocss-css'  href='http://www.redgiant.com/_/js/video-js/video-js.min.css?ver=4.2.4' type='text/css' media='all' />
+<link rel='stylesheet' id='rga-base-css'  href='http://www.redgiant.com/_/stylesheets/base.css?ver=2' type='text/css' media='all' />
+<link rel='stylesheet' id='rga-hover-css'  href='http://www.redgiant.com/_/stylesheets/hover-min.css?ver=4.2.4' type='text/css' media='all' />
+<link rel='stylesheet' id='rga-fonts-css'  href='http://www.redgiant.com/_/stylesheets/fonts.css?ver=4.2.4' type='text/css' media='all' />
+<link rel='stylesheet' id='rga-fontello-css'  href='http://www.redgiant.com/_/fonts/fontello/css/fontello.css?ver=4.2.4' type='text/css' media='all' />
+<link rel='stylesheet' id='rga-fontellAnimation-css'  href='http://www.redgiant.com/_/fonts/fontello/css/animation.css?ver=4.2.4' type='text/css' media='all' />
+<link rel='stylesheet' id='rg-responsiveCarouselStyle-css'  href='http://www.redgiant.com/_/lib/owl-carousel/owl.carousel.css?ver=4.2.4' type='text/css' media='all' />
+<script type='text/javascript' src='http://cache.redgiant.com/wp-base/wp-includes/js/jquery/jquery.js?ver=1.11.2'></script>
+<script type='text/javascript' src='http://cache.redgiant.com/wp-base/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<script type='text/javascript' src='http://www.redgiant.com/_/js/video-js/video.js?ver=2.0'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.redgiant.com/wp-base/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://cache.redgiant.com/wp-base/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 4.2.4" />
+<link rel='shortlink' href='http://www.redgiant.com/' />
+        <script type="text/javascript">
+            var banner_deadline = '2015, 3, 29, 10, 0, 0';
+        </script><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="language" content="en"/>
+    <!-- Optimizely JS -->
+    <script src="//cdn.optimizely.com/js/347241439.js"></script>
+
+
+    <script type="text/javascript" src="//www.google.com/jsapi"></script>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+    <!-- For iPhone 4 with high-resolution Retina display: -->
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+    href="http://www.redgiant.com/_/../_assets_interface/images/global/apple-touch-icon-114x114-precomposed.png"/>
+    <!-- For first-generation iPad: -->
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+    href="http://www.redgiant.com/_/../_assets_interface/images/global/apple-touch-icon-72x72-precomposed.png"/>
+    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+    <link rel="apple-touch-icon-precomposed"
+    href="http://www.redgiant.com/_/../_assets_interface/images/global/apple-touch-icon-precomposed.png"/>
+    <link rel="apple-touch-icon"
+    href="http://www.redgiant.com/_/../_assets_interface/images/global/apple-touch-icon.png"/>
+
+
+    <!--[if IE]>
+      <link href="http://www.redgiant.com/_/../_assets_interface/css/all-ie-only.css" rel="stylesheet" type="text/css"/>
+      <![endif]-->
+      <!--[if gte IE 9]>
+        <link href="http://www.redgiant.com/_/../_assets_interface/css/IE9.css" rel="stylesheet" type="text/css"/>
+        <![endif]-->
+        <!--[if gte IE 9]>
+          <style type="text/css">
+            .gradient {
+              filter: none;
+            }
+          </style>
+          <![endif]--><meta name="generator" content="Powered by Visual Composer - drag and drop page builder for WordPress."/>
+<!--[if IE 8]><link rel="stylesheet" type="text/css" href="http://www.redgiant.com/wp-base/wp-content/plugins/js_composer/assets/css/vc-ie8.css" media="screen"><![endif]--><noscript><style> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript>    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-4328035-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+</head>
+<body class="home page page-id-59 page-template page-template-templates page-template-tpl-page_home page-template-templatestpl-page_home-php wpb-js-composer js-comp-ver-4.6.2 vc_responsive">
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="header-main">
+      <div class="container">
+
+          <!-- Nav Icons - the ul items don't collapse -->
+          <div class="navbar-header pull-right nav-icons">
+            <ul class="nav pull-right">
+    <li class="pull-right dropdown" id="utility_cart" date-mini-cart="container">
+        <!-- <a href="/store/cart" data-toggle="dropdown" class="dropdown-toggle"> !-->
+        <a href="/store/cart" class="dropdown-toggle">
+            <i class="icon-basket"></i><div id="cartCount-number"></div>
+        </a>
+            </li>
+
+    <li class="dropdown pull-right" id="utility_user">
+        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+            <i class="icon-user" data-auth="logged-in"></i>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="/store/session/loginOrRegister" data-auth="login">Sign In</a>
+                <a href="/store/session/logout" class="hidden" data-auth="logout">Sign Out</a>
+            </li>
+            <li><a href="/store/customer/products">Your Products</a></li>
+            <li><a href="/store/customer/orders">Order History</a></li>
+            <li><a href="/store/customer/address">Customer Info</a></li>
+            <li><a href="/store/customer/payment">Payment Info</a></li>
+            <li><a href="/store/customer/settings">Account Settings</a></li>
+        </ul>
+    </li>
+
+    <li class="pull-right dropdown" id="utility_search">
+        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+            <i class="icon-search"></i>
+        </a>
+        <ul class="dropdown-menu">
+            <div class="container">
+                <form role="search" method="get" class="search-form" action="http://www.redgiant.com/">
+  <!--
+  <div class="input-group">
+    <div class="input-group-btn">
+
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Products <span class="caret"></span></button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a data-filter='product'>Products</a></li>
+      </ul>
+  </div>
+
+    <input type="text" class="search-field form-control" placeholder="Search …" value="" name="s" title="Search for:" />
+  </div>
+  !-->
+  <input type="text" class="search-field full-width" placeholder="Search …" value="" name="s" title="Search for:" />
+</form>
+            </div>
+        </ul>
+    </li>
+</ul>
+
+
+           </div><!-- /.nav-icons -->
+           <!-- Non-collapsing Menu Items -->
+           <button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target=".navbar-collapse">
+             <span class="sr-only">Toggle navigation</span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+           </button>
+
+        <!-- Red Giant -->
+        <div class="navbar-header pull-left">
+          <!-- Logo -->
+           <a href="http://www.redgiant.com" rel="home" class="pull-left">
+             <img class="navbar-brand" src="http://cache.redgiant.com/_/img/Red-Giant-Logo.svg" />
+           </a>
+        </div>
+
+       <span class="tagline hidden-xs hidden-sm hidden-md pull-left">Filmmaking &amp; Motion Graphics Software</span>
+
+        <!-- Primary site Nav - collapsing items -->
+
+            <div class="collapse navbar-collapse navbar-right">
+              <a href="http://www.redgiant.com/products/" class="visible-phone btn btn-default viewAll">view all products</a><ul id="menu-main-nav" class="nav navbar-nav pull-left"><li id="menu-item-1027" class="storeMenu storeLink dropdown menu-item menu-item-type-post_type menu-item-object-page menu-item-1027"><a class="storeLink" href="http://www.redgiant.com/products/">Products</a><div class='storeDropdown icon-down-open'></div><ul class="dropdown-menu shopMenu hidden-xs hidden-sm">
+							<li>
+
+								<!-- TOP SELLING MENU -->
+								<div class="row topRowMenu">
+                                <ul id="topSellingMenu" class="list-inline col-md-12">
+                                <li id="allProducts">
+                                    <a href="http://www.redgiant.com/products/">View All Products</a>
+                                </li>
+                                <!--<li id="featuredProducts">
+                                    <a href="/products/?focus=featured-products">Featured Products</a>
+                                </li>-->
+                                <li id="volumeProducts">
+                                    <a href="/support/buyers-guide/volume-license-program/">Businesses</a>
+                                </li>
+                                <li id="academicProducts">
+                                    <a href="/support/buyers-guide/academic-pricing/">Students &amp; Teachers</a>
+                                </li>
+                                </ul>                                
+								</div>
+								<hr>
+
+								<!-- SUITES MENU -->
+								<div id="suitesRow" class="row">
+									<ul id="suiteMenu" class="list-inline col-md-12 suite-menu"><li id="menu-item-285" class="TrapcodeC suiteCol menu-item menu-item-type-post_type menu-item-object-product menu-item-has-children menu-item-285"><a href="http://www.redgiant.com/products/trapcode-suite/">Trapcode Suite</a>
+<ul class="prodList list-unstyled">
+	<li id="menu-item-228" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-228"><a href="http://www.redgiant.com/products/trapcode-particular/">Particular</a>	<li id="menu-item-224" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-224"><a href="http://www.redgiant.com/products/trapcode-form/">Form</a>	<li id="menu-item-229" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-229"><a href="http://www.redgiant.com/products/trapcode-shine/">Shine</a>	<li id="menu-item-222" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-222"><a href="http://www.redgiant.com/products/trapcode-3d-stroke/">3D Stroke</a>	<li id="menu-item-231" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-231"><a href="http://www.redgiant.com/products/trapcode-starglow/">Starglow</a>	<li id="menu-item-227" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-227"><a href="http://www.redgiant.com/products/trapcode-mir/">Mir</a>	<li id="menu-item-226" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-226"><a href="http://www.redgiant.com/products/trapcode-lux/">Lux</a>	<li id="menu-item-230" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-230"><a href="http://www.redgiant.com/products/trapcode-sound-keys/">Sound Keys</a>	<li id="menu-item-225" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-225"><a href="http://www.redgiant.com/products/trapcode-horizon/">Horizon</a>	<li id="menu-item-223" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-223"><a href="http://www.redgiant.com/products/trapcode-echospace/">Echospace</a></ul>
+<div class='storeDropdown icon-down-open'></div></li><li id="menu-item-1791" class="MagicC suiteCol menu-item menu-item-type-post_type menu-item-object-product menu-item-has-children menu-item-1791"><a href="http://www.redgiant.com/products/magic-bullet-suite/">Magic Bullet Suite</a>
+<ul class="prodList list-unstyled">
+	<li id="menu-item-1776" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-1776"><a href="http://www.redgiant.com/products/magic-bullet-looks/">Looks</a>	<li id="menu-item-1779" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-1779"><a href="http://www.redgiant.com/products/colorista-iii/">Colorista III</a>	<li id="menu-item-1780" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-1780"><a href="http://www.redgiant.com/products/magic-bullet-film/">Film</a>	<li id="menu-item-1777" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-1777"><a href="http://www.redgiant.com/products/mojo/">Mojo</a>	<li id="menu-item-1778" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-1778"><a href="http://www.redgiant.com/products/cosmo/">Cosmo</a>	<li id="menu-item-1787" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-1787"><a href="http://www.redgiant.com/products/magic-bullet-denoiser-ii/">Denoiser II</a>	<li id="menu-item-1788" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-1788"><a href="http://www.redgiant.com/products/magic-bullet-lut-buddy/">LUT Buddy</a></ul>
+<div class='storeDropdown icon-down-open'></div></li><li id="menu-item-283" class="ShooterC suiteCol menu-item menu-item-type-post_type menu-item-object-product menu-item-has-children menu-item-283"><a href="http://www.redgiant.com/products/shooter-suite/">Shooter Suite</a>
+<ul class="prodList list-unstyled">
+	<li id="menu-item-731" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-731"><a href="http://www.redgiant.com/products/pluraleyes/">Pluraleyes</a>	<li id="menu-item-217" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-217"><a href="http://www.redgiant.com/products/offload/">Offload</a>	<li id="menu-item-1005" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-1005"><a href="http://www.redgiant.com/products/denoiser-ii-shooter/">Denoiser II</a>	<li id="menu-item-216" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-216"><a href="http://www.redgiant.com/products/instant-4k/">Instant 4K</a>	<li id="menu-item-215" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-215"><a href="http://www.redgiant.com/products/frames/">Frames</a>	<li id="menu-item-1015" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-1015"><a href="http://www.redgiant.com/products/lut-buddy-shooter/">LUT Buddy</a></ul>
+<div class='storeDropdown icon-down-open'></div></li><li id="menu-item-282" class="EffectsC suiteCol menu-item menu-item-type-post_type menu-item-object-product menu-item-has-children menu-item-282"><a href="http://www.redgiant.com/products/effects-suite/">Effects Suite</a>
+<ul class="prodList list-unstyled">
+	<li id="menu-item-196" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-196"><a href="http://www.redgiant.com/products/knoll-light-factory/">Knoll Light Factory</a>	<li id="menu-item-193" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-193"><a href="http://www.redgiant.com/products/composite-wizard/">Composite Wizard</a>	<li id="menu-item-797" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-797"><a href="http://www.redgiant.com/products/toonit/">ToonIt</a>	<li id="menu-item-194" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-194"><a href="http://www.redgiant.com/products/holomatrix/">Holomatrix</a>	<li id="menu-item-195" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-195"><a href="http://www.redgiant.com/products/image-lounge/">Image Lounge</a>	<li id="menu-item-198" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-198"><a href="http://www.redgiant.com/products/psunami/">Psunami</a>	<li id="menu-item-947" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-947"><a href="http://www.redgiant.com/products/warp-effects/">Warp</a>	<li id="menu-item-199" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-199"><a href="http://www.redgiant.com/products/text-anarchy/">Text Anarchy</a>	<li id="menu-item-197" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-197"><a href="http://www.redgiant.com/products/planespace/">Planespace</a></ul>
+<div class='storeDropdown icon-down-open'></div></li><li id="menu-item-281" class="KeyingC suiteCol menu-item menu-item-type-post_type menu-item-object-product menu-item-has-children menu-item-281"><a href="http://www.redgiant.com/products/keying-suite/">Keying Suite</a>
+<ul class="prodList list-unstyled">
+	<li id="menu-item-205" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-205"><a href="http://www.redgiant.com/products/primatte-keyer/">Primatte Keyer</a>	<li id="menu-item-204" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-204"><a href="http://www.redgiant.com/products/key-correct/">Key Correct</a>	<li id="menu-item-948" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-948"><a href="http://www.redgiant.com/products/warp-keying/">Warp</a></ul>
+<div class='storeDropdown icon-down-open'></div></li><li id="menu-item-8528" class="UniverseC suiteCol ppr-rewrite menu-item menu-item-type-post_type menu-item-object-product menu-item-has-children menu-item-8528"><a href="/universe/">Universe</a>
+<ul class="prodList list-unstyled">
+	<li id="menu-item-1820" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1820"><a href="/universe/whats-new/">What&#8217;s New</a>	<li id="menu-item-1821" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1821"><a href="/universe/universe-tools/">Tools</a>	<li id="menu-item-1822" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1822"><a href="/universe/pricing/">Pricing</a></ul>
+<div class='storeDropdown icon-down-open'></div></li><li id="menu-item-9527" class="AutomaticC suiteCol menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-9527"><a href="/products/automatic-duck/">Automatic Duck</a>
+<ul class="prodList list-unstyled">
+	<li id="menu-item-9528" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-9528"><a href="http://www.redgiant.com/products/automatic-duck-ximport-ae/">Ximport AE</a>	<li id="menu-item-9529" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-9529"><a href="http://www.redgiant.com/products/automatic-duck-media-copy/">Media Copy</a></ul>
+<div class='storeDropdown icon-down-open'></div></li></ul>
+								</div>
+								<hr>
+
+								<!-- HOST MENU -->
+								<div class="row">
+									<ul id="hostMenu" class="list-inline col-md-12">
+										<li class="sectCat">By Host:</li><li>
+													<a href='/products/?hostapp=after-effects'><img src = 'http://www.redgiant.com/_/img/host-icons/after-effects.png' width = '20' height = '20' alt = 'After Effects' />After Effects
+													</a>
+												</li><li>
+													<a href='/products/?hostapp=premiere-pro'><img src = 'http://www.redgiant.com/_/img/host-icons/premiere-pro.png' width = '20' height = '20' alt = 'Premiere Pro' />Premiere Pro
+													</a>
+												</li><li>
+													<a href='/products/?hostapp=final-cut-pro-x'><img src = 'http://www.redgiant.com/_/img/host-icons/final-cut-pro-x.png' width = '20' height = '20' alt = 'Final Cut Pro X' />Final Cut Pro X
+													</a>
+												</li><li>
+													<a href='/products/?hostapp=avid'><img src = 'http://www.redgiant.com/_/img/host-icons/avid.png' width = '20' height = '20' alt = 'Avid' />Avid
+													</a>
+												</li><li>
+													<a href='/products/?hostapp=final-cut-pro-7'><img src = 'http://www.redgiant.com/_/img/host-icons/final-cut-pro-7.png' width = '20' height = '20' alt = 'Final Cut Pro 7' />Final Cut Pro 7
+													</a>
+												</li><li>
+											<a href='http://www.redgiant.com/wp-base/products/?hostapp=stand-alone'>
+												Stand-Alone
+											</a>
+										</li><li><a href="/products">More</a></li>
+									</ul>
+								</div>
+								<hr>
+
+								<!-- PROFESSION MENU -->
+								<div class="row">
+									<ul id="professionMenu" class="list-inline col-md-12">
+										<li class="sectCat">Products For:</li><li><a href='/products/?focus=motion-graphics'>Motion Graphics</a></li><li><a href='/products/?focus=editing'>Editing</a></li><li><a href='/products/?focus=vfx-artists'>VFX Artist</a></li><li><a href='/products/?focus=filmmaker'>Filmmaker</a></li><li><a href='/products/?focus=color-correction'>Color Correction</a></li><li><a href='/products/?focus=compositing'>Compositing</a></li></ul>
+									</div>
+									<hr>
+
+									<!-- OTHER MENU
+										<div class="row">
+											<ul id="otherMenu" class="list-inline col-md-12">
+												<li class="sectCat">Other:</li>
+												<li><a href="/store/guru-presets/">Guru Presets</a></li>
+												<li><a href="/store/academic/">Academic</a></li>
+												<li><a href="/store/free/">Free</a></li>
+												<li><a href="/store/other/">More <i class="icon-right-open"></i></a></li>
+											</ul>
+										</div>!-->
+
+									</li>
+								</ul></li>
+<li id="menu-item-237" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-237"><a href="/tutorials/">Tutorials</a></li>
+<li id="menu-item-238" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-238"><a href="/films/">Films</a></li>
+<li id="menu-item-239" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-239"><a href="/blog/">Blog</a></li>
+<li id="menu-item-240" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-240 dropdown"><a href="/support/" class="dropdown-toggle">Support </a>
+<ul role="menu" class=" dropdown-menu">
+	<li id="menu-item-241" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-241"><a href="/support/">FAQs</a></li>
+	<li id="menu-item-242" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-242"><a href="https://support.redgiant.com/forums">Forums</a></li>
+	<li id="menu-item-243" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-243"><a href="/product-downloads/">Downloads</a></li>
+	<li id="menu-item-244" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-244"><a href="/user-guides/">User Guides</a></li>
+	<li id="menu-item-245" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-245"><a href="/support/compatibility/host-applications/">Compatibility</a></li>
+	<li id="menu-item-246" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-246"><a href="https://support.redgiant.com/requests/new">Support Ticket</a></li>
+	<li id="menu-item-247" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-247"><a href="/company/contact-us/">Contact Us</a></li>
+	<li role="presentation" class="divider"></li>
+	<li id="menu-item-248" class="chatMenu menu-item menu-item-type-custom menu-item-object-custom menu-item-248"><a href="#">Chat with us</a></li>
+</ul>
+</li>
+</ul>            </div><!-- /.nav-collapse -->
+        </div><!-- /.container -->
+    </div>
+
+    <div id="videoPlayer_container">
+  <div id="videoPlayer_wrapper">
+    <div class="videoPlayer_close">
+      <i class="icon-cancel-circled"></i>
+    </div>
+    <div class="videoPlayer_embed">
+
+    </div>
+  </div>
+</div>
+
+
+<!-- CAROUSEL
+================================================== -->
+
+<div id="carouselMain" class="carouselMain carousel slide" data-ride="carousel">
+	<!-- counter !-->
+		<ol class="carousel-indicators">
+					<!--<li data-target="#carouselMain" data-slide-to="0" class="active" ></li>-->
+					<!--<li data-target="#carouselMain" data-slide-to="1"  ></li>-->
+					<!--<li data-target="#carouselMain" data-slide-to="2"  ></li>-->
+					<!--<li data-target="#carouselMain" data-slide-to="3"  ></li>-->
+			</ol>
+		
+	<!-- items !-->
+	<div class="carousel-inner">
+		<div class="item" id="slide-AD" style="background-image: url(http://wp.redgiant.com/wp-base/wp-content/uploads/2015/08/Automatic-Duck-HP-BG.jpg) !important; background-position: right; background-size:auto; background-repeat: no-repeat;">
+	<div class="container">
+					<div class="slideContent" style="margin-bottom: 140px;">
+                      <span style="display:inline-block; background:#cc0000; padding:3px 6px; border-radius:4px; color:#fff;">NEW</span>
+                      
+                      <h1 class="slideTitle" style="color:#000; margin-top:10px;">Automatic <span class="hidden-lg"><br></span>Duck</h1>
+                      <p class="slideDetail" style="color:#000;margin-top:0;">Transfer timelines and <span class="hidden-lg"><br></span>media with two new products</p>
+                      <p style="margin-top:20px;"><a class="btn btn-lg squared pull-left" href="/automatic-duck" role="button" style="background-color:#FFF; color:#000; border-radius:4px;">LEARN MORE</a></p>
+					</div>
+	</div>
+</div><div class="item" style="background-image:url(http://cache.redgiant.com/wp-base/wp-content/uploads/2015/09/ftx-cant-man-bg1.jpg); background-position:right top;">
+  <div class="container text-center">
+    <a href="/film/ftx007/"><img src="http://cache.redgiant.com/wp-base/wp-content/uploads/2015/09/ftx-cant-man-text1.png" alt="Film Team Experiments - Can't Man" style="padding-top:160px;"></a>
+  </div>
+</div><div class="item" id="slide-MBS12b" style="background:#000;">
+				<div class="container" style="position:relative; z-index:100; top:500px; left:0;">
+                  <div id="overlayText">
+					<div class="slideContent" style="margin-bottom: 160px;">
+                   	   <h3 class="slideDetail"style="font-size:24px; color:#fff; margin:0; padding:0;">EXTRUSION SHADOWS</h3>
+                   	   <h1 class="slideTitle" style="font-size:70px; margin:0; padding:0;">TRAPCODE<br>TUTORIAL</h1>
+					   <p><a class="btn btn-lg squared pull-left" href="/tutorial/episode-103-text-effects-extrusion-shadows/" role="button">WATCH NOW</a></p>
+                    </div>
+                  </div>
+                    
+				  
+				</div>
+  <video autoplay id="bgvid" style="height:auto; width:auto; float:right;" class="hidden-xs">
+                   		 <source src="http://cache.redgiant.com/wp-base/wp-content/uploads/2015/07/Extrusion-Shadows.mp4" type="video/mp4">
+  </video>
+  <script>
+  setTimeout(function(){
+    document.getElementById("bgvid").play();
+}, 3000);
+  </script>
+			</div><div class="item" id="slide-PE3.5" style="background-image: url(http://cache.redgiant.com/wp-base/wp-content/uploads/2015/05/PluralEyes-3.5-Video-Audio-Sync2.jpg) !important; background-position: right; background-size:auto; background-repeat: no-repeat;">
+				<div class="container">
+					<div class="slideContent" style="margin-bottom: 230px;">
+                      <h1 class="slideTitle" style="color:#000;">PLURALEYES <span class="versionNum" style="border-color:#000;">3.5</span></h1>
+						<p class="slideDetail" style="color:#000;">Audio/Video sync in seconds</p>
+                      <p style="margin-top:20px;"><a class="btn btn-lg squared pull-left" href="/products/pluraleyes/" role="button" style="background-color:#0099cc; color:#fff;">SHOP NOW</a></p>
+					</div>
+				</div>
+			</div>	</div>
+	
+	<!-- directional nav !-->
+		<a class="left carousel-control" href="#carouselMain" role="button" data-slide="prev">
+		<span class="icon-left-open"></span>
+	</a>
+	<a class="right carousel-control" href="#carouselMain" role="button" data-slide="next">
+		<span class="icon-right-open"></span>
+	</a>
+	</div>
+
+
+        <!-- HIGHLIGHTS
+        ================================================== -->
+        <div class="highlights">
+          <div class="container-fluid">
+
+            <!-- 4 Columns -->
+            <div class="row">
+
+              	                <div id="h-c1" class="col-sm-6 col-md-3">
+	                  <div class="highlight">
+	                    <h3>Products</h3>
+	                    <div class="highlight-details">
+	                      <a  href="/products/">
+	                        <h1 class="highlight-title">View all Products</h1>
+<p class="learn-more">Shop Now<i class="icon-right-open"></i></p>
+	                      </a>
+	                    </div>
+	                    <a  href="/products/" class="highlight-img">
+	                      <img src="http://cache.redgiant.com/wp-base/wp-content/uploads/2014/11/Looks_Hero_Stu_ALT-large.jpg" alt="Products"/>
+	                    </a>
+	                  </div>
+	                </div>
+                	                <div id="h-c2" class="col-sm-6 col-md-3">
+	                  <div class="highlight">
+	                    <h3>Tutorials</h3>
+	                    <div class="highlight-details">
+	                      <a  href="/tutorials/">
+	                        <h1 class="highlight-title">View all Tutorials</h1>
+<p class="learn-more">Watch Now<i class="icon-right-open"></i></p>
+	                      </a>
+	                    </div>
+	                    <a  href="/tutorials/" class="highlight-img">
+	                      <img src="http://cache.redgiant.com/wp-base/wp-content/uploads/2015/04/98_Catching_Fire-0547-large.jpg" alt="Tutorials"/>
+	                    </a>
+	                  </div>
+	                </div>
+                	                <div id="h-c3" class="col-sm-6 col-md-3">
+	                  <div class="highlight">
+	                    <h3>Films</h3>
+	                    <div class="highlight-details">
+	                      <a  href="/films/">
+	                        <h1 class="highlight-title">View Red Giant Films</h1>
+<p class="learn-more">Watch Now<i class="icon-right-open"></i></p>
+	                      </a>
+	                    </div>
+	                    <a  href="/films/" class="highlight-img">
+	                      <img src="http://cache.redgiant.com/wp-base/wp-content/uploads/2015/07/FTX_Pteranodon-large.jpg" alt="Films"/>
+	                    </a>
+	                  </div>
+	                </div>
+                	                <div id="h-c4" class="col-sm-6 col-md-3">
+	                  <div class="highlight">
+	                    <h3>Blog</h3>
+	                    <div class="highlight-details">
+	                      <a  href="/blog/">
+	                        <h1 class="highlight-title">Read our Blog</h1>
+<p class="learn-more">Read Now<i class="icon-right-open"></i></p>
+	                      </a>
+	                    </div>
+	                    <a  href="/blog/" class="highlight-img">
+	                      <img src="http://cache.redgiant.com/wp-base/wp-content/uploads/2014/11/Universe-1.5_BlogBucket.jpg" alt="Blog"/>
+	                    </a>
+	                  </div>
+	                </div>
+                              </div>
+
+            </div>
+          </div>
+
+
+
+
+          <!-- PROFESSIONS
+          ================================================== -->
+          
+
+          <!-- CONNECT
+          ================================================== -->
+          <div class="connect-signup">
+        <div class="container-fluid">
+              <div class="row">
+                    <div id="signupColumn" class="col-sm-6" style="text-align:center; padding:0;">
+                      <div style="margin-right:8px; background:url('http://cache.redgiant.com/wp-base/wp-content/uploads/2015/07/signup-bg.jpg') center no-repeat; min-height:210px; padding-top:30px;">
+            						<h1 style="color:#fff; margin:0; font-size:32px;">Stay Up To Date</h1>
+            						<h3 style="color:#fff; width:50%; margin:auto; padding:5px 0 20px 0; text-transform:none; font-size:20px; font-family:'TradeGothicLTPro-Cn18', 'Abadi MT Condensed Light', 'Arial Narrow', 'Helvetica Neue', Helvetica, Arial, sans-serif;">Get information about new products, <span class="hidden-xs"><br></span>software updates, special offers and more.</h3>
+                        <form class="form-inline newlsetter-signup-form" role="form" id="newlsetter-signup-form">
+                          <div class="form-group" style="width:200px; margin:auto;">
+                            <input type="email" class="form-control" id="signup-email" placeholder="email address">
+                            <button type="submit" class="btn btn-default">
+                                <span class="hidden-lg hidden-md visible-sm-inline-block hidden-xs">Sign Up</span>
+                                <i class="icon-right-open"></i>
+                            </button>
+                          </div>
+                          <div class="row">
+                            <div class="col-xs-12" id="newsletter-email-result">
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                   </div>
+                   <div id="connectColumn" class="col-sm-6" style="text-align:center; min-height:200px; padding:0;">
+                     <div style="background:url('http://cache.redgiant.com/wp-base/wp-content/uploads/2015/07/connect-bg.jpg') center no-repeat; min-height:210px; padding-top:30px;">
+                       <h1 style="color:#fff; margin:0; font-size:32px;">Get it first</h1>
+                       <h3 style="color:#fff; width:50%; margin:auto; padding:5px 0 15px 0; text-transform:none; font-size:20px; font-family:'TradeGothicLTPro-Cn18', 'Abadi MT Condensed Light', 'Arial Narrow', 'Helvetica Neue', Helvetica, Arial, sans-serif;">Get exclusive content and updates <span class="hidden-xs"><br></span> through Twitter, Facebook, &amp; Youtube.</h3>
+                       <ul class="social" style="font-size:32px; list-style:none; margin:0; padding: 0 8px 0 0;">
+                         <li style="display:inline-block; padding:0 !important; margin:0 !important; width:32px;"><a style="color:#fff;" title="" data-toggle="tooltip" href="https://twitter.com/RedGiantNews" data-original-title="Twitter" target="_blank"><i class="icon-twitter-circled"></i></a></li>
+
+<li style="display:inline-block; padding:0 !important; margin:0 !important; width:32px;"><a style="color:#fff;" title="" data-toggle="tooltip" href="https://www.facebook.com/RedGiantSoftware" data-original-title="Facebook" target="_blank"><i class="icon-facebook-circled"></i> </a></li>
+                         
+                         <li style="display:inline-block; padding:0 !important; margin:0 !important; width:32px;"><a style="color:#fff;" title="" data-toggle="tooltip" href="https://www.youtube.com/user/watchredgiantfilms" data-original-title="Youtube" target="_blank"><i class="icon-play-circled2"></i></a></li>
+                       </ul>
+                     </div>
+                  </div>
+              </div>
+        </div>
+</div>
+        <!-- Spring Sale MODAL
+        ================================================== -->
+        													<div class="modal fade sale-modal" id="SaleModal" tabindex="-1" role="dialog" aria-labelledby="shopCategory" aria-hidden="false">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<button type="button" class="close close-offset close-white" data-dismiss="modal">
+								<i class="icon-cancel-circled"></i><span class="sr-only">Close</span>
+							</button>
+							<div class="modal-body clearfix">
+							<a href="/products/magic-bullet-suite/">
+    <figure class="ad  ">
+        <picture>
+             <!--[if IE 9]><video style="display: none;"><![endif]-->
+             <source srcset="http://cache.redgiant.com/wp-base/wp-content/uploads/2015/07/MBS-12-s1.jpg" media="(max-width: 1199px)">
+             <source srcset="http://cache.redgiant.com/wp-base/wp-content/uploads/2015/07/MBS-12-s1.jpg" media="(max-width: 991px)">
+             <source srcset="http://cache.redgiant.com/wp-base/wp-content/uploads/2015/07/MBS-12-s1.jpg" media="(max-width: 767px)">
+             <!--[if IE 9]></video><![endif]-->
+             <img class="img-responsive" srcset="http://cache.redgiant.com/wp-base/wp-content/uploads/2015/07/MBS-12-s1.jpg" alt="Magic Bullet Suite 12">
+        </picture>
+        <figcaption>
+            <span class="sr-only">Magic Bullet Suite 12</span>
+        </figcation>
+    </figure></a>							</div>
+						</div>
+					</div>
+				</div>
+								
+
+<div class="container" id="footer-main">
+
+  <footer>
+    <ul id="footer_nav" class="list-inline footerNav"><li id="menu-item-1388" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1388"><a href="http://www.redgiant.com/products/">Products</a></li>
+<li id="menu-item-1389" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1389"><a href="/tutorials/">Tutorials</a></li>
+<li id="menu-item-1390" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1390"><a href="/films">Films</a></li>
+<li id="menu-item-1391" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1391"><a href="/blog/">Blog</a></li>
+<li id="menu-item-1392" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1392"><a href="/support/">Support</a></li>
+<li id="menu-item-1393" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1393"><a href="/store/session/loginOrRegister">Sign In</a></li>
+<li id="menu-item-1394" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1394"><a href="/company/">Company</a></li>
+</ul>    <div class="copyright">
+      <p><span>© 2002-2015 Red Giant LLC. All rights reserved.</span> | <a href="/support/buyers-guide/store-terms-and-conditions/">Legal</a></p>
+    </div><!-- /.copyright -->
+  </footer>
+
+    <!-- Login Modal -->
+    <div class="modal modal-md fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Login to RedGiant.com</h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type='text/javascript' src='http://cache.redgiant.com/wp-base/wp-content/plugins/redgiant/components/js/redgiant.js?ver=1.0.0'></script>
+<script type='text/javascript' src='http://www.redgiant.com/_/js/lib.min.js?ver=2.0'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var redgiant = {"ajax_url":"https:\/\/www.redgiant.com\/wp-base\/wp-admin\/admin-ajax.php","home_url":"http:\/\/www.redgiant.com","blog_url":"http:\/\/www.redgiant.com\/blog\/","template_url":"http:\/\/www.redgiant.com\/wp-base\/wp-content\/themes\/redgiant","current_id":"59","block_live_chat":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://www.redgiant.com/_/js/redgiant.min.js?ver=2.0'></script>
+<script type='text/javascript' src='http://www.redgiant.com/_/lib/owl-carousel/owl.carousel.min.js?ver=1.0.0'></script>
+    <script type="text/javascript">
+        $.ajax({
+          url: '//munchkin.marketo.net/munchkin.js',
+          dataType: 'script',
+          cache: true,
+          success: function() {
+            Munchkin.init('185-OBK-801', {"cookieAnon":false});
+          }
+        });
+    </script>
+    <script>(function() {
+  var _fbq = window._fbq || (window._fbq = []);
+  if (!_fbq.loaded) {
+    var fbds = document.createElement('script');
+    fbds.async = true;
+    fbds.src = '//connect.facebook.net/en_US/fbds.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(fbds, s);
+    _fbq.loaded = true;
+  }
+  _fbq.push(['addPixelId', '709562175796803']);
+})();
+window._fbq = window._fbq || [];
+window._fbq.push(['track', 'PixelInitialized', {}]);
+</script>
+<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id=709562175796803&amp;ev=PixelInitialized" /></noscript>
+<script src="//platform.twitter.com/oct.js" type="text/javascript"></script>
+<script type="text/javascript">
+twttr.conversion.trackPid('l5lfi', { tw_sale_amount: 0, tw_order_quantity: 0 });</script>
+<noscript>
+<img height="1" width="1" style="display:none;" alt="" src="https://analytics.twitter.com/i/adsct?txn_id=l5lfi&p_id=Twitter&tw_sale_amount=0&tw_order_quantity=0" />
+<img height="1" width="1" style="display:none;" alt="" src="//t.co/i/adsct?txn_id=l5lfi&p_id=Twitter&tw_sale_amount=0&tw_order_quantity=0" /></noscript>
+    <script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"c2a77e935f","applicationID":"3641980","transactionName":"ZFFWMEsCWUpZAUNaCl0bYRZQTEBJFQBWQAAcXVoAXBsZSVAS","queueTime":0,"applicationTime":6,"atts":"SBZVRgMYSkQ=","errorBeacon":"bam.nr-data.net","agent":"js-agent.newrelic.com\/nr-632.min.js"}</script></body>
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+Page Caching using memcached
+Database Caching 65/92 queries in 0.158 seconds using memcached
+Content Delivery Network via cache.redgiant.com
+
+ Served from: www.redgiant.com @ 2015-09-23 04:50:54 by W3 Total Cache -->

@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /application/
+Disallow: /development/
+Disallow: /externals/
+Disallow: /temporary/
+sitemap:  /index.php/sitemap?format=xml&rewrite=1

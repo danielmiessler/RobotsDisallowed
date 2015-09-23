@@ -1,0 +1,1001 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>.: El Sol de Margarita :.</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><link href="http://elsoldemargarita.com.ve/posts/home/type:icon" type="application/rss+xml" rel="alternate" title="/favicon.ico" />			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	
+
+<script type="text/javascript">
+var NS4 = true; //(document.layers)?true:false;
+var IE4 = false; //(document.all)?true:false;
+var ppromt = '';
+var bydefault = '';
+	function jumpBusqueda(){
+		var string = $("#busqueda").val();
+		location.href = ('/posts/busqueda/' + string);
+		event.preventDefault();
+	}
+
+	function jumpSection() {
+		var url=("/clasificados/index");
+		var section = $("#fsection").val();
+		var search = $("#fsearch").val();
+		var subsection_ = $("#fsubsection").val();
+		var res = subsection_.split(';;');
+		var subsection = res[0];
+
+		if (search != '')
+			fsearch = '/fsearch:' + search;
+		else
+			fsearch = '';
+
+		if (section != 0)
+			fsection = '/fsection:' + section;
+		else
+			fsection = '';
+
+		if (subsection != 0)
+			fsubsection = '/fsubsection:' + subsection;
+		else
+			fsubsection = '';
+		
+		newLocation = fsection + fsubsection + fsearch;
+		location.href = (url+newLocation);
+		event.preventDefault();
+		};
+	
+function _struct(child,childcaption,parent){
+this.child = child;
+this.childcaption = childcaption;
+this.parent	= parent;
+}
+function limitText(limitField, limitNum) {
+    if (limitField.value.length > limitNum) {
+        limitField.value = limitField.value.substring(0, limitNum);
+    } 
+}
+function _addobject(child,childcaption,parent){
+var obj = new _struct();
+obj.child = child;
+obj.childcaption = childcaption;
+obj.parent = parent;
+return(obj);
+}
+function isEntry(child,parent){
+	if(child.length > 0 ){		
+		for(var i=0;i<this.length;i++)
+			if(this.items[i].child == child)
+				return true;			
+	}
+	return false;
+}
+function insertEntry(child,childcaption,parent){
+	if(child.length > 0 ){		
+		for(var i=0;i<this.length;i++)
+			if(this.items[i].child == child)
+				return;			
+		this.items[this.length++] = _addobject(child,childcaption,parent);		
+	}
+}
+function add_option(oSelect,pprompt,bydefault){
+	var new_option = ' ';
+	new_option = prompt (ppromt,bydefault);
+	if ( new_option == null ) {
+		//donothing
+	} else {
+		if ( new_option.length > 2) {
+			new_option = new_option.toUpperCase();
+			elOption = new Option();
+			//now IE and NS have a different way to handle object creation.
+			if(IE4){						
+				elOption.value = new_option + ' selected';
+				elOption.text = new_option;
+				eval(document.formparent.elements[oSelect]).options[0] = elOption
+				eval(document.formparent.elements[oSelect]).selectedIndex = 0;
+			}else if(NS4){				
+				elOption.value = new_option  + ' selected';
+				elOption.text = new_option;
+				document.all.item(oSelect).options.add(elOption,0)					
+				document.all.item(oSelect).selectedIndex  = 0;
+			}						
+			delete(elOption);
+		}
+	}
+}
+
+function OptionCollection(){
+this.length=0;
+this.items = new Object();
+this.Add=insertEntry
+}
+
+function clearSelect(oSelect){
+	var iCount=0;
+	if(!oSelect) return;
+	iCount = oSelect.options.length;
+	for(var i=0;i<iCount;i++){
+		if(IE4)
+			oSelect.options.remove(0);
+		else if(NS4)
+			oSelect.options[0]=null;
+	}
+}
+function addOptions(oSelect,olist,parent){
+	var elOption;
+	var idxSelect=0;
+	var found=false;
+	if((!olist) || (!oSelect)) return;
+	clearSelect(oSelect);	
+	  	elBlankOption = new Option();
+	  	elBlankOption.text = "Todos";
+	  	elBlankOption.value = "";
+	  if (NS4) oSelect.options[idxSelect] = elBlankOption
+	  else if(IE4) oSelect.options.add(elBlankOption,idxSelect)
+	  idxSelect++;
+	for(var i=0;i<olist.length;i++){		
+		if(olist.items[i].parent == parent){									
+			found = true;
+			elOption = new Option();
+			//now IE and NS have a different way to handle object creation.
+			if(NS4){
+				elOption.value = olist.items[i].child
+				elOption.text = olist.items[i].childcaption
+				oSelect.options[idxSelect] = elOption				
+			}else if(IE4){				
+				elOption.value = olist.items[i].child
+				elOption.text = olist.items[i].childcaption
+				oSelect.options.add(elOption,idxSelect)					
+			}						
+			idxSelect++;
+			delete(elOption);
+		}			
+	}	
+	if (!found)
+	{
+	  	elBlankOption = new Option();
+	  	elBlankOption.text = "Todas";
+	  	elBlankOption.value = "";
+	  	idxSelect++;
+	  if(NS4) oSelect.options[0] = elBlankOption
+	  else if(IE4) oSelect.options.add(elBlankOption,0)
+	}
+}
+
+function clearOptions(szSelect,szForm){
+if(szSelect.length <= 0 || szForm.length <=0)
+	alert("error:clearOption must pass arguments");	
+if(IE4)
+clearSelect(document.all.item(szSelect));
+else if(NS4)
+clearSelect(eval('document.' + szForm + '.elements["' + szSelect + '"]'));
+}
+
+function listAllOptions(szSelect,szForm,olist){
+	var elOption;
+	var idxSelect=0;
+	var oSelect = new Object();
+	if(!olist)return;			
+	if(IE4)
+		 oSelect = document.all.item(szSelect);
+	else if(NS4)
+		oSelect = eval('document.' + szForm + '.' + szSelect);
+	if(!oSelect)return;			
+	clearSelect(oSelect);
+	for(var i=0;i<olist.length;i++){							
+		elOption = new Option();
+		if(NS4){						
+			elOption.value = olist.items[i].child
+			elOption.text = olist.items[i].childcaption
+			oSelect.options[idxSelect] = elOption				
+		}else if(IE4){				
+			elOption.value = olist.items[i].child
+			elOption.text = olist.items[i].childcaption
+			oSelect.options.add(elOption,idxSelect)					
+		}						
+		idxSelect++;
+		delete(elOption);					
+	}	
+}
+
+function UpdateSelect(szSelect,szForm,szParent,olist){
+if(IE4)
+addOptions(document.all.item(szSelect),olist,szParent);
+else if(NS4)
+addOptions(eval('document.' + szForm + '.elements["' + szSelect + '"]'),olist,szParent);
+}
+
+var oSubSection = new OptionCollection();
+var oSection = new OptionCollection();
+	</script>
+<link rel="stylesheet" type="text/css" href="/css/unique2.css" /><link href="/favicon.ico" type="image/x-icon" rel="icon" /><link href="/favicon.ico" type="image/x-icon" rel="shortcut icon" /><script type="text/javascript" src="/js/unique.js"></script>	
+		<style type="text/css">
+			#dhtmltooltip{
+				position: absolute;
+				width: 320px;
+				border:solid 2px #cbcbcb;
+				padding: 20px;
+				background: #ffffff;
+				filter: alpha(opacity=98);
+			    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=98);
+			    opacity:0.98;
+			   -moz-opacity: 0.98;
+				visibility: hidden;
+				z-index: 100;
+				font-family: Helvetica, Verdana, arial;
+				font-size:13px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container">
+											<div id="dhtmltooltip"></div>
+            <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4f19dac54dfeed4a"></script>
+			<script type="text/javascript">
+				var offsetxpoint=-60 //Customize x offset of tooltip
+				var offsetypoint=20 //Customize y offset of tooltip
+				var ie=document.all
+				var ns6=document.getElementById && !document.all
+				var enabletip=false
+				if (ie||ns6)
+					var tipobj=document.all? document.all["dhtmltooltip"] : document.getElementById? document.getElementById("dhtmltooltip") : ""
+				function ietruebody() {
+					return (document.compatMode && document.compatMode!="BackCompat")? document.documentElement : document.body
+				}
+				function ddrivetip(thetext, thecolor, thewidth){
+					if (ns6||ie){
+						if (typeof thewidth!="undefined") tipobj.style.width=thewidth+"px"
+						if (typeof thecolor!="undefined" && thecolor!="") tipobj.style.backgroundColor=thecolor
+						tipobj.innerHTML=thetext
+						enabletip=true
+						return false
+					}
+				}
+				function positiontip(e){
+					if (enabletip){
+						var curY=(ns6)?e.pageY : event.y+ietruebody().scrollTop;
+						var curX=390;
+						var rightedge=ie&&!window.opera? ietruebody().clientWidth-event.clientX-offsetxpoint : window.innerWidth-e.clientX-offsetxpoint-20
+						var bottomedge=ie&&!window.opera? ietruebody().clientHeight-event.clientY-offsetypoint : window.innerHeight-e.clientY-offsetypoint-20
+						var leftedge=(offsetxpoint<0)? offsetxpoint*(-1) : -1000
+						if (rightedge<tipobj.offsetWidth)
+						tipobj.style.left=ie? ietruebody().scrollLeft+event.clientX-tipobj.offsetWidth+"px" : window.pageXOffset+e.clientX-tipobj.offsetWidth+"px"
+						else if (curX<leftedge)
+						tipobj.style.left="5px"
+						else
+						tipobj.style.left=curX+offsetxpoint+"px"
+						if (bottomedge<tipobj.offsetHeight)
+						tipobj.style.top=ie? ietruebody().scrollTop+event.clientY-tipobj.offsetHeight-offsetypoint+"px" : window.pageYOffset+e.clientY-tipobj.offsetHeight-offsetypoint+"px"
+						else
+						tipobj.style.top=curY+offsetypoint+"px"
+						tipobj.style.left='210px';
+						tipobj.style.visibility="visible"
+					}
+				}
+				function hideddrivetip(){
+					if (ns6||ie){
+						enabletip=false
+						tipobj.style.visibility="hidden"
+						tipobj.style.left="-1000px"
+						tipobj.style.backgroundColor=''
+					tipobj.style.width=''
+					}
+				}
+				document.onclick=positiontip
+			</script>
+			<div id="header2" class="header2">
+				<div id="flexslider" class="flexslider">
+				  	<div>
+				  		<ul class="slides">
+				  			<li><div onClick="ddrivetip('(0) 02:45am &nbsp;&nbsp;&nbsp;<strong>Robert Mugabe: un año de descuidos, tropiezos y deslices <p align=justify></p></strong>&nbsp;&nbsp;&nbsp; Cuando la semana pasada Robert Mugabe, presidente de Zimbabue desde hace casi tres décadas, dio un discurso que ya había pronunciado el mes anterior ante el Parlamento, sus detractores solo pudieron regocijarse con la enésima patinada del nonagenario mandatario. </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Aunque sus asesores lo achacaron a un malentendido del gabinete de Presidencia, lo cierto es que la imagen de Mugabe leyendo un discurso repetido sin percatarse ha relanzado todos los rumores y chismes sobre su capacidad para gobernar el país a los 91 años. </p> (EFE)', 'white', '400')"; onMouseout="hideddrivetip()"(0) ><h1>02:45am &nbsp;<strong>Robert Mugabe: un año de descuidos, tropiezos y deslices </strong></h1></div></li><li><div onClick="ddrivetip('(1) 02:30am &nbsp;&nbsp;&nbsp;<strong>Resultados y clasificaciones <p align=justify></p></strong>&nbsp;&nbsp;&nbsp; Resultados de la jornada de campaña regular y clasificaciones completas de la Liga Nacional del béisbol profesional estadounidense: </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp; </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Martes, 22 de septiembre </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;San Diego Padres&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  2&nbsp;&nbsp;&nbsp; San Francisco Gigantes&nbsp;&nbsp;&nbsp; 4 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Nueva York Mets&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp; Atlanta Bravos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Miami Marlins&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  2&nbsp;&nbsp;&nbsp; Filadelfia Filis&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Chicago Cachorros&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp; Milwaukee Cerveceros&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;San Luis Cardenales&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  3&nbsp;&nbsp;&nbsp; Cincinnati Rojos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Colorado Rockies&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  3&nbsp;&nbsp;&nbsp; Pittsburgh Piratas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  6 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Los Ángeles Dodgers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  0&nbsp;&nbsp;&nbsp; Arizona Diamondbacks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Serie Intreligas </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Washington Nacionales&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp; Baltimore Orioles&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp; </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Miércoles, 23 de septiembre </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Miami Marlins&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --&nbsp;&nbsp;&nbsp; Filadelfia Filis&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7:10 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Nueva York Mets&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  --&nbsp;&nbsp;&nbsp; Atlanta Bravos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  7:10 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Chicago Cachorros&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp; Milwaukee Cerveceros&nbsp;&nbsp;&nbsp;  8:05 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;San Luis Cardenales&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --&nbsp;&nbsp;&nbsp; Cincinnati Rojos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8:15 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Colorado Rockies&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --&nbsp;&nbsp;&nbsp; Pittsburgh Piratas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8:40 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Los Ángeles Dodgers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --&nbsp;&nbsp;&nbsp; Arizona Diamondbacks&nbsp;&nbsp;&nbsp; 10:10 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;San Diego Padres&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --&nbsp;&nbsp;&nbsp; San Francisco Gigantes  10:10 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Serie Interligas </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Washington Nacionales&nbsp;&nbsp;&nbsp;  --&nbsp;&nbsp;&nbsp; Baltimore Orioles&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  7:05 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp; </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp; </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;LIGA NACIONAL </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;-------------- </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp; </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;División Este </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  PG&nbsp;&nbsp;&nbsp;  PP&nbsp;&nbsp;&nbsp; PCT.&nbsp;&nbsp;&nbsp;DIF. </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --&nbsp;&nbsp;&nbsp;  --&nbsp;&nbsp;&nbsp; ----&nbsp;&nbsp;&nbsp;---- </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Nueva York Mets&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  85&nbsp;&nbsp;&nbsp;  66&nbsp;&nbsp;&nbsp; .563&nbsp;&nbsp;&nbsp;---- </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Washington Nacionales&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  78&nbsp;&nbsp;&nbsp;  72&nbsp;&nbsp;&nbsp; .520&nbsp;&nbsp;&nbsp; 6,5 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Miami Marlins&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 64&nbsp;&nbsp;&nbsp;  87&nbsp;&nbsp;&nbsp; .424&nbsp;&nbsp;&nbsp;21,0 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Atlanta Bravos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;61&nbsp;&nbsp;&nbsp;  91&nbsp;&nbsp;&nbsp; .401&nbsp;&nbsp;&nbsp;24,5 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Filadelfia Filis&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 57&nbsp;&nbsp;&nbsp;  94&nbsp;&nbsp;&nbsp; .377&nbsp;&nbsp;&nbsp;28,0 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp; </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp; </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;División Central </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PG&nbsp;&nbsp;&nbsp;  PP&nbsp;&nbsp;&nbsp; PCT.&nbsp;&nbsp;&nbsp;DIF. </p> (EFE)', 'white', '400')"; onMouseout="hideddrivetip()"(1) ><h1>02:30am &nbsp;<strong>Resultados y clasificaciones </strong></h1></div></li><li><div onClick="ddrivetip('(2) 02:30am &nbsp;&nbsp;&nbsp;<strong>Resultados y clasificaciones <p align=justify></p></strong>&nbsp;&nbsp;&nbsp; Resultados de la jornada de campaña regular y clasificaciones completas de la Liga Americana del béibol profesional estadounidense: </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp; </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Martes, 22 de septiembre </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Boston Medias Rojas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  2&nbsp;&nbsp;&nbsp; Tampa Bay Rays&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Minnesota Mellizos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp; Cleveland Indios&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Kansas City Reales&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp; Seattle Marineros&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  11 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Houston Astros&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp; Los Ángeles Angelinos&nbsp;&nbsp;&nbsp;  4 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Oakland Atléticos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp; Texas Vigilantes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Toronto Azulejos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  4&nbsp;&nbsp;&nbsp; Nueva York Yanquis&nbsp;&nbsp;&nbsp; 10/e6 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Detroit Tigres&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp; Chicago Medias Blancas10/e1 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp; </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Miércoles, 23 de septiembre </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Detroit Tigres&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp; Chicago Medias Blancas&nbsp;&nbsp;&nbsp;1:08 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Houston Astros&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp; Los Ángeles Angelinos&nbsp;&nbsp;&nbsp; 2:10 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Toronto Azulejos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --&nbsp;&nbsp;&nbsp; Nueva York Yanquis&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7:07 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Boston Medias Rojas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --&nbsp;&nbsp;&nbsp; Tampa Bay Rays&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  7:10 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Minnesota Mellizos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  --&nbsp;&nbsp;&nbsp; Cleveland Indios&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8:10 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Kansas City Reales&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  --&nbsp;&nbsp;&nbsp; Seattle Marineros&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  8:10 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Oakland Atléticos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp; Texas Vigilantes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  10:05 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp; </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;LIGA AMERICANA </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;-------------- </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp; </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;División Este </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  PG&nbsp;&nbsp;&nbsp;  PP&nbsp;&nbsp;&nbsp; PCT.&nbsp;&nbsp;&nbsp;DIF. </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --&nbsp;&nbsp;&nbsp;  --&nbsp;&nbsp;&nbsp; -----  ---- </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Toronto Azulejos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 86&nbsp;&nbsp;&nbsp;  65&nbsp;&nbsp;&nbsp;  .570  ---- </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Nueva York Yanquis&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  83&nbsp;&nbsp;&nbsp;  67&nbsp;&nbsp;&nbsp;  .553&nbsp;&nbsp;&nbsp;2,5 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Baltimore Orioles&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;74&nbsp;&nbsp;&nbsp;  76&nbsp;&nbsp;&nbsp;  .493  11,5 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Tampa Bay Rays&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;73&nbsp;&nbsp;&nbsp;  78&nbsp;&nbsp;&nbsp;  .483  13,0 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Boston Medias Rojas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 72&nbsp;&nbsp;&nbsp;  78&nbsp;&nbsp;&nbsp;  .480  13,5 </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp; </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp; </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;División Central </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PG&nbsp;&nbsp;&nbsp;  PP&nbsp;&nbsp;&nbsp; PCT.&nbsp;&nbsp;&nbsp;DIF. </p> (EFE)', 'white', '400')"; onMouseout="hideddrivetip()"(2) ><h1>02:30am &nbsp;<strong>Resultados y clasificaciones </strong></h1></div></li><li><div onClick="ddrivetip('(3) 02:21am &nbsp;&nbsp;&nbsp;<strong>El antiimperialismo de Chávez, Castro y Kim Jong-un, premiados en Indonesia <p align=justify></p></strong>&nbsp;&nbsp;&nbsp; El dictador norcoreano Kim Jong-un, el expresidente de Cuba Fidel Castro y el fallecido líder venezolano Hugo Chávez, entre otros, serán premiados por su espíritu antiimperialista por una fundación indonesia. </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Rachmawati Soekarnoputri, presidenta de la Fundación Sukarno para la Educación que otorga los galardones, alabó la lucha de los líderes premiados a fin de conseguir la autosuficiencia en sus países. </p> (EFE)', 'white', '400')"; onMouseout="hideddrivetip()"(3) ><h1>02:21am &nbsp;<strong>El antiimperialismo de Chávez, Castro y Kim Jong-un, premiados en Indonesia </strong></h1></div></li><li><div onClick="ddrivetip('(4) 02:18am &nbsp;&nbsp;&nbsp;<strong>Maduro anuncia que activará en su momento planes en frontera del Amazonas <p align=justify></p></strong>&nbsp;&nbsp;&nbsp; El presidente de Venezuela, Nicolás Maduro, dijo hoy que se activarán en su momento las acciones de las autoridades en la zona ocho de la frontera con Colombia, en el estado Amazonas, que es el único paso entre ambos países que permanece abierto. </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;La octava zona, es la del Amazonas. Allí vamos a activar también los planes en su momento y ahora bien coordinados binacionalmente, dijo el presidente venezolano durante su programa de televisión En contacto con Maduro, transmitido por la televisión estatal. </p> (EFE)', 'white', '400')"; onMouseout="hideddrivetip()"(4) ><h1>02:18am &nbsp;<strong>Maduro anuncia que activará en su momento planes en frontera del Amazonas </strong></h1></div></li><li><div onClick="ddrivetip('(5) 02:14am &nbsp;&nbsp;&nbsp;<strong>4-2. Pagán jonronea y los Gigantes vencen a los Padres <p align=justify></p></strong>&nbsp;&nbsp;&nbsp; El guardabosques puertorriqueño Ángel Pagán conectó jonrón de dos carreras y dirigió el ataque de los Gigantes de San Francisco por 4-2 sobre los Padres de San Diego. </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Pagán (3) conectó una vez en cuatro viajes a la caja de bateo y remolcó dos carreras para convertirse en el bate productivo de los Gigantes. </p> (EFE)', 'white', '400')"; onMouseout="hideddrivetip()"(5) ><h1>02:14am &nbsp;<strong>4-2. Pagán jonronea y los Gigantes vencen a los Padres </strong></h1></div></li><li><div onClick="ddrivetip('(6) 02:06am &nbsp;&nbsp;&nbsp;<strong>Maduro no abrirá frontera hasta que salgan contrabandistas y paramilitares <p align=justify></p></strong>&nbsp;&nbsp;&nbsp; El presidente de Venezuela, Nicolás Maduro, aseguró hoy que mantendrá cerrada la frontera con Colombia, que clausuró parcialmente el 19 de agosto y se generó una fuerte crisis diplomática con el país vecino, hasta que esa zona quede liberada de contrabandistas y paramilitares. </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Maduro, que achaca la presencia de esos criminales a Colombia, explicó que la normalización progresiva de la frontera acordada el lunes en Quito con el presidente colombiano, Juan Manuel Santos, parte para Venezuela del hecho de refundar la frontera. </p> (EFE)', 'white', '400')"; onMouseout="hideddrivetip()"(6) ><h1>02:06am &nbsp;<strong>Maduro no abrirá frontera hasta que salgan contrabandistas y paramilitares </strong></h1></div></li><li><div onClick="ddrivetip('(7) 02:01am &nbsp;&nbsp;&nbsp;<strong>8-6. DeShields pega volado y da triunfo a los Vigilantes <p align=justify></p></strong>&nbsp;&nbsp;&nbsp; El guardabosques Delino DeShields conectó volado de sacrificio en el sexto episodio para desempatar la pizarra y los Vigilantes de Texas vencieron 8-6 a los Atléticos de Oakland. </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Con su volado DeShields definió la pizarra para los Vigilantes, que incrementaron su liderazgo en la División Oeste de la Liga Americana. </p> (EFE)', 'white', '400')"; onMouseout="hideddrivetip()"(7) ><h1>02:01am &nbsp;<strong>8-6. DeShields pega volado y da triunfo a los Vigilantes </strong></h1></div></li><li><div onClick="ddrivetip('(8) 01:58am &nbsp;&nbsp;&nbsp;<strong>El euro baja en la apertura hasta los 1,1125 dólares en Fráncfort <p align=justify></p></strong>&nbsp;&nbsp;&nbsp; El euro bajó hoy en la apertura del mercado de divisas de Fráncfort y a las 06.00 GMT se cambiaba a 1,1125 dólares, frente a los 1,1134 dólares de las últimas horas de la negociación europea de ayer. </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;El Banco Central Europeo (BCE) fijó ayer el tipo de cambio de referencia del euro en 1,1155 dólares (EFE). </p> (EFE)', 'white', '400')"; onMouseout="hideddrivetip()"(8) ><h1>01:58am &nbsp;<strong>El euro baja en la apertura hasta los 1,1125 dólares en Fráncfort </strong></h1></div></li><li><div onClick="ddrivetip('(9) 01:56am &nbsp;&nbsp;&nbsp;<strong>El crudo Brent baja hasta 48,87 dólares <p align=justify></p></strong>&nbsp;&nbsp;&nbsp; El barril de crudo Brent para entrega en noviembre abrió hoy a la baja en el Intercontinental Exchange Futures (ICE) de Londres, al cotizar a 48,87 dólares, un 0,3 % menos que al cierre de la jornada anterior (EFE). </p>. </p> (EFE)', 'white', '400')"; onMouseout="hideddrivetip()"(9) ><h1>01:56am &nbsp;<strong>El crudo Brent baja hasta 48,87 dólares </strong></h1></div></li><li><div onClick="ddrivetip('(10) 01:39am &nbsp;&nbsp;&nbsp;<strong>Al menos 5 policías muertos en un ataque armado en una mina de Xinjiang <p align=justify></p></strong>&nbsp;&nbsp;&nbsp; Al menos cinco policías han muerto y unas 40 personas han resultado heridas en un ataque armado perpetrado por supuestos separatistas en una mina de carbón en la región noroccidental china de Xinjiang, informa hoy Radio Free Asia. </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;El suceso ocurrió en la madrugada del 18 de septiembre, cuando un grupo de personas armadas con cuchillos se abalanzaron sobre los guardias de seguridad que vigilaban la mina de Sogan, en la prefectura de Bay de la región de Xinjiang, donde habita la minoría musulmana uigur. </p> (EFE)', 'white', '400')"; onMouseout="hideddrivetip()"(10) ><h1>01:39am &nbsp;<strong>Al menos 5 policías muertos en un ataque armado en una mina de Xinjiang </strong></h1></div></li><li><div onClick="ddrivetip('(11) 01:37am &nbsp;&nbsp;&nbsp;<strong>HRW pide a la ONU que exija el regreso a la democracia en Tailandia <p align=justify></p></strong>&nbsp;&nbsp;&nbsp; La organización Human Rights Watch (HRW) pidió hoy a Naciones Unidas que exijan durante su Asamblea General la restauración de la democracia en Tailandia y que el gobierno militar de este país termine con la represión de los derechos humanos. </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Los líderes que acudan a la cita deberían utilizar sus reuniones con el líder de la junta militar tailandesa para instarle al fin de su régimen opresor y el regreso de un gobierno civil democrático, señala en un comunicado el director para Asia de HRW, Brad Adams. </p> (EFE)', 'white', '400')"; onMouseout="hideddrivetip()"(11) ><h1>01:37am &nbsp;<strong>HRW pide a la ONU que exija el regreso a la democracia en Tailandia </strong></h1></div></li><li><div onClick="ddrivetip('(12) 01:36am &nbsp;&nbsp;&nbsp;<strong>Vinculan la testosterona prenatal al aspecto masculino del rostro humano <p align=justify></p></strong>&nbsp;&nbsp;&nbsp; Los niveles de testosterona a los que se expone un feto en el útero pueden determinar el aspecto masculino que tendrá su rostro cuando sea adulto, de acuerdo con un estudio divulgado hoy en Australia. </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Los altos niveles de testosterona en el cordón umbilical están realmente vinculados a características faciales más masculinas, según Andrew Whitehouse, de la Universidad de Australia Occidental y coautor de esta investigación, que vincula por primera vez la exposición prenatal a la testosterona y la estructura de un rostro. </p> (EFE)', 'white', '400')"; onMouseout="hideddrivetip()"(12) ><h1>01:36am &nbsp;<strong>Vinculan la testosterona prenatal al aspecto masculino del rostro humano </strong></h1></div></li><li><div onClick="ddrivetip('(13) 01:27am &nbsp;&nbsp;&nbsp;<strong>Maduro mantendrá cerrada por ahora la frontera con Colombia <p align=justify></p></strong>&nbsp;&nbsp;&nbsp; El presidente de Venezuela, Nicolás Maduro, aseguró hoy que no abrirá la frontera con Colombia, cerrada por decisión suya desde hace más de un mes, hasta que la situación en ese área cambie en profundidad, lo que incluye liberarla de contrabando y paramilitares. </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Dijo que también esperará para decidir la frontera a que concluyan los ataques a la moneda venezolana. </p> (EFE)', 'white', '400')"; onMouseout="hideddrivetip()"(13) ><h1>01:27am &nbsp;<strong>Maduro mantendrá cerrada por ahora la frontera con Colombia </strong></h1></div></li><li><div onClick="ddrivetip('(14) 01:27am &nbsp;&nbsp;&nbsp;<strong>8-0. Ray domina en la lomita a los Dodgers <p align=justify></p></strong>&nbsp;&nbsp;&nbsp; El abridor Robbie Ray lanzó seis entradas completas y el guardabosques A.J. Pollock y el primera base Paul Goldschmidt pegaron sendos jonrones para los Diamondbacks de Arizona, que derrotaron 8-0 a los Dodgers de Los Ángeles. </p><p align=justify; margin:1px>&nbsp;&nbsp;&nbsp;Ray (5-12) lanzó seis episodios, permitió tres imparables, regaló dos pasaportes y ponchó a siete enemigos para conseguir el triunfo. </p> (EFE)', 'white', '400')"; onMouseout="hideddrivetip()"(14) ><h1>01:27am &nbsp;<strong>8-0. Ray domina en la lomita a los Dodgers </strong></h1></div></li>				  		</ul>
+					</div>
+			  	</div>
+			</div>
+			<br>
+			<br>
+			<hr>
+			<div class="topHeader">
+				<div class="topHeaderFirstDiv">
+					<a href="http://www.elsoldemargarita.com.ve/posts/post/id:156907" target="_blank" ><img src="/uploads/banners/2015/09/21/SILUETA-220915.jpg" /></a>				</div>
+				<div class="topHeaderSocNetDiv">
+	                <a href="http://twitter.com/@elsoldmargarita" target="_blank"><img src="/img/btnTT.png"></a>
+	                <a href="http://www.facebook.com/soldemargarita" target="_blank"><img src="/img/btnFF.png"></a>
+	                <a href="http://www.youtube.com/user/ElSoldeMargarita" target="_blank"><img src="/img/btnYT.png"></a>
+					<a href="http://instagram.com/soldemargarita?ref=badge" target="_blank"><img src="/img/btnIG.png"></a>					
+				</div>
+				<div class="topHeaderLogoDiv">
+					<div>
+						<a href="/"><img src=/img/logo_sol.jpg style="width:256px;height:152px;"></a>
+					</div>
+				</div>
+				<div class="topHeaderNewsPaperFrontPageDiv" >
+					<div>
+						<p>Porlamar<br>23 de septiembre de 2015</p>					</div>
+					<div>
+					<a href="#" id="linkPortada"><img src="/uploads/fp/portada_rotada.jpg" style="height:110px;vertical-align:bottom;"/></a>					</div>
+				</div>
+				<div class="topHeaderLastDiv">
+					<a href="/posts/seccion/21"><img src=/img/bannerClasificados2.gif></a>				</div> 
+			</div>
+			<hr><hr><hr>
+			<div style="margin-left:auto;margin-right:auto;width:auto;">
+				<ul class="main-menu">
+					<li><a href="http://www.elsoldemargarita.com.ve">Inicio</a></li><li ><a href="/posts/seccion/4/Locales">Locales</a></li><li ><a href="/posts/seccion/5/Sucesos">Sucesos</a></li><li ><a href="/posts/seccion/3/Deportes">Deportes</a></li><li ><a href="/posts/seccion/6/Oriente">Oriente</a></li><li ><a href="/posts/seccion/1/Nacionales">Nacionales</a></li><li ><a href="/posts/seccion/9/Internacionales">Internacionales</a></li><li ><a href="/posts/seccion/8/Econom%C3%ADa">Economía</a></li><li class="primary"><a href="/posts/seccion/22/Secciones">Secciones</a><ul class="second-level"><li><a href="/posts/seccion/51/Copa%20Am%C3%A9rica%202015">Copa América 2015</a></li><li><a href="/posts/seccion/49/Alma%20Insular">Alma Insular</a></li><li><a href="/posts/seccion/47/Virgen%20del%20Valle">Virgen del Valle</a></li><li><a href="/posts/seccion/43/Edici%C3%B3n%20Aniversaria">Edición Aniversaria</a></li><li><a href="/posts/seccion/46/Medicina%20y%20Salud">Medicina y Salud</a></li><li><a href="/posts/seccion/37/Turisteando">Turisteando</a></li><li><a href="/posts/seccion/41/Rayitos%20de%20Sol">Rayitos de Sol</a></li><li><a href="/posts/seccion/14/Entrevista">Entrevista</a></li><li><a href="/posts/seccion/15/Generaci%C3%B3n%20de%20relevo">Generación de relevo</a></li><li><a href="/posts/seccion/16/Vida%20Universitaria">Vida Universitaria</a></li><li><a href="/posts/seccion/31/Vocer%C3%ADa%20Comunal">Vocería Comunal</a></li><li><a href="/posts/seccion/17/Comunidad">Comunidad</a></li><li><a href="/posts/seccion/7/Opini%C3%B3n">Opinión</a></li><li><a href="/posts/seccion/34/Hacia%20la%20Igualdad">Hacia la Igualdad</a></li><li><a href="/posts/seccion/32/Mar%20Adentro">Mar Adentro</a></li><li><a href="/posts/seccion/35/Sol%20de%20Coche">Sol de Coche</a></li><li><a href="/posts/seccion/19/Vinieron%20para%20quedarse">Vinieron para quedarse</a></li><li><a href="/posts/seccion/20/En%20positivo">En positivo</a></li><li><a href="/posts/seccion/36/Vivencias%20Margarite%C3%B1as">Vivencias Margariteñas</a></li><li><a href="/posts/seccion/18/Cultura">Cultura</a></li><li><a href="/posts/seccion/38/Vida%20de%20Hoy">Vida de Hoy</a></li><li><a href="/posts/seccion/39/Juan%20Griego">Juan Griego</a></li><li><a href="/posts/seccion/40/Gente%20Feliz%20con%20Sabor">Gente Feliz con Sabor</a></li><li><a href="/posts/seccion/30/Gente%20Feliz">Gente Feliz</a></li><li><a href="/posts/seccion/45/Suramericano%202014">Suramericano 2014</a></li><li><a href="/posts/seccion/44/Mundial%20Brasil%202014">Mundial Brasil 2014</a></li></ul></li><li ><a href="/posts/seccion/21/Clasificados">Clasificados</a></li><li ><a href="/posts/seccion/52/Lo%20%2B%20le%C3%ADdo">Lo + leído</a></li>				</ul>
+			</div>
+			<hr>
+			<div id="highlights-navigation">
+				<ul>
+					<li><a href="/" style="color:#FFF;">Destacados</a></li>
+					<li><a href="/posts/post/id:156985/Maduro-extiende-el-estado-de-excepción-a-toda-la-frontera">Estado de Excepción</a></li>				</ul>
+			</div>
+				<div style="display:inline;height:30px;">
+					<table>
+						<tr>
+							<td><img src="http://l.yimg.com/a/i/us/we/52/33.gif" style="display:inline;width:26px;height:26px;border:0;"></td>
+							<td><p style="display:inline;vertical-align:top;"><strong>EL TIEMPO</strong> EN MARGARITA <strong>27°C</strong></p></td>
+						</tr>
+					</table>
+				</div>
+
+		<hr><br><hr>
+
+﻿<script type="text/javascript">
+	$(document).ready(function(){
+		$('#header2').css({position:'absolute'});
+	});
+</script>
+	<table style="display:inline;width:1024px;">
+		<tr>
+		<!-- Despliegue del cintillo de la serie del caribe -->
+			<td colspan=3>
+			<!--	   -->
+				   
+							</td>
+		</tr>
+		<tr>
+<!--
+	Despliegue de Columna 1, en sentido vertical
+	la función showFirstColLiPost, exclusiva para "seccion" recibe tres parámetros,
+	el primero es el contenido a desplegar, el segundo es el indice usado para extraer
+	el elemento del arreglo, y el tercero indica si se colocará una pleca (línea horizontal)
+-->
+			<td colspan=2>
+							</td>
+<!--
+	Despliegue de la tercera columna 
+-->
+			<td style="vertical-align:top;" rowspan=3>
+				<div class="thirdColumn">
+<!--		
+	PLUGIN CUENTA REGRESIVA 
+	Comentar la siguiente línea para eliminar
+
+
+					<div style="margin: 0 auto; text-align: center;">
+			   		<iframe align="middle" allowtransparency="true" frameborder="0" marginheight="0" marginwidth="0" scrolling="no" src="http://elsoldemargarita.com.ve/countdown.htm" style="height: 75px; width: 330px;">
+						</iframe>
+					</div>
+					<br>
+-->
+					<div z-index="0"><div class="BannerSlide" style="overflow:hidden;width:100%;"><ul><li id="li0"><a href="http://www.sunsolhoteles.com/reservaciones" target="_blank" ><img src="/uploads/ads/2015/08/31/publicidad-31.gif" style="width:100%;"/></a></li></ul></div></div><hr>					<br>
+															<!--
+	Incluimos una tabla para mostrar los banner de los suplementos 
+-->
+					<table style="height:360px;margin:0px;padding:0px">
+						<tr>
+							<td>
+								<div z-index="10"><div class="BannerSuplSlide" style="overflow:hidden;width:100%;height:330px;"><ul><li id="li0"><a href="http://www.elsoldemargarita.com.ve/posts/seccion/30/Gente%20Feliz" target="_self" ><img src="/uploads/banners/2015/09/22/Portada-GF2-220915.jpg" style="width:157px;height:343px;"/></a></li></ul></div></div><hr>							</td>
+							<td>
+								<div z-index="10"><div class="BannerSuplSlide" style="overflow:hidden;width:100%;height:330px;"><ul><li id="li0"><a href="http://www.elsoldemargarita.com.ve/posts/seccion/3/Deportes" target="_self" ><img src="/uploads/banners/2015/09/21/Portada-AD-220915.jpg" style="width:157px;height:343px;"/></a></li></ul></div></div><hr>							</td>
+						</tr>
+					</table>
+<!--	
+	Mostramos el contenedor de Banners Lateral Cuarto Derecha
+	Tweeter
+	Lateral Segundo Derecha
+	Lateral Quinto Derecha
+	Lista de Artículos de Opinión
+	Lateral Sexto Derecha	
+-->
+					<div z-index="0"><div class="BannerSlide" style="overflow:hidden;width:100%"><ul><li id="li0"><a href="http://elsoldemargarita.com.ve/app/webroot/files/SOLCULTURAL20150905.pdf" target="_self" ><img src="/uploads/banners/2015/05/01/BANNERSOLCULTURALWEBB (2).png" style="width:100%;"/></a></li><hr style="width:100%;border-bottom:1px dotted #555;margin-bottom:4px;"></ul></div></div><hr>					<div class="areaTwitter"> <a class="twitter-timeline" href="https://twitter.com/elsoldmargarita" data-widget-id="360940061673549824" width="100%" height="400" lang="ES">Tweets por @elsoldmargarita</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?"http":"https";if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div>										<hr><hr><hr><hr>
+							
+		<div style="">
+			<h2 style="background-color: #4998B7; color: #ffffff; line-height: 26px; font-size:18px;font-weight:bold;">&nbsp;&nbsp;ENCUESTA</h2>
+			<input type="hidden" id="poll-id" value="64" />
+			<p style="font-size: 160%; font-weight: bold; font-style: italic; text-align: left">¿Considera positiva la normalización de las relaciones entre Colombia y Venezuela? </p>
+			<img style="margin-bottom: 3%" src="/uploads/images/2015/09/21/Acuerdo-Mandatarios_c1.jpg" />
+			<div id="polls-container">
+						
+		<h2 style="color: #b5b5b5; margin-bottom: 4px;">OPCIONES</h2>
+		<table style="border: none; width: 100%; border: none" cellspacing="0">
+					<tr style="height: 40px">
+				<td style="background-color: #292929; width: 3%">
+				</td>
+				<td style="background-color: #e6e6e6; width: 10%; text-align: center;">
+					<input type="radio" name="poll-group" value="152" />
+				</td>
+				<td style="background-color: #e6e6e6; width: 100%; font-size: 120%;">
+					 Sí				</td>
+				<td style="background-color: #9f9f9f; width: 2%;">
+				</td>
+			</tr>
+			<tr style="background-color: #ffffff; height: 4%;">
+				<td colspan="4"></td>
+			</tr>
+					<tr style="height: 40px">
+				<td style="background-color: #292929; width: 3%">
+				</td>
+				<td style="background-color: #e6e6e6; width: 10%; text-align: center;">
+					<input type="radio" name="poll-group" value="153" />
+				</td>
+				<td style="background-color: #e6e6e6; width: 100%; font-size: 120%;">
+					 No				</td>
+				<td style="background-color: #9f9f9f; width: 2%;">
+				</td>
+			</tr>
+			<tr style="background-color: #ffffff; height: 4%;">
+				<td colspan="4"></td>
+			</tr>
+				</table>
+		<div style="text-align: center; width: 100%; margin-top: 4%;">
+			<input id="vote-poll" type="button" value="Votar" />
+		</div>
+		
+					</div>
+		</div>
+		
+							<hr><hr><hr><hr>
+					<div z-index="10"><div class="postList"><div><div><h1>&nbsp;&nbsp;OPINIÓN</h1></div><div style="text-align: left"><h4></h4><a href="/posts/post/id:156901" target="_self" ><h2>Oposición, Bogotá y gasolina</h2></a><h5>Leopoldo Puchi | elepuchi@gmail.com</h5></div><div style="text-align: left"><h4></h4><a href="/posts/post/id:156900" target="_self" ><h2>Estado De Excepción</h2></a><h5>Luis Fuenmayor Toro | lft3003@yahoo.com</h5></div><div style="text-align: left"><h4></h4><a href="/posts/post/id:156899" target="_self" ><h2>Gobierno Acorralado</h2></a><h5>Luis Longart Guerra | longartguerra@outlook.com</h5></div><div style="text-align: left"><h4>Aliño Compuesto</h4><a href="/posts/post/id:156898" target="_self" ><h2>El "tramparente" e imparcial CNE</h2></a><h5>Carlos Villalba-Luna |<br>villalbaluna@gmail.com</h5></div><div style="text-align: left"><h4>Aliño Compuesto
+</h4><a href="/posts/post/id:156857" target="_self" ><h2>Los demonios de la violencia</h2></a><h5>Roberto Malaver |<br>robertomalaver@gmail.com</h5></div></div></div></div><hr>					<hr><hr><hr><hr>
+					<div z-index="0"><div class="BannerSlide" style="overflow:hidden;width:100%"><ul><li id="li0"><a href="http://www.elsoldemargarita.com.ve/posts/post/id:156897" target="_self" ><img src="/uploads/banners/2015/08/11/nardaweb_0.jpg" style="width:100%;"/></a></li><hr style="width:100%;border-bottom:1px dotted #555;margin-bottom:4px;"></ul></div></div><hr>										<div z-index="0"><div class="BannerSlide" style="overflow:hidden;width:100%"><ul><li id="li0"><img src="/uploads/banners/2015/07/07/300x250-redes-sociales-sol.jpg" style="width:100%;"/></li><hr style="width:100%;border-bottom:1px dotted #555;margin-bottom:4px;"></ul></div></div><hr>					<div z-index="0"><div class="BannerSlide" style="overflow:hidden;width:100%"><ul><li id="li0"><a href="http://www.elsoldemargarita.com.ve/posts/post/id:156654" target="_self" ><img src="/uploads/banners/2015/09/17/FOTOREPORTAJE-170915.jpg" style="width:100%;"/></a></li><hr style="width:100%;border-bottom:1px dotted #555;margin-bottom:4px;"></ul></div></div><hr>									
+
+				</div>
+			</td>
+<!--
+	Fin de la tercera Columna
+-->
+		</tr>
+		<tr>
+			<td style="vertical-align:top;">
+				<div class="firstColumn">
+<div class="post"><div class="breadcrumb"></div><div class="titlewraphome" style="font-size:230%;"><a href="/posts/post/id:156985/Maduro-extiende-el-estado-de-excepción-a-toda-la-frontera">Maduro extiende el estado de excepción a toda la frontera</a></div><a href="/posts/post/id:156985/Maduro-extiende-el-estado-de-excepción-a-toda-la-frontera"><img src="/uploads/images/2015/09/23/MAduro-en-Contacto_C1.jpg" /></a><div class="extractwraphome">Un día después de reunirse con Juan Manuel Santos el presidente de Venezuela ordena ampliar el cierre limítrofe con Colombia</div></div><hr style="width:100%;border-bottom:1px dotted #555;margin-bottom:4px;"><div z-index="0"><div class="BannerSlide" style="overflow:hidden;width:100%"><ul><li id="li0"><a href="http://www.elsoldemargarita.com.ve/posts/post/id:156911" target="_self" ><img src="/uploads/banners/2014/03/05/GENERACION.png" style="width:100%;"/></a></li><hr style="width:100%;border-bottom:1px dotted #555;margin-bottom:4px;"></ul></div></div><hr><hr style="width:100%;border-bottom:1px dotted #555;margin-bottom:4px;"><div class="post"><div class="breadcrumb"></div><div class="titlewraphome" style="font-size:230%;"><a href="/posts/post/id:156948/Inician-proceso-de-actualización-de-datos-de-trabajadores-de-la-Salud">Inician proceso de actualización de datos de trabajadores de la Salud</a></div><a href="/posts/post/id:156948/Inician-proceso-de-actualización-de-datos-de-trabajadores-de-la-Salud"><img src="/uploads/images/2015/09/22/Actualizan-de-datos-Salud_C1.jpg" /></a><div class="extractwraphome">La jornada, que se extenderá hasta este viernes 25 de septiembre.</div></div><hr style="width:100%;border-bottom:1px dotted #555;margin-bottom:4px;"><hr style="width:100%;border-bottom:1px dotted #555;margin-bottom:4px;"><div class="post"><div class="breadcrumb">Vuelta a clases</div><div class="titlewraphome" style="font-size:230%;"><a href="/posts/post/id:156944/Mariño-ratifica-programa-educativo-de-calidad-innovadora">Mariño ratifica programa educativo de calidad innovadora</a></div><a href="/posts/post/id:156944/Mariño-ratifica-programa-educativo-de-calidad-innovadora"><img src="/uploads/images/2015/09/22/AlfredoDiaz_C1.jpg" /></a><div class="extractwraphome">El mandatario porlamarense giró instrucciones para garantizar el óptimo funcionamiento de planteles en este nuevo año escolar y abordó junto a directores distintos tópicos.</div></div><hr style="width:100%;border-bottom:1px dotted #555;margin-bottom:4px;"><div class="post"><div class="breadcrumb"></div><div class="titlewraphome" style="font-size:230%;"><a href="/posts/post/id:156942/Alcaldía-de-García-rehabilitó-parque-infantil-de-Villa-Rosa">Alcaldía de García rehabilitó parque infantil de Villa Rosa</a></div><a href="/posts/post/id:156942/Alcaldía-de-García-rehabilitó-parque-infantil-de-Villa-Rosa"><img src="/uploads/images/2015/09/22/Cruz-Lairet_C1.jpg" /></a><div class="extractwraphome"> Con un concepto tradicional de los parques a cielo abierto con: columpios, toboganes, subibajas, ruedas y un gran espacio para  correr y disfrutar en el bloque 5 de la urbanización Villa Rosa.</div></div><hr style="width:100%;border-bottom:1px dotted #555;margin-bottom:4px;"><div class="post"><div class="breadcrumb"></div><div class="titlewraphome" style="font-size:230%;"><a href="/posts/post/id:156934/Gobernador-Mata-Figueroa-reinauguró-cancha-de-usos-múltiples-de-El-Tirano">Gobernador Mata Figueroa reinauguró cancha de usos múltiples de El Tirano</a></div><a href="/posts/post/id:156934/Gobernador-Mata-Figueroa-reinauguró-cancha-de-usos-múltiples-de-El-Tirano"><img src="/uploads/images/2015/09/22/Carlos-Mata---Baloncesto_C1.jpg" /></a><div class="extractwraphome">Junto a la alcaldesa del municipio Antolín del Campo, Olga Pérez de Salazar, entregó a la comunidad de Aricagua el asfaltado de la calle principal de Viento Fresco e inspeccionó otras obras de interés colectivo.</div></div><hr style="width:100%;border-bottom:1px dotted #555;margin-bottom:4px;"><div class="post"><div class="breadcrumb"></div><div class="titlewraphome" style="font-size:230%;"><a href="/posts/post/id:156919/Presidentes-Maduro-y-Santos-acuerdan-normalización-en-frontera">Presidentes Maduro y Santos acuerdan normalización en frontera</a></div><a href="/posts/post/id:156919/Presidentes-Maduro-y-Santos-acuerdan-normalización-en-frontera"><img src="/uploads/images/2015/09/21/Acuerdo-de-Paz-Venezuela-Colombia_C1.jpg" /></a><div class="extractwraphome">El retorno inmediato de los embajadores a sus sedes y reunir a los equipos ministeriales para tratar los temas sensibles para ambos países figuran entre los puntos convenidos. Próximo encuentro será el 23 de este mes.</div></div><hr style="width:100%;border-bottom:1px dotted #555;margin-bottom:4px;"><div class="post"><div class="breadcrumb"></div><div class="titlewraphome" style="font-size:230%;"><a href="/posts/post/id:156913/En-Arismendi-buscan-integrar-y-dar-oportunidad-a-los-sordos">En Arismendi buscan integrar y dar oportunidad a los sordos</a></div><a href="/posts/post/id:156913/En-Arismendi-buscan-integrar-y-dar-oportunidad-a-los-sordos"><img src="/uploads/images/2015/09/21/fundacion_c1.jpg" /></a><div class="extractwraphome">El Instituto Municipal de Turismo y la Fudanción Vanessa Peretti hicieron alianza con la premisa de dar valor a las personas con discapacidad auditiva. </div></div>				</div>
+			</td>
+<!--
+	despliegue de Columna 2, en sentido vertical
+	la función showSecondColLiPost, exclusiva para "seccion" recibe tres parámetros,
+	el primero es el contenido a desplegar, el segundo es el indice usado para extraer
+	el elemento del arreglo, y el tercero indica si se colocará una pleca (línea horizontal)
+-->
+			<td style="vertical-align:top;">
+				<div class="secondColumn">
+<div class="post"><a href="/posts/post/id:156984/Marítimo-cae-ante-Guerreros-en-La-Asunción-"><img src="/uploads/images/2015/09/22/Maritimos_C1.jpg"/></a><div class="breadcrumb"></div><div class="titlewraphome2"><a href="/posts/post/id:156984/Marítimo-cae-ante-Guerreros-en-La-Asunción-">Marítimo cae ante Guerreros en La Asunción </a></div><div class="extractwraphome">Rosward Manzanares y Edgar Peña se perderán cuatro partidos tras sanción aplicada por la Comisión de Justicia de la FVF. </div></div><hr style="width:100%;border-bottom:1px dotted #555;margin-bottom:4px;"><div z-index="0"><div class="BannerSlide" style="overflow:hidden;width:100%"><ul><li id="li0"><a href="http://www.elsoldemargarita.com.ve/posts/post/id:156917" target="_self" ><img src="/uploads/banners/2015/07/29/1BREVES-GENTE-FELIZ.jpg" style="width:100%;"/></a></li><hr style="width:100%;border-bottom:1px dotted #555;margin-bottom:4px;"></ul></div></div><hr><div z-index="0"><div class="BannerSlide" style="overflow:hidden;width:100%"><ul><li id="li0"><a href="http://www.elsoldemargarita.com.ve/posts/post/id:156892" target="_self" ><img src="/uploads/banners/2015/08/17/punto-de-equilibrio.jpg" style="width:100%;"/></a></li><hr style="width:100%;border-bottom:1px dotted #555;margin-bottom:4px;"></ul></div></div><hr><div class="post"><a href="/posts/post/id:156983/Corea-del-Sur-entrega-primeros-perros-en-adopción-para-dejar-de-comerlos"><img src="/uploads/images/2015/09/22/Perros-Corea_C1.jpg"/></a><div class="breadcrumb">Vida de hoy</div><div class="titlewraphome2"><a href="/posts/post/id:156983/Corea-del-Sur-entrega-primeros-perros-en-adopción-para-dejar-de-comerlos">Corea del Sur entrega primeros perros en adopción para dejar de comerlos</a></div><div class="extractwraphome">En Asia consumen cerca de 17 millones de perros anuales</div></div><hr style="width:100%;border-bottom:1px dotted #555;margin-bottom:4px;"><div class="post"><a href="/posts/post/id:156971/Equinoccio-afectará-parcialmente-servicios-de-telecomunicaciones"><img src="/uploads/images/2015/09/22/Equinoccio_c1.jpg"/></a><div class="breadcrumb">Tecnología</div><div class="titlewraphome2"><a href="/posts/post/id:156971/Equinoccio-afectará-parcialmente-servicios-de-telecomunicaciones">Equinoccio afectará parcialmente servicios de telecomunicaciones</a></div><div class="extractwraphome">El fenómeno conocido como "equinoccio primaveral" puede causar interferencias leves en los servicios de telecomunicaciones que se ofrecen en el país.</div></div><hr style="width:100%;border-bottom:1px dotted #555;margin-bottom:4px;"><div class="post"><a href="/posts/post/id:156958/Moda-2016-en-trajes-de-baño-"><img src="/uploads/images/2015/09/22/trajes-de-bano-_2__C1.jpg"/></a><div class="breadcrumb">GENTE FELIZ</div><div class="titlewraphome2"><a href="/posts/post/id:156958/Moda-2016-en-trajes-de-baño-">Moda 2016 en trajes de baño </a></div><div class="extractwraphome">De nuevo surgen las interrogantes sobre qué se llevará. ¿Bañador o bikini?, ¿colores lisos o estampados? ¡Toma nota!</div></div><hr style="width:100%;border-bottom:1px dotted #555;margin-bottom:4px;"><div class="post"><a href="/posts/post/id:156955/Venezuela-sucumbió-ante-Egipto-en-Copa-del-Mundo"><img src="/uploads/images/2015/09/22/Voleibol-equipo_C1.jpg"/></a><div class="breadcrumb">Voleibol</div><div class="titlewraphome2"><a href="/posts/post/id:156955/Venezuela-sucumbió-ante-Egipto-en-Copa-del-Mundo">Venezuela sucumbió ante Egipto en Copa del Mundo</a></div><div class="extractwraphome">Venezuela cayó con marcador de 3 sets por 1 y parciales de 25-18, 20-25, 25-18 y 25-20, en un partido que duró una hora y 44 minutos.</div></div><hr style="width:100%;border-bottom:1px dotted #555;margin-bottom:4px;"><div class="post"><a href="/posts/post/id:156950/Delcy-Rodríguez_-Los-decretos-en-la-frontera-se-mantienen"><img src="/uploads/images/2015/09/22/Delcy-Rodriguez-en-Trinidad_C1.jpg"/></a><div class="breadcrumb"></div><div class="titlewraphome2"><a href="/posts/post/id:156950/Delcy-Rodríguez_-Los-decretos-en-la-frontera-se-mantienen">Delcy Rodríguez: Los decretos en la frontera se mantienen</a></div><div class="extractwraphome">La canciller manifestó que la reunión de Quito permitió llevar la verdad de Venezuela, cuyas autoridades apuestan por una nueva frontera de paz y legalidad con Colombia.</div></div><hr style="width:100%;border-bottom:1px dotted #555;margin-bottom:4px;"><div class="post"><a href="/posts/post/id:156947/EUA-recibe-a-Francisco-con-los-brazos-abiertos"><img src="/uploads/images/2015/09/22/Papa_C1.jpg"/></a><div class="breadcrumb"></div><div class="titlewraphome2"><a href="/posts/post/id:156947/EUA-recibe-a-Francisco-con-los-brazos-abiertos">EUA recibe a Francisco con los brazos abiertos</a></div><div class="extractwraphome">La visita del Papa a Estados Unidos ha servido para potenciar la economía norteamericana, en donde ya se ven suvenires que hacen alusión al Sumo Pontífice. </div></div><hr style="width:100%;border-bottom:1px dotted #555;margin-bottom:4px;"><div class="post"><a href="/posts/post/id:156946/El-papa-Francisco-inicia-una-histórica-visita-de-cinco-días-a-Estados-Unidos"><img src="/uploads/images/2015/09/22/Obama-Papa_C1.jpg"/></a><div class="breadcrumb"></div><div class="titlewraphome2"><a href="/posts/post/id:156946/El-papa-Francisco-inicia-una-histórica-visita-de-cinco-días-a-Estados-Unidos">El papa Francisco inicia una histórica visita de cinco días a Estados Unidos</a></div><div class="extractwraphome">El Airbus A330-200 de la compañía Alitalia en el que viaja el papa aterrizó a las 15:50 hora local (19.50 GMT) en la base aérea de Andrews (Maryland), donde le recibieron el presidente de Estados Unidos, Barack Obama. (+Video)</div></div><hr style="width:100%;border-bottom:1px dotted #555;margin-bottom:4px;"><div class="post"><a href="/posts/post/id:156943/75_-de-venezolanos-cree-que-se-incrementó-la-inseguridad-en-último-año"><img src="/uploads/images/2015/09/22/ROBERTO-BRICENO-LEÓN_C1.jpg"/></a><div class="breadcrumb"></div><div class="titlewraphome2"><a href="/posts/post/id:156943/75_-de-venezolanos-cree-que-se-incrementó-la-inseguridad-en-último-año">75% de venezolanos cree que se incrementó la inseguridad en último año</a></div><div class="extractwraphome">Según el Observatorio Venezolano de Violencia, el país tiene la segunda tasa más alta de homicidios del planeta con 82 por cada 100.000 habitantes, cifra que el Gobierno venezolano rebaja a 62.</div></div>				</div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2>
+<!-- Estas dos líneas de PHP son las que tienes que descomentar, quitando las "//" -->
+				<div z-index="0"><div class="BannerSlide" style="overflow:hidden;width:100%"><ul><li id="li0"><a href="http://www.elsoldemargarita.com.ve/places/index" target="_self" ><img src="/uploads/banners/2013/11/27/mi-turisteando_0.jpg" style="width:100%;"/></a></li><hr style="width:100%;border-bottom:1px dotted #555;margin-bottom:4px;"></ul></div></div><hr>				<hr>
+							</td>
+			<td>
+			</td>
+		</tr>
+	</table>
+	<br>
+	<table>
+		<tr>
+			<td>
+							</td>
+		</tr>
+	</table>
+	<div style="width:1024px;display:block;background-color:#D48600;border-radius: 15px 15px 0px 0px;float:left;">';
+		<span style="font-size:24px;font-weight:bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZONA&nbsp;</span>
+		<span style="font-size:24px;font-weight:bold;color:#FFF;">&nbsp;MULTIMEDIA </span>
+	</div>
+	<div style="width:1024px;display:inline;" id="mediaContainer">
+		<div style="width:692px;height:415px;float:left;border:0px;background-color:#333;" id="gallery">
+			
+		<div id="gallery" class="ad-gallery" style="padding-left:20px;">
+			<div class="ad-image-wrapper">
+			  	<div class="ad-image" >
+			  		<img src="/uploads/images/2015/09/21/chef_PG.jpg"  height="300px"></a>
+			  		<p class="ad-image-description"><strong class="ad-description-title">chef_PG.jpg</strong><span>Foto: EFE</span></p>
+			  	</div><img class="ad-loader" src="/img/loader.gif" style="display: none;">
+			  	<div class="ad-next" style="height: 400px;">
+			  		<div class="ad-next-image" style="opacity: 0.7; display: none;">
+			  		</div>
+			  	</div>
+			  	<div class="ad-prev" style="height:400px;">
+			  		<div class="ad-prev-image" style="opacity: 0.7; display: none;">
+			  	</div>
+			</div>
+		</div>
+		<div class="ad-controls">
+			<p class="ad-info"></p>
+			<div class="ad-slideshow-controls">
+				<span class="ad-slideshow-start"></span>
+				<span class="ad-slideshow-stop"></span>
+				<span class="ad-slideshow-countdown" style="display: none;"></span>
+			</div>
+		</div>
+		<div class="ad-nav">
+			<div class="ad-back" style="opacity: 0.6;"></div>
+			<div class="ad-thumbs">
+				<ul class="ad-thumb-list" >
+								<li>
+					  <a href="/uploads/images/2015/09/21/chef_08_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/chef_08_G.jpg" title="El chef Fran Agudo (d) y David Gil del restaurante Ticket Restaurant de Barcelona." alt="Foto: EFE" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/21/chef_05_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/chef_05_G.jpg" title="El cocinero de Oaxaca Alejandro Ruiz." alt="Foto: EFE" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/21/chef_06_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/chef_06_G.jpg" title="El chef brasileño David Hertz habló sobre la importancia del trabajo colectivo." alt="Foto: EFE" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/21/chef_01_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/chef_01_G.jpg" title="El chef francés Michael Bras, verdadero gurú de la gastronomía mundial." alt="Foto: EFE" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/21/chef_02_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/chef_02_G.jpg" title="Gurús de la cocina ponen sobre la mesa la responsabilidad social de los chefs." alt="Foto: EFE" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/21/chef_03_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/chef_03_G.jpg" title="La editora norteamericana de Edible Geography y conductora de Gastropod, Nicola Twilley." alt="Foto: EFE" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/21/chef_04_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/chef_04_G.jpg" title="El chef español Ferran Adria habla sobre el origen de la cerveza." alt="Foto: EFE" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+						  </ul>
+			</div>
+		  <div class="ad-forward" style="opacity: 0.6;"></div></div>
+		</div>		</div>
+
+		<div style="width:692px;height:413px;float:left;display:none;" id="gallery0">
+			
+		<div id="gallery" class="ad-gallery" style="padding-left:20px;">
+			<div class="ad-image-wrapper">
+			  	<div class="ad-image" >
+			  		<img src="/uploads/images/2015/09/21/chef_PG.jpg"  height="300px"></a>
+			  		<p class="ad-image-description"><strong class="ad-description-title">chef_PG.jpg</strong><span>Foto: EFE</span></p>
+			  	</div><img class="ad-loader" src="/img/loader.gif" style="display: none;">
+			  	<div class="ad-next" style="height: 400px;">
+			  		<div class="ad-next-image" style="opacity: 0.7; display: none;">
+			  		</div>
+			  	</div>
+			  	<div class="ad-prev" style="height:400px;">
+			  		<div class="ad-prev-image" style="opacity: 0.7; display: none;">
+			  	</div>
+			</div>
+		</div>
+		<div class="ad-controls">
+			<p class="ad-info"></p>
+			<div class="ad-slideshow-controls">
+				<span class="ad-slideshow-start"></span>
+				<span class="ad-slideshow-stop"></span>
+				<span class="ad-slideshow-countdown" style="display: none;"></span>
+			</div>
+		</div>
+		<div class="ad-nav">
+			<div class="ad-back" style="opacity: 0.6;"></div>
+			<div class="ad-thumbs">
+				<ul class="ad-thumb-list" >
+								<li>
+					  <a href="/uploads/images/2015/09/21/chef_08_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/chef_08_G.jpg" title="El chef Fran Agudo (d) y David Gil del restaurante Ticket Restaurant de Barcelona." alt="Foto: EFE" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/21/chef_05_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/chef_05_G.jpg" title="El cocinero de Oaxaca Alejandro Ruiz." alt="Foto: EFE" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/21/chef_06_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/chef_06_G.jpg" title="El chef brasileño David Hertz habló sobre la importancia del trabajo colectivo." alt="Foto: EFE" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/21/chef_01_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/chef_01_G.jpg" title="El chef francés Michael Bras, verdadero gurú de la gastronomía mundial." alt="Foto: EFE" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/21/chef_02_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/chef_02_G.jpg" title="Gurús de la cocina ponen sobre la mesa la responsabilidad social de los chefs." alt="Foto: EFE" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/21/chef_03_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/chef_03_G.jpg" title="La editora norteamericana de Edible Geography y conductora de Gastropod, Nicola Twilley." alt="Foto: EFE" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/21/chef_04_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/chef_04_G.jpg" title="El chef español Ferran Adria habla sobre el origen de la cerveza." alt="Foto: EFE" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+						  </ul>
+			</div>
+		  <div class="ad-forward" style="opacity: 0.6;"></div></div>
+		</div>		</div>
+
+		<div style="width:692px;height:413px;float:left;display:none;" id="gallery1">
+			
+		<div id="gallery" class="ad-gallery" style="padding-left:20px;">
+			<div class="ad-image-wrapper">
+			  	<div class="ad-image" >
+			  		<img src="/uploads/images/2015/09/21/fashion_PG.jpg"  height="300px"></a>
+			  		<p class="ad-image-description"><strong class="ad-description-title">fashion_PG.jpg</strong><span>Foto: TANYA MILLÁN</span></p>
+			  	</div><img class="ad-loader" src="/img/loader.gif" style="display: none;">
+			  	<div class="ad-next" style="height: 400px;">
+			  		<div class="ad-next-image" style="opacity: 0.7; display: none;">
+			  		</div>
+			  	</div>
+			  	<div class="ad-prev" style="height:400px;">
+			  		<div class="ad-prev-image" style="opacity: 0.7; display: none;">
+			  	</div>
+			</div>
+		</div>
+		<div class="ad-controls">
+			<p class="ad-info"></p>
+			<div class="ad-slideshow-controls">
+				<span class="ad-slideshow-start"></span>
+				<span class="ad-slideshow-stop"></span>
+				<span class="ad-slideshow-countdown" style="display: none;"></span>
+			</div>
+		</div>
+		<div class="ad-nav">
+			<div class="ad-back" style="opacity: 0.6;"></div>
+			<div class="ad-thumbs">
+				<ul class="ad-thumb-list" >
+								<li>
+					  <a href="/uploads/images/2015/09/21/fashion_06_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/fashion_06_G.jpg" title="Yuvanna Montalvo estuvo firmando autógrafos en Gatsby." alt="Foto: TANYA MILLÁN" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/21/fashion_05_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/fashion_05_G.jpg" title="Uno de los outfits propuestos por Margarita Petite y Cayena. " alt="Foto: TANYA MILLÁN" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/21/fashion_08_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/fashion_08_G.jpg" title="Don Lolo dispuso un maniquí viviente en la entrada de la tienda." alt="Foto: TANYA MILLÁN" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/21/fashion_07_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/fashion_07_G.jpg" title="El equipo de la emisora Divina transmitió en vivo desde Mislulú. " alt="Foto: TANYA MILLÁN" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/21/fashion_02_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/fashion_02_G.jpg" title="Margarita Petite y Cayena tenían un stand con modelos y piezas en exhibición. " alt="Foto: TANYA MILLÁN" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/21/fashion_03_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/fashion_03_G.jpg" title="Alcides Ragone maquilló en vivo a Alexandra Braun. " alt="Foto: TANYA MILLÁN" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/21/fashion_01_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/fashion_01_G.jpg" title="Las chicas de la Academia de Modelaje Marina Pulido, con ropa de MNG y accesorios de Swarovski. " alt="Foto: TANYA MILLÁN" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/21/fashion_04_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/fashion_04_G.jpg" title="Margarita Petite y Cayena realizaron un desfile para mostrar sus creaciones. " alt="Foto: TANYA MILLÁN" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+						  </ul>
+			</div>
+		  <div class="ad-forward" style="opacity: 0.6;"></div></div>
+		</div>		</div>
+
+		<div style="width:692px;height:413px;float:left;display:none;" id="gallery2">
+			
+		<div id="gallery" class="ad-gallery" style="padding-left:20px;">
+			<div class="ad-image-wrapper">
+			  	<div class="ad-image" >
+			  		<img src="/uploads/images/2015/09/21/cocina_PG.jpg"  height="300px"></a>
+			  		<p class="ad-image-description"><strong class="ad-description-title">cocina_PG.jpg</strong><span>Foto: TANYA MILLÁN</span></p>
+			  	</div><img class="ad-loader" src="/img/loader.gif" style="display: none;">
+			  	<div class="ad-next" style="height: 400px;">
+			  		<div class="ad-next-image" style="opacity: 0.7; display: none;">
+			  		</div>
+			  	</div>
+			  	<div class="ad-prev" style="height:400px;">
+			  		<div class="ad-prev-image" style="opacity: 0.7; display: none;">
+			  	</div>
+			</div>
+		</div>
+		<div class="ad-controls">
+			<p class="ad-info"></p>
+			<div class="ad-slideshow-controls">
+				<span class="ad-slideshow-start"></span>
+				<span class="ad-slideshow-stop"></span>
+				<span class="ad-slideshow-countdown" style="display: none;"></span>
+			</div>
+		</div>
+		<div class="ad-nav">
+			<div class="ad-back" style="opacity: 0.6;"></div>
+			<div class="ad-thumbs">
+				<ul class="ad-thumb-list" >
+								<li>
+					  <a href="/uploads/images/2015/09/21/cocina_09_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/cocina_09_G.jpg" title="Meralda de Medina y Betsy Landaeta." alt="Foto: TANYA MILLÁN" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/21/cocina_07_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/cocina_07_G.jpg" title="Verni Salazar, Serenella Rosas, Rubén Santiago y Francisco Franco." alt="Foto: TANYA MILLÁN" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/21/cocina_06_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/cocina_06_G.jpg" title="Jesús “Chucho” Irausquín, Salvador Núñez e Hilda Bellorín. " alt="Foto: TANYA MILLÁN" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/21/cocina_08_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/cocina_08_G.jpg" title="Miguel Briggs y Lucy Escalona. " alt="Foto: TANYA MILLÁN" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/21/cocina_10_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/cocina_10_G.jpg" title="Yolanda López, Luis Arenas y Luis Adrian Arenas. " alt="Foto: TANYA MILLÁN" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/21/cocina_03_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/cocina_03_G.jpg" title="Alfredo Berroteran, Vicente Gerardi, Rubén Santiago y Jesús Irausquín, " alt="Foto: TANYA MILLÁN" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/21/cocina_01_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/cocina_01_G.jpg" title="Krusbery Valerio, Teodoro Bellorín, José Hassan y Betsy Landaeta.  " alt="Foto: TANYA MILLÁN" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/21/cocina_02_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/cocina_02_G.jpg" title="Lucy Escalona, Silvimar Campos, Verni Salazar y Edigre Carreño. " alt="Foto: TANYA MILLÁN" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/21/cocina_04_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/cocina_04_G.jpg" title="Jesús Irausquín y Sasha Moncada." alt="Foto: TANYA MILLÁN" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/21/cocina_05_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/21/cocina_05_G.jpg" title="Jhoge Zamora, Mercedes Márquez y Aníbal Esteves." alt="Foto: TANYA MILLÁN" class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+						  </ul>
+			</div>
+		  <div class="ad-forward" style="opacity: 0.6;"></div></div>
+		</div>		</div>
+
+		<div style="width:692px;height:13px;float:left;display:none;" id="gallery3">
+			
+		<div id="gallery" class="ad-gallery" style="padding-left:20px;">
+			<div class="ad-image-wrapper">
+			  	<div class="ad-image" >
+			  		<img src="/uploads/images/2015/09/19/cursodecocina16PG.jpg"  height="300px"></a>
+			  		<p class="ad-image-description"><strong class="ad-description-title">Teodoro Bellorín, organizador del concurso, junto a los miembros del jurado.</strong><span>Foto: TANYA MILLÁN.</span></p>
+			  	</div><img class="ad-loader" src="/img/loader.gif" style="display: none;">
+			  	<div class="ad-next" style="height: 400px;">
+			  		<div class="ad-next-image" style="opacity: 0.7; display: none;">
+			  		</div>
+			  	</div>
+			  	<div class="ad-prev" style="height:400px;">
+			  		<div class="ad-prev-image" style="opacity: 0.7; display: none;">
+			  	</div>
+			</div>
+		</div>
+		<div class="ad-controls">
+			<p class="ad-info"></p>
+			<div class="ad-slideshow-controls">
+				<span class="ad-slideshow-start"></span>
+				<span class="ad-slideshow-stop"></span>
+				<span class="ad-slideshow-countdown" style="display: none;"></span>
+			</div>
+		</div>
+		<div class="ad-nav">
+			<div class="ad-back" style="opacity: 0.6;"></div>
+			<div class="ad-thumbs">
+				<ul class="ad-thumb-list" >
+								<li>
+					  <a href="/uploads/images/2015/09/19/cursodecocina17_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/19/cursodecocina17_G.jpg" title="Parte de los concursantes durante el proceso de elaboración de los platillos. " alt="Foto: TANYA MILLÁN." class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/19/cursodecocina14_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/19/cursodecocina14_G.jpg" title="El Hotel Escuela Venetur Margarita quiso hacer una representación del Cerro El Copey, con este bombón relleno de ají. " alt="Foto: TANYA MILLÁN." class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/19/cursodecocina15_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/19/cursodecocina15_G.jpg" title="José Adalwill Silva puso el toque musical al encuentro. " alt="Foto: TANYA MILLÁN." class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/19/cursodecocina16_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/19/cursodecocina16_G.jpg" title="Teodoro Bellorín, organizador del concurso, junto a los miembros del jurado." alt="Foto: TANYA MILLÁN." class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/19/cursodecocina10_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/19/cursodecocina10_G.jpg" title="La UPEL ofreció como principal Por siempre Luisa, hecho en tributo a Luisa Cáceres de Arismendi. " alt="Foto: TANYA MILLÁN." class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/19/cursodecocina12_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/19/cursodecocina12_G.jpg" title="La Alquimia marina resultó ser el plato que mejor representa la margariteñidad, y fue hecho por el Instituto Iberoamericano de Gastronomía. " alt="Foto: TANYA MILLÁN." class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/19/cursodecocina7_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/19/cursodecocina7_G.jpg" title="El Hotel Escuela Venetur presentó como entrada el Langostino manzanillo." alt="Foto: TANYA MILLÁN." class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/19/cursodecocina11_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/19/cursodecocina11_G.jpg" title="Galerón con parranda es el nombre de este postre, que es una deconstrucción del tradicional pabellón margariteño, expuesto por la UPEL." alt="Foto: TANYA MILLÁN." class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/19/cursodecocina4_g.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/19/cursodecocina4_g.jpg" title="El Pargo zarandeado, presentado por la escuela ganadora, se llevó la mención a mejor plato principal. " alt="Foto: TANYA MILLÁN." class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/19/cursodecocina5_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/19/cursodecocina5_G.jpg" title="Mango bachiller fue el nombre que el I.C.T.C. le dio a su postre, el cual fue reconocido como el mejor en su categoría. " alt="Foto: TANYA MILLÁN." class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/19/cursodecocina9_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/19/cursodecocina9_G.jpg" title="Como plato principal, el I.C.T.C. llevó cachapa con cochino frito. " alt="Foto: TANYA MILLÁN." class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/19/cursodecocina8_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/19/cursodecocina8_G.jpg" title="La Casserole ofreció como entrada Sorpresa de masa pelada." alt="Foto: TANYA MILLÁN." class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/19/cursodecocina3_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/19/cursodecocina3_G.jpg" title="El Instituto Iberoamericano de Gastronomía conquistó el tercer lugar, y estuvo representado por Roymer Ottaviano, Haedy Corcega y Juan José Salazar." alt="Foto: TANYA MILLÁN." class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/19/cursodecocina2_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/19/cursodecocina2_G.jpg" title="Los estudiantes del I.C.T.C., Álvaro Guzmán, Flavia Contreras y Santiago Blanchard, quienes obtuvieron el segundo lugar. " alt="Foto: TANYA MILLÁN." class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/19/cursodecocina1_G.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/19/cursodecocina1_G.jpg" title="Los ganadores del primer lugar de la quinta edición del Concurso Cocina Creativa Margariteña." alt="Foto: TANYA MILLÁN." class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+								<li>
+					  <a href="/uploads/images/2015/09/19/cursodecocina6_g.jpg" class="ad-active">
+						<img src="/uploads/thumbs/images/2015/09/19/cursodecocina6_g.jpg" title="Durante el evento, la organización Los Del Mar otorgó un reconocimiento a Trina Miguelina y Julio Quintero. " alt="Foto: TANYA MILLÁN." class="image0" style="opacity: 1;height:80px;">
+					  </a>
+					</li>
+						  </ul>
+			</div>
+		  <div class="ad-forward" style="opacity: 0.6;"></div></div>
+		</div>		</div>
+
+		<div style="width:332px;height:384px;float:right;">
+			<div class="areaVideos">
+                    <div class="avContent"><div class="videoItem"><a href="https://www.youtube.com/watch?v=uNCIpp8QLEg" rel="uNCIpp8QLEg"><img src="/img/overlay.png" style="background:URL(https://i.ytimg.com/vi/uNCIpp8QLEg/default.jpg) center center no-repeat;background-size:160px 120px;" /></a><h5><a href="https://www.youtube.com/watch?v=uNCIpp8QLEg" rel="uNCIpp8QLEg">Denuncian abusos en acción OLP en Los Olivos</a></h5><p>20/09/2015</p></div><div class="videoItem"><a href="https://www.youtube.com/watch?v=r82DY_BNfrQ" rel="r82DY_BNfrQ"><img src="/img/overlay.png" style="background:URL(https://i.ytimg.com/vi/r82DY_BNfrQ/default.jpg) center center no-repeat;background-size:160px 120px;" /></a><h5><a href="https://www.youtube.com/watch?v=r82DY_BNfrQ" rel="r82DY_BNfrQ">Roberto Rosales desea consolidar trabajo efectuado en la Copa América</a></h5><p>03/09/2015</p></div><div class="videoItem"><a href="https://www.youtube.com/watch?v=8gj1x3WIO48" rel="8gj1x3WIO48"><img src="/img/overlay.png" style="background:URL(https://i.ytimg.com/vi/8gj1x3WIO48/default.jpg) center center no-repeat;background-size:160px 120px;" /></a><h5><a href="https://www.youtube.com/watch?v=8gj1x3WIO48" rel="8gj1x3WIO48">Jeffrén Suárez y Salomón Rondón juntos en la Vinotinto</a></h5><p>02/09/2015</p></div><p style="font-size:11px;text-align:right;margin-bottom:0;color:#FFF;"><a href="http://www.youtube.com/user/ElSoldeMargarita" target="_blank">Ver más</a></p>
+                    </div>
+                </div>		</div>
+	</div>
+	<hr>
+	<div style="width:1024px;display:inline;">
+		<table style="width:1024px;border:0px;background-color:rgb(204, 234, 245);">
+			<tr>
+				<td style="width:242px;">
+					<a href="javascript:showGallery(0)"><img src="/uploads/images/2015/09/21/chef_PG.jpg" style="display:block;height:140px;margin-left:auto;margin-right:auto;" /></a>
+				</td>
+				
+				<td style="width:242px;">
+					<a href="javascript:showGallery(1)"><img src="/uploads/images/2015/09/21/fashion_PG.jpg" style="display:block;height:140px;margin-left:auto;margin-right:auto;" /></a>
+				</td>
+				
+				<td style="width:242px;">
+					<a href="javascript:showGallery(2)"><img src="/uploads/images/2015/09/21/cocina_PG.jpg" style="display:block;height:140px;margin-left:auto;margin-right:auto;" /></a>
+				</td>
+				
+				<td style="width:242px;">
+					<a href="javascript:showGallery(3)"><img src="/uploads/images/2015/09/19/cursodecocina16PG.jpg" style="display:block;height:140px;margin-left:auto;margin-right:auto;" /></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<br><br>
+	<hr style="width:100%;border-bottom:4px solid #D48600;margin-bottom:4px;">
+	<table>
+		<tr>
+			<td>
+											</td>
+		</tr>
+	</table>
+	<hr style="width:100%;border-bottom:4px solid #D48600;margin-bottom:4px;">
+	<div id="portadaBIGGER" style="display:none;background:#666;border:solid 1px #000;padding:10px">
+		<img src="/uploads/fp/portada.jpg" width="405" height="500" border="0" class="" id="" style="" />
+	</div><br>
+<br>
+<br>
+<div style="display:inline;">
+	<div style="width:692px;float:left;">
+		<img src="/img/sdm.jpg">
+	</div>
+	<div>
+			<label for="busqueda"></label><input name="busqueda" style="font-size:100%; width:180px;" type="text" id="busqueda">
+			<input style="font-size:100%" onclick="javascript:event.preventDefault();javascript:jumpBusqueda();" type="submit" value="Buscar">
+	</div>
+</div>
+<hr style="width:100%;border-bottom:8px solid #4998B7;margin-bottom:4px;">
+<br>
+<div style="display:inline;">
+	<div style="width:792px;float:left;">
+		<img src="/img/sdm2.jpg">
+	</div>
+	<div class="bottomFooterSocNetDiv">
+	                <a href="http://twitter.com/@elsoldmargarita" target="_blank"><img src="/img/btnTT.png"></a>
+	                <a href="http://www.facebook.com/soldemargarita" target="_blank"><img src="/img/btnFF.png"></a>
+	                <a href="http://www.youtube.com/user/ElSoldeMargarita" target="_blank"><img src="/img/btnYT.png"></a>
+					<a href="http://instagram.com/soldemargarita?ref=badge" target="_blank"><img src="/img/btnIG.png"></a>					
+	</div>
+</div>
+<hr>
+<br>
+<div style="display:block;text-align:center;"
+	<div class="bottomNav">
+		<a href=/posts/seccion/4>Locales</a> | <a href=/posts/seccion/5>Sucesos</a> | <a href=/posts/seccion/3>Deportes</a> | <a href=/posts/seccion/6>Oriente</a> | <a href=/posts/seccion/1>Nacionales</a> | <a href=/posts/seccion/9>Internacionales</a> | <a href=/posts/seccion/8>Economía</a> | <a href=/posts/seccion/22>Secciones</a> | <a href=/posts/seccion/21>Clasificados</a> | <a href=/posts/seccion/52>Lo + leído</a>	</div>
+</div>
+<br>
+<br>
+<div style="display:block;text-align:center;"
+	<div class="bottomNav">
+		<a href=http://www.elsoldemargarita.com.ve/posts/inst/id:127802/Nosotros>Nosotros</a> | <a href=http://www.elsoldemargarita.com.ve/posts/inst/id:127800/HISTORIA>HISTORIA</a> | <a href=http://www.elsoldemargarita.com.ve/posts/inst/id:127801/mision-vision-valores>MISIÓN, VISIÓN Y VALORES</a></div>
+</div>
+<br>
+
+<br>
+<br>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-27553016-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+			<div id="footer">
+			</div>
+		</div>
+			</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<script type="text/javascript" language="javascript" >
+	var ismobile = (/iphone|ipod|android|blackberry|opera mini|opera mobi|skyfire|maemo|windows phone|palm|iemobile|symbian|symbianos|fennec/i.test(navigator.userAgent.toLowerCase()));
+	var istablet = (/ipad|android 3|sch-i800|playbook|tablet|kindle|gt-p1000|sgh-t849|shw-m180s|a510|a511|a100|dell streak|silk/i.test(navigator.userAgent.toLowerCase()));
+	var encarDomain="encar.com";
+	var protocol = "http://";
+	var loc = location.href;
+	var domainList = ["www.encar.co.kr","skencar.co.kr","skencar.com","encar.shinbiro.com","daehanshop.encar.com","korea.encar.com","hananet.encar.com","hanafos.encar.com","encar.co.kr"];
+
+	// 모바일 단말기 체크
+	// 핸드폰 단말기일경우 모바일 사이트로 이동
+	// 테블릿일경우 PC버전으로 정상 이동처리
+	try{
+		if(ismobile){
+			location.href="http://m."+encarDomain+"/index.do";
+		}else{
+			// 도메인 체크
+			// domainList 에 등록된 도메인일경우 기본 엔카 도메인으로 치환처리
+			var domain;
+			var replaceDomain = "";
+			for(var i =0; i<domainList.length; i++){
+				domain = domainList[i];
+				if(loc.indexOf(domain) > -1){
+					replaceDomain = loc.replace(domain,encarDomain);
+					break;
+				}
+			}
+			if(loc.indexOf("https://") > -1) {
+				loc = loc.replace("https://","http://");
+			}
+			if(replaceDomain != ""){
+				location.href = replaceDomain;
+			}else{
+				location.href = "/index.do";
+			}
+		}
+	}catch(e){
+		location.href = "/index.do";
+	}
+</script>
+ 
+</head>
+<body>
+</body>
+</html>
+

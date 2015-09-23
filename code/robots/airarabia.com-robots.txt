@@ -1,0 +1,954 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
+  "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" version="XHTML+RDFa 1.0" dir="ltr">
+
+<head profile="http://www.w3.org/1999/xhtml/vocab">
+    <script type="text/javascript">
+        if (!window.SA) {window.SA = {};}
+        SA.redirection_mobile = function(configuration) {
+            // Helper function for adding time to the current date -> used by cookie
+            var addTimeToDate = function(msec) {
+                var exdate = new Date();
+                exdate.setTime(exdate.getTime() + msec);
+                return exdate;
+            };
+            // Helper function for getting a value from a parameter in the querystring of a URL
+            var getQueryValue = function(param) {
+
+                if (!param) {
+                    return;
+                }
+                var querystring = document.location.search,
+                    queryStringArray = querystring && querystring.substring(1).split("&"),
+                    i = 0,
+                    length = queryStringArray.length;
+
+                for (; i < length; i++) {
+                    var token = queryStringArray[i],
+                        firstPart = token && token.substring(0, token.indexOf("="));
+                    if (firstPart === param ) {
+                        return token.substring(token.indexOf("=") + 1, token.length);
+                    }
+                }
+            };
+            // Retrieve the User Agent of the browser
+            var agent = navigator.userAgent.toLowerCase(),
+                FALSE = "false",
+                TRUE = "true",
+            // configuration object
+                config = configuration || {},
+            // parameter to pass in the URL to avoid the redirection
+                redirection_param = config.redirection_param || "mobile_redirect",
+            // prefix appended to the hostname
+                mobile_prefix = config.mobile_prefix || "m",
+            // new url for the mobile site domain
+                mobile_url = config.mobile_url,
+            // protocol for the mobile site domain
+                mobile_protocol = config.mobile_scheme ?
+                    config.mobile_scheme + ":" :
+                    document.location.protocol,
+
+                host = document.location.host,
+            // value for the parameter passed in the URL to avoid the redirection
+                queryValue = getQueryValue(redirection_param),
+            // Compose the mobile hostname considering "mobile_url" or "mobile_prefix" + hostname
+                mobile_host = mobile_url ||
+                    (mobile_prefix + "." +
+                        (!!host.match(/^www\./i) ?
+                            host.substring(4) :
+                            host)),
+            // Expiry hours for cookie
+                cookie_hours = config.cookie_hours || 1,
+            // Parameters to determine if the pathname and the querystring need to be kept
+                keep_path = config.keep_path || false,
+                keep_query = config.keep_query || false,
+            //append referrer
+                append_referrer = config.append_referrer || false,
+                append_referrer_key = config.append_referrer_key || "original_referrer",
+            // new url for the tablet site
+                tablet_host = config.tablet_host || mobile_host,
+                isUAMobile = false,
+                isUATablet = false;
+            // Check if the UA is a mobile one (regexp from http://detectmobilebrowsers.com/ (WURFL))
+            if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(agent)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(agent.substr(0,4))) {
+                isUAMobile = true;
+            }
+            // Check if the referrer was a mobile page (probably the user clicked "Go to full site") or in the
+            // querystring there is a parameter to avoid the redirection such as "?noredireciton=true"
+            // (in that case we need to set a variable in the sessionStorage or in the cookie)
+            if (document.referrer.indexOf(mobile_host) >= 0 || queryValue === FALSE ) {
+
+                if (window.sessionStorage) {
+                    window.sessionStorage.setItem(redirection_param, FALSE);
+                } else {
+                    document.cookie = redirection_param + "=" + FALSE + ";path=/";
+                }
+            }
+            // Check if the sessionStorage contain the parameter
+            var isSessionStorage = (window.sessionStorage) ?
+                    (window.sessionStorage.getItem(redirection_param) === FALSE) :
+                    false,
+            // Check if the Cookie has been set up
+                isCookieSet = document.cookie ?
+                    (document.cookie.indexOf(redirection_param) >= 0) :
+                    false;
+            // Check if the device is a Tablet such as iPad, Samsung Tab, Motorola Xoom or Amazon Kindle
+            if (!!(agent.match(/(iPad|SCH-I|xoom|NOOK|silk|kindle|GT-P|touchpad|kindle|sch-t|viewpad|bolt|playbook|Nexus 7)/i))) {
+                // Check if the redirection needs to happen for tablets
+                isUATablet = (config.tablet_redirection === TRUE || !!config.tablet_host) ? true : false;
+                isUAMobile = false;
+            }
+            // Check that User Agent is mobile, cookie is not set or value in the sessionStorage not present
+            if ((isUATablet || isUAMobile) && !(isCookieSet || isSessionStorage)) {
+                // Callback call
+                if (config.beforeredirection_callback) {
+                    if (!config.beforeredirection_callback.call(this)) {
+                        return;
+                    }
+                }
+                var path_query = "";
+                if(keep_path) {
+                    path_query += document.location.pathname;
+                }
+                if (keep_query) {
+                    path_query += document.location.search;
+                }
+                if (append_referrer && document.referrer) {
+                    if (path_query.indexOf('?') === -1) {
+                        path_query += "?";
+                    } else {
+                        path_query += "&";
+                    }
+                    path_query += append_referrer_key + "=" + encodeURIComponent(document.referrer);
+                }
+                if (isUATablet){
+                    document.location.href = mobile_protocol + "//" + tablet_host + path_query;
+                } else if (isUAMobile) {
+                    document.location.href = mobile_protocol + "//" + mobile_host + path_query;
+                }
+
+            }
+        };
+
+
+        SA.redirection_mobile ({
+            cookie_hours : "730"
+        });
+
+    </script>
+
+
+
+  <!-- Begin Monetate tag v6. Place at start of document head. DO NOT ALTER. -->
+<script type="text/javascript">
+var monetateT = new Date().getTime();
+(function() {
+    var p = document.location.protocol;
+    if (p == "http:" || p == "https:") {
+        var m = document.createElement('script'); m.type = 'text/javascript'; m.async = true; m.src = (p == "https:" ? "https://s" : "http://") + "b.monetate.net/js/1/a-e9ee4217/p/airarabia.com/" + Math.floor((monetateT + 705815) / 3600000) + "/g";
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(m, s);
+    }
+})();
+</script>
+<!-- End Monetate tag. -->
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="canonical" href="http://www.airarabia.com/en" />
+<link rel="alternate" hreflang="tr" href="http://www.airarabia.com/tr" />
+<meta name="description" content="Air Arabia - Book cheap flights and value for money services" />
+<meta name="generator" content="Drupal 7 (http://drupal.org)" />
+<link rel="shortcut icon" href="http://www.airarabia.com/sites/airarabia/files/favicon_0.ico" type="image/vnd.microsoft.icon" />
+<link rel="shortlink" href="http://www.airarabia.com/en/node/6" />
+<link rel="alternate" hreflang="es" href="http://www.airarabia.com/es" />
+<link rel="alternate" hreflang="ru" href="http://www.airarabia.com/ru" />
+<link rel="alternate" hreflang="zh-hans" href="http://www.airarabia.com/zh-hans" />
+<link rel="alternate" hreflang="ar" href="http://www.airarabia.com/ar" />
+<link rel="alternate" hreflang="en" href="http://www.airarabia.com/en" />
+<link rel="alternate" hreflang="fr" href="http://www.airarabia.com/fr" />
+<link rel="alternate" hreflang="de" href="http://www.airarabia.com/de" />
+<link rel="alternate" hreflang="it" href="http://www.airarabia.com/it" />
+<link rel="alternate" media="only screen and max-width: 640px" href="http://m.airarabia.com/" />
+  <title>Air Arabia - Book cheap flights and value for money services | Air Arabia</title>
+  <script type="text/javascript">
+  var __stormJs = 't1.stormiq.com/dcv4/jslib/5201_6931194A_9C13_49CD_8C76_E6AA2C50C88B.js';
+  </script>
+  <link type="text/css" rel="stylesheet" href="http://www.airarabia.com/sites/airarabia/files/css/css_xE-rWrJf-fncB6ztZfd2huxqgxu4WO-qwma6Xer30m4.css" media="all" />
+<link type="text/css" rel="stylesheet" href="http://www.airarabia.com/sites/airarabia/files/css/css_MXqLRmeCl64054B2Yp0yBwqZsgmd4DhzDl6WTATO0AY.css" media="all" />
+<link type="text/css" rel="stylesheet" href="http://www.airarabia.com/sites/airarabia/files/css/css_Wu8npAzy16WmnnnWKxpexfgsAryolGGaX6yO3GWA5bU.css" media="all" />
+<style type="text/css" media="all">
+<!--/*--><![CDATA[/*><!--*/
+#sliding-popup.sliding-popup-bottom{background:#414042;}#sliding-popup .popup-content #popup-text h2,#sliding-popup .popup-content #popup-text p{color:#ffffff !important;}
+
+/*]]>*/-->
+</style>
+<link type="text/css" rel="stylesheet" href="http://www.airarabia.com/sites/airarabia/files/css/css_t9oDQNUGosStLF-FMATvnBA_6LvgmKQBL2Od1t9dxVo.css" media="all" />
+<link type="text/css" rel="stylesheet" href="http://www.airarabia.com/sites/airarabia/files/css/css_5pgA2houRBIkNnt0-d9SJbm8yYgzQqp-Yz38MjYYE5Y.css" media="all" />
+  <script type="text/javascript" src="http://www.airarabia.com/misc/jquery.js?v=1.4.4"></script>
+<script type="text/javascript" src="http://www.airarabia.com/misc/jquery.once.js?v=1.2"></script>
+<script type="text/javascript" src="http://www.airarabia.com/misc/drupal.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/modules/contrib/menu_attach_block/menu_attach_block.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/modules/contrib/eu-cookie-compliance/js/eu_cookie_compliance.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/airarabia/files/ond.js?nocache=21-09-2015"></script>
+<script type="text/javascript" src="http://www.airarabia.com/en/js_array_airports_extended?=nocache=21-09-2015"></script>
+<script type="text/javascript" src="http://www.airarabia.com/en/js_array_route_overrides?=nocache=21-09-2015"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, { "pathToTheme": "sites/all/themes/airarabia","language":"en"});
+//--><!]]>
+</script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/contrib/jquery-1.9.1.min.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/contrib/jquery-ui-1.10.3.custom.min.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/contrib/jquery.bxslider.min.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/contrib/jquery.form.min.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/contrib/moment-with-langs.min.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/contrib/langs.min.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/contrib/jquery.simpleWeather-2.3.min.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/contrib/jquery.validate.min.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/contrib/jquery.validate-additional-methods.min.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/contrib/jquery.dd.min.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/contrib/jquery.sticky.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/contrib/jquery.outerHtml.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/contrib/jquery.highlight.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/contrib/jquery.ui.datepicker-ar.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/contrib/jquery.ui.datepicker-en.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/contrib/jquery.ui.datepicker-de.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/contrib/jquery.ui.datepicker-fr.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/contrib/jquery.ui.datepicker-it.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/contrib/jquery.ui.datepicker-ru.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/contrib/jquery.ui.datepicker-tr.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/contrib/jquery.ui.datepicker-es.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/contrib/track.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/contrib/jquery.cookie.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/contrib/jquery.tinysort.min.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/contrib/redirection-mobile-cookie.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/offers.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/main.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/behaviours.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/behaviours-mjp.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/airportfield.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/contrib/jquery.dataTables.js?nv0mu5"></script>
+<script type="text/javascript" src="http://www.airarabia.com/sites/all/themes/airarabia/js/contrib/jquery.dataTables.columnFilter.js?nv0mu5"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"en\/","ajaxPageState":{"theme":"airarabia","theme_token":"N2xdqhyPX0d_jU7_j1S5KWpe0Ldn36-yAbQrswuQjJc","js":{"misc\/jquery.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"sites\/all\/modules\/contrib\/menu_attach_block\/menu_attach_block.js":1,"sites\/all\/modules\/contrib\/eu-cookie-compliance\/js\/eu_cookie_compliance.js":1,"http:\/\/www.airarabia.com\/sites\/airarabia\/files\/ond.js?nocache=21-09-2015":1,"http:\/\/www.airarabia.com\/en\/js_array_airports_extended?=nocache=21-09-2015":1,"http:\/\/www.airarabia.com\/en\/js_array_route_overrides?=nocache=21-09-2015":1,"0":1,"sites\/all\/themes\/airarabia\/js\/contrib\/jquery-1.9.1.min.js":1,"sites\/all\/themes\/airarabia\/js\/contrib\/jquery-ui-1.10.3.custom.min.js":1,"sites\/all\/themes\/airarabia\/js\/contrib\/jquery.bxslider.min.js":1,"sites\/all\/themes\/airarabia\/js\/contrib\/jquery.form.min.js":1,"sites\/all\/themes\/airarabia\/js\/contrib\/moment-with-langs.min.js":1,"sites\/all\/themes\/airarabia\/js\/contrib\/langs.min.js":1,"sites\/all\/themes\/airarabia\/js\/contrib\/jquery.simpleWeather-2.3.min.js":1,"sites\/all\/themes\/airarabia\/js\/contrib\/jquery.validate.min.js":1,"sites\/all\/themes\/airarabia\/js\/contrib\/jquery.validate-additional-methods.min.js":1,"sites\/all\/themes\/airarabia\/js\/contrib\/jquery.dd.min.js":1,"sites\/all\/themes\/airarabia\/js\/contrib\/jquery.sticky.js":1,"sites\/all\/themes\/airarabia\/js\/contrib\/jquery.outerHtml.js":1,"sites\/all\/themes\/airarabia\/js\/contrib\/jquery.highlight.js":1,"sites\/all\/themes\/airarabia\/js\/contrib\/jquery.ui.datepicker-ar.js":1,"sites\/all\/themes\/airarabia\/js\/contrib\/jquery.ui.datepicker-en.js":1,"sites\/all\/themes\/airarabia\/js\/contrib\/jquery.ui.datepicker-de.js":1,"sites\/all\/themes\/airarabia\/js\/contrib\/jquery.ui.datepicker-fr.js":1,"sites\/all\/themes\/airarabia\/js\/contrib\/jquery.ui.datepicker-it.js":1,"sites\/all\/themes\/airarabia\/js\/contrib\/jquery.ui.datepicker-ru.js":1,"sites\/all\/themes\/airarabia\/js\/contrib\/jquery.ui.datepicker-tr.js":1,"sites\/all\/themes\/airarabia\/js\/contrib\/jquery.ui.datepicker-es.js":1,"sites\/all\/themes\/airarabia\/js\/contrib\/track.js":1,"sites\/all\/themes\/airarabia\/js\/contrib\/jquery.cookie.js":1,"sites\/all\/themes\/airarabia\/js\/contrib\/jquery.tinysort.min.js":1,"sites\/all\/themes\/airarabia\/js\/contrib\/redirection-mobile-cookie.js":1,"sites\/all\/themes\/airarabia\/js\/offers.js":1,"sites\/all\/themes\/airarabia\/js\/main.js":1,"sites\/all\/themes\/airarabia\/js\/behaviours.js":1,"sites\/all\/themes\/airarabia\/js\/behaviours-mjp.js":1,"sites\/all\/themes\/airarabia\/js\/airportfield.js":1,"sites\/all\/themes\/airarabia\/js\/contrib\/jquery.dataTables.js":1,"sites\/all\/themes\/airarabia\/js\/contrib\/jquery.dataTables.columnFilter.js":1},"css":{"modules\/system\/system.base.css":1,"modules\/system\/system.menus.css":1,"modules\/system\/system.messages.css":1,"modules\/system\/system.theme.css":1,"sites\/all\/modules\/contrib\/date\/date_api\/date.css":1,"modules\/field\/theme\/field.css":1,"sites\/all\/modules\/contrib\/menu_attach_block\/menu_attach_block.css":1,"modules\/node\/node.css":1,"modules\/search\/search.css":1,"modules\/user\/user.css":1,"sites\/all\/modules\/contrib\/views\/css\/views.css":1,"sites\/all\/modules\/contrib\/ctools\/css\/ctools.css":1,"0":1,"sites\/all\/modules\/contrib\/eu-cookie-compliance\/css\/eu_cookie_compliance.css":1,"sites\/all\/themes\/airarabia\/css\/reset.css":1,"sites\/all\/themes\/airarabia\/css\/style.css":1,"sites\/all\/themes\/airarabia\/css\/style-mp.css":1,"sites\/all\/themes\/airarabia\/css\/responsive.css":1,"sites\/all\/themes\/airarabia\/css\/style-rtl.css":1,"sites\/all\/themes\/airarabia\/css\/routemapStyle.css":1,"sites\/all\/themes\/airarabia\/css\/dd.css":1}},"eu_cookie_compliance":{"popup_enabled":1,"popup_agreed_enabled":0,"popup_hide_agreed":0,"popup_clicking_confirmation":1,"popup_html_info":"\u003Cdiv\u003E\n  \u003Cdiv class =\u0022popup-content info\u0022\u003E\n    \u003Cdiv id=\u0022popup-text\u0022\u003E\n      \u003Ch2\u003EWe use cookies on this site to enhance your user experience\u003C\/h2\u003E\u003Cp\u003EBy clicking any link on this page you are giving your consent for us to set cookies.\u003C\/p\u003E    \u003C\/div\u003E\n    \u003Cdiv id=\u0022popup-buttons\u0022\u003E\n      \u003Cbutton type=\u0022button\u0022 class=\u0022agree-button\u0022\u003EOK, I agree\u003C\/button\u003E\n      \u003Cbutton type=\u0022button\u0022 class=\u0022find-more-button\u0022\u003ENo, give me more info\u003C\/button\u003E\n    \u003C\/div\u003E\n  \u003C\/div\u003E\n\u003C\/div\u003E\n","popup_html_agreed":"\u003Cdiv\u003E\n  \u003Cdiv class =\u0022popup-content agreed\u0022\u003E\n    \u003Cdiv id=\u0022popup-text\u0022\u003E\n      \u003Ch2\u003EThank you for accepting cookies\u003C\/h2\u003E\u003Cp\u003EYou can now hide this message or find out more about cookies.\u003C\/p\u003E    \u003C\/div\u003E\n    \u003Cdiv id=\u0022popup-buttons\u0022\u003E\n      \u003Cbutton type=\u0022button\u0022 class=\u0022hide-popup-button\u0022\u003EHide\u003C\/button\u003E\n      \u003Cbutton type=\u0022button\u0022 class=\u0022find-more-button\u0022 \u003EMore info\u003C\/button\u003E\n    \u003C\/div\u003E\n  \u003C\/div\u003E\n\u003C\/div\u003E","popup_height":"auto","popup_width":"100%","popup_delay":1000,"popup_link":"\/en\/cookie-policy","popup_link_new_window":1,"popup_position":null,"popup_language":"en","domain":""}});
+//--><!]]>
+</script>
+ 
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-1319699-1']);
+  _gaq.push(['_setDomainName', '.airarabia.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  </script>
+</head>
+<body class="html front not-logged-in no-sidebars page-node page-node- page-node-6 node-type-page i18n-en"  onunload="">
+  <div id="fb-root"></div>
+  <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible element-focusable">Skip to main content</a>
+  </div>
+    <div id="utility_menu">
+  <div class="wrapper">
+      <div class="region region-header-utility-menu">
+    <div id="block-airarabia-general-airarabia-login" class="block block-airarabia-general aaloginform">
+
+    
+  <div class="content">
+    <form action="/en" method="post" id="airarabia-login-form" accept-charset="UTF-8"><div><div class="form-item form-type-textfield form-item-Email">
+  <label for="edit-email">Username <span class="form-required" title="This field is required.">*</span></label>
+ <input type="text" id="edit-email" name="Email" value="" size="60" maxlength="128" class="form-text required" />
+</div>
+<div class="form-item form-type-password form-item-Password">
+  <label for="edit-password">Password <span class="form-required" title="This field is required.">*</span></label>
+ <input type="password" id="edit-password" name="Password" size="60" maxlength="128" class="form-text required" />
+</div>
+<a style="margin-bottom:5px;" href="/register-now" >Click here to register</a><input type="submit" id="edit-submit" name="op" value="Log in" class="form-submit" /><a class="forgotten-password-link" href="/forgotten-password">Forgotten Password?</a><img id="loginload" src="/sites/all/themes/airarabia/images/ajax-loader.GIF"/><input type="hidden" name="form_build_id" value="form-ZUvfDwNiYpDUKwkHHDjq2R1KNWDqx2tpL4t2z1fCKfA" />
+<input type="hidden" name="form_id" value="airarabia_login_form" />
+</div></form>  </div>
+</div>
+<div id="block-views-exp-search-page-page" class="block block-views">
+
+    
+  <div class="content">
+    <form action="/en/search-page" method="get" id="views-exposed-form-search-page-page" accept-charset="UTF-8"><div><div class="views-exposed-form">
+  <div class="views-exposed-widgets clearfix">
+          <div id="edit-title-field-value-wrapper" class="views-exposed-widget views-widget-filter-title_field_value">
+                        <div class="views-widget">
+          <div class="form-item form-type-textfield form-item-title-field-value">
+ <input type="text" id="edit-title-field-value" name="title_field_value" value="" size="30" maxlength="128" class="form-text" />
+</div>
+        </div>
+              </div>
+                    <div class="views-exposed-widget views-submit-button">
+      <input type="submit" id="edit-submit-search-page" name="" value="Apply" class="form-submit" />    </div>
+      </div>
+</div>
+</div></form>  </div>
+</div>
+  </div>
+  </div>
+</div>
+<div id="menu_bar">
+  <div class="wrapper">
+          <a href="/en" title="Home" rel="home" id="logo">
+        <img src="http://www.airarabia.com/sites/airarabia/files/airarabia_logo.png" alt="Home" />
+      </a>
+        
+          <div id="navigation"><div class="section">
+        <h2>Main menu</h2><ul id="main-menu" class="links inline clearfix"><li class="menu-690 attached-block first"><a href="/en/book-flight" title="" class="attached-block">Book your trip</a>
+<a href="# " class="menu-attach-block-drop-link" id="node/304-drop-link-690">More</a><div class="menu-attach-block-wrapper orientation-horizontal">
+  <div id="block-block-16" class="block block-block">
+
+    
+  <div class="content">
+    <ul><li>&nbsp;</li><li><a href="http://www.airarabia.com/en/book-flight">Book a flight</a></li><li><a href="http://hotels.airarabia.com/" target="_blank">Book a hotel</a></li><li><a href="http://cars.airarabia.com/" target="_blank">Book a car</a></li><li><a href="http://www.airarabia.com/en/groups-and-charters-request">Groups and Charters requests</a></li></ul><ul>
+
+<li class="group"><a href="http://www.airarabia.com/en/booking-information" style="color:red;">Booking information</a></li><li><a href="http://www.airarabia.com/en/booking-channels">Booking channels</a></li><li><a href="http://www.airarabia.com/en/best-price-guarantee">Best price guarantee</a></li><li><a href="http://www.airarabia.com/en/my-air-arabia">My Air Arabia</a></li><li><a href="http://www.airarabia.com/en/payment-options">Payment options</a></li><li><a href="http://www.airarabia.com/en/flight-schedules">Flight schedules</a></li><li><a href="http://www.airarabia.com/en/flight-status">Flight status</a></li><li><a href="http://www.airarabia.com/en/fees-charges">Fees and charges</a></li><li><a href="http://www.airarabia.com/en/travel-updates">Travel updates</a></li></ul>  </div>
+</div>
+</div>
+</li>
+<li class="menu-536 attached-block"><a href="/en/manage-bookings" title="" class="attached-block">Manage booking</a>
+<a href="# " class="menu-attach-block-drop-link" id="node/443-drop-link-536">More</a><div class="menu-attach-block-wrapper orientation-horizontal">
+  <div id="block-block-15" class="block block-block">
+
+    
+  <div class="content">
+    <ul>
+<li>&nbsp;</li>
+<li><a href="http://www.airarabia.com/en/check-in-online-sita">Check-in Online</a></li>
+<li><a href="http://www.airarabia.com/en/modify-flight">Modify Flight</a></li>
+<li><a href="http://www.airarabia.com/en/cancel-flight">Cancel Flight</a></li>
+</ul>
+<ul>
+<li>&nbsp;</li>
+<li><a href="http://www.airarabia.com/en/add-seats">Add Seats</a></li>
+<li><a href="http://www.airarabia.com/en/add-meals">Add Meals</a></li>
+<li><a href="http://www.airarabia.com/en/add-insurance">Add Insurance</a></li>
+<li><a href="http://www.airarabia.com/en/add-airport-services">Add Airport Services</a></li>
+</ul>  </div>
+</div>
+</div>
+</li>
+<li class="menu-295 attached-block"><a href="/en/destinations" title="" class="attached-block">Where we fly</a>
+<a href="# " class="menu-attach-block-drop-link" id="node/403-drop-link-295">More</a><div class="menu-attach-block-wrapper orientation-horizontal">
+  <div id="block-block-11" class="block block-block">
+
+    
+  <div class="content">
+    <ul><li>&nbsp;</li><li><a href="http://www.airarabia.com/en/destinations"><img alt="" src="/sites/airarabia/files/globe.png" style="float:left; height:64px; width:65px" />Interactive route map</a><br />&nbsp;</li><li><a href="http://www.airarabia.com/en/sharjah">Sharjah</a></li><li><a href="http://www.airarabia.com/en/Alexandria">Alexandria</a></li><li><a href="http://www.airarabia.com/en/casablanca">Casablanca</a></li></ul><ul><li class="group"><a href="http://www.airarabia.com/en/destinations">POPULAR DESTINATIONS</a></li><li><a href="http://www.airarabia.com/en/united-arab-emirates">United Arab Emirates</a></li><li><a href="http://www.airarabia.com/en/saudi-arabia">Saudi Arabia</a></li><li><a href="http://www.airarabia.com/en/india">India</a></li><li><a href="http://www.airarabia.com/en/egypt">Egypt</a></li><li><a href="http://www.airarabia.com/en/morocco">Morocco</a></li><li><a href="http://www.airarabia.com/en/destinations">...More</a></li></ul>  </div>
+</div>
+</div>
+</li>
+<li class="menu-514 attached-block"><a href="/en/flying-with-us" title="" class="attached-block">Flying with us</a>
+<a href="# " class="menu-attach-block-drop-link" id="node/423-drop-link-514">More</a><div class="menu-attach-block-wrapper orientation-horizontal">
+  <div id="block-block-13" class="block block-block">
+
+    
+  <div class="content">
+    <ul>
+<li class="group"><a href="/en/before-you-fly" style="color:red;">Before you fly</a></li>
+<li><a href="/en/visa-and-passport-information">Visa and passport information</a></li>
+<li><a href="/en/coach-services">Coach services</a></li>
+<li><a href="/en/modifications-and-cancellations">Modifications and cancellations</a></li>
+<li><a href="/en/insurance-cover">Insurance cover</a></li>
+<li class="group"><a href="/en/baggage" style="color:red;">Baggage</a></li>
+<li><a href="/en/checked-baggage">Checked baggage</a></li>
+<li><a href="/en/hand-baggage">Hand baggage</a></li>
+<li><a href="/en/baggage-tracer">Baggage tracer</a></li>
+<li class="group">
+<a href="/en/at-the-airport" style="color:red;">At the airport</a></li>
+<li><a href="/en/our-hubs">Our hubs</a></li>
+<li><a href="/en/check-in">Check-in</a></li>
+<li><a href="/en/airport-services">Airport services</a></li>
+</ul>
+<ul><li class="group"><a href="/en/onboard" style="color:red;">Onboard</a></li>
+<li><a href="/en/fleet">Fleet</a></li>
+<li><a href="/en/sky-cafe">Sky café</a></li>
+<li><a href="/en/sky-mall">Sky mall</a></li>
+<li><a href="/en/inflight-magazine">Inflight magazine</a></li>
+<li><a href="/en/inflight-entertainment">Inflight entertainment</a></li>
+<li class="group">
+<a href="#" style="color:red;">At your destination</a></li>
+<li><a href="http://hotels.airarabia.com" target="_blank">Hotel</a></li>
+<li><a href="http://cars.airarabia.com/" target="_blank">Car hire</a></li>
+<li class="group">
+<a href="/en/other-services" style="color:red;">Other services</a></li>
+<li><a href="/en/travel-agent-portal">Travel agent portal</a></li>
+<li><a href="/en/cargo">Cargo</a></li>
+<li><a href="/en/advertise-with-us">Advertise with us</a></li>
+<li><a href="/en/careers">Careers</a></li>
+<li><a href="/en/about-us">About Us</a></li></ul>  </div>
+</div>
+</div>
+</li>
+<li class="menu-511 attached-block"><a href="/en/special-offers" title="" class="attached-block">Special offers</a>
+<a href="# " class="menu-attach-block-drop-link" id="node/325-drop-link-511">More</a><div class="menu-attach-block-wrapper orientation-horizontal">
+  <div id="block-block-17" class="block block-block menu_right">
+
+    
+  <div class="content">
+    <ul><li>&nbsp;</li><li><a href="/en/best-offers">Best offers</a></li><li><a href="/en/sign-our-newsletter">Newsletter sign up</a></li></ul>  </div>
+</div>
+</div>
+</li>
+<li class="menu-495 attached-block"><a href="/en/help" title="" class="attached-block">Help</a>
+<a href="# " class="menu-attach-block-drop-link" id="node/311-drop-link-495">More</a><div class="menu-attach-block-wrapper orientation-horizontal">
+  <div id="block-block-18" class="block block-block menu_right">
+
+    
+  <div class="content">
+    <ul><li>&nbsp;</li><li><a href="/en/contact-us">Contact us</a></li><li><a href="/en/office-locations">Office locations</a></li><li><a href="/en/call-centre">Call center</a></li><li><a href="/en/customer-services">Customer services</a></li></ul>  </div>
+</div>
+</div>
+</li>
+<li class="menu-1188 attached-block last"><a href="https://airewards.airarabia.com" title="" class="attached-block">Airewards</a>
+<a href="# " class="menu-attach-block-drop-link" id="https://airewards.airarabia.com-drop-link-1188">More</a><div class="menu-attach-block-wrapper orientation-horizontal">
+  <div id="block-block-37" class="block block-block menu_right">
+
+    
+  <div class="content">
+    <ul>
+<li>&nbsp;</li>
+<li><a target="_blank" href="https://airewards.airarabia.com/portal/">About Airewards</a></li>
+<li><a target="_blank" href="https://airewards.airarabia.com/portal/Index.aspx?MenuId=16">Earning</a></li>
+<li><a target="_blank" href="https://airewards.airarabia.com/portal/Index.aspx?MenuId=18">Redeeming</a></li>
+<li><a target="_blank" href="https://airewards.airarabia.com/portal/Index.aspx?MenuId=22">FAQs</a></li>
+<li><a href="/en/login">Manage my Account</a></li>
+</ul>
+<style>
+div.airewards-block a:after {content:none!important;}
+</style>
+<ul>
+<li>
+<div class="airewards-block" style="display:block;width:100%;height: 135px;margin: 0 auto;">
+<p style="color: black;font-size: 14px;text-align: center;font-weight: bold;text-transform: uppercase;margin: 10px auto;width: 100%;display: block;">Start earning<br>Airewards points</p>
+<a style="background:#ffffff!important;content: none!important;padding: 10px 10px!important;width: 100px!important;display: block;text-align: center;margin: 5px auto;color: #FF0000;font-weight: bold;" href="/en/register-now">Join Now</a><p style="
+    font-size: 14px;
+    margin: 0 auto;
+    padding: 0!important;
+    width: 100px;
+    text-align: center;
+    display: block;
+">OR</p>
+<a style="background:#ffffff!important;content: none!important;padding: 10px 10px!important;width: 100px!important;display: block;text-align: center;margin: 5px auto;color: #FF0000;font-weight: bold;" href="/en/login">Login</a>
+</div>
+</li>
+</ul>  </div>
+</div>
+</div>
+</li>
+</ul>              </div></div> <!-- /.section, /#navigation -->
+      </div>
+</div>
+<div class='wide_wrapper'>
+    <div class="region region-search-panel">
+    <div id="block-airarabia-general-searchpanel" class="block block-airarabia-general">
+
+    
+  <div class="content">
+    <div id="search_tabs">
+  <ul>  
+    <li class='first active'><a class='tab-flights' href="#tabs-flights">Flights</a></li>
+    <li><a class='tab-hotels' href="#tabs-hotels">Hotels</a></li>
+        <li><a class='tab-cars' href="#tabs-carhire">Car hire</a></li>
+    
+    
+
+    <li id='your-flights' style="display:none;" ><a class='tab-flights' href="#tabs-your-flight">Your flight</a></li>  
+  </ul>
+  <div id="tabs-flights">
+    <div class="wrapper">
+      <form class='form_search_flights' class='narrow' method="post" action="/en/searchflights">
+        <input type="hidden" name="saveSearch" value="true" />
+        <div class="form_flying_from"> 
+          <label for="flying-from" type="text"  class='inline'>Flying from</label>
+          <input name='flying-from' required autocomplete="off" data-rule-required="true" data-rule-airportValid="true" type="text">
+        </div>
+        <div class='form_flying_to'>
+          <label for='flying-to' class='inline'>to</label>
+          <input name='flying-to' required autocomplete="off" data-rule-required="true" data-rule-airportValid="true"  type="text">
+        </div>
+        <div class="search_button_inline">
+          <input type="submit" class="button" value="Search for flights"/>
+          
+          <a class="multiple-dest" href="#">Multiple Destinations</a>
+        </div>        
+
+        <div class="search_preferences">
+          Departure date: <span class="sp_departure_date"> - </span>, 
+          Return date: <span class="sp_return_date"> - </span> | Passengers: <span class="sp_pax_adult"> - </span> Adults, <span class="sp_pax_children"> - </span> Children          <a id="editinfobutton" href="javascript:void(0);">Edit information</a>
+        </div>
+        <div class="search_options_extended">
+          <hr/>
+          <div class="search_field journeytype">
+            <h4>Journey type</h4>
+            <input type="radio" id="journey_type_rt" name="journey_type" checked="checked" value="2"/>
+            <label for="journey_type_rt">Return</label>
+            <input type="radio" id="journey_type_ow" name="journey_type" value="1"/>
+            <label for="journey_type_ow">One way</label>
+          </div>
+          <div class="search_field deptdate jqueryui">
+            <h4>Departure date</h4>
+            <input type="text" name="deptdate" required data-rule-required="true" data-rule-dateITA="true" data-rule-futureDate="true"  placeholder="DD/MM/YYYY"/>
+            <a href="javascript:void(0);"  class="calbutton"></a>
+          </div>          
+          <div class="search_field rtndate jqueryui">
+            <h4>Return date</h4>
+            <input type="text" name="rtndate"   data-rule-required="true" data-rule-dateITA="true" data-rule-futureDate="true"  data-rule-returnDate="true"  placeholder="DD/MM/YYYY"/>
+            <a href="javascript:void(0);"  class="calbutton"></a>
+          </div>         
+          <div class="search_field pax">
+            <h4>Passengers</h4>
+            <select class="pax_adult" name="pax_adult"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select>
+            <label for="pax_adult">Adults</label>
+            <select class="pax_child" name="pax_child"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select>
+            <label for="pax_child">Child<small>2-12 years</small></label>
+            <select class="pax_infant" name="pax_infant"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select>
+            <label for="pax_child">Infant<small>Under 2 years</small></label>
+          </div>            
+          <hr/>
+          <div class="search_field promocode">
+            <h4>Do you have a promo code?</h4>
+            <input type="text"  name="promocode" placeholder=""/>
+          </div> 
+          <div class="search_field currency">
+              <h4>Currency</h4>
+            <select class="currency_select" name="search_currency"></select>
+          </div>           
+         
+          <div class="search_button_primary">
+            <input type="submit" class="button" value="Search for flights"/>
+          </div>
+   
+        </div>
+
+      </form>
+
+      <form action="http://reservations.airarabia.com/ibe/public/showReservation.action" method="post" id="formMulticity" target='_top' name="formMulticity"> 
+        <input type="hidden" name="hdnParamData" id="hdnParamData" value=""> 
+        <input type="hidden" name="hdnCarrier" id="hdnCarrier" value="G9"> 
+        <input type="hidden" value="http://reservations.airarabia.com/ibe/public/showReservation.action" name="hdnParamUrl"  id="hdnParamUrl"> 
+      </form>
+      
+      <div id="quick_checks">
+        <a target="_blank" class='check-in' href='https://fastcheck.sita.aero/cce-presentation-web-g9/entryUpdate.do'>Online check-in</a>
+        <a  class='flight-status' href='/flight-status'>Check Flight Status</a>
+                  </div>
+    </div>
+  </div>
+  <div id="tabs-hotels">
+    <div class="wrapper">
+     <iframe scrolling="no" src="http://hotels.airarabia.com/index.html?aid=372132;tmpl=flexi_product;label=airarabia-HP_SB;lang=en"></iframe>
+    </div>
+  </div>
+  <div id="tabs-carhire" >
+    <div class="wrapper">
+      <form id="cartrawlerform" >
+        <input type="hidden" name="clientId" value="366249"/>
+        <div class="form-item-country">
+        <label for="residencyId">Country</label>
+        <select class="carhire-selectlg" name="residencyId" id="carhirecountries" required>    
+          <option>Loading countries...</option>
+        </select>
+        </div>
+        <div class="form-item-pickup">
+        <label for="pickupLocationId">Pick Up Location</label>
+        <select class="carhire-selectlg"  name="pickupLocationId" id="carhirepickup" required>   
+          <option>Loading locations...</option>
+        </select>
+        </div>
+        <div class="form-item-return">
+        <label for="returnLocationId">Return Location</label>
+        <select class="carhire-selectlg"  name="returnLocationId" id="carhireReturn" required>        
+          <option>Loading locations...</option>
+        </select>  
+        </div>
+       
+        <hr/>
+
+        <div class="carhire-date">
+          <label for="pickupDate" >Pick-up date</label>
+          <input class="carhire-selectsm"  type="text" id="pickupDate" name="pickupDate" required/>
+        </div>
+        <a href="javascript:void(0);" class="calbutton" id="pickupDateBtn" ></a> 
+        <div class="carhire-field">
+          <label for="pickupTime" > at </label>
+          <select class="carhire-selectsm" id="pickupTime" name="pickupTime" required></select>                                 
+        </div>   
+        <div class="carhire-date">
+          <label for="returnDate" >Return date</label>
+          <input class="carhire-selectsm" type="text" id="returnDate" name="returnDate" required/> 
+        </div>
+        <a href="javascript:void(0);" class="calbutton" id="returnDateBtn"></a> 
+        <div class="carhire-field">
+          <label for="returnTime" > at </label>
+          <select  class="carhire-selectsm" id="returnTime" name="returnTime" required></select>                        
+        </div>
+        <input  type="submit" class="button carsearchbutton" value="Search car hire"/>                   
+      </form>
+    </div> 
+  </div>
+    <div id="tabs-your-flight">
+    <div class="wrapper">
+        
+    </div>
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+  </div>
+       
+      <div class="region region-content">
+    <div id="block-system-main" class="block block-system">
+
+    
+  <div class="content">
+    
+  <div class="promopanel_wrapper" data-nid="14"></div>
+    <div class="wide_wrapper"  id="offers_destinations">
+            <div class="wrapper">
+          <article>
+            <div>
+                          </div>
+          </article>
+        </div>
+        <div class="field field-name-field-central-block-refs field-type-blockreference field-label-hidden"><div class="field-items"><div class="field-item even"><div id="block-airarabia-general-travel-update-alert" class="block block-airarabia-general">
+
+    
+  <div class="content">
+    <div id="travelupdate" style="display:none;"></div>  </div>
+</div>
+</div><div class="field-item odd"><div id="block-airarabia-general-hottest-flights" class="block block-airarabia-general">
+
+    
+  <div class="content">
+    <div class="carousel hot_deals">
+  <span id="hotoffer_slider-prev" class="slider-prev"></span>
+  <div class="carousel_title">
+    <h3>Our hottest flights</h3>
+    <p> <em></em></p>
+  </div>
+  <div class='carousel_content'>
+        <div class="loadingtext">
+          <p>Loading offers</p>
+          <img src="/sites/all/themes/airarabia/images/offer_loader.gif"/>
+    </div>
+    <ul class="hot_deal_bxslider">
+      <li class="loading"><p class="coupon_destination loading"></p></li>
+      <li class="loading"><p class="coupon_destination loading"></p></li> 
+      <li class="loading"><p class="coupon_destination loading"></p></li> 
+    </ul>
+   <!-- <div class='fade_left'></div>
+    <div class='fade_right'></div> -->
+  </div>
+  <span id="hotoffer_slider-next"  class="slider-next" ></span>
+</div>  </div>
+</div>
+</div><div class="field-item even"><div id="block-airarabia-general-popular-places" class="block block-airarabia-general">
+
+    
+  <div class="content">
+    
+<div class="carousel most_popular">
+  <span id="popoffer_slider-prev" class="slider-prev"></span>
+  <div class="carousel_title">
+    <h3>Most popular destinations</h3>
+    <p> <em></em></p>
+  </div>
+  <div class='carousel_content'>
+    <div class="loadingtext">
+      <p>Loading offers</p>
+      <img src="/sites/all/themes/airarabia/images/offer_loader.gif"/>
+    </div>
+    <ul class="popular_bxslider">
+      <li class="loading"><p class="coupon_destination loading"></p></li>
+      <li class="loading"><p class="coupon_destination loading"></p></li> 
+      <li class="loading"><p class="coupon_destination loading"></p></li> 
+    </ul>
+  </div>
+  <span id="popoffer_slider-next" class="slider-next"></span>
+</div><!--END carousel most_popular-->  </div>
+</div>
+</div></div></div>      
+        <hr />
+ </div><!--end wide_wrapper-->
+      <div class="promopanel_pages_wrapper" data-nid="81"></div>
+      </div>
+</div>
+  </div>
+    
+  
+
+</div>
+<footer>
+  <div id="footer_upper">
+    <div class="wrapper">
+        <div class="region region-footer-upper">
+    <div id="block-block-9" class="block block-block col_2 social">
+
+    
+  <div class="content">
+    <h4>Stay connected</h4>
+              <a target="_blank" class='facebook' href='https://www.facebook.com/airarabiagroup'>Facebook</a>
+              <a target="_blank" class='twitter' href='https://twitter.com/airarabiagroup'>Twitter</a>
+              <a target="_blank" class='instagram' href='http://instagram.com/airarabiagroup/'>Instagram</a>
+              <a target="_blank" class='blog' href='http://travelspree.tumblr.com/'>Blog</a>
+              <a target="_blank" class='linkedin' href='http://www.linkedin.com/company/air-arabia'>Linkedin</a>
+              <a target="_blank" class='youtube' href='http://www.youtube.com/user/airarabiagroup/'>YouTube</a>
+              <a target="_blank" class='app' href='https://itunes.apple.com/ae/app/air-arabia/id668515002'>Air Arabia app </a>  </div>
+</div>
+<div id="block-views-footer-latest-news-block" class="block block-views col_2">
+
+    <h4>What&#039;s new</h4>
+  
+  <div class="content">
+    <div class="view view-footer-latest-news view-id-footer_latest_news view-display-id-block view-dom-id-2bbd09fc2170ff4a0228516f683acd53">
+        
+  
+  
+      <div class="view-content">
+          <ul>          <li class="">
+  
+  <div class="views-field views-field-title-field">        <div class="field-content"><a href="/en/air-arabia-2015-q2-results-conference-call">Air Arabia 2015 Q2 Results Conference Call</a></div>  </div></li>
+          <li class="">
+  
+  <div class="views-field views-field-title-field">        <div class="field-content"><a href="/en/air-arabia-reports-net-profit-aed-237-million-first-half-2015">Air Arabia reports net profit of AED 237 million in  first half of 2015</a></div>  </div></li>
+      </ul>    </div>
+  
+  
+  
+  
+      <div class="view-footer">
+      <a href="/en/news">View all</a>    </div>
+  
+  
+</div>  </div>
+</div>
+<div id="block-block-7" class="block block-block col_2 last">
+
+    
+  <div class="content">
+    <h4>Join our mailing list</h4>
+              <a href="/sign-our-newsletter" class='mailing_list'>Sign up today<span>Register your email with us and be the first to know about latest offers and promotions.</span></a>  </div>
+</div>
+  </div>
+    </div>
+  </div><!--END FOOTER UPPER-->
+
+  <div id="footer_list">
+    <div class="wrapper">
+        <div class="region region-footer-mid">
+    <div id="block-block-6" class="block block-block col_1">
+
+    
+  <div class="content">
+    <h4>Book your trip</h4>
+              <ul>
+                <li><a href="/en/book-flight">Book a flight</a></li>
+                <li><a href="/en/destinations">Where we fly</a></li>
+                <li><a href="/en/best-offers">Best offers</a></li>
+                <li><a href="/en/best-price-guarantee">Best price guarantee</a></li>
+                <li><a target="_blank" href="http://hotels.airarabia.com/">Book a hotel</a></li>
+                <li><a target="_blank" href="http://cars.airarabia.com/">Book a car</a></li>
+                <li><a href="/en/group-travel-requests">Group booking requests</a></li>
+                <li><a href="/en/charter-flights-requests">Charter booking requests</a></li>
+              </ul>  </div>
+</div>
+<div id="block-block-5" class="block block-block col_1">
+
+    
+  <div class="content">
+    <h4>Flying with us</h4>
+              <ul>
+                <li><a href="/en/before-you-fly">Before you fly</a></li>
+                 <li><a href="/en/baggage">Baggage</a></li>
+                <li><a href="/en/at-the-airport">At the airport</a></li>
+                <li><a href="/en/onboard">Onboard</a></li>
+                <li><a href="/en/other-services">Other services</a></li>
+              </ul>  </div>
+</div>
+<div id="block-block-4" class="block block-block col_1">
+
+    
+  <div class="content">
+    <h4>About us</h4>
+              <ul>
+               <li><a href="/en/about-us">About us</a></li>
+              <li><a href="/en/media-centre">Media centre</a></li>
+                <li><a href="/en/corporate-investor-relations">Investor relations</a></li>
+                <li><a href="/en/community-social-responsibility">Community</a></li>
+                 <li><a href="/en/news">News</a></li>   
+                 <li><a href="/en/careers">Careers</a></li>
+                 <li><a href="http://www.airarabia.com/en/320-cadet-pilot-mpl">A320 Cadet Pilot (MPL)</a></li>
+                 <li><a href="/en/gallery">Gallery</a></li>
+                 <li><a href="http://www.airarabia.com/sites/airarabia/files/AA_Engineering_Brochure.pdf">Engineering Brochure</a></li>
+                </ul>  </div>
+</div>
+<div id="block-block-3" class="block block-block col_1">
+
+    
+  <div class="content">
+    <h4>Customer service</h4>
+              <ul>
+                <li><a href="/en/contact-us">Contact us</a></li>
+                <li><a href="/en/call-centre">Call centres</a></li>
+                <li><a href="/en/office-locations">Office locations</a></li>
+                <li><a href="/en/customer-services">Help</a></li>
+              </ul>
+              <h4>Log in</h4>
+              <ul>
+                <li><a href="/en/travel-agent-portal">Travel agent portal</a></li>
+                <li><a href="/en/my-air-arabia">My AirArabia</a></li>
+                <li><a href="/en/manage-bookings">Manage your booking</a></li>
+              </ul>  </div>
+</div>
+<div id="block-block-2" class="block block-block col_2 last">
+
+    
+  <div class="content">
+    <h4>The smallprint</h4>
+<ul>
+<li><a href="/en/conditions-carriage">Conditions of carriage</a></li>
+<li><a href="/en/website-terms-conditions">Website Terms & Conditions</a></li>
+<li><a href="/en/privacy-policy">Privacy policy</a></li>
+<li><a href="/en/cookie-policy">Cookie Policy</a></li>
+</ul>
+<div style="float: right;margin-right: 30px;margin-top: -95px;width: 133px;border-left: 1px dashed #cecece;text-align: center;padding-left: 30px;">
+<img alt="Skytrax award for the best low-cost airline in the middle east 2015" src="/sites/airarabia/files/Skytrax_Awards_2015_White-.png" style="text-align: center;margin-left: 21px; align-content: center;">
+</div>  </div>
+</div>
+  </div>
+    </div>
+  </div><!--END FOOTER LIST-->
+
+  <div id="footer_lower">
+    <div class="wrapper">
+        <div class="region region-footer-lower">
+    <div id="block-block-38" class="block block-block">
+
+    
+  <div class="content">
+    <a class="remove-mobile-cookie" style="margin-left:0px !important; font-size:14px;float:left;" href="http://m.airarabia.com/">Go to mobile site </a>  </div>
+</div>
+<div id="block-block-41" class="block block-block">
+
+    
+  <div class="content">
+    <ul style="float:left;margin-bottom:15px;margin-left:100px;list-style:none;width:80%;">
+ <li style="float:left;display:inline;margin-right:5px;padding-right:5px;border-right:1px solid #ccc;"><a style="margin:0;font-size:14px;" href="http://www.airarabia.com/ar" title="">AR</a></li>
+ <li style="float:left;display:inline;margin-right:5px;padding-right:5px;border-right:1px solid #ccc;"><a style="margin:0;font-size:14px;" href="http://www.airarabia.com/cn" title="">CN</a></li>
+ <li style="float:left;display:inline;margin-right:5px;padding-right:5px;border-right:1px solid #ccc;"><a style="margin:0;font-size:14px;" href="http://www.airarabia.com/de" title="">DE</a></li>
+ <li style="float:left;display:inline;margin-right:5px;padding-right:5px;border-right:1px solid #ccc;"><a style="margin:0;font-size:14px;" href="http://www.airarabia.com/es" title="">ES</a></li>
+ <li style="float:left;display:inline;margin-right:5px;padding-right:5px;border-right:1px solid #ccc;"><a style="margin:0;font-size:14px;" href="http://www.airarabia.com/fr" title="">FR</a></li>
+ <li style="float:left;display:inline;margin-right:5px;padding-right:5px;border-right:1px solid #ccc;"><a style="margin:0;font-size:14px;" href="http://www.airarabia.com/it" title="">IT</a></li>
+ <li style="float:left;display:inline;margin-right:5px;padding-right:5px;border-right:1px solid #ccc;"><a style="margin:0;font-size:14px;" href="http://www.airarabia.com/ru" title="">RU</a></li>
+ <li style="float:left;display:inline;margin-right:5px;padding-right:5px;border-right:1px solid #ccc;"><a style="margin:0;font-size:14px;" href="http://www.airarabia.com/tr" title="">TR</a></li>
+</ul>  </div>
+</div>
+<div id="block-block-40" class="block block-block">
+
+    
+  <div class="content">
+    <script type="text/javascript">
+(function() {
+    try {
+        var viz = document.createElement("script");
+        viz.type = "text/javascript";
+        viz.async = true;
+        viz.src = ("https:" == document.location.protocol ?"https://mea-tags.vizury.com" : "http://mea-tags.vizury.com")+ "/analyze/pixel.php?account_id=VIZVRM3429";
+
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(viz, s);
+        viz.onload = function() {
+            try {
+                pixel.parse();
+            } catch (i) {
+            }
+        };
+        viz.onreadystatechange = function() {
+            if (viz.readyState == "complete" || viz.readyState == "loaded") {
+                try {
+                    pixel.parse();
+                } catch (i) {
+                }
+            }
+        };
+    } catch (i) {
+    }
+})();
+</script>  </div>
+</div>
+<div id="block-block-39" class="block block-block">
+
+    
+  <div class="content">
+    <!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            w.yaCounter30540667 = new Ya.Metrika({id:30540667,
+                    webvisor:true,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true});
+        } catch(e) { }
+    });
+
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/30540667" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->  </div>
+</div>
+  </div>
+      
+      <p> Copyright 2015 &copy; Air Arabia. All rights reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ICP:  沪ICP备14035542号-8  </p>
+      
+    </div>
+  </div><!--END FOOTER LOWER-->
+</footer>
+   <script type="text/javascript">
+  window.___gcfg = {lang: 'en-GB'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+<script type="text/javascript">
+var owatagCid = 3673;
+(function(){
+function d(){b.qo33OrmjMAEReady=1}
+var a=document,b=window;b.addEventListener?b.addEventListener("load",d,false):b.attachEvent?b.attachEvent("onload",d):d();
+var c=a.createElement("script");c.type="text/javascript";c.async=true;c.src="http"+("https:"==a.location.protocol?"s":"")+"://ssl.hurra.com/owatag.js";
+a=a.getElementsByTagName("script")[0];a.parentNode.insertBefore(c,a)
+})();
+</script>
+</body>
+</html>

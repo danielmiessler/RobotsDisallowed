@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+
+<!--[if lte IE 8 ]> <html class="ie8" xmlns="http://www.w3.org/1999/xhtml"><![endif]-->
+<!--[if IE 9 ]> <html class="ie9" xmlns="http://www.w3.org/1999/xhtml"><![endif]-->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<title>AlAhliOnline</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />	
+	<link rel="shortcut icon" href="/online/resources/common/images/favicon.ico" />		
+
+	
+    
+    
+	
+	
+		<link rel="apple-touch-icon" sizes="57x57" href="/online/resources/common/images/favicons/apple-touch-icon-57x57.png" />
+		<link rel="apple-touch-icon" sizes="60x60" href="/online/resources/common/images/favicons/apple-touch-icon-60x60.png" />
+		<link rel="apple-touch-icon" sizes="72x72" href="/online/resources/common/images/favicons/apple-touch-icon-72x72.png" />
+		<link rel="apple-touch-icon" sizes="76x76" href="/online/resources/common/images/favicons/apple-touch-icon-76x76.png" />
+		<link rel="apple-touch-icon" sizes="114x114" href="/online/resources/common/images/favicons/apple-touch-icon-114x114.png" />
+		<link rel="apple-touch-icon" sizes="120x120" href="/online/resources/common/images/favicons/apple-touch-icon-120x120.png" />
+		<link rel="apple-touch-icon" sizes="144x144" href="/online/resources/common/images/favicons/apple-touch-icon-144x144.png" />
+		<link rel="apple-touch-icon" sizes="152x152" href="/online/resources/common/images/favicons/apple-touch-icon-152x152.png" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/online/resources/common/images/favicons/apple-touch-icon-180x180.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/online/resources/common/images/favicons/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="192x192" href="/online/resources/common/images/favicons/android-chrome-192x192.png" />
+		<link rel="icon" type="image/png" sizes="96x96" href="/online/resources/common/images/favicons/favicon-96x96.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/online/resources/common/images/favicons/favicon-16x16.png" />
+		<link rel="manifest" href="/online/resources/common/images/favicons/manifest.json" />
+		<link rel="shortcut icon" href="/online/resources/common/images/favicons/favicon.ico" />
+		<meta name="msapplication-TileColor" content="#da532c" />
+		<meta name="msapplication-TileImage" content="/online/resources/common/images/favicons/mstile-144x144.png" />
+		<meta name="msapplication-config" content="/online/resources/common/images/favicons/browserconfig.xml" />
+		<meta name="theme-color" content="#ffffff" />
+	
+	
+	
+	
+	
+	<link rel="stylesheet" href="/online/resources/normal/wro/css/main.css" />	
+	
+			
+ 		<link rel="stylesheet" href="/online/resources/normal/wro/css/style-ltr.css" />
+		
+	
+	
+	
+	
+
+	<!--[if lte IE 8 ]>		 
+				
+			<link rel="stylesheet" href="/online/resources/normal/wro/css/style-ie8-ltr.css" />
+			
+		
+	<![endif]-->
+
+	
+	
+	<!--[if lte IE 8]>
+	<script type="text/javascript" src="/online/resources/common/lib/html5shiv/html5shiv.js"></script>
+	<script type="text/javascript" src="/online/resources/common/lib/respond/respond.min.js"></script>    
+		<script type="text/javascript" src="/online/resources/common/js/custom/excanvas/excanvas.js"></script>    
+	<![endif]-->
+	
+	<!--[if lte IE 9]>
+		<script type="text/javascript" src="/online/resources/common/lib/placeholder/placeholders.min.js"></script>
+	<![endif]-->
+	
+	<script type="text/javascript" src="/online/resources/normal/wro/js/main.js"></script>
+	<script type="text/javascript">
+
+ var msgrequired =  'This field is required.';
+ var msgremote =  'Please fix this field.';
+ var msgemail =  'Please enter a valid email address.';
+ var msgurl =  'Please enter a valid URL.';
+ var msgdate =  'Please enter a valid date.'; 
+ var msgdateiso =  'Please enter a valid date(ISO).';
+ var msgnumber =  'Please enter a valid number.';
+ var msgdigits =  'Please enter only digits.'; 
+ var msgcreditcard =  'Please enter a valid credit card number.';
+ var msgiban =  'Please enter a valid IBAN number.';
+ var msgequalto =  'Please enter the same value again.';
+ var msgaccept =  'Please enter a value with a valid extension.';
+ var msgmaxlength ='Please enter a value less than or equal to {0} characters.';
+ var msgminlength ='Please enter a value greater than or equal to {0} characters.';
+ var msgrangelength ='Please enter a value between {0} and {1} characters long.';
+ var msgrange ='Please enter a value between {0} and {1}.';
+ var msgmin ='Please enter a value greater than or equal to {0}.';
+ var msgmax ='Please enter a value less than or equal to {0}.';
+ var msgexact='Please enter exactly {0} characters.';
+ var msgselectlist='Please select an item from list.';
+ var msgNumberMinLenght='Please enter a value greater than or equal to {0} characters.';
+ var msgNumberMaxLenght='Please enter a value less than or equal to {0} characters.';
+ var msgNumberExactLenght='Please enter exactly {0} characters.';
+ var msgBootstrapEditableEmpty =  'Empty';
+ var msgCapsLock =  'CapsLock is on';
+
+ 
+jQuery.validator.addMethod("exactlength", function(value, element, param) {
+ return this.optional(element) || value.length == param;
+}, jQuery.format(""));
+
+jQuery.validator.addMethod("iban", function(value, element, param) {
+	return isValidIBAN(value); 
+}, jQuery.format(""));
+
+	function isValidIBAN($v){
+	$v = $v.replace(/^(.{4})(.*)$/,"$2$1");
+	$v = $v.replace(/[A-Z]/g,function($e){return $e.charCodeAt(0) - 'A'.charCodeAt(0) + 10});
+		var $sum = 0;
+		var $ei = 1;
+		for(var $i = $v.length - 1; $i >= 0; $i--){
+			$sum += $ei * parseInt($v.charAt($i),10);
+			$ei = ($ei * 10) % 97;
+		}; 
+	return $sum % 97 == 1;
+}
+
+jQuery.extend(jQuery.validator.messages, {
+    required: msgrequired,
+    remote: msgremote,
+    email: msgemail,
+    url: msgurl,
+    date: msgdate,
+    dateISO: msgdateiso,
+    number: msgnumber,
+    digits: msgdigits,
+    creditcard: msgcreditcard,
+    equalTo: msgequalto,
+    accept: msgaccept,
+    maxlength: jQuery.validator.format(msgmaxlength),
+    minlength: jQuery.validator.format(msgminlength),
+    rangelength: jQuery.validator.format(msgrangelength),
+    range: jQuery.validator.format(msgrange),
+    max: jQuery.validator.format(msgmax),
+    min: jQuery.validator.format(msgmin),
+    exactlength:jQuery.validator.format(msgexact),
+    iban:msgiban
+});
+</script>	
+	<script type="text/javascript">
+	var loaderImg = '/online/resources/normal/images/wait.gif';
+	var globalError = '/online/globalError'
+	var connectionError='Connection Error';
+	var connectionError='Connection Error';
+	var chartNoMovementLastMonth = 'No movements during last month';
+</script>
+	
+	
+	
+	
+		
+	
+	
+
+	
+	<script type="text/javascript">
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-49826716-1', 'alahlionline.com');
+	ga('send', 'pageview');
+	</script>
+</head>
+
+<body class="login lang_en">
+	<div id="login-wrapper">
+		<header id="header" data-lang="en">
+		<div id="top">
+			<div class="container-nr">
+				<div class="row">
+			    	<div class="pull-left list-group">
+			    		
+			    			<a class="top-menu-item" target="_blank" href="https://www.alahli.com/en-us/Pages/Visit-Branch.aspx" title="Find Us">
+				      			<span id="top-find-us"></span>
+				      			<label class="pull-left spacer_sm">Find Us</label>
+				      		</a>
+				      						      		
+				      	
+				      	
+				    		<a class="top-menu-item" target="_blank" href="https://www.alahli.com/en-us/Pages/Call-Us.aspx" title="Contact Us">
+				      			<span id="top-contact-us"></span>
+				      			<label class="pull-left spacer_sm">Contact Us</label>
+				      		</a>
+				      		
+			      		
+			      		
+				      		<a class="top-menu-item" id="openNewAcc" data-page-link="true" onclick="toLogin();" title="Open a New Current Account" href="/online/openNewAcc/identify">
+				      			<span id="top-open-ncb-account"></span>
+				      			<label class="pull-left spacer_sm">Open a New Current Account</label>
+				      		</a>
+				      		
+			      		
+				    </div>
+				    
+				    
+				    <div class="pull-right col-xs-6">
+				    			
+			    			
+							<a class="language pull-right" href="/online/login?lang=ar">
+		 						<img class="lang-ar" src="/online/resources/normal/images/lang-ar-img.png" title="عربي" alt="عربي" />    										
+							</a>
+						
+						
+				    </div>
+				    
+			  	</div>
+			</div>		
+		</div><div class="container-nr spacer_sm">
+	  		<div id="navbar">
+	           <!-- <img class="pull-left" src="resources/normal/images/logo_ncbc.png" th:title="#{layout.branding.logo}" th:src="@{/resources/normal/images/logo_ncbc.png}" th:alt="#{layout.branding.logo}"/> -->
+	           <img id="logo" class="brandLogo pull-left marginleft10 paddingleft20" style="margin-top:20px;" src="/online/resources/common/images/logo.png" title="National Commercial Bank" alt="National Commercial Bank" />
+	           <div id="menu-header">
+		            <ul>
+		            	
+				 			
+				 				<li class="has-sub">	
+				                	<a href="http://www.alahli.com/en-us/personal-banking/Pages/default.aspx" target="_blank">Personal Banking</a>		                    
+				                </li>
+				               	<div id="divider"></div>
+				                <li>
+				                	<a href="http://www.alahli.com/en-us/business-banking/Pages/default.aspx" target="_blank">Business Banking</a>
+				                </li>
+				                <div id="divider"></div>
+				                <li>
+				                	<a href="http://www.alahli.com/en-us/investments/Pages/default.aspx" target="_blank">Investments</a>
+				                </li>
+				                <div id="divider"></div>
+				                <li>
+				                	<a href="http://www.alahli.com/en-us/about-us/Pages/default.aspx" target="_blank">About Us</a>
+				                </li>				 			
+				 			
+				 			
+				 							 				                
+		            </ul>
+		        </div>
+   			</div>
+		</div>	
+		
+		
+		
+		
+		
+		
+		<script type="text/javascript">			
+			$(document).ready(function(){
+				var sizeMenuItems = 100 / $("#mainMenu > li").length;				
+				$("#mainMenu li").css({"width":sizeMenuItems + "%", "text-align":"center", "display":"table"});
+				$("#mainMenu li a").css({"display":"table-cell", "vertical-align":"middle"});
+				colEqualHeight($(".mainmenu-resize-col-same-height"));
+				
+				var mainMenuListGroup=$("#mainMenu li");
+				var mainMenuListGroupN=parseInt(mainMenuListGroup.size())-1;
+				mainMenuListGroup.eq(0).addClass("mainmenu-first");
+				mainMenuListGroup.eq(mainMenuListGroupN).addClass("mainmenu-last");
+				
+				/* #6512 menu */
+				if ($("#mainMenu > li").length > 4)
+				{
+					var widthLiFirstItem = $(".mainmenu-first").width();
+					var widthTextFirstItem = $(".mainmenu-first span").width();
+					var widthFirstSeparationTextDivider = (widthLiFirstItem - widthTextFirstItem) / 2;
+					var widthNewFirstLi = widthTextFirstItem + widthFirstSeparationTextDivider;
+					
+					var widthLiLastItem = $(".mainmenu-last").width();
+					var widthTextLastItem = $(".mainmenu-last span").width();
+					var widthLastSeparationTextDivider = (widthLiLastItem - widthTextLastItem) / 2;
+					var widthNewLastLi = widthTextLastItem + widthLastSeparationTextDivider;
+					
+					var widthLiItemsMenu = ($("#mainMenu").width() - 5 - widthNewFirstLi - widthNewLastLi) / ($("#mainMenu").children("li").length - 2);				 
+					
+					$("#mainMenu").children("li").css("width",widthLiItemsMenu + "px");
+					$("#mainMenu").children("li.mainmenu-first").css("width",widthNewFirstLi + "px");
+					$("#mainMenu").children("li.mainmenu-last").css("width",widthNewLastLi + "px");
+				}				
+				/* #6512 end menu */			
+				
+				$('#popover').popover({
+						html : true,
+						placement:"bottom",
+						title : function() {
+							return $("#popover-head").html();
+						},
+						content : function() {
+							return $("#popover-content").html();
+					},					
+					trigger: 'manual'
+	                }).on('click', function(e) {
+	                	$(this).popover('toggle');	                    
+					}).on('shown.bs.popover', function () {					    
+					    $('.popover').find('.close-popover').click(function (e) {
+					     	$(this).parents(".popover").hide();
+					     	$(this).parents(".popover").removeClass("fade, in");					     	
+				    	});
+				});
+				
+				$('#mainMenu a').on('click', function(event) {
+					
+					event.preventDefault();
+					var id =  event.target.id;
+					if (id == null || id == "")		id = $(this).attr("id");
+					$('#mainMenu .active').removeClass('active');
+					$('#' + id).parent().addClass('active');
+					Spring.RemotingHandler.getLinkedResource(id, {mode: 'embedded', fragments: 'sidebar,content,breadcrumb,status'}, false);
+					
+					if (id == 'menuPfm')
+					{ 
+						$("#sidebar").addClass("hide");						
+						$("body").addClass("pfm");
+						$("body #status").parent().addClass("col-xs-12").removeClass("col-xs-9");
+						$("body #submenuPFM").removeClass("hide");							
+					}
+				});
+				
+				$('a[id="menuHome"]').click(function(){
+				    $('#menu-links').remove();
+					//$('#quick-links').appendTo('#sidebar');
+				}); 
+
+				$('a#survey').on('click', function(event) {
+					event.preventDefault();
+					$("#sidebar").addClass("hide");
+					$("body #content").parent().addClass("col-xs-12").removeClass("col-xs-9");
+					Spring.RemotingHandler.getResource('/online/survey', {mode : 'embedded', fragments : 'header, sidebar,content, breadcrumb, status'}, false);
+				});
+
+			});			
+			
+			function HighlightMainMenu(optionMenu)
+			{			
+				$("#mainMenu li").removeClass("active");
+				
+				var menuOptions = {
+					"menu-summary"		: "a#menuHome",
+					"menu-accounts"		: "a#menuAccounts",
+					"menu-transfers"	: "a#menuTransfers",
+					"menu-billpayments"	: "a#menuBillPayment",
+					"menu-cards"		: "a#menuCards",
+					"menu-leasefinance"	: "a#menuFinance",
+					"menu-quickpay"		: "a#menuQuickPay",
+					"menu-investments"	: "a#menuInvestments",
+					"menu-ipo"			: "a#menuIpo",
+					"menu-pfm"			: "a#menuPfm",
+					"menu-profilesettings" : null
+				};
+				
+				var highlight = menuOptions[optionMenu];
+				
+				if(highlight)
+					$("#mainMenu li "+ highlight).parent().addClass("active");
+
+			}
+			
+			function toLogin()
+			{				
+				$("#login-menu").removeClass("hide");
+			}
+			
+			var headerListGroup=$(".container-nr .row .pull-left.list-group a");
+			headerListGroupN=parseInt(headerListGroup.size())-1;			
+			headerListGroup.eq(0).addClass("top_menu_item_first");
+			headerListGroup.eq(headerListGroupN).addClass("top_menu_item_last");
+			
+			
+		</script>
+			
+
+	
+
+  	
+  	
+	</header>	
+			
+		<div id="login-content">
+			<div class="container-nr">	
+				
+				<div id="status" class="container"></div>
+				
+					<!--  banners slider -->
+					
+						
+					
+				
+					<!-- <div class="row clear_sm">				
+						<div class="col-xs-12" sec:authorize="not isAuthenticated()">
+							<div class="bottom-box try_demo">
+						    	<div class="cont_info">
+						    		<span th:utext="#{auth.login.demobox.title}" class="smallText">Don't have and account? Try out our</span>
+						    		<strong class="clear_md" ><span class="bigText" th:utext="#{auth.login.demobox.text}">Online Banking Demo</span></strong>
+						    		<th:block th:switch="${#locale.language}">
+						    			<a th:case="en" href="http://www.alahli.com/EN-US/Personal%20Banking/Banking%20Services/OnlineServices/Pages/OnlineServices.aspx" target="_new" th:title="#{auth.login.demobox.trydemo}"><span class="pull-right btn-info btn-lg" th:utext="#{auth.login.demobox.trydemo}">Try Demo</span></a>
+						    			<a th:case="ar" href="http://www.alahli.com/ar-SA/Personal%20Banking/Banking%20Services/OnlineServices/Pages/OnlineServices.aspx" target="_new" th:title="#{auth.login.demobox.trydemo}"><span class="pull-right btn-info btn-lg" th:utext="#{auth.login.demobox.trydemo}">Try Demo</span></a>
+						    		</th:block>
+						    		<span>Don't have and account? Try out our</span>
+						    		<strong class="clear_md">Online Banking Demo</strong>
+						    		<a class="pull-right btn-info btn-lg" href="#">Try Demo</a>
+						    	</div>
+					    	</div>
+						</div>
+					</div> -->
+				
+				<div class="container-main-login">
+					<div class="row equal-height-row" style="margin-bottom:20px;">
+						<div id="login-menu" class="col-xs-3 equal-height-col">
+							<ul class="nav nav-stacked">
+								<li class="active">
+									<a id="login" href="/online/auth/login" data-toggle="tab" style="padding-bottom:40px;">
+										<span class="login-menu-title col-xs-1">Login</span>
+										<span class="login-menu-desc"></span>
+										<div class="norton-seal pull-right" style="margin-top:-10px;">
+											<table width="135" border="0" cellpadding="2" cellspacing="0" title="Click to Verify - This site chose Symantec SSL for secure e-commerce and confidential communications.">
+												<tr>
+												<td width="135" align="center" valign="top"><script type="text/javascript" src="https://seal.verisign.com/getseal?host_name=www.alahlionline.com&amp;size=XS&amp;use_flash=NO&amp;use_transparent=NO&amp;lang=en"></script><br /></td>
+											</tr>
+											</table>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a id="helpMultiFactor" href="/online/help/helpMultiFactor" data-toggle="tab">
+										<span class="login-menu-title">Second Factor Authentication</span>
+										<span class="login-menu-desc">Highest standards of security for your banking transactions</span>
+									</a>
+								</li>
+								<li>
+									<a id="helpSecurityFeatures" href="/online/help/helpSecurityFeatures" data-toggle="tab">
+										<span class="login-menu-title">Security Features</span>
+										<span class="login-menu-desc">All exchanged information are encrypted USING global security standard for financial information over the internet</span>
+									</a>
+								</li>
+								<li>
+									<a id="helpSecurityTips" href="/online/help/helpSecurityTips" data-toggle="tab">
+										<span class="login-menu-title">Security Awareness Tips</span>
+										<span class="login-menu-desc">Use a firewall to protect your system</span>
+									</a>
+								</li>		 			
+							</ul>
+						</div>
+						<div id="login-body" class="col-xs-9 equal-height-col">
+							<div id="reference" style="float:right"></div>
+							<div id="contentHead" class="container"></div>
+							<div id="content" class="container"></div>
+							<div id="contentFooter" class="container"></div>			    		
+						</div>
+					</div>
+				</div>
+				<!-- <div class="clear_lg text_auth spacer_bg" sec:authorize="not isAuthenticated()">
+					<p th:text="#{auth.login.authorization}">NCB Capital is authorized by the Capital Market Authority of the Kingdom of Saudi Arabia to carry out dealing, as principal an agent, and underwriting, managing, arranging, advising and custody, with respect to securities under license number 37-06046. The registered office of which is at Al Mather street in Riyadh, P.O. Box 22216, Riyadh 11495, Kingdom of Saudi Arabia.</p>				
+				</div> -->
+			</div>
+			
+			
+		</div>	
+		<footer id="footer"> 	
+		<div id="footer-top">
+			<div class="container-nr">
+			<div class="row">
+					<div class="col-xs-12">
+						
+			 			<ul id="footer-top-menu" class="nav nav-pills pull-left">
+							<li id="allRightsReserved"><span style="width:100%">NCB All Rights Reserved 2015</span></li>
+							<li><a href="https://careers.alahli.com/">Careers</a></li>
+							<li><a href="http://www.alahli.com/en-us/Pages/Consumer-Protection.aspx">Consumer Protection Code</a></li>
+							<li><a href="http://www.alahli.com/en-us/business-banking/business-banking-services/Documents/NCBRetailBankingFees.pdf">Banking Fees</a></li>
+							<li><a href="http://ncbc.com/en/index.asp">NCB Capital</a></li>							  				  
+						</ul>
+						
+						<div class="footer-social pull-right">
+							<div class="btn-group dropup dropup-footer-app">							  
+							  <a class="btn dropdown-toggle ico-social ico-getyourmobileapp" style="cursor:pointer"></a>									  
+							  <ul class="dropdown-menu dropdown-footer-app-menu">							    
+							    <li><a target="_blank" class="ico-social ico-appleappstore" href="https://itunes.apple.com/us/app/alahlimobile/id552727118?mt=8"></a></li>
+							    <li><a target="_blank" class="ico-social ico-googleplayicon" href="https://play.google.com/store/apps/details?id=com.alahli.mobile.android"></a></li>
+							    <li><a target="_blank" class="ico-social ico-bbicon" href="http://appworld.blackberry.com/webstore/content/131091/?lang=en"></a></li>
+							    <li><a target="_blank" class="ico-social ico-windowsstore" href="http://www.windowsphone.com/s?appid=613daa89-3a2d-4de7-817b-2cf49d607c52"></a></li>									    
+							  </ul>
+							</div>
+						
+							<ul id="footer-social-list">
+								<!-- <li id="li-ico-getyourmobileapp"><a target="_blank" class="ico-social ico-getyourmobileapp" href="#"></a></li> -->								
+								<li><a target="_blank" class="ico-social ico-tw1" href="https://twitter.com/AlAhliNCB">
+									<img alt="NCB-Twitter-Account" style="width:100%" src="/online/resources/normal/images/tw.png" />
+								</a></li>
+								<li><a target="_blank" class="ico-social ico-yt1" href="http://www.youtube.com/user/alahlincb">
+									<img alt="NCB-YouTube-Account" style="width:100%" src="/online/resources/normal/images/yt.png" />
+								</a></li>
+								<li><a target="_blank" class="ico-social ico-li1" href="http://www.linkedin.com/company/ncb?trk=top_nav_home">
+									<img alt="NCB-LinkedIn-Account" style="width:100%" src="/online/resources/normal/images/li.png" />
+								</a></li>
+								<li><a target="_blank" class="ico-social ico-ig1" href="http://instagram.com/alahlincb">
+									<img alt="NCB-Instagram-Account" style="width:100%" src="/online/resources/normal/images/ig.png" />
+								</a></li>
+								<li><a target="_blank" class="ico-social ico-fi1" href="https://www.facebook.com/alahlincb">
+									<img alt="NCB-Facebook-Account" style="width:100%" src="/online/resources/normal/images/fi.png" />
+								</a></li>
+								<li><a target="_blank" class="ico-social ico-gp1" href="https://plus.google.com/103068337725021799109/posts">
+									<img alt="NCB-Google-Account" style="width:100%" src="/online/resources/normal/images/gp.png" />
+								</a></li>								
+							</ul>				
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$("a.ico-getyourmobileapp").click(function() {	    	
+		    	$(".dropdown-footer-app-menu").slideToggle(300);
+	    	});
+		</script>
+		<style>						 
+		</style>
+ 	</footer>
+	</div>	
+	
+	
+ 	<style>
+ 		#login-wrapper { 		
+		   min-height:100%;
+		   position:relative;
+		}	
+		#login-content {		   
+		   padding-bottom:60px;   /* Height of the footer */
+		}
+		#footer {
+		   position:absolute;		   
+		   width:100%;
+		   height:60px;   /* Height of the footer */		   
+		}		
+ 	</style>
+	<script type="text/javascript">
+		Spring.RemotingHandler.getResource('auth/login', {mode: 'embedded', fragments: 'content'}, false);
+
+		$('.nav.nav-stacked a[data-toggle="tab"]').on('click', function(event) {
+					event.preventDefault();
+					$('#login-menu .active').removeClass('active');
+					$('#' + this.id).parent().addClass('active');
+					Spring.RemotingHandler.getLinkedResource(this.id, {mode: 'embedded', fragments: 'content, reference'}, false);
+					
+		});
+		
+		$(window).load(function() {
+	        $('#slider').nivoSlider({
+	        	effect: 'fade', 
+	        	pauseTime: 10000
+	        });	        
+	    });
+	    
+	    $("a.ico-getyourmobileapp").click(function() {	    	
+	    	$(".dropdown-footer-app-menu").show();
+    	});	    
+  
+	</script>
+</body>
+</html>

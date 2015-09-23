@@ -1,0 +1,314 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+    <head>
+        <title>HIPAY</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="Content-Language" content="de,en,es,fr,it,nl,pt" />
+        <link type="text/css" rel="stylesheet" href="/style/style.css?v=3" />        <link type="text/css" rel="stylesheet" href="/style/jNice.css?v=3" />        <script src="/js/common.js?key=56024a1f11c46" type="text/javascript" ></script>        <script src="/js/jquery-1.7.1.min.js?key=56024a1f11c9d" type="text/javascript" ></script>        <script src="/js/libs/jquery.livequery.js?key=56024a1f11cf1" type="text/javascript" ></script>        <script src="/js/jquery.toggleFade.js?key=56024a1f11d45" type="text/javascript" ></script>        <script src="/js/jquery.jNice.js?key=56024a1f11d98" type="text/javascript" ></script>        <script src="/js/jquery.validate.min.js?key=56024a1f11dec" type="text/javascript" ></script>        <script src="/js/raphael-min.js?key=56024a1f11e3f" type="text/javascript" ></script>        <script src="/js/hipay.js?key=56024a1f11e93" type="text/javascript" ></script>        <script src="/js/libs/notification/js/jquery.notifications-1.1.js?key=56024a1f11ee6" type="text/javascript" ></script>        <!--<link href="/js/libs/notification/css/jquery.notifications.css" rel="stylesheet" type="text/css" />-->
+        <link href="/js/libs/notification/css/jquery.last_minute_notifications.css" rel="stylesheet" type="text/css" />
+        <style rel="stylesheet" type="text/css" media="screen">
+                    </style>
+
+        <link type="text/css" rel="stylesheet" href="/style/specific.css?v=3" /><link type="text/css" rel="stylesheet" href="/style/bootstrap.css?v=3" /><script src="/js/jquery.nivo.slider.min.js?key=56024a1f0bb43" type="text/javascript" ></script><script src="/js/jquery.jcarousel.min.js?key=56024a1f0bb89" type="text/javascript" ></script><script src="/js/reflection.js?key=56024a1f0bbcc" type="text/javascript" ></script><script src="/js/home.js?key=56024a1f0bc0e" type="text/javascript" ></script><script src="/js/twitter-bootstrap.js?key=56024a1f0bc50" type="text/javascript" ></script>
+    </head>
+
+    <body  >
+
+            <div id="global">
+            <div class="alert alertCookie">By using HiPay Wallet you agree to our use of cookies to enhance your experience. <a href="/info/legal-notices">Learn more</a></div>
+
+                        <div id="header">
+                <div id="hcontent">
+                    
+                        
+<div id="hblang">
+    <form action="/language/set" method="post" id="switchLanguage" class="jNice">
+    <select name="language" id="language-select" onchange="$('#switchLanguage').submit()" onJNiceLoad="loadFlags()" style="width: 200px;">
+                    <option value="de_DE" >deutsch</option>
+                    <option value="en_GB" selected>english</option>
+                    <option value="es_ES" >español</option>
+                    <option value="fr_FR" >français</option>
+                    <option value="it_IT" >italiano</option>
+                    <option value="nl_BE" >nederlands (België)</option>
+                    <option value="pt_PT" >português</option>
+                    <option value="pt_BR" >português (Brasil)</option>
+            </select>
+</form>
+<script type="text/javascript">
+    function loadFlags() {
+        $('#language-select').siblings('ul').find('li').each(function () {
+            var index = $('a', this).attr('index');
+            var country = $('#language-select').find('option:eq('+index+')').attr('value').substring(3, 5);
+            var $img = $('<img src="/images/flags/' + country + '.gif" width="16" height="11" style="vertical-align: -2px; margin-right: 5px;" />');
+            $('a', this).prepend($img);
+        });
+
+        var country = $('#language-select').val().substring(3, 5);
+        var $img = $('<img src="/images/flags/' + country + '.gif" width="16" height="11" style="vertical-align: -2px; margin-right: 5px;" />');
+        $('#language-select').siblings('div').find('span:eq(0)').prepend($img);
+    }
+</script>
+</div>
+
+<div id="hblogo">
+            <a href="/" title="HiPay wallet homepage"><img src="/images/logo.gif" alt="Hipay" class="noborder" /></a>
+    </div>
+
+<div id="hbinfos">
+    <span id="hbinew">Are you new to HiPay wallet ?</span>
+    <br />
+    <a href="/registration/register" id="hbisignin">Open an account !</a>
+</div>
+
+<div id="hbconnexion">
+    <div id="hbcinfos">
+        <div id="hbciconnect" style="font-size:13px">Log in</div>
+        <div id="hbcipassword" style="font-size:10px"><a href="/auth/lost">Password forgotten?</a></div>
+    </div>
+
+    <div id="hbcdivco">
+        <form class="jNice" id="hbcdcoform" method="post" action="/auth/login">
+            <input type="text" id="hbcdclogin" value="E-mail address" name="login" />
+                            <input type="hidden" name="entity" value="1" />
+                        <input type="password" id="login_code" name="login_code" autocomplete="off" />
+            <input type="submit" id="hbcdcconnect" value="OK" />
+        </form>
+    </div>
+    
+    <div id="hbckeypad">
+        <div id="hbckarrow"></div>
+        <span id="hbckcompose">Enter your password</span>
+        
+<div>
+        <div class="keypad-button" link="login_code">8</div>
+        <div class="keypad-button" link="login_code">5</div>
+        <div class="keypad-button" link="login_code">4</div>
+        <div class="keypad-button" link="login_code">6</div>
+        <div class="keypad-button" link="login_code">3</div>
+        <div class="clear"></div>
+</div>
+<div>
+        <div class="keypad-button" link="login_code">9</div>
+        <div class="keypad-button" link="login_code">7</div>
+        <div class="keypad-button" link="login_code">1</div>
+        <div class="keypad-button" link="login_code">2</div>
+        <div class="keypad-button" link="login_code">0</div>
+        <div class="clear"></div>
+</div>        <div id="hbckclean">Delete</div>
+        <span id="hbckpassword"><a href="/auth/lost">Password forgotten?</a></span>
+    </div>
+    
+        <script type="text/javascript">
+        $('#hbcdclogin').focus(function (event)
+        {
+            if (this.value == 'E-mail address')
+            {
+                this.value = '';
+            }
+        });
+        $('#hbcdclogin').blur(function (event)
+        {
+            if (this.value == '')
+            {
+                this.value = 'E-mail address';
+            }
+        });
+        $('#hbckclean').click(function()
+        {
+            $('#login_code').val('');
+        });
+        // gestion de l'animation'
+        $(".keypad-button").unbind('mousedown');
+        $(".keypad-button").mousedown(function() {
+            $(this).removeClass("keypad-button");
+            $(this).addClass("keypad-button-pressed-red");
+        });
+        $(".keypad-button").unbind('mouseup');
+        $(".keypad-button").mouseup(function() {
+            $(this).removeClass("keypad-button-pressed-red");
+            $(this).addClass("keypad-button");
+        });
+    </script>
+</div>
+                                    </div>
+            </div>
+
+            <div id="body">
+
+                <div id="bcontent">
+
+                    <div id="bheader">
+
+                        
+                            
+                                <h1 class="bodyTitle"></h1>
+                            
+                                            </div>
+
+                    <div id="bbody">
+                        
+                        <div id="bprecontent"></div>
+
+                        <div id="brbody">
+                            
+                            <div id="page-index">
+
+              <div id="carousel">
+        <div class="slider-wrapper">
+            <div id="slider" class="nivoSlider"><a href="/post/buyer/id/234" target="_self"><img src="/post/picture?p=uploads/2012/05/5-methods-of-payment.jpg" width="998" height="340" title="#captionCarousel234" /></a><a href="/post/buyer/id/225" target="_self"><img src="/post/picture?p=uploads/2012/05/3-parental_filter.jpg" width="998" height="340" title="#captionCarousel225" /></a><a href="/post/merchant/id/216" target="_self"><img src="/post/picture?p=uploads/2012/05/2-securite-en.jpg" width="998" height="340" title="#captionCarousel216" /></a><a href="/post/buyer/id/209" target="_self"><img src="/post/picture?p=uploads/2012/05/1-transaction-en.jpg" width="998" height="340" title="#captionCarousel209" /></a>            </div>            <div id="captionCarousel234" class="nivo-html-caption">
+                <div class="ccAcheteur" style="background-image:url('/images/icons/gauche_333.png');"><a href="/info/services-buyer">Discover the buyer's offer</a></div>
+                <div class="ccVendeur" style="background-image:url('/images/icons/droite_333.png')"><a href="/info/services-merchant">Discover the merchant's offer</a></div>
+            </div>            <div id="captionCarousel225" class="nivo-html-caption">
+                <div class="ccAcheteur" style="background-image:url('/images/icons/gauche_333.png');"><a href="/info/services-buyer">Discover the buyer's offer</a></div>
+                <div class="ccVendeur" style="background-image:url('/images/icons/droite_333.png')"><a href="/info/services-merchant">Discover the merchant's offer</a></div>
+            </div>            <div id="captionCarousel216" class="nivo-html-caption">
+                <div class="ccAcheteur" style="background-image:url('/images/icons/gauche_333.png');"><a href="/info/services-buyer">Discover the buyer's offer</a></div>
+                <div class="ccVendeur" style="background-image:url('/images/icons/droite_333.png')"><a href="/info/services-merchant">Discover the merchant's offer</a></div>
+            </div>            <div id="captionCarousel209" class="nivo-html-caption">
+                <div class="ccAcheteur" style="background-image:url('/images/icons/gauche_333.png');"><a href="/info/services-buyer">Discover the buyer's offer</a></div>
+                <div class="ccVendeur" style="background-image:url('/images/icons/droite_333.png')"><a href="/info/services-merchant">Discover the merchant's offer</a></div>
+            </div>        </div>
+    </div>    <div id="news">
+                    <div class="news">
+                <div class="logo-news-home"><a href="/post/merchant/id/191" target="_self"><img src="/post/picture?p=uploads/2012/05/email-payment-50.png" width="50" height="50" /></a></div>
+                <div><a href="/post/merchant/id/191" target="_self" class="news-home">Payment by email</a><br />Send payment requests by email.</div>
+            </div>            <div class="news">
+                <div class="logo-news-home"><a href="/post/buyer/id/225" target="_self"><img src="/post/picture?p=uploads/2012/05/parental-filter-50.png" width="50" height="50" /></a></div>
+                <div><a href="/post/buyer/id/225" target="_self" class="news-home">Enhanced Parental Control</a><br />Control your children’s online shopping thanks to a parental     filter.</div>
+            </div>        <div id="brands" class="news">
+            <div id="brandsInfos">Over 15 payment types accepted, including local ones</div>
+            <div>
+                <ul>
+                                            <li><img src="images/cards/logo_ccBCMC_37wx23h.gif" height="23" class="reflect" /></li>
+                                            <li><img src="images/cards/logo_ccCBC_37wx23h.gif" height="23" class="reflect" /></li>
+                                            <li><img src="images/cards/logo_ccCB_37wx23h.gif" height="23" class="reflect" /></li>
+                                            <li><img src="images/cards/logo_BELFIUS_37wx23h.jpg" height="23" class="reflect" /></li>
+                                            <li><img src="images/cards/logo_ccING_37wx23h.gif" height="23" class="reflect" /></li>
+                                            <li><img src="images/cards/logo_ccKBC_37wx23h.gif" height="23" class="reflect" /></li>
+                                            <li><img src="images/cards/logo_ccMAESTRO_37wx23h.gif" height="23" class="reflect" /></li>
+                                            <li><img src="images/cards/logo_ccMASTERCARD_37wx23h.gif" height="23" class="reflect" /></li>
+                                            <li><img src="images/cards/logo_ccVISA_37wx23h.gif" height="23" class="reflect" /></li>
+                                            <li><img src="images/cards/logo_multibanco_37x37.jpg" height="23" class="reflect" /></li>
+                                            <li><img src="images/cards/logo_payshop_64x23.jpg" height="23" class="reflect" /></li>
+                                            <li><img src="images/cards/logo_ccBOLETO_37wx23h.gif" height="23" class="reflect" /></li>
+                                    </ul>
+                <div id="cache"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+</div>
+
+    <script>
+    function getCookie(c_name)
+    {
+        var c_value = document.cookie;
+        var c_start = c_value.indexOf(" " + c_name + "=");
+        if (c_start == -1)
+        {
+            c_start = c_value.indexOf(c_name + "=");
+        }
+        if (c_start == -1)
+        {
+            c_value = null;
+        }
+        else
+        {
+            c_start = c_value.indexOf("=", c_start) + 1;
+            var c_end = c_value.indexOf(";", c_start);
+            if (c_end == -1)
+            {
+                c_end = c_value.length;
+            }
+            c_value = unescape(c_value.substring(c_start, c_end));
+        }
+        return c_value;
+    }
+
+    function setCookie(c_name, value, exdays)
+    {
+        var exdate = new Date();
+        exdate.setDate(exdate.getDate() + exdays);
+        var c_value = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toUTCString());
+        c_value += '; path=/';
+        document.cookie = c_name + "=" + c_value;
+    }
+
+    </script>
+
+                        </div>
+                    </div>
+
+                    
+                </div>
+
+
+            </div>
+
+            <div id="footer">
+
+                <div id="ffirstline">
+    <div id="ffcontent">
+        <div id="fflogo"><a href="/" title="HiPay wallet homepage"><img src="/images/logo.gif" alt="Hipay" class="noborder" height="31" /></a></div>
+        <div id="fflinks">
+            <a href="/info/about-us">About us</a>
+            |
+                            <a href="/info/prices-buyer">Prices</a>
+                        |
+            <a href="/info/terms">General Conditions of Use</a>
+            |
+            <a href="/info/legal-notices">Legal notices</a>
+            |
+            <a href="/info/e-security">E-security</a>
+            |
+            <a href="/info/glossary">Glossary</a>
+        </div>
+    </div>
+</div>
+
+<div id="fsecondline">
+    <div id="fscontent">
+        <div id="fsbuyers">
+            <span>For the buyers</span>
+            <br />
+            <a href="/info/services-buyer">Buyer’s offer </a>
+            <a href="/info/faq">FAQ</a>
+            <a href="/subscription/unlogged">Stop a subscription</a>
+            <a href="/info/contact">Contact Us</a>
+        </div>
+        <div id="fssellers">
+            <span>For the merchants</span>
+            <br />
+            <a href="/info/services-merchant">Merchant’s offer</a>
+            <a href="/info/faq">FAQ</a>
+                        <a href="/info/contact">Contact Us</a>
+        </div>
+    </div>
+</div>
+
+<div id="fthirdline">
+    <span>
+        The HiPay wallet&trade; payment solution is produced by HPME        - All rights reserved 2015        Reproduction in any form is prohibited.<br />
+    </span>
+</div>
+            </div>
+
+        </div>
+
+
+        
+                    <script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-7975750-3', 'hipaywallet.com');
+                ga('send', 'pageview');
+
+            </script>
+            </body>
+
+</html>
