@@ -13,6 +13,8 @@ So what we did is take the Alexa Top 100,000 websites, download their robots.txt
 
 You use the project by coming to the root and downloading the DisallowedDirectories files there. You can then plug them into your favorite web assessment tool/function, e.g., Burp Intruder.
 
+The files are broken down into Top-n lists, which are sorted lists based on the most common directories found. But if you are pressed for time or are looking for the highest-value targets, check out the InterestingDirectories.txt file, which I blogged about here: https://danielmiessler.com/blog/the-most-interesting-disallowed-directories/.
+
 If you want to see how the output is created, enter the 'Code' directory. There you can get the raw Alexa site list, the scripts that are used to download and manipulate the robots.txt files, etc.
 
 ## Credit
