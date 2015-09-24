@@ -94,9 +94,11 @@ echo "Cleaning carriage returns…"
 tr -d '\r' < ./raw.txt > ./sanitized.txt
 
 # Sorting
+echo "Sorting…"
 sort ./sanitized.txt | LANG=C LC_ALL=C uniq -c | sort -nr > ./sorted.txt
 
 # Grouping the top hits
+echo "Creating Top-N lists…"
 head -n 10 ./sorted.txt | awk '{print $2}' > ../Top10-RobotsDisallowed.txt
 head -n 100 ./sorted.txt | awk '{print $2}' > ../Top100-RobotsDisallowed.txt
 head -n 500 ./sorted.txt | awk '{print $2}' > ../Top500-RobotsDisallowed.txt
@@ -105,13 +107,17 @@ head -n 10000 ./sorted.txt | awk '{print $2}' > ../Top10000-RobotsDisallowed.txt
 head -n 100000 ./sorted.txt | awk '{print $2}' > ../Top100000-RobotsDisallowed.txt
 
 # Create the interesting list
+echo "Creating the InterestingDirectories list…"
 rm ../InterestingDirectories.txt
 grep -i user ../Top100000-RobotsDisallowed.txt >> ../InterestingDirectories.txt
 grep -i pass ../Top100000-RobotsDisallowed.txt >> ../InterestingDirectories.txt
 grep -i secret ../Top100000-RobotsDisallowed.txt >> ../InterestingDirectories.txt
 grep -i code ../Top100000-RobotsDisallowed.txt >> ../InterestingDirectories.txt
 grep -i admin ../Top100000-RobotsDisallowed.txt >> ../InterestingDirectories.txt
-grep -i back ../Top100000-RobotsDisallowed.txt >> ../InterestingDirectories.txt
+grep -i backup ../Top100000-RobotsDisallowed.txt >> ../InterestingDirectories.txt
+grep -i backdoor ../Top100000-RobotsDisallowed.txt >> ../InterestingDirectories.txt
+grep -i access ../Top100000-RobotsDisallowed.txt >> ../InterestingDirectories.txt
+grep -i source ../Top100000-RobotsDisallowed.txt >> ../InterestingDirectories.txt
 
 # Output
 echo ""
