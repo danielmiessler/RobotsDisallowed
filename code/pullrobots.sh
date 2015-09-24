@@ -94,7 +94,7 @@ echo "Cleaning carriage returns…"
 tr -d '\r' < ./raw.txt > ./sanitized.txt
 
 # Sorting
-echo "Sorting…"
+echo "Sorting the entries based on frequency…"
 sort ./sanitized.txt | LANG=C LC_ALL=C uniq -c | sort -nr > ./sorted.txt
 
 # Grouping the top hits
