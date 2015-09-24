@@ -67,19 +67,30 @@ if [[ $NOS =~ ^[0-9]+$ ]]; then
 #done
 
 # Extract Disallowed entries from the robots.txt files
+echo "Extracting Disallow entries from $NOS robots.txt files…"
 rm ./raw.txt
 find ./robots -name "*.txt" | xargs grep Disallow | awk '{ print $2 }' >> ./raw.txt
 
 # Cleanup junk characters, and make sure directories start with a /
+echo "Cleaning ^'s…"
 sed -i '' '/^\//!d' ./raw.txt
+echo "Cleaning :'s…"
 sed -i '' '/:/d' ./raw.txt
+echo "Cleaning %'s…"
 sed -i '' '/%/d' ./raw.txt
+echo "Cleaning -'s…"
 sed -i '' '/-/d' ./raw.txt
+echo "Cleaning ,'s…"
 sed -i '' '/,/d' ./raw.txt
+echo "Cleaning _'s…"
 sed -i '' '/_/d' ./raw.txt
+echo "Cleaning ?'s…"
 sed -i '' '/?/d' ./raw.txt
+echo "Cleaning *'s…"
 sed -i '' '/*/d' ./raw.txt
+echo "Cleaning ;'s…"
 sed -i '' '/;/d' ./raw.txt
+echo "Cleaning carriage returns…"
 tr -d '\r' < ./raw.txt > ./sanitized.txt
 
 # Sorting
@@ -99,6 +110,8 @@ grep -i user ../Top100000-RobotsDisallowed.txt >> ../InterestingDirectories.txt
 grep -i pass ../Top100000-RobotsDisallowed.txt >> ../InterestingDirectories.txt
 grep -i secret ../Top100000-RobotsDisallowed.txt >> ../InterestingDirectories.txt
 grep -i code ../Top100000-RobotsDisallowed.txt >> ../InterestingDirectories.txt
+grep -i admin ../Top100000-RobotsDisallowed.txt >> ../InterestingDirectories.txt
+grep -i back ../Top100000-RobotsDisallowed.txt >> ../InterestingDirectories.txt
 
 # Output
 echo ""
