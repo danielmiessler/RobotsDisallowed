@@ -50,7 +50,7 @@ if [[ $NOS =~ ^[0-9]+$ ]]; then
 ## Setup
 #mkdir -p ./robots
 #
-## Epic Bash Multithreading, by Brade Wolfe
+## Epic Bash Multithreading
 #for domain in `cat $DATE-top$NOS-domains.txt`
 #do
 #	echo "Attempting to pull robots.txt for $domain"

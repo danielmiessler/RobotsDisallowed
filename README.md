@@ -45,5 +45,4 @@ Thanks!
 
 It's important to us to thank people when they help out with the project.
 
-- Brad Wolfe for donating the epic Bash Multithreading code (yes, you heard that right)
 - YOURNAMEHERE
