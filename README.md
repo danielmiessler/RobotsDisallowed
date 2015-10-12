@@ -45,4 +45,4 @@ Thanks!
 
 It's important to us to thank people when they help out with the project.
 
-- YOURNAMEHERE
+- Brad Wolfe for adding the epic Bash loop
