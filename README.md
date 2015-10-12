@@ -45,4 +45,4 @@ Thanks!
 
 It's important to us to thank people when they help out with the project.
 
-- Brad Wolfe for adding the epic Bash loop
+- Brad Wolfe for adding the epic Bash multithreading (yeah, you read that correctly; go check the code)
