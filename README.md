@@ -1,15 +1,15 @@
 # RobotsDisallowed
-The RobotsDisallowed project is a harvest of the Disallowed directories from the robots.txt files of the world's top websites.
+The RobotsDisallowed project is a harvest of the Disallowed directories from the robots.txt files of the world's top websites--specifically the Alexa 100K.
 
-This list of Disallowed directories is a great way to supplement content discovery during a web security assessment, since the website owner is being kind enough to tell you where he doesn't want you going.
+This list of Disallowed directories is a great way to supplement content discovery during a web security assessment, since the website owner is basically saying "Don't go here; there's sensitive stuff in there!".
 
-It's like a list of places you're likely to find something interesting.
+It's basically a list of potential high-value targets.
 
 ## The project
 
-So what we did is take the Alexa Top 100,000 websites, download their robots.txt files, and then performed a bunch of cleanup on them (they are a mess) to make the list practical in web assessments.
+So what we did is take the Alexa Top 100,000 websites, download their robots.txt files, extracted all Disallowed directories, and then performed a bunch of cleanup on them (they are a mess) to make the lists as useful as possible during web assessments.
 
-## How to use it
+## How to use the project
 
 You use the project by coming to the root and downloading the DisallowedDirectories files there. You can then plug them into your favorite web assessment tool/function, e.g., Burp Intruder.
 
@@ -37,7 +37,7 @@ It's harder than it looks to make the list both comprehensive and usable. People
 
 So we curate.
 
-The leaders are myself (Daniel Miessler) and Jason Haddix. If you'd like to help out, feel free to submit issues to the repo or send pull requests.
+If you'd like to help out, feel free to submit issues to the repo or send pull requests.
 
 Thanks!
 
