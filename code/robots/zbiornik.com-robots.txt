@@ -1,36 +1,917 @@
+<!doctype html>
 <html>
 <head>
-<title>Web Page Blocked</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
-<meta name="viewport" content="initial-scale=1.0">
-<style>
-  #content {
-    border:3px solid#aaa;
-    background-color:#fff;
-    margin:1.5em;
-    padding:1.5em;
-    font-family:Tahoma,Helvetica,Arial,sans-serif;
-    font-size:1em;
-  }
-  h1 {
-    font-size:1.3em;
-    font-weight:bold;
-    color:#196390;
-  }
-  b {
-    font-weight:normal;
-    color:#196390;
-  }
-</style>
+    <meta charset="utf-8" />
+    <title>Zbiornik</title>
+    <meta name="description" content="Strona tylko dla dorosłych. Kamery na żywo, filmy, zdjęcia, zweryfikowane profile. Swingersi.">
+    <link rel="stylesheet" href="/css/zbiornik-welcome-common.css" />
+    <link rel="stylesheet" media="only screen and (max-device-width: 800px)" href="/css/zbiornik-welcome-small.css" />
+    <link rel="stylesheet" media="only screen and (min-device-width: 801px)" href="/css/zbiornik-welcome.css" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/jquery.browser.min.js"></script>
+    <script src="/swingers.js"></script>
+    <script src="/i18n.php"></script>
+    <script src="/js/balancer.js"></script>
+    <script>
+        window.apiURL = null;
+        var repass = {};
+        var repassError = false;
+    </script>
 </head>
-<body bgcolor="#e7e8e9">
-<div id="content">
-<h1>Web Page Blocked</h1>
-<p>Access to the web page you were trying to visit has been blocked in accordance with company policy. Please contact your system administrator if you believe this is in error.</p>
-<p><b>User:</b> 10.128.252.100 </p>
-<p><b>URL:</b> zbiornik.com/robots.txt </p>
-<p><b>Category:</b> adult </p>
+<body>
+<div id="zbiornik">
+    <div id="zbiornik-background-sack"><img id="zbiornik-background-img" src="https://static.zbiornik.com/upimg/0160d9c44a354d20e81f0e6df5fe832e.jpg" alt="zbiornik-background"></div>
+    <h1 id="zbiornik-com">ZBIORNIK.com</h1>
+    <h2 id="what-da-hell-zbiornik-is">PROFESJONALNY PORTAL<br>DLA DOROSŁYCH</h2>
 </div>
+<div id="zbiornik-info">
+    ZBIORNIK MA JUŻ 15 LAT, 2 MIESIĄCE i 7 DNI
+</div>
+<div id="zbiornik-come-to-daddy">
+    <form action="" method="post" onsubmit="login(); return false;">
+        <div>
+            <input type="email" id="zbiornik-email" required placeholder="E-mail" />
+        </div>
+        <div>
+            <input type="password" id="zbiornik-password" required placeholder="Hasło" />
+            <input type="hidden" id="zbiornik-ltoken" value="ZFFsNXV5c1JXcVkwQzgwK3B1QUNLejZRMFRUMUU4UHo3MWluZXJkUnpFR05QUjNWVk82aG9BMFVSaGduUGU5VFN0VWpLZTlRSHJJcldlOUhJank1d05tN3k0YmtJdWdYZGxOVGFWSUxKNWY1MzZtUkw3eTNEMlduTWZOd1BvVnlYbm12MFFQZzlLdzh6VVdWekh2aVJhYUxCNlRkU0VjOEoreUtrdXo3SG10M2hzeEVLWTI3YWZKdHVxUGl3RHdoMVpLdkxVWGlXRXlGMzdNZlJuajZOc3NiUHlhZDZabTYxT1JQenVWT21YST0="  autocomplete="off"/>
+        </div>
+        <label for="zbiornik-keep-me-logged">
+            <input type="checkbox" id="zbiornik-keep-me-logged"/>
+            <span id="zbiornik-label-text">Zapamiętaj</span>
+        </label>
+        <button class="blue" id="zbiornik-log-me-in">Wpuść</button>
+    </form>
+</div>
+
+<div id="zbiornik-the-buttons">
+    <button id="zbiornik-create-account" class="blue" onclick="createAccount()">Załóż konto</button>
+    <button id="help-me-bardzo" onclick="helpMeBardzo()">Nie pamiętam hasła</button>
+    <button onclick="location.href='https://zbiornik.tv/';" class="hideOnMobile">Zbiornik.TV</button>
+    <button onclick="location.href='https://sklep.zbiornik.com/';" class="hideOnMobile">SKLEP</button>
+</div>
+
+<script>
+    var checkNickTo;
+    function sorter(a,b) {
+        return (a.name.localeCompare(b.name));
+    }
+    function yobChange(sb){
+        $(sb).removeClass('ok');
+        if(sb.value)
+            $(sb).addClass('ok');
+        czekoll();
+    }
+    function accChange(sb){
+        var v = parseInt(sb.value);
+        var couple = (v == 3 || v == 4 || v == 5);
+        if(couple)
+            couple = [
+                (v == 4) ? 2 : 1,
+                (v == 5) ? 1 : 2
+            ];
+
+        if(v)
+        {
+            $(sb).addClass('ok');
+            $('#age1').show();
+            if(couple)
+                $('#age2').show();
+            else
+                $('#age2').hide();
+
+            $('#yob1, #yob2').empty();
+            $('#yob1, #yob2').removeClass('ok');
+            var a = [l('reglog/yob'), l('reglog/yob1'), l('reglog/yob2')];
+            $('#yob1').append('<option value="">'+(couple ? a[couple[0]] : a[0])+'</option>');
+            if(couple)
+                $('#yob2').append('<option value="">'+a[couple[1]]+'</option>');
+            var y = new Date().getFullYear()-18;
+            for(var i=y; i>(y-80); i--){
+                $('#yob1').append('<option value="'+i+'">'+i+'</option>');
+                $('#yob2').append('<option value="'+i+'">'+i+'</option>');
+            }
+        }
+        else{
+            $(sb).removeClass('ok');
+            $('#age1, #age2').hide();
+        }
+        czekoll();
+    }
+    function nickChange(inp){
+        var v = inp.value;
+        $(inp).removeClass('ok');
+        $(inp).removeClass('err');
+        $('#nick-zabrali').hide();
+        if(v.length > 2){
+            if(!/[^a-zA-Z0-9_]/.test( v )) {
+                clearTimeout( checkNickTo );
+                $('#regmejl').show();
+                checkNickTo = setTimeout( function() {
+                    $.getJSON( balancer.getAjaxPath()+'/ajax/', { command: 'checkNick', nick: v }, function( resp ) {
+                        if( resp && resp.ok ) {
+                            $(inp).addClass('ok');
+                        } else {
+                            $(inp).removeClass('ok');
+                            $('#nick-zabrali').show();
+                            $(inp).addClass('err');
+                        }
+                        czekoll();
+                    } ).error( function() {
+                        $(inp).removeClass('ok');
+                        $('#nick-zabrali').show();
+                        $(inp).addClass('err');
+                        czekoll();
+                    });
+                }, 500 );
+            }
+            else
+                $(inp).addClass('err');
+        }
+        czekoll();
+    }
+    function emailChange(inp){
+        var v = inp.value;
+        $(inp).removeClass('ok');
+        if(v.indexOf('@') > 0){
+            $(inp).addClass('ok');
+//            $('.regpass').show();
+            if(!$('#kauntry').is(':visible'))
+                setCountries();
+            $('#regcoun').show();
+        }
+        czekoll();
+    }
+    /*
+    function passChange(){
+        $('#tajne1, #tajne2').removeClass('ok');
+        var h1 = $('#tajne1').val();
+        var h2 = $('#tajne2').val();
+
+        if(isPassOK(h1)){
+            if(h1.length >= 6 && lol.indexOf(h1) == -1 && h1 != $('#nik').val()){
+                $('#tajne1').addClass('ok');
+                if(h1 == h2){
+                    $('#tajne2').addClass('ok');
+                    setCountries();
+                    $('#regcoun').show();
+                }
+            }
+        }
+        czekoll();
+    }
+    */
+    var regions = [];
+    function countryChange(sb){
+        var v = sb.value;
+        var inp = $('#kauntry');
+        inp.removeClass('ok');
+        $('#ridzyn').removeClass('ok');
+        $('#regcit').hide();
+        $('#siti').removeClass('ok');
+        $('#sitinejm').removeClass('ok');
+        $('#sitinejm').val('');
+        if(v)
+        {
+            inp.addClass('ok');
+            if(!regions[v]) {
+                $('.loc').prop('disabled', true);
+                $.getJSON( balancer.getAjaxPath()+'/ajax/?command=getRegions&country='+v, function (resp) {
+                    if (resp && resp.ok)
+                    {
+                        resp.regions.sort(sorter);
+                        regions[v] = resp.regions;
+                        setRegions(v);
+                    }
+                    $('.loc').prop('disabled', false);
+                });
+            }
+            else
+                setRegions(v);
+        }
+        else{
+            $('#regreg, #regcit').hide();
+        }
+        czekoll();
+    }
+    var cities = [];
+    function regionChange(sb){
+        var v = sb.value;
+        var inp = $('#ridzyn');
+        inp.removeClass('ok');
+        $('#siti').removeClass('ok');
+        if(v)
+        {
+            inp.addClass('ok');
+            if(!cities[v]) {
+                $('.loc').prop('disabled', true);
+                $.getJSON( balancer.getAjaxPath()+'/ajax/?command=getCities&region='+v, function (resp) {
+                    if (resp && resp.ok)
+                    {
+                        if(resp.cities && resp.cities.length){
+                            resp.cities.sort(sorter);
+                            cities[v] = resp.cities;
+                            setCities(v);
+                            $('#siti').show();
+                            $('#sitinejm').hide();
+                        }
+                        else{
+                            $('#siti').hide();
+                            $('#sitinejm').show();
+                        }
+                    }
+                    $('#regcit').show();
+                    $('.loc').prop('disabled', false);
+                });
+            }
+            else
+                setRegions(v);
+        }
+        else
+            $('#regcit').hide();
+        czekoll();
+    }
+    function cityChange(sb){
+        var v = sb.value;
+        $('#siti').removeClass('ok');
+        if(v){
+            $('#siti').addClass('ok');
+            $('#regtermz').show();
+        }
+        czekoll();
+    }
+    function cityNameChange(sb){
+        var v = sb.value;
+        $('#sitinejm').removeClass('ok');
+        if(v.length>1){
+            $('#sitinejm').addClass('ok');
+            $('#regtermz').show();
+        }
+        czekoll();
+    }
+    function setCountries(){
+        var sb = $('#kauntry');
+        var countries = getCountries();
+        sb.empty();
+        sb.append('<option value="" style="color:#ccc;">'+l('reglog/country')+'</option>');
+        var lng = navigator.language.substring(0,2).toUpperCase();
+        countries.forEach(function(a){
+            sb.append('<option value="'+a[0]+'"'+(a[2] == lng?' selected':'')+'>'+(a[1]?a[1]:'--')+'</option>');
+        });
+        sb.trigger('change');
+    }
+    function setRegions(id){
+        var sb = $('#ridzyn');
+        sb.empty();
+        sb.append('<option value="" style="color:#ccc;">'+l('reglog/region')+'</option>');
+        regions[id].forEach(function(o){
+            sb.append('<option value="'+o.id+'">'+o.name+'</option>');
+        });
+        $('#regreg').show();
+    }
+    function setCities(id){
+        var sb = $('#siti');
+        sb.empty();
+        sb.append('<option value="" style="color:#ccc;">'+l('reglog/city')+'</option>');
+        cities[id].forEach(function(o){
+            sb.append('<option value="'+o.id+'">'+o.name+'</option>');
+        });
+    }
+    function termzChange(sb){
+        czekoll();
+    }
+    function czekoll(){
+        var test = function(){
+            if(!$('#akounttajp').hasClass('ok')) return false;
+            if(!$('#yob1').hasClass('ok')) return false;
+            var v = parseInt($('#akounttajp').val());
+            if( v == 3 || v == 4 || v == 5 )
+                if(!$('#yob2').hasClass('ok')) return false;
+            if(!$('#nik').hasClass('ok')) return false;
+            if(!$('#imejl').hasClass('ok')) return false;
+            //if(!$('#tajne1').hasClass('ok')) return false;
+            //if(!$('#tajne2').hasClass('ok')) return false;
+            if(!$('#kauntry').hasClass('ok')) return false;
+            if(!$('#ridzyn').hasClass('ok')) return false;
+            if(!$('#siti').hasClass('ok') && !$('#sitinejm').hasClass('ok')) return false;
+            if(!$('#taktak').is(':checked')) return false;
+            return true;
+        };
+        $('#zbiornik-register').prop('disabled', !test());
+    }
+    function jupijupi(){
+        var data = {};
+        data.token = 'ZFFsNXV5c1JXcVkwQzgwK3B1QUNLejZRMFRUMUU4UHo3MWluZXJkUnpFR05QUjNWVk82aG9BMFVSaGduUGU5VFN0VWpLZTlRSHJJcldlOUhJank1d05tN3k0YmtJdWdYZGxOVGFWSUxKNWY1MzZtUkw3eTNEMlduTWZOd1BvVnlYbm12MFFQZzlLdzh6VVdWekh2aVJhYUxCNlRkU0VjOEoreUtrdXo3SG10M2hzeEVLWTI3YWZKdHVxUGl3RHdoMVpLdkxVWGlXRXlGMzdNZlJuajZOc3NiUHlhZDZabTYxT1JQenVWT21YST0=';
+        data.accType = $('#akounttajp').val();
+        data.age1 = $('#yob1').val();
+        data.age2 = $('#yob2').val();
+        data.nick = $('#nik').val();
+        data.email = $('#imejl').val();
+        data.countryId = $('#kauntry').val();
+        data.regionId = $('#ridzyn').val();
+        data.cityId = $('#siti').val();
+        data.cityName = $('#sitinejm').val();
+        data.command = 'createAccount';
+
+        var btn = $('#zbiornik-register');
+
+        btn.text('Czekamy');
+        btn.prop('disabled', true);
+
+
+        $.ajax({
+            url: balancer.getAjaxPath()+'/ajax/?'+ $.param( data ),
+            xhrFields: {
+                withCredentials: true
+            },
+            data: {
+                format: 'json'
+            },
+            dataType: 'json',
+            success: function(resp){
+                if( resp && resp.ok ) {
+                    $('#zbiornik-account-created').show();
+                    $('#zbiornik-new-account').hide();
+                } else {
+                    if (resp && resp.errors) {
+                        if(resp.errors.email){
+                            if(resp.errors.email == 'invalid')
+                                alert('Błędny adres email');
+                            if(resp.errors.email === true)
+                                alert('Twój e-mail jest już zarejestrowany');
+                            $('#imejl').removeClass('ok');
+                        }
+                    } else {
+                        alert('Błąd');
+                    }
+                    btn.text('Rejestruj');
+                    btn.prop('disabled', false);
+                }
+            },
+            error: function( resp ) {
+                alert('Błąd');
+            },
+        });
+/*
+
+        $.getJSON( balancer.getAjaxPath()+'/ajax/', data, function( resp ) {
+            if( resp && resp.ok ) {
+                $('#zbiornik-account-created').show();
+                $('#zbiornik-new-account').hide();
+            } else {
+                if (resp && resp.errors) {
+                    if(resp.errors.email){
+                        if(resp.errors.email == 'invalid')
+                            alert('Błędny adres email');
+                        if(resp.errors.email === true)
+                            alert('Twój e-mail jest już zarejestrowany');
+                        $('#imejl').removeClass('ok');
+                    }
+                } else {
+                    alert('Błąd');
+                }
+                btn.text('Rejestruj');
+                btn.prop('disabled', false);
+            }
+        });
+        */
+    }
+</script>
+<section id="zbiornik-registration-form" class="pd8" style="display:none;">
+    <div id="zbiornik-account-created" class="pd8 tac pre" hidden>Udało się. Na Twój e-mail został wysłany link potwierdzający. Idź i kliknij weń.</div>
+    <form action="" onsubmit="return!1">
+        <div id="zbiornik-new-account">
+            <div class="regfield">
+                <div class="inp">
+                    <select id="akounttajp" onchange="accChange(this)">
+                        <option value="0">Typ konta</option>
+                        <option value="1">Mężczyzna</option>
+                        <option value="2">Kobieta</option>
+                        <option value="3">Para</option>
+                        <option value="4">ParaKK</option>
+                        <option value="5">ParaMM</option>
+                        <option value="6">TS/TV/TG</option>
+                    </select>
+                </div>
+                <div class="desc pre">Zastanów się kim jesteś.
+Typu konta zmienić będzie nie sposób.</div>
+            </div>
+
+            <div id="age1" class="regfield" style="display:none;">
+                <div class="inp">
+                    <select id="yob1" onchange="yobChange(this)"></select>
+                </div>
+                <div class="desc pre">Nie będzie możliwości zmiany.
+Gdyż to rzecz niezmienna wszak.</div>
+            </div>
+            <div id="age2" class="regfield" style="display:none;">
+                <div class="inp">
+                    <select id="yob2" onchange="yobChange(this)"></select>
+                </div>
+                <div class="desc">
+                </div>
+            </div>
+
+            <div class="regfield">
+                <div class="inp">
+                    <input id="nik" type="text" maxlength="32" placeholder="Nick" onkeyup="nickChange(this)" onchange="nickChange(this)">
+                </div>
+                <div class="desc pre">Litery i cyfry (bez ogonków, spacji, etc.)<br><span id="nick-zabrali" hidden>Ten nick jest już zajęty</span></div>
+            </div>
+            <div id="regmejl" class="regfield" style="display:none;">
+                <div class="inp">
+                    <input id="imejl" type="email" maxlength="40" placeholder="E-mail" onkeyup="emailChange(this)" onchange="emailChange(this)">
+                </div>
+                <div class="desc pre">Spokojnie.
+Nie spamujemy, nie udostępniamy innym.</div>
+            </div>
+            <!--
+            <div class="regfield regpass" style="display:none;">
+                <div class="inp">
+                    <input id="tajne1" type="password" maxlength="32" placeholder="Hasło" onkeyup="passChange()" onchange="passChange()">
+                </div>
+                <div class="desc">
+                    Wprowadź mocne hasło.<br>
+                    Minimum 6 znaków.
+                </div>
+            </div>
+            <div class="regfield regpass" style="display:none;">
+                <div class="inp">
+                    <input id="tajne2" type="password" maxlength="32" placeholder="Hasło ponownie" onkeyup="passChange()" onchange="passChange()">
+                </div>
+                <div class="desc">
+                    Wielkość liter ma znaczenie.<br>
+                </div>
+            </div>
+            -->
+            <div id="regcoun" class="regfield" style="display:none;">
+                <div class="inp">
+                    <select id="kauntry" class="loc" onchange="countryChange(this)">
+                        <option value="">Państwo</option>
+                    </select>
+                </div>
+                <div class="desc">
+                </div>
+            </div>
+            <div id="regreg" class="regfield" style="display:none;">
+                <div class="inp">
+                    <select id="ridzyn" class="loc" onchange="regionChange(this)"></select>
+                </div>
+                <div class="desc">
+                </div>
+            </div>
+            <div id="regcit" class="regfield" style="display:none;">
+                <div class="inp">
+                    <select id="siti" class="loc" onchange="cityChange(this)"></select>
+                    <input id="sitinejm" type="text" maxlength="32" placeholder="Miasto" class="loc" onchange="cityNameChange(this)" onkeyup="cityNameChange(this)">
+                </div>
+                <div class="desc">
+                </div>
+            </div>
+            <div id="regtermz" class="regfield" style="display:none;">
+                <div class="inp">
+                    <div class="inline" style="margin-right:8px;"><input id="taktak" type="checkbox" onclick="termzChange(this);"/></div>
+                    <!-- @todo: wiadomo -->
+                    <div class="inline">Przeczytałem i akceptuję<br><a href="https://zbiornik.com/regulamin.pdf" target="_blank">Regulamin</a></div>
+                </div>
+                <div class="desc pre"></div>
+            </div>
+            <div style="padding-top:8px;">
+                <button id="zbiornik-register" class="blue" disabled onclick="jupijupi()">Rejestruj</button>
+                <button class="hideOnDesktop" onclick="createAccount();">Anuluj</button>
+            </div>
+        </div>
+    </form>
+</section>
+
+
+<script>
+    function resEmailChange(inp){
+        var v = inp.value;
+        $(inp).removeClass('ok');
+        $('#zbiornik-reset-button').prop('disabled', true);
+        if(v.indexOf('@') > 0){
+            $(inp).addClass('ok');
+            $('#zbiornik-reset-button').prop('disabled', false);
+        }
+    }
+    function resetPass_submit() {
+        $('#zbiornik-reset-button').prop('disabled', true);
+        var v = $('#resemail').val();
+        if( v.indexOf('@') > 0  ) {
+            var err = function(){
+                $('#zbiornik-reset-button').prop('disabled', false);
+            };
+            $.ajax({
+                dataType: "json",
+                url: balancer.getAjaxPath()+'/ajax/?command=passReset&email='+v,
+                timeout: 10*1000,
+                success: function( resp ) {
+                    if (resp && resp.ok) {
+                        alert(l('reglog/link_sent'));
+                        $('#resemail').val('');
+                    }
+                    else {
+                        alert(l('reglog/err_email_404'));
+                        err();
+                    }
+                },
+                error: function(){
+                    alert(l('global/err_connection'));
+                    err();
+                }
+            });
+        }
+        return false;
+    }
+</script>
+<section id="zbiornik-reset-password-form" class="pd8" style="display:none;">
+    <form action="" onsubmit="return resetPass_submit();">
+        <div id="zbiornik-reset-password">
+            <div class="regfield">
+                <div class="inp">
+                    <input id="resemail" type="email" maxlength="40" placeholder="E-mail" onkeyup="resEmailChange(this)" onchange="resEmailChange(this);"/>
+                </div>
+                <div class="desc pre">Podaj swój email.
+Dostaniesz nań wiadomość ze specjalnym linkiem.</div>
+            </div>
+            <div style="padding-top:8px;">
+                <button class="blue" id="zbiornik-reset-button" disabled>Wyślij</button>
+                <button class="hideOnDesktop" onclick="helpMeBardzo();">Anuluj</button>
+            </div>
+        </div>
+    </form>
+</section>
+
+
+
+
+<script>
+    function createCookie(name, value, days) {
+        var expires;
+
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toGMTString();
+        } else {
+            expires = "";
+        }
+        document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value) + expires + "; path=/";
+    }
+
+    function readCookie(name) {
+        var nameEQ = encodeURIComponent(name) + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
+        }
+        return null;
+    }
+    var thmin = false;
+    function more(section, conf){
+        if(conf){
+            if(!(readCookie('adultConfirm'))) {
+                if(!confirm('Dalsza treść przeznaczona jest wyłącznie dla osób dorosłych. Czy potwierdzasz, że masz ukończone 18lat?'))
+                    return false;
+                createCookie('adultConfirm', 1, 30);
+            }
+        }
+
+        var size = 120;
+
+        if(!thmin){
+            if(window.innerWidth < 1024)
+            {
+                var r = .6;
+                $('.grid > .item > img').each(function(i, el){
+                    $(el).css('width', $(el).width()*r);
+                    $(el).css('height', $(el).height()*r);
+                });
+                size *= r;
+            }
+            $('#verified_grid').height( (size+2) * 3);
+            $('#photos_grid').height( (size+2) * 3);
+            thmin = true;
+        }
+
+        $('#'+section+'_more').removeClass('hidden_elem');
+        $('#btn_'+section+'_more').hide();
+    }
+</script>
+<div id="promo" style="padding-top:16px;">
+    <section id="shitty" class="info" style="display: none;">
+        <div style="background:#f44336;color:white;text-align:center;font-weight:500;font-size:1.5rem;margin-bottom:16px;padding: 8px;border-radius: 4px;">Twoja przegląrka jest NIEKOMPATYBILNA ;(</div>
+        <div style="margin-bottom:16px;">Aby w pełni wykorzystać wszystkie funkcje serwisu należy skorzystać z nowoczesnych przeglądarek:</div>
+        <div style="margin-bottom:16px;">
+            <a href="https://www.google.com/chrome/" target="_blank" style="font-size: 48px;color:#03a9f4;">
+                <img src="/imgs/Chrome.png" width="48" height="48" alt="Chrome" style="margin-bottom:-8px;">
+                Google Chrome (zalecana)
+            </a>
+        </div>
+        <div style="margin-bottom:16px;">
+            <a href="https://getfirefox.com" target="_blank" style="font-size: 48px;color:#03a9f4;">
+                <img src="/imgs/Firefox.png" width="48" height="48" alt="Firefox" style="margin-bottom:-8px;">
+                Firefox
+            </a>
+        </div>
+        lub skorzystaj z minimalistycznej wersji <a href="https://mini.zbiornik.com/">mini.zbiornik.com</a>
+    </section>
+    <section class="info">
+        <h2>
+            <svg viewBox="0 0 24 24" class="ikon" style="fill:#4caf50;">
+                <g><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></g>
+            </svg>
+            Zweryfikowani użytkownicy
+        </h2>
+        <p>
+            Największa w Polsce społeczność użytkowników, którzy swoją wiarygodność potwierdzają publikując zdjęcia oraz filmy.<br/>
+            <div id="verified_more" class="hidden_elem" style="margin:8px 0;">
+                <p>
+                    Użytkownicy publikując materiały z kartką weryfikacyjną potwierdzają swoją autentyczność.<br/>
+                    Dzięki temu nawiązywanie kontaktów staje się o wiele przyjemniejsze.<br/>
+                    Poniżej kilka przykładowych zdjęć weryfikacyjnych.<br/>
+                </p>
+                <div id="verified_grid" class="grid">
+                                            <div class="item"><img src="https://img01.zbiornik.com/s/images/16726/54f4xx2xv/6bbe17e81eb1de7452699eb06e806017.jpg?h=z5LajJD4R1b9QvByR3rpVQ" style="width:72px;height:120px;"/></div>
+                                            <div class="item"><img src="https://img01.zbiornik.com/s/images/16719/54c5kqp5c/b10b25566d1ccdae8796b3c82ea3b650.jpg?h=-IAzN09gdScQXyTumQthpA" style="width:73px;height:120px;"/></div>
+                                            <div class="item"><img src="https://img01.zbiornik.com/s/images/14846/4jox93o5v/16e6e1b4c6c611cdd9c2c85dd3372b6c.jpg?h=0XlVT3LLWUcN9AgB8vJveQ" style="width:117px;height:120px;"/></div>
+                                            <div class="item"><img src="https://img01.zbiornik.com/s/images/16376/50kaeqnpf/1595cc5e2b5a8b50894aca221d66e11b.jpg?h=0kBZPHuj4idt2VpICRLsJw" style="width:77px;height:120px;"/></div>
+                                            <div class="item"><img src="https://img01.zbiornik.com/s/images/17350/5bapn7swb/7a9469b4dcdd17be3e9c776546a6077a.jpg?h=DCOGx2GYkvpsRmkNQiV_ng" style="width:90px;height:120px;"/></div>
+                                            <div class="item"><img src="https://img01.zbiornik.com/s/images/16685/53ywmq0oa/cebbaddae33a0e2f8ffc1ccb78d44e7f.jpg?h=_fwsv36SrAylV7bIYko3pw" style="width:72px;height:120px;"/></div>
+                                            <div class="item"><img src="https://img01.zbiornik.com/s/images/16908/56ffkb7g8/6461c7b01e2c371082fdb2f03351d32c.jpg?h=O3NNntjwNZU4mcJugy4l-g" style="width:80px;height:120px;"/></div>
+                                            <div class="item"><img src="https://img01.zbiornik.com/s/images/15946/4vth2cuj0/49718acc8627cd1c6150397ef6e40ece.jpg?h=N_Q4u768yjjYcLrxeY3bQg" style="width:111px;height:120px;"/></div>
+                                            <div class="item"><img src="https://img01.zbiornik.com/s/images/17147/591yvpch9/1eca76e40a90885153e60a4eb052371c.jpg?h=ocv4in0YX3zVcdis1F_uiQ" style="width:90px;height:120px;"/></div>
+                                            <div class="item"><img src="https://img02.zbiornik.com/s/images/17347/5b9nqwc3h/9dce9074c0ffe70ae47648da46d6e032.jpg?h=_kUXJ_GxcT7P8D9A2kz-6w" style="width:98px;height:120px;"/></div>
+                                            <div class="item"><img src="https://img01.zbiornik.com/s/images/16027/4wppmtkrw/2639067c54eef18234ca7b15c2f6de42.jpg?h=a7naTmXx2fInAwBRSHt6LQ" style="width:90px;height:120px;"/></div>
+                                            <div class="item"><img src="https://img01.zbiornik.com/s/images/16022/4wnrn2a2s/1e332fcda087cf3cef7e6da7b7d9c0dd.jpg?h=uFucOdGRWV2PoZateQ9elA" style="width:90px;height:120px;"/></div>
+                                            <div class="item"><img src="https://img01.zbiornik.com/s/images/16470/51lgwvknk/665684723c117b1b5972a7869e260ad5.jpg?h=EaFcsapBYM4Pkv4oVPu1qw" style="width:80px;height:120px;"/></div>
+                                            <div class="item"><img src="https://img01.zbiornik.com/s/images/15816/4udz3h2wk/c9df90fdcf07eacef9a6c45a8c90b036.jpg?h=IpPAJrPrGPCDQLjmgxtR3A" style="width:109px;height:120px;"/></div>
+                                            <div class="item"><img src="https://img01.zbiornik.com/s/images/16601/531fqlman/50120c2c64850661874bf5bd5cd391dd.jpg?h=XVdBq-wBL5KDXL9wuVFLWg" style="width:100px;height:120px;"/></div>
+                                            <div class="item"><img src="https://img01.zbiornik.com/s/images/17380/5bmq5ina1/35d2759524613f3d4d20fcf498702b5c.jpg?h=PsdLSCMvj9pjMJ9LncAv1w" style="width:68px;height:120px;"/></div>
+                                            <div class="item"><img src="https://img01.zbiornik.com/s/images/17245/5a4u53i1o/480cf44c1deffd65c961e2ea7eac7149.jpg?h=h4julAwZi_kxqsvrikI5ow" style="width:114px;height:120px;"/></div>
+                                            <div class="item"><img src="https://img01.zbiornik.com/s/images/16327/500papgdj/aa988bd9b3412ae233c0f574a3163315.jpg?h=o39jxu3eXPTDOSaDK68vEA" style="width:116px;height:120px;"/></div>
+                                            <div class="item"><img src="https://img02.zbiornik.com/s/images/14251/4d4nvmf86/0211981561ba0e09eabf067b44e70286.jpg?h=YQ5-8b9ne34egEs33cWMtA" style="width:113px;height:120px;"/></div>
+                                            <div class="item"><img src="https://img01.zbiornik.com/s/images/15357/4pbo2izfr/d4031bb6da41d5ba58815f0eca0cb7b9.jpg?h=cUvmIGNq7PiZ_1BFR94gQg" style="width:96px;height:120px;"/></div>
+                                            <div class="item"><img src="https://img02.zbiornik.com/s/images/14624/4h8ptpyfr/34a6601afd86d8163227875ac5e4f1d6.jpg?h=-lS1jCON15z33MRx76ffGg" style="width:95px;height:120px;"/></div>
+                                            <div class="item"><img src="https://img02.zbiornik.com/s/images/16878/563i9yuu7/b1f4886dfc7d7f47207eda02d42727f5.jpg?h=Q7XwuHHtLbMONElI9vEqmA" style="width:67px;height:120px;"/></div>
+                                            <div class="item"><img src="https://img01.zbiornik.com/s/images/15289/4okh4copf/2f910741018b61c456346b7899c8a7e9.jpg?h=afmHfF8A763934plOXMl8w" style="width:90px;height:120px;"/></div>
+                                            <div class="item"><img src="https://img01.zbiornik.com/s/images/16099/4xi87qprm/b2009beaacedf42cb9548f70fbf4cec2.jpg?h=ClgEn7qn-xEjn8Vj-AugBw" style="width:88px;height:120px;"/></div>
+                                            <div class="item"><img src="https://img02.zbiornik.com/s/images/15845/4upckupym/21400c2ce7a111a9730611f4eff24c27.jpg?h=5na7jiwLUwYo0M6PRgSOlw" style="width:90px;height:120px;"/></div>
+                                            <div class="item"><img src="https://img01.zbiornik.com/s/images/17189/59iqpnb1h/fea1b135f70462f1f9ce7eb5f5cf9e90.jpg?h=RoMdMS9uejTR1_BGGyVLCw" style="width:76px;height:120px;"/></div>
+                                            <div class="item"><img src="https://img01.zbiornik.com/s/images/16983/578x9wmni/af6fcd6320dabba53cbb2e95e5e999bd.jpg?h=1tDfxFQtqEzB8ONIIL7PHw" style="width:90px;height:120px;"/></div>
+                                            <div class="item"><img src="https://img02.zbiornik.com/s/images/17289/5ammisyf0/539a670fbe61b32a1d4530b1406a0e07.jpg?h=Gt225is-BQ204s1hEPyo1A" style="width:67px;height:120px;"/></div>
+                                            <div class="item"><img src="https://img02.zbiornik.com/s/images/16989/57bdkq1pk/7c722d20d3c511f3e40f7c18de75c0bc.jpg?h=E_wtqIA2HXaHsQWkIyDd5Q" style="width:90px;height:120px;"/></div>
+                                            <div class="item"><img src="https://img01.zbiornik.com/s/images/15925/4vl4yntoj/6c1560e7af91d62d9263781b09c5b96d.jpg?h=DJ-dOQ3Ah2nd9YXukQoAXQ" style="width:90px;height:120px;"/></div>
+                                    </div>
+            </div>
+            <div id="btn_verified_more" style="margin-top:16px;">
+                <button class="simple" onclick="more('verified', 1);">Więcej</button>
+            </div>
+        </p>
+    </section>
+
+    <section class="info">
+        <h2>
+            <svg viewBox="0 0 24 24" class="ikon" style="fill:#03a9f4;">
+                <g><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"></path></g>
+            </svg>
+            Kamery na żywo <span style="color:rgba(0,0,0,.5)">(64)</span>
+        </h2>
+        <p>
+            Wejdź na wyżyny ekshibicjonizmu publikując swoją transmisję na żywo.<br/>
+            Obecnie transmisję prowadzi <strong>64</strong> osób.<br/>
+
+            <div id="live_more" class="hidden_elem" style="margin:8px 0;">
+                <p>
+                    Popularne transmisje słono nagradzamy.<br/>
+                </p>
+                <div style="text-align:center;">
+                                            <div class="cam" style="display:inline-block;"><a href="https://zbiornik.tv/piekniImlodzi20" target="_blank"><img src="https://camshot.zbiornik.com/2952649-public-224.jpg" style="width:112px;height:84px;"></a></div>
+                                            <div class="cam" style="display:inline-block;"><a href="https://zbiornik.tv/Krecikowa" target="_blank"><img src="https://camshot.zbiornik.com/3054752-public-224.jpg" style="width:112px;height:84px;"></a></div>
+                                            <div class="cam" style="display:inline-block;"><a href="https://zbiornik.tv/BananowaLodziareczka" target="_blank"><img src="https://camshot.zbiornik.com/3024504-public-224.jpg" style="width:112px;height:84px;"></a></div>
+                                            <div class="cam" style="display:inline-block;"><a href="https://zbiornik.tv/My_bez_sciemy" target="_blank"><img src="https://camshot.zbiornik.com/3012789-public-224.jpg" style="width:112px;height:84px;"></a></div>
+                                            <div class="cam" style="display:inline-block;"><a href="https://zbiornik.tv/Mmmiau" target="_blank"><img src="https://camshot.zbiornik.com/2988037-public-224.jpg" style="width:112px;height:84px;"></a></div>
+                                            <div class="cam" style="display:inline-block;"><a href="https://zbiornik.tv/normalni6969" target="_blank"><img src="https://camshot.zbiornik.com/2984254-public-224.jpg" style="width:112px;height:84px;"></a></div>
+                                            <div class="cam" style="display:inline-block;"><a href="https://zbiornik.tv/Malina42" target="_blank"><img src="https://camshot.zbiornik.com/3011007-public-224.jpg" style="width:112px;height:84px;"></a></div>
+                                            <div class="cam" style="display:inline-block;"><a href="https://zbiornik.tv/Namientnaparka" target="_blank"><img src="https://camshot.zbiornik.com/2464828-public-224.jpg" style="width:112px;height:84px;"></a></div>
+                                            <div class="cam" style="display:inline-block;"><a href="https://zbiornik.tv/niedoswiadczona93" target="_blank"><img src="https://camshot.zbiornik.com/2865475-public-224.jpg" style="width:112px;height:84px;"></a></div>
+                                            <div class="cam" style="display:inline-block;"><a href="https://zbiornik.tv/mezatka48" target="_blank"><img src="https://camshot.zbiornik.com/549750-public-224.jpg" style="width:112px;height:84px;"></a></div>
+                                            <div class="cam" style="display:inline-block;"><a href="https://zbiornik.tv/Emisexx" target="_blank"><img src="https://camshot.zbiornik.com/2790237-public-224.jpg" style="width:112px;height:84px;"></a></div>
+                                            <div class="cam" style="display:inline-block;"><a href="https://zbiornik.tv/Namietna__Wawa" target="_blank"><img src="https://camshot.zbiornik.com/2909272-public-224.jpg" style="width:112px;height:84px;"></a></div>
+                                    </div>
+                <p>
+                    Transmisje możesz także oglądać na <a href="https://zbiornik.tv" target="_blank">Zbiornik.TV</a>
+                </p>
+            </div>
+            <div id="btn_live_more" style="margin-top:16px;">
+                <button class="simple" onclick="more('live', 1);">Więcej</button>
+            </div>
+        </p>
+    </section>
+
+    <section class="info">
+        <h2>
+            <svg viewBox="0 0 24 24" class="ikon" style="fill:#03a9f4;">
+                <g><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></g>
+            </svg>
+            W okolicy
+        </h2>
+        <p>
+            Nawiązuj kontakty w swojej okolicy, dzięki lokalizacji GPS.<br/>
+            Porozmawiasz także na czacie lokalnym.
+        </p>
+    </section>
+
+    <section class="info">
+        <h2>
+            <svg viewBox="0 0 24 24" class="ikon" style="fill:#03a9f4;">
+                <g><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"></path></g>
+            </svg>
+            Filmy
+        </h2>
+        <p>
+            Każdego dnia nasi użytkownicy publikują setki filmów.<br>
+            Oglądaj je w jakości: 360p, 480p, 720p!
+
+            <div id="videos_more" class="hidden_elem" style="margin:8px 0;">
+                <p>
+                    Poniżej kilka hitów z ostatnich dni.
+                </p>
+                <div style="text-align:center;">
+                                            <div style="display:inline-block;"><img src="https://vimg.zbiornik.com/videos/17444/2589908-1507197888/w160-2.jpg" style="width:160px;height:90px;"></div>
+                                            <div style="display:inline-block;"><img src="https://vimg.zbiornik.com/videos/17437/2828289-1506587533/w160-2.jpg" style="width:160px;height:90px;"></div>
+                                            <div style="display:inline-block;"><img src="https://vimg.zbiornik.com/videos/17441/3023771-1506958969/w160-2.jpg" style="width:160px;height:90px;"></div>
+                                            <div style="display:inline-block;"><img src="https://vimg.zbiornik.com/videos/17444/2624060-1507177151/w160-2.jpg" style="width:160px;height:90px;"></div>
+                                            <div style="display:inline-block;"><img src="https://vimg.zbiornik.com/videos/17440/2838132-1506877984/w160-2.jpg" style="width:160px;height:90px;"></div>
+                                            <div style="display:inline-block;"><img src="https://vimg.zbiornik.com/videos/17444/3007638-1507183268/w160-2.jpg" style="width:160px;height:90px;"></div>
+                                            <div style="display:inline-block;"><img src="https://vimg.zbiornik.com/videos/17439/2951694-1506770509/w160-2.jpg" style="width:160px;height:90px;"></div>
+                                            <div style="display:inline-block;"><img src="https://vimg.zbiornik.com/videos/17441/2368858-1506909958/w160-2.jpg" style="width:160px;height:90px;"></div>
+                                    </div>
+            </div>
+            <div id="btn_videos_more" style="margin-top:16px;">
+                <button class="simple" onclick="more('videos', 1);">Więcej</button>
+            </div>
+
+        </p>
+    </section>
+
+    <section class="info">
+        <h2>
+            <svg viewBox="0 0 24 24" class="ikon" style="fill:#03a9f4;">
+                <g><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"></path></g>
+            </svg>
+            Zdjęcia
+        </h2>
+        <p>
+            Publikuj, oglądaj, przesyłaj na komunikatorze.<br>
+            Twórz piękne albumy i dziel się nimi z kim tylko zechcesz.<br>
+            Sam decydujesz kto ma dostęp do Twoich materiałów.
+
+            <div id="photos_more" class="hidden_elem" style="margin:8px 0;">
+                <p>
+                    Nasi użytkownicy dodają kilka tysięcy zdjęć dziennie.<br/>
+                    Poniżej kilka miniaturek tylko z <strong>tego tygodnia</strong>.<br>
+                </p>
+                <div style="text-align:center;">
+                    <div id="photos_grid" class="grid">
+                                                    <div class="item"><img src="https://img02.zbiornik.com/s/images/17440/5caemc4se/73ffa66711298393edd03df97457d7e7.jpg?h=3B5iDq37B6IemTHjyKKQbQ" style="width:90px;height:120px;"/></div>
+                                                    <div class="item"><img src="https://img02.zbiornik.com/s/images/17441/5campmrhr/53048b875ff6a4305e3aea687c4d278b.jpg?h=vTaP8l36cqKZgI2nAWiDCA" style="width:98px;height:120px;"/></div>
+                                                    <div class="item"><img src="https://img02.zbiornik.com/s/images/17440/5cae8e5j4/88e4fdbf4901ef8ab23333863c87ea0f.jpg?h=HZ7qNRG4MxukcqaR8fj2sw" style="width:90px;height:120px;"/></div>
+                                                    <div class="item"><img src="https://img01.zbiornik.com/s/images/17445/5cc9txse2/768ac0dee84700a75564fa49cc188a2b.jpg?h=fGSynpmXst-yRWKyy3x5ZA" style="width:80px;height:120px;"/></div>
+                                                    <div class="item"><img src="https://img01.zbiornik.com/s/images/17441/5caswovmv/c513d87a5fec58aa452c37df0d4db1c4.jpg?h=a4SlKnJwHf1vCOS7GsOhtg" style="width:77px;height:120px;"/></div>
+                                                    <div class="item"><img src="https://img01.zbiornik.com/s/images/17440/5caelson9/87420f30842bd8bcfc0116de31a4abb7.jpg?h=ZdlpMy-QTGdY9Yg4PopvAg" style="width:90px;height:120px;"/></div>
+                                                    <div class="item"><img src="https://img02.zbiornik.com/s/images/17445/5ccbvlskd/7606e7d2c1d8205fd000a9ab260e7000.jpg?h=SdL4Hd9hKvvyT01svrW64g" style="width:90px;height:120px;"/></div>
+                                                    <div class="item"><img src="https://img01.zbiornik.com/s/images/17441/5carqr9n8/d5d44861f93830985f3e71836ce88a7a.jpg?h=1DKOT4_Djim6gh29DD9VEg" style="width:90px;height:120px;"/></div>
+                                                    <div class="item"><img src="https://img01.zbiornik.com/s/images/17440/5cabwbdjc/84d1f16253da5c22dcdf792937ecf074.jpg?h=DHwup1zsMWc_MvcgModsDg" style="width:90px;height:120px;"/></div>
+                                                    <div class="item"><img src="https://img01.zbiornik.com/s/images/17441/5caqrub1j/fe3d4fff5548d4b1608319bfbd89ad8c.jpg?h=MNISX0q5f2zzgf8SHAG9hA" style="width:90px;height:120px;"/></div>
+                                                    <div class="item"><img src="https://img02.zbiornik.com/s/images/17444/5cbuup0gf/6f75e8087442e2e0dc9e1d093db5e69d.jpg?h=Fcc3x0nxTu3tInIyHyR6Dw" style="width:89px;height:120px;"/></div>
+                                                    <div class="item"><img src="https://img02.zbiornik.com/s/images/17443/5cbg16p7k/6f058e9ac3672e0d8701ff1ea70483d1.jpg?h=oFxaFLWbmCedjsmY0Hr3og" style="width:68px;height:120px;"/></div>
+                                                    <div class="item"><img src="https://img01.zbiornik.com/s/images/17445/5cca21ln3/ccb54d012ac00751e5a1b38fca2d1255.jpg?h=IylDfQkES5G0vgcs4Tsdig" style="width:68px;height:120px;"/></div>
+                                                    <div class="item"><img src="https://img02.zbiornik.com/s/images/17442/5cb5151ju/9275bc2eba7affb382eb149fa6462a96.jpg?h=xFyOIpD9xM9MAnse7f8iDQ" style="width:90px;height:120px;"/></div>
+                                                    <div class="item"><img src="https://img02.zbiornik.com/s/images/17440/5cabyigns/e7ec0cd50c492bc3185debd65654ec8e.jpg?h=U8Ds6VWeEPwiqx_YctmIOA" style="width:92px;height:120px;"/></div>
+                                                    <div class="item"><img src="https://img02.zbiornik.com/s/images/17443/5cbep2ant/3209a6a190693a396e751c8ad123a5e5.jpg?h=W1t52wYe3WLblUF7ld0Z0g" style="width:109px;height:120px;"/></div>
+                                                    <div class="item"><img src="https://img01.zbiornik.com/s/images/17423/5c3u6rcmg/42445af8c38cef1587546976818dee52.jpg?h=vIQKo7tZ38aiqtJfYMW-XQ" style="width:68px;height:120px;"/></div>
+                                                    <div class="item"><img src="https://img02.zbiornik.com/s/images/17441/5caqwuxnm/e5dde006c3bdb5d6f04c052835c10449.jpg?h=sU5tuS50cBd9d4GZHDe_9A" style="width:89px;height:120px;"/></div>
+                                                    <div class="item"><img src="https://img02.zbiornik.com/s/images/17441/5capxsffk/70725a6f3be38166fab938ee7192ace3.jpg?h=aHi-Vl_pMrfYslY_E-6rMw" style="width:90px;height:120px;"/></div>
+                                                    <div class="item"><img src="https://img02.zbiornik.com/s/images/17440/5cagtej5x/ca6af4c0a1e82fd5a40cd83108080fc9.jpg?h=jDyMn2nJ5ngXXgcsVCu2xA" style="width:68px;height:120px;"/></div>
+                                                    <div class="item"><img src="https://img01.zbiornik.com/s/images/17441/5caxl9wj0/9dd35e8d60f8aea04976af6931e584c0.jpg?h=xf9f1XEMm3xOebaRjY7MVw" style="width:90px;height:120px;"/></div>
+                                                    <div class="item"><img src="https://img02.zbiornik.com/s/images/17443/5cbi32kb8/adb4cc8ab54eab154ef15a2014a3f2d1.jpg?h=icNuwaLbu5kc2-Lal5R4zg" style="width:90px;height:120px;"/></div>
+                                                    <div class="item"><img src="https://img02.zbiornik.com/s/images/17443/5cbgyqk5x/5c18ecae94507f46a7721e1e0c31d940.jpg?h=tGpIPTag349YDGqeP_tzyQ" style="width:90px;height:120px;"/></div>
+                                                    <div class="item"><img src="https://img02.zbiornik.com/s/images/17440/5cacln9mk/8f26d47b7b3e79c7aa8e161eb4a65fea.jpg?h=iFobOAhgpDAR8eMfiIxKaw" style="width:68px;height:120px;"/></div>
+                                                    <div class="item"><img src="https://img01.zbiornik.com/s/images/17441/5cazy4s79/0161b524ac3dc28e40146bc86d83d64d.jpg?h=ulhrjBNXd9eV1fy7sZgkkQ" style="width:41px;height:120px;"/></div>
+                                                    <div class="item"><img src="https://img02.zbiornik.com/s/images/17442/5cbbwuhij/eb19d096ea03a8c685e492a9b9b0e438.jpg?h=LlOpNyOGeiKdYuuOOuQQhQ" style="width:68px;height:120px;"/></div>
+                                                    <div class="item"><img src="https://img01.zbiornik.com/s/images/17442/5cb0gm7dq/46c8cd7969911117f003ed7a09bd8531.jpg?h=tIRIvq1qcVQNIdDCHSR3Hg" style="width:86px;height:120px;"/></div>
+                                                    <div class="item"><img src="https://img02.zbiornik.com/s/images/17445/5ccbk8prz/a2efbf1cfa8b3f41f8dd24751d284fe2.jpg?h=Twxxvhw6WiTOaaQoHj_Quw" style="width:103px;height:120px;"/></div>
+                                                    <div class="item"><img src="https://img02.zbiornik.com/s/images/17444/5cbxl1vu2/59233e225666528684f383542f436be7.jpg?h=M4snZ5iL2NcYE2SFfiz1MQ" style="width:89px;height:120px;"/></div>
+                                                    <div class="item"><img src="https://img01.zbiornik.com/s/images/17442/5cb54d9vt/cfc428f3e904619f0b99d0b55c47b094.jpg?h=U2ZNon0aA_cSrDzvN7duqQ" style="width:98px;height:120px;"/></div>
+                                            </div>
+                </div>
+            </div>
+            <div id="btn_photos_more" style="margin-top:16px;">
+                <button class="simple" onclick="more('photos', 1);">WIĘCEJ</button>
+            </div>
+        </p>
+    </section>
+
+    <section class="info">
+        <h2>
+            <svg viewBox="0 0 24 24" class="ikon" style="fill:#03a9f4;">
+                <g><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"></path></g>
+            </svg>
+            Bezpieczeństwo
+        </h2>
+        <p>
+            Jako jedni z nielicznych i na tę chwilę jedyni w Polsce (w segmencie stron dla dorosłych) posiadamy certyfikat <strong>SSL</strong>.<br>
+            Dzięki temu cała komunikacja z naszymi serwerami odbywa się poprzez bezpieczny protokół <strong>HTTPS</strong>.
+        </p>
+    </section>
+
+    <section class="info">
+        <h2>
+            <svg viewBox="0 0 24 24" class="ikon" style="fill:#03a9f4;">
+                <g><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></g>
+            </svg>
+            Reasumując
+        </h2>
+        <p>
+            Nie uświadczysz w Polsce (a i na świecie trudno szukać) portalu dla dorosłych, który zaoferuje Ci taki ogrom możliwości.<br>
+        </p>
+        <p>
+            Portalu przystosowanego do wszelkich nowoczesnych urządzeń mobilnych.
+        </p>
+        <p>
+            Portalu, na którym nie znajdziesz wyskakujących reklam, migających bannerów i innego badziewia.
+        </p>
+        <p>
+            Portalu, który istnieje na rynku już <strong>ponad 14 lat!</strong>
+        </p>
+    </section>
+    <div id="zbiornik-footer">
+        <div class="copy">zbiornik.com © 2002-<span id="yr"></span></div>
+        <div class="lnks">
+            <a href="https://zbiornik.tv/">Zbiornik.TV</a>
+            ·
+            <a href="https://mini.zbiornik.com/">Mini Zbiornik</a>
+            ·
+            <a href="https://sklep.zbiornik.com/">Sklep</a>
+            ·
+            <a href="https://zbiornik.com/regulamin.pdf">Regulamin</a>
+            ·
+            <a href="https://zbiornik.com/polityka_prywatnosci.pdf">Polityka Prywatności</a>
+            ·
+            <a href="/contact">Kontakt</a>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    if( repass && repass.repass ) {
+        helpMeBardzo2();
+    }
+    if( repassError ) {
+        helpMeBardzo2Invalid();
+    }
+</script>
+
+
+<script>
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-555820-11', 'auto');
+    ga('send', 'pageview');
+
+    setTimeout( function() {
+        window.location.reload( true );
+    }, 60*60*1000 );
+
+    $(document).ready( function() {
+        $('#yr').text(new Date().getFullYear());
+        $.ajax({
+            dataType: "json",
+            url: '/lch.php',
+            data: { ltoken: $("#zbiornik-ltoken").val() },
+            timeout: 10*1000,
+            success: function( resp ){
+                if( !resp.ok ) {
+                    setTimeout( function() {
+                        location.reload( true );
+                    }, 1000 );
+                }
+            }
+        });
+
+    });
+</script>
 </body>
 </html>

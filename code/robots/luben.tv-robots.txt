@@ -1,5 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var o=n[t]={exports:{}};e[t][0].call(o.exports,function(n){var o=e[t][1][n];return r(o||n)},o,o.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<t.length;o++)r(t[o]);return r}({1:[function(e,n,t){function r(){}function o(e,n,t){return function(){return i(e,[c.now()].concat(u(arguments)),n?null:this,t),n?void 0:this}}var i=e("handle"),a=e(2),u=e(3),f=e("ee").get("tracer"),c=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,n){s[n]=o(d+n,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),n.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,n){var t={},r=this,o="function"==typeof n;return i(l+"tracer",[c.now(),e,t],r),function(){if(f.emit((o?"":"no-")+"fn-start",[c.now(),r,o],t),o)try{return n.apply(this,arguments)}finally{f.emit("fn-end",[c.now()],t)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,n){m[n]=o(l+n)}),newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),i("err",[e,c.now()])}},{}],2:[function(e,n,t){function r(e,n){var t=[],r="",i=0;for(r in e)o.call(e,r)&&(t[i]=n(r,e[r]),i+=1);return t}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],3:[function(e,n,t){function r(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,o=t-n||0,i=Array(o<0?0:o);++r<o;)i[r]=e[n+r];return i}n.exports=r},{}],4:[function(e,n,t){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,n,t){function r(){}function o(e){function n(e){return e&&e instanceof r?e:e?f(e,u,i):i()}function t(t,r,o,i){if(!d.aborted||i){e&&e(t,r,o);for(var a=n(o),u=m(t),f=u.length,c=0;c<f;c++)u[c].apply(a,r);var p=s[y[t]];return p&&p.push([b,t,r,a]),a}}function l(e,n){v[e]=m(e).concat(n)}function m(e){return v[e]||[]}function w(e){return p[e]=p[e]||o(t)}function g(e,n){c(e,function(e,t){n=n||"feature",y[t]=n,n in s||(s[n]=[])})}var v={},y={},b={on:l,emit:t,get:w,listeners:m,context:n,buffer:g,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",f=e("gos"),c=e(2),s={},p={},d=n.exports=o();d.backlog=s},{}],gos:[function(e,n,t){function r(e,n,t){if(o.call(e,n))return e[n];var r=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[n]=r,r}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(e,n,t){function r(e,n,t,r){o.buffer([e],r),o.emit(e,n,t)}var o=e("ee").get("handle");n.exports=r,r.ee=o},{}],id:[function(e,n,t){function r(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");n.exports=r},{}],loader:[function(e,n,t){function r(){if(!x++){var e=h.info=NREUM.info,n=d.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&n))return s.abort();c(y,function(n,t){e[n]||(e[n]=t)}),f("mark",["onload",a()+h.offset],null,"api");var t=d.createElement("script");t.src="https://"+e.agent,n.parentNode.insertBefore(t,n)}}function o(){"complete"===d.readyState&&i()}function i(){f("mark",["domContent",a()+h.offset],null,"api")}function a(){return E.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-h.offset}var u=(new Date).getTime(),f=e("handle"),c=e(2),s=e("ee"),p=window,d=p.document,l="addEventListener",m="attachEvent",w=p.XMLHttpRequest,g=w&&w.prototype;NREUM.o={ST:setTimeout,SI:p.setImmediate,CT:clearTimeout,XHR:w,REQ:p.Request,EV:p.Event,PR:p.Promise,MO:p.MutationObserver};var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1044.min.js"},b=w&&g&&g[l]&&!/CriOS/.test(navigator.userAgent),h=n.exports={offset:u,now:a,origin:v,features:{},xhrWrappable:b};e(1),d[l]?(d[l]("DOMContentLoaded",i,!1),p[l]("load",r,!1)):(d[m]("onreadystatechange",o),p[m]("onload",r)),f("mark",["firstbyte",u],null,"api");var x=0,E=e(4)},{}]},{},["loader"]);</script>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <meta name="description" content="">
+        <title>| 404</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/assets/front_assets/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Image upload CSS -->
+    <link href="/assets/front_assets/css/dropzone.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+
+    <link href="/assets/front_assets/css/blog-home.css" rel="stylesheet">
+
+    <link href="/assets/front_assets/css/custom.css?v=0.7.25" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/assets/front_assets/css/bootstrap-tagsinput.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link href="http://vjs.zencdn.net/5.8.8/video-js.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="/assets/front_assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/front_assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/front_assets/css/component.css">
+    <link rel="stylesheet" href="/assets/front_assets/css/hamburgers.min.css">
+    <link rel="stylesheet" href="/assets/front_assets/css/bootstrap-social.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/csshake/1.5.2/csshake.min.css">
 
 
 
-User-agent: *
-Disallow: /wp-admin/
+
+
+    <style>
+
+      @keyframes  shake {
+          10%, 90% {
+            transform: translate3d(-1px, 0, 0);
+        }
+
+        20%, 80% {
+            transform: translate3d(2px, 0, 0);
+        }
+
+        30%, 50%, 70% {
+            transform: translate3d(-4px, 0, 0);
+        }
+
+        40%, 60% {
+            transform: translate3d(4px, 0, 0);
+        }
+    }
+</style>
+
+
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-37072907-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+<script src="/assets/front_assets/js/jquery.js"></script>
+<script src="/assets/front_assets/js/modernizr.custom.js"></script>
+
+<!-- madinad -->
+<script src="https://madinad-prod.s3.amazonaws.com/static/madinadsdk-latest.js?a=b3346e55-1e9b-4986-bbe4-8e80680d3a8a" type="application/javascript"></script>
+
+<!-- If you'd like to support IE8 -->
+<script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+
+<script type="text/javascript" id="ean-native-embed-tag" src="//cdn.elasticad.net/native/serve/js/nativeEmbed.gz.js"></script>
+
+
+    <script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+    <script>
+      var googletag = googletag || {};
+      googletag.cmd = googletag.cmd || [];
+    </script>
+
+    <script>
+      googletag.cmd.push(function() {
+        var leaderboard_mapping = googletag.sizeMapping().addSize([1280, 800], [ [970, 90], [970, 250], [960, 200], [728, 90]]).addSize([600, 800], [[320, 50], [320, 100]]).addSize([800, 600], [[728, 90], [468, 60]]).addSize([0, 0], [[320, 50], [320, 100]]).build();
+
+          googletag.pubads().enableAsyncRendering();
+                googletag.defineSlot('/59612724/AdBottom', [[300, 250], [336, 280]], 'div-gpt-ad-1499690998478-0').addService(googletag.pubads());
+        googletag.defineSlot('/59612724/Article_300x250_Middle', [[300, 250], [336, 280]], 'div-gpt-ad-1499690998478-1').addService(googletag.pubads());
+        googletag.defineSlot('/59612724/Article_640x50', [640, 50], 'div-gpt-ad-1499690998478-2').addService(googletag.pubads());
+        googletag.defineSlot('/59612724/Article_690x40', [690, 40], 'div-gpt-ad-1499690998478-3').addService(googletag.pubads());
+        googletag.defineSlot('/59612724/article_top', [[300, 250], [336, 280]], 'div-gpt-ad-1499690998478-8').addService(googletag.pubads());
+        googletag.defineOutOfPageSlot('/59612724/Prestitial_Home', 'div-gpt-ad-1499690998478-12').addService(googletag.pubads());
+        googletag.defineSlot('/59612724/Luben_Leaderboard', [[970, 250], [320, 50], [970, 90], [320, 100], [960, 200], [728, 90]], 'div-gpt-ad-1499690998478-13').defineSizeMapping(leaderboard_mapping).addService(googletag.pubads());
+        googletag.defineSlot('/59612724/LubenBox_RightSidebarTop_300x250', [300, 250], 'div-gpt-ad-1499690998478-14').addService(googletag.pubads());
+       googletag.defineSlot('/59612724/Luben_RightSidebar_300x600', [300, 600], 'div-gpt-ad-1499690998478-15').addService(googletag.pubads());
+        googletag.defineSlot('/59612724/LubenBox_RightSidebarTop2_300x250', [300, 250], 'div-gpt-ad-1499690998478-16').addService(googletag.pubads());
+        googletag.defineSlot('/59612724/Luben_RightSidebar2_300x600', [[300, 250], [300, 600]], 'div-gpt-ad-1499690998478-17').addService(googletag.pubads());
+        googletag.defineOutOfPageSlot('/59612724/Skin_Advert', 'div-gpt-ad-1499690998478-18').addService(googletag.pubads());
+        
+
+        googletag.pubads().setTargeting("url","");
+        googletag.pubads().collapseEmptyDivs();
+        googletag.enableServices();
+      });
+
+      var nextSlotId = 1;
+      function generateNextSlotName() {
+       var id = nextSlotId++;
+       return 'adslot' + id;
+     }
+
+     var nextDivId = 1;
+     function generateNextDivName() {
+       var divid = nextDivId++;
+       return 'div-infinite-ad-' + divid;
+     }
+
+     function infiniteAd(placeholderDiv, slotSize, slotKind) {
+
+   // Generate next slot name
+   var slotName = generateNextSlotName();
+
+   // Create a div for the slot
+   var slotDiv = document.createElement('div');
+   slotDiv.id = slotName; // Id must be the same as slotName
+
+
+   placeholderDiv.appendChild(slotDiv);
+
+   googletag.cmd.push(function() {
+     var slot = googletag.defineSlot(slotKind, slotSize, slotName).
+     addService(googletag.pubads());
+
+    // googletag.display(slotName);
+     googletag.pubads().refresh([slot]);
+   });
+
+ }
+
+</script>
+
+
+
+
+<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+<script src="/assets/front_assets/js/300x250.js?v=1.0"></script>
+
+<script>
+// $( window ).load(function() {
+var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
+function init() {
+  canvas = document.getElementById("canvas");
+  anim_container = document.getElementById("animation_container");
+  dom_overlay_container = document.getElementById("dom_overlay_container");
+  var comp=AdobeAn.getComposition("3ADAE60CFD854A35A38007F2CC3550D5");
+  var lib=comp.getLibrary();
+  var loader = new createjs.LoadQueue(false);
+  loader.addEventListener("fileload", function(evt){handleFileLoad(evt,comp)});
+  loader.addEventListener("complete", function(evt){handleComplete(evt,comp)});
+  var lib=comp.getLibrary();
+  loader.loadManifest(lib.properties.manifest);
+}
+function handleFileLoad(evt, comp) {
+  var images=comp.getImages();
+  if (evt && (evt.item.type == "image")) { images[evt.item.id] = evt.result; }
+}
+function handleComplete(evt,comp) {
+  //This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
+  var lib=comp.getLibrary();
+  var ss=comp.getSpriteSheet();
+  var queue = evt.target;
+  var ssMetadata = lib.ssMetadata;
+  for(i=0; i<ssMetadata.length; i++) {
+    ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
+  }
+  exportRoot = new lib._300x250();
+  stage = new lib.Stage(canvas);
+  stage.addChild(exportRoot);
+  //Registers the "tick" event listener.
+  fnStartAnimation = function() {
+    createjs.Ticker.setFPS(lib.properties.fps);
+    createjs.Ticker.addEventListener("tick", stage);
+  }
+  //Code to support hidpi screens and responsive scaling.
+  function makeResponsive(isResp, respDim, isScale, scaleType) {
+    var lastW, lastH, lastS=1;
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    function resizeCanvas() {
+      var w = lib.properties.width, h = lib.properties.height;
+      var iw = window.innerWidth, ih=window.innerHeight;
+      var pRatio = window.devicePixelRatio || 1, xRatio=iw/w, yRatio=ih/h, sRatio=1;
+      if(isResp) {
+        if((respDim=='width'&&lastW==iw) || (respDim=='height'&&lastH==ih)) {
+          sRatio = lastS;
+        }
+        else if(!isScale) {
+          if(iw<w || ih<h)
+            sRatio = Math.min(xRatio, yRatio);
+        }
+        else if(scaleType==1) {
+          sRatio = Math.min(xRatio, yRatio);
+        }
+        else if(scaleType==2) {
+          sRatio = Math.max(xRatio, yRatio);
+        }
+      }
+      canvas.width = w*pRatio*sRatio;
+      canvas.height = h*pRatio*sRatio;
+      canvas.style.width = dom_overlay_container.style.width = anim_container.style.width =  w*sRatio+'px';
+      canvas.style.height = anim_container.style.height = dom_overlay_container.style.height = h*sRatio+'px';
+      stage.scaleX = pRatio*sRatio;
+      stage.scaleY = pRatio*sRatio;
+      lastW = iw;
+ lastH = ih;
+ lastS = sRatio;
+    }
+  }
+  makeResponsive(false,'both',false,1);
+  AdobeAn.compositionLoaded(lib.properties.id);
+  fnStartAnimation();
+}
+
+
+
+// });
+</script>
+
+
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+        <meta property="fb:app_id" content="136085756444361" />
+
+
+
+
+        <meta property="og:title" content="| 404"/>
+        <meta property="og:url" content="http://luben.tv/robots.txt"/>
+                <meta property="og:image" content=""/>
+        
+                <meta property="fb:app_id" content="136085756444361" />
+        <meta property="og:site_name" content="luben.tv"/>
+
+        
+        <meta property="og:description" content=""/>
+        <meta name="alexaVerifyID" content="mARWWlkiJkXJiVUtsRPEdOyL_lA" />
+        <meta name="keywords" content="luben,luben.tv,luben.gr, mARWWlkiJkXJiVUtsRPEdOyL_lA" />
+        <meta property="fb:pages" content="151797498176405" />
+
+        <meta property="article:publisher" content="https://www.facebook.com/lubenmag/" />
+
+                <meta property="og:type"   content="website" />
+        
+        <meta name="google-site-verification" content="RB2keYF0vGxS9ubmaOahfY9xWKO7oR-hEVPVTXi-eH0" />
+
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+
+        <!-- START ENNED TRACKING -->
+        <div id="analyzer">
+          <script type="text/javascript">
+            <!--
+            xtnv = document;
+        xtdmc = ".luben.tv";        // current domain and extension: ".domain.ext"
+        xtsite = "583347";            // your AT Internet site ID
+        xt_xtcpath = "luben.tv/xtcore.js";    //xtcore.js path location (absolute path, without http://)
+        //-->
+    </script>
+    <script type="text/javascript">
+        <!--
+        (function () {
+          var at = document.createElement('script');
+          at.type = 'text/javascript';
+          at.async = true;
+          at.src = (('https:' == document.location.protocol) ? 'https://' : 'http://') + xt_xtcpath;
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] || document.getElementsByTagName('script')[0].parentNode).insertBefore(at, null);
+      })();
+        //-->
+    </script>
+</div>
+<!-- /END ENNED TRACKING -->
+
+</head>
+
+<!-- /59612724/Skin_Advert -->
+<div id='div-gpt-ad-1499690998478-18' style="height:0px;">
+    <script>
+        googletag.cmd.push(function () {
+            googletag.display('div-gpt-ad-1499690998478-18');
+        });
+    </script>
+</div>
+
+<div id="skin-container" class="clearfix" style="background: url('');background-position: center;   background-color: #111; position:fixed; width:100%; height:100%; z-index:-1; top: 0px;  background-position-y: 0px;background-attachment: fixed !important;background-repeat: no-repeat;"></div>
+
+
+    <body class="cbp-spmenu-push">
+
+        <!-- /59612724/Prestitial_Home -->
+        <div id='div-gpt-ad-1499690998478-12' style="height:0px">
+            <script>
+                googletag.cmd.push(function () {
+                    googletag.display('div-gpt-ad-1499690998478-12');
+                });
+            </script>
+        </div>
+
+        <div id="fb-root"></div>
+        <script>(function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id))
+                    return;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/el_GR/sdk.js#xfbml=1&version=v2.9&appId=136085756444361";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+
+        <div class="header-cont">
+    <header id="header" class="header">
+                    <div id="logo" class="logo sprite">
+                                <button id="showLeft" class="hamburger hamburger--collapse logo-button" type="button">
+                    <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                    </span>
+                </button>
+                                <a href="/"><img width="241" src="/assets/img/logo.png"  alt="luben"></a>
+
+                                <ul class="nav navbar-nav up-social">
+                    <li class="dropdown"><a target="_blank" href="https://www.facebook.com/lubenmag/"><i class="fa fa-facebook face" aria-hidden="true"></i></i></a></li>
+                    <li class="dropdown"><a target="_blank" href="https://twitter.com/lubenmag"><i class="fa fa-twitter tweet" aria-hidden="true"></i></a></li>
+                    <li class="dropdown"><a target="_blank" href="http://api.luben.tv/feed"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
+                    <li class="dropdown search-button"><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+
+                   
+                </ul>
+            </div>
+            <nav class="navbar navbar-default">
+                <div class="container scroll-menu">
+                    <div class="navbar-header">
+                                                <a href="/"><img width="100" class="mobile-logo" src="/assets/img/logo.png"  alt="luben-mobile"></a>
+
+                                                <button type="button" class="navbar-toggle collapsed" id="showLeftMob" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <div>
+                            <button  style="display: none;"  id="showLeftNavBar" class="hamburger hamburger--collapse" type="button">
+                               <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+
+
+                                                <a  style="display: none;"  class="navbar-brand" href="/">
+                            <img src="/assets/img/logo.png" alt="luben">
+
+                        </a>
+                        
+
+                    </div>
+
+                    <ul  style="float: none;"  class="nav navbar-nav">
+
+                       
+                       
+                                                                                            <li style="text-transform: uppercase;" ><a href="http://luben.tv/cine">CINE</a>
+                       </li>
+                                              
+                                                                                         <li style="text-transform: uppercase;" ><a href="http://luben.tv/news">news</a>
+                       </li>
+                                              
+                                                                                         <li style="text-transform: uppercase;" ><a href="http://luben.tv/series">SERIES</a>
+                       </li>
+                                              
+                                                                                         <li style="text-transform: uppercase;" ><a href="http://luben.tv/originals">Originals</a>
+                       </li>
+                                              
+                                                                                         <li style="text-transform: uppercase;" ><a href="http://luben.tv/feed">feed</a>
+                       </li>
+                                              
+                                                                                         <li style="text-transform: uppercase;" ><a href="http://luben.tv/games">GAMES</a>
+                       </li>
+                                              
+                                                                                         <li style="text-transform: uppercase;" ><a href="http://luben.tv/nerdcult">Nerdcult</a>
+                       </li>
+                                              
+                                                                                         <li style="text-transform: uppercase;" ><a href="http://luben.tv/popstream">POPSTREAM</a>
+                       </li>
+                                              
+                                                                                         <li style="text-transform: uppercase;" ><a href="http://luben.tv/abaluben">abaluben</a>
+                       </li>
+                                              
+                                                                                         <li style="text-transform: uppercase;" ><a href="http://luben.tv/tech">TECH</a>
+                       </li>
+                                              
+                                                                                         <li style="text-transform: uppercase;" ><a href="http://luben.tv/videos">videos</a>
+                       </li>
+                                              
+                                                                                         <li style="text-transform: uppercase;" ><a href="http://luben.tv/guide">Guide</a>
+                       </li>
+                                              
+                                        
+                    
+                    <li  style="display: none;"  class="dropdown social-item"><a target="_blank" href="https://www.facebook.com/lubenmag/"><i class="fa fa-facebook face" aria-hidden="true"></i></i></a></li>
+                    <li  style="display: none;"  class="dropdown social-item"><a target="_blank" href="https://twitter.com/lubenmag"><i class="fa fa-twitter tweet" aria-hidden="true"></i></a></li>
+                    <li  style="display: none;"  class="dropdown social-item"><a target="_blank" href="http://api.luben.tv/feed"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
+                    <li  style="display: none;"  class="dropdown social-item search-button"><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+                     <li  style="display: none;"  class="dropdown-toggle social-item" >
+                </ul>
+
+            </div>
+
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <!--        mobile menu-->
+    
+</header>
+<div  class="search">
+    <form action="http://luben.tv/search" method="get">
+
+        <input required name="key" type="text" placeholder="Αναζήτηση">
+
+        <button type="submit">GO</button>
+    </form>
+</div>
+<!-- /header -->
+            </div>
+        <!-- Page Content -->
+        <div class="container margintop main-container">
+
+            
+<div class="inner-page-wrap">
+
+	<style id="jsbin-css">
+body {
+    background: #fff;
+}
+
+.eye1 {
+     width: 44px;
+    height: 27px;
+    top: 18px;
+    border-radius: 100%;
+    border: 0px;
+    float: left;
+    left: 98px;
+    /* background: #fff; */
+    margin-right: 83px;
+}
+
+
+.eye {
+	    left: 130px;
+    top: 20px;
+  width: 31px;
+    height: 27px;
+    border-radius: 100%;
+    border: 0px solid rgba(0,0,0,1);
+    float: left;
+
+}
+
+.iris {
+    background: url('http://luben.tv/wp-content/themes/lubenpress3/404/eyeeye1.gif'); /*recommended, but can any value*/
+    width:23px; /*required, but can be any value*/
+    height:20px; /*required, but can be any value*/
+    border-radius: 50%; /*optional*/
+    /*border: 4px solid #0ea;*/
+}
+
+.wrapper-eye {
+    position: relative;
+    top: -325px;
+    left: 242px;
+}
+
+#wrap {
+  margin: 0 auto;
+       width: 73%;
+  
+}   
+
+ 
+
+#info {
+ color: #fff;
+  
+}
+</style>
+
+
+  
+  <div id="wrap">
+  <h1 style="font-size:50px; text-align: center; margin-top: 50px;">Η σελίδα δεν βρέθηκε.</h1>
+  <img src="http://luben.tv/wp-content/themes/lubenpress3/404/koulhs2.gif">  
+  <div class="wrapper-eye">
+   <div class="eye1" style="position: relative;">
+      <div class="iris" style="position: absolute; left: 79.8125px; top: -39.23437px;"></div>
+    </div>
+    <div class="eye" style="position: relative;">
+      <div class="iris" style="position: absolute; left: 6.57155px; top: 0.819138px;"></div>
+    </div>
+    </div>
+  </div>
+  <p id="info"></p>
+<script id="jsbin-javascript">
+(function($) {
+	"use strict";
+
+	var defaultOptions = {
+		padding: 0,
+		reset: false,
+		radius: 'natural',
+		position: 'center',
+		trigger: window
+	};
+
+	var positions = {
+		top: 90,
+		bottom: -90,
+		left: 180,
+		right: 0,
+		topRight: 45,
+		topLeft: 135,
+		bottomRight: -45,
+		bottomLeft: -135
+	};
+
+	function Iris($iris) {
+		this.$iris = $iris;
+		$iris.css('position', 'absolute');
+
+		this.width  = $iris.outerWidth();
+		this.height = $iris.outerHeight();
+
+		this.resetOffset = function() {
+			var offset = $iris.offset();
+			this.offset = {
+				x: offset.left + (this.width / 2) - parseInt($iris.css("left")),
+				y: offset.top + (this.height / 2) - parseInt($iris.css("top"))
+			};
+		};
+	}
+
+	function Eye($eye, $iris) {
+		this.$eye = $eye;
+
+		$eye.css('position', 'relative');
+
+		this.width  = $eye.width();
+		this.height = $eye.height();
+
+		this.iris   = new Iris($iris);
+
+		this.pos = {
+			x: (this.width - this.iris.width) / 2,
+			y: (this.height - this.iris.height) / 2
+		};
+
+		$iris.css("left", this.pos.x + "px").css("top", this.pos.y + "px");
+
+		this.padding = 0;
+	}
+
+	Eye.prototype.follow = function(mouse) {
+		mouse.x = mouse.x - this.pos.x;
+		mouse.y = mouse.y - this.pos.y;
+
+		this.iris.resetOffset();
+
+		var degree = Math.atan(( mouse.y - this.iris.offset.y) / ( mouse.x - this.iris.offset.x)),
+		direction = (this.iris.offset.x > mouse.x) ? -1 : 1,
+		newX = Math.cos(degree) * ((this.width - this.iris.width) / 2 - this.padding) * direction,
+		newY = Math.sin(degree) * ((this.height - this.iris.height) / 2 - this.padding) * direction,
+		radius = Math.sqrt(Math.pow(newX, 2) + Math.pow(newY, 2)),
+		distance = Math.sqrt(Math.pow(mouse.y - this.iris.offset.y, 2) + Math.pow(mouse.x - this.iris.offset.x, 2));
+
+		if (radius > distance) {
+			this.iris.$iris.css("left", ( mouse.x - this.iris.offset.x + this.pos.x) + "px").css("top", (mouse.y - this.iris.offset.y + this.pos.y) + "px");
+		} else {
+			this.iris.$iris.css("left", this.pos.x + newX + "px").css("top", this.pos.y + newY + "px");
+		}
+	};
+
+	Eye.prototype.setPosition = function(position) {
+		if (position.x !== undefined && position.y !== undefined) {
+			this.iris.$iris.css("left", this.pos.x - position.x + "px").css("top", this.pos.y - position.y + "px");
+		} else if (typeof position === "number") {
+			var deg = position * Math.PI / -180;
+			this.iris.$iris.css("left", this.pos.x + Math.cos(deg) * (this.width / 2 - this.iris.width / 2 - this.padding) + "px").css("top", this.pos.y + Math.sin(deg) * (this.height / 2 - this.iris.height / 2 - this.padding) + "px");
+		} else if (position === "center") {
+			this.iris.$iris.css("left", this.pos.x + "px").css("top", this.pos.y + "px");
+		} else if (positions[position] !== undefined) {
+			var deg2 = positions[position] * Math.PI / -180;
+			this.iris.$iris.css("left", this.pos.x + Math.cos(deg2) * (this.width / 2 - this.iris.width / 2 - this.padding) + "px").css("top", this.pos.y + Math.sin(deg2) * (this.height / 2 - this.iris.height / 2 - this.padding) + "px");
+		}
+	};
+
+	$.fn.xeyes = function(options) {
+		options = $.extend(defaultOptions, options);
+		var padding = parseInt(options.padding, 10);
+		var $trigger = $(options.trigger);
+
+		this.each(function(index, irisEl) {
+			var $iris = $(irisEl),
+			$eye = $iris.parent();
+
+			var eye = new Eye($eye, $iris);
+			eye.padding = padding;
+
+			if (options.radius == 'circular' && eye.width > eye.height)
+				eye.width = eye.height;
+			else if (options.radius == 'circular')
+				eye.height = eye.width;
+
+			eye.setPosition(options.position);
+
+			$trigger.mousemove(function(e) {
+				eye.follow({ x: e.pageX, y: e.pageY });
+			});
+
+			if (options.reset) {
+				$trigger.mouseleave(function(e) {
+					eye.setPosition(options.position);
+				});
+			}
+		});
+	};
+})(jQuery);
+
+
+
+jQuery(".iris").xeyes();
+</script>
+	
+</div>
+
+        </div>
+
+                <div class="sub-footer sticky-stopper">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-7 footer-submenu">
+       <nav class="navbar navbar-default">
+        <div class="container-fluid">
+         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+                                                <li style="text-transform: uppercase;" ><a href="http://luben.tv/cine">CINE</a>
+            </li>
+            
+                                   <li style="text-transform: uppercase;" ><a href="http://luben.tv/news">news</a>
+            </li>
+            
+                                   <li style="text-transform: uppercase;" ><a href="http://luben.tv/series">SERIES</a>
+            </li>
+            
+                                   <li style="text-transform: uppercase;" ><a href="http://luben.tv/originals">Originals</a>
+            </li>
+            
+                                   <li style="text-transform: uppercase;" ><a href="http://luben.tv/feed">feed</a>
+            </li>
+            
+                                   <li style="text-transform: uppercase;" ><a href="http://luben.tv/games">GAMES</a>
+            </li>
+            
+                                   <li style="text-transform: uppercase;" ><a href="http://luben.tv/nerdcult">Nerdcult</a>
+            </li>
+            
+                                   <li style="text-transform: uppercase;" ><a href="http://luben.tv/popstream">POPSTREAM</a>
+            </li>
+            
+                                   <li style="text-transform: uppercase;" ><a href="http://luben.tv/abaluben">abaluben</a>
+            </li>
+            
+                                   <li style="text-transform: uppercase;" ><a href="http://luben.tv/tech">TECH</a>
+            </li>
+            
+                                   <li style="text-transform: uppercase;" ><a href="http://luben.tv/videos">videos</a>
+            </li>
+            
+                                   <li style="text-transform: uppercase;" ><a href="http://luben.tv/guide">Guide</a>
+            </li>
+            
+                      
+         </ul>
+       </div>
+     </div>
+   </nav>
+ </div>
+
+ <div class=" col-md-3 subscribe">
+  <input id="subscribe-input" type="email" name="email" placeholder="ΕΓΓΡΑΦΗ NEWSLETTER" required>
+  <div class="success-suscription">
+    <p></p>
+  </div>
+</div>
+<div class="subscribe-button col-md-2">
+  <a class="subscribe-action" href="#">ΕΓΓΡΑΦΗ</a>
+</div>
+
+</div>
+
+</div>
+</div>
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-7 col-sm-offset-3 col-md-offset-4 footerleft ">
+
+        <img class="img-responsive" src="http://luben.tv/assets/img/bolt.png">
+
+        <div class="footer-social">
+         <a target="_blank" class="icon-button facebook" href="https://www.facebook.com/lubenmag/"><i class="icon-facebook"></i></a>
+         <a target="_blank" class="icon-button twitter" href="https://twitter.com/lubenmag"><i class="icon-twitter"></i></a>
+         <a class="icon-button comment" comment href="#"><i class="fa fa-rss" aria-hidden="true"></i></a>
+       </div>
+       <div class="row footer-menu">
+        
+        <center><a  href="http://luben.tv/privacy_policy">ΠΟΛΙΤΙΚΗ ΑΠΟΡΡΗΤΟΥ</a></center>
+        
+      </div>
+    </div>
+  </div>
+</div>
+</footer>
+<!--footer start from here-->
+
+<div class="copyright">
+  <div class="col-sm-4">
+
+    <img class="footer-logo" src="http://luben.tv/assets/img/logo.png" alt="luben">
+
+  </div>
+  <div class="col-sm-4 copy-text">
+    <p>© 2012 - 2017 &middot;
+     All Rights Reserved &middot;
+     Flows on <span style="color:#f00;">Magma Framework</span></p>
+   </div>
+   <div class="col-sm-4 up-footer">
+
+     <a href="#top"><img src="http://luben.tv/assets/img/arrow-up.png" alt="luben-up"></a>
+
+   </div>
+
+ </div>
+
+ <video muted playsinline id="sprite-adv-video" width="100%" style="position: absolute !important;top:0;display: none;">
+  <source src="/assets/video/gata1.webm" type="video/webm">
+    Your browser does not support the video tag.
+  </video>
+
+   <video muted playsinline id="sprite-adv-video-skulos" width="100%" style="position: absolute !important;top:0;display: none;">
+  <source src="/assets/video/skulos.webm" type="video/webm">
+    Your browser does not support the video tag.
+  </video>
+
+  <img id="sprite_text" style="position: absolute;
+  z-index: 99999999999999;
+  left: 500px;
+  width: 35%;
+  display: none;
+  " src="/assets/img/born1.png" alt="">
+
+  <img id="sprite_text2" style="position: absolute;
+  z-index: 99999999999999;
+  left: 500px;
+  width: 35%;
+  display: none;
+  " src="/assets/img/refresh.png" alt="">
+
+  <input type="hidden" name="sprite_redir" id="sprite_redir" value="sprite_redir">
+
+
+                <!-- /.container -->
+
+        <!-- jQuery -->
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/assets/front_assets/js/bootstrap.min.js"></script>
+
+<!-- Image upload JavaScript -->
+<script src="/assets/front_assets/js/dropzone.js"></script>
+
+<script src="/assets/front_assets/js/bootstrap-tagsinput.js"></script>
+<script src="/assets/front_assets/js/parsley.min.js"></script>
+<script src="/assets/front_assets/js/sticky.js"></script>
+<script src="http://vjs.zencdn.net/5.8.8/video.js"></script>
+<script src="/assets/front_assets/js/Youtube.min.js"></script>
+<script src="/assets/front_assets/js/Vimeo.js"></script>
+<script src="/assets/front_assets/js/owl.carousel.min.js"></script>
+<script src="/assets/front_assets/js/classie.js"></script>
+<script src="/assets/front_assets/js/custom.js?v=1.0"></script>
+<script src="/assets/front_assets/js/cookie.js?v=1.0"></script>
+<script src="https://unpkg.com/seethru@3/dist/seeThru.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+<script src="https://static.adman.gr/adman.js" type="text/javascript"></script>
+<script type="text/javascript">
+    // $(document).ready(function(){
+
+    // })
+
+  </script>
+  <!-- Ajax calls -->
+
+  <script src="/assets/front_assets/js/ajax.js?v=0.10.4"></script>
+
+    <script>
+    var allowSubmit = false;
+
+    function capcha_filled () {
+      allowSubmit = true;
+    }
+
+    function capcha_expired () {
+      allowSubmit = false;
+    }
+
+    function check_if_capcha_is_filled (e) {
+      if(allowSubmit) return true;
+      e.preventDefault();
+      alert('Fill in the capcha!');
+    }
+
+  </script>
+  <script>
+
+    var navbarHeight = $('.scroll-menu').height();
+
+
+    $('.sidebar').stick_in_parent({parent: '.sticky-content', spacer: '.sidebar-wrapper', inner_scrolling: false, offset_top: navbarHeight}).on("sticky_kit:stick", function(e) {
+
+      function reset(){
+        $(".sidebar").trigger("sticky_kit:detach");
+
+        $('.last_adv').stick_in_parent({parent: '.sticky-content', offset_top: navbarHeight});
+      }
+      setTimeout(reset, 4000);
+    });
+
+
+  </script>
+
+<script>
+
+</script>
+
+<script>
+
+$('#sprite_redir').click(function () {
+    window.open('https://bold.adman.gr/click?webspace=17466&auto=1');
+});
+</script>
+    <script>
+// 'sprite_9.mp4',
+var videos = ['sprite_9.mp4','skilos.mp4'];
+var mobile_videos = ['gata.webm.webm','skilos_mob1.mp4'];
+
+if ($(window).width() < 960) {
+  $( "#mobile-banners" ).append( '<div id="banner_mobile"><div id="animation_container" style="margin:0 auto;background-color:rgba(255, 255, 255, 1.00); width:300px; height:250px"><canvas id="canvas" width="300" height="250" style="position: absolute; display: block; background-color:rgba(255, 255, 255, 1.00);"></canvas><div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:300px; height:250px; position: absolute; left: 0px; top: 0px; display: block;"></div></div></div>' );
+}
+
+var count = 0;
+
+$('#banner_mobile').click(function() {
+  count++;
+  $( ".sprite-banner" ).trigger('click');
+});
+
+var show = 0;
+$( ".sprite-banner" ).click(function(e) {
+  count++;
+  if(count % 2 === 0){
+
+        window.open(Adman.html5API.get('click'));
+
+  }
+
+  //console.log(count);
+  e.preventDefault();
+
+  var video_id = $('video').attr('id');
+
+
+  var top = $('.navbar-brand').offset().top;
+  $('#' + video_id).css('top', top);
+  $('#' + video_id).show();
+
+  var bg = $('#skin-container').css('background-image');
+  bg = bg.replace('url(','').replace(')','').replace(/\"/gi, "");
+//var video_id = $('video').attr('id');
+//console.log(video_id);
+seeThru
+.create('#'+video_id, { start: 'autoplay', end: 'stop' })
+.ready(function (instance, video, canvas) {
+  $('#skin-container').css('background-image', 'url(/assets/img/Sprite-Skin.jpg)');
+  var top = $('.navbar-brand').offset().top;
+  $('canvas.seeThru-display').css('width', '100%');
+  $('canvas.seeThru-display').css('top', top);
+  $('canvas.seeThru-display').css('z-index', '99999999999999');
+  show = 1;
+  $('img').css('-webkit-filter', 'invert(1)');
+  $('img').css('filter', 'invert(1)');
+  if ($(window).width() > 960) {
+    $('#sprite_text2').css('top', top + 200);
+    $('#sprite_text').css('top', top + 200);
+
+         $('#sprite_text2').show();
+      $('#sprite_text').show();
+      // $('#sprite_text').css('opacity',  Math.random());
+      // $('#sprite_text2').css('opacity',  Math.random());
+
+   //  setTimeout(function() {
+   //   setInterval(function() {
+   //    $('#sprite_text2').show();
+   //    $('#sprite_text').show();
+   //    $('#sprite_text').css('opacity',  Math.random());
+   //    $('#sprite_text2').css('opacity',  Math.random());
+
+   //  },  Math.random());
+   // }, 2000);
+
+    // setTimeout(function() {
+    //   $('#sprite_text').remove();
+    //   $('#sprite_text2').remove();
+    // }, 6200);
+  }
+  // setTimeout(function() {
+    $( ".main-container" ).effect( "shake", { direction: "up", times: 35, distance: 7} ).delay(5000);
+  // }, 1200);
+  video.addEventListener('ended', function () {
+   $('canvas.seeThru-display').remove();
+   $('#sprite_text').hide();
+   $('#sprite_text2').hide();
+   $('#skin-container').css('background-image', 'url('+ bg +')');
+   $('img').css('-webkit-filter', '');
+   $('img').css('filter', '');
+   $('#' + video_id).hide();
+   $('#' + video_id).remove();
+   $('#' + video_id).remove();
+
+if ($(window).width() > 960) {
+
+   var new_video_id = 'video_' + Math.random().toString(36).substring(7);
+
+   var video = $('<video />', {
+    id: new_video_id,
+    src: '/assets/video/gata1.webm',
+    type: 'video/webm',
+    "class": "sprite_video",
+    controls: false
+  });
+
+   // $('.sprite_video').attr('playsinline');
+   // $('.sprite_video').attr('muted');
+   // $('.sprite_video').attr('controls');
+
+   $(".copyright").after(video);
+
+ }
+
+   show = 1;
+
+  // location.reload();
+});
+});
+// }else{
+//   e.preventDefault();
+// }
+});
+
+</script>
+
+
+
+
+  
+
+
+
+
+                <script>
+            $('#skin-container').css('margin-top', '163px');
+            $(window).on("scroll", function (e) {
+
+                var aTop = $('.header').height();
+                if ($(this).scrollTop() >= aTop) {
+                    var window_width = jQuery(window).width();
+
+                    if (window_width < 1200) {
+                        $('.mobile-logo').show();
+
+                    }
+                    $('.logo').hide();
+
+                    $('#skin-container').css('margin-top', '50px');
+                    $('.navbar-nav').css('width', 'auto');
+                    $('.navbar-header').show();
+                    $('#showLeftNavBar').show();
+                    $('.navbar-brand').show();
+                    $('.navbar-nav').css('float', 'left');
+                    $('.social-item').css('display', '');
+                } else {
+                    var window_width = jQuery(window).width();
+                    if (window_width < 1200) {
+                        $('.mobile-logo').hide();
+
+                    }
+                    $('#skin-container').css('margin-top', '163px');
+                    //$('.mobile-logo').show();
+                    $('.logo').show();
+                    //$('.logoguide').show();
+                    $('#showLeftNavBar').hide();
+                    $('.navbar-brand').hide();
+
+                    // $('.navbar-nav').css('width', '100%');
+                    $('.navbar-header').hide();
+                    $('.navbar-nav').css('float', 'none');
+                    $('.social-item').css('display', 'none');
+                }
+
+            });
+        </script>
+        
+    <script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"419b95e924","applicationID":"40733258","transactionName":"ZgBXbBAFWhcEVBJcC19KYEoLS10KAVIeGxRZFQ==","queueTime":0,"applicationTime":9,"atts":"SkdUGlgfSRk=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+
+</html>

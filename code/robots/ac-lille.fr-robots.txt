@@ -3,10 +3,17 @@
 <meta content="index, follow" name="robots" />
 <meta content="2 days" name="revisit-after" />
 <meta content="fr" http-equiv="content-language" />
+<meta content="width=device-width, initial-scale=1" name="viewport" />
 <meta content="text/javascript" http-equiv="Content-Script-Type" />
 <meta content="text/css" http-equiv="Content-Style-Type" />
 <meta content="Académie de Lille" name="Author" />
-<meta content="Académie de Lille" name="title" />
+<meta content="Accueil" property="og:title" />
+<meta content="Académie de Lille" property="og:site_name" />
+<meta content="article" property="og:type" />
+<meta content="fr_FR" property="og:locale" />
+<meta content="Académie de Lille" property="twitter:site" />
+<meta content="Accueil" property="twitter:title" />
+<meta content="summary" property="twitter:card" />
 <title>Académie de Lille</title>
 
 <link href="http://cache.media.education.gouv.fr/plugin/quickvote/style.css" media="screen,print" rel="stylesheet" type="text/css" />
@@ -18,7 +25,7 @@
 <link href="http://cache.media.education.gouv.fr/design/front_office_kwa/css/themes/style_violet.css" media="screen, print" rel="stylesheet" type="text/css" />
 <link href="http://cache.media.education.gouv.fr/design/front_office_kwa/css/themes/miniword_violet.css" media="screen, print" rel="stylesheet" type="text/css" />
 <link href="/lib/js/shadowbox/shadowbox.css" rel="stylesheet" type="text/css" />
-<link href="http://www1.ac-lille.fr/rid4721/l-actualite-de-l-academie-de-lille.rss?xtdate=20150923" rel="alternate" title="L'actualité de l'académie de Lille" type="application/rss+xml" />
+<link href="http://www1.ac-lille.fr/rid4721/l-actualite-de-l-academie-de-lille.rss?xtdate=20171007" rel="alternate" type="application/rss+xml" />
 <link href="http://www1.ac-lille.fr/favicons/ac-lille.ico" rel="shortcut icon" />
 <script type="text/javascript">var tb_pathToImage = "http://cache.media.education.gouv.fr/design/front_office_kwa/images/loadingAnimation.gif";</script>
 <script src="http://cache.media.education.gouv.fr/plugin/webtv/js_fo/jquery.min.js" type="text/javascript"></script>
@@ -29,6 +36,7 @@
 <script src="/lib/js/thickbox-compressed.js" type="text/javascript"></script>
 <script src="/lib/js/globalFonction.js" type="text/javascript"></script>
 <script src="http://cache.media.education.gouv.fr/design/commun/js/js_commun.js" type="text/javascript"></script>
+<script src="/lib/other_tools/jquery/jquery-parsequery/jquery.parsequery.min.js" type="text/javascript"></script>
 <script src="http://cache.media.education.gouv.fr/design/front_office_kwa/js/jquery1.11.1/jquery1.11.1.min.js" type="text/javascript"></script>
 <script src="http://cache.media.education.gouv.fr/design/front_office_kwa/js/fancybox/jquery.fancybox.js" type="text/javascript"></script>
 <script src="http://cache.media.education.gouv.fr/design/front_office_kwa/js/jquery1.11.1/noconflict_jquery1.11.1.js" type="text/javascript"></script>
@@ -38,12 +46,47 @@
 <script src="/lib/js/shadowbox/shadowbox.js" type="text/javascript"></script>
 <script src="http://cache.media.education.gouv.fr/video/flashplayer/ufo.js" type="text/javascript"></script>
 
-</head><body id="home" class=""><script type="text/javascript">
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61479211-1', 'auto');
+  ga('send', 'pageview');
+</script></head><body id="home" class=""><STYLE type="text/css">
+hr {
+height: none;
+border: none;
+border-top: 1px dashed grey;
+}
+</STYLE><script type="text/javascript">
 Shadowbox.init({
 players: ["html","iframe"],
 language:   "fr"
 });
-</script><div id="page-bg" class="imagePng">
+</script><script type="text/javascript">
+jQuery(function(){
+jQuery('#body-bg-left').css('cursor','pointer');
+
+$('#page').hover(function(e){
+    jQuery('#body-bg-left').css('cursor','auto');     
+    jQuery('#body-bg-left').unbind('click');
+    }, function(e){
+    // 2012-12-11 fix 235243
+    if( $.browser.msie && e.pageX == -3 ){
+    return false;
+    }
+    
+    jQuery('#body-bg-left').css('cursor','pointer');
+jQuery('#body-bg-left').bind('click',function(){
+window.open('http://www.devenirenseignant.gouv.fr/pid35072/inscrivez-vous-aux-concours-recrutement-education.html');});
+    });
+});
+</script>
+
+<div id="body-bg-left" style=" background:#183257 url(http://cache.media.education.gouv.fr/image/Centrale/56/8/2017_habillage_V3_810426_810568.jpg) no-repeat center top;">
+<div id="page-bg" class="imagePng">
 <div id="page" class=""><div id="kwa_global_haut">
 <div id="acces_direct">
 <ul class="acces_direct_fond_gris">
@@ -62,7 +105,7 @@ language:   "fr"
 <h1>
 <span class="logo">
 <a href="/" accesskey="1">
-<img src="http://cache.media.education.gouv.fr/image/Logo/83/5/logo_academie_lille_web_337835.jpg" alt="" />
+<img src="http://cache.media.education.gouv.fr/image/Logo/96/5/logo_reg_lille_652965.png" alt="Retour vers l'accueil du site ac-lille.fr" />
 </a>
 </span>
 <span class="separation_container">
@@ -117,9 +160,11 @@ Retrouvez toute l'information sur le site <a class="lien_externe"  href='http://
 
 <div class="mdd_element_content">
 <div class="mdd_mise_en_avant">
-<img class="mdd_mea_image " src="http://cache.media.education.gouv.fr/image/academie/51/8/projet-academique_337518.96.png" alt=""/>
-<div class="mdd_mea_contenu"><p><strong>Projet acad&eacute;mique 2013-2016</strong></p>
-<p><a target="_blank" href="http://cache.media.education.gouv.fr/file/academie/59/3/projet-academique2013-2016_337593.pdf" onclick="this.target='_blank';xt_med('C','1','projet-academique2013-2016_337593.pdf','T');" title="Projet acad&eacute;mique 2013-2016 (PDF-102.73 Ko-Nouvelle fen&ecirc;tre)" class="download" mce_target="_blank" href="http://cache.media.education.gouv.fr/file/academie/59/3/projet-academique2013-2016_337593.pdf">Consulter le projet acad&eacute;mique 2013-2016</a></p></div>
+<div class="mdd_mea_titre">R&eacute;forme territoriale</div>
+<a href="http://www.education.gouv.fr/cid91806/reforme-territoriale-17-regions-academiques-pour-assurer-la-coherence-des-politiques-educatives-au-niveau-regional.html" target="_blank" title="Carte des r&eacute;gions acad&eacute;miques - Nouvelle fenêtre">
+<img class="mdd_mea_image " src="http://cache.media.education.gouv.fr/image/academie/74/2/carte-des-regions-academiques_555742.96.jpg" alt="Carte des r&eacute;gions acad&eacute;miques"/>
+</a>
+<div class="mdd_mea_contenu"><p><a class="chevron" target="_blank" href="http://www.education.gouv.fr/cid91806/reforme-territoriale-17-regions-academiques-pour-assurer-la-coherence-des-politiques-educatives-au-niveau-regional.html">R&eacute;forme territoriale : 17 r&eacute;gions acad&eacute;miques pour assurer la coh&eacute;rence des politiques &eacute;ducatives au niveau r&eacute;gional</a></p></div>
 </div>
 
 
@@ -130,20 +175,25 @@ Retrouvez toute l'information sur le site <a class="lien_externe"  href='http://
 <ul class="mdd_liste_ssRub">
 <li class="mdd_ssRub"><a href="/cid83308/presentation.html" >Pr&eacute;sentation et organisation </a></li>
 <li class="mdd_ssRub"><a href="/cid82565/projet-academique.html" >Le projet acad&eacute;mique </a></li>
-<li class="mdd_ssRub"><a href="/cid87872/chiffres-cles.html" >L'acad&eacute;mie en chiffres </a></li>
+<li class="mdd_ssRub"><a href="/cid115656/chiffres-cles.html" >L'acad&eacute;mie en chiffres </a></li>
 </ul>
 </li>
 <li>
-<span class="mdd_rub"><a href="/pid32275/publications.html" >Les publications</a><a class="mdd_plus" href="/pid32275/publications.html" >[+]</a></span>
+<span class="mdd_rub"><a href="/pid32176/les-directions-departementales-des-services-nationale.html" >Les directions des services d&eacute;partementaux de l'&eacute;ducation nationale</a><a class="mdd_plus" href="/pid32176/les-directions-departementales-des-services-nationale.html" >[+]</a></span>
 
 <ul class="mdd_liste_ssRub">
-<li class="mdd_ssRub"><a href="/pid32275/publications.html" >&Eacute;l&eacute;ments de statistiques acad&eacute;miques </a></li>
+<li class="mdd_ssRub"><a href="/DSDEN59/pid32812/accueil-dsden-nord.html" >DSDEN du Nord </a></li>
+<li class="mdd_ssRub"><a href="/pid33805/accueil.html" >DSDEN du Pas-de-Calais </a></li>
 </ul>
 </li>
 </ul>
 
 
 <ul class="mdd_colonne" >
+<li>
+<span class="mdd_rub"><a href="/cid93320/organigramme-de-l-academie.html" >Organigramme de l'acad&eacute;mie</a><a class="mdd_plus" href="/cid93320/organigramme-de-l-academie.html" >[+]</a></span>
+
+</li>
 <li>
 <span class="mdd_rub"><a href="/pid30930/rectorat.html" >Le rectorat</a><a class="mdd_plus" href="/pid30930/rectorat.html" >[+]</a></span>
 
@@ -160,11 +210,10 @@ Retrouvez toute l'information sur le site <a class="lien_externe"  href='http://
 
 <ul class="mdd_colonne" >
 <li>
-<span class="mdd_rub"><a href="/pid32176/les-directions-departementales-des-services-nationale.html" >Les directions des services d&eacute;partementaux de l'&eacute;ducation nationale</a><a class="mdd_plus" href="/pid32176/les-directions-departementales-des-services-nationale.html" >[+]</a></span>
+<span class="mdd_rub"><a href="/pid32275/publications.html" >Les publications</a><a class="mdd_plus" href="/pid32275/publications.html" >[+]</a></span>
 
 <ul class="mdd_liste_ssRub">
-<li class="mdd_ssRub"><a href="http://www.ac-lille.fr/dsden59/" target="_blank"  title="DSDEN du Nord - Nouvelle fenêtre">DSDEN du Nord </a></li>
-<li class="mdd_ssRub"><a href="http://www.ac-lille.fr/dsden62/" target="_blank"  title="DSDEN du Pas-de-Calais - Nouvelle fenêtre">DSDEN du Pas-de-Calais </a></li>
+<li class="mdd_ssRub"><a href="/pid32275/publications.html" >&Eacute;l&eacute;ments de statistiques acad&eacute;miques </a></li>
 </ul>
 </li>
 </ul>
@@ -189,7 +238,7 @@ Retrouvez toute l'information sur le site <a class="lien_externe"  href='http://
 
 <ul class="mdd_liste_ssRub">
 <li class="mdd_ssRub"><a href="http://www.education.gouv.fr/pid24301/annuaire-de-l-education.html" target="_blank"  title="L'annuaire de l'&Eacute;ducation - Nouvelle fenêtre">L'annuaire de l'&Eacute;ducation </a></li>
-<li class="mdd_ssRub"><a href="http://www2.ac-lille.fr/Defaultheberges.htm" target="_blank"  title="Sites h&eacute;berg&eacute;s - Nouvelle fenêtre">Sites h&eacute;berg&eacute;s </a></li>
+<li class="mdd_ssRub"><a href="http://annuaire.etab.ac-lille.fr/" target="_blank"  title="Annuaire des sites web des &eacute;tablissements - Nouvelle fenêtre">Annuaire des sites web des &eacute;tablissements </a></li>
 <li class="mdd_ssRub"><a href="/cid87317/internats.html" >Les internats </a></li>
 </ul>
 </li>
@@ -232,14 +281,19 @@ Retrouvez toute l'information sur le site <a class="lien_externe"  href='http://
 </div>
 <div class="clear-both"></div>
 </li>
-<li id="mdd_element_3" class="mdd_element ">
+<li id="mdd_element_3" class="mdd_element  avec_mea ">
 
 <div class="mdd_element_content">
+<div class="mdd_mise_en_avant">
+<a href="http://www.onisep.fr/content/download/906618/16766166/file/Osez le BTS_6pages_livret.pdf" target="_blank" title="brochure Osez le BTS - Nouvelle fenêtre">
+<img class="mdd_mea_image " src="http://cache.media.education.gouv.fr/image/Orientation,_formations/08/5/osez-le-BTS_705085.96.png" alt="brochure Osez le BTS"/>
+</a>
+</div>
 
 
 <ul class="mdd_colonne" >
 <li>
-<span class="mdd_rub"><a href="/cid85717/politique-academique-d-orientation-2014-2015.html" >Politique acad&eacute;mique d'orientation</a><a class="mdd_plus" href="/cid85717/politique-academique-d-orientation-2014-2015.html" >[+]</a></span>
+<span class="mdd_rub"><a href="/cid85717/politique-academique-d-orientation.html" >Politique acad&eacute;mique d'orientation</a><a class="mdd_plus" href="/cid85717/politique-academique-d-orientation.html" >[+]</a></span>
 
 </li>
 <li>
@@ -264,8 +318,13 @@ Retrouvez toute l'information sur le site <a class="lien_externe"  href='http://
 <span class="mdd_rub"><a href="/pid31430/ou-informer.html" >O&ugrave; s'informer</a><a class="mdd_plus" href="/pid31430/ou-informer.html" >[+]</a></span>
 
 <ul class="mdd_liste_ssRub">
+<li class="mdd_ssRub"><a href="/cid85630/journees-portes-ouvertes-post-3eme.html" >Journ&eacute;es portes ouvertes post 3&egrave;me </a></li>
+<li class="mdd_ssRub"><a href="/cid84276/journees-portes-ouvertes-post-bac-2017.html" >Journ&eacute;es portes ouvertes post bac </a></li>
 <li class="mdd_ssRub"><a href="/cid82977/le-saio.html" >Le SAIO </a></li>
 <li class="mdd_ssRub"><a href="/cid85371/les-cio-academie.html" >Les CIO de l'acad&eacute;mie </a></li>
+<li class="mdd_ssRub"><a href="/cid99275/cres.html" >Le Centre ressources enseignement sup&eacute;rieur </a></li>
+<li class="mdd_ssRub"><a href="/cid99272/croh.html" >Le Centre ressources orientation et handicap </a></li>
+<li class="mdd_ssRub"><a href="/cid99274/creurope.html" >Le Centre ressources Europe </a></li>
 <li class="mdd_ssRub"><a href="http://www.onisep.fr/Mes-infos-regionales/Nord-Pas-de-Calais" target="_blank"  title="ONISEP Nord-Pas de Calais - Nouvelle fenêtre">ONISEP Nord-Pas de Calais </a></li>
 <li class="mdd_ssRub"><a href="http://geolocalisation.onisep.fr/" target="_blank"  title="Rechercher une formation - Nouvelle fenêtre">Rechercher une formation </a></li>
 </ul>
@@ -279,14 +338,19 @@ Retrouvez toute l'information sur le site <a class="lien_externe"  href='http://
 
 <ul class="mdd_liste_ssRub">
 <li class="mdd_ssRub"><a href="http://www.admission-postbac.fr/" target="_blank"  title="Admission post bac - Nouvelle fenêtre">Admission post bac </a></li>
-<li class="mdd_ssRub"><a href="/cid83306/choisir-son-orientation-dans-enseignement-superieur.html" >Choisir son orientation dans l'enseignement sup&eacute;rieur </a></li>
+<li class="mdd_ssRub"><a href="/pid33585/parcours-avenir.html" >Parcours avenir </a></li>
+<li class="mdd_ssRub"><a href="/cid83306/choisir-son-orientation-dans-enseignement-superieur.html" >Construire son parcours dans l'enseignement sup&eacute;rieur </a></li>
+<li class="mdd_ssRub"><a href="/cid100221/se-former-par-apprentissage.html" >Se former par l'apprentissage </a></li>
+<li class="mdd_ssRub"><a href="/pid35213/reussir-son-entree-lycee-professionnel.html" >R&eacute;ussir son entr&eacute;e au Lyc&eacute;e Professionnel </a></li>
 <li class="mdd_ssRub"><a href="http://daet.ac-lille.fr/" target="_blank"  title="Enseignement professionnel - Nouvelle fenêtre">Enseignement professionnel </a></li>
 </ul>
 </li>
 <li>
-<span class="mdd_rub"><a href="/pid31638/prevention-lutte-contre-decrochage.html" >Lutte contre le d&eacute;crochage scolaire</a><a class="mdd_plus" href="/pid31638/prevention-lutte-contre-decrochage.html" >[+]</a></span>
+<span class="mdd_rub"><a href="/pid31638/prevention-lutte-contre-decrochage.html" >Pr&eacute;vention et lutte contre le d&eacute;crochage</a><a class="mdd_plus" href="/pid31638/prevention-lutte-contre-decrochage.html" >[+]</a></span>
 
 <ul class="mdd_liste_ssRub">
+<li class="mdd_ssRub"><a href="/cid99869/perseval.html" >PERSEVAL, le dispositif de pers&eacute;v&eacute;rance scolaire </a></li>
+<li class="mdd_ssRub"><a href="/cid100005/semaine-perseverance-scolaire.html" >Semaine de la pers&eacute;v&eacute;rance scolaire </a></li>
 <li class="mdd_ssRub"><a href="/cid84311/mlds.html" >Mission de lutte contre le d&eacute;crochage scolaire </a></li>
 <li class="mdd_ssRub"><a href="/cid84315/foquale.html" >FOrmation QUALification Emploi </a></li>
 <li class="mdd_ssRub"><a href="/cid84317/psad.html" >Plates-formes de suivi et d'appui aux d&eacute;crocheurs </a></li>
@@ -303,9 +367,14 @@ Retrouvez toute l'information sur le site <a class="lien_externe"  href='http://
 </div>
 <div class="clear-both"></div>
 </li>
-<li id="mdd_element_4" class="mdd_element ">
+<li id="mdd_element_4" class="mdd_element  avec_mea ">
 
 <div class="mdd_element_content">
+<div class="mdd_mise_en_avant">
+<div class="mdd_mea_titre">Actualit&eacute;s</div>
+<div class="mdd_mea_contenu"><p>Bac g&eacute;n&eacute;ral, technologique et professionnel, brevet professionnel, dipl&ocirc;me national du brevet, CAP, BEP, BTS : acc&eacute;dez aux r&eacute;sultats des examens de la session 2017 &agrave; partir du 5 juillet.</p>
+<p><a href="http://e-resultats.ac-lille.fr/" target="_blank" class="chevron">http://e-resultats.ac-lille.fr/</a></p></div>
+</div>
 
 
 <ul class="mdd_colonne" >
@@ -313,8 +382,8 @@ Retrouvez toute l'information sur le site <a class="lien_externe"  href='http://
 <span class="mdd_rub"><a href="/pid31340/baccalaureat-general-technologique.html" >Baccalaur&eacute;at g&eacute;n&eacute;ral et technologique</a><a class="mdd_plus" href="/pid31340/baccalaureat-general-technologique.html" >[+]</a></span>
 
 <ul class="mdd_liste_ssRub">
-<li class="mdd_ssRub"><a href="/cid82585/baccalaureat-general.html" >Baccalaur&eacute;at G&eacute;n&eacute;ral </a></li>
-<li class="mdd_ssRub"><a href="/cid82598/baccalaureat-technologique.html" >Baccalaur&eacute;at Technologique </a></li>
+<li class="mdd_ssRub"><a href="/cid82585/baccalaureat-general.html" >Baccalaur&eacute;at g&eacute;n&eacute;ral </a></li>
+<li class="mdd_ssRub"><a href="/cid82598/baccalaureat-technologique.html" >Baccalaur&eacute;at technologique </a></li>
 <li class="mdd_ssRub"><a href="/cid83510/epreuves-anticipees.html" >&Eacute;preuves anticip&eacute;es </a></li>
 </ul>
 </li>
@@ -322,9 +391,8 @@ Retrouvez toute l'information sur le site <a class="lien_externe"  href='http://
 <span class="mdd_rub"><a href="/pid31414/concours-recrutement.html" >Concours de recrutement</a><a class="mdd_plus" href="/pid31414/concours-recrutement.html" >[+]</a></span>
 
 <ul class="mdd_liste_ssRub">
-<li class="mdd_ssRub"><a href="http://www.education.gouv.fr/pid97/siac1.html" target="_blank"  title="Concours du premier degr&eacute; (SIAC1) - Nouvelle fenêtre">Concours du premier degr&eacute; (SIAC1) </a></li>
-<li class="mdd_ssRub"><a href="http://www.education.gouv.fr/pid63/siac2.html" target="_blank"  title="Concours du second degr&eacute; (SIAC2) - Nouvelle fenêtre">Concours du second degr&eacute; (SIAC2) </a></li>
-<li class="mdd_ssRub"><a href="/pid31414-cid82911/atss.html" >Personnels administratifs, sant&eacute; et de service </a></li>
+<li class="mdd_ssRub"><a href="/cid93485/concours-recrutement-professeurs-des-ecoles.html" >Professeurs des &eacute;coles </a></li>
+<li class="mdd_ssRub"><a href="/cid82911/atss.html" >Personnels administratifs, sant&eacute; et de service </a></li>
 <li class="mdd_ssRub"><a href="/cid88213/itrf.html" >Ing&eacute;nieurs et personnels techniques de recherche et de formation </a></li>
 <li class="mdd_ssRub"><a href="http://www.education.gouv.fr/pid50/les-personnels-d-encadrement.html" target="_blank"  title="Personnels d'encadrement - Nouvelle fenêtre">Personnels d'encadrement </a></li>
 <li class="mdd_ssRub"><a href="/cid82917/rapports-jurys.html" >Rapports de jury </a></li>
@@ -334,17 +402,19 @@ Retrouvez toute l'information sur le site <a class="lien_externe"  href='http://
 <span class="mdd_rub"><a href="/pid31415/post-bac.html" >Post-bac</a><a class="mdd_plus" href="/pid31415/post-bac.html" >[+]</a></span>
 
 <ul class="mdd_liste_ssRub">
-<li class="mdd_ssRub"><a href="/pid33176/brevet-technicien-superieur.html" >Brevet de Technicien Sup&eacute;rieur </a></li>
+<li class="mdd_ssRub"><a href="/pid33176/brevet-technicien-superieur.html" >Brevet de technicien sup&eacute;rieur </a></li>
+<li class="mdd_ssRub"><a href="/pid33600/dts-imrt.html" >DTS Imagerie m&eacute;dicale et radiologie th&eacute;rapeutique  </a></li>
 <li class="mdd_ssRub"><a href="/cid84131/diplome-expert-automobile.html" >Dipl&ocirc;me d'expert en automobile </a></li>
 <li class="mdd_ssRub"><a href="/cid85197/diplomes-comptables-superieurs-dcg-dscg.html" >Dipl&ocirc;mes Comptables Sup&eacute;rieurs </a></li>
+<li class="mdd_ssRub"><a href="/pid33405/decesf.html" >Dipl&ocirc;me d'&eacute;tat de Conseiller en &eacute;conomie sociale et familiale  </a></li>
 </ul>
 </li>
 <li>
 <span class="mdd_rub"><a href="/cid85478/resultats-2015.html" >R&eacute;sultats</a><a class="mdd_plus" href="/cid85478/resultats-2015.html" >[+]</a></span>
 
 <ul class="mdd_liste_ssRub">
-<li class="mdd_ssRub"><a href="/cid85478/resultats-2015.html" >R&eacute;sultats 2015 </a></li>
-<li class="mdd_ssRub"><a href="/cid84015/resultats.html" >R&eacute;sultats 2014 </a></li>
+<li class="mdd_ssRub"><a href="http://resultat.ac-lille.fr" target="_blank"  title="R&eacute;sultats 2017 - Nouvelle fenêtre">R&eacute;sultats 2017 </a></li>
+<li class="mdd_ssRub"><a href="/cid84015/resultats.html" >R&eacute;sultats 2016 </a></li>
 </ul>
 </li>
 </ul>
@@ -356,6 +426,9 @@ Retrouvez toute l'information sur le site <a class="lien_externe"  href='http://
 
 <ul class="mdd_liste_ssRub">
 <li class="mdd_ssRub"><a href="/cid83616/certification-complementaire.html" >Certification compl&eacute;mentaire </a></li>
+<li class="mdd_ssRub"><a href="/cid108292/capash-2cash.html" >CAPASH et 2CASH </a></li>
+<li class="mdd_ssRub"><a href="/cid95477/caffa.html" >Certificat d'aptitude aux fonctions de formateur acad&eacute;mique </a></li>
+<li class="mdd_ssRub"><a href="/cid109732/certificat-aptitude-aux-fonctions-instituteur-professeur-des-ecoles-maitre-formateur.html" >Certificat d'aptitude aux fonctions d'instituteur ou de professeur des &eacute;coles ma&icirc;tre formateur </a></li>
 </ul>
 </li>
 <li>
@@ -366,7 +439,7 @@ Retrouvez toute l'information sur le site <a class="lien_externe"  href='http://
 </ul>
 </li>
 <li>
-<span class="mdd_rub"><a href="/pid31573/vae.html" >Validation des acquis de l'exp&eacute;rience</a><a class="mdd_plus" href="/pid31573/vae.html" >[+]</a></span>
+<span class="mdd_rub"><a href="/cid118607/vae.html" >Validation des acquis de l'exp&eacute;rience</a><a class="mdd_plus" href="/cid118607/vae.html" >[+]</a></span>
 
 </li>
 </ul>
@@ -387,7 +460,7 @@ Retrouvez toute l'information sur le site <a class="lien_externe"  href='http://
 <ul class="mdd_liste_ssRub">
 <li class="mdd_ssRub"><a href="/cid82677/duplicata.html" >Attestations - Duplicata </a></li>
 <li class="mdd_ssRub"><a href="/cid82675/obligation-service-national.html" >Le service national </a></li>
-<li class="mdd_ssRub"><a href="/cid82903/candidats-handicapes.html" >Candidats handicap&eacute;s </a></li>
+<li class="mdd_ssRub"><a href="/cid82903/candidats-handicapes.html" >Am&eacute;nagements d'examen </a></li>
 <li class="mdd_ssRub"><a href="/cid84656/medecins-agrees.html" >M&eacute;decins agr&eacute;&eacute;s </a></li>
 </ul>
 </li>
@@ -395,8 +468,8 @@ Retrouvez toute l'information sur le site <a class="lien_externe"  href='http://
 <span class="mdd_rub"><a href="/pid31455/voie-professionnelle.html" >Voie professionnelle</a><a class="mdd_plus" href="/pid31455/voie-professionnelle.html" >[+]</a></span>
 
 <ul class="mdd_liste_ssRub">
-<li class="mdd_ssRub"><a href="/cid83041/baccalaureat-professionnel.html" >Baccalaur&eacute;at professionnel </a></li>
-<li class="mdd_ssRub"><a href="/cid83346/bep-cap-niveau.html" >BEP, CAP et mentions compl&eacute;mentaires de niveau V </a></li>
+<li class="mdd_ssRub"><a href="/pid33325/baccalaureat-professionnel-mentions-comple-niveau.html" >Baccalaur&eacute;at professionnel et mentions compl&eacute;mentaires de niveau IV </a></li>
+<li class="mdd_ssRub"><a href="/pid33326/bep-cap-mentions-complementaires-niveau.html" >BEP, CAP et mentions compl&eacute;mentaires de niveau V </a></li>
 <li class="mdd_ssRub"><a href="/cid83314/brevet-professionnel.html" >Brevet professionnel </a></li>
 </ul>
 </li>
@@ -418,6 +491,7 @@ Retrouvez toute l'information sur le site <a class="lien_externe"  href='http://
 <a href="/pid31575/commemoration-centenaire.html" >
 <img class="mdd_mea_image " src="http://cache.media.education.gouv.fr/image/General/73/5/label_centenaire_365735.96.jpg" alt="Comm&eacute;morations du Centenaire de la Grande guerre"/>
 </a>
+<div class="mdd_mea_contenu"><p style="text-align: center;"><a href="/cid113857/l-academie-lille-experimente-trousse-projets.html"><span class="zoomMedia"><img src="http://cache.media.education.gouv.fr/image/actualites/60/4/Trousse-a-projets_752604.42.jpg" alt="Trousse &agrave; projets" longdesc="" /></span></a></p></div>
 </div>
 
 
@@ -427,7 +501,7 @@ Retrouvez toute l'information sur le site <a class="lien_externe"  href='http://
 
 <ul class="mdd_liste_ssRub">
 <li class="mdd_ssRub"><a href="/cid83332/associations-agreees.html" >Associations agr&eacute;&eacute;es </a></li>
-<li class="mdd_ssRub"><a href="/cid83323/rendre-compte-une-operation.html" >Fonds social europ&eacute;en </a></li>
+<li class="mdd_ssRub"><a href="/cid83323/fonds-europeens-structurels-investissement.html" >Fonds europ&eacute;ens structurels et d'investissement </a></li>
 </ul>
 </li>
 <li>
@@ -457,10 +531,11 @@ Retrouvez toute l'information sur le site <a class="lien_externe"  href='http://
 <span class="mdd_rub"><a href="/pid32140/reussite-educative.html" >R&eacute;ussite &eacute;ducative</a><a class="mdd_plus" href="/pid32140/reussite-educative.html" >[+]</a></span>
 
 <ul class="mdd_liste_ssRub">
-<li class="mdd_ssRub"><a href="/cid82809/les-cordees-reusssite.html" >Les cord&eacute;es de la r&eacute;usssite </a></li>
-<li class="mdd_ssRub"><a href="/cid81479/ecole-ouverte.html" >Ecole ouverte </a></li>
+<li class="mdd_ssRub"><a href="/cid98435/education-prioritaire.html" >&Eacute;ducation prioritaire </a></li>
+<li class="mdd_ssRub"><a href="/cid99869/perseval.html" >PERSEVAL, le dispositif de pers&eacute;v&eacute;rance scolaire de l'acad&eacute;mie </a></li>
+<li class="mdd_ssRub"><a href="/cid82809/les-cordees-reussite.html" >Les cord&eacute;es de la r&eacute;ussite </a></li>
+<li class="mdd_ssRub"><a href="/cid97560/ecole-ouverte.html" >&Eacute;cole ouverte </a></li>
 <li class="mdd_ssRub"><a href="/cid87294/internats.html" >Internats de la r&eacute;ussite pour tous </a></li>
-<li class="mdd_ssRub"><a href="/cid81478/egalite-des-filles-des-garcons.html" >&Eacute;galit&eacute; entre les filles et les gar&ccedil;ons </a></li>
 <li class="mdd_ssRub"><a href="http://sepia.ac-lille.fr/" target="_blank"  title="Innovation : S&eacute;pia - Nouvelle fenêtre">Innovation : S&eacute;pia </a></li>
 <li class="mdd_ssRub"><a href="/cid81480/la-prevention-lutte-contre-illettrisme-ecole.html" >Pr&eacute;vention de l'illettrisme </a></li>
 </ul>
@@ -475,15 +550,16 @@ Retrouvez toute l'information sur le site <a class="lien_externe"  href='http://
 <ul class="mdd_liste_ssRub">
 <li class="mdd_ssRub"><a href="http://clemi.ac-lille.fr/" target="_blank"  title="&Eacute;ducation aux m&eacute;dias - CLEMI - Nouvelle fenêtre">&Eacute;ducation aux m&eacute;dias - CLEMI </a></li>
 <li class="mdd_ssRub"><a href="/cid83764/numerique-ecole.html" >Num&eacute;rique &agrave; l'&eacute;cole </a></li>
-<li class="mdd_ssRub"><a href="http://celluleecoleentreprise.ac-lille.fr/" target="_blank"  title="Relations &eacute;cole-entreprise - Nouvelle fenêtre">Relations &eacute;cole-entreprise </a></li>
 <li class="mdd_ssRub"><a href="/cid92168/service-civique-universel.html" >Service civique universel </a></li>
+<li class="mdd_ssRub"><a href="/pid36151/trinome-academique.html" >&Eacute;ducation &agrave; la D&eacute;fense </a></li>
+<li class="mdd_ssRub"><a href="http://celluleecoleentreprise.ac-lille.fr/" target="_blank"  title="Relations &eacute;cole-entreprise - Nouvelle fenêtre">Relations &eacute;cole-entreprise </a></li>
 </ul>
 </li>
 <li>
 <span class="mdd_rub"><a href="/pid32376/vie-eleve.html" >Vie de l'&eacute;l&egrave;ve</a><a class="mdd_plus" href="/pid32376/vie-eleve.html" >[+]</a></span>
 
 <ul class="mdd_liste_ssRub">
-<li class="mdd_ssRub"><a href="http://www.ac-lille.fr/vie-lyceenne" target="_blank"  title="Vie lyc&eacute;enne - Nouvelle fenêtre">Vie lyc&eacute;enne </a></li>
+<li class="mdd_ssRub"><a href="http://www.education.gouv.fr/vie-lyceenne/pid29865/vie-lyceenne.html" target="_blank"  title="Vie lyc&eacute;enne - Nouvelle fenêtre">Vie lyc&eacute;enne </a></li>
 <li class="mdd_ssRub"><a href="/pid31562/manifestations-concours.html" >Manifestations et concours </a></li>
 </ul>
 </li>
@@ -524,6 +600,19 @@ Retrouvez toute l'information sur le site <a class="lien_externe"  href='http://
 </div>
 <div class="clear-both"></div>
 </li>
+<li id="mdd_element_8" class="mdd_element ">
+
+<div class="mdd_element_content">
+<div class="clear-both"></div>
+</div>
+
+
+<div class="bt_mdd">
+
+<a class="mdd_bt_fermer" href="/">Fermer x</a>
+</div>
+<div class="clear-both"></div>
+</li>
 </ul>
 </div>
 <div class="clear-both"></div>
@@ -544,28 +633,42 @@ padding: 0px 20px 0px 16px;
 <div id="image_bandeau" class="setting-slide-delay-5000">
 <ul id="image_bandeau_txt_liste">
 <li id="image_bandeau_ct_1" class="image_bandeau_ct  selected">
-<h2><a href="/cid92875/mission-monteil-dans-academie.html">Mission Monteil dans l'acad&eacute;mie</a></h2>
-<div class="image_bandeau_txt"><p>Le mardi 15 septembre 2015, Jean-Marc Monteil, recteur charg&eacute; de mission national pour le num&eacute;rique, s'est rendu &agrave; Arras dans le cadre de la r&eacute;union inter-acad&eacute;mique consacr&eacute;e au num&eacute;rique.</p></div>
+<h2><a href="http://www.education.gouv.fr/cid82162/la-semaine-de-la-democratie-scolaire.html">Semaine de la d&eacute;mocratie scolaire</a></h2>
+<div class="image_bandeau_txt"><p>Durant la Semaine de la D&eacute;mocratie scolaire, du 9 au 14 octobre, se tiendront les &eacute;lections des repr&eacute;sentants des parents d'&eacute;l&egrave;ves aux conseils d'&eacute;cole et aux conseils d'administration et les &eacute;lections aux conseils des d&eacute;l&eacute;gu&eacute;s pour la vie lyc&eacute;enne (CVL) .</p></div>
 </li>
 <li id="image_bandeau_ct_2" class="image_bandeau_ct  ">
-<h2><a href="http://www.lareservecitoyenne.fr/">La R&eacute;serve citoyenne</a></h2>
-<div class="image_bandeau_txt"><p>Dans la continuit&eacute; de la grande mobilisation de l'&Eacute;cole pour les valeurs de la R&eacute;publique, une r&eacute;serve citoyenne d'appui aux &eacute;coles et aux &eacute;tablissements scolaires est cr&eacute;&eacute;e dans chaque acad&eacute;mie.</p></div>
+<h2><a href="http://www.education.gouv.fr/vie-lyceenne/cid73187/les-semaines-de-l-engagement.html">Engagez-vous pour faire vivre votre lyc&eacute;e !</a></h2>
+<div class="image_bandeau_txt"><p>En 2017, les semaines de l'engagement se d&eacute;roulent du 18 septembre au 7 octobre. &Agrave; cette occasion, les lyc&eacute;ens sont sensibilis&eacute;s &agrave; l'engagement sous toutes ses formes dans et hors l'&eacute;tablissement.</p></div>
 </li>
 <li id="image_bandeau_ct_3" class="image_bandeau_ct  ">
-<h2><a href="http://www1.ac-lille.fr/cid88114/mieux-apprendre-pour-mieux-reussir-les-points-cles-du-college-2016.html">Mieux apprendre pour mieux r&eacute;ussir : les points-cl&eacute;s du coll&egrave;ge 2016</a></h2>
-<div class="image_bandeau_txt"><p>Programmes, pratiques d'enseignement et organisation p&eacute;dagogique : comprendre les axes d'am&eacute;lioration mis en &oelig;uvre pour un meilleur coll&egrave;ge d&egrave;s la rentr&eacute;e scolaire 2016.</p></div>
+<h2><a href="http://www.devenirenseignant.gouv.fr/pid35072/inscrivez-vous-aux-concours-recrutement-education.html">Devenir enseignant</a></h2>
+<div class="image_bandeau_txt"><p>En 2018, le minist&egrave;re recrute de nouveaux enseignants : inscrivez-vous aux concours de recrutement d'enseignants et de personnels d'&eacute;ducation.<br />Les inscriptions aux concours de recrutement des enseignants de la session 2018 se d&eacute;roulent du 12 septembre au 12 octobre 2017.</p></div>
+</li>
+<li id="image_bandeau_ct_4" class="image_bandeau_ct  ">
+<h2><a href="http://www.education.gouv.fr/cid117637/rentree-2017-4-mesures-pour-batir-l-ecole-de-la-confiance.html">Rentr&eacute;e 2017 : 4 mesures pour b&acirc;tir l'&Eacute;cole de la confiance</a></h2>
+<div class="image_bandeau_txt"><p>Retrouvez les quatre mesures pour b&acirc;tir l'&Eacute;cole de la confiance qui seront appliqu&eacute;es &agrave; partir de la rentr&eacute;e 2017 : d&eacute;doubler des classes de CP en REP+, adapter les rythmes scolaires, am&eacute;nager la r&eacute;forme du coll&egrave;ge, instaurer le programme "devoirs faits".</p></div>
+</li>
+<li id="image_bandeau_ct_5" class="image_bandeau_ct  ">
+<h2><a href="https://www.trouvermonmaster.gouv.fr/">trouvermonmaster<br />.gouv.fr</a></h2>
+<div class="image_bandeau_txt"><p>Le site "trouvermonmaster.gouv.fr" regroupe l'int&eacute;gralit&eacute; des dipl&ocirc;mes nationaux de master propos&eacute;s par les &eacute;tablissements d'enseignement sup&eacute;rieur en France.</p></div>
 </li>
 </ul>
 <div id="image_bandeau_img_masque">
 <ul id="image_bandeau_img_liste">
 <li id="image_bandeau_img_1" class="image_bandeau_img  selected">
-<a href="/cid92875/mission-monteil-dans-academie.html"><img src="http://cache.media.education.gouv.fr/image/Actu_+/38/3/92875_monteil-carroussel_469383.110.jpg" alt="92875_monteil-carroussel"/></a>
+<a href="http://www.education.gouv.fr/cid82162/la-semaine-de-la-democratie-scolaire.html"><img src="http://cache.media.education.gouv.fr/image/General/17/0/democratie-scolaire_vignette_479170.110.jpg" alt="Semaine de la d&eacute;mocratie scolaire"/></a>
 </li>
 <li id="image_bandeau_img_2" class="image_bandeau_img  ">
-<a href="http://www.lareservecitoyenne.fr/"><img src="http://cache.media.education.gouv.fr/image/actualites/63/2/reserve-citoyenne_caroussel_428632.110.jpg" alt="La r&eacute;serve citoyenne"/></a>
+<a href="http://www.education.gouv.fr/vie-lyceenne/cid73187/les-semaines-de-l-engagement.html"><img src="http://cache.media.education.gouv.fr/image/vie_de_l_eleve/91/4/semaines-de-l_engagement-lyceen_815914.110.jpg" alt="Les semaines de l'engagement lyc&eacute;en"/></a>
 </li>
 <li id="image_bandeau_img_3" class="image_bandeau_img  ">
-<a href="http://www1.ac-lille.fr/cid88114/mieux-apprendre-pour-mieux-reussir-les-points-cles-du-college-2016.html"><img src="http://cache.media.education.gouv.fr/image/actualites/39/2/college2016_421392.110.jpg" alt="Coll&egrave;ge : mieux apprendre pour mieux r&eacute;ussir"/></a>
+<a href="http://www.devenirenseignant.gouv.fr/pid35072/inscrivez-vous-aux-concours-recrutement-education.html"><img src="http://cache.media.education.gouv.fr/image/actualites/02/1/devenir-enseignant_810021.110.png" alt="logo devenirenseignant.gouv.fr"/></a>
+</li>
+<li id="image_bandeau_img_4" class="image_bandeau_img  ">
+<a href="http://www.education.gouv.fr/cid117637/rentree-2017-4-mesures-pour-batir-l-ecole-de-la-confiance.html"><img src="http://cache.media.education.gouv.fr/image/actualites/05/8/rentree2017_carroussel_780058.110.jpg" alt="rentr&eacute;e2017"/></a>
+</li>
+<li id="image_bandeau_img_5" class="image_bandeau_img  ">
+<a href="https://www.trouvermonmaster.gouv.fr/"><img src="http://cache.media.education.gouv.fr/image/actualites/52/7/trouver_mon_master_C_782527.110.jpg" alt="logo du site trouvermonmaster.gouv.fr"/></a>
 </li>
 </ul>
 </div>
@@ -583,6 +686,12 @@ padding: 0px 20px 0px 16px;
 <li id="item_bt_3" class="item_bt ">
 <a href="/?img_bandeau=3">3</a>
 </li>
+<li id="item_bt_4" class="item_bt ">
+<a href="/?img_bandeau=4">4</a>
+</li>
+<li id="item_bt_5" class="item_bt ">
+<a href="/?img_bandeau=5">5</a>
+</li>
 </ul>
 </div>
 </div>
@@ -593,7 +702,7 @@ padding: 0px 20px 0px 16px;
 <div class="a_la_une_home_contenus">
 <h2 class="a_la_une_home_titre">
 <a class="a_la_une_home_lien_toute_actu" href="/pid30987/toute-actualite.html">Toute l'actualit&eacute;</a>
-L'ACTU+ 
+L'Actu+
 </h2>
 
 
@@ -602,17 +711,17 @@ L'ACTU+
 
 <div class="actu_contenu">
 <div class="actu_image">
-<a href="/cid93102/luc-johann-recteur-de-l-academie-de-lille-chancelier-des-universites.html">
-<img src="http://cache.media.education.gouv.fr//image/academie/01/2/Luc-Johann_472012.94.jpg" alt="Luc Johann, recteur de l'académie de Lille, Chancelier des universités" />
+<a href="/cid92168/service-civique-universel.html">
+<img src="http://cache.media.education.gouv.fr//image/ecole_et_societe/70/4/scu_463704.94.jpg" alt="Service civique universel" />
 </a>
 </div>
 <h3 class="actu_titre">
-<a href="/cid93102/luc-johann-recteur-de-l-academie-de-lille-chancelier-des-universites.html" >
-Luc Johann, recteur de l'académie de Lille, Chancelier des universités
+<a href="/cid92168/service-civique-universel.html" >
+Service civique universel
 </a>
 </h3>
 <div class="actu_chapo">
-<p>Luc JOHANN a &eacute;t&eacute; nomm&eacute; recteur de l'acad&eacute;mie de Lille, chancelier des Universit&eacute;s, par d&eacute;cret du pr&eacute;sident de la R&eacute;publique, en conseil des ministres du 9 septembre 2015. Il succ&egrave;de &agrave; Jean-Jacques POLLET.</p>
+<p>L'Acad&eacute;mie de Lille recrute 1 190 jeunes volontaires en Service civique universel. Pourquoi pas vous&nbsp;?<br />Vous avez entre 18 et 25 ans, participez &agrave; une mission &eacute;ducative r&eacute;mun&eacute;r&eacute;e au sein d'une &eacute;cole, un coll&egrave;ge ou un lyc&eacute;e.</p>
 </div>
 
 <div class="clear">&nbsp;</div>
@@ -626,17 +735,17 @@ Luc Johann, recteur de l'académie de Lille, Chancelier des universités
 
 <div class="actu_contenu">
 <div class="actu_image">
-<a href="/cid92766/journee-nationale-du-sport-scolaire.html">
-<img src="http://cache.media.education.gouv.fr//image/General/84/0/JNSS2015_465840.27.jpg" alt="Journée nationale du sport scolaire  16 septembre 2015" />
+<a href="/cid120198/accueil-irma-en-metropole-prise-en-charge-par-les-services-de-l-education-nationale.html">
+<img src="http://cache.media.education.gouv.fr//image/actualites/63/8/Irma_815638.27.jpg" alt="Accueil Irma en métropole : prise en charge par les services de l'Éducation..." />
 </a>
 </div>
 <h3 class="actu_titre">
-<a href="/cid92766/journee-nationale-du-sport-scolaire.html" >
-Journée nationale du sport scolaire  16 septembre 2015
+<a href="/cid120198/accueil-irma-en-metropole-prise-en-charge-par-les-services-de-l-education-nationale.html" >
+Accueil Irma en métropole : prise en charge par les services de l'Éducation nationale
 </a>
 </h3>
 <div class="actu_chapo">
-<p>La Journ&eacute;e nationale du sport scolaire est organis&eacute;e le mercredi 16 septembre 2015. Cette journ&eacute;e a &eacute;t&eacute; retenue comme date de lancement officielle de  &laquo; l'Ann&eacute;e du sport de l'&eacute;cole &agrave; l'universit&eacute; 2015-2016 &raquo;.</p>
+<p>Apr&egrave;s le passage de l'ouragan Irma sur les &icirc;les de Saint-Martin et Saint-Barth&eacute;lemy, vous venez de rejoindre la m&eacute;tropole. Que vous soyez personnel de l'Education nationale ou que vos enfants soient en &acirc;ge d'&ecirc;tre scolaris&eacute;s, consultez les modalit&eacute;s d'accueil et de prise en charge pr&eacute;vues par le minist&egrave;re de l'Education nationale.</p>
 </div>
 
 <div class="clear">&nbsp;</div>
@@ -649,17 +758,17 @@ Journée nationale du sport scolaire  16 septembre 2015
 
 <div class="actu_contenu">
 <div class="actu_image">
-<a href="/cid92636/inscription-aux-concours-de-l-enseignement-2016.html">
-<img src="http://cache.media.education.gouv.fr//image/General/75/0/92636_vignette_463750.27.jpg" alt="Inscription aux concours de l'enseignement 2016" />
+<a href="/cid107160/fete-de-la-science-dans-l-academie-de-lille.html">
+<img src="http://cache.media.education.gouv.fr//image/Logo/82/7/FdS_641827.27.jpg" alt="Fête de la Science dans l'académie de Lille" />
 </a>
 </div>
 <h3 class="actu_titre">
-<a href="/cid92636/inscription-aux-concours-de-l-enseignement-2016.html" >
-Inscription aux concours de l'enseignement 2016
+<a href="/cid107160/fete-de-la-science-dans-l-academie-de-lille.html" >
+Fête de la Science dans l'académie de Lille
 </a>
 </h3>
 <div class="actu_chapo">
-<p>En 2016, le minist&egrave;re recrute plus de 25 000 nouveaux enseignants : inscrivez-vous aux concours de recrutement d'enseignants, de personnels d'&eacute;ducation et d'orientation !</p>
+<p>La 26&egrave;me &eacute;dition de la F&ecirc;te de la Science se d&eacute;roule du 7 au 15 octobre.</p>
 </div>
 
 <div class="clear">&nbsp;</div>
@@ -674,17 +783,17 @@ Inscription aux concours de l'enseignement 2016
 
 <div class="actu_contenu">
 <div class="actu_image">
-<a href="/cid89433/apprentis-dans-la-fonction-publique.html">
-<img src="http://cache.media.education.gouv.fr//image/General/24/8/apprentis180x150_432248.27.gif" alt="Apprentis dans la fonction publique" />
+<a href="/cid120517/journee-nationale-du-sport-scolaire-dans-l-academie-de-lille.html">
+<img src="http://cache.media.education.gouv.fr//image/recteur/53/3/120517_vignette_823533.27.jpg" alt="Journée nationale du sport scolaire dans l'académie de Lille" />
 </a>
 </div>
 <h3 class="actu_titre">
-<a href="/cid89433/apprentis-dans-la-fonction-publique.html" >
-Apprentis dans la fonction publique
+<a href="/cid120517/journee-nationale-du-sport-scolaire-dans-l-academie-de-lille.html" >
+Journée nationale du sport scolaire dans l'académie de Lille
 </a>
 </h3>
 <div class="actu_chapo">
-<p>Vous avez entre 16 et 25 ans ? Vous cherchez un contrat d'apprentissage ?</p>
+<p style="text-align: justify;">Mercredi 27 septembre, Luc Johann, recteur de r&eacute;gion acad&eacute;mique, recteur de l'acad&eacute;mie de Lille, chancelier des universit&eacute; a c&eacute;l&eacute;br&eacute; la Journ&eacute;e nationale du sport scolaire au Stadium Lille M&eacute;tropole de Villeneuve d'Ascq.</p>
 </div>
 
 <div class="clear">&nbsp;</div>
@@ -697,17 +806,17 @@ Apprentis dans la fonction publique
 
 <div class="actu_contenu">
 <div class="actu_image">
-<a href="/cid89041/droit-au-retour-en-formation.html">
-<img src="http://cache.media.education.gouv.fr//image/actualites/46/1/droit-au-retour-en-formation_424461.27.jpg" alt="Droit au retour en formation" />
+<a href="/cid119739/les-bourses-de-college.html">
+<img src="http://cache.media.education.gouv.fr//image/parents/49/0/bourse-de-college_807490.27.jpg" alt="Les aides financières au collège" />
 </a>
 </div>
 <h3 class="actu_titre">
-<a href="/cid89041/droit-au-retour-en-formation.html" >
-Droit au retour en formation
+<a href="/cid119739/les-bourses-de-college.html" >
+Les aides financières au collège
 </a>
 </h3>
 <div class="actu_chapo">
-<p>Tu as entre 16 et 25 ans, tu es sorti du syst&egrave;me scolaire et tu veux reprendre une formation ?</p>
+<p>Il existe diff&eacute;rentes aides financi&egrave;res en faveur des &eacute;l&egrave;ves de coll&egrave;ge : l'allocation de rentr&eacute;e scolaire, les bourses de coll&egrave;ge, le fonds social coll&eacute;gien et le fonds social pour les cantines. &Agrave; la rentr&eacute;e 2017, les bourses de coll&egrave;ge sont revaloris&eacute;es de 25%.</p>
 </div>
 
 <div class="clear">&nbsp;</div>
@@ -727,36 +836,248 @@ En direct des établissements</h2>
 <ul class="zoom_sur_liste">
 
 <li class="first"  >
-<a href="/cid93014/un-ent-commun-pour-lycee-des-metiers-conduite-maintenance-systemes.html" class="zoom_sur_img"><img src="http://cache.media.education.gouv.fr/image/etablissements/06/4/Capture_pour_le_rectorat_469064.27.JPG" alt="ENT lyc&eacute;e des m&eacute;tiers"/></a>
+<a href="/cid120651/du-livre-art-livre-artiste-college-cobergher-bergues.html" class="zoom_sur_img"><img src="http://cache.media.education.gouv.fr/image/Etablissements/32/4/120651_vignette_822324.27.jpg" alt=""/></a>
 <h3>
-<a href="/cid93014/un-ent-commun-pour-lycee-des-metiers-conduite-maintenance-systemes.html" >Un ENT commun pour le lycée des métiers conduite et maintenance systèmes</a>
+<a href="/cid120651/du-livre-art-livre-artiste-college-cobergher-bergues.html" >Du livre d'art au livre d'artiste au collège Cobergher de Bergues</a>
 </h3>
-<span>
-<p style="text-align: justify;" class="MsoNormal">Depuis 2014, le lyc&eacute;e professionnel Alfred Kastler de Denain, le lyc&eacute;e professionnel Pierre-Joseph Fontaine d&rsquo;Anzin et le lyc&eacute;e du Pays de Cond&eacute; &agrave; Cond&eacute; sur Escaut se sont associ&eacute;s et forment d&eacute;sormais le lyc&eacute;e des m&eacute;tiers conduite et maintenance des syst&egrave;mes. Ensemble, ils ont d&eacute;velopp&eacute; un environnement num&eacute;rique de travail commun.</p></span>
+<span><p style="text-align: justify;">Des &eacute;l&egrave;ves de l'&eacute;tablissement ont pu profiter du dispositif &laquo; Jeunes en librairie &raquo; propos&eacute; par la DAAC afin de d&eacute;couvrir les m&eacute;tiers du livre et ses secrets de fabrication.</p></span>
 <span class="clear-both">&nbsp;</span>
 </li>
 
 <li class="second"  >
 <h3>
-<a href="/cid92484/une-eco-randonnee-pour-bien-demarrer-annee.html" >Une éco-randonnée pour bien démarrer l'année</a>
+<a href="/cid120681/le-college-theodore-monod-aniche-met-honneur-auteure-jeunesse-claire-mazard.html" >Le collège Théodore Monod d'Aniche  met à l'honneur l'auteure de jeunesse Claire Mazard</a>
 </h3>
-<span><p style="text-align: justify;">Mercredi 2 septembre 2015, 114 &eacute;l&egrave;ves du lyc&eacute;e des m&eacute;tiers du b&acirc;timent et des &eacute;nergies durables Bernard Chochoy de Lumbres, accompagn&eacute;s de leurs professeurs, ont parcourru 10 km &agrave; travers la nature, plac&eacute;s sous le signe de la coh&eacute;sion de groupe et le go&ucirc;t de l'effort.</p></span>
+<span><p style="text-align: justify;">A l'initiative de Madame Bonnemaison et de Madame Marli&egrave;re, professeures documentalistes, un projet pluridisciplinaire m&ecirc;lant le fran&ccedil;ais, l'&eacute;ducation morale et civique, l'art plastique, l'&eacute;ducation musicale et la documentation a vu le jour. Huit classes de la 6&egrave;me &agrave; la 4&egrave;me ainsi que la classe de 4&egrave;me Segpa, la classe Ulis et des &eacute;l&egrave;ves de l'IME d'Emerchicourt ont  accueilli l'&eacute;crivain.</p></span>
 <span class="clear-both">&nbsp;</span>
 </li>
 
 <li   >
 <h3>
-<a href="/cid92453/les-artistes-herbe-college-jean-moulin-wattignies-exposent-supermarche.html" >Les artistes en herbe du collège Jean Moulin de Wattignies s'exposent à l'hypermarché</a>
+<a href="/cid119598/rentree-musique-dans-academie-lille.html" >Rentrée en musique dans l'académie de Lille </a>
 </h3>
-<span><p>Les &eacute;l&egrave;ves, de la 6&egrave;me &agrave; la 3&egrave;me, ont eu la possibilit&eacute; d'exposer les oeuvres d'art qu'ils ont r&eacute;alis&eacute;es au cours de l'ann&eacute;e scolaire pr&eacute;c&eacute;dente dans la galerie d'un hypermarch&eacute; de Wattignies. L'exposition se d&eacute;roulera du 18 ao&ucirc;t au 10 septembre 2015.</p></span>
+<span><p style="text-align: justify;">Le minist&egrave;re de l'Education nationale a mis en place "<em>la rentr&eacute;e en musique</em>" afin de d&eacute;buter l'ann&eacute;e scolaire sur une note positive et enjou&eacute;e.</p></span>
 <span class="clear-both">&nbsp;</span>
 </li>
 
 <li   class="no_border_bottom"  >
 <h3>
-<a href="/cid91484/concours-onisep-syntec-numerique-2015.html" >Concours Onisep / Syntec Numérique 2015</a>
+<a href="/cid119914/concert-conference-autour-jazz-lycee-fernand-darchicourt-henin-beaumont.html" >Concert-conférence autour du jazz au lycée Fernand Darchicourt d'Hénin-Beaumont</a>
 </h3>
-<span><p>Pour la seconde ann&eacute;e cons&eacute;cutive, les coll&eacute;giens de la classe de 3e DP3 (option d&eacute;couverte professionnelle 3 heures) du coll&egrave;ge de l'Ostrevent &agrave; Bouchain ont remport&eacute; le concours Onisep / Syntec num&eacute;rique. Ce prix a r&eacute;compens&eacute; un travail d'&eacute;quipe men&eacute; avec l'ensemble de la classe autour des m&eacute;tiers du num&eacute;rique.</p></span>
+<span><p style="text-align: justify;"><!--[if gte mso 9]><xml>
+ 
+  
+ 
+</xml><![endif]-->Apr&egrave;s deux mois de recherches sur les courants musicaux au XXe si&egrave;cle, les &eacute;l&egrave;ves de l'enseignement exploration patrimoines et option histoire des arts ont assist&eacute; &agrave; un concert-conf&eacute;rence sur l'histoire du jazz au lyc&eacute;e Fernand Darchicourt, en fin d'ann&eacute;e scolaire.<!--[if gte mso 9]><xml>
+ 
+  Normal
+  0
+  
+  
+  21
+  
+  
+  false
+  false
+  false
+  
+  FR
+  X-NONE
+  X-NONE
+  
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+  
+  
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+  
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ 
+</xml><![endif]--><!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+{mso-style-name:"Tableau Normal";
+mso-tstyle-rowband-size:0;
+mso-tstyle-colband-size:0;
+mso-style-noshow:yes;
+mso-style-priority:99;
+mso-style-qformat:yes;
+mso-style-parent:"";
+mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+mso-para-margin-top:0cm;
+mso-para-margin-right:0cm;
+mso-para-margin-bottom:8.0pt;
+mso-para-margin-left:0cm;
+line-height:107%;
+mso-pagination:widow-orphan;
+font-size:11.0pt;
+font-family:"Calibri","sans-serif";
+mso-ascii-font-family:Calibri;
+mso-ascii-theme-font:minor-latin;
+mso-fareast-font-family:"Times New Roman";
+mso-fareast-theme-font:minor-fareast;
+mso-hansi-font-family:Calibri;
+mso-hansi-theme-font:minor-latin;}
+</style>
+<![endif]--></p></span>
 <span class="clear-both">&nbsp;</span>
 </li>
 </ul>
@@ -775,62 +1096,25 @@ Mémo</h2>
 
 <div class="agenda_texte">
 <ul>
-<li><strong>Jusqu'au 30 septembre</strong></li>
+<li><strong>du 12 septembre au 12 octobre</strong></li>
 </ul>
-<p><a class="chevron" target="_blank" href="http://www.ofaj.org/prix-de-soutien-tele-tandemr-2015-appel-candidatures">Prix T&eacute;l&eacute;-Tandem 2015</a></p>
+<p><a href="http://www.devenirenseignant.gouv.fr/pid35072/inscrivez-vous-aux-concours-recrutement-education.html" target="_blank" class="chevron">Inscription aux concours de recrutement de professeurs des &eacute;coles et des personnels de l'enseignement du second degr&eacute;</a><br /><a href="http://www.education.gouv.fr/cid99268/les-concours-de-recrutement-de-conseillers-principaux-d-education.html" target="_blank" class="chevron">Inscription aux concours de conseillers principaux d'&eacute;ducation</a><br /><a href="http://www.education.gouv.fr/cid99001/les-concours-recrutement-des-psychologues-education-nationale.html" target="_blank" class="chevron">Inscription aux concours de psychologues de l'&Eacute;ducation nationale</a><br /><strong></strong></p>
 <ul>
-<li><strong>Du 5 au 9 octobre</strong></li>
+<li><strong>du 18 septembre au 7 octobre</strong></li>
 </ul>
-<p><a class="chevron" title="Semaine de la d&eacute;mocratie scolaire" href="http://www.education.gouv.fr/cid82162/la-semaine-de-la-democratie-scolaire.html">Semaine de la d&eacute;mocratie scolaire</a></p>
+<p><a href="http://www.education.gouv.fr/vie-lyceenne/cid73187/les-semaines-de-l-engagement.html" target="_blank" class="chevron">Semaines de l'engagement</a></p>
 <ul>
-<li><strong>Jusqu'au 6 novembre</strong></li>
+<li><strong>du 7 au 15 octobre</strong></li>
 </ul>
-<p><a class="chevron" target="_blank" href="http://www.ofaj.org/projets-in">Projet-IN : appel &agrave; projets franco-allemands interdisciplinaires, interculturels et innovants</a></p>
-<p><a class="chevron" target="_blank" href="http://www.education.gouv.fr/pid25535/bulletin_officiel.html?cid_bo=88421">Candidature au programme Voltaire</a></p>
-
-
-<p><br /><br /></p>
-</div>
-</div>
-<div class="clear-both"></div>
-
-<div id="en_direct_des_academies">
-<h2 class="en_direct_des_academies_titre">
-<span class="en_direct_des_academies_titre_pointe">&nbsp;</span>
-En bref...</h2>
-<ul class="en_direct_des_academies_liste">
-<li>
-<h3>Art</h3>
-<a class="en_direct_des_academies_lien" href="/cid90982/si-le-moyen-age-m-etait-conte.html" >Si le Moyen Age m'était conté</a>
-<div class="clear-both"></div>
-</li>
-<li>
-<h3>Liaison Ecole-Coll&egrave;ge</h3>
-<a class="en_direct_des_academies_lien" href="/cid90673/-lire-la-ville.html" >"Lire la ville"</a>
-<div class="clear-both"></div>
-</li>
-<li>
-<h3>Arts</h3>
-<a class="en_direct_des_academies_lien" href="/cid90737/une-comedie-musicale-qui-enchante&Acirc; -alice-le-retour-au-pays-des-merveilles.html" >Une comédie musicale qui enchante : Alice, le retour au Pays des Merveilles </a>
-<div class="clear-both"></div>
-</li>
-<li>
-<h3>Education citoyennet&eacute;</h3>
-<a class="en_direct_des_academies_lien" href="/cid90268/un-crayon-n-est-pas-une-arme.html" >Un crayon n'est pas une arme</a>
-<div class="clear-both"></div>
-</li>
-<li>
-<h3>Education citoyennet&eacute;</h3>
-<a class="en_direct_des_academies_lien" href="/cid90224/reflexion-autour-de-la-laicite.html" >Réflexion autour de la laïcité</a>
-<div class="clear-both"></div>
-</li>
-<li>
-<h3>Art</h3>
-<a class="en_direct_des_academies_lien" href="/cid90221/art-abstrait-geometrique.html" >Art abstrait géométrique </a>
-<div class="clear-both"></div>
-</li>
+<p><a href="/cid107160/fete-science-dans-academie-lille.html" class="chevron">F&ecirc;te de la science</a></p>
+<ul>
+<li><strong>du 9 au 14 octobre</strong></li>
 </ul>
+<p><a href="http://www.education.gouv.fr/cid82162/la-semaine-de-la-democratie-scolaire.html" target="_blank" class="chevron">Semaine de la d&eacute;mocratie scolaire</a><br /><a href="http://www.education.gouv.fr/cid93588/la-semaine-du-climat.html" target="_blank" class="chevron">Semaine du climat</a></p>
 </div>
+</div>
+<div class="clear-both"></div>
+
 
 
 <div id="actu_en_continu">
@@ -841,25 +1125,25 @@ En bref...</h2>
 
 <span class="actu_en_continu_barre">&nbsp;</span>
 <span class="actu_en_continu_titre_pointe">&nbsp;</span>
-L'ACTUALITÉ EN CONTINU</h2>
+L'actualité en continue d'education.gouv.fr</h2>
 
 <div id="diaporama">
 <div class="diaporama_middle">
 <ul class="diaporama_liste_img">
 <li class="selected">
-<a target="_blank" href="http://www.education.gouv.fr/cid93247/semaines-de-l-engagement-lyceen -deplacement-dans-un-lycee-parisien.html"><img src="http://cache.media.education.gouv.fr/image/09_-_septembre/08/2/Engagement-lyceen-Condorcet-2015-16-web_472082.94.jpg" alt=""/></a>
+<a target="_blank" href="http://www.education.gouv.fr/cid121111/20e-edition-des-rendez-vous-de-l-histoire-deplacement-a-blois.html"><img src="http://cache.media.education.gouv.fr/image/09_-_septembre/12/7/Rendez-vous-histoire-blois-Blanquer_827127.94.jpg" alt=""/></a>
 </li>
 <li >
-<a target="_blank" href="http://www.education.gouv.fr/cid93199/deplacement-de-najat-vallaud-belkacem-dans-le-cadre-des-semaines-de-l-engagement-lyceen-mardi-22-septembre-2015.html"><img src="http://cache.media.education.gouv.fr/image/Actu/65/2/info-presse_145652.94.gif" alt=""/></a>
+<a target="_blank" href="http://www.education.gouv.fr/cid121099/deplacement-de-jean-michel-blanquer-en-loire-atlantique.html"><img src="http://cache.media.education.gouv.fr/image/Actu/65/2/info-presse_145652.94.gif" alt=""/></a>
 </li>
 <li >
-<a target="_blank" href="http://www.education.gouv.fr/cid93167/scolarisation-des-enfants-de-refugies-deplacement-a-paris.html"><img src="http://cache.media.education.gouv.fr/image/09_-_septembre/67/0/Eleves_allophones_Paris_2015_5_470670.94.jpg" alt=""/></a>
+<a target="_blank" href="http://www.education.gouv.fr/cid121001/journee-des-enseignants.html"><img src="http://cache.media.education.gouv.fr/image/10_-_octobre/55/4/1200x800_merci_825554.94.jpg" alt=""/></a>
 </li>
 <li >
-<a target="_blank" href="http://www.education.gouv.fr/cid93042/projet-de-programmes-pour-les-cycles-2-3-et-4.html"><img src="http://cache.media.education.gouv.fr/image/09_-_septembre/13/3/2015_projets-programmes-2-3-4_1200x800_469133.94.jpg" alt=""/></a>
+<a target="_blank" href="http://www.education.gouv.fr/cid120762/au-bo-du-5-octobre-2017-elections-des-representants-des-parents-d-eleves-dans-le-premier-degre.html"><img src="http://cache.media.education.gouv.fr/image/08_-_aout/01/9/2015_BO_banniere_1200x800_457019.94.jpg" alt=""/></a>
 </li>
 <li >
-<a target="_blank" href="http://www.education.gouv.fr/cid93111/deplacement-de-najat-vallaud-belkacem-sur-la-scolarisation-des-enfants-de-refugies.html"><img src="http://cache.media.education.gouv.fr/image/Actu/65/2/info-presse_145652.94.gif" alt=""/></a>
+<a target="_blank" href="http://www.education.gouv.fr/cid121075/seconde-edition-des-rencontres-nationales-de-la-bande-dessinee.html"><img src="http://cache.media.education.gouv.fr/image/Racine/68/0/img_remontee_angouleme_826680.94.jpg" alt=""/></a>
 </li>
 </ul>
 <ul class="diaporama_liste_ctrl">
@@ -874,19 +1158,19 @@ L'ACTUALITÉ EN CONTINU</h2>
 <a href="?diapo=-1" class="diaporama_bt_prec hidden">&nbsp;</a>
 <ul class="diaporama_liste_txt">
 <li id="diaporama_txt_1" class="diaporama_txt selected">
-<h3><a href="http://www.education.gouv.fr/cid93247/semaines-de-l-engagement-lyceen -deplacement-dans-un-lycee-parisien.html">Semaines de l'engagement lycéen : déplacement dans un lycée parisien</a></h3>
+<h3><a href="http://www.education.gouv.fr/cid121111/20e-edition-des-rendez-vous-de-l-histoire-deplacement-a-blois.html">20e édition des Rendez-vous de l'Histoire : déplacement à Blois</a></h3>
 </li>
 <li id="diaporama_txt_2" class="diaporama_txt ">
-<h3><a href="http://www.education.gouv.fr/cid93199/deplacement-de-najat-vallaud-belkacem-dans-le-cadre-des-semaines-de-l-engagement-lyceen-mardi-22-septembre-2015.html">Déplacement de Najat Vallaud-Belkacem dans le cadre des Semaines de l'engagement lycéen mardi 22 septembre 2015</a></h3>
+<h3><a href="http://www.education.gouv.fr/cid121099/deplacement-de-jean-michel-blanquer-en-loire-atlantique.html">Déplacement de Jean-Michel Blanquer en Loire-Atlantique </a></h3>
 </li>
 <li id="diaporama_txt_3" class="diaporama_txt ">
-<h3><a href="http://www.education.gouv.fr/cid93167/scolarisation-des-enfants-de-refugies-deplacement-a-paris.html">Scolarisation des enfants de réfugiés : déplacement à Paris</a></h3>
+<h3><a href="http://www.education.gouv.fr/cid121001/journee-des-enseignants.html">Journée des enseignants</a></h3>
 </li>
 <li id="diaporama_txt_4" class="diaporama_txt ">
-<h3><a href="http://www.education.gouv.fr/cid93042/projet-de-programmes-pour-les-cycles-2-3-et-4.html">Projet de programmes pour les cycles 2, 3 et 4</a></h3>
+<h3><a href="http://www.education.gouv.fr/cid120762/au-bo-du-5-octobre-2017-elections-des-representants-des-parents-d-eleves-dans-le-premier-degre.html">Au BO du 5 octobre 2017 : élections des représentants des parents d'élèves dans le premier degré </a></h3>
 </li>
 <li id="diaporama_txt_5" class="diaporama_txt ">
-<h3><a href="http://www.education.gouv.fr/cid93111/deplacement-de-najat-vallaud-belkacem-sur-la-scolarisation-des-enfants-de-refugies.html">Déplacement de Najat Vallaud-Belkacem sur la scolarisation des enfants de réfugiés </a></h3>
+<h3><a href="http://www.education.gouv.fr/cid121075/seconde-edition-des-rencontres-nationales-de-la-bande-dessinee.html">Seconde édition des rencontres nationales de la Bande dessinée</a></h3>
 </li>
 </ul>
 <a href="?diapo=1" class="diaporama_bt_suiv ">&nbsp;</a>
@@ -897,95 +1181,19 @@ L'ACTUALITÉ EN CONTINU</h2>
 <div class="actu_en_continu_ct_inner">
 <ul class="actu_en_continu_liste">
 <li id="actu_en_continu_item_1" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid93247/semaines-de-l-engagement-lyceen -deplacement-dans-un-lycee-parisien.html">Semaines de l'engagement lycéen : déplacement dans un lycée parisien</a></h3>
+<h3><a target="_blank" href="http://www.education.gouv.fr/cid121099/deplacement-de-jean-michel-blanquer-en-loire-atlantique.html">Déplacement de Jean-Michel Blanquer en Loire-Atlantique </a></h3>
 </li>
 <li id="actu_en_continu_item_2" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid93199/deplacement-de-najat-vallaud-belkacem-dans-le-cadre-des-semaines-de-l-engagement-lyceen-mardi-22-septembre-2015.html">Déplacement de Najat Vallaud-Belkacem dans le cadre des Semaines de l'engagement lycéen mardi 22 septembre 2015</a></h3>
+<h3><a target="_blank" href="http://www.education.gouv.fr/cid121111/20e-edition-des-rendez-vous-de-l-histoire-deplacement-a-blois.html">20e édition des Rendez-vous de l'Histoire : les ministres de la Culture et de l'Éducation nationale en déplacement à Blois</a></h3>
 </li>
 <li id="actu_en_continu_item_3" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid93167/scolarisation-des-enfants-de-refugies-deplacement-a-paris.html">Scolarisation des enfants de réfugiés : déplacement à Paris</a></h3>
+<h3><a target="_blank" href="http://www.education.gouv.fr/cid120762/au-bo-du-5-octobre-2017-elections-des-representants-des-parents-d-eleves-dans-le-premier-degre.html">Au BO du 5 octobre 2017 : élections des représentants des parents d'élèves dans le premier degré en Martinique et en Guadeloupe</a></h3>
 </li>
 <li id="actu_en_continu_item_4" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid93103/appel-a-labellisation-de-la-grande-ecole-du-numerique-apgen.html">Appel à labellisation de la Grande école du numérique - "APGEN"</a></h3>
+<h3><a target="_blank" href="http://www.education.gouv.fr/cid121001/journee-des-enseignants.html">Journée mondiale des enseignants</a></h3>
 </li>
 <li id="actu_en_continu_item_5" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid93111/deplacement-de-najat-vallaud-belkacem-sur-la-scolarisation-des-enfants-de-refugies.html">Déplacement de Najat Vallaud-Belkacem sur la scolarisation des enfants de réfugiés </a></h3>
-</li>
-<li id="actu_en_continu_item_6" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid93042/projet-de-programmes-pour-les-cycles-2-3-et-4.html">Projet de programmes pour les cycles 2, 3 et 4</a></h3>
-</li>
-<li id="actu_en_continu_item_7" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid93017/taux-de-participation-a-la-greve-du-17-septembre-2015.html">Taux de participation à la grève du 17 septembre 2015 </a></h3>
-</li>
-<li id="actu_en_continu_item_8" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid93041/remise-officielle-du-projet-de-programmes-pour-les-cycles-2-3-et-4.html">Remise officielle du projet de programmes pour les cycles 2, 3 et 4</a></h3>
-</li>
-<li id="actu_en_continu_item_9" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid93067/division-par-deux-du-prix-de-la-licence-unss-dans-les-colleges-rep-et-les-lycees-professionnels-de-l-education-prioritaire.html">Division par deux du prix de la licence UNSS dans les collèges REP+ et les lycées professionnels de l'éducation prioritaire</a></h3>
-</li>
-<li id="actu_en_continu_item_10" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid93007/au-bo-du-17-septembre-2015-concours-d-affiches-agis-pour-tes-droits-2015.html">Au BO du 17 septembre 2015 : concours d'affiches "Agis pour tes droits" 2015</a></h3>
-</li>
-<li id="actu_en_continu_item_11" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid92994/reception-des-champions-sportifs-scolaires-et-universitaires.html">Réception des champions sportifs scolaires et universitaires</a></h3>
-</li>
-<li id="actu_en_continu_item_12" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid92942/journee-nationale-du-sport-scolaire-mercredi-16-septembre-2015.html">Journée nationale du sport scolaire - mercredi 16 septembre 2015</a></h3>
-</li>
-<li id="actu_en_continu_item_13" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid92950/annee-universitaire-2015-2016.html">Année universitaire 2015-2016</a></h3>
-</li>
-<li id="actu_en_continu_item_14" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid93210/rentree-scolaire-et-universitaire-question-au-gouvernement-a-l-assemblee-nationale-mercredi-16-septembre-2015.html">Rentrée scolaire et universitaire : question au Gouvernement à l'Assemblée nationale, mercredi 16 septembre 2015</a></h3>
-</li>
-<li id="actu_en_continu_item_15" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid92988/journee-nationale-du-sport-scolaire-deplacement-a-la-halle-carpentier-a-paris.html">Journée nationale du sport scolaire : déplacement à la Halle Carpentier à Paris
-</a></h3>
-</li>
-<li id="actu_en_continu_item_16" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid92938/journee-nationale-du-sport-scolaire-deplacement-de-najat-vallaud-belkacem-a-paris.html">Journée nationale du sport scolaire - déplacement de Najat Vallaud-Belkacem à Paris </a></h3>
-</li>
-<li id="actu_en_continu_item_17" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid93209/reformes-educatives-question-au-gouvernement-a-l-assemblee-nationale-mercredi-16-septembre-2015.html">Réformes éducatives : question au Gouvernement à l'Assemblée nationale, mercredi 16 septembre 2015</a></h3>
-</li>
-<li id="actu_en_continu_item_18" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid92876/rapport-pisa-de-l-ocde-sur-l-equipement-et-les-competences-numeriques-des-eleves.html">Rapport PISA de l'OCDE sur l'équipement et les compétences numériques des élèves</a></h3>
-</li>
-<li id="actu_en_continu_item_19" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid92813/la-jeunesse-dessine-les-valeurs-de-la-republique.html">La jeunesse dessine les valeurs de la République</a></h3>
-</li>
-<li id="actu_en_continu_item_20" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid92808/l-education-nationale-s-engage-en-faveur-d-une-ecole-rurale-de-qualite.html">L'Éducation nationale s'engage en faveur d'une école rurale de qualité</a></h3>
-</li>
-<li id="actu_en_continu_item_21" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid92728/eleves-et-etudiants-non-affectes-najat-vallaud-belkacem-mobilise-les-recteurs-pour-resoudre-les-derniers-cas-sous-huitaine.html">Elèves et étudiants non affectés : Najat Vallaud-Belkacem mobilise les recteurs pour résoudre les derniers cas sous huitaine </a></h3>
-</li>
-<li id="actu_en_continu_item_22" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid92704/inauguration-de-l-ecole-pierre-beregovoy-d-alfortville.html">Inauguration de l'école Pierre Bérégovoy d'Alfortville</a></h3>
-</li>
-<li id="actu_en_continu_item_23" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid92648/ouverture-des-inscriptions-aux-concours-enseignants-2016-la-dynamique-de-recrutement-se-poursuit.html">Ouverture des inscriptions aux concours enseignants 2016 : la dynamique de recrutement se poursuit</a></h3>
-</li>
-<li id="actu_en_continu_item_24" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid92655/deplacement-de-najat-vallaud-belkacem-dans-l-academie-de-toulouse.html">Déplacement de Najat Vallaud-Belkacem dans l'académie de Toulouse </a></h3>
-</li>
-<li id="actu_en_continu_item_25" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid92592/la-revision-generale-au-classement-des-etablissements-pour-la-rentree-2016-au-bo-special-du-10-septembre-2015.html">La révision générale au classement des établissements pour la rentrée 2016 au BO spécial du 10 septembre 2015 </a></h3>
-</li>
-<li id="actu_en_continu_item_26" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid91773/le-ministere-recrute-inscrivez-vous-aux-concours-de-recrutement-d-enseignants-de-personnels-d-education-et-d-orientation.html">En 2016, le ministère recrute plus de 25 000 nouveaux enseignants : inscrivez-vous aux concours de recrutement d'enseignants, de personnels d'éducation et d'orientation !</a></h3>
-</li>
-<li id="actu_en_continu_item_27" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid92608/au-bo-du-10-septembre-2015-diplome-national-du-brevet-et-actions-educatives.html">Au BO du 10 septembre 2015 : diplôme national du brevet et actions éducatives</a></h3>
-</li>
-<li id="actu_en_continu_item_28" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid92575/une-strategie-nationale-pour-l-enseignement-superieur-remise-du-rapport-de-la-stranes-au-president-de-la-republique.html">Une stratégie nationale pour l'Enseignement Supérieur : remise du rapport de la StraNES au président de la République</a></h3>
-</li>
-<li id="actu_en_continu_item_29" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid92588/evaluation-des-eleves-en-francais-et-en-mathematiques-au-debut-de-la-classe-de-ce2-de-nouveaux-outils-a-la-disposition-des-enseignants.html">Évaluation des élèves en français et en mathématiques au début de la classe de CE2 : de nouveaux outils à la disposition des enseignants </a></h3>
-</li>
-<li id="actu_en_continu_item_30" class="actu_en_continu_item">
-<h3><a target="_blank" href="http://www.education.gouv.fr/cid92560/plan-d-action-pour-les-ecoles-de-seine-saint-denis-deplacement-dans-l-academie-de-creteil.html">Plan d'action pour les écoles de Seine-Saint-Denis : déplacement dans l'académie de Créteil</a></h3>
+<h3><a target="_blank" href="http://www.education.gouv.fr/cid121075/seconde-edition-des-rencontres-nationales-de-la-bande-dessinee.html">Seconde édition des rencontres nationales de la Bande dessinée</a></h3>
 </li>
 </ul>
 </div>
@@ -993,9 +1201,12 @@ L'ACTUALITÉ EN CONTINU</h2>
 </div>
 <div id="bloc_libre_4" class="bloc_libre bloc_libre_contenu">
 <h2><a href="">Recrutement</a></h2>
-<div class="bloc_libre_txt"><p><a class="chevron" href="/cid88257/equipe-mobile-securite-pas-calais.html">&Eacute;quipe mobile de s&eacute;curit&eacute; du Pas-de-Calais</a></p>
-<p><a class="chevron" href="/cid83429/personnel-direction-eclair-rep.html">Personnel de direction dans les &eacute;tablissements ECLAIR et REP +</a></p>
-<p><a class="chevron" href="/cid83499/contractuels-enseignants.html">Contractuels enseignants</a></p>
+<div class="bloc_libre_txt"><p><a href="/cid118112/directeur-trice-service-regional-unss.html" class="chevron">Directeur adjoint du service r&eacute;gional de l'UNSS</a></p>
+<p><a class="chevron" href="/cid110952/appel-candidature.html">Tuteurs dans le cadre de la lutte contre le d&eacute;crochage dispositifs PERSEVAL et IEJ</a></p>
+<p><a class="chevron" href="/cid94264/recrutement.html">M&eacute;decin de l'&Eacute;ducation nationale</a></p>
+<p><a class="chevron" href="/cid94264/recrutement.html">M&eacute;decin de pr&eacute;vention</a></p>
+<p><a class="chevron" href="/cid83429/personnel-direction-eclair-rep.html">Personnel de direction dans les &eacute;tablissements REP+</a></p>
+<p><a class="chevron" href="/cid83499/recrutement-enseignants-contractuels.html">Contractuels enseignants</a></p>
 <p><a class="chevron" target="_blank" href="https://bv.ac-lille.fr/siaten/">Assistants d'&eacute;ducation</a></p></div>
 </div>
 <div class="clear-both"></div>
@@ -1024,7 +1235,7 @@ document.write ('<scr'+'ipt type="text/javascript" src="' + oas_server + '/3/' +
 </div>
 <div class="blocAnimation">
 <div class="titreAnimation">Site à découvrir</div>
-<div class="contenuAnimation"><p style="text-align: center;"><a target="_blank" href="http://cfa.ac-lille.fr/"><span class="zoomMedia"><img src="http://cache.media.education.gouv.fr/image/General/51/2/CFA-academique_432512.122.png" alt="CFA acad&eacute;mique" longdesc="" /></span></a></p></div>
+<div class="contenuAnimation"><p style="text-align: center;"><a href="http://www.devenirenseignant.gouv.fr/" target="_blank"><img src="http://cache.media.education.gouv.fr/image/Mediatheque/92/0/Devenir_enseignant_799920.jpg" alt="http://www.devenirenseignant.gouv.fr/" longdesc="" /></a></p></div>
 </div>
 <div class="clear"></div>
 </div>
@@ -1032,62 +1243,52 @@ document.write ('<scr'+'ipt type="text/javascript" src="' + oas_server + '/3/' +
 <div id="info_rech_contact" style="display:block;">
 <h2>S'informer, rechercher, nous contacter</h2>
 <ul>
-<li class="bloc_0">
-<a href="http://www.education.gouv.fr/pid24301/annuaire-accueil-recherche.html" target="_blank">
+<li class="bloc_0"><a href="http://www.education.gouv.fr/pid24301/annuaire-accueil-recherche.html" target="_blank">
 <img src="http://cache.media.education.gouv.fr/image/Bloc_informer/79/9/informer-etab_424799.jpg" alt=""/>
 <span>Annuaire</span>
 </a>
 </li>
-<li class="bloc_1">
-<a href="http://www.education.gouv.fr/pid25058/le-calendrier-scolaire.html" target="_blank">
+<li class="bloc_1"><a href="http://www.education.gouv.fr/pid25058/le-calendrier-scolaire.html" target="_blank">
 <img src="http://cache.media.education.gouv.fr/image/Bloc_informer/79/5/informer-calendrier_424795.jpg" alt=""/>
 <span>Calendrier</span>
 </a>
 </li>
-<style="clear:both;"><li class="bloc_2">
-<a href="http://discipline.ac-lille.fr/" target="_blank">
+<li class="bloc_2"><a href="http://discipline.ac-lille.fr/" target="_blank">
 <img src="http://cache.media.education.gouv.fr/image/Bloc_informer/09/3/disciplines_254834_343093.png" alt=""/>
 <span>Disciplines</span>
 </a>
 </li>
-<li class="bloc_0">
-<a href="https://eduline.ac-lille.fr/" target="_blank">
+<li class="bloc_0 both"><a href="https://eduline.ac-lille.fr/" target="_blank">
 <img src="http://cache.media.education.gouv.fr/image/Bloc_informer/10/4/PIA_248267_343104.png" alt=""/>
 <span>Eduline</span>
 </a>
 </li>
-<li class="bloc_1">
-<a href="https://bv.ac-lille.fr/iprof/" target="_blank">
+<li class="bloc_1"><a href="https://eduline.ac-lille.fr/" target="_blank">
 <img src="http://cache.media.education.gouv.fr/image/Bloc_informer/09/8/i-prof_256068_343098.png" alt=""/>
 <span>IProf public</span>
 </a>
 </li>
-<style="clear:both;"><li class="bloc_2">
-<a href="https://webmail.ac-lille.fr/" target="_blank">
+<li class="bloc_2"><a href="https://webmail.ac-lille.fr/" target="_blank">
 <img src="http://cache.media.education.gouv.fr/image/Bloc_informer/10/1/webmail_248271_343101.png" alt=""/>
 <span>Webmail</span>
 </a>
 </li>
-<li class="bloc_0">
-<a href="http://www.education.gouv.fr/pid285/le-bulletin-officiel.html" target="_blank">
+<li class="bloc_0 both"><a href="http://www.education.gouv.fr/pid285/le-bulletin-officiel.html" target="_blank">
 <img src="http://cache.media.education.gouv.fr/image/Bloc_informer/09/0/bo_254840_343090.png" alt=""/>
 <span>BOEN</span>
 </a>
 </li>
-<li class="bloc_1">
-<a href="http://www.twitter.com/aclille" target="_blank">
+<li class="bloc_1"><a href="http://www.twitter.com/aclille" target="_blank">
 <img src="http://cache.media.education.gouv.fr/image/Bloc_informer/67/6/informer_twitter_325676.jpg" alt=""/>
 <span>Twitter</span>
 </a>
 </li>
-<style="clear:both;"><li class="bloc_2">
-<a href="http://www1.ac-lille.fr/rid4721/l-actualite-de-l-academie-de-lille.rss" target="_blank">
+<li class="bloc_2"><a href="http://www1.ac-lille.fr/rid4721/l-actualite-de-l-academie-de-lille.rss" target="_blank">
 <img src="http://cache.media.education.gouv.fr/image/Bloc_informer/67/5/informer_rss_325675.jpg" alt=""/>
 <span>RSS</span>
 </a>
 </li>
-<li class="bloc_0">
-<a href="/cid83277/contacts.html" >
+<li class="bloc_0 both"><a href="/pid33458/nous-contacter.html" >
 <img src="http://cache.media.education.gouv.fr/image/Bloc_informer/67/2/informer_contact_325672.jpg" alt=""/>
 <span>Contact</span>
 </a>
@@ -1098,7 +1299,7 @@ document.write ('<scr'+'ipt type="text/javascript" src="' + oas_server + '/3/' +
 <h2>Les directions des services départementaux</h2>
 <div><img usemap="#mapping_lille" id="kwa_map" src="http://cache.media.education.gouv.fr/design/front_office_kwa/images/global/map_lille/lille.jpg" width="178" height="164" alt="Carte des &eacute;tablissements de France"/>
 <map name="mapping_lille" id="mapping_lille">
-<area shape="poly" href="http://www.ac-lille.fr/dsden62/" target="_blank" title="zone62" id="http:____cache.media.education.gouv.fr__design__front_office_kwa__images__global__map_lille__lille_62" coords="100,121,100,116,102,111,103,107,104,103,101,101,97,100,99,96,97,92,96,87,97,83,92,80,88,78,84,76,84,71,87,68,83,65,80,69,74,69,69,68,64,66,60,62,60,57,54,54,50,50,49,44,46,39,41,36,36,37,31,38,26,39,22,42,18,46,15,50,15,55,14,60,14,65,15,70,15,75,14,80,13,84,14,89,19,93,24,93,29,94,34,95,37,99,41,102,45,105,50,105,54,104,59,104,64,104,65,108,61,111,62,115,66,112,71,114,76,116,80,117,81,121,85,117,88,123,93,122,96,121" />
+<area shape="poly" href="http://www.ac-lille.fr/dsden62/" target="_self" title="zone62" id="http:____cache.media.education.gouv.fr__design__front_office_kwa__images__global__map_lille__lille_62" coords="100,121,100,116,102,111,103,107,104,103,101,101,97,100,99,96,97,92,96,87,97,83,92,80,88,78,84,76,84,71,87,68,83,65,80,69,74,69,69,68,64,66,60,62,60,57,54,54,50,50,49,44,46,39,41,36,36,37,31,38,26,39,22,42,18,46,15,50,15,55,14,60,14,65,15,70,15,75,14,80,13,84,14,89,19,93,24,93,29,94,34,95,37,99,41,102,45,105,50,105,54,104,59,104,64,104,65,108,61,111,62,115,66,112,71,114,76,116,80,117,81,121,85,117,88,123,93,122,96,121" />
 <area shape="poly" href="http://www.ac-lille.fr/dsden59/" target="_self" title="zone59" id="http:____cache.media.education.gouv.fr__design__front_office_kwa__images__global__map_lille__lille_59" coords="103,122,108,122,113,122,117,122,124,122,123,121,128,119,132,121,137,118,141,119,146,120,150,121,153,120,156,123,160,124,162,120,164,116,162,112,161,106,163,102,159,98,154,94,149,94,144,94,138,93,134,95,132,91,133,86,131,82,126,80,121,78,115,80,110,76,110,71,109,66,107,60,103,55,98,56,93,58,89,62,84,60,80,55,74,51,73,46,74,40,72,35,70,29,64,30,57,31,60,30,52,33,46,34,46,39,48,44,51,50,54,54,59,56,60,61,63,65,68,68,73,69,79,68,83,67,87,70,84,71,84,77,87,77,92,80,95,82,98,86,96,91,100,95,98,100,102,101,105,105,104,110,102,114,102,118" />
 </map>
 <script type="text/javascript">
@@ -1115,24 +1316,25 @@ $('#kwa_map').attr('src', imageSrc);
 });
 </script></div>
 </div>
- 
+ <div class="editorial_col_droite type_1">
+
+<div class="editorial_ct"><p style="text-align: center;"><br /><a target="_blank" href="http://www.education.gouv.fr/horaires-ecoles"><span class="zoomMedia"><img src="http://cache.media.education.gouv.fr/image/General/73/0/visuel_5_matinees_150x100px_443730.jpg" alt="Les organisations du temps scolaire des &eacute;coles maternelles et &eacute;l&eacute;mentaires publiques (OTS) pour l'ann&eacute;e 2015-2016" longdesc="" /></span></a></p>
+<p><br /><strong>DISPOSITIF VIGIPIRATE "ALERTE ATTENTAT"</strong></p>
+<p><a class="chevron" target="_blank" href="http://www.education.gouv.fr/cid85267/-mise-a-jour-du-26-janvier-consignes-de-securite-applicables-dans-les-etablissements-relevant-du-ministere.html">Consignes de s&eacute;curit&eacute; applicables dans les &eacute;tablissements relevant du minist&egrave;re</a></p>
+<p style="text-align: center;"><span class="zoomMedia"><img src="http://cache.media.education.gouv.fr/image/General/17/2/Vigipirate_383172.42.jpg" alt="" longdesc="" /></span><a class="zoomMedia" target="_blank" href="/agrandissement_media.php?media=383172" rel="shadowbox;width=300;height=145" title=" (ouverture de l'image agrandie dans une nouvelle fen&ecirc;tre)"></a></p>
+<p><span class="zoomMedia"><br /></span></p>
+<p style="text-align: center;"><span class="zoomMedia"><a href="/pid33458/nous-contacter.html"><span class="zoomMedia"><img src="http://cache.media.education.gouv.fr/image/Logo/85/1/teaser-sve_511851.42.png" alt="Saisir les services de l'&Eacute;tat" longdesc="" /></span></a></span></p>
+<p><span class="zoomMedia"><br /></span></p>
+<p><a target="_blank" href="http://www.education.gouv.fr/services-en-ligne/"><span class="zoomMedia"><img style="display: block; margin-left: auto; margin-right: auto;" src="http://cache.media.education.gouv.fr/image/General/87/9/visuel_service_159x156_272959_367879.42.jpg" alt="Services en  ligne de l'&eacute;ducation nationale" longdesc="" /></span></a></p>
+<p>Une s&eacute;lection de services r&eacute;pondant aux besoins des &eacute;l&egrave;ves, des parents et des enseignants</p>
+<p style="text-align: center;"><a target="_blank" href="http://www.education.gouv.fr/services-en-ligne/"><span class="zoomMedia"><img src="http://cache.media.education.gouv.fr/image/General/88/8/btn_service_272963_367888.42.jpg" alt="D&eacute;couvrez les services" longdesc="" /></span></a></p>
+<p><strong><br /></strong></p></div>
+</div>
+
 <div class="editorial_col_droite type_1">
 
-<div class="editorial_ct"><p style="text-align: center;"><span class="zoomMedia"><span class="zoomMedia"><span class="zoomMedia"><br /></span></span></span></p>
-<p style="text-align: center;"><a target="_blank" href="http://www.education.gouv.fr/cid91773/le-ministere-recrute-inscrivez-vous-aux-concours-de-recrutement-d-enseignants-de-personnels-d-education-et-d-orientation.html"><span class="zoomMedia"><span class="zoomMedia"><span class="zoomMedia"><span class="zoomMedia"><span class="zoomMedia"><img src="http://cache.media.education.gouv.fr/image/General/61/1/180x150_463611.42.gif" alt="Inscriptions aux concours de recrutement" longdesc="" /></span></span></span></span></span></a></p>
-<p style="text-align: center;"><span class="zoomMedia"><span class="zoomMedia"><span class="zoomMedia"><span class="zoomMedia"><br /></span></span></span></span></p>
-<p style="text-align: center;"><a href="/cid92217/s-inscrire-aux-stages-public-volontaire-2015-2016.html"><span class="zoomMedia"><span class="zoomMedia"><span class="zoomMedia"><span class="zoomMedia"><img src="http://cache.media.education.gouv.fr/image/formation/00/8/icone-PAF_414008.42.jpg" alt="Plan acad&eacute;mique de formation" longdesc="" /></span></span></span></span></a></p>
-<p style="text-align: center;"><span class="zoomMedia"><span class="zoomMedia"><span class="zoomMedia"><br /></span></span></span></p>
-<p style="text-align: center;"><a target="_blank" href="http://www.education.gouv.fr/5matinees"><span class="zoomMedia"><span class="zoomMedia"><span class="zoomMedia"><img src="http://cache.media.education.gouv.fr/image/General/73/0/visuel_5_matinees_150x100px_443730.jpg" alt="Les organisations du temps scolaire des &eacute;coles maternelles et &eacute;l&eacute;mentaires publiques (OTS) pour l'ann&eacute;e 2015-2016" longdesc="" /></span></span></span></a></p>
-<p style="text-align: center;"><span class="zoomMedia"><span class="zoomMedia"><br /></span></span></p>
-<p style="text-align: center;"><a target="_blank" href="http://www.lecolechangeavecvous.fr/"><span class="zoomMedia"><span class="zoomMedia"><img src="http://cache.media.education.gouv.fr/image/General/31/3/300x250_img_408313.42.jpg" alt="lecolechangeavecvous.fr" longdesc="" /></span></span></a></p>
-<p style="text-align: center;"></p>
-<p style="text-align: center;"><a target="_blank" href="/cid85400/consignes-de-securite-applicables-dans-les-etablissements-relevant-du-ministere-de-l-education-nationale-de-l-enseignement-superieur-et-de-la-recherche.html"><span class="zoomMedia"><img src="http://cache.media.education.gouv.fr/image/General/17/2/Vigipirate_383172.92.jpg" alt="" longdesc="" /></span></a></p>
-<p style="text-align: left;"><a class="chevron" target="_blank" href="/cid85400/consignes-de-securite-applicables-dans-les-etablissements-relevant-du-ministere-de-l-education-nationale-de-l-enseignement-superieur-et-de-la-recherche.html">Consignes de s&eacute;curit&eacute; applicables dans les &eacute;tablissements</a></p>
-<p style="text-align: left;"></p>
-<p style="text-align: center;"><a target="_blank" href="http://www.education.gouv.fr/services-en-ligne/"><img src="http://cache.media.education.gouv.fr/image/General/39/3/2012_planum_150X100_335393.jpg" alt="" longdesc="" /></a></p>
-<p style="text-align: center;"></p>
-<p style="text-align: center;"><a target="_blank" href="http://www.education.gouv.fr/services-en-ligne/"><span class="zoomMedia"><img style="display: block; margin-left: auto; margin-right: auto;" src="http://cache.media.education.gouv.fr/image/General/87/9/visuel_service_159x156_272959_367879.42.jpg" alt="Services en  ligne de l'&eacute;ducation nationale" longdesc="" /></span></a></p></div>
+<div class="editorial_ct"><p style="text-align: center;"><br /><a target="_blank" href="http://ecolenumerique.education.gouv.fr/"><img title="ecolenumerique.education.gouv" src="http://cache.media.education.gouv.fr/image/General/54/5/ecolenumerique.education.gouv_553545.png" alt="ecolenumerique.education.gouv" width="150" /></a></p>
+<p style="text-align: center;"><br /><a href="/cid95719/handicap-tous-concernes.html"><span class="zoomMedia"><img src="http://cache.media.education.gouv.fr/image/action_sociale/39/0/Handicap-tous-concernes_226205.16_361390.42.jpg" alt="" longdesc="" /></span></a></p></div>
 </div>
 </div>
 <div id="kwa_global_bas">
@@ -1141,7 +1343,7 @@ $('#kwa_map').attr('src', imageSrc);
 <div id="piedpage_footer" class="footer-display-right">
 <div id="contenu_et_pied">
 <div class="contenu_et_pied_padding">
-<div id="contenu_pied_de_page"><p><strong>Minist&egrave;re de l'&eacute;ducation nationale, de l'enseignement sup&eacute;rieur et de la recherche</strong><br /><a target="_blank" class="chevron" href="http://www.education.gouv.fr">education.gouv.fr</a><br /> <br /><strong>Enseignement sup&eacute;rieur et recherche</strong><br /><a class="chevron" target="_blank" href="http://www.enseignementsup-recherche.gouv.fr/">enseignementsup-recherche.gouv.fr</a></p></div>
+<div id="contenu_pied_de_page"><p><strong>Minist&egrave;re de l'&eacute;ducation nationale</strong><br /><a target="_blank" class="chevron" href="http://www.education.gouv.fr">education.gouv.fr</a><br /> <br /><strong>Minist&egrave;re de l&#700;enseignement sup&eacute;rieur, de la recherche et de l&#700;innovation</strong><br /><a class="chevron" target="_blank" href="http://www.enseignementsup-recherche.gouv.fr/">enseignementsup-recherche.gouv.fr</a></p></div>
 
 <div id="piedpage">
 
@@ -1186,7 +1388,7 @@ $('#kwa_map').attr('src', imageSrc);
 
 <li ><a href="/cid86665/marches-publics.html">Marchés publics</a></li>
 
-<li ><a href="/cid83277/contacts.html">Contacts</a></li>
+<li ><a href="/pid33458/nous-contacter.html">Contacts</a></li>
 
 <li ><a href="/cid83196/mentions-legales.html">Mentions légales</a></li>
 </ul>
@@ -1195,19 +1397,29 @@ $('#kwa_map').attr('src', imageSrc);
 </div>
 
 <div class="clear-both"></div>
-</div></div>
+</div><div id="topbar-cookie-container">
+<div id="topbar-cookie" class="disclaimer_bottom">
+<div id="cookie-kwa">
+<div id="content-text-cookie">
+<div id="text-cookie">
+<p><p>En poursuivant votre navigation, vous acceptez l'utilisation de cookies &agrave; des fins statistiques et de personnalisation.</p>
+<p><a class="chevron" href="/cid83196/mentions-legales.html#cookies">Pour en savoir plus et param&eacute;trer les cookies</a></p></p>
 </div>
-  </div><div id="page-bg-bas" class="imagePng">&nbsp;</div><div style="display:none;"><script type="text/javascript">
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+</div>
+<div id="content-button-cookie">
+<button id="button-cookie" onclick="disclaimer_cookie()">
+<p>J'accepte</p>  
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-  ga('create', 'UA-61479211-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-<script type="text/javascript">
+</div>
+</div>
+<div id="page-bg-bas" class="imagePng">&nbsp;</div>
+</div><div style="display:none;"><script type="text/javascript">
 <!--
 xtnv = document;        //parent.document or top.document or document         
 xtsd = "http://logc20";

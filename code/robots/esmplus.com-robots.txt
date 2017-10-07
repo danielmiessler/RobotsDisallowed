@@ -21,23 +21,8 @@
 	    //------------------------------------------------//
 	    //											Init											//
 	    //------------------------------------------------//
-	    var userAgent = navigator.userAgent.toLowerCase();
-	    var isIE = (/msie/gi.test(userAgent) && !/opera/gi.test(userAgent));
 
-	    if (isIE) {
-
-	      $("#btnCertificate").bind("click", function () {
-	        var certManObj = '<iframe src="/Member/SignIn/ConfirmActiveX" width="0" height="0" frameborder="0" scrolling="no"></iframe>';
-	        $("#activeXArea").append(certManObj);
-	      });
-	    }
-	    else {
-	      $("#btnCertificate").bind("click", function () {
-	        alert("공인인증서 로그인은 IE에서만 가능합니다.");
-	      });
-	    }
-
-	    // 툴팁 초기화
+	  	// 툴팁 초기화
 	    $(".styleuitooltip").mouseover(function (e) {
 	      var tooltipID = $(this).attr("tooltipid");
 	      if (tooltipID == null || $.trim(tooltipID) == "") return;
@@ -162,7 +147,7 @@
 						<img src="https://pics.esmplus.com/front/title/tit_login.gif" alt="로그인" /></h3>
 					<div class="ex_down">
 						<img src="https://pics.esmplus.com/front/icon/ico_explorer.gif" alt="" />
-						<span><strong>윈도우 7 / 인터넷 익스플로러 8 버전</strong> 이상을 권장합니다.</span> 
+						<span><strong>윈도우 7 / 인터넷 익스플로러 11 버전</strong> 이상을 권장합니다.</span> 
 					</div>
 					<div class="login_guide">
 						<ul>
@@ -192,14 +177,14 @@
 		<form method="post" name="form" id="frmSiteLogOn">
         <input type="hidden" name="Password" id="hddSitePwd" value="" />
 		<input type="hidden" name="Type" value="S" />
-		<input type="hidden" name="ReturnUrl" value="" />
+		<input type="hidden" name="ReturnUrl" />
 		<input type="hidden" name="SiteType" value="UnKnown" />
 		<fieldset class="esm_id_pws">
 			<legend>로그인 입력</legend>
 			<div class="input">
-				<input class="id" id="SiteId" maxlength="15" name="Id" style="width: 126px;ime-mode:inactive;" type="text" value="아이디" />
+				<input class="id" id="SiteId" maxlength="15" name="Id" style="width: 224px;ime-mode:inactive;" type="text" value="아이디" />
 				<input type="password" id="SitePassword" class="pws bg_pw1" maxlength="15"
-					value="" style="width: 126px;ime-mode:inactive ;" />
+					value="" style="width: 224px;ime-mode:inactive ;" />
 			</div>
 			<div class="btn">
 				<p class="check">
@@ -220,7 +205,6 @@
 	</ul>
 </div>
 
-						<span class="login_select_way">or</span>
 						<div class="esm_login">
 							<div class="esm_login_cont">
 								<h3 class="login_select_way">
@@ -232,13 +216,13 @@
 								<form method="post" name="form" id="frmLogOn">
                                 <input type="hidden" name="Password" id="hddPwd" value="" />
 								<input type="hidden" name="Type" value="E" />
-								<input type="hidden" name="ReturnUrl" value="" />
+								<input type="hidden" name="ReturnUrl" />
 								<fieldset class="esm_id_pws">
 									<legend>로그인 입력</legend>
 									<div class="input">
-										<input class="id txt_b" id="Id" maxlength="15" name="Id" style="width: 164px;ime-mode:disabled;" type="text" value="아이디" />
+										<input class="id txt_b" id="Id" maxlength="15" name="Id" style="width: 224px;ime-mode:disabled;" type="text" value="아이디" />
 											<input type="password" id="Password" class="pws txt_b bg_pw2" maxlength="15"
-												value="" style="width: 164px; ime-mode: disabled;" />
+												value="" style="width: 224px; ime-mode: disabled;" />
 									</div>
 									<div class="btn">
 										<p class="check">
@@ -257,33 +241,6 @@
 								<li><a href='/Member/SignIn/FindPassword'>비밀번호찾기</a></li>
 							</ul>
 						</div>
-						<form id="frmSign" name="form" method="post">
-<input name="__RequestVerificationToken" type="hidden" value="rMe0q94i0f+nLInLkc9WD/AtAGC2E41cBlbINzbLZw3lK2qqbuPyJFOeEImmFgRZcHToGHpW5+A04fPh8J+UBG4UnlEVPpaKjexz8VHpcJNiXuWnY9E0S0+8FUSwP9H+ESYqWA==" />
-<input id="hdnSignData" name="hdnSignData" type="hidden" value="" />
-</form>
-<div class="esm_login_certificate">
-	<div class="esm_login_certificate_cont">
-		<strong class="tit">범용 공인인증서 로그인</strong>
-		<p class="certificate_center">
-			<a href="http://www.signkorea.com/use/main.php" target="_blank">공인인증센터란?</a></p>
-		<p class="btn">
-			<a href="#" id="btnCertificate">
-				<img src= "https://pics.esmplus.com/front/btn/btn_certificate.gif" alt="인증서 로그인" /></a></p>
-		
-		<!-- 2012-10-31 정상현 수정 S -->
-		<h6 class="certificate_related">
-			* 인증서 발급/재발급/갱신</h6>
-		<ul class="login_kind">
-			<li><a href="http://www.tradesign.net/certification/new/ebayRegPay.jsp" target="_blank">
-				<img src="https://pics.esmplus.com/front/btn/btn_tradesign.gif" alt="한국공인인증" /></a></li><li>
-					<a href="https://wra.signkorea.com/newra/main.jsp?bpcode1=SKBP-2013-1209-01" target="_blank">
-						<img src="https://pics.esmplus.com/front/btn/btn_signkorea.gif" alt="코스콤" /></a></li>
-		</ul>
-	</div>
-	<p class="notice">
-		* 인증서 로그인 서비스</p>
-</div>
-
 					</div>
 					</div>
 					<div class="call_center">
@@ -308,7 +265,7 @@
 							</dl>
 				</div>
 			</div>
-			<!-- <p class="cstm_service">회원정보와 관련하여 문의가있으신 경우 <strong>고객센터(1588-6872)</strong>를 이용하시기 바립니다. </p> -->
+			<!-- <p class="cstm_service">회원정보와 관련하여 문의가있으신 경우 <strong>고객센터(1588-0184)</strong>를 이용하시기 바립니다. </p> -->
 		</div>
 	</div>
 </div>
@@ -319,7 +276,7 @@
 				<div class="info">
 					<div class="menu">
 						<ul>
-							<li><a href="#">이용약관</a></li>
+							<li><a href="/CommonPopup/Terms" target="_blank">이용약관</a></li>
 							<li><a href="http://member.auction.co.kr/Membership/Signup/Privacy.aspx" target="_blank">
 								옥션 개인정보취급정책</a></li>
 
@@ -332,7 +289,7 @@
 				
           <address>
 						<span>서울시 강남구 테헤란로 152 (역삼동 강남파이낸스센터)</span><span>대표자 : 변광윤</span><span>사업자등록번호 : 220-81-83676</span><span>통신판매업신고 : 강남 10630</span>ICP: B2-20090003-4<br>
-						<span>판매자 상담센터 : <strong>G마켓 1566-5707 / 옥션 1588-6345</strong></span>ESM PLUS 사용문의 : 1588-6872 /<a href="mailto:esmplus@corp.gmarket.co.kr">esmplus@corp.gmarket.co.kr</a><br>
+						<span>판매자 상담센터 : <strong>G마켓 1566-5707 / 옥션 1588-6345</strong></span>ESM PLUS 사용문의 : <a href="mailto:esmplus@corp.gmarket.co.kr">esmplus@corp.gmarket.co.kr</a><br>
 						<dfn>copyright(c) 1998~2010 ebay Inc. All Rights Reserved. Designated trade marks and brands are the property of their respective owners.</dfn>
 					</address>
 				</div>
@@ -346,8 +303,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div id="activeXArea">
 	</div>
 </body>
 	<script type="text/javascript" src="https://script.esmplus.com/js/GoogleAnalytics.js"></script>

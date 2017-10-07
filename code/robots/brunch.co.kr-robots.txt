@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport"
-		  content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
 	<title>brunch</title>
 	<title>brunch</title>
 <meta charset="utf-8">
@@ -11,11 +10,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="title" content="brunch">
 <meta name="referrer" content="always">
+<meta name="secureToken" value="">
 <link rel="SHORTCUT ICON" href="//t1.daumcdn.net/brunch/static/icon/favicon/favicon64_150520.ico"/>
 <link rel="apple-touch-icon-precomposed" sizes="180x180" href="//t1.daumcdn.net/brunch/static/icon/ios/icon152.png">
 <link rel="apple-touch-icon-precomposed" sizes="152x152" href="//t1.daumcdn.net/brunch/static/icon/ios/icon152.png">
 <link rel="apple-touch-icon-precomposed" sizes="120x120" href="//t1.daumcdn.net/brunch/static/icon/ios/icon120.png">
-<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
 <!--[if lt IE 9]>
     <script src="//t1.daumcdn.net/brunch/static/libraries/js/jquery.min-1.11.3.js"></script>
 <![endif]-->
@@ -26,6 +25,8 @@
 <script type="text/javascript" src="//t1.daumcdn.net/brunch/static/libraries/js/jquery.xdomainrequest.min.js"></script>
 <script type="text/javascript" src="//t1.daumcdn.net/brunch/static/libraries/js/handlebars.runtime.min-v3.0.0.js"></script>
 <script type="text/javascript" src="//t1.daumcdn.net/brunch/static/libraries/js/userAgent.min-1.0.14.js"></script>
+<script type="text/javascript" src="//t1.daumcdn.net/brunch/static/libraries/js/raven.min.3.17.0.js"></script>
+
 <script type="text/javascript">
 	/**
 	 * Tiara 내부에서 사용 하는 Message Queue 정의
@@ -36,11 +37,15 @@
 		__TiaraObj.startTime = new Date();
 	}
 	window._tiq = _tiq;
+
 </script>
 
 <link rel="stylesheet" type="text/css" href="/static/css/B.css"/>
-			<link rel="stylesheet" type="text/css" href="/static/css/B.font.css"/>
+
+	    <link rel="stylesheet" type="text/css" href="/static/css/B.Message.css"/>
 	
+						<link rel="stylesheet" type="text/css" href="/static/css/B.font.css"/>
+			
 			<link rel="stylesheet" type="text/css" href="/static/css/B.Exception.css"/>
 	</head>
 <body class="error _404">
@@ -51,13 +56,15 @@
 								<button id="btnServiceMenu" type="button" class="f_l text_hide btn_menu img_ico #sidebar">메뉴</button>
 			
 						<h1 class="f_l">
-				<a href="/"  class="logo_service text_hide title="brunch">brunch</a>
+				<a href="/"  class="logo_service text_hide" title="brunch">brunch</a>
 			</h1>
 				
 									
-			
+		
 		</div>
-																																				
+														        		                		        																						
+		
+		
         <div class="f_r">
 		
 			<div class="wrap_btn_search ">
@@ -75,30 +82,31 @@
 	<main>
 		<button type="button" id="btnCloseSideMenu" class="btn_close_side_menu img_side_menu ico_close f_r text_hide">닫기</button>
 					<div class="wrap_side_profile logout">
-				<a href="/apply" class="#side_request" target="_blank"><button class="btn_request">작가신청</button></a>
+				<div class="logo_service"></div>
+				<p class="slogan">You can make anything<br>by writing</p>
+				<p class="slogan_writer">- C.S.Lewis -</p>
+				<a id="brunchSigninButton" href="/signin" class="#side_request btn_apply_author"><button class="btn_request">브런치 시작하기</button></a>
 					</div>
-		<div class="wrap_side_service_menu">
-			<ul>
+				<div class="wrap_side_service_menu">
+					<ul>
 									<li>
-						<a id="facebookLoginButton" class="menu_facebook login_social #fb_login" href="/auth/facebook?url="><span class="img_ico_login ico_login_facebook"></span>페북으로 시작하기</a>
+						<a class="menu_word4 #side_brunch" href="/"><span class="bar_left"></span>브런치 홈<span class="bar_right"></span></a>
 					</li>
 					<li>
-						<a id="twtterLoginButton" class="menu_twitter login_social #tw_login" href="/auth/twitter?url="><span class="img_ico_login ico_login_twitter"></span>트위터로 시작하기</a>
+						<a class="menu_word5 #side_now brunchNowLink" href="/now"><span class="bar_left"></span>브런치 나우<span class="bar_right"></span></a>
 					</li>
 					<li>
-						<a id="kakaoLoginButton" class="menu_kakao login_social #kk_login" href="/auth/kakao?url="><span class="img_ico_login ico_login_kakao"></span>카카오로 시작하기</a>
+						<a class="menu_word5 #side_publish brunchPublishLink" href="/publish"><span class="bar_left"></span>브런치 책방<span class="bar_right"></span></a>
 					</li>
-					<li class="remember-me">
-						<span class="choice_comm choice_checkbox">
-                        <input class="inp_comm" type="checkbox" name="agree" id="rememberMe">
-                        <label for="rememberMe" class="lab_comm" id="rememberMeLabel">
-                            <span class="ico_brunch"></span> <!-- 체크시 ico_choiced , 포커스 시 ico_focused 부여 -->
-                            로그인 상태 유지
-                        </label>
-                    </span>
+					<li>
+						<a class="menu_word6 #side_mag" href="/magazine"><span class="bar_left"></span>위클리 매거진<em class="ico_brunch_new"></em><span class="bar_right"></span></a>
 					</li>
-							</ul>
+				
+			</ul>
+
+			
 							<div class="wrap_side_setting wrap_find_user">
+					<div class="menu_pod" style="padding-bottom: 24px;"><a class="#side_pod" href="/pod"><img style="width:200px" src="//t1.daumcdn.net/brunch/static/img/pod/menu_banner_rtn.png" alt="pod 바로가기" /></a></div>
 					<a href="/signin/find_account" class="find_user">계정을 잊어버리셨나요?</a>
 				</div>
 					</div>
@@ -125,6 +133,7 @@
 	<script type="text/javascript" src="/static/libraries/js/tico-0.2.js"></script>
 <script type="text/javascript" src="/static/js/B.js"></script>
 
+
 <script type="text/javascript" src="/static/js/B.Util.js"></script>
 
 <div class="compatible-info">
@@ -148,7 +157,7 @@
 	//티아라 스크립트
 			_tiq.push(['__setPageName', 'sidebar']);
 		_tiq.push(['__setParam', 'svcdomain', 'brunch.co.kr']);
-	_tiq.push(['__setParam', 'puid', 1442988990114]); // 서버 시간 (Unix Timestamp ms)입니다.
+	_tiq.push(['__setParam', 'puid', 1507358323754]); // 서버 시간 (Unix Timestamp ms)입니다.
 	_tiq.push(['__setConfig', {
 		enableButton:true,
 		enableScroll:true

@@ -1,2 +1,584 @@
-User-agent: *
-Disallow:
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"  ng-app="tvfPlayApp"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <base href="/">
+    <title>TVFPlay</title>
+    <meta name="viewport" content="width=device-width">
+
+    <meta property="fb:app_id" content="389644574555279"/>
+    <meta property="og:image" content="https://static1.tvfplay.com/seasons/244/aspect_xl_large/a1c6896fd2cd36559558510bd6395ce7-hero-1-jpg" />
+    <meta property="og:title" content="TVFPlay" />
+    <meta property="og:description" content="Meet the Inmates :Madhav, Fooga, Rahul, Kay and Richa.
+5 Friends. 1 Madhouse.
+TVF&#39;s crazy new web series coming your way." />
+    <meta property="og:url" content="http://tvfplay.com/index" />
+    <meta property="og:site_name" content="TVFPlay" />
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@theviralfever">
+    <meta name="twitter:title" content="TVFPlay">
+    <meta name="twitter:description" content="Meet the Inmates :Madhav, Fooga, Rahul, Kay and Richa.
+5 Friends. 1 Madhouse.
+TVF&#39;s crazy new web series coming your way.">
+    <meta name="twitter:image" content="https://static1.tvfplay.com/seasons/244/aspect_xl_large/a1c6896fd2cd36559558510bd6395ce7-hero-1-jpg">
+
+
+    <!-- show apple smart banner in ios safari -->
+    <meta name="apple-itunes-app" content="app-id=1067732674"/>
+
+    <!-- favicons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="static/assets/images/favicon/apple-icon-57x57.png?v=2">
+    <link rel="apple-touch-icon" sizes="60x60" href="static/assets/images/favicon/apple-icon-60x60.png?v=2">
+    <link rel="apple-touch-icon" sizes="72x72" href="static/assets/images/favicon/apple-icon-72x72.png?v=2">
+    <link rel="apple-touch-icon" sizes="76x76" href="static/assets/images/favicon/apple-icon-76x76.png?v=2">
+    <link rel="apple-touch-icon" sizes="114x114" href="static/assets/images/favicon/apple-icon-114x114.png?v=2">
+    <link rel="apple-touch-icon" sizes="120x120" href="static/assets/images/favicon/apple-icon-120x120.png?v=2">
+    <link rel="apple-touch-icon" sizes="144x144" href="static/assets/images/favicon/apple-icon-144x144.png?v=2">
+    <link rel="apple-touch-icon" sizes="152x152" href="static/assets/images/favicon/apple-icon-152x152.png?v=2">
+    <link rel="apple-touch-icon" sizes="180x180" href="static/assets/images/favicon/apple-icon-180x180.png?v=2">
+    <link rel="icon" type="image/png" sizes="192x192"  href="static/assets/images/favicon/android-icon-192x192.png?v=2">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/assets/images/favicon/favicon-32x32.png?v=2">
+    <link rel="icon" type="image/png" sizes="96x96" href="static/assets/images/favicon/favicon-96x96.png?v=2">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/assets/images/favicon/favicon-16x16.png?v=2">
+
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="static/assets/images/favicon/ms-icon-144x144.png?v=2">
+    <meta name="theme-color" content="#ffffff">
+
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/assets/css/app-1506582502836-17247dea7f.css">
+
+    <script src="/static/assets/js/vendor-1506582502836-293b544aa9.js"></script>
+
+    <script src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit" async defer></script>
+
+  </head>
+  <body>
+
+    <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <iframe class='hidden' name='tvf-iframe' id ='tvf-iframe'></iframe>
+
+    <!-- <iframe class='hidden' name='tvf-device' id ='tvf-device'></iframe> -->
+    <div ui-view="" id="main-scope"></div>
+    <span ng-bind="windowWidth"></span>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-68633373-2', 'auto');
+
+        ga('set', {
+            page: '/index',
+            title: 'Home Page'
+        });
+
+        ga('send', 'pageview');
+
+        var beforeload = (new Date()).getTime();
+
+        var warm_launch_time;
+
+        function getPageLoadTime(){
+
+            //calculate the current time in afterload
+            var afterload = (new Date()).getTime();
+            // now use the beforeload and afterload to calculate the seconds
+            seconds = (afterload-beforeload);
+            // Place the seconds in the innerHTML to show the results
+            //console.log('Page load time ::  ' + seconds + ' sec(s).');
+
+            warm_launch_time  = seconds;
+
+        }
+
+        window.onload = getPageLoadTime;
+
+    </script>
+
+    <!-- Begin Inspectlet Embed Code -->
+        <script type="text/javascript" id="inspectletjs">
+        window.__insp = window.__insp || [];
+        __insp.push(['wid', 1591133750]);
+        (function() {
+        function ldinsp(){if(typeof window.__inspld != "undefined") return; window.__inspld = 1; var insp = document.createElement('script'); insp.type = 'text/javascript'; insp.async = true; insp.id = "inspsync"; insp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cdn.inspectlet.com/inspectlet.js'; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(insp, x); };
+        setTimeout(ldinsp, 500); document.readyState != "complete" ? (window.attachEvent ? window.attachEvent('onload', ldinsp) : window.addEventListener('load', ldinsp, false)) : ldinsp();
+        })();
+        </script>
+    <!-- End Inspectlet Embed Code -->
+
+    <!-- Twitter universal website tag code -->
+    <script>
+    !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+    },s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='//static.ads-twitter.com/uwt.js',
+    a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+    // Insert Twitter Pixel ID and Standard Event data below
+    twq('init','nwbol');
+    twq('track','PageView');
+    </script>
+    <!-- End Twitter universal website tag code -->
+
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+        document,'script','//connect.facebook.net/en_US/fbevents.js');
+
+        fbq('init', '171334366552587');
+        fbq('track', "PageView");
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=171334366552587&ev=PageView&noscript=1"/>
+    </noscript>
+    <!-- End Facebook Pixel Code -->
+
+    <!-- Google adwords and remarketing js load -->
+
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion_async.js" charset="utf-8"></script>
+
+    <script type="text/javascript">
+
+        //check for browser info
+        function get_browser_info(){
+            var ua=navigator.userAgent,tem,M=ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+            if(/trident/i.test(M[1])){
+                tem=/\brv[ :]+(\d+)/g.exec(ua) || [];
+                return {name:'IE',version:(tem[1]||'')};
+                }
+            if(M[1]==='Chrome'){
+                tem=ua.match(/\bOPR\/(\d+)/)
+                if(tem!=null)   {return {name:'Opera', version:tem[1]};}
+                }
+            M=M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+            if((tem=ua.match(/version\/(\d+)/i))!=null) {M.splice(1,1,tem[1]);}
+            return {
+              name: M[0],
+              version: M[1]
+            };
+         }
+
+        //check for facebook in app browser
+        function isFacebookApp() {
+            var ua = navigator.userAgent || navigator.vendor || window.opera;
+            return (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1);
+        }
+
+
+        //try{Typekit.load({ async: true });}catch(e){}
+
+        var root_url = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ":" + window.location.port: "")+ "/";
+        var secure_root_url = "https://" + window.location.hostname + (window.location.port ? ':' + window.location.port: '')+ '/'
+        var telemetry_url = window.location.protocol + "//" + 'sara.tvfplay.com';
+        var wpush_url = "https://wpush." + window.location.hostname
+        var protocol = window.location.protocol;
+        var fb_id = '389644574555279';
+        var is_logged_in ='False'
+        var google_id= '391941770339-fhpebs4f2lvdjhdhtn7khntdtpmb1v6f.apps.googleusercontent.com';
+        var twitter_url= 'https://twitter.com/theviralfever';
+        var instagram_url= 'https://instagram.com/tvfqtiyapa/';
+        var facebook_url= 'https://www.facebook.com/sabqtiyapahai?fref=ts';
+        var rss_url= 'https://www.facebook.com/sabqtiyapahai?fref=ts';
+        var copyright_text= '© 2017 TVFPLAY. ALL RIGHTS BELONG TO CONTAGIOUS ONLINE MEDIA NETWORK PRIVATE LIMITED.';
+        var browser= get_browser_info();
+        var show_ratings='0';
+        var show_air_date='0';
+        var shorten_url_domain_name= 'http://tvfplay.com/';
+        var captcha_client_key = '6Lehmw8TAAAAAGRKcArSwCOX_h7liDo3cT5KjviV';
+        var wrong_browser = false;
+        var video_account_id = '4512983226001';
+        var targetWin;
+        var telemetry_data;
+        var isMobile;
+        var device_id ='undefined';
+        var n_dcid = 'undefined'
+        var referred_meta_data = '';
+        var referred_event_name = '';
+        var referred_event_label = '';
+        var time_spent_by_user = 0;
+        var auth_page = '';
+        var session_start_time;
+        var dynamic_id = '7fbdaa78-e6e0-46f9-b835-b68ff30fde83';
+        var screen_mode = 'dweb';
+        var player_heartbeat = '60';
+        // var liftigniter_key = '79od603aebt4bs77';
+        var push_overlay_expiry = parseInt('2') || 2
+        var push_enabled_expiry = 180;
+        var autoplay_home_banner = '1';
+        var ab_base_url = 'https://jlind.tvfplay.com/api/v1/assignments/applications/tvf/pages/';
+        var autoplay_playlist = '1';
+        var autoplay_toggle = '1';
+        var autoplay_watchnext = '1';
+        var settingsRecommendedOrder = '1';
+        var settingsPopularClipsOrder = 'None';
+        var settingsRecommendedVersion = '1000';
+
+        //Liftigniter Pixel Code
+        // (function(w,d,s,p,v,e,r) {w['$igniter_var']=v;w[v]=w[v]||function()
+        //     {(w[v].q=w[v].q||[]).push( arguments)}
+        //     ;w[v].l=1*new Date();e=d.createElement(s),r=d.getElementsByTagName(s)[0];e.async=1;
+        //     e.src=p+'?ts='+(+new Date()/3600000|0);
+        //     r.parentNode.insertBefore(e,r)})(window,document,'script','//cdn.petametrics.com/'+ liftigniter_key +'.js','$p');
+
+        try{
+
+            if (window.innerWidth > 600) {
+
+                screen_mode = 'dweb'
+
+            } else {
+
+                screen_mode = 'mweb'
+
+            }
+
+        }
+        catch(error){
+
+        }
+
+        //get cookie
+        function getCookie(name) {
+
+            try{
+                var value = "; " + document.cookie;
+
+                var token = ''
+
+                var parts = value.split("; " + name + "=");
+
+                if (parts.length == 2){
+
+                    token = parts.pop().split(";").shift();
+
+                    token = token.split(':').shift()
+
+                }
+
+            }
+            catch(error){
+
+                console.log('error:  '+ error.message)
+
+            }
+
+            return token;
+
+        }
+
+        //set cookie
+        function setCookie(cname, cvalue, expiry) {
+
+            try{
+
+                var d = new Date();
+
+                d.setTime(d.getTime() + expiry);
+
+                document.cookie = cname +"=" + cvalue + ";expires=" + d.toUTCString()
+                      + ";path=/";
+
+            }
+            catch(error){
+
+                console.log('error:  '+ error.message)
+
+            }
+
+            return cvalue;
+
+        }
+
+        //set device id for cookie &
+        function set_ncid_in_ck_ls(){
+
+            if(getCookie('device_id') !=''){
+
+                n_dcid = getCookie('device_id')
+
+            }
+            else{
+
+                n_dcid = dynamic_id
+
+                setCookie('device_id', n_dcid , 2 * 365 * 24 * 60 * 60 * 1000)
+
+            }
+
+            setCookie('device_id', n_dcid , 2 * 365 * 24 * 60 * 60 * 1000)
+
+            localStorage.setItem("device_id", n_dcid);
+        }
+
+        //Device Id logic implementation
+        //for older users with device id in localstorage
+
+        try{
+
+            if (typeof(localStorage) !== "undefined") {
+
+                if(localStorage.device_id != undefined){
+
+                    n_dcid =  localStorage.getItem("device_id");
+
+                    setCookie('device_id', n_dcid , 2 * 365 * 24 * 60 * 60 * 1000)
+
+                }
+
+                else{
+
+                    set_ncid_in_ck_ls()
+
+                }
+
+            }
+            else{
+
+                set_ncid_in_ck_ls()
+
+            }
+
+        }
+
+        catch(error){
+
+            console.log('device id catch block :' + error.message)
+
+            set_ncid_in_ck_ls();
+
+            localStorage.setItem("device_id", n_dcid);
+        }
+
+        //Device Id logic implementation
+        //for older users with device id in localstorage
+
+        try{
+
+            if (typeof(localStorage) !== "undefined") {
+
+                if(localStorage.device_id != undefined){
+
+                    n_dcid =  localStorage.getItem("device_id");
+
+                    setCookie('device_id', n_dcid , 2 * 365 * 24 * 60 * 60 * 1000)
+
+                }
+
+                else{
+
+                    set_ncid_in_ck_ls()
+
+                }
+
+            }
+            else{
+
+                set_ncid_in_ck_ls()
+
+            }
+
+        }
+
+        catch(error){
+
+            console.log('device id catch block :' + error.message)
+
+            set_ncid_in_ck_ls();
+
+        }
+
+
+        //deprecated device id logic
+        // if(bowser.name != 'Safari'){
+
+        //     $('#tvf-iframe').attr('src', secure_root_url + 'device?protocol=' + window.location.protocol);
+
+        // }
+        // else{
+
+        //     set_device_id_cookie()
+
+        // }
+
+
+        //deprecated device id logic
+        // if(bowser.name != 'Safari'){
+
+        //     $('#tvf-iframe').attr('src', secure_root_url + 'device?protocol=' + window.location.protocol);
+
+        // }
+        // else{
+
+        //     set_device_id_cookie()
+
+        // }
+
+
+        ga('send', 'event', 'Browser', browser.name, browser.version);
+
+        switch (true) {
+
+            case isFacebookApp():
+                wrong_browser=false;
+            break;
+
+            case (bowser.name =='Chrome' && parseInt(bowser.version) < 33):
+                wrong_browser=true;
+            break;
+
+            case (bowser.name == 'Firefox' &&  parseInt(bowser.version) < 33):
+                wrong_browser=true;
+            break;
+
+            case (bowser.name == 'Internet Explorer' &&  parseInt(bowser.version) < 10):
+                wrong_browser=true;
+            break;
+
+            case (bowser.name == 'Safari' &&  parseInt(bowser.version) < 7):
+                wrong_browser=true;
+            break;
+
+            default:
+                wrong_browser=false;
+
+        }
+
+        function socialLoginAnalytics(type) {
+            navigate_to_offers_page();
+            if (type == 'GOOGLE') {
+                ga('send', 'event', 'Authentication', 'Login', 'GoogleLogin');
+            } else {
+                ga('send', 'event', 'Authentication', 'Login', 'FacebookLogin');
+            }
+
+        }
+
+        function socialRegistrationAnalytics(type) {
+            navigate_to_offers_page();
+            if (type == 'GOOGLE') {
+                ga('send', 'event', 'Registration', 'Registration', 'GoogleRegistration');
+            } else {
+                ga('send', 'event', 'Registration', 'Registration', 'FacebookRegistration');
+            }
+            fbq('track', 'CompleteRegistration');
+
+            window.google_trackConversion({
+                google_conversion_id: 960345609,
+                google_conversion_language: "en",
+                google_conversion_format: "3",
+                google_conversion_color:  "ffffff",
+                google_conversion_label: "IBM9CK-75WQQiez2yQM",
+                google_remarketing_only: false
+            });
+        }
+
+        function navigate_to_offers_page(){
+
+            var $body = angular.element(document.body);
+            var $rootScope = $body.scope().$root;
+            if ($rootScope.avail_offer_path !=undefined) {
+                $rootScope.$apply(function () {
+                    window.location.href = $rootScope.avail_offer_path
+                    //$rootScope.avail_offer_path = undefined;
+                });
+            }
+            else{
+                window.location.reload()
+            }
+
+        }
+
+        function OpenPopupCenter(pageURL, title, m_brwser) {
+
+            var popupWidth=500;
+            var popupHeight=300;
+            var xPosition=($(window).width()-popupWidth)/2;
+            var yPosition=($(window).height()-popupHeight)/2;
+
+            if(m_brwser){
+
+                targetWin = window.open(pageURL, '_self', title, "location=1,scrollbars=1,"+ "width="+popupWidth+",height="+popupHeight+","+"left="+xPosition+",top="+yPosition);
+            }
+            else{
+
+                targetWin = window.open(pageURL, title, "location=1,scrollbars=1,"+"width="+popupWidth+",height="+popupHeight+","+ "left="+xPosition+",top="+yPosition);
+            }
+
+
+            targetWin.focus();
+        }
+
+        function CheckLoginStatus() {
+            if (targetWin.closed) {
+                //console.log('pop up closed')
+            }
+            else setTimeout(CheckLoginStatus, 1000);
+        }
+
+        function launchiOSApp(url) {
+
+            var appleAppStoreLink = 'https://itunes.apple.com/in/app/tvfplay/id1067732674?mt=8';
+
+            var now = new Date().valueOf();
+
+            setTimeout(function () {
+
+              if (new Date().valueOf() - now > 500) return;
+
+              window.location = appleAppStoreLink;
+
+            }, 100);
+
+            window.location = url;
+
+        }
+
+
+        // window.onYouTubeIframeAPIReady = function() {
+
+        //     console.log('iframe ready');
+
+        //     loadedYTScript();
+
+        // }
+
+        try{
+
+            $.ajax({
+
+                url: telemetry_url,
+
+                success: function(result){
+                },
+                error: function(result){
+
+                    ga('send', 'event', 'telemetry:ping:failed', n_dcid, result.status+ ":" + result.statusText);
+
+                }
+
+            });
+
+        }
+        catch(err){
+            console.log('ping failed')
+        }
+
+
+    </script>
+    </body>
+</html>

@@ -1,2 +1,67 @@
-<html><head><title>Error</title></head><body>The system cannot find the file specified.
-</body></html>
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<title>VFS Global</title>
+<meta name="viewport" id="myViewport" content="width=device-width, initial-scale=0.8" />
+<link rel="shortcut icon" href="images/vfs.ico" type="image/png">
+<link href="css/error_404.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="logo"><a href="http://www.vfsglobal.com/" target="_blank"><img src="images/logo.png" alt="VFS Global Logo" /></a></div>
+  </div>
+  <div class="wrapper">
+    <div class="error_div">
+      <h1>Error 404</h1>
+      <p class="problem_text">The page you are looking for does not exist</p>
+      <p class="solution_text">Please  click on the link below to go to the home page</p>
+      <a href="../index.asp" class="error_button">Home</a>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+	var base_path = "http://www.vfsglobal.com/error_404";
+	
+	var allElements = document.getElementsByTagName('*');
+	for (var i = 0; i < allElements.length; i++)
+	{
+		if (allElements[i].getAttribute("src") != null)
+		{
+		  	allElements[i].setAttribute("src", absolute(base_path, allElements[i].getAttribute("src")));
+		}
+		else if(allElements[i].getAttribute("href") != null)
+		{
+			allElements[i].setAttribute("href", absolute(base_path, allElements[i].getAttribute("href")));
+		}
+	}
+	
+	function absolute(base, relative)
+	{
+		if(base.charAt(base.length - 1) != "/")
+			base += "/";
+			
+		if(relative.toLowerCase().indexOf("http://") == 0 || relative.toLowerCase().indexOf("https://") == 0)
+			return relative;
+		
+		var stack = base.split("/"),
+		parts = relative.split("/");
+		stack.pop(); // remove current file name (or empty string)
+					 // (omit if "base" is the current folder without trailing slash)
+		for (var i=0; i<parts.length; i++)
+		{
+			if (parts[i] == ".")
+				continue;
+			if (parts[i] == "..")
+				stack.pop();
+			else
+				stack.push(parts[i]);
+		}
+		return stack.join("/");
+	}
+</script>
+</body>
+</html>

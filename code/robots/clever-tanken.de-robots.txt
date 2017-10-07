@@ -1,4 +1,6 @@
 
+
+
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -27,8 +29,6 @@
 
     <!-- css -->
     <link rel="stylesheet" href="/static/css/bootstrap3.min.css">
-
-    <link rel="stylesheet" href="/static/css/bootstrap3-theme.min.css">
     <link rel="stylesheet" href="/static/css/main.css">
     <link rel="stylesheet" href="/static/css/main.responsive.css">
 
@@ -37,7 +37,69 @@
 
     <!-- Adds -->
     <script type="text/javascript" src="https://script.ioam.de/iam.js"></script>
-    <script src="//ec-ns.sascdn.com/diff/251/pages/clevertanken.js"></script>
+    
+<script type="text/javascript">
+    var smartadserver_page_name='clevertanken_ros';
+
+    adSSetup = {
+
+        // 1. Set the viewport of the website. Use for desktop "d" and for mobile "m"
+        view: "d", // has to fit the design of the page, please use m for mobile and d for desktop
+
+        // 2. Switch for the 3th party scripts. We strictly recommend to set it as "false" only on pages for directsales campaign only the max out the revenue
+        partners: true,
+
+        // 3. Define the ad placements for the website
+        adPlacements: ["superbanner", "sky", "billboard", "billboard_btf", "mrec", "inpage"],
+
+        // 4. Define the sizes for every ad placement:
+        adSlotSizes: {
+            "superbanner": [{
+                "minWidth": 1,
+                "sizes": [[728, 90], [728, 600], [1000, 600]]
+            }],
+
+            "sky": [{
+                "minWidth": 1,
+                "sizes": [[160, 600], [120, 600], [300, 600], [500, 1000], [1000, 1000]]
+            }],
+
+            "billboard": [{
+                "minWidth": 799,
+                "sizes": [[800, 250]]
+            }, {
+                "minWidth": 969,
+                "sizes": [[970, 250], [800, 250]]
+            }],
+
+            "billboard_btf": [{
+                "minWidth": 799,
+                "sizes": [[800, 250]]
+            }, {
+                "minWidth": 969,
+                "sizes": [[970, 250], [800, 250]]
+            }],
+
+            "mrec": [{
+                "minWidth": 1,
+                "sizes": [[300, 250], [300, 600]]
+            }],
+
+            "inpage": [{
+                "minWidth": 1,
+                "sizes": [[1, 1]]
+            }]
+
+        },
+
+        // 5. Page configuration
+        colorBg: true, // enable/disable coloring of the page-background
+        bgClick: true, // enable/disable click on page-background
+        stickySky: true, // enable/disable stickiness for skyscraper
+        pageName: smartadserver_page_name, // init channel/article name (overwritten in the different pages)
+        target: ""
+    }
+</script>
 
     <!-- IE -->
     <!--[if lt IE 9]>
@@ -49,7 +111,9 @@
         </script>
     <![endif]-->
 
+      <script type="text/javascript" src="https://acdn.adnxs.com/as/1h/pages/clevertanken.js"></script>
   </head>
+
     <body ng-app="ctApp">
       <!--[if lt IE 8]>
           <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -60,19 +124,28 @@
 <div id="top-bar" class="row">
     
     <div id="top-bar-ad" class="hidden-xs col-sm-12 col-md-12 col-lg-12">
+        <script type="text/javascript"> //bSUQDza("Super") </script>
         <!-- Autobild:SuperBanner-->
+
+
+
+
+
+
+
+
+
+
+
         <script type="text/javascript">
-        sas_pageid='10017/(clevertanken_ros)';  // Seite : autobild.de/clevertanken_ros (PageID=479883)
-        sas_formatid=3648;    // Format : superbanner01 728x90
-        sas_target='';      // Targeting
-        SmartAdServerAjax(sas_pageid,sas_formatid,sas_target);
+            adSSetup.pageName = smartadserver_page_name;
+            adSSetup.target = '';      // Targeting
         </script>
-        <noscript>
-            <a href="http://ww251.smartadserver.com/call/pubjumpi/10017/(clevertanken_ros)/3648/S/[timestamp]/?" target="_blank">
-                <img src="http://ww251.smartadserver.com/call/pubi/10017/(clevertanken_ros)/3648/S/[timestamp]/?" border="0" alt="" />
-            </a>
-        </noscript>
+        <div id="superbannerWrapper">
+            <div id="superbanner"></div>
+        </div>
         <!-- Ende Autobild:SuperBanner-->
+        <span class='bSUQDza_end'></span>
     </div>
     
 </div>
@@ -160,15 +233,17 @@
         <div id="main-searchbar" class="row" ng-hide="searchIsHidden">
             
             <form
-            class="fform-inline"
             role="form"
+            id="searchform"
+            name="searchform"
+            ng-submit="search()"
             action="/tankstelle_liste"
             method="get"
             ng-controller="SearchController"
             ng-init="initSearch('','','','','')"
             >
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <div id="dropdown-row-search" class="row">
+            <div id="search-dropdowns" class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <div class="row">
                     <div class="col-xs-1 col-lg-1 visible-xs"></div>
                     <div id="fuel-type" class="col-xs-8 col-sm-8 col-md-8 col-lg-6 ct-select">
                         <button type="button" class="dropdown-toggle">
@@ -249,30 +324,6 @@
                         </li>
                         
                             <li
-                            ng-class="{selected:search.spritsorte==9}"
-                            ng-click="spritsorteSelected(9, 'Bio-Diesel')"
-                            ng-init="registerSpritsorte(9, 'Bio-Diesel')"
-                            >
-                            Bio-Diesel
-                        </li>
-                        
-                            <li
-                            ng-class="{selected:search.spritsorte==10}"
-                            ng-click="spritsorteSelected(10, 'Pflanzenöl')"
-                            ng-init="registerSpritsorte(10, 'Pflanzenöl')"
-                            >
-                            Pflanzenöl
-                        </li>
-                        
-                            <li
-                            ng-class="{selected:search.spritsorte==11}"
-                            ng-click="spritsorteSelected(11, 'Zweitakt')"
-                            ng-init="registerSpritsorte(11, 'Zweitakt')"
-                            >
-                            Zweitakt
-                        </li>
-                        
-                            <li
                             ng-class="{selected:search.spritsorte==13}"
                             ng-click="spritsorteSelected(13, 'AdBlue')"
                             ng-init="registerSpritsorte(13, 'AdBlue')"
@@ -308,23 +359,65 @@
                     <input type="text" name="lat" style="display:none;" ng-model="lat">
                     <input type="text" name="lon" style="display:none;" ng-model="lon">
                 </div>
-                <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11" id="search">
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" id="search">
                     <div id="search-form-group" class="form-group">
                         <div class="input-group">
-                            <input type="search" class="form-control ct-input" id="search-box" placeholder = "PLZ und/oder Ort" name="ort" ng-model="search_box">
+                            <input type="search"
+                                   class="form-control ct-input"
+                                   ngg-click="searchInputClicked()"
+                                   id="search-box"
+                                   placeholder = "PLZ und/oder Ort"
+                                   name="ort"
+                                   autocomplete="off"
+                                   ng-model="search_box"
+                                   typeahead="address.value for address in getLocations($viewValue)"
+                                   typeahead-on-select="selectedLocation($item, $model, $label)"
+                                   typeahead-min-length="3"
+                            >
                             <span class="input-group-addon" id="search-button-addon">
                                 <button type="submit">
                                     <span class="glyphicon glyphicon-search" id="search-button"></span>
                                 </button>
                             </span>
                         </div>
+                        <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                        <div ng-show="noResults">
+                          <i class="glyphicon glyphicon-remove"></i> No Results Found
+                        </div>
                     </div>
                 </div>
+                
             </div>
         </div>
     </form>
     
 </div>
+
+
+<div id="ct-billboard">
+  <div align="center"><script type="text/javascript"> //bSUQDza("Super2") </script></div>
+  <!-- Autobild:Billboard-->
+
+
+
+
+
+
+
+
+
+
+    <script type="text/javascript">
+        adSSetup.pageName = smartadserver_page_name;
+        adSSetup.target = '';      // Targeting
+    </script>
+    <div id="billboardWrapper">
+        <div id="billboard"></div>
+    </div>
+  <!-- Ende Autobild:Billboard-->
+  <span class='bSUQDza_end'></span>
+</div>
+
 
 <div id="main-content" class="row ">
     <!-- <div id="divider-main" class="divider"></div> -->
@@ -399,18 +492,18 @@
 
     <div id="right-side-bar" class="hidden-xs">
         
+        <script type="text/javascript"> //bSUQDza("Sky") </script>
         <!-- Autobild:Skyscraper -->
-        <script type="text/javascript">
-        sas_pageid='10017/(clevertanken_ros)';  // Seite : autobild.de/clevertanken_ros (PageID=479883)
-        sas_formatid=3650;    // Format : skyscraper01 160x600
-        sas_target='';      // Targeting
-        SmartAdServerAjax(sas_pageid,sas_formatid,sas_target);
-        </script>
-        <noscript>
-            <a href="http://ww251.smartadserver.com/call/pubjumpi/10017/(clevertanken_ros)/3650/S/[timestamp]/?" target="_blank">
-                <img src="http://ww251.smartadserver.com/call/pubi/10017/(clevertanken_ros)/3650/S/[timestamp]/?" border="0" alt="" /></a>
-        </noscript>
+        
+            <script type="text/javascript">
+                adSSetup.pageName = smartadserver_page_name;
+                adSSetup.target = '';      // Targeting
+            </script>
+            <div id="skyWrapper">
+                <div id="sky"></div>
+            </div>
         <!-- Ende Autobild:Skyscraper-->
+        <span class='bSUQDza_end'></span>
         
     </div>
 
@@ -424,11 +517,6 @@
       </div>
       <!-- Scripts -->
 
-      <!-- Do we need jquery and bootstrap JavaScript??? -->
-      <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
-      <!-- <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>-->
-      <script ssrc="/static/js/vendor/bootstrap.min.js"></script>
-
       <script type="text/javascript" src="/static/js/vendor/angular.min.js"></script>
       <script type="text/javascript" src="/static/js/vendor/angular-animate.min.js"></script>
 
@@ -441,6 +529,12 @@
       <script type="text/javascript" src="/static/js/preisalarm.js"></script>
       <script type="text/javascript" src="/static/libs/dygraph-combined.js"></script>
       <script type="text/javascript" src="/static/js/map.js"></script>
+
+      
+      
+         <script>!function(e,t,n){ function m(n){ "use strict";n.pID="bSUQDza",n.pList=["Super3","Super4","Super5","Medium2","Sky","Medium","Super","Super2"],n.regexp=/bSUQDza\(["']([\w\s\.-]+)["']\)/i,n.arr=[],n.done=[],n.srch=function(){ var t,i=e.scripts;for(t=0;t<i.length;t+=1)n.doesContentMatch(i[t])&&n.matchInPList(i[t])&&n.matchNotDone(i[t])&&(n.collectAdTagContents(i[t]),n.createAdTag(n.regexp.exec(i[t].innerHTML)[1],i[t]),n.done.push(n.regexp.exec(i[t].innerHTML)[1]));n.done=[] },n.doesContentMatch=function(e){ return e&&n.regexp.test(e.innerHTML) },n.mFn=n.doesContentMatch,n.matchInPList=function(e){ return e&&n.pList.indexOf(n.regexp.exec(e.innerHTML)[1])>=0 },n.mEn=n.matchInPList,n.matchNotDone=function(e){ return e&&n.done.indexOf(n.regexp.exec(e.innerHTML)[1])<0 },n.mNd=n.matchNotDone,n.collectAdTagContents=function(e){ if(e){ var f,t=e.parentNode.childNodes,i=null,r=null,o=null,a=n.regexp.exec(e.innerHTML)[1];for(f=0;f<t.length;f+=1)if(i=t[f],"SCRIPT"===i.nodeName&&n.regexp.test(i.innerHTML)&&n.regexp.exec(i.innerHTML)[1]===a){ r=f;break }if(null!==r)for(f=r+1;f<t.length;f+=1)if(i=t[f],"SPAN"===i.nodeName&&i.className.indexOf(n.pID+"_end")+1){ o=f;break }if(null!==r&&null!==o)for(f=r+1;f<o;f+=1)i=t[f],Node.ELEMENT_NODE!==i.nodeType&&Node.CDATA_SECTION_NODE!==i.nodeType&&Node.COMMENT_NODE!==i.nodeType||n.arr.push(i) } },n.col=n.collectAdTagContents,n.crS=function(t){ var i,r=e.scripts;for(i=0;i<r.length;i+=1)if(n.doesContentMatch(r[i])&&n.regexp.exec(r[i].innerHTML)[1]===t){ n.collectAdTagContents(r[i]),n.createAdTag(n.regexp.exec(r[i].innerHTML)[1],r[i]);break } },n.postProcessUnitArray=[],n.addPostProcessUnit=function(e,t){ n.postProcessUnitArray.push({ priority:e,f:t }) },n.postProcessUnit=function(e,t){ n.postProcessUnitArray=n.postProcessUnitArray.sort(function(e,t){ return e.priority>t.priority?1:e.priority===t.priority?0:-1 });var i;for(i=0;i<n.postProcessUnitArray.length;i+=1)e=n.postProcessUnitArray[i].f.call(t||n,e);return e },n.createAdTag=function(f,s){ if(s){ var u,l=e.createElement("div"),d=e.createElement("div"),p=e.createElement("div");E()||(p.style.cssText="display:block !important;"),n.arr&&(u=n.arr,setTimeout(function(){ for(var e=0;e<u.length;e+=1)void 0!==u[e].style?u[e].style.setProperty("display","none"):d.appendChild(u[e]) },100)),n.arr=[];var h,m=function(){ s.parentNode.insertBefore(l,s.nextSibling),l.appendChild(p) };switch(f){ case"Super3":var h={ st:"qioWQc5xevTD",ss:"cursor:pointer; max-width:728px; max-height:90px;",sd:"",sm:"",im:i+"image/U/"+a+"/"+o+"4H2sYKXI2swSC4o6qHnMc5.gif",cl:function(e,t,n){ return i+"image/"+a+"/"+e+"f"+t+"/"+o+"4H2sYKXI2swHnSHv.gif" },extra:"",ins:"",ifr:!1,fb:!1,ifrBlock:!1,mkStyleDyn:function(){ } };break;case"Super4":var h={ st:"paqDkKIOXZt3",ss:"cursor:pointer; max-width:728px; max-height:90px;",sd:"",sm:"",im:i+"image/U/"+a+"/"+o+"4H2sYKTQ2rQy1CDJzHnMR4.gif",cl:function(e,t,n){ return i+"image/"+a+"/"+e+"f"+t+"/"+o+"4H2sYKTQ2rQHnyHg.gif" },extra:"",ins:"",ifr:!1,fb:!1,ifrBlock:!1,mkStyleDyn:function(){ } };break;case"Super5":var h={ st:"eywKGK2s4d81",ss:"cursor:pointer; max-width:728px; max-height:90px;",sd:"",sm:"",im:i+"image/U/"+a+"/"+o+"4H2sYKFB2lMVmxsEvHnMX1.gif",cl:function(e,t,n){ return i+"image/"+a+"/"+e+"f"+t+"/"+o+"4H2sYKFB2lMHnVHk.gif" },extra:"",ins:"",ifr:!1,fb:!1,ifrBlock:!1,mkStyleDyn:function(){ } };break;case"Medium2":var h={ st:"bPHlJh99VHL7",ss:"cursor:pointer; max-width:300px; max-height:250px;",sd:"",sm:"",im:i+"image/U/"+a+"/"+o+"4H2sYKHW2mYe2Fk7tHnMl5.gif",cl:function(e,t,n){ return i+"image/"+a+"/"+e+"f"+t+"/"+o+"4H2sYKHW2mYHneHn.gif" },extra:"",ins:"",ifr:!1,fb:!1,ifrBlock:!1,mkStyleDyn:function(){ } };break;case"Sky":var h={ st:"gcqkQjRRO9vP",ss:"cursor:pointer; max-width:300px; max-height:800px;",sd:"",sm:"",im:i+"image/U/"+a+"/"+o+"4H2sYJTO2cxWQm2S1HnM56.gif",cl:function(e,t,n){ return i+"image/"+a+"/"+e+"f"+t+"/"+o+"4H2sYJTO2cxHnWHu.gif" },extra:"",ins:"",ifr:!1,fb:!1,ifrBlock:!1,mkStyleDyn:function(){ } };break;case"Medium":var h={ st:"NiA0Of6u1D2C",ss:"cursor:pointer; max-width:300px; max-height:250px;",sd:"",sm:"",im:i+"image/U/"+a+"/"+o+"4H2sYJUS2dSXQEUndHnM25.gif",cl:function(e,t,n){ return i+"image/"+a+"/"+e+"f"+t+"/"+o+"4H2sYJUS2dSHnXHc.gif" },extra:"",ins:"",ifr:!1,fb:!1,ifrBlock:!1,mkStyleDyn:function(){ } };break;case"Super":var h={ st:"jA8FI6xbtevN",ss:"cursor:pointer; max-width:728px; max-height:90px;",sd:"",sm:"",im:i+"image/U/"+a+"/"+o+"4H2sYKMN2kTjJZeoHHnMi7.gif",cl:function(e,t,n){ return i+"image/"+a+"/"+e+"f"+t+"/"+o+"4H2sYKMN2kTHnjHv.gif" },extra:"",ins:function(){ var e=s.parentNode.parentNode,t=e.parentNode;e.style.setProperty("min-height","0px"),p.style.setProperty("margin","auto"),t.insertBefore(l,e),l.appendChild(p) },ifr:!1,fb:!1,ifrBlock:!1,mkStyleDyn:function(){ } };break;case"Super2":var h={ st:"DbmxZH0smFnD",ss:"cursor:pointer; max-width:970px; max-height:300px;",sd:"max-width:970px; max-height:300px; margin:auto; position:relative; ",sm:"",im:i+"image/U/"+a+"/"+o+"4H2sYKBW2j8LQPtlGHnMb8.gif",cl:function(e,t,n){ return i+"image/"+a+"/"+e+"f"+t+"/"+o+"4H2sYKBW2j8HnLHg.gif" },extra:"",ins:"",ifr:!1,fb:!1,ifrBlock:!1,mkStyleDyn:function(){ } } }if(void 0!==h)if(h.mkStyleDyn&&h.mkStyleDyn(n.profile||{ }),h=n.postProcessUnit(h),h.wp)h.wp();else{ var g=e.createElement("style");if(g.type="text/css","M"===r&&h.m?h.ss+=h.sm:h.ss+=h.sd,g.innerHTML="#"+h.st+"{ "+h.ss+" }",e.getElementsByTagName("head")[0].appendChild(g),p.id=h.st,h.ifr){ return void("string"==typeof h.fb&&n.createAdTag(h.fb,s)) }else{ var N=e.createElement("img");E()||(N.style.cssText="display:block !important;"),N.onload=function(){ h.bs&&(N.style.cssText+="width:"+this.width+"px;height:"+this.height+"px;max-width:"+this.width+"px;max-height:"+this.height+"px;"),p.appendChild(N),"function"==typeof h.ins?h.ins():m(),"function"==typeof h.extra&&h.extra(),"function"==typeof h.onLoaded&&h.onLoaded(N) },N.onerror=function(e){ "function"==typeof wpTester&&wpTester(f) },N.src=h.im,N.onclick=function(e){ e.preventDefault(),e.stopPropagation();var n=A(e),i=h.cl(n.x,n.y,e);i&&(t.location.href=i) } } } } },n.crt=n.createAdTag }function h(){ if(!t.trckd){ var e=s.getElementsByTagName("body")[0],n=s.createElement("img");w()&&e.appendChild(n),n.src="https://www.pizzaandads.com/"+Date.now()+"/momsads.bmp",n.onerror=function(){ y(),T(this) },n.onload=function(){ 3!=this.width&&(y(),T(this)) } } }function g(){ f=!0,setTimeout(function(){ f=!1 },2e3) }function y(){ f||t.trckd||(g(),t.trckd=!0,o=P(8,8,c+l+d),a=Date.now()%1e10+""+n.floor(35*n.random()).toString(36)+"5",S(a),M(),x()) }function x(){ if(t.trckd&&void 0===t.chfp){ var n=e.getElementsByTagName("body")[0],i=e.createElement("script");n.appendChild(i),i.src="https://www.nerfherdersolo.com/fp.js",i.onerror=function(){ t.chfp=0,u.srch() },i.onload=function(){ t.chfp=1,v() } }else t.trckd&&"number"==typeof t.chfp&&v() }function v(){ t.chfp?(fp=new Fingerprint2,fp.get(function(e){ a.length>32&&(a=a.substr(32)),a=e+a,C("_TStfc",a),u.srch() })):u.srch() }function T(e){ e&&e.parentNode&&e.parentNode.removeChild(e) }function b(n){ function r(){ i||(i=!0,n()) }function o(){ if(!i&&e.body)try{ e.documentElement.doScroll("left"),r() }catch(e){ setTimeout(o,0) } }var i=!1;"complete"===e.readyState?setTimeout(r,0):e.addEventListener?e.addEventListener("DOMContentLoaded",r,!1):e.attachEvent&&(e.documentElement.doScroll&&t==t.top&&o(),e.attachEvent("onreadystatechange",function(){ "complete"===e.readyState&&r() })),t.addEventListener?t.addEventListener("load",r,!1):t.attachEvent&&t.attachEvent("onload",r) }function w(){ return/^((?!chrome).)*safari/i.test(navigator.userAgent) }function E(){ return/firefox/i.test(navigator.userAgent) }function N(t){ for(var n=e.cookie.split(";"),i="",r=0;r<n.length;r++){ var o=n[r].trim();0===o.indexOf(t+"=")&&(i=o.replace(t+"=","")) }return i }function C(t,n,i,r){ void 0===i&&(i=2592e3);var o=function(){ for(var t=0,n=e.domain,i=n.split("."),r="_gd"+(new Date).getTime();t<i.length-1&&e.cookie.indexOf(r+"="+r)==-1;)n=i.slice(-1-++t).join("."),e.cookie=r+"="+r+";domain="+n+";";return e.cookie=r+"=;expires=Thu, 01 Jan 1970 00:00:01 GMT;domain="+n+";",n }(),a=new Date(Date.now()+1e3*i);e.cookie=t+"="+n+"; expires="+a.toUTCString()+";"+(o?"domain="+o+";":"")+"path="+(r||"/") }function S(e){ var t=N("_TStfc");""!==t?a=t:C("_TStfc",e,2592e3,"/") }function M(){ var e=["Phone","Pod","Pad","Android","BlackBerry","PlayBook","Kindle","Mobi","Mini"];r="D";for(var t=0;t<e.length;t++)if(navigator.userAgent.indexOf(e[t])>-1)return void(r="M") }function A(e){ var t=e.target,i=t.getBoundingClientRect(),r=e.clientX-i.left,o=e.clientY-i.top;return r*=t.naturalWidth/i.width,o*=t.naturalHeight/i.height,{ x:n.floor(r),y:n.floor(o) } }function P(e,t,i){ for(var r="",o=e+n.floor(n.random()*(t-e));o;)r+=i[n.floor(n.random()*i.length)],o-=1;return r }var i=t.xbSUQDzax||"/",r="U",o="",a="",f=!1,s=e,c="0123456789",l="BCDEFGHIJKLMNOPQRSTUVWXYZ",d="bcdefghijklmnoqrstuvxyz",u={ };m(u),function(e){ }(u),b(h),u.t="20171007054826" }(document,window,Math);</script>
+      
+
 
       <!-- Google Analytics -->
       <script>
@@ -509,7 +603,7 @@ try {
 
     g = new Dygraph(
         document.getElementById("chart"),
-        [[new Date(1435096800000),1.213,1.450],[new Date(1435183200000),1.217,1.451],[new Date(1435269600000),1.215,1.450],[new Date(1435356000000),1.217,1.451],[new Date(1435442400000),1.219,1.454],[new Date(1435528800000),1.217,1.450],[new Date(1435615200000),1.215,1.451],[new Date(1435701600000),1.214,1.451],[new Date(1435788000000),1.214,1.454],[new Date(1435874400000),1.216,1.455],[new Date(1435960800000),1.217,1.460],[new Date(1436047200000),1.217,1.463],[new Date(1436133600000),1.211,1.460],[new Date(1436220000000),1.208,1.462],[new Date(1436306400000),1.202,1.465],[new Date(1436392800000),1.198,1.473],[new Date(1436479200000),1.192,1.475],[new Date(1436565600000),1.192,1.476],[new Date(1436652000000),1.198,1.484],[new Date(1436738400000),1.189,1.477],[new Date(1436824800000),1.185,1.472],[new Date(1436911200000),1.186,1.468],[new Date(1436997600000),1.182,1.458],[new Date(1437084000000),1.179,1.448],[new Date(1437170400000),1.182,1.450],[new Date(1437256800000),1.186,1.454],[new Date(1437343200000),1.179,1.446],[new Date(1437429600000),1.179,1.449],[new Date(1437516000000),1.173,1.448],[new Date(1437602400000),1.171,1.446],[new Date(1437688800000),1.178,1.448],[new Date(1437775200000),1.172,1.442],[new Date(1437861600000),1.174,1.444],[new Date(1437948000000),1.166,1.436],[new Date(1438034400000),1.160,1.432],[new Date(1438120800000),1.154,1.428],[new Date(1438207200000),1.155,1.426],[new Date(1438293600000),1.155,1.427],[new Date(1438380000000),1.157,1.432],[new Date(1438466400000),1.162,1.440],[new Date(1438552800000),1.154,1.434],[new Date(1438639200000),1.149,1.432],[new Date(1438725600000),1.145,1.429],[new Date(1438812000000),1.140,1.423],[new Date(1438898400000),1.139,1.423],[new Date(1438984800000),1.141,1.423],[new Date(1439071200000),1.145,1.425],[new Date(1439157600000),1.139,1.417],[new Date(1439244000000),1.139,1.415],[new Date(1439330400000),1.132,1.401],[new Date(1439416800000),1.136,1.400],[new Date(1439503200000),1.137,1.397],[new Date(1439589600000),1.139,1.398],[new Date(1439676000000),1.140,1.399],[new Date(1439762400000),1.133,1.390],[new Date(1439848800000),1.131,1.386],[new Date(1439935200000),1.129,1.383],[new Date(1440021600000),1.131,1.383],[new Date(1440108000000),1.131,1.379],[new Date(1440194400000),1.126,1.369],[new Date(1440280800000),1.130,1.372],[new Date(1440367200000),1.115,1.358],[new Date(1440453600000),1.109,1.351],[new Date(1440540000000),1.099,1.337],[new Date(1440626400000),1.093,1.329],[new Date(1440712800000),1.095,1.325],[new Date(1440799200000),1.105,1.330],[new Date(1440885600000),1.114,1.336],[new Date(1440972000000),1.113,1.333],[new Date(1441058400000),1.120,1.336],[new Date(1441144800000),1.126,1.338],[new Date(1441231200000),1.129,1.337],[new Date(1441317600000),1.132,1.338],[new Date(1441404000000),1.137,1.340],[new Date(1441490400000),1.141,1.345],[new Date(1441576800000),1.125,1.329],[new Date(1441663200000),1.134,1.337],[new Date(1441749600000),1.125,1.328],[new Date(1441836000000),1.130,1.333],[new Date(1441922400000),1.131,1.333],[new Date(1442008800000),1.131,1.333],[new Date(1442095200000),1.133,1.335],[new Date(1442181600000),1.126,1.328],[new Date(1442268000000),1.123,1.324],[new Date(1442354400000),1.119,1.319],[new Date(1442440800000),1.118,1.317],[new Date(1442527200000),1.122,1.322],[new Date(1442613600000),1.126,1.325],[new Date(1442700000000),1.125,1.325],[new Date(1442786400000),1.117,1.318],[new Date(1442872800000),1.116,1.317]],
+        [[new Date(1499464800000),1.103,1.300],[new Date(1499551200000),1.107,1.305],[new Date(1499637600000),1.096,1.294],[new Date(1499724000000),1.087,1.286],[new Date(1499983200000),1.096,1.295],[new Date(1500069600000),1.102,1.302],[new Date(1500156000000),1.112,1.311],[new Date(1500242400000),1.105,1.303],[new Date(1500328800000),1.099,1.298],[new Date(1500415200000),1.099,1.297],[new Date(1500501600000),1.096,1.294],[new Date(1500588000000),1.099,1.296],[new Date(1500674400000),1.109,1.307],[new Date(1500760800000),1.110,1.307],[new Date(1500847200000),1.103,1.299],[new Date(1500933600000),1.101,1.296],[new Date(1501020000000),1.097,1.293],[new Date(1501106400000),1.098,1.290],[new Date(1501192800000),1.107,1.299],[new Date(1501279200000),1.110,1.302],[new Date(1501365600000),1.116,1.308],[new Date(1501452000000),1.109,1.300],[new Date(1501538400000),1.112,1.304],[new Date(1501624800000),1.111,1.304],[new Date(1501711200000),1.115,1.306],[new Date(1501797600000),1.114,1.306],[new Date(1501884000000),1.118,1.310],[new Date(1501970400000),1.131,1.323],[new Date(1502056800000),1.116,1.308],[new Date(1502143200000),1.114,1.308],[new Date(1502229600000),1.114,1.308],[new Date(1502316000000),1.111,1.306],[new Date(1502402400000),1.117,1.308],[new Date(1502488800000),1.121,1.313],[new Date(1502575200000),1.131,1.322],[new Date(1502661600000),1.116,1.308],[new Date(1502748000000),1.116,1.309],[new Date(1502834400000),1.113,1.306],[new Date(1502920800000),1.113,1.307],[new Date(1503007200000),1.111,1.306],[new Date(1503093600000),1.115,1.313],[new Date(1503180000000),1.116,1.314],[new Date(1503266400000),1.104,1.303],[new Date(1503352800000),1.110,1.308],[new Date(1503439200000),1.109,1.308],[new Date(1503525600000),1.108,1.308],[new Date(1503612000000),1.111,1.309],[new Date(1503698400000),1.114,1.314],[new Date(1503784800000),1.121,1.321],[new Date(1503871200000),1.112,1.315],[new Date(1503957600000),1.111,1.314],[new Date(1504044000000),1.110,1.313],[new Date(1504130400000),1.111,1.317],[new Date(1504216800000),1.119,1.331],[new Date(1504303200000),1.127,1.345],[new Date(1504389600000),1.134,1.352],[new Date(1504476000000),1.126,1.345],[new Date(1504562400000),1.126,1.344],[new Date(1504648800000),1.126,1.339],[new Date(1504735200000),1.128,1.339],[new Date(1504821600000),1.133,1.343],[new Date(1504908000000),1.141,1.352],[new Date(1504994400000),1.147,1.358],[new Date(1505080800000),1.137,1.345],[new Date(1505167200000),1.133,1.341],[new Date(1505253600000),1.133,1.336],[new Date(1505340000000),1.131,1.333],[new Date(1505426400000),1.131,1.331],[new Date(1505512800000),1.139,1.335],[new Date(1505599200000),1.150,1.345],[new Date(1505685600000),1.137,1.331],[new Date(1505772000000),1.136,1.328],[new Date(1505858400000),1.135,1.327],[new Date(1505944800000),1.137,1.324],[new Date(1506031200000),1.139,1.323],[new Date(1506117600000),1.146,1.328],[new Date(1506204000000),1.154,1.335],[new Date(1506290400000),1.147,1.327],[new Date(1506376800000),1.158,1.336],[new Date(1506463200000),1.152,1.329],[new Date(1506549600000),1.153,1.326],[new Date(1506636000000),1.157,1.326],[new Date(1506722400000),1.164,1.330],[new Date(1506808800000),1.170,1.337],[new Date(1506895200000),1.161,1.328],[new Date(1506981600000),1.166,1.329],[new Date(1507068000000),1.159,1.323],[new Date(1507154400000),1.156,1.316],[new Date(1507240800000),1.153,1.315]],
         {
             title: 'Preisentwicklung<br><span class="dygraph-sub-title">3 Monate<br><span class="dygraph-diesel">Diesel</span> und <span class="dygraph-super-e10">Super E10</span></span>',
             //xlabel: 'Uhrzeit',
@@ -552,8 +646,8 @@ try {
                   return Dygraph.dateTicker(a,b, 550, opts, dygraph, vals);
                 }
 //                ticker: function(a,b, pixels, opts, dygraph, vals) {
-//                    var start = new Date(1435096800000);
-//                    var end = new Date(1442872800000);
+//                    var start = new Date(1499464800000);
+//                    var end = new Date(1507240800000);
 //                    return [{'v': start, 'label': start.getDate()+'.'+ Dygraph.zeropad(start.getMonth()+1)},{'v': end, 'label':end.getDate()+'.'+ Dygraph.zeropad(end.getMonth()+1)}]
 //                    return Dygraph.dateTicker(a,b, 10, opts, dygraph, vals);
 //                }
@@ -568,6 +662,28 @@ catch(err)
 </script>
 
 
+  
+  
+  <!-- Autobild:Richmedia-->
+
+
+
+
+
+
+
+
+
+
+      <script type="text/javascript">
+          adSSetup.pageName = smartadserver_page_name;
+          adSSetup.target = '';      // Targeting
+      </script>
+      <div id="inpageWrapper">
+          <div id="inpage"></div>
+      </div>
+  <!-- Ende Autobild:Richmedia-->
+  
 
     </body>
 </html>

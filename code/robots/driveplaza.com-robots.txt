@@ -39,19 +39,36 @@
 <body class="page_home">
 
 <!--[ ad ]-->
-<script type="text/javascript">
-window.CM8Server = 'web-jp.ad-v.jp';
-window.CM8Cat='driveplaza.other';
-window.CM8Profile = 'dp_device=' + ($(window).width() > 640 ? '1' : '2');
+<!-- ad_cci PgaeTag　その他 -->
+<script type="text/javascript" src="http://aka-cdn-ns.adtechus.com/dt/common/DAC.js"></script>
+<script>
+var cciAddevice=$(window).width()>640 ? "PC":"SP";
+var cciAdIds=cciAddevice=="PC" ? [4584478,4584479]:[4584527,4584526];
+ADTECH.config.page = { protocol: 'http', server: 'adserver.adtechjp.com', network: '15011.1', params: { loc: '100' }, enableMultiAd : false};
 </script>
-<script type="text/javascript" src="http://cf.ad-v.jp/adam/cm8adam_1_call.js"></script><!--[ /ad ]-->
+<!-- /ad_cci PgaeTag　その他 -->
+<!--[ /ad ]-->
 
 <div class="outline" id="page_top">
 
 <!--[ header ]-->
 <!-- ad / Small -->
 <div class="center">
-<script type='text/javascript'>CM8ShowAd('mobilebanner')</script>
+<!-- ad_cci スマホスモールバナー -->
+<!-- スマホスモールバナー -->
+<script>
+if($(window).width()<640 && typeof(cciAdIds)!="undefined"){
+  var CCiAD_nn=document.createElement('div');
+  CCiAD_nn.innerHTML='<div id="'+cciAdIds[1]+'"></div>';
+  var CCiAD_s=document.getElementsByTagName('script');
+  var CCiAD_cc=CCiAD_s[CCiAD_s.length-1];
+  CCiAD_cc.parentNode.insertBefore(CCiAD_nn, CCiAD_cc);
+  ADTECH.config.placements[cciAdIds[1]] = {params: { alias: '', target: '_blank' }};
+  ADTECH.enqueueAd(cciAdIds[1]);
+}
+</script>
+<div class="apache_extfilter" id="include_328x50_ad"></div>
+<!-- /ad_cci スマホスモールバナー -->
 </div>
 <!-- /ad / Small -->
 <div class="header_wrap">
@@ -76,10 +93,19 @@ window.CM8Profile = 'dp_device=' + ($(window).width() > 640 ? '1' : '2');
 <input type="hidden" name="ie" value="UTF-8">
 <p class="search"><input name="q" type="text"><input type="submit" value="検索" class="rollover"></p>
 </form>
+<div class="language">
+<a href="#"><p class="rollover language_btn">Language</p></a>
+<ul class="language_list">
+  <li><a href="http://en.driveplaza.com/">English</a></li>
+  <li><a href="http://cn.driveplaza.com/">簡体中文</a></li>
+  <li><a href="http://tw.driveplaza.com/">繁体中文</a></li>
+  <li><a href="http://kr.driveplaza.com/">한국어</a></li>
+  <li><a href="http://th.driveplaza.com/">ไทย</a></li>
+</ul>
+</div>
 </div>
 </div>
 <p class="header-corp">
-<span class="header-corp-en"><a href="http://en.driveplaza.com/" target="_blank"><img src="/resources/img/header/btn_english.png" alt="English"></a></span>
 <a href="http://www.e-nexco.co.jp" target="_blank"><img src="/resources/img/header/logo_nexco.png" alt="NEXCO東日本"></a>
 </p>
 </header>
@@ -89,8 +115,15 @@ window.CM8Profile = 'dp_device=' + ($(window).width() > 640 ? '1' : '2');
 <header class="header_small">
 <p class="tagline">
 高速道路がつなぐクルマの旅を、もっと楽しく快適に
-<span class="header-english"><a href="http://en.driveplaza.com/" target="_blank">English</a></span>
 </p>
+<div id="language_menu_open" class="header-language">Language</div>
+<ul id="language_menu_list" class="header-language-list">
+  <li><a href="http://en.driveplaza.com/">English</a></li>
+  <li><a href="http://cn.driveplaza.com/">簡体中文</a></li>
+  <li><a href="http://tw.driveplaza.com/">繁体中文</a></li>
+  <li><a href="http://kr.driveplaza.com/">한국어</a></li>
+  <li><a href="http://th.driveplaza.com/">ไทย</a></li>
+</ul>
 <div class="header_small-wrap">
 <p class="title"><a href="/"><img src="/resources/img/header/s_logo_drpl.png" alt="ドラぷら" width="81" height="31"></a></p>
 <div class="header_small-nav">
@@ -129,7 +162,8 @@ window.CM8Profile = 'dp_device=' + ($(window).width() > 640 ? '1' : '2');
 </ul>
 </div>
 <!--[ /global navigation / Small ]-->
-</div><!--[ /header ]-->
+</div>
+<!--[ /header ]-->
 
 <div class="middle_section">
 
@@ -176,7 +210,7 @@ window.CM8Profile = 'dp_device=' + ($(window).width() > 640 ? '1' : '2');
 <li class="separate_dash_b"><a href="/traffic/roadinfo/">渋滞・規制情報</a></li>
 <li class="separate_dash_b"><a href="/traffic/jct_map/">JCT標識マップ</a></li>
 <!-- <li class="separate_solid_b"><a href="/traffic/camera/">雪道ライブカメラ</a></li> -->
-<li class="separate_solid_b"><a href="http://www.drivetraffic.jp/map.html" target="_blank"><span class="dropdown_menu_blank">ドラとら(ドライブトラフィック)</span></a></li>
+<li class="separate_solid_b"><a href="https://www.drivetraffic.jp/map.html" target="_blank"><span class="dropdown_menu_blank">ドラとら(ドライブトラフィック)</span></a></li>
 </ul>
 </div>
 </div>
@@ -205,7 +239,6 @@ window.CM8Profile = 'dp_device=' + ($(window).width() > 640 ? '1' : '2');
 </div>
 <div class="dropdown_menu_pad">
 <ul>
-<li class="separate_solid_b"><a href="/sapa/media/">メディア掲載情報</a></li>
 <li class="separate_solid_b"><a href="/sapa/hw/">ハイウェイウォーカー</a></li>
 </ul>
 <div class="dropdown_menu_box">
@@ -213,7 +246,6 @@ window.CM8Profile = 'dp_device=' + ($(window).width() > 640 ? '1' : '2');
 <ul>
 <li><a href="/pasar/" target="_blank"><span class="dropdown_menu_blank">Pasar</span></a></li>
 <li><a href="/special/dramatic/" target="_blank"><span class="dropdown_menu_blank">ドラマチックエリア</span></a></li>
-<li><a href="/special/lpp/" target="_blank"><span class="dropdown_menu_blank">寄居・星の王子さまPA</span></a></li>
 <li><a href="/special/onihei/" target="_blank"><span class="dropdown_menu_blank">羽生・鬼平江戸処</span></a></li>
 </ul>
 </div>
@@ -277,7 +309,8 @@ window.CM8Profile = 'dp_device=' + ($(window).width() > 640 ? '1' : '2');
 </div>
 </div>
 </div>
-</div><!--[ /dropdown menu / Large ]-->
+</div>
+<!--[ /dropdown menu / Large ]-->
 </div>
 
 <div class="page_head">
@@ -345,7 +378,7 @@ window.CM8Profile = 'dp_device=' + ($(window).width() > 640 ? '1' : '2');
 <!-- <li><a href="/traffic/camera/">雪道ライブカメラ</a></li> -->
 </ul>
 <ul class="separate">
-<li class="last"><a href="http://www.drivetraffic.jp/map.html" target="_blank"><span class="footer_blank">ドラとら(ドライブトラフィック)</span></a></li>
+<li class="last"><a href="https://www.drivetraffic.jp/map.html" target="_blank"><span class="footer_blank">ドラとら(ドライブトラフィック)</span></a></li>
 </ul>
 </div>
 </div>
@@ -369,7 +402,6 @@ window.CM8Profile = 'dp_device=' + ($(window).width() > 640 ? '1' : '2');
 <li><a href="/sapa/mimiyori/">耳寄り情報</a></li>
 </ul>
 <ul class="separate">
-<li><a href="/sapa/media/">メディア掲載情報</a></li>
 <li class="last"><a href="/sapa/hw/">ハイウェイウォーカー</a></li>
 </ul>
 </div>
@@ -442,13 +474,24 @@ window.CM8Profile = 'dp_device=' + ($(window).width() > 640 ? '1' : '2');
 --><li><a href="http://www.e-nexco.co.jp/company/" target="_blank"><span class="footer_blank">会社概要</span></a></li><!--
 --><li><a href="/site_info/sitemap.html">サイトマップ</a></li><!--
 --><li><a href="/site_info/link.html">関連サイト</a></li><!--
---><li class="last"><a href="/site_info/ad/index.html">広告掲載について</a></li><!--
+--><li><a href="/site_info/ad/index.html">広告掲載について</a></li><!--
+--><li class="last"><a href="https://www.driveplaza.com/community/site_info/tenant/" target="_blank"><span class="footer_blank">サービスエリアへのご出店</span></a></li><!--
 --></ul>
 </div>
 <div class="footer_operating"><p>全国の高速道路情報サイト「<a href="/">ドラぷら E-NEXCOドライブプラザ</a>」は、<a href="http://www.e-nexco.co.jp" target="_blank">NEXCO東日本</a>が運営しています。</p></div>
-<div class="footer_copyright"><p>Copyright&copy;2015 East Nippon Expressway Company Limited All Rights Reserved.</p></div>
+<div class="footer_copyright"><p>Copyright&copy;2017 East Nippon Expressway Company Limited All Rights Reserved.</p></div>
 </footer>
-<script src="/doramichi/item.js"></script><!--[ /global footer ]-->
+<!-- ad_cci view -->
+<script>
+if (typeof ADTECH!= "undefined") {
+ADTECH.executeQueue();
+}
+</script>
+<div class="apache_extfilter" id="include_ad_view"></div>
+<!-- /ad_cci view -->
+
+<script src="/doramichi/item.js"></script>
+<!--[ /global footer ]-->
 
 
 <!-- / .outline --></div>

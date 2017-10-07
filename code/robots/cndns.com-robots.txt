@@ -1,13 +1,1538 @@
-User-agent: *
-Disallow: /agent*.htm$
-Disallow: /agent*.asp$
-Disallow: /adminpanel/
-Disallow: /Scripts/
-Disallow: /Service/
-Disallow: /userpanel/
-Disallow: /css/
-Disallow: /incs/
-Disallow: /members/
-Disallow: /cn/domain/qwhois.asp
-Disallow: /google/
-Disallow: /help/
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge" /><title>
+	域名注册|域名查询|域名申请|虚拟主机|企业邮箱|网站建设|云主机|网络营销|SEO|尽在美橙互联
+</title><meta name="description" content="美橙互联-虚拟专用服务器空间提供商和国家cnnic认证四星级注册商，提供域名注册、域名申请、域名查询、中文顶级域名注册、国际顶级域名注册、云主机、企业邮箱、网站建设等丰富的网络产品服务。" /><meta name="keywords" content="域名注册,域名查询,域名申请,注册域名,域名抢注,域名交易,域名购买,域名注册查询,申请域名,网站域名,网站域名申请,网站域名,域名注册商,域名空间,虚拟主机,企业邮箱,网站建设,自助建站,云主机" /><link type="text/css" rel="Stylesheet" href="//style.cndns.com/style/main.css?_v=20170927004" />
+<link type="text/css" rel="Stylesheet" href="//style.cndns.com/style/common.css?_v=20170927004" />
+<script type="text/javascript" src="//js.cndns.com/js/jquery-1.7.1.js?_v=20170927004"></script>
+<script type="text/javascript" src="//js.cndns.com/cn/domain/js/Domain_common.js?_v=20170927004"></script>
+<script type="text/javascript" src="//js.cndns.com/js/CndnsValidate.js?_v=20170927004"></script>
+
+    <script type="text/javascript">
+        //提交域名查询到购物车
+        function postData() {
+            checkdomain();
+            var domainsuffixs = "";
+            var name = "";
+            var suffix = $("#domainsuffixs").val();
+            var element = $("#domainname");
+            var domainname = $.trim(element.val());
+            var alldomainsuffix = $("#alldomainsuffixs").val();
+            var chineseDomain = $("#chineseDomain").val();
+
+            domainname = stringhander(domainname);
+
+            if (domainname == "") {
+                alert("请输入要查询的域名!");
+                element.focus();
+                return false;
+            }
+
+            if (domainname.indexOf('.') > -1) {
+                name = domainname.substr(0, domainname.indexOf('.'));
+                suffix = domainname.substr(domainname.indexOf('.'));
+
+                if (chineseDomain.indexOf(suffix.substr(1)) > -1) {
+                    autoAddSuffix(suffix);
+                } else if (alldomainsuffix.indexOf(suffix.substr(1)) > -1) {
+                    if (CndnsValidate.checkChinese(name)) {
+                        alert(suffix + "域名不能包含中文字符");
+                        return false;
+                    } else {
+                        autoAddSuffix(suffix);
+                    }
+                } else {
+                    autoAddSuffix("");
+                }
+
+
+                domainname = stringhander(name);
+            } else {
+
+                if (chineseDomain.indexOf(suffix.substr(1)) > -1) {
+                    autoAddSuffix(suffix);
+                } else if (alldomainsuffix.indexOf(suffix.substr(1)) > -1) {
+
+                    if (CndnsValidate.checkChinese(domainname)) {
+                        alert(suffix + "域名不能包含中文字符");
+                        return false;
+                    } else {
+                        autoAddSuffix(suffix);
+                    }
+                } else {
+                    autoAddSuffix("");
+                }
+
+            }
+
+            var domainsuffixs = $("#domainsuffixs").val();
+
+            if (domainsuffixs.indexOf(".香港") >= 0 && !CndnsValidate.checkChinese(domainname)) {
+                alert(".香港域名必须包含中文");
+                return;
+            }
+
+            getSignCode(domainname + domainsuffixs);
+            element.val(domainname);
+            $("#frm_domain").submit();
+        }
+
+        //如果查询一个后缀域名默认增加其他域名后缀
+        function autoAddSuffix(suffix) {
+            var norm = ".com,.net,.cn";
+            if (suffix == "") {
+                $("#batch").val("true");
+                suffix = norm;
+            } else {
+                $("#batch").val("false");
+                suffix = suffix + "," + norm;
+            }
+            $("#domainsuffixs").val(suffix);
+        }
+
+        //建议用户输入
+        function checkdomain() {
+            var domainname = $("#domainname");
+            var newvalue = $.trim(domainname.val().replace(/[^0-9A-Za-z\-\.\。\u4E00-\u9FA5]/ig, ''));
+            domainname.val(newvalue);
+        }
+
+        //禁用回车键
+        $(function () {
+
+            $("#frm_domain").keypress(function (e) { //这里给function一个事件参数命名为e，叫event也行，随意的，e就是IE窗口发生的事件。
+                var key = e.which; //e.which是按键的值
+                if (key == 13) {
+
+                    return false;
+                }
+            });
+
+
+            $("#domainname").keypress(function (e) { //这里给function一个事件参数命名为e，叫event也行，随意的，e就是IE窗口发生的事件。
+                var key = e.which; //e.which是按键的值
+                if (key == 13) {
+                    postData();
+                }
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <div class="cndns-top-banner">
+        <div class="w-1200"><a href="//www.cndns.com/doc/agenthelp/agenthelp.aspx">
+            <p><b>渠道合作</b>：金橙子-2017全新合作计划  掘金移动时代 成就财富梦想</p>
+        </a><span class="close-btn"></span></div>
+    </div>
+    <div class="cndns-banner">
+        
+        <video id="myVideo" src="" width="100%" autoplay="autoplay" loop="loop" muted="muted" class="cndns-banner-video">您的浏览器不支持 video 标签。</video>
+        <script type="text/javascript" src="//js.cndns.com/js/commjs.js?_v=20170927004"></script>
+
+<script type="text/javascript" src="//js.cndns.com/js/md5.js?_v=20170927004"></script>
+
+
+
+<script type="text/javascript">
+    ////刷新购物车
+    function navRefreshShoppingcart() {
+        var totalPrice = 0;
+        var totalGoodsPrice = 0;
+        var totalPreferentialPrice = "";
+        var str = "";
+        var vormemmy = 0;
+        //刷新购物车商品数量
+        var obj = $("#cart_count tr[id]");
+        var totalCount = obj.size();
+        if (totalCount == 0) {
+            $("#navNone_cart").show();
+            $("#navInfo_cart").hide();
+        } else {
+            $("#navNone_cart").hide();
+            $("#navInfo_cart").show();
+        }
+        $("#navCurrentShoppingcartCount1,#navCurrentShoppingcartCount2").text(totalCount);
+
+    }
+
+    var url = "https://www.sitestar.cn/getInfo.aspx?callback=?";
+
+    $(function () {
+        $.getJSON(url, function (data) {
+            $("#header").attr("lang", data[0].name);
+        });
+        $('.cndns-top-banner .close-btn').click(function () {
+            $('.cndns-top-banner').slideUp()
+        })
+    });
+
+    function refreshVcodehead() {
+        var src = '/common/GenerateCheckCode.aspx?t=sign&temp=' + Math.random();
+        $(".VcodeImg").attr("src", src);
+    }
+</script>
+<!--头部-->
+<div class="cndns-top-banner"><div class="w-1200"><a href="//www.cndns.com/doc/agenthelp/agenthelp.aspx"><p><b>代理合作</b>：金橙子-2017全新合作计划  掘金移动时代 成就财富梦想</p></a><span class="close-btn"></span></div></div>
+<div class="cndns-header" id="header" lang="" lang_chengmi="">
+    <div class="cndns-header-topbar fl">
+        <a href="//www.cndns.com/" class="cndns-header-logo fl"></a>
+        <div class="cndns-header-nav fl">
+            <ul>
+                <!--<li><a href="/cn/ad/main/index.aspx" class="nav-btn">本月特惠<sup class="hot"></sup></a></li>-->
+                <li>
+                    <a href="/cn/domain/" class="nav-btn">域名注册<sup class="domain"></sup></a>
+                    <div class="catagory-dropdown">
+                        <div class="catagory-inner">
+                            <div class="category-apps">
+                                <a href="/cn/domain/index.aspx" target="_blank"><span class="pi1"><i></i></span>英文域名<em>丰富的域名种类供您选择</em></a>
+                                <a href="/cn/domain/index.aspx?show=cn" target="_blank"><span class="pi2"><i></i></span>中文域名<em>用域名保护您的品牌</em></a>
+                                <a href="http://www.chengmi.cn/" target="_blank"><span class="pi3"><i></i></span>域名交易<em>专业指导安全有保障</em></a>
+                                <a href="/cn/domain/search.aspx?p=1" target="_blank"><span class="pi4"><i></i></span>批量查询域名<em>一键查询、轻松便捷</em></a>
+                                <a href="http://whois.cndns.com" target="_blank"><span class="pi5"><i></i></span>Whois查询<em>域名信息一目了然</em></a>
+                                <a href="/cn/domain/transferin.aspx" target="_blank"><span class="pi6"><i></i></span>域名转入<em>选择美橙、享受品质服务</em></a>
+                                <a href="/cn/domain/domain_price.aspx" target="_blank"><span class="pi7"><i></i></span>域名价格<em>业内超低价，还送网站</em></a>
+                                <a href="/cn/qps/index.aspx" target="_blank"><span class="pi8"><i></i></span>收费DNS<em>多种域名类型快速解析</em></a>
+                                <a href="/cn/domain/smartdns.aspx" target="_blank"><span class="pi9"><i></i></span>多线DNS<em>智能DNS解析南北互联</em></a>
+                                <a href="/cn/seo/digitalCert.aspx" target="_blank"><span class="pi53"><i></i></span>SSL数字证书<em>保护您的网上业务</em></a>
+                                <a href="/cn/domain/suo.aspx" target="_blank"><span class="pi37"><i></i></span>域名安全锁<em>保护您的域名安全</em></a>
+                                <a href="/cn/ppb/index.aspx" target="_blank"><span class="pippb"><i></i></span>品牌宝<em>保护您的品牌安全</em></a>
+                                <a href="/cn/qps/index.aspx" target="_blank"><span class="pi9"><i></i></span>DNS高防云解析<em>DNS安全防护</em></a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="/cn/website/" class="nav-btn">企业建站<sup class="xys"></sup></a>
+                    <div class="catagory-dropdown">
+                        <div class="catagory-inner">
+                            <div class="category-apps">
+                                <a href="/cn/website/" target="_blank"><span class="pi10"><i></i></span>企业建站<em>响应式建站，轻松玩转小程序</em><sup class="hot"></sup></a>
+                                <a href="/cn/shop/index.aspx" target="_blank"><span class="pi11"><i></i></span>网上开店<em>电商功能更多样 营销强</em></a>
+                                <a href="/cn/webnew/weisite.aspx" target="_blank"><span class="pi12"><i></i></span>微信建站<em>百变营销新玩法 吸粉多</em></a>
+                                <a href="/cn/webnew/dining.aspx" target="_blank"><span class="pi13"><i></i></span>微餐饮<em>餐饮服务经营新模式</em></a>
+                                <a href="/cn/webnew/weifx.aspx" target="_blank"><span class="pi14"><i></i></span>微信分销<em>一键分销 无限开分店</em></a>
+                                <a href="/cn/website/weishop.aspx" target="_blank"><span class="pi15"><i></i></span>微小店系统<em>刷新店铺管理新体验</em></a>
+                                <a href="/cn/webnew/case.aspx" target="_blank"><span class="pi16"><i></i></span>建站案例<em>你的网站 也可如此炫酷</em></a>
+                                <a href="/cn/webnew/template.aspx" target="_blank"><span class="pi17"><i></i></span>模板展示<em>海量精美模板 高端大气</em></a>
+                                <a href="/cn/website/customize/index.aspx" target="_blank"><span class="pi18"><i></i></span>订制网站<em>一对一专属订制 更高端</em></a>
+                                <a href="/cn/knet/index.aspx" target="_blank"><span class="pi21"><i></i></span>可信网站<em>解决网站安全问题</em></a>
+                                <a href="/cn/website/" target="_blank"><span class="pi67"><i></i></span>微信小程序<em>专属营销版小程序</em><sup class="new"></sup></a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="/cn/hosting/hosting.aspx" class="nav-btn">虚拟主机</a></li>
+                <li>
+                    <a href="/cn/cloud/cloudbuy.aspx" class="nav-btn">云主机&服务器</a>
+                    <div class="catagory-dropdown">
+                        <div class="catagory-inner">
+                            <div class="category-apps">
+                                <a href="/cn/cloud/cloudbuy.aspx" target="_blank"><span class="pi22"><i></i></span>橙云服务器<em>卓越性能 安全实惠</em></a>
+                                <a href="/cn/ali/index.aspx" target="_blank"><span class="pi74"><i></i></span>阿里云<em>阿里云云服务器</em></a>
+                                <a href="/cn/bcc/index.aspx" target="_blank"><span class="pi71"><i></i></span>百度云<em>百度多年积累云服务器</em></a>
+                                <a href="/cn/hosting/hosting.aspx" target="_blank"><span class="pi24"><i></i></span>云虚拟主机<em>国内外多种线路 任君选择</em></a>
+                                <a href="/cn/hosting/hosting.aspx?hw=true" target="_blank"><span class="pi68"><i></i></span>海外云虚机<em>部署全球网络</em></a>
+                                <a href="/cn/database/index.aspx" target="_blank"><span class="pi25"><i></i></span>数据库<em>超高性能存储 售后无忧</em></a>
+                                
+                                <a href="/cn/cloud/solution/index.aspx" target="_blank"><span class="pi27"><i></i></span>云解决方案<em>专业定制 省钱省心</em></a>
+                                <a href="/cn/cloud/template_frm.aspx" target="_blank"><span class="pi28"><i></i></span>模板空间<em>专业配置 用户全权掌握</em></a>
+                                <a href="/cn/cloud/plesk.aspx" target="_blank"><span class="pi29"><i></i></span>Plesk管理助手<em>让你轻松管理Web服务器</em></a>
+                                <a href="/cn/server/service.aspx" target="_blank"><span class="pi30"><i></i></span>增值服务<em>加固防护一应解决</em></a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="/cn/server/" class="nav-btn">租用托管</a>
+                    <div class="catagory-dropdown">
+                        <div class="catagory-inner">
+                            <div class="category-apps">
+                                <a href="/cn/server/zytg.aspx" target="_blank"><span class="pi31"><i></i></span>服务器租用<em>一流机房 稳定带宽</em></a>
+                                <a href="/cn/server/trus.aspx" target="_blank"><span class="pi32"><i></i></span>服务器托管<em>海内外多线优质机房资源</em></a>
+                                <a href="/cn/server/purchase.aspx" target="_blank"><span class="pi33"><i></i></span>服务器采购<em>高配置 低价位</em></a>
+                                <a href="/cn/server/jgzy.aspx" target="_blank"><span class="pi34"><i></i></span>机柜租用<em>智能BGP多线接入 更快速</em></a>
+                                <a href="/cn/server/cdnjs.aspx" target="_blank"><span class="pi35"><i></i></span>CDN加速<em>多节点全网覆盖</em></a>
+                               
+                                <a href="/cn/server/ddosfh.aspx" target="_blank"><span class="pi37"><i></i></span>DDOS防护<em>专注于DDoS攻击防御</em></a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                  <a href="/cn/mail/" class="nav-btn">邮箱超市<sup class="qqy"></sup></a>
+                  <div class="catagory-dropdown">
+                  <div class="catagory-inner">
+                  <div class="category-apps">
+                  <a href="/cn/mail/" target="_blank"><span class="pi38"><i></i></span>橙邮-全球邮<em>海外收发畅通无阻</em></a>
+                  <a href="/cn/mail/txmail.aspx" target="_blank"><span class="pi69"><i></i></span>腾讯企业邮<em>企业微信 极速收发邮件</em></a>
+                  <a href="/cn/mail/wymail.aspx" target="_blank"><span class="pi70"><i></i></span>网易企业邮<em>网易企业邮箱服务</em></a>
+                  <a href="/cn/mail/alimail.aspx" target="_blank"><span class="pi72"><i></i></span>阿里云邮<em>够安全才放心</em></a>
+                  <a href="/cn/edm/index.aspx" target="_blank"><span class="pi39"><i></i></span>EDM邮件营销<em>发送成功率高达99%以上</em></a>
+                  </div>
+                  </div>
+                  </div>
+                </li>
+                <li>
+                    <a href="/cn/seo/qtb-wztg.aspx" class="nav-btn">网络营销</a>
+                    <div class="catagory-dropdown">
+                        <div class="catagory-inner">
+                            <div class="category-apps">
+                                <a href="/cn/edm/index.aspx" target="_blank"><span class="pi39"><i></i></span>EDM邮件营销<em>发送成功率高达99%以上</em></a>
+                                <a href="/cn/seo/qtb-wztg.aspx" target="_blank"><span class="pi40"><i></i></span>企推宝推广系统<em>快速提升网站排名</em></a>
+                                <a href="/cn/seo/new-qtb.aspx" target="_blank"><span class="pi41"><i></i></span>企推宝营销系统<em>抢占搜5大索引擎首页</em></a>
+                                <a href="/cn/sms/index.aspx" target="_blank"><span class="pi42"><i></i></span>短信营销<em>让每条短信 物有所值</em></a>
+                                <a href="/cn/seo/seo.aspx" target="_blank"><span class="pi43"><i></i></span>SEO搜索引擎<em>百度/谷歌关键词优化</em></a>
+                                <a href="/cn/baidu/message.aspx" target="_blank"><span class="pi45"><i></i></span>百度推广(上海)<em>覆盖95%的中国网民</em></a>
+                                <a href="/cn/seo/sogou.aspx" target="_blank"><span class="pi46"><i></i></span>搜狗推广(上海)<em>一份投入 多平台展示</em></a>
+                                   <a href="/cn/cso/index.aspx" target="_blank"><span class="pi73"><i></i></span>橙客服<em>让沟通无阻碍</em><sup class="new"></sup></a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="/cn/crm/crm.aspx" class="nav-btn">企业应用</a>
+                    <div class="catagory-dropdown">
+                        <div class="catagory-inner">
+                            <div class="category-apps">
+                                <a href="/cn/crm/crm.aspx" target="_blank"><span class="pi54"><i></i></span>CRM<em>解决销售管理一切问题</em><sup class="new"></sup></a>
+                                <a href="http://movie.cndns.com" target="_blank"><span class="pi19"><i></i></span>企业宣传片<em>4步操作 极速出片</em></a>
+                                <a href="/cn/seo/endorsement.aspx" target="_blank"><span class="pi44"><i></i></span>橙代言<em>让企业网站会"说话"</em></a>
+                                <a href="/cn/website/appdiy.aspx" target="_blank"><span class="pi20"><i></i></span>APP订制<em>一对一 APP定制开发</em></a>
+                                <a href="https://www.xiu.top/" target="_blank"><span class="pi63"><i></i></span>橙秀微场景<em>炫酷H5微场景一键生成</em></a>
+                                <a href="/cn/exam/exam.aspx" target="_blank"><span class="pi66"><i></i></span>培训考试系统<em>能力训练与考试系统</em><sup class="new"></sup></a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="http://www.51cy.com/" target="_blank" class="nav-btn">工商服务<sup class="new"></sup></a>
+                    <div class="catagory-dropdown">
+                        <div class="catagory-inner">
+                            <div class="category-apps">
+                                <a href="http://www.51cy.com/registration/sh.html" target="_blank"><span class="pi47"><i></i></span>上海公司注册<em>开公司无需等待</em></a>
+                                <a href="http://www.51cy.com/registration/sz.html" target="_blank"><span class="pi48"><i></i></span>深圳公司注册<em>足不出户 轻松创业</em></a>
+                                <a href="http://www.51cy.com/registration/qh.html" target="_blank"><span class="pi49"><i></i></span>前海公司注册<em>轻松抢占前海自贸区</em></a>
+                                <a href="http://www.51cy.com/registration/hk.html" target="_blank"><span class="pi50"><i></i></span>香港公司注册<em>无需赴港 无需地址资金</em></a>
+                                <a href="http://www.51cy.com/accounting/accounting_sh.html" target="_blank"><span class="pi51"><i></i></span>会计服务<em>财税记账 专业会计帮您</em></a>
+                                <a href="http://www.51cy.com/brand/brand.html" target="_blank"><span class="pi52"><i></i></span>商标注册<em>专业代理 快速保护商标</em></a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="/doc/agenthelp/agenthelp.aspx" class="nav-btn">渠道合作</a>
+                    <div class="catagory-dropdown">
+                        <div class="catagory-inner">
+                            <div class="category-apps">
+                                <a href="/doc/agenthelp/agenthelp.aspx" target="_blank"><span class="pi58"><i></i></span>美橙优势<em>丰富齐全的产品线</em></a>
+                                <a href="/cn/website/joinus/default.aspx" target="_blank"><span class="pi61"><i></i></span>企业建站计划<em>轻松创业 赢夺建站市场</em><sup class="hot"></sup></a>
+                                <a href="/cn/website/joinus/index.aspx" target="_blank"><span class="pi56"><i></i></span>金橙子-微计划<em>掘金移动时代</em><sup class="hot"></sup></a>
+                                <a href="/cn/website/joinus/default.aspx?flag=1" target="_blank"><span class="pi62"><i></i></span>网站推广计划<em>轻松创业 精准销售推广</em></a>
+                                <a href="/doc/agenthelp/cloudPlan.aspx" target="_blank"><span class="pi65"><i></i></span>云服务器计划<em>低成本快速进入云计算应用领域</em></a>
+                                <a href="http://movie.cndns.com" target="_blank"><span class="pi64"><i></i></span>视频营销计划<em>宣传片视频适用面广</em></a>
+                                <a href="http://d.sitestar.cn" target="_blank"><span class="pi57"><i></i></span>设计师入驻<em>为您创造更多的商业机会</em></a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="https://www.xiu.top/" target="_blank" class="nav-btn">橙秀<sup class="hot"></sup></a>
+                </li>
+                <div class="clear"></div>
+            </ul>
+        </div>
+    </div>
+    <div class="cndns-header-info fr">
+        <a href="http://beian.cndns.com" class="cndns-header-info-btn" target="_blank"><span>备案</span></a>
+        <a href="/doc/html/payway.aspx" class="cndns-header-info-btn"><span>付款方式</span></a>
+        <a href="/help/index.aspx" class="cndns-header-info-btn"><span>帮助</span></a>
+        <div class="cndns-header-login fl">
+            
+            <a href="/members/signin.aspx" class="cndns-header-info-btn"><span>登录账户</span><span class="icon-arrow-down"></span></a>
+            
+            <div class="header-login-box" style="">
+                
+                <!--未登录-->
+                <div class="nologin-box">
+                    <h4>欢迎回到美橙互联</h4>
+                    <ul>
+                        <li><span></span>
+                            <input type="text" value="" placeholder="用户名/邮箱" class="yh" id="loginAccount_Header" />
+                            <div class="clear"></div>
+                        </li>
+                        <li><span class="pw-icon"></span>
+                            <input type="password" value="" placeholder="密码" class="yh" id="loginPassWord_Header" />
+                            <div class="clear"></div>
+                        </li>
+                        <li>
+                            <input type="text" id="loginCode_Header" value="" placeholder="验证码" class="nologin-box-codeInput" />
+                            <div class="nologin-box-code yzm">
+                                <img id="VcodeImg" class="VcodeImg" onclick="refreshVcodehead();" src="/common/GenerateCheckCode.aspx?t=sign" style="width:95px;" />
+                            </div>
+                            <div class="clear"></div>
+                        </li>
+                        <li>
+                            <p id="showerror" class="tip-tex"></p>
+                        </li>
+                    </ul>
+                    <div class="login-btn">
+                        <a href="javascript:" class="fl" id="loginButton_Header" onclick="header_login(this,0);">登 录</a>
+                        <span id="span_loading"></span>
+                        <a href="/members/getpass.aspx" class="fr">忘记密码？</a>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="code">
+                        <dl>
+                            <dt><span></span></dt>
+                            <dd><a href="/members/empower.aspx" target="_blank" style="color: #df9c1f;"><span></span>微信扫码登录</a></dd>
+                        </dl>
+                        <a href="/members/empower.aspx" target="_blank">
+                            <img src="/images/new-head-3.png"></a>
+                        <div class="clear"></div>
+                    </div>
+                    <span class="arrow-top"></span>
+                </div>
+                
+            </div>
+        </div>
+        
+        <a href="/members/register.aspx" class="cndns-header-info-btn last"><span>注册帐号</span></a>
+        
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<!--end头部-->
+
+<div class="common_zzbg" style="display: none;">
+</div>
+<div class="common_dialog" style="display: none;">
+    <div class="common_dialog_t">
+        <div class="fl">
+            登陆安全验证
+        </div>
+        <div class="fr" id="close_common">
+            <img src="//img.cndns.com/cn/vps/images/close.gif">
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="common_dialog_m" style="display: inline-block;">
+        <ul>
+            <li>
+                <div class="fl tex">
+                    绑&nbsp;定&nbsp;手&nbsp;机：
+                </div>
+                <div class="fl">
+                    <input type="hidden" id="userNumForCommon" />
+                    <input type="text" id="userMblForCommon" style="border: none; line-height: 40px;"
+                        readonly="readonly" />
+                </div>
+                <div class="clear">
+                </div>
+            </li>
+            <li>
+                <div class="fl tex">
+                    动态验证码：
+                </div>
+                <div class="fl">
+                    <input id="LoginCode" type="text" placeholder="输入动态验证码" style="line-height: 30px;" />
+                </div>
+                <div class="clear">
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="common_dialog_b">
+        <a href="javascript:void(0)" id='VerifyLoginCodeBtn' style="display: inline-block; margin-left: 150px; float: left;">立即验证</a>
+        <div id="common_loading" style="display: inline-block; margin-top: 10px; float: left; margin-left: 20px;">
+        </div>
+    </div>
+</div>
+
+        
+<script type="text/javascript">
+    ////刷新购物车
+    function navRefreshShoppingcart() {
+        var totalPrice = 0;
+        var totalGoodsPrice = 0;
+        var totalPreferentialPrice = "";
+        var str = "";
+        var vormemmy = 0;
+        //刷新购物车商品数量
+        var obj = $("#cart_count tr[id]");
+        var totalCount = obj.size();
+        if (totalCount == 0) {
+            $("#navNone_cart").show();
+            $("#navInfo_cart").hide();
+        } else {
+            $("#navNone_cart").hide();
+            $("#navInfo_cart").show();
+        }
+        $("#navCurrentShoppingcartCount1,#navCurrentShoppingcartCount2").text(totalCount);
+
+    }
+</script>
+<!--右侧-->
+<div class="cndns-right">
+    <div class="cndns-right-meau meau-car">
+        <a href="/Cart/Cart.aspx" class="cndns-right-btn">
+            <span class="demo-icon">&#xe900;</span>
+            <sup id="navCurrentShoppingcartCount2">0</sup>
+        </a>
+    </div>
+    <div class="cndns-right-meau meau-sev">
+        <a href="javascript:" class="cndns-right-btn">
+            <span class="demo-icon">&#xe901;</span>
+            <p>
+                在线<br />
+                客服
+            </p>
+        </a>
+        <div class="cndns-right-box">
+            <div class="box-border">
+                <div class="sev-t">
+                    <span class="demo-icon">&#xe901;</span>
+                    <p>美橙在线客服<i>服务时间：9:00-24:00</i></p>
+                    <div class="clear"></div>
+                </div>
+                <div class="sev-b">
+                    <h4>选择下列产品马上在线沟通：</h4>
+                    <ul id="zixunUl">
+                        <li><a href="javascript:void(0);" onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&amp;sid=800015083&amp;o=www.cndns.com&amp;q=7', '_blank', 'height=544, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');">域名/主机</a></li>
+                        
+                        <li><a href="javascript:void(0);" onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&amp;sid=800015083&amp;o=www.cndns.com&amp;q=7', '_blank', 'height=544, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');">建站/网店</a></li>
+                        <li><a href="javascript:void(0);" onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&amp;sid=800015083&amp;o=www.cndns.com&amp;q=7', '_blank', 'height=544, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');">企业邮局</a></li>
+                        <li><a href="javascript:void(0);" onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&amp;sid=800015083&amp;o=www.cndns.com&amp;q=7', '_blank', 'height=544, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');">代理咨询</a></li>
+                        <li><a href="javascript:void(0);" onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&amp;sid=800015083&amp;o=www.cndns.com&amp;q=7', '_blank', 'height=544, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');">网站推广</a></li>
+                        <li><a href="javascript:void(0);" onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&amp;sid=800061750&amp;o=www.cndns.com&amp;q=7', '_blank', 'height=544, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');">橙云主机</a></li>
+                        
+                        <li><a href="javascript:void(0);" onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&amp;sid=800015083&amp;o=www.cndns.com&amp;q=7', '_blank', 'height=544, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');">域名交易</a></li>
+                        
+                        <li><a href="javascript:void(0);" onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&amp;sid=800061750&amp;o=www.cndns.com&amp;q=7', '_blank', 'height=544, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');">租用托管(BGP)</a></li>
+                        
+                        <li><a href="javascript:void(0);" onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&amp;sid=800015083&amp;o=www.cndns.com&amp;q=7', '_blank', 'height=544, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');">其他产品</a></li>
+                        <li><a href="javascript:void(0);" onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&amp;sid=800015083&amp;o=www.cndns.com&amp;q=7', '_blank', 'height=544, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');">橙秀微场景</a></li>
+                        <div class="clear"></div>
+                    </ul>
+                    <div class="clear"></div>
+                    </ul>
+                </div>
+                <span class="arrow-right"></span>
+            </div>
+        </div>
+    </div>
+    <div class="cndns-right-meau meau-contact">
+        <a href="javascript:" class="cndns-right-btn">
+            <span class="demo-icon">&#xe902;</span>
+            <p>
+                客服<br />
+                热线
+            </p>
+        </a>
+        <div class="cndns-right-box">
+            <div class="box-border">
+                <div class="sev-t">
+                    <span class="demo-icon">&#xe902;</span>
+                    <p>
+                        400-920-9933<br />
+                        <i>7*24小时客服服务热线</i>
+                    </p>
+                    <div class="clear"></div>
+                </div>
+                <span class="arrow-right"></span>
+            </div>
+        </div>
+    </div>
+    <div class="cndns-right-meau meau-code">
+        <a href="javascript:" class="cndns-right-btn">
+            <span class="demo-icon">&#xe903;</span>
+            <p>
+                关注<br />
+                微信
+            </p>
+        </a>
+        <div class="cndns-right-box">
+            <div class="box-border">
+                <div class="sev-t">
+                    <img src="/images/02index-2.jpg" />
+                    <i>关注美橙官方微信</i>
+                </div>
+                <span class="arrow-right"></span>
+            </div>
+        </div>
+    </div>
+    <div class="cndns-right-meau">
+        <a href="/cn/ad/main/index.aspx" class="cndns-right-btn">
+            <span class="demo-icon">&#xe906;</span>
+            <p>
+                本月<br />
+                优惠
+            </p>
+        </a>
+    </div>
+    <div class="cndns-right-meau">
+        <a href="/userhome/comm_mng/wrd_add.aspx" target="_blank" class="cndns-right-btn">
+            <span class="demo-icon">&#xe907;</span>
+            <p>
+                有问<br />
+                必答
+            </p>
+        </a>
+    </div>
+    <div class="cndns-right-meau meau-top" id="top-back">
+        <a href="javascript:" class="cndns-right-btn" onclick="topBack()">
+            <span class="demo-icon">&#xe904;</span>
+            <i>顶部</i>
+        </a>
+    </div>
+    
+    <div class="cndns-right-meau meau-cx">
+        <a href="http://www.xiu.top" target="_blank" class="cndns-right-btn">
+            <span class="demo-icon"></span>
+            <p>
+                橙秀<br />
+                微场景
+            </p>
+        </a>
+    </div>
+    
+    <div style="display:block;" class="cndns-right-meau meau-adv">
+        <a href="/cn/ad/main/activity.aspx" target="_blank"></a>
+        <span onclick="advClose()"></span>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        //统计  
+        $("#zixunUl li").click(function () {
+            pcconsult_Tool();
+        });
+    })
+
+    function pcconsult_Tool() {
+        $.ajax({
+            url: "/ajax/login.ashx",
+            type: "post",
+            dataType: "json",
+            data: { "module": "pcconsult" },
+
+            success: function (msg) {
+
+            }
+        })
+    }
+
+    function advClose() {
+        $('.meau-adv').hide()
+    }
+</script>
+<!--end右侧-->
+
+        <div class="cndns-banner-tex">
+            <h2>开启互联网+ 从美橙开始</h2>
+            <h3>域名主机，网站建设，云服务器，企业邮箱一站式完美解决<br />
+                美橙互联企业云服务</h3>
+            <p>超3,000,000用户的放心选择</p>
+            <!--登录前-->
+            
+            <div class="cndns-banner-tex-but">
+                <a href="/members/signin.aspx" class="login-btn">立即登录</a>
+                <a href="/members/register.aspx" class="reg-btn">注册账户</a>
+            </div>
+            
+        </div>
+        <div class="cndns-banner-con">
+            <h4 class="cndns-tit"><span>开始您的互联网之旅</span><i></i></h4>
+            <ul>
+                <li>
+                    <a href="/cn/domain/">
+                        <div class="li-img">
+                            <img src="images/02index-banner-2.png" />
+                        </div>
+                        <div class="li-tex" style="padding-top: 12px;">
+                            <h5>域名注册</h5>
+                            <p>丰富的域名种类供您选择</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/cn/hosting/hosting.aspx">
+                        <div class="li-img">
+                            <img src="images/02index-banner-7.png" />
+                        </div>
+                        <div class="li-tex" style="padding-top: 12px;">
+                            <h5>虚拟主机</h5>
+                            <p>国内外多种线路 任君选择</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/cn/website/">
+                        <div class="li-img">
+                            <img src="images/02index-banner-4.png" />
+                        </div>
+                        <div class="li-tex" style="padding-top: 12px;">
+                            <h5>企业建站</h5>
+                            <p>创建属于自己的网站</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/cn/mail/">
+                        <div class="li-img">
+                            <img src="images/02index-banner-5.png" />
+                        </div>
+                        <div class="li-tex">
+                            <h5>企业全球邮</h5>
+                            <p>海外收发畅通无阻</p>
+                        </div>
+                    </a>
+                </li>
+                <li style="border: none">
+                    <a href="/cn/cloud/cloudbuy.aspx">
+                        <div class="li-img">
+                            <img src="images/02index-banner-3.png" />
+                        </div>
+                        <div class="li-tex">
+                            <h5>云主机超市</h5>
+                            <p>多种选择 卓越运维</p>
+                        </div>
+                    </a>
+                </li>
+                <div class="clear"></div>
+            </ul>
+        </div>
+    </div>
+
+    <!--内容-->
+    <div class="main">
+        <!--整站目录-->
+        <div class="cndns-main-category">
+            <div class="w-1200">
+                <h4 class="cndns-tit"><span>美橙互联，提供互联网整体解决方案</span><i></i></h4>
+                <ul class="category-container">
+                    <li class="noToppadding" style="min-height: 614px;">
+                        <h4>域名注册</h4>
+                        <p>国内知名五星级域名注册商，域名后缀种类丰富，智能DNS解析稳定快速</p>
+                        <div class="category-apps">
+                            <a href="/cn/domain/index.aspx" target="_blank"><span class="pi1"><i></i></span>英文域名 <sup class="sj17 sj17-jyq"></sup> </a>
+                            <a href="/cn/domain/index.aspx?show=cn" target="_blank"><span class="pi2"><i></i></span>中文域名</a>
+                            <a href="http://www.chengmi.cn/" target="_blank" class="noright"><span class="pi3"><i></i></span>域名交易</a>
+                            <a href="/cn/domain/search.aspx?p=1" target="_blank"><span class="pi4"><i></i></span>批量查询域名</a>
+                            <a href="http://whois.cndns.com" target="_blank"><span class="pi5"><i></i></span>Whois查询</a>
+                            <a href="/cn/domain/transferin.aspx" target="_blank" class="noright"><span class="pi6"><i></i></span>域名转入</a>
+                            <a href="/cn/domain/domain_price.aspx" target="_blank"><span class="pi7"><i></i></span>域名价格</a>
+                            <a href="/cn/qps/index.aspx" target="_blank"><span class="pi8"><i></i></span>收费DNS</a>
+                            <a href="/cn/domain/smartdns.aspx" target="_blank" class="noright"><span class="pi9"><i></i></span>多线DNS</a>
+                            <a href="/cn/seo/digitalCert.aspx" target="_blank"><span class="pi53"><i></i></span>SSL数字证书</a>
+                            <a href="/cn/domain/suo.aspx" target="_blank"><span class="pi37"><i></i></span>域名安全锁</a>
+                            <a href="/cn/ppb/index.aspx" target="_blank" style="box-shadow: 0 0 0 #f5f5f5 inset;"><span class="pippb"><i></i></span>品牌宝</a>
+                            <a href="/cn/qps/index.aspx" target="_blank" class="nobottom"><span class="pi9"><i></i></span>DNS高防云解析</a>
+                            <a href="javascript:" class="nobottom nolink"></a>
+                            <a href="javascript:" class=" nolink"></a>
+
+                        </div>
+                    </li>
+                    <li class="noToppadding" style="min-height: 614px;">
+                        <h4>企业建站</h4>
+                        <p>超智能化网站建设营销系统，响应式建站，PC+手机+微信网站+小程序+APP五站合一，百万客户信赖选择</p>
+                        <div class="category-apps">
+                            <a href="/cn/website/" target="_blank"><span class="pi10"><i></i></span>企业建站 <sup class="sj17 sj17-yh"></sup></a>
+                            <a href="/cn/shop/index.aspx" target="_blank"><span class="pi11"><i></i></span>网上开店</a>
+                            <a href="/cn/webnew/weisite.aspx" target="_blank" class="noright"><span class="pi12"><i></i></span>微信建站</a>
+                            <a href="/cn/webnew/dining.aspx" target="_blank"><span class="pi13"><i></i></span>微餐饮</a>
+                            <a href="/cn/webnew/weifx.aspx" target="_blank"><span class="pi14"><i></i></span>微信分销</a>
+                            <a href="/cn/website/weishop.aspx" target="_blank" class="noright"><span class="pi15"><i></i></span>微小店系统</a>
+                            <a href="/cn/webnew/case.aspx" target="_blank"><span class="pi16"><i></i></span>建站案例</a>
+                            <a href="/cn/webnew/template.aspx" target="_blank"><span class="pi17"><i></i></span>模板展示</a>
+                            <a href="/cn/website/customize/index.aspx" target="_blank" class="noright"><span class="pi18"><i></i></span>订制网站</a>
+                            <a href="/cn/knet/index.aspx" target="_blank" class="nobottom"><span class="pi21"><i></i></span>可信网站</a>
+                           <a href="/cn/website/" target="_blank" class="nobottom"><span class="pi67"><i></i></span>微信小程序<sup class="new"></sup></a>
+                            <a href="javascript:" class=" nolink"></a>
+                        </div>
+                    </li>
+                    <li class="noToppadding" style="min-height: 614px;">
+                        <h4>云主机 & 服务器</h4>
+                        <p>全国IDC十强，国内外多个优质机房、多种网络线路选择，性能卓越，安全、快速、稳定。</p>
+                        <div class="category-apps">
+                            <a href="/cn/cloud/cloudbuy.aspx" target="_blank"><span class="pi22"><i></i></span>橙云服务器<sup class="sj17 sj17-yh"></sup></a>
+                            <a href="/cn/ali/index.aspx" target="_blank"><span class="pi74"><i></i></span>阿里云</a>
+                            <a href="/cn/bcc/index.aspx" target="_blank" class="noright"><span class="pi71"><i></i></span>百度云</a>
+                            <a href="/cn/hosting/hosting.aspx" target="_blank"><span class="pi24"><i></i></span>云虚拟主机<sup class="sj17 sj17-yh"></sup></a>
+                            <a href="/cn/hosting/hosting.aspx?hw=true" target="_blank"><span class="pi68"><i></i></span>海外云虚机</a>
+                            <a href="/cn/database/index.aspx" target="_blank" class="noright"><span class="pi25"><i></i></span>数据库</a>
+                            
+                            <a href="/cn/cloud/solution/index.aspx" target="_blank"><span class="pi27"><i></i></span>云解决方案</a>
+                            <a href="/cn/cloud/template_frm.aspx" target="_blank"><span class="pi28"><i></i></span>模板空间</a>
+                            <a href="/cn/cloud/plesk.aspx" target="_blank" class="noright"><span class="pi29"><i></i></span>Plesk管理助手</a>
+                            <a href="/cn/server/service.aspx" target="_blank" class="nobottom"><span class="pi30"><i></i></span>增值服务</a>
+                            <a href="javascript:" class="nobottom nolink"></a>
+                            <a href="javascript:" class="nolink"></a>
+                        </div>
+                    </li>
+                    <li>
+                        <h4>租用托管</h4>
+                        <p>拥有国内外多个云计算IDC数据中心，一流机房设施和带宽，千兆硬件防火墙，7*24小时不间断技术维护。</p>
+                        <div class="category-apps">
+                            <a href="/cn/server/zytg.aspx" target="_blank"><span class="pi31"><i></i></span>服务器租用</a>
+                            <a href="/cn/server/trus.aspx" target="_blank"><span class="pi32"><i></i></span>服务器托管</a>
+                            <a href="/cn/server/purchase.aspx" target="_blank" class="noright"><span class="pi33"><i></i></span>服务器采购</a>
+                            <a href="/cn/server/jgzy.aspx" target="_blank" class="nobottom"> <span class="pi34"><i></i></span>机柜租用</a>
+                            <a href="/cn/server/cdnjs.aspx" target="_blank" class="nobottom"><span class="pi35"><i></i></span>CDN加速</a>
+                          
+                            <a href="/cn/server/ddosfh.aspx" target="_blank" class="nobottom"><span class="pi37"><i></i></span>DDOS防护</a>
+       
+                        </div>
+                    </li>
+                    <li>
+				        <h4>邮箱超市</h4>
+				        <p>强强合作，尊享专业 、一流的品牌邮箱服务，超大附件，海内外收发畅通，安全稳定</p>
+				        <div class="category-apps">
+				          <a href="/cn/mail/" target="_blank"><span class="pi38"><i></i></span>橙邮-全球邮<sup class="sj17 sj17-yh"></sup></a>
+				          <a href="/cn/mail/txmail.aspx" target="_blank"><span class="pi69"><i></i></span>腾讯企业邮</a>
+				          <a href="/cn/mail/wymail.aspx" target="_blank" class="noright"><span class="pi70"><i></i></span>网易企业邮</a>
+				          <a href="/cn/mail/alimail.aspx" target="_blank" class="nobottom"><span class="pi72"><i></i></span>阿里云邮</a>
+				          <a href="/cn/edm/index.aspx" target="_blank" class="nobottom"><span class="pi39"><i></i></span>EDM邮件营销</a>
+				        
+				          <a href="javascript:" class="nolink"></a>
+				        </div>
+				    </li>
+                    <li>
+                        <h4>网络营销</h4>
+                        <p>多种营销推广必备利器，推广快，效果好，成本低，客户主动找上门</p>
+                        <div class="category-apps">
+                            <a href="/cn/edm/index.aspx" target="_blank"><span class="pi39"><i></i></span>EDM邮件营销</a>
+                            <a href="/cn/seo/qtb-wztg.aspx" target="_blank"><span class="pi40"><i></i></span>企推宝推广系统</a>
+                            <a href="/cn/seo/new-qtb.aspx" target="_blank" class="noright"><span class="pi41"><i></i></span>企推宝营销系统<sup class="sj17 sj17-yh"></sup></a>
+                            <a href="/cn/sms/index.aspx" target="_blank"><span class="pi42"><i></i></span>短信营销</a>
+                            <a href="/cn/seo/seo.aspx" target="_blank"><span class="pi43"><i></i></span>SEO搜索引擎</a>
+                            <a href="/cn/baidu/message.aspx" target="_blank" class="noright"><span class="pi45"><i></i></span>百度推广(上海)</a>
+                            <a href="/cn/seo/sogou.aspx" target="_blank" class="nobottom"><span class="pi46"><i></i></span>搜狗推广(上海)</a>
+                            <a href="/cn/cso/index.aspx" target="_blank" class="nobottom"><span class="pi73"><i></i></span>橙客服<sup class="new"></sup></a>
+                          
+                            <a href="javascript:" class="nolink"></a>
+                        </div>
+                    </li>
+                    <li class="noBottompadding">
+                        <h4>企业应用</h4>
+                        <p>超11年技术沉淀，精心研发，打造新一代企业商务智能应用。</p>
+                        <div class="category-apps">
+                            <a href="/cn/crm/crm.aspx" target="_blank"><span class="pi54"><i></i></span>crm客户关系管理<sup class="new"></sup></a> 
+                            <a href="http://movie.cndns.com" target="_blank"><span class="pi19"><i></i></span>企业宣传片</a>
+                            <a href="/cn/seo/endorsement.aspx" target="_blank" class="noright"><span class="pi44"><i></i></span>橙代言</a>
+                            <a href="/cn/website/appdiy.aspx" target="_blank"><span class="pi20"><i></i></span>APP定制</a>
+                            <a href="https://www.xiu.top/" target="_blank"><span class="pi63"><i></i></span>橙秀微场景<sup class="sj17 sj17-wz"></sup></a>
+                            <a href="/cn/exam/exam.aspx" target="_blank" class="noright"><span class="pi66"><i></i></span>培训考试系统<sup class="new"></sup></a>
+
+                       
+
+
+					        <a href="javascript:" target="_blank" class="nobottom nolink"></a>
+					        <a href="javascript:" target="_blank" class="nolink"></a>
+                        </div>
+                    </li>
+                    <li class="noBottompadding">
+                        <h4>工商服务</h4>
+                        <p>公司注册、企业工商公示、财税报账、商标注册等一站式的创业服务，足不出户，简单轻松开公司，省钱省时更省心。</p>
+                        <div class="category-apps">
+                            <a href="http://www.51cy.com/registration/sh.html" target="_blank"><span class="pi47"><i></i></span>上海公司注册</a>
+                            <a href="http://www.51cy.com/registration/sz.html" target="_blank"><span class="pi48"><i></i></span>深圳公司注册</a>
+                            <a href="http://www.51cy.com/registration/qh.html" target="_blank" class="noright"><span class="pi49"><i></i></span>前海公司注册</a>
+                            <a href="http://www.51cy.com/registration/hk.html" target="_blank" class="nobottom"><span class="pi50"><i></i></span>香港公司注册</a>
+                            <a href="http://www.51cy.com/accounting/accounting_sh.html" target="_blank" class="nobottom"><span class="pi51"><i></i></span>会计服务</a>
+                            <a href="http://www.51cy.com/brand/brand.html" target="_blank" class="noright"><span class="pi52"><i></i></span>商标注册</a>
+                        </div>
+                    </li>
+                    <li class="noBottompadding">
+                        <h4>渠道合作</h4>
+                        <p>加盟美橙互联，多种盈利合作模式，无需经验，利润丰厚。无论公司或个人，官方全程扶持，让您轻松赚钱。</p>
+                        <div class="category-apps">
+                            <a href="/doc/agenthelp/agenthelp.aspx" target="_blank"><span class="pi58"><i></i></span>美橙优势</a>
+                            <a href="/cn/website/joinus/default.aspx" target="_blank"><span class="pi61"><i></i></span>企业建站计划<sup class="hot"></sup></a>
+                            <a href="/cn/website/joinus/index.aspx" target="_blank" class="noright"><span class="pi56"><i></i></span>金橙子-微计划<sup class="hot"></sup></a>
+                            <a href="/cn/website/joinus/default.aspx?flag=1" target="_blank"><span class="pi62"><i></i></span>网站推广计划</a>
+                            <a href="/doc/agenthelp/cloudPlan.aspx" target="_blank"><span class="pi65"><i></i></span>云服务器计划</a>
+					        <a href="http://movie.cndns.com" target="_blank" class="noright"><span class="pi64"><i></i></span>视频营销计划</a>
+					        <a href="http://d.sitestar.cn" target="_blank" class="nobottom"><span class="pi57"><i></i></span>设计师入驻</a>
+                            <a href="javascript:" target="_blank" class="nobottom nolink"></a>
+					        <a href="javascript:" target="_blank" class="nolink"></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--CHENGMI橙米域名市场-->
+        <div class="in_nr4_fr">
+            <div class="in_nr4">
+                <div class="in_nr4_t">
+                    <p class="p1">CHENGMI橙米域名市场</p>
+                    <p class="p2">使用CHENGMI域名市场轻松买入卖出域名。查看域名市场最新过期域名拍卖超值精选。</p>
+                </div>
+                <div class="in_nr4_c">
+                    <ul>
+                        <li>
+                            <h3>抢注推荐</h3>
+                            <table cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <th class="td1"><span>域名</span></th>
+                                    <th class="td2"><span>价格</span></th>
+                                </tr>
+                                
+                                <tr class="">
+                                    <td class="td1">
+                                        <a href="http://www.chengmi.cn/domain/order.aspx?id=133774587" target="_blank">
+                                            <span>067360.com</span>
+                                        </a>
+                                    </td>
+                                    <td class="td2">
+                                        <a href="http://www.chengmi.cn/domain/order.aspx?id=133774587" target="_blank">预订</a>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="tr1">
+                                    <td class="td1">
+                                        <a href="http://www.chengmi.cn/domain/order.aspx?id=133790261" target="_blank">
+                                            <span>830556.com</span>
+                                        </a>
+                                    </td>
+                                    <td class="td2">
+                                        <a href="http://www.chengmi.cn/domain/order.aspx?id=133790261" target="_blank">预订</a>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="tr1">
+                                    <td class="td1">
+                                        <a href="http://www.chengmi.cn/domain/order.aspx?id=133786077" target="_blank">
+                                            <span>201810.com</span>
+                                        </a>
+                                    </td>
+                                    <td class="td2">
+                                        <a href="http://www.chengmi.cn/domain/order.aspx?id=133786077" target="_blank">预订</a>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="tr1">
+                                    <td class="td1">
+                                        <a href="http://www.chengmi.cn/domain/order.aspx?id=133844023" target="_blank">
+                                            <span>601408.com</span>
+                                        </a>
+                                    </td>
+                                    <td class="td2">
+                                        <a href="http://www.chengmi.cn/domain/order.aspx?id=133844023" target="_blank">预订</a>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="tr1">
+                                    <td class="td1">
+                                        <a href="http://www.chengmi.cn/domain/order.aspx?id=133844152" target="_blank">
+                                            <span>898478.com</span>
+                                        </a>
+                                    </td>
+                                    <td class="td2">
+                                        <a href="http://www.chengmi.cn/domain/order.aspx?id=133844152" target="_blank">预订</a>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="tr1">
+                                    <td class="td1">
+                                        <a href="http://www.chengmi.cn/domain/order.aspx?id=133724638" target="_blank">
+                                            <span>053716.com</span>
+                                        </a>
+                                    </td>
+                                    <td class="td2">
+                                        <a href="http://www.chengmi.cn/domain/order.aspx?id=133724638" target="_blank">预订</a>
+                                    </td>
+                                </tr>
+                                
+                            </table>
+                            <p class="p1"><a href="http://www.chengmi.cn/domain/list.aspx" target="_blank">查看更多</a></p>
+                        </li>
+                        <li>
+                            <h3>淘域名</h3>
+                            <table cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <th class="td1"><span>域名</span></th>
+                                    <th class="td2"><span>价格</span></th>
+                                </tr>
+                                
+                                <tr class="">
+                                    <td class="td1">
+                                        <a href="http://www.chengmi.cn/domain/ykj.aspx?id=22777524" target="_blank">
+                                            <span>deiqiu.com</span>
+                                        </a>
+                                    </td>
+                                    <td class="td2"><span>¥5000</span></td>
+                                </tr>
+                                
+                                <tr class="tr1">
+                                    <td class="td1">
+                                        <a href="http://www.chengmi.cn/domain/ykj.aspx?id=24690234" target="_blank">
+                                            <span>tuzhua.cn</span>
+                                        </a>
+                                    </td>
+                                    <td class="td2"><span>¥2399</span></td>
+                                </tr>
+                                
+                                <tr class="tr1">
+                                    <td class="td1">
+                                        <a href="http://www.chengmi.cn/domain/ykj.aspx?id=24690233" target="_blank">
+                                            <span>niudiu.cn</span>
+                                        </a>
+                                    </td>
+                                    <td class="td2"><span>¥777</span></td>
+                                </tr>
+                                
+                                <tr class="tr1">
+                                    <td class="td1">
+                                        <a href="http://www.chengmi.cn/domain/ykj.aspx?id=23634393" target="_blank">
+                                            <span>miankuai.cn</span>
+                                        </a>
+                                    </td>
+                                    <td class="td2"><span>¥3600</span></td>
+                                </tr>
+                                
+                                <tr class="tr1">
+                                    <td class="td1">
+                                        <a href="http://www.chengmi.cn/domain/ykj.aspx?id=22344112" target="_blank">
+                                            <span>mych.cn</span>
+                                        </a>
+                                    </td>
+                                    <td class="td2"><span>¥220000</span></td>
+                                </tr>
+                                
+                                <tr class="tr1">
+                                    <td class="td1">
+                                        <a href="http://www.chengmi.cn/domain/ykj.aspx?id=22596127" target="_blank">
+                                            <span>nvegou.com</span>
+                                        </a>
+                                    </td>
+                                    <td class="td2"><span>¥390000</span></td>
+                                </tr>
+                                
+                            </table>
+                            <p class="p1"><a href="http://www.chengmi.cn/domain/buy.aspx" target="_blank">查看过期域名拍卖</a></p>
+                        </li>
+                        <li>
+                            <h3>平价域名</h3>
+                            <table cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <th class="td1"><span>域名</span></th>
+                                    <th class="td2"><span>价格</span></th>
+                                </tr>
+                                
+                                <tr class="">
+                                    <td class="td1">
+                                        <a href="http://www.chengmi.cn/domain/ykj.aspx?id=20609006" target="_blank">
+                                            <span>fnyd.com</span>
+                                        </a>
+                                    </td>
+                                    <td class="td2">
+                                        <span>¥156400</span>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="tr1">
+                                    <td class="td1">
+                                        <a href="http://www.chengmi.cn/domain/ykj.aspx?id=24491714" target="_blank">
+                                            <span>srjd.com</span>
+                                        </a>
+                                    </td>
+                                    <td class="td2">
+                                        <span>¥135966</span>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="tr1">
+                                    <td class="td1">
+                                        <a href="http://www.chengmi.cn/domain/ykj.aspx?id=23691685" target="_blank">
+                                            <span>lailie.com</span>
+                                        </a>
+                                    </td>
+                                    <td class="td2">
+                                        <span>¥23800</span>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="tr1">
+                                    <td class="td1">
+                                        <a href="http://www.chengmi.cn/domain/ykj.aspx?id=18565435" target="_blank">
+                                            <span>dunpa.com</span>
+                                        </a>
+                                    </td>
+                                    <td class="td2">
+                                        <span>¥20366</span>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="tr1">
+                                    <td class="td1">
+                                        <a href="http://www.chengmi.cn/domain/ykj.aspx?id=24805752" target="_blank">
+                                            <span>psgm.com</span>
+                                        </a>
+                                    </td>
+                                    <td class="td2">
+                                        <span>¥71074</span>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="tr1">
+                                    <td class="td1">
+                                        <a href="http://www.chengmi.cn/domain/ykj.aspx?id=17817173" target="_blank">
+                                            <span>hmtb.com</span>
+                                        </a>
+                                    </td>
+                                    <td class="td2">
+                                        <span>¥60860</span>
+                                    </td>
+                                </tr>
+                                
+                            </table>
+                            <p class="p1"><a href="http://www.chengmi.cn/domain/buy.aspx" target="_blank">查看域名抢注</a></p>
+                        </li>
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+                <script type="text/javascript">
+                    $(".in_nr4_c ul li").each(function () {
+                        $(this).find("table tr").each(function () {
+                            $(this).hover(
+                                function () {
+                                    $(this).find("td").css("background-color", "#f2f2f2");
+                                },
+                                function () {
+                                    $(this).find("td").css("background-color", "");
+                                }
+                            );
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+        <!--美橙互联优势-->
+        <div class="in_nr5_fr">
+            <div class="in_nr5">
+                <div class="in_nr4_t">
+                    <p class="p1">美橙互联优势</p>
+                </div>
+                <div class="in_nr5_c">
+                    <ul>
+                        <li class="li-o">
+                            <div class="spr-img"><span></span></div>
+                            <h4>美橙十年金牌品质保证</h4>
+                            <p>
+                                10年行业经验，300人服务精英团队<br />
+                                百万客户信赖选择
+                            </p>
+                        </li>
+                        <li class="li-t">
+                            <div class="spr-img"><span></span></div>
+                            <h4>知名顶级域名主机提供商</h4>
+                            <p>
+                                全国IDC十强，CNNIC&ICANN双认证<br />
+                                五星级域名注册商，荣获多个奖项
+                            </p>
+                        </li>
+                        <li class="li-s">
+                            <div class="spr-img"><span></span></div>
+                            <h4>国内外多个安全快速骨干机房</h4>
+                            <p>
+                                拥有北京、上海、杭州、香港、美国等多个云计算<br />
+                                IDC数据中心，一流机房设施和带宽
+                            </p>
+                        </li>
+                        <li class="li-f">
+                            <div class="spr-img"><span></span></div>
+                            <h4>自主开发，建站之星企业响应式建站</h4>
+                            <p>
+                                 PC+手机+微信网站+小程序+APP五站合一，高端设计，<br>
+                                独有7大核心优势，超高性价比
+
+                            </p>
+                        </li>
+                        <li class="li-w">
+                            <div class="spr-img"><span></span></div>
+                            <h4>7家分公司 覆盖全国本地化服务</h4>
+                            <p>
+                                北京，上海，广州，深圳，杭州，成都，<br />
+                                香港设有服务中心
+                            </p>
+                        </li>
+                        <li class="li-l">
+                            <div class="spr-img"><span></span></div>
+                            <h4>7*24小时专家支持服务</h4>
+                            <p>
+                                365天快速响应，国粤英三语，400电话、QQ、<br />
+                                微信、在线客服等多渠道售后支持
+                            </p>
+                        </li>
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end内容-->
+    
+<!--底部-->
+<div class="in_nr7_fr">
+    <div class="in_nr7">
+        <span class="sp1">准备开展业务？</span> 
+        
+             <a target="_blank" href="/cn/website/" class="a1">立即创建网站</a>  
+         
+        <span class="sp2">或</span> 
+        <a  href="/doc/agenthelp/agenthelp.aspx" class="a2">成为渠道商</a> 
+        <span class="sp2">或</span>
+        <div class="in_nr7_contact">
+            <p><b>400-920-9933</b>客户服务电话(7×24)</p>
+            <a href="javascript:void(0);" onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&amp;sid=800015083&amp;o=www.cndns.com&amp;q=7', '_blank', 'height=544, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');"><span>24小时在线客服</span></a>
+        </div>
+    </div>
+</div>
+<div class="btn1fr">
+    <div class="btn1">
+        <dl>
+            <dt><a href="/doc/html/aboutus.aspx">关于美橙</a></dt>
+            <dd>
+                <a href="/doc/html/aboutus.aspx">橙文化</a></dd>
+            <dd>
+                <a href="/doc/html/honor.aspx">公司资质荣誉</a></dd>
+            <dd>
+                <a href="/doc/html/aboutus.aspx">参观各分公司</a></dd>
+            <dd>
+                <a href="/cn/server/room.aspx">机房介绍</a></dd>
+            <dd>
+                <a href="/cn/webnew/case.aspx">客户案例</a></dd>
+        </dl>
+        <dl>
+             <dt><a href="/cn/ad/main/index.aspx">每月最新</a></dt>
+            <dd>
+                <a href="/cn/ad/main/index.aspx" target="_blank">优惠促销</a></dd>
+            <dd>
+                <a href="javascript:void(null);" class="a1">有奖活动</a><div class="yjhd">
+                    <img src="//img.cndns.com/siteimages/yjhd.png" /></div>
+            </dd>
+            <dd>
+                <a href="http://bbs.sitestar.cn/forum-36-1.html" target="_blank">功能更新</a></dd>
+            <dd>
+                <a href="http://p.sitestar.cn" target="_blank">免费培训</a></dd>
+            <dd>
+                <a href="/doc/html/news_list.aspx?typeid=101" target="_blank">最新公告</a></dd>
+            <dd>
+                <a href="/doc/html/news_list.aspx?typeid=102" target="_blank">美橙动态</a></dd>
+        </dl>
+        <dl>
+            <dt><a href="javascript:void(null);">产品与服务</a></dt>
+            <dd>
+                <a href="/cn/domain/index.aspx">域名</a></dd>
+            <dd>
+                <a href="/cn/hosting/index.aspx">云主机</a></dd>
+            <dd>
+                <a href="/cn/webnew/index.aspx">企业建站</a></dd>
+            <dd>
+                <a href="/cn/cloud/index.aspx">橙云主机</a></dd>
+            <dd>
+                <a href="/cn/mail/index.aspx">企业邮箱</a></dd>
+            <dd>
+                <a href="/cn/edm/index.aspx">网络营销</a></dd>
+            <dd>
+                <a href="/cn/server/index.aspx">租用托管</a></dd>
+            <dd>
+                <a href="/doc/agenthelp/agenthelp.aspx">渠道合作</a></dd>
+        </dl>
+        <dl>
+            <dt><a href="/doc/agenthelp/platform.aspx">实用工具</a></dt>
+            <dd>
+                <a href="http://whois.cndns.com" target="_blank">域名(whois)信息查询</a></dd>
+            <dd>
+                <a href="/whois/index.aspx?tag=1" target="_blank">中文域名转码</a></dd>
+            <dd>
+                <a href="/whois/index.aspx?tag=4" target="_blank">IP归属地查询</a></dd>
+            <dd>
+                <a href="http://beian.cndns.com/" target="_blank">备案查询</a></dd>
+            <dd>
+                <a href="http://www.sitestar.cn/" target="_blank">建站工具</a></dd>
+            <dd>
+                <a href="/whois/toolIndex.aspx" target="_blank">站长工具</a></dd>
+             <dd>
+                <a href="https://www.idccenter.net/" target="_blank">产品管理面板</a></dd>
+        </dl>
+       <dl>
+            <dt><a href="/doc/agenthelp/agenthelp.aspx">代理</a></dt>
+            <dd>
+                <a href="/doc/agenthelp/agenthelp.aspx#daili" target="_blank">基础渠道商</a></dd>
+            <dd>
+                <a href="/doc/agenthelp/agenthelp.aspx#daili" target="_blank">高级渠道商</a></dd>
+            <dd>
+                <a href="/doc/agenthelp/agenthelp.aspx#daili" target="_blank">伙伴渠道商</a></dd>
+            <dd>
+                <a href="/doc/agenthelp/agenthelp.aspx#daili" target="_blank">战略合作伙伴</a></dd>
+        </dl>
+        <dl>
+            <dt><a href="/help/index.aspx">帮助</a></dt>
+            <dd>
+                <a href="/userhome/comm_mng/wrd_add.aspx" target="_blank">在线有问必答</a></dd>
+            <dd>
+                <a href="/help/index.aspx" target="_blank">如何选购产品</a></dd>
+            <dd>
+                <a href="/help/index.aspx" target="_blank">产品入门使用</a></dd>
+            <dd>
+                <a href="http://beian.cndns.com/" target="_blank">如何网站备案</a></dd>
+            <dd>
+                <a href="/doc/html/download.aspx" target="_blank">业务资料&合同</a></dd>
+            <dd>
+                <a href="/userhome/invoice_mng/usr_inv_lst.aspx" target="_blank">索取发票</a>
+            </dd>
+            <dd>
+                <a href="/userpanel/comm_mng/wrd_add.aspx" target="_blank">投诉建议</a></dd>
+            <dd>
+                <a href="/members/complain.aspx">帐户申诉</a></dd><dd>
+                    <a href="/doc/html/pdtmap.aspx">网站地图</a></dd>
+        </dl>
+        <div class="btn1_t">
+            <h4>关注美橙</h4>
+            <img src="/siteimages/add_foot_1.jpg" class="fl" />
+            <div class="btn1_t_r fr">
+                <p>美橙微信</p>
+                <a href="http://weibo.com/shcndns" target="_blank">美橙微博</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+
+
+<div class="btn3fr">
+    <div class="w-1200">
+        <a href="https://www.xiu.top/" target="_blank">橙秀</a><span>|</span>
+        <a href="http://hk.eznow.com/" target="_blank">網頁寄存</a><span>|</span>
+        <a href="http://hk.wopop.com/" target="_blank">網頁設計</a><span>|</span>
+        <a href="http://www.51cy.com/" target="_blank">公司注册</a><span>|</span>
+        <a href="http://www.eznet.hk/" target="_blank">易网国际</a><span>|</span>
+        <a href="http://www.sitestar.cn/" target="_blank">自助建站</a><span>|</span>
+        <a href="http://www.chengmi.cn/" target="_blank">域名抢注</a><span>|</span>
+        <a href="http://www.wopop.com/" target="_blank">website builder</a><span>|</span>
+        <a href="http://www.sitestar.cn/" target="_blank">网站建设</a><span>|</span>
+        <a href="http://www.eznow.com" target="_blank">web hosting</a><span>|</span>
+        <a href="http://net.yesky.com/" target="_blank">天极网络频道</a><span>|</span>
+        <a href="http://www.yumi.com/" target="_blank">玉米网</a><span>|</span>
+        <a href="http://server.it168.com" target="_blank">IT168服务器</a><span>|</span> 
+        <a href="http://server.pcpop.com" target="_blank">泡泡网</a><span>|</span>
+        
+        <a href="http://www.idcps.com" target="_blank">IDC排名</a><span>|</span> 
+        <a href="http://www.safedog.cn/" target="_blank">安全狗</a><span>|</span> 
+        <a href="http://www.domain.cn/" target="_blank">域名城</a><span>|</span>
+        <a href="http://www.shenduncn.com/" target="_blank">神盾网络</a><span>|</span>
+        <a href="http://www.hostucan.cn/" target="_blank">IDC点评</a><span>|</span>
+        <a href="http://www.dns.com/" target="_blank">DNS域名解析</a><span>|</span>
+           <a href="http://www.ichat800.com/" target="_blank">在线客服系统</a>
+    </div>
+</div>
+<div class="btn2fr">
+    <div class="btn2">
+        <p class="p1">
+            <a href="/doc/html/aboutus.aspx">关于美橙</a><i>|</i>
+            <a href="/doc/html/contact.aspx">联系我们</a><i>|</i>
+            <a href="/doc/html/payway.aspx">付款方式</a><i>|</i>
+            <a href="http://beian.cndns.com/">网站备案</a><i>|</i>
+            <a href="http://home.cndns.com/userpanel/price.asp">价格总览</a><i>|</i>
+            <a href="/help/index.aspx">帮助中心</a><i>|</i>
+            <a href="http://zhaopin.cndns.com/">诚聘英才</a><i>|</i>
+            <a href="http://news.cndns.com">美橙资讯</a><i>|</i>
+            <a href="/doc/html/download.aspx">相关下载</a><br />
+            <a href="/doc/html/WebFeedback.aspx">网站反馈</a><i>|</i>
+            域名注册,域名查询,域名申请,虚拟主机,企业邮箱,网站建设,云主机,网络推广尽在美橙互联<br />
+            版权所有 上海美橙科技信息发展有限公司  <a href="http://www.miitbeian.gov.cn" target="_blank">沪ICP备11006888号</a>  工信部电管函[2013]143号  上海市互联网协会理事单位<br />
+           <a href="/images/sm0021.jpg" target="_blank">《跨地区增值电信业务经营许可证》编号：B1-20140197</a>  高新技术企业 编号：GR201231000095 <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31010102002108" target="_blank">公安备案号：31010102002108</a><br />
+            客户服务中心(7×24):400-920-9933 传真：021-51697771-8888
+        </p>
+        <p class="p3">
+            <a target="_blank" href="/doc/html/contact.aspx?sh=#sh">上海</a>
+            <a target="_blank" href="/doc/html/contact.aspx?bj=#bj">北京</a> 
+            <a target="_blank" href="/doc/html/contact.aspx?hz=#hz">杭州</a> 
+            <a target="_blank" href="/doc/html/contact.aspx?gz=#gz">广州</a> 
+            <a target="_blank" href="/doc/html/contact.aspx?sz=#sz">深圳</a> 
+            <a target="_blank" href="/doc/html/contact.aspx?xg=#xg">香港</a> 
+            <a target="_blank" href="/doc/html/contact.aspx?cd=#cd">成都</a>
+        </p>
+        <p class="p4" >
+            <a href="/doc/html/aboutus.aspx" target="_blank">
+                <img src="/images/btn_01.jpg" /></a>
+            <a href="http://www.pdxa.cn/Welcome.Asp?Id=3101150418" target="_blank">
+                <img src="/images/btn_02.jpg" /></a>
+            
+            <a href="http://www.itrust.org.cn/yz/pjwx.asp?wm=3786253471" target="_blank">
+                <img src="/images/btn_04.jpg" /></a>
+            
+            <a href="https://ss.knet.cn/verifyseal.dll?sn=2010071500100001501&ct=df&pa=769273" target="_blank">
+                <img src="/images/btn_06.jpg" /></a>
+            <a href="http://www.sgs.gov.cn/lz/licenseLink.do?method=licenceView&entyId=20120313113547893" target="_blank">
+                <img src="/images/btn_07.jpg" /></a>
+            <a href="http://www.zx110.org/" target="_blank">
+                <img src="/images/btn_08.jpg" /></a>
+            <a href="http://wangzhan.360.cn" target="_blank">
+                <img src="/images/btn_09.jpg" /></a>
+            <span style="position:relative;">
+            <a href="http://www.shjbzx.cn" target="_blank">
+                <img src="/images/btn_10.jpg" /></a>
+            <span style=" display:inline-block; height:50px; width:100px; position:absolute; top:-30px; left:110px;">
+            <a  key ="58d3626aefbfb0751820acb5"   logo_size="83x30"  logo_type="business"  href="http://www.anquan.org"  target="_blank"><script src="//static.anquan.org/static/outer/js/aq_auth.js"></script></a></span>
+                </span>
+        </p>
+    </div>
+    <p style="text-align: center">
+        <a href="http://shwebsite.cndns.com" target="_blank" style="color: #fefefe;">上海网站制作公司</a><span style="color: #fefefe;">|</span>
+        <a href="/cn/shenzhenweb/" target="_blank" style="color: #fefefe;">深圳网站制作公司</a><span style="color: #fefefe;">|</span>
+        <a href="/cn/guangzhouweb/" target="_blank" style="color: #fefefe;">广州网站制作公司</a><span style="color: #fefefe;">|</span>
+        <a href="/cn/beijingweb/" target="_blank" style="color: #fefefe;">北京网站制作公司</a><span style="color: #fefefe;">|</span>
+        <a href="/cn/hangzhouweb/" target="_blank" style="color: #fefefe;">杭州网站制作公司</a>
+    </p>
+</div>
+
+<div id="CNDNS_stat" style="display: none;">
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e0ec5a459501bf8da6994d9be3f3d0a7";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <script src="https://s14.cnzz.com/stat.php?id=2271963&web_id=2271963" language="JavaScript"></script>
+</div>
+
+
+
+<script type="text/javascript">
+    $('.btn1 .btn1_r p.p3 a.a1,.btn1 .btn1_r p.p3 b').hover(function () {
+        $('.btn1 .btn1_r p.p3 b').stop().fadeIn(300)
+    }, function () {
+        $('.btn1 .btn1_r p.p3 b').stop().fadeOut(300)
+    })
+    $('.btn1 dl dd a.a1').hover(function () {
+        $('.btn1 dl dd .yjhd').show();
+    }, function () {
+        $('.btn1 dl dd .yjhd').hide();
+    });
+</script>
+<!--end底部-->
+<div id="onlinepaylock1" style="z-index: 1; border: medium none; margin: 0px; display: none;
+    padding: 0px; width: 100%; height: 100%; top: 0px; left: 0px; background-color: rgb(0, 0, 0);
+    opacity: 0.6; cursor: wait; position: fixed;" class="blockUI blockOverlay">
+</div>
+<div id="onlinepaylock2" style="background-color: #fff; border: 0 none; color: #000;
+    cursor: wait; left: 25%; margin: 0; padding: 0; position: fixed; text-align: center;
+    top: 25%; width: 50%; z-index: 1011;">
+    <div id="go_sitestar" style="display: none;">
+        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+                <tr>
+                    <td width="14%" style="padding-right: 10px;">
+                        <img src="//images.cndns.com/cn/webnew/images/logo_sitestar.jpg">
+                    </td>
+                    <td width="86%" style="border-left: 1px solid #ccc; padding-left: 10px;">
+                        <span class="go_sitestar_font01">美橙互联旗下品牌</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td height="120" align="center" colspan="2">
+                        <span class="go_sitestar_font02">您即将进入"建站之星网站"完成购买</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" height="70" align="center" colspan="2">
+                        <table width="100" cellspacing="0" cellpadding="0" border="0">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <img src="//images.cndns.com/cn/webnew/images/logo_cndns.jpg">
+                                    </td>
+                                    <td style="padding: 0 10px 0 15px;">
+                                        <img src="//images.cndns.com/cn/webnew/images/go.gif">
+                                    </td>
+                                    <td>
+                                        <img src="//images.cndns.com/cn/webnew/images/logo_sitestar.jpg">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                    <td align="center">
+                        <span class="go_sitestar_font03">如果浏览器未正常跳转，请 </span><a class="go_sitestar_a" target="_blank"
+                            id="golnk" href="####">点击这里</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!--end底部-->
+
+
+    <script>
+        $(document).ready(function () {
+            $(window).resize(function () {
+                videoFullsize()
+            })
+            $(window).load(function () {
+                videoFullsize()
+
+                var vid = document.getElementById("myVideo")
+                vid.onplay = function (e) {
+                    $('.cndns-banner-bg').hide()
+                };
+                /*随机切换视频banner*/
+                var videoNum = Math.floor(Math.random() * 3 + 1);
+                $('.cndns-banner-video').attr('src', '//flv.cndns.com/cn/webnew/images/cndns-banner-video-' + videoNum + '.mp4')
+
+                $('.cndns-banner-sea .selectstyle_188').hover(function () {
+                    $(this).find('.selectmemberw_hide').show()
+                }, function () {
+                    $(this).find('.selectmemberw_hide').hide()
+                })
+                $('.cndns-banner-sea .selectmemberw_hide li').click(function () {
+                    $('.cndns-banner-sea .selectmemberw_show span').text($(this).text())
+                    $('.selectmemberw_hide').hide()
+                })
+
+                $('.cndns-banner-con li').hover(function () {
+                    $(this).siblings().css('opacity', '0.5')
+                }, function () {
+                    $(this).siblings().css('opacity', '1')
+                }
+	            )
+            })
+        })
+
+        function videoFullsize() {
+            var width = $(window).width()
+            if (width < 1280) {
+                $('.cndns-banner-video').width('auto')
+                $('.cndns-banner-video').height('710')
+                $('.cndns-banner-video').css('bottom', '0')
+            } else if (width > 1880) {
+                $('.cndns-banner-video').css('bottom', '-130px')
+            } else {
+                $('.cndns-banner-video').width('100%')
+                $('.cndns-banner-video').height('auto')
+                $('.cndns-banner-video').css('bottom', '0')
+            }
+        }
+    </script>
+</body>
+</html>

@@ -16,11 +16,23 @@
  
 
 
+<script>
+ 
+ 	var url = window.location.href;
+	var var1 = sessionStorage.getItem('escritorio');
+	if (var1==null || var1=='no'){
+		var dispositivo = navigator.userAgent.toLowerCase();
+		if( dispositivo.search(/iphone|ipod|ipad|android|blackberry|iemobile|opera/) > -1 ){
+				window.location.href="/es/movil/index.html";
+		}
+	}
+   
+</script>
+
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 
 
 <head>
-	<meta http-equiv="X-UA-Compatible" content="IE=8" />
 <title>Oficina Española de Patentes y Marcas</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15" />
 	<meta http-equiv="Content-Language" content="es" />
@@ -41,10 +53,12 @@
 	<!--[if gte IE 7]>
 		<link rel="stylesheet" type="text/css" media="all" href="/export/system/modules/es.ieci.opencms.content/resources/css/styles8.css" />
 	<![endif]-->
-	<script type="text/javascript" src="/export/system/modules/es.ieci.opencms.content/resources/js/jquery-1.4.2.js"></script>
-	<script type="text/javascript" src="/export/system/modules/es.ieci.opencms.content/resources/js/jquery-ui-1.8.custom.min.js"></script>
-	<script type="text/javascript" src="/export/system/modules/es.ieci.opencms.content/resources/js/common.js"></script>
-	<script type="text/javascript" src="/export/system/modules/es.ieci.opencms.content/resources/js/jquery.fontSizer.js"></script>
+	
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
+	
 	
 	<script type="text/javascript">
 		function createCookie(name,value,days)
@@ -118,12 +132,10 @@
 	
 	<meta name="WT.cg_n" content="wwwoepm" />
 <meta name="WT.cg_s" content="Inicio" />
-
 </head>
 
 <body dir="ltr">
 	<div class="bg">
-	
 		
 
 
@@ -132,6 +144,46 @@
 	<div id="header"><h1 class="offset">Oficina española de Patentes y Marcas</h1>
 		<div class="lang">
 		
+		<!--//BLOQUE COOKIES-->
+		<div id="barraaceptacion" style="display: block;">
+			<div class="mensaje">
+				Este sitio web utiliza cookies propias para ofrecer un mejor servicio. Si continúa navegando consideramos que acepta su uso. Encontrará más información en nuestra Política de Cookies.<br>
+				<a href="javascript:void(0);" class="ok" onclick="PonerCookie();"><b>OK</b></a> | 
+				<a href="http://www.minetad.gob.es/es-ES/Paginas/politica-cookies.aspx" target="_blank" class="info">Más información</a>
+			</div>
+		</div>
+		 
+		<script>
+		function leerCookie(nombre) {
+			var micookie = "";
+			var lista = document.cookie.split(";");
+			for (i in lista) {
+				var busca = lista[i].search(nombre);
+				if (busca > -1) {
+					micookie = lista[i];
+				}
+			}
+			var igual = micookie.indexOf("=");
+			var valor = micookie.substring(igual+1);
+			return valor;
+		}
+		 
+		function setCookie(c_name,value,exdays){
+			var exdate=new Date();
+			exdate.setDate(exdate.getDate() + exdays);
+			var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+			document.cookie=c_name + "=" + c_value;
+		}
+		 
+		if(leerCookie('oepmAviso') == '1'){
+			document.getElementById("barraaceptacion").style.display="none";
+		}
+		function PonerCookie(){
+			setCookie('oepmAviso','1',365);
+			document.getElementById("barraaceptacion").style.display="none";
+		}
+		</script>
+		<!--//FIN BLOQUE COOKIES-->
 			<form id="idioma" method="get" action="#" class="accesible"  style="float:left">
 				
 			<ul id="lang" name="lang" class="accesible">
@@ -176,11 +228,12 @@
 				</li>
 				<li class="contact"><a href="/es/contacto.html">Contacto</a></li>
 				<li class="contact"><a href="/es/mapa_web.html">Mapa Web</a></li>
-				<li class="contact"><a href="mailto:ciudadano@oepm.es">Buz&oacute;n del Ciudadano</a></li>  
+				<li class="contact"><a href="/es/buzonCiudadano.html">Buz&oacute;n del Ciudadano</a></li>  
 			</ul>
 			<ul > 
 				<li> 
 					<form id="buscar" method="get" action="/es/buscador.html">
+					<label for="busca" style="visibility: hidden;">Buscador: </label>
 					<input type="text" class="buscador" id="busca" value="" name="query" />
 					<!-- <a href="#" onclick="buscar.submit">Buscar -->
 					<input type="submit" id="envia" value="Buscar" />
@@ -214,9 +267,7 @@
 <div id="divPyme" class="divPymes">		
 
 
-			&nbsp &nbsp <a href="http://educacionypi.oepm.es/index.html" title="Educación y PI" target="_blank"><img src="http://oepm-calidad.es/export/sites/calidad/comun/img/iconos/Educacion_y_pi_cabecera.png" alt="Educación y PI" class="min" /></a>
-
-			&nbsp &nbsp <a href="/es/propiedad_industrial/PI_PYME/index.html" title="Propiedad Industrial para PYME y emprendedores" target="_blank"><img src="/export/sites/oepm/comun/imagenes/Logo_PYME_Small.png" alt="Propiedad Industrial para PYME y emprendedores" class="patentes" /></a>
+			&nbsp &nbsp <a href="/es/propiedad_industrial/PI_PYME/index.html" title="Propiedad Industrial para PYME y emprendedores" target="_top"><img src="/export/sites/oepm/comun/imagenes/Logo_PYME_Small.png" alt="Propiedad Industrial para PYME y emprendedores" class="min" /></a>
 
 		
 			</div>
@@ -248,42 +299,42 @@
 		<li>
 
 
-				<a href="/es/signos_distintivos/index.html" class="item" accesskey="0">Marcas y Nombres<br>Comerciales</a>
+				<a href="/es/signos_distintivos/index.html" class="item" accesskey="1">Marcas y Nombres<br>Comerciales</a>
 
 		</li>
 			
 		<li>
 
 
-				<a href="/es/invenciones/index.html" class="item" accesskey="0">INVENCIONES</a>
+				<a href="/es/Invenciones_Menu/index.html" class="item" accesskey="2">INVENCIONES</a>
 
 		</li>
 			
 		<li>
 
 
-				<a href="/es/disenos_industriales/index.html" class="item" accesskey="0">Diseños industriales</a>
+				<a href="/es/disenos_industriales/index.html" class="item" accesskey="3">Diseños industriales</a>
 
 		</li>
 			
 		<li>
 
 
-				<a href="/es/propiedad_industrial/index.html" class="item" accesskey="0">PROPIEDAD INDUSTRIAL</a>
+				<a href="/es/propiedad_industrial/index.html" class="item" accesskey="4">PROPIEDAD INDUSTRIAL</a>
 
 		</li>
 			
 		<li>
 
 
-				<a href="/es/sobre_oepm/index.html" class="item" accesskey="0">SOBRE LA OEPM</a>
+				<a href="/es/sobre_oepm/index.html" class="item" accesskey="5">SOBRE LA OEPM</a>
 
 		</li>
 			
 		<li>
 
 
-				<a href="/es/informacion_tecnologica/index.html" class="item" accesskey="0">Información Tecnológica</a>
+				<a href="/es/informacion_tecnologica/index.html" class="item" accesskey="6">Información Tecnológica</a>
 
 		</li>
 
@@ -314,16 +365,16 @@
 	<div class="img">
 		<!-- <img src="/export/sites/oepm/comun/imagenes/img_principal.jpg" alt="[sin texto]" /> -->
 		
-			<a href="/comun/Enlaces_Externos_https/yosoyoriginal">
+			<a href="/comun/Enlaces_Externos_https/marcathlon.html">
 			
-		<img src="/export/system/modules/es.ieci.opencms.content/resources/img/Antifalsificacion_Mafioso_2015_small.jpg" alt="[sin texto]" />
+		<img src="/export/sites/oepm/comun/imagenes/CampaniasDeSensibilizacion/marcathlon_2017.jpg" alt="[sin texto]" />
 		
 			</a>
 			
 	</div>
 	<!-- enlaces banners-->
 	<!-- Cabecera -->
-	<div id="imagenes" style="position:  absolute; z-index:10000;left: 30; Top:55em;">
+	<div id="imagenes" style="position:  absolute; z-index:10000;left: 30; Top:  55em;">
 		<h2 style"margin-left: 3em;" >SÍGUENOS EN: </h2>
 
 			
@@ -335,9 +386,11 @@
 
 			<a href="/es/rss/index.html" title="rss" target="_blank"  style="text-align:left;"><img src="http://oepm-calidad.es/export/sites/calidad/comun/img/iconos/rss__pq.png" alt="rss" class="patentes" /></a>
 
-			<a href="https://www.facebook.com/pages/Oficina-Espa%C3%B1ola-de-Patentes-y-Marcas-OEPM/154549538022977" title="facebook" target="_blank"  style="text-align:left;"><img src="http://oepm-calidad.es/export/sites/calidad/comun/img/iconos/facebook__pq.png" alt="facebook" class="patentes" /></a>
+			<a href="https://www.facebook.com/oepm.es" title="facebook" target="_blank"  style="text-align:left;"><img src="http://oepm-calidad.es/export/sites/calidad/comun/img/iconos/facebook__pq.png" alt="facebook" class="patentes" /></a>
 
 			<a href="https://twitter.com/oepm_es" title="twiter" target="_blank"  style="text-align:left;"><img src="http://oepm-calidad.es/export/sites/calidad/comun/img/iconos/twitter_pq.png" alt="twiter" class="patentes" /></a>
+
+			<a href="/es/sobre_oepm/fototeca/" title="Fototeca" target="_blank"  style="text-align:left;"><img src="/export/sites/oepm/comun/imagenes/ico_camara_fotos.jpg" alt="Fototeca" class="patentes" /></a>
 
 	</div>		
 			<!--cabecera -->
@@ -357,7 +410,8 @@
 						<li><a href="/es/propiedad_industrial/propiedad_industrial/que_se_puede_proteger_y_como/index.html">¿Qué se puede registrar en la OEPM?</a></li>
 						<li><a href="/es/propiedad_industrial/publicaciones/folletos_informativos/index.html">Folletos divulgativos</a></li>
 						<li><a href="/es/propiedad_industrial/preguntas_frecuentes/index.html">Preguntas más frecuentes</a></li>
-						<li><a href="/es/sobre_oepm/advertencias_oepm/index.html"><font color="#FF0000">Advertencias OEPM: No se deje engañar</font></a></li>
+						<li><a href="/es/sobre_oepm/advertencias_oepm/index.html"><span class="rojo">Advertencias OEPM: No se deje engañar. Medidas adoptadas</span></a></li>
+						<li><a href="/es/sobre_oepm/PlanEstrategico2017_2020/index.html">Plan Estratégico 2017-2020 en materia de Propiedad Industrial</a></li>
 				</ul></li>
 			<li><h2>UTILIDADES</h2>
 			<ul>
@@ -365,8 +419,8 @@
 						<li><a href="/es/propiedad_industrial/tasas/">Tasas y precios públicos</a></li>
 						<li><a href="/es/Formas_de_pago.html">Formas de pago. Pago electrónico. Documentos pago presencial</a></li>
 						<li><a href="https://sede.oepm.gob.es/eSede/es/index.html" target="_blank" alt="Presentación electrónica (abre en ventana nueva)" title="Presentación electrónica (abre en ventana nueva)">Presentación electrónica</a></li>
-							<li><a href="/es/propiedad_industrial/Normativa/index.html">Normativa</a></li>
-						<li><a href="/comun/Enlaces_Externos_https/OPENDATA">Datos con acceso abierto (Open Data)</a></li>
+							<li><a href="/comun/Enlaces_Externos_https/OPENDATA">Datos con acceso abierto (Open Data)</a></li>
+						<li><a href="/es/informacion_tecnologica/informacion_gratuita/servicios_web/index.html">Servicios Web</a></li>
 				</ul></li>
 </ul>
 
@@ -375,30 +429,18 @@
 		<ul class="listado_tit">
 		<li><h2>BASES DE DATOS</h2>
 			<ul>
-
-						<li><a href="http://sitadex.oepm.es/Localizador/homeLocalizador.jsp" target="_blank"  >Localizador de marcas</a></li>
-							
-					<li><a href="/comun/Enlaces_Externos_https/SitadexSede">Situación de expedientes</a></li>
-				
-						<li><a href="http://invenes.oepm.es/InvenesWeb" target="_blank"  >INVENES: Invenciones en español</a></li>
-					
-						<li><a href="http://invenes.oepm.es/DisenosWeb" target="_blank"  >DISEÑOS: Diseños en español</a></li>
-					
-						<li><a href="http://worldwide.espacenet.com/" target="_blank"  >Espacenet: Invenciones nivel mundial</a></li>
-					
-						<li><a href="http://lp.espacenet.com/" target="_blank"  >Latipat-Espacenet: Invenciones América Latina</a></li>
-					
-						<li><a href="https://www.tmdn.org/tmview/welcome.html?lang=es" target="_blank"  >TMView: Marcas</a></li>
-							
-					<li><a href="/comun/Enlaces_Externos_https/Enlace_DesignView">DesignView: Diseños</a></li>
+		
+					<li><a href="/es/Bases_de_Datos_Marcas.html">Marcas y Nombres  Comerciales<br /><br /></a></li>
 						
-					<li><a href="/es/propiedad_industrial/jurisprudencia/index.html">Base de datos de Jurisprudencia</a></li>
+					<li><a href="/es/Bases_de_Datos_Invenciones.html">Invenciones<br /><br /></a></li>
+						
+					<li><a href="/es/Bases_de_Datos_Disenos.html">Diseños<br /><br /></a></li>
+						
+					<li><a href="/es/Bases_de_Datos_Expedientes.html">Expedientes<br /><br /></a></li>
+						
+					<li><a href="/es/propiedad_industrial/jurisprudencia/index.html">Jurisprudencia<br /><br /></a></li>
 				
-						<li><a href="http://cip.oepm.es/" target="_blank"  >Clasificación Internacional de Patentes</a></li>
-					
-						<li><a href="http://ceres.oepm.es/clinmar/inicio.action;jsessionid=Fpd6Nv8DGcfvD95hfSzChQy3CDYZPNKfHnk4TZGqnNRvvJN98rp8!515814441" target="_blank"  >Clasificación internacional de productos y servicios - marcas (Clinmar)</a></li>
-					
-						<li><a href="http://archivoenlinea.oepm.es/portal/" target="_blank"  >Expedientes digitalizados</a></li>
+						<li><a href="http://consultas2.oepm.es/ipstat/" target="_blank">Estadísticas (OEPMESTAD)</a></li>
 					</ul></li>
 </ul>
 
@@ -472,9 +514,6 @@
 				
 
 			
-				
-
-			
 		
 <ul class="clearfix ie">		
 					
@@ -483,9 +522,9 @@
 			
 					
 <li>			<div class="text">
-				<p class="fecha">17-09-2015</p>	
+				<p class="fecha">17-07-2017</p>	
 				<dl>
-					<dt><a href="/es/sobre_oepm/noticias/2015/2015_09_17_Paralegales_5a_edicion.html">Curso de Gestión Administrativa de la Propiedad Industrial (Paralegales)</a></dt>
+					<dt><a href="/es/sobre_oepm/noticias/2017/2017_07_17_Marcathlon_2017.html">7 de octubre: celebración del Marcathlon 2017</a></dt>
 					
 					
 					
@@ -501,9 +540,9 @@
 			
 					
 <li>			<div class="text">
-				<p class="fecha">27-07-2015</p>	
+				<p class="fecha">08-06-2017</p>	
 				<dl>
-					<dt><a href="/es/sobre_oepm/noticias/2015/2015_07_27_Nueva_Ley_de_Patentes.html">Nueva Ley de Patentes</a></dt>
+					<dt><a href="/es/sobre_oepm/noticias/2017/2017_06_08_Pago_fraudulentos.html"><font color="#FF0000">Advertencia respecto a requerimientos de pago fraudulentos </font></a></dt>
 					
 					
 					
@@ -519,9 +558,9 @@
 			
 					
 <li>			<div class="text">
-				<p class="fecha">28-07-2015</p>	
+				<p class="fecha">25-07-2017</p>	
 				<dl>
-					<dt><a href="/es/sobre_oepm/noticias/2015/2015_07_28_Exposicion_Carteles.html">Exposición itinerante de carteles como "lucha contra la falsificación"</a></dt>
+					<dt><a href="/es/sobre_oepm/noticias/2017/2017_07_25_Presentacion_Candidaturas_Premio_Inventor_Europeo.html">Abierto el plazo de presentación de candidaturas al Premio al Inventor Europeo del año 2018</a></dt>
 					
 					
 					
@@ -537,9 +576,9 @@
 			
 					
 <li>			<div class="text">
-				<p class="fecha">30-07-2015</p>	
+				<p class="fecha">06-10-2017</p>	
 				<dl>
-					<dt><a href="/es/sobre_oepm/noticias/2015/2015_07_30_Candidatura_Premio_Inventor_Europeo_2016.html">Abierto el plazo de presentación de candidaturas al Premio al Inventor Europeo del año 2016</a></dt>
+					<dt><a href="/es/sobre_oepm/noticias/2017/2017_10_06_ActividadesAcademiaEUIPOoctubre2017.html">Actividades de formación de la Academia de la EUIPO programadas para octubre de 2017</a></dt>
 					
 					
 					
@@ -555,9 +594,9 @@
 			
 					
 <li>			<div class="text">
-				<p class="fecha">22-09-2015</p>	
+				<p class="fecha">05-10-2017</p>	
 				<dl>
-					<dt><a href="/es/sobre_oepm/noticias/2015/2015_09_22_ConvocatoriaPremiosNacionalesArtesania.html">Publicación en el BOE del 22 de septiembre de la Décima Convocatoria de los Premios Nacionales de Artesanía y sus bases reguladoras</a></dt>
+					<dt><a href="/es/sobre_oepm/noticias/2017/2017_10_05_NuevasActualizacionesDiferentesModulos_eOLF.html">Nuevas actualizaciones en diferentes módulos de e-OLF</a></dt>
 					
 					
 					
@@ -573,9 +612,9 @@
 			
 					
 <li>			<div class="text">
-				<p class="fecha">22-09-2015</p>	
+				<p class="fecha">05-10-2017</p>	
 				<dl>
-					<dt><a href="/es/sobre_oepm/noticias/2015/2015_09_22_TheGlobalInnovationIndex.html">The Global Innovation Index 2015: Políticas de Innovación eficaces para el Desarrollo</a></dt>
+					<dt><a href="/es/sobre_oepm/noticias/2017/2017_10_05_LaOEPMcolaboraConLasUniversidadesEspanolas.html">La OEPM colabora con las universidades españolas</a></dt>
 					
 					
 					
@@ -591,27 +630,9 @@
 			
 					
 <li>			<div class="text">
-				<p class="fecha">22-09-2015</p>	
+				<p class="fecha">02-10-2017</p>	
 				<dl>
-					<dt><a href="/es/sobre_oepm/noticias/2015/2015_09_22_Seminarios_webinars_OAMI.html">Próximos seminarios web (webinars) de la OAMI.</a></dt>
-					
-					
-					
-				</dl>
-			</div>
-			</li>
-			
-		
-		
-					
-			
-			
-			
-					
-<li>			<div class="text">
-				<p class="fecha">21-09-2015</p>	
-				<dl>
-					<dt><a href="/es/sobre_oepm/noticias/2015/2015_09_21_VCursoDerechoEuropeoPatentes2015_2016.html">V Curso en Derecho Europeo de Patentes 2015-2016</a></dt>
+					<dt><a href="/es/sobre_oepm/noticias/2017/2017_10_02_NuevaEdicionASGECO_ConsumeOriginalSeAutentico.html">Nueva edición de la campaña de ASGECO "Consume original, Sé auténtico"</a></dt>
 					
 					
 					
@@ -626,8 +647,12 @@
 			<a class="boton" href="/es/sobre_oepm/noticias/index.html">Ver todas las noticias</a>
 		</div>
 	</div>
-</div>
+</div>					
 					
+
+
+
+
 
 
 
@@ -654,10 +679,10 @@
 				
 					
 				<dt>
-					<span class="fecha">24-09-2015</span>
-					<a href="/es/sobre_oepm/agenda/2015/2015_06_15_PrimerProgramaFormacionJuecesTribunalUnificadoPat.html">Septiembre-noviembre 2015 - Primer Programa de Formación para Jueces Técnicamente Cualificados del Tribunal Unificado de Patentes. Estrasburgo (Francia)</a>
+					<span class="fecha">10-10-2017</span>
+					<a href="/es/sobre_oepm/agenda/2017/2017_10_05_Innovacion_varietal_sostenible.html">10/10/2017 - Jornada: innovación varietal sostenible y Propiedad Industrial - Madrid</a>
 				</dt>
-				<dd class="home"><p>Curso</p></dd>
+				<dd class="home"><p>Jornada</p></dd>
 				
 				
 
@@ -665,10 +690,10 @@
 				
 					
 				<dt>
-					<span class="fecha">24-09-2015</span>
-					<a href="/es/sobre_oepm/agenda/2015/2015_09_17_SesionUniversidadAlcala.html">24/09/2015 - Sesión formativa para profesores e investigadores en la Universidad de Alcalá - Alcalá de Henares (Madrid)</a>
+					<span class="fecha">10-10-2017</span>
+					<a href="/es/sobre_oepm/agenda/2017/2017_10_03_De_la_fregona_al_Airbus.html">10/10/2017- Mesa redonda "De la fregona al Airbús. Guía para empresarios y diseñadores innovadores"</a>
 				</dt>
-				<dd class="home"><p>Sesión</p></dd>
+				<dd class="home"><p>Mesa redonda</p></dd>
 				
 				
 
@@ -676,10 +701,10 @@
 				
 					
 				<dt>
-					<span class="fecha">25-09-2015</span>
-					<a href="/es/sobre_oepm/agenda/2015/2015_07_29_Curso_Sobre_Propiedad_Industrial.html">25/09/2015- Curso sobre Propiedad Industrial; Sesiones Formativas para Identificación de Falsificaciones - Madrid</a>
+					<span class="fecha">12-10-2017</span>
+					<a href="/es/sobre_oepm/agenda/2017/2017_02_07_12102017_VisitaAlaSedeOEP_Munich.html">12/10/2017 - Visita a la Sede de la OEP - Múnich </a>
 				</dt>
-				<dd class="home"><p>Curso</p></dd>
+				<dd class="home"><p>Visita</p></dd>
 				
 				
 
@@ -687,10 +712,10 @@
 				
 					
 				<dt>
-					<span class="fecha">28-09-2015</span>
-					<a href="/es/sobre_oepm/agenda/2015/2015_07_21_9_Congreso_Mundial_Anual_de_Patentes.html">28-30/09/2015 - 9º Congreso Mundial Anual de Patentes (9th Annual Global Patent Congress) - Copenhague (Dinamarca)</a>
+					<span class="fecha">17-10-2017</span>
+					<a href="/es/sobre_oepm/agenda/2017/2017_06_26_Seminario_administrativos_Patentes_Milan.html">17/10/2017 - Seminario para administrativos de Patentes - Milán</a>
 				</dt>
-				<dd class="home"><p>Congreso</p></dd>
+				<dd class="home"><p>Seminario</p></dd>
 				
 				
 			</dl>
@@ -732,10 +757,10 @@
 
 		
 
-					<!-- ENLACES DESTACADOS -->
-	
-	<div class="lista_txt">
-<h3><a href="/es/propiedad_industrial/ayudas/index.html" target="_top">Ayudas y subvenciones</a></h3><h3><a href="/es/sobre_oepm/perfil_contratante/index.html" target="_top">Perfil del contratante</a></h3>
+				<!-- ENLACES DESTACADOS -->
+
+<div class="lista_txt">
+	<h3><a href="/es/propiedad_industrial/ayudas/index.html" target="_top">Ayudas y subvenciones</a></h3><h3><a href="/es/sobre_oepm/perfil_contratante/index.html" target="_top">Perfil del contratante</a></h3>
 		<!-- LISTA INFORMACION -->
 
 
@@ -747,27 +772,35 @@
 
 	<h3>Otras informaciones</h3>
 	<ul>
-	<li><a href="/es/sobre_oepm/actividades_estadisticas/" target="_top">Estadísticas</a></li><li><a href="/es/propiedad_industrial/enlaces_de_interes/centros_regionales_informacion_propiedad_industrial/index.html" target="_top">Centros Regionales de Información de PI</a></li><li><a href="/es/sobre_oepm/empleo/index.html" target="_top">Empleo</a></li><li><a href="/es/sobre_oepm/educacion_formacion/index.html" target="_top">Aula de Propiedad Industrial</a></li><li><a href="/es/propiedad_industrial/internacionalizacion/index.html" target="_top">Internacionalización</a></li><li><a href="/es/propiedad_industrial/transferencia_de_tecnologia/index.html" target="_top">Transferencia de Tecnología</a></li><li><a href="/es/propiedad_industrial/enlaces_de_interes/index.html" target="_top">Enlaces y direcciones de interés</a></li>
+	<li><a href="/es/sobre_oepm/actividades_estadisticas/" target="_top">Estadísticas</a></li><li><a href="/es/propiedad_industrial/enlaces_de_interes/centros_regionales_informacion_propiedad_industrial/index.html" target="_top">Centros Regionales de Información de PI</a></li><li><a href="/es/sobre_oepm/empleo/index.html" target="_top">Empleo</a></li><li><a href="/es/sobre_oepm/educacion_formacion/index.html" target="_top">Aula de Propiedad Industrial</a></li><li><a href="/es/propiedad_industrial/internacionalizacion/index.html" target="_top">Internacionalización</a></li><li><a href="/es/propiedad_industrial/transferencia_de_tecnologia/index.html" target="_top">Transferencia de Tecnología</a></li><li><a href="/es/propiedad_industrial/enlaces_de_interes/index.html" target="_top">Enlaces y direcciones de interés</a></li><li><a href="https://wrap.seigualdad.gob.es/recursos/search/SearchForm.action" target="_blank">Recursos apoyo y prevención ante violencia género (WRAP)</a></li>
 		</ul>
 	
 	
 		
-	</div>
+</div>
 
 					<div class="lista_txt">
 
 <h3>Portales OEPM</h3><ul>
 				 
 				 <li>
-				 	<a href="http://transparencia.gob.es/" target="_blank">
-				 		<img src="/export/sites/oepm/comun/imagenes/portal_transparencia.gif" title="Portal de la Transparencia Gobierno de España" alt="Portal de la Transparencia Gobierno de España" />
-				 		<span>Portal de la Transparencia Gobierno de España</span>
+				 	<a href="/es/BannerLanzamientoCIBEPYME.html" target="_top" id="enlace0</>">
+				 		<img src="/export/sites/oepm/comun/imagenes/portal_cibepyme.png" title="" alt="" />
+				 		<span></span>
 				 	</a>
 				 </li>
 			   
 				 
 				 <li>
-				 	<a href="/comun/Enlaces_Externos_https/Enlace_Microsite_Calidad" target="_top">
+				 	<a href="http://transparencia.gob.es/" target="_blank" id="enlace1</>">
+				 		<img src="/export/sites/oepm/comun/imagenes/portal_transparencia.gif" title="Portal de la transparencia Gobierno de España" alt="Portal de la transparencia Gobierno de España" />
+				 		<span>Portal de la transparencia Gobierno de España</span>
+				 	</a>
+				 </li>
+			   
+				 
+				 <li>
+				 	<a href="/comun/Enlaces_Externos_https/Enlace_Microsite_Calidad" target="_top" id="enlace2</>">
 				 		<img src="/export/sites/oepm/comun/imagenes/portal_calidad.gif" title="Calidad" alt="Calidad" />
 				 		<span>Calidad</span>
 				 	</a>
@@ -775,7 +808,7 @@
 			   
 				 
 				 <li>
-				 	<a href="/comun/Enlaces_Externos_https/Enlace_Microsite_StopFalsificaciones" target="_top">
+				 	<a href="/comun/Enlaces_Externos_https/Enlace_Microsite_StopFalsificaciones" target="_top" id="enlace3</>">
 				 		<img src="/export/sites/oepm/comun/imagenes/portal_pirateria.gif" title="Stopfalsificaciones" alt="Stopfalsificaciones" />
 				 		<span>Stopfalsificaciones</span>
 				 	</a>
@@ -783,23 +816,15 @@
 			   
 				 
 				 <li>
-				 	<a href="http://historico.oepm.es/" target="_blank">
-				 		<img src="/export/sites/oepm/comun/imagenes/portal_archivo.gif" title="Archivo histórico y museo" alt="Archivo histórico y museo" />
-				 		<span>Archivo histórico y museo</span>
+				 	<a href="http://historico.oepm.es/" target="_blank" id="enlace4</>">
+				 		<img src="/export/sites/oepm/comun/imagenes/portal_archivo.gif" title="Web Histórica" alt="Web Histórica" />
+				 		<span>Web Histórica</span>
 				 	</a>
 				 </li>
 			   
 				 
 				 <li>
-				 	<a href="/es/YoSoyOriginal.html" target="_top">
-				 		<img src="/export/sites/oepm/comun/imagenes/YoSoyOriginal_TresEnlaces_ES.jpg" title="" alt="" />
-				 		<span></span>
-				 	</a>
-				 </li>
-			   
-				 
-				 <li>
-				 	<a href="http://www.cevipyme.es/" target="_blank">
+				 	<a href="http://www.cevipyme.es/" target="_blank" id="enlace5</>">
 				 		<img src="/export/sites/oepm/comun/imagenes/portal_cevi.gif" title="CEVIPYME" alt="CEVIPYME" />
 				 		<span>CEVIPYME</span>
 				 	</a>
@@ -807,7 +832,15 @@
 			   
 				 
 				 <li>
-				 	<a href="/es/IBEPI.html" target="_top">
+				 	<a href="/es/CS_00_CampaniasDeSensibilizacion.html" target="_top" id="enlace6</>">
+				 		<img src="/export/sites/oepm/comun/imagenes/CampaniasDeSensibilizacion/CampaniasSensibilizacion.jpg" title="Campañas de sensibilización" alt="Campañas de sensibilización" />
+				 		<span>Campañas de sensibilización</span>
+				 	</a>
+				 </li>
+			   
+				 
+				 <li>
+				 	<a href="/es/sobre_oepm/Cooperacion_por_paises/Iberoamerica/IBEPI.html" target="_top" id="enlace7</>">
 				 		<img src="/export/sites/oepm/comun/imagenes/IBEPI.png" title="" alt="" />
 				 		<span></span>
 				 	</a>
@@ -816,119 +849,7 @@
 
 		</ul>
 	</div>
-				<!-- //  include file="../elements/enLaRed.jsp" -->
-				<!-- <div class="lista_txt">
-
-<h3>OEPM siguenos en la red</h3><div class="redes"><ul>
-				 
-				 <li>
-				 	<a href="/es/rss/index.html"
-						
-							style="margin:0; background-image:none"
-						
-					>		
-						<img src="http://oepm-calidad.es/export/sites/calidad/comun/img/iconos/rss__pq.png" title="RSS" alt="RSS" />
-					</a>
-				</li>
 				
-				
-				<li >
-					<img alt="espacio en blanco" src="/export/system/modules/es.ieci.opencms.content/resources/img/separa.gif"> 
-				</li>
-			
-				 
-				 <li>
-				 	<a href="http://www.madrimasd.org/blogs/patentesymarcas"
-						
-							style="margin:0; background-image:none"
-						
-					>		
-						<img src="/export/system/modules/es.ieci.opencms.content/resources/img/blog.png" title="Blog " alt="Blog " />
-					</a>
-				</li>
-				
-				
-				<li >
-					<img alt="espacio en blanco" src="/export/system/modules/es.ieci.opencms.content/resources/img/separa.gif"> 
-				</li>
-			
-				 
-				 <li>
-				 	<a href="http://www.youtube.com/user/CanalOEPM"
-						
-							style="margin:0; background-image:none"
-						
-					>		
-						<img src="http://oepm-calidad.es/export/sites/calidad/comun/img/iconos/youtube_pq.png" title="YouTube" alt="YouTube" />
-					</a>
-				</li>
-				
-			
-				 
-				 <li>
-				 	<a href="http://es.scribd.com/CuentaOEPM"
-						
-							style="margin:0; background-image:none"
-						
-					>		
-						<img src="http://oepm-calidad.es/export/sites/calidad/comun/img/iconos/scribd.png" title="Scribd " alt="Scribd " />
-					</a>
-				</li>
-				
-				
-				<li >
-					<img alt="espacio en blanco" src="/export/system/modules/es.ieci.opencms.content/resources/img/separa.gif"> 
-				</li>
-			
-				 
-				 <li>
-				 	<a href="http://es.scribd.com/CuentaOEPM"
-						
-							style="margin:0; background-image:none"
-						
-					>		
-						<img src="http://oepm-calidad.es/export/sites/calidad/comun/img/iconos/facebook__pq.png" title="Scribd - prueba" alt="Scribd - prueba" />
-					</a>
-				</li>
-				
-				
-				<li >
-					<img alt="espacio en blanco" src="/export/system/modules/es.ieci.opencms.content/resources/img/separa.gif"> 
-				</li>
-			
-				 
-				 <li>
-				 	<a href="https://twitter.com/oepm_es"
-						
-							style="margin:0; background-image:none"
-						
-					>		
-						<img src="http://oepm-calidad.es/export/sites/calidad/comun/img/iconos/twitter_pq.png" title="twiter" alt="twiter" />
-					</a>
-				</li>
-				
-			
-
-		</div></ul>
-	</div>
-
-
-
-
-<div class="lista_txt">
-
-<h3>Campañas</h3>
-				 
-				 
-				 	<a href="http://www.marcastufuturo.com/"	style="text-align:center">		
-						<img src="/export/sites/oepm/comun/imagenes/Marcas_tu_futuro_2013_tira.jpg" title="Marcas tu futuro" alt="Marcas tu futuro" />
-					</a>
-				
-			
-
-	</div>-->
-				<!-- // @ include file="../elements/enlaceEstrategiaOEPM.jsp" -->
-				<!--@ include file="../elements/suscripcionNewsletter.jsp" -->
 			</div>
 			<div id="footer">
 				
@@ -940,11 +861,11 @@
 <div class="banners">
 	<ul>
 
-		<li><a href="/es/catedra_innovacion_y_pi.html" target="_top" title="Cátedra Carlos Fernández-Nóvoa"><img src="/export/sites/oepm/comun/imagenes/banner_Catedra_Innovacion_y_PI.gif" alt="Cátedra Carlos Fernández-Nóvoa" /></a></li>
+		<li><a href="/comun/imagenes/Banner_fondos_feder_grande.jpg" target="_top" title="Banner fondos FEDER"><img src="/export/sites/oepm/comun/imagenes/Banner_fondos_feder.jpg" alt="Banner fondos FEDER" /></a></li>
 
-		<li><a href="http://yosoyoriginal.es/" target="_blank" title="No seas complice"><img src="/export/sites/oepm/comun/imagenes/Banner_no_seas_complice.gif" alt="No seas complice" /></a></li>
+		<li><a href="/es/informacion_tecnologica/informacion_gratuita/boletines_de_vigilancia_tecnologica/index.html" target="_top" title="Boletines Vigilancia Tecnológica"><img src="/export/sites/oepm/comun/imagenes/banner_BoletinesVT.gif" alt="Boletines Vigilancia Tecnológica" /></a></li>
 
-		<li><a href="/es/propiedad_industrial/publicaciones/publicaciones_periodicas/info_pi/" target="_top" title="infoPI"><img src="/export/sites/oepm/comun/imagenes/bannerPie_InfoPI.png" alt="infoPI" /></a></li>
+		<li><a href="/es/propiedad_industrial/ayudas/ayudas_de_la_oepm_para_fomento_de_patentes_y_modelos_de_utilidad_2017/index.html" target="_top" title="Convocatoria Ayudas 2017"><img src="/export/sites/oepm/comun/imagenes/banner_Ayudas_2017.gif" alt="Convocatoria Ayudas 2017" /></a></li>
 
 	</ul>
 </div>

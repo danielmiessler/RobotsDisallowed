@@ -1,73 +1,83 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="CN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="Content-Script-Type" content="text/javascript">
-<meta http-equiv="Content-Style-Type" content="text/css">
-<title>donews</title>
-
-<style type="text/css">
-#wrap { height:100%; width:100%;}
-.errormod { width:670px; margin:0 auto; font-family:"Microsoft Yahei","冬青黑体简体中文 w3"; padding-top:90px;}
-.errormod .logo { background:url(http://ui.donews.com/donews2013/img/donews_logo.png) no-repeat 100% 0; height:70px;}
-.errormod h1 { color:#004090; font-size:18px; line-height:28px;}
-.errormod h1 strong { font-size:50px; display:block; float:left; height:56px; line-height:50px; margin-right:25px;}
-.errormod h1 span,.errormod h1 em { color:#f00; font-style:normal;}
-.errormod p,.errornav { font-size:14px;}
-.errormod p { text-align:center; padding:10px 0;}
-.errornav a { margin:0 10px; color:#014190; text-decoration:none;}
-.errornav a:hover { text-decoration:underline;}
-</style>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="http://www.donews.com/static/css/common.css"  rel="stylesheet" media="screen"/>
+	<link href="http://www.donews.com/static/css/base.css"  rel="stylesheet" media="screen"/>
+	<link href="http://www.donews.com/static/css/tougao.css"  rel="stylesheet" media="screen"/>
+    <!--<link href="<?/*= _STATIC */?>/css/focues.css" rel="stylesheet" media="screen"/>-->
+    <link href="http://www.donews.com/static/css/" rel="stylesheet" type="text/css" id="css" />
+    <link href="http://www.donews.com/static/css/index.css" rel="stylesheet" media="screen"/>
+    <link href="http://www.donews.com/static/css/scrollr.css" rel="stylesheet" media="screen"/>
+    <link href="http://www.donews.com/static/css/dtv.css" rel="stylesheet" media="screen"/>
+    <!-- 滚动条样式　-->
+    <link rel="stylesheet" href="http://www.donews.com/static/css/bin/style.css">
+    <link href="http://www.donews.com/static/css/bin/jquery.mCustomScrollbar.css" rel="stylesheet" media="screen"/>
+    <link rel="shortcut icon" type="image/x-icon" href="http://www.donews.com/static/image/favicon.ico" media="screen" />
+	
+	<title>无标题文档</title>
 </head>
-<body style="background:url(http://ui.donews.com/donews2013/img/bg_error.jpg) repeat;">
-<div id="wrap">
-<div class="errormod">
-	<div class="logo"></div>
-	<h1><strong>网页出错</strong>抱歉，您所查看的页面无法浏览或已不存在。<span id="totalSecond">5</span><em>秒</em>后跳转到首页。</h1>
- 	<img src="http://ui.donews.com/donews2013/img/error-img.png" width="626" height="258" alt="error">
-    <p>点击一下链接继续浏览DoNews的其他相关内容：</p>
-    <div class="errornav"><a href="http://www.donews.com/" target="_blank">首页</a><a href="http://www.donews.com/original" target="_blank">原创</a><a href="http://home.donews.com" target="_blank">社区</a><a href="http://www.donews.com/special/" target="_blank">专题</a><a href="http://www.donews.com/net" target="_blank">互联网</a><a href="http://m.donews.com" target="_blank">移动互联网</a><a href="http://game.donews.com" target="_blank">游戏</a><a href="http://ec.donews.com" target="_blank">电商</a><a href="http://x.donews.com/" target="_blank">创业</a><a href="http://blog.donews.com/" target="_blank">博客</a><a href="http://www.donews.com/scroll/" target="_blank">滚动</a>
-</div>
-</div>
-
-
-
-
-
- <!--定义js变量及方法-->
-
-<script language="javascript" type="text/javascript">
-var second = document.getElementById('totalSecond').textContent;
-
-if (navigator.appName.indexOf("Explorer") > -1)
-{
-second = document.getElementById('totalSecond').innerText; 
-} else
-{
-second = document.getElementById('totalSecond').textContent; 
-}
-
-
-setInterval("redirect()", 1000); 
-function redirect()
-{
-if (second < 0)
-{
-
- <!--定义倒计时后跳转页面-->
-location.href = 'http://www.donews.com/'; 
-} else
-{
-if (navigator.appName.indexOf("Explorer") > -1)
-{
-document.getElementById('totalSecond').innerText = second--; 
-} else
-{
-document.getElementById('totalSecond').textContent = second--; 
-}
-}
-}
+<script language="javascript" src="http://www.donews.com/static/js/bin/jquery-1.11.1.min.js"></script>
+<script>
+	$(document).ready(function(){
+	  	$.ajax({
+	  		type: "GET",
+	  		url: 'http://www.donews.com/home/ajax_404',
+	  		dataType: "json",
+	  		success: function(data){
+	  			var html = '';
+	  			for(var i =0;i<data.length;i++){
+	  				html += '<li><a id="1" href="'+ data[i].url +'" target="_blank">'+ data[i].title +'</a></li>';
+	  			}
+				$('#tuijian').html(html);             
+            }
+	  	})
+	});
 </script>
+<body>
+<!--header start-->
+<div class="all_w bcolor01">
+	<div class="nav w1200 margin-auto">
+		<div class="search pr">
+			<input name="" type="button" class="btn-search" />
+			<input name="" value="搜索" type="text" />
+		</div>
+		<h1 class="logo" style="cursor:pointer" onclick="location.href='./'"></h1>
+		<p>
+			<a href="./">首页</a>
+			<a href="company">商业</a>
+			<a href="business">创业</a>
+			<a href="ent">互娱</a>
+			<a href="idonews">专栏</a>
+			<a href="dtv/index" class="tv">DTV</a>
+		</p>
+	</div>
 </div>
+<!--header end-->
+<!--detail start-->
+<div class="w1200 margin-auto clearfix pt30 pr tougao">
+	<div class="four">
+		<p class="four"></p>
+		<p>页面不在啦～</p>
+		<a href="./">返回首页</a>
+	</div>
+	<div class="recom_news border01 h256">
+            <h3><a href="http://www.donews.com/article/show_recommend"></a>推荐</h3>
+            <ul id='tuijian'>
+            </ul>
+        </div>
+</div>
+<div class="clear"></div>
+<div class="all_w bcolor07 clearfix">
+	<div class="w1200 margin-auto ">
+		<div class="footer">
+			<div class="clearfix mb35"><p class="wenxin clearfix"><a></a><a class="wx"><span class="hide"></span></a></p><h2 class="logo"></h2></div>
+			<p class="footer_nav mb20 clearfix"><a>关于我们</a><a>电子协议</a><a>合作联系</a><a>友情链接</a></p>
+			<p>Copyright@DoNews 2000-2016 All Rights Reserved</p>
+		</div>
+	</div>
+</div>
+
+<script src="http://www.donews.com/static/js/tougao.js"></script>
 </body>
 </html>

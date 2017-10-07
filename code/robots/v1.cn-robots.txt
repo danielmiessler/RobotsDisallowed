@@ -1,10 +1,222 @@
-User-agent: *
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>404</title>
+<link href="http://static.v1.cn/v1cn/web2017/css/v1commStyle.css" rel="stylesheet" type="text/css">
+<link href="http://static.v1.cn/v1cn/web2017/css/v1usercenterStyle.css" rel="stylesheet" type="text/css">
+<script src="http://static.v1.cn/js/jquery-1.11.3.min.js"></script>
+<script src="/static/js/countUp.js"></script>
+<script src="/static/js/commonfunction.js"></script>
+<script src="http://static.v1.cn/act/liulianvr/app2.0/layer/layer.js"></script>
 
-Allow: /
-Disallow: /error/
-Disallow: /test.html
-Disallow: /testpage/
+<link href="http://static.v1.cn/v1cn/web2017/css/v1channelStyle.css" rel="stylesheet" type="text/css">
+<link href="http://static.v1.cn/v1cn/web2017/css/v1reg_loginStyle.css" rel="stylesheet" type="text/css">
 
-Sitemap: http://coxml.v1.cn/baidu/open/index.xml
-Sitemap: http://coxml.v1.cn/baidu/news.xml
-Sitemap: http://coxml.v1.cn/baidu/video.xml
+</head>
+<body>
+<div class="wrapper">
+  <div class="headerWrap">
+    <div class="header">
+      <div class="headerL">
+
+        <ul class="topNav">
+          <li><a href="/">头条</a></li>
+          <li><a href="http://toujiang.v1.cn/" target="_blank">投将</a></li>
+          <li><a href="/miaoping/">秒评</a></li>
+                              	<li><a href="/xinwen/">新闻</a></li>
+                                        	<li><a href="/yule/">娱乐</a></li>
+                                        	<li><a href="/gaoxiao/">搞笑</a></li>
+                                        	<li><a href="/lvyou/">旅游</a></li>
+                                        	<li><a href="/caijing/">财经</a></li>
+                                        	<li><a href="/meishi/">美食</a></li>
+                                        	<li><a href="/qiche/">汽车</a></li>
+                            </ul>
+                <div class="topNavMoreBt">更多
+          <div class="topNavMoreMenu gray">
+                            	          	<a href="/yuanchuang/">原创</a>
+	                                      	          	<a href="/liangxing/">两性</a>
+	                                      <a href="http://vr.v1.cn/" target="_blank">VR</a>
+          </div>
+        </div>
+              </div>
+      <div class="headerR_wrap">
+        <div class="headerR">
+          <ul class="operation">
+                            <li><a href="/user/login" class="icoBt icoUser">登录</a></li>
+                        <li><a href="javascript:void(0)" class="icoBt icoBt1" id="cyy_upload">上传</a></li>
+            <li><a target="_blank" href="http://weibo.com/myv1" class="icoBt icoBt2">微博</a></li>
+            <li><a target="_blank" href="http://apps.v1.cn/" class="icoBt icoBt3">APP</a></li>
+            <li id="moreMenu"><a href="javascript:" class="icoBt icoBt4">更多</a>
+              <div class="moreMenuList">
+                <ul>
+                    <li><a href="http://pc.v1.cn/vodone/aboutus/companyintro/">关于我们</a></li>
+                  <li><a href="http://pc.v1.cn/vodone/callus/">联系我们</a></li>
+                  <li><a href="http://pc.v1.cn/vodone/aboutus/career/">加入我们</a></li>      
+                  <li><a href="http://www.12377.cn/" target="_blank">廉洁举报</a></li>
+                  <li><a href="http://pc.v1.cn/vodone/aboutus/law/protocol.html">用户协议</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+                 </div>
+      </div>
+    </div>
+  </div>
+<script>
+    $(function(){
+        $("#cyy_logut").click(function(){
+            $.ajax({
+                type:'get',
+                url:'/user/signOut',//路径
+                dataType:'json',
+                data:{
+                },
+                success:function(msg){
+                    if(msg.code==200){
+                        layer.msg('删除成功');
+                    }else{
+                        layer.msg('删除失败');
+                    }
+                }  
+            })
+        });
+        $("#cyy_upload").click(function(){
+            if(0){
+                isauth = "0";
+                if(isauth=='1'){ 
+                    window.location.href='/upload/upload';
+                }else{
+                    window.location.href='/authStatus/authOne';
+                }
+            }else{
+                window.location.href='/user/login';
+            }
+            
+        });
+    });
+</script>  <!--user center begin-->
+    	<div class="conMainWrap"> 
+	  
+    <!--conHeader-->
+    <div class="conHeader">
+        <a href="/" class="logo">第一视频</a>
+        <a href="http://toujiang.v1.cn/" class="toujiangLogo" target="_blank">投将</a>
+      <div class="searchBoxR">
+        <input class="searchInp" type="text" id="searchWordNew" value="搜你喜欢" onfocus="if (value =='搜你喜欢'){value =''}" onblur="if (value ==''){value='搜你喜欢'}">
+        <a href="javascript:void(0)" class="searchBt"></a></div>
+    </div>
+    <!--conHeader end-->
+    
+    <script>
+    $(function(){
+        $('.searchBt').click(function(){
+			var val = $.trim($('#searchWordNew').val());
+			if(val && val != '搜你喜欢')
+			{
+				window.open('/search/getList?keyword='+val)
+			}
+			return false;
+		})
+    })
+    </script>
+    <div class="mainBox shadowBox"> 
+      
+      <!--20170606 begnin-->
+      <div class="errorBox">
+        <p class="errorPrompt">页面已丢失！！！</p>
+        <p class="txt"><span id="countdown">5</span>S后返回首页</p>
+      </div>
+      <script> 
+var t=4;//设定跳转的时间
+setInterval("refer()",1000); 
+function refer(){ 
+if(t<1){
+    document.location.href="http://www.v1.cn";
+}else{
+    document.getElementById('countdown').innerHTML=t;
+    t--;
+}
+
+} 
+</script> 
+      <!--20170606 end--> 
+      
+    </div>
+    <div class="hr20"></div>
+  </div>
+  
+ <!--footer begin-->
+  <div class="footerWrap">
+    <div class="footerNav">
+      <ul>
+        <li><a target="_blank" href="http://pc.v1.cn/vodone/aboutus/companyintro/">集团介绍</a></li>
+        <li><a target="_blank" href="http://pc.v1.cn/vodone/newscenter/company/">新闻中心</a></li>
+        <!--<li><a target="_blank" href="http://pc.v1.cn/sitemap/">网站地图</a></li>-->
+        <li><a target="_blank" href="http://pc.v1.cn/vodone/aboutus/companyintro/">关于我们</a></li>
+        <li><a target="_blank" href="http://pc.v1.cn/vodone/aboutus/career/index.shtml">诚聘英才</a></li>
+        <li><a target="_blank" href="http://pc.v1.cn/vodone/callus/index.shtml">联系我们</a></li>
+      </ul>
+    </div>
+    © 2017  第一视频公司版权所有<br>
+    互联网新闻信息服务许可证(国新网许可证编号1112008001)　　<a target="_blank" href="http://www.v1.cn/Qualification/icp.html" >电信与信息服务业务经营许可证(京ICP证050390号)</a><br>
+    统一社会信用代码：911101087754533048  网络文化经营许可证：京网文【2015】2014-359号　　网络出版服务许可证：（总）网出证（京）字第194号<br><a target="_blank" href="http://www.v1.cn/Qualification/shiting.html" >信息网络传播视听节目许可证(0105136)</a>  测绘资质证书(甲测资字1100561)  增值电信业务经营许可证B2-20050381<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11000002002116" class="gonganBei">京公网安备：11000002002116</a><br>
+    邮箱:service@v1.cn　　热线: 400-006-4571　　不良信息举报: 010-64706601
+    <div class="wanganList"> <a target="_blank" href="http://www.itrust.org.cn/home/index/itrust_certifi/wm/2775453304.html"><img src="http://static.v1.cn/v1cn/web2017/images/footer_wa_logo1.jpg" ></a> <a target="_blank" href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202005121600020"><img src="http://static.v1.cn/v1cn/web2017/images/footer_wa_logo2.jpg" ></a> <a target="_blank" href="http://www.12377.cn/"><img src="http://static.v1.cn/v1cn/web2017/images/footer_wa_logo3.jpg" ></a> <a target="_blank" href="http://www.bnia.cn/"><img src="http://static.v1.cn/v1cn/web2017/images/footer_wa_logo4.jpg" ></a> <a target="_blank"  href="http://www.bj.cyberpolice.cn/index.jsp"><img src="http://static.v1.cn/v1cn/web2017/images/footer_wa_logo5.jpg" ></a> <a target="_blank" href="https://credit.szfw.org/CX20141125005630005718.html"><img src="http://static.v1.cn/v1cn/web2017/images/footer_wa_logo6.jpg" ></a> <a target="_blank"  href="http://www.bjwhzf.gov.cn/accuse.do"><img src="http://static.v1.cn/v1cn/web2017/images/footer_wa_logo7.jpg" ></a> <a target="_blank"  href="http://www.bjjubao.org/index.htm"><img src="http://static.v1.cn/v1cn/web2017/images/footer_wa_logo8.jpg" ></a> <a target="_blank"  href="https://ss.knet.cn/verifyseal.dll?sn=e15101011010860803dsde000000&ct=df&a=1&pa=0.917555071164685"><img src="http://static.v1.cn/v1cn/web2017/images/footer_wa_logo9.jpg" ></a></div>
+  </div>
+  <!--footer end--> 
+  
+</div>
+<script src="http://static.v1.cn/v1cn/web2017/js/v1Site_comm.js"></script> 
+<script src="http://static.v1.cn/v1cn/web2017/js/v1Site_miaoping.js"></script> 
+<script src="http://static.v1.cn/v1cn/web2017/js/v1Site_focus.js"></script>
+<!-- v1统计代码 -->
+<script type="text/javascript">
+cookie={
+set:function(cookieName, cookieValue, expires, path, domain, secure) {
+document.cookie =
+escape(cookieName) + '=' + escape(cookieValue)
++ (expires ? '; expires=' + expires.toGMTString() : '')
++ (path ? '; path=' + path : '')
++ (domain ? '; domain=' + domain : '')
++ (secure ? '; secure' : '');
+},
+get:function(cookieName) {
+var cookieValue = '';
+var posName = document.cookie.indexOf(escape(cookieName) + '=');
+if (posName != 1) {
+var posValue = posName + (escape(cookieName) + '=').length;
+var endPos = document.cookie.indexOf(';', posValue);
+if (endPos != -1) cookieValue = unescape(document.cookie.substring(posValue, endPos));
+else cookieValue = unescape(document.cookie.substring(posValue));
+}
+return (cookieValue);
+}
+}
+if(cookie.get('CookieV1Log')==""){
+v1log=new Date();
+cValue = Math.ceil(((v1log.getTime()*9321+49297) % 233280 /(233280.0)) * 9999999999999999);
+v1log.setTime(v1log.getTime() + 86400000);
+cookie.set('CookieV1Log',cValue,v1log,'','','');
+}
+path = "http://v1log.v1.cn/log.js?page=wap_jrtt&yu="+cookie.get('CookieV1Log')+"&tmp="+Math.round(Math.random()*100000)+"&referer="+document.referrer+"&customSort=wap";
+document.write("<script type=text/javascript src ="+path+" ><\/script> ");
+</script>
+<!-- v1统计代码end -->
+
+<!-- START baidu v1.0 -->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcb44eb450c53c91a1cc1d2511f5919b3' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<!-- END baidu v1.0 -->
+<!-- cnzz  -->
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1255096340'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255096340%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+<style>
+            .layui-layer { background-color:gray; }
+        </style>
+<!-- end cnzz -->
+</body>
+</html>

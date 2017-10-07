@@ -12,21 +12,42 @@
 #
 # For more information about the robots.txt standard, see:
 # http://www.robotstxt.org/robotstxt.html
-#
-# For syntax checking, see:
-# http://www.frobee.com/robots-txt-check
 
 User-agent: *
+# Crawl Delay added to slow down some well behaving bots.
 Crawl-delay: 10
-# JS/CSS
+# CSS, JS, Images
 Allow: /core/*.css$
+Allow: /core/*.css?
 Allow: /core/*.js$
+Allow: /core/*.js?
+Allow: /core/*.gif
+Allow: /core/*.jpg
+Allow: /core/*.jpeg
+Allow: /core/*.png
+Allow: /core/*.svg
+Allow: /profiles/*.css$
+Allow: /profiles/*.css?
+Allow: /profiles/*.js$
+Allow: /profiles/*.js?
+Allow: /profiles/*.gif
+Allow: /profiles/*.jpg
+Allow: /profiles/*.jpeg
+Allow: /profiles/*.png
+Allow: /profiles/*.svg
+
 # Directories
 Disallow: /core/
 Disallow: /profiles/
+
 # Files
+# Although deprecated, leaving Noindex for non-html files. This can/should be moved to nginx config.
+Noindex: /README.txt
+Noindex: /web.config
+
 Disallow: /README.txt
 Disallow: /web.config
+
 # Paths (clean URLs)
 Disallow: /admin/
 Disallow: /comment/reply/
@@ -37,6 +58,7 @@ Disallow: /user/register/
 Disallow: /user/password/
 Disallow: /user/login/
 Disallow: /user/logout/
+
 # Paths (no clean URLs)
 Disallow: /index.php/admin/
 Disallow: /index.php/comment/reply/
@@ -59,38 +81,21 @@ Disallow: /podcasts/
 Disallow: /slideshows/
 Disallow: /teaser/
 Disallow: /term/
-Disallow: /videos/
 Disallow: /media-coverage/
 
-# MSK: Taxonomy
-Disallow: /taxonomy/
-
-# MSK: User
-Disallow: /user/
-
-# MSK dialog
+# MSK: Modules and entities
 Disallow: /dialog
-
-# MSK markup
 Disallow: /msk_markup/
+Disallow: /taxonomy/
+Disallow: /templates
+Disallow: /user/
 
 # MSK tools
 Disallow: /print
 Disallow: /pdf
 Disallow: /mail
-
-# MSK languages
 Disallow: */print/
 Disallow: */pdf/
-
-# MSK templates
-Disallow: /templates
-
-# MSK: Misc.
-Disallow: /drupal-guide
-
-# MSK: Pressroom: Available for Download
-Disallow: /pressroom/available-download
 
 # MSK: Redirects
 Disallow: */redirect$
@@ -105,8 +110,76 @@ Disallow: */redirect-08$
 Disallow: */redirect-09$
 Disallow: */redirect-10$
 
+################################################################################
+
 # MSK: Old website
+Noindex: /mskcc/print/
 Disallow: /mskcc/print/
 
-# News Sitemap
+# MSK: Misc.
+Noindex: /calgbtraining
+Noindex: /cancer-care/patient-education/herbs/
+Noindex: /drupal-guide
+Noindex: /msk-prepare
+Noindex: /experience/become-patient/first-appointment/begin-registration-msk-your-first-visit
+Noindex: /josie-robertson-surgery-opening
+Noindex: /josierobertson-openhouse
+Noindex: /pressroom/available-download
+Noindex: /register-josie-robertson-surgery-openhouse
+Noindex: /register-josie-robertson-surgery-opening
+Noindex: /celebration-leadership-and-festschrift
+Noindex: /register-celebration-leadership-and-festschrift
+Noindex: /celebration-leadership-and-festschrift-01
+Noindex: /register-festschrift-celebration-leadership
+Noindex: /appointments/request-appointment-01
+Noindex: /ario2016/presentations
+Noindex: /monmouthopening
+Noindex: /register-msk-monmouth-opening
+Noindex: /monmouthrsvp
+Noindex: /hcp-education-training/medical-students/elective/apply/students-international-medical-schools
+Noindex: /research-advantage/core-facilities/comparative-medicine-pathology-0/new-animal-user-onboarding
+Noindex: /videos/msk-kimmel
+Noindex: /cancer-care/diagnosis-treatment/symptom-management/integrative-medicine/meditation-101
+Noindex: /msk-center-laboratory-medicine-opening-vip
+Noindex: /msk-center-laboratory-medicine-opening
+Noindex: /celebration-progress-msk-nassau-external
+Noindex: /celebration-progress-msk-nassau-internal
+
+Disallow: /calgbtraining
+Disallow: /cancer-care/patient-education/herbs/
+Disallow: /drupal-guide
+Disallow: /msk-prepare
+Disallow: /experience/become-patient/first-appointment/begin-registration-msk-your-first-visit
+Disallow: /josie-robertson-surgery-opening
+Disallow: /josierobertson-openhouse
+Disallow: /pressroom/available-download
+Disallow: /register-josie-robertson-surgery-openhouse
+Disallow: /register-josie-robertson-surgery-opening
+Disallow: /celebration-leadership-and-festschrift
+Disallow: /register-celebration-leadership-and-festschrift
+Disallow: /celebration-leadership-and-festschrift-01
+Disallow: /register-festschrift-celebration-leadership
+Disallow: /appointments/request-appointment-01
+Disallow: /ario2016/presentations
+Disallow: /monmouthopening
+Disallow: /register-msk-monmouth-opening
+Disallow: /monmouthrsvp
+Disallow: /hcp-education-training/medical-students/elective/apply/students-international-medical-schools
+Disallow: /research-advantage/core-facilities/comparative-medicine-pathology-0/new-animal-user-onboarding
+Disallow: /videos/msk-kimmel
+Disallow: /cancer-care/diagnosis-treatment/symptom-management/integrative-medicine/meditation-101
+Disallow: /msk-center-laboratory-medicine-opening-vip
+Disallow: /msk-center-laboratory-medicine-opening
+Disallow: /celebration-progress-msk-nassau-external
+Disallow: /celebration-progress-msk-nassau-internal
+
+Sitemap: https://www.mskcc.org/sitemap.xml
+# MSK: News Sitemap
 Sitemap: https://www.mskcc.org/news.xml
+
+User-agent: Twitterbot
+Allow: /blog*
+Allow: /press-releases*
+Allow: /cancer-care/types*
+Allow: /cancer-care/patient-education/*
+Allow: /cancer-care/integrative-medicine/herbs*

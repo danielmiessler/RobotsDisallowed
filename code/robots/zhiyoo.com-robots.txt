@@ -1,7 +1,488 @@
-<html>
-<head><title>404 Not Found</title></head>
-<body bgcolor="white">
-<center><h1>404 Not Found</h1></center>
-<hr><center>nginx</center>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>【智友】-最专业的安卓门户网站</title>
+    <meta name="keywords" content="智友,安卓平台,安卓软件, 安卓游戏,安卓系统,rom下载" />
+    <meta name="description" content="智友是安智旗下互动媒体，以安卓为中心，包含智友论坛、智友众测、ROM大全、评测导购、搞机百科、美图壁纸、资源下载，网站第一时间发布更新,为您提供最新最丰富的安卓资源。" />
+		<link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/common.css?v2.0"/>
+    <link rel="stylesheet" href="/css/sub.css?v1.0"/>
+    <link rel="stylesheet" href="/css/jquery.pageslide.css?v1.0"/>
+	<script type="text/javascript" src="/js/checkua.js"></script>    <script type="text/javascript" src="/js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.SuperSlide.js"></script>
+    <script type="text/javascript" src="/js/jquery.lazyload.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
+    <script type="text/javascript" src="/js/login.js"></script>
+</head>
+<body>
+<script type='text/javascript'>
+function ReloadCaptcha(){
+	$(".captimgsrc").html('<img src="/checkcode/seccode.php?t='+Math.random()+'" id="captimgid" onclick="ReloadCaptcha();" />');
+	$('.geetest_challenge').val('');
+}
+</script>
+<div id="ver_code" style="display: none;">
+<div class="form_code clear">
+	<p>	
+		<input type="text" name="captcha" id="captcha" size="20" placeholder="请输入验证码" class="geetest_challenge" />
+		<span class="captimgsrc"><img src="/checkcode/seccode.php?t=1234567890" id="captimgid" onclick="ReloadCaptcha();" /></span>
+		<input type="hidden" class="geetest_validate" name="geetest_validate" value="" />
+		<input type="hidden" class="geetest_seccode" name="geetest_seccode" value="" />
+</div>
+<div class="clear"></div>
+</div>
+
+<div id="loginSlide" style="display: none;">
+    <div class="pageslide_wrap">
+        <div class="pageslide_hd clear"><span class="fl">智友登录</span><a href="javascript:$.pageslide.close()" class="pageslide_close">关闭</a></div>
+        <div class="propmt">没有账号？<a href="#resSlide" class="lgslide">立即注册</a></div>
+		<form action='login.php?mod=loginsubmit' method='post' onsubmit="return loginSubmit()">
+			<ul class="form_list">
+				<li id="loginErrorMsg" class="registerError"></li>
+				<li><input name="username" id="Laccount" type="text" placeholder="请输入用户名／注册邮箱／手机号码" value=""/>
+				</li>
+				<li><input name="password" id="password" type="password" placeholder="请输入6－16位密码" value=""/></li>
+				
+				<input name="rmb" id="rmb" type="hidden" value="1" />
+			</ul>
+			<div class="ver_code_box"></div>
+			<div class="propmt1">注：注册账号可用于智友论坛、安智登录</div>
+			<div class="check_box clear">
+				<span onclick="rmbme(this)" class="checked">下次自动登录</span>
+				 <a href="http://i.anzhi.com/web/account/pwd/forgetpwd" target="_blank">忘记密码</a>
+			</div>
+			<div class="slide_btn">
+				<input type="submit" onclick="return loginSubmit()" value="登录" name="submit">
+			</div>
+		</form>
+        <div class="splid"><span>使用其它账号登录？</span></div>
+        <ul class="other_login">
+            <li>
+                <a  rel="nofollow"  href="http://i.anzhi.com/web/account/sns/login/qq?serviceId=004&serviceVersion=1&serviceType=1&redirecturi=http%3A%2F%2Fhome.zhiyoo.com%2F" class="qq_log">
+                    <p class="qq_icon"></p>
+                    <p>QQ登录</p>
+                </a>
+            </li>
+            <li>
+               <a  rel="nofollow"  href="http://i.anzhi.com/web/account/sns/login/weibo?serviceId=004&serviceVersion=1&serviceType=1&redirecturi=http%3A%2F%2Fhome.zhiyoo.com%2F" class="sina_log">
+                    <p class="sina_icon"></p>
+                    <p>微博登录</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="resSlide" style="display: none;">
+    <div class="pageslide_wrap">
+        <div class="pageslide_hd clear"><span class="fl">智友注册</span><a href="javascript:$.pageslide.close()" class="pageslide_close">关闭</a></div>
+        <div class="propmt">已有账号？<a href="#loginSlide" class="lgslide">登录</a></div>
+		<form action='register.php?mod=registersubmit' method='post' onsubmit="return registerSubmit()">
+        <ul class="form_list">
+        	<li id="registerErrorMsg" class="registerError"></li>
+            <li><input name="username" id="Raccount" type="text" placeholder="请输入6－16位字母或数字组合" value=""/></li>
+            <li><input name="password1" id="Rpwd" type="password" placeholder="请输入6－16位密码" value=""/></li>
+            <li><input name="password2" id="RrePwd" type="password" placeholder="请重新输入输入6－16位密码" value=""/></li>
+            
+        </ul>
+        
+        <div class="ver_code_box"> </div>
+        <div class="propmt1">注：注册账号可用于智友论坛、安智登录</div>
+        <div class="check_box clear">
+            <span id="agreeaz" class="checked">我已阅读并同意<em><a href="http://i.anzhi.com/pages/web/account/protocal.html" target="_blank">《安智用户协议》</a></em></span>
+        </div>
+        <div class="slide_btn">
+			<input type="submit" onclick="return registerSubmit()" value="注册" name="submit">
+		</div>
+        <div class="splid"><span>使用其它账号登录？</span></div>
+		</form>
+        <ul class="other_login">
+            <li>
+                <a  rel="nofollow"  href="http://i.anzhi.com/web/account/sns/login/qq?serviceId=004&serviceVersion=1&serviceType=1&redirecturi=http%3A%2F%2Fhome.zhiyoo.com%2F" class="qq_log">
+                    <p class="qq_icon"></p>
+                    <p>QQ登录</p>
+                </a>
+            </li>
+            <li>
+                <a  rel="nofollow"  href="http://i.anzhi.com/web/account/sns/login/weibo?serviceId=004&serviceVersion=1&serviceType=1&redirecturi=http%3A%2F%2Fhome.zhiyoo.com%2F" class="sina_log">
+                    <p class="sina_icon"></p>
+                    <p>微博登录</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script type="text/javascript" src="/js/jquery.pageslide.js"></script>
+<div class="float_bar" id="float_bar">
+    <ul>
+        <li><a href="#head" id="backTop" class="top"></a></li>
+        <li>
+            <a href="javascript:;" id="code" class="code"></a>
+            <div class="code_pop" style="display: none;">
+                <p><img src="images/code.png"/></p>
+                <p style="margin-top: 5px;">智友客户端登录送礼<br />
+送智豆快来领取吧！</p>
+            </div>
+        </li>
+        <li><a  rel="nofollow"  href="http://pingce.zhiyoo.com/question.html" id="mark" class="mark"></a></li>
+    </ul>
+</div>
+<div id="head" class="">
+    <div class="wrap">
+        <div class="logo"><a href="/" target="_blank"><img src="images/logo_home.png" /></a></div>
+        <div class="search">
+            <form action="http://pingce.zhiyoo.com/search.php" method="get" id="search1" target="_blank">
+                <input type="text" name="q" id="sq1" value=""/>
+                <a href="javascript:;" onclick="document.getElementById('search1').submit();">搜索</a>
+            </form>
+            <script type="text/javascript">
+            var searchwordmap = ["\u667a\u53cb\u6652\u673a","\u4f17\u6d4b\u4ea7\u54c1","\u6bcf\u65e5\u8bdd\u9898","\u6444\u5f71\u4e13\u533a","\u4e00\u95ee\u4e00\u7b54"];
+            var swlength = searchwordmap.length;
+            var swrand = Math.floor(Math.random()*swlength);
+            var searchword = searchwordmap[swrand];
+            $("#sq1").val(searchword);
+            $(".search input").focus(function(){if($(this).val()==searchword){$(this).val("");}});$(".search input").blur(function(){if($(this).val()==''){$(this).val(searchword);}});</script>
+        </div>
+        <ul class="info" id="userName">
+            <li><a href="#loginSlide" class="login lgslide1">登录</a></li>
+            <li><a href="#resSlide" class="res lgslide1">注册</a></li>
+        </ul>
+        <script type="text/javascript">
+            
+        	$(".lgslide1").pageslide({ direction: "left"});
+        	//$('#userName').loadDBM('/floatbar.php?m=hcl','');
+            $.get('/floatbar.php?m=hcl',function(e){
+            
+            $('#userName').remove();
+            $('#head .wrap').append(e);
+              
+            });
+        </script>
+    </div>
+    <div class="clear"></div>
+</div>
+<div id="menu">
+    <div class="wrap cl">
+        <div class="fixed_logo" style="display: none;"><img src="images/fixed_logo.png"/></div>
+        <ul class="menu_list">
+            <li class="active"><a href="http://home.zhiyoo.com/" target="_blank" class='1'>&nbsp;首页&nbsp;</a></li>
+                        <li>
+            <a href="http://home.zhiyoo.com/column_30.html" target="_blank" class="30"><h1>智友论坛</h1></a>
+            </li>
+                        <li>
+            <a href="http://home.zhiyoo.com/column_33.html" target="_blank" class="33"><h1>智友众测</h1></a>
+            </li>
+                        <li>
+            <a href="http://home.zhiyoo.com/column_34.html" target="_blank" class="34"><h1>ROM大全</h1></a>
+            </li>
+                        <li>
+            <a href="http://home.zhiyoo.com/column_31.html" target="_blank" class="31"><h1>评测导购</h1></a>
+            </li>
+                        <li>
+            <a href="http://home.zhiyoo.com/column_32.html" target="_blank" class="32"><h1>搞机百科</h1></a>
+            </li>
+                        <li>
+            <a href="http://home.zhiyoo.com/column_29.html" target="_blank" class="29"><h1>美图壁纸</h1></a>
+            </li>
+                        <li>
+            <a href="http://home.zhiyoo.com/column_35.html" target="_blank" class="35"><h1>资源下载</h1></a>
+            </li>
+                        <li>
+            <a href="http://home.zhiyoo.com/column_37.html" target="_blank" class="37"><h1>安智市场</h1></a>
+            </li>
+                        <li class="app">
+                <a href="javascript:;">APP下载</a>
+                <div class="app_pop" style="display: none;">
+                    <p><img src="images/code.png"/></p>
+                    <p style="margin-top: 5px;">智友客户端登录送礼<br />
+送智豆快来领取吧！</p>
+                </div>
+            </li>
+        </ul>
+        <ul class="fixed_con" style="display: none;">
+            <li class="fixed_search">
+                <a class="search_icon"></a>
+                <div class="search_pop" style="display: none;">
+                    <i></i>
+                    <div class="search_box clear">
+                    <form action="http://pingce.zhiyoo.com/search.php" method="get" id="search2" target="_blank">
+                        <input type="text" name="q" id="sq2" value=""/>
+                        <a href="javascript:;" onclick="document.getElementById('search2').submit();">搜索</a>
+                    </form>
+                        <script type="text/javascript">
+                        $("#sq2").val(searchword);
+                        $(".search_box input").focus(function(){if($(this).val()==searchword){$(this).val("");}});$(".search_box input").blur(function(){if($(this).val()==''){$(this).val(searchword);}});</script>
+                    </div>
+                </div>
+            </li>
+            <li class="log_info" id="log_info"></li>
+            <script>$('#log_info').loadDBM('/floatbar.php?m=hclb','');</script>
+            <li class="app">
+                <a href="javascript:;">APP下载</a>
+                <div class="app_pop" style="display: none;">
+                    <p><img src="images/code.png"/></p>
+                     <p style="margin-top: 5px;">智友客户端登录送礼<br />
+送智豆快来领取吧！</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="wrap">
+        <div class="col">
+        <div class="col_l">
+            <div id="focus_slide" class="slideBox">
+                <ul class="hd">
+                    <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>                </ul>
+                <ul class="bd">
+                                        <li><a href="http://pingce.zhiyoo.com/product-13444432-1.html" target="_blank"><img src="http://img4.anzhi.com/zhiyoo/201709/24/1536481kn518f5di55mfp5.jpg" title="【NO.205】音磅随想9蓝牙音箱" /></a></li>
+                                        <li><a href="http://pingce.zhiyoo.com/product-13444436-1.html" target="_blank"><img src="http://img4.anzhi.com/zhiyoo/201709/24/153721rgwu1ulh9l1o6o91.jpg" title="【NO.206】华硕电神4手机" /></a></li>
+                                        <li><a href="http://pingce.zhiyoo.com/product-13446038-1.html" target="_blank"><img src="http://img4.anzhi.com/zhiyoo/201709/26/165349zrr3w45uluf534ed.jpg" title="【NO.207】智友中秋福利 正经月饼" /></a></li>
+                                        <li><a href="http://bbs.zhiyoo.com/thread-13449728-1-1.html" target="_blank"><img src="http://img4.anzhi.com/zhiyoo/201710/07/11134535rnapnu3iq4i4o8.jpg" title="【早报】手机掉兵马俑坑变文物丨腾讯回应代理SW" /></a></li>
+                                        <li><a href="http://bbs.zhiyoo.com/thread-13449666-1-1.html" target="_blank"><img src="http://img4.anzhi.com/zhiyoo/201710/07/111744aehg89wu1igbwqln.jpg" title="【话题】别不承认! 儿时干过的坏事，肯定有你！！" /></a></li>
+                                        <li><a href="http://bbs.zhiyoo.com/thread-13447735-1-1.html" target="_blank"><img src="http://img4.anzhi.com/zhiyoo/201710/03/1935386owe6kv646uw4wva.jpg" title="【新机】华为悄然发布的 nova 2i 不就是麦芒6吗？" /></a></li>
+                                        <li><a href="http://bbs.zhiyoo.com/thread-13448693-1-1.html" target="_blank"><img src="http://img4.anzhi.com/zhiyoo/201710/04/183337v2832vbvehz2vf4e.jpg" title="【游戏】真不敢相信！这款地牢冒险游戏竟出自国产" /></a></li>
+                                        <li><a href="http://bbs.zhiyoo.com/thread-13448688-1-1.html" target="_blank"><img src="http://img4.anzhi.com/zhiyoo/201710/03/1947275ye2y7i38ww6673e.jpg" title="【屌软】定位你的坐标 监控你的行为 这就是爱啊！" /></a></li>
+                                        <li><a href="http://bbs.zhiyoo.com/thread-13449435-1-1.html" target="_blank"><img src="http://img4.anzhi.com/zhiyoo/201710/06/022159llv37wqe9iwvvqov.png" title="【应用】一次性满足了，这个“胖次”里有好多片片" /></a></li>
+                                        <li><a href="http://bbs.zhiyoo.com/thread-13449444-1-1.html" target="_blank"><img src="http://img4.anzhi.com/zhiyoo/201710/07/004324yz3y7ykzkzbyzd7h.jpg" title="【游戏】僵尸题材，末世求生 RPG玩法 回合制战斗" /></a></li>
+                                        <li><a href="http://bbs.zhiyoo.com/thread-13447895-1-1.html" target="_blank"><img src="http://img4.anzhi.com/zhiyoo/201709/30/175636ozfc8o3zf8c482zc.jpg" title="【屌软】安智市场6.44版本来袭 整合更多资讯与资源" /></a></li>
+                                    </ul>
+                <a class="prev" href="javascript:;"></a>
+                <a class="next" href="javascript:;"></a>
+            </div>
+        </div>
+<script type="text/javascript">
+$("#focus_slide").hover(function(){
+    $(this).find(".prev").show();
+    $(this).find(".next").show();
+},function(){
+    $(this).find(".prev").hide();
+    $(this).find(".next").hide();
+});
+jQuery("#rec_slide").slide({ mainCell:"ul",vis:3,prevCell:".prev",nextCell:".next",effect:"leftLoop",autoPlay:true});
+jQuery("#focus_slide").slide({mainCell:".bd",titCell:".hd li",effect:"leftLoop",autoPlay:true});
+</script>
+        <div class="col_r">
+            <div class="hot_sales part">
+                <div class="hot_pic">
+                    <a href="http://bbs.zhiyoo.com/thread-13446322-1-1.html" target="_blank">
+                        <img src="http://img4.anzhi.com//zhiyoo/201709/27/182134iie8xccopnkoejxz.png"/>
+                        <div class="chapter"><img src="images/chapter.png"/></div>
+                        <div class="hot_title">
+                            <em class="gray">已发奖</em>
+                            <span>【福利】迎国庆，智友搬砖工人大狂欢！！请速来找组织！！</span>
+                        </div>
+                    </a>
+                </div>
+                <ul class="sales_list">
+                                    <li><em class="gray">已发奖</em>
+                        <a href="http://bbs.zhiyoo.com/thread-13446124-1-1.html" target="_blank">【拍卖】加群就能领红包! 北通中秋月饼礼盒 0元起拍！</a>
+                    </li>
+                                    <li><em class="gray">已发奖</em>
+                        <a href="http://bbs.zhiyoo.com/thread-13434727-1-1.html" target="_blank">【拍卖】加群就能领红包! 恩兔N2家庭云盘 0元起拍！</a>
+                    </li>
+                                    <li><em class="gray">已发奖</em>
+                        <a href="http://bbs.zhiyoo.com/thread-13416460-1-1.html" target="_blank">【踩楼】“为了智友APP的发版，我们杀了一个程序员祭天” </a>
+                    </li>
+                                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col cl">
+        <div class="col_l">
+            <div class="mod_title clear">
+                <h2 class="bor_02">最新资讯</h2><!-- 最新资讯 -->
+            </div>
+            <div class="mod">
+                <ul class="mod_list cl" id="home_news"></ul>
+                <script>$('#home_news').loadDB('/page_home_news.html');</script>
+            </div>
+        </div>
+        <div class="col_r">
+            <div class="mod_title clear">
+                <h2 class="bor_03">论坛热帖</h2>
+            </div>
+            <div class="part">
+                <ul class="hot_post">
+                                    <li><a href="http://bbs.zhiyoo.com/thread-13449821-1-1.html" title="我是无辜的破解版v2.3.0 I Am Innocen 无限金币">我是无辜的破解版v2.3.0 I Am Innocen 无限金币</a></li>
+                                    <li><a href="http://bbs.zhiyoo.com/thread-13448301-1-1.html" title="【应用推荐】〖重磅★升级〗：百度山寨云（*New*）v3.3.0清爽版 ★提取直链/光速下载">【应用推荐】〖重磅★升级〗：百度山寨云（*New*）v3.3.0清爽版 ★提取直链/光速下载</a></li>
+                                    <li><a href="http://bbs.zhiyoo.com/thread-9231867-1-1.html" title="【2016.8.14更新】华为HUAWEI 各机型之解锁、ROOT、REC、ROM导航集合帖@XTS_Team">【2016.8.14更新】华为HUAWEI 各机型之解锁、ROOT、REC、ROM导航集合帖@XTS_Team</a></li>
+                                    <li><a href="http://bbs.zhiyoo.com/thread-13260575-1-1.html" title="震惊！原来手机系统升级可以这么玩">震惊！原来手机系统升级可以这么玩</a></li>
+                                    <li><a href="http://bbs.zhiyoo.com/thread-13449714-1-1.html" title="2017 年 10 月 7 日我又来智友论坛了！每天签到赚智豆！">2017 年 10 月 7 日我又来智友论坛了！每天签到赚智豆！</a></li>
+                                    <li><a href="http://bbs.zhiyoo.com/thread-13309815-1-1.html" title="应用变量 3.1.0.581">应用变量 3.1.0.581</a></li>
+                                    <li><a href="http://bbs.zhiyoo.com/thread-13444871-1-1.html" title="〖XDA大神★完美破解〗：学英语（*PRO*）v11.5.39直装/破解/高级/中文版「9月23号」">〖XDA大神★完美破解〗：学英语（*PRO*）v11.5.39直装/破解/高级/中文版「9月23号」</a></li>
+                                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="mod_title clear">
+        <h2 class="bor_01">智友众测<span>332107</span><i>人申请</i></h2>
+        <a href="http://pingce.zhiyoo.com/plist_1.html" target="_blank" class="more">更多></a>
+    </div>
+    <ul class="product_type clearfix test_list" id="productlist" style="min-height:200px;"></ul>
+    <script>$('#productlist').loadDB('/pagel_productlist_3.html',productlist);</script>
+    <div class="mod_title clear">
+        <h2 class="bor_02">众测报告<span>1663</span><i>人参与</i></h2>
+        <a href="http://pingce.zhiyoo.com/column_42.html" target="_blank" class="more">更多></a>
+    </div>
+    <ul class="mod_list2 clear" id="report_list" style="min-height:200px;"></ul>
+    <script>$('#report_list').loadDB('/page_home_report_list.html');</script>
+    <div class="mod_title clear">
+        <h2 class="bor_01">智友精选</h2><!-- 智友精选 -->
+    </div>
+    <div class="mod">
+        <ul class="mod_list cl" id="zy_news" style="min-height:200px;"></ul>
+    <script>$('#zy_news').loadDB('/page_home_zy_news.html');</script>
+    </div>
+        <div class="mod_title clear" style="margin-top: 20px;">
+        <h2 class="bor_03">晒机评测<span>2941</span><i>份上线</i></h2>
+        <a href="http://pingce.zhiyoo.com/column_43.html" target="_blank" class="more">更多></a>
+    </div>
+    <div class="mod">
+        <ul class="mod_list cl" id="zyzone" style="min-height:200px;"></ul>
+    <script>$('#zyzone').loadDB('/page_home_zyzone.html');</script>
+    </div>
+    <div class="clear"></div>
+    <div id="zyarea"></div>
+    <script>$('#zyarea').loadDB('/page_home_zyarea.html');</script>
+    <div class="clear"></div>
+    <div class="mod_title clear">
+        <h2 class="bor_03">视频推荐</h2>
+        <a href="http://bbs.zhiyoo.com/forum.php?mod=forumdisplay&fid=22&filter=typeid&typeid=19216" target="_blank" class="more">更多></a>
+    </div>
+    <ul class="vedio_list clearfix" id="zyvideo"></ul>
+    <script>$('#zyvideo').loadDB('/page_home_video.html');</script>
+        <div class="mod_title clear" style="margin-top: 20px;">
+        <h2 class="bor_01">热门标签</h2>
+    </div>
+    <div class="part">
+        <ul class="hot_list clear" id="zyhottag"></ul>
+    <script>$('#zyhottag').loadDB('/page_home_hottag.html');</script>
+    </div>
+    <div class="mod_title clear">
+        <h2 class="bor_02">ROM大全</h2>
+        <a href="http://rom.zhiyoo.com/" target="_blank" class="more">更多></a>
+    </div>
+    <div id="zyrom"></div>
+    <script>$('#zyrom').loadDB('/page_home_rom.html');</script>
+    <div class="mod_title clear">
+        <h2 class="bor_04">版块栏目</h2><!-- 资源 -->
+    </div>
+    <div class="part clear" id="zycol" style="padding-right: 20px;padding-bottom: 20px;"></div>
+    <script>$('#zycol').loadDB('/page_home_col.html');</script>
+    <div class="mod_title clear">
+        <h2 class="bor_01">热门应用</h2>
+    </div>
+    <div class="part">
+        <ul class="softs_index clear" id="zysoft"></ul>
+    <script>$('#zysoft').loadDB('/page_home_soft.html');</script>
+    </div>
+	<div class="mod_title clear">
+	<h2 class="bor_05">友情链接</h2>
+	<a href="http://home.zhiyoo.com/flapply.html" class="more">申请友情链接></a>
+</div>
+<div class="part">
+	<ul class="links2 clear">
+				<li><a href="http://www.anzhi.com/">安智市场</a></li>
+				<li><a href="http://www.qq.com/">腾讯</a></li>
+				<li><a href="http://bbs.zhiyoo.com/tag-index.html">大爆炸</a></li>
+			</ul>
+</div>
+</div>
+<script type="text/javascript">$('#float_bar').loadDBM('/floatbar.php?m=floatbar&show=2','');</script>
+<div class="clear"></div>
+<div id="foot">
+    <div class="ft">
+        <div class="about">
+            <a  rel="nofollow"  href="http://pingce.zhiyoo.com/question_5.html" target="_blank" class='30001'>关于智友</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a  rel="nofollow"  href="http://pingce.zhiyoo.com/question_6.html" target="_blank" class='30002'>联系我们</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a  rel="nofollow"  href="http://pingce.zhiyoo.com/question_7.html" target="_blank" class='30003'>招贤纳士</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a  rel="nofollow"  href="http://pingce.zhiyoo.com/question.html" target="_blank" class='30004'>常见问题</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a  rel="nofollow"  href="http://pingce.zhiyoo.com/sitemap.html" target="_blank">网站地图</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a  rel="nofollow"  href="http://pingce.zhiyoo.com/rss.xml" target="_blank">RSS订阅</a>
+        </div>
+        <div class="gate_nav clear">
+            <div class="gate_mod">
+                <div class="gate_pic g_mtop1"><img src="images/ft_anzhi_logo.png"/></div>
+                <ul class="gate_text">
+                    <li><a  rel="nofollow"  href="http://www.anzhi.com/">安智市场</a></li>
+                    <li><a  rel="nofollow"  href="http://i.anzhi.com/">用户中心</a></li>
+                    <li><a  rel="nofollow"  href="http://dev.anzhi.com/">开发者中心</a></li>
+                </ul>
+            </div>
+            <div class="gate_mod">
+                <div class="gate_pic g_mtop2"><img src="images/ft_zy_logo.png"/></div>
+                <ul class="gate_text">
+                    <li><a  rel="nofollow"  href="http://www.anzhi.com/soft_2627804.html">智友APP</a></li>
+                    <li><a href="http://pingce.zhiyoo.com/">智友众测</a></li>
+                    <li><a href="http://bbs.zhiyoo.com/">智友论坛</a></li>
+                </ul>
+            </div>
+            <div class="gate_mod">
+                <div class="gate_code">
+                    <p><img src="images/weixin.png"/></p>
+                    <p>官方微信</p>
+                </div>
+                <div class="gate_code">
+                    <p><a  rel="nofollow"  href="http://weibo.com/p/1006061730536307/home?from=page_100606&amp;mod=TAB&amp;is_all=1#place" target="_blank"><img src="images/weibo.png"/></a></p>
+                    <p><a  rel="nofollow"  href="http://weibo.com/p/1006061730536307/home?from=page_100606&amp;mod=TAB&amp;is_all=1#place" target="_blank">官方微博</a></p>
+                </div>
+            </div>
+        </div>
+        <p>北京力天无限网络技术有限公司</p>
+        <p class="copyright">京 ICP 证 101039 号&nbsp;&nbsp;|&nbsp;&nbsp;京ICP备10031276号-2&nbsp;&nbsp;|&nbsp;&nbsp;京网文[2012]0408-129号</p>
+<div style="text-align:center;width:300px;margin:0 auto; padding:20px 0;">
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010802021388" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="./static/image/beian.png" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">京公网安备 11010802021388号</p></a>
+</div>
+    </div>
+</div>
+<script>
+window._bd_share_config={
+
+"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","sqq","qzone","tsina","tqf","renren","weixin","tqq","kaixin001","ibaidu","tieba","douban","bdhome","thx"],
+"bdPic":"",
+"bdStyle":"0",
+"bdSize":"16"},
+"share":[{
+			"tag" : "share_1"
+		},{
+			"tag" : "share_2"
+		}]
+};
+with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<!--[if lte IE 9]><script type="text/javascript" src="/js/jquery.placeholder.js"></script>
+<script type="text/javascript">$('input, textarea').placeholder();</script><![endif]-->
+<script type="text/javascript" src="/js/footer.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('#info').loadDBM('/floatbar.php?m=hcl','');
+    });
+    $(".lgslide").pageslide({ direction: "left"});
+	
+	
+</script>
+<script type="text/javascript" src="/js/pingce.js"></script>
+<script>
+	var _hmt = _hmt || [];
+	(function() { 
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?4d9e2cbbd5b3150f61868297d94c30b4";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create','UA-78626523-5','auto');
+  ga('send', 'pageview');
+	</script>
 </body>
 </html>

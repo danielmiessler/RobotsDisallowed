@@ -1,19 +1,485 @@
-<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head><base target="_blank"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>v9</title><link title="V9" type="application/opensearchdescription+xml" rel="search" href="/opensearch.xml"><link rel="stylesheet" href="../local/css/simple2.css?version=20150918a090803"><script type="text/javascript">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="referrer" content="never">
+	<title>V9</title>
+	<script type="text/javascript">
+		String.prototype.strip = function(){
+			return this.replace(/^\s+/, '').replace(/\s+$/, '');
+		};
+		var G = function(id){ return document.getElementById(id);};
+		var me =(new function(){
+			var ua = window.navigator.userAgent;
+			this.utils = {		
+				"writeCookie":function(key,val){
+					var date = new Date();
+					date.setTime(date.getTime() + 30 * 24 * 60 * 60 * 1000);
+					document.cookie = key+'='+encodeURIComponent(val)+'; domain=.v9.com; path=/; expires='+date.toGMTString();
+				},
+				"readCookie":function(key){
+					var value = document.cookie.match('(?:^|;)\\s*' + key + '=([^;]*)');
+					return (value) ? decodeURIComponent(value[1]) : null;
+				}
+			};
+			this.event = {
+				stopPropagation:function(e){
+					e.stopPropagation ? e.stopPropagation() : (e.cancelBubble = true) ;
+				},
+				preventDefault:function(e){
+					e.preventDefault ? e.preventDefault() : (e.returnValue = false) ;
+				},
+				on:function(element,eventName,handle){
+					if(me.isIE){
+						element.attachEvent('on'+eventName, handle);
+					}else{
+						element.addEventListener(eventName, handle, false);
+					}
+				},
+				un:function(element,eventName,handle){
+					if(me.isIE){
+						element.detachEvent('on'+eventName, handle);
+					}else{
+						element.removeEventListener(eventName, handle, false);
+					}			
+				}
+			};	
+			this.isIE = !! window.attachEvent && !window.opera;
+			this.isChrome = !! window.chrome;
+			this.isFF = /gecko/i.test(ua) && !/webkit/i.test(ua);
+		});
+	</script>
+	<style type="text/css">
+		body,form,ul,ol{
+			margin:0;
+			padding:0;
+			font-size:16px;
+		}
+		body,input{
+			font-family:Arial,Helvetica,sans-serif;	
+		}
+		img{
+			border:none;
+		}
+		a{
+			text-decoration:none;
+		}
+		li{
+			list-style:none;
+		}
+		.head ul{
+			overflow:hidden;
+			padding-left:10px;
+			background-color:#2d2d2d;
+		}
+		.head ul li{
+			float:left;
+			padding:0px 12px 3px;
+			height:26px;
+			line-height:26px;
+			font-size:14px;
+			border-top:3px solid #2d2d2d;
+		}
+		.head ul li:hover{
+			border-top-color:#555;
+			background-color:#555;
+		}
+		.head ul li.selected{
+			border-top-color:#c00;
+		}
+		.head li a{
+			color:#ccc;
+		}
+		.head li.selected a{
+			font-weight:bold;
+			color:#fff;
+		}
+		.head li b{
+			display:none;
+		}
+		.logo{
+			text-align:center;
+			margin:65px 0 65px 0; 
+		}
+		.search form{
+			position:relative;
+			width:730px;
+			margin:auto;
+		}
+		.search form input{
+			margin:0;
+			padding:0;
+		}
+		.search form input.q{
+		    font-size:16px;
+		   	outline:none;
+			width:560px;
+		    padding-left:9px;
+			border:1px solid #d9d9d9;
+			border-top:1px solid #c0c0c0;
+			height:30px;
+		}
+		.search form input.btn{
+			width:105px;
+			height:32px;
+			position:relative;
+			padding:0;
+			margin:0 0 0 10px;
+			border:1px solid #ccc;
+			border-radius: 2px;
+			cursor:pointer;
+			color:#666;
+			font-size:16px;
+			background-color:#f5f5f5;
+			background-image:linear-gradient(top,#f5f5f5,#f1f1f1);
+			background-image:-webkit-linear-gradient(top,#f5f5f5,#f1f1f1);
 
-    document.cookie = 'uid='+Math.floor(Math.random()*(new Date()).valueOf());
+		}
+		.search form input.btn:hover{
+			color:#333;
+		}
+		#sug{
+			border-color:#A2BFF0 #558BE3 #558BE3 #A2BFF0;
+			border-style:solid;
+			border-width:1px;
+			background-color:#fff;
+		    color:#000;
+			position:absolute;
+			left:0;
+			top:32px;
+			width:569px;
+			z-index:1000;
+			display:none;
+		}
+		#sug li{
+			padding-left:9px;
+			line-height:26px;
+			height:26px;
+			cursor:pointer;
+		}
+		#sug li img{
+			padding-right:6px;
+			position:relative;
+			top:2px;
+		}
+		#sug li.adv{
+			background:#FFF8E6;
+			color:#00c;
+			line-height:30px;
+			height:32px;
+		}
+		#sug li.adv span{
+			text-decoration:underline;
+		}
+		#sug li.adv span em{
+			color:#c00;
+			font-weight:normal;
+		}
+		.foot{
+			height:40px;
+			line-height:40px;
+			background:#f2f2f2;
+			border-top:1px solid #e4e4e4;
+			position:fixed;
+			z-index:999;
+			left:0;
+			right:0;
+			bottom:0;
+		}
+		.foot .l{
+			float:left;
+			padding-left:30px;
+		}
+		.foot .l a{
+			color:#666;
+			font-size:12px;
+			margin:0 12px;
+		}
+		.foot .r{
+			float:right;
+			font-size:12px;
+			padding-right:30px;
+		}
+		.foot .r .more{
+			margin-left:10px;
+			cursor:pointer;
+		}
+		.foot .langs{
+			position:absolute;
+			z-index:1000;
+			width:100px;
+			right:10px;
+			bottom:40px;
+			background:#fff;
+			padding-bottom:5px;
+			border:1px solid #ccc;
+			display:none;
+		}
+		.foot .langs li a{
+			color:#888;
+			font-size:12px;
+		}
+		.foot .langs li a b{
+			display:none;
+		}
+		.foot .langs li a:hover{
+			color:#000;
+			text-decoration:underline;
+		}
+		.foot .langs li{
+			height:20px;
+			line-height:20px;
+			padding-left:10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="head" id="head">
+		<ul>
+			<li class="selected"><b>web</b><a href="javascript:void(0);">Web</a></li>
+			<li><b>image</b><a href="javascript:void(0);">Images</a></li>
+			<li><b>video</b><a href="javascript:void(0);">Videos</a></li>
+			<li><b>news</b><a href="javascript:void(0);">News</a></li>
+		</ul>
+	</div>
+	<div class="logo">
+		<img height="72px" src="http://a.thanksearch.com/ftpup/vres/v2/images/v9/images/v9_simple_logo.png">
+	</div>
+	<div class="search">
+		<form action="/web" method="get" id="gform" target="_blank">
+			<input type="text" id="q" name="q" autocomplete="off" class="q" onblur="me.querymove.word=null;"/><input type="submit" value="Search" class="btn"/>
+			<div id="sug"></div>
+		</form>
+	</div>
+	<div class="foot">
+		<div class="l">
+			<a href="/license_agreement.html" target="_blank">License</a>
+			<a href="/privacy_policy.html" target="_blank">Privacy</a>
+		</div>
+		<div class="r">
+			<span class="cur-lang">English</span><span class="more" id="more">More</span>
+		</div>
+		<ul class="langs" id="langs">
+			<li><a href="javascript:void(0);"><b>ar</b>العربية</a></li>
+			<li><a href="javascript:void(0);"><b>de</b>Deutsch</a></li>
+			<li><a href="javascript:void(0);"><b>es</b>Español</a></li>
+			<li><a href="javascript:void(0);"><b>vi</b>Tiếng Việt</a></li>
+			<li><a href="javascript:void(0);"><b>fa</b>فارسی</a></li>
+			<li><a href="javascript:void(0);"><b>fr</b>Français</a></li>
+			<li><a href="javascript:void(0);"><b>id</b>Indonesia</a></li>
+			<li><a href="javascript:void(0);"><b>he</b>עברית</a></li>
+			<li><a href="javascript:void(0);"><b>hi</b>हिन्दी</a></li>
+			<li><a href="javascript:void(0);"><b>it</b>Italiano</a></li>
+			<li><a href="javascript:void(0);"><b>nl</b>Nederlands</a></li>
+			<li><a href="javascript:void(0);"><b>pl</b>Polski</a></li>
+			<li><a href="javascript:void(0);"><b>pt</b>Português</a></li>
+			<li><a href="javascript:void(0);"><b>jp</b>日本の</a></li>
+			<li><a href="javascript:void(0);"><b>ro</b>Română</a></li>
+			<li><a href="javascript:void(0);"><b>ru</b>Русский</a></li>
+			<li><a href="javascript:void(0);"><b>th</b>ภาษาไทย</a></li>
+			<li><a href="javascript:void(0);"><b>tr</b>Türkçe</a></li>
+			<li><a href="javascript:void(0);"><b>zh</b>繁體中文</a></li>
+			<li><a href="javascript:void(0);"><b>en</b>English</a></li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		me.event.on(G("gform"),"submit",function(e){
+			e = e || window.event;
+			var q = G("q").value;
+			if(!q.strip()){
+				me.event.preventDefault(e);
+			}else{
+				return true;
+			}
+		});
+		google={};
+		google.ac=google.ac||{};
+		google.ac.h = function(ret,cached){
+			var data=false;
+			if(!cached&&ret&&ret[0]&&ret[1]){
+				me.suggest.sugHash[ret[0]]=ret[1];
+				data=ret[1];
+			}
+			if(cached){
+				data=ret;
+			}
+			me.querymove.word=null;
+			if(data&&data[0]){
+				var htmlSnippet="<ol>";
+				for(var i=0;i<data.length;i++){
+					htmlSnippet+="<li onmouseover='me.highlight(this)' onmouseout='this.style.backgroundColor=\"#fff\"'>"+data[i][0]+"</li>";
+				}
+				htmlSnippet+="</ol>";
+				G("sug").innerHTML = htmlSnippet;
+				G("sug").style.display="block";
+			}else{
+				G("sug").style.display="none";
+			}
+		};
+		me.suggest=function(event){
+			if(me.isIE){
+				if(me.suggest.ivalue==G("q").value){
+					return;
+				}else{
+					me.suggest.ivalue=G("q").value;
+				}		
+			}
+			if(me.isIE && me.changeQuery){
+				me.changeQuery=false;
+				return;
+			}
+			var q = G("q").value;
+			me.suggest.sugHash=me.suggest.sugHash||{};
+			if(me.suggest.sugHash[q]){
+				google.ac.h(me.suggest.sugHash[q],true);
+				return;
+			}
+			var s = G("sugScript");
+			if(s){
+				document.body.removeChild(s);
+			}
+			s=document.createElement("script");
+			s.id="sugScript";
+			s.type="text/javascript";
+			s.src="http://clients1.google.com/complete/search?client=serp&pq=3&hl=en&sugexp=gsis%2Ci18n%3Dtrue&cp=1&gs_id=13&q="+q;
+			document.body.appendChild(s);
+		};
+		me.doSearch=function(event){
+			event = window.event||event;
+			var target=event.target||event.srcElement;
+			if(target.tagName.match(/b/i)){
+				target=target.parentNode;
+			}
+			var q = target.innerText||target.textContent;
+			G("q").value=q;
+			G("sug").style.display="none";
+			G("gform").submit();
+		};
+		me.keypad=function(event){
+			event = event||window.event;
+			var code = event.keyCode;
+			if(code == 40){
+				me.querymove(1);
+			}else if(code == 38){
+				me.querymove(-1);
+			}
+		};
+		me.querymove=function(dir){
+			var sug = G("sug");
+			var q= G("q");
+			if(sug.style.display == "block"){
+				var suggests = sug.getElementsByTagName("li");
+				if(!me.querymove.word){
+					me.querymove.word = q.value;
+					me.querymove.pointer = 0;
+				}
+				me.querymove.pointer=(me.querymove.pointer+dir)%(suggests.length+1);
+				if(me.querymove.pointer<0){
+					me.querymove.pointer=suggests.length;
+				}
+				if(me.querymove.pointer != 0){
+					var suggest=suggests[me.querymove.pointer-1];
+					if(me.isIE){ me.changeQuery=true; }
+					G("q").value = suggest.textContent||suggest.innerText;
+					for(var i=0;i<suggests.length;i++){
+						if(i==me.querymove.pointer-1){
+							suggests[i].style.backgroundColor="#d5e2ff";
+						}else{
+							suggests[i].style.backgroundColor="#fff";
+						}
+					}
+				}else{
+					for(var i=0;i<suggests.length;i++){
+						suggests[i].style.backgroundColor="#fff";
+					}			
+					G("q").value =  me.querymove.word;
+				}		
+			}
+		};
+		me.highlight=function(suggest){
+			var sug = G("sug");
+			var suggests = sug.getElementsByTagName("li");
+			for(var i=0;i<suggests.length;i++){
+				if(suggest==suggests[i]){
+					suggests[i].style.backgroundColor="#d5e2ff";
+				}else{
+					suggests[i].style.backgroundColor="#fff";
+				}
+			}
+		};
 
-    try{cpmSeq;}catch(e){cpmSeq=Math.floor(Math.random()*(new Date()).valueOf());}
-    var elex=window.elex||{};
-        elex.datacache=true;
-        elex.pageName = "simple_index";
-    var conf=window.conf||{};
-    elex.from=window.location.hostname.match(/([^\.]+).(com|net|me|org)/);
-    conf.tabTypes=["web","image","video","news"];
-    elex.tabTypes=["web","image","video","news"];
-</script><script type="text/javascript">
-    /*search box configuration*/
-    conf.search = {
-        'sugurl' : 'http://clients1.google.com/complete/search?client=serp&pq=3&hl=pl&sugexp=gsis%2Ci18n%3Dtrue&cp=1&gs_id=13'
-    };
-    elex.pageName = "us_index_normal";
-</script></head><body><div id="container"><div class="hd" monkey="hd_tabs"><div id="translateWord" style="visibility: visible;"><a class="translate selected">Web</a> <a class="translate">Images</a> <a class="translate">Videos</a> <a class="translate">News</a> <a href="http://www.gaggame.com/" class="downchecked games-en translate">Games</a></div></div><div class="s-box"></div><div id="search" class="search-box"><form action="/web" id="searchForm" target="_blank" search-type="web"><input name="q" type="text" class="q" autocomplete="off" autofocus><input id="sq" name="s" type="submit" value="Search" class="btn"></form></div><div id="hot-icons" class="E-widget hot-icons" event-type="clickEvent" style="height:220px;overflow:hidden;"><div class="pic-popular-list"><ul class="hot-web-intro E-tabs-title"><li class="select">Popular Sites</li><li>Shopping</li><li>Games</li></ul><div class="E-tabs-list pic-popular-images"><ul id="veryHot" class="pic-popular-ul" monkey="hotsites_us_hot1"><style type="text/css"> .site-link-image{ background-image: url(http://b.thanksearch.com/ftpup/images/img/sprite/sprite_simpleindexus_hot_margin1_13_7abd98ad8d662d1bb00095466dfe637c.png);}</style><li><a title="Ebay" href="http://click.v9.com/click?id=14282"><i class="site-link-image" style="background-position:0px 0px"></i> Ebay</a></li><li><a title="Amazon" href="http://click.v9.com/click?id=14283"><i class="site-link-image" style="background-position:-49px 0px"></i> Amazon</a></li><li><a title="Macys" href="http://click.v9.com/click?id=14344"><i class="site-link-image" style="background-position:-98px 0px"></i> Macys</a></li><li><a title="Walmart" href="http://click.v9.com/click?id=14345"><i class="site-link-image" style="background-position:-147px 0px"></i> Walmart</a></li><li><a title="Clash Of Kings" href="http://click.v9.com/click?id=2559"><i class="site-link-image" style="background-position:-196px 0px"></i> Clash Of Kings</a></li><li><a title="Big Farm" href="http://click.v9.com/click?id=689"><i class="site-link-image" style="background-position:-245px 0px"></i> Big Farm</a></li><li><a title="Empire" href="http://click.v9.com/click?id=690"><i class="site-link-image" style="background-position:-294px 0px"></i> Empire</a></li><li><a title="Forge of Empires" href="http://click.v9.com/click?id=9173"><i class="site-link-image" style="background-position:-343px 0px"></i> Forge of Empires</a></li><li><a title="Best Buy" href="http://click.v9.com/click?id=14346"><i class="site-link-image" style="background-position:-392px 0px"></i> Best Buy</a></li><li><a title="Expedia" href="http://click.v9.com/click?id=14342"><i class="site-link-image" style="background-position:-441px 0px"></i> Expedia</a></li><li><a title="Target" href="http://click.v9.com/click?id=14348"><i class="site-link-image" style="background-position:-490px 0px"></i> Target</a></li><li><a title="Orbitz" href="http://click.v9.com/click?id=14349"><i class="site-link-image" style="background-position:-539px 0px"></i> Orbitz</a></li><li><a title="Flirchi" href="http://click.v9.com/click?id=31451"><i class="site-link-image" style="background-position:-588px 0px"></i> Flirchi</a></li></ul><ul id="veryHotBehind" class="pic-popular-ul ajax-load" data-url="http://adplus.goo.mx/gif.php?z=41&pl=429&cpmsize=48x48&request_ad_num=10" data-jsonp="jsonp" data-cachetime="50" temid="j-tmpl" monkey="hotsites_us_hot2"></ul></div><ul class="E-tabs-list ajax-load pic-popular-images none" data-trigger="show" data-url="http://adplus.goo.mx/gif.php?z=41&pl=429&cpmsize=48x48&request_ad_num=14&adtype=2" data-jsonp="jsonp" data-cachetime="50" temid="j-tmpl" monkey="hotsites_us_shopping"></ul><ul class="E-tabs-list ajax-load pic-popular-images none" data-trigger="show" data-url="http://adplus.goo.mx/gif.php?z=41&pl=429&cpmsize=48x48&request_ad_num=14&adtype=1" data-jsonp="jsonp" data-cachetime="50" temid="j-tmpl" monkey="hotsites_us_game"></ul></div></div><div id="iframe-ad" style="width:300px;margin:25px auto 0;height:340px;"></div><div id="footer" monkey="foot_infor" class="footList"><div class="langs" monkey="change_lang" id="langs"></div><span id="license"><a href="/license_agreement.html" target="_blank">License</a> <a href="/privacy_policy.html" target="_blank">Privacy</a> <a href="/about.html" target="_blank">About</a> <a href="/uninstall.html" target="_blank">Uninstall</a> <a href="/suggest.html" target="_blank">Suggest</a></span></div></div><script id="j-tmpl" type="text/template">{{ for (var i = 0, l = it.data.length; i < l; i++) { }} <li> <a href="{{=it.data[i].link}}"> <i> <img class="lazyload" src="http://b.thanksearch.com/ftpup/images/me/n2/deafault_img.png" _src="{{=it.data[i].img}}"> </i>{{=it.data[i].title}} </a> </li> {{ } }}</script><script src="/global/js/jquery.js?version=20150918a"></script><script src="/local/js/simple_other.js?version=20150918a0908"></script><div class="ads-lazyload" id="nextPage" adsid="bottomRightAds"><script type="text/template" id="bottomRightAds"><iframe width="200" height="180" frameborder="0" allowtransparency="true" scrolling="no" vspace="0" hspace="0" marginheight="0" marginwidth="0" src="/global/ad/adplus.html?z=7&pl=85&cpmsize=200x180&seq={{=cpmSeq}}&u={{=$.cookie('uid')}}"></iframe></script></div><div class="ads-lazyload2" id="humorHidden" adsid="humorHidden-ad" style="display:none;"><script type="text/template" id="humorHidden-ad"><iframe src="http://adplus.goo.mx/gif.php?z=71&pl=1641&seq={{=cpmSeq}}&cpmsize=130x130&u={{=$.cookie('uid')}}" width="130" height="130" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" allowTransparency="true"></iframe></script></div></body></html>
+		me.showLangs = function(e){
+			e = window.event||e;
+			me.event.stopPropagation(e);
+			G("langs").style.display="block";
+		};
+
+		me.selectLangs = function(e){
+			e = window.event||e;
+			me.event.stopPropagation(e);
+
+			var target=e.target||e.srcElement;
+
+			if(target.tagName.match(/a/i)){
+				me.utils.writeCookie("set-language",target.childNodes[0].innerHTML);
+				window.location.reload(true);
+			}			
+		};
+
+		me.selectService = function(e){
+			e = window.event||e;
+			me.event.stopPropagation(e);
+
+			var target=e.target||e.srcElement;
+
+			if(target.tagName.match(/a/i)){
+				var tabs = G("head").getElementsByTagName("li");
+				for(var i=0; i < tabs.length; i++){
+					tabs[i].className = "";
+				}
+				target.parentNode.className = "selected";
+				G("gform").setAttribute("action", "/" + target.parentNode.childNodes[0].innerHTML);
+			}			
+		};
+
+        me.log = function(data){
+                window.img = window.img || [];
+                window.img[window.img.length] = new Image();
+                var url = "http://log.vi-view.com/i.gif?ts=" + (new Date()).getTime();
+                for(var name in data){
+                        url += "&" + name + "=" + encodeURIComponent(data[name]);
+                }
+                window.img[window.img.length-1].src = url;
+        };
+
+        (function(){
+                var usr = me.utils.readCookie("_ab_") || "o";
+                me.log({"f":"my2004", "u":usr});
+        })();
+
+		me.suggest.ivalue=G("q").value;
+		me.event.on(G("q"),"propertychange",me.suggest);
+		me.event.on(G("q"),"input",me.suggest);
+		me.event.on(G("sug"),"mousedown",me.doSearch);
+		me.event.on(document,"keydown",me.keypad);
+
+		me.event.on(G("more"),"click",me.showLangs);
+		me.event.on(G("langs"),"click",me.selectLangs);
+
+		me.event.on(G("head"),"click",me.selectService);
+
+		me.event.on(window,"click",function(){
+			G("sug").style.display="none";
+			G("langs").style.display="none";
+		});
+
+		me.event.on(window,"load",function(){
+			try{
+				G("q").focus();
+			}catch(e){};
+
+		});
+
+	</script>
+</body>
+</html>

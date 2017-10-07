@@ -1,33 +1,346 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<HTML><HEAD><TITLE>The page cannot be found</TITLE>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
-<STYLE type="text/css">
-  BODY { font: 8pt/12pt verdana }
-  H1 { font: 13pt/15pt verdana }
-  H2 { font: 8pt/12pt verdana }
-  A:link { color: red }
-  A:visited { color: maroon }
-</STYLE>
-</HEAD><BODY><TABLE width=500 border=0 cellspacing=10><TR><TD>
 
-<h1>The page cannot be found</h1>
-The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
-<hr>
-<p>Please try the following:</p>
-<ul>
-<li>Make sure that the Web site address displayed in the address bar of your browser is spelled and formatted correctly.</li>
-<li>If you reached this page by clicking a link, contact
- the Web site administrator to alert them that the link is incorrectly formatted.
-</li>
-<li>Click the <a href="javascript:history.back(1)">Back</a> button to try another link.</li>
-</ul>
-<h2>HTTP Error 404 - File or directory not found.<br>Internet Information Services (IIS)</h2>
-<hr>
-<p>Technical Information (for support personnel)</p>
-<ul>
-<li>Go to <a href="http://go.microsoft.com/fwlink/?linkid=8180">Microsoft Product Support Services</a> and perform a title search for the words <b>HTTP</b> and <b>404</b>.</li>
-<li>Open <b>IIS Help</b>, which is accessible in IIS Manager (inetmgr),
- and search for topics titled <b>Web Site Setup</b>, <b>Common Administrative Tasks</b>, and <b>About Custom Error Messages</b>.</li>
-</ul>
+<!DOCTYPE html>
+<!-- data-ng-app="app.main"-->
+<html xmlns:ng="http://angularjs.org">
+ <!-- id="ng-app" ng-app="myRegusDesktopApp"-->
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <meta name="description" content="Find workspace in seconds and book on demand by creating a Regus account. Register online now or download our app."/>
+    <title ng-bind="$root.title">MyRegus - Welcome</title>
+    <base href="/"/>
+    <!--[if IE]><script type="text/javascript">
+                    // Fix for IE ignoring relative base tags.
+                    // See http://stackoverflow.com/questions/3926197/html-base-tag-and-local-folder-path-with-internet-explorer
+                    (function() {
+                        var baseTag = document.getElementsByTagName('base')[0];
+                        baseTag.href = baseTag.href;
+                    })();
+                </script><![endif]-->
 
-</TD></TR></TABLE></BODY></HTML>
+    <link href="/bundles/css?v=mGdHl_quByKg3lfg1mjwGaI2zOw51UsgNaayYYPgUeI1" rel="stylesheet"/>
+
+
+    <!-- logger should be initialized first -->
+    <script src="/Scripts/lib/log4javascript/log4javascript.js"></script>
+    <script src="/Scripts/lib/device/device.js"></script>
+
+
+    <script type="text/javascript">
+
+        //if (device.mobile() && window.location.href.indexOf("/welcome/reset/") < 0 && window.location.href.indexOf("/reset-password/") < 0) {
+        //    var redirectUrl = "http://localhost/MyRegus.Web/" + window.location.hash;
+        //    window.location.href = redirectUrl;
+        //}
+
+        // redirect to mobile version if user opens site with mobile browser
+        (function () {
+            var mobileHost = 'https://v3m.myregus.com/';
+            if (device.mobile() && window.location.href.indexOf(mobileHost) < 0 && window.location.href.indexOf("/welcome/reset/") < 0) {
+                var mobileUrl = mobileHost + window.location.search + window.location.hash;
+                window.location = mobileUrl;
+            }
+        })();
+
+            // prevent to open site in iframe
+            (function() {
+                if (window.self !== window.top) {
+                    window.top.location = document.location;
+                    throw "The page cannot be opened in iframe";
+                }
+            })();
+
+            // configure error logging
+            (function () {
+                // disable show alert if logger is encountered an error itself
+                log4javascript.logLog.setQuietMode(true);
+
+                var logger = log4javascript.getLogger();
+                var ajaxAppender = new log4javascript.AjaxAppender("/Home/Log");
+                ajaxAppender.setThreshold(log4javascript.Level.ALL);
+                //ajaxAppender.setLayout(new log4javascript.JsonLayout());
+                //ajaxAppender.addHeader("Content-Type", "application/json; charset=utf-8");
+                logger.addAppender(ajaxAppender);
+
+                var previousErrorHandler = window.onerror;
+
+                // send all errors to the server
+                window.onerror = function (message, source, line) {
+
+                    try {
+                        logger.error(JSON.stringify({ message: message, source: source, line: line }));
+
+                        if (previousErrorHandler)
+                            return previousErrorHandler();
+                    } catch (e) { }
+                    return false;
+                };
+            })();
+    </script>
+
+    <!--[if lte IE 8]>
+        <script src="/Scripts/lib/es5-shim/es5-shim.min.js"></script>
+        <script src="/Scripts/lib/json3/json3.min.js"></script>
+    <![endif]-->
+
+    
+
+<script type='text/javascript'>
+    if ("cb9e1dca-7a98-47d1-825f-e26265baf233") {
+        var appInsights = window.appInsights || function(config) {
+            function r(config) { t[config] = function() { var i = arguments; t.queue.push(function() { t[config].apply(t, i) }) } }
+            var t = { config: config }, u = document, e = window, o = 'script', s = u.createElement(o), i, f; for (s.src = config.url || '//az416426.vo.msecnd.net/scripts/a/ai.0.js', u.getElementsByTagName(o)[0].parentNode.appendChild(s), t.cookie = u.cookie, t.queue = [], i = ['Event', 'Exception', 'Metric', 'PageView', 'Trace', 'Ajax']; i.length;) r('track' + i.pop()); return r('setAuthenticatedUserContext'), r('clearAuthenticatedUserContext'), config.disableExceptionTracking || (i = 'onerror', r('_' + i), f = e[i], e[i] = function(config, r, u, e, o) { var s = f && f(config, r, u, e, o); return s !== !0 && t['_' + i](config, r, u, e, o), s }), t
+        }({
+            instrumentationKey: "cb9e1dca-7a98-47d1-825f-e26265baf233"
+        });
+
+        window.appInsights = appInsights;
+        appInsights.trackPageView();
+    }
+</script>
+
+</head>
+<body ng-controller="mainController">
+    <!-- Google Tag Manager -->
+<noscript>
+    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-NZHNPF"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<script>
+    (function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({
+            'gtm.start':
+            new Date().getTime(), event: 'gtm.js'
+        }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+        '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-NZHNPF');</script>
+<!-- End Google Tag Manager -->
+
+<noscript>
+    <header>
+        <h2 class="global-error">
+            The site is not working correctly because javascript is turned off.
+        </h2>
+    </header>
+</noscript>
+    <div class="page {{cookiesNotificationVisible?'':''}} {{properties.appInitialized}}" ng-show="appInitialized && !maintenance.maintenanceMode && !noTranslations">
+        <div ng-view class="page-paddings">
+            <!-- to add class="pdd-bottom-90" while popup-fixed-bottom is visible-->
+            
+
+
+        </div>
+    </div>
+    <div maintenance ng-if="maintenance.maintenanceMode"></div>
+    <div ng-if="noTranslations && !maintenance.maintenanceMode">
+        <h2 ng-class="{'global-error' : noTranslations}" style="display: none">
+            The site is not working correctly because localization is unavailable.
+        </h2>
+    </div>
+    <div ng-include="'partials/cookies_notification'"></div>
+    <div maintenance-notification></div>
+    
+    
+
+
+
+<script src="/bundles/js/jquery?v=N9X31oj24lli1uVFpX6uj0M2WdN7GdgMjnvYEUoIx7s1"></script>
+
+<script>jQuery.noConflict();</script>
+<script src="/bundles/js/modernizr?v=nQZEl2bqe6EerDq3MnO19Nxm-RV8kl-lOuEirkk60G81"></script>
+
+
+<script src="/bundles/js/angular?v=_rq-JfwgHs0nER8-VQTbbGnJ-ME-_eZbqqTtrL7XEPg1"></script>
+
+<script src="/bundles/js/misc?v=1iSFPqU1hSewaIkSV_pVPyTa-zWyPlUvavmZoJFedzk1"></script>
+
+<script src="/bundles/js/modules?v=fs3HbLoje_cytpv78W9X1puA2zbRIjSgUITiGPwl2h01"></script>
+
+
+<script type="text/javascript">
+    // default map
+    
+    window._RECOMMENDED_MAP_BY_IP = mapsTypes.google;
+
+    function loadUserMap() {
+        var googleMap = 'https://maps.googleapis.com/maps/api/js?v=3&libraries=places&language=en&libraries=places&client=gme-regusgroupservices&callback=onGoogleReady',
+            baiduMap = '//api.map.baidu.com/api?v=2.0&ak=' + 'OVYQFOnp0ogGryEDG9yxId5z' + '&callback=onBaiduReady&s=' + (location.protocol === 'https:' ? 1 : 0);
+
+        function loadMapFromPreferences(recomended) {
+            jQuery.get('/MyRegus.API/api/' + 'contact/preference/mapProvider')
+                .done(function(resp) {
+                    var provider,
+                        mapToRender = recomended;
+
+                    try {
+                        provider = JSON.parse(resp.Value);
+                    } catch (exception) {
+                        provider = mapsTypes.auto;
+                    }
+
+                    if (provider && provider !== mapsTypes.auto) {
+                        mapToRender = provider === mapsTypes.baidu ? baiduMap : googleMap;
+                    }
+
+                    addScript(mapToRender);
+                })
+                .fail(function() {
+                    addScript(recomended);
+                });
+        }
+
+        jQuery.get('/MyRegus.API/api/' + 'map')
+            .then(function(response) {
+                window._RECOMMENDED_MAP_BY_IP = response.MapName === 'baidu' ? mapsTypes.baidu : mapsTypes.google;
+                loadMapFromPreferences(response.MapName === 'baidu' ? baiduMap : googleMap);
+            })
+            .fail(function() {
+                addScript(googleMap);
+            });
+    }
+
+    function addScript(url, callback) {
+        var script = document.createElement('script');
+        if (callback) {
+            script.onload = callback;
+        }
+        script.type = 'text/javascript';
+        script.src = url;
+        document.body.appendChild(script);
+    }
+
+    function onGoogleReady() {
+        var defer1 = jQuery.Deferred();
+        var defer2 = jQuery.Deferred();
+
+        jQuery.getScript('https://assets.regus.com/scripts/maps/infobox.js', function() {
+            defer1.resolve();
+        });
+        jQuery.getScript('https://assets.regus.com/scripts/maps/markerwithlabel.js', function() {
+            defer2.resolve();
+        });
+
+        jQuery.when(defer1, defer2).then(function() {
+            window.googleMap = { status: 'loaded', callbacks: [] };
+            angular.bootstrap(document, ['myRegusDesktopApp']);
+        });
+    }
+
+    function onBaiduReady() {
+        window.baiduMap = { status: 'loaded', callbacks: [] };
+        angular.bootstrap(document, ['myRegusDesktopApp']);
+    }
+
+    loadUserMap();
+</script>
+
+<script type="text/javascript">
+    angular.module('myRegusDesktopApp').constant('configuration',
+        {
+            basePath: window.location.protocol.replace(':', '') + '://myregus.com/',
+            apiPath: '/MyRegus.API/api/',
+            sessionDuration: '30',
+            pingDuration:'1',
+            rememberDuration: '7',
+            asyncRequestsPeriod: '2000',
+            asyncRequestsMaxCount: '50',
+            requestMaxPeriod: parseInt('600',10)*1000,
+            timeout: parseInt('600',10)*1000,
+            temporaryReservationPeriod: '20',
+            temporaryReservationRenewPeriod: '19',
+            androidAppId: 'com.regus.cardapp',
+            iPhoneAppId: 'ca/app/regus-businessworld-card/id946769983?mt=8',
+            showAppBanner: false,
+            translate: true,
+            //todo: use date instance and apply formatting on display. At the moment date is passing through application in 'MMMM DD, YYYY' format
+            dateFormat:'L',
+            translateGroup: 'MyRegus_DesktopWeb',
+            googleAnalyticsAccount: 'UA-20161308-4',
+            googleAnalyticsDomain: 'v3.myregus.com',
+            useCustomHelpPhone: 'false',
+            customHelpPhone: '0870 0493 404',
+            globalCollectCssUrl: 'https://myregus.com/MyRegus.API/api/content/pci/globalcollect/desktop.css',
+            baiduMapsAppKey: 'OVYQFOnp0ogGryEDG9yxId5z',
+            links: {
+                offers: {
+                    UK: 'http://purchasinggroup.regus.com/uk',
+                    US: 'http://purchasinggroup.regus.com/us',
+                    getUrl: function(countryIsoCode) {
+                        switch (countryIsoCode) {
+                        case UK:
+                            return this.UK;
+                        case US:
+                            return this.US;
+                        default:
+                            return '';
+                        }
+                    }
+                },
+                businessLink: {
+                    logged: 'http://businesslink.regus.com/Home/MRLogin/',
+                    notlogged: 'http://businesslink.regus.com',
+                    getUrl: function(affilateCode) {
+                        return affilateCode ? this.logged + affilateCode : this.notlogged;
+                    }
+                },
+                marketplace: {
+                    URL: 'http://marketplace.regus.com/',
+                    getUrl: function(countryIsoCode) {
+                        switch (countryIsoCode) {
+                        case UK:
+                            return this.URL;
+                        case US:
+                            return this.URL;
+                        default:
+                            return '';
+                        }
+                    }
+                },
+                reguscares: {
+                    fundraise: 'http://go.ammado.com/myregusfundraise',
+                    donate: 'http://go.ammado.com/myregusdonate',
+                    gift: 'http://go.ammado.com/regus'
+                },
+                airsideUrl: 'https://regus.dragonpassuk.com/myregus/',
+                motionUrl: 'http://www.theautoclub.co.uk/',
+                cancellationPolicyUrl: 'https://titan.regus.com/PublicFiles/TnC/default.aspx?lcid=2057&amp;subdirectory',
+                cookiesPolicyUrl: 'http://www.regus.co.uk/customer-service/cookies-policy.aspx',
+                tomTomNavigationUrl: 'http://www.regus.com/zsys/ncms/en-us/home/pages/satnav.aspx',
+                meetUrl: 'http://meet.regus.com',
+                navigation: {
+                    tomTom: 'http://www.regus.co.uk/zsys/ncms/en-gb/home/_project_files/TomTom%20UK.zip',
+                    googleEarth: 'http://www.regus.com/zsys/ncms/en-gb/home/_project_files/google%20UK.zip',
+                    navMan: 'http://www.regus.co.uk/zsys/ncms/en-gb/home/_project_files/Navman%20UK.zip'
+                },
+                termsAndConditionsUrl: 'http://www.regus.com/images/SiteTermsAndConditions_tcm304-38646.pdf',
+                bookTermsAndConditionsUrl: 'https://titan.regus.com/PublicFiles/TnC/default.aspx?lcid=2057&amp;subdirectory',
+                privacyPolicyUrl: 'http://www.regus.co.uk/images/PrivacyPolicy_tcm294-38647.pdf',
+                staplesRegisterUrl: 'http://register.staplesadvantage.com/c/s?RegFormId=BFlCaj',
+                staplesLoginUrl: 'https://www.staplesadvantage.com/webapp/wcs/stores/servlet/StplLogon?intrusion=0',
+                lyrecoLoginUrl: 'https://www.lyreco.com/DC/FH1/OLOSSO/Login/RegusLogin.do',
+                lyrecoRegisterUrl: 'https://www.lyreco.com/DC/FH1/regusAccountRegistration.do',
+                lyrecoSharePass: '9_xVOcWVgfRF-bjvDNbxz+NaozWzC5p7Yyu',
+                grandToyLoginUrl: 'https://www.grandandtoy.com/shopping/xt_login.asp',
+                grandToyRegisterUrl: 'https://www.grandandtoy.com/account/publicaccountsignup1?pCode=RS',
+                grandToySharePass: 'RegusSelfServe',
+                regusUrl: 'http://www.regus.com',
+                macAddressDescriptionLink: 'http://www.wikihow.com/Find-the-MAC-Address-of-Your-Computer/',
+                oldRegusUrl: 'https://www.myregus.com/',
+                detectIpExternal: true ? { url: 'https://api.ipify.org/?format=jsonp&amp;callback=JSON_CALLBACK', param: 'ip' } : null,
+                dhlUrl: 'https://book.parcel.dhl.co.uk/?promocode=REGUS'
+            },
+            isReferFriendVisible: true,
+            isToolsVisible: true,
+            applicationInsightsInstrumentationKey: 'cb9e1dca-7a98-47d1-825f-e26265baf233',
+        })
+        .service('recommendedMapByIp', function() {
+            return function() {
+                return window._RECOMMENDED_MAP_BY_IP;
+            };
+        });
+</script>
+
+</body>
+</html>

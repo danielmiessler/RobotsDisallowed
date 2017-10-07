@@ -15,7 +15,7 @@
 </style>
 </head>
 <body>
-<link rel="stylesheet" type="text/css" href="http://music.baidu.com/cms/app/static/css/appHeader.css"/>
+ <link rel="stylesheet" type="text/css" href="http://music.baidu.com/cms/app/static/css/appHeader.css"/>
 <script type="text/javascript" src="http://music.baidu.com/cms/app/static/js/appHeader.js"></script>
 <style>
 body { min-width:1000px; _width:expression(this.offsetWidth < 1000 ? "1000px" : this.offsetWidth-0 + "px");}
@@ -31,8 +31,6 @@ body { min-width:1000px; _width:expression(this.offsetWidth < 1000 ? "1000px" : 
                   <li><a href="/pc/index-pc.html" target="_self">软件下载</a>
             <em></em></li>
                   <li><a href="/pc/skin_____.html" target="_self">精美皮肤</a>
-            <em></em></li>
-                  <li><a href="/pc/lyrics.html" target="_self">歌词上传</a>
             <em></em></li>
          </ul>     
   </div>
@@ -53,34 +51,104 @@ $(function(){
 	});
 	$("#header .sub-item").hover(function(){ $("#ttHead ul").css("visibility","hidden"); },function(){ $("#ttHead ul").css("visibility","visible"); });	
 });
-appHeader.create('pc');
+  appHeader.create('pc');
 </script>
-<table class="mainTable">
-  <tr>
-    <td class="mainLeft"><i></i></td>
-    <td class="mainCenter"><i></i>
-      <div class="content">
-        <div id="ttLink"><span>&nbsp;</span><a href="/pc/spec/download614/ttpsetup_614-44059078.exe" class="text1">&nbsp;</a>|<a href="/pc/spec/download614/ttpsetup_614cht-57039028.exe" class="text2">&nbsp;</a><a href="/pc/download/BaiduMusic_836-12345638.exe" class="text3">&nbsp;</a></div>
-        <div id="roundImg">
-          <div class="text text1"></div>
-          <div class="text text2"></div>
-          <div class="img img1"></div>
-          <div class="img img2"></div>
-        </div>
-        <div id="bdLink"><a class="a1" href="/pc/spec/download9119/BaiduMusic-12345617.exe" title="立即下载"></a><span>版本：V9.1.19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;更新日期：2015-08-27</span></div>
-      </div></td>
-    <td class="mainRight"><i></i></td>
-  </tr>
-</table>
+<div class="versionInfor">
+  <div class="versInfor_con">
+    <div class="clearfix">
+      <div id="ttLink" class="fr">
+        <span class="fl">千千静听(</span>
+        <a class="fl text1" href="/pc/spec/download614/ttpsetup_614-44059078.exe">简体版</a>
+        <span class="fl">|</span>
+        <a class="fl text2" href="/pc/spec/download614/ttpsetup_614cht-57039028.exe">繁体版</a>
+        <span class="fl">)</span>
+        <!--<a class="fl text3 mac-link-txt" href="javascript:void(0)">百度音乐Mac体验版</a> -->
+         <!--<div class="mac-download-tips-box"> 
+        	<div class="trangle_up"></div>
+        <img src="/pc/resources/images/default/mac.png">
+          <h3 class="mac-title">欢迎下载百度音乐<br>Mac体验版</h3>
+          <a class="download-mac-btn" href="http://music.baidu.com/pc/download/BaiduMusic-1.0.1.dmg">立即下载</a>
+        </div>-->
+      </div>
+    </div> 
+    <div class="clearfix first">
+      <div class="pc_img fl">
+        <img class="one" src="/pc/resources/images/temp/pc_1bg.png" />
+        <!-- <img class="two" src="/pc/resources/images/temp/pc_2bg.png" />
+        <img class="three" src="/pc/resources/images/temp/pc_3bg.png" /> 
+        <img class="three" src="/pc/resources/images/temp/pc_4bg.png" /> -->
+      </div>
+      <div id="bdLink" class="bdLink fr">
+        <p class="pc-client-txt"><i class="new-logo"></i>百度音乐客户端</p>
+        <!--win版本-->
+        <a class="button-large" href="https://download.qianqian.com/channel/1/guanwang" title="立即下载"><i class="download-icon"></i>WIN 客户端下载</a>
+        <span>版本：V11.0.0</span>
+        <span class="dtime">更新日期：2017-09-27</span>
+        <!-- <span><a class="new_pc" href="http://music.baidu.com/cms/m/appDownload/?pst=qianqian"></a></span> -->
+        <!--mac版本-->
+        <a class="button-large" href="http://music.baidu.com/pc/download/BaiduMusic-1.0.5.dmg" title="立即下载"><i class="download-icon"></i>MAC 客户端下载</a>
+        <span>版本：V1.0.5</span>
+        <span class="dtime">更新日期：2017-08-04</span>
+
+      </div> 
+    </div> 
+    <p class="text_img txt2"></p> 
+    <div class="pc_con_img1"></div> 
+    <div class="pc_con_img2"></div>
+    <div id="bdLink2" class="bdLink">
+      <p class="bd_img"></p>
+      <a class="a1" href="https://download.qianqian.com/channel/1/guanwang" title="立即下载"></a>
+      <span>版本：V11.0.0</span>
+      <span>更新日期：2017-09-27</span>
+    </div>
+    </div>
+  </div>
+</div>
 <!-- -->
 <script src="/pc/resources/js/log.js" language="javascript" type="text/javascript"></script>
 <script>
-$(function(){	   
+$(function(){
+  var num=0;  
 	setInterval(function(){
-		$("#roundImg .text").fadeToggle(2000);
-		$("#roundImg .img").fadeToggle(2000);			 
-	}, 6*1000);
+      num++;
+      if(num == 5){
+        num = 1;
+      }
+		  $(".one").attr('src',"/pc/resources/images/temp/pc_"+num+"bg.png");
+   //   $(".one").stop().fadeToggle(2000);
+		 // $(".two").stop().fadeToggle(4000);
+   //   $(".three").stop().fadeToggle(6000);	 
+	}, 6000);
+	$('.mac-link-txt').click(function(e){
+    e.stopPropagation();
+		var display = $('.mac-download-tips-box').css('display');
+		if(display == 'none'){
+			$('.mac-download-tips-box').fadeIn();
+		}else{
+			$('.mac-download-tips-box').fadeOut();
+		}
+		
+	})
+$('.mac-download-tips-box').click(function(e){
+  e.stopPropagation();
+  $('.mac-download-tips-box').css('display','block');
+})
+  $(document).click(function(e){
+      $('.mac-download-tips-box').fadeOut();
+  })
+	
+	
 });
 </script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?95b8e84de86df92f4d6d704ee95c9bc0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
 </body>
 </html>  

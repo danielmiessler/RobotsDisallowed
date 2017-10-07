@@ -1,19 +1,34 @@
-User-agent: Mediapartners-Google
-Disallow:
+<?php
+/*
+if (eregi("Windows NT 5.1", $HTTP_USER_AGENT)) exit;
+include "header_code.php";
+$sql="insert into spider_log(ipaddr,agent,date_created) values('$REMOTE_ADDR','$HTTP_USER_AGENT',now())";
+$obj->query($sql);
+$ip_log=$REMOTE_ADDR;
+$sql="select * from spider_ip where ip='$ip_log'";
+$obj->query($sql);
+if($obj->num_rows()==0){
+        $sql="insert into spider_ip(ip,agent) values('$ip_log','$HTTP_USER_AGENT')";
+        $obj->query($sql);
+}
+*/
+echo "User-agent: Mediapartners-Google\n";
+echo "Disallow:\n\n";
+echo "User-agent: *\n";
+echo "disallow: /linkto\n";
+echo "disallow: /banner_stat\n";
+echo "disallow: /tv/test\n";
+echo "disallow: /tv/channel_iframe.php\n";
+echo "disallow: /download.php\n\n";
 
-User-agent: *
-disallow: /linkto
-disallow: /banner_stat
-disallow: /tv/test
-disallow: /tv/channel_iframe.php
-disallow: /download.php
+echo "User-agent: Googlebot \n";
+echo "disallow: /linkto\n";
+echo "disallow: /search_ad.php\n";
+echo "disallow: /banner_stat\n";
+echo "disallow: /radio_station.php\n";
+echo "disallow: /embed.php\n";
+echo "disallow: /goto.php\n";
+echo "disallow: /download.php\n";
+echo "disallow: /tv/channel_iframe.php\n";
 
-User-agent: Googlebot 
-disallow: /linkto
-disallow: /search_ad.php
-disallow: /banner_stat
-disallow: /radio_station.php
-disallow: /embed.php
-disallow: /goto.php
-disallow: /download.php
-disallow: /tv/channel_iframe.php
+?>

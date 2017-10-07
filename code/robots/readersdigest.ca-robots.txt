@@ -1,115 +1,97 @@
-#
-# robots.txt
-#
-# This file is to prevent the crawling and indexing of certain parts
-# of your site by web crawlers and spiders run by sites like Yahoo!
-# and Google. By telling these "robots" where not to go on your site,
-# you save bandwidth and server resources.
-#
-# This file will be ignored unless it is at the root of your host:
-# Used:    http://example.com/robots.txt
-# Ignored: http://example.com/site/robots.txt
-#
-# For more information about the robots.txt standard, see:
-# http://www.robotstxt.org/wc/robots.html
-#
-# For syntax checking, see:
-# http://www.sxw.org.uk/computing/robots/check.html
-
-User-agent: *
-# Directories
-Disallow: /includes/
-Disallow: /misc/
-Allow: /misc/jquery.js
-Allow: /misc/drupal.js
-Disallow: /modules/
-Allow: /modules/acquia/fivestar/js/fivestar.js
-Allow: /modules/acquia/mollom/mollom.js
-Disallow: /profiles/
-Disallow: /scripts/
-Disallow: /themes/
-# Files
-Disallow: /CHANGELOG.txt
-Disallow: /cron.php
-Disallow: /INSTALL.mysql.txt
-Disallow: /INSTALL.pgsql.txt
-Disallow: /install.php
-Disallow: /INSTALL.txt
-Disallow: /LICENSE.txt
-Disallow: /MAINTAINERS.txt
-Disallow: /update.php
-Disallow: /UPGRADE.txt
-Disallow: /xmlrpc.php
-# Paths (clean URLs)
-Disallow: /admin/
-Disallow: /comment/reply/
-Disallow: /filter/tips/
-Disallow: /logout/
-Disallow: /node/add/
+User-agent : *
+# The login page is removed from index.
+Disallow: /wp-login.php
+# The WP CORE files are removed from index.
+Disallow: /wp-admin
+Disallow: /wp-includes
+# Execept the following (RCD-5346)
+Allow: /wp-admin/admin-ajax.php
+Allow: /wp-includes/js/ 
+Allow: /wp-includes/images/
+# Ping and Trackback URLs are removed from index.
+Disallow: */trackback
+# tag URLs are removed from index. - RCD-5416 : Add the trailing slash to this rule.
+Disallow: */tag/
+# As per Marios recommendations, dont block the feed.
+# All RSS Feed are removed from index., except the main RSS Feed.
+# Disallow: /*/feed
+# OR : All RSS Feed are removed from index..
+# Disallow: /feed
+# All URL concerning comments are removed from index.
+Disallow: /*/comments
+# All URL concerning search on the site are removed from index.
 Disallow: /search/
-Disallow: /user/register/
-Disallow: /user/password/
-Disallow: /user/login/
-# Paths (no clean URLs)
-Disallow: /?q=admin/
-Disallow: /?q=comment/reply/
-Disallow: /?q=filter/tips/
-Disallow: /?q=logout/
-Disallow: /?q=node/add/
-Disallow: /?q=search/
-Disallow: /?q=user/password/
-Disallow: /?q=user/register/
-Disallow: /?q=user/login/
-Sitemap: http://www.readersdigest.ca/sitemap.xml
-Sitemap: http://selection.ca/sitemap.xml
-
-User-agent: Googlebot
-# Directories
-Disallow: /includes/
-Disallow: /misc/
-Allow: /misc/jquery.js
-Allow: /misc/drupal.js
-Disallow: /modules/
-Allow: /modules/acquia/fivestar/js/fivestar.js
-Allow: /modules/acquia/mollom/mollom.js
-Disallow: /profiles/
-Disallow: /scripts/
-Disallow: /themes/
-# Files
-Disallow: /CHANGELOG.txt
-Disallow: /cron.php
-Disallow: /INSTALL.mysql.txt
-Disallow: /INSTALL.pgsql.txt
-Disallow: /install.php
-Disallow: /INSTALL.txt
-Disallow: /LICENSE.txt
-Disallow: /MAINTAINERS.txt
-Disallow: /update.php
-Disallow: /UPGRADE.txt
-Disallow: /xmlrpc.php
-# Paths (clean URLs)
-Disallow: /admin/
-Disallow: /comment/reply/
-Disallow: /filter/tips/
-Disallow: /logout/
-Disallow: /node/add/
-Disallow: /search/
-Disallow: /user/register/
-Disallow: /user/password/
-Disallow: /user/login/
-# Paths (no clean URLs)
-Disallow: /?q=admin/
-Disallow: /?q=comment/reply/
-Disallow: /?q=filter/tips/
-Disallow: /?q=logout/
-Disallow: /?q=node/add/
-Disallow: /?q=search/
-Disallow: /?q=user/password/
-Disallow: /?q=user/register/
-Disallow: /?q=user/login/
-Sitemap: http://www.readersdigest.ca/sitemap.xml
-Sitemap: http://selection.ca/sitemap.xml
-Allow: /*.js*
-Allow: /*.css*
-
-
+# All URL concerning author on the site are removed from index (RCD-5317. Point #9)..
+Disallow: /author/
+# This directory (if prsent) is removed from index.
+Disallow: /cgi-bin
+# All following file are removed from index. This allow CSS and JS files.
+Disallow: /*.php$
+Disallow: /*.inc$
+Disallow: /*.gz$
+Disallow: /*.cgi$
+# RCD-5355 - As per Maios comment - Catchall Rules - Robots.ytxt does not accpet wildcard such as "Disallow: /*/1*/?singlepage=1"
+Disallow: /*/1/?singlepage=1
+Disallow: /*/2/?singlepage=1
+Disallow: /*/3/?singlepage=1
+Disallow: /*/4/?singlepage=1
+Disallow: /*/5/?singlepage=1
+Disallow: /*/6/?singlepage=1
+Disallow: /*/7/?singlepage=1
+Disallow: /*/8/?singlepage=1
+Disallow: /*/9/?singlepage=1
+Disallow: /*/10/?singlepage=1
+Disallow: /*/11/?singlepage=1
+Disallow: /*/12/?singlepage=1
+Disallow: /*/13/?singlepage=1
+Disallow: /*/14/?singlepage=1
+Disallow: /*/15/?singlepage=1
+Disallow: /*/16/?singlepage=1
+Disallow: /*/17/?singlepage=1
+Disallow: /*/18/?singlepage=1
+Disallow: /*/19/?singlepage=1
+Disallow: /*/20/?singlepage=1
+Disallow: /*/21/?singlepage=1
+Disallow: /*/22/?singlepage=1
+Disallow: /*/23/?singlepage=1
+Disallow: /*/24/?singlepage=1
+Disallow: /*/25/?singlepage=1
+Disallow: /*/26/?singlepage=1
+Disallow: /*/27/?singlepage=1
+Disallow: /*/28/?singlepage=1
+Disallow: /*/29/?singlepage=1
+Disallow: /*/30/?singlepage=1
+Disallow: /*/31/?singlepage=1
+Disallow: /*/32/?singlepage=1
+Disallow: /*/33/?singlepage=1
+Disallow: /*/34/?singlepage=1
+Disallow: /*/35/?singlepage=1
+Disallow: /*/36/?singlepage=1
+Disallow: /*/37/?singlepage=1
+Disallow: /*/38/?singlepage=1
+Disallow: /*/39/?singlepage=1
+Disallow: /*/40/?singlepage=1
+Disallow: /*/41/?singlepage=1
+Disallow: /*/42/?singlepage=1
+Disallow: /*/43/?singlepage=1
+Disallow: /*/44/?singlepage=1
+Disallow: /*/45/?singlepage=1
+Disallow: /*/46/?singlepage=1
+Disallow: /*/47/?singlepage=1
+Disallow: /*/48/?singlepage=1
+Disallow: /*/49/?singlepage=1
+Disallow: /*/50/?singlepage=1
+Disallow: /*/51/?singlepage=1
+Disallow: /*/52/?singlepage=1
+Disallow: /*/53/?singlepage=1
+Disallow: /*/54/?singlepage=1
+Disallow: /*/55/?singlepage=1
+Disallow: /*/56/?singlepage=1
+Disallow: /*/57/?singlepage=1
+Disallow: /*/58/?singlepage=1
+Disallow: /*/59/?singlepage=1
+Disallow: /*/59/?singlepage=1
+# RCD-5417 - Block some other singlepage URLs.
+Disallow: /*/page/*/?singlepage=1
+# RCD-5440 - Add this directive to robots.txt
+Allow: /wp-includes/css/

@@ -9,40 +9,60 @@
 
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml"><head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-        
-        <link rel="stylesheet" type="text/css" href="Resources?r=iconscss&c=1442259066000" />
-        <link rel="stylesheet" type="text/css" href="resources/css/style.css" />
-        <link rel="stylesheet" type="text/css" href="resources/css/vale.css" />
-        <script type="text/javascript" src="js/sweetalert-dev.js"></script>
-        <script type="text/javascript" src="js/sweetalert.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/sweetalert.css"/>
-        <link rel="shortcut icon" href="https://cfd.sicofi.com.mx/Sicofi/img/favicon.ico" />
-        <link rel="icon" type="image/gif" href="https://cfd.sicofi.com.mx/Sicofi/img/animated_favicon1.gif" />
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"></link>
-        <script type="text/javascript" src="Resources?r=common&c=1442259072000"></script>
-        <script type="text/javascript" src="resources/js/validador.js"></script> 
+                                    
+        <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css"/>                                                     
+        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>                
+        <script type="text/javascript" src="js/jquery/bootstrap.js"></script>        
+        <script type="text/javascript" src="js/sweetalert2.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/sweetalert2.min.css"/>                    
+        <link rel="stylesheet" type="text/css" href="css/Animate.css"/>        
+        <link rel="stylesheet" type="text/css" href="css/animate.min.css"/>   
+        <link rel="stylesheet" type="text/css" href="css/CssGenerales.css"/>
+        <script type="text/javascript" src="js/JsGenerales.js"></script>                        
+        <script type="text/javascript" src="Resources?r=common&c=1507320342000"></script>        
         <script type="text/javascript">
-            $(document).ready(function(){
-                if ($("#SessionC").val() == undefined) {                    
+            $(document).ready(function () {
+                if ($("#SessionC").val() == undefined) {
                     SetTimesSesion();
-                }                
-            });            
+                }
+                var Servicio = $('#GoogleUser').val();
+                var GoogleUser = '';
+                if (Servicio == 0) {
+                    GoogleUser = 'UA-68937003-2';
+                } else if (Servicio == 1) {
+                    GoogleUser = 'UA-68937003-1';
+                }
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r;
+                    i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date();
+                    a = s.createElement(o),
+                            m = s.getElementsByTagName(o)[0];
+                    a.async = 1;
+                    a.src = g;
+                    m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+                ga('create', GoogleUser, 'auto');
+                ga('send', 'pageview');
+            });
             var counter = 0;
             var TimerDialog;
             var TimerSesion;
-            var timerId;                      
-            function ShowAlert() {                                
-                if (counter != 0 && counter != undefined) {                                        
-                    SweetAlert(counter + " Segundos.");               
+            var timerId;
+            function ShowAlert() {
+                if (counter != 0 && counter != undefined) {
+                    SweetAlert(counter + " Segundos.");
                     counter = counter - 1;
-                }else{
+                } else {
                     SweetAlert("Cerrando sesión...")
-                }                
-            }                    
-            function SweetAlert(dato) {                 
+                }
+            }
+            function SweetAlert(dato) {
                 swal({
                     title: "Cierre de Sesión por Inactividad",
                     html: 'Por disposición del SAT con motivo de su seguridad, <br>Su sesión expirará después de 10 min de inactividad. <br>Para permanecer dentro del sistema de click en Continuar.<br> De lo contrario su sesión expirara en:<div style="color: red;"> ' + dato + '</div> ',
@@ -52,19 +72,19 @@
                     closeOnCancel: false,
                 }, function (isConfirm) {
                     if (isConfirm) {
-                        ResetTimeOut();                     
+                        ResetTimeOut();
                     }
-                });               
+                });
             }
             function ResetTimeOut() {
                 clearTimeout(TimerDialog);
                 clearTimeout(TimerSesion);
                 clearTimeout(timerId);
-                counter = undefined;                    
+                counter = undefined;
                 SetTimesSesion();
             }
             function SetTimesSesion() {
-                TimerDialog = setTimeout(function () {                                                       
+                TimerDialog = setTimeout(function () {
                     timerId = setInterval("ShowAlert()", 1000);
                     counter = 180;
                     ShowAlert();
@@ -78,101 +98,234 @@
             }
         </script>
         <title>Sistema para la generación y envío de Comprobantes Fiscales Digitales</title>
-    </head><body><div id="loaderW" onClick="return false;"><div id="loader">
-                       <img alt="" src="resources/img/Loading.gif" /><p>Por favor espere.<br />Cargando.....</p>
-            </div></div><div id="content">
+    </head><body><div><input type="hidden" value="1" id="GoogleUser"></input></div><div id="content">
 
-<script type="text/javascript" src="resources/js/empresa/login.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/NuevoLogin.css"/>        
+    <script type="text/javascript" src="js/fancybox2/jquery.fancybox.js?v=2.1.5"></script>
+    <link rel="stylesheet" type="text/css" href="css/fancybox2/jquery.fancybox.css?v=2.1.5"/>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#Mostrar').mouseover(function () {
+                $("#Password").get(0).type = 'text';
+            });
+            $('#Mostrar').mouseleave(function () {
+                $("#Password").get(0).type = 'password';
+            });
+            $("#OlvidaPoP").click(function () {
+                OlvidaContra();
+            });
+            $("#LIGAPAC").click(function () {
+                var LigaManual = 'http://www.sat.gob.mx/informacion_fiscal/factura_electronica/Paginas/pac_teledesic_broadband.aspx';
+                window.open(LigaManual);
+            });
+            $("#ClienteRecep").click(function () {
+                $.fancybox($("#ClienteReceptor").html());
+                $('.CancelarFB').unbind('click');
+                $('.CancelarFB').click(function () {
+                    $.fancybox.close();
+                });
+                $('.IngresaUsuario').unbind('click');
+                $(".IngresaUsuario").click(function () {
 
+                });
+            });
+            $("#LoginSicofi").validate({
+                rules: {
+                    Login: {
+                        required: true,
+                        email: true
+                    },
+                    Password: {
+                        required: true,
+                        minlength: 4
+                    },
+                },
+                messages: {
+                    Login: {
+                        required: "Por favor ingresa tu email.",
+                        email: "Ingresa tu email correctamente."
+                    },
+                    Password: {
+                        required: "Por Favor ingresa tu contraseña.",
+                        minlength: ""
+                    },
+                },
+                errorElement: "em",
+                errorPlacement: function (error, element) {
+                    // Add the `help-block` class to the error element
+                    error.addClass("help-block");
 
-<style type="text/css">
-    <!--
-    body {
-        background: #3080bb url('img/images/bg_main_login.jpg') 100% 50% no-repeat;
-    }
-    table{
-        margin-top:20px;
-        margin-left:175px;
-        text-align:left;
-    }
-    table td{
-       vertical-align:top;
-    }
-    .login_text {
-        font-family:Verdana, Geneva, sans-serif;
-        font-size:11px;
-        color:#FFF;
-        padding:90px 0 0 120px;
-    }
-    .datos_acceso{
-        font-family:Verdana, Geneva, sans-serif;
-        font-size:11px;
-        font-weight: bold;
-        color:#050;
+                    if (element.prop("type") === "checkbox") {
+                        error.insertAfter(element.parent("label"));
+                    } else {
+                        error.insertAfter(element);
+                    }
+                }
+                ,
+                highlight: function (element, errorClass, validClass) {
+                    $(element).parents(".LOG").addClass("has-error").removeClass("has-success");
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).parents(".LOG").addClass("has-success").removeClass("has-error");
+                }
+            });
+        });
+        function lonnew2() {
+            swal({
+                html: '<div class="spinnerL"></div>',
+                width: '150',
+                height: '120',
+                background: 'url()',
+                closeOnCancel: false,
+                showConfirmButton: false,
+                allowEscapeKey: false,
+                allowOutsideClick: false
+            });
+        }
+        function ErrorReceptor(text) {
+            swal({
+                title: 'Campo Obligatorio',
+                html: $('<div>')
+                        .addClass('some-class')
+                        .text(text),
+                animation: false,
+                customClass: 'animated fadeInDown',
+                confirmButtonText: 'Continuar',
+                confirmButtonColor: '#005D29'
+            })
+        }
+        function OlvidaContra() {
+            swal({
+                title: 'Recupera tu cuenta',
+                input: 'email',
+                html: $('<div>')
+                        .addClass('some-class')
+                        .text('Ingrese el usuario al cual desea restablecer la contraseña.'),
+                animation: false,
+                customClass: 'animated fadeInDown',
+                confirmButtonColor: '#005D29',
+                cancelButtonColor: '#c82d2d',
+                confirmButtonText: 'Enviar',
+                showCancelButton: true,
+                cancelButtonText: 'Cancelar',
+                allowEscapeKey: false,
+                allowOutsideClick: false
+            }).then(function (email) {
+                $.ajax({
+                    url: "Ajax?a=EnvioContrasena",
+                    type: 'POST',
+                    data: '&Email=' + email,
+                    datatype: 'json',
+                    success: function (res) {
+                        if (res.sts == 1) {
+                            swal({
+                                type: 'success',
+                                confirmButtonText: 'Continuar',
+                                confirmButtonColor: '#005D29',
+                                title: 'Correo Enviado',
+                                html: 'En breve se le enviara los pasos para recuperar su cuenta.'
+                            })
+                        } else {
+                            swal({
+                                type: 'error',
+                                title: 'Error',
+                                confirmButtonText: 'Continuar',
+                                confirmButtonColor: '#c82d2d',
+                                html: 'No fue posible reactivar su cuenta. Pongase en contacto con nosotros.'
+                            })
+                        }
+                    }, error: function (error, msg) {
+                        loffnew();
+                    }
+                });
+            })
+        }
+        $.validator.setDefaults({
+            submitHandler: function () {
+                lonnew2();
+                $("#LoginSicofi").sumbit();
+            }
+        });
+    </script>
+
+<br><br>
+<div style="vertical-align: middle;">
+    <div style="font-size: 25px;color: white;text-align: center;font-family: Tahoma;font-weight:bold; margin-top: -0px;">
         
-    }
-    #Mostrar{
-        cursor: pointer;
-        background:url('../../Sicofi/img/menu/eye.png') no-repeat 0px 0; width: 35px; height: 35px;
-    }
-    .inputs{
-        font-family: Verdana, Geneva, sans-serif;
-        font-size: 11px;
-        width: 250px;
-        margin:2px;
-        border: 1px solid #060 !important;
-        padding:1px 3px;
-    }
-    .btningresar {
-        font-family: Verdana, Geneva, sans-serif;
-        font-size: 12px;
-        font-weight: bold;
-        color: #FFF;
-        background-color: #003399;
-        border: 1px solid #FFF;
-        padding:1px 15px;
-        margin:15px 0 0 120px;
-    }
-    -->
-</style>
-<div style="font-size: 25px;color: white;text-align: center;font-family: Tahoma; margin:20px auto;font-variant: small-caps; font-weight:bold;">
-    
-</div>
-<div style="margin:auto;text-align: center; background:url('img/images/login2.png');width:588px; height:263px; position:relative;">
-    <div class="login_text">
-        <b>Por favor escriba sus datos de acceso para ingresar al sistema.</b>
     </div>
-    <form id="Login" name="Login" action="Main" method=post  onsubmit="">
+    <form id="LoginSicofi" class="form-horizontal fv-form fv-form-bootstrap" name="LoginSicofi" action="Main" method=post>        
         <input name="Acc" type="hidden" value="NuevoLogin" />
         <input name="SessionC" id="SessionC" type="hidden" value="1" />
-        <table>
-            <tr>
-                <td>
-                    <div class="datos_acceso" style="margin-top: 3px;">Correo Electr&oacute;nico:</div>
-                </td>
-                <td>
-                    <div class="datos_acceso"><input name="Login" id="Login" type="text" class="inputs" /></div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="datos_acceso" style="float: left;margin-top: 3px;">Contrase&ntilde;a:</div>                                     
-                    <div id="Mostrar"  style="width: 15px; height: 15px; float: right; margin-top: 4px;"></div>
-                </td>
-                <td>                    
-                    <div class="datos_acceso"><input name="Password" id="Password" type="password" class="inputs" /></div>
-                </td>
-            </tr>
-        </table>
-        <div style="text-align: center">
-            <input  value="Ingresar" type="submit" id="ingresar" class="btningresar">
+        <div class="container">
+            <div class="alineaMarco">
+                <input type="hidden" name="testconexion" value="ConexionBD12549820914597489"/>
+                <div style="background-color: #F7F7F7;margin: auto; width: 410px; height: 600px; margin-top: 18px;">            
+                    <img id="profile-img" style="width: 210px; margin-left: 100px; position: relative; margin-top: 35px;" src="img/NuevoLogin/LogoSicofi.png" /><br><br><br><br>                               
+                    <div class="alineatextlogin" style="width: 350px; position: relative; margin-top: -30px; margin-left: 60px;">
+                        <div class="alineaimagen" style="margin-left: -15px;">
+                            <img class="imgtamano" src="img/NuevoLogin/Usuario.png">
+                        </div>
+                        <div class="LOG alineaderecha" style="margin-right: 75px;">
+                            <input name="Login" id="Login" type="text" class="form-control tamanoinput" placeholder="Usuario">
+                        </div>
+                    </div>    
+                    <div class="alineatextlogin" style="width: 350px; margin-left: 60px;">
+                        <div class="alineaimagen"  style="margin-left: -15px;">
+                            <div style="float: left">
+                                <img class="imgtamano" src="img/NuevoLogin/Password.png">
+                            </div>
+                            <div style="float: right; margin-top: 15px;" class="hand">
+                                <img id="Mostrar" src="img/menu/eye.png"/>
+                            </div>
+                        </div>
+                        <div  class="LOG alineaderecha" style="margin-right: 75px;">
+                            <input id="Password" name="Password" type="password" class="form-control tamanoinput" placeholder="Contraseña">                   
+                        </div>                        
+                    </div>
+                    <div id="ClienteRecep" class="OlvidaPass" style="margin-block-end: auto; overflow: hidden; width: 100px; cursor: pointer;position: relative; margin-left: 245px; top: -13px; text-decoration: underline;">
+                        Soy Receptor
+                    </div>
+                    <br><br>   
+                    <button class="mano LoginButton" type="submit" id="LOG" style="margin-left: 105px;margin-top: -45px;position: relative; ">Ingresar</button>
+                    <div class="OlvidaPass alineaContrasenia" id="OlvidaPoP" style="margin-left: 130px;margin-top:-6px;">
+                        Olvidaste tu contraseña?          
+                    </div>    
+                    <div style="padding-top: 30px; width: 350px; margin: auto;">
+                        <img style="width: 300px; margin-left: 30px;" src="img/NuevoLogin/PacLine.png"/>
+                    </div>
+                    <div style="padding-top: 20px; width: 350px; margin: auto;">
+                        <img style="width: 80px; margin-left: 138px;" src="img/NuevoLogin/DigiFact.gif" id="LIGAPAC" class="hand"/>
+                    </div>
+                </div>
+            </div>    
         </div>
     </form>
-    <div class="datos_acceso" style="text-align:left;padding: 25px 0 0 15px; position:absolute; bottom:12px;">
-        
-        <a href="Main?Acc=PAReceptor"><b>&iquest;Olvid&oacute; su contrase&ntilde;a?</b></a>
-                
-    </div>   
 </div>
+<div class="box" id="ClienteReceptor" style="width: 450px;margin: auto;display: none;">
+    <form action="Main" id="login" method="post" name="recuppwd" class="IngresaReceptor" >   
+        <input name="ReceptorF" type="hidden" value="1"/>
+        <div class="boxTitleNew">Receptores de CFDI</div>
+        <div class="inboxnew">
+            <div style="padding: 5px;">
+                <div class="FloatLeft">
+                    <font class="Red">* </font>RFC:<div style="position: relative; top: -2px;margin-left: 8px;" class="icon_tooltip" title="Es su RFC."></div>                            
+                </div>
+                <div class="FloatRigth"><input name="Password" id="Password" class="textinput" style="width: 200px;" value=""></div>
+            </div><br>
+            <div style="padding: 5px;"><div class="FloatLeft"><font class="Red">* </font>Identificador del Cliente:<div style="position: relative; top: -2px;margin-left: 8px;" class="icon_tooltip" title="Identificador de cliente proporcionado por el emisor de la factura."></div>
 
+                </div>
+                <div class="FloatRigth"><input name="Login" id ="Login" class="textinput" style="width: 200px;" value=""></div>
+            </div><br>
+            <div style="padding: 5px;">
+                <div class="FloatLeft"><font class="Red">* </font>Cliente de Instituto de Oftalmología:<div style="position: relative; top: -2px;margin-left: 8px;" class="icon_tooltip" title="Si usted es cliente de Instituto de Oftalmología seleccione SI, de lo contrario seleccione NO."></div></div>
+                <div class="FloatRigth" style="margin-right: 50px;"><input type="radio" value="0" checked="TRUE" name="clientepadre" /> No<input style="margin-left: 20px;" type="radio" value="2550013"  name="clientepadre" /> Si</div></div>
+            <br><br>
+            <div style="text-align: center;">
+                <input class="ButtonOk IngresaUsuario" type="submit" value="Ingresar" name="botonActualizar" />
+                <input class="ButtonBorrar CancelarFB" type="button"  value="Regresar"/>
+            </div>
+        </div>
+    </form>
+</div>
 </div><script type="text/javascript" src="resources/js/loader.js"></script></body></html>

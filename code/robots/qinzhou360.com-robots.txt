@@ -1,27 +1,79 @@
-#
-# robots.txt for Discuz! X2
-#
+<!DOCTYPE html>
+<html>
+<head>			
+<title>访问验证</title>
+<meta charset="utf-8" />
+<style>
+body{margin:0; padding:0;text-align: center;font-family:"微软雅黑" Arial, Helvetica, sans-serif;font-size: 14px;background-color:#f9f9f9;color: #666;}
+div,dl,dl,dt,ul,li,p,h1,h2,input{margin:0; padding:0;}
+h1{font-size:22px;  line-height:30px; text-align:left; line-height:40px; margin-bottom:10px; color:#666;}
+.main{width:560px; margin:150px auto;}
+.warncontenter{height:200px;background-color:#fff;border:1px #aaa dashed;margin:30px 0px;}
+.onefifth{line-height:160px;width:20%;float:left;}
+.warntips{color:#999;font-size:12px;line-height:100px;height:70px;}
+.warnbtn{line-height:60px;height:40px;}
+.onethird{line-height:32px;width:35%;float:left;}
+.onehalf{line-height:210px;	height:200px;width:45%;float:left;}
+.waring-tips1{height:42px; line-height:42px; font-size:15px; color:#fff; }
+.waring-tips1{background:rgba(236,80,80,1) 560px center;}
+.waring-tips1 p{font-weight: normal;padding-left:50px; line-height:42px; background:url(/wzws-waf-cgi/c.png) no-repeat 7px center;}
+.wz-warniing-code{border:1px solid #999; height:153px;}
+.wz-warniing-tips{border:1px solid #999; height:108px; margin-top:17px;}
+.wz-warniing-tips h2{font-size:16px; color:#666; line-height:35px; padding-top:5px;}
+.wz-warniing-tips P{text-align:left; font-size:14px; line-height:23px; padding:5px 10px;}
+.wz-warniing-code p{padding-top:20px;}
+.wz-warniing-code img{vertical-align:middle;}
+.code-btn{width:177px; height:30px; line-height:31px;  background:rgba(63,179,79,1); color:#fff; font-size:16px; font-weight:bold; text-align:center; border:0; cursor:pointer}
+.code-input{width:165px; height:32px; border:1px solid #ccc;font-size: 21px;padding: 0px 0px 0px 10px;}
+</style>
+<script type="text/javascript">
+function changeImg(){
+    document.getElementById("Image1").src="/waf_captcha/?"+Math.random();
+}
+</script>
+</head>
+<body>
+<div class="main">
+	<h1 class="waring-tips1"><p id="host">网站当前访问量较大，请输入验证码后继续访问</p></h1>
+	<div class="warncontenter">
+		<div class="onefifth">验证码：
+		</div>
+		<div class="onethird">
+		<form action="/waf_verify.htm" method="GET">
+			<div class="warntips">(输入图中的字符，不区分大小写)</div>
+			<div>
+                <input type="text" name="captcha" class="code-input" />
+			</div>
+			<div class="warnbtn">
+				<input type="submit" value="确定" class="code-btn"/>
+			</div>
+			</form>
+		</div>
+		<div class="onehalf">
+			<span style="float:left;"><img id="Image1" width="120" src="/waf_captcha/" alt="验证码" /></span>
+			<span style="float:left;margin:-3px 0px 0px 3px;"><a href="javascript:changeImg();" style="color:#aaa;">看不清，换一张</a></span>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="/wzws-waf-cgi/jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#host").text($("#host").text()+location.hostname);
+});
+</script>
+<script type="text/javascript">
 
-User-agent: *
-Disallow: /api/
-Disallow: /data/
-Disallow: /source/
-Disallow: /install/
-Disallow: /template/
-Disallow: /config/
-Disallow: /uc_client/
-Disallow: /uc_server/
-Disallow: /static/
-Disallow: /admin.php
-Disallow: /search.php
-Disallow: /member.php
-Disallow: /api.php
-Disallow: /misc.php
-Disallow: /connect.php
-Disallow: /forum.php?mod=redirect*
-Disallow: /forum.php?mod=post*
-Disallow: /home.php?mod=spacecp*
-Disallow: /userapp.php?mod=app&*
-Disallow: /*?mod=misc*
-Disallow: /*?mod=attachment*
-Disallow: /*mobile=yes*
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32745158-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>
+

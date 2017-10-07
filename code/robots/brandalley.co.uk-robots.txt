@@ -1,132 +1,93 @@
-# Google Image Crawler Setup
-User-agent: Googlebot-Image
-Disallow:
+# robots.txt
+#
+# This file is to prevent the crawling and indexing of certain parts
+# of your site by web crawlers and spiders run by sites like Yahoo!
+# and Google. By telling these â€œrobotsâ€ where not to go on your site,
+# you save bandwidth and server resources.
+#
+# This file will be ignored unless it is at the root of your host:
+# Used: http://www.brandalley.co.uk/robots.txt
+# Ignored: http:// www.brandalley.co.uk/site/robots.txt
 
-User-agent: Yandex
-Disallow: /
-
-User-agent: YandexBot
-Disallow: /
-
-# Block MJ12bot as it is just noise
-User-agent: MJ12bot
-Disallow: /
-
-# Block Ahrefs
-User-agent: AhrefsBot
-Disallow: /
-
-# Block Sogou
-User-agent: sogou spider
-Disallow: /
-
-# Block SEOkicks
-User-agent: SEOkicks-Robot
-Disallow: /
-
-# Block BlexBot
-User-agent: BLEXBot
-Disallow: /
-
-# Block SISTRIX
-User-agent: SISTRIX Crawler
-Disallow: /
-
-# Block Uptime robot
-User-agent: UptimeRobot/2.0
-Disallow: /
-
-User-agent: 008
-Disallow: /
-
-# Block Ezooms Robot
-User-agent: Ezooms Robot
-Disallow: /
-
-# Block Perl LWP
-User-agent: Perl LWP
-Disallow: /
-
-# Block BlexBot
-User-agent: BLEXBot
-Disallow: /
-
-# Block netEstate NE Crawler (+http://www.website-datenbank.de/)
-User-agent: netEstate NE Crawler (+http://www.website-datenbank.de/)
-Disallow: /
-
-# Block WiseGuys Robot
-User-agent: WiseGuys Robot
-Disallow: /
-
-# Block Turnitin Robot
-User-agent: Turnitin Robot
-Disallow: /
-
-# Block Heritrix
-User-agent: Heritrix
-Disallow: /
-
-# Block pricepi 
-User-agent: pimonster
-Disallow: /
-User-agent: Pimonster
-Disallow: /
-
-# Block Searchmetrics Bot
-User-agent: SearchmetricsBot
-Disallow: /
-
-# Block Eniro
-User-agent: ECCP/1.0 (search@eniro.com)
-Disallow: /
-
-# Block Baidu
-User-agent: Baiduspider
-User-agent: Baiduspider-video
-User-agent: Baiduspider-image
-Disallow: /
-
-# Block SoGou
-User-agent: Sogou Spider
-Disallow: /
-
-# Block Youdao
-User-agent: YoudaoBot
-Disallow: /
-
-# Block Nikon JP Crawler
-User-agent: gsa-crawler (Enterprise; T4-KNHH62CDKC2W3; gsa_manage@nikon-sys.co.jp)
-Disallow: /
+# Website Sitemap
+# Sitemap: https://www.brandalley.co.uk/sitemap.xml
 
 # Crawlers Setup
 User-agent: *
+Crawl-delay: 5
 
-# Directories
+# Allowable Index for blog
+Allow: /blog/
+
+
+Disallow: /CVS
+Disallow: /*.svn$
+Disallow: /*.idea$
+Disallow: /*.sql$
+Disallow: /*.tgz$
+
+# # Do not index the page Magento admin
+Disallow: /admin/
+Disallow: /c6th2gbAALm99/
+
+# Do not index the general technical Magento directory
 Disallow: /404/
 Disallow: /app/
 Disallow: /cgi-bin/
 Disallow: /downloader/
 Disallow: /errors/
 Disallow: /includes/
-Disallow: /magento/
+#Disallow: /js/
+Disallow: /lib/
+Disallow: /media/
+Disallow: /media/captcha/
+# Disallow: /media/catalog/
+# Disallow: /media/css/
+# Disallow: /media/css_secure/
+Disallow: /media/customer/
+Disallow: /media/dhl/
+Disallow: /media/downloadable/
+Disallow: /media/import/
+# Disallow: /media/js/
+Disallow: /media/pdf/
+Disallow: /media/sales/
+Disallow: /media/tmp/
+Disallow: /media/wysiwyg/
+Disallow: /media/xmlconnect/
 Disallow: /pkginfo/
-Disallow: /report/
+Disallow: /reports/
 Disallow: /scripts/
 Disallow: /shell/
-Disallow: /skin/
+#Disallow: /skin/
 Disallow: /stats/
 Disallow: /var/
+Disallow: /maintenance_page/
+Disallow: /firewall_error_page/
+Disallow: /documentation/
+Disallow: /ogone/
 
-# Paths (clean URLs)
-Disallow: /index.php/
+
+## Do not crawl links with session IDs
+Disallow: /*?SID=
+
+## Do not crawl checkout and user account pages
+Disallow: /checkout/
+Disallow: /onestepcheckout/
+Disallow: /customer/
+Disallow: /customer/account/
+Disallow: /customer/account/login/
+
+## Do not crawl seach pages and not-SEO optimized catalog links
 Disallow: /catalog/product_compare/
 Disallow: /catalog/category/view/
 Disallow: /catalog/product/view/
-Disallow: /catalogsearch/
+
+
+# Paths (clean URLs) & Do not index the page checkout and user account
+Disallow: /index.php/
+Disallow: /catalog/product/gallery/
 Disallow: /control/
 Disallow: /contacts/
-Disallow: /customer/
 Disallow: /customize/
 Disallow: /newsletter/
 Disallow: /poll/
@@ -134,18 +95,287 @@ Disallow: /review/
 Disallow: /sendfriend/
 Disallow: /tag/
 Disallow: /wishlist/
-Disallow: /catalog/product/gallery/
 
-# Files
+
+
+## Do not crawl common Magento files
+Disallow: /api.php
 Disallow: /cron.php
 Disallow: /cron.sh
 Disallow: /error_log
 Disallow: /install.php
+Disallow: /get.php
+Disallow: /install.php
 Disallow: /LICENSE.html
 Disallow: /LICENSE.txt
 Disallow: /LICENSE_AFL.txt
+Disallow: /README.txt
+Disallow: /RELEASE_NOTES.txt
 Disallow: /STATUS.txt
+Disallow: /mage
 
-# Paths (no clean URLs)
-Disallow: /*.php$
-Disallow: /*?SID=
+#Do not crawl as per current development files
+Disallow: /chanel.html
+Disallow: /checkSession.php
+Disallow: /gitdeploymentversion.txt
+Disallow: /maintenance.php
+Disallow: /scheduler_cron.sh
+Disallow: /timeonserver.php
+Disallow: /MAGENTO-520-patch.patch
+
+# Magento 1.5+
+Disallow: /cleanup.php
+Disallow: /apc.php
+Disallow: /memcache.php
+Disallow: /phpinfo.php
+
+
+
+## Do not crawl sub category pages that are sorted or filtered & QueryStrings
+Disallow: /*?dir=*
+Disallow: /*&dir=*
+Disallow: /*?mode=*
+Disallow: /*&mode=*
+Disallow: /*?order=*
+Disallow: /*&order=*
+Disallow: /*?is_ajax=*
+Disallow: /*&is_ajax=*
+Disallow: /*?limit=*
+Disallow: /*&limit=*
+Disallow: /*?p=*
+Disallow: /*&p=*
+Disallow: /*?product=*
+Disallow: /*&product=*
+Disallow: /*?portfolioID=*
+Disallow: /*&portfolioID=*
+##previewAction
+Disallow: /*?___store=*
+Disallow: /rss*
+Disallow: /*PHPSESSID
+
+# wordpress-robots
+
+# WP-Print plugin
+Disallow: /blog/print/
+Allow: /blog/?display=wide/
+Allow: /blog/wp-content/uploads/
+Allow: /blog/wp-json/posts
+
+Disallow: /blog/*?
+Disallow: /blog/wp-content/plugins/
+Disallow: /blog/readme.html
+Disallow: /blog/wp-config.php
+Disallow: /blog/refer/
+#Disallow: /feed/
+#Disallow: */feed/
+#Disallow: /comments/
+#Disallow: */comments/
+#Disallow: /trackback/
+#Disallow: */trackback/
+Disallow: /blog/wp-admin/
+Disallow: /blog/wp-includes/
+Disallow: /blog/wp-content/themes/
+Disallow: /blog/wp-content/plugins/
+Disallow: /blog/wp-content/mu-plugins/
+Disallow: /blog/wp-content/upgrade/
+
+
+# Crawlers Competition page 
+  #Disallow: /register-awin/
+  #Disallow: /register-to-win-cosmopolitan/
+  #Disallow: /register-to-win-marie-claire-2/
+  #Disallow: /register-to-win-marie-claire/
+  #Disallow: /register-to-win-weekend-hamper/
+  #Disallow: /voucher-competition/
+
+
+# Some bots are known to be trouble, particularly those designed to copy
+# entire sites or download them for offline viewing. 
+#
+User-agent: sitecheck.internetseer.com
+Disallow: /
+
+User-agent: Zealbot
+Disallow: /
+
+User-agent: MSIECrawler
+Disallow: /
+
+User-agent: SiteSnagger
+Disallow: /
+
+User-agent: WebStripper
+Disallow: /
+
+User-agent: WebCopier
+Disallow: /
+
+User-agent: Fetch
+Disallow: /
+
+User-agent: Offline Explorer
+Disallow: /
+
+User-agent: Teleport
+Disallow: /
+
+User-agent: TeleportPro
+Disallow: /
+
+User-agent: WebZIP
+Disallow: /
+
+User-agent: linko
+Disallow: /
+
+User-agent: HTTrack
+Disallow: /
+
+# Xenu Crawler
+User-agent: Xenu
+Disallow: /
+
+User-agent: larbin
+Disallow: /
+
+# W3C Crawler
+User-agent: libwww
+Disallow: /
+
+# LookSmart Crawler
+User-agent: ZyBORG
+Disallow: /
+
+User-agent: Download Ninja
+Disallow: /
+
+User-agent: Nutch
+Disallow: /
+
+User-agent: spock
+Disallow: /
+
+User-agent: OmniExplorer_Bot
+Disallow: /
+
+User-agent: TurnitinBot
+Disallow: /
+
+User-agent: BecomeBot
+Disallow: /
+
+User-agent: genieBot
+Disallow: /
+
+User-agent: dotbot
+Disallow: /
+
+User-agent: MLBot
+Disallow: /
+
+User-agent: 80bot
+Disallow: /
+
+User-agent: Linguee Bot
+Disallow: /
+
+User-agent: aiHitBot
+Disallow: /
+
+User-agent: Exabot
+Disallow: /
+
+User-agent: SBIder/Nutch
+Disallow: /
+
+User-agent: SBIder
+Disallow: /
+
+
+User-agent: Jyxobot
+Disallow: /
+
+User-agent: mAgent
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: Speedy Spider
+Disallow: /
+
+User-agent: ShopWiki
+Disallow: /
+
+User-agent: Huasai
+Disallow: /
+
+User-agent: DataCha0s
+Disallow: /
+
+User-agent: Baiduspider
+Disallow: /
+
+User-agent: Atomic_Email_Hunter
+Disallow: /
+
+User-agent: Mp3Bot
+Disallow: /
+
+User-agent: WinHttp
+Disallow: /
+
+User-agent: betaBot
+Disallow: /
+
+User-agent: core-project
+Disallow: /
+
+User-agent: panscient.com
+Disallow: /
+
+User-agent: Java
+Disallow: /
+
+User-agent: libwww-perl
+Disallow: /
+
+
+User-agent: wget
+Disallow: /
+
+User-agent: grub-client
+Disallow: /
+
+User-agent: k2spider
+Disallow: /
+
+# Hits many times per second, not acceptable
+
+User-agent: NPBot
+Disallow: /
+
+User-agent: Microsoft.URL.Control
+Disallow: /
+
+User-agent: Orthogaffe
+Disallow: /
+
+# Crawlers that are kind enough to obey, but which we'd rather not have
+# unless they're feeding search engines.
+User-agent: UbiCrawler
+Disallow: /
+
+User-agent: DOC
+Disallow: /
+
+User-agent: Zao
+Disallow: /
+
+User-agent: Twiceler
+Disallow: /
+
+
+# A capture bot, downloads gazillions of pages with no public benefit
+User-agent: WebReaper
+Disallow: /

@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="robots" content="index, follow">	
 	<meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
 	<title>error_404 - Globus - Vielfalt, Qualität und Beratung</title>
 	<link rel="stylesheet" href="/media/technisch_1/css_1/bootstrap/bootstrapmin.css">
@@ -16,7 +17,9 @@
 <link rel="stylesheet" href="/media/technisch_1/css_1/globus_styles/animations.css">
 <link rel="stylesheet" href="/media/technisch_1/css_1/owl_1/owlcarousel.css">
 <link rel="stylesheet" href="/media/technisch_1/css_1/owl_1/owltransitions.css">
-<link rel="stylesheet" href="">
+<link rel="stylesheet" href="/media/technisch_1/css_1/bootstrap_image_gallery/bootstrap_image_gallerymin.css">
+<link rel="stylesheet" href="/media/technisch_1/css_1/vendor_1/jqueryscrollbar.css">
+<link rel="stylesheet" href="/media/technisch_1/css_1/print.css" media="print">
 <script>
 	//Ensures there will be no 'console is undefined' errors
 	window.console = window.console || (function(){
@@ -24,8 +27,8 @@
 	    return c;
 	})();
 </script>
-<script src="http://www.google.com/recaptcha/api.js" async defer></script>
-<script src="http://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+	<script src="http://www.google.com/recaptcha/api.js" async defer></script>
+		<script src="http://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDRhn2zhnsH91WMf8cMWpksgxaWTxs8PuU"></script>
 <script src="/media/technisch_1/js_1/jquery_1/jquery-1112min.js"></script>
 <script src="/media/technisch_1/js_1/jquery_1/jquery-uimin.js"></script>
 <script src="/media/technisch_1/js_1/jquery_1/jquerytouchSwipemin.js"></script>
@@ -45,6 +48,9 @@
 <script src="/media/technisch_1/js_1/globusjs/globusform.js"></script>
 <script src="/media/technisch_1/js_1/jquery_1/jquerymatchHeight.js"></script>
 <script src="/media/technisch_1/js_1/owl/owlcarousel.js"></script>
+<script src="/media/technisch_1/js_1/vendor/jqueryscrollbarmin.js"></script>
+<script src="/media/technisch_1/js_1/vendor/jQueryprint.js"></script>
+<script src="/media/technisch_1/js_1/vendor/underscore-min.js"></script>
 <script src="http://integration.globus.de/faltblatt_online/aktuelle_woche/bob/ressources/js/onlineshoppinglist.js"></script>
 <script src="/media/technisch_1/js_1/globusjs/products.js"></script>
 <script src="/media/technisch_1/js_1/globusjs/globus_phone.js"></script>
@@ -77,9 +83,81 @@
 	<script>
 		ajaxHandler.register("foobar");
 	</script>
-	<meta name="google-site-verification" content="W8TM6NO2Bjie1RaBTOfbqbcwwcYwBCZZMUWtHtgNguM" />
+	<script>
+	function setUserIcon(){
+	/*$.ajax({
+        url: "http://integration.globus.de/meinglobus/status.php",
+        dataType: 'jsonp',
+        success: function (data) {
+	if(data.logged_in == 1){
+		$('.login-meinglobus').hide();
+		$('.logged-in-meinglobus').show();
+	}
+	else {
+		$('.login-meinglobus').show();
+		$('.logged-in-meinglobus').hide();
+	}
+        }
+	});
+	*/};
+	$(function(){
+		//setUserIcon();
+		});
+	</script>
 </head>
 <body style="position: relative;">
+	<div class="cookielaw clearfix">
+	<div class="cl_text">
+		<div class="large visible-md visible-lg">
+			Durch die Anwendung von Cookies können wir Ihnen marktspezifische Informationen übermitteln. Wenn Sie diese Seite nutzen, akzeptieren Sie unsere Cookie-Richtlinien. <a href="/de/datenschutz.html">Hier</a> erfahren Sie mehr.
+		</div>
+		<div class="small visible-sm visible-xs">
+			Durch die Anwendung von Cookies können wir Ihnen marktspezifische Informationen übermitteln. Wenn Sie diese Seite nutzen, akzeptieren Sie unsere Cookie-Richtlinien. <a href="/de/datenschutz.html">Hier</a> erfahren Sie mehr.
+		</div>
+	</div>
+	<div class="cl_divider visible-md-inline-block visible-lg-inline-block"></div>
+	<div class="close_cl"><span class="icon icon-close"></span></div>
+</div>
+<style>
+	.cookielaw {
+		background-color: #585858;
+		color: white;
+		//display: none;
+		text-align: center;
+		padding: 7px;
+	}
+	.cookielaw a {
+		color: white;
+		text-decoration: underline;
+	}
+	.cookielaw .cl_divider {
+		width: 40px;
+	}
+	.cookielaw > div {
+		display: inline-block;
+	}
+	.cookielaw .close_cl {
+		cursor: pointer;
+		padding: 10px 7px;
+	}
+</style>
+<script>
+	//check cookie
+	if (!docCookies.hasItem("saw_cl")) {
+		$(".cookielaw").show();
+	} else {
+		$(".cookielaw").remove();
+	}
+	$(".cookielaw .close_cl").click(function() {
+		$(".cookielaw").slideUp("slow", function() {
+			$(this).remove();
+			//setcookie
+			var now = new Date();
+			var nextYear = new Date(now.setFullYear(now.getFullYear()+1));
+			docCookies.setItem("saw_cl", true, nextYear, "/");
+		})
+	})
+</script>
 	<style>
 		#loading_overlay {
 			height: 100%;
@@ -244,6 +322,7 @@ function noMealsMIFallback() {
 	<select name="market_select" class="market_select" id="market_select">
 		<option disabled="disabled" selected="selected">Wählen Sie Ihren Markt</option>
 		<option data-uri="/de/maerkte/bobenheim_roxheim/willkommen.html" value="1044">Bobenheim-Roxheim</option> 
+		<option data-uri="/de/maerkte/chemnitz/willkommen.html" value="1056">Chemnitz</option> 
 		<option data-uri="/de/maerkte/dutenhofen/willkommen.html" value="1002">Dutenhofen</option> 
 		<option data-uri="/de/maerkte/erfurt_linderbach/willkommen.html" value="1012">Erfurt-Linderbach</option> 
 		<option data-uri="/de/maerkte/erfurt_mittelhausen/willkommen.html" value="1024">Erfurt-Mittelhausen</option> 
@@ -262,7 +341,7 @@ function noMealsMIFallback() {
 		<option data-uri="/de/maerkte/idar_oberstein/willkommen.html" value="1005">Idar-Oberstein</option> 
 		<option data-uri="/de/maerkte/isserstedt/willkommen.html" value="1021">Isserstedt</option> 
 		<option data-uri="/de/maerkte/kaiserslautern/willkommen.html" value="1043">Kaiserslautern</option> 
-		<option data-uri="/de/maerkte/koblenz/willkommen.html" value="1014">Koblenz</option> 
+		<option data-uri="/de/maerkte/koblenz/willkommen.html" value="1055">Koblenz</option> 
 		<option data-uri="/de/maerkte/koeln_marsdorf/willkommen.html" value="1031">Köln-Marsdorf</option> 
 		<option data-uri="/de/maerkte/lahnstein/willkommen.html" value="1011">Lahnstein</option> 
 		<option data-uri="/de/maerkte/leipzig_seehausen/willkommen.html" value="1042">Leipzig-Seehausen</option> 
@@ -276,11 +355,11 @@ function noMealsMIFallback() {
 		<option data-uri="/de/maerkte/neutraubling/willkommen.html" value="1017">Neutraubling</option> 
 		<option data-uri="/de/maerkte/plattling/willkommen.html" value="1033">Plattling</option> 
 		<option data-uri="/de/maerkte/rostock_roggentin/willkommen.html" value="1036">Rostock-Roggentin</option> 
+		<option data-uri="/de/maerkte/ruesselsheim/marktstartseite.html" value="1053">Rüsselsheim Bauschheim</option> 
 		<option data-uri="/de/maerkte/saarlouis/willkommen.html" value="1007">Saarlouis</option> 
 		<option data-uri="/de/maerkte/schwandorf/willkommen.html" value="1029">Schwandorf</option> 
 		<option data-uri="/de/maerkte/simmern/willkommen.html" value="1009">Simmern</option> 
 		<option data-uri="/de/maerkte/st_wendel/willkommen.html" value="1001">St. Wendel</option> 
-		<option data-uri="/de/maerkte/stockstadt/willkommen.html" value="1049">Stockstadt</option> 
 		<option data-uri="/de/maerkte/theissen_zeitz/willkommen.html" value="1026">Theissen-Zeitz</option> 
 		<option data-uri="/de/maerkte/voelklingen/willkommen.html" value="1016">Völklingen</option> 
 		<option data-uri="/de/maerkte/waechtersbach/willkommen.html" value="1019">Wächtersbach</option> 
@@ -290,7 +369,74 @@ function noMealsMIFallback() {
 		<option data-uri="/de/maerkte/zell_an_der_mosel/willkommen.html" value="1010">Zell an der Mosel</option> 
 		<option data-uri="/de/maerkte/zwickau/willkommen.html" value="1037">Zwickau</option> 
 	</select>
+	<div class="mobile_custom_select">
+		<span class="the_label">Wählen Sie Ihrem Markt</span>
+		<div class="market_input_icon"></div>
+		<select>
+			<option disabled="disabled" selected="selected">Wählen Sie Ihren Markt</option>
+				<option data-uri="/de/maerkte/bobenheim_roxheim/willkommen.html" value="1044">Bobenheim-Roxheim</option> 
+				<option data-uri="/de/maerkte/chemnitz/willkommen.html" value="1056">Chemnitz</option> 
+				<option data-uri="/de/maerkte/dutenhofen/willkommen.html" value="1002">Dutenhofen</option> 
+				<option data-uri="/de/maerkte/erfurt_linderbach/willkommen.html" value="1012">Erfurt-Linderbach</option> 
+				<option data-uri="/de/maerkte/erfurt_mittelhausen/willkommen.html" value="1024">Erfurt-Mittelhausen</option> 
+				<option data-uri="/de/maerkte/forchheim/willkommen.html" value="1020">Forchheim</option> 
+				<option data-uri="/de/maerkte/freilassing/willkommen.html" value="1041">Freilassing</option> 
+				<option data-uri="/de/maerkte/gensingen/willkommen.html" value="1003">Gensingen</option> 
+				<option data-uri="/de/maerkte/gera_trebnitz/willkommen.html" value="1023">Gera Trebnitz</option> 
+				<option data-uri="/de/maerkte/gruenstadt/willkommen.html" value="1040">Grünstadt</option> 
+				<option data-uri="/de/maerkte/saarbruecken_guedingen/willkommen.html" value="1006">Güdingen</option> 
+				<option data-uri="/de/maerkte/halle_bruckdorf/willkommen.html" value="1035">Halle-Bruckdorf</option> 
+				<option data-uri="/de/maerkte/hattersheim/willkommen.html" value="1047">Hattersheim</option> 
+				<option data-uri="/de/maerkte/hermsdorf/willkommen.html" value="1027">Hermsdorf</option> 
+				<option data-uri="/de/maerkte/hockenheim_talhaus/willkommen.html" value="1046">Hockenheim-Talhaus</option> 
+				<option data-uri="/de/maerkte/homburg_einoed/willkommen.html" value="1004">Homburg-Einöd</option> 
+				<option data-uri="/de/maerkte/hoyerswerda/willkommen.html" value="1025">Hoyerswerda</option> 
+				<option data-uri="/de/maerkte/idar_oberstein/willkommen.html" value="1005">Idar-Oberstein</option> 
+				<option data-uri="/de/maerkte/isserstedt/willkommen.html" value="1021">Isserstedt</option> 
+				<option data-uri="/de/maerkte/kaiserslautern/willkommen.html" value="1043">Kaiserslautern</option> 
+				<option data-uri="/de/maerkte/koblenz/willkommen.html" value="1055">Koblenz</option> 
+				<option data-uri="/de/maerkte/koeln_marsdorf/willkommen.html" value="1031">Köln-Marsdorf</option> 
+				<option data-uri="/de/maerkte/lahnstein/willkommen.html" value="1011">Lahnstein</option> 
+				<option data-uri="/de/maerkte/leipzig_seehausen/willkommen.html" value="1042">Leipzig-Seehausen</option> 
+				<option data-uri="/de/maerkte/limburg/willkommen.html" value="1051">Limburg</option> 
+				<option data-uri="/de/maerkte/losheim/willkommen.html" value="1008">Losheim</option> 
+				<option data-uri="/de/maerkte/ludwigshafen/willkommen.html" value="1030">Ludwigshafen</option> 
+				<option data-uri="/de/maerkte/maintal/willkommen.html" value="1050">Maintal</option> 
+				<option data-uri="/de/maerkte/markkleeberg_wachau/willkommen.html" value="1022">Markkleeberg-Wachau</option> 
+				<option data-uri="/de/maerkte/muehldorf/willkommen.html" value="1038">Mühldorf</option> 
+				<option data-uri="/de/maerkte/neustadt/willkommen.html" value="1018">Neustadt</option> 
+				<option data-uri="/de/maerkte/neutraubling/willkommen.html" value="1017">Neutraubling</option> 
+				<option data-uri="/de/maerkte/plattling/willkommen.html" value="1033">Plattling</option> 
+				<option data-uri="/de/maerkte/rostock_roggentin/willkommen.html" value="1036">Rostock-Roggentin</option> 
+				<option data-uri="/de/maerkte/ruesselsheim/marktstartseite.html" value="1053">Rüsselsheim Bauschheim</option> 
+				<option data-uri="/de/maerkte/saarlouis/willkommen.html" value="1007">Saarlouis</option> 
+				<option data-uri="/de/maerkte/schwandorf/willkommen.html" value="1029">Schwandorf</option> 
+				<option data-uri="/de/maerkte/simmern/willkommen.html" value="1009">Simmern</option> 
+				<option data-uri="/de/maerkte/st_wendel/willkommen.html" value="1001">St. Wendel</option> 
+				<option data-uri="/de/maerkte/theissen_zeitz/willkommen.html" value="1026">Theissen-Zeitz</option> 
+				<option data-uri="/de/maerkte/voelklingen/willkommen.html" value="1016">Völklingen</option> 
+				<option data-uri="/de/maerkte/waechtersbach/willkommen.html" value="1019">Wächtersbach</option> 
+				<option data-uri="/de/maerkte/weischlitz/willkommen.html" value="1032">Weischlitz</option> 
+				<option data-uri="/de/maerkte/wiesbaden/willkommen.html" value="1048">Wiesbaden</option> 
+				<option data-uri="/de/maerkte/waghaeusel_wiesental/willkommen.html" value="1013">Wiesental</option> 
+				<option data-uri="/de/maerkte/zell_an_der_mosel/willkommen.html" value="1010">Zell an der Mosel</option> 
+				<option data-uri="/de/maerkte/zwickau/willkommen.html" value="1037">Zwickau</option> 
+		</select>
+	</div>
 </form>
+<script>
+$(function() {
+	//sortSelect(document.getElementById('market_select'));
+	$(".mobile_custom_select").each(function() {
+		var $select = $(this).find("select");
+		var $label = $(this).find(".the_label");
+		$label.text($select.find(":selected").text());
+	})
+	$(".mobile_custom_select").find('select').change(function() {
+		window.location = ($(this).find("option:selected").data("uri"));
+	})
+})
+</script>
 	</div>
 </div>
 <script>
@@ -316,6 +462,7 @@ $(".mic_marktfinder #market_select").selectmenu({
 			<div style="float: right">
 				<a href="#" class="button btn_grey mail_mz">Per E-mail</a>
 				<a href="#" class="button btn_grey print_mz">Drucken</a>
+				<a href="#" class="button btn_grey all_mz">Alle zeigen</a>
 			</div>
 		</div>
 		<table width="100%" class="product_table">
@@ -563,12 +710,15 @@ function infoMIFallback() {
 		border: none;
 	}
 	.navbar .icon {
-		font-size: 42px;
+		font-size: 32px;
 		position: relative;
 	}
 	.navbar .icon-circle_newsletter {
 		right: -12px;
-	}	
+	}
+	.navbar .icon-circle_instagram {
+		right: 7px;
+	}
 	.navbar .icon-circle_search {
 		right: -24px;
 		top: 1px;
@@ -584,7 +734,7 @@ function infoMIFallback() {
 	}
 	.navbar .desktop-icons {
 		height: 100px;
-		padding-top: 31px;
+		padding-top: 51px;
 	}
 	.navbar .icon.main-nav .menu-toggle-text {
 		display: none;
@@ -598,7 +748,7 @@ function infoMIFallback() {
 		position: relative;
 	}
 	.navbar .spacer_navbar_top {
-		height: 32px;
+		height: 50px;
 	}
 	.navbar-brand {
 		background-image: url(/media/technisch_1/img_2/grafiken/logo.png);
@@ -606,6 +756,10 @@ function infoMIFallback() {
 		background-repeat: no-repeat;
 		position: absolute;
 		left: 15px;
+	}
+	a.login-meinglobus:hover {color: #093;}
+	.navbar .desktop-icons a {
+		font-family: "Clearface-Medium";
 	}
 </style>
 <div id="nav_container" class="bg_white">
@@ -632,9 +786,13 @@ function infoMIFallback() {
 		<nav class="navbar navbar-default">
 		    <div class="navbar-header">
 		      <div class="desktop-icons hidden-xs hidden-sm">
-			      <a href="#"><span class="icon icon-circle_search"></span></a>
-				  <a href="/de/kontakt/kontakt_3.html"><span class="icon icon-circle_newsletter"></span></a>
-				  <a href="http://www.facebook.com/Globus.de" target="_blank"><span class="icon icon-circle_facebook"></span></a>
+		      	  <a href="/de/mein_globus/kundenabfrage.html" class="btn text_orange login-meinglobus" style="position: absolute; font-size: 12px; right: 120px; top: 4px;"><span class="icon icon-user" style="font-size:23px; position:relative;top:6px"></span> Anmelden</a>
+		      	  <a href="/de/mein_globus/kundenabfrage.html" class="btn text_orange login-meinglobus logged-in-meinglobus" style="position: absolute; display: none; font-size: 12px; right: 120px; top: 4px;"><span class="icon icon-user" style="font-size:23px; position:relative;top:6px"></span> Eingeloggt</a>
+			      <a href="/de/kontakt/kontakt_3.html" style="text-decoration: underline; position: absolute; font-size: 12px; right: 65px; top: 3px; line-height: 50px">Kontakt</a>
+			      <a href="/de/services/newsletter/newsletter.html" style="text-decoration: underline; position: absolute; font-size: 12px; right: 0px; top: 3px; line-height: 50px">Newsletter</a>
+			      <a href="#"><span class="icon icon-search"></span></a>
+				  <a href="https://www.youtube.com/user/GlobusGermany" target="_blank"><span class="icon icon-icon_youtube"></span></a>
+				  <a href="http://www.facebook.com/Globus.de" target="_blank"><span class="icon icon-icon_facebook"></span></a><a target="_blank" href="https://www.instagram.com/globus.de/"><span class="icon icon-icon_instagram"></span></a>
 			  </div>
 			  <div type="button" class="button icon collapsed visible-xs-inline-block visible-sm-inline-block pull-right main-nav" data-toggle="collapse" data-target="#main-nav">
 			  	<span class="menu-toggle-text">Menü</span>
@@ -642,6 +800,7 @@ function infoMIFallback() {
 			  </div>
 			  <div type="button" class="icon icon-search visible-xs-inline-block visible-sm-inline-block pull-right"></div>
 			  <div type="button" class="button collapsed icon icon-share visible-xs-inline-block visible-sm-inline-block pull-right" data-toggle="collapse" data-target="#share"></div>
+			  <div type="button" class="button collapsed icon icon-user visible-xs-inline-block visible-sm-inline-block pull-right" data-toggle="collapse" onClick="window.location.href='/de/mein_globus/kundenabfrage.html'"></div>
 		    </div>
 			<div class="clearfix visible-xs-inline visible-sm-inline"></div>
 		    <!-- Collect the nav links, forms, and other content for toggling -->
@@ -655,6 +814,18 @@ function infoMIFallback() {
 					<li><a href="/de/marken/marken.html">Marken</a></li>
 					<li><a href="/de/services/fuersie.html">Services</a></li>
 					<li><a href="/de/unternehmen/unternehmen.html">Unternehmen</a></li>
+					<li><a href="/de/mein_globus/information.html">Mein Globus</a></li>
+<script>
+	$('#main-nav .navbar-nav li a').each(function(){
+		if($(this).html() == "Mein Globus"){
+			$(this).addClass("mein-globus-link");
+		}
+	});
+</script>
+<style>
+	#main-nav .navbar-nav li a.mein-globus-link {color: #093}
+	#main-nav .navbar-nav li a.mein-globus-link:hover, #main-nav .navbar-nav li.active a.mein-globus-link  {color: #f98a00;}
+</style>
 		        <li class="visible-xs visible-sm"><a href="/de/kontakt/kontakt_3.html">Kontakt</a></li>
 		        </ul>
 		    </div>
@@ -663,6 +834,8 @@ function infoMIFallback() {
 		      <ul class="nav navbar-nav visible-xs visible-sm">
 		        <li><a href="/de/services/newsletter/newsletter.html">Newsletter</a></li>
 		        <li><a href="http://www.facebook.com/Globus.de" target="_blank">Facebook</a></li>
+				<li><a href="https://www.youtube.com/user/GlobusGermany" target="_blank">Youtube</a></li>
+				<li><a href="https://www.instagram.com/globus.de/" target="_blank">Instagram</a></li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
 		</nav>
@@ -720,9 +893,9 @@ ul#breadcrumb {
 						<div class="row">
 			<div class="content_element col-xs-12">
 	<div class="">
-		<h3 class="mt0 left_text">Liebe Besucherin, lieber Besucher,</h3>
+			<h3 class="mt0 left_text">Liebe Besucherin, lieber Besucher,</h3>
 		<div class="left_text">
-			<p class="baseText"><strong>Bitte klicken Sie auf eine der folgenden Möglichkeiten:</strong></p><p class="baseText"><ul style="color: #555555; font-size: 13px; line-height: 20px; list-style: disc outside none; padding-left: 20px"><li>
+			<p class="baseText"><strong>Bitte klicken Sie auf eine der folgenden Möglichkeiten:</strong></p><p class="baseText"><ul style=" font-size: 13px; line-height: 20px; list-style: disc outside none; padding-left: 20px"><li>
 <a class="default_intern_link"  href="/de/home.html">Zurück zur Startseite</a>
 </li><li>
 <a class="default_intern_link"  href="/de/sortiment/sortiment.html">Sortimentsübersicht</a>
@@ -742,7 +915,7 @@ ul#breadcrumb {
 		</div>
 	</div>
 </div>
-<div class="container_wrapper bg_chalk" style="z-index: 1">
+<div  class="container_wrapper bg_chalk" style="z-index: 1;">
 	<div class="container">
 		<div class="section_headline_wrapper">
 			<h2 class="section_headline standard text_white">Finden Sie Ihren Markt</h2>
@@ -755,6 +928,7 @@ ul#breadcrumb {
 	<select name="market_select" class="market_select" id="market_select">
 		<option disabled="disabled" selected="selected">Wählen Sie Ihren Markt</option>
 		<option data-uri="/de/maerkte/bobenheim_roxheim/willkommen.html" value="1044">Bobenheim-Roxheim</option> 
+		<option data-uri="/de/maerkte/chemnitz/willkommen.html" value="1056">Chemnitz</option> 
 		<option data-uri="/de/maerkte/dutenhofen/willkommen.html" value="1002">Dutenhofen</option> 
 		<option data-uri="/de/maerkte/erfurt_linderbach/willkommen.html" value="1012">Erfurt-Linderbach</option> 
 		<option data-uri="/de/maerkte/erfurt_mittelhausen/willkommen.html" value="1024">Erfurt-Mittelhausen</option> 
@@ -773,7 +947,7 @@ ul#breadcrumb {
 		<option data-uri="/de/maerkte/idar_oberstein/willkommen.html" value="1005">Idar-Oberstein</option> 
 		<option data-uri="/de/maerkte/isserstedt/willkommen.html" value="1021">Isserstedt</option> 
 		<option data-uri="/de/maerkte/kaiserslautern/willkommen.html" value="1043">Kaiserslautern</option> 
-		<option data-uri="/de/maerkte/koblenz/willkommen.html" value="1014">Koblenz</option> 
+		<option data-uri="/de/maerkte/koblenz/willkommen.html" value="1055">Koblenz</option> 
 		<option data-uri="/de/maerkte/koeln_marsdorf/willkommen.html" value="1031">Köln-Marsdorf</option> 
 		<option data-uri="/de/maerkte/lahnstein/willkommen.html" value="1011">Lahnstein</option> 
 		<option data-uri="/de/maerkte/leipzig_seehausen/willkommen.html" value="1042">Leipzig-Seehausen</option> 
@@ -787,11 +961,11 @@ ul#breadcrumb {
 		<option data-uri="/de/maerkte/neutraubling/willkommen.html" value="1017">Neutraubling</option> 
 		<option data-uri="/de/maerkte/plattling/willkommen.html" value="1033">Plattling</option> 
 		<option data-uri="/de/maerkte/rostock_roggentin/willkommen.html" value="1036">Rostock-Roggentin</option> 
+		<option data-uri="/de/maerkte/ruesselsheim/marktstartseite.html" value="1053">Rüsselsheim Bauschheim</option> 
 		<option data-uri="/de/maerkte/saarlouis/willkommen.html" value="1007">Saarlouis</option> 
 		<option data-uri="/de/maerkte/schwandorf/willkommen.html" value="1029">Schwandorf</option> 
 		<option data-uri="/de/maerkte/simmern/willkommen.html" value="1009">Simmern</option> 
 		<option data-uri="/de/maerkte/st_wendel/willkommen.html" value="1001">St. Wendel</option> 
-		<option data-uri="/de/maerkte/stockstadt/willkommen.html" value="1049">Stockstadt</option> 
 		<option data-uri="/de/maerkte/theissen_zeitz/willkommen.html" value="1026">Theissen-Zeitz</option> 
 		<option data-uri="/de/maerkte/voelklingen/willkommen.html" value="1016">Völklingen</option> 
 		<option data-uri="/de/maerkte/waechtersbach/willkommen.html" value="1019">Wächtersbach</option> 
@@ -801,11 +975,79 @@ ul#breadcrumb {
 		<option data-uri="/de/maerkte/zell_an_der_mosel/willkommen.html" value="1010">Zell an der Mosel</option> 
 		<option data-uri="/de/maerkte/zwickau/willkommen.html" value="1037">Zwickau</option> 
 	</select>
+	<div class="mobile_custom_select">
+		<span class="the_label">Wählen Sie Ihrem Markt</span>
+		<div class="market_input_icon"></div>
+		<select>
+			<option disabled="disabled" selected="selected">Wählen Sie Ihren Markt</option>
+				<option data-uri="/de/maerkte/bobenheim_roxheim/willkommen.html" value="1044">Bobenheim-Roxheim</option> 
+				<option data-uri="/de/maerkte/chemnitz/willkommen.html" value="1056">Chemnitz</option> 
+				<option data-uri="/de/maerkte/dutenhofen/willkommen.html" value="1002">Dutenhofen</option> 
+				<option data-uri="/de/maerkte/erfurt_linderbach/willkommen.html" value="1012">Erfurt-Linderbach</option> 
+				<option data-uri="/de/maerkte/erfurt_mittelhausen/willkommen.html" value="1024">Erfurt-Mittelhausen</option> 
+				<option data-uri="/de/maerkte/forchheim/willkommen.html" value="1020">Forchheim</option> 
+				<option data-uri="/de/maerkte/freilassing/willkommen.html" value="1041">Freilassing</option> 
+				<option data-uri="/de/maerkte/gensingen/willkommen.html" value="1003">Gensingen</option> 
+				<option data-uri="/de/maerkte/gera_trebnitz/willkommen.html" value="1023">Gera Trebnitz</option> 
+				<option data-uri="/de/maerkte/gruenstadt/willkommen.html" value="1040">Grünstadt</option> 
+				<option data-uri="/de/maerkte/saarbruecken_guedingen/willkommen.html" value="1006">Güdingen</option> 
+				<option data-uri="/de/maerkte/halle_bruckdorf/willkommen.html" value="1035">Halle-Bruckdorf</option> 
+				<option data-uri="/de/maerkte/hattersheim/willkommen.html" value="1047">Hattersheim</option> 
+				<option data-uri="/de/maerkte/hermsdorf/willkommen.html" value="1027">Hermsdorf</option> 
+				<option data-uri="/de/maerkte/hockenheim_talhaus/willkommen.html" value="1046">Hockenheim-Talhaus</option> 
+				<option data-uri="/de/maerkte/homburg_einoed/willkommen.html" value="1004">Homburg-Einöd</option> 
+				<option data-uri="/de/maerkte/hoyerswerda/willkommen.html" value="1025">Hoyerswerda</option> 
+				<option data-uri="/de/maerkte/idar_oberstein/willkommen.html" value="1005">Idar-Oberstein</option> 
+				<option data-uri="/de/maerkte/isserstedt/willkommen.html" value="1021">Isserstedt</option> 
+				<option data-uri="/de/maerkte/kaiserslautern/willkommen.html" value="1043">Kaiserslautern</option> 
+				<option data-uri="/de/maerkte/koblenz/willkommen.html" value="1055">Koblenz</option> 
+				<option data-uri="/de/maerkte/koeln_marsdorf/willkommen.html" value="1031">Köln-Marsdorf</option> 
+				<option data-uri="/de/maerkte/lahnstein/willkommen.html" value="1011">Lahnstein</option> 
+				<option data-uri="/de/maerkte/leipzig_seehausen/willkommen.html" value="1042">Leipzig-Seehausen</option> 
+				<option data-uri="/de/maerkte/limburg/willkommen.html" value="1051">Limburg</option> 
+				<option data-uri="/de/maerkte/losheim/willkommen.html" value="1008">Losheim</option> 
+				<option data-uri="/de/maerkte/ludwigshafen/willkommen.html" value="1030">Ludwigshafen</option> 
+				<option data-uri="/de/maerkte/maintal/willkommen.html" value="1050">Maintal</option> 
+				<option data-uri="/de/maerkte/markkleeberg_wachau/willkommen.html" value="1022">Markkleeberg-Wachau</option> 
+				<option data-uri="/de/maerkte/muehldorf/willkommen.html" value="1038">Mühldorf</option> 
+				<option data-uri="/de/maerkte/neustadt/willkommen.html" value="1018">Neustadt</option> 
+				<option data-uri="/de/maerkte/neutraubling/willkommen.html" value="1017">Neutraubling</option> 
+				<option data-uri="/de/maerkte/plattling/willkommen.html" value="1033">Plattling</option> 
+				<option data-uri="/de/maerkte/rostock_roggentin/willkommen.html" value="1036">Rostock-Roggentin</option> 
+				<option data-uri="/de/maerkte/ruesselsheim/marktstartseite.html" value="1053">Rüsselsheim Bauschheim</option> 
+				<option data-uri="/de/maerkte/saarlouis/willkommen.html" value="1007">Saarlouis</option> 
+				<option data-uri="/de/maerkte/schwandorf/willkommen.html" value="1029">Schwandorf</option> 
+				<option data-uri="/de/maerkte/simmern/willkommen.html" value="1009">Simmern</option> 
+				<option data-uri="/de/maerkte/st_wendel/willkommen.html" value="1001">St. Wendel</option> 
+				<option data-uri="/de/maerkte/theissen_zeitz/willkommen.html" value="1026">Theissen-Zeitz</option> 
+				<option data-uri="/de/maerkte/voelklingen/willkommen.html" value="1016">Völklingen</option> 
+				<option data-uri="/de/maerkte/waechtersbach/willkommen.html" value="1019">Wächtersbach</option> 
+				<option data-uri="/de/maerkte/weischlitz/willkommen.html" value="1032">Weischlitz</option> 
+				<option data-uri="/de/maerkte/wiesbaden/willkommen.html" value="1048">Wiesbaden</option> 
+				<option data-uri="/de/maerkte/waghaeusel_wiesental/willkommen.html" value="1013">Wiesental</option> 
+				<option data-uri="/de/maerkte/zell_an_der_mosel/willkommen.html" value="1010">Zell an der Mosel</option> 
+				<option data-uri="/de/maerkte/zwickau/willkommen.html" value="1037">Zwickau</option> 
+		</select>
+	</div>
 </form>
+<script>
+$(function() {
+	//sortSelect(document.getElementById('market_select'));
+	$(".mobile_custom_select").each(function() {
+		var $select = $(this).find("select");
+		var $label = $(this).find(".the_label");
+		$label.text($select.find(":selected").text());
+	})
+	$(".mobile_custom_select").find('select').change(function() {
+		window.location = ($(this).find("option:selected").data("uri"));
+	})
+})
+</script>
 	</form>
+	<!--<div style="padding-left: 13px;padding-top:15px;padding-bottom: 5x;border: 1px solid grey;border-radius: 3px; height: 49px;position: relative;"><strong><a class="default_extern_link" href="http://www.globus.de/de/maerkte/dresden/willkommen.html" target="_blank">Globus für Dresden:</a></strong> <a class="default_extern_link" href="http://www.globus.de/de/maerkte/dresden/willkommen.html" target="_blank" style="color:#ffffff;text decoration: none;">Mehr erfahren</a> </div>-->
 </div>
 <div class="col-md-4 col-sm-6 marktfinder_formular_descr content_element">
-	<p class="text_white">Wir sind für Sie da. Mit günstigen Preisen, höchster Qualität und bestem Service. An 46 Standorten in ganz Deutschland geben jeden Tag über 17.000 Mitarbeiter das Beste für Sie.</p>
+	<p class="text_white">Wir sind für Sie da. Mit günstigen Preisen, höchster Qualität und bestem Service. An 46 Standorten in ganz Deutschland geben jeden Tag über 18.500 Mitarbeiter das Beste für Sie.</p>
 </div>
 <div class="col-md-4 col-sm-12 hidden-xs">
 	<div class="mft_image"></div>
@@ -834,7 +1076,7 @@ $(".location_input").on("submit", function(e) {
 		</div>
 	</div>
 </div>
-<div class="container_wrapper bg_sunny" style="z-index: 0">
+<div  class="container_wrapper bg_sunny" style="z-index: 0;">
 	<div class="container">
 		<div class="section_headline_wrapper center_text">
 		</div>
@@ -845,6 +1087,9 @@ $(".location_input").on("submit", function(e) {
 			<div class="sm_item">
 				<a href="http://www.facebook.com/Globus.de" target="_blank"><span class="wf_icon icon-circle_facebook"></span><span class="social_caption">Facebook</span></a>
 			</div>
+		<div class="sm_item">
+			<a href="https://www.instagram.com/globus.de/" target="_blank"><span class="wf_icon icon-circle_instagram"></span><span class="social_caption">Instagram</span></a>
+		</div>
 			<div class="sm_item">
 				<a href="https://www.youtube.com/user/GlobusGermany" target="_blank"><span class="wf_icon icon-circle_youtube"></span><span class="social_caption">Youtube</span></a>
 			</div>
@@ -887,12 +1132,16 @@ display: inline-block !important;
 					<div class="footer_nav_item col-lg-2 col-md-4 col-sm-4 col-xs-12">
 						<a href="/de/magazin/artikel.html"><h3>Magazin</h3></a>
 						<ul class="footer_subnav hidden-xs">
-						<li><a href="/de/magazin/3d_drucker_1/3ddrucker.html">3D-Drucker</a></li>
-						<li><a href="/de/magazin/mio/mio-magazin.jsp">Mio</a></li>
-						<li><a href="/de/magazin/danke_fuer_platz_1/danke.html">Danke für Platz 1</a></li>
-						<li><a href="/de/magazin/grillvergnuegen/grillen.html">Erweitertes Grillvergnügen</a></li>
+						<li><a href="/de/magazin/kundenmonitor/Kundenmonitor2015.html">Kundenmonitor</a></li>
+						<li><a href="/de/magazin/mio/mio-magazin.html">Mio</a></li>
+						<li><a href="/de/magazin/grillvergnuegen/grillen.html">Grillvergnügen</a></li>
 						<li><a href="/de/magazin/weg_mit_dem_ballast/tippsundtricks.html">Weg mit dem Ballast</a></li>
-						<li><a href="/de/magazin/oktoberfest/oktoberfest.html">Oktoberfest</a></li>
+						<li><a href="/de/magazin/meerestier/meerestier.html">Meerestier</a></li>
+						<li><a href="/de/magazin/warme_getraenke/warmegetraenke.html">Warme Getränke</a></li>
+						<li><a href="/de/magazin/sportlerernaehrung/sportlerernaehrung.html">Sportlerernährung</a></li>
+						<li><a href="/de/magazin/erfrischendeaussichten/ErfrischendeAussichten.html">Wellness</a></li>
+						<li><a href="/de/magazin/vielschichtiger_genuss/vielschichtiger_genuss_1.html">Vielschichtiger Genuss</a></li>
+						<li><a href="/de/magazin/pablos_pride/ananas_aus_costa_rica.html">Pablos Pride</a></li>
 					</ul>
 					</div>
 					<div class="footer_nav_item col-lg-2 col-md-4 col-sm-4 col-xs-12">
@@ -919,11 +1168,13 @@ display: inline-block !important;
 						<a href="/de/services/fuersie.html"><h3>Services</h3></a>
 						<ul class="footer_subnav hidden-xs">
 						<li><a href="/de/services/tankeschoen/tankeschoen.jsp">Tankeschön</a></li>
-						<li><a href="/de/services/baby_club/baby_club.jsp">Baby-Club</a></li>
+						<li><a href="/de/services/baby_club/weltentdecker_club.jsp">Baby-Club</a></li>
+						<li><a href="/de/services/weltentdecker/clubseite.html">Weltentdecker</a></li>
 						<li><a href="/de/services/newsletter/newsletter.html">Newsletter</a></li>
 						<li><a href="/de/services/services_vor_ort_1/service.html">Services vor Ort</a></li>
 						<li><a href="/de/services/garantien/garantien.html">Garantien</a></li>
 						<li><a href="/de/services/buchshop/buchshop.html">Buchshop</a></li>
+						<li><a href="/de/services/bluecode/anmeldung.html">bluecode</a></li>
 					</ul>
 					</div>
 					<div class="footer_nav_item col-lg-2 col-md-4 col-sm-4 col-xs-12">
@@ -934,6 +1185,13 @@ display: inline-block !important;
 						<li><a href="/de/unternehmen/werte_1/globus.html">Werte</a></li>
 						<li><a href="/de/unternehmen/arbeitenbeiglobus/arbeitenbeiglobus.html">Arbeiten bei Globus</a></li>
 						<li><a href="/de/unternehmen/presse/pressemitteilungen.html">Presse</a></li>
+						<li><a href="/de/unternehmen/standortanforderungen/standortanforderungen.html">Standortanforderungen</a></li>
+						<li><a href="/de/unternehmen/neue_ansiedlungsprojekte/neunkirchen.html">Neue Ansiedlungsprojekte</a></li>
+					</ul>
+					</div>
+					<div class="footer_nav_item col-lg-2 col-md-4 col-sm-4 col-xs-12">
+						<a href="/de/mein_globus/information.html"><h3>Mein Globus</h3></a>
+						<ul class="footer_subnav hidden-xs">
 					</ul>
 					</div>
 				</div>
@@ -947,8 +1205,7 @@ display: inline-block !important;
 					<li><a target="_blank" href="http://www.alphatecc.de">Alphatecc</a></li>
 					<li><a target="_blank" href="http://www.globus.ru">Globus Russland</a></li>
 					<li><a target="_blank" href="http://www.globus.cz">Globus Tschechien</a></li>
-					<li><a target="_blank" href="http://www.globus-drive.de">Globus Drive</a></li>
-					<li><a target="_blank" href="http://www.mein-fridel.de">mein fridel</a></li>
+					<li><a target="_blank" href="http://www.mein-fridel.de">Mein fridel</a></li>
 				</ul>
 			</div>
 			<div class="col-xs-12 navigation visible-xs">
@@ -961,8 +1218,7 @@ display: inline-block !important;
 						<li><a target="_blank" href="http://www.alphatecc.de">Alphatecc</a></li>
 						<li><a target="_blank" href="http://www.globus.ru">Globus Russland</a></li>
 						<li><a target="_blank" href="http://www.globus.cz">Globus Tschechien</a></li>
-						<li><a target="_blank" href="http://www.globus-drive.de">Globus Drive</a></li>
-						<li><a target="_blank" href="http://www.mein-fridel.de">mein fridel</a></li>
+						<li><a target="_blank" href="http://www.mein-fridel.de">Mein fridel</a></li>
 					</ul>
 				</div>
 			</div>
@@ -989,7 +1245,26 @@ piwikTracker.enableLinkTracking();
 </script>
 <noscript><p><img src="http://stat.globus.net/piwik/piwik.php?idsite=3" style="border:0" alt=""/></p></noscript>
 <!-- TRACKING END -->
+	<div class="modal fade" id="stockstadtModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Schliessung Stockstadt</h4>
+      </div>
+      <div class="modal-body">
+Wir schließen unseren Markt zum 31.12.2016 und bitten Sie um
+Verständnis, dass die Anmeldung nicht mehr möglich ist. Gerne
+können Sie auf andere Märkte in der Nähe ausweichen, z.B. Hattersheim, Maintal
+oder Wächtersbach.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Schliessen</button>
+      </div>
+    </div>
+  </div>
+</div>
 	<script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
-	<script src=""></script>
-</body>
+	<script src="/media/technisch_1/js_1/bootsrap_image_gallery/bootstrap_image_gallery.js"></script>
+<!-- 40--></body>
 </html>

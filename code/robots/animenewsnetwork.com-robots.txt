@@ -1,11 +1,11 @@
 User-agent: *
-Disallow: /admin/
-Disallow: /images/
-Disallow: /thumbnails/
-Disallow: /img/
+
+# disallowed for ALL robots due to impact on impressions/click tracking
 Disallow: /sponsor/
-Disallow: /session/
-Disallow: /aframe/
+Disallow: /logger
+
+# disallowed for search engines because redundant, or only for authorized users
+Disallow: /admin/
 Disallow: /encyclopedia/error-report.php
 Disallow: /encyclopedia/admin
 Disallow: /encyclopedia/new-
@@ -31,9 +31,26 @@ Disallow: /bbs/phpBB2/search.php
 Disallow: /?t=
 Disallow: /cms/changelog/
 Disallow: /herald/
+Disallow: /newsfeed/getnews.php
+Crawl-delay: 2
+
+################################################################################
+
+User-agent: Mediapartners-Google
+Disallow: /sponsor/
 Disallow: /logger
 Crawl-delay: 2
 
-User-agent: Mediapartners-Google
-Disallow:
+################################################################################
 
+User-agent: Googlebot-News
+Disallow: /sponsor/
+Disallow: /logger
+Allow:    /newsfeed/getnews.php?u=google
+Crawl-delay: 2
+
+################################################################################
+# block useless bot
+
+User-agent: Domain Re-Animator Bot
+Disallow: /

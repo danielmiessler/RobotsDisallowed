@@ -1,7 +1,0 @@
-<html>
-<head>
-<title>:: BSES Delhi ::</title>
-  <Meta http-equiv="refresh" content="0;URL=http://www.bsesdelhi.com/HTML/index.html";
-
-</head>
-</html>

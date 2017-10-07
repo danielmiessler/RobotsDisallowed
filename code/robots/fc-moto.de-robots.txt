@@ -1,15 +1,26 @@
 #
 # robots.txt for epages
 #
-# applies to all robots
+User-Agent: *
+Disallow: /epages/*.sf/sec*
+
 # disallow TBO, PBO
-# disallow javascript
-# prevent mass indexing of search pages
-User-agent: *
 Disallow: /epages/Site.admin/
+Disallow: /Shops/*/Users
+
+# disallow javascript
 Disallow: /epages/*ViewAction=SF-ViewJQueryConfig
 Disallow: /epages/*ViewAction=MobileSF-ViewJQueryConfig
 Disallow: /WebRoot/StoreTypes/*/lib/*.js
+
+#Googlebot
+User-agent: Googlebot
+Allow: *.css
+Allow: *.js
+Allow: /WebRoot/StoreTypes/*/lib/*.js
+
+User-Agent: *
+# prevent massing indexing of search pages
 Disallow: /epages/*ViewAction=FacetedSearchProducts
 Disallow: /epages/*ViewAction=RemoteSearchProducts
 Disallow: /epages/*ViewAction=ViewRemoteSearchProducts
@@ -17,4 +28,9 @@ Disallow: /epages/*ViewAction=MobileSF-ViewDetailRemoteSearchProducts
 Disallow: /epages/*ViewAction=MobileSF-DetailRemoteSearchProducts
 Disallow: /epages/*ViewAction=MobileSF-ViewDetailFacetedSearchProducts
 Disallow: /epages/*ViewAction=MobileSF-DetailFacetedSearchProducts
-Crawl-delay: 20
+
+# XML MultiSitemap
+Sitemap: https://www.fc-moto.de/WebRoot/FCMotoDB/Shops/10207048/MultiSitemap/sitemap_index.xml
+
+
+

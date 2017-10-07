@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 <link rel="stylesheet" href="/css/jpenv.css" type="text/css" media="screen,print" />
 <link rel="shortcut icon" href="/img/favicon.ico" />
-<meta name="author" content="ASCII.jp" />
+<meta name="author" content="ASCII" />
 <meta name="description" content="趣都・アキハバラの最新情報をお届けするアスキー・メディアワークスの情報サイト。PC/ITからテクノロジー、サイエンスまで、オタク、マニアの心を鷲づかみ。" />
 <meta name="keywords" content="アスキー,ASCII.jp" />
 <!-- //title_start// --><title>ページが見つかりませんでした - ASCII.jp</title><!-- //title_end// -->
@@ -18,46 +18,159 @@
 
 
 
+<meta name="eid" content="107950" />
 <script type="text/javascript" src="https://apis.google.com/js/plusone.js"> {lang: 'ja'} </script>
 <script type="text/javascript" src="/js/ViewTypeCtrl.js"></script>
+<link rel="stylesheet" href="/css/asclub/fixnav.css" type="text/css" media="screen,print" />
 
 <!-- Universal Analytics -->
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+function getCookieByKey(key) {
+	if(!document.cookie) return null;
+	var cookies = document.cookie.split(';');
+	if(!cookies || cookies.length===0) return null;
+	var uidCookieKey = key;
+	var uidValue=null;
+	for (var i=0,len=cookies.length;i<len;i++){
+		if(cookies[i].indexOf('=')>=0
+			&& cookies[i].split('=')[0].trim()===uidCookieKey) {
+			uidValue = cookies[i].split('=')[1];
+			break;
+		}
+	}
+	return uidValue;
+};
+function getUserIdUA() {
+	return getCookieByKey('_ida_cv_uid') || '(not set)';
+};
+function isLogin() {
+	return getCookieByKey('_ida_uid')? '1':'0';
+};
 
-  ga('create', 'UA-2995024-17', 'ascii.jp');
-  ga('set','dimension1','1');
-  ga('set','dimension2','107950');
-  ga('set','dimension3','2008-02-15T13:08:11+09:00,C1,P0,MaxPages1,ESI1028,M0,');
-  ga('set','dimension4','2008-02-15T13:08:11+09:00');
-  ga('set','dimension5','0');
-  ga('set','dimension6','1028');
-  ga('set','dimension7','0');
-  ga('set','dimension8','0');
-  ga('set','dimension9','1');
-  ga('send', 'pageview');
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-2995024-21', 'ascii.jp', {'name': 'secondTracker'});
-  ga('secondTracker.set','dimension1','1');
-  ga('secondTracker.set','dimension2','107950');
-  ga('secondTracker.set','dimension3','2008-02-15T13:08:11+09:00,C1,P0,MaxPages1,ESI1028,M0,');
-  ga('secondTracker.set','dimension4','2008-02-15T13:08:11+09:00');
-  ga('secondTracker.set','dimension5','0');
-  ga('secondTracker.set','dimension6','1028');
-  ga('secondTracker.set','dimension7','0');
-  ga('secondTracker.set','dimension8','0');
-  ga('secondTracker.set','dimension9','1');
-  ga('secondTracker.send', 'pageview');
+ga('create', 'UA-2995024-17', 'ascii.jp');
+ga('set','dimension1','1');
+ga('set','dimension2','107950');
+ga('set','dimension3','2008-02-15T13:08:11+09:00,C1,P0,MaxPages1,ESI1028,M0,');
+ga('set','dimension4','2008-02-15T13:08:11+09:00');
+ga('set','dimension5','0');
+ga('set','dimension6','1028');
+ga('set','dimension7','0');
+ga('set','dimension8','0');
+ga('set','dimension9','1');
+ga('set','dimension13',getUserIdUA());
+ga('set','dimension14',isLogin());
+ga('require', 'displayfeatures');
+ga('send', 'pageview');
+
+ga('create', 'UA-2995024-21', 'ascii.jp', {'name': 'secondTracker'});
+ga('secondTracker.set','dimension1','1');
+ga('secondTracker.set','dimension2','107950');
+ga('secondTracker.set','dimension3','2008-02-15T13:08:11+09:00,C1,P0,MaxPages1,ESI1028,M0,');
+ga('secondTracker.set','dimension4','2008-02-15T13:08:11+09:00');
+ga('secondTracker.set','dimension5','0');
+ga('secondTracker.set','dimension6','1028');
+ga('secondTracker.set','dimension7','0');
+ga('secondTracker.set','dimension8','0');
+ga('secondTracker.set','dimension9','1');
+ga('secondTracker.set','dimension13',getUserIdUA());
+ga('secondTracker.set','dimension14',isLogin());
+ga('secondTracker.send', 'pageview');
 
 
+ga(function (tracker) {
+	var clientId = tracker.get('clientId');
+	var frames = document.getElementsByTagName('iframe');
+	if(!frames) return;
+	for (var i = 0; i < frames.length; i++) {
+		if (frames[i].src.indexOf('players.brightcove.net') > 0) {
+			frames[i].contentWindow.postMessage(clientId, window.location.protocol + '//players.brightcove.net');
+		}
+	}
+});
 </script>
 <!-- /Universal Analytics -->
+
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '158458894734194');
+fbq('track', 'PageView');
+var subcatstr = "(none)";
+subcatstr = subcatstr.replace(/S/g, '');
+subcatstr = subcatstr.replace(/,$/, '');
+var subcat = subcatstr.split(',');
+fbq('track', 'ViewContent', {
+    content_ids: ["107950"],
+    content_type: "article",
+    content_category: "1",
+    subcategories: subcat
+});
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=158458894734194&ev=PageView&noscript=1"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+<!-- GHS -->
+<script type="text/javascript">
+	function getUserId() {
+		if(!document.cookie) return '';
+		var cookies = document.cookie.split(';');
+		if(!cookies || cookies.length===0) return '';
+		var uidCookieKey = '_ida_cv_uid';
+		var uidValue='';
+		for (var i=0,len=cookies.length;i<len;i++){
+			if(cookies[i].indexOf('=')>=0 
+				&& cookies[i].split('=')[0].trim()===uidCookieKey) {
+				uidValue = cookies[i].split('=')[1];
+				break;
+			}
+		}
+		return uidValue;
+	}
+
+	(function(){
+		var lib = document.createElement('script');
+		lib.type = 'text/javascript';
+		lib.async = 1;
+		lib.src = '//cdn.gh-base.com/js/1.0.0/ghb-sdk.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(lib, s);
+	})();
+	if(!window._GHB){
+		window._GHB = {};
+	}
+	if(!window._GHB.queue) {
+		window._GHB.queue = [];
+	}
+	window._GHB.options = {
+		trackCode: '4feC39vUuF3fFHcJMFTg'
+	};
+	var userId = getUserId();
+	window._GHB.queue.push({
+		'userId':userId,
+		'type': 'pv'
+	});
+</script>
+<!-- /GHS -->
+
 <script>
 AS_manual_load = true;
 </script>
+
+
+<meta property="fb:app_id" content="1367304336670906" />
+
 
 </head>
 <!--  カテゴリカラー  -->
@@ -133,7 +246,7 @@ AS_manual_load = true;
 </div>	<!-- /jptopwrap -->
 <!--  フッタコンテナ  -->
 <div id="jpliqfooter">
-<p class="provision"><a href="site_policy.html">サイトポリシー</a> ｜ <a href="http://asciimw.jp/info/privacy/" target="_blank">プライバシーポリシー</a> ｜ <a href="http://asciimw.jp/" target="_blank">アスキー・メディアワークスについて</a> ｜ <a href="https://ascii.jp/elem/000/000/405/405941/">お問い合わせ</a></p>
+<p class="provision"><a href="/info/site_policy.html">サイトポリシー</a> ｜ <a href="http://asciimw.jp/info/privacy/" target="_blank">プライバシーポリシー</a> ｜ <a href="http://asciimw.jp/" target="_blank">アスキー・メディアワークスについて</a> ｜ <a href="https://ascii.jp/elem/000/000/405/405941/">お問い合わせ</a></p>
 <p class="copyright">(C)KADOKAWA CORPORATION 2015</p>
 </div>
 <!--  /フッタコンテナ  -->

@@ -3,6 +3,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html >
   <head>
@@ -16,7 +17,7 @@
 
     
     <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,latin-ext,cyrillic" rel="stylesheet">
-    <link rel="stylesheet" href="http://static.ow.ly/v1/css/app.6b0c6c9b51a86f1d.css">
+    <link rel="stylesheet" href="http://static.ow.ly/v1/css/app.2fc2382996d502a2.css">
     <link rel="shortcut icon" href="http://static.ow.ly/v1/images/favicon.9da2f5569b3e1489.ico">
     
 
@@ -27,6 +28,20 @@
     
   </head>
   <body  >
+    
+    
+
+  <!-- Google Tag Manager -->
+  <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-963X"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-963X');</script>
+  <!-- End Google Tag Manager -->
+
+
     <header class="globalHeader " role="banner">
       <div class="wrapper x-lrg">
         
@@ -50,7 +65,7 @@
 
  
 
-<form action="/url/shorten-url" method="POST" class="shortenUrlForm">
+<form action="/url/shorten-url" method="POST" class="shortenUrlForm" id="longUrlForm">
     
   
 
@@ -75,16 +90,16 @@
 
 
 
-  <button type="submit" class="-action">Shrink URL</button>
+  <button type="button" id="show-captcha" class="-action">Shrink URL</button>
 
-  <div id='AYAH'>
-    
+  <div id="dia" class="modalDialog">
+    <div id="recaptcha-modal"></div>
   </div>
 
 </form>
 
-    </section>
 
+    </section>
     <p class="hsProCTA"><strong>Measure your success</strong>. Pair Ow.ly with Hootsuite and get deep analytics with each link you share. <a href="https://hootsuite.com/plans/pro" target="new"><strong>Try Hootsuite for FREE </strong>»</a></p>
   </div>
 
@@ -103,7 +118,41 @@
     </footer>
 
     
-  <script src="https://ws.areyouahuman.com/ws/script/9c23d8d067c270d618274dd8efa605efe4ce7a09"></script>
+  <script src="https://www.google.com/recaptcha/api.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script>
+    $(function(){
+      $("#dialog").dialog({
+        autoOpen: false,
+        modal: true,
+        closeOnEscape: true
+      });
+
+      var captchaContainer = null;
+      var loadCaptcha = function() {
+        captchaContainer = grecaptcha.render('recaptcha-modal', {
+          'sitekey' : '6LdXyxkTAAAAAEMKRAWnmUiHNhmSzUwAqGYZqA86',
+          'callback' : function() {
+            $("#dialog").dialog("close");
+            document.getElementById("longUrlForm").submit();
+          }
+        });
+      };
+      $("#show-captcha").click(function() {
+        $("#dialog").dialog("open");
+        loadCaptcha();
+      });
+      $("#url").keydown(function(e) {
+        if(e.which == 13) {
+          e.preventDefault();
+          e.stopPropagation();
+          $("#dialog").dialog("open");
+          loadCaptcha();
+        }
+      });
+    });
+  </script>
 
     <script src='http://static.ow.ly/v1/js/app.62a225d4ae9df5e3.js'></script>
   </body>

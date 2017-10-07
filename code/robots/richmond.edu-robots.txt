@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
+
 <title> Not Found, University of Richmond</title>
 <link href="http://kp4assets.richmond.edu/images/kp4/static/favicon.ico" rel="shortcut icon"/>
 
 <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/>
 
-<meta content="Wed, 04 Feb 2015 11:26:29 -0500" name="date"/>
+<meta content="Fri, 06 Jan 2017 10:43:46 -0500" name="date"/>
 
 
 
 
 
 
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
             <script type="text/javascript">
                 var isMobile = false;
                 var isIpad = false;
                 var isIphone = false;
                 var isHls = false;
+                var isUnsecureIe = false;  //Conditional comments are gone in IE 10, so we need to look for IE 10 as the user agent in JS, or use conditional comments for 9 and below
                 var shareWidgetCompatible = true;
 
                 function mobiledetect(a){
@@ -37,9 +39,13 @@
                     if(a.match(/android/i) != null || isIpad == true || isIphone == true){
                         isHls = true;
                     }
+
+                    if(a.match(/MSIE\s([\d.]+)/) != null){
+                        isUnsecureIe = true;
+                    }
                 }
 
-                mobiledetect(navigator.userAgent.toLowerCase()||navigator.vendor||window.opera);
+                mobiledetect(navigator.userAgent.toLowerCase() || navigator.vendor || window.opera);
             </script> 
 
 <script type="text/javascript">var assetsUrl = "http://kp4assets.richmond.edu";</script>
@@ -50,28 +56,33 @@
 
 <meta content="http://www.richmond.edu/_KP4_assets/images/kp4/shield.png" property="og:image"/>
 
-<link href="http://d2r44v0ubjhg6i.cloudfront.net/images/kp4/apple-touch-icon.png" rel="apple-touch-icon" />
-        <link href="http://d2r44v0ubjhg6i.cloudfront.net/images/kp4/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76" />
-        <link href="http://d2r44v0ubjhg6i.cloudfront.net/images/kp4/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120" />
-        <link href="http://d2r44v0ubjhg6i.cloudfront.net/images/kp4/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
-		<link type="text/css" rel="stylesheet" href="http://d2r44v0ubjhg6i.cloudfront.net/icomoon/style.css">
-		<link type="text/css" rel="stylesheet" media="screen" href="http://d2r44v0ubjhg6i.cloudfront.net/styles/default/compiled/default.min.css" />
-	    <link type="text/css" rel="stylesheet" media="print" href="http://d2r44v0ubjhg6i.cloudfront.net/styles/print.css" />
+
+<link href="https://d2r44v0ubjhg6i.cloudfront.net/images/kp4/apple-touch-icon.png" rel="apple-touch-icon" />
+        <link href="https://d2r44v0ubjhg6i.cloudfront.net/images/kp4/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76" />
+        <link href="https://d2r44v0ubjhg6i.cloudfront.net/images/kp4/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120" />
+        <link href="https://d2r44v0ubjhg6i.cloudfront.net/images/kp4/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
+        <link type="text/css" rel="stylesheet" media="screen" href="https://d2r44v0ubjhg6i.cloudfront.net/styles/default/compiled/default.min.css" />
+        <link type="text/css" rel="stylesheet" media="print" href="https://d2r44v0ubjhg6i.cloudfront.net/styles/print.css" />
         <!--[if IE 9]>
-            <link rel="stylesheet" type="text/css" media="screen, projection" href="http://d2r44v0ubjhg6i.cloudfront.net/styles/defaultIE/ie9.css" />
+            <link rel="stylesheet" type="text/css" media="screen, projection" href="https://d2r44v0ubjhg6i.cloudfront.net/styles/defaultIE/ie9.css" />
+            <script type="text/javascript">
+                isUnsecureIe = true;
+            </script>
         <![endif]-->
 
         <!--[if IE 8]>
-            <link rel="stylesheet" type="text/css" media="screen, projection" href="http://d2r44v0ubjhg6i.cloudfront.net/styles/defaultIE/ie8.css" />
+            <link rel="stylesheet" type="text/css" media="screen, projection" href="https://d2r44v0ubjhg6i.cloudfront.net/styles/defaultIE/ie8.css" />
             <script type="text/javascript">
                 shareWidgetCompatible = false;
+                isUnsecureIe = true;
             </script>
         <![endif]-->
 
         <!--[if lt IE 8]>
-            <link rel="stylesheet" type="text/css" media="screen, projection" href="http://d2r44v0ubjhg6i.cloudfront.net/styles/defaultIE/legacy.css" />
+            <link rel="stylesheet" type="text/css" media="screen, projection" href="https://d2r44v0ubjhg6i.cloudfront.net/styles/defaultIE/legacy.css" />
             <script type="text/javascript">
                 shareWidgetCompatible = false;
+                isUnsecureIe = true;
             </script>
         <![endif]-->
 <script src="/_KP4_assets/scripts/frameworks/jquery-1.10.1.min.js" type="text/javascript">// <![CDATA[
@@ -81,43 +92,174 @@
 // ]]></script>
 
 
+            <script>
+                var dataLayer = window.dataLayer = window.dataLayer || [];
+            </script><!-- No gtm code found for www --><!-- No gtm rollup code found for www -->
+                <!-- begin CBE code -->
+                <script>
+                    (function(a,b,c,d,e,f,g) {
+                    a[e] = a[e] || function() {(a[e].q = a[e].q || []).push(arguments)};f=b.createElement(c);
+                    g=b.getElementsByTagName(c)[0];f.async=1;f.src=d+"/cbe/";g.parentNode.insertBefore(f,g);
+                    a[e]('create',d,1);
+                    a[e]('log','pageview');
+                    })(window,document,"script","https://richmond.capturehighered.net","_cbe");
+                </script>
+                <!-- end CBE code -->
+            <script type="text/javascript">
+                Element.prototype.getElementWidth = function() {
+                    if (typeof this.clip !== "undefined") {
+                        return this.clip.width;
+                    } else {
+                        if (this.style.pixelWidth) {
+                            return this.style.pixelWidth;
+                        } else {
+                            return this.offsetWidth;
+                        }
+                    }
+                };
+
+                function resizeImg(img, callback) {
+                    callback = callback || false;
+
+                    if(typeof callback !== "function"){
+                        callback = false;
+                    }
+
+                    if(img.length != "undefined" && img.length == 1){
+                        img = img[0];
+                    }
+
+                    var breakpoints = new Array();
+                    var attributes = img.attributes;
+
+                    for (var i = 0; i < attributes.length; ++i) {
+                        if (attributes[i].name.indexOf("data-img") >= 0) {
+                            breakpoints.push(parseInt(attributes[i].name.replace(/\D/g, "")));
+                        }
+                    }
+
+                    breakpoints.sort(function (a, b) {
+                        return a - b
+                    }); //orders breakpoints from lowest to highest
+
+                    var size = breakpoints[0]; //size defaults to smallest value
+                    var sizeTarget = img.getElementWidth();
+
+                    //resizeIgnore class name forces this function to look up the parental tree one level to gain its size target
+                    function getParentWidth(parent){
+                        if(parent.offsetWidth != 0 && !parent.classList.contains("resizeIgnore")){
+                            sizeTarget = parent.getElementWidth();
+                        } else {
+                            parent = parent.parentNode;
+                            getParentWidth(parent);
+                        }
+                    }
+
+                    if(sizeTarget == 0 || img.parentNode.classList.contains("resizeIgnore")){
+                        var parent = img.parentNode;
+                        getParentWidth(parent);
+                    }
+
+                    for (var i = 0; i < breakpoints.length; i++) {
+                        if (sizeTarget > breakpoints[i]) {
+                            if (i == breakpoints.length - 1) { //last breakpoint
+                                size = breakpoints[i];
+                            } else {
+                                size = breakpoints[i + 1];
+                            }
+                        }
+                    }
+
+                    var hasResponsiveImage = img.getElementsByClassName("img-" + size).length;
+
+                    if (hasResponsiveImage == 0) {
+                        var src = img.getAttribute("data-img-" + size);
+                        var alt = img.getAttribute("data-alt");
+                        var imageCredit = "";
+
+                        if (img.getElementsByClassName("imageCredit").length > 0) {
+                            imageCredit = img.getElementsByClassName("imageCredit")[0].innerText || img.getElementsByClassName("imageCredit")[0].textContent;
+                        }
+
+                        img.innerHTML = '<img src="' + src + '" alt="' + alt + '" class="img-' + size + '" />';
+                        if (imageCredit != "") {
+                            img.innerHTML = img.innerHTML + '<span class="imageCredit">' + imageCredit + '</span>';
+                        }
+                    }
+
+                    if(callback !== false){
+                        callback();
+                    }
+                }
+
+                function resizeImagery(){
+                    var images = document.getElementsByClassName("responsiveImg");
+                    for(var i=0; i<images.length; i++){
+                        resizeImg(images[i]);
+                    }
+                }
+
+                if (window.addEventListener) {
+                    window.addEventListener("resize", resizeImagery);
+                }
+                else {
+                    window.attachEvent("resize", resizeImagery);
+                }
+            </script>
             <script type="text/javascript">
                 if(typeof assetsUrl === "undefined"){
-                        var assetsUrl = "/_KP4_assets";
+                    var assetsUrl = "/_KP4_assets";
                 } else {
                     assetsUrl = "/_KP4_assets";
                 }
 
                 if(typeof cdnAssetsUrl === "undefined"){
-                    var cdnAssetsUrl = "http://d2r44v0ubjhg6i.cloudfront.net";
+                    var cdnAssetsUrl = "https://d2r44v0ubjhg6i.cloudfront.net";
                 } else {
-                    cdnAssetsUrl = "http://d2r44v0ubjhg6i.cloudfront.net";
+                    cdnAssetsUrl = "https://d2r44v0ubjhg6i.cloudfront.net";
                 }
             </script>
             <script type="text/javascript">
-                var kit;
-                //kit is a reference to typekit kit id.
-                if(typeof isMobile != 'undefined' && isMobile == true){
-                    kit = 'fem0dau';
-                } else {
-                    kit = 'cmd1tto';
-                }
+                $(window).load(function(){
+                    (function(d) {
+                    var config = {
+                        kitId: 'fem0dau',
+                        loading: function() {
+                            // Javascript to execute when fonts start loading
+                        },
+                        active: function() {
+                            // Javascript to execute when fonts become active
+                            if(typeof textmarkResize == 'function'){
+                                textmarkResize();
+                            }
+                            if(typeof resizeSubnav == 'function'){
+                                resizeSubnav();
+                            }
+                        },
+                        inactive: function() {
+                            // Javascript to execute when fonts become inactive
+                            if(typeof textmarkResize == 'function'){
+                                textmarkResize();
+                            }
+                            if(typeof resizeSubnav == 'function'){
+                                resizeSubnav();
+                            }
+                        },
+                        scriptTimeout: 3000
+                    },
+                    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='//use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+                    })(document);
+                });
+            </script><script src="https://d2r44v0ubjhg6i.cloudfront.net/scripts/core/jquery-collapsable-content.js" type="text/javascript"></script>
+        <script src="https://d2r44v0ubjhg6i.cloudfront.net/scripts/core/jquery-paginate.js" type="text/javascript"></script>
+        <script src="https://d2r44v0ubjhg6i.cloudfront.net/scripts/core/jquery-ga-events.js" type="text/javascript"></script>
+        <script src="https://d2r44v0ubjhg6i.cloudfront.net/scripts/core/jquery-dynamic-elements.js" type="text/javascript"></script>
+        <script src="https://d2r44v0ubjhg6i.cloudfront.net/scripts/libraries/modernizr-custom.js" type="text/javascript"></script>
+        <script src="https://d2r44v0ubjhg6i.cloudfront.net/scripts/libraries/share.js" type="text/javascript"></script><script src="https://d2r44v0ubjhg6i.cloudfront.net/scripts/core/jquery-responsify.js" type="text/javascript"></script>
 
 
-                (function(d) {
-                var config = {
-                  kitId: kit,
-                  scriptTimeout: 3000
-                },
-                h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='//use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-                })(document);
-            </script><script src="http://d2r44v0ubjhg6i.cloudfront.net/scripts/core/jquery-collapsable-content.js" type="text/javascript"></script>
-		<script src="http://d2r44v0ubjhg6i.cloudfront.net/scripts/core/jquery-paginate.js" type="text/javascript"></script>
-		<script src="http://d2r44v0ubjhg6i.cloudfront.net/scripts/core/jquery-ga-events.js" type="text/javascript"></script>
-		<script src="http://d2r44v0ubjhg6i.cloudfront.net/scripts/core/jquery-dynamic-elements.js" type="text/javascript"></script>
-		<script src="http://d2r44v0ubjhg6i.cloudfront.net/scripts/core/jquery-searchblox.js" type="text/javascript"></script>
-		<script src="http://d2r44v0ubjhg6i.cloudfront.net/scripts/libraries/modernizr.custom.67896.js" type="text/javascript"></script>
-		<script src="http://d2r44v0ubjhg6i.cloudfront.net/scripts/libraries/share.js" type="text/javascript"></script><script src="http://admin.brightcove.com/js/BrightcoveExperiences.js" language="JavaScript" type="text/javascript"></script><script src="http://d2r44v0ubjhg6i.cloudfront.net/scripts/core/jquery-responsify.js" type="text/javascript"></script>
+
+
                     <script type="text/javascript">
                     var _gaq = _gaq || [];
                     // Main Site Account
@@ -134,8 +276,10 @@
                         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
                     })();
                     </script>
+
 </head>
 <body>
+
 <div class="row" id="alert">
   <!-- warning -->
 
@@ -159,44 +303,44 @@
 </div>
 <div class="row" id="toolbar">
 <div class="bar controls">
-    <div class="rowWrap">
+      <div class="rowWrap">
         <div id="urlinks">
-            <div class="controls">
-                <div class="buttonWrap" data-label="Box">
-                    <div class="button" id="sub-toolbar-box"><a class="icon-box" href="http://box.richmond.edu">Box</a></div>
-                </div>
-                <div class="buttonWrap" data-label="Exchange Email">
-                    <div class="button" id="sub-toolbar-exchangemail"><a class="icon-msOutlook" href="https://exchangemail.richmond.edu">Exchange Email</a></div>
-                </div>
-                <div class="buttonWrap" data-label="Gmail">
-                    <div class="button" id="sub-toolbar-gmail"><a class="icon-gmail" href="http://gmail.richmond.edu">Gmail</a></div>
-                </div>
-                <div class="buttonWrap" data-label="Blackboard">
-                    <div class="button" id="sub-toolbar-blackboard"><a class="icon-blackboard" href="http://blackboard.richmond.edu">Blackboard</a></div>
-                </div>
-                <div class="buttonWrap" data-label="Bannerweb">
-                    <div class="button" id="sub-toolbar-bannerweb"><a class="icon-bannerweb" href="https://bannerweb.richmond.edu">Bannerweb</a></div>
-                </div>
-                <div class="buttonWrap" data-label="Directory" data-label-close="Close Directory">
-                    <div class="button" id="sub-toolbar-directory"><a class="icon-catalog2 expandable" data-flyout="directory" data-icon="icon-catalog2" data-icon-close="icon-remove" href="http://directory.richmond.edu">Directory</a></div>
-                </div>
-                <div class="buttonWrap" data-label="Schools" data-label-close="Close Schools">
-                    <div class="button" id="sub-toolbar-schools"><a class="icon-school expandable" data-flyout="schools" data-icon="icon-school" data-icon-close="icon-remove" href="http://www.richmond.edu/academics/">Schools</a></div>
-                </div>
-                <div class="buttonWrap" data-label="Maps">
-                    <div class="button" id="sub-toolbar-maps"><a class="icon-mapPin" href="http://www.richmond.edu/visit/">Maps</a></div>
-                </div>
-                <div class="buttonWrap" data-label="Library">
-                    <div class="button" id="sub-toolbar-library"><a class="icon-tower" href="http://library.richmond.edu/">Library</a></div>
-                </div>
-                <div class="buttonWrap" data-label="Search" data-label-close="Close Search">
-                    <div class="button" id="sub-toolbar-search"><span class="icon-search expandable" data-flyout="search" data-icon="icon-search" data-icon-close="icon-searchClose">Search</span></div>
-                </div>
+          <div class="controls">
+            <div class="buttonWrap" data-label="Box">
+              <div class="button" id="sub-toolbar-box"><a class="icon-box" href="http://box.richmond.edu">Box</a></div>
             </div>
+            <div class="buttonWrap" data-label="Exchange Email">
+              <div class="button" id="sub-toolbar-exchangemail"><a class="icon-msOutlook" href="https://exchangemail.richmond.edu">Exchange Email</a></div>
+            </div>
+            <div class="buttonWrap" data-label="Gmail">
+              <div class="button" id="sub-toolbar-gmail"><a class="icon-gmail" href="http://gmail.richmond.edu">Gmail</a></div>
+            </div>
+            <div class="buttonWrap" data-label="Blackboard">
+              <div class="button" id="sub-toolbar-blackboard"><a class="icon-blackboard" href="http://blackboard.richmond.edu">Blackboard</a></div>
+            </div>
+            <div class="buttonWrap" data-label="Bannerweb">
+            	<div class="button" id="sub-toolbar-bannerweb"><a class="icon-bannerweb" href="https://bannerweb.richmond.edu">Bannerweb</a></div>
+            </div>
+            <div class="buttonWrap" data-label="Directory" data-label-close="Close Directory">
+              <div class="button" id="sub-toolbar-directory"><a class="icon-catalog2 expandable" data-flyout="directory" data-icon="icon-catalog2" data-icon-close="icon-remove" href="http://directory.richmond.edu">Directory</a></div>
+            </div>
+            <div class="buttonWrap" data-label="Schools" data-label-close="Close Schools">
+              <div class="button" id="sub-toolbar-schools"><a class="icon-school expandable" data-flyout="schools" data-icon="icon-school" data-icon-close="icon-remove" href="http://www.richmond.edu/academics/">Schools</a></div>
+            </div>
+            <div class="buttonWrap" data-label="Maps">
+              <div class="button" id="sub-toolbar-maps"><a class="icon-mapPin" href="http://www.richmond.edu/visit/">Maps</a></div>
+            </div>
+            <div class="buttonWrap" data-label="Library">
+              <div class="button" id="sub-toolbar-library"><a class="icon-tower" href="http://library.richmond.edu/">Library</a></div>
+            </div>
+            <div class="buttonWrap" data-label="Search" data-label-close="Close Search">
+              <div class="button" id="sub-toolbar-search"><span class="icon-search expandable" data-flyout="search" data-icon="icon-search" data-icon-close="icon-searchClose">Search</span></div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-
+    
 <div class="bar viewer">
     <div class="rowWrap" id="flyouts">
         <div class="flyout search clearfix"> <span class="flyoutTitle">Search</span>
@@ -226,36 +370,36 @@
                 <li>
                     <a href="http://as.richmond.edu">
                         <span>School of Arts &amp; Sciences</span>
-                        <img alt="School of Arts &amp; Sciences" src="http://d2r44v0ubjhg6i.cloudfront.net/images/kp4/asWordmark-tan.png"/>
-                        <img alt="School of Arts &amp; Sciences" src="http://d2r44v0ubjhg6i.cloudfront.net/images/kp4/asWordmark-white.png"/>
+                        <img alt="School of Arts &amp; Sciences" src="https://d2r44v0ubjhg6i.cloudfront.net/images/kp4/asWordmark-tan.png"/>
+                        <img alt="School of Arts &amp; Sciences" src="https://d2r44v0ubjhg6i.cloudfront.net/images/kp4/asWordmark-white.png"/>
                     </a>
                 </li>
                 <li>
                     <a href="http://robins.richmond.edu">
                         <span>Robins School of Business</span>
-                        <img alt="Robins School of Business" src="http://d2r44v0ubjhg6i.cloudfront.net/images/kp4/rsbWordmark-tan.png"/>
-                            <img alt="Robins School of Business" src="http://d2r44v0ubjhg6i.cloudfront.net/images/kp4/rsbWordmark-white.png"/>
+                        <img alt="Robins School of Business" src="https://d2r44v0ubjhg6i.cloudfront.net/images/kp4/rsbWordmark-tan.png"/>
+                        <img alt="Robins School of Business" src="https://d2r44v0ubjhg6i.cloudfront.net/images/kp4/rsbWordmark-white.png"/>
                     </a>
                 </li>
                 <li>
                     <a href="http://law.richmond.edu">
                         <span>School of Law</span>
-                        <img alt="School of Law" src="http://d2r44v0ubjhg6i.cloudfront.net/images/kp4/lawWordmark-tan.png"/>
-                        <img alt="School of Law" src="http://d2r44v0ubjhg6i.cloudfront.net/images/kp4/lawWordmark-white.png"/>
+                        <img alt="School of Law" src="https://d2r44v0ubjhg6i.cloudfront.net/images/kp4/lawWordmark-tan.png"/>
+                        <img alt="School of Law" src="https://d2r44v0ubjhg6i.cloudfront.net/images/kp4/lawWordmark-white.png"/>
                     </a>
                 </li>
                 <li>
                     <a href="http://jepson.richmond.edu">
                         <span>Jepson School of Leadership Studies</span>
-                        <img alt="Jepson School of Leadership Studies" src="http://d2r44v0ubjhg6i.cloudfront.net/images/kp4/jepsonWordmark-tan.png"/>
-                            <img alt="Jepson School of Leadership Studies" src="http://d2r44v0ubjhg6i.cloudfront.net/images/kp4/jepsonWordmark-white.png"/>
+                        <img alt="Jepson School of Leadership Studies" src="https://d2r44v0ubjhg6i.cloudfront.net/images/kp4/jepsonWordmark-tan.png"/>
+                        <img alt="Jepson School of Leadership Studies" src="https://d2r44v0ubjhg6i.cloudfront.net/images/kp4/jepsonWordmark-white.png"/>
                     </a>
                 </li>
                 <li>
                     <a href="http://spcs.richmond.edu">
                         <span>School of Professional &amp; Continuing Studies</span>
-                        <img alt="School of Professional &amp; Continuing Studies" src="http://d2r44v0ubjhg6i.cloudfront.net/images/kp4/spcsWordmark-tan.png"/>
-                            <img alt="School of Professional &amp; Continuing Studies" src="http://d2r44v0ubjhg6i.cloudfront.net/images/kp4/spcsWordmark-white.png"/>
+                        <img alt="School of Professional &amp; Continuing Studies" src="https://d2r44v0ubjhg6i.cloudfront.net/images/kp4/spcsWordmark-tan.png"/>
+                        <img alt="School of Professional &amp; Continuing Studies" src="https://d2r44v0ubjhg6i.cloudfront.net/images/kp4/spcsWordmark-white.png"/>
                     </a>
                 </li>
             </ul>
@@ -265,11 +409,13 @@
 
 </div>
 
-<div class="row" id="menu-wrap"><div class="rowWrap" id="menu"><div class="item"><a href="/academics/index.html"><span>Academics</span></a></div><div class="item"><a href="/admission/index.html"><span>Admission &amp; Aid</span></a></div><div class="item"><a href="/studentlife/index.html"><span>Student Life</span></a></div><div class="item"><a href="/arts/index.html"><span>Arts</span></a></div><div class="item"><a href="/athletics/index.html"><span>Athletics</span></a></div><div class="item"><a href="/visit/index.html"><span>Visit</span></a></div><div class="item"><a href="/research-internships/index.html"><span>Research &amp; Internships</span></a></div><div class="item"><a href="/international/index.html"><span>International</span></a></div><div class="item"><a href="http://alumni.richmond.edu"><span>Alumni</span></a></div><div class="item"><a href="http://giving.richmond.edu"><span>Giving</span></a></div></div></div>
+<div class="row" id="menu-wrap"><div class="rowWrap" id="menu"><div class="item"><a href="/about/index.html"><span>About</span></a></div><div class="item"><a href="/academics/index.html"><span>Academics</span></a></div><div class="item"><a href="/admission/index.html"><span>Admission &amp; Aid</span></a></div><div class="item"><a href="/studentlife/index.html"><span>Student Life</span></a></div><div class="item"><a href="/arts/index.html"><span>Arts</span></a></div><div class="item"><a href="/athletics/index.html"><span>Athletics</span></a></div><div class="item"><a href="/visit/index.html"><span>Visit</span></a></div><div class="item"><a href="/international/index.html"><span>International</span></a></div><div class="item"><a href="http://alumni.richmond.edu" target="_blank"><span>Alumni</span></a></div><div class="item"><a href="http://giving.richmond.edu" target="_blank"><span>Giving</span></a></div></div></div>
+<!--
 <div class="row" id="submenu-wrap">
-    <div class="rowWrap"><div id="pageName"><h1>Site Map</h1></div><div id="submenu"><div class="item"><div><a href="/guarantee/index.html"><span>guarantee</span></a></div></div><div class="item"><div><a href="/academics/index.html"><span>Academics</span></a></div></div><div class="item"><div><a href="/admission/index.html"><span>Admission &amp; Aid</span></a></div></div><div class="item"><div><a href="/studentlife/index.html"><span>Student Life</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/studentlife/coordinate-system.html"><span>Coordinate System</span></a></div></div><div class="item"><div><a href="/studentlife/safety.html"><span>Health and Safety</span></a></div></div></ul></div><div class="item"><div><a href="/arts/index.html"><span>Arts</span></a></div></div><div class="item"><div><a href="/athletics/index.html"><span>Athletics</span></a></div></div><div class="item"><div><a href="/visit/index.html"><span>Visit</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/visit/directions.html"><span>Directions</span></a></div></div><div class="item"><div><a href="/visit/accommodations.html"><span>Accommodations</span></a></div></div></ul></div><div class="item"><div><a href="/research-internships/index.html"><span>Research &amp; Internships</span></a></div></div><div class="item"><div><a href="/international/index.html"><span>International</span></a></div></div><div class="item"><div><a href="/facts/index.html"><span>Facts and Rankings</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/facts/goals-profiles/index"><span>goals-profiles</span></a></div></div><div class="item"><div><a href="/facts/consumer-info/index.html"><span>Student Consumer Information</span></a></div><ul><div class="item"><div><a href="/facts/consumer-info/graduation.html"><span>Graduation Rates</span></a></div></div><div class="item"><div><a href="/facts/consumer-info/retention.html"><span>Retention Rates</span></a></div></div><div class="item"><div><a href="/facts/consumer-info/facilities.html"><span>Instructional Facilities</span></a></div></div><div class="item"><div><a href="/facts/consumer-info/diversity.html"><span>Student Diversity</span></a></div></div></ul></div><div class="item"><div><a href="/facts/profiles/index"><span>profiles</span></a></div></div><div class="item"><div><a href="/facts/goals.html"><span>Educational Goals and Outcomes</span></a></div></div><div class="item"><div><a href="/facts/accreditation.html"><span>Accreditation</span></a></div></div><div class="item"><div><a href="/facts/consumer-info-assets/index"><span>consumer-info-assets</span></a></div></div></ul></div><div class="item"><div><a href="/feedback/index.html"><span>Site Feedback</span></a></div></div><div class="item"><div><a href="/city/index.html"><span>Explore the City</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/city/arts.html"><span>Arts</span></a></div></div><div class="item"><div><a href="/city/business-government.html"><span>Business and Government</span></a></div></div><div class="item"><div><a href="/city/food.html"><span>Food Scene</span></a></div></div><div class="item"><div><a href="/city/outdoors.html"><span>The Great Outdoors</span></a></div></div><div class="item"><div><a href="/city/history.html"><span>History</span></a></div></div><div class="item"><div><a href="/city/neighborhoods.html"><span>Neighborhoods</span></a></div></div><div class="item"><div><a href="/city/music.html"><span>Music</span></a></div></div><div class="item"><div><a href="/city/river.html"><span>Downtown and the River</span></a></div></div><div class="item"><div><a href="/city/two-hours.html"><span>Two Hours Away</span></a></div></div><div class="item"><div><a href="/city/innovation.html"><span>Innovation and Entrepreneurship</span></a></div></div></ul></div><div class="item"><div><a href="/cartagena/index.html"><span>cartagena</span></a></div><div class="item"><div><a href="/cartagena/video/index.html"><span>video</span></a></div><ul><div class="item"><div><a href="/cartagena/video/video-esquella.html"><span>Esquela Nuevo Bosque</span></a></div></div><div class="item"><div><a href="/cartagena/video/video-teatro.html"><span>Teatro Aldolfo Mejia</span></a></div></div><div class="item"><div><a href="/cartagena/video/video-iglesia.html"><span>Iglesia Tercera Orden</span></a></div></div></ul></div></div><div class="item"><div><a href="/transfer/index.html"><span>New Transfer Student Checklist</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/transfer/coursework.html"><span>Transferring Coursework</span></a></div></div><div class="item"><div><a href="/transfer/registration.html"><span>Planning for Registration</span></a></div></div><div class="item"><div><a href="/transfer/major.html"><span>Declaring a Major</span></a></div></div><div class="item"><div><a href="/transfer/questions.html"><span>Frequently Asked Questions</span></a></div></div></ul></div><div class="item"><div><a href="/familyweekend/index.html"><span>Family Weekend</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/familyweekend/friday/index.html"><span>Friday Events</span></a></div><ul><div class="item"><div><a href="/familyweekend/friday/open-houses.html"><span>Open Houses</span></a></div></div></ul></div><div class="item"><div><a href="/familyweekend/saturday/index.html"><span>Saturday Events</span></a></div><ul><div class="item"><div><a href="/familyweekend/saturday/gameday.html"><span>Game Day</span></a></div></div></ul></div><div class="item"><div><a href="/familyweekend/sunday/index.html"><span>Sunday Events</span></a></div></div><div class="item"><div><a href="/familyweekend/ongoing.html"><span>Ongoing Activities</span></a></div></div><div class="item"><div><a href="/familyweekend/dining.html"><span>Dining Facilities</span></a></div></div><div class="item"><div><a href="/familyweekend/accommodations.html"><span>Accommodations</span></a></div></div></ul></div><div class="item"><div><a href="/legal/index.html"><span>Legal Notices</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/legal/copyright.html"><span>Copyright</span></a></div></div><div class="item"><div><a href="/legal/privacy-policy.html"><span>Privacy Policy</span></a></div></div></ul></div><div class="item"><div><a href="/best-value/index.html"><span>A Best Value</span></a></div></div><div class="item"><div><a href="/hours/index.html"><span>Campus Hours</span></a></div></div><div class="item"><div><a href="/supplier-diversity/index.html"><span>Supplier Diversity Program</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/supplier-diversity/president.html"><span>Message from the President</span></a></div></div><div class="item"><div><a href="/supplier-diversity/goals.html"><span>Goals and Initiatives</span></a></div></div><div class="item"><div><a href="/supplier-diversity/education.html"><span>Staff Education and Training</span></a></div></div><div class="item"><div><a href="/supplier-diversity/development.html"><span>Outreach and Development</span></a></div></div><div class="item"><div><a href="/supplier-diversity/application.html"><span>Supplier Application Process</span></a></div></div><div class="item"><div><a href="/supplier-diversity/leadership-council.html"><span>Leadership Council</span></a></div></div><div class="item"><div><a href="/supplier-diversity/contact.html"><span>Contact Us</span></a></div></div></ul></div><div class="item"><div><a href="/compliance/index.html"><span>Compliance</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/compliance/faq.html"><span>Frequently Asked Questions</span></a></div></div><div class="item"><div><a href="/compliance/hotline.html"><span>Reporting a Compliance Question or Concern</span></a></div></div><div class="item"><div><a href="/compliance/non-discrimination.html"><span>Policy Prohibiting Discrimination</span></a></div></div><div class="item"><div><a href="/compliance/non-retaliation.html"><span>Policy Prohibiting Retaliation</span></a></div></div><div class="item"><div><a href="/compliance/title-IX-coordinator.html"><span>Title IX Compliance Coordinator Policy</span></a></div></div></ul></div><div class="item"><div><a href="/app/index.html"><span>UR App</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/app/feedback/index.html"><span>App Feedback</span></a></div></div></ul></div><div class="item"><div><a href="/racial-justice/index.html"><span>Terms of Racial Justice</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/racial-justice/terms.html"><span>Terms and Videos</span></a></div></div><div class="item"><div><a href="/racial-justice/collapsed-content/index"><span>collapsed-content</span></a></div></div><div class="item"><div><a href="/racial-justice/events.html"><span>Events</span></a></div></div><div class="item"><div><a href="/racial-justice/committee.html"><span>Advisory Group</span></a></div></div></ul></div><div class="item"><div><a href="/presidential-search/index.html"><span>Presidential Search</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/presidential-search/status.html"><span>Status Updates</span></a></div></div><div class="item"><div><a href="/presidential-search/committee.html"><span>Search Committee</span></a></div></div><div class="item"><div><a href="/presidential-search/input.html"><span>Campus Input </span></a></div></div><div class="item"><div><a href="/presidential-search/nominations.html"><span>Nominations</span></a></div></div><div class="item"><div><a href="/presidential-search/contact.html"><span>Contact Information</span></a></div></div><div class="item"><div><a href="/presidential-search/search-firm.html"><span>Search Firm</span></a></div></div></ul></div><div class="item"><div><a href="/tucker-boatwright/index.html"><span>Tucker-Boatwright Festival</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/tucker-boatwright/project.html"><span>Parking Lot Project</span></a></div></div><div class="item"><div><a href="/tucker-boatwright/events.html"><span>Events</span></a></div></div><div class="item"><div><a href="/tucker-boatwright/past-events.html"><span>Past Events</span></a></div></div></ul></div><div class="item"><div><a href="/arts-around-lake/index.html"><span>Arts Around the Lake</span></a></div></div><div class="item"><div><a href="/international-dean/index.html"><span>International Dean Search</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/international-dean/committee.html"><span>Search Committee</span></a></div></div><div class="item"><div><a href="/international-dean/prospectus.html"><span>Prospectus</span></a></div></div><div class="item"><div><a href="/international-dean/input.html"><span>Input &amp; Nominations</span></a></div></div><div class="item"><div><a href="/international-dean/search-firm.html"><span>Search Firm</span></a></div></div></ul></div><div class="item"><div><a href="/spcs-dean/index.html"><span>SPCS Dean Search</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/spcs-dean/committee.html"><span>Search Committee</span></a></div></div><div class="item"><div><a href="/spcs-dean/input.html"><span>Campus Input </span></a></div></div><div class="item"><div><a href="/spcs-dean/search-firm.html"><span>Search Firm</span></a></div></div><div class="item"><div><a href="/spcs-dean/contact.html"><span>Contact &amp; Nominations</span></a></div></div></ul></div></div><div id="siteSearch"></div></div>
+    <system-region name="SUBMENU"/>
 </div>
-
+-->
+<div class="row" id="submenu-wrap"><div class="rowWrap"><div id="pageName"><h1>Site Map</h1></div><div id="submenu"><div class="item"><div><a href="/about/index.html"><span>About</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/about/goals-profiles/index"><span>goals-profiles</span></a></div></div><div class="item"><div><a href="/about/consumer-info/index.html"><span>Student Consumer Information</span></a></div><ul><div class="item"><div><a href="/about/consumer-info/graduation.html"><span>Graduation Rates</span></a></div></div><div class="item"><div><a href="/about/consumer-info/retention.html"><span>Retention Rates</span></a></div></div><div class="item"><div><a href="/about/consumer-info/facilities.html"><span>Instructional Facilities</span></a></div></div><div class="item"><div><a href="/about/consumer-info/diversity.html"><span>Student Diversity</span></a></div></div></ul></div><div class="item"><div><a href="/about/profiles/index"><span>profiles</span></a></div></div><div class="item"><div><a href="/about/goals.html"><span>Educational Goals and Outcomes</span></a></div></div><div class="item"><div><a href="/about/accreditation.html"><span>Accreditation</span></a></div></div><div class="item"><div><a href="/about/consumer-info-assets/index"><span>consumer-info-assets</span></a></div></div><div class="item"><div><a href="/about/organization.html"><span>Organizational Charts</span></a></div></div></ul></div><div class="item"><div><a href="/wwii-commemoration/index.html"><span>wwii-commemoration</span></a></div></div><div class="item"><div><a href="/halloween/index.html"><span>halloween</span></a></div></div><div class="item"><div><a href="/queally-center/index.html"><span>Queally Center</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/queally-center/dedication.html"><span>Dedication Ceremony</span></a></div></div></ul></div><div class="item"><div><a href="/homecoming/index.html"><span>homecoming</span></a></div></div><div class="item"><div><a href="/first-gen/index.html"><span>First-Generation</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/first-gen/first-gen-stories/index.html"><span>First-Generation Stories</span></a></div></div><div class="item"><div><a href="/first-gen/applying/index.html"><span>Applying to Richmond</span></a></div><ul><div class="item"><div><a href="/first-gen/applying/affording-richmond.html"><span>Affording Richmond</span></a></div></div></ul></div><div class="item"><div><a href="/first-gen/enrolling.html"><span>Enrolling at Richmond</span></a></div></div><div class="item"><div><a href="/first-gen/thriving/index.html"><span>Thriving at Richmond</span></a></div><ul><div class="item"><div><a href="/first-gen/thriving/making-the-most.html"><span>Making the Most of Richmond</span></a></div></div><div class="item"><div><a href="/first-gen/thriving/events.html"><span>Events</span></a></div></div></ul></div><div class="item"><div><a href="/first-gen/first-gen-parents.html"><span>First-Gen Parents</span></a></div></div><div class="item"><div><a href="/first-gen/resources.html"><span>Resources</span></a></div></div></ul></div><div class="item"><div><a href="/bosnia/index.html"><span>20 Years After Srebrenica</span></a></div></div><div class="item"><div><a href="/richmond2015/index.html"><span>2015 UCI Road World Championships</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/richmond2015/media.html"><span>Media Coverage</span></a></div></div></ul></div><div class="item"><div><a href="/parents/index.html"><span>parents</span></a></div></div><div class="item"><div><a href="/academics/index.html"><span>Academics</span></a></div><div class="item"><div><a href="/academics/humanities/index.html"><span>humanities</span></a></div><ul><div class="item"><div><a href="/academics/humanities/index-old.html"><span>Humanities at Richmond</span></a></div></div></ul></div></div><div class="item"><div><a href="/admission/index.html"><span>Admission &amp; Aid</span></a></div></div><div class="item"><div><a href="/studentlife/index.html"><span>Student Life</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/studentlife/coordinate-colleges.html"><span>Coordinate Colleges</span></a></div></div><div class="item"><div><a href="/studentlife/safety.html"><span>Health and Safety</span></a></div></div></ul></div><div class="item"><div><a href="/arts/index.html"><span>Arts</span></a></div></div><div class="item"><div><a href="/athletics/index.html"><span>Athletics</span></a></div></div><div class="item"><div><a href="/visit/index.html"><span>Visit</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/visit/directions.html"><span>Directions</span></a></div></div><div class="item"><div><a href="/visit/accommodations.html"><span>Accommodations</span></a></div></div></ul></div><div class="item"><div><a href="/international/index.html"><span>International</span></a></div></div><div class="item"><div><a href="/feedback/index.html"><span>Site Feedback</span></a></div></div><div class="item"><div><a href="/city/index.html"><span>Explore the City</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/city/arts.html"><span>Arts</span></a></div></div><div class="item"><div><a href="/city/business-government.html"><span>Business and Government</span></a></div></div><div class="item"><div><a href="/city/food.html"><span>Food Scene</span></a></div></div><div class="item"><div><a href="/city/outdoors.html"><span>The Great Outdoors</span></a></div></div><div class="item"><div><a href="/city/history.html"><span>History</span></a></div></div><div class="item"><div><a href="/city/neighborhoods.html"><span>Neighborhoods</span></a></div></div><div class="item"><div><a href="/city/music.html"><span>Music</span></a></div></div><div class="item"><div><a href="/city/river.html"><span>Downtown and the River</span></a></div></div><div class="item"><div><a href="/city/two-hours.html"><span>Two Hours Away</span></a></div></div><div class="item"><div><a href="/city/innovation.html"><span>Innovation and Entrepreneurship</span></a></div></div></ul></div><div class="item"><div><a href="/cartagena/index.html"><span>cartagena</span></a></div><div class="item"><div><a href="/cartagena/video/index.html"><span>video</span></a></div><ul><div class="item"><div><a href="/cartagena/video/video-esquella.html"><span>Esquela Nuevo Bosque</span></a></div></div><div class="item"><div><a href="/cartagena/video/video-teatro.html"><span>Teatro Aldolfo Mejia</span></a></div></div><div class="item"><div><a href="/cartagena/video/video-iglesia.html"><span>Iglesia Tercera Orden</span></a></div></div></ul></div></div><div class="item"><div><a href="/transfer/index.html"><span>New Transfer Student Checklist</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/transfer/coursework.html"><span>Transferring Coursework</span></a></div></div><div class="item"><div><a href="/transfer/registration.html"><span>Planning for Registration</span></a></div></div><div class="item"><div><a href="/transfer/major.html"><span>Declaring a Major</span></a></div></div><div class="item"><div><a href="/transfer/questions.html"><span>Frequently Asked Questions</span></a></div></div><div class="item"><div><a href="/transfer/index-fall.html"><span>New Transfer Student Checklist</span></a></div></div><div class="item"><div><a href="/transfer/URPOSTER-Form-Application/index"><span>URPOSTER-Form-Application</span></a></div></div></ul></div><div class="item"><div><a href="/familyweekend/index.html"><span>Family Weekend</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/familyweekend/accommodations.html"><span>Accommodations</span></a></div></div><div class="item"><div><a href="/familyweekend/friday/index.html"><span>Friday Events</span></a></div><ul><div class="item"><div><a href="/familyweekend/friday/open-houses.html"><span>Open Houses</span></a></div></div></ul></div><div class="item"><div><a href="/familyweekend/saturday/index.html"><span>Saturday Events</span></a></div><ul><div class="item"><div><a href="/familyweekend/saturday/gameday.html"><span>Game Day</span></a></div></div></ul></div><div class="item"><div><a href="/familyweekend/sunday/index.html"><span>Sunday Events</span></a></div></div><div class="item"><div><a href="/familyweekend/ongoing.html"><span>Ongoing Activities</span></a></div></div><div class="item"><div><a href="/familyweekend/dining-options.html"><span>Dining Options</span></a></div></div></ul></div><div class="item"><div><a href="/legal/index.html"><span>Legal Notices</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/legal/copyright.html"><span>Copyright</span></a></div></div><div class="item"><div><a href="/legal/privacy-policy.html"><span>Privacy Policy</span></a></div></div></ul></div><div class="item"><div><a href="/best-value/index.html"><span>A Best Value</span></a></div></div><div class="item"><div><a href="/hours/index.html"><span>Campus Hours</span></a></div></div><div class="item"><div><a href="/volunteer/index.html"><span>Volunteer</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/volunteer/volunteer-opportunities/index"><span>volunteer-opportunities</span></a></div></div><div class="item"><div><a href="/volunteer/summit.html"><span>Richmond Leadership Summit</span></a></div></div><div class="item"><div><a href="/volunteer/opportunities.html"><span>Volunteer Opportunities</span></a></div></div></ul></div><div class="item"><div><a href="/supplier-diversity/index.html"><span>Supplier Diversity Program</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/supplier-diversity/goals.html"><span>Goals and Initiatives</span></a></div></div><div class="item"><div><a href="/supplier-diversity/education.html"><span>Staff Education and Training</span></a></div></div><div class="item"><div><a href="/supplier-diversity/development.html"><span>Outreach and Development</span></a></div></div><div class="item"><div><a href="/supplier-diversity/application.html"><span>Supplier Application Process</span></a></div></div><div class="item"><div><a href="/supplier-diversity/leadership-council.html"><span>Leadership Council</span></a></div></div><div class="item"><div><a href="/supplier-diversity/contact.html"><span>Contact Us</span></a></div></div></ul></div><div class="item"><div><a href="/compliance/index.html"><span>Compliance</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/compliance/faq.html"><span>Frequently Asked Questions</span></a></div></div><div class="item"><div><a href="/compliance/hotline.html"><span>Reporting a Compliance Question or Concern</span></a></div></div><div class="item"><div><a href="/compliance/non-discrimination.html"><span>Policy Prohibiting Discrimination</span></a></div></div><div class="item"><div><a href="/compliance/non-retaliation.html"><span>Policy Prohibiting Retaliation</span></a></div></div><div class="item"><div><a href="/compliance/athletics-oversight.html"><span>Intercollegiate Athletics Oversight Policy</span></a></div></div><div class="item"><div><a href="/compliance/title-IX-coordinator.html"><span>Title IX Compliance Coordinators Policy</span></a></div></div></ul></div><div class="item"><div><a href="/app/index.html"><span>UR App</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/app/feedback/index.html"><span>App Feedback</span></a></div></div></ul></div><div class="item"><div><a href="/racial-justice/index.html"><span>Terms of Racial Justice</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/racial-justice/terms.html"><span>Terms and Videos</span></a></div></div><div class="item"><div><a href="/racial-justice/collapsed-content/index"><span>collapsed-content</span></a></div></div><div class="item"><div><a href="/racial-justice/events.html"><span>Events</span></a></div></div><div class="item"><div><a href="/racial-justice/committee.html"><span>Advisory Group</span></a></div></div></ul></div><div class="item"><div><a href="/arts-around-lake/index.html"><span>Arts Around the Lake</span></a></div></div><div class="item"><div><a href="/international-dean/index.html"><span>International Dean Search</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/international-dean/committee.html"><span>Search Committee</span></a></div></div><div class="item"><div><a href="/international-dean/prospectus.html"><span>Prospectus</span></a></div></div><div class="item"><div><a href="/international-dean/input.html"><span>Input &amp; Nominations</span></a></div></div><div class="item"><div><a href="/international-dean/search-firm.html"><span>Search Firm</span></a></div></div></ul></div><div class="item"><div><a href="/spcs-dean/index.html"><span>SPCS Dean Search</span></a><div class="expand icon-plus" data-icon="icon-plus" data-icon-close="icon-minus"></div></div><ul><div class="item"><div><a href="/spcs-dean/committee.html"><span>Search Committee</span></a></div></div><div class="item"><div><a href="/spcs-dean/input.html"><span>Campus Input </span></a></div></div><div class="item"><div><a href="/spcs-dean/search-firm.html"><span>Search Firm</span></a></div></div><div class="item"><div><a href="/spcs-dean/contact.html"><span>Contact &amp; Nominations</span></a></div></div></ul></div><div class="item"><div><a href="/valentines/index.html"><span>valentines</span></a></div></div><div class="item"><div><a href="/guarantee/index.html"><span>guarantee</span></a></div></div><div class="item"><div><a href="/faculty-staff/index.html"><span>faculty-staff</span></a></div></div><div class="item"><div><a href="/current-students/index.html"><span>current-students</span></a></div></div><div class="item"><div><a href="/alumni1/index.html"><span>alumni1</span></a></div></div></div><div id="siteSearch"></div></div></div>
 <!-- <div class="row" id="mainContent"><system-region name="DEFAULT"/></div> -->
 <div class="row" id="mainContent"><div class="rowWrap"><div class="clearfix" id="primaryContent"><h1>Page Not Found</h1>
 <p>The page you have requested cannot be located. This page may have been moved or discontinued.</p></div><div id="relatedContent"></div></div></div>
@@ -277,16 +423,16 @@
 <div class="row" id="footer">
 <div class="rowWrap">
     <div class="address">
-    <a class="wordmark" href="http://www.richmond.edu"><img alt="University of Richmond" src="/_KP4_assets/images/kp4/footerWordmark.png"/></a>
+    <a class="wordmark" href="http://www.richmond.edu"><img alt="University of Richmond" src="https://d2r44v0ubjhg6i.cloudfront.net/images/kp4/footerWordmark.png"/></a>
     <p>28 Westhampton Way<br/>
     
     University of Richmond,&#xa0;VA&#xa0;23173<br/>
     (804) 289-8000
     <br/>(800) 700-1662<br/></p>
     <p><a href="http://www.richmond.edu/visit/">Maps &amp; Directions</a></p>
-<p><a href="http://www.richmond.edu/legal/copyright.html">&#169; 1995-2015</a>&#160; | &#160; <a href="http://www.richmond.edu/legal/index.html">Legal Notices</a>&#160; | &#160; <a href="http://www.richmond.edu/feedback/?url=www.richmond.edu%2F">Site feedback</a></p></div>
+<p><a href="http://www.richmond.edu/legal/copyright.html">&#169; 1995-2017</a>&#160; | &#160; <a href="http://www.richmond.edu/legal/index.html">Legal Notices</a>&#160; | &#160; <a href="http://www.richmond.edu/feedback/?url=www.richmond.edu%2F">Site feedback</a></p></div>
     <div id="socialMedia">
-    <a class="facebook icon-circleLogoFacebook" href="https://facebook.com/universityofrichmond">Facebook</a><a class="twitter icon-circleLogoTwitter" href="https://twitter.com/urichmond">Twitter</a><a class="instagram icon-circleLogoInstagram" href="http://instagram.com/urichmond">Instagram</a>
+    <a class="facebook icon-circleLogoFacebook" href="https://facebook.com/urichmond">Facebook</a><a class="twitter icon-circleLogoTwitter" href="https://twitter.com/urichmond">Twitter</a><a class="instagram icon-circleLogoInstagram" href="http://instagram.com/urichmond">Instagram</a>
     </div>
     <div class="links">
     <div class="linksWrap clearfix">
@@ -295,9 +441,10 @@
 <li><a href="http://hr.richmond.edu">Human Resources</a></li>
 <li><a href="http://president.richmond.edu">President's Office</a></li>
 <li><a href="http://provost.richmond.edu">Provost's Office</a></li>
-<li><a href="http://communications.richmond.edu">Communications Office</a></li>
+<li><a href="http://communications.richmond.edu">University Communications</a></li>
 <li><a href="http://studentdevelopment.richmond.edu">Student Development</a></li>
 <li><a href="http://is.richmond.edu">Information Services</a></li>
+<li><a href="http://businessaffairs.richmond.edu/" target="_blank">Business Affairs</a></li>
 </ul></div>
     <div class="segment"><div class="title">General Info</div>
     <ul>
@@ -325,7 +472,17 @@
 <li><a href="http://preparedness.richmond.edu/planning/index.html">Emergency Preparedness</a></li>
 <li><a href="http://transportation.richmond.edu">Transportation</a></li>
 <li><a href="http://studentdevelopment.richmond.edu/student-concerns/sexual-misconduct/">Sexual Misconduct Policy</a></li>
-</ul></div></div></div></div>
+</ul></div></div></div></div><script type="text/javascript">
+			var badForms;
+			if(typeof($) != 'undefined'){
+				$("body").ready(function(){
+					badForms = $("form[action='https://webapps.richmond.edu/URPoster/URPoster.php']");
+					if(badForms.length > 0 && typeof isUnsecureIe !== "undefined" && isUnsecureIe == true){
+						badForms.html('<div class="announcement high icon-alert2"><div><span class="title">Unsecure version of Internet Explorer</span><p>The version of Internet Explorer you are using does not support the necessary security standards for form submission. To complete the form on this page, please visit this page using a more modern web browser.</p><ul><li><a href="https://www.google.com/chrome/browser/">Google Chrome</a></li><li><a href="https://www.mozilla.org/en-US/firefox/new/">Mozilla Firefox</a></li><li><a href="https://www.microsoft.com/en-us/download/details.aspx?id=48126">Microsoft Edge</a></li><li><a href="https://support.microsoft.com/en-us/help/17621/internet-explorer-downloads/">Microsoft Internet Explorer 11</a></li></ul></div></div>');
+					}
+				});
+			}
+			</script>
 </div>
 <!-- END footer -->
 </div>

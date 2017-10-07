@@ -8,7 +8,7 @@
 <meta name="author" content="">
 <title>天星教育网-提供天星教育教辅图书增值服务-中学生考试、升学门户网站</title>
 <meta name="description" content="天星教育网是一家服务于中学师生、教育团体的综合教育门户网站，凭借快速权威的考试信息、海量教学资源以及公司强大的图书资源优势成为国内教育行业的领跑者。">
-<meta name="keywords" content="天星教育，金考卷，试题调研，疯狂阅读，疯狂作文，高考冲刺，高考复习，自主招生，艺考生文化课，天星学堂，远程教育，高考志愿填报，2015年高考，2015年中考，高考作文，高考英语，高考资讯，教学资源，高考问吧，图书增值">
+<meta name="keywords" content="天星教育，金考卷，试题调研，疯狂阅读，疯狂作文，高考冲刺，高考复习，自主招生，艺考生文化课，天星学堂，远程教育，高考志愿填报，2017年高考，2017年中考，高考作文，高考英语，高考资讯，教学资源，高考问吧，图书增值">
 <link  rel="Shortcut  Icon" href="images2015/logo.ico">
 <link  rel="Bookmark"  href="images2015/logo.ico">
 <link href="assets2015/css/bootstrap.min.css" rel="stylesheet">
@@ -41,7 +41,42 @@
 <!-- 图片左右滚动效果 -->
 <script src="js/jquery.bxslider.js" type="text/javascript"></script>
 <!-- 图片展示 -->
+
 <script type="text/javascript">
+function mobile_device_detect(url) {
+	var thisOS = navigator.platform;
+	var os = new Array("iPhone", "iPod", "iPad", "android", "Nokia", "SymbianOS", "Symbian", "Windows Phone", "Phone", "Linux armv71", "MAUI", "UNTRUSTED/1.0", "Windows CE", "BlackBerry", "IEMobile");
+	for (var i = 0; i < os.length; i++) {
+		if (thisOS.match(os[i])) {
+window.location = url;
+		}
+	}
+
+	//因为相当部分的手机系统不知道信息,这里是做临时性特殊辨认
+	if (navigator.platform.indexOf('iPad') != -1) {
+		window.location = url;
+	}
+
+	//做这一部分是因为Android手机的内核也是Linux
+	//但是navigator.platform显示信息不尽相同情况繁多,因此从浏览器下手，即用navigator.appVersion信息做判断
+	var check = navigator.appVersion;
+
+	if (check.match(/linux/i)) {
+		//X11是UC浏览器的平台 ，如果有其他特殊浏览器也可以附加上条件
+		if (check.match(/mobile/i) || check.match(/X11/i)) {
+window.location = url;
+		}
+	}
+
+	//类in_array函数
+	Array.prototype.in_array = function(e) {
+		for (i = 0; i < this.length; i++) {
+if (this[i] == e) return true;
+		}
+		return false;
+	}
+}
+mobile_device_detect("http://weixin.tesoon.com");
 $(document).ready(function(){
 	
 	$.getJSON("/login_index_2015.php?rand="+Math.random(), function(data){
@@ -107,7 +142,12 @@ motionSpeed:0.08
 	 }); 
 	$(window).resize(); 
 	
-	setTimeout(function(){pagescroll('about');},5000);
+	setTimeout(function(){
+		if($(document).scrollTop()<10){
+pagescroll('about');
+		}
+		
+		},5000);
 	
 	$('.navsub a').hover(function (e) {
 		e.preventDefault();
@@ -148,6 +188,8 @@ function GoService(){
               <li><a href="http://www.tesoon.com/jkj/" target="_blank">金考卷</a></li>
               <li><a href="http://www.tesoon.com/stdy/" target="_blank">试题调研</a></li>
               <li><a href="http://www.tesoon.com/read/" target="_blank">疯狂阅读</a></li>
+              <li><a href="http://jcb.tesoon.com" target="_blank">教材帮</a></li>
+              <li><a href="http://ybg.tesoon.com" target="_blank">一遍过</a></li>
               <!--<li><a href="http://www.tesoon.com/xxjy/" target="_blank">学习讲义</a></li>-->
               <li><a href="http://children.tesoon.com/" target="_blank">天星童书</a></li>
               <!--<li><a href="#" target="_blank">中考</a></li>-->
@@ -160,25 +202,19 @@ function GoService(){
               <li><a href="http://www.tesoon.com/ask/" target="_blank">问吧答疑</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">数字产品 <i class="icon-caret-down"></i></a>
-            <ul class="dropdown-menu" role="menu">
-              	<li><a href="http://gk.tesoon.com/gk/index.php?nfssp=dtmb" target="_blank">2015高考状元超级答题模板</a></li>
-	<li><a href="http://gk.tesoon.com/gk/index.php?nfssp=ccbj" target="_blank">2015高考状元冲刺笔记</a></li>
-                <li><a href="http://gk.tesoon.com/gk/index.php?nfssp=yzbj" target="_blank">2015高考临考压轴笔记</a></li>
-                <li><a href="http://gk.tesoon.com/gk/index.php?nfssp=yzmj" target="_blank">2015高考临考压轴密卷</a></li>
-            </ul>
-          </li>
+          
           <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">数字平台 <i class="icon-caret-down"></i></a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="http://www.wln100.com/Index-Index" target="_blank">未来脑智能教学云平台</a></li>
-              <li><a href="http://www.vxueapp.com/" target="_blank">微学派|高考冲刺网</a></li>
-              <li><a href="http://www.vyuedu.com/default.php" target="_blank">微悦读网</a></li>
+              <li><a href="http://www.wln100.com/" target="_blank">未来脑智能教学云平台</a></li>
+              <li><a href="http://www.vxue360.com/" target="_blank">微学习圈</a></li>
               
             </ul>
           </li>
           <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">用户服务 <i class="icon-caret-down"></i></a>
             <ul class="dropdown-menu" role="menu">
+              <li><a href="#" onClick="GoService();return false;">图书听力</a></li>
               <li><a href="#" onClick="GoService();return false;">增值服务</a></li>
+              <li><a href="http://www.tesoon.com/special/buy/xecz.html" target="_blank">正版验证</a></li>
               <li><a href="http://www.tesoon.com/ask/get_class.php?fatherid=947" target="_blank">图书问答</a></li>
             </ul>
           </li>
@@ -212,7 +248,7 @@ function GoService(){
           </ul>
           <form class="navbar-form navbar-right" action="/s.php" method="get" target="_blank">
             <input type="text" class="form-control search-end" name="keywords" placeholder="站内搜索...">
-            <button type="button" class="btn btn-default"><i class="icon-search"></i></button>
+            <button type="submit" class="btn btn-default"><i class="icon-search"></i></button>
            
           </form>
           </div>
@@ -232,7 +268,7 @@ function GoService(){
               <h1 class="post-title2" style="letter-spacing:2px;">中国高考的领跑者</h1>
             </header>
             
-            <p style="line-height:1.8em;padding-top:15px;">天星教育是国内知名的教育出版机构，旗下拥有《金考卷》《试题调研》《教材帮》《疯狂阅读》《疯狂作文》等享誉国内外的知名教育读物品牌。公司自1998年成立以来，秉承“务实则优、创新则胜”的事业理念，锐意创新、兢兢业业，已经连续16年领跑中国高考及青少年出版市场，服务读者用户逾千万。 <br><br>
+            <p style="line-height:1.5em;padding-top:15px;">天星教育是国内知名的教育出版机构，旗下拥有《金考卷》《试题调研》《教材帮》《疯狂阅读》《疯狂作文》等享誉国内外的知名教育读物品牌。公司自1998年成立以来，秉承“务实则优、创新则胜”的事业理念，锐意创新、兢兢业业，已经连续16年领跑中国高考及青少年出版市场，服务读者用户逾千万。 <br><br>
               天星教育网是天星教育旗下一家综合性、权威性高考教育网站，自2002年建立以来，坚持“尽我所能，为你着想”的服务宗旨，凭借教育资料全面完整、内容新颖独特、更新速度快等优势，深受广大网友喜爱，点击率和Alexa排名在业内名列前茅，无愧于高考第一网站之称号。<br>
               <br>
             </p>
@@ -258,70 +294,65 @@ function GoService(){
           </ol>
           <div class="carousel-inner">
   
-            <div class="item active"><a href="/common/adclick.php?adid=3638" target="_blank"><img src="http://img.tesoon.com/up/2015/0922/22201509165915960.jpg" class="img-responsive img-rounded"></a></div>
+            <div class="item active"><a href="/common/adclick.php?adid=4243" target="_blank"><img src="http://img.tesoon.com/up/2017/0928/28201709144457794.jpg" class="img-responsive img-rounded"></a></div>
   
-            <div class="item"><a href="/common/adclick.php?adid=3623" target="_blank"><img src="http://img.tesoon.com/up/2015/0901/01201509114711864.jpg" class="img-responsive img-rounded"></a></div>
+            <div class="item"><a href="/common/adclick.php?adid=4238" target="_blank"><img src="http://img.tesoon.com/up/2017/0920/2020170914444387.jpg" class="img-responsive img-rounded"></a></div>
+  
+            <div class="item"><a href="/common/adclick.php?adid=4229" target="_blank"><img src="http://img.tesoon.com/up/2017/0906/06201709114043178.jpg" class="img-responsive img-rounded"></a></div>
             
           </div>
           <a class="left carousel-control" href="#carousel-example-generic2" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"></span> </a> <a class="right carousel-control" href="#carousel-example-generic2" data-slide="next"> <span class="glyphicon glyphicon-chevron-right"></span> </a> </div>
         <section class="widget2 clearfix">
-          <div id="navbar">
-            
-<ul class="nav navbar-nav">
+          <div id="navbar">            
+          <ul class="nav navbar-nav">
               <li class="dropdown"><span>天星图书</span>
                 <p class="ts-list"> 
                 <a href="http://www.tesoon.com/jkj/" target="_blank" class="newend1"></a>
                 <a href="http://www.tesoon.com/read/" target="_blank" class="newend2"></a>
                 <a href="http://www.tesoon.com/stdy/" target="_blank" class="newend3"></a>
-                <em><i class="icon-plus dropdown-toggle" data-toggle="dropdown"  style="cursor:pointer"></i></em></p>
+                <a href="http://jcb.tesoon.com" target="_blank" class="newend6"></a>
+                
+                
+                <em><i class="icon-plus dropdown-toggle" data-toggle="dropdown" style="cursor:pointer"></i></em></p>
                 <div class="dropdown-menu plus" role="menu">
                   <p> 
-                  <!--<a href="http://www.tesoon.com/xxjy/" target="_blank">学习讲义</a>-->
-                  <a href="http://children.tesoon.com/" target="_blank" class="newend4"></a></p>
+                  <a href="http://ybg.tesoon.com" target="_blank" class="newend5"></a>
+                  <a href="http://children.tesoon.com/" target="_blank" class="newend4"></a>
                 </div>
               </li>
-              <li class="dropdown"><span>数字产品</span>
-                <p class="ts-list"> 
-                <a href="http://gk.tesoon.com/gk/index.php?nfssp=dtmb" class="newenda" target="_blank"> </a>
-                <a href="http://gk.tesoon.com/gk/index.php?nfssp=ccbj" class="newendb" target="_blank"></a>
-                <a href="http://gk.tesoon.com/gk/index.php?nfssp=yzbj" class="newendc" target="_blank"></a>
-                <em><i class="icon-plus dropdown-toggle" data-toggle="dropdown"  style="cursor:pointer"></i></em></p>
-                <div class="dropdown-menu plus" role="menu">
-                  <p> <a href="http://gk.tesoon.com/gk/index.php?nfssp=yzmj" class="newendd" target="_blank"></a></p>
-                </div>
-              </li>
+              
               <li class="dropdown"><span>数字平台</span>
                 <p class="ts-list"> 
-                <a href="http://www.wln100.com" class="newend02" target="_blank"></a>
-                <a href="http://www.vyuedu.com" class="newend01" target="_blank"> </a>                
-                <a href="http://www.vxueapp.com" class="newend02-1" target="_blank"></a></p>
-              </li>
+                <a href="http://www.wln100.com/" class="newend02" target="_blank"></a>
+                <a href="http://www.vxue360.com/" class="newend01" target="_blank"> </a>                
+              </p></li>
               <li class="dropdown"><span>学习备考</span>
                 <p class="ts-list"> 
-                <a href="/gaokao/" class="newend03" target="_blank"> </a>
+                <a href="http://www.tesoon.com/gaokao/" class="newend03" target="_blank"> </a>
                 <a href="http://r.tesoon.com/" class="newend04" target="_blank"></a>
-                <a href="/ask/" class="newend05" target="_blank"></a></p>
+                <a href="http://www.tesoon.com/ask/" class="newend05" target="_blank"></a></p>
               </li>
               <li class="dropdown"><span>购书平台</span>
                 <p class="ts-list"> 
                 <a href="http://tianxingjiaoyu.tmall.com/" target="_blank" class="newend06"></a>
                 <a href="http://tianxing.jd.com/" target="_blank" class="newend07"></a>
                 <a href="http://book.dangdang.com/20130404_ljfi" target="_blank" class="newend08"></a>
-                <em><i class="icon-plus dropdown-toggle" data-toggle="dropdown"  style="cursor:pointer"></i></em></p>
-                <div class="dropdown-menu plus" role="menu">
-                  <p> <!--<a href="http://shop.tesoon.com/" target="_blank" class="newend09"></a>-->
-                  <a href="http://shop.vxueapp.com/index.php" target="_blank" class="newend10"></a>
-                  <a href="http://www.amazon.cn/gp/feature.html/ref=referencestore_reference_8?docId=1497748&ie=UTF8&pf_rd_p=247836212&pf_rd_s=merchandised-search-2&pf_rd_t=101&pf_rd_i=305884071&pf_rd_m=A1AJ19PSB66TGU&pf_rd_r=B1BHXNQD79DMRV7NZ" target="_blank" class="newend11"></a></p>
-                </div>
+                <a href="https://mall.jd.com/index-1000005827.html" target="_blank" class="newend11"></a>
+               </p>
+                <!--<div class="dropdown-menu plus" role="menu">
+                  <p>
+                  </p>
+                </div>-->
               </li>
               <li class="dropdown"><span>用户服务</span>
                 <p class="ts-list"> 
-                <a href="#" onClick="GoService();return false;" class="user1"></a>
-                <a href="#" onClick="GoService();return false;" class="user2"></a>
-                <a href="#" onClick="GoService();return false;" class="user3"></a></p>
+                <a href="http://www.tesoon.com/#" onclick="GoService();return false;" class="user1"></a>
+                <a href="http://www.tesoon.com/#" onclick="GoService();return false;" class="user2"></a>
+                <a href="http://www.tesoon.com/#" onclick="GoService();return false;" class="user3"></a></p>
               </li>
               <div class="clear"></div>
             </ul>
+
           </div>
         </section>
       </div>
@@ -347,10 +378,10 @@ function GoService(){
             </ol>
             <div class="carousel-inner">
   
-            <div class="item active"><a href="/common/adclick.php?adid=3635" target="_blank"><img src="http://img.tesoon.com/up/2015/0917/17201509100933331.jpg"></a></div>
+            <div class="item active"><a href="/common/adclick.php?adid=4246" target="_blank"><img src="http://img.tesoon.com/up/2017/0930/30201709164421127.jpg"></a></div>
             
   
-            <div class="item"><a href="/common/adclick.php?adid=3629" target="_blank"><img src="http://img.tesoon.com/up/2015/0915/15201509100828818.jpg"></a></div>
+            <div class="item"><a href="/common/adclick.php?adid=4234" target="_blank"><img src="http://img.tesoon.com/up/2017/0907/07201709170401439.jpg"></a></div>
             
             
             </div>
@@ -360,57 +391,57 @@ function GoService(){
         <div class="col-md-5">
           <div class="gaicenter clearfix stat">
             <h1 style="font-family:'微软雅黑';">
-           <a href="http://www.tesoon.com/a_new/htm/26/129967.htm" title="2015中国高中排行榜发布，人大附中位居第一" target="_blank">2015中国高中排行榜发布，人大附中位居第一</a>
+           <a href="http://www.tesoon.com/a_new/htm/33/160417.htm" title="高三新学期学习方法及素材分科汇总+国庆节学习计划" target="_blank">高三新学期学习方法及素材分科汇总+国庆节学习计划</a>
             </h1>
             <p>
-           <a href="http://www.tesoon.com/a_new/htm/27/130418.htm" title="青海高招改革的十个关键点" target="_blank">[青海高招改革的十个关键点]</a>
-           <a href="http://www.tesoon.com/a_new/htm/27/130515.htm" title="世界名校招生秘诀剖析：标准复杂" target="_blank">[世界名校招生秘诀剖析：标准复杂]</a>
+           <a href="http://www.tesoon.com/a_new/htm/33/160462.htm" title="2018年高考八大改革将正式推行" target="_blank">[2018年高考八大改革将正式推行]</a>
+           <a href="http://www.tesoon.com/a_new/htm/33/160474.htm" title="全国110多所中学试行大学先修课" target="_blank">[全国110多所中学试行大学先修课]</a>
             <br>
-           <a href="http://www.tesoon.com/a_new/htm/27/130449.htm" title="必看：揭秘高考命题的八大真相" target="_blank">[必看：揭秘高考命题的八大真相]</a>
-           <a href="http://www.tesoon.com/a_new/htm/27/130521.htm" title="2019年山东夏季高考拟只考语数外" target="_blank">[2019年山东夏季高考拟只考语数外]</a>
+           <a href="http://www.tesoon.com/a_new/htm/33/160490.htm" title="武汉一高校开设性教育选修课" target="_blank">[武汉一高校开设性教育选修课]</a>
+           <a href="http://www.tesoon.com/a_new/htm/33/160534.htm" title="2017北大清华最多的十大超级中学" target="_blank">[2017北大清华最多的十大超级中学]</a>
             </p>
           </div>
           <div class="gaicenter clearfix">
             <h1 style="font-family:'微软雅黑';">
-           <a href="http://www.tesoon.com/a_new/htm/27/130265.htm" title="河南各高校女生比例排行：女生连续6年超男生" target="_blank">河南各高校女生比例排行：女生连续6年超男生</a>
+           <a href="http://www.tesoon.com/a_new/htm/33/160471.htm" title="2017高校招生热点：关于双一流高校那些事儿" target="_blank">2017高校招生热点：关于双一流高校那些事儿</a>
             </h1>
             <p>
-           <a href="http://www.tesoon.com/a_new/htm/27/130420.htm" title="2015第38周中国教育舆情汇编" target="_blank">[2015第38周中国教育舆情汇编]</a>
-           <a href="http://www.tesoon.com/a_new/htm/27/130495.htm" title="2015中国两岸四地大学排名发布" target="_blank">[2015中国两岸四地大学排名发布]</a>
+           <a href="http://www.tesoon.com/a_new/htm/33/160448.htm" title="新疆：2018年实现15年免费教育" target="_blank">[新疆：2018年实现15年免费教育]</a>
+           <a href="http://www.tesoon.com/a_new/htm/33/160476.htm" title="小米公司向日语专业学生道歉" target="_blank">[小米公司向日语专业学生道歉]</a>
             <br>
-           <a href="http://www.tesoon.com/a_new/htm/27/130419.htm" title="浙江新高考首次学考10月开考" target="_blank">[浙江新高考首次学考10月开考]</a>
-           <a href="http://www.tesoon.com/a_new/htm/27/130530.htm" title="艺考生必备：2016艺考全年时间表" target="_blank">[艺考生必备：2016艺考全年时间表]</a>
+           <a href="http://www.tesoon.com/a_new/htm/33/160392.htm" title="全解读：双一流名单你读懂了吗" target="_blank">[全解读：双一流名单你读懂了吗]</a>
+           <a href="http://www.tesoon.com/a_new/htm/33/160418.htm" title="2018中高考改革八项变化一窥究竟" target="_blank">[2018中高考改革八项变化一窥究竟]</a>
             </p>
           </div>
    <div class="gaicenter clearfix">
             <h1 style="font-family:'微软雅黑';">
-           <a href="http://www.tesoon.com/a_new/htm/27/130456.htm" title="教育部认定8627所中小学校为全国足球特色学校" target="_blank">教育部认定8627所中小学校为全国足球特色学校</a>
+           <a href="http://www.tesoon.com/a_new/htm/33/160358.htm" title="紧急扩散：两个高考重大误区，命题人、教材主编已澄清！" target="_blank">紧急扩散：两个高考重大误区，命题人、教材主编已澄清！</a>
             </h1>
             <p>
-           <a href="http://www.tesoon.com/a_new/htm/27/130447.htm" title="这些大学专业和你想的不一样" target="_blank">[这些大学专业和你想的不一样]</a>
-           <a href="http://www.tesoon.com/a_new/htm/27/130450.htm" title="广东异地高考要到2016才真正实施" target="_blank">[广东异地高考要到2016才真正实施]</a>
+           <a href="http://www.tesoon.com/a_new/htm/33/160472.htm" title="北京高考英语听力首次模拟机考" target="_blank">[北京高考英语听力首次模拟机考]</a>
+           <a href="http://www.tesoon.com/a_new/htm/33/160469.htm" title="考生家长必看：高中三年时间节点" target="_blank">[考生家长必看：高中三年时间节点]</a>
             <br>
-           <a href="http://www.tesoon.com/a_new/htm/27/130439.htm" title="高薪的专业并非是理工科的专利" target="_blank">[高薪的专业并非是理工科的专利]</a>
-           <a href="http://www.tesoon.com/a_new/htm/27/130488.htm" title="海南高考改革已报国家教育部备案" target="_blank">[海南高考改革已报国家教育部备案]</a>
+           <a href="http://www.tesoon.com/a_new/htm/33/160530.htm" title="哪些高校自主招生通过率最高" target="_blank">[哪些高校自主招生通过率最高]</a>
+           <a href="http://www.tesoon.com/a_new/htm/33/160522.htm" title="四图看懂双一流：增加了哪些高校" target="_blank">[四图看懂双一流：增加了哪些高校]</a>
             </p>
           </div>
         </div>
         <div class="col-md-3">
             <ul class="zhiyuan">
-    <li><p >学习备考</p></li>
+    <li><p >高考百科</p></li>
     <div class="clear"></div>
   </ul>
           <ul class="gairg">
-           <li>·<a href="http://www.tesoon.com/a_new/htm/27/130331.htm" title="新高三第一轮复习的30则经验总结" target="_blank">新高三第一轮复习的30则经验总结</a></li>
-           <li>·<a href="http://www.tesoon.com/a_new/htm/27/130448.htm" title="高三家长疑惑的九个问题与对策" target="_blank">高三家长疑惑的九个问题与对策</a></li>
-           <li>·<a href="http://www.tesoon.com/a_new/htm/27/130452.htm" title="2016年高考第一轮复习如何安排" target="_blank">2016年高考第一轮复习如何安排</a></li>
-           <li>·<a href="http://www.tesoon.com/a_new/htm/26/129966.htm" title="福建2016届高三各学科教学指导意见" target="_blank">福建2016届高三各学科教学指导意见</a></li>
+           <li>·<a href="http://www.tesoon.com/a_new/htm/33/160357.htm" title="双一流建设高校及建设学科名单公布" target="_blank">双一流建设高校及建设学科名单公布</a></li>
+           <li>·<a href="http://www.tesoon.com/a_new/htm/33/160258.htm" title="高考百科：你必须要看的高考专业知识" target="_blank">高考百科：你必须要看的高考专业知识</a></li>
+           <li>·<a href="http://www.tesoon.com/a_new/htm/33/160128.htm" title="重点高校2017在各省市录取最低分数线" target="_blank">重点高校2017在各省市录取最低分数线</a></li>
+           <li>·<a href="http://www.tesoon.com/a_new/htm/32/159460.htm" title="2017年全国31省高考状元报考大学/专业" target="_blank">2017年全国31省高考状元报考大学/专业</a></li>
           </ul>
            <ul class="zhiyuan">
     <li><p>热点推荐</p> <a href="http://www.tesoon.com/topic/" target="_blank" class="morezt">更多专题</a></li>
   </ul>
   <ul class="gairg">
-           <li><a href="http://topic.tesoon.com/201509/10.1/" title="专题策划：庆祝中华人民共和国成立66周年" target="_blank"><img src="http://img.tesoon.com/up/2015/0922/22201509165727143.jpg"></a></li>           
+           <li><a href="http://topic.tesoon.com/201708/gushi" title="2018中高考语文必背的74首古诗文" target="_blank"><img src="http://img.tesoon.com/up/2017/0821/21201708165046933.jpg"></a></li>           
           </ul>
         </div>
       </div>
@@ -423,29 +454,29 @@ function GoService(){
   <!-- Nav tabs -->
   <ul class="nav nav-tabs navsub" role="tablist">
     <li role="presentation" class="active"><a href="#book" aria-controls="book" role="tab" data-toggle="tab">新书动态</a></li>
-    <li role="presentation"><a href="#listen" aria-controls="listen" role="tab" data-toggle="tab">听力 & 增值 </a></li>
+    <!--<li role="presentation"><a href="#listen" aria-controls="listen" role="tab" data-toggle="tab">听力 & 增值 </a></li>-->
   </ul>
 
   <!-- Tab panes -->
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="book">
     <ul class="gairg">
-           <li>·<a href="http://www.tesoon.com/jkj/a.php?id&#61;4689" title="金考卷第3期《2016高考专题冲关集训》隆重上市！" target="_blank">金考卷第3期《2016高考专题冲关集训》隆重上市！</a></li>
-           <li>·<a href="http://user.qzone.qq.com/807975291/blog/1442245527" title="《试题调研》2016高考第2辑：高考全通关（二）" target="_blank">《试题调研》2016高考第2辑：高考全通关（二）</a></li>
-           <li>·<a href="http://www.tesoon.com/jkj/a.php?id&#61;4646" title="金考卷特快专递第2期《2016高考命题热点集训》上市热销！" target="_blank">金考卷特快专递第2期《2016高考命题热点集训》上市热销！</a></li>
-           <li>·<a href="http://user.qzone.qq.com/807975291/blog/1439432499" title="《试题调研》2016高考第1辑权威发布" target="_blank">《试题调研》2016高考第1辑权威发布</a></li>
-           <li>·<a href="http://user.qzone.qq.com/807975291/blog/1439199875?ptlang&#61;2052" title="2016高考《一遍过》重磅上市：我的青春不容有高四！" target="_blank">2016高考《一遍过》重磅上市：我的青春不容有高四！</a></li>
-           <li>·<a href="http://user.qzone.qq.com/807975291/blog/1439263778" title="《金考卷&#8226;周末培优》：周末1小时，轻松当学霸" target="_blank">《金考卷&#8226;周末培优》：周末1小时，轻松当学霸</a></li>
+           <li>·<a href="https://mp.weixin.qq.com/s?__biz&#61;MjM5NDc2OTQ4MA&#61;&#61;&amp;mid&#61;2650699596&amp;idx&#61;3&amp;sn&#61;153e92daf292f94b2b8bc0b653bda22d&amp;chksm&#61;be88686b89ffe17d6d60eb7ce514a7d8da9d9d491b9" title="艺考生突破450分 | 《艺考生文化课百日冲刺》重磅上市！" target="_blank">艺考生突破450分 | 《艺考生文化课百日冲刺》重磅上市！</a></li>
+           <li>·<a href="http://www.tesoon.com/jkj/a.php?id&#61;4994" title="《金考卷·活页题选》（2018年第5版）单元同步双测卷暑期上市" target="_blank">《金考卷·活页题选》（2018年第5版）单元同步双测卷暑期上市</a></li>
+           <li>·<a href="https://user.qzone.qq.com/807975291/infocenter" title="高考——拒绝短板！英语得高分，就要专练题型" target="_blank">高考——拒绝短板！英语得高分，就要专练题型</a></li>
+           <li>·<a href="https://user.qzone.qq.com/807975291/bloglist?bid&#61;1501060897&amp;secondary&#61;1" title="吃透母题，通一类题 ——2018《高考必备题型1000例》重磅上市！" target="_blank">吃透母题，通一类题 ——2018《高考必备题型1000例》重磅上市！</a></li>
+           <li>·<a href="https://user.qzone.qq.com/807975291/infocenter" title="你们想要的2018《高考题库·合订本》重磅上市啦！" target="_blank">你们想要的2018《高考题库·合订本》重磅上市啦！</a></li>
+           <li>·<a href="http://user.qzone.qq.com/807975291/blog/1499509614" title="《试题调研》2018高考第1辑：15周年感恩，英语1元1本" target="_blank">《试题调研》2018高考第1辑：15周年感恩，英语1元1本</a></li>
           </ul>
           </div>
     <div role="tabpanel" class="tab-pane" id="listen">
     <ul class="gairg">
+           <li>·<a href="http://www.tesoon.com/a_new/htm/21/104543.htm" title="2016-2017《高考冲刺45套题》配套听力" target="_blank">2016-2017《高考冲刺45套题》配套听力</a></li>
+           <li>·<a href="http://www.tesoon.com/a_new/htm/27/134060.htm" title="2016年高考信息卷听力配套听力" target="_blank">2016年高考信息卷听力配套听力</a></li>
            <li>·<a href="http://www.tesoon.com/a_new/htm/21/104570.htm" title="金考卷《特快专递》系列图书配套听力" target="_blank">金考卷《特快专递》系列图书配套听力</a></li>
            <li>·<a href="http://www.tesoon.com/a_new/htm/21/104576.htm" title="《高考题模拟题精编》配套听力" target="_blank">《高考题模拟题精编》配套听力</a></li>
            <li>·<a href="http://www.tesoon.com/a_new/htm/21/104542.htm" title="金考卷《中考45套题》配套听力" target="_blank">金考卷《中考45套题》配套听力</a></li>
            <li>·<a href="http://www.tesoon.com/a_new/htm/21/104570.htm" title="金考卷《特快专递》系列图书配套听力" target="_blank">金考卷《特快专递》系列图书配套听力</a></li>
-           <li>·<a href="http://www.tesoon.com/a_new/htm/21/104560.htm" title="金考卷《3年高考真题》配套听力" target="_blank">金考卷《3年高考真题》配套听力</a></li>
-           <li>·<a href="http://www.tesoon.com/a_new/htm/21/104557.htm" title="金考卷《5年高考真题》配套听力" target="_blank">金考卷《5年高考真题》配套听力</a></li>
           </ul>
           </div>
   </div>
@@ -457,30 +488,31 @@ function GoService(){
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs navsub" role="tablist">
-    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" target="_blank" onClick="javascript:window.location.href='http://topic.tesoon.com/201505/zt/index.html';">一轮复习</a></li>
-    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">最新资源</a></li>
+    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" target="_blank" onClick="javascript:window.location.href='http://www.tesoon.com';">2018一轮复习</a></li>
+    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" onClick="javascript:window.location.href='http://www.tesoon.com';">2018精品资源</a></li>
+   
   </ul>
 
   <!-- Tab panes -->
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="home">
     <ul class="gairg">
-           <li>·<a href="http://www.tesoon.com/r/htm/67/334707.htm" title="2016届高三数学一轮复习：函数的单调性与最值" target="_blank">2016届高三数学一轮复习：函数的单调性与最值</a></li>
-           <li>·<a href="http://www.tesoon.com/r/htm/67/334665.htm" title="2016届高三生物一轮复习：孟德尔的豌豆杂交实验" target="_blank">2016届高三生物一轮复习：孟德尔的豌豆杂交实验</a></li>
-           <li>·<a href="http://www.tesoon.com/r/htm/68/335178.htm" title="2016届高三化学一轮复习：电化学" target="_blank">2016届高三化学一轮复习：电化学</a></li>
-           <li>·<a href="http://www.tesoon.com/r/htm/68/335193.htm" title="2016届高三物理一轮复习：波的现象与声波" target="_blank">2016届高三物理一轮复习：波的现象与声波</a></li>
-           <li>·<a href="http://www.tesoon.com/r/htm/68/335159.htm" title="2016届高三英语一轮复习：定语从句" target="_blank">2016届高三英语一轮复习：定语从句</a></li>
-           <li>·<a href="http://www.tesoon.com/r/htm/67/334705.htm" title="2016届高三数学一轮复习：函数、导数及其应用" target="_blank">2016届高三数学一轮复习：函数、导数及其应用</a></li>
+           <li>·<a href="http://www.tesoon.com/a_new/htm/33/160527.htm" title="2018年高考作文模拟卷例文与写作指导" target="_blank">2018年高考作文模拟卷例文与写作指导</a></li>
+           <li>·<a href="http://www.tesoon.com/a_new/htm/33/160342.htm" title="高中英语：常考短语及经典例句大汇总" target="_blank">高中英语：常考短语及经典例句大汇总</a></li>
+           <li>·<a href="http://www.tesoon.com/a_new/htm/33/160499.htm" title="记住多拿20分：高中化学51条规律“例外”汇总" target="_blank">记住多拿20分：高中化学51条规律“例外”汇总</a></li>
+           <li>·<a href="http://www.tesoon.com/a_new/htm/33/160465.htm" title="高考语文常见错字汇集：这些字，你会读吗？" target="_blank">高考语文常见错字汇集：这些字，你会读吗？</a></li>
+           <li>·<a href="http://www.tesoon.com/a_new/htm/33/160464.htm" title="高考改革：政治历史要“翻身”，如何学才能拿高分？" target="_blank">高考改革：政治历史要“翻身”，如何学才能拿高分？</a></li>
+           <li>·<a href="http://www.tesoon.com/a_new/htm/33/160526.htm" title="非常重要：高中物理考点明细表，全搞懂就能拿满分" target="_blank">非常重要：高中物理考点明细表，全搞懂就能拿满分</a></li>
           </ul>
           </div>
     <div role="tabpanel" class="tab-pane" id="profile">
     <ul class="gairg">
-           <li>·<a href="http://www.tesoon.com/r/series/04/18646.htm" title="河北定州中学2016届高三第一次月考" target="_blank">河北定州中学2016届高三第一次月考</a></li>
-           <li>·<a href="http://www.tesoon.com/r/series/04/18652.htm" title="湖南省浏阳一中2015-2016学年高二上学期入学考试" target="_blank">湖南省浏阳一中2015-2016学年高二上学期入学考试</a></li>
-           <li>·<a href="http://www.tesoon.com/r/series/04/18654.htm" title="宁夏银川一中2016届高三上学期第一次月考" target="_blank">宁夏银川一中2016届高三上学期第一次月考</a></li>
-           <li>·<a href="http://www.tesoon.com/r/series/04/18655.htm" title="云南省玉溪一中2016届高三第一次月考" target="_blank">云南省玉溪一中2016届高三第一次月考</a></li>
-           <li>·<a href="http://www.tesoon.com/r/series/04/18637.htm" title="河北省衡水市某重点中学2016届高三小学期一调考试" target="_blank">河北省衡水市某重点中学2016届高三小学期一调考试</a></li>
-           <li>·<a href="http://www.tesoon.com/r/series/04/18663.htm" title="江苏省运河中学2016届高三上学期第一次调研" target="_blank">江苏省运河中学2016届高三上学期第一次调研</a></li>
+           <li>·<a href="http://www.tesoon.com/r/series/05/22082.htm" title="江西省红色七校2018届高三第一次联考" target="_blank">江西省红色七校2018届高三第一次联考</a></li>
+           <li>·<a href="http://www.tesoon.com/r/series/05/22080.htm" title="河北省承德二中2018届高三上学期第一次月考" target="_blank">河北省承德二中2018届高三上学期第一次月考</a></li>
+           <li>·<a href="http://www.tesoon.com/r/series/05/22077.htm" title="辽宁省沈阳市东北育才学校2018届高三上学期第一次模拟考试" target="_blank">辽宁省沈阳市东北育才学校2018届高三上学期第一次模拟考试</a></li>
+           <li>·<a href="http://www.tesoon.com/r/series/05/22079.htm" title="云南省玉溪市玉溪一中2018届高三上学期第一次月考" target="_blank">云南省玉溪市玉溪一中2018届高三上学期第一次月考</a></li>
+           <li>·<a href="http://www.tesoon.com/r/series/05/22084.htm" title="浙江省湖州、衢州、丽水三地市2018届高三9月教学质量检测" target="_blank">浙江省湖州、衢州、丽水三地市2018届高三9月教学质量检测</a></li>
+           <li>·<a href="http://www.tesoon.com/r/series/05/22081.htm" title="河南省中原名校（即豫南九校）2018届高三上学期第二次质量考评" target="_blank">河南省中原名校（即豫南九校）2018届高三上学期第二次质量考评</a></li>
           </ul>
           </div>
   </div>
@@ -489,9 +521,9 @@ function GoService(){
         </div>
         <div class="col-md-3">
           <ul class="gairg morezt">
-           <li><a href="http://topic.tesoon.com/201509/ybg/" title="天星教育倾力打造《一遍过》：新高考，新同步的引领者" target="_blank"><img src="http://img.tesoon.com/up/2015/0915/15201509120356208.jpg"></a></li>           
-           <li><a href="http://topic.tesoon.com/201509/phb/" title="2015年全国顶尖高中排行榜单出炉" target="_blank"><img src="http://img.tesoon.com/up/2015/0909/09201509155604877.jpg"></a></li>           
-           <li><a href="http://topic.tesoon.com/201507/jcb/" title="2015天星教育强力打造高中同步新品《教材帮》" target="_blank"><img src="http://img.tesoon.com/up/2015/0811/11201508112534231.jpg"></a></li>           
+           <li><a href="http://topic.tesoon.com/201708/rxks/" title="2017年各地准高三入学考试精品资源汇编" target="_blank"><img src="http://img.tesoon.com/up/2017/0810/10201708133028419.jpg"></a></li>           
+           <li><a href="http://www.tesoon.com/jkj/a.php?id&#61;4822" title="2018版高考45套听力与增值" target="_blank"><img src="http://img.tesoon.com/up/2017/0802/02201708162113804.jpg"></a></li>           
+           <li><a href="http://www.tesoon.com/a_new/htm/21/104570.htm" title="2018特快专递第1期听力" target="_blank"><img src="http://img.tesoon.com/up/2017/0614/14201706131245302.jpg"></a></li>           
           </ul>
         </div>
       </div>
@@ -508,45 +540,45 @@ function GoService(){
         <p class="gaokao-nav"> <a type="button" class="btn btn-default btn-sm" href="http://www.tesoon.com/gaokao/type/503/503.htm" target="_blank">高考快讯</a> <a type="button" class="btn btn-default btn-sm" href="http://www.tesoon.com/gaokao/type/504/504.htm" target="_blank">轻松备考</a> <a type="button" class="btn btn-default btn-sm" href="http://www.tesoon.com/gaokao/type/505/505.htm" target="_blank">招生计划与简章</a> <a type="button" class="btn btn-default btn-sm" href="http://www.tesoon.com/gaokao/type/506/506.htm" target="_blank">志愿填报</a> <a type="button" class="btn btn-default btn-sm" href="http://www.tesoon.com/gaokao/type/507/507.htm" target="_blank">求学选择</a> <a type="button" class="btn btn-default btn-sm" href="http://www.tesoon.com/gaokao/type/363/363.htm" target="_blank">我的大学</a> <a type="button" class="btn btn-default btn-sm" href="http://www.tesoon.com/gaokao/type/360/360.htm" target="_blank">热点专题</a> </p>
       </blockquote>
       <div class="row">
-        <div class="col-md-7"> <a href="http://topic.tesoon.com/201509/phb/" target="_blank"><img src="http://img.tesoon.com/up/2015/0909/09201509155646859.jpg" alt="2015年全国顶尖高中排行榜单出炉" class="featurette-image img-responsive" ></a> </div>
+        <div class="col-md-7"> <a href="http://topic.tesoon.com/201709/xxhz/" target="_blank"><img src="http://img.tesoon.com/up/2017/0928/2820170914473283.jpg" alt="高三新学期学习方法及国庆节学习计划+素材分科汇总" class="featurette-image img-responsive" ></a> </div>
         <div class="col-md-5">
-          <h2 class="featurette-heading"><a href="http://topic.tesoon.com/201509/phb/" target="_blank">2015年全国顶尖高中排行榜单出炉</a></h2>
-          <p> 导语：猿题库评价研究中心正式公布《猿题库2015中国高中排行榜》，中国人民大学附属中学以较大优势位居全国第一，河北衡水中学和长沙长郡中学排名第二和第三；而之前艾瑞森也发布过类似的高中排行榜。具体哪个排名更靠谱，看者就见仁见智了。</p>
-          <p><a type="button" class="btn btn-success" href="http://topic.tesoon.com/201509/phb/" target="_blank">详情查看</a></p>
+          <h2 class="featurette-heading"><a href="http://topic.tesoon.com/201709/xxhz/" target="_blank">高三新学期学习方法及国庆节学习计划+素材分科汇总</a></h2>
+          <p> 导语：金秋十月是收获的季节、多彩的季节，更是高三学生过渡复习、设计学习规划的最佳时期。但是在高三这样紧张的阶段，有一段假期来调节一下，同学们还是应该好好加以利用，张驰有度才能提高学习效率。如何利用假期调整一下疲惫紧张的学习状态，又充分利用时间把握复习主动权，小编这就给大家一些建议。</p>
+          <p><a type="button" class="btn btn-success" href="http://topic.tesoon.com/201709/xxhz/" target="_blank">详情查看</a></p>
         </div>
 
       </div>
       <div class="row dashborder-bot">
-        <div class=" col-xs-6 col-md-3"> <a href="/a_new/htm/27/130530.htm" target="_blank"><img src="http://img.tesoon.com/up/2015/0923/23201509115551747.jpg" alt="艺考生必备：2016年艺考全年时间表"  class="img-thumbnail pull-left" ></a>
-          <p><a href="/a_new/htm/27/130530.htm" target="_blank" title="艺考生必备：2016年艺考全年时间表">2016艺考全年时间表</a></p>
+        <div class=" col-xs-6 col-md-3"> <a href="/a_new/htm/33/160539.htm" target="_blank"><img src="http://img.tesoon.com/up/2017/0930/30201709164640968.jpg" alt="“浙江新高考考生集体弃考物理”谣言背后的真相"  class="img-thumbnail pull-left" ></a>
+          <p><a href="/a_new/htm/33/160539.htm" target="_blank" title="“浙江新高考考生集体弃考物理”谣言背后的真相">弃考物理谣言背后的真相</a></p>
         </div>          
         
-        <div class=" col-xs-6 col-md-3"> <a href="/a_new/htm/27/130529.htm" target="_blank"><img src="http://img.tesoon.com/up/2015/0923/23201509115450201.jpg" alt="高考作文八要八不要"  class="img-thumbnail pull-left" ></a>
-          <p><a href="/a_new/htm/27/130529.htm" target="_blank" title="高考作文八要八不要">高考作文八要八不要</a></p>
+        <div class=" col-xs-6 col-md-3"> <a href="/a_new/htm/33/160530.htm" target="_blank"><img src="http://img.tesoon.com/up/2017/0930/30201709111112718.jpg" alt="哪些高校自主招生考试通过率最高？"  class="img-thumbnail pull-left" ></a>
+          <p><a href="/a_new/htm/33/160530.htm" target="_blank" title="哪些高校自主招生考试通过率最高？">自主招生通过率最高高校</a></p>
         </div>          
         
-        <div class=" col-xs-6 col-md-3"> <a href="/a_new/htm/27/130525.htm" target="_blank"><img src="http://img.tesoon.com/up/2015/0923/23201509115146589.jpg" alt="山东高考改革方案审定:自选三科纳入总分 不分文理科"  class="img-thumbnail pull-left" ></a>
-          <p><a href="/a_new/htm/27/130525.htm" target="_blank" title="山东高考改革方案审定:自选三科纳入总分 不分文理科">山东高考统考减至三科</a></p>
+        <div class=" col-xs-6 col-md-3"> <a href="/a_new/htm/33/160489.htm" target="_blank"><img src="http://img.tesoon.com/up/2017/0928/28201709154657848.jpg" alt="关于中秋的诗词100首"  class="img-thumbnail pull-left" ></a>
+          <p><a href="/a_new/htm/33/160489.htm" target="_blank" title="关于中秋的诗词100首">关于中秋的诗词100首</a></p>
         </div>          
         
-        <div class=" col-xs-6 col-md-3"> <a href="/a_new/htm/27/130519.htm" target="_blank"><img src="http://img.tesoon.com/up/2015/0922/22201509170547526.jpg" alt="家长须知：高三家长的心理问题"  class="img-thumbnail pull-left" ></a>
-          <p><a href="/a_new/htm/27/130519.htm" target="_blank" title="家长须知：高三家长的心理问题">高三家长的心理问题</a></p>
+        <div class=" col-xs-6 col-md-3"> <a href="/a_new/htm/33/160481.htm" target="_blank"><img src="http://img.tesoon.com/up/2017/0928/28201709110017287.jpg" alt="2017中秋节送家人和朋友的微信祝福"  class="img-thumbnail pull-left" ></a>
+          <p><a href="/a_new/htm/33/160481.htm" target="_blank" title="2017中秋节送家人和朋友的微信祝福">2017中秋节微信祝福</a></p>
         </div>          
         </div><div class="row noborder-bot">
-        <div class=" col-xs-6 col-md-3"> <a href="/a_new/htm/27/130518.htm" target="_blank"><img src="http://img.tesoon.com/up/2015/0922/22201509170246521.jpg" alt="时评：考上大学迁不迁户口好纠结"  class="img-thumbnail pull-left" ></a>
-          <p><a href="/a_new/htm/27/130518.htm" target="_blank" title="时评：考上大学迁不迁户口好纠结">考上大学迁不迁户口</a></p>
+        <div class=" col-xs-6 col-md-3"> <a href="/a_new/htm/33/160479.htm" target="_blank"><img src="http://img.tesoon.com/up/2017/0927/27201709170232660.jpg" alt="历年高考数学易错点大汇总"  class="img-thumbnail pull-left" ></a>
+          <p><a href="/a_new/htm/33/160479.htm" target="_blank" title="历年高考数学易错点大汇总">历年高考数学易错点</a></p>
         </div>          
         
-        <div class=" col-xs-6 col-md-3"> <a href="/a_new/htm/27/130517.htm" target="_blank"><img src="http://img.tesoon.com/up/2015/0922/22201509170141617.jpg" alt="2015年中国两岸四地大学排名100强名单"  class="img-thumbnail pull-left" ></a>
-          <p><a href="/a_new/htm/27/130517.htm" target="_blank" title="2015年中国两岸四地大学排名100强名单">大学排名100强名单</a></p>
+        <div class=" col-xs-6 col-md-3"> <a href="/a_new/htm/33/160469.htm" target="_blank"><img src="http://img.tesoon.com/up/2017/0927/27201709150121774.jpg" alt="考生家长必看：高中三年，这些时间节点太重要了！"  class="img-thumbnail pull-left" ></a>
+          <p><a href="/a_new/htm/33/160469.htm" target="_blank" title="考生家长必看：高中三年，这些时间节点太重要了！">高中三年重要时间点</a></p>
         </div>          
         
-        <div class=" col-xs-6 col-md-3"> <a href="/a_new/htm/27/130418.htm" target="_blank"><img src="http://img.tesoon.com/up/2015/0918/18201509170822133.jpg" alt="青海高招改革的十个关键点：逐步取消录取批次"  class="img-thumbnail pull-left" ></a>
-          <p><a href="/a_new/htm/27/130418.htm" target="_blank" title="青海高招改革的十个关键点：逐步取消录取批次">青海高招改革十个关键点</a></p>
+        <div class=" col-xs-6 col-md-3"> <a href="/a_new/htm/33/160465.htm" target="_blank"><img src="http://img.tesoon.com/up/2017/0927/27201709114158877.jpg" alt="高考语文常见错字汇集：这些字，你会读吗？"  class="img-thumbnail pull-left" ></a>
+          <p><a href="/a_new/htm/33/160465.htm" target="_blank" title="高考语文常见错字汇集：这些字，你会读吗？">高考语文常见错字汇集</a></p>
         </div>          
         
-        <div class=" col-xs-6 col-md-3"> <a href="/a_new/htm/27/130415.htm" target="_blank"><img src="http://img.tesoon.com/up/2015/0918/18201509170349171.jpg" alt="在国家考试中组织作弊入刑 最高判7年"  class="img-thumbnail pull-left" ></a>
-          <p><a href="/a_new/htm/27/130415.htm" target="_blank" title="在国家考试中组织作弊入刑 最高判7年">组织作弊入刑最高判7年</a></p>
+        <div class=" col-xs-6 col-md-3"> <a href="/a_new/htm/33/160462.htm" target="_blank"><img src="http://img.tesoon.com/up/2017/0927/27201709112126312.jpg" alt="一窥究竟：2018年高考八大改革将正式推行"  class="img-thumbnail pull-left" ></a>
+          <p><a href="/a_new/htm/33/160462.htm" target="_blank" title="一窥究竟：2018年高考八大改革将正式推行">2018高考八大改革将推行</a></p>
         </div>          
         
  
@@ -561,36 +593,33 @@ function GoService(){
     <div class="container">
       <blockquote>
         <h3><span class="text-muted"><a href="http://r.tesoon.com/" target="_blank">优质资源</a></span></h3>
-        <p class="gaokao-nav"> <a type="button" class="btn btn-default btn-sm" href="http://beike.tesoon.com/" target="_blank">备课中心</a> <a type="button" class="btn btn-default btn-sm" href="http://yw.tesoon.com/" target="_blank">语文</a> <a type="button" class="btn btn-default btn-sm" href="http://sx.tesoon.com/" target="_blank">数学</a> <a type="button" class="btn btn-default btn-sm" href="http://yy.tesoon.com/" target="_blank">英语</a> <a type="button" class="btn btn-default btn-sm" href="http://wl.tesoon.com/" target="_blank">物理</a> <a type="button" class="btn btn-default btn-sm" href="http://hx.tesoon.com/" target="_blank">化学</a> <a type="button" class="btn btn-default btn-sm" href="http://sw.tesoon.com/" target="_blank">生物</a> <a type="button" class="btn btn-default btn-sm" href="http://zz.tesoon.com/" target="_blank">政治</a> <a type="button" class="btn btn-default btn-sm" href="http://ls.tesoon.com/" target="_blank">历史</a> <a type="button" class="btn btn-default btn-sm" href="http://dl.tesoon.com/" target="_blank">地理</a> <a type="button" class="btn btn-default btn-sm" href="http://sj.tesoon.com/" target="_blank">试卷</a> <a type="button" class="btn btn-default btn-sm" href=
-"http://kj.tesoon.com/" target="_blank">课件</a> <a type="button" class="btn btn-default btn-sm" href="http://sc.tesoon.com/" target="_blank">素材</a> <a type="button" class="btn btn-default btn-sm" href=
-"http://ja.tesoon.com/" target="_blank">教案</a> <a type="button" class="btn btn-default btn-sm" href=
-"http://lw.tesoon.com/" target="_blank">论文</a> </p>
+        
       </blockquote>
       <div class="row">
         <div class="col-md-4">
           <div class="dashborder-bot2 clearfix">
-            <h4><a href="/r/series/04/18691.htm" target="_blank">广东省揭阳市重点中学2014-2015学年高一下学期期末考试</a></h4>
+            <h4><a href="/r/series/05/22084.htm" target="_blank">浙江省湖州、衢州、丽水三地市2018届高三9月教学质量检测</a></h4>
           </div>
           <div class="dashborder-bot2 clearfix">
-            <h4><a href="/r/series/04/18689.htm" target="_blank">广东省佛山市第一中学2014-2015学年高二上学期期中考试</a></h4>
+            <h4><a href="/r/series/05/22083.htm" target="_blank">内蒙古阿拉善左旗高级中学2018届高三第一次月考</a></h4>
           </div>
           <div class="dashborder-bot2 clearfix">
-            <h4><a href="/r/series/04/18687.htm" target="_blank">广东省佛山市第一中学2015届高三10月月考</a></h4>
+            <h4><a href="/r/series/05/22082.htm" target="_blank">江西省红色七校2018届高三第一次联考</a></h4>
           </div>
           <div class="dashborder-bot2 clearfix">
-            <h4><a href="/r/series/04/18679.htm" target="_blank">广东省东莞实验中学2014-2015学年高二下学期期中考试</a></h4>
+            <h4><a href="/r/series/05/22081.htm" target="_blank">河南省中原名校（即豫南九校）2018届高三上学期第二次质量考评</a></h4>
           </div>
           <div class="dashborder-bot2 clearfix">
-            <h4><a href="/r/series/04/18671.htm" target="_blank">黑龙江省哈尔滨师范大学附属中学2014-2015学年高二下学期期中考试</a></h4>
+            <h4><a href="/r/series/05/22080.htm" target="_blank">河北省承德二中2018届高三上学期第一次月考</a></h4>
           </div>
           <div class="dashborder-bot2 clearfix">
-            <h4><a href="/r/series/04/18670.htm" target="_blank">黑龙江省哈尔滨师范大学附属中学2014-2015学年高一下学期期中考试</a></h4>
+            <h4><a href="/r/series/05/22079.htm" target="_blank">云南省玉溪市玉溪一中2018届高三上学期第一次月考</a></h4>
           </div>
           <div class="dashborder-bot2 clearfix">
-            <h4><a href="/r/series/04/18668.htm" target="_blank">黑龙江省哈尔滨师范大学附属中学2014-2015学年高二下学期第一次月考</a></h4>
+            <h4><a href="/r/series/05/22078.htm" target="_blank">四川省成都市2017届高三第一次诊断性检测</a></h4>
           </div>
           <div class=" clearfix">
-            <h4><a href="/r/series/04/18667.htm" target="_blank">黑龙江省龙东南四校2014-2015学年高一下学期期末联考</a></h4>
+            <h4><a href="/r/series/05/22077.htm" target="_blank">辽宁省沈阳市东北育才学校2018届高三上学期第一次模拟考试</a></h4>
           </div>
         </div>
         <div class="col-md-4">
@@ -601,9 +630,11 @@ function GoService(){
             </ol>
             <div class="carousel-inner">
   
-            <div class="item active"><a href="/common/adclick.php?adid=3633" target="_blank"><img src="http://img.tesoon.com/up/2015/0916/16201509101928513.jpg"></a></div>
+            <div class="item active"><a href="/common/adclick.php?adid=4248" target="_blank"><img src="http://img.tesoon.com/up/2017/0930/30201709164651655.jpg"></a></div>
   
-            <div class="item"><a href="/common/adclick.php?adid=3593" target="_blank"><img src="http://img.tesoon.com/up/2015/0804/04201508091644455.jpg"></a></div>
+            <div class="item"><a href="/common/adclick.php?adid=4230" target="_blank"><img src="http://img.tesoon.com/up/2017/0906/06201709114135745.jpg"></a></div>
+  
+            <div class="item"><a href="/common/adclick.php?adid=4207" target="_blank"><img src="http://img.tesoon.com/up/2017/0815/15201708102801847.jpg"></a></div>
             </div>
             <a class="left carousel-control" href="http://www.tesoon.com/#carousel-example-generic3" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"></span> </a> <a class="right carousel-control" href="http://www.tesoon.com/#carousel-example-generic3" data-slide="next"> <span class="glyphicon glyphicon-chevron-right"></span> </a> </div>
             
@@ -611,28 +642,28 @@ function GoService(){
         </div>
         <div class="col-md-4">
           <div class="dashborder-bot2 clearfix">
-            <h4><a href="http://r.tesoon.com/r/67/330303.htm" target="_blank">英语时空2015年1-2月号听力：08  The Snow in Chelm</a></h4>            
+            <h4><a href="http://r.tesoon.com/r/74/369602.htm" target="_blank">2017年全国高中名校名师原创预测卷 第九模拟</a></h4>            
           </div>
           <div class="dashborder-bot2 clearfix">
-            <h4><a href="http://r.tesoon.com/r/67/330302.htm" target="_blank">英语时空2015年1-2月号听力：07 Tools for a Giant Task</a></h4>            
+            <h4><a href="http://r.tesoon.com/r/74/369601.htm" target="_blank">2017年全国高中名校名师原创预测卷 第八模拟</a></h4>            
           </div>
           <div class="dashborder-bot2 clearfix">
-            <h4><a href="http://r.tesoon.com/r/67/330301.htm" target="_blank">英语时空2015年1-2月号听力：06 The Birds Set Free</a></h4>            
+            <h4><a href="http://r.tesoon.com/r/74/369600.htm" target="_blank">2017年全国高中名校名师原创预测卷 第七模拟</a></h4>            
           </div>
           <div class="dashborder-bot2 clearfix">
-            <h4><a href="http://r.tesoon.com/r/67/330300.htm" target="_blank">英语时空2015年1-2月号听力：05 The Trouble Tree</a></h4>            
+            <h4><a href="http://r.tesoon.com/r/74/369599.htm" target="_blank">2017年全国高中名校名师原创预测卷 第六模拟</a></h4>            
           </div>
           <div class="dashborder-bot2 clearfix">
-            <h4><a href="http://r.tesoon.com/r/67/330299.htm" target="_blank">英语时空2015年1-2月号听力：04 A Mistake</a></h4>            
+            <h4><a href="http://r.tesoon.com/r/74/369597.htm" target="_blank">2017年全国高中名校名师原创预测卷 第四模拟</a></h4>            
           </div>
           <div class="dashborder-bot2 clearfix">
-            <h4><a href="http://r.tesoon.com/r/67/330298.htm" target="_blank">英语时空2015年1-2月号听力：03 The Special Teacher in My Life</a></h4>            
+            <h4><a href="http://r.tesoon.com/r/74/369596.htm" target="_blank">2017年全国高中名校名师原创预测卷 第三模拟</a></h4>            
           </div>
           <div class="dashborder-bot2 clearfix">
-            <h4><a href="http://r.tesoon.com/r/67/330297.htm" target="_blank">英语时空2015年1-2月号听力：02 Love Is a Two-way Street</a></h4>            
+            <h4><a href="http://r.tesoon.com/r/74/369595.htm" target="_blank">2017年全国高中名校名师原创预测卷 第二模拟</a></h4>            
           </div>
           <div class=" clearfix">
-            <h4><a href="http://r.tesoon.com/r/67/330296.htm" target="_blank">英语时空2015年1-2月号听力：01 When I Have Fears That I May Cease to Be</a></h4>            
+            <h4><a href="http://r.tesoon.com/r/74/369594.htm" target="_blank">2017年全国高中名校名师原创预测卷 第一模拟</a></h4>            
           </div>
         </div>
       </div>
@@ -662,58 +693,58 @@ function GoService(){
 	  </div>
       <div class="row zhuanti">
         <div class="col-xs-6 col-md-3 zhuantiimg">
-          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2015/0922/22201509165605387.jpg" alt="庆祝中华人民共和国成立66周年"  class="img-thumbnail imgzt" >
+          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2017/0930/30201709164849265.jpg" alt="高中人教版英语课本听力"  class="img-thumbnail imgzt" >
             <div class="caption zt-cap">
-              <p><a href="http://topic.tesoon.com/201509/10.1/" target="_blank">庆祝中华人民共和国成立66周年</a></p>
+              <p><a href="http://topic.tesoon.com/201710/xkbtl/" target="_blank">高中人教版英语课本听力</a></p>
             </div>
           </div>
         </div>
         <div class="col-xs-6 col-md-3 zhuantiimg">
-          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2015/0915/15201509120146736.jpg" alt="天星教育倾力打造高考《一遍过》"  class="img-thumbnail imgzt" >
+          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2017/0928/28201709144640521.jpg" alt="国庆节学习计划+素材汇总"  class="img-thumbnail imgzt" >
             <div class="caption zt-cap">
-              <p><a href="http://topic.tesoon.com/201509/ybg/" target="_blank">天星教育倾力打造高考《一遍过》</a></p>
+              <p><a href="http://topic.tesoon.com/201709/xxhz/" target="_blank">国庆节学习计划+素材汇总</a></p>
             </div>
           </div>
         </div>
         <div class="col-xs-6 col-md-3 zhuantiimg">
-          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2015/0909/09201509155347781.jpg" alt="2015年全国顶尖高中排行榜单出炉"  class="img-thumbnail imgzt" >
+          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2017/0907/07201709170313638.jpg" alt="天星教育所有图书听力汇集"  class="img-thumbnail imgzt" >
             <div class="caption zt-cap">
-              <p><a href="http://topic.tesoon.com/201509/phb/" target="_blank">2015年全国顶尖高中排行榜单出炉</a></p>
+              <p><a href="http://topic.tesoon.com/201709/tingli/" target="_blank">天星教育所有图书听力汇集</a></p>
             </div>
           </div>
         </div>
         <div class="col-xs-6 col-md-3 zhuantiimg">
-          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2015/0828/28201508131103521.jpg" alt="纪念中国抗日战争胜利70周年"  class="img-thumbnail imgzt" >
+          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2017/0831/31201708095742500.jpg" alt="2017年《开学第一课》"  class="img-thumbnail imgzt" >
             <div class="caption zt-cap">
-              <p><a href="http://topic.tesoon.com/201508/70/" target="_blank">纪念中国抗日战争胜利70周年</a></p>
+              <p><a href="http://topic.tesoon.com/201708/zhja/" target="_blank">2017年《开学第一课》</a></p>
             </div>
           </div>
         </div>
         <div class="col-xs-6 col-md-3 zhuantiimg">
-          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2015/0821/21201508100035353.jpg" alt="2015全国各地高考各批次录取人数"  class="img-thumbnail imgzt" >
+          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2017/0828/28201708164542991.jpg" alt="2017大学生入学指南+必备物品"  class="img-thumbnail imgzt" >
             <div class="caption zt-cap">
-              <p><a href="http://topic.tesoon.com/201508/lq/" target="_blank">2015全国各地高考各批次录取人数</a></p>
+              <p><a href="http://topic.tesoon.com/201708/rxzn/" target="_blank">2017大学生入学指南+必备物品</a></p>
             </div>
           </div>
         </div>
         <div class="col-xs-6 col-md-3 zhuantiimg">
-          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2015/0804/04201508163316154.jpg" alt="2016高三一轮复习分学科知识点"  class="img-thumbnail imgzt" >
+          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2017/0821/21201708164844770.jpg" alt="高考语文必背74首古诗文"  class="img-thumbnail imgzt" >
             <div class="caption zt-cap">
-              <p><a href="http://topic.tesoon.com/201508/2016yl/" target="_blank">2016高三一轮复习分学科知识点</a></p>
+              <p><a href="http://topic.tesoon.com/201708/gushi" target="_blank">高考语文必背74首古诗文</a></p>
             </div>
           </div>
         </div>
         <div class="col-xs-6 col-md-3 zhuantiimg">
-          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2015/0728/28201507162123708.jpg" alt="2015教育部高校学科排名汇总"  class="img-thumbnail imgzt" >
+          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2017/0810/10201708131714876.jpg" alt="2017准高三入学考试资源"  class="img-thumbnail imgzt" >
             <div class="caption zt-cap">
-              <p><a href="http://topic.tesoon.com/201507/zhuanye/" target="_blank">2015教育部高校学科排名汇总</a></p>
+              <p><a href="http://topic.tesoon.com/201708/rxks/" target="_blank">2017准高三入学考试资源</a></p>
             </div>
           </div>
         </div>
         <div class="col-xs-6 col-md-3 zhuantiimg">
-          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2015/0721/212015071619437.jpg" alt="2015或坚强或聪慧的高考学子们"  class="img-thumbnail imgzt" >
+          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2017/0627/27201706145623600.jpg" alt="2017年全国高校分数线公布"  class="img-thumbnail imgzt" >
             <div class="caption zt-cap">
-              <p><a href="http://topic.tesoon.com/201507/jq/" target="_blank">2015或坚强或聪慧的高考学子们</a></p>
+              <p><a href="http://topic.tesoon.com/201706/school/" target="_blank">2017年全国高校分数线公布</a></p>
             </div>
           </div>
         </div>
@@ -724,58 +755,58 @@ function GoService(){
 	   </div>
       <div class="row zhuanti1">
         <div class="col-xs-6 col-md-3 zhuantiimg1">
-          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2015/0831/31201508110116207.jpg" alt="《疯狂作文》契合2015高考作文" class="img-thumbnail imgzt">
+          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2017/0928/28201709144556473.jpg" alt="高考语文必背74首古诗文" class="img-thumbnail imgzt">
             <div class="caption zt-cap">
-              <p><a href="http://topic.tesoon.com/201507/yzzw/" target="_blank">《疯狂作文》契合2015高考作文</a></p>
+              <p><a href="http://topic.tesoon.com/201708/gushi/" target="_blank">高考语文必背74首古诗文</a></p>
             </div>
           </div>
         </div>
         <div class="col-xs-6 col-md-3 zhuantiimg1">
-          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2015/0831/31201508110052438.jpg" alt="2015临考压轴密卷押中高考真题" class="img-thumbnail imgzt">
+          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2017/0907/07201709170210260.jpg" alt="2017准高三入学考试资源" class="img-thumbnail imgzt">
             <div class="caption zt-cap">
-              <p><a href="http://topic.tesoon.com/201507/mj/" target="_blank">2015临考压轴密卷押中高考真题</a></p>
+              <p><a href="http://topic.tesoon.com/201708/rxks/" target="_blank">2017准高三入学考试资源</a></p>
             </div>
           </div>
         </div>
         <div class="col-xs-6 col-md-3 zhuantiimg1">
-          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2015/0728/28201507162258713.jpg" alt="2015年全国各地高校分数线汇总" class="img-thumbnail imgzt">
+          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2017/0831/31201708095053766.jpg" alt="2017年全国高校分数线公布" class="img-thumbnail imgzt">
             <div class="caption zt-cap">
-              <p><a href="http://topic.tesoon.com/201506/school/" target="_blank">2015年全国各地高校分数线汇总</a></p>
+              <p><a href="http://topic.tesoon.com/201706/school/" target="_blank">2017年全国高校分数线公布</a></p>
             </div>
           </div>
         </div>
         <div class="col-xs-6 col-md-3 zhuantiimg1">
-          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2015/0721/21201507162350970.jpg" alt="2015年全国各地高考状元盘点" class="img-thumbnail imgzt">
+          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2017/0828/28201708164704759.jpg" alt="2017年全国各省市高考状元" class="img-thumbnail imgzt">
             <div class="caption zt-cap">
-              <p><a href="http://topic.tesoon.com/201506/zy/" target="_blank">2015年全国各地高考状元盘点</a></p>
+              <p><a href="http://topic.tesoon.com/201706/zy/" target="_blank">2017年全国各省市高考状元</a></p>
             </div>
           </div>
         </div>
         <div class="col-xs-6 col-md-3 zhuantiimg1">
-          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2015/0715/15201507164309653.jpg" alt="2015年全国各省市高考分数线汇总" class="img-thumbnail imgzt">
+          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2017/0821/21201708164923958.jpg" alt="2017各省市高考分数线" class="img-thumbnail imgzt">
             <div class="caption zt-cap">
-              <p><a href="http://topic.tesoon.com/201506/points/" target="_blank">2015年全国各省市高考分数线汇总</a></p>
+              <p><a href="http://topic.tesoon.com/201706/score-yg/" target="_blank">2017各省市高考分数线</a></p>
             </div>
           </div>
         </div>
         <div class="col-xs-6 col-md-3 zhuantiimg1">
-          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2015/0709/09201507095001911.jpg" alt="2015全国各地高考真题及答案解析" class="img-thumbnail imgzt">
+          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2017/0810/10201708131628144.jpg" alt="2017全国各地高考真题及答案" class="img-thumbnail imgzt">
             <div class="caption zt-cap">
-              <p><a href="http://topic.tesoon.com/201505/zt/index.html" target="_blank">2015全国各地高考真题及答案解析</a></p>
+              <p><a href="http://topic.tesoon.com/201706/zhenti/" target="_blank">2017全国各地高考真题及答案</a></p>
             </div>
           </div>
         </div>
         <div class="col-xs-6 col-md-3 zhuantiimg1">
-          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2015/0709/09201507094938769.jpg" alt="2015年全国各省市高考作文题" class="img-thumbnail imgzt">
+          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2017/0627/27201706142943477.jpg" alt="2017高考语文作文题目及范文" class="img-thumbnail imgzt">
             <div class="caption zt-cap">
-              <p><a href="http://topic.tesoon.com/201506/zw/" target="_blank">2015年全国各省市高考作文题</a></p>
+              <p><a href="http://topic.tesoon.com/201706/zw/" target="_blank">2017高考语文作文题目及范文</a></p>
             </div>
           </div>
         </div>
         <div class="col-xs-6 col-md-3 zhuantiimg1">
-          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2015/0411/11201504153123229.jpg" alt="2015全国各地高考加分方案汇总" class="img-thumbnail imgzt">
+          <div class="thumbnail"> <img src="http://img.tesoon.com/up/2017/0621/21201706162935234.jpg" alt="2017年高考考场知识汇集" class="img-thumbnail imgzt">
             <div class="caption zt-cap">
-              <p><a href="http://www.tesoon.com/a_new/htm/24/118586.htm" target="_blank">2015全国各地高考加分方案汇总</a></p>
+              <p><a href="http://topic.tesoon.com/201705/kczs/" target="_blank">2017年高考考场知识汇集</a></p>
             </div>
           </div>
         </div>
@@ -797,12 +828,12 @@ function GoService(){
               <li class="dropdown"><a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">图书配套听力下载<i class="icon-plus"></i></a>
                 <ul class="dropdown-menu" role="menu">
 	  <li><a href="http://www.tesoon.com/a_new/htm/21/104543.htm" target="_blank">高考冲刺45套</a></li>
+                  <li><a href="http://www.tesoon.com/a_new/htm/30/146287.htm" target="_blank">高考10年真题</a></li>
                   <li><a href="http://www.tesoon.com/a_new/htm/21/104557.htm" target="_blank">高考5年真题</a></li>
                   <li><a href="http://www.tesoon.com/a_new/htm/21/104560.htm" target="_blank">高考3年真题</a></li>
-                  <li><a href="http://www.tesoon.com/a_new/htm/21/104570.htm" target="_blank">高考特快专递</a></li>
-                  <li><a href="http://www.tesoon.com/a_new/htm/21/104567.htm" target="_blank">高考英语时空</a></li>
+                  <li><a href="http://www.tesoon.com/a_new/htm/21/104570.htm" target="_blank">高考特快专递</a></li>                  
                   <li><a href="http://www.tesoon.com/a_new/htm/21/104572.htm" target="_blank">高考百校联盟</a></li>
-                  <li><a href="http://www.tesoon.com/a_new/htm/21/104574.htm" target="_blank">高考活页题选</a></li>
+                  <li><a href="http://www.tesoon.com/a_new/htm/21/104574.htm" target="_blank">高中活页题选</a></li>
                   <li><a href="http://www.tesoon.com/a_new/htm/21/104576.htm" target="_blank">高考题模拟题</a></li>
                   <li><a href="http://www.tesoon.com/a_new/htm/25/122577.htm" target="_blank">9年课标真题全编</a></li>
                   <li><a href="http://www.tesoon.com/a_new/htm/21/104542.htm" target="_blank">中考45套汇编</a></li>
@@ -816,47 +847,66 @@ function GoService(){
               </li>
               <li class="dropdown"><a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" target="_blank">配套图书增值资料 <i class="icon-plus"></i></a> 
               	<ul class="dropdown-menu" role="menu">
-	  <li><a href="http://www.tesoon.com/a_new/htm/24/118615.htm" target="_blank">2014-2015中考45套增值套卷</a></li>                  
+	  <li><a href="http://www.tesoon.com/a_new/htm/24/118615.htm" target="_blank">中考45套增值</a></li> 
+                  <li><a href="http://www.tesoon.com/a_new/htm/32/155252.htm" target="_blank">中考百校联盟</a></li> 
+                  <li><a href="http://www.tesoon.com/a_new/htm/25/120054.htm" target="_blank">高考45套增值</a></li>   
+                  <li><a href="http://www.tesoon.com/a_new/htm/30/149641.htm" target="_blank">高考领航卷</a></li>              
                 </ul>
               </li>              
               <li class="dropdown"><a href="http://r.tesoon.com/" class="btn btn-default  dropdown-toggle" data-toggle="dropdown" target="_blank">其他增值内容<i class="icon-plus"></i></a> </li>
             </ul>
+            <style>
+                    .ting-def-erweima { padding:5px 0 5px 0; font-size:12px; color:#666;  }
+                    .ting-def-erweima ul{ padding:0; margin:0; list-style:none }
+                    .ting-def-erweima  .ting-img { margin: 0 10px 0 0; float:left;text-align:center;  }
+                    .ting-def-erweima  .ting-img img { width:110px; height:110px;  }
+		.ting-def-erweima  .ting-h { height:160px; }
+                    .ting-def-erweima  .ting-con { float:left;  line-height:26px; font-size:14px; color:#333  }
+                    </style>
+                     <div class="ting-def-erweima">
+                       <ul><li class="ting-h"></li>
+                            <li class="ting-img"> <img name="erweima" src="/images2015/qrcode2016.png"  alt="" />	<br /> 扫描二维码在线听</li>
+                            <li class="ting-con">
+                                在线听力播放<br /> 听力原文查看<br />  试题在线作答<br />  标准答案校对
+                            </li>
+                       </ul>
+                     </div>
           </div>
         </div>
         <div class="col-md-4">
           <p>增值服务</p>
           <ul class="icons">
-            <li><i class="icon-download-alt"></i><a href="http://r.tesoon.com/r/67/330303.htm" target="_blank" title="英语时空2015年1-2月号听力：08  The Snow in Chelm">英语时空2015年1-2月号听力：08  The Snow in Chelm</a></li>
-            <li><i class="icon-download-alt"></i><a href="http://r.tesoon.com/r/67/330302.htm" target="_blank" title="英语时空2015年1-2月号听力：07 Tools for a Giant Task">英语时空2015年1-2月号听力：07 Tools for a Giant Task</a></li>
-            <li><i class="icon-download-alt"></i><a href="http://r.tesoon.com/r/67/330301.htm" target="_blank" title="英语时空2015年1-2月号听力：06 The Birds Set Free">英语时空2015年1-2月号听力：06 The Birds Set Free</a></li>
-            <li><i class="icon-download-alt"></i><a href="http://r.tesoon.com/r/67/330300.htm" target="_blank" title="英语时空2015年1-2月号听力：05 The Trouble Tree">英语时空2015年1-2月号听力：05 The Trouble Tree</a></li>
-            <li><i class="icon-download-alt"></i><a href="http://r.tesoon.com/r/67/330299.htm" target="_blank" title="英语时空2015年1-2月号听力：04 A Mistake">英语时空2015年1-2月号听力：04 A Mistake</a></li>
-            <li><i class="icon-download-alt"></i><a href="http://r.tesoon.com/r/67/330298.htm" target="_blank" title="英语时空2015年1-2月号听力：03 The Special Teacher in My Life">英语时空2015年1-2月号听力：03 The Special Teacher in My Life</a></li>
-            <li><i class="icon-download-alt"></i><a href="http://r.tesoon.com/r/67/330297.htm" target="_blank" title="英语时空2015年1-2月号听力：02 Love Is a Two-way Street">英语时空2015年1-2月号听力：02 Love Is a Two-way Street</a></li>
-            <li><i class="icon-download-alt"></i><a href="http://r.tesoon.com/r/67/330296.htm" target="_blank" title="英语时空2015年1-2月号听力：01 When I Have Fears That I May Cease to Be">英语时空2015年1-2月号听力：01 When I Have Fears That I May Cease to Be</a></li>
-            <li><i class="icon-download-alt"></i><a href="http://r.tesoon.com/r/67/330295.htm" target="_blank" title="英语时空2015年1-2月号听力：00 One Direction-Fireproof">英语时空2015年1-2月号听力：00 One Direction-Fireproof</a></li>
-            <li><i class="icon-download-alt"></i><a href="http://r.tesoon.com/r/67/330294.htm" target="_blank" title="英语时空2015年1-2月号听力：00 If I Stay Scene 4">英语时空2015年1-2月号听力：00 If I Stay Scene 4</a></li>
-            <li><i class="icon-download-alt"></i><a href="http://r.tesoon.com/r/67/330293.htm" target="_blank" title="英语时空2015年1-2月号听力：00 If I Stay Scene 3">英语时空2015年1-2月号听力：00 If I Stay Scene 3</a></li>
-            <li><i class="icon-download-alt"></i><a href="http://r.tesoon.com/r/67/330292.htm" target="_blank" title="英语时空2015年1-2月号听力：00 If I Stay Scene 2">英语时空2015年1-2月号听力：00 If I Stay Scene 2</a></li>
-            <li><i class="icon-download-alt"></i><a href="http://r.tesoon.com/r/67/330291.htm" target="_blank" title="英语时空2015年1-2月号听力：00 If I Stay Scene 1">英语时空2015年1-2月号听力：00 If I Stay Scene 1</a></li>
+            <li><i class="icon-download-alt"></i><a href="http://www.tesoon.com/r/htm/74/369602.htm" target="_blank" title="2017年全国高中名校名师原创预测卷 第九模拟">2017年全国高中名校名师原创预测卷 第九模拟</a></li>
+            <li><i class="icon-download-alt"></i><a href="http://www.tesoon.com/r/htm/74/369601.htm" target="_blank" title="2017年全国高中名校名师原创预测卷 第八模拟">2017年全国高中名校名师原创预测卷 第八模拟</a></li>
+            <li><i class="icon-download-alt"></i><a href="http://www.tesoon.com/r/htm/74/369600.htm" target="_blank" title="2017年全国高中名校名师原创预测卷 第七模拟">2017年全国高中名校名师原创预测卷 第七模拟</a></li>
+            <li><i class="icon-download-alt"></i><a href="http://www.tesoon.com/r/htm/74/369599.htm" target="_blank" title="2017年全国高中名校名师原创预测卷 第六模拟">2017年全国高中名校名师原创预测卷 第六模拟</a></li>
+            <li><i class="icon-download-alt"></i><a href="http://www.tesoon.com/r/htm/74/369597.htm" target="_blank" title="2017年全国高中名校名师原创预测卷 第四模拟">2017年全国高中名校名师原创预测卷 第四模拟</a></li>
+            <li><i class="icon-download-alt"></i><a href="http://www.tesoon.com/r/htm/74/369596.htm" target="_blank" title="2017年全国高中名校名师原创预测卷 第三模拟">2017年全国高中名校名师原创预测卷 第三模拟</a></li>
+            <li><i class="icon-download-alt"></i><a href="http://www.tesoon.com/r/htm/74/369595.htm" target="_blank" title="2017年全国高中名校名师原创预测卷 第二模拟">2017年全国高中名校名师原创预测卷 第二模拟</a></li>
+            <li><i class="icon-download-alt"></i><a href="http://www.tesoon.com/r/htm/74/369594.htm" target="_blank" title="2017年全国高中名校名师原创预测卷 第一模拟">2017年全国高中名校名师原创预测卷 第一模拟</a></li>
+            <li><i class="icon-download-alt"></i><a href="http://www.tesoon.com/r/htm/74/369552.htm" target="_blank" title="2017中考百校联盟《领航卷》听力mp3（河南版）-1">2017中考百校联盟《领航卷》听力mp3（河南版）-1</a></li>
+            <li><i class="icon-download-alt"></i><a href="http://www.tesoon.com/r/htm/74/369538.htm" target="_blank" title="2017中考百校联盟《领航卷》听力mp3（河北版）-8">2017中考百校联盟《领航卷》听力mp3（河北版）-8</a></li>
+            <li><i class="icon-download-alt"></i><a href="http://www.tesoon.com/r/htm/74/369537.htm" target="_blank" title="2017中考百校联盟《领航卷》听力mp3（河北版）-7">2017中考百校联盟《领航卷》听力mp3（河北版）-7</a></li>
+            <li><i class="icon-download-alt"></i><a href="http://www.tesoon.com/r/htm/74/369536.htm" target="_blank" title="2017中考百校联盟《领航卷》听力mp3（河北版）-6">2017中考百校联盟《领航卷》听力mp3（河北版）-6</a></li>
+            <li><i class="icon-download-alt"></i><a href="http://www.tesoon.com/r/htm/74/369535.htm" target="_blank" title="2017中考百校联盟《领航卷》听力mp3（河北版）-5">2017中考百校联盟《领航卷》听力mp3（河北版）-5</a></li>
           </ul>
         </div>
         <div class="col-md-5">
           <p><a href="/ask/" target="_blank">图书问答</a></p>
           <ul class="icons">
-            <li><i class="icon-question-sign"></i><a href="/ask/htm/59/292974.htm" target="_blank" title="特快专递2016高考专用高考题模拟题精编英语听力">特快专递2016高考专用高考题模拟题精编英语听力</a></li>
-            <li><i class="icon-question-sign"></i><a href="/ask/htm/59/292943.htm" target="_blank" title="教材讲义在哪里还能找到？">教材讲义在哪里还能找到？</a></li>
-            <li><i class="icon-question-sign"></i><a href="/ask/htm/59/292813.htm" target="_blank" title="金考卷特快专递第3期什么时候上市">金考卷特快专递第3期什么时候上市</a></li>
-            <li><i class="icon-question-sign"></i><a href="/ask/htm/59/292369.htm" target="_blank" title="英语时空2015，9听力在哪下载">英语时空2015，9听力在哪下载</a></li>
-            <li><i class="icon-question-sign"></i><a href="/ask/htm/59/292365.htm" target="_blank" title="教材帮是不是随着课程上市">教材帮是不是随着课程上市</a></li>
-            <li><i class="icon-question-sign"></i><a href="/ask/htm/59/292290.htm" target="_blank" title="也没有初中生用的中学教材学习讲义呢">也没有初中生用的中学教材学习讲义呢</a></li>
-            <li><i class="icon-question-sign"></i><a href="/ask/htm/59/292260.htm" target="_blank" title="求2015年高考复习讲义答案">求2015年高考复习讲义答案</a></li>
-            <li><i class="icon-question-sign"></i><a href="/ask/htm/59/292123.htm" target="_blank" title="听力材料下载只有期中、期末">听力材料下载只有期中、期末</a></li>
-            <li><i class="icon-question-sign"></i><a href="/ask/htm/58/289170.htm" target="_blank" title="关于正版验证，赢取积分">关于正版验证，赢取积分</a></li>
-            <li><i class="icon-question-sign"></i><a href="/ask/htm/58/289163.htm" target="_blank" title="教材帮数学必修二出了没">教材帮数学必修二出了没</a></li>
-            <li><i class="icon-question-sign"></i><a href="/ask/htm/58/289091.htm" target="_blank" title="决战压轴大题不出了吗">决战压轴大题不出了吗</a></li>
-            <li><i class="icon-question-sign"></i><a href="/ask/htm/58/289090.htm" target="_blank" title="高考题库会出分册版吗">高考题库会出分册版吗</a></li>
-            <li><i class="icon-question-sign"></i><a href="/ask/htm/58/289062.htm" target="_blank" title="2013年英语中考试题汇编45套卷听力如何下载">2013年英语中考试题汇编45套卷听力如何下载</a></li>
+            <li><i class="icon-question-sign"></i><a href="/ask/htm/70/346604.htm" target="_blank" title="2017-2018《中考45套题》增值服务里没有河南版38—45增值套卷">2017-2018《中考45套题》增值服务里没有河南版38—45增值套卷</a></li>
+            <li><i class="icon-question-sign"></i><a href="/ask/htm/69/344575.htm" target="_blank" title="2017—2018全国各省市中考试卷汇编">2017—2018全国各省市中考试卷汇编</a></li>
+            <li><i class="icon-question-sign"></i><a href="/ask/htm/69/344421.htm" target="_blank" title="关于中考试卷汇编2017年全国卷听力下载">关于中考试卷汇编2017年全国卷听力下载</a></li>
+            <li><i class="icon-question-sign"></i><a href="/ask/htm/69/343265.htm" target="_blank" title="金考卷特快专递·新高考5年真题汇编">金考卷特快专递·新高考5年真题汇编</a></li>
+            <li><i class="icon-question-sign"></i><a href="/ask/htm/69/343169.htm" target="_blank" title="今年的《一遍过》高考专题版什么时候出？？？？？？">今年的《一遍过》高考专题版什么时候出？？？？？？</a></li>
+            <li><i class="icon-question-sign"></i><a href="/ask/htm/69/343129.htm" target="_blank" title="2018试题调研mook第一辑什么时候出？">2018试题调研mook第一辑什么时候出？</a></li>
+            <li><i class="icon-question-sign"></i><a href="/ask/htm/69/342843.htm" target="_blank" title="2018高考题库什么时候出版">2018高考题库什么时候出版</a></li>
+            <li><i class="icon-question-sign"></i><a href="/ask/htm/69/342578.htm" target="_blank" title="请问2018试题调研mook第一辑什么时候出">请问2018试题调研mook第一辑什么时候出</a></li>
+            <li><i class="icon-question-sign"></i><a href="/ask/htm/69/342138.htm" target="_blank" title="关于<英语时空>的听力下载">关于<英语时空>的听力下载</a></li>
+            <li><i class="icon-question-sign"></i><a href="/ask/htm/69/342006.htm" target="_blank" title="2018年的高考冲刺优秀模拟试卷汇编的增值资料啥时候发">2018年的高考冲刺优秀模拟试卷汇编的增值资料啥时候发</a></li>
+            <li><i class="icon-question-sign"></i><a href="/ask/htm/69/341893.htm" target="_blank" title="一轮复习金考卷滚动双侧电子版">一轮复习金考卷滚动双侧电子版</a></li>
+            <li><i class="icon-question-sign"></i><a href="/ask/htm/69/340326.htm" target="_blank" title="江西中考金卷45套语文答案">江西中考金卷45套语文答案</a></li>
+            <li><i class="icon-question-sign"></i><a href="/ask/htm/68/338421.htm" target="_blank" title="2017金考卷猜题卷理科综合第四套33题">2017金考卷猜题卷理科综合第四套33题</a></li>
           </ul>
         </div>
       </div>
@@ -872,18 +922,18 @@ function GoService(){
           <p><a class="btn btn-success" href="http://www.wln100.com/" target="_blank" role="button">详情介绍 &gt;&gt;</a></p>
         </div>
         <!-- /.col-lg-4 -->
-        <div class="col-lg-4"> <img class="img-circle" src="images2015/vxuepai.png" alt="微学习圈" style="width: 140px; height: 140px;">
-          <h2>微学派|高考冲刺网</h2>
-          <p class="p-left">面向高考冲刺的数字学习出版平台，以丰富的“微学习专题”串联起精品冲刺指导、冲刺资源、冲刺手机书等海量精品学习内容，并提供《答题模板》《冲刺笔记》《压轴笔记》《压轴密卷》等权威数字教辅产品。
+        <div class="col-lg-4"> <img class="img-circle" src="images2015/gkwish.png" alt="高考冲刺网" style="width: 140px; height: 140px;">
+          <h2>高考志愿一键填报</h2>
+          <p class="p-left">一键生成高考志愿评估报告。系统通过对近5年的高考数据进行对比线差、筛选条件、计算概率，生成极具参考价值的致远评估报告，并按照阶梯层次划分推荐院校，帮助考生及家长科学、快速、准确填报志愿。
 </p>
-          <p><a class="btn btn-success" href="http://www.vxueapp.com/" target="_blank" role="button">详情介绍 &gt;&gt;</a></p>
+          <p><a class="btn btn-success" href="http://gk.tesoon.com/" target="_blank" role="button">详情介绍 &gt;&gt;</a></p>
         </div>
         <!-- /.col-lg-4 -->
-        <div class="col-lg-4"> <img class="img-circle" src="images2015/vyuedu.png" alt="微阅读网" style="width: 140px; height: 140px;">
-          <h2>微悦读网</h2>
-          <p class="p-left">全国首家中学生阅读社交出版平台！<br>
-            微悦读网主要是提供精品的可以让用户付费购买的阅读内容，涉及纸质版、APP版和web版，每种展现形式不一样，所用技术也不一样。<br><br></p>
-          <p><a class="btn btn-success" href="http://www.vyuedu.com/" target="_blank" role="button">详情介绍 &gt;&gt;</a></p>
+        <div class="col-lg-4"> <img class="img-circle" src="images2015/vyuedu.png" alt="微学习圈" style="width: 140px; height: 140px;">
+          <h2>微学习圈</h2>
+          <p class="p-left">全国首家微学习出版云平台，我们提供基于自主产权的云编辑系统，诚邀全国4000余名师协同在线开发丰富的微学习卡、微试题贴、微学杂志和微学习书，
+并致力于为k-12各阶段学习者提供权威学习解决方案。<br></p>
+          <p><a class="btn btn-success" href="http://www.vxue360.com/" target="_blank" role="button">详情介绍 &gt;&gt;</a></p>
         </div>
         <!-- /.col-lg-4 -->
       </div>
@@ -891,57 +941,7 @@ function GoService(){
     <hr>
   </div>
   <!--数字平台 end-->
-  <div class="container-fluid">
-    <div class="container top-border">
-      <div class="row">
-        <div class="col-sm-6 col-md-3 img1">
-          <div class="thumbnail"> <img src="images2015/20151.jpg" alt="2015高考状元超级答题模板" >
-            <div class="caption">
-              <h3>2015高考状元超级答题模板</h3>
-              <p class="text-lfp">手机版+打印版<br>
-                盘点历年省级高考状元笔记，解密百位状元成功秘诀，全国一线特级名师加盟，传授答题经验，打造权威范本。</p>
-              <p><a href="http://gk.tesoon.com/gk/index.php?nfssp=dtmb" target="_blank" class="btn btn-danger" role="button">详情介绍</a> <a href="http://gk.tesoon.com/gk/index.php?nfssp=dtmb" class="btn btn-default" role="button">立即购买</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-          <div class="thumbnail"> <img src="images2015/20152.jpg" alt="2015高考状元冲刺笔记" >
-            <div class="caption">
-              <h3>2015高考状元冲刺笔记</h3>
-              <p class="text-lfp">手机版+纸质版<br>
-                冲刺策略笔记、主干串讲笔记、热点聚焦笔记，三册合一
-                汇集状元备考经验；串讲主干知识，强化核心。</p>
-              <p><a href="http://gk.tesoon.com/gk/index.php?nfssp=ccbj" target="_blank" class="btn btn-danger" role="button">详情介绍</a> <a href="http://gk.tesoon.com/gk/index.php?nfssp=ccbj" class="btn btn-default" role="button">立即购买</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-          <div class="thumbnail"> <img src="images2015/20153.jpg" alt="2015高考临考压轴笔记" >
-            <div class="caption">
-              <h3>2015高考临考压轴笔记</h3>
-              <p class="text-lfp">纸质版<br>
-                命题猜想笔记、回归梳理笔记相辅相成 
-                预测2015年命题热点、经典题型，梳理知识体系，查漏补缺剑指高考！</p>
-              <p><a href="http://gk.tesoon.com/gk/index.php?nfssp=yzbj" target="_blank" class="btn btn-danger" role="button">详情介绍</a> <a href="http://gk.tesoon.com/gk/index.php?nfssp=yzbj" class="btn btn-default" role="button">立即购买</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-          <div class="thumbnail"> <img src="images2015/20154.jpg" alt="2015高考临考压轴密卷" >
-            <div class="caption">
-              <h3>2015高考临考压轴密卷</h3>
-              <p class="text-lfp">纸质版<br>
-                名师撰稿，精准预测高考考点；分省命题，符合本省命题特点； 
-                高仿真预测卷、全彩答题卡、标准答案解析，近乎原貌展现高考试卷。</p>
-              <p><a href="http://gk.tesoon.com/gk/index.php?nfssp=yzmj" target="_blank" class="btn btn-danger" role="button">详情介绍</a> <a href="http://gk.tesoon.com/gk/index.php?nfssp=yzmj" class="btn btn-default" role="button">立即购买</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <hr>
-  </div>
-  <!--数字产品 end-->
+  
   <div class="container-fluid">
     <hr>
     <div class="container  top-border">
@@ -954,231 +954,414 @@ function GoService(){
           <div class="col-md-12">
             <nav class="categories-portfolio fadeInUp fadeUp" style="visibility: visible;">
               <ul data-option-key="filter" class="option-set">
-                <li><span class="filter button-white-bxs-grey active" data-filter="app card icon logo web">全部</span></li>
+                <li><span class="filter button-white-bxs-grey active" data-filter="app card icon jcb ybg web">全部</span></li>
                 <li><span class="filter button-white-bxs-grey" data-filter="app">金考卷</span></li>
                 <li><span class="filter button-white-bxs-grey" data-filter="card">试题调研</span></li>
                 <li><span class="filter button-white-bxs-grey" data-filter="icon">疯狂阅读</span></li>
-                <li><span class="filter button-white-bxs-grey" data-filter="logo">讲义系列</span></li>
+                <li><span class="filter button-white-bxs-grey" data-filter="jcb">教材帮</span></li>
+                <li><span class="filter button-white-bxs-grey" data-filter="ybg">一遍过</span></li>
                 <li><span class="filter button-white-bxs-grey" data-filter="web">天星童书</span></li>
               </ul>
             </nav>
             <div id="portfoliolist">
-              <div class="portfolio app col-md-4 col-xs-12" data-cat="app">
-                <div class="image-container"> <img src="http://img.tesoon.com/up/2015/0916/16201509102006839.jpg" alt="2016高考专题冲关集训》隆重上市">
-                  <div class="post-link-bg"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4689" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2015/0916/16201509102006839.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+              <div class="portfolio card col-md-4 col-xs-12" data-cat="card">
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0920/20201709144903159.jpg" alt="《试题调研》第3辑9月15日上市">
+                  <div class="post-link-bg"> <a href="http://user.qzone.qq.com/807975291/blog/1505551424" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0920/20201709144903159.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
                 </div>
                 <div class="post-info">
-                  <div class="left-sec"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4689" class="title" target="_blank">2016高考专题冲关集训》隆重上市</a>
+                  <div class="left-sec"> <a href="http://user.qzone.qq.com/807975291/blog/1505551424" class="title" target="_blank">《试题调研》第3辑9月15日上市</a>
                     <ul class="tags">
-                      <li> 全面夯实基础，提升备考能力.</li>
+                      <li> 专攻一轮复习重难点、薄弱点！</li>
                     </ul>
                   </div>
                   <div class="clear"></div>
                 </div>
               </div>
               <div class="portfolio card col-md-4 col-xs-12" data-cat="card">
-                <div class="image-container"> <img src="http://img.tesoon.com/up/2015/0915/15201509100918169.jpg" alt="《试题调研》2016高考第2辑">
-                  <div class="post-link-bg"> <a href="http://user.qzone.qq.com/807975291/blog/1442245527" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2015/0915/15201509100918169.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0906/06201709114209801.jpg" alt="《艺考生文化课百日冲刺》重磅上市">
+                  <div class="post-link-bg"> <a href="https://mp.weixin.qq.com/s?__biz&#61;MjM5NDc2OTQ4MA&#61;&#61;&amp;mid&#61;2650699596&amp;idx&#61;3&amp;sn&#61;153e92daf292f94b2b8bc0b653bda22d&amp;chksm&#61;be88686b89ffe17d6d60eb7ce514a7d8da9d9d491b9" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0906/06201709114209801.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
                 </div>
                 <div class="post-info">
-                  <div class="left-sec"> <a href="http://user.qzone.qq.com/807975291/blog/1442245527" class="title" target="_blank">《试题调研》2016高考第2辑</a>
+                  <div class="left-sec"> <a href="https://mp.weixin.qq.com/s?__biz&#61;MjM5NDc2OTQ4MA&#61;&#61;&amp;mid&#61;2650699596&amp;idx&#61;3&amp;sn&#61;153e92daf292f94b2b8bc0b653bda22d&amp;chksm&#61;be88686b89ffe17d6d60eb7ce514a7d8da9d9d491b9" class="title" target="_blank">《艺考生文化课百日冲刺》重磅上市</a>
                     <ul class="tags">
-                      <li> 研判高考命题趋势，总结高效解题方法</li>
-                    </ul>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              </div>
-              <div class="portfolio web col-md-4 col-xs-12" data-cat="web">
-                <div class="image-container"> <img src="http://img.tesoon.com/up/2015/0902/02201509104903726.jpg" alt="妈妈不见了">
-                  <div class="post-link-bg"> <a href="http://children.tesoon.com/index.php?s&#61;/home/books/detail/category/44/id/307.html" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2015/0902/02201509104903726.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
-                </div>
-                <div class="post-info">
-                  <div class="left-sec"> <a href="http://children.tesoon.com/index.php?s&#61;/home/books/detail/category/44/id/307.html" class="title" target="_blank">妈妈不见了</a>
-                    <ul class="tags">
-                      <li> 妈妈不见了，这可如何是好？</li>
-                    </ul>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              </div>
-              <div class="portfolio web col-md-4 col-xs-12" data-cat="web">
-                <div class="image-container"> <img src="http://img.tesoon.com/up/2015/0902/02201509104821763.jpg" alt="纸娃娃">
-                  <div class="post-link-bg"> <a href="http://children.tesoon.com/index.php?s&#61;/home/books/detail/category/44/id/308.html" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2015/0902/02201509104821763.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
-                </div>
-                <div class="post-info">
-                  <div class="left-sec"> <a href="http://children.tesoon.com/index.php?s&#61;/home/books/detail/category/44/id/308.html" class="title" target="_blank">纸娃娃</a>
-                    <ul class="tags">
-                      <li> 陪孩子一起回忆美好童年吧。</li>
-                    </ul>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              </div>
-              <div class="portfolio web col-md-4 col-xs-12" data-cat="web">
-                <div class="image-container"> <img src="http://img.tesoon.com/up/2015/0902/02201509104737330.jpg" alt="狐狸和松鼠交朋友">
-                  <div class="post-link-bg"> <a href="http://children.tesoon.com/index.php?s&#61;/home/books/detail/category/44/id/310.html" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2015/0902/02201509104737330.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
-                </div>
-                <div class="post-info">
-                  <div class="left-sec"> <a href="http://children.tesoon.com/index.php?s&#61;/home/books/detail/category/44/id/310.html" class="title" target="_blank">狐狸和松鼠交朋友</a>
-                    <ul class="tags">
-                      <li> 朋友间要理解彼此哦。</li>
-                    </ul>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              </div>
-              <div class="portfolio web col-md-4 col-xs-12" data-cat="web">
-                <div class="image-container"> <img src="http://img.tesoon.com/up/2015/0902/0220150910463886.jpg" alt="阿米莉亚阿姨">
-                  <div class="post-link-bg"> <a href="http://children.tesoon.com/index.php?s&#61;/home/books/detail/category/44/id/304.html" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2015/0902/0220150910463886.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
-                </div>
-                <div class="post-info">
-                  <div class="left-sec"> <a href="http://children.tesoon.com/index.php?s&#61;/home/books/detail/category/44/id/304.html" class="title" target="_blank">阿米莉亚阿姨</a>
-                    <ul class="tags">
-                      <li> 看看孩子和别人的相处吧。</li>
-                    </ul>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              </div>
-              <div class="portfolio web col-md-4 col-xs-12" data-cat="web">
-                <div class="image-container"> <img src="http://img.tesoon.com/up/2015/0902/02201509104602463.jpg" alt="老鼠家族，颜色派对">
-                  <div class="post-link-bg"> <a href="http://children.tesoon.com/index.php?s&#61;/home/books/detail/category/44/id/319.html" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2015/0902/02201509104602463.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
-                </div>
-                <div class="post-info">
-                  <div class="left-sec"> <a href="http://children.tesoon.com/index.php?s&#61;/home/books/detail/category/44/id/319.html" class="title" target="_blank">老鼠家族，颜色派对</a>
-                    <ul class="tags">
-                      <li> 辨识各种物品颜色。</li>
+                      <li> 助力艺考生100天，突破450分!</li>
                     </ul>
                   </div>
                   <div class="clear"></div>
                 </div>
               </div>
               <div class="portfolio app col-md-4 col-xs-12" data-cat="app">
-                <div class="image-container"> <img src="http://img.tesoon.com/up/2015/0901/01201509114846517.jpg" alt="《2016高考命题热点集训》上市！">
-                  <div class="post-link-bg"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4646" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2015/0901/01201509114846517.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0815/15201708101037657.jpg" alt="《金考卷·活页题选》2018年第5版上市">
+                  <div class="post-link-bg"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4994" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0815/15201708101037657.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
                 </div>
                 <div class="post-info">
-                  <div class="left-sec"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4646" class="title" target="_blank">《2016高考命题热点集训》上市！</a>
+                  <div class="left-sec"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4994" class="title" target="_blank">《金考卷·活页题选》2018年第5版上市</a>
                     <ul class="tags">
-                      <li> 信息快递，热点集训。</li>
-                    </ul>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              </div>
-              <div class="portfolio card col-md-4 col-xs-12" data-cat="card">
-                <div class="image-container"> <img src="http://img.tesoon.com/up/2015/0814/14201508101458960.jpg" alt="《试题调研》2016高考第1辑权威发布">
-                  <div class="post-link-bg"> <a href="http://user.qzone.qq.com/807975291/blog/1439432499" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2015/0814/14201508101458960.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
-                </div>
-                <div class="post-info">
-                  <div class="left-sec"> <a href="http://user.qzone.qq.com/807975291/blog/1439432499" class="title" target="_blank">《试题调研》2016高考第1辑权威发布</a>
-                    <ul class="tags">
-                      <li> 总结核心考点，洞察命题方向。</li>
-                    </ul>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              </div>
-              <div class="portfolio card col-md-4 col-xs-12" data-cat="card">
-                <div class="image-container"> <img src="http://img.tesoon.com/up/2015/0811/11201508134153727.jpg" alt="《金考卷&#8226;周末培优》高一上清凉来袭">
-                  <div class="post-link-bg"> <a href="http://user.qzone.qq.com/807975291/blog/1439263778" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2015/0811/11201508134153727.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
-                </div>
-                <div class="post-info">
-                  <div class="left-sec"> <a href="http://user.qzone.qq.com/807975291/blog/1439263778" class="title" target="_blank">《金考卷&#8226;周末培优》高一上清凉来袭</a>
-                    <ul class="tags">
-                      <li> 周末1小时，轻松当学霸。</li>
-                    </ul>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              </div>
-              <div class="portfolio card col-md-4 col-xs-12" data-cat="card">
-                <div class="image-container"> <img src="http://img.tesoon.com/up/2015/0811/11201508131004224.jpg" alt="2016高考《一遍过》重磅上市！">
-                  <div class="post-link-bg"> <a href="http://user.qzone.qq.com/807975291/blog/1439199875?ptlang&#61;2052" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2015/0811/11201508131004224.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
-                </div>
-                <div class="post-info">
-                  <div class="left-sec"> <a href="http://user.qzone.qq.com/807975291/blog/1439199875?ptlang&#61;2052" class="title" target="_blank">2016高考《一遍过》重磅上市！</a>
-                    <ul class="tags">
-                      <li> 高考一遍过，我的青春不容有高四！</li>
+                      <li> 优中选优，经典科学；严格把关，创新优质。</li>
                     </ul>
                   </div>
                   <div class="clear"></div>
                 </div>
               </div>
               <div class="portfolio app col-md-4 col-xs-12" data-cat="app">
-                <div class="image-container"> <img src="http://img.tesoon.com/up/2015/0806/06201508131545723.jpg" alt="15-16《活页题选》选修隆重上市">
-                  <div class="post-link-bg"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4649" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2015/0806/06201508131545723.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0803/03201708112311287.jpg" alt="2018《高考题模拟题汇编》">
+                  <div class="post-link-bg"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4993" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0803/03201708112311287.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
                 </div>
                 <div class="post-info">
-                  <div class="left-sec"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4649" class="title" target="_blank">15-16《活页题选》选修隆重上市</a>
+                  <div class="left-sec"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4993" class="title" target="_blank">2018《高考题模拟题汇编》</a>
                     <ul class="tags">
-                      <li> 名师名题单元双侧卷。</li>
-                    </ul>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              </div>
-              <div class="portfolio app col-md-4 col-xs-12" data-cat="app">
-                <div class="image-container"> <img src="http://img.tesoon.com/up/2015/0805/05201508170738831.jpg" alt="2016版《常考基础100练》上市！">
-                  <div class="post-link-bg"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4651" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2015/0805/05201508170738831.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
-                </div>
-                <div class="post-info">
-                  <div class="left-sec"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4651" class="title" target="_blank">2016版《常考基础100练》上市！</a>
-                    <ul class="tags">
-                      <li> 夯实基础，成就高分！</li>
-                    </ul>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              </div>
-              <div class="portfolio app col-md-4 col-xs-12" data-cat="app">
-                <div class="image-container"> <img src="http://img.tesoon.com/up/2015/0805/05201508170213230.jpg" alt="《2007—2015全国统一命题卷》上市">
-                  <div class="post-link-bg"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4647" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2015/0805/05201508170213230.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
-                </div>
-                <div class="post-info">
-                  <div class="left-sec"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4647" class="title" target="_blank">《2007—2015全国统一命题卷》上市</a>
-                    <ul class="tags">
-                      <li> 9年课标真题全编</li>
+                      <li> 小卷+大卷，开启快速提分新模式。</li>
                     </ul>
                   </div>
                   <div class="clear"></div>
                 </div>
               </div>
               <div class="portfolio card col-md-4 col-xs-12" data-cat="card">
-                <div class="image-container"> <img src="http://img.tesoon.com/up/2015/0730/30201507101232827.jpg" alt="2016《高考题库·合订本》上市">
-                  <div class="post-link-bg"> <a href="http://user.qzone.qq.com/807975291/blog/1437536103" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2015/0730/30201507101232827.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0801/01201708111146312.jpg" alt="《2018高考英语题型专练》上市">
+                  <div class="post-link-bg"> <a href="https://user.qzone.qq.com/807975291/infocenter" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0801/01201708111146312.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
                 </div>
                 <div class="post-info">
-                  <div class="left-sec"> <a href="http://user.qzone.qq.com/807975291/blog/1437536103" class="title" target="_blank">2016《高考题库·合订本》上市</a>
+                  <div class="left-sec"> <a href="https://user.qzone.qq.com/807975291/infocenter" class="title" target="_blank">《2018高考英语题型专练》上市</a>
                     <ul class="tags">
-                      <li> 中国高考试题第一宝库!</li>
+                      <li> 英语得高分，就要专练题型！</li>
                     </ul>
                   </div>
                   <div class="clear"></div>
                 </div>
               </div>
               <div class="portfolio card col-md-4 col-xs-12" data-cat="card">
-                <div class="image-container"> <img src="http://img.tesoon.com/up/2015/0728/28201507134259771.jpg" alt="2016版《高考必备题型1000例》">
-                  <div class="post-link-bg"> <a href="http://www.tesoon.com/stdy/a.php?id&#61;4637" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2015/0728/28201507134259771.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0727/27201707112033848.jpg" alt="2018《高考必备题型1000例》">
+                  <div class="post-link-bg"> <a href="https://user.qzone.qq.com/807975291/bloglist?bid&#61;1501060897&amp;secondary&#61;1" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0727/27201707112033848.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
                 </div>
                 <div class="post-info">
-                  <div class="left-sec"> <a href="http://www.tesoon.com/stdy/a.php?id&#61;4637" class="title" target="_blank">2016版《高考必备题型1000例》</a>
+                  <div class="left-sec"> <a href="https://user.qzone.qq.com/807975291/bloglist?bid&#61;1501060897&amp;secondary&#61;1" class="title" target="_blank">2018《高考必备题型1000例》</a>
                     <ul class="tags">
-                      <li> 弄懂一道母题，攻克一类题！</li>
+                      <li> 2018《高考必备题型1000例》重磅上市！</li>
                     </ul>
                   </div>
                   <div class="clear"></div>
                 </div>
               </div>
-              <div class="portfolio logo col-md-4 col-xs-12" data-cat="logo">
-                <div class="image-container"> <img src="http://img.tesoon.com/up/2015/0212/12201502093906730.jpg" alt="高复讲义">
-                  <div class="post-link-bg"> <a href="http://www.tesoon.com/stdy/introduce.php" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2015/0212/12201502093906730.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+              <div class="portfolio card col-md-4 col-xs-12" data-cat="card">
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0719/19201707164112911.jpg" alt="2018《高考题库·合订本》上市">
+                  <div class="post-link-bg"> <a href="https://user.qzone.qq.com/807975291/infocenter" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0719/19201707164112911.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
                 </div>
                 <div class="post-info">
-                  <div class="left-sec"> <a href="http://www.tesoon.com/stdy/introduce.php" class="title" target="_blank">高复讲义</a>
+                  <div class="left-sec"> <a href="https://user.qzone.qq.com/807975291/infocenter" class="title" target="_blank">2018《高考题库·合订本》上市</a>
                     <ul class="tags">
-                      <li> 解决一轮复习所有问题！</li>
+                      <li> 全新练好题，训练类工具书。</li>
+                    </ul>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div class="portfolio card col-md-4 col-xs-12" data-cat="card">
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0712/12201707101256967.jpg" alt="《试题调研》2018高考第1辑">
+                  <div class="post-link-bg"> <a href="http://user.qzone.qq.com/807975291/blog/1499509614" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0712/12201707101256967.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+                </div>
+                <div class="post-info">
+                  <div class="left-sec"> <a href="http://user.qzone.qq.com/807975291/blog/1499509614" class="title" target="_blank">《试题调研》2018高考第1辑</a>
+                    <ul class="tags">
+                      <li> 专攻一轮复习重点、难点、薄弱点！</li>
+                    </ul>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div class="portfolio app col-md-4 col-xs-12" data-cat="app">
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0703/03201707101150193.jpg" alt="《一遍过》（专题系列）上市！">
+                  <div class="post-link-bg"> <a href="http://www.tesoon.com/a_new/htm/32/157912.htm" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0703/03201707101150193.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+                </div>
+                <div class="post-info">
+                  <div class="left-sec"> <a href="http://www.tesoon.com/a_new/htm/32/157912.htm" class="title" target="_blank">《一遍过》（专题系列）上市！</a>
+                    <ul class="tags">
+                      <li> 全新内容，助力高考！</li>
+                    </ul>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div class="portfolio app col-md-4 col-xs-12" data-cat="app">
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0621/21201706120454164.jpg" alt="《金考卷·活页题选》必修1（第5版）">
+                  <div class="post-link-bg"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4985" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0621/21201706120454164.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+                </div>
+                <div class="post-info">
+                  <div class="left-sec"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4985" class="title" target="_blank">《金考卷·活页题选》必修1（第5版）</a>
+                    <ul class="tags">
+                      <li> 助你实现从同步到高考的跨越!</li>
+                    </ul>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div class="portfolio app col-md-4 col-xs-12" data-cat="app">
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0426/26201704120214403.jpg" alt="学习利器：《金考卷·活页题选》">
+                  <div class="post-link-bg"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4979" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0426/26201704120214403.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+                </div>
+                <div class="post-info">
+                  <div class="left-sec"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4979" class="title" target="_blank">学习利器：《金考卷·活页题选》</a>
+                    <ul class="tags">
+                      <li> 启动“单元双测→专题演练→模块综合”模式。</li>
+                    </ul>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div class="portfolio app col-md-4 col-xs-12" data-cat="app">
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0328/28201703104134760.jpg" alt="2017押题卷《高考最后一卷》">
+                  <div class="post-link-bg"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4964" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0328/28201703104134760.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+                </div>
+                <div class="post-info">
+                  <div class="left-sec"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4964" class="title" target="_blank">2017押题卷《高考最后一卷》</a>
+                    <ul class="tags">
+                      <li> 超强押题，严格命题，过硬原创。</li>
+                    </ul>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div class="portfolio ybg col-md-4 col-xs-12" data-cat="ybg">
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0317/17201703161807343.jpg" alt="一遍过·高中地理必修3（RJ）">
+                  <div class="post-link-bg"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4960" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0317/17201703161807343.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+                </div>
+                <div class="post-info">
+                  <div class="left-sec"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4960" class="title" target="_blank">一遍过·高中地理必修3（RJ）</a>
+                    <ul class="tags">
+                      <li> 讲练结合，优讲精练，稳扎稳打。</li>
+                    </ul>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div class="portfolio ybg col-md-4 col-xs-12" data-cat="ybg">
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0317/17201703161747581.jpg" alt="一遍过·高中化学选修4（RJ）">
+                  <div class="post-link-bg"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4956" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0317/17201703161747581.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+                </div>
+                <div class="post-info">
+                  <div class="left-sec"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4956" class="title" target="_blank">一遍过·高中化学选修4（RJ）</a>
+                    <ul class="tags">
+                      <li> 一遍解决化学反应原理难点。</li>
+                    </ul>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div class="portfolio ybg col-md-4 col-xs-12" data-cat="ybg">
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0317/17201703161735155.jpg" alt="一遍过·高中物理选修3-1（RJ）">
+                  <div class="post-link-bg"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4955" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0317/17201703161735155.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+                </div>
+                <div class="post-info">
+                  <div class="left-sec"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4955" class="title" target="_blank">一遍过·高中物理选修3-1（RJ）</a>
+                    <ul class="tags">
+                      <li> 练《一遍过》，从此物理不再难。</li>
+                    </ul>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div class="portfolio ybg col-md-4 col-xs-12" data-cat="ybg">
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0317/17201703161725796.jpg" alt="一遍过·高中英语必修5（RJ）">
+                  <div class="post-link-bg"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4954" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0317/17201703161725796.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+                </div>
+                <div class="post-info">
+                  <div class="left-sec"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4954" class="title" target="_blank">一遍过·高中英语必修5（RJ）</a>
+                    <ul class="tags">
+                      <li> 由基础到能力，扫清教材学习障碍。</li>
+                    </ul>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div class="portfolio ybg col-md-4 col-xs-12" data-cat="ybg">
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0317/17201703161712695.jpg" alt="一遍过·高中数学必修5（RJA）">
+                  <div class="post-link-bg"> <a href="数学——http://www.tesoon.com/jkj/a.php?id&#61;4953" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0317/17201703161712695.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+                </div>
+                <div class="post-info">
+                  <div class="left-sec"> <a href="数学——http://www.tesoon.com/jkj/a.php?id&#61;4953" class="title" target="_blank">一遍过·高中数学必修5（RJA）</a>
+                    <ul class="tags">
+                      <li> 提纲化的讲解，精细典例分析。</li>
+                    </ul>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div class="portfolio ybg col-md-4 col-xs-12" data-cat="ybg">
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0317/17201703161703548.jpg" alt="一遍过·高中语文必修5（RJ）">
+                  <div class="post-link-bg"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4952" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0317/17201703161703548.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+                </div>
+                <div class="post-info">
+                  <div class="left-sec"> <a href="http://www.tesoon.com/jkj/a.php?id&#61;4952" class="title" target="_blank">一遍过·高中语文必修5（RJ）</a>
+                    <ul class="tags">
+                      <li> 深究教材重难点，直击高考新变化！</li>
+                    </ul>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div class="portfolio jcb col-md-4 col-xs-12" data-cat="jcb">
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0317/17201703150359971.jpg" alt="《教材帮》：三生三世枕上书">
+                  <div class="post-link-bg"> <a href="http://www.tesoon.com/a_new/htm/31/154003.htm" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0317/17201703150359971.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+                </div>
+                <div class="post-info">
+                  <div class="left-sec"> <a href="http://www.tesoon.com/a_new/htm/31/154003.htm" class="title" target="_blank">《教材帮》：三生三世枕上书</a>
+                    <ul class="tags">
+                      <li> 帮你把课本读厚，打下扎实知识基础。</li>
+                    </ul>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div class="portfolio jcb col-md-4 col-xs-12" data-cat="jcb">
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0317/17201703150350168.jpg" alt="2015天星强力推荐：《教材帮》">
+                  <div class="post-link-bg"> <a href="http://www.tesoon.com/stdy/a.php?id&#61;4626" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0317/17201703150350168.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+                </div>
+                <div class="post-info">
+                  <div class="left-sec"> <a href="http://www.tesoon.com/stdy/a.php?id&#61;4626" class="title" target="_blank">2015天星强力推荐：《教材帮》</a>
+                    <ul class="tags">
+                      <li> 讲全讲细、讲清讲透、讲精讲准。</li>
+                    </ul>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div class="portfolio jcb col-md-4 col-xs-12" data-cat="jcb">
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0309/09201703105441647.jpg" alt="2018《高考帮》重磅上市">
+                  <div class="post-link-bg"> <a href="http://www.tesoon.com/stdy/a.php?id&#61;4916" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0309/09201703105441647.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+                </div>
+                <div class="post-info">
+                  <div class="left-sec"> <a href="http://www.tesoon.com/stdy/a.php?id&#61;4916" class="title" target="_blank">2018《高考帮》重磅上市</a>
+                    <ul class="tags">
+                      <li> 考点到考场，名师一帮到底。</li>
+                    </ul>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div class="portfolio icon col-md-4 col-xs-12" data-cat="icon">
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0220/20201702160502969.jpg" alt="《疯狂阅读·年度特辑》">
+                  <div class="post-link-bg"> <a href="http://www.tesoon.com/a_new/htm/31/152545.htm" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0220/20201702160502969.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+                </div>
+                <div class="post-info">
+                  <div class="left-sec"> <a href="http://www.tesoon.com/a_new/htm/31/152545.htm" class="title" target="_blank">《疯狂阅读·年度特辑》</a>
+                    <ul class="tags">
+                      <li> 抄取百家精妙，荟萃年代华章。</li>
+                    </ul>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div class="portfolio icon col-md-4 col-xs-12" data-cat="icon">
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0220/20201702160248621.jpg" alt="《不一样的作文课》">
+                  <div class="post-link-bg"> <a href="http://www.tesoon.com/a_new/htm/31/152544.htm" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0220/20201702160248621.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+                </div>
+                <div class="post-info">
+                  <div class="left-sec"> <a href="http://www.tesoon.com/a_new/htm/31/152544.htm" class="title" target="_blank">《不一样的作文课》</a>
+                    <ul class="tags">
+                      <li> 看漫画，学作文，不一样的作文课。</li>
+                    </ul>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div class="portfolio icon col-md-4 col-xs-12" data-cat="icon">
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0220/20201702160100562.jpg" alt="不二之选：语文“不二”阅读">
+                  <div class="post-link-bg"> <a href="http://www.tesoon.com/a_new/htm/31/152543.htm" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0220/20201702160100562.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+                </div>
+                <div class="post-info">
+                  <div class="left-sec"> <a href="http://www.tesoon.com/a_new/htm/31/152543.htm" class="title" target="_blank">不二之选：语文“不二”阅读</a>
+                    <ul class="tags">
+                      <li> 学科拓展，“不二”之选。</li>
+                    </ul>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div class="portfolio web col-md-4 col-xs-12" data-cat="web">
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0214/14201702102021799.jpg" alt="三角龙的弹弓">
+                  <div class="post-link-bg"> <a href="http://children.tesoon.com/index.php?s&#61;/home/books/detail/category/44/id/374.html" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0214/14201702102021799.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+                </div>
+                <div class="post-info">
+                  <div class="left-sec"> <a href="http://children.tesoon.com/index.php?s&#61;/home/books/detail/category/44/id/374.html" class="title" target="_blank">三角龙的弹弓</a>
+                    <ul class="tags">
+                      <li> 伊瓦是怎么帮助三角龙的呢？</li>
+                    </ul>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div class="portfolio web col-md-4 col-xs-12" data-cat="web">
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0214/14201702101618884.jpg" alt="神秘的打火匣">
+                  <div class="post-link-bg"> <a href="http://children.tesoon.com/index.php?s&#61;/home/books/detail/category/44/id/242.html" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0214/14201702101618884.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+                </div>
+                <div class="post-info">
+                  <div class="left-sec"> <a href="http://children.tesoon.com/index.php?s&#61;/home/books/detail/category/44/id/242.html" class="title" target="_blank">神秘的打火匣</a>
+                    <ul class="tags">
+                      <li> 打火匣究竟神秘在哪儿呢？</li>
+                    </ul>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div class="portfolio web col-md-4 col-xs-12" data-cat="web">
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0214/14201702101553480.jpg" alt="莱尼变成了小宝宝">
+                  <div class="post-link-bg"> <a href="http://children.tesoon.com/index.php?s&#61;/home/books/detail/category/44/id/394.html" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0214/14201702101553480.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+                </div>
+                <div class="post-info">
+                  <div class="left-sec"> <a href="http://children.tesoon.com/index.php?s&#61;/home/books/detail/category/44/id/394.html" class="title" target="_blank">莱尼变成了小宝宝</a>
+                    <ul class="tags">
+                      <li> 莱尼真的变成小宝宝了吗？</li>
+                    </ul>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div class="portfolio web col-md-4 col-xs-12" data-cat="web">
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0214/14201702101521526.jpg" alt="超级查理和失踪的外婆">
+                  <div class="post-link-bg"> <a href="http://children.tesoon.com/index.php?s&#61;/home/books/detail/category/44/id/383.html" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0214/14201702101521526.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+                </div>
+                <div class="post-info">
+                  <div class="left-sec"> <a href="http://children.tesoon.com/index.php?s&#61;/home/books/detail/category/44/id/383.html" class="title" target="_blank">超级查理和失踪的外婆</a>
+                    <ul class="tags">
+                      <li> 婴儿查理能找到外婆吗？</li>
+                    </ul>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div class="portfolio web col-md-4 col-xs-12" data-cat="web">
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0214/14201702101438411.jpg" alt="超级查理和玩偶小偷">
+                  <div class="post-link-bg"> <a href="http://children.tesoon.com/index.php?s&#61;/home/books/detail/category/44/id/381.html" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0214/14201702101438411.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+                </div>
+                <div class="post-info">
+                  <div class="left-sec"> <a href="http://children.tesoon.com/index.php?s&#61;/home/books/detail/category/44/id/381.html" class="title" target="_blank">超级查理和玩偶小偷</a>
+                    <ul class="tags">
+                      <li> 婴儿查理是怎么制服小偷的呢？</li>
+                    </ul>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div class="portfolio web col-md-4 col-xs-12" data-cat="web">
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0214/14201702101320208.jpg" alt="不一样的星期二系列">
+                  <div class="post-link-bg"> <a href="http://children.tesoon.com/index.php?s&#61;/home/books/detail/category/44/id/402.html" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0214/14201702101320208.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+                </div>
+                <div class="post-info">
+                  <div class="left-sec"> <a href="http://children.tesoon.com/index.php?s&#61;/home/books/detail/category/44/id/402.html" class="title" target="_blank">不一样的星期二系列</a>
+                    <ul class="tags">
+                      <li> 维拉每个星期二带东西去幼儿园的故事。</li>
+                    </ul>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div class="portfolio icon col-md-4 col-xs-12" data-cat="icon">
+                <div class="image-container"> <img src="http://img.tesoon.com/up/2017/0117/17201701120615661.jpg" alt="畅享经典·子母版名著阅读">
+                  <div class="post-link-bg"> <a href="http://topic.tesoon.com/201701/cxjd/" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2017/0117/17201701120615661.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
+                </div>
+                <div class="post-info">
+                  <div class="left-sec"> <a href="http://topic.tesoon.com/201701/cxjd/" class="title" target="_blank">畅享经典·子母版名著阅读</a>
+                    <ul class="tags">
+                      <li> 1+1专为中学生量身定制。</li>
                     </ul>
                   </div>
                   <div class="clear"></div>
@@ -1192,45 +1375,6 @@ function GoService(){
                   <div class="left-sec"> <a href="http://www.tesoon.com/read/jcxd_list.php?tid&#61;51" class="title" target="_blank">疯狂阅读之英语时空</a>
                     <ul class="tags">
                       <li> 品异域风情，学地道英语。</li>
-                    </ul>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              </div>
-              <div class="portfolio icon col-md-4 col-xs-12" data-cat="icon">
-                <div class="image-container"> <img src="http://img.tesoon.com/up/2015/0211/112015021607322.jpg" alt="疯狂阅读之青春风">
-                  <div class="post-link-bg"> <a href="http://www.tesoon.com/read/jcxd_list.php?tid&#61;48" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2015/0211/112015021607322.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
-                </div>
-                <div class="post-info">
-                  <div class="left-sec"> <a href="http://www.tesoon.com/read/jcxd_list.php?tid&#61;48" class="title" target="_blank">疯狂阅读之青春风</a>
-                    <ul class="tags">
-                      <li> 美好有时，青春无价。最美时光，有我相伴。</li>
-                    </ul>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              </div>
-              <div class="portfolio icon col-md-4 col-xs-12" data-cat="icon">
-                <div class="image-container"> <img src="http://img.tesoon.com/up/2015/0211/11201502160559302.jpg" alt="疯狂阅读之疯狂作文">
-                  <div class="post-link-bg"> <a href="http://www.tesoon.com/read/jcxd_list.php?tid&#61;13" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2015/0211/11201502160559302.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
-                </div>
-                <div class="post-info">
-                  <div class="left-sec"> <a href="http://www.tesoon.com/read/jcxd_list.php?tid&#61;13" class="title" target="_blank">疯狂阅读之疯狂作文</a>
-                    <ul class="tags">
-                      <li> 最新素材，最佳创作。原创天地，给你灵感。</li>
-                    </ul>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              </div>
-              <div class="portfolio icon col-md-4 col-xs-12" data-cat="icon">
-                <div class="image-container"> <img src="http://img.tesoon.com/up/2015/0211/11201502160120727.jpg" alt="疯狂阅读系列图书">
-                  <div class="post-link-bg"> <a href="http://www.tesoon.com/read/jcxd_list.php" class="link" target="_blank"><span></span></a> <a href="http://img.tesoon.com/up/2015/0211/11201502160120727.jpg" rel="prettyPhoto[]" class="zoom"><span></span></a> </div>
-                </div>
-                <div class="post-info">
-                  <div class="left-sec"> <a href="http://www.tesoon.com/read/jcxd_list.php" class="title" target="_blank">疯狂阅读系列图书</a>
-                    <ul class="tags">
-                      <li> 畅读时文，拓展视野。丰富知识，提升能力。</li>
                     </ul>
                   </div>
                   <div class="clear"></div>
@@ -1251,17 +1395,15 @@ function GoService(){
     <div class="container">
       <h2>购书平台</h2>
       <div class="row">
-        <div class="col-xs-6 col-md-1"></div>
-        <div class="col-xs-6 col-md-2 bookimg"> <a href="http://tianxingjiaoyu.tmall.com/" target="_blank"></a></div>
-        <div class="col-xs-6 col-md-2 bookimg2"> <a href="http://tianxing.jd.com/" target="_blank"></a></div>
-        <div class="col-xs-6 col-md-2 bookimg3"> <a href="http://search.dangdang.com/?key=命题新动向" target="_blank"></a></div>
-        <div class="col-xs-6 col-md-2 bookimg4"> <a href="http://shop.vxueapp.com/index.php" target="_blank"></a></div>
-        <div class="col-xs-6 col-md-2 bookimg6"> <a href="http://www.amazon.cn/gp/feature.html/ref=referencestore_reference_8?docId=1497748&ie=UTF8&pf_rd_p=247836212&pf_rd_s=merchandised-search-2&pf_rd_t=101&pf_rd_i=305884071&pf_rd_m=A1AJ19PSB66TGU&pf_rd_r=0JDB1BHXNQD79DMRV7NZ" target="_blank"></a></div>
-        <div class="col-xs-6 col-md-1"></div>
+        <div class="col-xs-6 col-md-3 bookimg"> <a href="http://tianxingjiaoyu.tmall.com/" target="_blank"></a></div>
+        <div class="col-xs-6 col-md-3 bookimg2"> <a href="http://tianxing.jd.com/" target="_blank"></a></div>
+        <div class="col-xs-6 col-md-3 bookimg3"> <a href="http://search.dangdang.com/?key=命题新动向" target="_blank"></a></div>
+        <div class="col-xs-6 col-md-3 bookimg6"> <a href="http://www.amazon.cn/gp/feature.html/ref=referencestore_reference_8?docId=1497748&ie=UTF8&pf_rd_p=247836212&pf_rd_s=merchandised-search-2&pf_rd_t=101&pf_rd_i=305884071&pf_rd_m=A1AJ19PSB66TGU&pf_rd_r=0JDB1BHXNQD79DMRV7NZ" target="_blank"></a></div>
       </div>
     </div>
   </div>
   <!--商城 end-->
+
   <div class="container-fluid footernav">
     <div class="container">
       <ul class="list-inline">
@@ -1281,7 +1423,9 @@ function GoService(){
           <ul class="font12">
             <li>增值电信业务经营许可证：豫B2-20130009&nbsp;互联网出版许可证：新出网证（豫）字009号&nbsp;<a href="http://www.miibeian.gov.cn" target="_blank">豫B2-20130009-1</a></li>
             <li>教育审批号：20120100300176&nbsp;广播电视节目制作经营许可证(豫)字第00187号</li>
-            <li>Copyright &copy; 2002 - 2015 Tesoon. All Rights Reserved</li>
+            <li><a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41019702002011">
+            <img src="images2015/police.png" style="float:left;width:15px;"/>&nbsp;&nbsp;豫公网安备 41019702002011号</a></li>
+            <li>Copyright &copy; 2002 - 2017 Tesoon. All Rights Reserved</li>
           </ul>
         </div>
         <div class="col-md-4">

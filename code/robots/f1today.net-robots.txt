@@ -1,2 +1,450 @@
-User-agent: *
-Disallow: /users/
+<!DOCTYPE html>
+<html lang="en_GB">
+<head>
+    <meta charset="utf-8"/><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var o=n[t]={exports:{}};e[t][0].call(o.exports,function(n){var o=e[t][1][n];return r(o||n)},o,o.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<t.length;o++)r(t[o]);return r}({1:[function(e,n,t){function r(){}function o(e,n,t){return function(){return i(e,[c.now()].concat(u(arguments)),n?null:this,t),n?void 0:this}}var i=e("handle"),a=e(2),u=e(3),f=e("ee").get("tracer"),c=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,n){s[n]=o(d+n,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),n.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,n){var t={},r=this,o="function"==typeof n;return i(l+"tracer",[c.now(),e,t],r),function(){if(f.emit((o?"":"no-")+"fn-start",[c.now(),r,o],t),o)try{return n.apply(this,arguments)}finally{f.emit("fn-end",[c.now()],t)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,n){m[n]=o(l+n)}),newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),i("err",[e,c.now()])}},{}],2:[function(e,n,t){function r(e,n){var t=[],r="",i=0;for(r in e)o.call(e,r)&&(t[i]=n(r,e[r]),i+=1);return t}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],3:[function(e,n,t){function r(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,o=t-n||0,i=Array(o<0?0:o);++r<o;)i[r]=e[n+r];return i}n.exports=r},{}],4:[function(e,n,t){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,n,t){function r(){}function o(e){function n(e){return e&&e instanceof r?e:e?f(e,u,i):i()}function t(t,r,o,i){if(!d.aborted||i){e&&e(t,r,o);for(var a=n(o),u=m(t),f=u.length,c=0;c<f;c++)u[c].apply(a,r);var p=s[y[t]];return p&&p.push([b,t,r,a]),a}}function l(e,n){v[e]=m(e).concat(n)}function m(e){return v[e]||[]}function w(e){return p[e]=p[e]||o(t)}function g(e,n){c(e,function(e,t){n=n||"feature",y[t]=n,n in s||(s[n]=[])})}var v={},y={},b={on:l,emit:t,get:w,listeners:m,context:n,buffer:g,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",f=e("gos"),c=e(2),s={},p={},d=n.exports=o();d.backlog=s},{}],gos:[function(e,n,t){function r(e,n,t){if(o.call(e,n))return e[n];var r=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[n]=r,r}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(e,n,t){function r(e,n,t,r){o.buffer([e],r),o.emit(e,n,t)}var o=e("ee").get("handle");n.exports=r,r.ee=o},{}],id:[function(e,n,t){function r(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");n.exports=r},{}],loader:[function(e,n,t){function r(){if(!x++){var e=h.info=NREUM.info,n=d.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&n))return s.abort();c(y,function(n,t){e[n]||(e[n]=t)}),f("mark",["onload",a()+h.offset],null,"api");var t=d.createElement("script");t.src="https://"+e.agent,n.parentNode.insertBefore(t,n)}}function o(){"complete"===d.readyState&&i()}function i(){f("mark",["domContent",a()+h.offset],null,"api")}function a(){return E.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-h.offset}var u=(new Date).getTime(),f=e("handle"),c=e(2),s=e("ee"),p=window,d=p.document,l="addEventListener",m="attachEvent",w=p.XMLHttpRequest,g=w&&w.prototype;NREUM.o={ST:setTimeout,SI:p.setImmediate,CT:clearTimeout,XHR:w,REQ:p.Request,EV:p.Event,PR:p.Promise,MO:p.MutationObserver};var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1044.min.js"},b=w&&g&&g[l]&&!/CriOS/.test(navigator.userAgent),h=n.exports={offset:u,now:a,origin:v,features:{},xhrWrappable:b};e(1),d[l]?(d[l]("DOMContentLoaded",i,!1),p[l]("load",r,!1)):(d[m]("onreadystatechange",o),p[m]("onload",r)),f("mark",["firstbyte",u],null,"api");var x=0,E=e(4)},{}]},{},["loader"]);</script>
+    <title>F1Today.net</title>
+        <!-- Facebook Open graph meta tags -->
+        <meta property="og:url" content="https://www.f1today.net/en/robots.txt"/>
+        <meta property="og:type" content="website" />
+                <meta property="og:image" content="https://www.f1today.net/media/images/logo.png" />
+        <meta property="og:site_name" content="F1Today.net"/>
+    <meta property="og:title" content=""/>
+    <meta property="og:locale" content="en_GB"/>
+    <meta property="og:description" content="F1Today.net"/>
+
+    <meta property="fb:app_id" content="297429804007392" />
+
+    <!-- Microdata -->
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:site" content="@F1Today_net"/>
+    <meta name="twitter:creator" content="@F1Today_net"/>
+    <meta name="twitter:title" content=""/>
+    <meta name="twitter:description" content="F1Today.net"/>
+    <meta name="twitter:image:src" content="https://www.f1today.net/media/images/logo.png"/>
+
+
+    <link rel="icon" href="https://www.f1today.net/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="https://www.f1today.net/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="https://www.f1today.net/media/css/socialshare.v033.css"/>
+    <link rel="stylesheet" href="https://www.f1today.net/media/css/main.v033.css"/>
+    <!--[if IE 7]>
+        <script type="text/javascript" src="https://www.f1today.net/media/js/object-polyfill.v033".js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+        var F1_CURRENT_USER_NAME = "anonymous";
+        var F1_SITE_LANGUAGE = 'en';
+
+                                var F1T_WS_CONFIG = {"authEndpoint":"\/en\/\/push-authenticate","url":"https:\/\/centrifugo.f1today.net:443","user":"","timestamp":"1507364614","info":"","token":"04bb92d41fc77bde77269af078d55a0b2f24d4a31d311dcc2bcee78b26226b79"};
+                    
+                var F1T_WS_CHAN_PRESENCE_CHANNEL = 'public:presence';
+    </script>
+
+    
+    <!-- Basic meta tags -->
+        
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    
+    <!-- Speciale styling voor usenicefonts=1 cookie -->
+    </head>
+
+<body>
+<div align="center">
+    <script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+
+<script>
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/67970281/display_thirdparty_nl/f1today/homepage/top_Billboard', [970, 250], 'div-gpt-ad-1489509685686-0').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.pubads().collapseEmptyDivs(true);
+    googletag.enableServices();
+  });
+</script>
+
+<!-- /67970281/display_thirdparty_nl/f1today/homepage/top_Billboard -->
+<div id='div-gpt-ad-1489509685686-0' style='height:auto; width:auto;'>
+<script>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1489509685686-0'); });
+</script>
+</div></div>
+
+<div id="wrapper">
+    <div id="inner">
+        <!-- Header -->
+        <div id="header">
+            <div id="logo">
+                <a href="https://www.f1today.net/en/"><img src="https://www.f1today.net/media/images/logo.png" alt="F1Today.net logo"/></a>
+            </div>
+
+            <div id="leaderboard">
+                <script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+
+<script>
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/67970281/display_thirdparty_nl/f1today/homepage/top_banner', [728, 90],'div-gpt-ad-1480596305153-4').setTargeting('Display_Ad_Position', ['ATF']).setTargeting('Display_Ad_Size', ['Top_Banner']).addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.pubads().collapseEmptyDivs(true);
+    googletag.enableServices();
+  });
+</script>
+
+
+<!-- /67970281/display_thirdparty_nl/f1today/homepage/top_banner -->
+<div id='div-gpt-ad-1480596305153-4'>
+<script>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1480596305153-4'); });
+</script>
+</div>
+<!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"light-top"};
+</script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
+<!-- End Cookie Consent plugin -->            </div>
+        </div>
+        <!-- Header -->
+
+        <!-- Menu -->
+        <div id="menucontainer">
+            <div id="menu">
+                <ul>
+                    <li id="menu-home" ><a
+                            href="https://www.f1today.net/en/">Home</a></li>
+                    <li id="menu-news" ><a
+                            href="https://www.f1today.net/en/archive">News</a></li>
+                    <li id="menu-drivers" >
+                        <a href="https://www.f1today.net/en/drivers">Drivers</a></li>
+                    <li id="menu-teams" ><a
+                            href="https://www.f1today.net/en/teams">Teams</a></li>
+                    <li id="menu-fotos" ><a
+                            href="https://www.f1today.net/en/photos">Photos</a></li>
+                            <li id="menu-shop" ><a target="_blank"
+                            href="https://www.f1today.net/en/goto/shop">Shop</a></li>
+                             <li id="menu-season" ><a
+                            href="https://www.f1today.net/en/season/standings/f1/races">Results</a>
+                    </li>
+                    <li id="menu-calendar" ><a
+                            href="https://www.f1today.net/en/season/calendar/f1/races">Calendar</a>
+                    </li>
+                    <li id="menu-testsession" ><a
+                            href="https://www.f1today.net/en/season/calendar/f1/tests">Testsessions</a>
+                    <li id="menu-search" ><a
+                            href="https://www.f1today.net/en/search">Search</a></li>
+                    <!--                        <li id="menu-gptickets"><a target="_blank"-->
+<!--                                                   onclick="ga('send', 'event', 'Externe links', 'EN - GP-Tours.com - Menu', 'Aantal clicks');"-->
+<!--                                                   href="--><!--">--><!--</a>-->
+<!--                        </li>-->
+                                    </ul>
+
+                <div id="language-selection">
+                                        <a href="https://www.f1today.net/nl/"><img alt="Nederlands" src="https://www.f1today.net/media/images/icons/flags/nl.png"/></a>
+                                        <a href="https://www.f1today.net/en/"><img alt="English" src="https://www.f1today.net/media/images/icons/flags/gb.png"/></a>
+                                        <a href="https://www.f1today.net/dk/"><img alt="Dansk" src="https://www.f1today.net/media/images/icons/flags/dk.png"/></a>
+                                        <a href="https://www.f1today.net/br/"><img alt="Português" src="https://www.f1today.net/media/images/icons/flags/br.png"/></a>
+                                    </div>
+            </div>
+            <!-- Menu -->
+
+            <!-- Submenu -->
+            <div id="submenu">
+                <ul id="submenu-news"
+                    class="subs submenu ">
+                    <li><a href="https://www.f1today.net/en/archive">News archive</a></li>
+                    <li><a href="https://www.f1today.net/en/archive/f1">F1</a></li>
+                    <li><a href="https://www.f1today.net/en/archive/gp2">F2</a></li>
+                    <li><a href="https://www.f1today.net/en/archive/f3">F3</a></li>
+                    <li><a href="https://www.f1today.net/en/archive/wec">WEC</a></li>
+                    <li><a href="https://www.f1today.net/en/archive/fe">FE</a></li>
+                </ul>
+
+                <ul id="submenu-calendar"
+                    class="subs submenu ">
+                    <li>
+                        <a href="https://www.f1today.net/en/season/calendar/f1/races/2017">2017</a>
+                    </li>
+                    <li>
+                        <a href="https://www.f1today.net/en/season/calendar/f1/races/2016">2016</a>
+                    </li>
+                    <li>
+                        <a href="https://www.f1today.net/en/season/calendar/f1/races/2015">2015</a>
+                    </li>
+                    <!--
+                    <li>
+                        <a href="https://www.f1today.net/en/season/kalenders/f1/races/2014">2014</a>
+                    </li>
+                    <li>
+                        <a href="https://www.f1today.net/en/season/calendar/f1/races/2013">2013</a>
+                    </li>
+                    -->
+                </ul>
+                <ul id="submenu-testsession"
+                    class="subs submenu ">
+                    <li>
+                        <a href="https://www.f1today.net/en/season/calendar/f1/tests/2017">2017</a>
+                    </li>
+                    <li>
+                        <a href="https://www.f1today.net/en/season/calendar/f1/tests/2016">2016</a>
+                    </li>
+                    <li>
+                        <a href="https://www.f1today.net/en/season/calendar/f1/tests/2015">2015</a>
+                    </li>
+                    <!--
+                    <li>
+                        <a href="https://www.f1today.net/en/season/kalenders/f1/races/2014">2014</a>
+                    </li>
+                    <li>
+                        <a href="https://www.f1today.net/en/season/calendar/f1/races/2013">2013</a>
+                    </li>
+                    -->
+                </ul>
+
+                <ul id="submenu-season"
+                    class="subs submenu ">
+                    <li>
+                        <a href="https://www.f1today.net/en/season/standings/f1/races/2016">2016</a>
+                    </li>
+                    <li>
+                        <a href="https://www.f1today.net/en/season/standings/f1/races/2015">2015</a>
+                    </li>
+                    <!--
+                    <li>
+                        <a href="https://www.f1today.net/en/season/standings/f1/races/2014">2014</a>
+                    </li>
+                    <li>
+                        <a href="https://www.f1today.net/en/season/standings/f1/races/2013">2013</a>
+                    </li>
+                    <li>
+                        <a href="https://www.f1today.net/en/season/standings/f1/races/2012">2012</a>
+                    </li>
+                    <li>
+                        <a href="https://www.f1today.net/en/season/standings/f1/races/2011">2011</a>
+                    </li>
+                    <li>
+                        <a href="https://www.f1today.net/en/season/standings/f1/races/2010">2010</a>
+                    </li>
+                    <li>
+                        <a href="https://www.f1today.net/en/season/standings/f1/races/2009">2009</a>
+                    </li>
+                    <li>
+                        <a href="https://www.f1today.net/en/season/standings/f1/races/2008">2008</a>
+                    </li>
+                    -->
+                </ul>
+
+                <!-- Login/Register -->
+                <div id="member" class="">
+                    <a href="https://www.f1today.net/en/member/login">Login</a> | <a href="https://www.f1today.net/en/leden/register">Sign Up</a>                </div>
+                <!-- Login/Register -->
+
+                            </div>
+            <!-- Submenu -->
+        </div>
+        <div id="notifications-pane"></div><div class="page-title">
+    <h1>The page you requested is no longer available</h1>
+    </div>
+
+<!-- Content part -->
+<div id="content">
+
+    <!-- Content left -->
+    <div id="content-left">
+        <p>
+            The page you requested is no longer available<br/>
+            Unfortunately the page you tried to visit is no longer availbale.
+        </p>
+
+        <br/>
+
+        <p>
+            To retrieve the information you wanted to look at, you could try to the following:
+        </p>
+
+        <br/>
+    </div></div> <!-- / Inner -->
+
+<div class="push"></div>
+</div> <!-- / Container -->
+
+<div class="outer-footer">
+    <div class="sponsors">
+        <div class="inner">
+            <div class="sponsor-logos">
+                <a href="http://www.leaseweb.nl" target="_blank"><img src="https://www.f1today.net/media/images/sponsors/leaseweb.png"
+                                                                      alt="Leaseweb"/></a>
+                <a href="http://www.computershophedel.nl/webshop/" target="_blank"><img
+                        src="https://www.f1today.net/media/images/sponsors/ComputerShopHedel.jpg" width="175" height="24"
+                        alt="Computershop Hedel"/></a>
+                <a href="http://www.spicedcoding.com" target="_blank"><img src="https://www.f1today.net/media/images/sponsors/spicedcoding.png"
+                                                                           alt="SpicedCoding"/></a>
+                <a href="http://www.stupidpixel.be" target="_blank"><img src="https://www.f1today.net/media/images/sponsors/stupidpixel.png"
+                                                                         alt="StupidPixel"/></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+    <div class="inner">
+        <div class="col">
+            <h4>Shortcuts</h4>
+            <ul>
+                <li><a href="https://www.f1today.net/en/">Home</a></li>
+                <li><a href="https://www.f1today.net/en/archive">News archive</a></li>
+                <li><a href="https://www.f1today.net/en/photos">Photos</a></li>
+                <li><a href="https://www.f1today.net/en/drivers">Drivers</a></li>
+                <li><a href="https://www.f1today.net/en/teams">Teams</a></li>
+                <li><a href="https://www.f1today.net/en/season/calendar/f1/races">Calendar</a></li>
+                <li><a href="https://www.f1today.net/en/season/standings/f1/races">Results</a></li>
+                <li><a href="https://www.f1today.net/en/season/calendar/f1/tests">Test sessions</a></li>
+            </ul>
+        </div>
+        <div class="col">
+            <h4>F1Today.net</h4>
+            <ul>
+                <li><a href="https://www.f1today.net/en/contact">Contact F1Today.net</a></li>
+                                    <li><a href="https://www.f1today.net/en/page/disclaimer">Disclaimer</a></li>
+                                </ul>
+        </div>
+        <div class="col">
+            <h4>Social Media</h4>
+            <ul>
+                <li><a target="_blank" href="https://twitter.com/f1todaylive">Twitter</a></li>
+            </ul>
+        </div>
+
+        <div class="bottom">
+            <h4>Copyright &copy; 2017 F1Today.net - Made by First Place Media B.V.</h4>
+            </ul>
+        </div>
+
+    </div>
+</div>
+</div>
+
+<!-- Load Centrifuge client javascript -->
+<script src="//cdn.jsdelivr.net/sockjs/1.1/sockjs.min.js" type="text/javascript"></script>
+<script src="https://www.f1today.net/media//js/centrifuge/centrifuge.min.js" ></script>
+<script src="https://www.f1today.net/media//js/push/push.js" ></script>
+
+<!-- Google Analytics Code -->
+<script type="application/javascript">
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+
+    ga('create', 'UA-16180850-1', {
+        'cookieDomain': 'auto'
+            });
+    ga('require', 'linkid', 'linkid.js', 'displayfeatures');
+    ga('send', 'pageview');
+
+
+    function _gaLt(event) {
+        var el = event.srcElement || event.target;
+
+        /* Loop up the DOM tree through parent elements if clicked element is not a link (eg: an image inside a link) */
+        while (el && (typeof el.tagName == 'undefined' || el.tagName.toLowerCase() != 'a' || !el.href)) {
+            el = el.parentNode;
+        }
+
+        if (el && el.href) {
+            /* link */
+            var link = el.href;
+            if (link.indexOf(location.host) == -1 && !link.match(/^javascript\:/i)) { /* external link */
+                /* HitCallback function to either open link in either same or new window */
+                var hitBack = function (link, target) {
+                    target ? window.open(link, target) : window.location.href = link;
+                };
+                /* Is target set and not _(self|parent|top)? */
+                var target = (el.target && !el.target.match(/^_(self|parent|top)$/i)) ? el.target : false;
+                /* send event with callback */
+                ga(
+                    "send", "event", "Outgoing Links", link,
+                    document.location.pathname + document.location.search,
+                    {"hitCallback": hitBack(link, target)}
+                );
+
+                /* Prevent standard click */
+                event.preventDefault ? event.preventDefault() : event.returnValue = !1;
+            }
+
+        }
+    }
+
+    /* Attach the event to all clicks in the document after page has loaded */
+    var w = window;
+    w.addEventListener ? w.addEventListener("load", function () {
+        document.body.addEventListener("click", _gaLt, !1)
+    }, !1)
+        : w.attachEvent && w.attachEvent("onload", function () {
+        document.body.attachEvent("onclick", _gaLt)
+    });
+</script>
+<!-- EINDE GOOGLE ANALYTICS CODE!! AAN VOLGENDE SCRIPT BLOCK NIETS AANPASSEN !!!! -->
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var changeSubmenu = function () {
+            var menuName = $(this).attr('id') === undefined ? '' : $(this).attr('id');
+            menuName = menuName.replace('menu-', '');
+
+            $('#menu ul li').removeClass('active');
+            $(this).addClass('active');
+
+            $('#submenu ul.submenu').removeClass('active');
+            $('#submenu ul#submenu-' + menuName).addClass('active');
+        };
+
+        function leaveSubmenu() {
+            // re-enable the original menu again
+            $('#menu ul li').removeClass('active');
+            $('#submenu ul.submenu').removeClass('active');
+            $('#menu ul li.current').addClass('active');
+            $('#submenu ul.current').addClass('active');
+        }
+
+        $('#menu ul li').mouseenter(changeSubmenu);
+        $('#menucontainer').mouseleave(leaveSubmenu);
+
+        $('#member.logged-in').click(function () {
+            $('.member-menu').toggle();
+        });
+    });
+</script>
+
+<script type="text/javascript" src="http://as.ebz.io/api/choixPubJS.htm?pid=1124946&screenLayer=1&mode=NONE&home=http://www.f1today.net/"></script><script type="text/javascript">
+    (function() {
+        function async_load(script_url){
+            var protocol = ('https:' == document.location.protocol ? 'https://' : 'http://');
+            var s = document.createElement('script'); s.src = protocol + script_url;
+            var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+        }
+        bm_website_code = '64A74FD9693842E6';
+        jQuery(document).ready(function(){async_load('asset.pagefair.com/measure.min.js')});
+        jQuery(document).ready(function(){async_load('asset.pagefair.net/ads.min.js')});
+    })();
+</script>
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"a7d26b2836","applicationID":"17068559","transactionName":"blFRY0oEXRIFWhIIDVcbcEJLEVwMS18UDgxNUV1TFwBBEwtL","queueTime":0,"applicationTime":8,"atts":"QhZSFQIeThw=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+</html>

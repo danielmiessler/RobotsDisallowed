@@ -1,63 +1,128 @@
-#
-# robots.txt
-#
-# This file is to prevent the crawling and indexing of certain parts
-# of your site by web crawlers and spiders run by sites like Yahoo!
-# and Google. By telling these "robots" where not to go on your site,
-# you save bandwidth and server resources.
-#
-# This file will be ignored unless it is at the root of your host:
-# Used:    http://example.com/robots.txt
-# Ignored: http://example.com/site/robots.txt
-#
-#
-# robots.txt
-#
-# This file is to prevent the crawling and indexing of certain parts
-# of your site by web crawlers and spiders run by sites like Yahoo!
-# and Google. By telling these "robots" where not to go on your site,
-# you save bandwidth and server resources.
-#
-# This file will be ignored unless it is at the root of your host:
-# Used:    http://example.com/robots.txt
-# Ignored: http://example.com/site/robots.txt
-#
-# For more information about the robots.txt standard, see:
-# http://www.robotstxt.org/wc/robots.html
-#
-# For syntax checking, see:
-# http://www.sxw.org.uk/computing/robots/check.html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/">
+    <title></title>
+    <meta http-equiv="content-style-type" content="text/css"/>
+    <meta http-equiv="content-script-type" content="text/javascript"/>
+    <meta name="google-site-verification" content="xjzgD6KekBzYp9a_Snj4j9e7BHVrDfD7_WVYn6S935A"/>
+    <meta name="msvalidate.01" content="87F86657E6B14153C04AB6841A2FC437"/>
+    <link rel="canonical" ng-href="{{canonical}}"/>
+    <script>
+        var dataLayer = window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            event: 'init',
+            flags: {
+                shouldFireOnGtmJs: false
+            }
+        });
+    </script>
+    <!-- Maxymiser script start -->
+    <script type="text/javascript" src="//service.maxymiser.net/cdn/com.kaspersky/js/mmapi.js"></script>
+    <!-- Maxymiser script end -->
 
-User-agent: *
-Crawl-delay: 10
+</head>
+<body>
+<script>
+var IPCountry = 'US', pageSettings = "/content/", pageTemplate = "/resources/template/index.html",
+    pageScript = "/resources/template/js/app/launch.min.js", IEhack = {response: "Please, update your browser."}, customFlag = false;
+	if(!window.kaspersky) window.kaspersky = {};
+	window.kaspersky.trackPageViewOnLoad = 0;
+	
+if (pageTemplate.match(/custom/)) {
+    customFlag = true
+}
+var req = new XMLHttpRequest(),
+    link;
+customFlag ? link = pageTemplate.replace(/\/resources\/template/, "") : link = pageTemplate;
+req.open("GET", link);
+req.onreadystatechange = function()                    {
+    if (this.readyState == 4 && this.status == 200) {
+        IEhack.response = this.response || this.responseText;
+        if (customFlag) {
+            loadCustomHtml();
+            return;
+        }
+        loadVendorAndLaunch();
+        loadCss();
+    }
 
-# Requested by Jake M
-Disallow: /support/
-Disallow: /technews?id=
-Disallow: /viruswatchlite?search_virus=
-Disallow: /viruswatchlite?page=
-Disallow: /viruswatchlite?hour_offset=
-Disallow: /downloads_home_user_legacy?chapter=
-Disallow: /news.asp?tnews=0&nview=1&id=
-Disallow: /reading_room?chapter=
-Disallow: /kav_latest_versions?downlink=
-Disallow: /kav_previous_versions?downlink=
-Disallow: /businessoptimal?chapter=
-Disallow: /corporatesolutions?chapter=
-Disallow: /buyonline.html?chapter=
-Disallow: /beta.html?product=
-Disallow: /kis6?chapter=
-Disallow: /kaspersky_anti-virus_file_server?chapter=
-Disallow: /kis_for_ultra_portables_download?downlink=
-Disallow: /profitable-partners?chapter=
-Disallow: /affiliate?chapter=
-Disallow: /oemsuccess?chapter=
-Disallow: /about/news/eventi?time=
-Disallow: /about/news/events?time=
-Disallow: /sorry2seeugo
-Disallow: /products/home/kss/
-Disallow: /ru-paypal
-Disallow: /de-paypal
-Disallow: /fr-paypal
-Disallow: /acq/catalogue
-Disallow: /acq/kss
+    function loadCustomHtml() {
+        document.open("text/html", "replace");
+        document.write(IEhack.response);
+        document.close();
+        var baseTag = document.createElement("base");
+        baseTag.href = "/";
+        if (document.getElementsByTagName("base").length == 0) document.getElementsByTagName("head")[0].appendChild(baseTag);
+    }
+
+    function loadCss() {
+        var cssFile = document.createElement("link");
+        cssFile.href = "/resources/template/css/main.min.css";
+        cssFile.type = "text/css";
+        cssFile.rel = "stylesheet";
+        document.getElementsByTagName("head")[0].appendChild(cssFile);
+        // Loading GTM here after CSS
+         loadGTM();
+    }
+
+    function loadVendorAndLaunch() {
+        var launch = document.createElement("script"),
+            vendor = document.createElement("script");
+        vendor.src = "/resources/template/js/app/vendor.min.js";
+        vendor.async = true;
+        vendor.onload = function() {
+            document.getElementsByTagName("body")[0].appendChild(launch);
+        };
+        document.getElementsByTagName("body")[0].innerHTML = IEhack.response;
+        document.getElementsByTagName("body")[0].appendChild(vendor);
+        launch.src = "/resources/template/js/app/launch.min.js";
+        launch.async = true;
+        launch.onload = function() {
+            loadAngularBootStrap();
+        };
+    }
+
+    function loadAngularBootStrap() {
+        if (document.documentMode === 9) {
+            var angularCheck = setInterval(function() {
+                if (typeof angular === 'object') {
+                    angular.bootstrap(document, ["kappGlobal"]);
+                    clearInterval(angularCheck);
+                }
+            }, 50);
+        } else {
+            angular.bootstrap(document, ["kappGlobal"]);
+        }
+    }
+
+    function loadOmniture() {
+        var omniture = document.createElement("script");
+        omniture.src = "https://media.kaspersky.com/tracking/omniture/s_code_single_suite.js";
+        omniture.async = true;
+        document.getElementsByTagName("body")[0].appendChild(omniture);
+    }
+
+    function loadGTM() {
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(), event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WZ7LJ3');
+        // Loading Omniture after GTM
+        loadOmniture();
+    }
+};
+req.send();
+</script>
+</body>
+</html>

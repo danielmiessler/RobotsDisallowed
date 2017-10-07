@@ -8,7 +8,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=0.78">
     <title>NotFound 404 Error</title>
-    
+
+        <script>
+            console.log("Data Layer: Desktop Page Top Executed.");
+        </script>        
+        <script src="/Scripts/dtm-data-layer.js"></script>
+                <script src="//assets.adobedtm.com/20f6e6cc1eb390e5a7a811b454758f438ae8d324/satelliteLib-9451540d6ef82835dc1a1ca4994aa93059d727c0.js"></script>
 
     <!-- Fast Fonts call dettecting the correct protocol (http/s) -->
     <script type="text/javascript">
@@ -20,43 +25,65 @@
         link.media = 'all';
 
         document.getElementsByTagName('head')[0].appendChild(link);
+
+        var siteBrand = 'hmfc';
     </script>
     
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
+    <meta name="description" />
+    <meta name="keywords" />
 
-    <script src="/combres.axd/desktopJs/-1176827109/" type="text/javascript"></script>
+    <script src="/combres.axd/desktopJs/271702383/" type="text/javascript"></script>
 
     <!--[if lt IE 9]>
     <script src="/Scripts/PIE.js" type="text/javascript"></script>
-    <![endif]-->
+    <![endif]-->   
 
     <script type="text/javascript">
+
+        //DTM
+        //hcaDtm.setSiteName = function (siteName, platform)
+        hcaDtm.setSiteName(siteBrand, 'desktop');
+        var isFromLogin = '';
+        if (isFromLogin) {
+            hcaDtm.setLoginSuccess();
+        }
+
         $(function () {
             if (window.PIE) {
                 $('.roundedIe8').each(function () {
                     PIE.attach(this);
                 });
-            }
+            } 
         });
     </script>
 
-        <link href="/combres.axd/hmfSiteCss/-1183672454/" rel="stylesheet" media="all" type="text/css" />  
+            <link href="/combres.axd/hmfSiteCss/1937998456/" rel="stylesheet" media="all" type="text/css" />
+
 
 </head>
-<body>
+<body>    
+
     <div id="modalPage">
         <div id="pageBackground" class="modalBackground"></div>
     </div>
-    <div class="page ">
-        <header>
 
-    <script type="text/javascript">
+    <div id='spinner' class='spinner'></div>
+
+    <div id="modalPageLoadSpinner">
+        <div class="modalSpinnerBackground"></div>
+    </div>
+
+    <div class="page">
+        <header  class="site-bg-color">
+
+
+        <script type="text/javascript">
         $(document).ready(function () {
             $(".hdr-lnkGlobalPage").text("visit HyundaiUSA.com");
             $(".hdr-lnkGlobalPage").attr({ href: "http://www.HyundaiUSA.com", target: "_blank" });
         });
-     </script>
+        </script>
+
 <script type="text/javascript">
     $(document).ready(function () {
         /*search redirection*/
@@ -91,7 +118,7 @@
 <div id="header">
     <div id="wrapper-top-header">
         <div class="logo">
-            <a href="/"><img src="/Data/TeamSite/HCA/HMF/img/navigation/imgHeaderLogo.png" alt="Hyundai Motor Finance" title="Hyundai Motor Finance"/></a>
+            <a href="/"><img src="https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2017-hmf-nav-na-hmf_new_logo2-img.png" alt="Hyundai Motor Finance" title="Hyundai Motor Finance"/></a>
         </div>
         <div class="bkg-top-nav-links">
             <div class="inner-top-links">
@@ -104,7 +131,7 @@
         </div>
         <div class="search">
 <form action="/Search/Search" id="formSearch" method="post">                <input name="searchValue" id="searchValue" type="text" value="Search" class="default-value roundedIe8" />
-                <input type="image" src="/Content/img/lens-search.png" value="Search" title="Search" alt="Search" class="search-btn" />
+                        <input type="image" src="/Content/img/lens-search.png" value="Search" title="Search" alt="Search" class="search-btn" />
 </form>
              
            
@@ -114,24 +141,51 @@
 <div id="wrapper-menu">
     <div id="menu">
         <div class="mod-small-login">
-    <form method="post" action="/login">
+<script src="/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            
+            $('#btnLogin').click(function (e) {
+                if ($("#form0").valid()) {
+                    ShowSpinner();
+                }
+            });
+
+            var usernameBroken = $('#loginUsername').hasClass('input-validation-error');
+            var passwordBroken = $('#password').hasClass('input-validation-error');
+
+            if (usernameBroken) {
+            	$('#loginUsername').focus();
+            }
+            else if (passwordBroken) {
+            	$('#password').focus();
+            }
+
+            
+
+        });
+    </script>
+    <form method="post" id="form0" action="/login">
     <fieldset>
         <div id="wrapper-login">
             <div class="login">
+
                 <div class="login-input-container roundedIe8">
-                    <input autocomplete="off" class="REmail roundedIe8" id="Username" maxlength="50" name="Username" onblur="eBlur1(this)" onfocus="eUSernames(this)" type="text" value="" />
+                    <input autocomplete="off" class="REmail roundedIe8" data-val="true" data-val-length="You can not enter more than 50 characters" data-val-length-max="50" data-val-required="Please enter your username." id="Username" maxlength="50" name="Username" onblur="eBlur1(this)" onfocus="eUSernames(this)" type="text" value="" />
                     <label class="helpUsername">Username</label>
                 </div>
                 <div class="login-input-container roundedIe8">
-                    <input autocomplete="off" class="REmail roundedIe8" id="Password" maxlength="50" name="Password" onblur="eBlur2(this)" onfocus="ePassword(this)" type="Password" value="" />
+                    <input autocomplete="off" class="REmail roundedIe8" data-val="true" data-val-required="Please enter your password." id="Password" maxlength="50" name="Password" onblur="eBlur2(this)" onfocus="ePassword(this)" type="Password" value="" />
                     <label class="helpPassword">Password</label>
                 </div>
             </div>
             <div class="go-login">
             <div>
-                <input id="RememberMe" name="RememberMe" type="checkbox" value="true" /><input name="RememberMe" type="hidden" value="false" />
+                <input data-val="true" data-val-required="The Remember Me field is required." id="RememberMe" name="RememberMe" type="checkbox" value="true" /><input name="RememberMe" type="hidden" value="false" />
                 <label>Remember me</label> <a href="#">
-                    <input type="submit" alt="Log in" title="Log in" class="login-btn roundedIe8" value="Log in" /></a>
+                    <input type="submit" alt="Log in" title="Log in" class="login-btn roundedIe8" id="btnLogin" value="Log in" /></a>
                 </div>
             </div>
         </div>
@@ -216,7 +270,6 @@
 .modal
 {
     position: absolute;
-    background-color: white;
     position: relative;
     z-index: 1000;
 
@@ -242,12 +295,7 @@
 #menu1 li.hover
      {  
     /*border: 1px solid #777777;*/  
-    padding: 0px 4px 4px 4px;                    
-    /* Rounded corners */  
-      
-    -moz-border-radius: 5px 5px 0px 0px;  
-    -webkit-border-radius: 5px 5px 0px 0px;  
-    border-radius: 5px 5px 0px 0px;  
+    padding: 0px 4px 4px 4px;
 }    
   
 #menu1 li a {  
@@ -272,15 +320,6 @@
     padding:10px 5px 10px 5px;  
     /*border:1px solid #777777;*/  
     border-top:none;  
-      
-    background-color: white;
-  
-    /* Rounded Corners */  
-    -moz-border-radius: 0px 5px 5px 5px;  
-    -webkit-border-radius: 0px 5px 5px 5px;  
-    border-radius: 0px 5px 5px 5px;  
-    /*z-index:10000;*/
-
 }
 
 .dropdown1 {
@@ -353,11 +392,7 @@
 #menu1 li.hover div a{  
     font-size:12px;  
     color:#333333;  
-}  
-#menu1 li:hover div a:hover {  
-    color:#015b86;  
 }
-
 
 #menu .mod-menu #menu1 .dropdown2 .column1 a {
     /*color: #858585;*/
@@ -526,409 +561,275 @@
 </style>
 
 <ul id="menu1">
-<input id="currentSelectedImage" name="currentSelectedImage" type="hidden" value="" />                <li onclick="document.getElementById('icon-image-0').src='/Data/TeamSite/HCA/HMF/img/navigation/hmf_my_account_hover.png'" onmouseover="IconMouseOverHandler('/Data/TeamSite/HCA/HMF/img/navigation/hmf_my_account_hover.png', 'icon-image-0')" onmouseout="IconMouseOutHandler('/Data/TeamSite/HCA/HMF/img/navigation/hmf_my_account_hover.png', '/Data/TeamSite/HCA/HMF/img/navigation/navMyAccount.png', 'icon-image-0')">
-                        <a href="/account-summary/?icid=top" class="nav-icon-0">
-                                <img id="icon-image-0" src="/Data/TeamSite/HCA/HMF/img/navigation/navMyAccount.png" alt="My Account" title="My Account"/>
-                                <div class="menuNavLabel">My Account</div>                                                               
+<input id="currentSelectedImage" name="currentSelectedImage" type="hidden" value="" />                <li onclick="document.getElementById('icon-image-0').src='https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2015-hmf-nav-desktp-myaccount_hover-icon.png'" onmouseover="IconMouseOverHandler('https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2015-hmf-nav-desktp-myaccount_hover-icon.png', 'icon-image-0')" onmouseout="IconMouseOutHandler('https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2015-hmf-nav-desktp-myaccount_hover-icon.png', 'https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2015-hmf-nav-desktp-myaccount_large-icon.png', 'icon-image-0')">
+                        <a href="/account-summary?icid=top" target="_self" class="nav-icon-0">
+                                    <img id="icon-image-0" src="https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2015-hmf-nav-desktp-myaccount_large-icon.png" alt="My Account" title="My Account"/>
+                                <div class="menuNavLabel">My Account</div>
+
                         </a>
-                    
-                   
+
+
+
                         <div class="dropdown2">
                             <div id="sub-menu-0" class="column1 myaccount-submenu">
-                                   <a href="/account-summary/?icid=menu1" class="drop">ACCOUNT SUMMARY</a>
-                                   <a href="/account-details/?icid=menu1" class="drop">ACCOUNT DETAILS</a>
-                                   <a href="/statements/?icid=menu1" class="drop">STATEMENTS</a>
-                                   <a href="/account-profile/?icid=menu1" class="drop">MY PROFILE</a>
+                                       <a href="/account-summary?icid=menu1" class="drop" target="_self">ACCOUNT SUMMARY</a>
+                                       <a href="/account-details?icid=menu1" class="drop" target="_self">ACCOUNT DETAILS</a>
+                                       <a href="/statements?icid=menu1" class="drop" target="_self">STATEMENTS</a>
+                                       <a href="/account-profile/?icid=menu1" class="drop" target="_self">MY PROFILE</a>
                             </div>
-                            <a id="promo-image-0"  href="/register" class="column2">
-                                <img src="/Data/TeamSite/HCA/HMF/img/navigation/HMFnav_my_account.jpeg" alt="paperless promo"  class="column2"/>
+                            <a id="promo-image-0" target="_self"  href="/register" class="column2">
+                                <img src="https://pfile.hcamerica.com/content/dam/hca/hmf/img/registration/2015-hmf-regis-desktp-register_promo-icon.png" alt="paperless promo"  class="column2"/>
                             </a>                 
                         </div>                 
 
 
 
                 </li>
-                <li onclick="document.getElementById('icon-image-1').src='/Data/TeamSite/HCA/HMF/img/navigation/hmf_payments_hover.png'" onmouseover="IconMouseOverHandler('/Data/TeamSite/HCA/HMF/img/navigation/hmf_payments_hover.png', 'icon-image-1')" onmouseout="IconMouseOutHandler('/Data/TeamSite/HCA/HMF/img/navigation/hmf_payments_hover.png', '/Data/TeamSite/HCA/HMF/img/navigation/navPayMyBill.png', 'icon-image-1')">
-                        <a href="/payment/?icid=top" class="nav-icon-1">
-                                <img id="icon-image-1" src="/Data/TeamSite/HCA/HMF/img/navigation/navPayMyBill.png" alt="Payments" title="Payments"/>
-                                <div class="menuNavLabel">Payments</div>                                                               
+                <li onclick="document.getElementById('icon-image-1').src='https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2015-hmf-nav-desktp-payments_hover-icon.png'" onmouseover="IconMouseOverHandler('https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2015-hmf-nav-desktp-payments_hover-icon.png', 'icon-image-1')" onmouseout="IconMouseOutHandler('https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2015-hmf-nav-desktp-payments_hover-icon.png', 'https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2015-hmf-nav-desktp-payments_large-icon.png', 'icon-image-1')">
+                        <a href="/payment/?icid=top" target="_self" class="nav-icon-1">
+                                    <img id="icon-image-1" src="https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2015-hmf-nav-desktp-payments_large-icon.png" alt="Payments" title="Payments"/>
+                                <div class="menuNavLabel">Payments</div>
+
                         </a>
-                    
-                   
+
+
+
                         <div class="dropdown2">
                             <div id="sub-menu-1" class="column1 myaccount-submenu">
-                                   <a href="/payment/?icid=menu2" class="drop">MAKE A PAYMENT</a>
-                                   <a href="/payment/?icid=menu2" class="drop">SET UP AUTOPAY</a>
-                                   <a href="/view-payment-history/?icid=menu2" class="drop">PAYMENT HISTORY</a>
-                                   <a href="/payoff-quote/?icid=menu2" class="drop">GET A BUYOUT QUOTE</a>
+                                       <a href="/payment/?icid=menu2" class="drop" target="_self">MAKE A PAYMENT</a>
+                                       <a href="/payment/?icid=menu2" class="drop" target="_self">SET UP AUTOPAY</a>
+                                       <a href="/view-payment-history/?icid=menu2" class="drop" target="_self">PAYMENT HISTORY</a>
+                                       <a href="/payoff-quote/?icid=menu2" class="drop" target="_self">GET A BUYOUT QUOTE</a>
                             </div>
-                            <a id="promo-image-1"  href="/register" class="column2">
-                                <img src="/Data/TeamSite/HCA/HMF/img/navigation/HMFnav_my_account.jpeg" alt="paperless promo"  class="column2"/>
+                            <a id="promo-image-1" target="_self"  href="/account-profile" class="column2">
+                                <img src="https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2016-hmf-pymts-desktp-save_time_enroll-img.jpg" alt="paperless promo"  class="column2"/>
                             </a>                 
                         </div>                 
 
 
 
                 </li>
-                <li onclick="document.getElementById('icon-image-2').src='/Data/TeamSite/HCA/HMF/img/navigation/hmf_buy_or_lease_hover.png'" onmouseover="IconMouseOverHandler('/Data/TeamSite/HCA/HMF/img/navigation/hmf_buy_or_lease_hover.png', 'icon-image-2')" onmouseout="IconMouseOutHandler('/Data/TeamSite/HCA/HMF/img/navigation/hmf_buy_or_lease_hover.png', '/Data/TeamSite/HCA/HMF/img/navigation/hmf_buy_or_lease.png', 'icon-image-2')">
-                        <a href="/compare-options/?icid=top" class="nav-icon-2">
-                                <img id="icon-image-2" src="/Data/TeamSite/HCA/HMF/img/navigation/hmf_buy_or_lease.png" alt="Buy or Lease" title="Buy or Lease"/>
-                                <div class="menuNavLabel">Buy or Lease</div>                                                               
+                <li onclick="document.getElementById('icon-image-2').src='https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/hmf_buy_or_lease_hover.png'" onmouseover="IconMouseOverHandler('https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/hmf_buy_or_lease_hover.png', 'icon-image-2')" onmouseout="IconMouseOutHandler('https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/hmf_buy_or_lease_hover.png', 'https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2015-hmf-nav-desktp-buy_or_lease-icon.png', 'icon-image-2')">
+                        <a href="/compare-options/?icid=top" target="_self" class="nav-icon-2">
+                                    <img id="icon-image-2" src="https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2015-hmf-nav-desktp-buy_or_lease-icon.png" alt="BUY OR LEASE" title="BUY OR LEASE"/>
+                                <div class="menuNavLabel">BUY OR LEASE</div>
+
                         </a>
-                    
-                   
+
+
+
                         <div class="dropdown2">
                             <div id="sub-menu-2" class="column1 myaccount-submenu">
-                                   <a href="/compare-options/?icid=menu3" class="drop">QUICK COMPARISON</a>
-                                   <a href="/buy-lease-advantage/?icid=menu3" class="drop">UNIQUE ADVANTAGE</a>
-                                   <a href="/lease-end-overview/?icid=menu4" class="drop">LEASE-END OVERVIEW</a>
-                                   <a href="/lease-end-self-assessment/?icid=menu4" class="drop">LEASE-END SELF-ASSESSMENT</a>
+                                       <a href="/compare-options/?icid=menu3" class="drop" target="_self">QUICK COMPARISON</a>
+                                       <a href="/buy-lease-advantage/?icid=menu3" class="drop" target="_self">UNIQUE ADVANTAGE</a>
+                                       <a href="/lease-end-overview/?icid=menu4" class="drop" target="_self">LEASE-END OVERVIEW</a>
+                                       <a href="/lease-end-self-assessment/?icid=menu4" class="drop" target="_self">LEASE-END SELF-ASSESSMENT</a>
                             </div>
-                            <a id="promo-image-2"  href="https://www.hyundaiusa.com/" class="column2">
-                                <img src="/Data/TeamSite/HCA/HMF/img/navigation/hmf_nav_buy_or_lease_promo.png" alt="paperless promo"  class="column2"/>
+                            <a id="promo-image-2" target="_blank"  href="https://www.hyundaiusa.com/" class="column2">
+                                <img src="https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2017-hmf-nav-desktp-shot_now_promo-img.png" alt="paperless promo"  class="column2"/>
                             </a>                 
                         </div>                 
 
 
 
                 </li>
-                <li onclick="document.getElementById('icon-image-3').src='/Data/TeamSite/HCA/HMF/img/navigation/hpp_fpo_icon_hover.png'" onmouseover="IconMouseOverHandler('/Data/TeamSite/HCA/HMF/img/navigation/hpp_fpo_icon_hover.png', 'icon-image-3')" onmouseout="IconMouseOutHandler('/Data/TeamSite/HCA/HMF/img/navigation/hpp_fpo_icon_hover.png', '/Data/TeamSite/HCA/HMF/img/navigation/hpp_fpo_icon.png', 'icon-image-3')">
-                        <a href="/hpp-overview/?icid=top" class="nav-icon-3">
-                                <img id="icon-image-3" src="/Data/TeamSite/HCA/HMF/img/navigation/hpp_fpo_icon.png" alt="VEHICLE PROTECTION" title="VEHICLE PROTECTION"/>
-                                <div class="menuNavLabel">VEHICLE</div>                             
-                                <div class="menuNavLabel">PROTECTION</div>                             
+                <li onclick="document.getElementById('icon-image-3').src='https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2015-hmf-nav-desktp-hpp_hover-icon.png'" onmouseover="IconMouseOverHandler('https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2015-hmf-nav-desktp-hpp_hover-icon.png', 'icon-image-3')" onmouseout="IconMouseOutHandler('https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2015-hmf-nav-desktp-hpp_hover-icon.png', 'https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2015-hmf-nav-desktp-hpp-icon.png', 'icon-image-3')">
+                        <a href="/hpp-overview/?icid=top" target="_self" class="nav-icon-3">
+                                    <img id="icon-image-3" src="https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2015-hmf-nav-desktp-hpp-icon.png" alt="VEHICLE" title="VEHICLE"/>
+                                <div class="menuNavLabel">VEHICLE</div>
+                                    <div class="menuNavLabel">PROTECTION</div>
+
                         </a>
-                    
-                   
+
+
+
                         <div class="dropdown2">
                             <div id="sub-menu-3" class="column1 myaccount-submenu">
-                                   <a href="/hpp-overview/?icid=menu4" class="drop">OVERVIEW</a>
-                                   <a href="/hpp-mechanical-coverage/?icid=menu4" class="drop">MECHANICAL COVERAGE</a>
-                                   <a href="/hpp-maintenance-plan/?icid=menu4" class="drop">MAINTENANCE PLAN</a>
-                                   <a href="/hpp-damage-care/?icid=menu4" class="drop">DAMAGE CARE</a>
-                                   <a href="/hpp-loss-and-theft/?icid=menu4" class="drop">LOSS &amp; THEFT</a>
+                                       <a href="/hpp-overview/?icid=menu4" class="drop" target="_self">OVERVIEW</a>
+                                       <a href="/hpp-mechanical-coverage/?icid=menu4" class="drop" target="_self">MECHANICAL COVERAGE</a>
+                                       <a href="/hpp-maintenance-plan/?icid=menu4" class="drop" target="_self">MAINTENANCE PLAN</a>
+                                       <a href="/hpp-damage-care/?icid=menu4" class="drop" target="_self">DAMAGE CARE</a>
+                                       <a href="/hpp-loss-and-theft/?icid=menu4" class="drop" target="_self">LOSS &amp; THEFT</a>
                             </div>
-                            <a id="promo-image-3"  href="/hpp-overview" class="column2">
-                                <img src="/Data/TeamSite/HCA/HMF/img/navigation/hmf_nav_hpp_promo.png" alt="paperless promo"  class="column2"/>
+                            <a id="promo-image-3" target="_self"  href="/hpp-overview" class="column2">
+                                <img src="https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2017-hmf-nav-desktp-hpp_promo-img.jpg" alt="paperless promo"  class="column2"/>
                             </a>                 
                         </div>                 
 
 
 
                 </li>
-                <li onclick="document.getElementById('icon-image-4').src='/Data/TeamSite/HCA/HMF/img/navigation/hmf_Offers_hover.png'" onmouseover="IconMouseOverHandler('/Data/TeamSite/HCA/HMF/img/navigation/hmf_Offers_hover.png', 'icon-image-4')" onmouseout="IconMouseOutHandler('/Data/TeamSite/HCA/HMF/img/navigation/hmf_Offers_hover.png', '/Data/TeamSite/HCA/HMF/img/navigation/navOffers.png', 'icon-image-4')">
-                        <a href="/Offers/Index/?icid=top" class="nav-icon-4">
-                                <img id="icon-image-4" src="/Data/TeamSite/HCA/HMF/img/navigation/navOffers.png" alt="Offers" title="Offers"/>
-                                <div class="menuNavLabel">Offers</div>                                                               
+                <li onclick="document.getElementById('icon-image-4').src='https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2015-hmf-nav-desktp-offers_hover-icon.png'" onmouseover="IconMouseOverHandler('https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2015-hmf-nav-desktp-offers_hover-icon.png', 'icon-image-4')" onmouseout="IconMouseOutHandler('https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2015-hmf-nav-desktp-offers_hover-icon.png', 'https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2015-hmf-nav-desktp-offers-icon.png', 'icon-image-4')">
+                        <a href="/Offers/Index/?icid=top" target="_self" class="nav-icon-4">
+                                    <img id="icon-image-4" src="https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2015-hmf-nav-desktp-offers-icon.png" alt="OFFERS" title="OFFERS"/>
+                                <div class="menuNavLabel">OFFERS</div>
+
                         </a>
-                    
-                   
+
+
+
                        <div class="dropdown2 align_right">
-                            <a id="promo-image-4"  href="/budget-calculator/?icid=menu5promo" class="column1">
-                                    <img src="/Data/TeamSite/HCA/HMF/img/navigation/HMFnav_offers.jpg" alt="paperless promo"  class="column1" />
+                            <a id="promo-image-4" target="_self"  href="/budget-calculator/?icid=menu5promo" class="column1">
+                                    <img src="https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2015-hmf-nave_offers-promotion-img.jpg" alt="paperless promo"  class="column1" />
                             </a>
                             <div class="column1 myaccount-submenu" style="float:right;">
-                                   <a href="/offers-loyalty-offers/?icid=menu5" class="drop" style="text-align:left;">LOYALTY OFFERS</a>
-                                   <a href="/offers-special-programs/?icid=menu5" class="drop" style="text-align:left;">SPECIAL PROGRAMS</a>
-                                   <a href="/offers-insurance/?icid=menu5" class="drop" style="text-align:left;">INSURANCE</a>
+                                       <a href="/offers-loyalty-offers/?icid=menu5" class="drop" style="text-align:left;" target="_self">LOYALTY OFFERS</a>
+                                       <a href="/offers-special-programs/?icid=menu5" class="drop" style="text-align:left;" target="_self">SPECIAL PROGRAMS</a>
+                                       <a href="/offers-insurance/?icid=menu5" class="drop" style="text-align:left;" target="_self">INSURANCE</a>
                             </div>
                         </div>                        
 
 
 
                 </li>
-                <li onclick="document.getElementById('icon-image-5').src='/Data/TeamSite/HCA/HMF/img/navigation/hmf_finance_tools_hover.png'" onmouseover="IconMouseOverHandler('/Data/TeamSite/HCA/HMF/img/navigation/hmf_finance_tools_hover.png', 'icon-image-5')" onmouseout="IconMouseOutHandler('/Data/TeamSite/HCA/HMF/img/navigation/hmf_finance_tools_hover.png', '/Data/TeamSite/HCA/HMF/img/navigation/navFinancingtools_hmf.png', 'icon-image-5')">
-                        <a href="/payment-calculator/?icid=top" class="nav-icon-5">
-                                <img id="icon-image-5" src="/Data/TeamSite/HCA/HMF/img/navigation/navFinancingtools_hmf.png" alt="Finance Tools" title="Finance Tools"/>
-                                <div class="menuNavLabel">Finance Tools</div>                                                               
+                <li onclick="document.getElementById('icon-image-5').src='https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2015-hmf-nav-desktp-finance_tools_hover-icon.png'" onmouseover="IconMouseOverHandler('https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2015-hmf-nav-desktp-finance_tools_hover-icon.png', 'icon-image-5')" onmouseout="IconMouseOutHandler('https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2015-hmf-nav-desktp-finance_tools_hover-icon.png', 'https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2015-hmf-nav-desktp-finance_tools-icon.png', 'icon-image-5')">
+                        <a href="/budget-calculator/?icid=top" target="_self" class="nav-icon-5">
+                                    <img id="icon-image-5" src="https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2015-hmf-nav-desktp-finance_tools-icon.png" alt="Finance Tools" title="Finance Tools"/>
+                                <div class="menuNavLabel">Finance Tools</div>
+
                         </a>
-                    
-                   
+
+
+
                        <div class="dropdown2 align_right">
-                            <a id="promo-image-5"  href="https://www.hyundaiusa.com/build-your-hyundai/" class="column1">
-                                    <img src="/Data/TeamSite/HCA/HMF/img/navigation/hmf_nav_finance_tools_promo.png" alt="paperless promo"  class="column1" />
+                            <a id="promo-image-5" target="_blank"  href="https://www.hyundaiusa.com/build-your-hyundai/" class="column1">
+                                    <img src="https://pfile.hcamerica.com/content/dam/hca/hmf/img/navigation/2015-hmf-nav-desktp-build_price_promo-img.png" alt="paperless promo"  class="column1" />
                             </a>
                             <div class="column1 myaccount-submenu" style="float:right;">
-                                   <a href="/payment-calculator/?icid=menu6" class="drop" style="text-align:left;">PAYMENT CALCULATOR</a>
-                                   <a href="/budget-calculator/?icid=menu6" class="drop" style="text-align:left;">BUDGET CALCULATOR</a>
-                                   <a href="/apply-for-credit" class="drop" style="text-align:left;">APPLY FOR CREDIT</a>
+                                       <a href="/budget-calculator/?icid=menu6" class="drop" style="text-align:left;" target="_self">BUDGET CALCULATOR</a>
+                                       <a href="https://www.hyundaiusa.com/financial-tools/payment-calculator.aspx" class="drop" style="text-align:left;" target="_blank">PAYMENT CALCULATOR</a>
+                                       <a href="https://www.hyundaiusa.com/financial-tools/apply-for-credit.aspx" class="drop" style="text-align:left;" target="_blank">APPLY FOR CREDIT</a>
+                                       <a href="https://pfile.hcamerica.com/content/dam/hca/hmf/img/homepage/2015-hmf-homepg-na-finance-101-pdf.pdf" class="drop" style="text-align:left;" target="_blank">FINANCING 101</a>
                             </div>
                         </div>                        
 
 
 
                 </li>
+        
         
 </ul>
 
         </div>
     </div>
 </div>
+
         </header>
         
         <section id="main">
             
 
-        <div style="text-align:center;">
-            <img src="/Data/Teamsite/HCA/HMF/img/error/404_desktop.jpg" alt="Error" title="Error"/>
-        </div> 
 
+<script>
+    //hcaDtm.setPageInformation = function (pageType, pageName, primaryCategory, subCategory1, subCategory2)
+    hcaDtm.setPageInformation('form', 'page not found', 'error', 'page not found', '');
+    //hcaDtm.setComponentInformation = function (componentId, componentName, componentType, componentStep, componentValues)
+    hcaDtm.setComponentInformation('', 'error', 'form', 'page not found', '');
+    //hcaDtm.setErrorInformation = function (errorId, errorMessage)
+    hcaDtm.setErrorInformation("404", "page not found");
+</script>
+
+
+            <div style="text-align:center;">
+                <img src="https://pfile.hcamerica.com/content/dam/hca/hmf/img/error/2015-hmf-error-desktp-404_error-img.jpg" alt="Error" title="Error" />
+            </div>
+
+            <div class="clear"></div>
         </section>
         
-        <footer>
+        <footer class="clear">
 
-<!-- Begin: www.iperceptions.com -->
-<script src="/Scripts/iPerceptionWithNoLoad.js" type="text/javascript"></script>
-<!-- End: www.iperceptions.com -->
-                    
-<div class="mod-footer">
+<div id="mod-footer" class="mod-footer">
     <div id="footer">
         <ul class="footer-nav">
-                                <li><a href="/about-us">Our Company</a></li>                    
-                                <li><a href="/contact-us">Contact us</a></li>                    
-                                <li><a href="/frequently-asked-questions">FAQS</a></li>                    
-                                <li><a href="http://www.hyundaicapitalamerica.com/hca_careers.aspx" target="_blank">Careers</a></li>
-                                <li><a href="/sitemap">Site map</a></li>                    
-                                <li><a href="http://www.hyundaiusa.com/dealer-locator/ " target="_blank">Find a dealer</a></li>
-                                <li><a href="/terms-and-conditions">Terms &amp; Conditions</a></li>                    
-                             <li class="last-item-label"><a href="/privacy-policy">Privacy Policy</a></li>      
+            <li><a href="/about-us">OUR COMPANY</a></li>
+            <li><a href="/contact-us">CONTACT US</a></li>
+            <li><a href="/frequently-asked-questions">FAQs</a></li>
+            <li><a href="http://www.hyundaicapitalamerica.com/hca_careers.aspx" target="_blank">CAREERS</a></li>
+            <li><a href="/sitemap">SITE MAP</a></li>
+            <li><a href="http://www.hyundaiusa.com/dealer-locator/ " target="_blank">FIND A DEALER</a></li>
+            <li><a href="/terms-and-conditions">TERMS &amp; CONDITIONS</a></li>
+            <li class="last-item-label"><a href="/privacy-policy">PRIVACY POLICY</a></li>
+
         </ul>
-        <p>© Hyundai Motor Finance 2015. All Rights Reserved.
+            <p>
+                © Hyundai Motor Finance 2017. All Rights Reserved.
             <br />
             <br />
-            1.0.5736.18650         
-        </p>
-           <div style="font-size:10px;color:#BEBEBE;display:none;" id="divDesktopCompliance">Licensed by the Delaware State Bank Commissioner to do business in Delaware under License numbers 1735, 9848&nbsp;&amp; 012042. Expiration date: December 31, 2015.</div>            
-        <!--<p><a href="#demoLightbox" class="lb-open">Demo Lightbox</a></p>-->
+            1.0.6457.28741
+            </p>
+            <div style="font-size:10px;color:#BEBEBE;display:none;" id="divDesktopCompliance">
+                Licensed by the Delaware State Bank Commissioner to do business in Delaware under License numbers 1735, 9848&nbsp;&amp; 012042. Expiration date: December 31, 2017.
+            </div>
     </div>
 </div>
+
+
         </footer>
         
+            <script type="text/javascript">                
+                    console.log("Data Layer: Desktop Page Bottom Reached.");
+                    _satellite.pageBottom();
+            </script>
 
     </div>
 
-    <script type="text/javascript">
-    var hmf_account = "hmahmfcusa";
-    var kmf_account = "kiakmfcusa";
-    var s_account = ('HMFC' == 'HMFC') ? hmf_account : kmf_account;
-</script>
-<script src="/Scripts/s_code.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-
-    function getParameterByName(name) {
-        name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-        var regexS = "[\\?&]" + name + "=([^&#]*)";
-        var regex = new RegExp(regexS);
-        var results = regex.exec(window.location.search);
-        if (results == null)
-            return "";
-        else
-            return decodeURIComponent(results[1].replace(/\+/g, " "));
-    }
-
-    var trackingChannel = 'Error';
-    var trackingProp1 = 'NotFound';
-    var trackingProp2 = '';
-    var trackingProp3 = '';
-    var action = 'NotFound';
-    var modTrackingProp1 = "";
-
-    //Handle special scenario where the Payment Error page is actually used to display the 
-    //Pay My Bill autopay reminder message. We want to log the autopay message, not payment error.
-    if (trackingProp1 == 'Payment Error') {
-        var querystrVal = getParameterByName("errorType");
-        if (querystrVal.length && querystrVal == "1") {
-            modTrackingProp1 = "Payment AutoPay Message";
-        }
-    }
-
-    trackingProp1 = (modTrackingProp1.length) ? modTrackingProp1 : trackingProp1;
-
-    s.pageName = "NotFound 404 Error";
-    s.channel = trackingChannel;
-    s.prop1 = (trackingProp1.length) ? s.channel + ":" + trackingProp1 : s.channel;
-    s.prop2 = (trackingProp2.length) ? s.prop1 + ":" + trackingProp2 : s.prop1;
-    s.prop3 = (trackingProp3.length) ? s.prop2 + ":" + trackingProp3 : s.prop2;
-
-    //Search Results Tracking
-    if (window.prop4 && window.prop5) {
-        s.prop4 = window.prop4;
-        s.prop5 = window.prop5;
-        window.prop4 = window.prop5 = null;
-    }
-
-    //Track logged in status
-    var username = '';
-    var status = (username.length) ? "Logged In" : "Logged Out";
-    username = (username.length) ? username : "Guest";
-    s.eVar14 = status;
-    s.prop11 = status;
-    s.prop12 = s.pageName + s.prop11;
-
-
-</script>
-
-<script type="text/javascript"><!--
-    /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
-    var s_code = s.t(); if (s_code) document.write(s_code);
-//-->
-</script>
-
-<script type="text/javascript">
-    if (!window.myHyundaiUtils)
-        window.myHyundaiUtils = {};
-
-    myHyundaiUtils.triggerEvent = function (pageName, channel, prop1, prop2) {
-        var s = s_gi(s_account);
-
-        s.pageName = pageName;
-        s.channel = channel;
-        s.prop1 = prop1;
-        s.prop2 = prop2;
-        
-        s_code = s.t();
-        if (s_code) document.write(s_code);
-    };
-
-    myHyundaiUtils.track = function (linkText, event, evars) {
-        var s = s_gi(s_account);
-
-        var trackVars = [];
-        for (var i in evars) {
-            trackVars.push(i);
-            s[i] = evars[i];
-        }
-        if (event) trackVars.push('events');
-
-        s.linkTrackVars = trackVars.join(',');
-        s.linkTrackEvents = event;
-
-        s.events = event;
-        s.tl(this, 'o', linkText);
-    };
+        <!-- Detect if the current browser is IE 8 or less and show popup -->
+	    <!--[if lt IE 9]>
+<div id="divBrowserDetection" class="content-mod" style="display:none;">
     
-    var isFromLogin = '';
-    if (isFromLogin) {
-        myHyundaiUtils.track('User Login', 'event9', {});
-    }
+    <div style="font-size:28px;font-family:Arial;font-weight:bold;border-bottom:1px solid #E6E6E6;">BROWSER NOT OPTIMIZED</div>
+    <div style="padding-top:20px; padding-bottom:40px;"><p>It looks like you’re running an older version of Internet Explorer that may not be able to take advantage of all of our site features. For an optimal viewing experience, we recommend that you update to one of the following browsers:</p>
+<div data-mce-bogus="1" style="position: absolute; left: -40px; top: -25px; width: 1px; height: 1px; overflow: hidden;" class="mcePaste">&nbsp;</div>
+</div>
 
-    var isFromRegistration = '';
-    if (isFromRegistration) {
-        myHyundaiUtils.track('User Sign-up YOB', 'event8', {});
-        myHyundaiUtils.track('Alert Enabled', 'event18', { 'eVar18': 'RegistrationProcess: ' });
-        myHyundaiUtils.track('Alert Enabled', 'event18', { 'eVar19': 'RegistrationProcess: Paperless ' });
-        myHyundaiUtils.track('Alert Enabled', 'event18', { 'eVar19': 'RegistrationProcess: Payment Received ' });
-        myHyundaiUtils.track('Alert Enabled', 'event18', { 'eVar19': 'RegistrationProcess: Payment Reminder ' });
-        myHyundaiUtils.track('Alert Enabled', 'event18', { 'eVar19': 'RegistrationProcess: Payment Past Due ' });
-        myHyundaiUtils.track('Alert Enabled', 'event18', { 'eVar19': 'RegistrationProcess: Statement Ready ' });
-    }
+    <div style="width:100%;">
+        <table align="center">
+            <tr>
+                    <td>
+                        <div style="padding-right:40px;">
+                            <a href="https://www.microsoft.com/en-us/download/internet-explorer.aspx
+" target="_blank"><img src="https://pfile.hcamerica.com/content/dam/hca/hmf/img/content-block/ie.png" alt="Internet Explorer" title="Internet Explorer"/></a>                
+                            <a href="https://www.microsoft.com/en-us/download/internet-explorer.aspx
+" target="_blank"><h3>Internet Explorer</h3></a>
+                        </div>
+                    </td>
+                    <td>
+                        <div style="padding-right:40px;">
+                            <a href="http://www.google.com/chrome
+" target="_blank"><img src="https://pfile.hcamerica.com/content/dam/hca/hmf/img/content-block/chrome.png" alt="Google Chrome" title="Google Chrome"/></a>                
+                            <a href="http://www.google.com/chrome
+" target="_blank"><h3>Google Chrome</h3></a>
+                        </div>
+                    </td>
+                    <td>
+                        <div style="padding-right:40px;">
+                            <a href="https://www.mozilla.org/en-US/firefox/new
+" target="_blank"><img src="https://pfile.hcamerica.com/content/dam/hca/hmf/img/content-block/firefox.png" alt="Mozilla Firefox" title="Mozilla Firefox"/></a>                
+                            <a href="https://www.mozilla.org/en-US/firefox/new
+" target="_blank"><h3>Mozilla Firefox</h3></a>
+                        </div>
+                    </td>
+            </tr>
+        </table>    
+    </div>
 
-    var isFromMyProfile = '';
-    if (isFromMyProfile) {
-        myHyundaiUtils.track('User Sign-up YOB', 'event8', {});
-        myHyundaiUtils.track('Alert Enabled', 'event18', { 'eVar18': 'My Profile: ' });
-        myHyundaiUtils.track('Alert Enabled', 'event18', { 'eVar19': 'My Profile: Paperless ' });
-        myHyundaiUtils.track('Alert Enabled', 'event18', { 'eVar19': 'My Profile: Payment Received ' });
-        myHyundaiUtils.track('Alert Enabled', 'event18', { 'eVar19': 'My Profile: Payment Past Due ' });
-        myHyundaiUtils.track('Alert Enabled', 'event18', { 'eVar19': 'My Profile: Statement Ready ' });
-        myHyundaiUtils.track('Alert Enabled', 'event18', { 'eVar19': 'My Profile: Send Me Email ' });
-        myHyundaiUtils.track('Alert Enabled', 'event18', { 'eVar19': 'My Profile: Send Me Direct Mail ' });
-        myHyundaiUtils.track('FICO Optout', 'event37', { 'eVar37': 'My Profile: FICO Optin ' });
-    }
+    <div style="text-align:center;padding-top:50px;"><input type="button" alt="PROCEED TO SITE ANYWAY" title="PROCEED TO SITE ANYWAY" class="ui-btn roundedIe8" id="btnProceed" value="PROCEED TO SITE ANYWAY" /></div>
+
+</div>
+
+<script src="/Scripts/BrowserDetection.js" type="text/javascript"></script>
+	    <![endif]-->        
 
 
-    //AutoPay Recurring for Mobile
-    var omnitureAutoPayMobileEnrollStart = '';    
-    if (omnitureAutoPayMobileEnrollStart) {
-        myHyundaiUtils.track('AutoPay Enrollment', 'event28', { 'eVar23': 'AutoPay Enrollment Setup' });
-    }
-
-    var omnitureAutoPayMobileEnrollReview = '';
-    if (omnitureAutoPayMobileEnrollReview) {
-        myHyundaiUtils.track('AutoPay Enrollment Review', 'event29', { 'eVar23': 'AutoPay Enrollment Review' });
-    }
-
-    var omnitureAutoPayMobileEnrollComplete = '';
-    if (omnitureAutoPayMobileEnrollComplete) {
-        myHyundaiUtils.track('AutoPay Enrollment Confirmation', 'event30', { 'eVar23': 'AutoPay Enrollment Confirmation' });
-    }
-
-    var omnitureAutoPayMobileEnrollNotEligible = '';
-    if (omnitureAutoPayMobileEnrollNotEligible) {
-        myHyundaiUtils.track('AutoPay Not eligible', 'event31', { 'eVar23': 'AutoPay Not Eligible' });
-    }
-
-    var omnitureAutoPayView = '';
-    if (omnitureAutoPayView) {
-        myHyundaiUtils.track('AutoPay View', 'event29', { 'eVar23': 'AutoPay View' });
-    }
-
- 
-
-    var omnitureAutoPayDeleteCompleteMobile = '';
-    if (omnitureAutoPayDeleteCompleteMobile) {
-        myHyundaiUtils.track('AutoPay Delete Confirmation', 'event30', { 'eVar23': 'AutoPay Delete Confirmation' });
-    }
-
-    //One Time Payment Desktop 
-    var oneTimeDesktopStart = '';
-    if (oneTimeDesktopStart) {
-        myHyundaiUtils.track('PayMyBill - Form Start', 'event28', { 'eVar23': 'One Time Payment' });
-    }
-
-    var oneTimeDesktopReview = '';
-    if (oneTimeDesktopReview) {
-        myHyundaiUtils.track('PayMyBill - Review', 'event29', { 'eVar23': 'One Time Payment Review' });
-    }
-
-    var oneTimeDesktopComplete = '';
-    if (oneTimeDesktopComplete) {
-        myHyundaiUtils.track('PayMyBill - Form Complete', 'event30', { 'eVar23': 'One Time Payment Confirmation' });
-    }
-
-    //Auto Pay Desktop - Setup
-    var omnitureAutoPayEnrollStart = '';
-    if (omnitureAutoPayEnrollStart) {
-        myHyundaiUtils.track('AutoPay Enrollment', 'event28', { 'eVar23': 'AutoPay Enrollment Setup' });
-    }
-
-    var omnitureAutoPayEnrollReview = '';
-    if (omnitureAutoPayEnrollReview) {
-        myHyundaiUtils.track('AutoPay Enrollment Review', 'event29', { 'eVar23': 'AutoPay Enrollment Review' });
-    }
-
-    var omnitureAutoPayEnrollComplete = '';
-    if (omnitureAutoPayEnrollComplete) {
-        myHyundaiUtils.track('AutoPay Enrollment Confirmation', 'event30', { 'eVar23': 'AutoPay Enrollment Confirmation' });
-    }
-
-    var omnitureAutoPayEnrollNotEligible = '';
-    if (omnitureAutoPayEnrollNotEligible) {
-        myHyundaiUtils.track('AutoPay Not Eligible', 'event31', { 'eVar23': 'AutoPay Not Eligible' });
-    }
-
-    var omnitureAutoPayDeleteComplete = '';
-    if (omnitureAutoPayDeleteComplete) {
-        myHyundaiUtils.track('AutoPay Delete Confirmation', 'event30', { 'eVar23': 'AutoPay Delete Confirmation' });
-    }
-
-    //One Time Payment Mobile 
-    var oneTimePaymentMobileStart = '';
-    if (oneTimePaymentMobileStart) {
-        myHyundaiUtils.track('PayMyBill - Form Start', 'event28', { 'eVar23': 'One Time Payment' });
-    }
-
-    var oneTimePaymentMobileReview = '';
-    if (oneTimePaymentMobileReview) {
-        myHyundaiUtils.track('PayMyBill - Review', 'event29', { 'eVar23': 'One Time Payment Review' });
-    }
-
-    var oneTimePaymentMobileComplete = '';
-    if (oneTimePaymentMobileComplete) {
-        myHyundaiUtils.track('PayMyBill - Form Complete', 'event30', { 'eVar23': 'One Time Payment Confirmation' });
-    }
-</script>
+            <!-- Begin: ConfirmIt Survey -->
+    <script type="text/javascript">
+            var hcaData = {
+                "accountNumber": ''
+            }
+    </script>
+            <script src="/Scripts/hyundai_confirmit_hmf_popup.js"></script>
+        <!-- End: ConfirmIt Survey -->
 
 
 </body>

@@ -4,182 +4,336 @@
 <html lang="en">
 <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src='/Sites/Cliffsnotes/Javascript/Tags.js'></script>
-    <link rel="stylesheet" href="/Sites/Cliffsnotes/StyleSheets/vendor.min.css" /><link rel="stylesheet" href="/Sites/Cliffsnotes/StyleSheets/Cliffsnotes.min.css" />
+    
+    <link href="/Sites/Cliffsnotes/StyleSheets/vendor.css" rel="stylesheet" /><link href="/Sites/Cliffsnotes/StyleSheets/main.css" rel="stylesheet" /><link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/smoothness/jquery-ui.css" />
     <!-- WP - 253 DTM Implementation for cliffsnotes -->
-    <script src='http://assets.adobedtm.com/5d599bba477bad3ce4973aeb5c0a8c11709abbb4/satelliteLib-be7c0d7e253ce63fcfdfe0aff228b9a92b99ce20-staging.js'></script>
-    <script type='text/javascript'>
-googletag.cmd.push(function () {
-googletag.defineSlot('/9291789/Cliffnotes_2015/Homepage', [360, 1300], 'wallpaperAd1').addService(googletag.pubads());
-googletag.defineSlot('/9291789/Cliffnotes_2015/Homepage', [360, 1300], 'wallpaperAd2').addService(googletag.pubads());
-googletag.defineSlot('/9291789/Cliffnotes_2015/Homepage', [970, 90], 'headerAd').addService(googletag.pubads());
-googletag.defineSlot('/9291789/Cliffnotes_2015/Homepage', [728, 90], 'trendingInCliffsnotesAd').addService(googletag.pubads());
-googletag.defineSlot('/9291789/Cliffnotes_2015/Homepage', [180, 150], 'quickReviewsAd').addService(googletag.pubads());
-googletag.defineSlot('/9291789/Cliffnotes_2015/Homepage', [728, 90], 'bottomWidgetAd').addService(googletag.pubads());
+    <script src='https://assets.adobedtm.com/5d599bba477bad3ce4973aeb5c0a8c11709abbb4/satelliteLib-be7c0d7e253ce63fcfdfe0aff228b9a92b99ce20-staging.js'></script>
+    <script>
+
+    // GPT slots
+    var gptAdSlots = [];
+    googletag.cmd.push(function () {
+
+        // Mapping for LB slots
+        // E.g. "headerAd" "trendingInCliffsnotesAd" "bottomWidgetAd"
+        var mapping_lb = googletag.sizeMapping().
+     //addSize([1280, 200], [970, 90]).
+          addSize([1200, 200], [970, 90]). // Desktop
+          addSize([1040, 200], [970, 90]).
+        addSize([900, 200], [728, 90]). // Tablet landscape
+        addSize([768, 200], [728, 90]).
+        addSize([600, 200], [320, 100]). // Tablet portrait
+        addSize([0, 0], [[320, 50], [320, 100]]). // Catch-all 'smaller size' mapping for phones
+        build();
 
 
-googletag.pubads().enableSingleRequest();
-googletag.pubads().enableAsyncRendering();
-googletag.pubads().collapseEmptyDivs();   
-googletag.enableServices();
-});
+        var mapping_bw = googletag.sizeMapping().
+     //addSize([1280, 200], [970, 90]).
+        addSize([1200, 200], [728, 90]). // Desktop
+        addSize([900, 200], [728, 90]). // Tablet landscape
+        addSize([768, 200], [728, 90]).
+        addSize([667, 200], [320, 50]).
+        addSize([600, 200], [320, 100]). // Tablet portrait
+        addSize([0, 0], [[320, 50], [320, 100]]). // Catch-all 'smaller size' mapping for phones
+        build();
+
+
+        var mapping_bw = googletag.sizeMapping().
+    //addSize([1280, 200], [970, 90]).
+       addSize([1200, 200], [728, 90]). // Desktop
+       addSize([900, 200], [728, 90]). // Tablet landscape
+       addSize([768, 200], [728, 90]).
+       addSize([667, 200], [320, 50]).
+       addSize([600, 200], [320, 100]). // Tablet portrait
+       addSize([0, 0], [[320, 50], [320, 100]]). // Catch-all 'smaller size' mapping for phones
+       build();
+
+
+        // Mapping for box slots
+        // E.g. "quickReviewsAd"
+        var mapping_box = googletag.sizeMapping().
+        addSize([1200, 200], [300, 250]). // Desktop
+        addSize([900, 200], [180, 150]). // Tablet landscape
+        addSize([768, 200], [180, 150]).
+         addSize([640, 279], [125, 125]).
+       // addSize([600, 200], [180, 150]). // Tablet portrait
+
+        addSize([0, 0], [320, 50]).
+       // addSize([0, 0], [[320, 50],[300, 250],  [300, 50], [180, 150]]). // Catch-all 'smaller size' mapping for phones
+        build();
+
+var mapping_wallpaper = googletag.sizeMapping().
+    addSize([1920, 200], [440, 1300]).
+ addSize([1900, 200], [440, 1300]).
+addSize([1700, 200], [368, 1300]).
+addSize([1600, 200], [320, 1300]).
+addSize([1500, 200], [280, 1300]).
+addSize([1420, 800], [200, 1300]).
+addSize([1380, 989], [180, 1300]).
+addSize([1366, 200], [162, 1300]).
+addSize([1360, 200], [160, 1300]).
+addSize([1300, 200], [160, 1300]).
+addSize([1280, 200], [120, 1300]).
+        addSize([1200, 200], [120, 1300]). // Desktop
+        addSize([900, 200], [120, 1300]). // Tablet landscape
+        build();
+
+
+  var mapping_footer = googletag.sizeMapping().
+        //addSize([1280, 200], [728, 90]).
+        addSize([1200, 200], [728, 90]). // Desktop
+        addSize([900, 200], [728, 90]). // Tablet landscape
+        addSize([768, 200], [728, 90]).
+        addSize([667, 200], [320, 50]).
+        addSize([600, 200], [320, 100]). // Tablet portrait
+        addSize([0, 0], [[320, 50], [320, 100]]). // Catch-all 'smaller size' mapping for phones
+        build();
+
+
+        // Define the GPT slots
+        gptAdSlots[0] = googletag.defineSlot("/57176166/Cliffsnotes_2015_Homepage", [970, 90], "headerAd")
+        .defineSizeMapping(mapping_lb)
+        .setCollapseEmptyDiv(true)
+        .addService(googletag.pubads());
+
+        gptAdSlots[1] = googletag.defineSlot('/57176166/Cliffsnotes_2015_Homepage', [728, 90], 'trendingInCliffsnotesAd')
+        .defineSizeMapping(mapping_bw)
+        .setCollapseEmptyDiv(true)
+        .addService(googletag.pubads());
+
+        gptAdSlots[2] = googletag.defineSlot('/57176166/Cliffsnotes_2015_Homepage', [180, 150], 'quickReviewsAd')
+        .defineSizeMapping(mapping_box)
+        .setCollapseEmptyDiv(true)
+        .addService(googletag.pubads());
+
+      
+
+
+     gptAdSlots[3] = googletag.defineSlot('/57176166/Cliffsnotes_2015_Homepage', [440, 1300], 'wallpaperAd1')
+   .defineSizeMapping(mapping_wallpaper)
+   .setCollapseEmptyDiv(true)
+   .addService(googletag.pubads());
+
+
+        gptAdSlots[4] = googletag.defineSlot('/57176166/Cliffsnotes_2015_Homepage', [440, 1300], 'wallpaperAd2')
+   .defineSizeMapping(mapping_wallpaper)
+   .setCollapseEmptyDiv(true)
+   .addService(googletag.pubads());
+
+   
+
+gptAdSlots[5] = googletag.defineSlot("/57176166/Cliffsnotes_2015_Homepage", [728, 90], "footerCliffsnotesAd")
+        .defineSizeMapping(mapping_footer )
+        .setCollapseEmptyDiv(true)
+        .addService(googletag.pubads());
+
+
+
+        // Start ad fetching
+        googletag.enableServices();
+    });
 </script>
-
 <meta name="keywords" content="cliffnotes, cliff notes, cliffsnotes, study guide, into the wild, to kill a mockingbird, catching fire, lit notes, review, quizzes, free, test prep, aid, help, book, review, summary, analysis" />
 <meta name="description" content="CliffsNotes is the original (and most widely imitated) study guide. CliffsNotes study guides are written by real teachers and professors, so no matter what you&#39;re studying, CliffsNotes can ease your homework headaches and help you score high on exams. Founded in 1958 by Clifton Keith Hillegass, CliffsNotes is the original company that produced study guides and book summaries ranging from Shakespeare to Algebra and the SAT!" />
 <meta name="google-site-verification" content="LzNhF8jeBAQq2_jM7R3uZojCdsRLwdXQplo_Ue4kgIc" />
+<meta name="google-site-verification" content="aEdkjbjXpRfTtPpKRS0NPYLA6w5GSUCzDIK3hy_rg_Q" />
+<script type = "application/ld+json" >
+{
+"@context" : "http://schema.org" ,
+"@type" : "WebSite" ,
+"url" : "https://www.cliffsnotes.com/" ,
+"potentialAction" : {
+"@type" : "SearchAction" ,
+"target" :
+"https://www.cliffsnotes.com/search?q= {search_term_string} &utm_source=google&utm_medium=organic&ut
+m_campaign=site-link-search" ,
+"query-input" : "required name=search_term_string"
+}
+}
+</script>
+
 <link href="/~/media/79435a1463f843279d378fc6cc9b4220.ashx" rel="shortcut icon" type="image/x-icon" /><title>
 	CliffsNotes Study Guides | Book Summaries, Test Preparation & Homework Help | Written by Teachers
 </title></head>
 <body>
-    <form method="post" action="/" id="frmHome" class="home">
+    <form method="post" action="/" id="frmHome" class="main-form-container">
 <div class="aspNetHidden">
-<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTEwNzI3ODkxOQ8WAh4TVmFsaWRhdGVSZXF1ZXN0TW9kZQIBFgQCAQ9kFgICBg9kFgJmD2QWAmYPZBYCZg8WAh4EVGV4dAXLBzxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0Jz4NCmdvb2dsZXRhZy5jbWQucHVzaChmdW5jdGlvbiAoKSB7DQpnb29nbGV0YWcuZGVmaW5lU2xvdCgnLzkyOTE3ODkvQ2xpZmZub3Rlc18yMDE1L0hvbWVwYWdlJywgWzM2MCwgMTMwMF0sICd3YWxscGFwZXJBZDEnKS5hZGRTZXJ2aWNlKGdvb2dsZXRhZy5wdWJhZHMoKSk7DQpnb29nbGV0YWcuZGVmaW5lU2xvdCgnLzkyOTE3ODkvQ2xpZmZub3Rlc18yMDE1L0hvbWVwYWdlJywgWzM2MCwgMTMwMF0sICd3YWxscGFwZXJBZDInKS5hZGRTZXJ2aWNlKGdvb2dsZXRhZy5wdWJhZHMoKSk7DQpnb29nbGV0YWcuZGVmaW5lU2xvdCgnLzkyOTE3ODkvQ2xpZmZub3Rlc18yMDE1L0hvbWVwYWdlJywgWzk3MCwgOTBdLCAnaGVhZGVyQWQnKS5hZGRTZXJ2aWNlKGdvb2dsZXRhZy5wdWJhZHMoKSk7DQpnb29nbGV0YWcuZGVmaW5lU2xvdCgnLzkyOTE3ODkvQ2xpZmZub3Rlc18yMDE1L0hvbWVwYWdlJywgWzcyOCwgOTBdLCAndHJlbmRpbmdJbkNsaWZmc25vdGVzQWQnKS5hZGRTZXJ2aWNlKGdvb2dsZXRhZy5wdWJhZHMoKSk7DQpnb29nbGV0YWcuZGVmaW5lU2xvdCgnLzkyOTE3ODkvQ2xpZmZub3Rlc18yMDE1L0hvbWVwYWdlJywgWzE4MCwgMTUwXSwgJ3F1aWNrUmV2aWV3c0FkJykuYWRkU2VydmljZShnb29nbGV0YWcucHViYWRzKCkpOw0KZ29vZ2xldGFnLmRlZmluZVNsb3QoJy85MjkxNzg5L0NsaWZmbm90ZXNfMjAxNS9Ib21lcGFnZScsIFs3MjgsIDkwXSwgJ2JvdHRvbVdpZGdldEFkJykuYWRkU2VydmljZShnb29nbGV0YWcucHViYWRzKCkpOw0KDQoNCmdvb2dsZXRhZy5wdWJhZHMoKS5lbmFibGVTaW5nbGVSZXF1ZXN0KCk7DQpnb29nbGV0YWcucHViYWRzKCkuZW5hYmxlQXN5bmNSZW5kZXJpbmcoKTsNCmdvb2dsZXRhZy5wdWJhZHMoKS5jb2xsYXBzZUVtcHR5RGl2cygpOyAgIA0KZ29vZ2xldGFnLmVuYWJsZVNlcnZpY2VzKCk7DQp9KTsNCjwvc2NyaXB0Pg0KZAIDEBYCHgVjbGFzcwUEaG9tZWQWDAIFD2QWAmYPZBYCZg9kFgJmDxYCHgVzdHlsZQVkYmFja2dyb3VuZC1pbWFnZTp1cmwoIi9+L21lZGlhLzY3OTIzNzc5MjZhYjQwN2RhNWIxMzRlYmIzZTQ5YzMzLmFzaHgiKTsgYmFja2dyb3VuZC1yZXBlYXQ6bm8tcmVwZWF0OxYCAgIPZBYCZg9kFgJmD2QWAgIBDxYCHgtfIUl0ZW1Db3VudAIEZAIJD2QWAmYPZBYCZg9kFgICAw8WAh8EAgUWCgIBD2QWAgIBDxYCHwEFATFkAgIPZBYCAgEPFgIfAQUBMmQCAw9kFgICAQ8WAh8BBQEzZAIED2QWAgIBDxYCHwEFATRkAgUPZBYCAgEPFgIfAQUBNWQCCw9kFgJmD2QWAmYPZBYCAgkPFgIfBAIEZAIND2QWAmYPZBYCZg9kFgICAw8WAh8EAglkAhEPZBYCZg9kFgJmD2QWBAIFDxYCHwQCA2QCCQ8WAh8EAgRkAhMPZBYCZg9kFgJmD2QWBAIBDxYCHwQCA2QCBQ8WAh8EAgYWDGYPZBYCZg8VAScvc3R1ZGVudC1saWZlL2NhdGVnb3JpZXMvY2xpZmZzcGlyYXRpb25kAgEPZBYCZg8VASEvc3R1ZGVudC1saWZlL2NhdGVnb3JpZXMvbGl0ZXJhcnlkAgIPZBYCZg8VASYvc3R1ZGVudC1saWZlL2NhdGVnb3JpZXMvZW50ZXJ0YWlubWVudGQCAw9kFgJmDxUBHS9zdHVkZW50LWxpZmUvY2F0ZWdvcmllcy9saWZlZAIED2QWAmYPFQEkL3N0dWRlbnQtbGlmZS9jYXRlZ29yaWVzL2hpZ2gtc2Nob29sZAIFD2QWAmYPFQEgL3N0dWRlbnQtbGlmZS9jYXRlZ29yaWVzL2NvbGxlZ2VkZLLEJnTUD6BPXgf+/aQzO7fCOCl7Hk08OHYEOIaZVS3Q" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKLTkzMTA4MTE0Mg8WAh4TVmFsaWRhdGVSZXF1ZXN0TW9kZQIBFgQCAQ9kFgICBw9kFgJmD2QWAmYPZBYCZg8WAh4EVGV4dAWeJTxzY3JpcHQ+DQoNCiAgICAvLyBHUFQgc2xvdHMNCiAgICB2YXIgZ3B0QWRTbG90cyA9IFtdOw0KICAgIGdvb2dsZXRhZy5jbWQucHVzaChmdW5jdGlvbiAoKSB7DQoNCiAgICAgICAgLy8gTWFwcGluZyBmb3IgTEIgc2xvdHMNCiAgICAgICAgLy8gRS5nLiAiaGVhZGVyQWQiICJ0cmVuZGluZ0luQ2xpZmZzbm90ZXNBZCIgImJvdHRvbVdpZGdldEFkIg0KICAgICAgICB2YXIgbWFwcGluZ19sYiA9IGdvb2dsZXRhZy5zaXplTWFwcGluZygpLg0KICAgICAvL2FkZFNpemUoWzEyODAsIDIwMF0sIFs5NzAsIDkwXSkuDQogICAgICAgICAgYWRkU2l6ZShbMTIwMCwgMjAwXSwgWzk3MCwgOTBdKS4gLy8gRGVza3RvcA0KICAgICAgICAgIGFkZFNpemUoWzEwNDAsIDIwMF0sIFs5NzAsIDkwXSkuDQogICAgICAgIGFkZFNpemUoWzkwMCwgMjAwXSwgWzcyOCwgOTBdKS4gLy8gVGFibGV0IGxhbmRzY2FwZQ0KICAgICAgICBhZGRTaXplKFs3NjgsIDIwMF0sIFs3MjgsIDkwXSkuDQogICAgICAgIGFkZFNpemUoWzYwMCwgMjAwXSwgWzMyMCwgMTAwXSkuIC8vIFRhYmxldCBwb3J0cmFpdA0KICAgICAgICBhZGRTaXplKFswLCAwXSwgW1szMjAsIDUwXSwgWzMyMCwgMTAwXV0pLiAvLyBDYXRjaC1hbGwgJ3NtYWxsZXIgc2l6ZScgbWFwcGluZyBmb3IgcGhvbmVzDQogICAgICAgIGJ1aWxkKCk7DQoNCg0KICAgICAgICB2YXIgbWFwcGluZ19idyA9IGdvb2dsZXRhZy5zaXplTWFwcGluZygpLg0KICAgICAvL2FkZFNpemUoWzEyODAsIDIwMF0sIFs5NzAsIDkwXSkuDQogICAgICAgIGFkZFNpemUoWzEyMDAsIDIwMF0sIFs3MjgsIDkwXSkuIC8vIERlc2t0b3ANCiAgICAgICAgYWRkU2l6ZShbOTAwLCAyMDBdLCBbNzI4LCA5MF0pLiAvLyBUYWJsZXQgbGFuZHNjYXBlDQogICAgICAgIGFkZFNpemUoWzc2OCwgMjAwXSwgWzcyOCwgOTBdKS4NCiAgICAgICAgYWRkU2l6ZShbNjY3LCAyMDBdLCBbMzIwLCA1MF0pLg0KICAgICAgICBhZGRTaXplKFs2MDAsIDIwMF0sIFszMjAsIDEwMF0pLiAvLyBUYWJsZXQgcG9ydHJhaXQNCiAgICAgICAgYWRkU2l6ZShbMCwgMF0sIFtbMzIwLCA1MF0sIFszMjAsIDEwMF1dKS4gLy8gQ2F0Y2gtYWxsICdzbWFsbGVyIHNpemUnIG1hcHBpbmcgZm9yIHBob25lcw0KICAgICAgICBidWlsZCgpOw0KDQoNCiAgICAgICAgdmFyIG1hcHBpbmdfYncgPSBnb29nbGV0YWcuc2l6ZU1hcHBpbmcoKS4NCiAgICAvL2FkZFNpemUoWzEyODAsIDIwMF0sIFs5NzAsIDkwXSkuDQogICAgICAgYWRkU2l6ZShbMTIwMCwgMjAwXSwgWzcyOCwgOTBdKS4gLy8gRGVza3RvcA0KICAgICAgIGFkZFNpemUoWzkwMCwgMjAwXSwgWzcyOCwgOTBdKS4gLy8gVGFibGV0IGxhbmRzY2FwZQ0KICAgICAgIGFkZFNpemUoWzc2OCwgMjAwXSwgWzcyOCwgOTBdKS4NCiAgICAgICBhZGRTaXplKFs2NjcsIDIwMF0sIFszMjAsIDUwXSkuDQogICAgICAgYWRkU2l6ZShbNjAwLCAyMDBdLCBbMzIwLCAxMDBdKS4gLy8gVGFibGV0IHBvcnRyYWl0DQogICAgICAgYWRkU2l6ZShbMCwgMF0sIFtbMzIwLCA1MF0sIFszMjAsIDEwMF1dKS4gLy8gQ2F0Y2gtYWxsICdzbWFsbGVyIHNpemUnIG1hcHBpbmcgZm9yIHBob25lcw0KICAgICAgIGJ1aWxkKCk7DQoNCg0KICAgICAgICAvLyBNYXBwaW5nIGZvciBib3ggc2xvdHMNCiAgICAgICAgLy8gRS5nLiAicXVpY2tSZXZpZXdzQWQiDQogICAgICAgIHZhciBtYXBwaW5nX2JveCA9IGdvb2dsZXRhZy5zaXplTWFwcGluZygpLg0KICAgICAgICBhZGRTaXplKFsxMjAwLCAyMDBdLCBbMzAwLCAyNTBdKS4gLy8gRGVza3RvcA0KICAgICAgICBhZGRTaXplKFs5MDAsIDIwMF0sIFsxODAsIDE1MF0pLiAvLyBUYWJsZXQgbGFuZHNjYXBlDQogICAgICAgIGFkZFNpemUoWzc2OCwgMjAwXSwgWzE4MCwgMTUwXSkuDQogICAgICAgICBhZGRTaXplKFs2NDAsIDI3OV0sIFsxMjUsIDEyNV0pLg0KICAgICAgIC8vIGFkZFNpemUoWzYwMCwgMjAwXSwgWzE4MCwgMTUwXSkuIC8vIFRhYmxldCBwb3J0cmFpdA0KDQogICAgICAgIGFkZFNpemUoWzAsIDBdLCBbMzIwLCA1MF0pLg0KICAgICAgIC8vIGFkZFNpemUoWzAsIDBdLCBbWzMyMCwgNTBdLFszMDAsIDI1MF0sICBbMzAwLCA1MF0sIFsxODAsIDE1MF1dKS4gLy8gQ2F0Y2gtYWxsICdzbWFsbGVyIHNpemUnIG1hcHBpbmcgZm9yIHBob25lcw0KICAgICAgICBidWlsZCgpOw0KDQp2YXIgbWFwcGluZ193YWxscGFwZXIgPSBnb29nbGV0YWcuc2l6ZU1hcHBpbmcoKS4NCiAgICBhZGRTaXplKFsxOTIwLCAyMDBdLCBbNDQwLCAxMzAwXSkuDQogYWRkU2l6ZShbMTkwMCwgMjAwXSwgWzQ0MCwgMTMwMF0pLg0KYWRkU2l6ZShbMTcwMCwgMjAwXSwgWzM2OCwgMTMwMF0pLg0KYWRkU2l6ZShbMTYwMCwgMjAwXSwgWzMyMCwgMTMwMF0pLg0KYWRkU2l6ZShbMTUwMCwgMjAwXSwgWzI4MCwgMTMwMF0pLg0KYWRkU2l6ZShbMTQyMCwgODAwXSwgWzIwMCwgMTMwMF0pLg0KYWRkU2l6ZShbMTM4MCwgOTg5XSwgWzE4MCwgMTMwMF0pLg0KYWRkU2l6ZShbMTM2NiwgMjAwXSwgWzE2MiwgMTMwMF0pLg0KYWRkU2l6ZShbMTM2MCwgMjAwXSwgWzE2MCwgMTMwMF0pLg0KYWRkU2l6ZShbMTMwMCwgMjAwXSwgWzE2MCwgMTMwMF0pLg0KYWRkU2l6ZShbMTI4MCwgMjAwXSwgWzEyMCwgMTMwMF0pLg0KICAgICAgICBhZGRTaXplKFsxMjAwLCAyMDBdLCBbMTIwLCAxMzAwXSkuIC8vIERlc2t0b3ANCiAgICAgICAgYWRkU2l6ZShbOTAwLCAyMDBdLCBbMTIwLCAxMzAwXSkuIC8vIFRhYmxldCBsYW5kc2NhcGUNCiAgICAgICAgYnVpbGQoKTsNCg0KDQogIHZhciBtYXBwaW5nX2Zvb3RlciA9IGdvb2dsZXRhZy5zaXplTWFwcGluZygpLg0KICAgICAgICAvL2FkZFNpemUoWzEyODAsIDIwMF0sIFs3MjgsIDkwXSkuDQogICAgICAgIGFkZFNpemUoWzEyMDAsIDIwMF0sIFs3MjgsIDkwXSkuIC8vIERlc2t0b3ANCiAgICAgICAgYWRkU2l6ZShbOTAwLCAyMDBdLCBbNzI4LCA5MF0pLiAvLyBUYWJsZXQgbGFuZHNjYXBlDQogICAgICAgIGFkZFNpemUoWzc2OCwgMjAwXSwgWzcyOCwgOTBdKS4NCiAgICAgICAgYWRkU2l6ZShbNjY3LCAyMDBdLCBbMzIwLCA1MF0pLg0KICAgICAgICBhZGRTaXplKFs2MDAsIDIwMF0sIFszMjAsIDEwMF0pLiAvLyBUYWJsZXQgcG9ydHJhaXQNCiAgICAgICAgYWRkU2l6ZShbMCwgMF0sIFtbMzIwLCA1MF0sIFszMjAsIDEwMF1dKS4gLy8gQ2F0Y2gtYWxsICdzbWFsbGVyIHNpemUnIG1hcHBpbmcgZm9yIHBob25lcw0KICAgICAgICBidWlsZCgpOw0KDQoNCiAgICAgICAgLy8gRGVmaW5lIHRoZSBHUFQgc2xvdHMNCiAgICAgICAgZ3B0QWRTbG90c1swXSA9IGdvb2dsZXRhZy5kZWZpbmVTbG90KCIvNTcxNzYxNjYvQ2xpZmZzbm90ZXNfMjAxNV9Ib21lcGFnZSIsIFs5NzAsIDkwXSwgImhlYWRlckFkIikNCiAgICAgICAgLmRlZmluZVNpemVNYXBwaW5nKG1hcHBpbmdfbGIpDQogICAgICAgIC5zZXRDb2xsYXBzZUVtcHR5RGl2KHRydWUpDQogICAgICAgIC5hZGRTZXJ2aWNlKGdvb2dsZXRhZy5wdWJhZHMoKSk7DQoNCiAgICAgICAgZ3B0QWRTbG90c1sxXSA9IGdvb2dsZXRhZy5kZWZpbmVTbG90KCcvNTcxNzYxNjYvQ2xpZmZzbm90ZXNfMjAxNV9Ib21lcGFnZScsIFs3MjgsIDkwXSwgJ3RyZW5kaW5nSW5DbGlmZnNub3Rlc0FkJykNCiAgICAgICAgLmRlZmluZVNpemVNYXBwaW5nKG1hcHBpbmdfYncpDQogICAgICAgIC5zZXRDb2xsYXBzZUVtcHR5RGl2KHRydWUpDQogICAgICAgIC5hZGRTZXJ2aWNlKGdvb2dsZXRhZy5wdWJhZHMoKSk7DQoNCiAgICAgICAgZ3B0QWRTbG90c1syXSA9IGdvb2dsZXRhZy5kZWZpbmVTbG90KCcvNTcxNzYxNjYvQ2xpZmZzbm90ZXNfMjAxNV9Ib21lcGFnZScsIFsxODAsIDE1MF0sICdxdWlja1Jldmlld3NBZCcpDQogICAgICAgIC5kZWZpbmVTaXplTWFwcGluZyhtYXBwaW5nX2JveCkNCiAgICAgICAgLnNldENvbGxhcHNlRW1wdHlEaXYodHJ1ZSkNCiAgICAgICAgLmFkZFNlcnZpY2UoZ29vZ2xldGFnLnB1YmFkcygpKTsNCg0KICAgICAgDQoNCg0KICAgICBncHRBZFNsb3RzWzNdID0gZ29vZ2xldGFnLmRlZmluZVNsb3QoJy81NzE3NjE2Ni9DbGlmZnNub3Rlc18yMDE1X0hvbWVwYWdlJywgWzQ0MCwgMTMwMF0sICd3YWxscGFwZXJBZDEnKQ0KICAgLmRlZmluZVNpemVNYXBwaW5nKG1hcHBpbmdfd2FsbHBhcGVyKQ0KICAgLnNldENvbGxhcHNlRW1wdHlEaXYodHJ1ZSkNCiAgIC5hZGRTZXJ2aWNlKGdvb2dsZXRhZy5wdWJhZHMoKSk7DQoNCg0KICAgICAgICBncHRBZFNsb3RzWzRdID0gZ29vZ2xldGFnLmRlZmluZVNsb3QoJy81NzE3NjE2Ni9DbGlmZnNub3Rlc18yMDE1X0hvbWVwYWdlJywgWzQ0MCwgMTMwMF0sICd3YWxscGFwZXJBZDInKQ0KICAgLmRlZmluZVNpemVNYXBwaW5nKG1hcHBpbmdfd2FsbHBhcGVyKQ0KICAgLnNldENvbGxhcHNlRW1wdHlEaXYodHJ1ZSkNCiAgIC5hZGRTZXJ2aWNlKGdvb2dsZXRhZy5wdWJhZHMoKSk7DQoNCiAgIA0KDQpncHRBZFNsb3RzWzVdID0gZ29vZ2xldGFnLmRlZmluZVNsb3QoIi81NzE3NjE2Ni9DbGlmZnNub3Rlc18yMDE1X0hvbWVwYWdlIiwgWzcyOCwgOTBdLCAiZm9vdGVyQ2xpZmZzbm90ZXNBZCIpDQogICAgICAgIC5kZWZpbmVTaXplTWFwcGluZyhtYXBwaW5nX2Zvb3RlciApDQogICAgICAgIC5zZXRDb2xsYXBzZUVtcHR5RGl2KHRydWUpDQogICAgICAgIC5hZGRTZXJ2aWNlKGdvb2dsZXRhZy5wdWJhZHMoKSk7DQoNCg0KDQogICAgICAgIC8vIFN0YXJ0IGFkIGZldGNoaW5nDQogICAgICAgIGdvb2dsZXRhZy5lbmFibGVTZXJ2aWNlcygpOw0KICAgIH0pOw0KPC9zY3JpcHQ+ZAIDEBYCHgVjbGFzcwUTbWFpbi1mb3JtLWNvbnRhaW5lcmQWDgIDD2QWAmYPZBYCZg9kFgICCQ9kFgJmD2QWBgIBDxYCHgRocmVmBScvYWNjb3VudC9TaWduLUluLVJlZ2lzdGVyP1JldHVyblVybD0lMmZkAgMPFgIfAwUuL2FjY291bnQvU2lnbi1Jbi1SZWdpc3Rlcj9SZXR1cm5Vcmw9JTJmI3NpZ251cGQCBQ8WAh4LXyFJdGVtQ291bnQCAhYEZg9kFgJmDxUCFy9BY2NvdW50L015LVByZWZlcmVuY2VzDk15IFByZWZlcmVuY2VzZAIBD2QWAmYPFQIYL0FjY291bnQvTXktUmVhZGluZy1MaXN0D015IFJlYWRpbmcgTGlzdGQCBQ9kFgJmD2QWAmYPZBYCZg8WAh4Fc3R5bGUFZGJhY2tncm91bmQtaW1hZ2U6dXJsKCIvfi9tZWRpYS82NzkyMzc3OTI2YWI0MDdkYTViMTM0ZWJiM2U0OWMzMy5hc2h4Iik7IGJhY2tncm91bmQtcmVwZWF0Om5vLXJlcGVhdDsWAgICD2QWAmYPZBYCZg9kFgICAQ8WAh8EAgRkAgkPZBYCZg9kFgJmD2QWBAIFDxYCHwQCBBYIZg9kFgJmDxUCC2hpZ2gtc2Nob29sC0hpZ2ggU2Nob29sZAIBD2QWAmYPFQIHY29sbGVnZQdDb2xsZWdlZAICD2QWAmYPFQILZ3JhZC1zY2hvb2wLR3JhZCBTY2hvb2xkAgMPZBYCZg8VAgxwcm9mZXNzaW9uYWwMUHJvZmVzc2lvbmFsZAIHDxYCHwQCBRYKAgEPZBYKAgEPFgIfAQUBMWQCAw8WAh8CBRBoaWdoLXNjaG9vbC1jZWxsZAIFDxYCHwIFDGNvbGxlZ2UtY2VsbGQCBw8WAh8CBRBncmFkLXNjaG9vbC1jZWxsZAIJDxYCHwIFEXByb2Zlc3Npb25hbC1jZWxsZAICD2QWCgIBDxYCHwEFATJkAgMPFgIfAgUQaGlnaC1zY2hvb2wtY2VsbGQCBQ8WAh8CBQxjb2xsZWdlLWNlbGxkAgcPFgIfAgUQZ3JhZC1zY2hvb2wtY2VsbGQCCQ8WAh8CBRFwcm9mZXNzaW9uYWwtY2VsbGQCAw9kFgoCAQ8WAh8BBQEzZAIDDxYCHwIFEGhpZ2gtc2Nob29sLWNlbGxkAgUPFgIfAgUMY29sbGVnZS1jZWxsZAIHDxYCHwIFEGdyYWQtc2Nob29sLWNlbGxkAgkPFgIfAgURcHJvZmVzc2lvbmFsLWNlbGxkAgQPZBYKAgEPFgIfAQUBNGQCAw8WAh8CBRBoaWdoLXNjaG9vbC1jZWxsZAIFDxYCHwIFDGNvbGxlZ2UtY2VsbGQCBw8WAh8CBRBncmFkLXNjaG9vbC1jZWxsZAIJDxYCHwIFEXByb2Zlc3Npb25hbC1jZWxsZAIFD2QWCgIBDxYCHwEFATVkAgMPFgIfAgUQaGlnaC1zY2hvb2wtY2VsbGQCBQ8WAh8CBQxjb2xsZWdlLWNlbGxkAgcPFgIfAgUQZ3JhZC1zY2hvb2wtY2VsbGQCCQ8WAh8CBRFwcm9mZXNzaW9uYWwtY2VsbGQCCw9kFgJmD2QWAmYPZBYCAgUPFgIfBAIEZAIND2QWAmYPZBYCZg9kFgICAw8WAh8EAglkAhEPZBYCZg9kFgJmD2QWBAIFDxYCHwQCA2QCCQ8WAh8EAgRkAhMPZBYCZg9kFgJmD2QWCAIBDxYCHwQCBGQCAw8WAh8DBScvYWNjb3VudC9TaWduLUluLVJlZ2lzdGVyP1JldHVyblVybD0lMmZkAgUPFgIfAwUuL2FjY291bnQvU2lnbi1Jbi1SZWdpc3Rlcj9SZXR1cm5Vcmw9JTJmI3NpZ251cGQCBw8WAh8EAgIWBGYPZBYCZg8VAhcvQWNjb3VudC9NeS1QcmVmZXJlbmNlcw5NeSBQcmVmZXJlbmNlc2QCAQ9kFgJmDxUCGC9BY2NvdW50L015LVJlYWRpbmctTGlzdA9NeSBSZWFkaW5nIExpc3RkZHu5iREMRkZnSZAMR8/nMGoEVZTNtNGOUycoeGu/gsYo" />
 </div>
 
 <div class="aspNetHidden">
 
 	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="5E74FBE7" />
-	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAAJ9XG2aY2dLjsFtS/dvHqqLeBEkWt2cJZh43GjWFeBxd26pCqIp4Dj+y24JsgQMvSQAkFtWJtQRQOml0VYwiBuR" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAAL+FGzuZqmgkTRssqCyet7ZeBEkWt2cJZh43GjWFeBxdz/DGuZreBlnnZ9xV9Npr5BHX1HxYyBVlC1nXE4dGVjV" />
 </div>
         <div class="site-container">
             
-<div class="image-block offsetLeft row">
-    <div class="large-12 medium-12 small-12 columns clear-padding">
-        <div class="image-block-container" id="wallpaperAd1">
-            <script type='text/javascript'>
-                googletag.cmd.push(function () { googletag.display('wallpaperad1'); });
-            </script>
-        </div>
-    </div>
-</div>
-<div class="image-block offsetRight row">
-    <div class="large-12 medium-12 small-12 columns clear-padding">
-        <div class="image-block-container" id="wallpaperAd2">
-            <script type='text/javascript'>
-                googletag.cmd.push(function () { googletag.display('wallpaperad2'); });
-            </script>
-        </div>
-    </div>
-</div>
-
             <div class="off-canvas-wrap" data-offcanvas>
                 <div class="inner-wrap">
-                    <div id='root' class="container">
+                    <div class="root container display-as-table fixed-layout">
 
                         
 
 <!-- Cliffnotes_2015/Homepage -->
-<div class="image-block header row">
-    <div class="large-12 medium-12 small-12 columns clear-padding">
-        <div class="image-block-container" id='headerAd'>
-                <script type='text/javascript'>
-                    googletag.cmd.push(function () { googletag.display('headerAd'); });
-                </script>
-         </div>
-    </div>
-</div>
+
 <!-- Cliffnotes_2015/Homepage -->
 
 
-
-<nav id='brand_nav' class='clearfix row'>
-    <ul>
-        <li>
+<div class="brand">
+    <div class="row">
+        <div class="small-12 medium-6 columns hide-for-small-only">
             <a href="http://www.hmhco.com">
                 <img src="/~/media/5f964fcc86f24dfab3ff8a545fd27fcd.ashx?h=21&amp;la=en&amp;w=273" alt="" width="273" height="21" />
             </a>
-        </li>
-    </ul>
-</nav>
+        </div>
+        <div class="small-4 medium-6 columns show-inline-for-small-portrait-only small-only">
+            <a href="http://www.hmhco.com">
+                <img src="/~/media/e02d1d2fd62c4551990401160cafac41.ashx?h=30&amp;la=en&amp;w=120" alt="hmh logo" width="120" height="30" />
+            </a>
+        </div>
+         <div class="small-6 medium-6 columns show-inline-block-for-small-landscape-only">
+            <a href="http://www.hmhco.com">
+                <img src="/~/media/5f964fcc86f24dfab3ff8a545fd27fcd.ashx?h=21&amp;la=en&amp;w=273" alt="" width="273" height="21" />
+            </a>
+        </div>
+ 
 
-<div id="logobar">
-    <div class="row">
-        <div class="large-3 medium-3 columns">
-            <div>
-                <h2 class="logo">
-                    <a href="/">
-                        <img src="/~/media/f6de6747cf0a4658bbddb13e128cf8a2.ashx?h=42&amp;la=en&amp;w=271" alt="" width="271" height="42" />
-                    </a>
-                </h2>
-            </div>
+<div class="small-6 medium-6 columns text-right clear-padding-left-for-small-only">
+    
+    <div class="no-logged-user-indicator" style="display: none">
+        <a href="/account/Sign-In-Register?ReturnUrl=%2f" id="phheader_0_ctl00_signInLink" class="registration-link sign-in registration-link-details">Sign In</a><span>&nbsp;|&nbsp;</span><a href="/account/Sign-In-Register?ReturnUrl=%2f#signup" id="phheader_0_ctl00_signUpLink" class="registration-link sign-up">Sign Up</a>
+    </div>
+    
+    <div class="user-area" data-custom-dropdown="user-dropdown">
+    <a class="logged-user-indicator authenticated userNameDetails" style="display: none"></a>
+    
+
+    <ul id="user-dropdown" class="f-dropdown logged-user-menu"  tabindex="-1">
+        
+                <li>
+                    <a href="/Account/My-Preferences" >My Preferences</a>
+                </li>
+            
+                <li>
+                    <a href="/Account/My-Reading-List" >My Reading List</a>
+                </li>
+            
+                <li><a id="lnkSignOut">Sign Out</a></li>
+                
+            
+    </ul>
         </div>
 
-        <div class="large-9 medium-9 columns">
-            <div id="offcanvas-slide-nav">
-                <nav class="tab-bar panel-black">
-                    <section class="right-small">
-                        <a class="right-off-canvas-toggle" href="#">
-                            <img src="/Sites/Cliffsnotes/Images/slide-menu-icon.png">
-                        </a>
-                    </section>
-                </nav>
+    
+</div>
 
+    </div>
+</div>
+
+<div class="row display-as-table-header text-white collapse">
+    <div class="small-12 columns text-center">
+        <div class="gts-placeholder-wrapper" id='headerAd'>
+            <script type='text/javascript'>
+                googletag.cmd.push(function () { googletag.display('headerAd'); });
+            </script>
+        </div>
+    </div>
+</div>
+
+<div class="header home">
+    <div class="row">
+        <div class="small-8 medium-3 columns clear-padding-right-for-small-only">
+            <a class="logo" href="/">
+                <img src="/~/media/f6de6747cf0a4658bbddb13e128cf8a2.ashx?h=42&amp;la=en&amp;w=271" alt="" width="271" height="42" />
+            </a>
+        </div>
+        <div class="small-3 columns clear-padding hide-for-small-only">
+            &nbsp;
+       
+        </div>
+        <div class="small-6 columns hide-for-small-only">
+            &nbsp;
+       
+        </div>
+        <div class="small-4 columns show-for-small-only text-right">
+            <a href="#" class="mobile-search-bttn"><i class="icon-Search"></i></a>
+            <div id="offcanvas-slide-nav">
+                <a class="right-off-canvas-toggle">
+                    
+                    <i class="icon-hamburger"></i>
+                </a>
                 <a class="exit-off-canvas"></a>
             </div>
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="large-12 medium-12 small-12 columns striped-divider">
-        &nbsp;
+<div class="divider horizontal">
+    <div class="row">
+        <div class="small-12 columns">&nbsp;</div>
     </div>
 </div>
 
 
-                        <div id="phsearchbanner_0_searchBannerDetails" style="background-image:url(&quot;/~/media/6792377926ab407da5b134ebb3e49c33.ashx&quot;); background-repeat:no-repeat;">
-    <div id="search_banner">
-        <div class="row">
-            <div class="large-8 large-offset-2 medium-8 medium-offset-2 columns centered">
-                <h2>
-                    Explore, study, review
-                </h2>
-                <p>
-                    CliffsNotes &mdash; the original (and most widely imitated) study guide
-                </p>
-                <div class='searchform'>
-                    <div class="row ">
-                        <div class="large-10 medium-10 small-10 columns clear-padding">
-                            <div class="search-input-container">
-                                <input type="text" name="s" value="" id="searchEntry" placeholder="Search CliffsNotes" onfocus="placeHolderText($(this), 'focus')" onblur="placeHolderText($(this), 'blur')" maxlength="255">
-                                <p class="search-error">Search text must be 3 and maximum of 255 characters.</p>
+                        <main class="content-area home-page">
+                            <section id="phsearchbanner_0_searchBannerDetails" class="banner home" style="background-image:url(&quot;/~/media/6792377926ab407da5b134ebb3e49c33.ashx&quot;); background-repeat:no-repeat;">
+    <div class="row">
+        <div class="small-12 medium-10 large-8 small-centered columns">
+            <h2>
+                Explore, study, review
+            </h2>
+            <p class="hide-for-small-only">
+                CliffsNotes &mdash; the original (and most widely imitated) study guide
+            </p>
+            <div class='search-form home'>
+                <div class="row ">
+                    <div class="small-12 columns">
+                        <div class="row collapse">
+                            <div class="small-10 medium-11 columns">
+                                <input type="text" class="search-field" name="s" value="" id="searchEntry" placeholder="Search CliffsNotes" maxlength="255">
                             </div>
-                        </div>
-                        <div class="large-2 medium-2 small-2 columns clear-padding">
-                            <div class="submitbutton large">
-                                <a class='button postfix search-bttn' type="submit" name="search_submit">
+                            <div class="small-2 medium-1 columns">
+                                <a class='bttn search search-bttn' type="submit" name="search_submit">
                                     <i class="icon-Search"></i>
                                 </a>
                             </div>
                         </div>
+                        <div class="row hide">
+                            <div class="small-12 columns">
+                                <p class="search-error"></p>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
-        
-
-<nav id="nav_primary_banner">
+    </div>
     
-            <ul class='row'>
+
+<nav class="navigation home hidden-for-small-only">
+    <a href="#" class="mobile-nav-button show-for-small-only"><span></span></a>
+    
+            <ul class="small-block-grid-1 medium-block-grid-4">
         
-            <li class='large-3 columns'>
+            <li class=''>
                 <a href="/literature">
                     Literature Notes
                 </a>
             </li>
         
-            <li class='large-3 columns'>
+            <li class=''>
                 <a href="/test-prep">
                     Test Prep
                 </a>
             </li>
         
-            <li class='large-3 columns'>
+            <li class=''>
                 <a href="/study-guides">
                     Study Guides
                 </a>
             </li>
         
-            <li class='large-3 columns'>
+            <li class=''>
                 <a href="/student-life">
                     Student Life
                 </a>
@@ -190,84 +344,113 @@ googletag.enableServices();
 </nav>
 
 
-        <input type="hidden" name="phsearchbanner_0$dnSearchPageUrl" id="dnSearchPageUrl" value="http://www.cliffsnotes.com/search?q=" />
-
-       
-    </div>
-</div>
+    <input type="hidden" name="phsearchbanner_0$dnSearchPageUrl" id="dnSearchPageUrl" value="http://www.cliffsnotes.com/search?q=" />
+</section>
 
 
-                        
+                            
 
-<div id="student_life" class='section'>
-    <div class="row clear-margin">
-        <h3 class='section-title text-center'>Featured Student Life</h3>
-        <div class="large-6 columns media-overlay">
-            <div class='feature left-side' >
-               
- <div class="text-wrapper">
-     <a title="WOW Jocular" href="/student-life/2015/july/wow-jocular">
-    <div class="overlay">
-        <div class='text'>
-            <h4>Word of the Week: Jocular</h4>
-                <p >Literature<br></p>
-        </div>
-    </div>
-    <div class="media-container">
-        <img src="/~/media/6d725769a47246689bf4549123d586f8.ashx?h=360&amp;la=en&amp;w=490" class="media left" alt="Student Life Image" width="490" height="360" />
-    </div>
-    </a>
- </div>
-
-            </div>
-        </div>
-        <div class="large-6 columns media-overlay">
-            <div class='feature right-side'>
-                
-               
- <div class="text-wrapper">
-     <a title="Honor and Betrayal" href="/student-life/2014/july/got-honor">
-    <div class="overlay">
-        <div class='text'>
-            <h4>Game of Themes</h4>
-                <p >Literature</p>
-        </div>
-    </div>
-    <div class="media-container">
-        <img src="/~/media/b8f83056bbad46a99ba1aa65ea1729de.ashx?h=360&amp;la=en&amp;w=490" class="media left" alt="Honor Betrayal" width="490" height="360" />
-    </div>
-    </a>
- </div>
-
-            </div>
-        </div>
-    </div>
-    <div id="phfeaturedstudentlife_0_vwMore" class="row view_more">
-          <a class="view_more_button button" href="/student-life">
-              View More Articles
-          </a>
-        <!--<button class="view_more_button">VIEW MORE ARTICLES</button>-->
-    </div>
-
-</div>
-
-
-                        <div class="striped-divider"></div>
-
-                        
-
-<div id="trending_cliffsnotes" class='section'>
-    <h3 class="section-title text-center">
-        Home
-        <img src="/Sites/Cliffsnotes/Images/cliffs-notes-logo.png">
-    </h3>
+<section class="featured">
     <div class="row">
-        <div class="trending-table">
-            <table>
+        <div class="small-12 columns">
+            <h3 class="title light">
+                Featured Articles
+            </h3>
+        </div>
+    </div>
+
+    <div class="row" data-equalizer data-equalizer-mq="medium-up">
+        
+<div class="small-12 medium-6 columns" data-equalizer-watch>
+    <a class="articles regular" href="/test-prep/college/sat-test-prep-center/articles/cliffsnotes-test-prep-for-use-with-the-sat-exam">
+        <div class="overlay"></div>
+        <div class='text'>
+            
+            <p>
+                
+            </p>
+        </div>
+        <img src="/~/media/7db81ccf018743d6b7c06900629f5b4c.ashx?h=360&amp;la=en&amp;w=490" alt="SAT Test Prep Homepage Callout 2" width="490" height="360" />
+    </a>
+</div>
+
+        
+<div class="small-12 medium-6 columns" data-equalizer-watch>
+    <a class="articles regular" href="/study-guides/anatomy-and-physiology/anatomy-and-physiology-test-prep/anatomy-and-physiology-test-prep-review">
+        <div class="overlay"></div>
+        <div class='text'>
+            <h4>Anatomy & Physiology Test Prep</h4>
+            <p>
+                
+            </p>
+        </div>
+        <img src="/~/media/2029e714eb8d40ee965c7f36b905a3fb.ashx?h=360&amp;la=en&amp;w=490" alt="CliffsNotes Test Prep Homepage Image" width="490" height="360" />
+    </a>
+</div>
+
+    </div>
+
+    <div id="phfeaturedstudentlife_0_vwMore" class="row">
+        <div class="small-12 columns text-center">
+            <a class="bttn bttn-2" href="/student-life">
+                View More Articles
+            </a>
+        </div>
+    </div>
+</section>
+
+
+                            <div class="divider horizontal">
+                                <div class="row">
+                                    <div class="small-12 columns">&nbsp;</div>
+                                </div>
+                            </div>
+
+                            
+
+<section class="home-cliffsnotes">
+    <div class="row">
+        <div class="small-12 columns">
+            <h3 class="title light">
+                Trending
+                <img src="/~/media/f6de6747cf0a4658bbddb13e128cf8a2.ashx?h=42&amp;la=en&amp;w=271" alt="" width="271" height="42" />
+                
+            </h3>
+        </div>
+    </div>
+</section>
+<section class="top-cliffsnotes">
+    <div class="row">
+        <div class="small-12 columns">
+
+            <div class="table-carousel--wrapper">
+                <span class="table-carousel--prev">&ltrif; </span>
+                <div class="table-carousel">
+                    
+                            <div data-type='high-school'>
+                                High School
+                            </div>
+                        
+                            <div data-type='college'>
+                                College
+                            </div>
+                        
+                            <div data-type='grad-school'>
+                                Grad School
+                            </div>
+                        
+                            <div data-type='professional'>
+                                Professional
+                            </div>
+                        
+                </div>
+                <span class="table-carousel--next">&rtrif; </span>
+            </div>
+            <table class="responsive high-school">
                 
                         <thead>
                             <tr>
-                                <th></th>
+                                <th>&nbsp;</th>
                                 <th>
                                     High School
                                 </th>
@@ -287,229 +470,227 @@ googletag.enableServices();
                         <tr>
                             <td>
                                 1</td>
-                            <td>
-                                <a title="CliffsNotes of The Catcher in the Rye at a Glance" href="/literature/c/the-catcher-in-the-rye/the-catcher-in-the-rye-at-a-glance">
-                                    Catcher in the Rye
+                            <td id="phtrendingincliffsnotes_0_rptrending1_Column1_0" class="high-school-cell">
+                                <a href="/literature/u/unbroken/at-a-glance">
+                                    Unbroken
                                 </a>
                             </td>
-                            <td>
+
+                            <td id="phtrendingincliffsnotes_0_rptrending1_Column2_0" class="college-cell">
                                 <a title="CliffsNotes Anatomy and Physiology" href="/study-guides/anatomy-and-physiology">
                                     Anatomy and Physiology
                                 </a>
                             </td>
-                            <td>
+
+                            <td id="phtrendingincliffsnotes_0_rptrending1_Column3_0" class="grad-school-cell">
                                 <a title="CliffsNotes GMAT" href="/test-prep/graduate-school/gmat-test-prep-center">
                                     GMAT
                                 </a>
                             </td>
-                            <td>
+
+                            <td id="phtrendingincliffsnotes_0_rptrending1_Column4_0" class="professional-cell">
                                 <a title="ASVAB Test Prep Center" href="/test-prep/professional/asvab-test-prep-center">
                                     ASVAB
                                 </a>
                             </td>
+
                         </tr>
                     
                         <tr>
                             <td>
                                 2</td>
-                            <td>
+                            <td id="phtrendingincliffsnotes_0_rptrending1_Column1_1" class="high-school-cell">
                                 <a title="CliffsNotes on Hamlet at a Glance" href="/literature/h/hamlet/hamlet-at-a-glance">
                                     Hamlet
                                 </a>
                             </td>
-                            <td>
+
+                            <td id="phtrendingincliffsnotes_0_rptrending1_Column2_1" class="college-cell">
                                 <a title="CliffsNotes Biology" href="/study-guides/biology/biology">
                                     Biology
                                 </a>
                             </td>
-                            <td>
+
+                            <td id="phtrendingincliffsnotes_0_rptrending1_Column3_1" class="grad-school-cell">
                                 <a title="CliffsNotes GRE Cram Plan Center" href="/test-prep/graduate-school/gre-test-prep-center">
                                     GRE
                                 </a>
                             </td>
-                            <td>
-                                <a title="CliffsNotes Praxis Test Prep Center" href="/test-prep/professional/praxis-test-prep-center">
+
+                            <td id="phtrendingincliffsnotes_0_rptrending1_Column4_1" class="professional-cell">
+                                <a href="/test-prep/professional/praxis">
                                     Praxis
                                 </a>
                             </td>
+
                         </tr>
                     
                         <tr>
                             <td>
                                 3</td>
-                            <td>
+                            <td id="phtrendingincliffsnotes_0_rptrending1_Column1_2" class="high-school-cell">
                                 <a title="CliffsNotes on Into the Wild Book Summary" href="/literature/i/into-the-wild/book-summary">
                                     Into the Wild
                                 </a>
                             </td>
-                            <td>
+
+                            <td id="phtrendingincliffsnotes_0_rptrending1_Column2_2" class="college-cell">
                                 <a title="CliffsNotes Differential Equations" href="/study-guides/differential-equations">
                                     Differential Equations
                                 </a>
                             </td>
-                            <td>
-                                <a title="CliffsNotes on DAT What to Study" href="/test-prep/graduate-school/dat/articles/dat-what-to-study">
+
+                            <td id="phtrendingincliffsnotes_0_rptrending1_Column3_2" class="grad-school-cell">
+                                <a title="CliffsNotes on DAT What to Study">
                                     DAT
                                 </a>
                             </td>
-                            <td>
+
+                            <td id="phtrendingincliffsnotes_0_rptrending1_Column4_2" class="professional-cell">
                                 <a title="CliffsNotes FTCE: An Overview of the FTCE Professional Education Test" href="/test-prep/professional/ftce/articles/ftce-an-overview-of-the-ftce-professional-education-test">
                                     FTCE
                                 </a>
                             </td>
+
                         </tr>
                     
                         <tr>
                             <td>
                                 4</td>
-                            <td>
+                            <td id="phtrendingincliffsnotes_0_rptrending1_Column1_3" class="high-school-cell">
                                 <a title="CliffsNotes on The Great Gatsby at a Glance" href="/literature/g/the-great-gatsby/the-great-gatsby-at-a-glance">
                                     The Great Gatsby
                                 </a>
                             </td>
-                            <td>
+
+                            <td id="phtrendingincliffsnotes_0_rptrending1_Column2_3" class="college-cell">
                                 <a title="CliffsNotes Accounting Principles I" href="/study-guides/accounting/accounting-principles-i">
                                     Accounting
                                 </a>
                             </td>
-                            <td>
+
+                            <td id="phtrendingincliffsnotes_0_rptrending1_Column3_3" class="grad-school-cell">
                                 <a title="CliffsNotes GRE Exam Format" href="/test-prep/graduate-school/gre-test-prep-center/articles/gre-exam-format">
                                     GRE Exam Format
                                 </a>
                             </td>
-                            <td>
+
+                            <td id="phtrendingincliffsnotes_0_rptrending1_Column4_3" class="professional-cell">
                                 <a title="CliffsNotes NCLEXPN: An Overview of the National Council Licensure Examination for Practical Nurses" href="/test-prep/professional/other/articles/nclexpn-an-overview-of-the-national-council-licensure-examination-for-practical-nurses">
                                     NCLEXPN
                                 </a>
                             </td>
+
                         </tr>
                     
                         <tr>
                             <td>
                                 5</td>
-                            <td>
+                            <td id="phtrendingincliffsnotes_0_rptrending1_Column1_4" class="high-school-cell">
                                 <a title="CliffsNotes on To Kill a Mockingbird at a Glance" href="/literature/t/to-kill-a-mockingbird/to-kill-a-mockingbird-at-a-glance">
                                     To Kill a Mockingbird
                                 </a>
                             </td>
-                            <td>
+
+                            <td id="phtrendingincliffsnotes_0_rptrending1_Column2_4" class="college-cell">
                                 <a title="CliffsNotes Sociology" href="/study-guides/sociology">
                                     Sociology
                                 </a>
                             </td>
-                            <td>
-                                <a title="CliffsNotes LSAT Two Strategies for Taking the LSAT" href="/test-prep/graduate-school/lsat/articles/lsat-two-strategies-for-taking-the-lsat">
+
+                            <td id="phtrendingincliffsnotes_0_rptrending1_Column3_4" class="grad-school-cell">
+                                <a title="CliffsNotes LSAT Two Strategies for Taking the LSAT">
                                     LSAT
                                 </a>
                             </td>
-                            <td>
+
+                            <td id="phtrendingincliffsnotes_0_rptrending1_Column4_4" class="professional-cell">
                                 <a title="CliffsNotes Teacher Resources" href="/teacher-resource-page">
                                     Teacher Resources
                                 </a>
                             </td>
+
                         </tr>
-                    
+                    </tbody>
             </table>
         </div>
     </div>
+</section>
+<!-- .row -->
 
-    <!-- .row -->
-
-    <div class="image-block horizontal center row">
-        <div class="large-8 medium-8 small-8 columns large-centered medium-centered">
-            <div class="image-block-container" id='trendingInCliffsnotesAd' style="padding: 1em;">
-                <script type='text/javascript'>
-                    googletag.cmd.push(function () { googletag.display('trendingInCliffsnotesAd'); });
-                </script>
-            </div>
-        </div>
-    </div>
+<div class="gts-placeholder-wrapper middle background-white" id='trendingInCliffsnotesAd'>
+    <script type='text/javascript'>
+        googletag.cmd.push(function () { googletag.display('trendingInCliffsnotesAd'); });
+    </script>
 </div>
 
 
 
 
-                        <div class="striped-divider"></div>
+                             <div class="divider horizontal">
+                                <div class="row">
+                                    <div class="small-12 columns">&nbsp;</div>
+                                </div>
+                            </div>
 
-                        
-<div id="test_prep" class="section">
-    <!--    Title of the TestPrep section -->
-    <div class="row panel-black centered">
-        <div class="testprep-header-wrapper">
-            <!--    Spacing -->
-            <div class="large-1 medium-1 small-collapse columns">-</div>
-            <!--    First section of the title, the buttons -->
-            <div class="large-1 medium-1 small-2 columns text-right clear-padding">
-                <div class="row">
-                    <div class="large-6 medium-6 small-6 columns text-right clear-padding">
-                        <img src="/~/media/0e1e741332684249aa06fcabda1c5743.ashx?h=139&amp;la=en&amp;w=139" class="social-icon-small" alt="" width="139" height="139" />
-                    </div>
-
-                    <div class="large-6 medium-6 small-6 columns text-left clear-padding">
-                        <img src="/~/media/6a9601371e8b47f996d55e879bf89b42.ashx?h=139&amp;la=en&amp;w=139" class="social-icon-small" alt="" width="139" height="139" />
-                    </div>
-                </div>
-            </div>
-            <!--    Second section of the title, "The Title" -->
-            <div class="large-2 medium-2 small-3 right-border-yellow columns clear-padding">
-                <h3 class="section-title font-yellow">
-                    Test Prep
-                </h3>
-            </div>
-            <!--    Third section of the title, the description -->
-            <div class="large-7 medium-7 small-7 columns text-left">
-                <p class="font-white">
-                    If you need help in preparing for a test, you've come to the right place. CliffsNotes can help you prepare for whatever standardized, professional, or proficiency test you need to take. Here, you can find helpful advice and test-taking strategies for the SAT, Praxis, ACT, GRE, GMAT, and many other tests.
-                </p>
-            </div>
-            <!--    Spacing -->
-            <div class="large-1 medium-1 small-collapse columns">-</div>
+                            
+<section class="test-prep">
+    <div class="row small-collapse medium-uncollapse">
+        <!--    Title of the TestPrep section -->
+        <div class="small-12 medium-3 columns clear-padding-right">
+            <h3 class="section-title font-yellow">
+                Test Prep
+            </h3>
+        </div>
+        <!--    Third section of the title, the description -->
+        <div class="small-12 medium-9 columns">
+            <p class="font-white">
+                If you need help in preparing for a test, you've come to the right place. CliffsNotes can help you prepare for whatever standardized, professional, or proficiency test you need to take. Here, you can find helpful advice and test-taking strategies for the SAT, Praxis, ACT, GRE, GMAT, and many other tests.
+            </p>
         </div>
     </div>
+</section>
 
-    <!--    Main section of the TestPrep -->
-    <div class="row panel-greyLight">
-        <div class="testprep-body-wrapper">
+<!--    Main section of the TestPrep -->
+<section class="topic-cards">
+    <div class="row">
+        <div class="large-12 columns">
             
-                    <ul class="medium-block-grid-2 large-block-grid-4 clear-margin">
+                    <ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-4">
                 
                     <li>
                         <a title="CliffsNotes ACT Test Prep Center" href="/test-prep/college/act-test-prep-center">
-                            <img src='/Sites/Cliffsnotes/Images/yellow-note.png' />
-                            <img src='/Sites/Cliffsnotes/Images/white-note.png' />
                             <span>
                                 ACT
                             </span>
+                            <div class="fold"></div>
                         </a>
                     </li>
                 
                     <li>
                         <a title="CliffsNotes GRE Test Prep Center" href="/test-prep/graduate-school/gre-test-prep-center">
-                            <img src='/Sites/Cliffsnotes/Images/yellow-note.png' />
-                            <img src='/Sites/Cliffsnotes/Images/white-note.png' />
                             <span>
                                 GRE
                             </span>
+                            <div class="fold"></div>
                         </a>
                     </li>
                 
                     <li>
-                        <a title="CliffsNotes Praxis Test Prep Center" href="/test-prep/professional/praxis-test-prep-center">
-                            <img src='/Sites/Cliffsnotes/Images/yellow-note.png' />
-                            <img src='/Sites/Cliffsnotes/Images/white-note.png' />
+                        <a href="/test-prep/professional/praxis">
                             <span>
                                 Praxis
                             </span>
+                            <div class="fold"></div>
                         </a>
                     </li>
                 
                     <li>
                         <a title="CliffsNotes SAT Test Prep Center" href="/test-prep/college/sat-test-prep-center">
-                            <img src='/Sites/Cliffsnotes/Images/yellow-note.png' />
-                            <img src='/Sites/Cliffsnotes/Images/white-note.png' />
                             <span>
                                 SAT
                             </span>
+                            <div class="fold"></div>
                         </a>
                     </li>
                 
@@ -518,157 +699,132 @@ googletag.enableServices();
         </div>
     </div>
     <!-- .row -->
-</div>
+</section>
+<!-- .topic-cards -->
 
 
-                        
-<div id="study_guides" class="section">
+                            
+<section class="quick-reviews">
     <!--    Title -->
-    <div class="row panel-black">
-        <div class="large-12">
-            <h3 class="font-yellow text-center">
+    <div class="row">
+        <div class="small-12 columns clear-padding">
+            <h3 class="title light dark">
                 Quick Reviews
             </h3>
         </div>
     </div>
 
     <!--    Main section -->
-    <div class="row panel-greyLight">
-        <div class="large-9 medium-10 columns resize-grid">
-            <div class="class-categories">
-                <ul class="large-block-grid-3 medium-block-grid-3">
+    <div class="row small-collapse medium-uncollapse">
+        <div class="small-12 medium-9 columns left-rail-column">
+            <ul class="small-block-grid-1 medium-block-grid-3 quick-review-tabs">
+                
+                        <li>
+                            <a title="CliffsNotes English Quick Review" href="/study-guides/english">
+                                English
+                            </a>
+                        </li>
                     
-
-                            <li>
-                                <a title="CliffsNotes English Quick Review" href="/study-guides/english">
-                                    English
-                                </a>
-                            </li>
-
-                        
-
-                            <li>
-                                <a title="CliffsNotes Biology Quick Review" href="/study-guides/biology/biology">
-                                    Biology
-                                </a>
-                            </li>
-
-                        
-
-                            <li>
-                                <a title="CliffsNotes U.S. History I Quick Review" href="/study-guides/history/us-history-i">
-                                    U.S. History I
-                                </a>
-                            </li>
-
-                        
-
-                            <li>
-                                <a title="CliffsNotes Spanish I Quick Review" href="/study-guides/spanish/spanish-i">
-                                    Spanish I
-                                </a>
-                            </li>
-
-                        
-
-                            <li>
-                                <a title="CliffsNotes Algebra I Quick Review" href="/study-guides/algebra/algebra-i">
-                                    Algebra I
-                                </a>
-                            </li>
-
-                        
-
-                            <li>
-                                <a title="CliffsNotes Economics Quick Review" href="/study-guides/economics">
-                                    Economics
-                                </a>
-                            </li>
-
-                        
-
-                            <li>
-                                <a title="CliffsNotes Anatomy and Physiology Quick Review" href="/study-guides/anatomy-and-physiology">
-                                    Anatomy and Physiology
-                                </a>
-                            </li>
-
-                        
-
-                            <li>
-                                <a title="CliffsNotes Sociology Quick Review" href="/study-guides/sociology">
-                                    Sociology
-                                </a>
-                            </li>
-
-                        
-
-                            <li>
-                                <a title="CliffsNotes Accounting Principles I Quick Review" href="/study-guides/accounting/accounting-principles-i">
-                                    Accounting Principles I
-                                </a>
-                            </li>
-
-                        
-                </ul>
-            </div>
+                        <li>
+                            <a title="CliffsNotes Biology Quick Review" href="/study-guides/biology/biology">
+                                Biology
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a title="CliffsNotes U.S. History I Quick Review" href="/study-guides/history/us-history-i">
+                                U.S. History I
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a title="CliffsNotes Spanish I Quick Review" href="/study-guides/spanish/spanish-i">
+                                Spanish I
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a title="CliffsNotes Algebra I Quick Review" href="/study-guides/algebra/algebra-i">
+                                Algebra I
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a title="CliffsNotes Economics Quick Review" href="/study-guides/economics">
+                                Economics
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a title="CliffsNotes Anatomy and Physiology Quick Review" href="/study-guides/anatomy-and-physiology">
+                                Anatomy and Physiology
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a title="CliffsNotes Sociology Quick Review" href="/study-guides/sociology">
+                                Sociology
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a title="CliffsNotes Accounting Principles I Quick Review" href="/study-guides/accounting/accounting-principles-i">
+                                Accounting Principles I
+                            </a>
+                        </li>
+                    
+            </ul>
         </div>
-        <div class="large-3 medium-2 columns resize-grid">
-            <div class="image-block square row">
-                <div class="large-12 medium-12 small-12 columns">
-                    <div class="image-block-container" id='quickReviewsAd'>
-                        <script type='text/javascript'>
-                            googletag.cmd.push(function () { googletag.display('quickReviewsAd'); });
-                        </script>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="image-block horizontal center row" style="padding: 1em;">
-        <div class="large-8 medium-8 small-8 columns large-centered medium-centered">
-            <div class="image-block-container" id='bottomWidgetAd'>
+        <div class="small-12 medium-3 columns right-rail-column">
+            <div class="gts-placeholder-wrapper padding-for-small-only clear-padding-top" id='quickReviewsAd'>
                 <script type='text/javascript'>
-                    googletag.cmd.push(function () { googletag.display('bottomWidgetAd'); });
+                    googletag.cmd.push(function () { googletag.display('quickReviewsAd'); });
                 </script>
             </div>
         </div>
     </div>
-</div>
+</section>
 
 
-                        <div class="striped-divider"></div>
 
-                        
-<div id="newsletter_signup" class="section">
+
+                             <div class="divider horizontal">
+                                <div class="row">
+                                    <div class="small-12 columns">&nbsp;</div>
+                                </div>
+                            </div>
+
+                            
+<section class="join-newsletter">
     <!--    Title of the newsletter section -->
     <div class="row">
-        <div class="large-12">
-            <h3 class="section-title text-center">
+        <div class="small-12 columns">
+            <h3 class="title light">
                 Join Our Newsletter
             </h3>
         </div>
     </div>
     <!--    Main section of the newsletter -->
-    <div class="row newsletter-main">
-        <div class="large-1 medium-1 small-1 columns">&nbsp;</div>
+    <div class="row">
+        <div class="small-1 show-for-large-up columns">&nbsp;</div>
         <!--    Left column of the main section -->
-        <div class="large-5 medium-5 small-5 columns text-justify">
-            Prepare to get even smarter! We'll send an email each month filled with exciting news, special offers, national test dates, and more.
+        <div class="small-12 medium-6 large-5 columns">
+            <p class="text-justify">
+                Prepare to get even smarter! We'll send an email each month filled with exciting news, special offers, national test dates, and more.
+            </p>
         </div>
-        <div class="large-5 medium-5 small-5 columns columns">
+        <div class="small-12 medium-6 large-5 columns">
             <div class="row">
-                <div class="large-6 medium-6 small-6 columns firstname-container newsletterSection">
+                <div class="small-12 medium-6 columns clear-padding-left tight-padding-right clear-padding-for-small-only newsletterSection">
                     <input id="first_name" type="text" name="signup[first_name]" value="" placeholder="First Name" required="" />
                 </div>
-                <div class="large-6 medium-6 small-6 columns lastname-container newsletterSection">
-                    <input id="last_name" type="text" name="signup[last_name]" value="" placeholder="Last Name" required=""/>
+                <div class="small-12 medium-6 columns clear-padding-right tight-padding-left clear-padding-for-small-only newsletterSection">
+                    <input id="last_name" type="text" name="signup[last_name]" value="" placeholder="Last Name" required="" />
                 </div>
                 <h3 class="section-title text-center" id="newsLetterMessage">Thank You!</h3>
             </div>
             <div class="row newsletterSection">
-                <div class="small-12 columns">
+                <div class="small-12 columns clear-padding">
                     <select name="signup[i_am_a]" id="i_am_a">
                         <option value="">I am a...</option>
                         <option value="hs">High School Student</option>
@@ -680,34 +836,43 @@ googletag.enableServices();
                 </div>
             </div>
             <div class="row">
-                <div class="large-8 medium-8 small-8 columns email-container">
-                    <input id="newsletter_email" class="newsletterSection" type="text" name="signup[email]" value="" placeholder='Enter Email Address' required=""/>
+                <div class="small-9 medium-8 columns clear-padding-left tight-padding-right clear-padding-for-small-only newsletterSection">
+                    <input id="newsletter_email" class="newsletterSection" type="text" name="signup[email]" value="" placeholder='Enter Email Address' required="" />
                 </div>
-                <div class="large-4 medium-4 small-4 columns submit-container">
-                    <input type="submit" class='button postfix panel-black newsletterSection newsletterSubmitButton' name="newsletter_submit" value="Submit" />
-
+                <div class="small-3 medium-4 columns clear-padding-right tight-padding-left clear-padding-for-small-only"> 
+                    <input type="submit" class='bttn bttn-1 newsletterSection newsletterSubmitButton' name="newsletter_submit" value="Submit" />
                 </div>
             </div>
         </div>
-        <div class="large-1 medium-1 small-1 columns">&nbsp;</div>
+        <div class="small-1 show-for-large-up columns">&nbsp;</div>
     </div>
-</div>
+</section>
 
 
-
+                         </main>
+                        <a href="#" class="back-to-top">Back to Top</a>
                         
 
-<footer id="footer">
+<footer id="footer" class="site-footer">
+    <!-- Insert new footer ad -->
+    <div class="gts-placeholder-wrapper middle" id='footerCliffsnotesAd'>
+        <script type='text/javascript'>
+            googletag.cmd.push(function () { googletag.display('footerCliffsnotesAd'); });
+        </script>
+    </div>
+
     <!--    First section of the footer, the black panel -->
-    <div class="panel-black">
+    <div class="top">
         <div class="row">
-            <div class="large-12 medium-12 small-12 text-center columns">
-                <img src="/~/media/f6de6747cf0a4658bbddb13e128cf8a2.ashx?h=42&amp;la=en&amp;w=271" alt="" width="271" height="42" />
+            <div class="small-12 columns text-center">
+                
+                    <img src="/~/media/f6de6747cf0a4658bbddb13e128cf8a2.ashx?h=42&amp;la=en&amp;w=271" alt="" width="271" height="42" />
+                
             </div>
         </div>
         <div class="row">
-            <div class="large-12 medium-12 text-center columns">
-                <p class='font-white tagline'>
+            <div class="small-12 columns">
+                <p>
                     CliffsNotes study guides are written by real teachers and professors, so no matter what you're studying, CliffsNotes can ease your homework headaches and help you score high on exams.
                 </p>
             </div>
@@ -715,79 +880,83 @@ googletag.enableServices();
     </div>
 
     <!--    Second section of the footer, the dark grey panel -->
-    <div class="row centered panel-greyDark">
-        <nav class="font-white tagline">
-            <ul>
-                
-                        <li>
-                            <a href="/discover-about">
-                                About CliffsNotes
+    <div class="middle">
+        <div class="row">
+            <div class="small-12 columns">
+                <nav>
+                    <ul>
+                        
+                                <li>
+                                    <a href="/discover-about">
+                                        About CliffsNotes
+                                    </a>
+                                </li>
+                            
+                                <li>
+                                    <a href="/discover-advertise">
+                                        Advertise with Us
+                                    </a>
+                                </li>
+                            
+                                <li>
+                                    <a href="/discover-contact">
+                                        Contact Us
+                                    </a>
+                                </li>
+                            
+                        <li><span>Follow us:</span>
+                            <a href="https://twitter.com/cliffs_notes" target="_blank">
+                                <img src="/Sites/Cliffsnotes/images/icon-twitter-color.png" alt="Twitter" class="img-twitter" />
+                            </a>
+                            <a href="https://www.facebook.com/CliffsNotes" target="_blank">
+                                <img src="/Sites/Cliffsnotes/images/icon-facebook-color.png" alt="Facebook" class="img-facebook" />
+                            </a>
+                            <a href="https://www.youtube.com/user/cliffsnotes/videos" target="_blank">
+                                <img src="/Sites/Cliffsnotes/images/icon-youtube-color.png" alt="Youtube" class="img-youtube" />
+                            </a>
+                            <a href="https://instagram.com/cliffsnotesofficial/" target="_blank">
+                                <img src="/Sites/Cliffsnotes/images/icon-instagram-color.png" alt="Instagram" class="img-instagram" />
                             </a>
                         </li>
-                    
-                        <li>
-                            <a href="/discover-advertise">
-                                Advertise with Us
-                            </a>
-                        </li>
-                    
-                        <li>
-                            <a href="/discover-contact">
-                                Contact Us
-                            </a>
-                        </li>
-                    
-                <li>
-                    Follow us:
-                    <a href="https://twitter.com/cliffs_notes" target="_blank">
-                        <i class="icon-twitter"></i>
-                    </a>
-                    <a href="https://www.facebook.com/CliffsNotes" target="_blank">
-                        <i class="icon-facebook"></i>
-                    </a>
-                    <a href="https://www.youtube.com/user/cliffsnotes/videos" target="_blank">
-                        <i class="icon-youtube3"></i>
-                    </a>
-                    <a href="https://instagram.com/cliffs_notes" target="_blank">
-                        <i class="icon-instagram"></i>
-                    </a>
-                </li>
-              
-            </ul>
-        </nav>
+                        
+                    </ul>
+                </nav>
+            </div>
+        </div>
     </div>
-
     <!--    Third section of the footer, the light gray panel -->
-    <div class="row copyright">
-        <div class="large-12 medium-12 small-12 columns">
-            <p>
-                &#169; 2015 Houghton Mifflin Harcourt. All rights reserved.
-            </p>
-            
-                    <p>
-                        <a href="http://www.hmhco.com/common/terms-conditions">
-                            Terms &amp; Conditions
-                        </a>
-                    </p>
+    <div class="bottom">
+        <div class="row">
+            <div class="small-12 columns text-center">
+                <p>
+                    &#169; 2016 Houghton Mifflin Harcourt. All rights reserved.
+                </p>
                 
-                    <p>
-                        <a href="http://www.hmhco.com/common/privacy-policy">
-                            Privacy Policy
-                        </a>
-                    </p>
-                
-                    <p>
-                        <a href="/disclaimer">
-                            Disclaimer
-                        </a>
-                    </p>
-                
-                    <p>
-                        <a href="/sitemap">
-                            Sitemap
-                        </a>
-                    </p>
-                
+                        <p>
+                            <a href="http://www.hmhco.com/common/terms-conditions">
+                                Terms &amp; Conditions
+                            </a>
+                        </p>
+                    
+                        <p>
+                            <a href="http://www.hmhco.com/common/privacy-policy">
+                                Privacy Policy
+                            </a>
+                        </p>
+                    
+                        <p>
+                            <a href="/disclaimer">
+                                Disclaimer
+                            </a>
+                        </p>
+                    
+                        <p>
+                            <a href="/sitemap">
+                                Sitemap
+                            </a>
+                        </p>
+                    
+            </div>
         </div>
     </div>
 </footer>
@@ -797,110 +966,61 @@ googletag.enableServices();
 
                     
 
-<div id="slide-nav-aside">
+<div class="slide-nav-aside">
     <aside class="right-off-canvas-menu">
-        <dl>
+        <ul>
             
-                    <dt class="font-white panel-black">
+                    <li>
                         <a href="/literature">
-                            <div class="row clear-margin">
-                                <div class="large-9 medium-9 columns title-slide-nav-item">
-                                    <span>
-                                        Literature Notes
-                                    </span>
-                                </div>
-                                <div class="large-3 medium-3 columns clear-padding">
-                                    <img src="/Sites/Cliffsnotes/Images/bigger-than.png" alt="bigger-than">
-                                </div>
-                            </div>
+                            <span>
+                                Literature Notes
+                            </span>
                         </a>
-                    </dt>
+                    </li>
                 
-                    <dt class="font-white panel-black">
+                    <li>
                         <a href="/test-prep">
-                            <div class="row clear-margin">
-                                <div class="large-9 medium-9 columns title-slide-nav-item">
-                                    <span>
-                                        Test Prep
-                                    </span>
-                                </div>
-                                <div class="large-3 medium-3 columns clear-padding">
-                                    <img src="/Sites/Cliffsnotes/Images/bigger-than.png" alt="bigger-than">
-                                </div>
-                            </div>
+                            <span>
+                                Test Prep
+                            </span>
                         </a>
-                    </dt>
+                    </li>
                 
-                    <dt class="font-white panel-black">
+                    <li>
                         <a href="/study-guides">
-                            <div class="row clear-margin">
-                                <div class="large-9 medium-9 columns title-slide-nav-item">
-                                    <span>
-                                        Study Guides
-                                    </span>
-                                </div>
-                                <div class="large-3 medium-3 columns clear-padding">
-                                    <img src="/Sites/Cliffsnotes/Images/bigger-than.png" alt="bigger-than">
-                                </div>
-                            </div>
+                            <span>
+                                Study Guides
+                            </span>
                         </a>
-                    </dt>
+                    </li>
                 
-            <dt class="font-white panel-black">
-                <div class="row clear-margin">
-                    <div class="large-9 medium-9 columns title-slide-nav-item">
-                        <span>
-                            Student Life
-                        </span>
-                    </div>
-                    <div class="large-3 medium-3 columns clear-padding">
-                        <img src="/Sites/Cliffsnotes/Images/bigger-than.png" alt="bigger-than">
-                    </div>
-                </div>
-            </dt>
-            <dd>
-                <ul class="no-bullet font-greyVeryLight">
+                    <li>
+                        <a href="/student-life">
+                            <span>
+                                Student Life
+                            </span>
+                        </a>
+                    </li>
+                
+            
+        </ul>
+
+        <div class="mobile-registration">
+            <div class="mobile-sign-in" style="display: none">
+                <a href="/account/Sign-In-Register?ReturnUrl=%2f" id="phresponsivenavigation_0_signInLink" class="bttn bttn-5">Sign In</a>
+                <a href="/account/Sign-In-Register?ReturnUrl=%2f#signup" id="phresponsivenavigation_0_signUpLink" class="bttn bttn-5">Sign Up</a>
+            </div>
+            <div class="mobile-logged-user-menu" style="display: none">
+                <h2 class="userNameDetails"></h2>
+                
+                        <a href="/Account/My-Preferences" class="bttn bttn-6">My Preferences</a>
                     
-                            <li>
-                                <a href="/student-life/categories/cliffspiration">
-                                    Cliffspiration
-                                </a>
-                            </li>
-                        
-                            <li>
-                                <a href="/student-life/categories/literary">
-                                    Literary
-                                </a>
-                            </li>
-                        
-                            <li>
-                                <a href="/student-life/categories/entertainment">
-                                    Entertainment
-                                </a>
-                            </li>
-                        
-                            <li>
-                                <a href="/student-life/categories/life">
-                                    Life
-                                </a>
-                            </li>
-                        
-                            <li>
-                                <a href="/student-life/categories/high-school">
-                                    High School
-                                </a>
-                            </li>
-                        
-                            <li>
-                                <a href="/student-life/categories/college">
-                                    College
-                                </a>
-                            </li>
-                        
+                        <a href="/Account/My-Reading-List" class="bttn bttn-6">My Reading List</a>
                     
-                </ul>
-            </dd>
-        </dl>
+                        <a id="lnkSignOut" class="bttn bttn-7">Sign Out</a>
+                    
+            </div>
+        </div>
     </aside>
 </div>
 
@@ -910,16 +1030,60 @@ googletag.enableServices();
             </div>
             <!-- .offcanvas -->
         </div>
-
         
 
+<div class="search-modal">
+    <div class="search-form modal">
+        <div class="row small-collapse">
+            <div class="small-12 columns">
+                <div class="row collapse">
+                    <div class="small-10 columns">
+                        <input type="text" class="search-field" name="s" value="" id="searchEntryModal" placeholder="Search CliffsNotes" maxlength="255">
+                    </div>
+                    <div class="small-2 columns">
+                        <a class='bttn search search-bttn-modal' type="submit" name="search_submit"><i class="icon-Search"></i></a>
+                    </div>
+                </div>
+                <div class="row hide">
+                    <div class="small-12 columns">
+                        <p class="search-error-modal"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="close-modal white-link" aria-label="Close">&#215;</a>
+</div>
+
         
         
-    <script src='/Sites/Cliffsnotes/Javascript/Cliffsnotes.min.js'></script>
-    <script src="/Sites/Cliffsnotes/Javascript/Search.js"></script>
-  
-    
-  
+<script>
+    var wnk = wnk || { initialized: false };
+    wnk.DictMainUrl = "http://api.wordnik.com:80/v4/word.json/";
+    wnk.DictSubUrl = "/definitions?limit=1&sourceDictionaries=ahd&includeRelated=false&useCanonical=true&includeTags=false&api_key=1fc4744c3b7e05847050926e3cc010ce2f423ddf8829e1df3";
+</script>
+
+<div id="popup">
+    <a class="close-pop-up" onclick="$('#popup').hide()">×</a>
+    <h4 class="title"></h4>
+    <hr />
+    <p id="meaning"></p>
+</div>
+
+
+
+
+
+<script src="/Sites/Cliffsnotes/Javascript/main.js"></script>
+<script src="/Sites/Cliffsnotes/Javascript/vendor.js"></script>
+<script src="/Sites/Cliffsnotes/Javascript/jquery.validate.js"></script>
+<script src="/Sites/Cliffsnotes/Javascript/Common.js"></script>
+<script src="/Sites/Cliffsnotes/Javascript/jquery.adobe.autocomplete.js"></script>
+<script src="/Sites/Cliffsnotes/Javascript/Search.js"></script>
+<script src="/Sites/Cliffsnotes/Javascript/dictionary.js"></script>
+
+
+
 
 
 
@@ -968,30 +1132,10 @@ dl.hier1 = 'HomePage';
 
         <script type="text/javascript">_satellite.pageBottom();</script>
     
-<!-- Quantcast Tag -->
-<script type="text/javascript">
-var _qevents = _qevents || [];
-
-(function() {
-var elem = document.createElement('script');
-elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
-elem.async = true;
-elem.type = "text/javascript";
-var scpt = document.getElementsByTagName('script')[0];
-scpt.parentNode.insertBefore(elem, scpt);
-})();
-
-_qevents.push({
-qacct:"p-acUfZ4kBvcNN2"
-});
-</script>
-
-<noscript>
-<div style="display:none;">
-<img src="//pixel.quantserve.com/pixel/p-acUfZ4kBvcNN2.gif" border="0" height="1" width="1" alt="Quantcast"/>
-</div>
-</noscript>
-<!-- End Quantcast tag --></form>
+<?xml version="1.0"?>
+<users>
+	<user>A18ACD436D5A3997E3DA2573E3FD792A</user>
+</users></form>
 </body>
 </html>
 

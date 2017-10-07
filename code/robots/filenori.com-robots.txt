@@ -1,1 +1,0 @@
-<body onload="window.location.reload()">

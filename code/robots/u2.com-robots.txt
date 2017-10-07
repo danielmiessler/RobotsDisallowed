@@ -12,9 +12,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	
-	<meta name="Description" content="The official U2 website with all the latest news, video, audio, lyrics, photos, tour dates. New song, Ordinary Love from Mandela: Long Walk To Freedom" />    
-	<meta name="Keywords" content="U2, Ordinary Love, One, No Line On The Horizon, How To Dismantle An Atomic Bomb, Adam, Bono, The Edge, Edge, Larry, U2 tickets, Gigs, Tour, U2 news, u2 music, u2 video, tour dates, song archive, merchandise, fans, Achtung Baby, The Joshua Tree, With or Without You, Vertigo, New Years Day, concert tickets, live, show, band" />
 	
+	<meta name="Description" content="The official U2 website with all the latest news, video, audio, lyrics, photos, tour dates and ticket information. Current tour, The Joshua Tree Tour 2017" />
+    <meta name="Keywords" content="U2, The Joshua Tree Tour 2017, #U2ieTour, Songs of Innocence, Ordinary Love, The Miracle (of Joey Ramone), Every Breaking Wave, One, No Line On The Horizon, How To Dismantle An Atomic Bomb, Adam, Bono, The Edge, Edge, Larry, U2 tickets, Gigs, Tour, U2 news, u2 music, u2 video, tour dates, song archive, merchandise, fans, Achtung Baby, The Joshua Tree, With or Without You, Vertigo, New Years Day, concert tickets, live, show, band" />
+		
 	<meta name="title" content="U2" />
 	
 
@@ -24,11 +25,10 @@
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
 <script type="text/javascript" src="/scripts/fancybox/jquery.fancybox.js?v=2.1.5"></script>
 <script type="text/javascript" src="/scripts/jquery.collapser.js"></script>
-<script type="text/javascript" src="/scripts/combodate/moment.js"></script>
-<script type="text/javascript" src="/scripts/combodate/combodate.js"></script>
 <script type="text/javascript" src="/scripts/jquery-bootstrap.js"></script>
 <script type="text/javascript" src="/scripts/jquery.notification.js"></script>
-<script type="text/javascript" src="/scripts/facebook/connect.js"></script>
+<script type="text/javascript" src="/scripts/cleave/dist/cleave.min.js"></script>
+<script type="text/javascript" src="/scripts/cleave/dist/addons/cleave-phone.i18n.js"></script>
 <script type="text/javascript" src="/scripts/menustates.js"></script>	
 
 
@@ -36,10 +36,10 @@
 	<link rel="stylesheet" href="/styles/bootstrap/bootstrap.css">
 	
 	<link href="http://yui.yahooapis.com/2.5.1/build/reset-fonts-grids/reset-fonts-grids.css" media="all" rel="stylesheet" type="text/css" >
-<link href="/styles/responsive/base.css" media="all" rel="stylesheet" type="text/css" >
-<link href="/styles/responsive/navigation.css" media="all" rel="stylesheet" type="text/css" >
-<link href="http://media.u2.com/images/skins/smoothness/jquery-ui-1.8.12.custom.css" media="all" rel="stylesheet" type="text/css" >		
-	<link rel="stylesheet" href="/styles/responsive/layout.css"> 
+<link href="/styles/responsive/base.css?v=1.1" media="all" rel="stylesheet" type="text/css" >
+<link href="/styles/responsive/navigation.css" media="all" rel="stylesheet" type="text/css" >		
+	<link rel="stylesheet" href="/styles/responsive/layout.css">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="all"> 
 	
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -53,10 +53,7 @@
 	
 	<!-- Favicons
 	================================================== -->
-	<link rel="shortcut icon" href="/images/favicon.ico">
-	<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png">
+	<link rel="shortcut icon" href="http://cdn.u2.com/images/favicon.ico">
 	
 	
 	<!--  Mobilerider player for control panel -->
@@ -88,7 +85,7 @@
 	
 	<!-- Fancybox Login Box Style-->
 	<script type="text/javascript" src="/scripts/fancybox/fancybox-login.js"></script>
-
+	
 	
 
 
@@ -110,25 +107,53 @@
 
 	
 
-	</head>
+	
+
+
+
+
+		
+
+</head>
 
 
 
 
 
 	<body class=" guest" id="">
-		<!-- Google Tag Manager -->
-		<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KMHZ64"
-		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push(
-		{'gtm.start': new Date().getTime(),event:'gtm.js'}
-		);var f=d.getElementsByTagName(s)[0],
-		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-		'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-		})(window,document,'script','dataLayer','GTM-KMHZ64');</script>
-		<!-- End Google Tag Manager -->
+		    <!-- Load Facebook SDK for JavaScript -->
+<div id="fb-root"></div>
+<script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId   : '209721805699',
+          status  : true, // check login status
+          cookie  : true, // enable cookies to allow the server to access the session
+          xfbml   : true // parse XFBML
+        });
 
-					
+        // whenever the user logs in, we refresh the page
+        FB.Event.subscribe('auth.login', function() {
+          window.location.reload();
+        });
+      };
+
+      (function() {
+        var e = document.createElement('script');
+        e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+        e.async = true;
+        document.getElementById('fb-root').appendChild(e);
+      }());
+</script>	    	   
+			<!-- Google Tag Manager -->
+			<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KMHZ64"
+			height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+			<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+			new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+			})(window,document,'script','dataLayer','GTM-KMHZ64');</script>
+			<!-- End Google Tag Manager -->							
 			
 		<div class="band home_header">
 				<script src='https://www.google.com/recaptcha/api.js'></script>
@@ -164,7 +189,7 @@
 		<li id='nav_home' class='dynamic_link current'><a title='Home' href='/index/home' target='_parent'>Home</a></li>
 		<li id='nav_news' class='dynamic_link '><a title='News' href='/news' target='_parent'>News</a></li>
 		<li id='nav_tours' class='dynamic_link '><a title='Tours' href='/tour' target='_parent'>Tours</a></li>
-		<li id='nav_discography' class='dynamic_link '><a title='Music' href='/music/Albums/4152/Songs+Of+Innocence' target='_parent'>Music</a></li>
+		<li id='nav_discography' class='dynamic_link '><a title='Music' href='/music/Reissues' target='_parent'>Music</a></li>
 		<li id='nav_media' class='dynamic_link '><a title='Media' href='/media' target='_parent'>Media</a></li>
 		<li id='nav_band' class='dynamic_link '><a title='Band' href='/band' target='_parent'>Band</a></li>
 		<li id='nav_handm' class='dynamic_link '><a title='Hearts + Minds' href='/heartsandminds' target='_parent'>Hearts + Minds</a></li>
@@ -180,26 +205,6 @@
 					
 										
 						<div id="home_user_state">
-					
-							<div id="fb-root"><!-- facebook connect api loads here asynchronously --></div>
-							<script type="text/javascript">
-<!-- 
-								window.fbAsyncInit = function() {
-									FB.init({
-										appId   : "130666916961678",
-										status  : true,
-										cookie  : true,
-										xfbml   : true
-									});
-								};
-								(function() {
-									var e = document.createElement("script");
-									e.async = true;
-									e.src = document.location.protocol + "//connect.facebook.net/en_US/all.js";
-									document.getElementById("fb-root").appendChild(e);
-								}());
---> 
-</script>
 						</div>
 					
 											<div id="member_nav">
@@ -284,7 +289,7 @@ Try one of the links above.
 			<ul class="main">
 						<li><a title='News' href='/news' target='_parent'>News</a></li>
 		<li><a title='Tours' href='/tour' target='_parent'>Tours</a></li>
-		<li><a title='Music' href='/discography' target='_parent'>Music</a></li>
+		<li><a title='Music' href='/music/Reissues' target='_parent'>Music</a></li>
 		<li><a title='Media' href='/media' target='_parent'>Media</a></li>
 		<li><a title='Band' href='/band' target='_parent'>Band</a></li>
 		<li><a title='Hearts + Minds' href='/heartsandminds' target='_parent'>Hearts + Minds</a></li>
@@ -294,14 +299,13 @@ Try one of the links above.
 		</ul>
 	</div>
 	</div>
-	<div id='footer_bottom'><div class='copyright'>&copy;2015&nbsp;U2.&nbsp;&nbsp;Powered by <a href='http://www.livenation.com'>Live Nation Entertainment</a>.</div>
+	<div id='footer_bottom'><div class='copyright'>&copy;2017&nbsp;U2.&nbsp;&nbsp;Powered by <a href='http://www.livenation.com'>Live Nation Entertainment</a>.</div>
 	<div id='ft_submain'>
 		<ul class='submain'>		<li><a class='nav_emaillist' href='/service/emaillist'>Email List</a></li>
 		<li><a title='Terms + Conditions' href='/terms' target='_parent'>Terms + Conditions</a></li>
 		<li><a title='Privacy Policy' href='/policy' target='_parent'>Privacy</a></li>
 		<li><a title='Help' href='/help' target='_parent'>Help</a></li>
-		<li class='last'><a href='http://translate.googleusercontent.com/translate_c?hl=en&rurl=translate.goog
-				le.com&sl=en&tl=fr&u=http://www.u2.com/index/error' target='_BLANK'>Translate</a></li>
+		<li class='last'><a href='http://translate.googleusercontent.com/translate_c?hl=en&rurl=translate.google.com&sl=en&tl=fr&u=http://www.u2.com/index/error' target='_BLANK'>Translate</a></li>
 				</ul>
 			</div>	
 			
@@ -311,7 +315,7 @@ Try one of the links above.
     <script src="/scripts/bootstrap/bootstrap.js"></script>
     <script src="/scripts/tmot-u2.js"></script>
 
-<!-- generated by: www.u2.com 10.10.50.47 10.10.50.34 at 2015-09-22 23:24:45 -->
+<!-- generated by: www.u2.com 172.31.5.188 45.26.50.19 at 2017-10-07 01:08:27 -->
 
 <!-- footer end -->
 			</div>

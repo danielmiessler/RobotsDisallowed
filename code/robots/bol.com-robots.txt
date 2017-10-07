@@ -6,6 +6,7 @@ Disallow: /intershoproot/
 Disallow: /sdd/
 Disallow: /imgbase0/
 Disallow: /imgbase/
+Disallow: /nl/rnwy/account/
 Disallow: /nl/account/
 Disallow: /nl/checkout/
 Disallow: /nl/wishlist/
@@ -22,48 +23,28 @@ Disallow: /nl/verlanglijstje/*/index.html
 Disallow: /nl/m/service/mini-verjaardag-aanmelden/index.html
 Disallow: /nl/m/service/mini-verjaardag-bedankt/index.html
 Disallow: /nl/service/schrijf-een-recensie.html*
-Disallow: /nl/tealeaf-target.html
 Disallow: /nl/bltg/*
-Disallow: /nl/ajax/*
+# SEB-1632
+Disallow: /nl/ajax/jsLogging.html
+# SEB-1013
+Disallow: /nl/c/*/*/N/*
+Allow: /nl/c/*/*/N/8299*
+Allow: /nl/c/*/*/N/3132*
+Allow: /nl/c/*/*/N/3133*
+
+# SEB-2022
+Disallow: /nl/c/*/*/N/8299*/filter_N/*
+Disallow: /nl/c/*/*/N/3132*/filter_N/*
+Disallow: /nl/c/*/*/N/3133*/filter_N/*
+Disallow: /nl/c/*/*/N/8299+*
+Disallow: /nl/c/*/*/N/3132+*
+Disallow: /nl/c/*/*/N/3133*+*
+
+Disallow: /nl/lijstjes/
 
 #
 # Excluding non-relevant versions of list pages
-Disallow: */sort/aanbevolen1*
-Disallow: */sort/aanbevolen_11*
-Disallow: */sort/boeken_11*
-Disallow: */sort/boeken_21*
-Disallow: */sort/bundel1*
-Disallow: */sort/bundel_minuten1*
-Disallow: */sort/dvd1*
-Disallow: */sort/dwh1*
-Disallow: */sort/games1*
-Disallow: */sort/hardware1*
-Disallow: */sort/muziek_11*
-Disallow: */sort/muziek_21*
-Disallow: */sort/muziek_31*
-Disallow: */sort/type1*
-Disallow: */sort/product_prijs1*
-Disallow: */sort/product_datum1*
-Disallow: */sort/product_titel1*
-Disallow: */sort/uitvoerende1*
-Disallow: */sort/publicatiedatum1*
-Disallow: */sort/speciaal1*
-Disallow: */sort/aanbevolen0*
-Disallow: */sort/aanbevolen_10*
-Disallow: */sort/bundel0*
-Disallow: */sort/bundel_minuten0*
-Disallow: */sort/dvd0*
-Disallow: */sort/dwh0*
-Disallow: */sort/games0*
-Disallow: */sort/type0*
-Disallow: */sort/product_prijs0*
-Disallow: */sort/product_datum0*
-Disallow: */sort/product_titel0*
-Disallow: */sort/uitvoerende0*
-Disallow: */sort/publicatiedatum0*
-Disallow: */sort/speciaal0*
-Disallow: */sort/SALES_RANKING*
-Disallow: */sort/PDT_RANKING*
+Disallow: */sort/*
 Disallow: */levertijd/*
 Disallow: *+nl/index.html
 Disallow: *+en/index.html
@@ -73,10 +54,7 @@ Disallow: */po/20/*
 Disallow: */po/50/*
 #
 # Excluding filtering out of stock products
-Disallow: */toon-niet-leverbare-titels/N/*
-Disallow: */toon-niet-leverbare-artikelen/N/*
-Disallow: */toon-leverbare-titels/N/*
-Disallow: */*/zoekresultaten/*/showNA/true/*
+Disallow: */showNA/true/*
 #
 #
 #
@@ -97,7 +75,16 @@ Disallow: */review/*/inappropriate.htm*
 Disallow: */review/*/positive.htm*
 Disallow: */review/*/writereview.htm*
 #
-
+#
+# Excluding links to reponsive review, q&a forms and ajax calls supporting them
+Disallow: /nl/service/schrijf-een-review.html
+Disallow: /nl/service/controleer-je-review.html
+Disallow: /nl/service/stel-je-vraag.html
+Disallow: /nl/service/controleer-je-vraag.html
+Disallow: /nl/service/beantwoord-de-vraag.html
+Disallow: /nl/service/controleer-je-antwoord.html
+Disallow: /nl/service/dubbele-review.html
+Disallow: /nl/rnwy/ajax/*
 #
 #
 # Excluding all /catalog/ urls (link to e-mail a product, recommendations, compare, tab-content, etc.)
@@ -118,10 +105,65 @@ Disallow: /common/error/*
 # Sitemap banen
 Sitemap: http://banen.bol.com/sitemap_index.xml
 #
-# Allow imagebot crawling
-User-agent: Googlebot-Image
-Allow: /imgbase0/
 #
 #
 # Track and trace page
 Disallow: /nl/trackandtrace/
+#
+#
+# SEB-949
+Noindex: */p/mim-pi-*
+Noindex: */p/flo-*
+
+# SEB-1854
+Allow: /nl/ra/algemeen/aanbiedingen/23708/*
+
+# SEB-1294
+Disallow: /nl/m/voorwaarden/partner-voorwaarden*
+Disallow: /nl/m/voorwaarden/voorwaarden-koper-verkoper-zakelijk/*
+Disallow: /nl/rnwy/ajax/reviews.html*
+Disallow: *language=en*
+Disallow: *language=nl*
+noindex: */ebook/preview.html?*
+noindex: /nl/l/*/20823/filter_N/*
+
+# SEB-1822
+noindex: */rnwy/productPage/preview/pdf.html?*
+
+# SEB-1574: Don't let Google crawl too deep
+Disallow: */nl/l/*/*/N/*/filter_N/*+*+*/*
+
+# SEB-1675
+Noindex: */N/12022+4287655559+*
+
+# SEB-1916
+Disallow: */pl/*
+
+User-agent: Applebot
+Disallow: */nl/l/*/*/N/*/filter_N/*+*+*/*
+
+# Allow imagebot crawling
+User-agent: Googlebot-Image
+Allow: /imgbase0/
+
+# SEB-1574
+User-Agent: Baiduspider
+Disallow: /
+
+User-Agent: msnbot
+Crawl-Delay: 20
+
+User-Agent: Slurp
+Crawl-delay: 20
+
+User-Agent: Yahoo! Slurp
+Crawl-delay: 20
+
+User-agent: rogerbot
+Crawl-delay: 2
+
+User-agent: YandexBot
+Crawl-delay: 10
+
+User-agent: bingbot
+Crawl-delay: 20

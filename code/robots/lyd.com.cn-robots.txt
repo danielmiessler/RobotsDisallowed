@@ -1,14 +1,40 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head><meta http-equiv=”Cache-Control” content=”no-transform” />
-<meta http-equiv=”Cache-Control” content=”no-siteapp” /><script type="text/javascript" src="http://mobile.lyd.com.cn/mobile.php?mod=redirect&re_url=http://m.lyd.com.cn"></script>
+<head>
+<meta http-equiv=”Cache-Control” content=”no-transform” />
+<script type="text/javascript" src="http://news.lyd.com.cn/images/jquery-1.4.2.min.js" ></script>
+<script type="text/javascript">
+  var browser={
+    versions:function(){
+           var u = navigator.userAgent, app = navigator.appVersion;
+           return {
+                trident: u.indexOf('Trident') > -1, 
+                presto: u.indexOf('Presto') > -1, 
+                webKit: u.indexOf('AppleWebKit') > -1, 
+                gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, 
+                mobile: !!u.match(/AppleWebKit.*Mobile.*/)||!!u.match(/AppleWebKit/), 
+                ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), 
+                android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, 
+                iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, 
+                iPad: u.indexOf('iPad') > -1, 
+                webApp: u.indexOf('Safari') == -1 
+            };
+         }(),
+         language:(navigator.browserLanguage || navigator.language).toLowerCase()
+}
+var mPageUrl="http://m.lyd.com.cn";
+var windowWidth = $(window).width();
+if((browser.versions.ios || browser.versions.android) && (location.search.indexOf('f=pc')<0)){
+location.href=mPageUrl;
+}
+</script>
 <meta name="baidu_union_verify" content="6536feb666ce259e106a5a3e68d871d8">
 <meta name="baidu-site-verification" content="U2jIL5MLul" />
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 <base target="_blank" />
-<title>洛阳网-www.lyd.com.cn-国家批准的重点新闻网站-洛阳最权威的门户网站</title>
-<meta name="Description" content="洛阳网（http://www.lyd.com.cn）——洛阳日报报业集团主办，国务院新闻办公室批准的国家一类新闻网站，下设洛阳新闻、百姓呼声、22楼会客厅、洛阳房产、洛阳汽车、经典洛阳等频道， 拥有本地最大的互动论坛“洛阳社区”， 在河南综合性网站及社区网站综合影响力排名榜单上进入前三强，为洛阳最具知名度和影响力的门户网站。" />
+<title>洛阳网-www.lyd.com.cn-国家批准的重点新闻网站-洛阳权威门户网站</title>
+<meta name="Description" content="洛阳网（http://www.lyd.com.cn）——洛阳日报报业集团主办，国务院新闻办公室批准的国家一类新闻网站，下设洛阳新闻、百姓呼声、22楼会客厅、洛阳房产、洛阳汽车、经典洛阳等频道， 拥有本地互动论坛“洛阳社区”， 在河南综合性网站及社区网站综合影响力排名榜单上进入前三强，为洛阳高知名度和强影响力的门户网站。" />
 <meta name="Keywords" content="洛阳,洛阳网,洛阳新闻网,洛阳新闻,百姓呼声,洛阳社区,洛阳论坛,洛阳房产,洛阳汽车,洛阳旅游,洛阳景区,洛阳健康,洛阳娱乐,洛阳美食,洛阳天气,洛阳特产,洛阳图片,洛阳教育,洛阳自助游,牡丹,洛阳牡丹,龙门石窟,白马寺,关林,洛阳铲" />
 <meta name="robots" content="all" />
 <meta http-equiv="Cache-Control" content="no-transform">
@@ -25,7 +51,6 @@
 <meta name="keywords" content="">
 
 
-
 <style type="text/css">
 <!--
 /* 公用样式开始 */
@@ -35,12 +60,8 @@ body {
 	padding:0;
 	font:12px/1.5 \5b8b\4f53,Arial,sans-serif;
 	color:#4a4a4a;
-	background-image: url();
-	background-repeat: no-repeat;
-	background-position: center top;
-
-	background-color: #ffffff;
-
+    background-color:#ffffff;
+	background:url(http://biz.lyd.com.cn/2017/images/20170930_shiyibj.jpg) #ffffff center top no-repeat;
 	}
 div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote,p{padding:0; margin:0;}
 
@@ -83,7 +104,7 @@ a:active {color:#d62828;}
 
 /* 导航条 */
 
-.daohang{ height:135px; border-top:#336890 3px solid;width:1000px;margin:0 auto; background-color:#FFF; }
+.daohang{ border-top:#336890 3px solid;width:1000px;margin:0 auto; background-color:#FFF; padding-top:8px;}
 
 
 .daohang .menus{font-size:14px;height:20px; margin-bottom:10px;
@@ -91,11 +112,12 @@ a:active {color:#d62828;}
 
 .daohang .menux{font-size:14px;height:20px;margin-top:10px;
 }
-.daohang .dubao{height:30px;line-height:30px; vertical-align:middle; background:#f4f4f4;border-bottom:1px solid #d4d4d4; }
+.dubao{height:30px; width:1000px; line-height:30px; vertical-align:middle; background:#f4f4f4;border-bottom:1px solid #d4d4d4; }
 
 .ad{height:55px;width:1000px;margin:0 auto ;}
+.ad_nav{height:133px;width:1000px;margin:0 auto ; overflow:hidden;}
 /* 新闻 列表*/
-.content{width:1000px;margin:0 auto ;height:1050px; }
+.content{width:1000px;margin:0 auto ;height:1040px; }
 .cleft{float:left;width:260px;}
 .ccenter{float:left;width:385px; margin-left:12px;display:inline;}
 
@@ -149,7 +171,9 @@ a:active {color:#d62828;}
 .xinmeiti .huizi{ color:#D0D0D0}
 
 .lynews{height:40px;overflow:hidden;display: block;width:380px}
-.lynews h2{font-size:20px;padding-top:15px;padding-bottom:5px; text-align:center; font-family:"黑体";line-height:30px; overflow:hidden;width:380px}
+.lynews h2{font-size:16px;padding-top:15px;padding-bottom:5px; text-align:center; line-height:30px; overflow:hidden;width:380px; font-weight:bolder; color:#3b639f;}
+.lynews h2 a{ color:#3b639f;}
+.lynews h22{font-size:20px;padding-top:15px;padding-bottom:5px; text-align:center; font-family:"黑体";line-height:30px; overflow:hidden;width:380px}
 .lynews h3{font-size:20px;padding-top:15px;padding-bottom:5px; text-align:center; font-family:"黑体";line-height:30px; overflow:hidden;width:320px}
 .liebiao{font-size:14px;overflow:hidden}
 
@@ -161,6 +185,7 @@ a:active {color:#d62828;}
 
 .toutidazi  a {color:#21567d; text-decoration:none;}
 .toutidazi a:visited {text-decoration:none;}
+
 .toutidazi a:hover {color:#cc0000;text-decoration:underline;}
 .toutidazi a:active {color:#cc0000;}
 
@@ -176,8 +201,8 @@ a:active {color:#d62828;}
 .liebiao ul li{height:25px;}
 
 
-.bxhf{height:160px;width:24px;font-size:14px;margin-top:20px;margin-left:3px; background-color:#206f96;color:#FFF; text-align:center;padding-top:40px;display:inline;}
-
+.bxhf{height:230px;width:24px;font-size:14px;margin-top:20px;margin-left:3px; background-color:#206f96;color:#FFF; text-align:center;padding-top:40px;display:inline;}
+.bxhf2{height:220px;width:24px;font-size:14px;margin-top:20px;margin-left:3px; background-color:#206f96;color:#FFF; text-align:center;padding-top:40px;display:inline;}
 .liebiaobx{font-size:14px;width:303px;overflow:hidden;}
 
 
@@ -191,7 +216,7 @@ a:active {color:#d62828;}
 .liebiaobx ul{padding-top:20px; padding-left:3px;}
 .liebiaobx ul li{height:25px;}
 
-.bxg{height:450px;}
+.bxg{height:500px;}
 
 
 .shipin{line-height:30px;text-align:center;display:inline;margin-top:30px}
@@ -220,7 +245,7 @@ a:active {color:#d62828;}
 	padding-top:3px;
 }
 
-.daqu{width:1000px;margin:0 auto ;}
+.daqu{width:1000px;margin:0 auto ;clear:both}
 .daqutou{height:60px}
 .daqubiao{ font-size:38px; font-family:"黑体"; color:#207095}
 .daqubiao a{ font-size:38px; font-family:"黑体"; color:#207095}
@@ -251,7 +276,7 @@ a:active {color:#d62828;}
 
 .pn7{height:70px;width:260px;_width:248px;padding-left:10px;padding-top:10px}
 .pn7 .pntu{ float:left;width:100px }
-.pn7 .puzi{float:left;width:140px; overflow:hidden;padding-left:10px}
+.pn7 .puzi{float:left;width:150px; overflow:hidden;padding-left:10px}
 .pn7 .puzi .dabiao {font-size:14px;height:30px;line-height:30px; vertical-align: middle;overflow:hidden;}
 .pn7 .puzi .xiaonr {font-size:12px; line-height:20px; }
 
@@ -466,6 +491,9 @@ a:active {color:#d62828;}
 
 
 }
+
+
+
 #bottom3 {
 	TEXT-ALIGN: center; WIDTH:110px; BACKGROUND-POSITION: -120px 0px
 }
@@ -537,18 +565,22 @@ a:active {color:#d62828;}
 	background-position: right top;
 }
  .chunjie{ width:100%;
-        height:180px; 
+        height:44px; 
+
     
       }    
 	.chunjie a{
     display:block;
    width:100%;
- height:180px; 
+ height:44px; 
     cursor:hand; (鼠标样式)
-}-->
+}.STYLE3 {color: #CC0000}
+.ydyl_box { width: 960px;padding: 15px 20px 15px 20px;margin:0 auto ; font-size:12px; line-height:26px;
+	
+}
+
+-->
 </style>
-
-
 </head>
 
 <!--下拉广告js（显示完以后会缩小）-->
@@ -563,6 +595,7 @@ a:active {color:#d62828;}
 function check(f){
     if(f.username.value == ""){
         alert("请填写用户名!");
+
         f.username.focus();
         return false;
     }
@@ -605,15 +638,6 @@ function check(f){
         /*main*/
 
 
-
-
-
-
-
-
-
-
-
         /*---------------------------------- top-search.css*/
         /*头部搜索模块*/
         .top-search-wrap{height: 58px;width:100%;min-width:450px;}
@@ -621,7 +645,7 @@ function check(f){
         .top-search-wrap .sina-logo, .top-search-wrap .top-search, .top-search-wrap .now-wea-wrap{float: left;display: inline;}
    
         .top-search-wrap .top-search{margin: 6px 0 0 23px;color: #666;}
-        .top-search .sim-select{float: left;display:inline;position: relative;width: 75px;height: 33px;border: 1px solid #c1c1c1;border-right:0px; border-radius: 3px 0 0 3px;margin-top:3px;background:#fff url(http://www.lyd.com.cn/images2013/bg1px.png) 74px -218px no-repeat;}
+        .top-search .sim-select{float: left;display:inline;position: relative;width: 5px;height: 33px;border: 1px solid #c1c1c1;border-right:0px; border-radius: 3px 0 0 3px;margin-top:3px;background:#fff url(http://www.lyd.com.cn/images2013/bg1px.png) 74px -218px no-repeat;}
         .top-search .sim-select h3{line-height: 33px;font-weight: normal;font-size: 14px;background: url(http://www.lyd.com.cn/images2013/icon.png) 57px -340px no-repeat;padding-left: 10px;cursor: pointer;float: left;display: block;width: 59px;}
         /*.top-search .sim-select .v-line{height: 31px;width: 0px;border-left: 1px solid #c1c1c1;overflow: hidden;float: left;display: inline;margin: 1px 0;}*/
         .top-search .sim-select .sim-ul-flt{margin-top:-1px;position: absolute;left: -1px;top: 34px;z-index: 1000;}
@@ -703,6 +727,8 @@ function check(f){
 
 
 
+
+
                         .uni-blk-picwrap .uni-blk-bpic span{width: 170px;}
 
 
@@ -757,7 +783,9 @@ function check(f){
  $('.son_ul').hide();
  }
  );
+
     },function(){}
+
  );
  $('ul.son_ul li').click(function(){
  $('#SI_Search_Type_Hack h3').text($(this).html());
@@ -767,6 +795,9 @@ function check(f){
 
 
  $('#SI_Search_Type_Hack .son_ul').hide();
+
+
+
 
  });
  
@@ -791,7 +822,7 @@ function SearchSubmit(){
 	}else{
 		value = $("#keywords").val();
 		//window.open('http://www.lyd.com.cn/search/?q='+encodeURI(value)+'&goto='+goto,'search');
-		window.open('http://s.lyd.com.cn/cse/search?s=780316685311236820&nsid=0&q='+encodeURI(value)+'&goto='+goto,'search');
+		window.open('http://s.lyd.com.cn/cse/search?s=780316685311236820&stp=1&nsid=0&q='+encodeURI(value)+'&goto='+goto,'search');
 	}
 }
 </script>
@@ -812,32 +843,31 @@ function tab (mod,cursor,n){
 
 
 <!--左侧对联 开始-->
-<div id="duilian_left" style="position:absolute; left:10px; top:90px;width:98px;height:237px; border: 1px solid #E4E4E4;"><a href="http://bbs.lyd.com.cn/thread-6455923-1-1.html" target="_blank"><img src="http://biz.lyd.com.cn/2015/images/20150921_rxt.jpg" border="0" / width="100" height="240" /class="imgbk"  /></a>
+<!--<div id="duilian_left" style="position:absolute; left:10px; top:90px;width:94px;height:169px; border: 1px solid #E4E4E4;"><a href="http://203.207.220.20/Modules/OnlineSurvey/Pages/MSurveyExt.aspx" target="_blank"><img src="http://biz.lyd.com.cn/2016/images/20160330_pf.jpg" border="0" / width="94" height="169" /class="imgbk"  /></a>
 <div style="position:relative; text-align:right"><span style="cursor:pointer; font-size:12px" onclick="$('#duilian_left').hide();">关闭</span></div>
-</div>
+</div>-->
 <!--左侧对联 结束-->
 <!--右侧对联 开始-->
-<!--<div id="duilian_right" style="position:absolute; right:10px; top:90px;width:98px;height:237px;"><a href="http://bbs.lyd.com.cn/thread-6447158-1-1.html" target="_blank"><img src="http://biz.lyd.com.cn/2015/images/20150909_ydl.jpg" border="0" / width="100" height="240" /class="imgbk"  /></a>
+<!--<div id="duilian_right" style="position:absolute; right:10px; top:90px;width:98px;height:237px;"><a href="http://news.lyd.com.cn/system/2016/04/11/010603124.shtml" target="_blank"><img src="http://biz.lyd.com.cn/2016/images/20160411_ydl.jpg" border="0" / width="100" height="240" /class="imgbk"  /></a>
 <div style="position:relative; text-align:right"><span style="cursor:pointer; font-size:12px" onclick="$('#duilian_right').hide();">关闭</span></div>
 </div>-->
 <!--右侧对联 结束-->
 
-<body >
+<body>
 <!--大背景广告加链接-->
 <!--<div class="chunjie">
-<a href="http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6401857"></a></div>-->
+<a href="http://news.lyd.com.cn/system/2017/03/03/030230663.shtml"></a></div>-->
 
 <!--大背景广告加链接结束-->
 <!--抢屏广告-->
-<!--<div style="WIDTH: 1000px;height:0px;margin:0 auto; display:none;padding-bottom:0px;" id="tu_xiao"><!--<a href="http://www.0379taojia.com/home-articleinfo-fid-66-id-29.html" target="_blank"><img src="http://biz.lyd.com.cn/2015/images/hongxing_1000_35.jpg" border="0"  height="35" width="1000"/></a>--></div>
-<!--<div style="WIDTH: 1000px;height:450px;margin:0 auto; display:none;padding-bottom:2px;" id="tu_da"><a href="http://bbs.lyd.com.cn/thread-6445548-1-1.html" target="_blank"><img src="http://biz.lyd.com.cn/2015/images/yunliang_1000_450.jpg" border="0"  height="450"/></a>
+<!--<div style="WIDTH: 1000px;height:0px;margin:0 auto; display:none;padding-bottom:0px;" id="tu_xiao"><a href="" target="_blank"><img src="" border="0"  height="55" width="1000"/></a></div>
+<div style="WIDTH: 1000px;height:450px;margin:0 auto; display:none;padding-bottom:2px;" id="tu_da"><a href="http://bbs.lyd.com.cn/thread-6551218-1-1.html" target="_blank"><img src="http://www.lyd.com.cn/images2016/zmls.jpg" border="0"/></a>
 <div style="position:relative; text-align:right"><span style="cursor:pointer; font-size:12px" onclick="$('#tu_da').hide();$('#tu_xiao').show();">关闭</span></div>
-</div>-->
-
+</div>
+-->
 <!--<div class="ad top8 "><a href="http://news.lyd.com.cn/zhuanti/2015_myjcc/baoming.html" target="_blank"><img src="http://biz.lyd.com.cn/2015/images/mingyou_1000_450_qp.jpg" border="0"  height="55"/></a>
 </div>-->
 
-<div class="top8"></div>
 <!--
 <div class="adfeng"></div>
 <div class="ad top8 "><a href="http://www.lywch.cn/index.aspx" target="_blank"><img src="http://www.lyd.com.cn/images2015/wc.gif" width="1000" height="55" border="0" class="imgbk" /></a></div>-->
@@ -845,16 +875,10 @@ function tab (mod,cursor,n){
 <!--<div class="adfeng"></div>
 <div class="ad top8 "><a href="http://www.lywch.cn/index.aspx" target="_blank"><img src="http://www.lyd.com.cn/images2015/wc.gif" border="0"  height="55"/></a></embed>
 </div>-->
-<div class="adfeng"></div>
-<div class="ad top8 "><embed src="http://www.lyd.com.cn/images2015/gohang0915sy.swf" width="1000" height="55" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" wmode="transparent" ></embed>
+<div class="adfeng" style="margin-top: 85px"></div>
+<div class="ad top8 " style="position: relative;" ><embed src="http://biz.lyd.com.cn/2017/images/20170428_gonghang.swf" width="1000" height="57" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" wmode="transparent" class="imgbk"></embed><div style="position: absolute; left: 0px; bottom: 0px; width: 26px; height:12px; z-index: 12; background: url(http://www.lyd.com.cn/images2016/leftbottom_new.png) 100% 0% no-repeat;"></div>
 
-</div
-
-><div class="adfeng"></div>
-<div class="ad"><embed src="http://biz.lyd.com.cn/2015/images/20150407_yd.swf" width="1000" height="55"  quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" wmode="transparent" ></embed>
 </div>
-<div class="adfeng"></div>
-
 <!--<div class="adfeng" style="height:2px"></div>
 <div class="ad tu_xiao2_fuceng" style="display:none"><a href="http://news.lyd.com.cn/zhuanti/2015_myjcc/baoming.html" target="_blank"><img src="http://biz.lyd.com.cn/2015/images/mingyou_1000_30.gif" width="1000" height="30"  border="0" class="imgbk"></a></div>-->
 
@@ -862,11 +886,20 @@ function tab (mod,cursor,n){
 <!--登录条 -->
 <div class="head">
 <div class="dl">
+
+
+
+
+
+
+
+
+
 <div class="l">
 
 
-<div class="l"><a href=# onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://www.lyd.com.cn');">设为首页</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+<div class="l" style="padding-right:500px"><a href=# onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://www.lyd.com.cn');">设为首页</a>
+</div>
 
 <div class="l"><form name="login" method="post" target="_blank">用户名&nbsp;<input name="username" type="text" size="10"/>&nbsp;&nbsp;密码 <input name="password" type="password" size="10" />&nbsp;<input type="hidden" name="do" value="check" />
 <a href="javascript:" target="_self" onclick="javascript:return check(login);">登录</a></form></div>
@@ -874,84 +907,191 @@ function tab (mod,cursor,n){
 <div class="l">
 &nbsp;<a href="http://bbs.lyd.com.cn/connect.php?mod=login&op=init&referer=portal.php&statfrom=login_simple" target='_blank'><img src='http://www.lyd.com.cn/images/ico_qzone_16x16.png' alt='QQ登录' /  style="margin-top:5px"></a></div>
 
-<div class="l">&nbsp;<a href="http://passport.lyd.com.cn/accounts.php?action=login_weibo&backurl=/" target='_blank'><img src='http://www.lyd.com.cn/images/ico_sina_16x16.png' alt='新浪微博登录' / style="margin-top:5px"></a></div><div class="l">&nbsp;<a href="http://passport.lyd.com.cn/index.php?action=register">注册</a>&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+<div class="l">&nbsp;<a href="http://passport.lyd.com.cn/accounts.php?action=login_weibo&backurl=/" target='_blank'><img src='http://www.lyd.com.cn/images/ico_sina_16x16.png' alt='新浪微博登录' / style="margin-top:5px"></a></div><div class="l">&nbsp;<a href="http://passport.lyd.com.cn/index.php?action=register">注册</a></span></div>
 
 </div></div>
 </div>
 
 <!--头、搜索 -->
-<div class="head"><div class="logotiao">
-  <div class="l top17 bottom"><img src="images2013/logob.gif" alt="洛阳网"/ ></div><div class="sousuo l" >
+<div class="head"><div class="logotiao"><table width="1000" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td> <div class="l top17 bottom"><img src="images2013/logob.gif" alt="洛阳网"/ ></div></td>
+    <td><div class="sousuo l" >
       <!-- 头部搜索 begin -->
 <div class="top-search-wrap">
         <div class="top-search-frame clearfix">
             <div class="top-search clearfix">
                     <div class="sim-select clearfix" id="SI_Search_Type_Hack">
+<!-- 
                         <h3>新闻</h3>
     <ul class="son_ul">
       <li id="news">新闻</li>
       <li id="bbs">社区</li>
     </ul>
+ -->
               </div>
-<div class="inp-txt-wrap">
-          <input type="text" maxlength="40" value="请输入关键字" name="keywords" id="keywords" class="inp-txt" onFocus="if(this.value=='请输入关键字'){this.value='';this.className='inp-txt inp-txt-active'}" onBlur="if(this.value==''){this.value='请输入关键字';this.className='inp-txt'}" />
-</div>
+<div class="inp-txt-wrap">  <span class="inp-txt-wrap1">
+        <input type="text" maxlength="40" value="请输入关键字" name="keywords" id="keywords" class="inp-txt" onfocus="if(this.value=='请输入关键字'){this.value='';this.className='inp-txt inp-txt-active'}" onblur="if(this.value==''){this.value='请输入关键字';this.className='inp-txt'}" />
+        </span></div>
                 <input type="button" name="SearchSubButton" id="SearchSubButton" class="submit-second-btn" value="" onMouseOver="this.className='submit-second-btn submit-second-btn-hover'" onMouseOut="this.className='submit-second-btn'" onclick="SearchSubmit();" />
               <input type="hidden" name="goto" id="goto" value="news" />
-
             </div>
-        
-
-
-
         </div>
-</div>
+      </div>
       <!-- 头部搜索 end -->
-</div><div class="r riqi" >
+</div></td>
+    <td><div class="r riqi" >
     <div><script type="text/javascript" src="http://www.lyd.com.cn/js/date.js"></script></div><div class="tiqi" id="weatherContainer"><iframe name="sinaWeatherTool"   src="http://weather.news.sina.com.cn/chajian/iframe/weatherStyle1.html?city=%E6%B4%9B%E9%98%B3" width="200" height="20" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no"></iframe></div>
-</div></div>
+</div></td>
+  </tr>
+</table>
+
+ </div>
 
 
   <span class="ad">
 
 </span></div>
 <!--导航条 -->
-<div class="daohang">
-<div style="height:50px;margin-top:15px;">
-<div class="l youxian " style="clear:right;display:inline"><div  class="menus"><strong><a href="http://news.lyd.com.cn/index.shtml">新闻</a></strong>&nbsp;&nbsp;&nbsp;<a href="http://news.lyd.com.cn/luoyang/luoyangxinwen/index.shtml">洛阳</a>&nbsp;&nbsp;&nbsp;<a href="http://news.lyd.com.cn/shehui/">社会</a>&nbsp;&nbsp;&nbsp;<a href="http://mem.lyd.com.cn/clew/">爆料台</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><a href="http://people.lyd.com.cn/">百姓呼声</a></strong>&nbsp;&nbsp;&nbsp;<a href="http://xianqu.lyd.com.cn/">县区</a>&nbsp;&nbsp;&nbsp;<strong><a href="http://bbs.lyd.com.cn/">论坛</a></strong>&nbsp;&nbsp;&nbsp;<a href="http://bbs.lyd.com.cn/forum-63-1.html">文苑</a>&nbsp;&nbsp;&nbsp;<a href="http://bbs.lyd.com.cn/forum-210-1.html">公益</a></div >
-<div class="menux"><strong><a href="http://videos.lyd.com.cn/index.html">视频</a></strong>&nbsp;&nbsp;&nbsp;<a href="http://videos.lyd.com.cn/huiketing/">22楼会客厅</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://videos.lyd.com.cn/zhibohuifang/">直&nbsp;&nbsp;播</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><a href="http://news.lyd.com.cn/system/2013/06/05/010254300.shtml">记者在线</a></strong>&nbsp;&nbsp;&nbsp;<a href="http://photo.lyd.com.cn/index.shtml">图片</a>&nbsp;&nbsp;&nbsp;<strong><a href="http://ent.lyd.com.cn/">娱乐</a></strong>&nbsp;&nbsp;&nbsp;<a href="http://bbs.lyd.com.cn/forum.php?gid=124">旅游</a>&nbsp;&nbsp;&nbsp;<a href="http://bbs.lyd.com.cn/forum-67-1.html">摄影</a></div>
+<div class="ad_nav ">
+  <table width="1000" border="0" align="center" cellpadding="0" class="daohang">
+    <tr>
+      <td width="509" style="border-right:1px #E9E9E9 solid; height:55px;"><table width="476" height="30" border="0" align="center" cellpadding="0" cellspacing="0" >
+        <tr height="28">
+          <td width="56"><a href="http://news.lyd.com.cn/index.shtml"><span class="menus"><strong>新闻</strong></span></a></td>
+          <td width="48"><a href="http://news.lyd.com.cn/luoyang/luoyangxinwen/index.shtml"><span class="menus">洛阳</span></a></td>
+          <td width="49"><a href="http://news.lyd.com.cn/shehui/"><span class="menus">社会</span></a></td>
+          <td width="79"><a href="http://mem.lyd.com.cn/clew/"><span class="menus">爆料台</span></a></td>
+          <td width="81"><a href="http://people.lyd.com.cn/"><span class="menus"><strong>百姓呼声</strong></span></a></td>
+          <td width="49"><a href="http://xianqu.lyd.com.cn/"><span class="menus">县区</span></a></td>
+          <td width="51"><a href="http://bbs.lyd.com.cn/"><span class="menus"><strong>论坛</strong></span></a></td>
+          <td width="63"><a href="http://bbs.lyd.com.cn/forum-63-1.html"><span class="menus">文苑</span></a></td>
+        </tr>
+        <tr height="28">
+          <td width="56"><a href="http://videos.lyd.com.cn/index.html"><span class="menus"><strong>视频</strong></span></a></td>
+          <td colspan="2"><a href="http://videos.lyd.com.cn/huiketing/"><span class="menus">22楼会客厅</span></a></td>
+          <td width="79"><a href="http://videos.lyd.com.cn/zhibohuifang/"><span class="menus">直 播</span></a></td>
+          <td width="81"><a href="http://news.lyd.com.cn/system/2013/06/05/010254300.shtml"><span class="menus"><strong>记者在线</strong></span></a></td>
+          <td width="49"><a href="http://photo.lyd.com.cn/index.shtml"><span class="menus">图片</span></a></td>
+          <td width="51"><a href="http://bbs.lyd.com.cn/forum-210-1.html"><span class="menus">公益</span></a></td>
+          <td width="63"><a href="http://bbs.lyd.com.cn/forum-67-1.html"><span class="menus">摄影</span></a></td>
+        </tr>
+      </table></td>
+      <td width="246" style="border-right:1px #E9E9E9 solid; height:55px;"><table width="246" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr height="28">
+          <td width="66" align="center"><a href="http://health.lyd.com.cn/"><span class="menus"><strong>健康</strong></span></a></td>
+          <td width="50" align="center"><a href="http://health.lyd.com.cn/liangxing.html"><span class="menus">两性</span></a></td>
+          <td width="63" align="center"><a href="http://health.lyd.com.cn/hospital.html"><span class="menus">搜医院</span></a></td>
+          <td width="63" align="center"><a href="http://news.lyd.com.cn/jiaoyu/index.shtml"><span class="menus">教育</span></a></td>
+        </tr>
+        <tr height="28">
+          <td width="66" align="center"><a href="http://news.lyd.com.cn/fangchan/index.shtml"><span class="menus"><strong>房产</strong></span></a></td>
+          <td width="50" align="center"><a href="http://bbs.lyd.com.cn/forum-55-1.html"><span class="menus">美食</span></a></td>
+          <td width="63" align="center"><a href="http://lbbf.lyd.com.cn/" target="_blank"><span class="menus">洛报帮扶</span></a></td>
+          <td width="63" align="center"></td>
+        </tr>
+      </table></td>
+      <td width="245" style="height:55px;"><table width="246" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr height="28">
+          <td width="85" align="center"><a href="http://lytzb.gov.cn/"><span class="menus">洛阳统战</span></a></td>
+          <td width="85" align="center"><a href="http://news.lyd.com.cn/zhuanti/shiyonggongju/index.html"><span class="menus">实用工具</span></a></td>
+          <td width="85" align="center"><a href="http://61.163.60.98/lyd/newsup/newsup.htm"><span class="menus">网站投稿</span></a></td>
+        </tr>
+        <tr height="28">
+          <td width="85" align="center"><a href="http://news.lyd.com.cn/luoyang/jingdian/index.shtml"><span class="menus">经典洛阳</span></a></td>
+          <td width="85" align="center"></td>
+          <td width="85" align="center"><a href="http://biz.lyd.com.cn/gb/"><span class="menus">广告服务</span></a></td>
+        </tr>
+      </table></td>
+    </tr>
+  </table>
+  <table width="1012" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr>
+      <td  class="dubao top"><table>
+        <tr>
+          <td width="50" align="center"><strong>读报</strong></td>
+          <td width="60" align="center"><a href="http://lyrb.lyd.com.cn">洛阳日报</a></td>
+          <td width="60" align="center"><a href="http://lywb.lyd.com.cn">洛阳晚报</a></td>
+          <td width="60" align="center"><a href="http://lysb.lyd.com.cn">洛阳商报</a></td>
+          <td width="70" align="center"><a href="http://news.lyd.com.cn/zhuanti/mms/index.htm" target="_blank">洛阳手机报</a></td>
+          <td width="60" align="center"><strong><a href="http://xianqu.lyd.com.cn/">县区新闻</a></strong></td>
+          <td width="40" align="center"><a href="http://xianqu.lyd.com.cn/jili/index.shtml">吉利</a></td>
+          <td width="40" align="center"><a href="http://xianqu.lyd.com.cn/yichuan/index.shtml">伊川</a></td>
+          <td width="40" align="center"><a href="http://xianqu.lyd.com.cn/mengjin/index.shtml">孟津</a></td>
+          <td width="40" align="center"><a href="http://xianqu.lyd.com.cn/songxian/index.shtml">嵩县</a></td>
+          <td width="40" align="center"><a href="http://xianqu.lyd.com.cn/yanshi/index.shtml">偃师</a></td>
+          <td width="40" align="center"><a href="http://xianqu.lyd.com.cn/xinan/index.shtml">新安</a></td>
+          <td width="40" align="center"><a href="http://xianqu.lyd.com.cn/luoning/index.shtml">洛宁</a></td>
+          <td width="40" align="center"><a href="http://xianqu.lyd.com.cn/yiyang/index.shtml">宜阳</a></td>
+          <td width="40" align="center"><a href="http://xianqu.lyd.com.cn/ruyang/index.shtml">汝阳</a></td>
+          <td width="40" align="center"><a href="http://xianqu.lyd.com.cn/jianxi/index.shtml">涧西</a></td>
+          <td width="40" align="center"><a href="http://xianqu.lyd.com.cn/xigong/index.shtml">西工</a></td>
+          <td width="40" align="center"><a href="http://xianqu.lyd.com.cn/laocheng/index.shtml">老城</a></td>
+          <td width="40" align="center"><a href="http://xianqu.lyd.com.cn/chanhe/index.shtml">瀍河</a></td>
+          <td width="40" align="center"><a href="http://xianqu.lyd.com.cn/luolong/index.shtml">洛龙</a></td>
+          <td width="40" align="center"><a href="http://xianqu.lyd.com.cn/luanchuan/index.shtml">栾川</a></td>
+          <td width="40" align="center"><a href="http://xianqu.lyd.com.cn/yibin/index.shtml">伊滨</a></td>
+        </tr>
+      </table></td>
+    </tr>
+  </table>
+  <table width="1000" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr>
+      <td  class="top"><table>
+        <tr>
+          <td width="90" align="left"><strong>洛阳网理事会</strong></td>
+          <td width="80" align="left">副理事长单位</td>
+          <td width="50" align="left"><a href="http://www.bankofluoyang.com.cn/">洛阳银行</a></td>
+        </tr>
+      </table></td>
+    </tr>
+  </table>
 </div>
-<div class="l youxian zuoneijian " style="width:220px;display:inline" ><div class="menus"><strong><a href="http://house.lyd.com.cn/">房产</a></strong>&nbsp;&nbsp;&nbsp;<a href="http://house.lyd.com.cn/news/">楼市</a>&nbsp;&nbsp;&nbsp;<a href="http://house.lyd.com.cn/ershou/chushou/">二手房</a>&nbsp;&nbsp;&nbsp;<a href="http://news.lyd.com.cn/jiaoyu/index.shtml">教育</a>&nbsp;&nbsp;</div>
-<div class="menux"><strong><a href="http://health.lyd.com.cn/">健康</a></strong>&nbsp;&nbsp;&nbsp;<a href="http://bbs.lyd.com.cn/forum-55-1.html">美食</a>&nbsp;&nbsp;&nbsp;<a href="http://hll.lyd.com.cn" target="_blank">好来历</a>&nbsp;&nbsp;&nbsp;</div>
-</div>
-<div class="r  menus"  style="text-align:right;"><div class="menu"><a href="http://news.lyd.com.cn/luoyang/jingdian/index.shtml">经典洛阳</a>&nbsp;&nbsp;&nbsp;<a href="http://lawyer.lyd.com.cn/">律师在线</a>&nbsp;&nbsp;&nbsp;<a href="http://61.163.60.98/lyd/newsup/newsup.htm">网站投稿</a></div>
-<div class="menux"><a href="http://bk.lyd.com.cn/">洛阳百科</a>&nbsp;&nbsp;&nbsp;<a href="http://news.lyd.com.cn/zhuanti/shiyonggongju/index.html">实用工具</a>&nbsp;&nbsp;&nbsp;<a href="http://biz.lyd.com.cn/gb/">广告服务</a></div>
-</div>
-</div>
-
-
-
-
-<div class="dubao top" style="_margin-top:0px;">&nbsp;&nbsp;&nbsp;&nbsp;<strong>读报</strong>&nbsp;&nbsp;<a href="http://lyrb.lyd.com.cn">洛阳日报</a>&nbsp;&nbsp;<a href="http://lywb.lyd.com.cn">洛阳晚报</a>&nbsp;&nbsp;<a href="http://lysb.lyd.com.cn">洛阳商报</a>&nbsp;&nbsp;<a href="http://news.lyd.com.cn/zhuanti/mms/index.htm" target="_blank">洛阳手机报</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><a href="http://xianqu.lyd.com.cn/">县区新闻</a></strong>&nbsp;&nbsp;<a href="http://xianqu.lyd.com.cn/list.asp?xianqu=吉利">吉利</a>&nbsp;&nbsp;<a href="http://xianqu.lyd.com.cn/list.asp?xianqu=伊川">伊川</a>&nbsp;&nbsp;<a href="http://xianqu.lyd.com.cn/list.asp?xianqu=孟津">孟津</a>&nbsp;&nbsp;<a href="http://xianqu.lyd.com.cn/list.asp?xianqu=嵩县">嵩县</a>&nbsp;&nbsp;<a href="http://xianqu.lyd.com.cn/list.asp?xianqu=偃师">偃师</a>&nbsp;&nbsp;<a href="http://xianqu.lyd.com.cn/list.asp?xianqu=新安">新安</a>&nbsp;&nbsp;<a href="http://xianqu.lyd.com.cn/list.asp?xianqu=洛宁">洛宁</a>&nbsp;&nbsp;<a href="http://xianqu.lyd.com.cn/list.asp?xianqu=宜阳">宜阳</a>&nbsp;&nbsp;<a href="http://xianqu.lyd.com.cn/list.asp?xianqu=汝阳">汝阳</a>&nbsp;&nbsp;<a href="http://xianqu.lyd.com.cn/list.asp?xianqu=涧西">涧西</a>&nbsp;&nbsp;<a href="http://xianqu.lyd.com.cn/list.asp?xianqu=西工">西工</a>&nbsp;&nbsp;<a href="http://xianqu.lyd.com.cn/list.asp?xianqu=老城">老城</a>&nbsp;&nbsp;<a href="http://xianqu.lyd.com.cn/list.asp?xianqu=瀍河">瀍河</a>&nbsp;&nbsp;<a href="http://xianqu.lyd.com.cn/list.asp?xianqu=洛龙">洛龙</a>&nbsp;&nbsp;<a href="http://xianqu.lyd.com.cn/list.asp?xianqu=栾川">栾川</a>&nbsp;&nbsp;<a href="http://xianqu.lyd.com.cn/list.asp?xianqu=伊滨">伊滨</a>
-
-</div>
-<div style="height:30px;line-height:30px; vertical-align:middle;">&nbsp;&nbsp;&nbsp;&nbsp;<strong style="word-spacing: 1em ">洛阳网理事会</strong>&nbsp;&nbsp;副理事长单位&nbsp;&nbsp;<a href="http://www.bankofluoyang.com.cn/">洛阳银行</a></div>
-
-</div>
-
-
-<!--下拉广告（显示完以后会缩小成最小的一条通栏）-->
-<!--<div style="WIDTH: 1000px;margin:0 auto; display:none;padding-bottom:5px;" id="tu_xiao2"><a href="http://www.0379taojia.com/home-articleinfo-fid-66-id-29.html" target="_blank"><img src="http://biz.lyd.com.cn/2015/images/hongxing_1000_35.jpg" width="1000px;" border="0" /></a></div>
-<div style="WIDTH: 1000px;margin:0 auto; display:none;padding-bottom:5px;" id="tu_da2"><a href="http://www.0379taojia.com/home-articleinfo-fid-66-id-29.html" target="_blank"><img src="http://biz.lyd.com.cn/2015/images/hongxing_1000_450.jpg" border="0" /></a></div>-->
 
 
 <!--广告位 -->
 
 
 
-<div class="ad"><table width="1000" border="0" cellspacing="0" cellpadding="0">
+
+<!--<div class="adfeng" style="height:2px"></div>
+<div class="ad">
+    <embed src="http://biz.lyd.com.cn/2014/images/20140808_fhc.swf" width="1000" height="55"  quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" wmode="transparent" ></embed>
+<div class="adfeng"></div>
+</div>-->
+<!--<div class="adfeng"></div>
+ <table width="1000" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="502" align="left"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+        <tr>
+          <td align="left"><a href="http://news.lyd.com.cn/system/2013/08/21/010270431.shtml" target="_blank"><img src="http://biz.lyd.com.cn/2014/images/20140714_dyh.jpg" width="498" height="55"  border="0" /></a></td>
+        </tr>
+      </table></td>
+
+      <td width="498" align="right"><a href="http://www.henanfucai.com/" target="_blank"><img src="http://biz.lyd.com.cn/2014/images/2014fucaizhongxin.jpg" width="498" height="55"  border="0" / ></a></td>
+
+
+    </tr>
+</table>-->
+
+
+<!--广告位4 -->
+<!--广告位4 -->
+<!--<div class="adfeng" style="height:2px"></div>
+<div class="ad "><table width="1000" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td align="left"><a href="http://bbs.lyd.com.cn/thread-6457083-1-1.html" target="_blank"><img src="http://biz.lyd.com.cn/2015/images/20150922_wml_s.gif" width="246"  height="55"  border="0" /></a></td>
+<td align="left"><a href="http://biz.lyd.com.cn/system/2014/04/08/010312722.shtml" target="_blank"><img src="http://biz.lyd.com.cn/2014/images/20140508_hengda.gif" width="498"  height="55"  border="0" /></a></td>
+    <td align="right"><a href="http://www2.lyd.com.cn/2014nvshen/" target="_blank"><img src="http://biz.lyd.com.cn/2014/images/20140424_lcns.jpg" width="498" height="55"  border="0" / ></a></td>
+    </tr>
+</table>
+</div>-->
+<!--广告位4 -->
+<!--<div class="adfeng"></div>
+<div class="ad" style="height:30px"><a href="http://biz.lyd.com.cn/system/2014/08/06/010337504.shtml" target="_blank"><img src="http://biz.lyd.com.cn/2014/images/20140806_yxls.jpg" width="1000" height="30"  border="0" class="imgbk"></a></div>-->
+<!--<div class="ad"><table width="1000" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="left"><a href="http://bbs.lyd.com.cn/thread-6460865-1-1.html" target="_blank"><img src="http://biz.lyd.com.cn/2015/images/20151015_wml_sy.gif" width="246"  height="55"  border="0" /></a></td>
 
 
 
@@ -989,13 +1129,15 @@ $(document).ready(function(){
 		current:'cur', //当前切换器样式名称
 		rand:false //是否随机指定默认幻灯图片
 	});
+
+
 	
 });
 </script>
 
 			<div id="slider1" class="slider">
 			<div class="conbox">
-				<div><a href="http://www.bankcomm.com/BankCommSite/uploadFiles/red.1364896318457/index.html?infoId=1364896443100"><img width="492" height="55" src="http://biz.lyd.com.cn/2014/images/20141231_jh02.jpg"></a></div>
+				<div><a href="http://shouji.lyd.com.cn/app/"><img width="492" height="55" src="http://www.lyd.com.cn/images2015/zsly.gif"></a></div>
 				<div><a href="http://www2.lyd.com.cn/20130730_bankcomm/"><img width="492" height="55" src="http://biz.lyd.com.cn/2014/images/20141231_jh01.jpg"></a></div>
 			</div>
 
@@ -1006,49 +1148,1347 @@ $(document).ready(function(){
 				<a href="#">4</a>
 				<a href="#">5</a>
 			</div>
-		</div><!--slider end-->
-</td>    <td align="right"><a href="http://news.lyd.com.cn/system/2015/09/16/010452512.shtml" target="_blank"><img src="http://biz.lyd.com.cn/2015/images/20150921_travel.jpg" width="246" height="55" border="0" class="imgbk" /></a></td>
+		</div>
+</td>    <td align="right"><a href="http://bbs.lyd.com.cn/" target="_blank"><img src="http://biz.lyd.com.cn/2015/images/20150514_bbs.jpg" width="246"  height="55"  border="0" /></a></td>
   </tr>
-</table></div>
+</table></div>-->
+<!--广告位4 -->
 
-<!--<div class="adfeng" style="height:2px"></div>
-<div class="ad">
-    <embed src="http://biz.lyd.com.cn/2014/images/20140808_fhc.swf" width="1000" height="55"  quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" wmode="transparent" ></embed>
+<!--
 <div class="adfeng"></div>
+<div class="ad "><table width="1000" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="left"><a href="http://biz.lyd.com.cn/system/2015/04/29/010394401.shtml" target="_blank"><img src="http://biz.lyd.com.cn/2015/images/20150430_tc.jpg" width="497" height="55"  border="0" / ></a></td>
+    <td align="right"><a href="http://bbs.lyd.com.cn/" target="_blank"><img src="http://biz.lyd.com.cn/2015/images/20150420_bbs.jpg" width="497" height="55"  border="0" / ></a></td>
+  </tr>
+</table>
 </div>-->
 <!--<div class="adfeng"></div>
- <table width="1000" border="0" align="center" cellpadding="0" cellspacing="0">
+
+<div class="ad "><table width="1000" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="left"><a href="http://shouji.lyd.com.cn/app/" target="_blank"><img src="http://biz.lyd.com.cn/2015/images/20151127_zsly.gif" width="497" height="55"  border="0" / ></a></td>
+    <td align="right"><a href="http://news.lyd.com.cn/system/2015/11/27/010488658.shtml" target="_blank"><img src="http://biz.lyd.com.cn/2015/images/20151127_dgg.jpg" width="497" height="55"  border="0" / ></a></td>
+  </tr>
+</table>
+</div>-->
+
+<div class="adfeng"></div>
+<div class="ad" style="height:55px;position: relative;" ><a href="http://news.lyd.com.cn/cms_udf/2017/fzx/index.shtml" target="_blank"><img src="http://biz.lyd.com.cn/2017/images/20170925_syjscqh.jpg" width="1000" height="55" border="0" class="imgbk" /></a>
+</div>
+
+
+
+
+<div class="adfeng"></div>
+
+<div class="ad" style="height:55px;position: relative;"><table width="1000" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50%" align="left"  style="height:55px;" ><a href="http://news.lyd.com.cn/system/2017/09/13/030321319.shtml" target="_blank"><img src="http://biz.lyd.com.cn/2017/images/2017hlwh_498_55.jpg" width="497" height="55"  border="0" / ></a></td>
+    <td align="right"  ><a href="http://news.lyd.com.cn/system/2017/09/12/030321226.shtml" target="_blank"><img src="http://www.lyd.com.cn/images2017/wlaq.jpg" width="497" height="55"  border="0" / ></a></td>
+  </tr>
+</table>
+</div>
+<!--凤翔广告开始-->
+
+
+
+
+<!--<div class="adfeng"></div>
+<div class="ad "><table width="1000" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+
+     <td align="right" ><a href="http://news.lyd.com.cn/system/2017/04/12/030281056.shtml" target="_blank"><img src="http://biz.lyd.com.cn/2017/images/20170412_btl.jpg" width="497" height="55"   border="0" class="imgbk"></a><!--<a href="http://shouji.lyd.com.cn/app/#section_app" target="_blank"><img src="http://biz.lyd.com.cn/2015/images/20151127_zsly.gif"   border="0" class="imgbk"></a></td>
+    <td  align="right" ><a href="http://shouji.lyd.com.cn/app/#section_app" target="_blank"><img src="http://biz.lyd.com.cn/2015/images/20151127_zsly.gif" width="497" height="55"  border="0" class="imgbk"></a></td>
+  </tr>
+</table>
+</div>
+-->
+
+
+<!--  <div style="position: absolute; left: 0px; bottom: 0px; width: 26px; height:12px; z-index: 12; background: url(http://www.lyd.com.cn/images2016/leftbottom_new.png) 100% 0% no-repeat;"></div>-->
+
+
+<div class="adfeng"></div>
+<div class="ad" style="height:55px;position: relative;"><embed src="http://biz.lyd.com.cn/2017/images/20170925_postal_sy.swf" width="1000" height="57" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" wmode="transparent" class="imgbk"></embed><div style="position: absolute; left: 0px; bottom: 0px; width: 26px; height:12px; z-index: 12; background: url(http://www.lyd.com.cn/images2016/leftbottom_new.png) 100% 0% no-repeat;"></div></div>
+
+<div class="adfeng"></div>
+<div class="ad" style="height:55px;position: relative;" ><a href="https://mp.weixin.qq.com/s/Kczm0kVufXs4yJQtzCD4Hw" target="_blank"><img src="http://biz.lyd.com.cn/2017/images/20170930_sgpg_sy.gif" width="1000" height="55" border="0" class="imgbk" /></a>
+<div style="position: absolute; left: 0px; bottom: 0px; width: 26px; height:12px; z-index: 12; background: url(http://www.lyd.com.cn/images2016/leftbottom_new.png) 100% 0% no-repeat;"></div></div>
+
+<div class="adfeng"></div>
+<div class="ad" style="height:55px;position: relative;" ><a href="http://biz.lyd.com.cn/2017/2017yxl/index.shtml" target="_blank"><img src="http://biz.lyd.com.cn/2017/2017yxl/images/2017yxl_1000_55.gif" width="1000" height="55" border="0" class="imgbk" /></a>
+<div style="position: absolute; left: 0px; bottom: 0px; width: 26px; height:12px; z-index: 12; background: url(http://www.lyd.com.cn/images2016/leftbottom_new.png) 100% 0% no-repeat;"></div></div>
+
+<div class="adfeng"></div>
+<div class="ad" style="height:55px;position: relative;" ><a href="https://mp.weixin.qq.com/s?srcid=0927RzfRuWCOPEsrab18262c&scene=23&mid=2650755847&sn=33eee88729f5ff1240aa21c5662843fa&idx=1&__biz=MjM5MDE4Mzk0NQ%3D%3D&chksm=be4354618934dd7762906c67e9a83663b1e4f1824cae68c320a69547f994c1c9c87307bc8fc7&mpshare=1#rd" target="_blank"><img src="http://biz.lyd.com.cn/2017/images/20170928_fxwq_sy.gif" width="1000" height="55" border="0" class="imgbk" /></a>
+<div style="position: absolute; left: 0px; bottom: 0px; width: 26px; height:12px; z-index: 12; background: url(http://www.lyd.com.cn/images2016/leftbottom_new.png) 100% 0% no-repeat;"></div></div>
+
+<div class="adfeng"></div>
+<div class="ad"  ><table width="1000" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50%" align="left"  style="height:55px;position: relative;" ><a href="http://shouji.lyd.com.cn/app/#section_app" target="_blank"><img src="http://biz.lyd.com.cn/2015/images/20151127_zsly.gif" width="497" height="55"  border="0" class="imgbk"></a><div style="position: absolute; left: 0px; bottom: 0px; width: 26px; height:12px; z-index: 12; background: url(http://www.lyd.com.cn/images2016/leftbottom_new.png) 100% 0% no-repeat;"></div></td>
+    <td align="right"  style="height:55px;position: relative;" ><img src="http://www.lyd.com.cn/images2017/490-55.gif" width="497" height="55"  border="0" / ><div style="position: absolute; left: 0px; bottom: 0px; width: 26px; height:12px; z-index: 12; background: url(http://www.lyd.com.cn/images2016/leftbottom_new.png) 100% 0% no-repeat;"></div></td>
+  </tr>
+</table>
+</div>
+
+<!--万安山半通栏广告开始-->
+<!--<div class="adfeng"></div>
+
+<div class="ad" style="height:55px;position: relative;"><table width="1000" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50%" align="left"  style="height:55px;" ><a href="http://bbs.lyd.com.cn/thread-6616288-1-1.html" target="_blank"><img src="http://biz.lyd.com.cn/2017/images/20170719_wassy.gif" width="497" height="55"  border="0" / ></a><div style="position: absolute; bottom: 0px; width: 26px; height:12px; z-index: 12; background: url(http://www.lyd.com.cn/images2016/leftbottom_new.png) 100% 0% no-repeat;"></div></td>
+    <td align="right"  ><a href="http://shouji.lyd.com.cn/app/#section_app" target="_blank"><img src="http://biz.lyd.com.cn/2015/images/20151127_zsly.gif" width="497" height="55"  border="0" / ></a></td>
+  </tr>
+</table>
+</div>-->
+
+<!--跨境电商产业园广告开始-->
+<!--<div class="adfeng"></div>
+<div class="ad" style="height:55px;position: relative;" ><img src="http://biz.lyd.com.cn/2017/images/20170707_bf_sy.gif" width="1000" height="55" border="0" class="imgbk" /><div style="position: absolute; left: 0px; bottom: 0px; width: 26px; height:12px; z-index: 12; background: url(http://www.lyd.com.cn/images2016/leftbottom_new.png) 100% 0% no-repeat;"></div></div>-->
+
+<!--招聘通栏广告开始-->
+
+<!--下拉广告（显示完以后会缩小成最小的一条通栏）-->
+<!--<div class="adfeng"></div>
+<div style="WIDTH: 1000px;margin:0 auto; display:none;padding-bottom:5px;" id="tu_xiao2"><a href="http://biz.lyd.com.cn/cms_udf/2017/cbznl/index.shtml" target="_blank"><img src="http://biz.lyd.com.cn/2017/images/20170713_znlzx.gif" width="1000" height="55" border="0" class="imgbk" /></a></div>
+<div style="WIDTH: 1000px;margin:0 auto; display:none;padding-bottom:5px;" id="tu_da2"><a href="http://biz.lyd.com.cn/cms_udf/2017/cbznl/index.shtml" target="_blank"><img src="http://biz.lyd.com.cn/2017/images/20170713_znlxl.jpg" border="0" /></a></div>-->
+
+
+
+<div class="adfeng"></div> 
+<!--广告位 -->
+
+
+<div class="content"  style="height:980px">
+<div class="cleft">
+<div class="biaoti top">&nbsp;&nbsp;公告板</div><div class="neirong"><ul > 
+<li>·<a href="http://news.lyd.com.cn/system/2016/02/04/010575250.shtml" target="_blank" ><font color="#FF0000">李亚活动报道集</font></a></li> <li>·<a href="http://news.lyd.com.cn/system/2016/09/06/010822439.shtml" target="_blank" ><font color="#FF0000">刘宛康活动报道集</font></a></li> <li>·<a href="http://news.lyd.com.cn/system/2017/09/08/030320917.shtml" target="_blank" >洛阳电网2017年9月份停电公示(二）</a></li> <li>·<a href="http://news.lyd.com.cn/system/2017/05/09/030309881.shtml" target="_blank" >洛阳供电公司 “智能交费”用户须知</a></li>
+<!--<li>·<a href="http://www.wenjuan.net/s/2mu2ay/">电网企业有效实施网络传播问卷调查</a></li>-->
+
+<li><font color="#2477c7">·</font><a href="http://news.lyd.com.cn/system/2014/08/01/010336444.shtml"><font color="#2477c7"><strong>洛阳日报报业集团版权声明</strong></font></a></li>
+</ul></div>
+
+
+
+
+
+
+
+
+
+<div class="xinmeiti top"><span class="huizi">-----------</span>新媒体<span class="huizi">-----------</span></div><div>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+
     <tr>
-      <td width="502" align="left"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td align="center"><a href="http://www.lyd.com.cn/mobile/"><img src="http://www.lyd.com.cn/images/zhangshangluoyang_logo.jpg" width="48" height="47"  alt=""/></a></td>
+        </tr>
 
         <tr>
-          <td align="left"><a href="http://news.lyd.com.cn/system/2013/08/21/010270431.shtml" target="_blank"><img src="http://biz.lyd.com.cn/2014/images/20140714_dyh.jpg" width="498" height="55"  border="0" /></a></td>
+
+          <td height="25" align="center" valign="bottom"><a href="http://www.lyd.com.cn/mobile/">掌上洛阳</a></td>
+        </tr>
+      </table></td>
+      <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+        <tr>
+
+
+
+          <td align="center"><a href="http://biz.lyd.com.cn/weibo/"><img src="http://www.lyd.com.cn/images/sinaweibo_logo.jpg"  alt="" width="48" height="47" border="0"/></a></td>
+
+        </tr>
+        <tr>
+          <td height="25" align="center" valign="bottom"><a href="http://biz.lyd.com.cn/weibo/">新浪微博</a></td>
+        </tr>
+
+      </table></td>
+      <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+
+        <tr>
+          <td align="center"><a href="http://biz.lyd.com.cn/weibo/"><img src="http://www.lyd.com.cn/images/qqweibo_logo.jpg"  alt="" width="48" height="47" border="0"/></a></td>
+        </tr>
+        <tr>
+          <td height="25" align="center" valign="bottom"><a href="http://biz.lyd.com.cn/weibo/">腾讯微博</a></td>
+        </tr>
+      </table></td>
+      <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td align="center"><a href="http://news.lyd.com.cn/system/2013/03/18/010236654.shtml"><img src="images2013/m4.jpg" width="48" height="47"  alt=""/></a></td>
+        </tr>
+        <tr>
+          <td height="25" align="center" valign="bottom"><a href="http://news.lyd.com.cn/system/2013/03/18/010236654.shtml">官方微信</a></td>
         </tr>
       </table></td>
 
-      <td width="498" align="right"><a href="http://www.henanfucai.com/" target="_blank"><img src="http://biz.lyd.com.cn/2014/images/2014fucaizhongxin.jpg" width="498" height="55"  border="0" / ></a></td>
 
 
     </tr>
-</table>-->
+  </table>
+</div>
 
 
-<!--广告位4 -->
-<!--广告位4 -->
-<!--<div class="adfeng" style="height:2px"></div>
+<div class="biaoti top17">&nbsp;&nbsp;微生活&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+<div class="neirong" style=" background-color:#ebf4fa"><div  class="pn7 " >
+<div class="putu l top8"><img src="http://news.lyd.com.cn/pic/003/001/381/00300138166_i1000080000060be_4ee4a01c.jpg" width="80" height="58" alt="音乐喷泉开放时间！"/></div>
+<div class="puzi">
+<div class="dabiao"><a href="http://news.lyd.com.cn/system/2017/09/30/030322876.shtml"><strong>音乐喷泉开放时间！ </strong></a></div>
+<div class="xiaonr r" ><a href="http://news.lyd.com.cn/system/2017/09/30/030322876.shtml">不少网友在问：“国庆期间音乐喷泉啥时候开?...</a></div>
+</div><!--<page cms="enorth webpublisher" version="5.0.0 /2011101201" server_name="pub.lyd" parse_date="2014-06-11 11:45:10" cost="102" parse_result="0" input_mode="manual"></page>--></div>
+
+<div class="neirong" style="border:none; background-color:#ebf4fa"><ul>
+<li>·<a href="http://mp.weixin.qq.com/s/mwM3ZtsyubDpZTIXzJWdnw">盘点中秋、十一洛阳家庭聚餐好去处！</a></li> <li>·<a href="https://mp.weixin.qq.com/s/sXfmnq5bDnDOVb_YcTwxJw">洛阳及周边最惊艳的17个自驾游景点</a></li></ul></div>
+
+</div>
+
+
+<!--<div class="ad" ><a href="http://news.lyd.com.cn/system/2016/09/20/010834326.shtml"><img src="http://www.lyd.com.cn/images2016/cy01.jpg" /></a></div>
+<div class="adfeng" style="height:10px;"></div>-->
+
+
+<!--牡丹文化节倒计时开始-->
+<!--<div class="adfeng" style="height:10px;"></div>
+<div class="ad" style="height:33px; background-image:url(http://www.lyd.com.cn/images2017/2017mdwhj_djs.jpg); width:142px; padding-left:118px; padding-top:22px"><script src="/2017mdj_djs.js "></script></div>-->
+
+<!--牡丹文化节倒计时结束-->
+
+
+<div class="biaoti top17">&nbsp;&nbsp;<a href="http://news.lyd.com.cn/zhuanti/index.shtml">专题聚焦</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="youlian">&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://news.lyd.com.cn/luoyang/shiping/index.shtml">河洛时评</a></span></div>
+<div class="neirong"><ul> <li>·<a href="http://news.lyd.com.cn/system/2017/08/11/030318447.shtml" target="_blank" >喜迎党的十九大</a></li> <li>·<a href="http://news.lyd.com.cn/system/2017/09/13/030321319.shtml" target="_blank" >2017洛阳河洛文化旅游节</a></li> <li>·<a href="http://news.lyd.com.cn/system/2017/08/08/030318100.shtml" target="_blank" >学习贯彻习近平“7· 26”重要讲话精神</a></li> <li>·<a href="http://news.lyd.com.cn/system/2017/05/18/030310741.shtml" target="_blank" >砥砺奋进的五年</a></li> <li>·<a href="http://www2.lyd.com.cn/tpz2017/index.htm" target="_blank" >砥砺奋进的五年主题图片展</a></li> <li>·<a href="http://news.lyd.com.cn/cms_udf/2017/huanjing/index.shtml" target="_blank" >坚决打好环境污染防治翻身仗</a></li></ul></div>
+
+
+
+
+<div class="biaoti top17">&nbsp;&nbsp;<a href="http://videos.lyd.com.cn/index.html">视频</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+
+
+
+
+
+
+<div class="neirong"  style="padding-left:10px">
+ <div  class="pn7 "><div class="putu l top8"><img src="http://videos.lyd.com.cn/pic/003/001/372/00300137229_55f3958a.jpg" width="80" height="58" alt="街访：对洛阳公厕，你满意吗？"/></div>
+<div class="puzi">
+<div class="dabiao" style="height:80px"><a href="http://videos.lyd.com.cn/system/2017/09/25/030322315.shtml"><strong>街访：对洛阳公厕，你满意吗？ </strong></a></div>
+<div class="xiaonr r" ><a href="http://videos.lyd.com.cn/system/2017/09/25/030322315.shtml"></a></div>
+</div></div>
+<div class="liebiaosp" style="width:250px;"><ul>
+<li><a href="http://videos.lyd.com.cn/system/2017/09/20/030321922.shtml" target="_blank" >洛阳这里竟藏着世界第九大奇迹</a></li><!--<page cms="enorth webpublisher" version="5.0.0 /2011101201" server_name="pub.lyd" parse_date="2014-06-11 11:42:21" cost="102" parse_result="0" input_mode="manual"></page>--> <li><a href="http://videos.lyd.com.cn/system/2017/09/01/030320311.shtml" target="_blank" >孩子们心中的校园</a></li><!--<page cms="enorth webpublisher" version="5.0.0 /2011101201" server_name="pub.lyd" parse_date="2014-06-11 11:42:21" cost="102" parse_result="0" input_mode="manual"></page>--> <li><a href="http://videos.lyd.com.cn/system/2017/08/29/030319955.shtml" target="_blank" >社会实验室之身边的天使</a></li><!--<page cms="enorth webpublisher" version="5.0.0 /2011101201" server_name="pub.lyd" parse_date="2014-06-11 11:42:21" cost="102" parse_result="0" input_mode="manual"></page>--></ul></div></div>
+
+
+
+<!--今冬集中供暖开始-->
+<div class="adfeng" style="height:10px;"></div>
+<div class="ad" style="width:260px;"><a href="http://report.12377.cn:13225/toreportinputNormal_anis.do" target="_blank"><img src="http://www.lyd.com.cn/images2017/12377.jpg" width="260" height="55" border="0" /></a></div>
+
+
+<!--今冬集中供暖结束-->
+
+</div><div class="r" ><div class="toutidazi" >
+  
+<!--enorth cms block start [ name="lyd_index_touti2013" ]-->
+<h1><a href="http://news.lyd.com.cn/system/2017/10/02/030322952.shtml" target="_blank" >市委常委（扩大）会议召开</a></h1>
+<!--enorth cms block end [ name="lyd_index_touti2013" cost="6"]--> 
+<!--enorth cms block start [ name="lyd_index_touti2013" ]-->
+&nbsp;[<a href="http://news.lyd.com.cn/system/2017/10/02/030322952.shtml#1" target="_blank" >李亚主持会议并强调：牢牢把握“四个致力”总体要求 以优异成绩迎接党的十九大胜利召开</a>]
+<!--enorth cms block end [ name="lyd_index_touti2013" cost="6"]--></div><div>
+
+
+<div class="r"><div class="ccenter">
+
+
+<div><div style=" font-size:14px; color:#000000;height:30px"><div style="float:left"><img src="http://www.lyd.com.cn/images/gdb.jpg"/></div><div style="float:left;margin-left:5px; width:71px; text-align:center"> <a href="http://news.lyd.com.cn/RollingNews/index.htm" style="float:left">即时新闻:</a></div><div style="font-size:14px; color:#000000; background-color:#f1f1f1; float:left;width:288px;"><MARQUEE scrolldelay="160" onMouseOut="this.start()" onMouseOver="this.stop()" width=288 height=21><div class="jishixinwen">
+
+<!--enorth cms block start [ name="v5.latest" ]-->
+·<a href="http://news.lyd.com.cn/system/2017/10/07/030323073.shtml" target="_blank" >"砥砺奋进的五年"大型成就展观众络绎不绝</a> ·<a href="http://news.lyd.com.cn/system/2017/10/07/030323071.shtml" target="_blank" >【“砥砺奋进的五年”成就展】“大国神器”，为你点赞</a> ·<a href="http://news.lyd.com.cn/system/2017/10/07/030323070.shtml" target="_blank" >习近平引领“圆梦征程”</a> ·<a href="http://news.lyd.com.cn/system/2017/10/07/030323066.shtml" target="_blank" >中国式“非对称”赶超撼动世界</a> ·<a href="http://news.lyd.com.cn/system/2017/10/07/030323065.shtml" target="_blank" >国际FUN｜“歪果仁”眼里的中国，到底是什么样？</a> ·<a href="http://news.lyd.com.cn/system/2017/10/07/030323064.shtml" target="_blank" >国庆节感受中国智造：公路骨架完善 民航强国崛起</a> ·<a href="http://news.lyd.com.cn/system/2017/10/07/030323063.shtml" target="_blank" >确立中国特色监察体系的创制之举（砥砺奋进的五年·全面从严治党）</a> ·<a href="http://news.lyd.com.cn/system/2017/10/07/030323061.shtml" target="_blank" >财经观察：增长稳健 风险可控 创新驱动——海外点赞中国出色完成经济调控“高难度动作”</a> ·<a href="http://news.lyd.com.cn/system/2017/10/07/030323060.shtml" target="_blank" >“黄金五年”书写大国创新奇迹——党的十八大以来科技创新成就综述</a> ·<a href="http://news.lyd.com.cn/system/2017/10/07/030323062.shtml" target="_blank" >【国策说】谈恋爱三观要相符，这对小情侣的共同嗜好，竟是打猎！</a>
+<!--enorth cms block end [ name="v5.latest" cost="56"]--></div>
+<script>
+$('.jishixinwen').find('br').remove();
+</script>
+<!--enorth cms page [ enorth parse_date="2017/10/07 16:55:43.043", cost="64", server="unkown host", error_count="0"]--></MARQUEE></div></div>
+</div>
+
+
+
+<div class="biaotida"><div class="zuobiao l">&nbsp;&nbsp;<a href="http://news.lyd.com.cn">新闻中心</a>&nbsp;&nbsp;<span class=" STYLE2"><a href="http://mem.lyd.com.cn/clew/" target="_blank"><font color="#ce0204">爆料</font></a></span></div>
+<div class="youlian r">&nbsp;&nbsp;<a href="http://news.lyd.com.cn/luoyang/luoyangxinwen/index.shtml">洛阳</a>&nbsp;&nbsp;</div>
+
+
+</div><div class="lynews" >
+  <h2> <a href="http://news.lyd.com.cn/system/2017/10/07/030323070.shtml" target="_blank" >习近平引领“圆梦征程”</a></h2></div><div class="liebiao">
+
+<ul><li>· <a href="http://news.lyd.com.cn/system/2017/10/02/030322956.shtml" target="_blank" >洛阳市召开全市消防工作汇报会</a> <a href="http://news.lyd.com.cn/system/2017/10/02/030322955.shtml" target="_blank" >欢度国庆（图）</a> </li> <li>· <a href="http://news.lyd.com.cn/system/2017/10/02/030322954.shtml" target="_blank" >刘宛康检查节日值班值守情况</a> <a href="http://news.lyd.com.cn/system/2017/10/02/030322958.shtml" target="_blank" >万安山舜耕智慧田园开园</a> </li> <li>· <a href="http://news.lyd.com.cn/system/2017/10/02/030322959.shtml" target="_blank" >巩固提升铁路枢纽地位：铁路枢纽建设跑出“加速度”</a> </li> <li>· <a href="http://news.lyd.com.cn/system/2017/10/01/030322904.shtml" target="_blank" >洛阳河长制：守护绿水惠民生</a> <a href="http://news.lyd.com.cn/system/2017/10/01/030322908.shtml" target="_blank" ><span style="color:#3b639f"><strong>金秋菊展 国庆亮相</strong></span></a> </li> <li>· <a href="http://news.lyd.com.cn/system/2017/10/02/030322957.shtml" target="_blank" >《还看今朝·河南篇》播出 引发洛阳市干部群众热议</a> </li></ul>
+<ul><li>· <a href="http://news.lyd.com.cn/system/2017/10/01/030322900.shtml" target="_blank" ><span style="color:#3b639f"><strong>洛阳建设区域服务经济中心：“服务经济”正崛起 </strong></span></a> </li> <li>· <a href="http://news.lyd.com.cn/system/2017/10/01/030322905.shtml" target="_blank" >巡察组公布一批问题清单</a> <a href="http://news.lyd.com.cn/system/2017/10/01/030322907.shtml" target="_blank" >坚持五个绝对 推进反腐倡廉</a> </li> <li>· <a href="http://news.lyd.com.cn/system/2017/10/01/030322913.shtml" target="_blank" >十三届河洛金秋上戈苹果文化节暨洛宁首届丰收节开幕</a> </li> <li>· <a href="http://news.lyd.com.cn/system/2017/10/01/030322910.shtml" target="_blank" >孟津朝阳污水处理厂建成投用</a> <a href="http://news.lyd.com.cn/system/2017/10/01/030322911.shtml" target="_blank" >汝阳8个重大项目开工</a> </li> <li>· <a href="http://news.lyd.com.cn/system/2017/10/01/030322912.shtml" target="_blank" >洛阳旅游产业加快由"门票经济"向"产业经济"转型升级</a> </li></ul>
+<ul><li>· <a href="http://news.lyd.com.cn/system/2017/09/29/030322692.shtml" target="_blank" ><span style="color:#3b639f"><strong>王城金秋菊展免费开放 跟着攻略逛不漏精彩看点</strong></span></a> </li> <li>· <a href="http://news.lyd.com.cn/system/2017/09/29/030322709.shtml" target="_blank" >"十一"石榴香 果园里尝鲜去</a> <a href="http://news.lyd.com.cn/system/2017/09/29/030322694.shtml" target="_blank" >坐高铁去品蟹赏月赏秋光</a> </li> <li>· <a href="http://news.lyd.com.cn/system/2017/09/29/030322713.shtml" target="_blank" >市消协发布租车出游消费警示</a> <a href="http://news.lyd.com.cn/system/2017/09/29/030322701.shtml" target="_blank" >洛阳博物馆长假每天开放</a> </li> <li>· <a href="http://news.lyd.com.cn/system/2017/09/29/030322686.shtml" target="_blank" >鲜花扮靓洛阳城 喜迎双节和盛会</a> <a href="http://news.lyd.com.cn/system/2017/09/29/030322703.shtml" target="_blank" >长假这些活动等您来</a> </li> <li>· <a href="http://news.lyd.com.cn/system/2017/09/30/030322863.shtml" target="_blank" >洛阳市驾管所国庆期间"搬家" 原郭寨办公区不再使用</a> </li></ul>
+<ul><li>· <a href="http://news.lyd.com.cn/system/2017/10/01/030322915.shtml" target="_blank" ><span style="color:#3b639f"><strong>双节期间，洛阳市交警支队“全警上岗、全天执勤”</strong></span></a> </li> <li>· <a href="http://news.lyd.com.cn/system/2017/10/01/030322916.shtml" target="_blank" >涧西区一学校举办校园科技节</a> <a href="http://news.lyd.com.cn/system/2017/10/01/030322899.shtml" target="_blank" >五星红旗 我们热爱你</a> </li> <li>· <a href="http://news.lyd.com.cn/system/2017/09/30/030322806.shtml" target="_blank" >花果山乡:昔日穷山乡 今朝绽新颜</a> <a href="http://news.lyd.com.cn/system/2017/09/30/030322827.shtml" target="_blank" >涧西：人歇"车不停"</a> </li> <li>· <a href="http://news.lyd.com.cn/system/2017/09/30/030322818.shtml" target="_blank" >女医生田良:被推进手术室前,她通宵连做两台急诊手术</a> </li> <li>· <a href="http://news.lyd.com.cn/system/2017/09/30/030322852.shtml" target="_blank" >全国即开型体育彩票讲师培训会在洛阳召开</a> <a href="http://news.lyd.com.cn/system/2016/06/16/010732702.shtml" target="_blank" >凯风洛阳</a> </li></ul>
+</div>
+<div class="biaotida top17"><div class="zuobiao l">&nbsp;&nbsp;<a href="http://news.lyd.com.cn/zonghe/index.shtml">综合要闻</a></div><div class="youlian r">&nbsp;&nbsp;<a href="http://news.lyd.com.cn/yizhouxinwenpaihang.htm">新闻排行</a>&nbsp;&nbsp;</div>
+</div>
+<div class="liebiao ">
+
+<ul><li>· <a href="http://news.lyd.com.cn/system/2017/10/06/030323044.shtml" target="_blank" >《不忘初心 继续前进》 第一集《举旗定向》</a> </li> <li>· <a href="http://news.lyd.com.cn/system/2017/10/06/030323034.shtml" target="_blank" >七集政论专题片《不忘初心 继续前进》主题歌！</a> </li> <li>· <a href="http://news.lyd.com.cn/system/2017/10/07/030323060.shtml" target="_blank" >党的十八大以来科技创新成就综述</a> <a href="http://news.lyd.com.cn/system/2017/10/07/030323059.shtml" target="_blank" >西藏江南 情系北京</a> </li> <li>· <a href="http://news.lyd.com.cn/system/2017/10/07/030323065.shtml" target="_blank" >国际FUN｜“歪果仁”眼里的中国，到底是什么样？</a> </li> <li>· <a href="http://news.lyd.com.cn/system/2017/10/07/030323064.shtml" target="_blank" >国庆节感受中国智造：公路骨架完善 民航强国崛起</a> </li> <li>· <a href="http://news.lyd.com.cn/system/2017/10/07/030323061.shtml" target="_blank" >海外点赞中国出色完成经济调控“高难度动作”</a> </li></ul>
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="cright"><div><div id="KinSlideshow" style="visibility:hidden;">
+<SCRIPT type=text/javascript>
+var pic_arr = new Array();
+var link_arr = new Array();
+var text_arr = new Array();
+
+
+pic_arr.push("http://news.lyd.com.cn/pic/003/001/383/00300138323_8a091220.jpg");
+link_arr.push("http://news.lyd.com.cn/system/2017/10/02/030322955.shtml");
+text_arr.push("欢度国庆");
+pic_arr.push("http://news.lyd.com.cn/pic/003/001/383/00300138336_0186483b.jpg");
+link_arr.push("http://news.lyd.com.cn/system/2017/10/02/030322959.shtml");
+text_arr.push("洛阳铁路枢纽建设跑出“加速度”");
+pic_arr.push("http://news.lyd.com.cn/pic/003/001/383/00300138331_230008dd.jpg");
+link_arr.push("http://news.lyd.com.cn/system/2017/10/02/030322958.shtml");
+text_arr.push("万安山舜耕智慧田园开园");
+pic_arr.push("http://news.lyd.com.cn/pic/003/001/382/00300138218_f0aa1c12.jpg");
+link_arr.push("http://news.lyd.com.cn/system/2017/10/01/030322908.shtml");
+text_arr.push("金秋菊展 国庆亮相");
+var x;
+for (x in pic_arr){
+	document.write("<a href='"+link_arr[x]+"' target='_blank'><img src='"+pic_arr[x]+"' alt='"+text_arr[x]+"' width='330' height='217' /></a>");
+}
+</SCRIPT>
+</div>
+<script src="http://www.lyd.com.cn/js/jquery.KinSlideshow-1.2.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$("#KinSlideshow").KinSlideshow(
+	{
+		mouseEvent:"mouseover",		//设置鼠标事件为"鼠标滑过切换"  [默认鼠标点击时切换]
+		titleFont:{TitleFont_size:14},
+		titleBar:{titleBar_height:30},
+		btnBox:{btnBox_right:2, btnBox_bottom:2}
+	}	
+);
+</script>
+
+</div>
+
+<div class="biaotida top15"><div class="zuobiao l">&nbsp;&nbsp;<a href="http://people.lyd.com.cn/">百姓呼声</a></div>
+<div class="youlian r">&nbsp;&nbsp;&nbsp;<!--<a href="http://people.lyd.com.cn/duihua_list.asp?reply=1">热点排行</a>-->&nbsp;&nbsp;<a href="http://people.lyd.com.cn/question.php">我要提问</a>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+</div>
+<div class="lynews" style="width:320px">
+  <h3><a href="http://people.lyd.com.cn/wenti/20170929184153696/" target="_blank" ><strong>失业就业证怎么办理</strong></a></h3></div><div class="bxg">
+<div>
+<div class="l bxhf"><br />
+部<br />
+门<br />
+已<br />
+
+回<br />
+复</div>
+<div class="r liebiaobx">
+
+<ul><li>·<a href="http://people.lyd.com.cn/wenti/20170929121919345/">洛阳市第一中医院新区医院最新进展情况</a></li><!--<page cms="enorth webpublisher" version="5.0.0 /2011101201" server_name="pub.lyd" parse_date="2014-06-11 11:40:48" cost="99" parse_result="0" input_mode="manual"></page>--> <li>·<a href="http://people.lyd.com.cn/wenti/20170928122116121/">今年的城乡居民医疗保险集中参保缴费已开始</a></li><!--<page cms="enorth webpublisher" version="5.0.0 /2011101201" server_name="pub.lyd" parse_date="2014-06-11 11:40:48" cost="99" parse_result="0" input_mode="manual"></page>--> <li>·<a href="http://people.lyd.com.cn/wenti/20170927211114814/">月票卡丢失后需到解放路充值中心办挂失补办</a></li><!--<page cms="enorth webpublisher" version="5.0.0 /2011101201" server_name="pub.lyd" parse_date="2014-06-11 11:40:48" cost="99" parse_result="0" input_mode="manual"></page>--> <li>·<a href="http://people.lyd.com.cn/wenti/20170927154653484/">居民城镇医保住院最高报销限额是多少？</a></li><!--<page cms="enorth webpublisher" version="5.0.0 /2011101201" server_name="pub.lyd" parse_date="2014-06-11 11:40:48" cost="99" parse_result="0" input_mode="manual"></page>--> <li>·<a href="http://people.lyd.com.cn/wenti/20170926153355177">10月驾考要实施新规吗？公安局:未接到通知</a></li><!--<page cms="enorth webpublisher" version="5.0.0 /2011101201" server_name="pub.lyd" parse_date="2014-06-11 11:40:48" cost="99" parse_result="0" input_mode="manual"></page>--> <li>·<a href="http://people.lyd.com.cn/wenti/20170924220801729/">关林南路一井盖建议维修 现已修整完毕！</a></li><!--<page cms="enorth webpublisher" version="5.0.0 /2011101201" server_name="pub.lyd" parse_date="2014-06-11 11:40:48" cost="99" parse_result="0" input_mode="manual"></page>--> <li>·<a href="http://people.lyd.com.cn/wenti/20170925090956776/">王城大道与新310国道能否互通?市规划局回应</a></li><!--<page cms="enorth webpublisher" version="5.0.0 /2011101201" server_name="pub.lyd" parse_date="2014-06-11 11:40:48" cost="99" parse_result="0" input_mode="manual"></page>--> <li>·<a href="http://people.lyd.com.cn/wenti/20170925085940501/">市教育局回应河科大附中高二学生就餐问题</a></li><!--<page cms="enorth webpublisher" version="5.0.0 /2011101201" server_name="pub.lyd" parse_date="2014-06-11 11:40:48" cost="99" parse_result="0" input_mode="manual"></page>--> <li>·<a href="http://people.lyd.com.cn/wenti/20170921094458360/">洛阳环城高速免费为啥没吉利站 交通局回应</a></li><!--<page cms="enorth webpublisher" version="5.0.0 /2011101201" server_name="pub.lyd" parse_date="2014-06-11 11:40:48" cost="99" parse_result="0" input_mode="manual"></page>--> <li>·<a href="http://people.lyd.com.cn/wenti/20170920100849833/">洛阳火车站轨道交通二号线枢纽方案正在设计</a></li><!--<page cms="enorth webpublisher" version="5.0.0 /2011101201" server_name="pub.lyd" parse_date="2014-06-11 11:40:48" cost="99" parse_result="0" input_mode="manual"></page>--> <li>·<a href="http://people.lyd.com.cn/wenti/20170921112357364/">偃师退休职工能在洛阳进行养老金资格认证吗</a></li><!--<page cms="enorth webpublisher" version="5.0.0 /2011101201" server_name="pub.lyd" parse_date="2014-06-11 11:40:48" cost="99" parse_result="0" input_mode="manual"></page>-->
+</ul>
+
+</div>
+
+</div>
+
+
+<div>
+<div class="l bxhf2"><br />
+网<br />
+友<br />
+正<br />
+在<br />
+问</div>
+<div class="r liebiaobx">
+
+
+<ul>
+
+<li>·<a href="http://people.lyd.com.cn/wenti/20170928075823554/">办理公积金提取，需要提供不动产发票原件吗</a></li><!--<page cms="enorth webpublisher" version="5.0.0 /2011101201" server_name="pub.lyd" parse_date="2014-06-11 11:40:48" cost="99" parse_result="0" input_mode="manual"></page>--> <li>·<a href="http://people.lyd.com.cn/wenti/20170928001013983/">咨询：涧西区符家屯停水一周 请赶紧处理</a></li><!--<page cms="enorth webpublisher" version="5.0.0 /2011101201" server_name="pub.lyd" parse_date="2014-06-11 11:40:48" cost="99" parse_result="0" input_mode="manual"></page>--> <li>·<a href="http://people.lyd.com.cn/wenti/20170927103914529/">北大街唐宫东路口住户将自家阳台做成广告位</a></li><!--<page cms="enorth webpublisher" version="5.0.0 /2011101201" server_name="pub.lyd" parse_date="2014-06-11 11:40:48" cost="99" parse_result="0" input_mode="manual"></page>--> <li>·<a href="http://people.lyd.com.cn/wenti/20170927090758150/">投诉：伊川的龙门一号最近怎么老停电</a></li><!--<page cms="enorth webpublisher" version="5.0.0 /2011101201" server_name="pub.lyd" parse_date="2014-06-11 11:40:48" cost="99" parse_result="0" input_mode="manual"></page>--> <li>·<a href="http://people.lyd.com.cn/wenti/20170922080314596/">小浪底库区新安县寺村段电击鱼猖獗（组图）</a></li><!--<page cms="enorth webpublisher" version="5.0.0 /2011101201" server_name="pub.lyd" parse_date="2014-06-11 11:40:48" cost="99" parse_result="0" input_mode="manual"></page>--> <li>·<a href="http://people.lyd.com.cn/wenti/20170919091939278/">投诉：偃师市府店镇空气污染非常严重（图）</a></li><!--<page cms="enorth webpublisher" version="5.0.0 /2011101201" server_name="pub.lyd" parse_date="2014-06-11 11:40:48" cost="99" parse_result="0" input_mode="manual"></page>--> <li>·<a href="http://people.lyd.com.cn/wenti/20170919095151824/">2018年的医保啥时间缴？具体政策是啥？</a></li><!--<page cms="enorth webpublisher" version="5.0.0 /2011101201" server_name="pub.lyd" parse_date="2014-06-11 11:40:48" cost="99" parse_result="0" input_mode="manual"></page>--> <li>·<a href="http://people.lyd.com.cn/wenti/20170917094109720/">投诉：洒水车漏水造成路面污水横流(图)</a></li><!--<page cms="enorth webpublisher" version="5.0.0 /2011101201" server_name="pub.lyd" parse_date="2014-06-11 11:40:48" cost="99" parse_result="0" input_mode="manual"></page>--> <li>·<a href="http://people.lyd.com.cn/wenti/20170918152908474/">涧西区南华路8号天和苑小区垃圾露天存放</a></li><!--<page cms="enorth webpublisher" version="5.0.0 /2011101201" server_name="pub.lyd" parse_date="2014-06-11 11:40:48" cost="99" parse_result="0" input_mode="manual"></page>--> <li>·<a href="http://people.lyd.com.cn/wenti/20170914172225146/">王城大道和唐宫西路口隔离栏需要优化</a></li><!--<page cms="enorth webpublisher" version="5.0.0 /2011101201" server_name="pub.lyd" parse_date="2014-06-11 11:40:48" cost="99" parse_result="0" input_mode="manual"></page>--></ul>
+</div>
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+</div>
+</div></div></div></div>
+<!--广告位 -->
+<!--<div class="adfeng"></div>
+<div class="ad" style="height:55px"><a href="http://biz.lyd.com.cn/cms_udf/2017/zhaopin/index.shtml" target="_blank"><img src="http://biz.lyd.com.cn/2017/images/20170630_zhaopin.jpg" width="1000" height="55" border="0" class="imgbk" /></a></div>--> 
+
+<div class="adfeng"></div>
+<div class="ad" style="height:55px;position: relative;"><embed src="http://biz.lyd.com.cn/2016/images/20160707_zh.swf" width="1000" height="57" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" wmode="transparent" class="imgbk"></embed><div style="position: absolute; left: 0px; bottom: 0px; width: 26px; height:12px; z-index: 12; background: url(http://www.lyd.com.cn/images2016/leftbottom_new.png) 100% 0% no-repeat;"></div></div>
+
+<div class="adfeng"></div>
+<div class="ad" style="height:55px;position: relative;" ><a href="https://mp.weixin.qq.com/s/s5G84Bbvzkx4yWnpbzH1QQ" target="_blank"><img src="http://biz.lyd.com.cn/2017/images/20170716_thdxg_tl.jpg" width="1000" height="55" border="0" class="imgbk" /></a>
+<div style="position: absolute; left: 0px; bottom: 0px; width: 26px; height:12px; z-index: 12; background: url(http://www.lyd.com.cn/images2016/leftbottom_new.png) 100% 0% no-repeat;"></div></div>
+
+
+<div class="adfeng"></div>
+<div class="ad" style="height:55px;position: relative;" ><a href="http://topic.goushihui168.com/yizhounian/index.html" target="_blank"><img src="http://biz.lyd.com.cn/2017/images/20170807_gsh.gif" width="1000" height="55" border="0" class="imgbk" /></a>
+<div style="position: absolute; left: 0px; bottom: 0px; width: 26px; height:12px; z-index: 12; background: url(http://www.lyd.com.cn/images2016/leftbottom_new.png) 100% 0% no-repeat;"></div></div>
+<!--<div class="adfeng"></div>
+<div class="ad" style="height:55px;position: relative;" ><a href="http://mp.weixin.qq.com/s/rtClvU5SE1QTCKnF4aB8pw" target="_blank"><img src="http://biz.lyd.com.cn/2017/images/20170517_xycsy.gif" width="1000" height="55" border="0" class="imgbk" /></a><div style="position: absolute; left: 0px; bottom: 0px; width: 26px; height:12px; z-index: 12; background: url(http://www.lyd.com.cn/images2016/leftbottom_new.png) 100% 0% no-repeat;"></div></div>-->
+
+
+<!--<div class="adfeng"></div>
+<div class="ad" ><a href="http://news.lyd.com.cn/system/2016/02/18/010580601.shtml" target="_blank"><img src="http://www.lyd.com.cn/images2016/xmttl2.jpg" width="1000" height="55" border="0" class="imgbk" /></a>
+</div>-->
+<div class="top"></div>
+<!--洛阳社区-->
+
+
+
+<div class="daqu" style="height:420px">
+
+<div class="top daqutou" ><div class="l daqubiao"><a href="http://xianqu.lyd.com.cn/">县区</a></div><div class="r daquremen" style="width:900px"><a href="http://xianqu.lyd.com.cn/tongxunyuan.htm">通讯员列表</a></div>
+</div>
+
+
+
+<div>
+<div class="cleft l">
+  <div class="paituqi">
+  
+<a href="http://xianqu.lyd.com.cn/system/2017/09/29/030322732.shtml" target="_blank"><img src="http://xianqu.lyd.com.cn/pic/003/001/378/00300137894_cea3d000.jpg" alt="文明创建让西工更“文”更“美”" width="261" height="166" border="0" /></a><br /><a href="http://xianqu.lyd.com.cn/system/2017/09/29/030322732.shtml">文明创建让西工更“文”更“美”</a>  
+  
+  </div>
+<div class="xiaobiaoti top17"><div class="bz">&nbsp;&nbsp;<a href="http://xianqu.lyd.com.cn/">图说县区</a>&nbsp;&nbsp;</div>
+
+
+
+</div>
+
+
+
+
+
+
+<div  style="height:100px">
+
+<div class="l paitu">
+
+<a href="http://xianqu.lyd.com.cn/system/2017/09/29/030322725.shtml" target="_blank"><img src="http://xianqu.lyd.com.cn/pic/003/001/378/00300137895_fc8706e1.jpg" width="110" height="70" border="0" /><br /><a href="http://xianqu.lyd.com.cn/system/2017/09/29/030322725.shtml" target="_blank">嵩县小山村绘出脱贫路</a></div><div class="l paitu">  <a href="http://xianqu.lyd.com.cn/system/2017/09/26/030322410.shtml" target="_blank"><img src="http://news.lyd.com.cn/pic/003/001/373/00300137347_0ebbc690.png" width="110" height="70" border="0" /><br /><a href="http://xianqu.lyd.com.cn/system/2017/09/26/030322410.shtml" target="_blank">伊滨经开区水泉石窟</a></div>
+
+</div>
+  
+
+
+
+
+
+
+
+
+</div>
+<div class="ccentr l" >
+<div class="zhaiyaobi"><a href="http://xianqu.lyd.com.cn/system/2017/09/29/030322731.shtml" target="_blank" >宜阳县71名学子喜获“金秋助学金”</a></div>
+<div class="zhaiyaozi">&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://xianqu.lyd.com.cn/system/2017/09/29/030322731.shtml">“这2000块钱可帮我解决了大问题。”24日，下岗职工孙建国激动地对宜阳县总工会“金秋助学”回访人员说。近...</a></div> <div class="zhaiyaobi"><a href="http://xianqu.lyd.com.cn/system/2017/09/29/030322726.shtml" target="_blank" >宜阳锦屏镇全面推进美丽乡村建设</a></div>
+<div class="zhaiyaozi">&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://xianqu.lyd.com.cn/system/2017/09/29/030322726.shtml">锦屏镇位于宜阳宜东新区核心区，南依锦屏山，北临洛河水，东接洛阳高新区，区位优势明显。洛宜快速通道、319...</a></div>
+
+
+<div class="ckuan">
+<ul>
+<li>·<a href="http://xianqu.lyd.com.cn/system/2017/09/29/030322727.shtml" target="_blank" >洛北乡：齐声赞社区 合力护碧水</a></li> <li>·<a href="http://xianqu.lyd.com.cn/system/2017/09/29/030322728.shtml" target="_blank" >宜阳县中心镇建设全面提速（图）</a></li> <li>·<a href="http://xianqu.lyd.com.cn/system/2017/09/29/030322723.shtml" target="_blank" >新安县交警手绘“黑猫警长”漫画走红</a></li> <li>·<a href="http://xianqu.lyd.com.cn/system/2017/09/29/030322758.shtml" target="_blank" >孟津瀍源玫瑰园首届小风车展震撼启幕</a></li> <li>·<a href="http://xianqu.lyd.com.cn/system/2017/09/29/030322734.shtml" target="_blank" >西工区聘请网络观察员 搭建沟通新桥梁</a></li> <li>·<a href="http://xianqu.lyd.com.cn/system/2017/09/28/030322673.shtml" target="_blank" >孟津县交通运输局用好“组合拳”敲响“廉政钟”</a></li>
+
+
+</ul>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="cright r" ><div class="xiaobiaoti "><div class="bz">&nbsp;&nbsp;<a href="http://xianqu.lyd.com.cn/">县区热点</a>&nbsp;&nbsp;</div>
+<div class="more" style="padding-left:280px"><a href="http://xianqu.lyd.com.cn/">更多>></a></div>
+</div>
+
+<!--enorth cms block start [ name="syxqzb" ]-->
+<div class="pn top">
+<div class="putu l top"><a href="http://xianqu.lyd.com.cn/system/2017/09/29/030322722.shtml" target="_blank"><img src="http://news.lyd.com.cn/pic/003/001/378/00300137865_ce645a48.jpg" onerror="this.src='http://www.lyd.com.cn/images2017/wt.jpg';" width=113 height=80 border=0 ></a></div><div class="puzi" ><div class="xiaonr r" style="padding-top:10px"><p style="text-indent:2em"><a href="http://xianqu.lyd.com.cn/system/2017/09/29/030322722.shtml" target="_blank">沉甸甸的果实四野飘香，又到了金秋采摘的好时节。“十一”长假，如果您没有出远门的打算，带着孩子...</a></p></div></div></div> <div class="pn top">
+<div class="putu l top"><a href="http://xianqu.lyd.com.cn/system/2017/09/29/030322724.shtml" target="_blank"><img src="http://news.lyd.com.cn/pic/003/001/378/00300137858_098f450d.jpg" onerror="this.src='http://www.lyd.com.cn/images2017/wt.jpg';" width=113 height=80 border=0 ></a></div><div class="puzi" ><div class="xiaonr r" style="padding-top:10px"><p style="text-indent:2em"><a href="http://xianqu.lyd.com.cn/system/2017/09/29/030322724.shtml" target="_blank">近日，涧西区周山社区10多位空巢老人、残疾老人和社区党员、志愿者一起做月饼，共话中秋邻里情。活...</a></p></div></div></div> <div class="pn top">
+<div class="putu l top"><a href="http://xianqu.lyd.com.cn/system/2017/09/29/030322729.shtml" target="_blank"><img src="http://i.xianqu.lyd.com.cn/pic/2017929941284341.jpg" onerror="this.src='http://www.lyd.com.cn/images2017/wt.jpg';" width=113 height=80 border=0 ></a></div><div class="puzi" ><div class="xiaonr r" style="padding-top:10px"><p style="text-indent:2em"><a href="http://xianqu.lyd.com.cn/system/2017/09/29/030322729.shtml" target="_blank">汝阳：金秋好时节农户收花生忙9月29日，在汝阳县柏树乡华沟村周会娃和媳妇靳霞在房顶晾晒花生，丰收...</a></p></div></div></div>
+<!--enorth cms block end [ name="syxqzb" cost="39"]--></div>
+</div>
+</div>
+
+
+
+
+<div class="adfeng"></div>
+<div class="ad" style="height:55px;position: relative;">
+<embed src="http://biz.lyd.com.cn/2017/images/20170926_jianhang.swf" width="1000" height="57" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" wmode="transparent" class="imgbk"></embed>
+<div style="position: absolute; left: 0px; bottom: 0px; width: 26px; height:12px; z-index: 12; background: url(http://www.lyd.com.cn/images2016/leftbottom_new.png) 100% 0% no-repeat;"></div></div>
+
+
+
+
+<div class="adfeng"></div>
+<div class="ad" style="height:55px;position: relative;" ><a href="http://biz.lyd.com.cn/cms_udf/2017/shuxiangluoyang/index.shtml" target="_blank"><img src="http://biz.lyd.com.cn/2017/images/20170907_sxly_sy.gif" width="1000" height="55" border="0" class="imgbk" /></a>
+<div style="position: absolute; left: 0px; bottom: 0px; width: 26px; height:12px; z-index: 12; background: url(http://www.lyd.com.cn/images2016/leftbottom_new.png) 100% 0% no-repeat;"></div></div>
+
+
+<div class="daqu" style="height:570px">
+<div class="top daqutou"><div class="l daqubiao"><a href="http://bbs.lyd.com.cn">洛阳社区</a></div>
+<div class="r daquremen" ><div style="float:right">&nbsp;&nbsp;&nbsp;&nbsp;<strong>热门版块</strong>:<a href="http://bbs.lyd.com.cn/forum-76-1.html">聚焦河洛</a> <a href="http://bbs.lyd.com.cn/forum-63-1.html">河洛文苑</a> <a href="http://bbs.lyd.com.cn/forum-67-1.html">摄影天地</a> <a href="http://bbs.lyd.com.cn/forum-97-1.html">亲子教育</a> <a href="http://bbs.lyd.com.cn/forum-210-1.html">公益慈善</a></div><div style="float:right;"><a href="http://bbs.lyd.com.cn/plugin.php?id=levfall:lev" target="_blank"><img src="http://www.lyd.com.cn/images2013/haokan.jpg"  border="0" /></a></div></div>
+</div>
+
+
+
+
+<div>
+<div class="cleft l"><div class="top"><table width=266 border=0 cellspacing=0 cellpadding=0><tr><td width=130 valign=top><table width=99% border=0 cellspacing=0 cellpadding=0><tr><td align=left valign=top><table width=130 border=0 cellspacing=0 cellpadding=0><tr><td width=133><a  href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630665 target=_blank><img src=http://imgs.bbs.lyd.com.cn/portal/201709/30/151139ms6sze97sss2ecet.jpg width=130 height=170 border=0 /></a><br /></td></tr><tr><td height=30 align=center><a  href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630665 target=_blank>秋月高挂洛阳城</a></td></tr></table></td></tr><tr><td align=center><table width=130 border=0 align=left cellpadding=0 cellspacing=0><tr><td width=132><a  href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630695 target=_blank><img src=http://imgs.bbs.lyd.com.cn/portal/201709/30/151110hrmqmq8rnd6mrmmq.jpg width=130 height=107 border=0 /></a><br /></td></tr><tr><td height=30 align=center><a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630695 target=_blank>放歌国庆节文艺演出</a></td></tr></table></td></tr></table></td><td width=130 valign=top><table width=100% height=274 border=0 cellpadding=0 cellspacing=0><tr><td align=center><table width=130 border=0 align=right cellpadding=0 cellspacing=0><tr><td width=133><a  href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630653 target=_blank><img src=http://imgs.bbs.lyd.com.cn/portal/201709/30/151054kvz0w06p8wq6ppqo.jpg width=130 height=107 border=0 /></a><br /></td></tr><tr><td height=30 align=center><a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630653 target=_blank>土坡上的牵牛花</a></td></tr></table></td></tr><tr><td align=center><table width=130 border=0 align=right cellpadding=0 cellspacing=0><tr><td><a  href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630700 target=_blank><img src=http://imgs.bbs.lyd.com.cn/portal/201709/30/151122t51wdhjt1w5pfc3c.jpg width=130 height=170 border=0 /></a><br /></td></tr><tr><td height=30 align=center><a  href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630700 target=_blank>伊滨河畔拍美人</a></td></tr></table></td></tr></table></td></tr></table>
+<!--enorth cms page [ enorth parse_date="2017/09/30 15:13:55.055", cost="8", server="unkown host", error_count="0"]--></div>
+<div class="xiaobiaoti top17"><div class="bz">&nbsp;&nbsp;<a href="http://bbs.lyd.com.cn/misc.php?mod=ranklist&type=thread&view=heats&orderby=thisweek">热帖排行</a>&nbsp;&nbsp;</div>
+<div class="more"  style="padding-left:180px"><a href="http://bbs.lyd.com.cn/misc.php?mod=ranklist&type=thread&view=heats&orderby=thisweek">更多>></a></div>
+</div>
+
+
+
+
+<div class=zkuan><ul><li>·<a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630615 target=_blank>[聚焦河洛]洛阳打造全省增长极</a></li><li>·<a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630640 target=_blank>[亲子教育]无公害智慧田园开园</a></li><li>·<a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630584 target=_blank>[河洛文苑]游黄山记 黄山观日出</a></li><li>·<a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630720 target=_blank>[车友之家]明堂天堂随拍</a></li></ul></div>
+<!--enorth cms page [ enorth parse_date="2017/09/30 16:58:24.024", cost="5", server="unkown host", error_count="0"]-->
+
+
+
+
+</div>
+<div class="ccentr l" >
+<div class=zhaiyaobi><a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630668 target=_blank>我在洛阳 等你来赏秋</a></div><div class=zhaiyaozi>&nbsp;&nbsp;<a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630668 target=_blank>每当秋天来临，洛阳满城开满着五颜六色的菊花。它们一簇簇、一丛丛的，有白的、黄的，还有紫的等等，菊花各有特色…</a></div><div class=zhaiyaobi><a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630529 target=_blank>重要提醒 请绑定手机完成实名认证</a></div><div class=zhaiyaozi>&nbsp;&nbsp;<a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630529 target=_blank>为确保您账户的安全及正常使用，依《网络安全法》相关要求，即日起请所有网友在登陆账号后，绑定手机，完成实名认证..</a></div>
+<!--enorth cms page [ enorth parse_date="2017/09/30 15:15:11.011", cost="6", server="unkown host", error_count="0"]-->
+<div class="xiaobiaoti top ckuan2"><div class="bz">&nbsp;<a href="http://bbs.lyd.com.cn/">精彩热帖</a>&nbsp;&nbsp;</div>
+<div class="more"  style="padding-left:280px"><a href="http://bbs.lyd.com.cn/">更多>></a></div>
+</div>
+
+
+
+
+<div class=ckuan><ul><li><a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630860 target=_blank><strong>[公益慈善]双节来临助济会洛龙分会组织慰问老党员</strong></a></li><li><a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630714 target=_blank>[聚焦河洛]网友咨询 芳林北路能否修建过街天桥？</a></li><li><a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630719 target=_blank>[车友之家]提醒 洛阳交警驾管所将迁往新址办公！</a></li><li><a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630703 target=_blank>[聚焦河洛]洛阳市老干部教育活动中心文艺演出随记</a></li><li><a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630724 target=_blank>[聚焦河洛]王城金秋菊展10月1日开幕 快来看攻略</a></li></ul><ul><li><a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630796 target=_blank><strong>[聚焦河洛]双节期间洛阳交警“全警上岗 全天执勤”</strong></a></li><li><a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6628502 target=_blank>[洛阳户外]10月2日 国庆节钱塘江观潮...西塘4日游</a></li><li><a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6629173 target=_blank>[洛阳户外]雪峰户外 十一去海南，私属海滩度中秋</a></li><li><a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630337 target=_blank>[洛阳户外]10月4日 云丘山，延安...壶口瀑布3日游</a></li><li><a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6627781 target=_blank>[洛阳户外]国庆假期巴楚大地四日休闲户外活动</a></li></ul></div>
+<!--enorth cms page [ enorth parse_date="2017/10/03 16:35:36.036", cost="8", server="unkown host", error_count="0"]-->
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="cright r" ><div class="xiaobiaoti"><div class="bz">&nbsp;&nbsp;<a href="http://bbs.lyd.com.cn/misc.php?mod=ranklist&amp;type=activity&amp;view=heats&amp;orderby=thismonth">同城活动</a>&nbsp;&nbsp;</div>
+<div class="more"  style="padding-left:280px"><a href="http://bbs.lyd.com.cn/misc.php?mod=ranklist&amp;type=activity&amp;view=heats&amp;orderby=thismonth">更多>></a></div>
+
+
+</div>
+<div  class='pn top'><div class='putu l top'><a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6629884><img src=http://imgs.bbs.lyd.com.cn/portal/201709/25/171542bl9l0x0h3l39l32l.gif width=113 height=87 border=0 alt=/></a></div><div  class=puzi><div class=dabiao><a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6629884>好消息 洛阳也有海豚了！</a></div><div class='xiaonr r'>    <a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6629884>小伙伴们，大大大大大新闻，我大洛阳终于有海豚表演了 ！！而且这个十一就能看！！</a></div></div></div><div class=' ykuan'><ul><li><a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6624570 target=_blank>·知礼仪·承家风征文、书画活动启动</a></li><li><a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6629244 target=_blank>·摄影天地 “摄影及后期PS学习班”</a></li><li><a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6622419 target=_blank>·热烈祝贺游走部落十周年庆圆满成功</a></li><li><a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6625097 target=_blank>·尊师重教 感恩有你&quot;最美教师&quot;颁奖活动</a></li></ul></div>
+<!--enorth cms page [ enorth parse_date="2017/09/25 17:16:33.033", cost="6", server="unkown host", error_count="0"]-->
+<div class="xiaobiaoti top17"><div class="bz">&nbsp;&nbsp;<a href="http://bbs.lyd.com.cn/forum-55-1.html">美食坊</a>&nbsp;&nbsp;</div>
+<div class="more" style="padding-left:280px"><a href="http://bbs.lyd.com.cn/forum-55-1.html">更多>></a></div>
+</div>
+<div  class='pn top'><div class='putu l top'><a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630731><img src=http://imgs.bbs.lyd.com.cn/portal/201709/30/164011fvxnxri9tz89yz8i.jpg width=113 height=80 border=0  alt=/></a></div><div  class=puzi><div class=dabiao><a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630731>清蒸螃蟹</a></div><div class='xiaonr r'>    <a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630731>这个是最简单的做法，可以最大程度锁住螃蟹身上的营养哦！材料：螃蟹、黄酒、姜</a></div></div></div><div  class='pn top'><div class='putu l top'><a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630734><img src=http://imgs.bbs.lyd.com.cn/portal/201709/30/163952unuezu35bib5azb9.jpg width=113 height=80 border=0  alt=/></a></div><div  class=puzi><div class=dabiao><a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630734>红枣香菇蒸排骨</a></div><div class='xiaonr r'>    <a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630734>食材 /香菇3朵、排骨1肋、红枣10粒、蚝油1茶匙 酱油1茶匙</a></div></div></div>
+<!--enorth cms page [ enorth parse_date="2017/09/30 16:41:03.003", cost="6", server="unkown host", error_count="0"]-->
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+<!--<div class="adfeng"></div>
+
 <div class="ad "><table width="1000" border="0" cellspacing="0" cellpadding="0">
   <tr>
-<td align="left"><a href="http://biz.lyd.com.cn/system/2014/04/08/010312722.shtml" target="_blank"><img src="http://biz.lyd.com.cn/2014/images/20140508_hengda.gif" width="498"  height="55"  border="0" /></a></td>
-    <td align="right"><a href="http://www2.lyd.com.cn/2014nvshen/" target="_blank"><img src="http://biz.lyd.com.cn/2014/images/20140424_lcns.jpg" width="498" height="55"  border="0" / ></a></td>
-    </tr>
+    <td align="left" style="height:55px;position: relative;" ><a href="http://www.lybyby.com/index.html" target="_blank"><img src="http://biz.lyd.com.cn/2016/images/495x55.gif" width="495" height="55"  border="0" / ></a><div style="position: absolute; left: 0px; bottom: 0px; width: 26px; height:12px; z-index: 12; background: url(http://www.lyd.com.cn/images2016/leftbottom_new.png) 100% 0% no-repeat;"></div></td>
+    <td align="right" style="height:55px;position: relative;" ><a href="http://shouji.lyd.com.cn/app/" target="_blank"><img src="http://biz.lyd.com.cn/2015/images/20151127_zsly.gif" width="497" height="55"  border="0" / ></a><div style="position: absolute; left: 0px; bottom: 0px; width: 26px; height:12px; z-index: 12; background: url(http://www.lyd.com.cn/images2016/leftbottom_new.png) 100% 0% no-repeat;"></div></td>
+  </tr>
 </table>
+
 </div>-->
-<!--广告位4 -->
+
+<!--房产家居-->
+
+<!--房产家居-->
+
+
+
+
+
+
+<!--娱乐美食-->
+
+
+
+
+<!--广告位3 -->
 <!--<div class="adfeng"></div>
-<div class="ad" style="height:30px"><a href="http://biz.lyd.com.cn/system/2014/08/06/010337504.shtml" target="_blank"><img src="http://biz.lyd.com.cn/2014/images/20140806_yxls.jpg" width="1000" height="30"  border="0" class="imgbk"></a></div>-->
+
+
+<div class="ad" style="height:55px"><a href="http://biz.lyd.com.cn/system/2015/12/07/010493771.shtml" target="_blank"><img src="http://biz.lyd.com.cn/2015/images/20151207_zp.jpg" width="1000" height="55" border="0" class="imgbk" /></a></div><div class="adfeng"></div>-->
+<!--<div class="ad" style="height:55px"><a href="http://www.lyhmzx.com/" target="_blank"><img src="http://biz.lyd.com.cn/2015/images/20151015_hm.jpg" width="1000" height="55" border="0" class="imgbk" /></a></div><div class="adfeng"></div>-->
+
+
+<!--汽车旅游-->
+
+
+
+
+
 
 <!--广告位4 -->
 
 <div class="adfeng"></div>
-<div class="ad" style="height:55px">
-  <embed src="http://biz.lyd.com.cn/2015/images/yunliang_1000_55.swf" width="1000" height="55"  quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwav
+<div class="ad">
+<a href="http://henan.sina.com.cn/city/zt/hngyggzb/index.shtml" target="_blank"><img src="http://www.lyd.com.cn/images2017/wm.jpg" width="1000" height="55" border="0" class="imgbk" /></a></div>
+
+<!--<div class="adfeng"></div>
+<div class="ad" style="height:55px;position: relative;"><a href="http://www.lyd.com.cn/images2016/dk.jpg" target="_blank"><img src="http://www.lyd.com.cn/images2016/dzdfx.jpg" width="1000" height="55" border="0" class="imgbk" /></a><div style="position: absolute; left: 0px; bottom: 0px; width: 26px; height:12px; z-index: 12; background: url(http://www.lyd.com.cn/images2016/leftbottom_new.png) 100% 0% no-repeat;"></div>
+</div>-->
+
+<div class="adfeng"></div>
+<div class="ad"><a href="http://biz.lyd.com.cn/cms_udf/2017/luoyangtongzhan01/" target="_blank"><img src="http://biz.lyd.com.cn/2017/images/20170220_lytz03.gif" width="1000" height="55" border="0" class="imgbk" /></a></div>
+<!--健康教育-->
+<div class="daqu" style="height:520px">
+
+
+
+
+<div class="top daqutou" ><div class="l daqubiao"><a href="http://health.lyd.com.cn">健康</a>·<a href="http://news.lyd.com.cn/jiaoyu/index.shtml">教育</a></div>
+<div class="r daquremen" style="width:800px"><a href="http://health.lyd.com.cn/hospital.html">搜医院</a> <a href="http://health.lyd.com.cn/doctors.html">搜名医</a> <a href="http://health.lyd.com.cn/index.html#bgt">曝光台</a> <a href="http://bbs.lyd.com.cn/forum-157-1.html">求医问药</a> <a href="http://bbs.lyd.com.cn/forum-97-1.html">亲子教育</a> </div>
+
+</div>
+
+
+<div>
+<div class="cleft l">
+  <div class="paituqi"><SCRIPT type='text/javascript' src='http://health.lyd.com.cn/focusImg.js' charset='utf-8'></SCRIPT></div>
+<div class="xiaobiaoti top17"><div class="bz">&nbsp;&nbsp;<a href="http://health.lyd.com.cn/">健康保健</a>&nbsp;&nbsp;</div>
+<div class="more"  style="padding-left:180px"><a href="http://health.lyd.com.cn/">更多>></a></div>
+
+
+</div>
+
+
+<div  style="height:100px"><SCRIPT type='text/javascript' src='http://health.lyd.com.cn/jkbjImgs.js' charset='utf-8'></SCRIPT></div>
+  
+<div class="zkuan top">
+
+
+
+<ul><li>·<a href="http://health.lyd.com.cn/info/42808.html" target="_blank" >这个动作，你要不要试试？！</a></li> <li>·<a href="http://health.lyd.com.cn/local/42807.html" target="_blank" >儿童打鼾可致听力下降</a></li> <li>·<a href="http://health.lyd.com.cn/info/42806.html" target="_blank" >二郎腿到底能不能翘？</a></li> <li>·<a href="http://health.lyd.com.cn/info/42805.html" target="_blank" >“手脚发麻”不要掉以轻心</a></li></ul>
+
+
+</div>
+
+
+
+
+
+</div>
+
+<div class="ccentr l" >
+<SCRIPT type='text/javascript' src='http://health.lyd.com.cn/touti.js' charset='utf-8'></SCRIPT>
+<div class="zhaiyaobi"><a href="http://news.lyd.com.cn/system/2017/09/29/030322721.shtml" target="_blank" >洛阳加快农村寄宿制学校建设</a></div>
+<div class="zhaiyaozi">&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://news.lyd.com.cn/system/2017/09/29/030322721.shtml">秋意正浓，阳光明媚。栾川县石庙镇中心小学三(3)班学生张钰阳在学校餐厅吃完早餐，和小伙伴儿蹦蹦跳跳地去教...</a></div><div class="ckuan">
+  <ul><li>·<a href="http://health.lyd.com.cn/info/42804.html" target="_blank" >[健康]洛阳女医生田良：进手术室前，她通宵做急诊手术</a></li> <li>·<a href="http://health.lyd.com.cn/local/42812.html" target="_blank" >[健康]“内镜下钛夹止血术”巧治消化道大出血</a></li> <li>·<a href="http://health.lyd.com.cn/local/42811.html" target="_blank" >[健康]市第一人民医院成功抢救一危重脑梗死患者</a></li> <li>·<a href="http://health.lyd.com.cn/local/42810.html" target="_blank" ><span style="font-size:14px">[健康]</span>鼻涕中带血丝,或预示严重疾病</a></li> <li>·<a href="http://news.lyd.com.cn/system/2017/09/27/030322511.shtml" target="_blank" >[教育]最高1500元！这些学生请注意，来洛龙区领钱</a></li> <li>·<a href="http://news.lyd.com.cn/system/2017/09/27/030322510.shtml" target="_blank" >[教育]下月15日前，洛龙区户籍部分孩子可申请助学金</a></li></ul>
+
+</div>
+<!--<div class="top15 left25"><a href="http://health.lyd.com.cn/index.html" target="_blank"><img src="http://www.lyd.com.cn/images2015/jk.jpg"  alt="" width="330" height="72" border="0"/></a></div>-->
+<div class="top15 left25"><a href="http://health.lyd.com.cn/" target="_blank"><img src="http://www.lyd.com.cn/images2015/jk.jpg"  alt="" width="330" height="72" border="0"/></a></div>
+
+
+
+</div>
+
+
+<div class="cright r" ><div class="xiaobiaoti">
+    <div class="bz">&nbsp;&nbsp;热门关注&nbsp;&nbsp;</div><div class="more"  style="padding-left:280px"><a href="http://health.lyd.com.cn/">更多>></a></div>
+</div>
+
+  
+  <SCRIPT type='text/javascript' src='http://health.lyd.com.cn/rmgz.js' charset='utf-8'></SCRIPT>
+  <div class=" ykuan"><ul>
+<li>·<a href="http://health.lyd.com.cn/focus/20170930/42815.html" target="_blank" >江天视力是否具有行医和售药资格？</a></li> <li>·<a href="http://health.lyd.com.cn/info/42814.html" target="_blank" >集体户口如何办理准生证？</a></li> <li>·<a href="http://health.lyd.com.cn/focus/20170930/42813.html" target="_blank" >皮外伤非让打石膏，这要求合理吗？</a></li></ul>
+</div>
+  <div class="xiaobiaoti top17">
+
+    <div class="bz">&nbsp;&nbsp;<a href="http://bbs.lyd.com.cn/forum-97-1.html">亲子教育</a>&nbsp;&nbsp;</div>
+    <div class="more" style="padding-left:280px"><a href="http://bbs.lyd.com.cn/forum-97-1.html">更多>></a></div>
+  </div>
+  <div  class='pn top'><div class='putu l top'><a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630206><img src=http://imgs.bbs.lyd.com.cn/forum/201709/27/161233jlojidjzzjrqgsdv.jpg width=113 height=87 border=0 alt=/></a> </div><div  class=puzi><div class=dabiao><a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630206 target=_blank>家有花猫</a></div><div class='xiaonr r'>    <a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630206 target=_blank>
+家有花猫一只，或站、或坐、或走、或跑，总是悄无声息的出现在每一个角落</a></div></div></div>
+<!--enorth cms page [ enorth parse_date="2017/09/27 16:53:37.037", cost="4", server="unkown host", error_count="0"]-->
+ <div class='ykuan top'><ul><li>·<a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630155 target=_blank>有关小升初择校的一些问题</a></li><li>·<a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6630053 target=_blank>为什么孩子在书法班无法学以致用</a></li><li>·<a href=http://bbs.lyd.com.cn/forum.php?mod=viewthread&tid=6629831 target=_blank>如何跟孩子沟通才能更能让他接受</a></li></ul></div>
+<!--enorth cms page [ enorth parse_date="2017/09/27 16:53:36.036", cost="7", server="unkown host", error_count="0"]-->
+
+</div>
+</div>
+</div>
+
+
+<!--<div class="adfeng"></div>
+
+<div class="ad "  style="height:55px;"><table width="1000" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="left"  style="height:55px;" ><a href="http://news.lyd.com.cn/system/2013/03/18/010236657.shtml" target="_blank"><img src="http://biz.lyd.com.cn/2014/images/20140714_gy.jpg" width="497" height="55"  border="0" / ></a></td>
+    <td align="right"  ><a href="http://www.lyd.com.cn/att/0/10/92/71/10927118_553993.doc" target="_blank"><img src="http://www.lyd.com.cn/images2016/zll.jpg" width="497" height="55"  border="0" / ></a></td>
+  </tr>
+</table>
+</div>-->
+
+
+<!--广告位5 -->
+
+
+<!--走进洛阳-->
+<div class="daqu" style="height:340px">
+
+<div class="top daqutou" ><div class="l daqubiao">走进洛阳</div><div class="r daquremen" style="width:830px"><a href="http://news.lyd.com.cn/luoyang/jingdian/houzhongluoyang/index.shtml">厚重河洛</a> <a href="http://news.lyd.com.cn/luoyang/jingdian/shanshuixingsheng/index.shtml">山水形胜</a> <a href="http://heluo.lyd.com.cn/mudanbaike/mdwenhua/index.shtml">牡丹文化</a> <a href="http://news.lyd.com.cn/luoyang/jingdian/gudutanyi/index.shtml">古都探遗</a> <a href="http://news.lyd.com.cn/luoyang/jingdian/minsushihua/index.shtml">民俗史话</a> </div>
+</div>
+
+
+<div>
+<div class="l" style="width:655px">
+<div class="xiaobiaoti"><div class="bz">&nbsp;<a href="http://news.lyd.com.cn/luoyang/jingdian/">经典洛阳</a>&nbsp;</div><div class="more" style="width:640px; font-size:14px">&nbsp;<a href="http://news.lyd.com.cn/luoyang/jingdian/heluoguangji/index.shtml">河洛广记</a>&nbsp;<a href="http://news.lyd.com.cn/luoyang/jingdian/luoyangmingshanwenhua/index.shtml">名山文化</a>&nbsp; <a href="http://news.lyd.com.cn/luoyang/jingdian/luoyangmingren/index.shtml">洛阳名人</a>&nbsp;<a href="http://news.lyd.com.cn/luoyang/jingdian/dianji/index.shtml">典籍典故</a>&nbsp;<a href="http://news.lyd.com.cn/luoyang/jingdian/zhenbao/index.shtml">珍宝档案</a>&nbsp;<a href="http://news.lyd.com.cn/system/2017/09/19/030321825.shtml" target="_blank">博物馆之都旅游精品线路</a></div>
+</div>
+<div class="xiaobiaoti">
+<div class="l top" >
+
+  <table width="266" border="0" cellpadding="0" cellspacing="0">
+
+    <tr>
+
+
+      <td width="135" valign="top"><table width="130" border="0" align="left" cellpadding="0" cellspacing="0" class="top">
+
+        <tr>
+<td width="134" align="center" valign="top"><a href="http://news.lyd.com.cn/system/2017/09/13/030321282.shtml"><img src="http://news.lyd.com.cn/pic/003/001/356/00300135660_f908d4e5.jpg" width="130" height="200" /></a></td>
+</tr>
+<tr>
+<td height="30" align="center" valign="middle"><a href="http://news.lyd.com.cn/system/2017/09/13/030321282.shtml" target="_blank" >悠悠古刹帝王心</a></td>
+<!--<page cms="enorth webpublisher" version="5.0.0 /2011101201" server_name="pub.lyd" parse_date="2014-06-11 11:47:00" cost="101" parse_result="0" input_mode="manual"></page>-->        </tr>
+
+        </table></td>
+      <td width="125" valign="top"><table width="125" height="224" border="0" cellpadding="0" cellspacing="0">
+
+        <tr>
+          <td align="center" valign="top"><table width="130" border="0" align="right" cellpadding="0" cellspacing="0" class="top">
+            <tr><td width="134" align="center" valign="top"><a href="http://news.lyd.com.cn/system/2017/09/25/030322248.shtml"><img src="http://news.lyd.com.cn/pic/003/001/372/00300137206_d5f833fe.jpg" width="130" height="80" /></a></td>
+</tr>
+<tr>
+<td height="30" align="center" valign="middle"><a href="http://news.lyd.com.cn/system/2017/09/25/030322248.shtml" target="_blank" >好大一个金元宝</a></td><!--<page cms="enorth webpublisher" version="5.0.0 /2011101201" server_name="pub.lyd" parse_date="2014-06-11 15:15:59" cost="25" parse_result="0" input_mode="manual"></page>-->                          </tr>
+
+          </table></td>
+        </tr>
+        <tr>
+
+          <td align="center" valign="top"><table width="130" border="0" align="right" cellpadding="0" cellspacing="0" class="top">
+            <tr>
+<td width="134" align="center" valign="top"><a href="http://news.lyd.com.cn/system/2017/09/14/030321387.shtml"><img src="http://news.lyd.com.cn/pic/003/001/358/00300135802_1844e02c.jpg" width="130" height="80" /></a></td>
+</tr>
+<tr>
+<td height="30" align="center" valign="middle"><a href="http://news.lyd.com.cn/system/2017/09/14/030321387.shtml" target="_blank" >天下无双 江夏黄香</a></td><!--<page cms="enorth webpublisher" version="5.0.0 /2011101201" server_name="pub.lyd" parse_date="2014-06-11 15:16:12" cost="26" parse_result="0" input_mode="manual"></page>-->            </tr>
+          </table></td>
+        </tr>
+      </table></td>
+    </tr>
+  </table></div>
+  <div class="l" >
+  
+  
+  <div class="ckuan top17"><div class="ccentr l" >
+<div class="zhaiyaobi"><a href="http://news.lyd.com.cn/system/2017/09/26/030322411.shtml" target="_blank" >班勇再通西域 父子青史留名</a></div>
+<div class="zhaiyaozi">&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://news.lyd.com.cn/system/2017/09/26/030322411.shtml">“班超投笔气如山，万里封侯出玉关。”东汉时期，书生班超在洛阳投笔从戎，率领36名勇士建功西域。30多年间...</a></div></div>
+<ul ><li>·<a href="http://news.lyd.com.cn/system/2017/09/28/030322612.shtml" target="_blank" >更待菊黄家酝熟 共君一醉一陶然</a></li> <li>·<a href="http://news.lyd.com.cn/system/2017/09/26/030322401.shtml" target="_blank" >洛阳：博物馆之都如何打造</a></li> <li>·<a href="http://news.lyd.com.cn/system/2017/09/25/030322247.shtml" target="_blank" >让双鹤来我家住吧（白居易洛阳养鹤记）</a></li> <li>·<a href="http://news.lyd.com.cn/system/2017/09/19/030321794.shtml" target="_blank" >功成万里封侯 唯愿生还洛阳</a></li></ul></div>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+</div>
+<div class="cright r" >
+
+
+  <div class="ykuan top">
+  <span class="STYLE3">景区：</span><a href="http://baimasi.lyd.com.cn/" target="_blank">白马寺</a>　<a href="http://longmen.lyd.com.cn/" target="_blank">龙门石窟</a>　<a href="http://news.lyd.com.cn/system/2017/09/19/030321764.shtml " target="_blank">探寻河洛百座古建筑</a>
+ 
+<div class='pn top'><div class='putu l top'><a href="http://news.lyd.com.cn/system/2017/09/28/030322576.shtml" target="_blank"><img src="http://news.lyd.com.cn/pic/003/001/376/00300137668_3abef207.jpg" width=113 height=87 border=0 alt=/></a> </div> <div class=puzi style=" margin-top:10px"><div class=dabiao><a href="http://news.lyd.com.cn/system/2017/09/28/030322576.shtml" target="_blank">伊川县鸣皋南岳庙</a></div><div class='xiaonr r'> <a href="http://news.lyd.com.cn/system/2017/09/28/030322576.shtml" target="_blank">南岳庙位于伊川县鸣皋镇鸣皋村北的衡桃山上，始建于北魏，坐...
+</a></div></div></div> 
+ 
+<div class='ykuan top'><ul style="margin-bottom:10px">
+
+<li>·<a href="http://news.lyd.com.cn/system/2017/09/26/030322391.shtml" target="_blank" >伊滨经开区水泉石窟（探寻河洛百座古建筑）</a></li> <li>·<a href="http://news.lyd.com.cn/system/2017/09/21/030321950.shtml" target="_blank" >荆紫玉皇阁（探寻河洛百座古建筑）</a></li> <li>·<a href="http://news.lyd.com.cn/system/2017/09/15/030321511.shtml" target="_blank" >伊川县自由县衙署（探寻河洛百座古建筑）</a></li>
+
+
+</ul></div>
+  <iframe align=middle width="350" scrolling="auto" height="70" frameborder="0" marginheight="0" marginwidth="0" src="http://news.chinaso.com/chinasosearch/link3.html"></iframe>
+
+</div>
+</div>
+</div>
+</div>
+
+
+<!--广告位5 --><div class="top"></div>
+
+
+<!--热点图片-->
+<script type="text/javascript">
+    $(document).ready(function(){
+	$('#example1').bxCarousel({
+		display_num: 5, 
+		move: 5,
+		prev_image: 'http://www.lyd.com.cn/images2013/icon_arrow_left01.png',
+		next_image: 'http://www.lyd.com.cn/images2013/icon_arrow_right01.png',
+		margin: 0 ,
+		speed:500
+	});
+});
+/*
+bxCarousel v1.0
+Plugin developed by: Steven Wanderski
+*/
+(function($){$.fn.bxCarousel=function(options){var defaults={move:4,display_num:4,speed:500,margin:0,auto:false,auto_interval:500,auto_dir:'next',auto_hover:false,next_text:'next',next_image:'',prev_text:'prev',prev_image:'',controls:true};var options=$.extend(defaults,options);return this.each(function(){var $this=$(this);var li=$this.find('li');var first=0;var fe=0;var last=options.display_num-1;var le=options.display_num-1;var is_working=false;var j='';var clicked=false;li.css({'float':'left','listStyle':'none','marginRight':options.margin});var ow=li.outerWidth(true);wrap_width=(ow*options.display_num)-options.margin;var seg=ow*options.move;$this.wrap('<div class="bx_container"></div>').width(999999);if(options.controls){if(options.next_image!=''||options.prev_image!=''){var controls='<a href="" class="prev"><img src="'+options.prev_image+'"/></a><a href="" class="next"><img src="'+options.next_image+'"/></a>';}
+else{var controls='<a href="" class="prev">'+options.prev_text+'</a><a href="" class="next">'+options.next_text+'</a>';}}
+$this.parent('.bx_container').wrap('<div class="bx_wrap"></div>').css({'position':'relative','width':wrap_width,'overflow':'hidden'}).before(controls);var w=li.slice(0,options.display_num).clone();var last_appended=(options.display_num+options.move)-1;$this.empty().append(w);get_p();get_a();$this.css({'position':'relative','left':-(seg)});$this.parent().siblings('.next').click(function(){slide_next();clearInterval(j);clicked=true;return false;});$this.parent().siblings('.prev').click(function(){slide_prev();clearInterval(j);clicked=true;return false;});if(options.auto){start_slide();if(options.auto_hover&&clicked!=true){$this.find('li').live('mouseenter',function(){if(!clicked){clearInterval(j);}});$this.find('li').live('mouseleave',function(){if(!clicked){start_slide();}});}}
+function start_slide(){if(options.auto_dir=='next'){j=setInterval(function(){slide_next()},options.auto_interval);}else{j=setInterval(function(){slide_prev()},options.auto_interval);}}
+function slide_next(){if(!is_working){is_working=true;set_pos('next');$this.animate({left:'-='+seg},options.speed,function(){$this.find('li').slice(0,options.move).remove();$this.css('left',-(seg));get_a();is_working=false;});}}
+function slide_prev(){if(!is_working){is_working=true;set_pos('prev');$this.animate({left:'+='+seg},options.speed,function(){$this.find('li').slice(-options.move).remove();$this.css('left',-(seg));get_p();is_working=false;});}}
+function get_a(){var str=new Array();var lix=li.clone();le=last;for(i=0;i<options.move;i++){le++
+if(lix[le]!=undefined){str[i]=$(lix[le]);}else{le=0;str[i]=$(lix[le]);}}
+$.each(str,function(index){$this.append(str[index][0]);});}
+function get_p(){var str=new Array();var lix=li.clone();fe=first;for(i=0;i<options.move;i++){fe--
+if(lix[fe]!=undefined){str[i]=$(lix[fe]);}else{fe=li.length-1;str[i]=$(lix[fe]);}}
+$.each(str,function(index){$this.prepend(str[index][0]);});}
+function set_pos(dir){if(dir=='next'){first+=options.move;if(first>=li.length){first=first%li.length;}
+last+=options.move;if(last>=li.length){last=last%li.length;}}else if(dir=='prev'){first-=options.move;if(first<0){first=li.length+first;}
+last-=options.move;if(last<0){last=li.length+last;}}}});}})(jQuery);
+</script>
+<style>
+/* examples_body */
+.examples_body {
+	width: 1000px;
+	margin: 0 auto;
+	clear: both;
+	position: relative;
+}
+.bx_wrap {
+	margin-left: 0px;
+}
+.bx_wrap ul img { border: 0px; }
+
+.bx_wrap a.prev {
+	width: 27px;
+	height: 34px;
+	line-height: 17px;
+	outline-style: none;
+	outline-width: 0;
+	position: absolute;
+	top: 63px;
+	left: 0px;
+	z-index: 9999;
+	text-indent: -9999px;
+	background: url(http://www.lyd.com.cn/images2013/icon_arrow_left01.png) no-repeat left;
+}
+.bx_wrap a.prev:hover {
+	background: url(http://www.lyd.com.cn/images2013/icon_arrow_left01.png) no-repeat right;
+}
+.bx_wrap a.next {
+	width: 27px;
+	height: 34px;
+	line-height: 17px;
+	left: 971px;
+	outline-style: none;
+	outline-width: 0;
+	position: absolute;
+	top: 63px;
+	z-index: 9999;
+	text-indent: -9999px;
+	background: url(http://www.lyd.com.cn/images2013/icon_arrow_right01.png) no-repeat right;
+}
+.bx_wrap a.next:hover {
+	background: url(http://www.lyd.com.cn/images2013/icon_arrow_right01.png) no-repeat left;
+}
+</style>
+<!--热点图片-->
+<div class="daqu" style="height:250px">
+
+<div class="top daqutou" ><div class="l daqubiao"><a href="http://photo.lyd.com.cn/index.shtml">热点图片</a></div>
+<div class="r daquremen" style="width:830px"><div  style="float:right">&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://photo.lyd.com.cn/luoyang_sd/index.shtml">洛阳速递</a> <a href="http://photo.lyd.com.cn/tushuo/index.shtml">图说</a> <a href="http://bbs.lyd.com.cn/forum-67-1.html">摄影天地</a> </div><div style="float:right;"><a href="http://bbs.lyd.com.cn/plugin.php?id=levfall:lev" target="_blank"><img src="http://www.lyd.com.cn/images2013/haokan.jpg"  border="0" /></a></div></div>
+<div class="top"> 
+<div class="examples_body">
+    <div class="bx_wrap"><a class="prev" href="">left</a><a class="next" href="">right</a>
+        <div class="bx_container">
+            <script type="text/javascript">
+			var gd_pic_arr = new Array();
+			var gd_link_arr = new Array();
+			var gd_text_arr = new Array();
+			
+
+gd_pic_arr.push("http://news.lyd.com.cn/pic/003/001/380/00300138062_c9a2f7d4.jpg");
+gd_link_arr.push("http://news.lyd.com.cn/system/2017/09/30/030322822.shtml");
+gd_text_arr.push("洛阳—中亚国际班列具备开通条件 ");
+gd_pic_arr.push("http://news.lyd.com.cn/pic/003/001/380/00300138033_ba466977.jpg");
+gd_link_arr.push("http://news.lyd.com.cn/system/2017/09/30/030322806.shtml");
+gd_text_arr.push("昔日穷山乡 今朝绽新颜");
+gd_pic_arr.push("http://news.lyd.com.cn/pic/003/001/380/00300138064_823e13f6.jpg");
+gd_link_arr.push("http://news.lyd.com.cn/system/2017/09/30/030322827.shtml");
+gd_text_arr.push("涧西：人歇“车不停”");
+gd_pic_arr.push("http://news.lyd.com.cn/pic/003/001/380/00300138066_30f8d765.jpg");
+gd_link_arr.push("http://news.lyd.com.cn/system/2017/09/30/030322830.shtml");
+gd_text_arr.push("洛阳老城区：街道“不起尘” ");
+gd_pic_arr.push("http://news.lyd.com.cn/pic/003/001/380/00300138049_7b9b43f9.png");
+gd_link_arr.push("http://news.lyd.com.cn/system/2017/09/30/030322814.shtml");
+gd_text_arr.push("月饼达人教您做桃山皮月饼");
+gd_pic_arr.push("http://news.lyd.com.cn/pic/003/001/378/00300137819_470509d7.jpg");
+gd_link_arr.push("http://news.lyd.com.cn/system/2017/09/29/030322686.shtml");
+gd_text_arr.push("鲜花扮靓洛阳城 喜迎双节和盛会");
+gd_pic_arr.push("http://news.lyd.com.cn/pic/003/001/378/00300137865_ce645a48.jpg");
+gd_link_arr.push("http://news.lyd.com.cn/system/2017/09/29/030322709.shtml");
+gd_text_arr.push("“十一”石榴香 果园里尝鲜去");
+gd_pic_arr.push("http://news.lyd.com.cn/pic/003/001/378/00300137882_f930597a.jpg");
+gd_link_arr.push("http://news.lyd.com.cn/system/2017/09/29/030322693.shtml");
+gd_text_arr.push("嵩县小山村“绘”出脱贫路");
+gd_pic_arr.push("http://news.lyd.com.cn/pic/003/001/378/00300137873_59a5036c.jpg");
+gd_link_arr.push("http://news.lyd.com.cn/system/2017/09/29/030322717.shtml");
+gd_text_arr.push("手绘“黑猫警长”漫画走红");
+gd_pic_arr.push("http://news.lyd.com.cn/pic/003/001/378/00300137836_996df580.jpg");
+gd_link_arr.push("http://news.lyd.com.cn/system/2017/09/29/030322692.shtml");
+gd_text_arr.push("王城金秋菊展10月1日开幕");
+gd_pic_arr.push("http://news.lyd.com.cn/pic/003/001/377/00300137702_e7839d68.jpg");
+gd_link_arr.push("http://news.lyd.com.cn/system/2017/09/28/030322577.shtml");
+gd_text_arr.push("站上历史新起点 再造洛阳新辉煌");
+gd_pic_arr.push("http://news.lyd.com.cn/pic/003/001/376/00300137668_3abef207.jpg");
+gd_link_arr.push("http://news.lyd.com.cn/system/2017/09/28/030322576.shtml");
+gd_text_arr.push("伊川县鸣皋南岳庙");
+gd_pic_arr.push("http://news.lyd.com.cn/pic/003/001/376/00300137697_066983c1.jpg");
+gd_link_arr.push("http://news.lyd.com.cn/system/2017/09/28/030322588.shtml");
+gd_text_arr.push("洛阳市运会乒乓球比赛开打");
+gd_pic_arr.push("http://news.lyd.com.cn/pic/003/001/376/00300137675_2c58c5af.jpg");
+gd_link_arr.push("http://news.lyd.com.cn/system/2017/09/28/030322561.shtml");
+gd_text_arr.push("闹中取静小游园 休闲健身好去处");
+gd_pic_arr.push("http://news.lyd.com.cn/pic/003/001/375/00300137520_f6f703d5.jpg");
+gd_link_arr.push("http://news.lyd.com.cn/system/2017/09/27/030322496.shtml");
+gd_text_arr.push("公交“趴窝” 乘客冒雨推车");
+gd_pic_arr.push("http://news.lyd.com.cn/pic/003/001/375/00300137508_fff689b0.jpg");
+gd_link_arr.push("http://news.lyd.com.cn/system/2017/09/27/030322482.shtml");
+gd_text_arr.push("种下石榴树 结出“致富果”");
+gd_pic_arr.push("http://news.lyd.com.cn/pic/003/001/375/00300137503_1075639e.jpg");
+gd_link_arr.push("http://news.lyd.com.cn/system/2017/09/27/030322471.shtml");
+gd_text_arr.push("建设文化广场 丰富居民生活");
+gd_pic_arr.push("http://news.lyd.com.cn/pic/003/001/375/00300137502_0d27c3f2.jpg");
+gd_link_arr.push("http://news.lyd.com.cn/system/2017/09/27/030322484.shtml");
+gd_text_arr.push("小所村安置房项目加快建设");
+gd_pic_arr.push("http://news.lyd.com.cn/pic/003/001/373/00300137339_9d545836.jpg");
+gd_link_arr.push("http://news.lyd.com.cn/system/2017/09/26/030322383.shtml");
+gd_text_arr.push("2017中国洛阳关公文化艺术周启幕");
+gd_pic_arr.push("http://news.lyd.com.cn/pic/003/001/373/00300137372_c5ad20d8.jpg");
+gd_link_arr.push("http://news.lyd.com.cn/system/2017/09/26/030322397.shtml");
+gd_text_arr.push("10月1日，民俗庙会邀您参加");
+			
+            document.write("<ul id='example1'>");
+			var x;
+			for (x in gd_pic_arr){
+			document.write("<li><div class='l retu yf'><a href='"+gd_link_arr[x]+"'><img src='"+gd_pic_arr[x]+"' width='198' height='131' /></a><br /><a href='"+gd_link_arr[x]+"' target='_blank' >"+gd_text_arr[x]+"</a></div></li>");
+			}
+            document.write("</ul>");
+			</script>
+        </div>
+    </div>
+    </div>
+</div>
+</div></div>
+
+
+<!--洛阳通-->
+<div class="daqu"  >
+
+<div class="top daqutou" ><div class="l daqubiao">洛阳通</div><div class="r daquremen" style="width:870px"><a href="http://lawyer.lyd.com.cn/">律师在线</a> <a href="http://news.lyd.com.cn/zhuanti/shiyonggongju/index.html">实用工具</a>  <a href="http://life1.lyd.com.cn/shiwuzhaoling/">洛阳失物招领台</a></div>
+</div>
+
+
+
+<table width="1000" border="0" cellpadding="0" cellspacing="1" bgcolor="#D4D4D4" style="font-size:14px">
+  <tbody><tr><td width="102" height="35" align="center" valign="middle" bgcolor="#207095" class="STYLE1 tit"><strong>生活</strong></td>
+    <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251510-1-1.html">洛阳天气</a></td>
+  <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251511-1-1.html">水费查询</a></td>
+  <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251512-1-1.html">电费查询</a></td>
+  <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251514-1-1.html">房屋租售</a></td>
+  <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251517-1-1.html">彩票开奖</a></td>
+  <td align="center" valign="middle" bgcolor="#FFFFFF"><a href="http://m.kuaidi100.com" target="_blank">快递查询</a></td>
+
+  <td width="168" rowspan="6" align="right" valign="middle" bgcolor="#FFFFFF"><a href="http://news.lyd.com.cn/system/2013/03/18/010236657.shtml"><img src="images2013/ltt2.jpg" width="168" height="216" /></a></td>
+  </tr>
+  <tr><td height="35" align="center" valign="middle" bgcolor="#207095" class="STYLE1 tit"><strong>交通</strong></td>
+  
+    <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://www.lysubway.com.cn/">轨道交通</a>
+    <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251519-1-1.html">洛阳地图</a></td>
+  <td align="center" valign="middle" bgcolor="#FFFFFF"><a href="http://bbs.lyd.com.cn/thread-6251520-1-1.html">洛阳航班</a></td>
+  <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251522-1-1.html">洛阳公交</a></td>
+  <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251523-1-1.html">长途客车</a></td>
+  <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251526-1-1.html">火车时刻</a></td>
+
+ 
+</td>
+  </tr>
+  <tr><td height="35" align="center" valign="middle" bgcolor="#207095" class="STYLE1 tit"><strong>政务</strong></td><td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251508-1-1.html">政府机关</a></td>
+  <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="
+http://bbs.lyd.com.cn/thread-6251534-1-1.html">违章查询</a></td>
+  <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251535-1-1.html">个税计算</a></td>
+
+
+  <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251536-1-1.html">查公积金</a></td>
+
+  <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251538-1-1.html">户籍查询</a></td>
+  <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251541-1-1.html">办出入境</a></td>
+  </tr>
+
+  <tr><td height="35" align="center" valign="middle" bgcolor="#207095" class="STYLE1 tit"><strong>网点</strong></td>
+
+    <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251547-1-1.html">银行网点</a></td>
+  <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://health.lyd.com.cn/hospital.html">洛阳医院</a></td>
+  <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251558-1-1.html">教育学校</a></td>
+
+  <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251532-1-1.html">社保查询</a></td>
+  <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251516-1-1.html">移动通信</a></td>
+  <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251525-1-1.html">保险理财</a></td>
+
+  </tr>
+  <tr><td height="35" align="center" valign="middle" bgcolor="#207095" class="STYLE1 tit"><strong>优惠</strong></td><td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251531-1-1.html">商场打折</a></td>
+
+
+
+
+  <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251539-1-1.html">团购导航</a></td>
+
+  <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251544-1-1.html">
+特价酒店</a></td>
+
+  <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251553-1-1.html">休闲娱乐</a></td>
+  <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251559-1-1.html">潮流热卖</a></td>
+ <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251564-1-1.html">美食情报</a></td>
+  </tr>
+  <tr><td height="35" align="center" valign="middle" bgcolor="#207095" class="STYLE1 tit"><strong>资讯</strong></td><td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251567-1-1.html">人才招聘</a></td>
+  <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251570-1-1.html">
+特色餐饮</a></td>
+
+  <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251575-1-1.html">股票行情</a></td>
+  <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251576-1-1.html">教育培训</a></td>
+  <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251579-1-1.html">购车手册</a></td>
+  <td align="center" valign="middle" bgcolor="#FFFFFF"><a target="_blank" href="http://bbs.lyd.com.cn/thread-6251582-1-1.html">养生课堂</a></td>
+
+  </tr>
+  </tbody></table>
+
+</div>
+
+
+<!--友情链接-->
+
+
+
+<!--友情链接-->
+
+ 
+<div class=bottomnew onmouseout="if(event.toElement)if(!this.contains(event.toElement)){tab('bottom',1,4)}"  style=" border-top:2px solid #207095; margin-top:15px">
+<ul class=bottomtab>
+  <li class=current id=bottom1 onmouseover="tab('bottom',1,4)">友情链接</li>
+
+  <li id=bottom2 onmouseover="tab('bottom',2,4)">地市网盟链接</li>
+  <li id=bottom3 onmouseover="tab('bottom',3,4)">中国城市网盟</li>
+  <li id=bottom4 onmouseover="tab('bottom',4,4)">“一带一路”网络联盟官方网站</li>
+
+
+</ul>
+<div style="DISPLAY: block" id=bottom_cont1><!--中央媒体 STR--><a href="http://www.cac.gov.cn/" target=_blank style="font-size:14px">中国网信网</a><a href="http://www.baidu.com" target=_blank style="font-size:14px">百度</a>
+<a href="http://www.sina.com.cn" target=_blank style="font-size:14px">新浪</a> 
+<a href="http://www.qq.com" target=_blank style="font-size:14px">腾讯</a>
+<a href="http://qzone.qq.com/" target=_blank style="font-size:14px">qq空间</a> 
+<a href="http://www.sohu.com" target=_blank style="font-size:14px">搜狐</a> 
+
+<a 
+
+                  href="http://www.163.com/" target=_blank style="font-size:14px">网易</a> 
+<a 
+                  href="http://www.google.cn/" target=_blank style="font-size:14px">谷歌</a> 
+                  <a href="http://www.ifeng.com/" 
+                  target=_blank style="font-size:14px">凤凰</a> 
+ 
+                  <a href="http://www.youku.com/" 
+                  target=_blank style="font-size:14px">优酷网</a> 
+
+
+                  <a href="http://www.people.com.cn/" 
+                  target=_blank style="font-size:14px">人民网</a> 
+
+                  <a href="http://www.xinhuanet.com/" 
+                  target=_blank style="font-size:14px">新华网</a>
+
+                  <a href="http://sale.suning.com/images/advertise/hss/lingqianbao314/index.html" target="_blank">苏宁易购</a> 
+                  <a href="http://www.taobao.com/" target=_blank style="font-size:14px">淘宝网</a> 
+                  <a href="http://www.360buy.com/" target="_blank">京东商城</a> 
+                  <a href="http://news.lyd.com.cn/system/2012/05/17/010095301.shtml" target="_blank">更多>></a></div>
+
+
+<div style="DISPLAY: none" id=bottom_cont2><!--华北地区 str--><a 
+
+
+
+
+
+
+
+                  href="http://www.lyd.com.cn/" 
+                  target=_blank>洛阳网</a>&nbsp;<a href="http://www.zjjnews.cn" target=_blank>张家界新闻网</a>&nbsp;<a href="http://www.jjxw.cn/" target=_blank>九江新闻网</a>&nbsp;<a 
+                  href="http://www.10yan.com"  target=_blank>十堰秦楚网</a>&nbsp;<a 
+                  href="http://www.xnnews.com.cn/" target=_blank>咸宁新闻网</a>&nbsp;<a 
+
+                  href="http://www.rznews.cn/" target=_blank>日照新闻网</a>&nbsp;<a 
+
+                  href="http://www.enorth.com.cn/" target=_blank>北方网</a>&nbsp;<a 
+                  href="http://www.cdyee.com/" target=_blank>常德网</a>&nbsp;<a 
+                  href="http://www.zhuzhouwang.com/" target=_blank>株洲网</a>&nbsp;<a 
+                  href="http://www.wlmqwb.com/" 
+                  target=_blank>乌鲁木齐在线</a>&nbsp;<a href="http://www.hi0734.com/Index.html" 
+                  target=_blank>你好衡阳网</a>&nbsp;<a href="http://www.ybnews.cn/" 
+                  target=_blank>延边新闻网</a>&nbsp;<a href="http://www.bozhounet.cn" 
+                  target=_blank>中国亳州网</a>&nbsp;<a href="http://www.hcwang.cn/" target="_blank">河池网</a>&nbsp;<a href="http://www.zyrb.com.cn/" target="_blank">资阳网</a>&nbsp;<a href="http://www.2500sz.com" target="_blank">名城苏州</a>&nbsp;<a href="http://www.dzxw.net" target="_blank">达州新闻网</a>&nbsp;<a href="http://www.qz828.com/" target="_blank">衢州新闻网</a>&nbsp;<a href="http://www.dlxww.com" target=_blank>大连新闻网</a>&nbsp;<a href="http://www.smnet.com.cn" target="_blank">三明新闻网</a>&nbsp;<a href="http://www.803.cn" target="_blank">岳阳网</a>&nbsp;<a href="http://www.sz-news.com.cn/www/index.htm" target="_blank">中国随州网</a>&nbsp;<a href="http://www.jiaodong.net/" target="_blank">胶东在线</a>&nbsp;<a href="http://www.dalidaily.com/" target=_blank>大理日报新闻网</a>&nbsp;<a href="http://www.mxrb.cn/" target="_blank">闽西新闻网</a>&nbsp;<a href="http://www.qingdaonews.com/" target="_blank">青岛新闻网</a>&nbsp;<a href="http://www.ldnews.cn/" target="_blank">娄底新闻网</a>&nbsp;<a href="http://www.sqdaily.com" target="_blank">宿迁新闻网</a>&nbsp;<a href="http://www.dz818.gov.cn/Index.html" target="_blank">达州网</a>&nbsp;<a href="http://www.newshs.com" target="_blank">黄山新闻网</a>&nbsp;<a href="http://www.gansudaily.com.cn" target="_blank">每日甘肃</a>&nbsp;<a href="http://www.bndaily.com/" target="_blank">西双版纳新闻网</a>&nbsp;<a href="http://www.hbnews.net/" target="_blank">淮北新闻网</a>
+
+<a href="http://www.hezeribao.com/" target="_blank">菏泽新闻网</a>&nbsp;<a href="http://www.zgfznews.com" target="_blank">中国抚州网</a>&nbsp;<a href="http://www.dezhoudaily.com/" target="_blank">德州新闻网</a>&nbsp;<a href="http://www.zhoushan.cn" target="_blank">舟山网</a>&nbsp;<a href="http://www.zmdnews.cn/" target="_blank">驻马店新闻网</a>&nbsp;<a href="http://www.srzc.com/" target="_blank">上饶之窗</a>&nbsp;<a href="http://www.tynews.com.cn/index/index.htm" target="_blank">山西太原新闻网</a>&nbsp;<a href="http://www.guilinlife.com" target="_blank">桂林生活网</a>&nbsp;<a href="http://www.cnncw.cn/" target="_blank">中国南充网</a>&nbsp;<a href="http://www.fznews.com.cn/" target="_blank">福州新闻网</a>&nbsp;<a href=" http://www.01ny.cn/" target="_blank">南阳新闻网</a>&nbsp;<a href="http://www.zynews.com/" target="_blank">中原网</a>&nbsp;<a href="http://www.iyxwzx.com/" target="_blank">益阳新闻在线</a>&nbsp;<a href="http://www.xb01.cn/" target="_blank">西部在线</a>&nbsp;<a href="http://www.hnjjxw.com/news.aspx" target="_blank">湖南经济新闻网</a>&nbsp;<a href="http://www.eznews.cn/" target="_blank">鄂州新闻网</a>&nbsp;<a href="http://www.snxw.com/" target="_blank">遂宁新闻网</a>&nbsp;<a href="http://www.gyxww.cn/" target="_blank">广元新闻网</a>&nbsp;<a href="http://www.enshi.cn" target="_blank">恩施新闻网</a>&nbsp;<a href="http://www.beiww.com/" target="_blank">北纬网</a>&nbsp;<a href="http://www.lygmedia.com" target="_blank">连云港传媒网</a>&nbsp;<a href="http://www.hz66.com/" target="_blank">湖州在线</a>&nbsp;<a href="http://www.hsdcw.com/" target="_blank">东楚黄石新闻网</a>&nbsp;<a href="http://www.xxz.gov.cn/" target="_blank">中国湘西网</a>&nbsp;<a href="http://www.sqrb.com.cn/" target="_blank">商丘网</a>&nbsp;<a href="http://www.luohe.com.cn" target="_blank">中国漯河网</a>&nbsp;<a href="http://www.luzhou-news.cn/" target="_blank">泸州新闻网</a>&nbsp;<a href="http://www.shm.com.cn/" target="_blank">水母网</a>&nbsp;<a href="http://www.qhdnews.com/" target="_blank">秦皇岛新闻网</a>&nbsp;<a href="http://www.tsrb.com.cn/" target="_blank">华讯在线</a>&nbsp;<a href="http://www.0317news.com/" target="_blank">沧州日报新闻网</a>&nbsp;<a href="http://www.wuhunews.cn/" target="_blank">芜湖新闻网</a>&nbsp;<a href="http://www.0745news.cn/" target="_blank">怀化新闻网</a>&nbsp;<a href="http://www.jn001.com/" target="_blank">东方圣城网</a>&nbsp;<a href="http://www.plxww.com/" target="_blank">平凉新闻网</a>&nbsp;<a href="http://cityy.com/" target="_blank">团结网</a>&nbsp;<a 
+                  href="http://www.0739i.com.cn" target="_blank">邵阳信息港</a>&nbsp;<a href="http://www.xtol.cn" target="_blank">湘潭在线新闻网</a>&nbsp;<a href="http://www.mshw.net/" target="_blank">眉山网</a>&nbsp;<a href="http://www.dtnews.cn/" target="_blank">大同新闻网</a>&nbsp;<a href="http://cityy.com/" target="_blank">城市网</a>&nbsp;<a href="http://www.wjol.net.cn/" target="_blank">皖江在线</a><!--华北地区 END-->
+<a href="http://webscan.360.cn/index/checkwebsite/url/www.lyd.com.cn" name="e1d7d6c769b6e3bb9da0c20f85f3c926" >360网站安全检测平台</a>&nbsp;<a href="http://www.ahwang.cn" target="_blank" title="安徽新闻网">安徽新闻网</a>&nbsp;<a href="http://www.czxww.cn/" target="_blank" title="郴州新闻网">郴州新闻网</a>
+</div>
+
+<div style="DISPLAY: none" id=bottom_cont3 style=" line-height:30px"><!--综合门户 STR--><strong>常务理事及理事单位</strong>：<a href="http://www.lyd.com.cn/" target="_blank"><font color="#FF0000">洛阳网</font></a>&nbsp;<a href="http://www.cnnb.com.cn/" target="_blank">中国宁波网</a>&nbsp;<a href="http://www.runsky.com/" target="_blank">大连天健网</a>&nbsp;<a href="http://www.sznews.com/" target="_blank">深圳新闻网</a>&nbsp;<a href="http://www.dayoo.com/" target="_blank">广州大洋网</a>&nbsp;<a href="http://www.qingdaonews.com/" target="_blank">青岛新闻网</a>&nbsp;<a href="http://www.cjn.cn/" target="_blank">武汉长江网</a>&nbsp;<a href="http://www.longhoo.net/" target="_blank">南京龙虎网</a>&nbsp;<a href="http://www.hangzhou.com.cn/" target="_blank">杭州网</a>&nbsp;<a href="http://www.changsha.cn/" target="_blank">星辰在线</a>&nbsp;<a href="http://www.jiaodong.net/" target="_blank">胶东在线</a>&nbsp;<a href="http://www.xmnn.cn/" target="_blank">厦门网</a>
+    <a href="http://www.cqnews.net/" target="_blank">重庆华龙网</a>&nbsp;<a href="http://www.syd.com.cn/" target="_blank">沈阳网</a>&nbsp;<a href="http://www.e23.cn/" target="_blank">济南舜网</a>&nbsp;<a href="http://www.ccnews.gov.cn/" target="_blank">长春新闻网</a>&nbsp;<a href="http://www.hf365.com/" target="_blank">合肥在线</a>&nbsp;<a href="http://www.sjzdaily.com.cn/" target="_blank">石家庄新闻网</a>&nbsp;<a href="http://www.gywb.cn/" target="_blank">贵阳网</a>&nbsp;<a href="http://www.ycen.com.cn/" target="_blank">银川新闻网</a>&nbsp;<a href="http://www.hkwb.net/" target="_blank">中国海口网</a>&nbsp;<a href="http://www.ucatv.com.cn/" target="_blank">乌鲁木齐信息港</a>&nbsp;<a href="http://www.shm.com.cn/" target="_blank">水母网</a>&nbsp;<a href="http://www.newgx.com.cn/" target="_blank">广西新闻网</a>
+  <a href="http://www.xiancn.com/" target="_blank">西安新闻网</a>&nbsp;<a href="http://www.my399.com/" target="_blank">哈尔滨新闻网</a>&nbsp;<a href="http://www.tynews.com.cn/" target="_blank">太原新闻网</a>&nbsp;<a href="http://www.zynews.com/" target="_blank">郑州中原网</a>&nbsp;<a href="http://www.lanzhou.cn/" target="_blank">中国兰州网</a>&nbsp;<a href="http://www.ncnews.com.cn/" target="_blank">南昌新闻网</a>&nbsp;<a href="http://www.qzweb.com.cn/">泉州网</a>&nbsp;<a href="http://www.66wz.com/" target="_blank">温州网</a>&nbsp;<a href="http://www.yb983.com/" target="_blank">延边信息港</a>&nbsp;<a href="http://www.zyol.gz.cn/">遵义在线</a>&nbsp;<a href="http://www.zhoushan.cn/" target="_blank">舟山网</a>&nbsp;<a href="http://www.rzw.com.cn/" target="_blank">日照网</a>&nbsp;<a href="http://www.2500sz.com/" target="_blank">名城苏州</a>&nbsp;<a href="http://www.dehua.net/" target="_blank">德化网</a>&nbsp;<a href="http://www.dqdaily.com/" target="_blank">大庆网</a>&nbsp;<a href="http://www.lznews.cn/" target="_blank">鲁中网</a>&nbsp;<a href="http://www.hz66.com/" target="_blank">湖州在线</a>&nbsp;<a href="http://www.gndaily.com/" target="_blank">中国赣州网</a>&nbsp;<a href="http://www.cnxz.com.cn/" target="_blank">中国徐州网</a>&nbsp;<a href="http://www.yznews.com.cn/" target="_blank">扬州网</a>&nbsp;<a href="http://www.hj.cn/" target="_blank">襄阳汉江网</a>&nbsp;<a href="http://www.aqnews.com.cn/" target="_blank">安庆新闻网</a>&nbsp;<a href="http://www.leshan.cn/" target="_blank">乐山新闻网</a>&nbsp;<a href="http://www.ptxw.com/" target="_blank">莆田新闻网</a>&nbsp;<a href="http://www.xinjiangnet.com.cn/" target="_blank">新疆网</a>&nbsp;<a href="http://www.dpcm.cn/" target="_blank">牡丹江大鹏新闻网</a>
+  <a href="http://www.subaonet.com/" target="_blank">苏州新闻网</a>&nbsp;<a href="http://www.srxww.com/" target="_blank">上饶新闻网</a>&nbsp;<a href="http://www.jjxw.cn/" target="_blank">九江新闻网</a>&nbsp;<a href="http://www.xsnet.cn/" target="_blank">萧山网</a>&nbsp;<a href="http://www.jznews.com.cn/" target="_blank">荆州新闻网</a>&nbsp;<a href="http://www.hlbrdaily.com.cn/" target="_blank">呼伦贝尔日报网</a>&nbsp;<a href="http://www.ijjnews.com/" target="_blank">晋江新闻网</a>&nbsp;<a href="http://www.tznews.cn/" target="_blank">泰州新闻网</a>&nbsp;<a href="http://www.ddnews.com.cn/" target="_blank">丹东新闻网</a>&nbsp;<a href="http://www.foshannews.net/" target="_blank">佛山新闻网</a>&nbsp;<a href="http://www.tongliaowang.com/" target="_blank">中国通辽网</a>&nbsp;<a href="http://www.cnhan.com/" target="_blank">汉网</a>
+  <a href="http://www.bzcm.net/" target="_blank">滨州传媒网</a>&nbsp;<a href="http://www.chengdu.cn/" target="_blank">成都全搜索</a>&nbsp;<a href="http://www.wfcmw.cn/" target="_blank">潍坊传媒网</a>&nbsp;<a href="http://www.gdzjdaily.com.cn/" target="_blank">湛江新闻网</a>&nbsp;<a href="http://www.wuhunews.cn/" target="_blank">中国芜湖新闻网</a>&nbsp;<a href="http://www.ch365.com.cn/" target="_blank">巢湖在线</a>&nbsp;<a href="http://www.010lf.com/" target="_blank">环京津新闻网</a>&nbsp;<a href="http://www.cdyee.com/" target="_blank">尚一网</a>&nbsp;<a href="http://www.1545ts.com/" target="_blank">泰山网</a>&nbsp;<a href="http://www.hynews.net/" target="_blank">淮安新闻网</a>&nbsp;<a href="http://www.hldbtv.com/" target="_blank">葫芦岛广电网</a>
+  <a href="http://www.chinashishi.net/" target="_blank">中国石狮网</a>&nbsp;<a href="http://www.jcbctv.com/" target="_blank">晋城广电网</a>&nbsp;<a href="http://www.kunming.cn/" target="_blank">昆明信息港</a>&nbsp;<a href="http://www.lygnews.com/" target="_blank">连云港日报网</a>&nbsp;<a href="http://www.lcxw.cn/" target="_blank">聊城新闻网</a>&nbsp;<a href="http://www.cnjxol.com/" target="_blank">嘉兴在线</a>&nbsp;<a href="http://www.enorth.com.cn/" target="_blank">北方网</a>&nbsp;<a href="http://www.mnw.cn/" target="_blank">闽南网</a>&nbsp;<a href="http://www.sun0769.com/" target="_blank">东莞阳光网</a>&nbsp;<a href="http://www.shjnet.cn/" target="_blank">松花江网</a>&nbsp;<a href="http://www.ahwang.cn/" target="_blank">安徽网</a>&nbsp;<a href="http://www.guilinlife.com/" target="_blank">桂林生活网</a>&nbsp;
+  <a href="http://www.zznews.cn/" target="_blank">漳州新闻网</a>&nbsp;<a href="http://www.xiancity.cn/" target="_blank">西安网</a>&nbsp;<a href="http://www.lygmedia.com/" target="_blank">连云港传媒网</a>&nbsp;<a href="http://www.jwb.com.cn/" target="_blank">今晚网</a>&nbsp;<a href="http://www.ijntv.cn/" target="_blank">济南网络广播电视台</a>&nbsp;<a href="http://www.tielingcn.com/" target="_blank">中国铁岭网</a>&nbsp;<a href="http://www.ybxww.com/" target="_blank">宜宾新闻网</a>&nbsp;<a href="http://www.zgzyw.com.cn/" target="_blank">中国张掖网</a>&nbsp;<a href="http://www.ntjoy.com/" target="_blank">江海明珠网</a>&nbsp;<a href="http://www.hctvnet.com/" target="_blank">珲春新闻网</a>&nbsp;<a href="http://www.hscbw.com/" target="_blank">华声晨报网</a>&nbsp;<a href="http://www.lzbs.com.cn/" target="_blank">兰州新闻网</a>&nbsp;<a href="http://www.wj001.com/" target="_blank">武进新闻网</a>&nbsp;<a href="http://www.hhhtnews.com/" target="_blank">呼和浩特新闻网</a>&nbsp;<a href="http://www.weihai.tv/" target="_blank">威海传媒网</a>&nbsp;<br />
+  <strong>会员单位：</strong><a href="http://www.fznews.com.cn/" target="_blank">福州新闻网</a>&nbsp;<a href="http://www.zkxww.com/" target="_blank">周口网</a>&nbsp;<a href="http://www.whnews.cn/" target="_blank">威海新闻网</a>&nbsp;<a href="http://www.hongshannet.cn/" target="_blank">乌鲁木齐红山网</a>&nbsp;<a href="http://www.zjknews.com/" target="_blank">张家口新闻网</a>&nbsp;<a href="http://www.txdzw.com/" target="_blank">大足网</a>&nbsp;<a href="http://www.ilinyi.net/" target="_blank">爱临沂网</a>&nbsp;<a href="http://www.aksxw.com/" target="_blank">阿克苏新闻网</a>&nbsp;<a href="http://www.e0734.com/" target="_blank">中国衡阳新闻网</a>&nbsp;<a href="http://www.gyxww.cn/" target="_blank">广元新闻网</a>&nbsp;<a href="http://www.cn3x.com.cn/" target="_blank">三峡宜昌网</a>&nbsp;<a href="http://www.jmnews.cn/" target="_blank">荆门新闻网</a>&nbsp;<a href="http://www.tibet.cn/" target="_blank">中国西藏网</a>&nbsp;<a href="http://www.aihami.com/" target="_blank">楚秀网</a>&nbsp;<a href="http://www.xgrb.cn/" target="_blank">孝感网</a><br />
+  <strong>特约会员：</strong><a href="http://www.cnr.cn/" target="_blank">中国广播网</a></div>
+
+
+<div style="DISPLAY: none; " id=bottom_cont4 >
+
+
+<div class="ydyl_box" style="font-weight:lighter" ><a href="node_338309.htm" target="_blank"><img src="http://i4.cqnews.net/cqnews/177709.files/images/ydyl_wm_03.jpg" style="float:left; padding-right:25px; padding-top:6px;"></a><a target="_blank"  href="http://www.cqnews.net/">华龙网</a>　　 <a target="_blank"  href="http://www.sznews.com/">深圳新闻网</a>　　 <a target="_blank"  href="http://www.xinjiangnet.com.cn/">新疆网</a>　　 <a target="_blank"  href="http://www.xmnn.cn/">厦门网</a>　　 <a target="_blank"  href="http://www.qingdaonews.com/">青岛新闻网</a>　　 <a target="_blank"  href="http://www.qzwb.com/">泉州网</a>　　 <a target="_blank"  href="http://dalian.runsky.com/">大连天健网</a>　　 <a target="_blank"  href="http://www.hangzhou.com.cn/">杭州网</a>　　 <a target="_blank"  href="http://www.cnnb.com.cn/">中国宁波网</a>　　 <a target="_blank"  href="http://www.66wz.com/">温州网</a>　　 <a target="_blank"  href="http://www.dayoo.com/">大洋网</a><br>
+<a target="_blank"  href="http://www.guilinlife.com/">桂林生活网</a>　　 <a target="_blank"  href="http://www.changsha.cn/">星辰在线</a>　　 <a target="_blank"  href="http://www.longhoo.net/index.html">龙虎网</a>　　 <a target="_blank"  href="http://www.yznews.com.cn/">扬州网</a>　　 <a target="_blank"  href="http://www.jiaodong.net/">胶东在线</a>　　 <a target="_blank"  href="http://www.xiancn.com/">西安新闻网</a>　　 <a target="_blank"  href="http://www.kunming.cn/">昆明信息港</a>　　 <a target="_blank"  href="http://www.lanzhou.cn/">中国兰州网</a>　　 <a target="_blank"  href="http://www.ycen.com.cn/">银川新闻网</a>　　 <a target="_blank"  href="http://www.my399.com/">哈尔滨新闻网</a><br>
+<a target="_blank"  href="http://www.chengdu.cn/">成都全搜索</a>　　 <a target="_blank"  href="http://www.hkwb.net/">海口网</a>　　 <a target="_blank"  href="http://news.cjn.cn/">长江网</a>　　 <a target="_blank"  href="http://www.ylxw.com.cn/">伊犁新闻网</a>　　 <a target="_blank"  href="http://www.enorth.com.cn/">北方网</a>　　 <a target="_blank"  href="http://www.qhnews.com/">青海新闻网</a>　　 <a href="http://www.cnxz.com.cn/" target="_blank">中国徐州网</a>　　 <a target="_blank"  href="http://www.ycwb.com/">金羊网</a>　　 <a target="_blank"  href="http://www.fznews.com.cn/">福州新闻网</a>　　 <a target="_blank"  href="http://www.lyd.com.cn/ ">洛阳网</a>　　 <a target="_blank"  href="http://www.e23.cn/">舜网</a><br><a target="_blank"  href="http://www.tlfw.net/">吐鲁番新闻网</a>　　 <a target="_blank"  href="http://www.hf365.com/">合肥在线</a>　　 <a target="_blank"  href="http://www.tynews.com.cn/">太原新闻网</a>　　 <a target="_blank"  href="http://www.baojinews.com/">宝鸡新闻网</a>　　 <a target="_blank"  href="#">广安在线</a>　　 <a target="_blank"  href="http://www.2500sz.com/">名城苏州网</a>　　 <a target="_blank"  href="http://www.zgzyw.com.cn/">中国张掖网</a>　　 <a target="_blank"  href="http://www.dahuawang.com/">大华网</a>　　 <a target="_blank"  href="http://www.snxw.com/">遂宁新闻网</a>　　 <a target="_blank"  href="http://www.zhoushan.cn/">舟山网</a><br>
+<a target="_blank"  href="http://www.gdzjdaily.com.cn/">湛江新闻网</a>　　 <a target="_blank"  href="http://www.zynews.com/">中原网</a>　　 <a target="_blank"  href="http://www.kf.cn/">开封网</a>　　 <a target="_blank"  href="http://www.zjknews.com/">张家口新闻网</a>　　 <a target="_blank"  href="http://www.hebei.com.cn/">长城网</a>　　 <a target="_blank"  href="http://www.gatv.com.cn/">广安新闻网</a>　　 <a target="_blank"  href="#">大足网</a>　　 浙江晨泰科技股份有限公司　　 深圳市企业联合会</div>
+
+
+
+
+</div>
+</div>
+
+<!--友情链接结束-->
+
+
+
+<!--底部导航-->
+
+<div class="top15 head" style="font-weight:lighter"><div style="height:30px; text-align:center;  border-top:2px solid  #207095; background-color:#f1f1f1;border-bottom:1px solid #d4d4d4;line-height:30px; vertical-align:middle"><a href="http://news.lyd.com.cn/index.shtml" target="_blank" style="font-size:14px;margin-right:35px"><strong>新闻</strong></a><a href="http://xianqu.lyd.com.cn/" target="_blank"   style="font-size:14px;margin-right:35px">县区</a><a href="http://people.lyd.com.cn/" target="_blank"  style="font-size:14px;margin-right:35px"><strong>百姓呼声</strong></a><a href="http://bbs.lyd.com.cn" target="_blank"   style="font-size:14px;margin-right:35px">论坛</a><a href="http://house.lyd.com.cn/" target="_blank"  style="font-size:14px;margin-right:35px">房产</a><a href="http://health.lyd.com.cn/hospital.html" target="_blank"   style="font-size:14px;margin-right:35px">健康</a><a href="http://lawyer.lyd.com.cn/" target="_blank"  style="font-size:14px;margin-right:35px">律师在线</a><a href="http://lywb.lyd.com.cn" target="_blank"   style="font-size:14px;margin-right:35px">电子报</a><a href="http://61.163.60.98/lyd/newsup/newsup.htm" target="_blank" style="font-size:14px">网站投稿</a></div>
+</div>
+
+
+
+
+<!--版权信息-->
+
+<div class="bq top15" style="font-weight:lighter">
+
+<div class="banquan">&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://news.lyd.com.cn/system/2014/08/01/010336444.shtml" target="_blank"><strong>版权声明</strong>：洛阳日报报业集团版权所有，未经书面授权，禁止复制、转载或建立镜像等。联系电话：0379-65233520
+
+ </a></div>
+
+<div class="banquandaohang"><a href="http://biz.lyd.com.cn/about/ad.htm" target="_blank">关于我们</a> | <a href="http://biz.lyd.com.cn/us/index.htm" target="_blank">洛阳日报报业集团简介</a> | <a href="http://biz.lyd.com.cn/gb/" target="_blank">广告服务</a> | <a href="#" target="_blank">诚聘英才</a> | <a href="http://biz.lyd.com.cn/sitemap/index.htm" target="_blank">网站地图</a> &nbsp;&nbsp;&nbsp;&nbsp;<a href=" http://www.miibeian.gov.cn/" target="_blank">豫ICP备05017468号</a>&nbsp;&nbsp;<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41031102000001" target="_blank"><img src="http://www.lyd.com.cn/images2017/beian.png" />豫公网安备 41031102000001号</a>&nbsp;&nbsp;<span style="font-size:12px; color:#666666;"><a href="http://www2.lyd.com.cn/ts/default.html" target="_blank">洛阳网投诉举报办法</a>&nbsp;</span></div>
+<div class="maindibu">
+  <p><a href=" http://biz.lyd.com.cn/xinwenxkz.htm" target="_blank">互联网新闻信息服务许可证 编号：4112012002</a>　　 <a href=" http://biz.lyd.com.cn/xkz.htm" target="_blank">信息网络传播视听节目许可证 编号：1608238</a>　　<a href=" http://biz.lyd.com.cn/zengzhidianxinxkz.htm" target="_blank">增值电信业务经营许可证 编号：豫B2—20060064</a>　　<br />
+    业务咨询：(0379)65233618   65233767&nbsp;&nbsp;
+
+    
+    网络服务：(0379)65233606&nbsp;&nbsp;65233616&nbsp;&nbsp; 传真：(0379)65233529&nbsp;&nbsp;
+    地址：洛阳新区开元大道218号 报业大厦22层 邮编：471023<br />
+    本站法律顾问 河南中冶律师事务所 <a href=" http://lawyer.lyd.com.cn/lawyer.asp?id=1" target="_blank">张彦立</a> </p>
+
+
+
+</div></div>
+<!--版权结束-->
+
+
+<div class="tongji" style=" display:none">
+<!--BaiDu begin 20141202 all-->
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F22a1fd52d71d27a688f488ceb244d3f8' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<!--BaiDu begin 20121213 lyd-->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff06211006e193bca418acc083f7c7908' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</div>
+<!--洛阳网监支队信息备案 开始-->
+
+<style type="text/css">
+
+<!--
+.threec_hbk{
+	border: 1px solid #d2d2d2;
+}
+-->
+
+</style>
+
+
+<table width="600" border="0" align="center" cellpadding="0" cellspacing="10">
+  <tr>
+
+    <td align="center" valign="middle" class="threec_hbk"><table width="110" border="0" align="right" cellpadding="0" cellspacing="0">
+
+      <tr>
+        <td width="50"><a href="http://wj.haaic.gov.cn/TopICRS/certificateAction.do?id=201307250000000718" target="_blank"><img src="http://www.lyd.com.cn/images/bottom_img02.jpg" border="0" /></a></td>
+        <td width="70" align="left" valign="middle"><a href="http://wj.haaic.gov.cn/TopICRS/certificateAction.do?id=201307250000000718" target="_blank"><span style="font-size:12px; color:#666666;font-weight:lighter">经营性网站 <br>
+          备案信息</span></a></td>
+      </tr>
+    </table></td>
+    <td align="center" valign="middle" class="threec_hbk"><table width="110" border="0" align="right" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="50"><a href="http://net.china.com.cn/index.htm" target="_blank"><img src="http://www.lyd.com.cn/images/bottom_img03.jpg" border="0" /></a></td>
+        <td width="70" align="left" valign="middle"><span style="font-size:12px; color:#666666;font-weight:lighter"><a href="http://net.china.com.cn/index.htm" target="_blank">不良信息</a><br>
+          <a href="http://net.china.com.cn/index.htm" target="_blank">举报中心</a></td>
+
+      </tr>
+    </table></td>    <td align="center" class="threec_hbk"><table width="180" border="0" align="right" cellpadding="0" cellspacing="0">
+      <tr>
+        <td align="left"><img src="http://www.lyd.com.cn/images/lyl.jpg" border=0 /></td>
+        </tr>
+    </table></td>
+    <td align="center" valign="middle" class="threec_hbk"><table width="110" border="0" align="right" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="50"><a href="http://www.lywj.net/" target="_blank"><img src="http://www.lyd.com.cn/images/bottom_img04.jpg" border="0" /></a></td>
+        <td width="70" align="left" valign="middle"><a href="http://www.lywj.net/" target="_blank"><span style="font-size:12px; color:#666666;font-weight:lighter">洛阳网监<br>
+信息备案</span></a></td>
+      </tr>
+
+    </table></td>
+
+
+    <td align="center" valign="middle" class="threec_hbk"><table width="110" border="0" align="right" cellpadding="0" cellspacing="0">
+      <tr>
+
+
+        <td width="50"><a href="http://net.china.com.cn/index.htm" target="_blank"><img src="http://www.lyd.com.cn/images/bottom_img01.jpg" border="0" /></a></td>
+        <td width="70" align="left" valign="middle"><a href="http://net.china.com.cn/index.htm" target="_blank"><span style="font-size:12px; color:#666666;font-weight:lighter">网络110<br>
+报警服务</span></a></td>
+      </tr>
+
+    </table></td>
+  </tr>
+</table>
+<div style="height:80px"></div>
+<!--fuceng-->
+<!--<div style="position:absolute; WIDTH: 700px;margin:0 auto; display:none;top:527px" id="tu_da2_fuceng">
+  <a href="http://news.lyd.com.cn/zhuanti/2015_myjcc/baoming.html" target="_blank"><img src="http://biz.lyd.com.cn/2015/images/mingyou_500_250.png" width=532 height=515 border="0" /></a>
+
+<div style="position:relative; text-align:right"><span style="cursor:pointer; font-size:12px; background-color:#FFFFFF" onclick="$('#tu_da2_fuceng').hide();$('#duilian_right2').show();">关闭</span></div>
+</div>-->
+<!-- fuceng  end-->
+<!--洛阳网微信-->
+
+<div id=Rcode style="width:90px;height:148px;position:fixed;_position:absolute;top:410px;right:3px;display:block;zIndex:100; background-color:#D3E0E9; text-align:center; font-size:12px; line-height:20px; padding:2px 2px 2px 2px;">
+<div style="float:left; width:70px; height:20px;"><a href="http://www.lyd.com.cn/#top" target="_self"><img src="http://biz.lyd.com.cn/2013/images/20130606_top.jpg" width=36 height=11 border=0 /></a></div>
+<div style="float:right; width:20px; height:20px; "><span style="cursor:pointer; font-size:12px" onclick="$('#Rcode').hide();"><img src="http://biz.lyd.com.cn/2013/images/20130606_x.jpg" width=16 height=16 border=0 /></span></div>
+
+
+<span style="color:#093A62; letter-spacing: 0.5em; font-weight:lighter">掌上洛阳</br>手机客户端</span><br />
+<a href="http://shouji.lyd.com.cn/" target="_blank"><img src="http://www.lyd.com.cn/images2015/zsly.png" width=84 height=84 border=0 /> </a>
+<br />
+<span style="color:#093A62; font-weight:lighter">点击或扫描下载</span>
+
+</div>
+<!--洛阳网微信-->
+
+
+<!--洛阳网微信-->
+
+<div id=Rcodewx style="width:90px;height:148px;position:fixed;_position:absolute;top:410px;left:3px;display:block;zIndex:100; background-color:#D3E0E9; text-align:center; font-size:12px; line-height:20px; padding:2px 2px 2px 2px;">
+<div style="float:left; width:70px; height:20px;"><a href="http://www.lyd.com.cn/#top" target="_self"><img src="http://biz.lyd.com.cn/2013/images/20130606_top.jpg" width=36 height=11 border=0 /></a></div>
+
+<div style="float:right; width:20px; height:20px; "><span style="cursor:pointer; font-size:12px" onclick="$('#Rcodewx').hide();"><img src="http://biz.lyd.com.cn/2013/images/20130606_x.jpg" width=16 height=16 border=0 /></span></div>
+
+<span style="color:#093A62;font-weight:lighter ">洛阳网</br>微信公众平台</span><br />
+
+<a href="http://news.lyd.com.cn/system/2013/03/18/010236654.shtml" target="_blank"><img src="http://www.lyd.com.cn/images2013/zsly2.jpg" width=84 height=84 border=0 /> </a>
+
+<br />
+<span style="color:#093A62; font-weight:lighter">扫描二维码关注</span>
+
+</div>
+<!--洛阳网微信-->
+<!--底部浮动，任性团-->
+
+<!--<div id="float_bottom" style="text-align:center;position:fixed;bottom:15px;margin:0 auto;width:100%;height:55px;border:0px;">
+<div style="width:1000px;text-align:right;position:relative;_position:relative;margin:0 auto;"><span style="cursor:pointer; font-size:12px" onclick="$('#float_bottom').hide();"><img src="http://biz.lyd.com.cn/2013/images/20130606_x.jpg" width="16" height="16" border="0"></span></div>
+
+<a href="http://biz.lyd.com.cn/cms_udf/2017/leshishangcheng/" target="_blank"><img src="http://biz.lyd.com.cn/2017/images/20170406_lssc.jpg" width="1000" height="55" border="0" class="imgbk" /></a>
+
+
+
+</div>-->
+<!--底部浮动，任性团-->
+
+
+</body>
+</html>
+                 
+
+<!--enorth cms page [ enorth parse_date="2017/10/07 15:48:47.047", cost="1381", server="unkown host", error_count="0"]-->

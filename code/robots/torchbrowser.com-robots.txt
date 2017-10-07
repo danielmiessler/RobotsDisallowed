@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<!--[if IE 7]><html class="ie7 ie"><![endif]-->
-<!--[if IE 8]><html class="ie8 ie"><![endif]-->
-<!--[if !IE]>--><html><!--<![endif]-->
+<!--[if IE 7]><html class="ie7 ie" lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><![endif]-->
+<!--[if IE 8]><html class="ie8 ie" lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><![endif]-->
+<!--[if !IE]>--><html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <script type="text/javascript" src="/js/default/vendor/jquery.min.1.11.1.js"></script>
+<script type="text/javascript" src="/js/default/vendor/magnific-popup.min.js"></script>
     <meta name="description" content="Sorry, but the page you are looking for has not been found. Please return to Torch Browser homepage and start again.">
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
@@ -16,50 +17,56 @@
 	var _rb_ga_page_name = "404";
 	var _rb_ga_common_account = "UA-30208384-1";
 
-    var ga_host = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src=\""+ga_host+"google-analytics.com/ga.js\" type=\"text/javascript\"%3E%3C/script%3E"));
+    var _gaq = _gaq || [];
+_gaq.push(['_setAccount', _rb_ga_common_account]);
+
+(function() {
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+    ga.src = ('https:'   == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ga, s);
+})();
 
 function ga_track_download(id){
-    send_ga_query(_rb_ga_page_name+"/download/btn["+id+"]/sysid["+_rb_systemid+"]/appid["+_rb_appid+"]/lng["+_rb_language+"]", _rb_ga_common_account);
+    send_ga_query(_rb_ga_page_name+"/download/btn["+id+"]/sysid["+_rb_systemid+"]/appid["+_rb_appid+"]/lng["+_rb_language+"]");
 }
 
-function ga_track_view( ){
-    send_ga_query(_rb_ga_page_name+"/view/sysid["+_rb_systemid+"]/appid["+_rb_appid+"]/lng["+_rb_language+"]", _rb_ga_common_account);
+function ga_track_view(){
+    send_ga_query(_rb_ga_page_name+"/view/sysid["+_rb_systemid+"]/appid["+_rb_appid+"]/lng["+_rb_language+"]");
 }
 
 function ga_track_usage(id, usageof){
-    send_ga_query(_rb_ga_page_name+"/usage/"+usageof+"["+id+"]/sysid["+_rb_systemid+"]/appid["+_rb_appid+"]/lng["+_rb_language+"]", _rb_ga_common_account);
+    send_ga_query(_rb_ga_page_name+"/usage/"+usageof+"["+id+"]/sysid["+_rb_systemid+"]/appid["+_rb_appid+"]/lng["+_rb_language+"]");
 }
 
-function send_ga_query(query, ga_account){
-    if(typeof _gat != "undefined" && _gat != null){
-	   try{
-	       var ga_tracker = _gat._getTracker(ga_account);
-	       ga_tracker._initData( );
-	       ga_tracker._trackPageview(query);
-	   }
-	   catch($e){}
-    }
-    else{
-	   setTimeout(function(){send_ga_query(query, ga_account)}, 1000);
-    }
+function send_ga_query(query){
+    _gaq.push(['_trackPageview', query]);
 }    var ml_host = (("https:" == document.location.protocol) ? "https://" : "http://");
-var ml_host_script = ml_host+"www.torchbrowser.com/js/default";
-var ml_host_stats = ml_host+"stat.torchbrowser.com";
-document.write(unescape("%3Cscript src='"+ml_host_script+"/appid.V2.js' type='text/javascript'%3E%3C/script%3E"));
+
+var ml_host_stats = ml_host + "stat.torchbrowser.com";
+
+(function() {
+    var ms = document.createElement('script');
+    ms.type = 'text/javascript';
+    ms.async = true;
+    ms.src = ml_host + 'www.torchbrowser.com/js/default/appid.V2.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ms, s);
+})();
 
 var _ml_stat_loaded = false;
 
 function ml_stats_load(){
     if(typeof appidObj != "undefined" && appidObj != null){
-	   appidObj.init(_rb_systemid, ml_host_stats);
-	   appidObj.track("hit");
-	   _rb_appid = appidObj.getAppID();
-	   ga_track_view();
-	   _ml_stat_loaded = true;
-    }
-    else{
-	   setTimeout(function(){ml_stats_load()}, 1000);
+        appidObj.init(_rb_systemid, ml_host_stats);
+        appidObj.track("hit");
+        _rb_appid = appidObj.getAppID();
+        ga_track_view();
+        _ml_stat_loaded = true;
+    } else {
+        setTimeout(function(){ml_stats_load()}, 1000);
     }
 }
 
@@ -69,10 +76,9 @@ function ml_track_download(){
 
 function send_ml_query(_event){
     if(_ml_stat_loaded == true){
-	   appidObj.track(_event, _rb_language);
-    }
-    else{
-	   setTimeout(function(){send_ml_query(_event)}, 1000);
+        appidObj.track(_event, _rb_language);
+    } else {
+        setTimeout(function(){send_ml_query(_event)}, 1000);
     }
 }
 
@@ -85,31 +91,88 @@ ml_stats_load();
 </script>    <link href="/styles/default/new-main.css" rel="stylesheet" type="text/css" />
 <link href="/styles/default/new-inner.css" rel="stylesheet" type="text/css" />
 <link href="/styles/default/404.css" rel="stylesheet" type="text/css" />
+<link href="/styles/default/vendor/magnific-popup.css" rel="stylesheet" type="text/css" />
     <title>404 Error | Your requested page was not found</title>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,800,700,600,400,300" rel="stylesheet" type="text/css">
 </head>
 <body>
-        <div class="shadow">
+    <div id="menu-popup">
+    <div><a href="/tour">Features</a></div>
+    <div><a href="/about">About</a></div>
+    <div><a href="/support" target="_blank">Support</a></div>
+    <div><a href="/privacy">Privacy Policy</a></div>
+    <div><a href="/terms">Terms of Use</a></div>
+    <div><a href="/copyrights">Copyrights</a></div>
+    <div><a href="#mac-disclaimer" class="mac-disclaimer-button" aid="menu" title="Download Torch Web Browser Now!">Download</a></div>
+    <a class="btn-close"></a>
+</div>
+
+<div id="menu" class="nav-negative">
+    <a href="#menu-popup" class="menu" title="Menu"></a>
+    <a href="/" class="logo"></a>
+    <div class="right-block">
+        <div class="social">
+    <a href="https://www.facebook.com/TorchBrowser" class="facebook" target="_blank" title="Join Torch Browser on Facebook"></a>
+    <a href="https://twitter.com/TorchBrowser" class="twitter" target="_blank" title="Follow Torch Browser on Twitter"></a>
+    <a href="https://plus.google.com/100055417965764861174/posts" class="google" target="_blank" title="Torch Browser on Google+"></a>
+</div>        <a class="download-button-small mac-disclaimer-button" href="#mac-disclaimer" aid="top" title="Download Torch Web Browser Now!">Download</a>
+<div class="mac-disclaimer mfp-hide" id="mac-disclaimer">
+    <div class="head"><p>Download Torch Browser</p><a class="close-btn" href="#"></a></div>
+    <div class="body">
+        <p>While you can still download Torch for Mac,<br>
+            we are not supporting this software at this time</p>
+        <a class="download-button" href="http://download.torchbrowser.com/TorchSetup.exe" target="downframe" onclick="$.magnificPopup.close(); track_download($(this).attr('aid'))" title="Download Torch Web Browser Now!">DOWNLOAD</a>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".close-btn").bind("click", function(){$.magnificPopup.close()});
+
+        var bgVideo = $("#bg-video")[0];
+
+        $(".mac-disclaimer-button").magnificPopup({
+            type: 'inline',
+            closeBtnInside: false,
+            showCloseBtn: false,
+            callbacks: {
+                open: function() {
+                    if (bgVideo) {
+                        bgVideo.pause();
+                    }
+                    // set right aid
+                    $("#mac-disclaimer .download-button").attr('aid', $(event.currentTarget).attr('aid'));
+                },
+                close: function() {
+                    if (bgVideo) {
+                        bgVideo.play();
+                    }
+                }
+            }
+        });
+    });
+</script>    </div>
+</div>
+    <div class="shadow">
     <a class="logo" href="/"><img src="/styles/default/attire/404/logo.png" width="141" height="45" alt="Torch Web Browser"></a>
     <h1>404</h1>
     <h2>FEELING LOST?</h2>
     <p>Take Me <a href="/">Back Home</a></p>
-    <a class="download-button" href="http://dl.torchbrowser.com/TorchSetup.pkg" target="downframe" aid="main" onclick="track_download('main')" title="Download Torch Web Browser Now!">DOWNLOAD</a>
+    <a class="download-button" href="http://download.torchbrowser.com/TorchSetup.exe" target="downframe" aid="main" onclick="track_download('main')" title="Download Torch Web Browser Now!">DOWNLOAD</a>
 </div>
     <div class="footer">
     <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/tour">Features</a></li>
-        <li><a href="http://dl.torchbrowser.com/TorchSetup.pkg" target="downframe" aid="footer" onclick="track_download('footer')">Download</a></li>
+        <li><a href="#mac-disclaimer" class="mac-disclaimer-button" aid="footer">Download</a></li>
         <li><a href="/support" target="_blank">Support</a></li>
         <li><a href="/support/faq" target="_blank">FAQ</a></li>
-        <li><a href="http://blog.torchbrowser.com" target="_blank">Blog</a></li>
         <li><a href="/about">About Us</a></li>
         <li><a href="/privacy">Privacy Policy</a></li>
         <li><a href="/terms">Terms of Use</a></li>
         <li class="no-border-right"><a href="/copyrights">Copyrights</a></li>
     </ul>
-    Copyrights &copy; 2015 Torch Media Inc. All rights reserved.
+    Copyrights &copy; 2017 Torch Media Inc. All rights reserved.
 </div>    <iframe id="downframe" width="0" height="0" frameborder="0" src="about:blank" name="downframe"></iframe>
     </body>
 </html>
