@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>404页面-抱歉，没有找到您想访问的页面，或本页面已被删除</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css"> 
+html{overflow-x:hidden;overflow-y:hidden;}
+body,h1,h2,ul,li,p{margin:0;padding:0;}
+body{font:normal 14px "\5FAE\8F6F\96C5\9ED1","\5B8B\4F53",sans-serif;background:#000;color:#DDDDDD;}
+ul,li{list-style:none;}
+a{color:#FFF;text-decoration:none;}
+a:hover{color:#FF0;text-decoration:underline;}
+img{border:0;}
+h1{font:normal 26px/60px "\5FAE\8F6F\96C5\9ED1","\9ED1\4F53","\5B8B\4F53";}
+h1 a{color:#FF0;}
+h2{font-size:16px;font-weight:normal;height:40px;}
+p{font-size:12px;line-height:40px;}
+.layout{position:absolute;top:50%;left:50%;margin:-200px 0 0 -350px;width:700px;height:400px;overflow:hidden;text-align:center;}
+.layout li{float:left;width:350px;text-align:center;}
+.btnDown a{margin:0 auto;display:block;background:#C00;width:180px;height:40px;line-height:40px;color:#FFF;font-size:20px;text-align:center;text-decoration:none;}
+.btnDown a:hover{background:#F60;}
+#progressBar{position:absolute;top:50px;left:50%;margin:0 0 0 -200px;width:400px;height:12px;background:#CCC;}
+#bar{width:10px;height:12px;background:#06C;font-size:10px;text-align:center;}
+#loading{position:absolute;top:20px;margin:0 auto;width:100%;background:#000;line-height:30px;text-align:center;}
+</style>
+</head>
+<body>
+
+
+<div id="loading">抱歉，没有找到您想访问的页面，或本页面已被删除，我们将帮您跳转首页 <span id="num"></span>%</div>
+<div id='progressBar'>
+	<div id="bar"></div>
+<div>
+<script type="text/javascript"> 
+i=0;
+ 
+//function start() {
+	ba=setInterval("begin()",90);
+//}
+ 
+function begin() {
+	i+=1;
+	if(i<=100) {
+		document.getElementById("bar").style.width=i+"%";
+		document.getElementById("num").innerHTML=i;
+	}else{
+		clearInterval(ba);
+		window.location.href="/"; 
+	}
+}
+ 
+/*----- Disable Right-Click -----*/
+function clickIE4(){
+	if (event.button==2){
+		return false;
+	}
+}
+ 
+function clickNS4(e){
+	if (document.layers||document.getElementById&&!document.all){
+		if (e.which==2||e.which==3){
+			return false;
+		}
+	}
+}
+ 
+function OnDeny(){
+	if(event.ctrlKey || event.keyCode==78 && event.ctrlKey || event.altKey || event.altKey && event.keyCode==115){
+		return false;
+	}
+}
+ 
+if (document.layers){
+	document.captureEvents(Event.MOUSEDOWN);
+	document.onmousedown=clickNS4;
+	document.onkeydown=OnDeny();
+}else if (document.all&&!document.getElementById){
+	document.onmousedown=clickIE4;
+	document.onkeydown=OnDeny();
+}
+ 
+document.oncontextmenu=new Function("return false");
+/*----- Disable Right-Click -----*/
+</script>
+</body>
+</html>

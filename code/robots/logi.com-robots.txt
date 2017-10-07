@@ -1,0 +1,29 @@
+# Logitech
+# Modified 9.2.2009
+
+User-agent: Ocelli
+Disallow: /
+
+User-agent: *
+Disallow: /css/
+Disallow: /sifr/
+Disallow: /javascript/
+Disallow: http://www.logitech.com/index.cfm/promotional_items/
+Disallow: http://www.logitech.com/index.cfm/735/
+Disallow: http://register.logitech.com/
+Disallow: http://buy.logitech.com/
+Disallow: http://assets.logitech.com/
+Disallow: http://russia.logitech.com/
+Disallow: http://shop.logitech.com/
+Disallow: http://vip.logitech.com/
+Disallow: http://channel.logitech.com/
+Disallow: http://iredirect.logitech.com/
+Disallow: http://itouch.logitech.com/
+Disallow: http://reviews.logitech.com/
+Disallow: http://www.logitech.com/index.cfm/outlet_store
+Disallow: http://www.logitech.com/index.cfm/bundles
+Disallow: http://harmony-select.logitech.com/
+Disallow: http://origin.logitech.com/
+Disallow: http://origin2.logitech.com/
+
+Sitemap: http://www.logitech.com/sitemapindex.xml

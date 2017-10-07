@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /*.xsl$
+Disallow: /*.pdf$
+Disallow: /*.xml$
+Allow: *sitemap*.xml
+
+Sitemap: https://www.lidl.pl/sitemap.xml

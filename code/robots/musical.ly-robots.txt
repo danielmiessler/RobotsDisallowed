@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="cache-control" content="max-age=0" />
+  <meta http-equiv="cache-control" content="no-cache" />
+  <meta http-equiv="expires" content="0" />
+  <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+  <meta http-equiv="pragma" content="no-cache" />
+  <meta name="referrer" content="origin">
+  <title>musical.ly</title>
+  <script>
+    (function() {
+
+      function isLocalStorageNameSupported() {
+        const testKey = 'test';
+        const storage = window.localStorage;
+        try {
+          storage.setItem(testKey, '1');
+          storage.removeItem(testKey);
+          return true;
+        } catch (error) {
+          return false;
+        }
+      }
+
+      // 优先级提高到所有静态资源的前面，语言不对，加载其他静态资源没意义
+      var pathname = location.pathname;
+      // 支持的语言列表
+      var languages = ['en-US','zh-CN']
+      var currentLanguage = ''
+      //是否有语言code
+      if (pathname.length > 1) {
+        languages.forEach(function(item){
+          var p = pathname.match(/^\/([^/]+)/)[1].toLowerCase()
+          if ( p === item.toLowerCase() ) {
+            currentLanguage = item
+          }
+        })
+      }
+      if (!currentLanguage) {
+        var lang = 'en-US'
+        var userLang = navigator.language || navigator.userLanguage; 
+
+        if (isLocalStorageNameSupported() && localStorage.getItem('locale')) {
+          lang = localStorage.getItem('locale')
+        } else if (userLang && languages.indexOf(userLang) !== -1) {
+          lang = userLang
+        }
+        location.pathname = location.pathname.replace(/^\/(.*)/,"/"+lang+"/$1")
+      }
+      document.documentElement.className += currentLanguage;
+    })()
+    if (!window.Intl) {
+      document.writeln('<script src="https://as.alipayobjects.com/g/component/intl/1.0.1/??Intl.js,locale-data/jsonp/zh.js,locale-data/jsonp/en.js">' + '<' + '/script>');
+    }
+  </script>
+<link href="https://static.muscdn.com/website/index-8fd20487.css" rel="stylesheet"></head>
+<body>
+<div id="root"></div>
+<script type="text/javascript" src="https://static.muscdn.com/website/index-2a9eac52.js"></script></body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>App Gatway</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        var IPHONE_APPSTORE = "https://itunes.apple.com/us/app/bit-byt/id1182007739?ls=1&mt=8";
+
+        function startMyApp(storeURL, deeplinkUrl) {
+
+            document.getElementById("IOSClick").href="paymentsBIT://"+deeplinkUrl;
+			      document.getElementById("IOSClick").click();
+
+            setTimeout(function () {
+                window.location = storeURL; //fallback url
+            }, 300);
+
+        }
+
+        function startAndroidApp(deeplinkUrl) {
+
+            document.getElementById("androClick").href="intent://"+deeplinkUrl+"#Intent;scheme=bit;package=com.bnhp.payments.paymentsapp;S.browser_fallback_url=https://play.google.com/store/apps/details?id=com.bnhp.payments.paymentsapp;end";
+            document.getElementById("androClick").click();
+        }
+
+        function detectApp() {
+
+            var deeplinkUrl = "www.bitpay.co.il" + window.location.pathname + window.location.search;
+            var userAgent = navigator.userAgent.toString().toLowerCase();
+
+            if (userAgent.indexOf("iphone") > -1 || userAgent.indexOf("ipad") > -1) {
+
+                startMyApp(IPHONE_APPSTORE, deeplinkUrl);
+
+            }
+            else if (userAgent.indexOf("android") > -1) {
+
+                startAndroidApp(deeplinkUrl);
+
+            }
+        }
+    </script>
+</head>
+<body>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            detectApp();
+        });
+    </script>
+
+    <a id="androClick" style="display:none;" href="#">
+	  android-app://com.ideomobile.hapoalim/hapoalimBankait/?activityType=6</a>
+    <a id="IOSClick" style="display:none;" href="#">
+	  paymentsBIT</a>
+
+</body>
+</html>

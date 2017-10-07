@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /gfx/
+User-agent: Fasterfox
+Disallow: /

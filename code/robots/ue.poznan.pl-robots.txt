@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: http://ue.poznan.pl/sitemap.xml

@@ -1,0 +1,471 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl" lang="pl" dir="ltr">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VwIAV1BRGwcJXFJTBwIO"};window.NREUM||(NREUM={}),__nr_require=function(t,n,e){function r(e){if(!n[e]){var o=n[e]={exports:{}};t[e][0].call(o.exports,function(n){var o=t[e][1][n];return r(o||n)},o,o.exports)}return n[e].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<e.length;o++)r(e[o]);return r}({1:[function(t,n,e){function r(t){try{s.console&&console.log(t)}catch(n){}}var o,i=t("ee"),a=t(15),s={};try{o=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(s.console=!0,o.indexOf("dev")!==-1&&(s.dev=!0),o.indexOf("nr_dev")!==-1&&(s.nrDev=!0))}catch(c){}s.nrDev&&i.on("internal-error",function(t){r(t.stack)}),s.dev&&i.on("fn-err",function(t,n,e){r(e.stack)}),s.dev&&(r("NR AGENT IN DEVELOPMENT MODE"),r("flags: "+a(s,function(t,n){return t}).join(", ")))},{}],2:[function(t,n,e){function r(t,n,e,r,o){try{d?d-=1:i("err",[o||new UncaughtException(t,n,e)])}catch(s){try{i("ierr",[s,c.now(),!0])}catch(u){}}return"function"==typeof f&&f.apply(this,a(arguments))}function UncaughtException(t,n,e){this.message=t||"Uncaught error with no additional information",this.sourceURL=n,this.line=e}function o(t){i("err",[t,c.now()])}var i=t("handle"),a=t(16),s=t("ee"),c=t("loader"),f=window.onerror,u=!1,d=0;c.features.err=!0,t(1),window.onerror=r;try{throw new Error}catch(l){"stack"in l&&(t(8),t(7),"addEventListener"in window&&t(5),c.xhrWrappable&&t(9),u=!0)}s.on("fn-start",function(t,n,e){u&&(d+=1)}),s.on("fn-err",function(t,n,e){u&&(this.thrown=!0,o(e))}),s.on("fn-end",function(){u&&!this.thrown&&d>0&&(d-=1)}),s.on("internal-error",function(t){i("ierr",[t,c.now(),!0])})},{}],3:[function(t,n,e){t("loader").features.ins=!0},{}],4:[function(t,n,e){function r(t){}if(window.performance&&window.performance.timing&&window.performance.getEntriesByType){var o=t("ee"),i=t("handle"),a=t(8),s=t(7),c="learResourceTimings",f="addEventListener",u="resourcetimingbufferfull",d="bstResource",l="resource",p="-start",h="-end",m="fn"+p,w="fn"+h,v="bstTimer",y="pushState",g=t("loader");g.features.stn=!0,t(6);var b=NREUM.o.EV;o.on(m,function(t,n){var e=t[0];e instanceof b&&(this.bstStart=g.now())}),o.on(w,function(t,n){var e=t[0];e instanceof b&&i("bst",[e,n,this.bstStart,g.now()])}),a.on(m,function(t,n,e){this.bstStart=g.now(),this.bstType=e}),a.on(w,function(t,n){i(v,[n,this.bstStart,g.now(),this.bstType])}),s.on(m,function(){this.bstStart=g.now()}),s.on(w,function(t,n){i(v,[n,this.bstStart,g.now(),"requestAnimationFrame"])}),o.on(y+p,function(t){this.time=g.now(),this.startPath=location.pathname+location.hash}),o.on(y+h,function(t){i("bstHist",[location.pathname+location.hash,this.startPath,this.time])}),f in window.performance&&(window.performance["c"+c]?window.performance[f](u,function(t){i(d,[window.performance.getEntriesByType(l)]),window.performance["c"+c]()},!1):window.performance[f]("webkit"+u,function(t){i(d,[window.performance.getEntriesByType(l)]),window.performance["webkitC"+c]()},!1)),document[f]("scroll",r,{passive:!0}),document[f]("keypress",r,!1),document[f]("click",r,!1)}},{}],5:[function(t,n,e){function r(t){for(var n=t;n&&!n.hasOwnProperty(u);)n=Object.getPrototypeOf(n);n&&o(n)}function o(t){s.inPlace(t,[u,d],"-",i)}function i(t,n){return t[1]}var a=t("ee").get("events"),s=t(18)(a,!0),c=t("gos"),f=XMLHttpRequest,u="addEventListener",d="removeEventListener";n.exports=a,"getPrototypeOf"in Object?(r(document),r(window),r(f.prototype)):f.prototype.hasOwnProperty(u)&&(o(window),o(f.prototype)),a.on(u+"-start",function(t,n){var e=t[1],r=c(e,"nr@wrapped",function(){function t(){if("function"==typeof e.handleEvent)return e.handleEvent.apply(e,arguments)}var n={object:t,"function":e}[typeof e];return n?s(n,"fn-",null,n.name||"anonymous"):e});this.wrapped=t[1]=r}),a.on(d+"-start",function(t){t[1]=this.wrapped||t[1]})},{}],6:[function(t,n,e){var r=t("ee").get("history"),o=t(18)(r);n.exports=r,o.inPlace(window.history,["pushState","replaceState"],"-")},{}],7:[function(t,n,e){var r=t("ee").get("raf"),o=t(18)(r),i="equestAnimationFrame";n.exports=r,o.inPlace(window,["r"+i,"mozR"+i,"webkitR"+i,"msR"+i],"raf-"),r.on("raf-start",function(t){t[0]=o(t[0],"fn-")})},{}],8:[function(t,n,e){function r(t,n,e){t[0]=a(t[0],"fn-",null,e)}function o(t,n,e){this.method=e,this.timerDuration=isNaN(t[1])?0:+t[1],t[0]=a(t[0],"fn-",this,e)}var i=t("ee").get("timer"),a=t(18)(i),s="setTimeout",c="setInterval",f="clearTimeout",u="-start",d="-";n.exports=i,a.inPlace(window,[s,"setImmediate"],s+d),a.inPlace(window,[c],c+d),a.inPlace(window,[f,"clearImmediate"],f+d),i.on(c+u,r),i.on(s+u,o)},{}],9:[function(t,n,e){function r(t,n){d.inPlace(n,["onreadystatechange"],"fn-",s)}function o(){var t=this,n=u.context(t);t.readyState>3&&!n.resolved&&(n.resolved=!0,u.emit("xhr-resolved",[],t)),d.inPlace(t,y,"fn-",s)}function i(t){g.push(t),h&&(x?x.then(a):w?w(a):(E=-E,O.data=E))}function a(){for(var t=0;t<g.length;t++)r([],g[t]);g.length&&(g=[])}function s(t,n){return n}function c(t,n){for(var e in t)n[e]=t[e];return n}t(5);var f=t("ee"),u=f.get("xhr"),d=t(18)(u),l=NREUM.o,p=l.XHR,h=l.MO,m=l.PR,w=l.SI,v="readystatechange",y=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"],g=[];n.exports=u;var b=window.XMLHttpRequest=function(t){var n=new p(t);try{u.emit("new-xhr",[n],n),n.addEventListener(v,o,!1)}catch(e){try{u.emit("internal-error",[e])}catch(r){}}return n};if(c(p,b),b.prototype=p.prototype,d.inPlace(b.prototype,["open","send"],"-xhr-",s),u.on("send-xhr-start",function(t,n){r(t,n),i(n)}),u.on("open-xhr-start",r),h){var x=m&&m.resolve();if(!w&&!m){var E=1,O=document.createTextNode(E);new h(a).observe(O,{characterData:!0})}}else f.on("fn-end",function(t){t[0]&&t[0].type===v||a()})},{}],10:[function(t,n,e){function r(t){var n=this.params,e=this.metrics;if(!this.ended){this.ended=!0;for(var r=0;r<d;r++)t.removeEventListener(u[r],this.listener,!1);if(!n.aborted){if(e.duration=a.now()-this.startTime,4===t.readyState){n.status=t.status;var i=o(t,this.lastSize);if(i&&(e.rxSize=i),this.sameOrigin){var c=t.getResponseHeader("X-NewRelic-App-Data");c&&(n.cat=c.split(", ").pop())}}else n.status=0;e.cbTime=this.cbTime,f.emit("xhr-done",[t],t),s("xhr",[n,e,this.startTime])}}}function o(t,n){var e=t.responseType;if("json"===e&&null!==n)return n;var r="arraybuffer"===e||"blob"===e||"json"===e?t.response:t.responseText;return h(r)}function i(t,n){var e=c(n),r=t.params;r.host=e.hostname+":"+e.port,r.pathname=e.pathname,t.sameOrigin=e.sameOrigin}var a=t("loader");if(a.xhrWrappable){var s=t("handle"),c=t(11),f=t("ee"),u=["load","error","abort","timeout"],d=u.length,l=t("id"),p=t(14),h=t(13),m=window.XMLHttpRequest;a.features.xhr=!0,t(9),f.on("new-xhr",function(t){var n=this;n.totalCbs=0,n.called=0,n.cbTime=0,n.end=r,n.ended=!1,n.xhrGuids={},n.lastSize=null,p&&(p>34||p<10)||window.opera||t.addEventListener("progress",function(t){n.lastSize=t.loaded},!1)}),f.on("open-xhr-start",function(t){this.params={method:t[0]},i(this,t[1]),this.metrics={}}),f.on("open-xhr-end",function(t,n){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&n.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),f.on("send-xhr-start",function(t,n){var e=this.metrics,r=t[0],o=this;if(e&&r){var i=h(r);i&&(e.txSize=i)}this.startTime=a.now(),this.listener=function(t){try{"abort"===t.type&&(o.params.aborted=!0),("load"!==t.type||o.called===o.totalCbs&&(o.onloadCalled||"function"!=typeof n.onload))&&o.end(n)}catch(e){try{f.emit("internal-error",[e])}catch(r){}}};for(var s=0;s<d;s++)n.addEventListener(u[s],this.listener,!1)}),f.on("xhr-cb-time",function(t,n,e){this.cbTime+=t,n?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof e.onload||this.end(e)}),f.on("xhr-load-added",function(t,n){var e=""+l(t)+!!n;this.xhrGuids&&!this.xhrGuids[e]&&(this.xhrGuids[e]=!0,this.totalCbs+=1)}),f.on("xhr-load-removed",function(t,n){var e=""+l(t)+!!n;this.xhrGuids&&this.xhrGuids[e]&&(delete this.xhrGuids[e],this.totalCbs-=1)}),f.on("addEventListener-end",function(t,n){n instanceof m&&"load"===t[0]&&f.emit("xhr-load-added",[t[1],t[2]],n)}),f.on("removeEventListener-end",function(t,n){n instanceof m&&"load"===t[0]&&f.emit("xhr-load-removed",[t[1],t[2]],n)}),f.on("fn-start",function(t,n,e){n instanceof m&&("onload"===e&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=a.now()))}),f.on("fn-end",function(t,n){this.xhrCbStart&&f.emit("xhr-cb-time",[a.now()-this.xhrCbStart,this.onload,n],n)})}},{}],11:[function(t,n,e){n.exports=function(t){var n=document.createElement("a"),e=window.location,r={};n.href=t,r.port=n.port;var o=n.href.split("://");!r.port&&o[1]&&(r.port=o[1].split("/")[0].split("@").pop().split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=n.hostname||e.hostname,r.pathname=n.pathname,r.protocol=o[0],"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname);var i=!n.protocol||":"===n.protocol||n.protocol===e.protocol,a=n.hostname===document.domain&&n.port===e.port;return r.sameOrigin=i&&(!n.hostname||a),r}},{}],12:[function(t,n,e){function r(){}function o(t,n,e){return function(){return i(t,[f.now()].concat(s(arguments)),n?null:this,e),n?void 0:this}}var i=t("handle"),a=t(15),s=t(16),c=t("ee").get("tracer"),f=t("loader"),u=NREUM;"undefined"==typeof window.newrelic&&(newrelic=u);var d=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],l="api-",p=l+"ixn-";a(d,function(t,n){u[n]=o(l+n,!0,"api")}),u.addPageAction=o(l+"addPageAction",!0),u.setCurrentRouteName=o(l+"routeName",!0),n.exports=newrelic,u.interaction=function(){return(new r).get()};var h=r.prototype={createTracer:function(t,n){var e={},r=this,o="function"==typeof n;return i(p+"tracer",[f.now(),t,e],r),function(){if(c.emit((o?"":"no-")+"fn-start",[f.now(),r,o],e),o)try{return n.apply(this,arguments)}finally{c.emit("fn-end",[f.now()],e)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,n){h[n]=o(p+n)}),newrelic.noticeError=function(t){"string"==typeof t&&(t=new Error(t)),i("err",[t,f.now()])}},{}],13:[function(t,n,e){n.exports=function(t){if("string"==typeof t&&t.length)return t.length;if("object"==typeof t){if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if(!("undefined"!=typeof FormData&&t instanceof FormData))try{return JSON.stringify(t).length}catch(n){return}}}},{}],14:[function(t,n,e){var r=0,o=navigator.userAgent.match(/Firefox[\/\s](\d+\.\d+)/);o&&(r=+o[1]),n.exports=r},{}],15:[function(t,n,e){function r(t,n){var e=[],r="",i=0;for(r in t)o.call(t,r)&&(e[i]=n(r,t[r]),i+=1);return e}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],16:[function(t,n,e){function r(t,n,e){n||(n=0),"undefined"==typeof e&&(e=t?t.length:0);for(var r=-1,o=e-n||0,i=Array(o<0?0:o);++r<o;)i[r]=t[n+r];return i}n.exports=r},{}],17:[function(t,n,e){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],18:[function(t,n,e){function r(t){return!(t&&t instanceof Function&&t.apply&&!t[a])}var o=t("ee"),i=t(16),a="nr@original",s=Object.prototype.hasOwnProperty,c=!1;n.exports=function(t,n){function e(t,n,e,o){function nrWrapper(){var r,a,s,c;try{a=this,r=i(arguments),s="function"==typeof e?e(r,a):e||{}}catch(f){l([f,"",[r,a,o],s])}u(n+"start",[r,a,o],s);try{return c=t.apply(a,r)}catch(d){throw u(n+"err",[r,a,d],s),d}finally{u(n+"end",[r,a,c],s)}}return r(t)?t:(n||(n=""),nrWrapper[a]=t,d(t,nrWrapper),nrWrapper)}function f(t,n,o,i){o||(o="");var a,s,c,f="-"===o.charAt(0);for(c=0;c<n.length;c++)s=n[c],a=t[s],r(a)||(t[s]=e(a,f?s+o:o,i,s))}function u(e,r,o){if(!c||n){var i=c;c=!0;try{t.emit(e,r,o,n)}catch(a){l([a,e,r,o])}c=i}}function d(t,n){if(Object.defineProperty&&Object.keys)try{var e=Object.keys(t);return e.forEach(function(e){Object.defineProperty(n,e,{get:function(){return t[e]},set:function(n){return t[e]=n,n}})}),n}catch(r){l([r])}for(var o in t)s.call(t,o)&&(n[o]=t[o]);return n}function l(n){try{t.emit("internal-error",n)}catch(e){}}return t||(t=o),e.inPlace=f,e.flag=a,e}},{}],ee:[function(t,n,e){function r(){}function o(t){function n(t){return t&&t instanceof r?t:t?c(t,s,i):i()}function e(e,r,o,i){if(!l.aborted||i){t&&t(e,r,o);for(var a=n(o),s=h(e),c=s.length,f=0;f<c;f++)s[f].apply(a,r);var d=u[y[e]];return d&&d.push([g,e,r,a]),a}}function p(t,n){v[t]=h(t).concat(n)}function h(t){return v[t]||[]}function m(t){return d[t]=d[t]||o(e)}function w(t,n){f(t,function(t,e){n=n||"feature",y[e]=n,n in u||(u[n]=[])})}var v={},y={},g={on:p,emit:e,get:m,listeners:h,context:n,buffer:w,abort:a,aborted:!1};return g}function i(){return new r}function a(){(u.api||u.feature)&&(l.aborted=!0,u=l.backlog={})}var s="nr@context",c=t("gos"),f=t(15),u={},d={},l=n.exports=o();l.backlog=u},{}],gos:[function(t,n,e){function r(t,n,e){if(o.call(t,n))return t[n];var r=e();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,n,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return t[n]=r,r}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(t,n,e){function r(t,n,e,r){o.buffer([t],r),o.emit(t,n,e)}var o=t("ee").get("handle");n.exports=r,r.ee=o},{}],id:[function(t,n,e){function r(t){var n=typeof t;return!t||"object"!==n&&"function"!==n?-1:t===window?0:a(t,i,function(){return o++})}var o=1,i="nr@id",a=t("gos");n.exports=r},{}],loader:[function(t,n,e){function r(){if(!x++){var t=b.info=NREUM.info,n=l.getElementsByTagName("script")[0];if(setTimeout(u.abort,3e4),!(t&&t.licenseKey&&t.applicationID&&n))return u.abort();f(y,function(n,e){t[n]||(t[n]=e)}),c("mark",["onload",a()+b.offset],null,"api");var e=l.createElement("script");e.src="https://"+t.agent,n.parentNode.insertBefore(e,n)}}function o(){"complete"===l.readyState&&i()}function i(){c("mark",["domContent",a()+b.offset],null,"api")}function a(){return E.exists&&performance.now?Math.round(performance.now()):(s=Math.max((new Date).getTime(),s))-b.offset}var s=(new Date).getTime(),c=t("handle"),f=t(15),u=t("ee"),d=window,l=d.document,p="addEventListener",h="attachEvent",m=d.XMLHttpRequest,w=m&&m.prototype;NREUM.o={ST:setTimeout,SI:d.setImmediate,CT:clearTimeout,XHR:m,REQ:d.Request,EV:d.Event,PR:d.Promise,MO:d.MutationObserver};var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1044.min.js"},g=m&&w&&w[p]&&!/CriOS/.test(navigator.userAgent),b=n.exports={offset:s,now:a,origin:v,features:{},xhrWrappable:g};t(12),l[p]?(l[p]("DOMContentLoaded",i,!1),d[p]("load",r,!1)):(l[h]("onreadystatechange",o),d[h]("onload",r)),c("mark",["firstbyte",s],null,"api");var x=0,E=t(17)},{}]},{},["loader",2,10,4,3]);</script>
+    <title>Pożyczki online - szybkie i na raty - lepsze niż chwilówki przez Internet – wonga.com</title>
+    <link type="text/css" rel="stylesheet" media="all" href="/sites/default/files/pl/advagg_css/css_d7a25ca304eda2d9bb11677a7a84cc49_13.css" />
+<link type="text/css" rel="stylesheet" media="all" href="/sites/default/files/pl/advagg_css/css_448cc8e454cccd024f0943071ead5815_12.css" />
+<link type="text/css" rel="stylesheet" media="print" href="/sites/default/files/pl/advagg_css/css_71a1f1724181888da7f2a61e9b0dca07_12.css" />
+<!--[if IE]>
+<link type="text/css" rel="stylesheet" media="all" href="/sites/all/themes/mint_pl/css/ie.css?S" />
+<![endif]-->
+<!--[if lte IE 6]>
+<link type="text/css" rel="stylesheet" media="all" href="/sites/all/themes/mint_pl/css/ie6.css?S" />
+<![endif]-->
+<!--[if IE 8]>
+<link type="text/css" rel="stylesheet" media="all" href="/sites/all/themes/mint_pl/css/ie8.css?S" />
+<![endif]-->
+<!--[if lte IE 8]>
+<link type="text/css" rel="stylesheet" media="all" href="/sites/all/themes/mint_pl/css/ie.lte.8.css?S" />
+<![endif]-->
+    <script type="text/javascript" src="/sites/default/files/pl/advagg_js/js_56595e326e988dddb92cd6895d61b845_13.js"></script>
+<script type="text/javascript" src="/jstimer/timer.js?S"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","thickbox":{"close":"Zamknij","next":"Next \u003E","prev":"\u003C Prev","esc_key":"or Esc Key","next_close":"Next \/ Close on last","image_count":"Image !current of !total"},"wonga":{"country_code":"PL","currencysign":"z\u0142","currencyside":"right","countrycode":"PL","url_static":"https:\/\/www.wonga.pl\/static","site_type":"LIVE","userType":"L0","sliders_common":{"decimal":",","currencysign":"z\u0142","currencyside":"right"}},"regional":{"territory":"PL"},"CToolsModal":{"loadingText":"Loading...","closeText":"Close Window","closeImage":"\u003Cimg src=\u0022\/sites\/all\/modules\/contrib\/ctools\/images\/icon-close-window.png\u0022 alt=\u0022Close window\u0022 title=\u0022Close window\u0022 width=\u002216\u0022 height=\u002216\u0022 \/\u003E","throbber":"\u003Cimg src=\u0022\/sites\/all\/modules\/contrib\/ctools\/images\/throbber.gif\u0022 alt=\u0022Loading...\u0022 title=\u0022Loading\u0022 width=\u002232\u0022 height=\u002232\u0022 \/\u003E"},"wongaSlidersPl":{"pricingModel":{"Fees":[{"Rate":0,"PostedOnDay":0,"InterestBearing":false},{"Rate":0,"PostedOnDay":1,"InterestBearing":false},{"Rate":0,"PostedOnDay":2,"InterestBearing":false},{"Rate":0,"PostedOnDay":3,"InterestBearing":false},{"Rate":0,"PostedOnDay":4,"InterestBearing":false},{"Rate":0,"PostedOnDay":5,"InterestBearing":false},{"Rate":0,"PostedOnDay":6,"InterestBearing":false},{"Rate":0,"PostedOnDay":7,"InterestBearing":false},{"Rate":0,"PostedOnDay":8,"InterestBearing":false},{"Rate":0,"PostedOnDay":9,"InterestBearing":false},{"Rate":0,"PostedOnDay":10,"InterestBearing":false},{"Rate":0,"PostedOnDay":11,"InterestBearing":false},{"Rate":0,"PostedOnDay":12,"InterestBearing":false},{"Rate":0,"PostedOnDay":13,"InterestBearing":false},{"Rate":0,"PostedOnDay":14,"InterestBearing":false},{"Rate":0,"PostedOnDay":15,"InterestBearing":false},{"Rate":0,"PostedOnDay":16,"InterestBearing":false},{"Rate":0,"PostedOnDay":17,"InterestBearing":false},{"Rate":0,"PostedOnDay":18,"InterestBearing":false},{"Rate":0,"PostedOnDay":19,"InterestBearing":false},{"Rate":0,"PostedOnDay":20,"InterestBearing":false},{"Rate":0,"PostedOnDay":21,"InterestBearing":false},{"Rate":0,"PostedOnDay":22,"InterestBearing":false},{"Rate":0,"PostedOnDay":23,"InterestBearing":false},{"Rate":0,"PostedOnDay":24,"InterestBearing":false},{"Rate":0,"PostedOnDay":25,"InterestBearing":false},{"Rate":0,"PostedOnDay":26,"InterestBearing":false},{"Rate":0,"PostedOnDay":27,"InterestBearing":false},{"Rate":0,"PostedOnDay":28,"InterestBearing":false},{"Rate":0,"PostedOnDay":29,"InterestBearing":false},{"Rate":0,"PostedOnDay":30,"InterestBearing":false},{"Rate":0,"PostedOnDay":31,"InterestBearing":false},{"Rate":0,"PostedOnDay":32,"InterestBearing":false},{"Rate":0,"PostedOnDay":33,"InterestBearing":false},{"Rate":0,"PostedOnDay":34,"InterestBearing":false},{"Rate":0,"PostedOnDay":35,"InterestBearing":false},{"Rate":0,"PostedOnDay":36,"InterestBearing":false},{"Rate":0,"PostedOnDay":37,"InterestBearing":false},{"Rate":0,"PostedOnDay":38,"InterestBearing":false},{"Rate":0,"PostedOnDay":39,"InterestBearing":false},{"Rate":0,"PostedOnDay":40,"InterestBearing":false},{"Rate":0,"PostedOnDay":41,"InterestBearing":false},{"Rate":0,"PostedOnDay":42,"InterestBearing":false},{"Rate":0,"PostedOnDay":43,"InterestBearing":false},{"Rate":0,"PostedOnDay":44,"InterestBearing":false},{"Rate":0,"PostedOnDay":45,"InterestBearing":false},{"Rate":0,"PostedOnDay":46,"InterestBearing":false},{"Rate":0,"PostedOnDay":47,"InterestBearing":false},{"Rate":0,"PostedOnDay":48,"InterestBearing":false},{"Rate":0,"PostedOnDay":49,"InterestBearing":false},{"Rate":0,"PostedOnDay":50,"InterestBearing":false},{"Rate":0,"PostedOnDay":51,"InterestBearing":false},{"Rate":0,"PostedOnDay":52,"InterestBearing":false},{"Rate":0,"PostedOnDay":53,"InterestBearing":false},{"Rate":0,"PostedOnDay":54,"InterestBearing":false},{"Rate":0,"PostedOnDay":55,"InterestBearing":false},{"Rate":0,"PostedOnDay":56,"InterestBearing":false},{"Rate":0,"PostedOnDay":57,"InterestBearing":false},{"Rate":0,"PostedOnDay":58,"InterestBearing":false},{"Rate":0,"PostedOnDay":59,"InterestBearing":false},{"Rate":0,"PostedOnDay":60,"InterestBearing":false}],"MonthlyFees":[{"Rate":15,"PostedOnMonth":1,"InterestBearing":false},{"Rate":16,"PostedOnMonth":2,"InterestBearing":false},{"Rate":17,"PostedOnMonth":3,"InterestBearing":false},{"Rate":18,"PostedOnMonth":4,"InterestBearing":false},{"Rate":19,"PostedOnMonth":5,"InterestBearing":false},{"Rate":20,"PostedOnMonth":6,"InterestBearing":false},{"Rate":21,"PostedOnMonth":7,"InterestBearing":false},{"Rate":22,"PostedOnMonth":8,"InterestBearing":false},{"Rate":23,"PostedOnMonth":9,"InterestBearing":false},{"Rate":24,"PostedOnMonth":10,"InterestBearing":false},{"Rate":25,"PostedOnMonth":11,"InterestBearing":false},{"Rate":26,"PostedOnMonth":12,"InterestBearing":false},{"Rate":26.5,"PostedOnMonth":13,"InterestBearing":false},{"Rate":26.9,"PostedOnMonth":14,"InterestBearing":false},{"Rate":27.4,"PostedOnMonth":15,"InterestBearing":false},{"Rate":27.9,"PostedOnMonth":16,"InterestBearing":false},{"Rate":28.4,"PostedOnMonth":17,"InterestBearing":false},{"Rate":28.9,"PostedOnMonth":18,"InterestBearing":false},{"Rate":29.3,"PostedOnMonth":19,"InterestBearing":false},{"Rate":29.8,"PostedOnMonth":20,"InterestBearing":false},{"Rate":30.3,"PostedOnMonth":21,"InterestBearing":false},{"Rate":30.8,"PostedOnMonth":22,"InterestBearing":false},{"Rate":31.3,"PostedOnMonth":23,"InterestBearing":false},{"Rate":31.7,"PostedOnMonth":24,"InterestBearing":false},{"Rate":32.2,"PostedOnMonth":25,"InterestBearing":false},{"Rate":32.7,"PostedOnMonth":26,"InterestBearing":false},{"Rate":33.2,"PostedOnMonth":27,"InterestBearing":false},{"Rate":33.7,"PostedOnMonth":28,"InterestBearing":false},{"Rate":34.1,"PostedOnMonth":29,"InterestBearing":false},{"Rate":34.6,"PostedOnMonth":30,"InterestBearing":false},{"Rate":35.1,"PostedOnMonth":31,"InterestBearing":false},{"Rate":35.6,"PostedOnMonth":32,"InterestBearing":false},{"Rate":36.1,"PostedOnMonth":33,"InterestBearing":false},{"Rate":36.5,"PostedOnMonth":34,"InterestBearing":false},{"Rate":37,"PostedOnMonth":35,"InterestBearing":false}],"Rates":[{"DailyRate":0,"PostedOnDay":0},{"DailyRate":0,"PostedOnDay":0}],"Name":[null,null],"SegmentName":[null,null],"Segment":[null,null],"Weight":[0,0]}},"CommissionFees":{"7":0,"15":0,"22":0,"30":0,"37":0,"45":0},"DailyInterestRate":0,"pco_features_available":true,"amountMinText":"min. 50 z\u0142","amountMaxText":"max. 10000 z\u0142","durationMinText":"1-60 dni","durationMaxText":"max. 24 mies.","pivot":60,"monthTick":24,"lcm":1357,"max_ll_principle":1500,"defaultActiveSlidersAmount":null,"equal_il_ll_max_values":false,"transmission_fee_l0":10,"journey_type":"l0","loan_type":"LL","initial_loan_type":"LL","minDatepickerDate":"30","maxDatepickerDate":"40","nco_l0_amounts_equal":false,"SlidersDisabled":false,"defaultDaysForFirstInstallment":32,"wongaSliders":{"loan_amount":{"type":"instalmentAmount","settings":{"minimum":50,"maximum":10000,"step":1,"defaultOffset":6665,"decrementButtonClassName":"sliderminus","handleClassName":"sliderbit","incrementButtonClassName":"sliderplus","inputId":"edit-loan-amount","name":"loan_amount","onSetOffset":"Drupal.WongaSliders.raiseEventOnSetOffset","parentId":"edit-loan-amount-wrapper","trackClassName":"sliderbar"}},"loan_duration":{"type":"instalmentDuration","settings":{"minimum":1,"maximum":5428,"step":1,"defaultOffset":60,"pivot":60,"monthTick":24,"setToMaxOnProductChange":true,"setToDefaultOnProductChange":true,"currentStep":false,"decrementButtonClassName":"sliderminus","handleClassName":"sliderbit","incrementButtonClassName":"sliderplus","inputId":"edit-loan-duration","name":"loan_duration","onSetOffset":"Drupal.WongaSliders.raiseEventOnSetOffset","parentId":"edit-loan-duration-wrapper","trackClassName":"sliderbar"}}},"fb":{"app_id":"448151728586605","channel_url":"\/\/www.wonga.pl\/sites\/all\/modules\/custom\/wonga_facebook\/static\/channel.html"},"wonga_click":{"baseURL":"https:\/\/click.wonga.com\/","accountid":null,"applicationid":"59d89887-f484-4996-9365-1c6ec0a81575","sessionid":"d8d6003e837bf56cc7c8fff2f6abc45e","devicetype":"desktop","devicegroup":""},"mobile_device":{"comment":"Safari 8.0","browser":"Safari","browser_maker":"Apple Inc","version":"8.0","majorver":"8","minorver":"0","platform":"MacOSX","ismobiledevice":false,"istablet":"false","crawler":"false","device_type":"Desktop","device_pointing_method":"mouse","parent":"Safari 8.0","useragent":"Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_10) AppleWebKit\/600.1.25 (KHTML, like Gecko) Version\/8.0 Safari\/600.1.25","browser_name_pattern":"Mozilla\/5.0 (*Mac OS X 10?10*) AppleWebKit\/* (KHTML* like Gecko) *Version\/8.0* Safari\/*"}});
+//--><!]]>
+</script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var serverdate_year=2017,serverdate_month=9,serverdate_day=07,serverdate_hour=11,serverdate_minute=04,serverdate_second=07,serverdate_dayofweek=6
+//--><!]]>
+</script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+document.cookie='has_js=1; path=/'
+//--><!]]>
+</script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+
+      /* XSD FAPI validation awesomeness */
+      /* Custom JS validation rules from the Wonga XSD FAPI module */
+
+      
+//--><!]]>
+</script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+(function($,Drupal){var wongaPlSlidersRepExInitial=function(type){var RepExType='PlSlidersRepEx'+Drupal.settings.wonga.userType+type,repExContainer=$('#wonga-sliders-wrapper .wonga-box-1'),ilSlidersPaneContainer=$('.pane-wonga-sliders-pl-instalment-sliders-pl'),repExNewContainer=null;if(Drupal.settings.pco_features_available&&Drupal.settings.wonga.userType==='L0'&&!Drupal.settings.ActiveSlidersEnabled&&$(location).attr('pathname')!='/my-account'){repExContainer.find('#repex').appendTo(ilSlidersPaneContainer);repExNewContainer=ilSlidersPaneContainer.find('#repex');if(repExNewContainer.length!=0)repExNewContainer.html(Drupal.t(RepExType))}else{repExNewContainer=ilSlidersPaneContainer.find('#repex');if(repExNewContainer.length!=0)repExNewContainer.appendTo(repExContainer);repExContainer.find('#repex').html(Drupal.t(RepExType))}}})(jQuery,Drupal)
+//--><!]]>
+</script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+dataLayer=[{a:"59d89887-f484-4996-9365-1c6ec0a81575",b:null,c:"LL",d:"L0",e:false,f:"mint",g:"L0: LL",h:null,event:"dataLayer_ready"}]
+//--><!]]>
+</script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+//--><!]]></script><script type="text/javascript" src="//wongapl.api.sociaplus.com/partner.js"></script><script type="text/javascript"><!--//--><![CDATA[//><!--
+//--><!]]>
+</script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+//--><!]]></script><script type="text/javascript" src="//inpref.s3.amazonaws.com/frosmo.easy.js"></script><script type="text/javascript"><!--//--><![CDATA[//><!--
+//--><!]]>
+</script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+//--><!]]></script><script type="text/javascript" src="//inpref.s3.amazonaws.com/sites/wonga_com.js"></script><script type="text/javascript"><!--//--><![CDATA[//><!--
+//--><!]]>
+</script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.wonga.pl/blogapi/rsd" />
+<link rel="shortcut icon" href="/sites/all/themes/pizaz/images/favicons/favicon.ico" type="image/x-icon" />
+<!-- Maxymiser script start -->
+      <script type="text/javascript"
+        src="//service.maxymiser.net/cdn/wongapl/js/mmcore.js">
+      </script>
+    <!-- Maxymiser script end -->
+<script type='text/javascript' src='https://c.la1c1.salesforceliveagent.com/content/g/deployment.js'></script>
+<script type="text/javascript">window.universal_variable = {"page":{"environment":"live"},"version":"1.1.1"};</script>
+<script src='//d3c3cq33003psk.cloudfront.net/opentag-27327-435425.js'></script>
+<!-- Tag added by tag manager --><meta name="google-site-verification" content="AOLIW-A6hFf0xQCCnHFv-8ioAvLmqSr9qHXpu4DTJO8" />
+<meta name="description" content="Oferujemy szybkie pozabankowe pożyczki online. Gotówka w 15 minut, bez zaświadczeń i wychodzenia z domu. Sprawdź nas, jesteśmy alternatywą dla chwilówek!" />
+<meta name="dcterms.date" content="2016-06-29T00:00:00Z" />
+<meta property="og:type" content="website" />
+<link rel="canonical" href="https://www.wonga.pl/" />
+<meta property="og:url" content="https://www.wonga.pl/" />
+<meta name="revisit-after" content="1 day" />
+<!-- Conditional styles - mint_pl_preprocess_page() --><!--[if IE]><link type="text/css" rel="stylesheet" media="all" href="/sites/all/themes/mint_pl/css/ie.css?S3Ia8CmNyk4cjsQfV9ED" /><![endif]--><!--[if lte IE 6]><link type="text/css" rel="stylesheet" media="all" href="/sites/all/themes/mint_pl/css/ie6.css?S3Ia8CmNyk4cjsQfV9ED" /><![endif]--><!--[if IE 8]><link type="text/css" rel="stylesheet" media="all" href="/sites/all/themes/mint_pl/css/ie8.css?S3Ia8CmNyk4cjsQfV9ED" /><![endif]--><!--[if lte IE 8]><link type="text/css" rel="stylesheet" media="all" href="/sites/all/themes/mint_pl/css/ie.lte.8.css?S3Ia8CmNyk4cjsQfV9ED" /><![endif]--><!-- End conditional styles -->    <!--[if lt IE 7]> <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'> <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div> <![endif]-->
+      </head>
+  <body class="page front not-logged-in no-sidebars browser-Safari i18n-pl page-panels homepage mint page-panels">
+    <!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-7MW9"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push(
+{'gtm.start': new Date().getTime(),event:'gtm.js'}
+);var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-7MW9');</script>
+<!-- End Google Tag Manager -->
+    
+<!-- Tag added by tag manager --><!-- Adform Tracking Code BEGIN -->
+<!-- Point: "Wonga, SG (Homepage)" (Wonga/) -->
+<!-- URL: https://www.wonga.pl/ -->
+<script type="text/javascript">
+var _adftrack = {
+    pm: 114395,
+    id: 3494360
+};
+(function(){
+var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src='https://track.adform.net/serving/scripts/trackpoint/async/';
+var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);})();
+</script>
+<noscript>
+    <p style="margin:0;padding:0;border:0;">
+        <img src="https://track.adform.net/Serving/TrackPoint/?pm=114395&amp;lid=3494360" width="1" height="1" alt="" />
+    </p>
+</noscript>
+<!-- Adform Tracking Code END -->
+        <div id="background-wrapper">
+      <div id="header">
+        <div class="section clearfix">
+          <a href="/" title="Strona główna" rel="home" id="WongaLogo"></a>
+                      <div id="navigation">
+              <div class="nav-section clearfix">
+                <div class="region region-primary-region">
+    <div id="block-wonga-5" class="block block-wonga first region-odd odd region-count-1 count-3  ">
+                <h2 class="title"> </h2>
+    
+    <div class="content">
+      <div class="menu_block_wrapper menu-block-0 menu-name-menu-primary-links-pl parent-mlid-0 menu-level-1">
+  <ul class="menu"><li class="leaf first menu-mlid-31326 has-children"><a href="/jak-dziala">Jak to działa</a></li>
+<li class="leaf menu-mlid-31329 has-children"><a href="/o-nas">O nas</a></li>
+<li class="leaf menu-mlid-31327 has-children"><a href="/program-korzysci">Kolejna Pożyczka</a></li>
+<li class="leaf menu-mlid-31328 has-children"><a href="/my-account">Moje konto</a></li>
+<li class="leaf last menu-mlid-31325 has-children"><a href="/dlaczego-my">Dlaczego My</a></li>
+</ul></div>
+    </div>
+    </div>
+</div>
+              </div>
+            </div>
+                              <div class="region region-control-bar">
+    <div id="block-wonga-3" class="block block-wonga first region-odd odd region-count-1 count-1  ">
+                <h2 class="title"> </h2>
+    
+    <div class="content">
+      <div class="item-list"><ul class="control-bar" id="control-bar"><li class="first"><a href="# " id="cs-trigger" class="trigger">Hotline: 22 388 88 88</a></li>
+<li><a href="# " id="international-trigger" class="trigger">Poland</a></li>
+<li><a href="# " id="help-trigger" class="trigger">Pytania</a></li>
+<li class="last"><a href="/login" id="login-trigger" class="trigger">Zaloguj się</a></li>
+</ul></div>    </div>
+    </div>
+</div>
+                            </div>
+      </div>
+      <div id="page-wrapper">
+        <div class="jumbotron L0 instalments"></div>
+        <div id="page">
+          <div id="main-wrapper">
+            <div id="main" class="clearfix">
+              <div id="content" class="column">
+                <div class="section">
+                                                                                                                              <div id="content-area">
+                    <div class="panel-homepage panel-display panel-2col-bricks clear-block" >
+      <div class="panel-panel panel-col-top panel-welcome-message">
+      <div class="inside"><div class="panels_pane panel-pane pane-custom pane-6"  id="welcome-message">
+  
+  
+  
+  <div class="pane-content">
+    <h2><span class="no-bold small"><span class="no-bold small">Pierwsza pożyczka krótkoterminowa do <span class="bold">1500 zł</span> nawet na <span class="bold">60 dni!</span><br />Pożyczka ratalna dla nowych Klientów do <span class="bold">10000 zł</span> nawet w <span class="bold">24 ratach</span>, a do <span class="bold">30 dni oddajesz tyle, ile pożyczyłeś</span>!</span></span></h2>
+  </div>
+
+  
+  </div>
+</div>
+    </div>
+  
+      <div class="center-wrapper">
+      <div class="panel-panel panel-col-main panel-wonga-sliders">
+        <div class="inside"><div class="panels_pane panel-pane pane-block pane-wonga-sliders-pl-instalment-sliders-pl wonga-sliders-instalments-with-details" >
+  
+  
+  
+  <div class="pane-content">
+    <div class="wonga-sliders-instalments-wrapper"><div class="instalment_tabs"><div class="instalment_tabs_ll"><p>Pożyczka do 60 dni</p></div><div class="instalment_tabs_il tab_inactive"><p>Pożyczka ratalna</p></div></div><div id="wonga-sliders-wrapper"><div class="wonga-box-1"><div class="wonga-box-type-functional-leader"><div class="wonga-box-top-left"><div class="wonga-box-top-right"><form action="/"  accept-charset="UTF-8" method="post" id="wonga-sliders-instalment-sliders-form" class="form-element-type-form">
+<div class='form-inner'><div class="form-form-element-wrapper"><div class="form-item form-item-textfield slider_wrapper" id="edit-loan-amount-wrapper">
+<div class="form-label"> <label for="edit-loan-amount">Ile <em>gotówki</em> potrzebujesz? </label>
+</div><div class="form-input textfield"> <input type="text" maxlength="128" name="loan_amount" id="edit-loan-amount" size="4" value="" class="form-text required form-element-type-textfield" /> <span class="field-suffix"><span class="field-suffix">zł</span></span>
+</div><div class="form-error"></div></div></div><div class="form-form-element-wrapper"><div class="form-item form-item-textfield slider_wrapper" id="edit-loan-duration-wrapper">
+<div class="form-label"> <label for="edit-loan-duration">Jak szybko chcesz spłacić? </label>
+</div><div class="form-input textfield"> <input type="text" maxlength="128" name="loan_duration" id="edit-loan-duration" size="4" value="" class="form-text required form-element-type-textfield" /> <span class="field-suffix"><div id="unit-type-label">dni</div></span>
+</div><div class="form-error"></div></div></div><div class="form-markup-wrapper"><div id="wonga-active-sliders-popup-block">
+  <div class="active-sliders-popup">
+    <div class="active-sliders-popup-close-button"></div>
+    <div class="active-sliders-popup-content"></div>
+  </div>
+  <div class="active-sliders-installments-message">
+    Wybrana kwota na:  </div>
+</div>
+<div id="strapline" class="instalments-summary">
+  <p id="breakdown">
+    <span id="ll-breakdown" class="pco">
+            <span id="repayment-date-wrapper">
+        <span class="date-prefix">Spłata </span>
+        <span class="repayment-date">06 grudnia 2017</span>
+      </span>
+       
+      <span class="instalments-borrowing">
+        <span class="loan-amount-label">Pożyczasz</span>
+        <span class="loan-amount fix-my-width">
+          6665zl        </span>
+      </span>
+      <span class="instalment-separator">na</span>
+      <span class="instalments-duration">
+        <span class="loan-duration js-duration">60</span>
+        <span class="dur-length">dni</span>
+      </span>
+      <span class="plus"></span>
+      <span class="instalments-interest">
+        <span class="interest-fees-label">Prowizja</span>
+        <span class="interest-fees-number">
+          <span class="loan-fees fix-my-width">zl</span>
+        </span>
+      </span>
+      <span class="equals"></span>
+      <span class="instalments-pay">
+        <span class="loan-total-label">
+          Do spłaty        </span>
+        <span class="loan-total">
+          zl        </span>
+      </span>
+    </span>
+    <span id="rata-30dpromo">
+      <span class="rata-30dpromo-amount">0<sup>zł<sup></span>
+      <span class="rata-30dpromo-wording">Do 30 dni oddajesz tyle, ile pożyczyłeś!</span>
+    </span>
+        <span id="il-breakdown-normal">
+      <span class="rata-label small">lub stała miesięczna rata od</span>
+      <span class="rata-avg-amount repayment-amount-bucket-0"></span>
+    </span>
+        <span id="il-breakdown">
+      <span class="rata-label">Rata:</span>
+      <span class="rata-avg-amount repayment-amount-bucket-0"></span>
+    </span>
+  </p>
+</div></div><div class="form-button-wrapper"><div id="button-edit-submit" class="button-wrapper"><input type="submit" name="op" id="edit-submit" value="Chcę pożyczkę krótkoterminową"  class="form-submit button promo-right-arrow floatRight clear-both form-element-type-submit" /></div>
+</div><div class="form-markup-wrapper"><div class="instalment-summary disabled"><div id="instalment-start" class=""></div><div id="payment-blocks-wrapper" class=""><ol id="paymentBlocks"><li id="inst_calendar_box"><div class="inst_calendar_block"><img src="/sites/all/themes/mint_pl/images/mint/pl/installments_calendar_icon.png" alt="" title="" width="39" height="46" id="inst_calendar_icon" /><p class="inst_calendar_icon_text">
+Zmień datę pierwszej raty »</p></div></li><li id="repayment-bucket-0" class=""><h2>Rata 1</h2><div class="block"><div class="date"><span class="js-date" id="repayment-date-bucket-0"><span class="day"></span><span class="date-bucket-long"></span></span></div><div class="cost"><span id="repayment-amount-bucket-0"></span></div></div></li><li id="repayment-bucket-1" class=""><h2>Rata 2</h2><div class="block"><div class="date"><span class="js-date" id="repayment-date-bucket-1"><span class="day"></span><span class="date-bucket-long"></span></span></div><div class="cost"><span id="repayment-amount-bucket-1"></span></div></div></li><li id="repayment-bucket-2" class=""><h2>Rata 3</h2><div class="block"><div class="date"><span class="js-date" id="repayment-date-bucket-2"><span class="day"></span><span class="date-bucket-long"></span></span></div><div class="cost"><span id="repayment-amount-bucket-2"></span></div></div></li><li id="repayment-bucket-3" class=""><h2>Rata 4</h2><div class="block"><div class="date"><span class="js-date" id="repayment-date-bucket-3"><span class="day"></span><span class="date-bucket-long"></span></span></div><div class="cost"><span id="repayment-amount-bucket-3"></span></div></div></li><li id="repayment-bucket-4" class=""><h2>Rata 5</h2><div class="block"><div class="date"><span class="js-date" id="repayment-date-bucket-4"><span class="day"></span><span class="date-bucket-long"></span></span></div><div class="cost"><span id="repayment-amount-bucket-4"></span></div></div></li><li id="repayment-bucket-5" class=""><h2>Rata 6</h2><div class="block"><div class="date"><span class="js-date" id="repayment-date-bucket-5"><span class="day"></span><span class="date-bucket-long"></span></span></div><div class="cost"><span id="repayment-amount-bucket-5"></span></div></div></li><li id="repayment-bucket-6" class=""><h2>Rata 7</h2><div class="block"><div class="date"><span class="js-date" id="repayment-date-bucket-6"><span class="day"></span><span class="date-bucket-long"></span></span></div><div class="cost"><span id="repayment-amount-bucket-6"></span></div></div></li><li id="repayment-bucket-7" class=""><h2>Rata 8</h2><div class="block"><div class="date"><span class="js-date" id="repayment-date-bucket-7"><span class="day"></span><span class="date-bucket-long"></span></span></div><div class="cost"><span id="repayment-amount-bucket-7"></span></div></div></li><li id="repayment-bucket-8" class=""><h2>Rata 9</h2><div class="block"><div class="date"><span class="js-date" id="repayment-date-bucket-8"><span class="day"></span><span class="date-bucket-long"></span></span></div><div class="cost"><span id="repayment-amount-bucket-8"></span></div></div></li><li id="repayment-bucket-9" class=""><h2>Rata 10</h2><div class="block"><div class="date"><span class="js-date" id="repayment-date-bucket-9"><span class="day"></span><span class="date-bucket-long"></span></span></div><div class="cost"><span id="repayment-amount-bucket-9"></span></div></div></li><li id="repayment-bucket-10" class=""><h2>Rata 11</h2><div class="block"><div class="date"><span class="js-date" id="repayment-date-bucket-10"><span class="day"></span><span class="date-bucket-long"></span></span></div><div class="cost"><span id="repayment-amount-bucket-10"></span></div></div></li><li id="repayment-bucket-11" class=""><h2>Rata 12</h2><div class="block"><div class="date"><span class="js-date" id="repayment-date-bucket-11"><span class="day"></span><span class="date-bucket-long"></span></span></div><div class="cost"><span id="repayment-amount-bucket-11"></span></div></div></li><li id="repayment-bucket-12" class=""><h2>Rata 13</h2><div class="block"><div class="date"><span class="js-date" id="repayment-date-bucket-12"><span class="day"></span><span class="date-bucket-long"></span></span></div><div class="cost"><span id="repayment-amount-bucket-12"></span></div></div></li><li id="repayment-bucket-13" class=""><h2>Rata 14</h2><div class="block"><div class="date"><span class="js-date" id="repayment-date-bucket-13"><span class="day"></span><span class="date-bucket-long"></span></span></div><div class="cost"><span id="repayment-amount-bucket-13"></span></div></div></li><li id="repayment-bucket-14" class=""><h2>Rata 15</h2><div class="block"><div class="date"><span class="js-date" id="repayment-date-bucket-14"><span class="day"></span><span class="date-bucket-long"></span></span></div><div class="cost"><span id="repayment-amount-bucket-14"></span></div></div></li><li id="repayment-bucket-15" class=""><h2>Rata 16</h2><div class="block"><div class="date"><span class="js-date" id="repayment-date-bucket-15"><span class="day"></span><span class="date-bucket-long"></span></span></div><div class="cost"><span id="repayment-amount-bucket-15"></span></div></div></li><li id="repayment-bucket-16" class=""><h2>Rata 17</h2><div class="block"><div class="date"><span class="js-date" id="repayment-date-bucket-16"><span class="day"></span><span class="date-bucket-long"></span></span></div><div class="cost"><span id="repayment-amount-bucket-16"></span></div></div></li><li id="repayment-bucket-17" class=""><h2>Rata 18</h2><div class="block"><div class="date"><span class="js-date" id="repayment-date-bucket-17"><span class="day"></span><span class="date-bucket-long"></span></span></div><div class="cost"><span id="repayment-amount-bucket-17"></span></div></div></li><li id="repayment-bucket-18" class=""><h2>Rata 19</h2><div class="block"><div class="date"><span class="js-date" id="repayment-date-bucket-18"><span class="day"></span><span class="date-bucket-long"></span></span></div><div class="cost"><span id="repayment-amount-bucket-18"></span></div></div></li><li id="repayment-bucket-19" class=""><h2>Rata 20</h2><div class="block"><div class="date"><span class="js-date" id="repayment-date-bucket-19"><span class="day"></span><span class="date-bucket-long"></span></span></div><div class="cost"><span id="repayment-amount-bucket-19"></span></div></div></li><li id="repayment-bucket-20" class=""><h2>Rata 21</h2><div class="block"><div class="date"><span class="js-date" id="repayment-date-bucket-20"><span class="day"></span><span class="date-bucket-long"></span></span></div><div class="cost"><span id="repayment-amount-bucket-20"></span></div></div></li><li id="repayment-bucket-21" class=""><h2>Rata 22</h2><div class="block"><div class="date"><span class="js-date" id="repayment-date-bucket-21"><span class="day"></span><span class="date-bucket-long"></span></span></div><div class="cost"><span id="repayment-amount-bucket-21"></span></div></div></li><li id="repayment-bucket-22" class=""><h2>Rata 23</h2><div class="block"><div class="date"><span class="js-date" id="repayment-date-bucket-22"><span class="day"></span><span class="date-bucket-long"></span></span></div><div class="cost"><span id="repayment-amount-bucket-22"></span></div></div></li><li id="repayment-bucket-23" class=""><h2>Rata 24</h2><div class="block"><div class="date"><span class="js-date" id="repayment-date-bucket-23"><span class="day"></span><span class="date-bucket-long"></span></span></div><div class="cost"><span id="repayment-amount-bucket-23"></span></div></div></li></ol></div><div id="instalment-end" class="none "></div></div></div><div class="form-markup-wrapper"><div id="datepicker"><div class="inst_datepicker_title"><h3>Zmień datę pierwszej raty<span id="dp_close_icon" class="dp_close_icon"></span></h3></div></div></div><div id="il-sliders-explanation"><div class="form-markup-wrapper"></div></div><input type="hidden" name="form_build_id" id="form-JqMLdXub0eSEQ0oWk_ZKvcbvW7cBtMC4Yk6KtEK5wCA" value="form-JqMLdXub0eSEQ0oWk_ZKvcbvW7cBtMC4Yk6KtEK5wCA"  class="form-element-type-hidden" />
+<input type="hidden" name="form_id" id="edit-wonga-sliders-instalment-sliders-form" value="wonga_sliders_instalment_sliders_form"  class="form-element-type-hidden" />
+<div class="form-markup-wrapper"><div class="form-markup-wrapper"></div></div>
+</div></form>
+<div><br clear="all" /></div></div></div><div class="wonga-box-bottom-left"><div class="wonga-box-bottom-right"></div></div><div class="wonga-box-base"></div></div><!-- end Box --></div><!-- end .Box --></div></div>  </div>
+
+  
+  </div>
+</div>
+      </div>
+    </div>
+  
+  
+      <div class="panel-panel panel-col-middle">
+      <div class="inside"><div class="panels_pane panel-pane pane-custom pane-3 col-1-3 slider-details" >
+  
+  
+  
+  <div class="pane-content">
+    <div class='slider-details-ll'>
+<div class='row'><span class='row-label'>Pożyczasz</span><span class='row-value'><span class='loan-amount'></span></span></div>
+<div class='row'><span class='row-label'>Prowizja</span><span class='row-value'><span class='loan-fees'></span></span></div>
+<div class='row'><span class='row-label'>Do spłaty</span><span class='row-value'><span class='loan-total'></span></span></div>
+<div class='row'><span class='row-label'>Oprocentowanie</span><span class='row-value'><span>0%</span></span></div>
+<div class='row'><span class='row-label'> RRSO </span><span class='row-value'><span class='loan-rrso'></span>%</span></div>
+</div>
+<div class='slider-details-il'>
+<div class='row'><span class='row-label'>Pożyczasz</span><span class='row-value'><span class='loan-amount'></span></span></div>
+<div class='row'><span class='row-label'>Prowizja</span><span class='row-value'><span class='loan-fees'></span></span></div>
+<div class='row'><span class='row-label'>Do spłaty</span><span class='row-value'><span class='loan-total'></span></span></div>
+<div class='row'><span class='row-label'>Oprocentowanie</span><span class='row-value'><span>0%</span></span></div>
+<div class='row'><span class='row-label'>Stała mięsięczna rata</span><span class='row-value'><span class='loan-duration-short'></span> x <span class='rata-avg-amount'></span></span></div>
+<div class='row'><span class='row-label'> RRSO </span><span class='row-value'><span class='loan-rrso'></span>%</span></div>
+</div>
+  </div>
+
+  
+  </div>
+<div class="panel-region-separator"></div><div class="panels_pane panel-pane pane-custom pane-4 col-1-3 slider-details" >
+  
+  
+  
+  <div class="pane-content">
+    <div class='slider-details-ll'>
+Decyzję o udzieleniu pożyczki poznasz w kilka minut.
+</div>
+<div class='slider-details-il'>
+Wysokość miesięcznej raty zależy od Twojej zdolności kredytowej.<br /><br />
+Sprawdź, jak niska będzie Twoja rata! Poznasz ją w kilka minut i podejmiesz decyzję.
+</div>
+  </div>
+
+  
+  </div>
+<div class="panel-region-separator"></div><div class="panels_pane panel-pane pane-custom pane-5 col-1-3 slider-details" >
+  
+  
+  
+  <div class="pane-content">
+    <div>Masz pytania? Zadzwoń do nas!</div>
+<h3><span class='icon-phone'></span> +22  388  88  88</h3>
+  </div>
+
+  
+  </div>
+</div>
+    </div>
+  
+      <div class="panel-panel panel-col-bottom">
+      <div class="inside"><div class="panels_pane panel-pane pane-custom pane-1" >
+  
+  
+  
+  <div class="pane-content">
+    <div class="PLhomepagecontent first"><span class="PLcontent-dlaczego-my"><span class="bg-white">Poznaj korzyści<br />pożyczki<br /><strong>w wonga.com</strong></span></span>
+<div class="icon"></div>
+<p><a href="/dlaczego-my" class="PLcontentbutton sprawdz">Sprawdź</a>
+</p></div>
+<div class="PLhomepagecontent second">
+<span class="PLcontent-center"><span class="text--big"><span class="text--huge">2</span>zł <span class="text--huge">=</span> <span class="text--huge">1</span>pkt</span> <img src="/sites/all/themes/mint_pl/images/mint/pl/payback_icon.png" style="position:relative; top:2px;" /><br /><span>za terminową spłatę<sup class="text--small">***</sup></span><br /><a href="/dlaczego-my/payback" class="PLcontentbutton sprawdz">Sprawdź</a></span>
+</div>
+<div class="PLhomepagecontent third"><span class="PLcontent-logo-third"></span><span class="PLcontent-left">45% zniżki</span><span class="PLcontent-right">Program Korzyści**</span><a href="http://kapitalni.org/" class="PLcontentbutton sprawdz">Sprawdź</a></div>
+  </div>
+
+  
+  </div>
+<div class="panel-region-separator"></div><div class="panels_pane panel-pane pane-custom pane-2" >
+  
+  
+  
+  <div class="pane-content">
+    <p><strong>Reprezentatywny przykład dla pierwszej Pożyczki Krótkoterminowej:</strong> Rzeczywista Roczna Stopa Oprocentowania (RRSO) wynosi 16,21%, całkowita kwota kredytu (bez kredytowanych kosztów) 400 zł, całkowita kwota do zapłaty 410 zł, oprocentowanie stałe 0%, całkowity koszt kredytu 10 zł (w tym: prowizja 10 zł, odsetki 0 zł), okres kredytowania 60 dni. Kalkulacja została dokonana na dzień 14 marca 2017 na reprezentatywnym przykładzie.</p>
+<p><strong>Reprezentatywny przykład dla pierwszej Pożyczki Ratalnej:</strong> Rzeczywista Roczna Stopa Oprocentowania (RRSO) wynosi 188,61%, całkowita kwota kredytu (bez kredytowanych kosztów) 2500 zł, całkowita kwota do zapłaty 3238,25 zł, oprocentowanie stałe 0%, całkowity koszt kredytu 738,25 zł (w tym: prowizja 738,25 zł, odsetki 0 zł), 5 miesięcznych rat w wysokości 647,65 zł. Kalkulacja została dokonana na dzień 14 marca 2017 na reprezentatywnym przykładzie.</p>
+<p>W przypadku spłaty całkowitej kwoty kredytu w ciągu 30 dni kalendarzowych od udostępnienia środków, kredytodawca udzieli kredytobiorcy rabatu od całkowitego kosztu kredytu. Dotyczy tylko pożyczek ratalnych udzielonych nowym klientom Wonga. Wysokość pożyczki, wysokość raty oraz liczba dostępnych rat są ustalane indywidualnie w oparciu o ocenę zdolności kredytowej klienta. Wonga.pl Sp. z o.o. z siedzibą w Warszawie.</p>
+  </div>
+
+  
+  </div>
+</div>
+    </div>
+  </div>
+
+<script type="text/javascript">var _clickconfiguration = _clickconfiguration || [];_clickconfiguration.push(['tids', [Drupal.settings.wonga_click.sessionid, Drupal.settings.wonga_click.accountid, Drupal.settings.wonga_click.applicationid]
+        ]);_clickconfiguration.push(['region', 'PL']);_clickconfiguration.push(['product', 'STL']);_clickconfiguration.push(['devicetype', Drupal.settings.wonga_click.devicetype]);_clickconfiguration.push(['devicegroup', Drupal.settings.wonga_click.devicegroup]);</script>                  </div>
+                  <div class="region region-content-bottom">
+    <div id="block-block-70" class="block block-block first region-odd even region-count-1 count-4  ">
+          
+    <div class="content">
+      <script>
+$(function(){
+	var fixAddingRepex = function (){
+		if ($('#repex').length > 0) {
+			Drupal.behaviors.wongaPlSlidersRepEx = function(){};
+		} else {
+			setTimeout(function(){
+				fixAddingRepex();
+			},'500');
+		}
+	};
+	setTimeout(function(){
+		fixAddingRepex();
+	},'500');
+});
+</script>    </div>
+    </div>
+</div>
+                                  </div>
+              </div>
+              <div class="region region-page-message">
+    <div id="block-wonga-1" class="block block-wonga first region-odd even region-count-1 count-2  ">
+                <h2 class="title"><span class="no-bold small">Pożyczka ratalna dla nowych Klientów do <span class="bold">10000 zł</span> nawet w <span class="bold">24 ratach!</span></span></h2>
+    
+    <div class="content">
+      <p id="sub-message">Pierwsza pożyczka krótkoterminowa* do <span class="bold">60 dni</span> to tylko <span class="bold">10 zł!</span></p>    </div>
+    </div>
+</div>
+                                        </div>
+          </div>
+                  </div>
+      </div>
+              <!-- Rebrand footer -->
+<footer class="corporate-footer">
+  <div class="corporate-footer-container">
+            <div class="corporate-footer-nav">
+        <ul id="footer-navigation" class="clearfix"><li class="menu-10052 first path-dokumenty"><a href="/dokumenty" class="mod">Dokumenty</a></li>
+<li class="menu-22107 path-privacy-policy"><a href="/privacy-policy" class="mod">Polityki</a></li>
+<li class="menu-18872 path-regulamin-serwisu"><a href="/regulamin-serwisu" class="mod">Regulamin Serwisu</a></li>
+<li class="menu-10050 path-contact"><a href="/contact" class="mod">Kontakt</a></li>
+<li class="menu-18755 path-http-----www-openwonga-com--pl--"><a href="http://www.openwonga.com/pl/">OpenWonga</a></li>
+<li class="menu-24691 path-platforma-odr"><a href="/platforma-odr" class="mod">Platforma ADR i ODR</a></li>
+</ul>      </div>
+        <div class="corporate-footer-smallprint">
+                <p>Wonga.com oferuje szybkie pożyczki online bez wychodzenia z domu. Wonga.com to alternatywa dla chwilówek – pożyczkę ratalną możesz wziąć na 24 miesiące. Współpracujemy z BIK, a rzetelnym Klientom proponujemy obniżone koszty. Wszelkich formalności możesz dokonać online, Jedynym potrzebnym dokumentem jest Twój dowód osobisty.</p>
+<p>Wonga.pl sp. z o.o. z siedzibą w Warszawie, przy ul. Żaryna 2B, bud. D, 02-593 Warszawa, zarejestrowana w Rejestrze Przedsiębiorców Krajowego Rejestru Sądowego prowadzonym przez Sąd Rejonowy dla m. st. Warszawy w Warszawie, XIII Wydział Gospodarczy Krajowego Rejestru Sądowego, pod numerem 0000412352, NIP 1132853869, REGON 146025969 i z kapitałem zakładowym w wysokości 10.000.000,00 zł.</p>                    <ul class="corporate-footer-region-links"><li class="en-UK"><a href="https://www.wonga.com" title="United Kingdom" target="_blank" class="panel">United Kingdom</a></li><li class="en-ZA"><a href="https://www.wonga.co.za" title="South Africa" target="_blank" class="panel">South Africa</a></li><li class="en-ES"><a href="https://www.wonga.es" title="Spain" target="_blank" class="panel">Spain</a></li></ul>                    <div id="corporate-footer-awards">
+          <span id="award-text"><p>Dziękujemy za wyróżnienie. Gwiazda Jakości Obsługi 2017</p></span>        </div>
+          </div>
+  </div>
+</footer>
+<!-- end rebrand footer -->
+          </div>
+        
+<div id="fb-root"></div>
+<div class="livechat-wrapper" id="livechat-default" style="display: none;">
+  <div class="bubble">
+    <a href="javascript://Chat" onclick="startChat()"><img src="/sites/all/themes/mint_pl/images/icons/icon-livechat.png" />Porozmawiajmy na czacie!</a>
+  </div>
+</div>
+<div class="livechat-wrapper" id="livechat-timeout" style="display: none;">
+  <div class="bubble">
+    <a href="javascript://Chat" onclick="startChat()"><img src="/sites/all/themes/mint_pl/images/icons/icon-livechat.png" />Porozmawiajmy na czacie!</a>
+  </div>
+</div><script type="text/javascript" src="/sites/all/modules/custom/wonga_facebook/static/fbsdk.js?S"></script>
+<script type="text/javascript" src="/sites/all/modules/custom/wonga_live_chat/js/PL-livechat-container1.js?S"></script>
+<script type="text/javascript" src="/sites/all/modules/custom/wonga_live_chat/js/PL-livechat-container3.js?S"></script>
+<script type="text/javascript" src="/sites/all/modules/custom/wonga_live_chat/js/PL-livechat-container2.js?S"></script>
+    <!-- Control Bar Panel international -->
+          <div id='international-panel' class='control-bar-panel-wrapper'>
+            <div class='control-bar-panel'><ul class="corporate-footer-region-links"><li class="en-UK"><a href="https://www.wonga.com" title="United Kingdom" target="_blank" class="panel">United Kingdom</a></li><li class="en-ZA"><a href="https://www.wonga.co.za" title="South Africa" target="_blank" class="panel">South Africa</a></li><li class="en-ES"><a href="https://www.wonga.es" title="Spain" target="_blank" class="panel">Spain</a></li></ul></div>
+          </div>
+          <!-- End Control Bar Panel international --><!-- Control Bar Panel social -->
+          <div id='social-panel' class='control-bar-panel-wrapper'>
+            <div class='control-bar-panel'></div>
+          </div>
+          <!-- End Control Bar Panel social --><!-- Control Bar Panel help -->
+          <div id='help-panel' class='control-bar-panel-wrapper'>
+            <div class='control-bar-panel'><div class="panel">
+              <h5>Chcę zostać klientem wonga.com</h5>
+              <div class="form-input select">
+              <select id="listQuestions" onchange="window.location.href = this.value">
+                <option value="0">Wybierz pytanie ...</option>
+                <option value="/frequently-asked-questions?item=question_1">Jakie dokumenty muszę przedstawić, aby otrzymać pożyczkę?</option><option value="/frequently-asked-questions?item=question_2">Czy muszę ustanowić jakiś zastaw lub przedstawić dokument poręczenia?</option><option value="/frequently-asked-questions?item=question_3">Czy mogę otrzymać pożyczkę, jeżeli mam zaciągnięty kredyt w banku lub w innej instytucji finansowej?</option><option value="/frequently-asked-questions?item=question_4">Jak długo muszę czekać na decyzję o przyznaniu mi pożyczki?</option><option value="/frequently-asked-questions?item=question_5">Jak mogę wnioskować o pożyczkę? Czy mogę to zrobić przez telefon?</option><option value="/frequently-asked-questions?item=question_6">Czy muszę wpłacić 10 gr opłaty weryfikacyjnej?</option><option value="/frequently-asked-questions?item=question_7">Kiedy mam wpłacić 10 gr opłaty weryfikacyjnej?</option><option value="/frequently-asked-questions?item=question_8">Czy dostanę odpowiedź, jeżeli nie przejdę pozytywnie Waszej weryfikacji?</option><option value="/frequently-asked-questions?item=question_9">Czy udzielacie pożyczek obcokrajowcom?</option><option value="/frequently-asked-questions?item=question_10">Czy muszę przechodzić procedurę weryfikacji tożsamości?</option><option value="/frequently-asked-questions?item=question_11">Co to jest RRSO?</option><option value="/frequently-asked-questions?item=question_12">Czy muszę podpisywać umowę?</option><option value="/frequently-asked-questions?item=question_13">Jak szybko pożyczka znajdzie się na moim koncie? Dlaczego jeszcze nie wypłaciliście mi pożyczki?</option><option value="/frequently-asked-questions?item=question_14">Jak spłacić pożyczkę?</option><option value="/frequently-asked-questions?item=question_15">Czy sprawdzacie moją wiarygodność kredytową? Jeżeli tak, to w jaki sposób?</option><option value="/frequently-asked-questions?item=question_16">Czy istnieje możliwość wcześniejszej spłaty pożyczki</option><option value="/frequently-asked-questions?item=question_17">Czy wystawiacie fakturę na koszty poniesione na spłatę pożyczki?</option><option value="/frequently-asked-questions?item=question_18">Jak mogę się z Wami skontaktować?  W jakich godzinach działa Biuro Obsługi Klienta?</option><option value="/frequently-asked-questions?item=question_19">Jak mogę skontaktować się z waszym biurem prasowym/ działem marketingowym?</option><option value="/frequently-asked-questions?item=question_20">Jaką kwotę mogę pożyczyć i na jaki okres?</option><option value="/frequently-asked-questions?item=question_21">Czy mogę odstąpić od umowy?</option><option value="/frequently-asked-questions?item=question_22">Czy jako nowy Klient mogę wnioskować o pożyczkę ratalną?</option>
+              </select>
+             </div>
+             </div><div class="panel">
+              <h5>Jestem już klientem wonga.com</h5>
+                  <div class="form-input select">
+            <select id="listQuestions" onchange="window.location.href = this.value">
+              <option>Wybierz pytanie ...</option>
+              <option value="/troubleshooting?item=question_1">Jak długo muszę czekać na decyzję o przyznaniu mi pożyczki?</option><option value="/troubleshooting?item=question_2">Czy mogę mieć więcej niż jedną pożyczkę w tym samym czasie?</option><option value="/troubleshooting?item=question_3">Czy sprawdzacie moją wiarygodność kredytową? Jeżeli tak, to w jaki sposób?</option><option value="/troubleshooting?item=question_4">Kiedy, po spłaceniu pierwszej pożyczki, mogę ubiegać się o następną?</option><option value="/troubleshooting?item=question_5">Dlaczego odmówiono mi pożyczki?</option><option value="/troubleshooting?item=question_6">Dlaczego mój wniosek został odrzucony, chociaż poprzednią pożyczkę spłaciłem w terminie?</option><option value="/troubleshooting?item=question_7">Jak szybko pożyczka znajdzie się na moim koncie? Dlaczego jeszcze nie wypłaciliście mi pożyczki?</option><option value="/troubleshooting?item=question_8">Jak spłacić pożyczkę?</option><option value="/troubleshooting?item=question_9">Czy istnieje możliwość wcześniejszej spłaty pożyczki?</option><option value="/troubleshooting?item=question_10">Nie pamiętam swojego hasła. Co mam zrobić?</option><option value="/troubleshooting?item=question_11">W jakich godzinach działa Biuro Obsługi Klienta?</option><option value="/troubleshooting?item=question_12">Czy mogę zmienić lub dodać dane swojego konta bankowego?</option><option value="/troubleshooting?item=question_13">Jak mogę się z Wami skontaktować?</option><option value="/troubleshooting?item=question_14">Czy mogę odstąpić od wypłaty?</option><option value="/troubleshooting?item=question_15">Jaki będzie całkowity koszt mojej pożyczki?</option>
+            </select>
+          </div></div></div>
+          </div>
+          <!-- End Control Bar Panel help --><!-- Control Bar Panel login -->
+          <div id='login-panel' class='control-bar-panel-wrapper'>
+            <div class='control-bar-panel'><!-- login --><div class="wonga-box-1"><div class="wonga-box-type-generic-leader"><div class="wonga-box-top-left"><div class="wonga-box-top-right"><form action="/"  accept-charset="UTF-8" method="post" id="wonga-login-form" class="form-element-type-form">
+<div class='form-inner'><div class="form-markup-wrapper"></div><input type="hidden" name="form_build_id" id="form-pcEsY9nX1_Mgi4cLkqDx8gUrHrrYi4Q60IOlc2ggafU" value="form-pcEsY9nX1_Mgi4cLkqDx8gUrHrrYi4Q60IOlc2ggafU"  class="form-element-type-hidden" />
+<input type="hidden" name="form_id" id="edit-wonga-login-form" value="wonga_login_form"  class="form-element-type-hidden" />
+<div class="form-markup-wrapper"><div class="form-markup-wrapper"></div></div><div class="form-form-element-wrapper"><div class="form-item form-item-textfield " id="edit-email-wrapper">
+<div class="form-label"> <label for="edit-email">Adres e-mail lub PESEL </label>
+</div><div class="form-input textfield"> <input type="text" maxlength="128" name="email" id="edit-email" size="60" value="" class="form-text required form-element-type-textfield" />
+</div><div class="form-error"></div></div></div><div class="form-form-element-wrapper"><div class="form-item form-item-password " id="edit-pass-wrapper">
+<div class="form-label"> <label for="edit-pass">Wpisz hasło </label>
+</div><div class="form-input password"> <input type="password" name="pass" id="edit-pass"  maxlength="128"  size="60"  class="form-text required form-element-type-password" />
+</div><div class="form-error"></div></div></div><div class="form-markup-wrapper"><a href="/reset-password" id="reset-password-link">Nie pamiętasz hasła?</a></div><div class="form-button-wrapper"><div id="button-edit-login" class="button-wrapper"><input type="submit" name="op" id="edit-login" value="Zaloguj się"  class="form-submit button default default-right-arrow form-element-type-submit" /></div>
+</div>
+</div></form>
+<div><br clear="all" /></div></div></div><div class="wonga-box-bottom-left"><div class="wonga-box-bottom-right"></div></div><div class="wonga-box-base"></div></div><!-- end Box --></div><!-- end .Box --></div>
+          </div>
+          <!-- End Control Bar Panel login -->                      </body>
+</html>

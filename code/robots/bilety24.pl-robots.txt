@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /public/appsale
+Disallow: /public/appcheck
+Disallow: /public/files
+Disallow: /public/install
+Disallow: /public/mobilecheck
+Disallow: /public/smstickets
+Disallow: /public/tickets
+Disallow: /public/xtickets
+Disallow: /logs
+Disallow: /admin

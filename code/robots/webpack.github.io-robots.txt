@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+</head>
+<body>
+	
+	<h1>404</h1>
+	
+	<script>
+		var pathname = location.pathname;
+		
+		if(/\/404(.html)?$/.test(pathname)) {
+			// no 404 page
+			window.location = pathname.replace(/\/404(.html)?$/, "");
+		} else {
+			var match = /(^\/[^\/]+)\//.exec(pathname);
+			if(match) {
+				// 404 in subfolder
+				// use 404.html in this folder
+				window.location = match[1] + "/404.html?" + pathname.substr(match[1].length);
+			} else {
+				// 404 in root
+				// redirect to root
+				window.location = "/";
+			}
+		}
+	</script>
+
+</body>
+</html>

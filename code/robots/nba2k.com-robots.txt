@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>NBA2K</title>
+<meta name="keywords" content="NBA2K, 2KSports, Take Two Interactive, basketball video game" />
+<meta charset="utf-8" />
+
+<script type="text/javascript" src="/js/jquery-1.9.1.js"></script>
+
+<script language="javascript">
+var ps4_signin_url = "https://auth.api.sonyentertainmentnetwork.com/2.0/oauth/authorize?service_entity=urn:service-entity:psn&response_type=code&client_id=f68597f8-8b62-449b-b5ad-e37d8c78ab7b&redirect_uri=https://www.nba2k.com/ps4/signin_redirect&scope=psn:s2s";
+var xbox_signin_url = "https://login.live.com/oauth20_authorize.srf?client_id=000000004814F477&redirect_uri=&display=page&locale=en&response_type=token&scope=xboxlive.signin";
+var steam_signin_url = "/steam/popup_login";
+var switch_signin_url = "/switch/popup_login";
+
+var authenticated = function(){ return false; };
+var showSigninLinks = function(){ $("div#signin-overlay").show(); };
+
+var signinRedirect = "";
+
+var firstPartySignin = function(url, height, width) {
+    if ("" != "") {
+        return true;
+    }
+    else {
+        var windowName = "firstPartySignin";
+        var windowSize = "width=" + width + ",height=" + height;
+        window.open(url, windowName, windowSize);
+        event.defaultPrevented = true;
+        return false;
+    }
+};
+
+
+$(document).ready(function(){
+
+$("td.navlink#navlink-server-status").click(function(e){
+    window.location.href = "/gamestatus";
+});
+
+$("td.navlink#navlink-upload-pics, a#upload-images-link").click(function(e){
+    signinRedirect = "/upload";
+    if (!authenticated())
+        showSigninLinks();
+    else
+        window.location.href = signinRedirect;
+});
+$("td.navlink#buy-link-container").click(function(e){
+    window.location.href = "http://store.2k.com/store/Tk22k/en_US/home";
+});
+
+$("a.login-button-link").hover(function(){
+    $(this).find('img.default').hide();
+    $(this).find('img.rollover').show();
+});
+$("a.login-button-link").mouseleave(function(){
+    $(this).find('img.rollover').hide();
+    $(this).find('img.default').show();
+});
+
+$("a#signin-link").click(function(){ $("div#signin-overlay").show(); });
+$('#signin-ps4').click(function (event){ return firstPartySignin(ps4_signin_url, 525, 525); });
+$('#signin-xbox').click(function (event){ return firstPartySignin(xbox_signin_url, 550, 550); });
+$('#signin-steam').click(function (event){ return firstPartySignin(steam_signin_url, 675, 1025); });
+$('#signin-switch').click(function (event){ return firstPartySignin(switch_signin_url, 675, 1025); });
+$(document).keyup(function(e) { if (e.keyCode == 27) { $("div#signin-overlay").hide(); }});
+
+$("ul#gear-menu").mouseleave(function(e){
+    $(this).hide();
+});
+$("a#gear-menu-link").hover(function(e){
+    console.log($("ul#gear-menu"));
+    $("ul#gear-menu").show();
+});
+
+
+$("#footer > div.footer-links a").click(function(e){
+    var gamesHost = "http://take2games.com/";
+    var url = "";
+    if (this.id == "privacy-link")
+        url = gamesHost+"privacy";
+    else if (this.id == "terms-link")
+        url = gamesHost+"legal";
+    if (url != "")
+        window.open(url, "2kgames", "scrollbars=yes, width=800px, height=500px");
+});
+
+
+});
+</script>
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<style>
+body {
+    background-image: url('/img/background_00.jpg');
+}
+</style>
+
+
+</head>
+<body>
+
+<div id="header">
+    <a id="logo-link" href="/"><img src="/img/logo_nba_com.png" width="240" height="53" /></a>
+
+    <a href="/" style="display: inline-block; top: 5px; left: 50px; width: 170px; height: 45px"></a>
+    
+        <span id="signin-message"><a id="signin-link" href='javascript:void(0);'>sign in</a></span>
+    
+
+</div>
+
+<div id="topnav">
+    <div id="topnav-inner">
+
+    <table class="left-nav-links" border=0 cellpadding=0 cellspacing=0>
+        <tr>
+            <td class="navlink" id="navlink-upload-pics">UPLOAD PICS</td>
+            <td class="navlink" id="navlink-server-status">SERVER STATUS</td>
+        </tr>
+    </table>
+    <table class="right-nav-links" style="float: right" border=0 cellpadding=0 cellspacing=0>
+        <tr>
+            <td id="buy-link-container" class="navlink"><a style="text-decoration: none" href="http://store.2k.com/store/Tk22k/en_US/home">BUY NBA2K18</a></td>
+        </tr>
+    </table>
+
+    </div>
+</div>
+
+<div id="content">
+<div id="signin-overlay" class="overlay">
+    <div class="overlay-box">
+        <h1 class="overlay-title">CHOOSE YOUR NETWORK</h1>
+
+        <table id="login-buttons" cellpadding=2 cellspacing=0>
+            <tr>
+                <td>
+                    <a class="login-button-link" id="signin-xbox" href="javascript:void(0);"><img class="rollover" src="/img/logo_network_xbox1_rollover.png" height=100 width=163 /><img class="default" src="/img/logo_network_xbox1_black.png" height=100 width=163 /></a>
+                </td>
+                <td>
+                    <a class="login-button-link" id="signin-ps4" href="javascript:void(0);"><img class="rollover" src="/img/logo_network_ps4_rollover.png" height=100 width=163 /><img class="default" src="/img/logo_network_ps4_black.png" height=100 width=163 /></a>
+                </td>
+                <td>
+                    <a class="login-button-link" id="signin-steam" href="javascript:void(0);"><img class="rollover" src="/img/logo_network_steam2_rollover.png" height=100 width=163 /><img class="default" src="/img/logo_network_steam2_black.png" height=100 width=163 /></a>
+                </td>
+                
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+
+
+<p>The page you requested was not found.</p>
+<p><a href="/">Home</a></p>
+
+
+</div><!-- end #content -->
+
+
+<div id="footer">
+    <div class="footer-links">
+        <a id="privacy-link" href="javascript:void(0);">Privacy Policy</a>
+        <a id="terms-link" href="javascript:void(0);">Terms of Service</a>
+    </div>
+    <div id="footer-copyright">
+        <p>
+        Copyright &copy;2017 Take-Two Interactive Software, Inc
+        Trademarks belong to their respective owners.
+        All rights reserved.
+        </p>
+    </div><!-- end #footer-copyright -->
+</div><!-- end #footer -->
+
+</body>
+</html>

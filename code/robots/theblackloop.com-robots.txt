@@ -1,0 +1,2 @@
+User-agent: Alexabot
+Disallow: /amp/

@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /a/
+Disallow: /c
+Disallow: /e
+Disallow: /o
+Disallow: /apps/
+Disallow: /resubscribe
+Disallow: /report_spam
+Disallow: /unsubscribe

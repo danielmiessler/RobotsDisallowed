@@ -1,0 +1,15 @@
+User-agent: *
+Disallow: /a
+Disallow: /d
+Disallow: /c
+Disallow: /e
+Disallow: /j
+Disallow: /l
+Disallow: /m
+Disallow: /p
+Disallow: /r
+Disallow: /s
+Disallow: /u
+Disallow: /*pid=
+Crawl-delay: 5
+Clean-param: search_hl

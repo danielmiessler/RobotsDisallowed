@@ -1,0 +1,12 @@
+User-agent: *
+Disallow: /Administration/
+Disallow: /App_Code/
+Disallow: /App_Data/
+Disallow: /App_Themes/
+Disallow: /bin/
+Disallow: /EasyControls/
+Disallow: /FCKeditor/
+Disallow: /Images/
+Disallow: /PopCalendar2005/
+Disallow: /SectionControls/
+Disallow: /Web.config

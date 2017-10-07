@@ -1,0 +1,7 @@
+Sitemap: kzkgop.com.pl/sitemap.xml
+
+User-agent: *
+Disallow: *?lang=*
+Disallow: *?contrast=*
+Disallow: *?print=*
+Disallow: *?accept_cookie=*

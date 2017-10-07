@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Giantessbooru - Adult Content Warning</title>
+<LINK REL="icon" HREF="favicon.gif" TYPE="image/x-icon">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-19741266-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body style="background-color: #111; text-align: center;">
+<p style="color: white; font-family: verdana; font-size: 2em; font-style: italic; text-align: center; margin-top: 100px">You
+must agree to these terms before entering this adult website:</p>
+<div style="color: white">
+<div style="width: 700px; margin: 0 auto; text-align: left">
+<p>The information, links, images, and videos contained on this web
+site may contain content of an adult nature. If you are under the
+age of 18 or if it's illegal to view sexual or adult oriented
+material in your area, please leave now by clicking on the "LEAVE"
+button below. Please read, understand and comply with the following
+conditions before you continue:</p>
+<p>1. I am at least 18 years of age.</p>
+<p>2. The material I am viewing is for my own personal use and I will
+not expose minors to the material.</p>
+<p>3. I desire to receive/view the material on this website.</p>
+<p>4. The viewing, reading, downloading of the content of this
+website does not violate the standards of my community, town, city,
+state, country, space station, planet, galaxy, local galaxy group,
+universe, or dimension.</p>
+<p>5. I am solely responsible for any false disclosures of legal
+ramifications of viewing, reading, or downloading any material in
+this site. Furthermore neither this website nor its affiliates will
+be held responsible for any legal ramifications arising from
+fraudulent entry into or use of this website.</p>
+<p>6. I agree that by entering this website, I am subjecting myself
+to the personal jurisdiction of the State of Washington should any
+dispute arise at any time between this website and myself.</p>
+<p>7. This warning page constitutes a legal agreement between this
+website and you.</p>
+<p>8. If you've read and fully understand the above agreement, and
+you affirm and swear that viewing/downloading/receiving sexual or
+adult natured content does not violate the standards of your
+community, that you won't make any of the materials available to
+minors in any form, that you are wholly liable for any legal
+ramifications that may arise for your receiving or viewing of these
+materials and that you are over the age of 18 you may continue:</p>
+<p>Before continuing to enter this site, you must confirm the
+information below: "I hereby affirm, under the penalties of perjury
+pursuant to 28 U.S.C &amp; 1746, that I am currently 18 years or
+older"</p>
+<p>Providing a false declaration under the penalties of perjury is a
+criminal offence. This agreement document constitutes a sworn
+declaration under federal law.</p>
+</div>
+<p style="font-size:1.5em"><b><a href="?agreed=1">ENTER</a> / <a href="http://www.hasbro.com/mylittlepony/en_us/">LEAVE</a> </b></p>
+</div>
+</body>
+</html>

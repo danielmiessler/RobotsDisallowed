@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>MyDomainProvider.com Privacy Protection Service</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container header">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <span class="navbar-brand">MyDomainProvider.com Privacy Protection Service</span>
+        </div>
+        <div class="collapse navbar-collapse">
+            
+                
+                
+
+<ul class="nav navbar-nav">
+
+    <li class="active">
+        <a href="/">Home</a>
+    </li>
+
+
+    <li class="">
+    
+        <a href="/contact_domain/">Message to registrant</a>
+    
+    </li>
+
+    <li class="">
+    
+        <a href="/contact_abuse/">Report abuse</a>
+    
+    </li>
+
+</ul>
+
+            
+        </div><!--/.nav-collapse -->
+    </div>
+</div>
+
+
+<div class="container body">
+    
+
+    
+    <div class="rich-text"><p>MyDomainProvider.com offers registered domain name holders (registrants) the opportunity to register and maintain a domain name with a high level of privacy. The domains are registered by registrars and their resellers.</p><p>Registrants using privacy protect are exercising their rights under the ICANN RAA 2013, to keep their identity private. For more information, please visit the <a href="https://www.icann.org/resources/pages/approved-with-specs-2013-09-17-en">ICANN web site</a>.</p><h4>Message to registrant</h4><p>To get in touch with the registrant of a particular privacy protect registered domain, please click on “Message to registrant” in the top of this page. Your message will be forwarded to the registrant. Please note: the registrant is not obligated to respond.</p><p>For domains registered with the registrant's actual details and e-mail address, please contact the registrant directly. This information is available from the whois data.</p><h4>Complaint or report of abuse.</h4><p>For complaints about abuse of the registered domains, please click on “Report Abuse” at the top of this page.</p><p>The following is considered as abuse:</p><ul><li>spam; sending unsolicited email from the domain</li><li>phishing; content on the domains website, mimicking another entity with intend to acquire information illegally</li><li>other than the above but unmistakably illegal</li></ul><p>Disputes over domain ownership and related rights, please direct complaints to the appropriate authorities.</p></div>
+
+</div><!-- /.container -->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/static/js/jquery-1.11.1.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/docs.min.js"></script>
+
+</body>
+</html>

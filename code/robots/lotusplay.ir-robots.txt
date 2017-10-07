@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html class="no-js" >
+<head>
+    <title>Lotus Play</title>
+    <meta charset="utf-8">
+    <meta name="robots" content="index, follow"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    
+                        
+            
+                        
+        <!-- Style -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-grid-flexbox.css">
+    <link rel="stylesheet" href="/css/bootstrap-table.min.css">
+    <link rel="stylesheet" href="/css/hover.css">
+    <link rel="stylesheet" href="/css/style_1.0.15.css">
+    <link rel="stylesheet" href="/css/video-js.min.css">
+    <link rel="stylesheet" href="/css/videojs-tube.min.css">
+    <link rel="stylesheet" href="/css/videojs-resolution-switcher.css">
+    <link rel="stylesheet" href="/lightgalleryjs/css/lightgallery.min.css">
+            <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon-precomposed" href="/apple-icon-57x57.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-config" content="/browserconfig.xml">
+    <!-- IP: 45.26.50.19  (US)  ISP: AS7018 AT&amp;T Services, Inc. -->
+</head>
+<body>
+<div class="wrapper">
+    <!--[if lt IE 8]>
+<p>شما در حال استفاده از مرورگری بسیار قدیمی می باشید. لطفا از مرورگرهای مدرنی مانند گوگل کرومک یا فایرفاکس استفاده
+    نموده و یا مرورگر خود را ارتقا دهید.</p>
+<![endif]-->
+<header class="row">
+    <div class="max-size-wrapper">
+        <div class="row-inner flex-container header-bar-container">
+            <div class="logo">
+                <a href="/">
+                    <img style="display: inline;" src="/images/logo.png" alt="Lotus Play Logo" class="img-responsive">
+                </a>
+            </div>
+            <div class="flex-fill visible-xs">&nbsp;</div>
+            <div class="flex-fill search">
+                <form class="rtl vertical-middle" id="search-form" action="/search/" method="get">
+                    <div class="form-group">
+                        <input type="text" id="search-box" class="form-control" name="q" value=""
+                               placeholder="جستجوی فیلم و سریال">
+                        <button type="submit" class="icon ic_search search-box-icon"></button>
+                        <span class="glyphicon glyphicon-refresh loading-spinner" id="search-spinner"></span>
+                    </div>
+                </form>
+            </div>
+            <div class="control-panel rtl">
+                <div class="login-wrapper">
+                    <a href="#" class="dropdown-toggle black-red-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span id="login" class="ic_person">ورود</span>
+                    </a>
+                    <ul class="dropdown-menu season" id="login-form">
+                        <div class="menu-items-wrapper">
+                            
+                                
+                                    
+                                
+                            
+                            
+                                
+                                    
+                                    
+                                
+                            
+                            <li>
+                                <a class="black-red-link menu-item" href="/users/downloads">
+                                    <span class="menu-item-icon icon ic_cloud_download"></span>
+                                    <span class="menu-item-caption">فعالیت‌های من</span>
+                                    <span id="my-downloads-badge" class="menu-item-badge btn-blue">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="black-red-link menu-item" href="/users/favorites">
+                                    <span class="menu-item-icon icon ic_bookmark"></span>
+                                    <span class="menu-item-caption">نشان شده</span>
+                                    <span id="my-bookmarks-badge" class="menu-item-badge btn-pink">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="black-red-link menu-item" href="/users/services/history">
+                                    <span class="menu-item-icon icon fa fa-calendar" style="top: -9px"></span>
+                                    <span class="menu-item-caption">تاریخچه‌ی اشتراک‌ها</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="black-red-link menu-item" href="/users/payments">
+                                    <span class="menu-item-icon icon fa fa-dollar" style="top: -9px"></span>
+                                    <span class="menu-item-caption">پرداخت ها</span>
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a class="black-red-link menu-item" href="/users/settings">
+                                    <span class="menu-item-icon icon fa fa-cog" style="top: -9px"></span>
+                                    <span class="menu-item-caption">تنظیمات کاربری</span>
+                                </a>
+                            </li>
+                            <li class="menu-separator"></li>
+                            <li>
+                                <a class="black-red-link menu-item" href="/users/logout">
+                                    <span class="menu-item-icon icon ic_power_settings_new" style="top: -4px;"></span>
+                                    <span class="menu-item-caption">خروج</span>
+                                </a>
+                            </li>
+                        </div>
+                        <form method="post" action="/users/login">
+                            <input type="hidden" name="token" value="">
+                            <div class="form-group message text-danger text-center"></div>
+                            <div class="form-group">
+                                <input type="text" class="form-control ltr en text-center" name="username"
+                                       placeholder="شماره موبایل خود را وارد نمایید">
+                            </div>
+                            <div class="form-group">
+                                <button class="btn blue btn-info" id="loginSimple" type="submit" name="sendPhone" value="1">ارسال رمز
+                                </button>
+                            </div>
+                            <div class="login-area">
+                                <div class="form-group counter text-center"><span class="seconds">120</span> ثانیه</div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control ltr en text-center" name="code"
+                                           placeholder="کد ارسال شده را وارد نمایید">
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-success" type="submit" name="sendCode" value="1" data-callback="UsersLogin">ورود
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </ul>
+                </div>
+                <span class="separator"> | </span>
+                <a class="black-red-link" href="/users/services">خرید اشتراک</a>
+                <div class="hidden">
+                    <span class="separator"> | </span>
+                    <a href="/users/basket" class="ic_shopping_cart">سبد خرید</a>
+                    <span class="shopping-card-count" id="basket-count">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="col-xs-12 navbar navbar-inverse">
+    <div class="max-size-wrapper">
+    <div class="row-inner">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-top"
+                        aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+        </div>
+        <ul class="nav navbar-nav navbar-left navbar-icons">
+            
+                
+                    
+                
+            
+            <li>
+                <a href="/app" class="ios-download">
+                    <img src="/images/appleSmall.png" alt="Apple">
+                </a>
+            </li>
+            <li>
+                <a href="/app" class="">
+                    <img src="/images/androidSmall.png" alt="Android">
+                </a>
+            </li>
+        </ul>
+        <div class="collapse navbar-collapse" id="navbar-top">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="gray-white-link" href="/"> خانه</a>
+                    
+                </li>
+                <li><a class="gray-white-link" href="/search/Category:1/">فیلم ایرانی</a></li>
+                <li><a class="gray-white-link" href="/series/2">سریال ایرانی</a></li>
+                <li><a class="gray-white-link" href="/series/7">سریال خارجی</a></li>
+                <li><a class="gray-white-link" href="/search/Category:9/">انیمیشن</a></li>
+                
+                <li><a class="gray-white-link" href="/persons/">هنرمندان</a></li>
+            </ul>
+        </div>
+    </div>
+    </div>
+    </nav>
+</header>    <main class="page-">
+        <div class="error-page">
+    <div class="header">
+        صفحه مورد نظر یافت نشد.
+    </div>
+    <div class="body">
+        این خطا بدان معنی است که شما اجازه دسترسی به این صفحه را ندارید و یا صفحه مورد نظر موجود نمی باشد.
+    </div>
+</div>    </main>
+    <footer class="row">
+    <div class="permission">
+        <div class="max-size-wrapper">
+            <div class="row-inner">
+                <div class="col-xs-12" style="float: none;">
+                    <ul class="nav footer-nav">
+                        <li><a class="gray-white-link" style="padding-right: 0" href="/">صفحه اصلی</a></li>
+                        <li><a class="gray-white-link" href="/about-us">درباره ما</a></li>
+                        <li><a class="gray-white-link" href="/contact-us">تماس با ما</a></li>
+                        <li><a class="gray-white-link" href="/faq">سوالات متداول</a></li>
+                        <li><a class="gray-white-link" href="/policy">شرایط استفاده</a></li>
+                        <li><a class="gray-white-link" href="/users/services">راهنمای خرید اشتراک</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+        <nav class="col-xs-12 navbar navbar-default" id="navbar-bottom">
+            <div class="max-size-wrapper">
+                <div class="row-inner">
+                    <div class="col-xs-12 flex-container navbar-mbdownload-container">
+                    
+                        <div class="mobile-download-container">
+                        <a href="/app" class="flex-left hvr-pop">
+                            <img src="/images/androidApp.png" alt="Android App" class="mobile-download">
+                        </a>
+                        <a href="/app" class="flex-left hvr-pop">
+                            <img src="/images/iosApp.png" alt="iOS App" class="mobile-download">
+                        </a>
+                        
+                        </div>
+                        <div class="flex-right socials-wrapper">
+                            <span>لوتوس پلی را دنبال کنید :</span>
+                            <div class="social-icons-wrapper">
+                                <a target="_blank" href="https://t.me/lotusplayir" class="hvr-pop">
+                                    <img src="/images/social-telegram.png">
+                                </a>
+                                <a target="_blank" href="https://www.instagram.com/lotusplay.ir/" class="hvr-pop">
+                                    <img src="/images/social-instagram.png">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="max-size-wrapper">
+            <div class="row-inner">
+                <div class="col-xs-12 col-md-6 col-md-push-6 copyright">
+                    <p>
+                        &copy; تمام حقوق این سایت متعلق به لوتوس پلی می باشد <br>
+                        تمامی فیلم های سایت، حسب مورد دارای مجوزهای لازم از مراجع مربوطه می باشند و فعالیت های این سایت تابع قوانین و
+                        مقررات جمهوری اسلامی ایران است. منتظر نظرات شما هستیم.
+                    </p>
+                </div>
+                <div class="col-xs-12 col-md-6 col-md-pull-6 enamad">
+                    <img id='oeukesgtfukzapfufukz' style='cursor:pointer' onclick='window.open("https://logo.samandehi.ir/Verify.aspx?id=80656&p=mcsiobpdgvkadshwgvka", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt='logo-samandehi' src='https://logo.samandehi.ir/logo.aspx?id=80656&p=aqgwlymawlbqujynwlbq'/>
+                    <img id='rgvlrgvlxlapgwmdhwla' style='cursor:pointer' onclick='window.open("https://trustseal.enamad.ir/Verify.aspx?id=55394&p=yncryncrfuixjzpgodsh", "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")' alt='enamad' src='https://trustseal.enamad.ir/logo.aspx?id=55394&p=fujyfujyvjymzpfvaods'/>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer></div>
+
+<div class="modal modal-draggable fade" id="play_modal" tabindex="-1" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="player"></div>
+                <div id="loading" class="text-center">
+                    <div class="whirly-loader"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-draggable fade" id="ios_modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body rtl">
+                <div class="head">
+                    <h2>نصب اپلیکیشن (نسخه iOS)</h2>
+                    <div class="text-center">
+                        <a href="https://app.lotusplay.ir/ios/install">
+                            <img src="/images/iosApp.png" alt="iOS App">
+                        </a>
+                    </div>
+                </div>
+                <div class="information">
+                    <h2>راهنمای نصب اپلیکیشن روی iPhone و iPad</h2>
+                    <p>
+                        هنگامیکه شما برای اولین بار برنامه ای که به صورت دستی نصب نموده اید را اجرا می کنید، با همچین
+                        پیامی مواجه می شوید:
+                        <br>
+                        developer of the app isn't trusted on your device
+                    </p>
+                    <p>
+                        برای رفع این مشکل و اجرای صحیح برنامه به صورت زیر عمل نمایید.<br>
+                        ۱- از طریق Home Screen وارد <strong>Setting</strong> شوید.<br>
+                        ۲- بر روی <strong>General</strong> کلیک کنید.<br>
+                        ۳- بر روی <strong>Profiles &amp; Device Management</strong> کلیک کنید.<br>
+                        ۴- زیر قسمت Enterprise App بر روی نام تولید کننده اپلیکیشن <strong>(Mohajer International
+                            Communication)</strong> کلیک کنید.<br>
+                        ۵- دکمه <strong>Trust</strong> را بفشارید.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-draggable fade" id="iframe_modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content rtl">
+            <div class="iframe_modal_frame">
+                <span class="padded"></span>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Script -->
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/jquery.knob.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap-table.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap-table-fa-IR.min.js"></script>
+<script type="text/javascript" src="/js/jquery.autocomplete.min.js"></script>
+<script type="text/javascript" src="/js/validator.min.js"></script>
+<script type="text/javascript" src="/js/video.min.js"></script>
+<script type="text/javascript" src="/js/videojs-fa.js"></script>
+<script type="text/javascript" src="/js/videojs.hotkeys.min.js"></script>
+<script type="text/javascript" src="/js/videojs-resolution-switcher.js"></script>
+<script type="text/javascript" src="/lightgalleryjs/js/lightgallery.min.js"></script>
+<script type="text/javascript" src="/lightgalleryjs/js/lg-video.js"></script>
+<script type="text/javascript" src="/lightgalleryjs/js/lg-thumbnail.min.js"></script>
+<script type="text/javascript" src="/lightgalleryjs/js/lg-fullscreen.min.js"></script>
+<script type="text/javascript" src="/js/slick.js"></script>
+<script type="text/javascript" src="/jwplayer/jwplayer.js"></script>
+<script type="text/javascript" src="/js/usersv1.2.js"></script>
+<script type="text/javascript" src="/js/playerv1.4.4.js"></script>
+<script type="text/javascript" src="/js/scriptv1.9.14.js"></script>
+<script>jQuery(function ($) {
+        UserService.checkLogin($, "/users/check");
+        if ($("#paymentForm").length) {
+            $("#paymentForm").submit();
+        }
+    });</script>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-98346127-2', 'auto');
+    ga('send', 'pageview');
+
+</script>
+</body>
+</html>

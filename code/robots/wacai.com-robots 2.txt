@@ -1,0 +1,118 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="maintenance" content="网页或文件未找到"/>
+	<script>
+		var isH5 = function() {
+			var browser = {
+				versions: function() {
+					var u = navigator.userAgent,
+						app = navigator.appVersion;
+							
+					return { //移动终端浏览器版本信息     
+						trident: u.indexOf('Trident') > -1, //IE内核    
+						presto: u.indexOf('Presto') > -1, //opera内核    
+						webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核    
+						gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核    
+						mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端    
+						ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端    
+						android: u.indexOf('Android') > -1, //android终端
+						iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器    
+						iPad: u.indexOf('iPad') > -1, //是否iPad      
+						webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部    
+					};
+				}(),
+				language: (navigator.browserLanguage || navigator.language).toLowerCase()
+			}
+			return (browser.versions.mobile || browser.versions.ios || browser.versions.android || browser.versions.iPhone || browser.versions.iPad);
+		}();
+		if (isH5) {
+			!function(a, b, c) {
+				function q() {
+					var d = Math.min((o ? e[h]().width : f.innerWidth) / (a / b), c);
+					d != p && (k.innerHTML = "html{font-size:" + d + "px!important;" + n + "}", p = d)
+				}
+				function r() {
+					clearTimeout(l), l = setTimeout(q, 500)
+				}
+				var l, d = document,
+				e = d.documentElement,
+				f = window,
+				g = "addEventListener",
+				h = "getBoundingClientRect",
+				i = "pageshow",
+				j = d.head || d.getElementsByTagName("HEAD")[0],
+				k = d.createElement("STYLE"),
+				m = "text-size-adjust:100%;",
+				n = "-webkit-" + m + "-moz-" + m + "-ms-" + m + "-o-" + m + m,
+				o = h in e,
+				p = null;
+				a = a || 320, b = b || 16, c = c || 32, j.appendChild(k), d[g]("DOMContentLoaded", q, !1), "on" + i in f ? f[g](i, function(a) {
+						a.persisted && r()
+				}, !1) : f[g]("load", r, !1), f[g]("resize", r, !1), q()
+			}(320, 10, 100);
+			document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,user-scalable=no" />');
+		}
+	</script>
+	<title>网页或文件未找到</title>
+	<style>
+		*{margin:0;padding:0}
+		body,html{height:100%;line-height: 1.5}
+		.bg .h {height: 100%;}
+		.bg {font-size:1.4rem;line-height:2.3rem;background-color:#f6f6f6;height:100%;overflow: hidden;}
+		.bg .h section {height:100%;width: 68%;padding: 7rem 0;margin: 0 auto;text-align: center;color:#333;}
+		.bg .h section p {font-size: 1.6rem;text-align: center;}
+		.bg .h .s-runing {width: 100%;margin-top:0;margin-bottom: 0;}
+		#f-reload {display: inline-block;color: #0097ff;font-size: 1.4rem;margin-bottom: 2rem;text-align: center;height: 2rem;line-height: 2rem;padding-left: 2rem;background: url(https://s1.wacdn.com/wis/2/2b3100e6c846890c_34x34.png) no-repeat 0 0.2rem;background-size: 1.6rem 1.6rem;}
+		#closeHome {display: inline-block;height: 4rem;line-height: 4rem;border: 1px solid #d3d6d8;padding: 0 7rem;background: #fff;-moz-border-radius: 0.3rem;-webkit-border-radius: 0.3rem;border-radius:0.6rem;font-size: 1.6rem;display: inline-block;margin: 0 auto;color: #646566;text-decoration: none;outline: 0;}
+		.bg2{background:#f6f6f6}
+		.bottom{position:absolute;bottom:0;width:100%}
+		.h section{text-align:center;color:#fff;}
+		.h section img{position:relative;width:18.6rem;margin-top:10.4rem}
+		.h section h1{font-size:2.6rem}
+		.h section h3{font-size:1.4rem}
+		.web section{text-align:center;}
+		.web section img{position:relative;width:370px;margin-top:174px}
+		.web section h1{color:#333;font-size:28px}
+		.web section h3{color:#8e8e8e;font-size:20px}
+		.header{background:#fff;height:74px}
+		.logo{position:absolute;top:20px;left:50%;margin-left:-500px;width:175px}
+		.h,.web{display:none}
+	</style>
+</head>
+<body>
+<div class="h" id="h">
+	<img class="bottom" />
+	<section>
+		<p>网页或文件未找到</p>
+		<img class="s-runing" src="https://s1.wacdn.com/wis/6/51a13670ce4330e4_370x280.png" />
+		<a id="closeHome" href="wacai://close">返回上级</a>
+	</section>
+</div>
+<div class="web" id="web">
+	<div class="header">
+		<a href="http://www.wacai.com/"><img src="https://s1.wacdn.com/common/c/header/img/logo@2x.png" class="logo" /></a>
+	</div>
+	<section>
+		<img src="https://s1.wacdn.com/wis/6/51a13670ce4330e4_370x280.png" />
+		<h1>网页或文件未找到</h1>
+	</section>
+</div>
+<script>
+	if (isH5) {
+		document.getElementById("h").style.display = "block";
+	} else {
+		document.getElementById("web").style.display = "block";
+	}
+	document.body.className = isH5 ? "bg" : "bg2";
+	document.getElementById('f-reload').onclick = function() {
+		// 去除popup 会造成不停开新窗口
+		location.href = location.href.replace(/(\?|\&)popup=1(\&|$)/g, '$1').replace(/\&$/g, '');
+	};
+</script>
+</body>
+</html>
+

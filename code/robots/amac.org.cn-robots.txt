@@ -1,0 +1,1773 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>中国证券投资基金业协会</title>
+	<!--
+
+<script type="text/javascript" src="${Prefix}js/Main.js"></script>-->
+<link href="css/base.css" rel="stylesheet" type="text/css" />
+<link href="css/css.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/nav.js"></script>
+
+<script src="js/common.js"></script>
+<script src="http://www.amac.org.cn/cms//framework/main.js"></script><!--
+
+<link href="/zcms/Preview/News/css/default.css" rel="stylesheet" type="text/css">-->
+</z:config>
+	<link href="js/piccss.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript">
+	<!--
+//公共脚本文件 main.js
+function addEvent(obj,evtType,func,cap){
+    cap=cap||false;
+	if(obj.addEventListener){
+	    obj.addEventListener(evtType,func,cap);
+		return true;
+	}else if(obj.attachEvent){
+        if(cap){
+	        obj.setCapture();
+	        return true;
+	    }else{
+		    return obj.attachEvent("on" + evtType,func);
+		}
+	}else{
+		return false;
+    }
+}
+function getPageScroll(){
+    var xScroll,yScroll;
+
+	if (self.pageXOffset) {
+		xScroll = self.pageXOffset;
+	} else if (document.documentElement && document.documentElement.scrollLeft){
+		xScroll = document.documentElement.scrollLeft;
+	} else if (document.body) {
+		xScroll = document.body.scrollLeft;
+	}
+
+	if (self.pageYOffset) {
+		yScroll = self.pageYOffset;
+	} else if (document.documentElement && document.documentElement.scrollTop){
+		yScroll = document.documentElement.scrollTop;
+	} else if (document.body) {
+		yScroll = document.body.scrollTop;
+	}
+
+	arrayPageScroll = new Array(xScroll,yScroll);
+	return arrayPageScroll;
+}
+function GetPageSize(){
+    var xScroll, yScroll;
+    if (window.innerHeight && window.scrollMaxY) {	
+        xScroll = document.body.scrollWidth;
+        yScroll = window.innerHeight + window.scrollMaxY;
+    } else if (document.body.scrollHeight > document.body.offsetHeight){
+        xScroll = document.body.scrollWidth;
+        yScroll = document.body.scrollHeight;
+    } else {
+        xScroll = document.body.offsetWidth;
+        yScroll = document.body.offsetHeight;
+    }
+    var windowWidth, windowHeight;
+    if (self.innerHeight) {
+        windowWidth = self.innerWidth;
+        windowHeight = self.innerHeight;
+    } else if (document.documentElement && document.documentElement.clientHeight) {
+        windowWidth = document.documentElement.clientWidth;
+        windowHeight = document.documentElement.clientHeight;
+    } else if (document.body) {
+        windowWidth = document.body.clientWidth;
+        windowHeight = document.body.clientHeight;
+    }	
+    if(yScroll < windowHeight){
+        pageHeight = windowHeight;
+    } else { 
+        pageHeight = yScroll;
+    }
+    if(xScroll < windowWidth){	
+        pageWidth = windowWidth;
+    } else {
+        pageWidth = xScroll;
+    }
+    arrayPageSize = new Array(pageWidth,pageHeight,windowWidth,windowHeight) 
+    return arrayPageSize;
+}
+
+
+
+//广告脚本文件 AdMove.js
+
+/*
+例子
+<div id="Div2">
+    ***** content ******
+</div>
+
+var ad=new AdMove("Div2");
+ad.Run();
+*/
+
+////////////////////////////////////////////////////////
+var AdMoveConfig=new Object();
+AdMoveConfig.IsInitialized=false;
+AdMoveConfig.ScrollX=0;
+AdMoveConfig.ScrollY=0;
+AdMoveConfig.MoveWidth=0;
+AdMoveConfig.MoveHeight=0;
+AdMoveConfig.Resize=function(){
+    var winsize=GetPageSize();
+    AdMoveConfig.MoveWidth=winsize[2];
+    AdMoveConfig.MoveHeight=winsize[3];
+    AdMoveConfig.Scroll();
+}
+AdMoveConfig.Scroll=function(){
+    var winscroll=getPageScroll();
+    AdMoveConfig.ScrollX=winscroll[0];
+    AdMoveConfig.ScrollY=winscroll[1];
+}
+addEvent(window,"resize",AdMoveConfig.Resize);
+addEvent(window,"scroll",AdMoveConfig.Scroll);
+function AdMove(id){
+    if(!AdMoveConfig.IsInitialized){
+        AdMoveConfig.Resize();
+        AdMoveConfig.IsInitialized=true;
+    }
+    var obj=document.getElementById(id);
+    obj.style.position="absolute";
+    var W=AdMoveConfig.MoveWidth-obj.offsetWidth;
+    var H=AdMoveConfig.MoveHeight-obj.offsetHeight;
+    var x = W*Math.random(),y = H*Math.random();
+    var rad=(Math.random()+1)*Math.PI/6;
+    var kx=Math.sin(rad),ky=Math.cos(rad);
+    var dirx = (Math.random()<0.5?1:-1), diry = (Math.random()<0.5?1:-1);
+    var step = 1;
+    var interval;
+    this.SetLocation=function(vx,vy){x=vx;y=vy;}
+    this.SetDirection=function(vx,vy){dirx=vx;diry=vy;}
+    obj.CustomMethod=function(){
+        obj.style.left = (x + AdMoveConfig.ScrollX) + "px";
+        obj.style.top = (y + AdMoveConfig.ScrollY) + "px";
+        rad=(Math.random()+1)*Math.PI/6;
+        W=AdMoveConfig.MoveWidth-obj.offsetWidth;
+        H=AdMoveConfig.MoveHeight-obj.offsetHeight;
+        x = x + step*kx*dirx;
+        if (x < 0){dirx = 1;x = 0;kx=Math.sin(rad);ky=Math.cos(rad);} 
+        if (x > W){dirx = -1;x = W;kx=Math.sin(rad);ky=Math.cos(rad);}
+        y = y + step*ky*diry;
+        if (y < 0){diry = 1;y = 0;kx=Math.sin(rad);ky=Math.cos(rad);} 
+        if (y > H){diry = -1;y = H;kx=Math.sin(rad);ky=Math.cos(rad);}
+    }
+    this.Run=function(){
+        var delay = 10;
+        interval=setInterval(obj.CustomMethod,delay);
+        obj.onmouseover=function(){clearInterval(interval);}
+        obj.onmouseout=function(){interval=setInterval(obj.CustomMethod, delay);}
+    }
+}
+
+	//-->
+	</script>
+	</head>
+	<body>
+<div id="gg2" style="position:absolute; z-index:9999;width:160px;height:80px; text-align:center; line-height:80px; background:#f59407; font-weight:bold; font-size:28px;" > <a href="http://www.amac.org.cn/cms/article/preview?ID=390037" style="color:#cd0208; text-decoration:none" target="_blank"> 郑重声明</a> </div>
+<!-- <div id="gg1" style="position:absolute; z-index:9999;width:160px;height:80px; text-align:center; line-height:40px; background:#f59407; font-weight:bold; font-size:28px;" >
+     <a href="http://person.amac.org.cn/pages/login/exam_query.html" style="color:#cd0208; text-decoration:none" target="_blank"> 打印成绩<br/>合格证</a>
+    </div> 
+ <div id="gg1" style="position:absolute; z-index:9998" >
+<a href="http://baoming.amac.org.cn:10080" target="_blank"> <img src="http://www.amac.org.cn/images/piao906.jpg" border="0"  /></a>
+    </div> --> 
+<script type="text/javascript">
+       // var ad1=new AdMove("gg1");
+       // ad1.Run();
+   
+       var ad2=new AdMove("gg2");
+       ad2.Run();
+        function close()
+      {var o=document.getElementById('lovexin14');
+           o.style.display='none';}
+  
+  </script> 
+<script language="JavaScript" type="text/javascript">
+
+
+  suspendcode14="<DIV id=\"lovexin14\" style='right:1%;POSITION:absolute;TOP:200px; text-align:center;  padding:5px; font-family:微软雅黑 '><div style='padding-left:120px; font-size:16px; color:#e50f14'><a  href='javascript:close()'>关闭</a></div><h2 style='line-height:30px'>私募基金登记备案咨询提示</h2><p style='font-size:14px;text-align:justify;text-justify:inter-ideograph'>1、为方便各私募基金管理人网上填报，基金业协会制作了《管理人登记和信息更新填报说明》、《基金备案及信息更新填表说明》、《私募基金登记备案相关常见问题解答》等。请点击网站右侧“私募基金登记备案系统”栏目进入获取。</p><p style='font-size:14px;text-align:justify;text-justify:inter-ideograph'>2、网上填报前，请您仔细阅读上述材料。仍有问题，可选择以下三种方式进行咨询：</p><p style='font-size:14px;text-align:justify;text-justify:inter-ideograph'>(1)<strong>【强烈推荐】扫描添加下方协会官方微信，进入页面下方“私募咨询”平台进行咨询</strong></p><p style='font-size:13px;text-align:justify;text-justify:inter-ideograph'><img src='http://www.amac.org.cn/images/erweima.png' /></p><p style='font-size:14px;text-align:justify;text-justify:inter-ideograph'>(2)电话咨询热线：<strong>400-017-8200</strong>。由于私募基金管理机构较多，电话咨询量大，建议优先选择微信平台获取咨询服务。</p><p style='font-size:14px;text-align:justify;text-justify:inter-ideograph'>(3)咨询邮箱：pf@amac.org.cn。由于咨询机构较多，请在邮件中注明机构名称、联系人联系方式以及咨询问题，方便联系。</p><p style='font-size:14px;text-align:justify;text-justify:inter-ideograph'>3、投诉</br>社会公众若发现私募基金管理人、私募基金及从业人员公示信息中存在任何虚假信息，或市场机构从业人员存在违法违规行为，请将相关实名举报或投诉材料发送至协会投诉邮箱：<br/>tousu@amac.org.cn,或邮寄至中国基金业协会(邮寄地址：北京市西城区金融大街20号交通银行大厦B座9层，邮编100033，请标明“法律部收”)。详见协会官网“投资者教育”栏目中“投诉须知”。</p></div>"
+
+
+
+  //document.write(suspendcode14); 
+
+</script>
+<style type="text/css">
+
+#lovexin14{
+width:185px;
+height:1070px;
+background-color:#fff;
+border:1px solid #ccc;
+}
+
+
+</style><div id="navBg">
+  <div id="main" class="mlAuto">
+    <div id="top">
+      <div class="logo" style="margin-top:25px;"> <img src="images/logo-china.png"  alt="中国证券投资基金业协会"  width="282" height="35"  style="cursor:pointer;" /> </div>
+      <div class="search">
+        <div class="sB">
+         <span id="span_logout" style="display:none">
+        欢迎：<a class="login_username" href="http://www.amac.org.cn/cms/member/info?SiteID=22&Current=PersonalInfo"></a><span style="color:#555"> &nbsp;&nbsp;|&nbsp;&nbsp;</span>
+          <a class="fr inline-block" href="javascript:logout();">注销&nbsp;&nbsp;</a>
+        </span>
+          <span id="span_login" >
+         
+          <img src="images/point1.jpg" width="3" height="6" alt="" /> <a href="http://www.amac.org.cn/cms/site/preview?ID=23">English</a>　<a href="http://www.amac.org.cn/cms/member/login?SiteID=22"><img src="images/logBtn.jpg" width="53" height="19" alt="" /></a> 
+          
+          </span>
+          </div>   <div class="sC">
+         <form name="form1" method="get" action="http://www.amac.org.cn/cms/search" target="_blank">
+            <textarea id="_query" style="display:none"></textarea>
+            <input type="hidden" name="SiteID" value="22"/>
+            <input type="text" name="Query" class="sInput"  value=""/>
+             <input type="submit" value=" "  class="okBtn">
+            </form>
+    </div>
+       </div>
+    </div>
+       <div id="nav"> <a href="http://www.amac.org.cn" class="two">首 页</a> <a href="gyxh/hczc/382299.shtml" class="four">关于协会</a> <a href="xhgg/tzgg/" class="four">协会公告</a> <a href="xhdt/zxdt/" class="four">协会信息</a> <a href="flfg/flfgwb/" class="four">法律法规</a> <a href="xydt/xyxx/" class="four">行业信息</a> <a href="qqsy/gjtydt/" class="four">全球视野</a> <a href="tjsj/xysj/" class="four">统计数据</a> <a href="xxgs/" class="four">信息公示</a> <a href="cyrygl/kspt/" class="six">从业人员管理</a>  <a href="tzzjy/flfg/" class="five">投资者教育</a> <a href="jjpj/xxpl/" class="four">基金评价</a> <a href="http://www.amac.org.cn/cms/browsepriv/catalog?ID=11313" class="four">基金估值</a>
+          <a href="yljzs/" class="five">养老金指数</a></div>
+    
+    
+    
+        <div class="navTlist">
+          <div class="navtl"></div>
+            <div class="navtc"></div>
+            <div class="navtr"></div>
+        </div>
+        
+        
+        <div class="navTlist">
+          <div class="navtl"></div>
+            <div class="navtc">
+              
+            
+              <a href="gyxh/hczc/382299.shtml">会长致辞</a> |
+            
+              <a href="gyxh/xhjj/382300.shtml">协会简介</a> |
+            
+              <a href="gyxh/xhzc/382684.shtml">协会章程</a> |
+            
+              <a href="gyxh/xhld/382696.shtml">协会领导</a> |
+            
+              <a href="gyxh/zzjg/">组织结构</a> |
+            
+              <a href="gyxh/bmsz/382688.shtml">部门设置</a> |
+            
+              <a href="gyxh/dsj/">大事记</a> |
+            
+              <a href="gyxh/hydw/">会员单位</a> |
+            
+              <a href="gyxh/tbhyrh/gmjjjxgfwjg/383116.shtml">加入协会</a> |
+            
+              <a href="gyxh/hydbdhcbgzzl/">会员代表大会工作专栏</a> |
+            
+          
+            </div>
+            <div class="navtr"></div>
+        </div>
+        
+        <div class="navTlist">
+          <div class="navtl"></div>
+            <div class="navtc">
+             
+            
+              <a href="xhgg/tzgg/">通知公告</a> |
+            
+              <a href="xhgg/zlgzfb/">自律规则发布</a> |
+            
+              <a href="xhgg/gkzqyj/">公开征求意见</a> |
+            
+              <a href="xhgg/dcwj/">调查问卷</a> |
+            
+          </div>
+            <div class="navtr"></div>
+        </div>
+        
+        <div class="navTlist">
+          <div class="navtl"></div>
+            <div class="navtc">
+             
+            
+              <a href="xhdt/zxdt/">最新动态</a> |
+            
+              <a href="xhdt/gjjl/382730.shtml">国际交流</a> |
+            
+              <a href="xhdt/zjjt/">专家讲坛</a> |
+            
+          </div>
+            <div class="navtr"></div>
+        </div>
+        
+        <div class="navTlist">
+          <div class="navtl"></div>
+            <div class="navtc">
+             
+            
+              <a href="flfg/flfgwb/">法律法规文本</a> |
+            
+              <a href="flfg/flfgjd/">法律法规解读</a> |
+            
+              <a href="flfg/jjf/">基金法</a> |
+            
+          </div>
+            <div class="navtr"></div>
+        </div>
+        
+        <div class="navTlist">
+          <div class="navtl"></div>
+            <div class="navtc">
+             
+            
+              <a href="xydt/xyxx/">行业信息</a> |
+            
+          </div>
+            <div class="navtr"></div>
+        </div>
+        
+        <div class="navTlist">
+          <div class="navtl"></div>
+            <div class="navtc">
+             
+            
+              <a href="qqsy/gjtydt/">国际同业动态</a> |
+            
+              <a href="qqsy/gjxgflfg/">国际相关法律法规</a> |
+            
+              <a href="qqsy/cfbg/">出访报告</a> |
+            
+              <a href="qqsy/gjjlhz/">国际交流合作</a> |
+            
+              <a href="qqsy/xhzy/">协会之友</a> |
+            
+          </div>
+            <div class="navtr"></div>
+        </div>
+        
+        <div class="navTlist">
+          <div class="navtl"></div>
+            <div class="navtc">
+             
+            
+              <a href="tjsj/xysj/">行业数据</a> |
+            
+              <a href="tjsj/qqgtjjsj/">全球共同基金数据</a> |
+            
+              <a href="tjsj/sjbg/">数据报告</a> |
+            
+              <a href="tjsj/cbw/">出版物</a> |
+            
+          </div>
+            <div class="navtr"></div>
+        </div>
+        
+        <div class="navTlist">
+          <div class="navtl"></div>
+            <div class="navtc">
+             
+            
+              <a href="http://gs.amac.org.cn/amac-infodisc/res/pof/manager/index.html">私募基金管理人公示</a> |
+            
+              <a href="http://gs.amac.org.cn/amac-infodisc/res/pof/fund/index.html">私募基金公示</a> |
+            
+              <a href="http://person.amac.org.cn">基金高管人员</a> |
+            
+              <a href="xxgs/cyjggs/">从业机构公示</a> |
+            
+              <a href="http://person.amac.org.cn/pages/registration/amac-publicity-report.html">从业人员公示</a> |
+            
+              <a href="http://jjjl.amac.org.cn/fundos/g/cn/cx/jj.jsp">基金经理公示</a> |
+            
+              <a href="xxgs/jlcf/">纪律处分</a> |
+            
+              <a href="xxgs/hmd/">黑名单</a> |
+            
+              <a href="http://fo.amac.org.cn/amac/allNotice.do">私募基金服务机构公示</a> |
+            
+              <a href="xxgs/zqgs/">证券公司私募产品备案确认函</a> |
+            
+              <a href="http://ba.amac.org.cn/pages/amacWeb/web-list.html">证券公司私募产品备案信息公示</a> |
+            
+              <a href="xxgs/cxdj/">撤销管理人登记的名单</a> |
+            
+              <a href="xxgs/zhgs/382728.shtml">账户公示</a> |
+            
+              <a href="xxgs/zczczxjhbaqrhgs/">资产支持专项计划备案确认函公示</a> |
+            
+              <a href="http://ba.amac.org.cn/pages/amacWeb/qh-web-list.html">期货资管产品备案信息公示</a> |
+            
+              <a href="http://gs.amac.org.cn/amac-infodisc/res/pof/manager/managerList.html">私募基金管理人分类公示</a> |
+            
+              <a href="http://gs.amac.org.cn/amac-infodisc/res/fund/account/index.html">基金专户备案信息公示</a> |
+            
+              <a href="http://gs.amac.org.cn/amac-infodisc/res/aoin/product/index.html">证券公司直投基金备案信息公示</a> |
+            
+          </div>
+            <div class="navtr"></div>
+        </div>
+          
+        <div class="navTlist">
+          <div class="navtl"></div>
+            <div class="navtc">
+             
+            
+              <a href="cyrygl/kspt/">考试平台</a> |
+            
+              <a href="cyrygl/zgpt/">资格平台</a> |
+            
+              <a href="cyrygl/pxpt/">培训平台</a> |
+            
+          </div>
+            <div class="navtr"></div>
+        </div>
+        
+        <div class="navTlist">
+          <div class="navtl"></div>
+            <div class="navtc">
+             
+            
+              <a href="tzzjy/flfg/">法律法规</a> |
+            
+              <a href="tzzjy/fxpg/">风险评估</a> |
+            
+              <a href="tzzjy/jjtz/">基金投资</a> |
+            
+              <a href="tzzjy/jjcp/">基金产品</a> |
+            
+              <a href="tzzjy/wskt/">网上课堂</a> |
+            
+          </div>
+            <div class="navtr"></div>
+        </div>
+        
+        <div class="navTlist">
+          <div class="navtl"></div>
+            <div class="navtc">
+             
+            
+              <a href="jjpj/xxpl/">信息披露</a> |
+            
+              <a href="jjpj/pjjg/382529.shtml">评价结果</a> |
+            
+              <a href="jjpj/jggd/">机构观点</a> |
+            
+          </div>
+            <div class="navtr"></div>
+        </div>
+        
+        <div class="navTlist">
+          <div class="navtl"></div>
+            <div class="navtc">
+             
+            
+              <a href="http://www.amac.org.cn/cms/browsepriv/catalog?ID=11313">基金估值标准</a> |
+            
+              <a href="jjgz/jjgzxx/">基金估值信息</a> |
+            
+              <a href="jjgz/jjgzzy/">基金估值指引</a> |
+            
+          </div>
+            <div class="navtr"></div>
+        </div> 
+ <!--#include virtual="/include/commonlogin_0.html"-->
+<script>
+Page.onReady(function() {
+	try {
+	var url = 'http://www.amac.org.cn/cms/member/logined?timestamp=' + new Date().getTime();
+    loadJs(url, function(){
+		if(typeof result != 'undefined'){
+			$("#span_login").css("display", result.IsLogin ? "none" : "");
+			$("#span_logout").css("display", result.IsLogin ? "" : "none");
+			if(result.IsLogin){
+			  $("a.login_username").html(result.UserName);
+			}
+		}else{
+			$("#span_login").css("display", "");
+			$("#span_logout").css("display", "none");
+		}
+      });
+	} catch(e) {
+		$("#span_login").css("display", "");
+		$("#span_logout").css("display", "none");
+	}
+  $(".tex").val($V("#_query"));
+});
+
+function logout() {
+	var url = 'http://www.amac.org.cn/cms/member/ajaxlogout?'+new Date().getTime();
+	loadJs(url, function(){
+			window.location.href = "";
+		});
+}
+
+
+</script>
+
+<script type="text/javascript">  
+function AddFavorite(url,title) {
+	if (window.sidebar) {
+	   window.sidebar.addPanel(title, url,"");
+    } else if(document.all) {
+       window.external.AddFavorite(url, title);  
+    } else if( window.opera && window.print ) {
+       return true; 
+    }  
+}  
+</script>
+<script>
+/*!
+ * SlideTrans
+ * Copyright (c) 2010 cloudgamer
+ * Blog: http://cloudgamer.cnblogs.com/
+ * Date: 2008-7-6
+ */
+
+
+
+var $$ = function (id) {
+	return "string" == typeof id ? document.getElementById(id) : id;
+};
+
+var Extend = function(destination, source) {
+	for (var property in source) {
+		destination[property] = source[property];
+	}
+	return destination;
+}
+
+var CurrentStyle = function(element){
+	return element.currentStyle || document.defaultView.getComputedStyle(element, null);
+}
+
+var Bind = function(object, fun) {
+	var args = Array.prototype.slice.call(arguments).slice(2);
+	return function() {
+		return fun.apply(object, args.concat(Array.prototype.slice.call(arguments)));
+	}
+}
+
+var forEach = function(array, callback, thisObject){
+	if(array.forEach){
+		array.forEach(callback, thisObject);
+	}else{
+		for (var i = 0, len = array.length; i < len; i++) { callback.call(thisObject, array[i], i, array); }
+	}
+}
+
+var Tween = {
+	Quart: {
+		easeOut: function(t,b,c,d){
+			return -c * ((t=t/d-1)*t*t*t - 1) + b;
+		}
+	},
+	Back: {
+		easeOut: function(t,b,c,d,s){
+			if (s == undefined) s = 1.70158;
+			return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
+		}
+	},
+	Bounce: {
+		easeOut: function(t,b,c,d){
+			if ((t/=d) < (1/2.75)) {
+				return c*(7.5625*t*t) + b;
+			} else if (t < (2/2.75)) {
+				return c*(7.5625*(t-=(1.5/2.75))*t + .75) + b;
+			} else if (t < (2.5/2.75)) {
+				return c*(7.5625*(t-=(2.25/2.75))*t + .9375) + b;
+			} else {
+				return c*(7.5625*(t-=(2.625/2.75))*t + .984375) + b;
+			}
+		}
+	}
+}
+
+
+//容器对象,滑动对象,切换数量
+var SlideTrans = function(container, slider, count, options) {
+	this._slider = $$(slider);
+	this._container = $$(container);//容器对象
+	this._timer = null;//定时器
+	this._count = Math.abs(count);//切换数量
+	this._target = 0;//目标值
+	this._t = this._b = this._c = 0;//tween参数
+	
+	this.Index = 0;//当前索引
+	
+	this.SetOptions(options);
+	
+	this.Auto = !!this.options.Auto;
+	this.Duration = Math.abs(this.options.Duration);
+	this.Time = Math.abs(this.options.Time);
+	this.Pause = Math.abs(this.options.Pause);
+	this.Tween = this.options.Tween;
+	this.onStart = this.options.onStart;
+	this.onFinish = this.options.onFinish;
+	
+	var bVertical = !!this.options.Vertical;
+	this._css = bVertical ? "top" : "left";//方向
+	
+	//样式设置
+	var p = CurrentStyle(this._container).position;
+	p == "relative" || p == "absolute" || (this._container.style.position = "relative");
+	this._container.style.overflow = "hidden";
+	this._slider.style.position = "absolute";
+	
+	this.Change = this.options.Change ? this.options.Change :
+		this._slider[bVertical ? "offsetHeight" : "offsetWidth"] / this._count;
+};
+SlideTrans.prototype = {
+  //设置默认属性
+  SetOptions: function(options) {
+	this.options = {//默认值
+		Vertical:	true,//是否垂直方向（方向不能改）
+		Auto:		true,//是否自动
+		Change:		0,//改变量
+		Duration:	30,//滑动持续时间
+		Time:		10,//滑动延时
+		Pause:		50000,//停顿时间(Auto为true时有效)
+		onStart:	function(){},//开始转换时执行
+		onFinish:	function(){},//完成转换时执行
+		Tween:		Tween.Quart.easeOut//tween算子
+	};
+	Extend(this.options, options || {});
+  },
+  //开始切换
+  Run: function(index) {
+	//修正index
+	index == undefined && (index = this.Index);
+	index < 0 && (index = this._count - 1) || index >= this._count && (index = 0);
+	//设置参数
+	this._target = -Math.abs(this.Change) * (this.Index = index);
+	this._t = 0;
+	this._b = parseInt(CurrentStyle(this._slider)[this.options.Vertical ? "top" : "left"]);
+	this._c = this._target - this._b;
+	
+	this.onStart();
+	this.Move();
+  },
+  //移动
+  Move: function() {
+	clearTimeout(this._timer);
+	//未到达目标继续移动否则进行下一次滑动
+	if (this._c && this._t < this.Duration) {
+		this.MoveTo(Math.round(this.Tween(this._t++, this._b, this._c, this.Duration)));
+		this._timer = setTimeout(Bind(this, this.Move), this.Time);
+	}else{
+		this.MoveTo(this._target);
+		this.Auto && (this._timer = setTimeout(Bind(this, this.Next), this.Pause));
+	}
+  },
+  //移动到
+  MoveTo: function(i) {
+	this._slider.style[this._css] = i + "px";
+  },
+  //下一个
+  Next: function() {
+	this.Run(++this.Index);
+  },
+  //上一个
+  Previous: function() {
+	this.Run(--this.Index);
+  },
+  //停止
+  Stop: function() {
+	clearTimeout(this._timer); this.MoveTo(this._target);
+  }
+};</script> 
+<script>
+
+new SlideTrans("idContainer", "idSlider", 3, { Vertical: false }).Run();
+</script> 
+<br />
+<style type="text/css">
+
+.container, .container img{width:980px; height:231px;}
+.container img{border:0;vertical-align:top;}
+.container ul, .container li{list-style:none;margin:0;padding:0;}
+
+.num{ position:absolute; right:4px; bottom:4px; font:12px/1.5 tahoma, arial; height:18px;}
+.num li{
+	float: left;
+	color: #d94b01;
+	text-align: center;
+	line-height: 16px;
+	width: 16px;
+	height: 16px;
+	font-family: Arial;
+	font-size: 11px;
+	cursor: pointer;
+	margin-left: 3px;
+	border: 0px solid #f47500;
+	background-color: #fcf2cf;
+}
+.num li.on{
+	line-height: 15px;
+	width: 15px;
+	height: 15px;
+	font-size: 14px;
+	margin-top:-2px;
+	background-color: #ccc;
+	font-weight: bold;
+	color:#FFF;
+}
+</style>
+<div class="container" id="idContainer2">
+      <ul id="idSlider2">
+          <li><a href="http://www.amac.org.cn/xhdt/zxdt/391910.shtml" target="_blank"> <img src="http://www.amac.org.cn/upload/_/banner0404.gif" /> </a></li>
+    <li><a href="http://www.amac.org.cn/xhdt/zxdt/392302.shtml" target="_blank"> <img src="http://www.amac.org.cn/upload/_/zhaopin1.gif"  /> </a></li>
+    <li><a href="http://www.amac.org.cn"> <img src="http://www.amac.org.cn/upload/_/1447148705529.jpg" /> </a></li>
+    <li><a href="http://www.amac.org.cn/gyxh/hydbdhcbgzzl/391477.shtml" target="_blank"> <img src="http://www.amac.org.cn/upload/_/datu.jpg"  /> </a></li><!--<li><a href="http://www.amac.org.cn/xydt/jjxz/" target="_blank"> <img src="http://www.amac.org.cn/upload/_/hangyefuwu.png"  /> </a></li>-->
+  </ul>
+      <ul class="num" id="idNum">
+  </ul>
+    </div>
+<script>
+
+var nums = [], timer, n = $$("idSlider2").getElementsByTagName("li").length,
+	st = new SlideTrans("idContainer2", "idSlider2", n, {
+		onStart: function(){//设置按钮样式
+			forEach(nums, function(o, i){ o.className = st.Index == i ? "on" : ""; })
+		}
+	});
+for(var i = 1; i <= n; AddNum(i++)){};
+function AddNum(i){
+	var num = $$("idNum").appendChild(document.createElement("li"));
+	num.innerHTML = i--;
+	num.onmouseover = function(){
+		timer = setTimeout(function(){ num.className = "on"; st.Auto = false; st.Run(i); }, 200);
+	}
+	num.onmouseout = function(){ clearTimeout(timer); num.className = ""; st.Auto = true; st.Run(); }
+	nums[i] = num;
+}
+st.Run();
+
+
+
+$$("idNext").onclick = function(){ st.Next(); }
+$$("idPre").onclick = function(){ st.Previous(); }
+$$("idTween").onchange = function(){
+	switch (parseInt(this.value)){
+		case 2 :
+			st.Tween = Tween.Bounce.easeOut; break;
+		case 1 :
+			st.Tween = Tween.Back.easeOut; break;
+		default :
+			st.Tween = Tween.Quart.easeOut;
+	}
+}
+
+</script>
+<div class="height10"></div>
+<div class="indexContent">
+      <div class="indexLeft" style="height:1025px">
+    <div class="height10"></div>
+    <div style="padding-left:13px">
+          <script type="text/javascript" src="http://www.amac.org.cn/upload/imageplayer/sy_left/sChange.js" > </script>
+ <span id="change_16"></span>
+<script>
+var pics = [];
+var ilinks = [];
+var texts = [];
+
+
+pics.push("http://www.amac.org.cn/upload/_/1481184544429.jpg");
+ilinks.push("http://www.amac.org.cn/gyxh/hydbdhcbgzzl/391490.shtml");
+texts.push("");
+
+pics.push("http://www.amac.org.cn/upload/_/1481194608000.jpg");
+ilinks.push("http://www.amac.org.cn/xhdt/zxdt/390522.shtml");
+texts.push("中国证监会李超副主席莅临协会调研");
+
+pics.push("http://www.amac.org.cn/upload/_/1481195658261.jpg");
+ilinks.push("http://www.amac.org.cn/gyxh/hydbdhcbgzzl/391491.shtml");
+texts.push("民政部社会组织管理局副局长安宁");
+
+pics.push("http://www.amac.org.cn/upload/_/1481195859158.jpg");
+ilinks.push("http://www.amac.org.cn/gyxh/hydbdhcbgzzl/391477.shtml");
+texts.push("中国证券投资基金业协会");
+
+pics.push("http://www.amac.org.cn/upload/_/1481196005339.jpg");
+ilinks.push("http://www.amac.org.cn/gyxh/hydbdhcbgzzl/391478.shtml");
+texts.push("中国证券投资基金业协会");
+
+
+var flashVars=['xml='];
+flashVars.push('<data>');
+flashVars.push('<channel>');
+for(var i=0;i<pics.length;i++){
+	flashVars.push('<item>');
+	flashVars.push('<link>');
+	flashVars.push(ilinks[i]);
+	flashVars.push('</link>');
+	flashVars.push('<image>');
+	flashVars.push(pics[i]);
+	flashVars.push('</image>');
+	flashVars.push('<title>');
+	flashVars.push(texts[i]);
+	flashVars.push('</title>');
+	flashVars.push('</item>');
+}
+flashVars.push('</channel>');
+flashVars.push('<config>');
+flashVars.push('<windowOpen>_blank</windowOpen>');
+flashVars.push('</config>');
+flashVars.push('</data>');
+flashVars=flashVars.join('');
+
+var flashID="16";
+var styleDirPath="http://www.amac.org.cn/upload/imageplayer/sy_left/";
+var flashWidth="330";
+var flashHeight="158";
+var html='<embed name="ImagePlayer{PlayerID}" id="ImagePlayer{PlayerID}" width="{Width}" height="{Height}" src="{StyleDirPath}bcastr4.swf"  flashVars="{flashVars}" menu="false" quality="high" wmode="transparent" type="application/x-shockwave-flash"/>';
+html=html.replace(/\{PlayerID\}/gm,flashID).replace(/\{StyleDirPath\}/gm,styleDirPath).replace(/\{Width\}/gm,flashWidth).replace(/\{Height\}/gm,flashHeight).replace(/\{flashVars\}/gm,flashVars);
+document.getElementById('change_16').innerHTML=html;
+</script>
+        </div>
+    <div class="height10"></div>
+    <div class="ilTab mlAuto">
+          <div class="ilTabList ilTabListHover"> 协会信息 </div>
+          <div class="ilTabList ilTabListStandard">行业信息 </div>
+        </div>
+    <div class="height5"></div>
+    <div class="inTabContent mlAuto" style="display:block;">
+          <div class="height10"></div>
+          
+        
+              
+              
+            
+                  
+                  
+                <div class="inTabCList mlAuto">
+                      <div class="itclT"><a target="_blank" href="xhdt/zxdt/392457.shtml"  style="color:red" title="不忘初心 坚持操守 以更专业的服务回报投资者">不忘初心 坚持操守 以更专业的服务回报投资者</a></div>
+                      <DIV class="itclD">09-29</DIV>
+                    </div>
+              
+                
+            
+          
+            
+              
+              
+            
+                  
+                  
+                <div class="inTabCList mlAuto">
+                      <div class="itclT"><a target="_blank" href="xhdt/zxdt/392455.shtml"  style="color:red" title="关于国庆节、中秋节期间部分业务系统停机维护的通知">关于国庆节、中秋节期间部分业务系统停机维护的通知</a></div>
+                      <DIV class="itclD">09-29</DIV>
+                    </div>
+              
+                
+            
+          
+            
+              
+              
+            
+                  
+                  
+                <div class="inTabCList mlAuto">
+                      <div class="itclT"><a target="_blank" href="xhdt/zxdt/392444.shtml"  style="color:red" title="关于2017年度基金业从业人员年检的通知">关于2017年度基金业从业人员年检的通知</a></div>
+                      <DIV class="itclD">09-29</DIV>
+                    </div>
+              
+                
+            
+          
+            
+              
+              
+            
+                  
+                  
+                <div class="inTabCList mlAuto">
+                      <div class="itclT"><a target="_blank" href="xhdt/zxdt/392441.shtml"  style="color:red" title="求同存异凝聚共识 满怀希望翘首以待——中国证券投资基金业协会就《私募投资基金管理暂行条例（征求意见稿）》组织行业系列研讨座谈会">求同存异凝聚共识 满怀希望翘首以待——中国证券投资基金业协会就《私募投资基</a></div>
+                      <DIV class="itclD">09-28</DIV>
+                    </div>
+              
+                
+            
+          
+            
+              
+              
+            
+                  
+                  
+                <div class="inTabCList mlAuto">
+                      <div class="itclT"><a target="_blank" href="xhdt/zxdt/392439.shtml"  style="color:red" title="丰富资产配置标的 提高风险对冲能力——协会“国债期货业务培训班”成功举办">丰富资产配置标的 提高风险对冲能力——协会“国债期货业务培训班”成功举办</a></div>
+                      <DIV class="itclD">09-28</DIV>
+                    </div>
+              
+                
+            
+          
+            
+              
+              
+            
+            
+                  <div class="inTabCList mlAuto">
+                <div class="itclT"><a target="_blank" href="xhdt/zxdt/392438.shtml"  title="关于举办个人养老金投资与产品销售培训班的通知">关于举办个人养老金投资与产品销售培训班的通知</a></div>
+                <DIV class="itclD">09-28</DIV>
+              </div>
+                
+          
+            
+              
+              
+            
+            
+                  <div class="inTabCList mlAuto">
+                <div class="itclT"><a target="_blank" href="xhdt/zxdt/392434.shtml"  title="深化基金公司与指数提供商合作 推动指数产品发展与业绩比较基准和估值方法的优化——郑富仕副秘书长在指数与指数化投资论坛上的讲话">深化基金公司与指数提供商合作 推动指数产品发展与业绩比较基准和估值方法的</a></div>
+                <DIV class="itclD">09-28</DIV>
+              </div>
+                
+          
+            
+              
+              
+            
+            
+                  <div class="inTabCList mlAuto">
+                <div class="itclT"><a target="_blank" href="xhdt/zxdt/392433.shtml"  title="私募证券投资基金专委会2017年度第三次工作会议在上海市崇明区召开">私募证券投资基金专委会2017年度第三次工作会议在上海市崇明区召开</a></div>
+                <DIV class="itclD">09-27</DIV>
+              </div>
+                
+          
+            
+              
+            <div class="inTabCList mlAuto">
+                  <div class="itclT" style="border-bottom:0px;"><a target="_blank" href="xhdt/zxdt/392432.shtml" title="第六十七期专家讲坛——“全球资产管理行业的环境变化”在协会成功举办">第六十七期专家讲坛——“全球资产管理行</a></div>
+                  <DIV class="itclD" style="border-bottom:0px;">09-27</DIV>
+                </div>
+          
+              
+            
+              
+              
+            
+            
+                  <div class="inTabCList mlAuto">
+                <div class="itclT"><a target="_blank" href="xhdt/zxdt/392430.shtml"  title="基金从业资格考试新版教材今日起出版发行">基金从业资格考试新版教材今日起出版发行</a></div>
+                <DIV class="itclD">09-25</DIV>
+              </div>
+                
+          
+            
+              
+              
+            
+            
+                  <div class="inTabCList mlAuto">
+                <div class="itclT"><a target="_blank" href="xhdt/zxdt/392420.shtml"  title="2017年度基金从业人员资格考试公告(第10号)">2017年度基金从业人员资格考试公告(第10号)</a></div>
+                <DIV class="itclD">09-25</DIV>
+              </div>
+                
+          
+            
+              
+              
+            
+            
+                  <div class="inTabCList mlAuto">
+                <div class="itclT"><a target="_blank" href="xhdt/zxdt/392416.shtml"  title="立足服务实体经济 促进私募基金有序发展——中国证券投资基金业协会纪委书记胡家夫在“21世纪国际财经峰会2017年会”上的讲话">立足服务实体经济 促进私募基金有序发展——中国证券投资基金业协会纪委书记</a></div>
+                <DIV class="itclD">09-25</DIV>
+              </div>
+                
+          
+            
+              
+              
+            
+            
+                  <div class="inTabCList mlAuto">
+                <div class="itclT"><a target="_blank" href="xhdt/zxdt/392415.shtml"  title="立足国情 为个人养老金的发展做好准备——钟蓉萨副会长在《中国养老金融发展报告（2017）》发布会上的讲话">立足国情 为个人养老金的发展做好准备——钟蓉萨副会长在《中国养老金融发展</a></div>
+                <DIV class="itclD">09-25</DIV>
+              </div>
+                
+          
+            
+              
+              
+            
+            
+                  <div class="inTabCList mlAuto">
+                <div class="itclT"><a target="_blank" href="xhdt/zxdt/392413.shtml"  title="关于私募基金服务机构登记系统信息报送模块正式上线并开展首次信息报送的通知">关于私募基金服务机构登记系统信息报送模块正式上线并开展首次信息报送的通知</a></div>
+                <DIV class="itclD">09-22</DIV>
+              </div>
+                
+          
+            
+              
+              
+            
+            
+                  <div class="inTabCList mlAuto">
+                <div class="itclT"><a target="_blank" href="xhdt/zxdt/392412.shtml"  title="提升合规风控水平，夯实行业发展基础——2017年基金管理公司督察长培训班在成都成功举办">提升合规风控水平，夯实行业发展基础——2017年基金管理公司督察长培训班</a></div>
+                <DIV class="itclD">09-22</DIV>
+              </div>
+                
+          
+            
+      
+        </div>
+    <div class="inTabContent mlAuto">
+          <div class="height10"></div>
+          
+        
+              
+              
+            <div class="inTabCList mlAuto">
+                  <div class="itclT"><a target="_blank" href="xydt/xyxx/391656.shtml" title="中国证券投资基金业年报（2015年）">中国证券投资基金业年报（2015年）</a></div>
+                  <DIV class="itclD">01-13</DIV>
+                </div>
+          
+            
+              
+              
+            <div class="inTabCList mlAuto">
+                  <div class="itclT"><a target="_blank" href="xydt/xyxx/391655.shtml" title="中国证券投资基金业年报（2014年）">中国证券投资基金业年报（2014年）</a></div>
+                  <DIV class="itclD">01-13</DIV>
+                </div>
+          
+            
+              
+              
+            <div class="inTabCList mlAuto">
+                  <div class="itclT"><a target="_blank" href="xydt/xyxx/391643.shtml" title="【绿色投资】投资者在六大亚洲市场的责任与义务">【绿色投资】投资者在六大亚洲市场的责任</a></div>
+                  <DIV class="itclD">01-11</DIV>
+                </div>
+          
+            
+              
+              
+            <div class="inTabCList mlAuto">
+                  <div class="itclT"><a target="_blank" href="xydt/xyxx/391640.shtml" title="【协会转载】资产所有者如何推动负责任的投资">【协会转载】资产所有者如何推动负责任的</a></div>
+                  <DIV class="itclD">01-11</DIV>
+                </div>
+          
+            
+              
+              
+            <div class="inTabCList mlAuto">
+                  <div class="itclT"><a target="_blank" href="xydt/xyxx/391639.shtml" title="【绿色投资】固定收益投资中的责任投资">【绿色投资】固定收益投资中的责任投资</a></div>
+                  <DIV class="itclD">01-11</DIV>
+                </div>
+          
+            
+              
+              
+            <div class="inTabCList mlAuto">
+                  <div class="itclT"><a target="_blank" href="xydt/xyxx/390380.shtml" title="中国证监会2016年3月25日新闻发布会">中国证监会2016年3月25日新闻发布会</a></div>
+                  <DIV class="itclD">03-25</DIV>
+                </div>
+          
+            
+              
+              
+            <div class="inTabCList mlAuto">
+                  <div class="itclT"><a target="_blank" href="xydt/xyxx/389362.shtml" title="12386热线为投资者挽回500多万元损失">12386热线为投资者挽回500多万元损失</a></div>
+                  <DIV class="itclD">05-28</DIV>
+                </div>
+          
+            
+              
+              
+            <div class="inTabCList mlAuto">
+                  <div class="itclT"><a target="_blank" href="xydt/xyxx/389361.shtml" title="肖钢讲党课：监管干部要“敢担当、不任性”——践行“三严三实” 建设人民群众满意的监管机构">肖钢讲党课：监管干部要“敢担当、不任性</a></div>
+                  <DIV class="itclD">05-27</DIV>
+                </div>
+          
+            
+              
+            <div class="inTabCList mlAuto">
+                  <div class="itclT" style="border-bottom:0px;"><a target="_blank" href="xydt/xyxx/389336.shtml" title="中国证监会与香港证监会决定开展内地与香港基金互认工作">中国证监会与香港证监会决定开展内地与香</a></div>
+                  <DIV class="itclD" style="border-bottom:0px;">05-22</DIV>
+                </div>
+          
+              
+            
+              
+              
+            <div class="inTabCList mlAuto">
+                  <div class="itclT"><a target="_blank" href="xydt/xyxx/389335.shtml" title="中国证监会新闻发言人就内地与香港基金互认有关问题答记者问">中国证监会新闻发言人就内地与香港基金互</a></div>
+                  <DIV class="itclD">05-22</DIV>
+                </div>
+          
+            
+              
+              
+            <div class="inTabCList mlAuto">
+                  <div class="itclT"><a target="_blank" href="xydt/xyxx/389333.shtml" title="证监会优化股票发行行政许可程序">证监会优化股票发行行政许可程序</a></div>
+                  <DIV class="itclD">05-22</DIV>
+                </div>
+          
+            
+              
+              
+            <div class="inTabCList mlAuto">
+                  <div class="itclT"><a target="_blank" href="xydt/xyxx/389332.shtml" title="首单面向合格投资者公开发行的公司债券在交易所发行">首单面向合格投资者公开发行的公司债券在</a></div>
+                  <DIV class="itclD">05-22</DIV>
+                </div>
+          
+            
+              
+              
+            <div class="inTabCList mlAuto">
+                  <div class="itclT"><a target="_blank" href="xydt/xyxx/389331.shtml" title="中国证监会发布修订后的《证券市场禁入规定》">中国证监会发布修订后的《证券市场禁入规</a></div>
+                  <DIV class="itclD">05-22</DIV>
+                </div>
+          
+            
+              
+              
+            <div class="inTabCList mlAuto">
+                  <div class="itclT"><a target="_blank" href="xydt/xyxx/389300.shtml" title="深化企业改革 推进金融改革">深化企业改革 推进金融改革</a></div>
+                  <DIV class="itclD">05-19</DIV>
+                </div>
+          
+            
+              
+              
+            <div class="inTabCList mlAuto">
+                  <div class="itclT"><a target="_blank" href="xydt/xyxx/389297.shtml" title="证监会明确沪港通下名义持有人制度">证监会明确沪港通下名义持有人制度</a></div>
+                  <DIV class="itclD">05-19</DIV>
+                </div>
+          
+            
+              
+              
+            <div class="inTabCList mlAuto">
+                  <div class="itclT"><a target="_blank" href="xydt/xyxx/389298.shtml" title="中国证监会就《货币市场基金监督管理办法(征求意见稿)》及其配套规则公开征求意见">中国证监会就《货币市场基金监督管理办法</a></div>
+                  <DIV class="itclD">05-15</DIV>
+                </div>
+          
+            
+              
+              
+            <div class="inTabCList mlAuto">
+                  <div class="itclT"><a target="_blank" href="xydt/xyxx/389299.shtml" title="“公平在身边”投资者保护专项活动正式启动">“公平在身边”投资者保护专项活动正式启动</a></div>
+                  <DIV class="itclD">05-15</DIV>
+                </div>
+          
+            
+              
+              
+            <div class="inTabCList mlAuto">
+                  <div class="itclT"><a target="_blank" href="xydt/xyxx/389301.shtml" title="信贷资产证券化试点规模新增5000亿元">信贷资产证券化试点规模新增5000亿元</a></div>
+                  <DIV class="itclD">05-14</DIV>
+                </div>
+          
+            
+              
+              
+            <div class="inTabCList mlAuto">
+                  <div class="itclT"><a target="_blank" href="xydt/xyxx/389283.shtml" title="5月13日新三板谢庚最新发言：今年分层、放开挂牌和做市给PE">5月13日新三板谢庚最新发言：今年分层、</a></div>
+                  <DIV class="itclD">05-13</DIV>
+                </div>
+          
+            
+      
+        </div>
+  </div>
+      <div class="indexCenter" style="height:1025px">
+    <div class="icT1" style="background-image: url('images/icBg111.png'); margin-top:5px; margin-left:15px;">
+          
+        <div class="icTLeft">会员代表大会工作专栏</div>
+        <div class="icTright"><a href="gyxh/hydbdhcbgzzl/">更多>></a></div>
+      
+        </div>
+    <div class="height15"></div>
+    <div class="indexCc mlAuto">
+          <div class="indexCenterC">
+        <div class="iccLeft"  style="width:300px">
+              
+            
+                  <div class="iccList" style="width:300px">
+                <div class="iccListI" style="width:300px"><a target="_blank" href="gyxh/hydbdhcbgzzl/391490.shtml" title="刘士余主席在中国证券投资基金业协会第二届会员代表大会上的致辞">刘士余主席在中国证券投资基金业协会第二</a></div>
+              </div>
+                
+                  <div class="iccList" style="width:300px">
+                <div class="iccListI" style="width:300px"><a target="_blank" href="gyxh/hydbdhcbgzzl/391491.shtml" title="民政部社会组织管理局副局长安宁在中国证券投资基金业协会第二届会员代表大会上的致辞">民政部社会组织管理局副局长安宁在中国证</a></div>
+              </div>
+                
+                  <div class="iccList" style="width:300px">
+                <div class="iccListI" style="width:300px"><a target="_blank" href="gyxh/hydbdhcbgzzl/391477.shtml" title="中国证券投资基金业协会第一届理事会工作报告——贯彻落实《基金法》建设行业自律文化 全面推进有社会公信的现代资产管理行业建设">中国证券投资基金业协会第一届理事会工作</a></div>
+              </div>
+                
+                  <div class="iccList" style="width:300px">
+                <div class="iccListI" style="width:300px"><a target="_blank" href="gyxh/hydbdhcbgzzl/391478.shtml" title="中国证券投资基金业协会第一届监事会工作报告">中国证券投资基金业协会第一届监事会工作</a></div>
+              </div>
+                
+          
+            </div>
+      </div>
+          
+          <!----> 
+          
+          <!----> <!---->
+          
+          <div class="icT1">
+        
+              <div class="icTLeft">声音</div>
+              <div class="icTright"><a href="sy/">更多>></a></div>
+            
+      </div>
+          <div class="height15"></div>
+          <div class="inTtop">
+        <div class="inTImg"><img src="http://www.amac.org.cn/upload/sy/1428889874252_120x120.jpg" width="69" height="81" alt="" /></div>
+        
+              
+            <div class="iccList">
+                  <div class="iccListI"><img src="template/images/point2.png" style="margin-left:5px;"/><a style="padding-left:15px;" target="_blank" href="sy/389203.shtml" title="征稿启事">征稿启事</a></div>
+                </div>
+          
+            
+        
+              
+            <div class="iccList">
+                  <div class="iccListI"><img src="template/images/point2.png" style="margin-left:5px;"/><a style="padding-left:15px;" target="_blank" href="sy/392319.shtml" title="2017年第12期：2017年第一季度全球开放式基金发展报告">2017年第12期：2017年第一</a></div>
+                </div>
+          
+            <div class="iccList">
+                  <div class="iccListI"><img src="template/images/point2.png" style="margin-left:5px;"/><a style="padding-left:15px;" target="_blank" href="sy/392320.shtml" title="2017年第11期：基金的治理报告 （第二部分）">2017年第11期：基金的治理报告</a></div>
+                </div>
+          
+            <div class="iccList">
+                  <div class="iccListI"><img src="template/images/point2.png" style="margin-left:5px;"/><a style="padding-left:15px;" target="_blank" href="sy/392261.shtml" title="2017年第10 期：基金的治理报告（第一部分）">2017年第10 期：基金的治理报</a></div>
+                </div>
+          
+            
+      </div>
+          <div class="icT1">
+        
+              <div class="icTLeft"> 统计数据</div>
+              <div class="icTright"><a href="tjsj/xysj/">更多>></a></div>
+            
+      </div>
+          <div class="height15"></div>
+          <div class="indexCenterC">
+        <div class="iccLeft">
+              
+            
+                  <div class="iccList">
+                <div class="iccListI"><a target="_blank" href="tjsj/xysj/smdjbaqk/392346.shtml" title="私募基金管理人登记及私募基金产品备案月报（2017年第8期）">私募基金管理人登记及私募基金</a></div>
+              </div>
+                
+                  <div class="iccList">
+                <div class="iccListI"><a target="_blank" href="tjsj/xysj/jjgssj/392299.shtml" title="公募基金市场数据（2017年7月）">公募基金市场数据（2017年7月）</a></div>
+              </div>
+                
+                  <div class="iccList">
+                <div class="iccListI"><a target="_blank" href="tjsj/xysj/smdjbaqk/392285.shtml" title="私募登记备案月报第30期">私募登记备案月报第30期</a></div>
+              </div>
+                
+                  <div class="iccList">
+                <div class="iccListI"><a target="_blank" href="tjsj/xysj/zqqhjyjgzcglywtjsj/392281.shtml" title="证券公司资产管理月均规模前20名（2017年二季度）">证券公司资产管理月均规模前2</a></div>
+              </div>
+                
+          
+            </div>
+        <div class="iccRight">
+              <img src="upload/tjsj/1357451232300.jpg" width="102" height="75" alt="" />
+            </div>
+      </div>
+          <div class="icT1" style="background-image: url('images/icBg111.png');" >
+        
+              <div class="icTLeft">风险提示</div>
+              <div class="icTright"><a href="djffsmhd/">更多>></a></div>
+            
+      </div>
+          <div class="height15"></div>
+          <div class="indexCenterC">
+        <div class="iccLeft">
+              
+            
+                  <div class="iccList">
+                <div class="iccListI"><a target="_blank" href="djffsmhd/qwfb/391200.shtml" title="关于警惕以SIC金融集团为名从事非法集资活动的风险提示">关于警惕以SIC金融集团为名</a></div>
+              </div>
+                
+                  <div class="iccList">
+                <div class="iccListI"><a target="_blank" href="djffsmhd/qwfb/390165.shtml" title="中国基金业协会关于登记备案工作的严正声明">中国基金业协会关于登记备案工</a></div>
+              </div>
+                
+                  <div class="iccList">
+                <div class="iccListI"><a target="_blank" href="djffsmhd/qwfb/390164.shtml" title="中国基金业协会严肃处理违法代办机构">中国基金业协会严肃处理违法代</a></div>
+              </div>
+                
+                  <div class="iccList">
+                <div class="iccListI"><a target="_blank" href="djffsmhd/qwfb/389527.shtml" title="国家网信办：关于全面清理“配资炒股”等违法网络宣传广告的通知">国家网信办：关于全面清理“配</a></div>
+              </div>
+                
+          
+            </div>
+      </div>
+          <div class="icT2">
+        
+              <div class="icTLeft">投资者教育</div>
+              <div class="icTright"><a href="tzzjy/flfg/">更多>></a></div>
+            
+      </div>
+          <div class="height15"></div>
+          <div class="indexCenterC" style="height:220px">
+        <div class="iccLeft">
+              
+            
+                  
+                <div class="iccList">
+                      <div class="iccListI"><a target="_blank" href="tzzjy/jjtz/jjzssc/392185.shtml" title="投诉须知">投诉须知</a></div>
+                    </div>
+              
+                  
+                
+                  
+                <div class="iccList">
+                      <div class="iccListI"><a target="_blank" href="tzzjy/jjtz/jjdt/392183.shtml" title="优秀英文私募基金书籍推荐名单（五十）">优秀英文私募基金书籍推荐名单</a></div>
+                    </div>
+              
+                  
+                
+                  
+                <div class="iccList">
+                      <div class="iccListI"><a target="_blank" href="tzzjy/jjtz/jjdt/392182.shtml" title="优秀英文私募基金书籍推荐名单（四十九）">优秀英文私募基金书籍推荐名单</a></div>
+                    </div>
+              
+                  
+                
+                  
+                <div class="iccList">
+                      <div class="iccListI"><a target="_blank" href="tzzjy/jjtz/jjdt/392181.shtml" title="优秀英文私募基金书籍推荐名单（四十八）">优秀英文私募基金书籍推荐名单</a></div>
+                    </div>
+              
+                  
+                
+                  
+                  
+                <div class="iccList" >
+                      <div class="iccListI"><a target="_blank" href="tzzjy/jjtz/jjdt/392180.shtml" title="优秀英文私募基金书籍推荐名单（四十七）">优秀英文私募基金书籍推荐名单</a></div>
+                    </div>
+              
+                
+                  
+                  
+                <div class="iccList" >
+                      <div class="iccListI"><a target="_blank" href="tzzjy/jjtz/jjdt/392179.shtml" title="优秀英文私募基金书籍推荐名单（四十六）">优秀英文私募基金书籍推荐名单</a></div>
+                    </div>
+              
+                
+                  
+                  
+                <div class="iccList" >
+                      <div class="iccListI"><a target="_blank" href="tzzjy/jjtz/jjdt/392178.shtml" title="优秀英文私募基金书籍推荐名单（四十五）">优秀英文私募基金书籍推荐名单</a></div>
+                    </div>
+              
+                
+          
+            </div>
+        <div class="iccRight">
+              <img src="upload/tzzjy/1357451093864.jpg" width="102" height="75" alt="" />
+            </div>
+      </div>
+          <div class="indexT1 mlAuto">
+        
+              <div class="indexT1L"> <img src="images/earth.png" width="20" height="20" alt="" /> 全球视野</div>
+              <div class="indexT1R"><a href="qqsy/gjtydt/">更多>></a></div>
+            
+      </div>
+          <div class="height15"></div>
+          <!---->
+          <div class="inTtop">
+        <div class="inTImg">
+              <img src="upload/qqsy/1357451267500.jpg" width="69" height="81" alt="" />
+            </div>
+        <div class="inTCont">
+              
+            
+                  <div class="inTcTitle"><a href="qqsy/gjjlhz/389845.shtml">中国基金业协会国际会员委员会（</a></div>
+                
+          
+            </div>
+        
+              
+            <div class="iccList">
+                  <div class="iccListI"><img src="template/images/point2.png" style="margin-left:5px;"/><a style="padding-left:15px;" target="_blank" href="qqsy/gjtydt/392255.shtml" title="国际动态简报第二百二十三期">国际动态简报第二百二十三期</a></div>
+                </div>
+          
+            <div class="iccList">
+                  <div class="iccListI"><img src="template/images/point2.png" style="margin-left:5px;"/><a style="padding-left:15px;" target="_blank" href="qqsy/gjtydt/392254.shtml" title="国际动态简报第二百二十二期">国际动态简报第二百二十二期</a></div>
+                </div>
+          
+            
+      </div>
+          <!----> 
+        </div>
+  </div>
+      <div class="indexRight">
+    <div class="subscription mlAuto">
+          <input type="text" class="textInput" value="输入Email订阅协会最新动态" onClick="if(this.value=='输入Email订阅协会最新动态'){ this.value=''; }" onBlur="if(this.value=='') { this.value='输入Email订阅协会最新动态' }" />
+          <input type="submit" value=" " class="subBtn" />
+        </div>
+    <div class="height5"></div>
+    <div class="ad mlAuto"><a href="http://www.amac.org.cn/smjjdjbaxt/xtdl/390140.shtml" target="_blank"> <img src="http://www.amac.org.cn/images/1389952806639.jpg" border="0"/></a></div>
+    <div class="height5"></div>
+    <div class="ad mlAuto"><a href="http://www.csindex.com.cn/zh-CN/indices/amac/" target="_blank"><img src="http://www.amac.org.cn/images/1366084858483.png" border="0"/></a></div>
+    <div class="height5"></div>
+    <div class="ad mlAuto"><a href="http://ba.amac.org.cn/login.action" target="_blank"><img src="http://www.amac.org.cn/images/simu.jpg" border="0"/></a></div>
+    <div class="height5"></div>
+    <div class="ad mlAuto"><a href="http://www.amac.org.cn/jjywwbfwbaxt/387871.shtml" target="_blank"><img src="http://www.amac.org.cn/images/jjwbst.jpg" border="0"/></a></div>
+    <div class="height5"></div>
+    <div class="ad mlAuto"><a href="https://pfid.amac.org.cn" target="_blank"><img src="http://www.amac.org.cn/images/smjjdjbaxt1.jpg" border="0"/></a></div>
+    <div class="ad mlAuto"><a href="http://gs.amac.org.cn/amac-infodisc/res/pof/manager/baidumap.html" target="_blank"><img src="http://www.amac.org.cn/images/smdt.jpg" border="0"/></a></div>
+    <div class="ad mlAuto"><a href="http://www.amac.org.cn/xhgg/zlgzfb/389528.shtml" target="_blank"><img src="http://www.amac.org.cn/images/lianzhengjb.jpg" border="0"/></a></div>
+    <div class="indexRightList mlAuto">
+          <div class="irlT">
+        
+              <div class="irlTl"> 信息公示</div>
+              <div class="irlTr"></div>
+            
+      </div>
+          <div class="irlC1"  style="height:340px;padding-left:10px">
+        <div class="irlC6A" style="width:220px;margin: 3px 0px 5px 0px; "><a href="http://gs.amac.org.cn/amac-infodisc/res/pof/manager/managerList.html" target="_blank" style="color:red">&nbsp;&nbsp;私募基金管理人分类公示</a></div>
+        <div class="irlC6A" style="width:220px;margin: 3px 0px 5px 0px; "><a href="http://gs.amac.org.cn/amac-infodisc/res/fund/account/index.html" target="_blank" >&nbsp;&nbsp;基金专户备案信息公示</a></div>
+        
+              
+            
+                  <div class="irlC6A" style="width:120px;margin: 3px 0px 5px 2px;"><a href="http://gs.amac.org.cn/amac-infodisc/res/pof/manager/index.html" target="_blank">&nbsp;&nbsp;私募基金管理人公示</a></div>
+                
+            
+          
+            
+                  <div class="irlC6A" style="width:120px;margin: 3px 0px 5px 2px;"><a href="http://gs.amac.org.cn/amac-infodisc/res/pof/fund/index.html" target="_blank">&nbsp;&nbsp;私募基金公示</a></div>
+                
+            
+          
+            
+                  <div class="irlC6A" style="width:120px;margin: 3px 0px 5px 2px;"><a href="http://person.amac.org.cn" target="_blank">&nbsp;&nbsp;基金高管人员</a></div>
+                
+            
+          
+            
+                  <div class="irlC6A" style="width:120px;margin: 3px 0px 5px 2px;"><a href="xxgs/cyjggs/" target="_blank">&nbsp;&nbsp;从业机构公示</a></div>
+                
+            
+          
+            
+                  <div class="irlC6A" style="width:120px;margin: 3px 0px 5px 2px;"><a href="http://person.amac.org.cn/pages/registration/amac-publicity-report.html" target="_blank">&nbsp;&nbsp;从业人员公示</a></div>
+                
+            
+          
+            
+                  <div class="irlC6A" style="width:120px;margin: 3px 0px 5px 2px;"><a href="http://jjjl.amac.org.cn/fundos/g/cn/cx/jj.jsp" target="_blank">&nbsp;&nbsp;基金经理公示</a></div>
+                
+            
+          
+            
+                  <div class="irlC6A" style="width:120px;margin: 3px 0px 5px 2px;"><a href="xxgs/jlcf/" target="_blank">&nbsp;&nbsp;纪律处分</a></div>
+                
+            
+          
+            
+                  <div class="irlC6A" style="width:120px;margin: 3px 0px 5px 2px;"><a href="xxgs/hmd/" target="_blank">&nbsp;&nbsp;黑名单</a></div>
+                
+            
+          
+            
+            
+                  <div class="irlC6A" style="width:220px;margin: 3px 0px 5px 2px;"><a href="http://fo.amac.org.cn/amac/allNotice.do" target="_blank">&nbsp;&nbsp;私募基金服务机构公示</a></div>
+                
+          
+            
+            
+                  <div class="irlC6A" style="width:220px;margin: 3px 0px 5px 2px;"><a href="xxgs/zqgs/" target="_blank">&nbsp;&nbsp;证券公司私募产品备案确认函</a></div>
+                
+          
+            
+            
+                  <div class="irlC6A" style="width:220px;margin: 3px 0px 5px 2px;"><a href="http://ba.amac.org.cn/pages/amacWeb/web-list.html" target="_blank">&nbsp;&nbsp;证券公司私募产品备案信息公示</a></div>
+                
+          
+            
+            
+                  <div class="irlC6A" style="width:220px;margin: 3px 0px 5px 2px;"><a href="xxgs/cxdj/" target="_blank">&nbsp;&nbsp;撤销管理人登记的名单</a></div>
+                
+          
+            
+        <div class="irlC6A" style="width:220px;margin: 3px 0px 5px 2px;"><a href="http://ba.amac.org.cn/pages/amacWeb/abs-web-list.html" target="_blank">&nbsp;&nbsp;资产支持专项计划信息公示</a></div>
+        <div class="irlC6A" style="width:220px;margin: 3px 0px 5px 2px;"><a href="http://www.amac.org.cn/xxgs/zczczxjhbaqrhgs/" target="_blank">&nbsp;&nbsp;资产支持专项计划备案确认函公示</a></div>
+        <div class="irlC6A" style="width:220px;margin: 3px 0px 5px 2px;"><a href="http://ba.amac.org.cn/pages/amacWeb/qh-web-list.html" target="_blank">&nbsp;&nbsp;期货资管产品备案信息公示</a></div>
+        <div class="irlC6A" style="width:220px;margin: 3px 0px 5px 2px;"><a href="http://gs.amac.org.cn/amac-infodisc/res/aoin/product/index.html" target="_blank">&nbsp;&nbsp;证券公司直投基金备案信息公示</a></div>
+      </div>
+          <div class="irlT">
+        
+              <div class="irlTl"> 从业人员管理</div>
+              <div class="irlTr"><a href="cyrygl/kspt/">更多>></a></div>
+            
+      </div>
+          <div class="irlC1"  style="height:115px">
+        <div style="width:150px;height:16px;color: rgb(0, 52, 132);font-family: "微软雅黑","宋体";">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;考试平台</div>
+        
+              
+            <div class="irlC6A "><a href="cyrygl/kspt/cyryks/" target="_blank">&nbsp;&nbsp;从业资格考试大纲</a></div>
+          
+            <div class="irlC6A "><a href="http://baoming.amac.org.cn:10080/jjksreg/jjgg/NewsBook2017.html" target="_blank">&nbsp;&nbsp;从业资格考试教材订购</a></div>
+          
+            
+        <div style="width:150px;height:36px;color: rgb(0, 52, 132);font-family: "微软雅黑","宋体";">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;资格平台</div>
+        <div class="irlC6A " ><a href="http://person.amac.org.cn" target="_blank">&nbsp;&nbsp;从业人员管理系统</a></div>
+        <div class="irlC6A "><a href="http://person.amac.org.cn/pages/yearcheck/yearcheck-publicity.html" target="_blank">&nbsp;&nbsp;年检公示</a></div>
+        <div style="width:150px;height:36px;color: rgb(0, 52, 132);font-family: "微软雅黑","宋体";">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;培训平台</div>
+        <div class="irlC6A "><a href="http://person.amac.org.cn/pages/train/train-line-register-list.html" target="_blank">&nbsp;&nbsp;培训报名</a></div>
+        <div class="irlC6A "><a href="http://peixun.amac.org.cn/" target="_blank">&nbsp;&nbsp;远程培训系统</a></div>
+      </div>
+          <div class="irlT">
+        
+              <div class="irlTl"> 招聘信息</div>
+              <div class="irlTr"><a href="zpxx/">更多>></a></div>
+            
+      </div>
+          <div class="irlC1"  style="height:28px">
+        
+              
+            <div class="irlC6A"><a href="zpxx/hydwzp/" target="_blank">&nbsp;&nbsp;会员招聘</a></div>
+          
+            <div class="irlC6A"><a href="zpxx/xhcnzp/" target="_blank">&nbsp;&nbsp;协会招聘</a></div>
+          
+            
+      </div>
+          <div class="irlT">
+        
+              <div class="irlTl"> 友情链接</div>
+              <div class="irlTr"><a href="gywm/yqlj/">更多>></a></div>
+            
+      </div>
+          <div class="irlC1"  style="height:35px">
+        <div ><a href="http://www.csrc.gov.cn" target="_blank"><img src="http://www.amac.org.cn/images/yqlj1.jpg" width="139" height="32"/></a><a href="http://www.chinanpo.gov.cn" target="_blank" ><img src="http://www.amac.org.cn/images/yqlj2.jpg" width="111" height="32"/></a></div>
+      </div>
+        </div>
+  </div>
+    </div>
+<div class="height5"></div>
+<div class="partner">
+      <div class="pT">
+    <div class="ptt"> <img src="images/p.png" width="14" height="16" alt="" /> 会员单位 </div>
+  </div>
+      <div class="pC">
+    <div class="pcC mlAuto">
+          <div class="pLeft"></div>
+          <div class="pCenter">
+        <div id="demo">
+              <div id="indemo">
+            <div id="demo1">
+                  
+                
+                       <a href="http://www.chinastock.com.cn/" target="_blank"><img src="upload/_/1461651105294.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.htsec.com/htsec/Site/htsec/CN" target="_blank"><img src="upload/_/1461651141715.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.newone.com.cn/" target="_blank"><img src="upload/_/1461651165188.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.chinapnr.com/" target="_blank"><img src="upload/_/1461651189904.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.962518.com/" target="_blank"><img src="upload/_/1461651220756.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.txsec.com/" target="_blank"><img src="upload/_/1461651249892.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://cn.morningstar.com/main/default.aspx" target="_blank"><img src="upload/_/1461651266054.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.gtfund.com/" target="_blank"><img src="upload/_/1461651322383.png" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.nffund.com/main/" target="_blank"><img src="upload/_/1461651349678.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.chinaamc.com/index.shtml" target="_blank"><img src="upload/_/1461651371728.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.huaan.com.cn/" target="_blank"><img src="upload/_/1461651404001.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.bosera.com/index.html" target="_blank"><img src="upload/_/1461651449966.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.phfund.com.cn/main/home.shtml" target="_blank"><img src="upload/_/1461651493864.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.jsfund.cn/" target="_blank"><img src="upload/_/1461651510613.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.csfunds.com.cn/d2s/" target="_blank"><img src="upload/_/1461651531076.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.dcfund.com.cn/dcjj/index.jhtml" target="_blank"><img src="upload/_/1461652109545.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.fullgoal.com.cn/website_mirror/indexweb.do.htm?utm_source=b777" target="_blank"><img src="upload/_/1461652126930.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.yhfund.com.cn/" target="_blank"><img src="upload/_/1461652148016.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.byfunds.com/" target="_blank"><img src="upload/_/1461652177935.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.efunds.com.cn/" target="_blank"><img src="upload/_/1461652199223.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.rtfund.com/" target="_blank"><img src="upload/_/1461652218993.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.ubssdic.com/main/index.shtml" target="_blank"><img src="upload/_/1461652273414.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.ccfund.com.cn/" target="_blank"><img src="upload/_/1461652299187.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.galaxyasset.com/index.shtml" target="_blank"><img src="upload/_/1461652319828.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.mfcteda.com/index_web.html" target="_blank"><img src="upload/_/1461651779915.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.wjasset.com/" target="_blank"><img src="upload/_/1461651903620.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.cmfchina.com/index.html" target="_blank"><img src="upload/_/1461651930661.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.gefund.com.cn/main/" target="_blank"><img src="upload/_/1461651977583.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.fsfund.com/" target="_blank"><img src="upload/_/1461652041049.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.msfunds.com.cn/" target="_blank"><img src="upload/_/1461652073600.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.gtja-allianz.com/" target="_blank"><img src="upload/_/1461652354346.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.hftfund.com/~hft/index.html" target="_blank"><img src="upload/_/1461652377237.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.cxfund.com.cn/" target="_blank"><img src="upload/_/1461652411368.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.ftfund.com/" target="_blank"><img src="upload/_/1461652455690.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.chinanature.com.cn/" target="_blank"><img src="upload/_/1461652525999.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.invescogreatwall.com/" target="_blank"><img src="upload/_/1461652790989.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.xyfunds.com.cn/" target="_blank"><img src="upload/_/1461652818240.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.gffunds.com.cn/" target="_blank"><img src="upload/_/1461652840023.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.lionfund.com.cn/" target="_blank"><img src="upload/_/1461652867646.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.swsmu.com/index.html" target="_blank"><img src="upload/_/1461652901749.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.zhfund.com/" target="_blank"><img src="upload/_/1461652926830.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.epf.com.cn/" target="_blank"><img src="upload/_/1461652949683.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.hffund.com/index.html" target="_blank"><img src="upload/_/1461652974751.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.51fund.com/" target="_blank"><img src="upload/_/1461652995701.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.bocim.com/index.html" target="_blank"><img src="upload/_/1461653045588.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.orient-fund.com/" target="_blank"><img src="upload/_/1461653070849.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.scfund.com.cn/" target="_blank"><img src="upload/_/1461653128164.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.ftsfund.com/" target="_blank"><img src="upload/_/1461653164125.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.thfund.com.cn/" target="_blank"><img src="upload/_/1461653183427.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.huatai-pb.com/" target="_blank"><img src="upload/_/1461653214467.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.ncfund.com.cn/" target="_blank"><img src="upload/_/1461653244829.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.99fund.com/" target="_blank"><img src="upload/_/1461653263303.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.icbccs.com.cn/" target="_blank"><img src="upload/_/1461653290351.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.jysld.com/" target="_blank"><img src="upload/_/1461653309318.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.citicprufunds.com.cn/index.shtml" target="_blank"><img src="upload/_/1461653326477.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.ccbfund.cn/" target="_blank"><img src="upload/_/1461632085963.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.hsfund.com/" target="_blank"><img src="upload/_/1461653352668.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.hsbcjt.cn/hsbcjt.hsweb" target="_blank"><img src="upload/_/1461653370685.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.ymfund.com/index.html" target="_blank"><img src="upload/_/1461653401000.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.postfund.com.cn/" target="_blank"><img src="upload/_/1461653435316.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.fscinda.com/" target="_blank"><img src="upload/_/1461653490465.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.lordabbettchina.com/main/index.shtml" target="_blank"><img src="upload/_/1461653509147.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.lcfunds.com/" target="_blank"><img src="upload/_/1461653528159.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.jyvpfund.com/" target="_blank"><img src="upload/_/1461653553816.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.py-axa.com/index.html" target="_blank"><img src="upload/_/1461653571575.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.abc-ca.com/index.html" target="_blank"><img src="upload/_/1461653600675.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.msjyfund.com.cn/index.htm" target="_blank"><img src="upload/_/1461653626884.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.bnyfund.com/" target="_blank"><img src="upload/_/1461653654109.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://fund.pingan.com/index.shtml" target="_blank"><img src="upload/_/1461653686410.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.fadfunds.com/" target="_blank"><img src="upload/_/1461653707522.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.ctfund.com/" target="_blank"><img src="upload/_/1461653732698.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.founderff.com/" target="_blank"><img src="upload/_/1461653751924.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.zsfund.com/" target="_blank"><img src="upload/_/1461653794142.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.changanfunds.com/" target="_blank"><img src="upload/_/1461653810442.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.gfund.com/gjjj/index.html" target="_blank"><img src="upload/_/1461653841438.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.essencefund.com/" target="_blank"><img src="upload/_/1461653866972.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.dbfund.com.cn/" target="_blank"><img src="upload/_/1461653887370.jpg" width="89" height="56" alt="" /></a> 
+                    
+                       <a href="http://www.hcmiraefund.com/" target="_blank"><img src="upload/_/1461653907798.jpg" width="89" height="56" alt="" /></a> 
+                    
+              
+                </div>
+            <div id="demo2"></div>
+          </div>
+            </div>
+      </div>
+          <div class="pRight"></div>
+        </div>
+  </div>
+      <div class="pB"></div>
+    </div>
+<div class="height5"></div> <div class="bottom" style="line-height:28px;">
+      <div class="boLeft"> 版权所有：中国证券投资基金业协会   京ICP备16045718号</div><div style="float:left;margin:0 auto; padding:0 0;">
+    <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010202007223" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="/upload/gaba.png" style="float:left;" /><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">京公网安备 11010202007223号</p></a>
+</div>
+      <div class="boRight" style="width:360px"> <a href="gywm/lxwm/382301.shtml" class="four">联系我们</a>　|　<a href="gywm/flsm/382302.shtml" class="four">法律声明</a>　|　<a href="gywm/wzdt/" class="four">网站地图</a> </div>
+    </div>
+</div>
+</div>
+<script>
+   
+    var speed=20; //数字越大速度越慢
+    var tab=document.getElementById("demo");
+    var tab1=document.getElementById("demo1");
+    var tab2=document.getElementById("demo2");
+    tab2.innerHTML=tab1.innerHTML;
+    function Marquee(){
+    if(tab2.offsetWidth-tab.scrollLeft<=0)
+    tab.scrollLeft-=tab1.offsetWidth
+    else{
+    tab.scrollLeft++;
+    }
+    }
+    var MyMar=setInterval(Marquee,speed);
+    tab.onmouseover=function() {clearInterval(MyMar)};
+    tab.onmouseout=function() {MyMar=setInterval(Marquee,speed)};
+   
+    </script>
+<script src="http://www.amac.org.cn/cms//stat/front/stat.js" type="text/javascript"></script>
+<script>
+if(window._zcms_stat)_zcms_stat("SiteID=22&Dest=http://www.amac.org.cn/cms//stat");
+</script>
+<!-- App=CMS(CMS内容管理系统) 2.1.10018,CostTime=423,PublishDate=2017-09-30 12:41:11 --></body>
+</html>

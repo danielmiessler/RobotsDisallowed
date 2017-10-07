@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta name="csrf-param" content="_csrf-frontend">
+    <meta name="csrf-token" content="elZqc2tqTFEyMQZDUx4CZC4PABsjLgIAOHtbRlkdFAIbPBAQPjUgYA==">
+    <title>清博大数据 - 清博指数</title>
+    <link href="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/common/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/common/css/base.css" rel="stylesheet">
+    <link href="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/common/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/common/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/common/css/jquery.mCustomScrollbar.css" rel="stylesheet">
+    <link href="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/common/css/plugins/perfectScrollbar/perfect-scrollbar.min.css" rel="stylesheet">
+    <link href="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/common/css/plugins/chosen/chosen.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/common/css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/common/js/city/jquery.city.bootstrap.css" />
+    <link href="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/css/style.css" rel="stylesheet">
+    <link href="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/css/wx-detail.css" rel="stylesheet">
+
+    <script src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/common/js/jquery-1.11.1.min.js"></script>
+    <script src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/js/jquery.cookie.js"></script>
+    <script src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/common/js/bootstrap.min.js"></script>
+    <script src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/common/js/common.js"></script>
+    <script src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/common/js/city/jquery.city.js"></script>
+    <script src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/common/js/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <script src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/common/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script type="text/javascript" src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/common/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/common/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script type="text/javascript" src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/common/js/plugins/tinyscrollbar/jquery.tinyscrollbar.min.js"></script>
+    <script type="text/javascript" src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/common/js/plugins/tinyscrollbar/website.js"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?293b2731d4897253b117bb45d9bb7023";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <meta name='description' content='清博大数据是中国新媒体大数据权威平台，拥有清博指数、清博舆情、营广公品等多个核心产品。提供微信、微博、头条号等新媒体排行榜，广告交易、舆情报告、数据咨询等服务。'/></head>
+<body>
+
+<!--顶部-->
+<div class="header">
+    <div class="head">
+        <div class="nav fl">
+            <ul>
+                <li><a class="a-one" href="/">首页</a></li>
+                <li>
+                    <a class="a-one nav-menu-warp" target="_blank" href="/rank/wxrank">榜单<i class="icons"></i><span class="arrow-top"></span></a>
+                    <!-- 影藏的榜单导航 -->
+                    <div class="nav-menu">
+                        <div class="items-wrapper clearfix">
+                            <div class="item clearfix">
+                                <a class="nav-menu-a" target="_blank" href="/rank/wxrank">
+                                    <i class="logo-icons wx-logo"></i>
+                                    <span class="name">微信榜单</span>
+                                </a>
+                                <a class="nav-menu-a" target="_blank" href="/rank/wbrank">
+                                    <i class="logo-icons wb-logo"></i>
+                                    <span class="name">微博榜单</span>
+                                </a>
+                            </div>
+                            <div class="item clearfix">
+                                <a class="nav-menu-a" target="_blank" href="/netred/index">
+                                    <i class="logo-icons wh-logo"></i>
+                                    <span class="name">网红榜单</span>
+                                </a>
+                                <a class="nav-menu-a" target="_blank" href="/rank/toutiao">
+                                    <i class="logo-icons tt-logo"></i>
+                                    <span class="name">头条榜单</span>
+                                </a>
+                            </div>
+                            <div class="item clearfix">
+                                <a class="nav-menu-a" target="_blank" href="/custom/wxrank">
+                                    <i class="logo-icons zdy-logo"></i>
+                                    <span class="name">自定义榜单</span>
+                                </a>
+                                <a class="nav-menu-a" target="_blank" href="/cooperate/govrank">
+                                    <i class="logo-icons bd-logo2"></i>
+                                    <span class="name">政务合作榜单</span>
+                                </a>
+                            </div>
+                            <div class="item clearfix">
+                                <a class="nav-menu-a" target="_blank" href="/cooperate/mediarank">
+                                    <i class="logo-icons bd-logo1"></i>
+                                    <span class="name">媒体合作榜单</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!--<li><a class="a-one" target="_blank" href="http://guanjia.gsdata.cn/">管家</a></li>-->
+                <li><a class="a-one" target="_blank" href="http://yuqing.gsdata.cn/">舆情</a></li>
+                <li>
+                    <a class="a-one nav-menu-warp" target="_blank" href="http://home.gsdata.cn/">官网<i class="icons"></i><span class="arrow-top"></span></a>
+                    <!-- 影藏的工具导航 -->
+                    <div class="nav-menu gw">
+                        <div class="items-wrapper clearfix">
+                            <div class="item clearfix">
+                                <a class="nav-menu-a" target="_blank" href="http://shaanxi.gsdata.cn/">
+                                    <span class="name">清博陕西</span>
+                                </a>
+                            </div>
+                            <div class="item clearfix">
+                                <a class="nav-menu-a" target="_blank" href="http://tianjin.gsdata.cn/">
+                                    <span class="name">清博天津</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!--<li><a class="a-one" target="_blank" href="http://ads.gsdata.cn/">广告</a></li>-->
+                <li>
+                    <a class="a-one nav-menu-warp" target="_blank" href="/tool/index">产品<i class="icons"></i><span class="arrow-top"></span></a>
+                    <!-- 影藏的工具导航 -->
+                    <div class="nav-menu gj">
+                        <div class="items-wrapper clearfix">
+                            <div class="item clearfix">
+                                <a class="nav-menu-a" target="_blank" href="/tool/valindex">
+                                    <i class="logo-icons gj-logo1"></i>
+                                    <span class="name">公众号估值</span>
+                                </a>
+                                <a class="nav-menu-a" target="_blank" href="/tool/ygfsindex">
+                                    <i class="logo-icons gj-logo2"></i>
+                                    <span class="name">活跃粉丝预估</span>
+                                </a>
+                            </div>
+                            <div class="item clearfix">
+                                <a class="nav-menu-a" target="_blank" href="/recall/recall">
+                                    <i class="logo-icons gj-logo3"></i>
+                                    <span class="name">公众号回溯</span>
+                                </a>
+                                <a class="nav-menu-a" target="_blank" href="/tool/readnum">
+                                    <i class="logo-icons gj-logo4"></i>
+                                    <span class="name">分钟级监测</span>
+                                </a>
+                            </div>
+                            <div class="item clearfix">
+                                <a class="nav-menu-a" target="_blank" href="/tool/kpi">
+                                    <i class="logo-icons kpi-logo"></i>
+                                    <span class="name">公众号考核</span>
+                                </a>
+                                <a class="nav-menu-a" target="_blank" href="http://47.93.83.212/qb_nlp/">
+                                    <i class="logo-icons gj-logo7"></i>
+                                    <span class="name">词频统计</span>
+                                </a>
+                            </div>
+                            <div class="item clearfix">
+                                <a class="nav-menu-a" target="_blank" href="/recall/list">
+                                    <i class="logo-icons gj-logo5"></i>
+                                    <span class="name">微信数据大屏</span>
+                                </a>
+                                <a class="nav-menu-a" target="_blank" href="/tool/hot">
+                                      <i class="logo-icons gj-logo6"></i>
+                                      <span class="name">明日头条</span>
+                                </a>
+                            </div>
+                            <div class="item clearfix">
+                                <a class="nav-menu-a" target="_blank" href="/tool/wxsearch">
+                                    <i class="logo-icons gj-logo10"></i>
+                                    <span class="name">公众号信息采集</span>
+                                </a>
+                                <a class="nav-menu-a" target="_blank" href="/tool/arcsearch">
+                                    <i class="logo-icons gj-logo9"></i>
+                                    <span class="name">微信文章采集</span>
+                                </a>
+                            </div>
+                            <div class="item clearfix">
+                                <a class="nav-menu-a" target="_blank" href="/tool/wxnum">
+                                    <i class="logo-icons gj-logo8"></i>
+                                    <span class="name">微信推广量查询</span>
+                                </a>
+                                <a class="nav-menu-a" target="_blank" href="/tool/webpage">
+                                    <i class="logo-icons gj-logo11"></i>
+                                    <span class="name">网页提及量查询</span>
+                                </a>
+                            </div>
+                            <div class="item clearfix">
+                                <a class="nav-menu-a" target="_blank" href="http://tool.gsdata.cn/">
+                                    <i class="logo-icons gj-logo12"></i>
+                                    <span class="name">高级语义研究平台</span>
+                                </a>
+                                <a class="nav-menu-a" href="http://hao.gsdata.cn">
+                                    <i class="logo-icons gj-logo13"></i>
+                                    <span class="name">舆情网址导航</span>
+                                </a>
+                            </div>
+                            <div class="item clearfix">
+                                <a class="nav-menu-a" target="_blank" href="/recall/ttrecall">
+                                    <i class="logo-icons gj-logo14"></i>
+                                    <span class="name">头条号回溯</span>
+                                </a>
+                                <a class="nav-menu-a" target="_blank" href="/recall/wbrecall">
+                                    <i class="logo-icons gj-logo15"></i>
+                                    <span class="name">微博号回溯</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li><a class="a-one" target="_blank" href="/help/index">帮助</a></li>
+            </ul>
+        </div>
+                <div class="useinfo fr">
+            <a href="/member/register">注册</a>
+            <a href="/member/login">登录</a>
+        </div>
+            </div>
+</div>
+<div class="header-after">
+    <div class="head">
+                    <div class="logo fl"><a href="/"><img class="img_logo" src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/logo_dsj.png"/></a></div>
+        
+        <div class="input-group fl">
+            <input type="text" id="search_input" value="" class="form-control fl no" placeholder="新媒体搜索引擎，你想要的都在这里">
+            <button class="btn no btn-default fl search_wx" type="button">找公众号</button>
+            <button class="btn btn-border fl search_arc" type="button">搜文章</button>
+        </div>
+    </div>
+</div>
+<!--end of 顶部-->
+    <div class="bgff">
+<div class="main pt0 w12 ">
+    <div class="home-md clearfix">
+        <div class="main-r fr">
+            <!-----------常用工具--------->
+            <div class="homeTool mb20">
+                <div class="homeTool-tit cr7d">
+                    <a class="fr cr7d" target="_blank" href="/tool/index">更多</a>常用工具
+                </div>
+                <div class="homeTool-cont">
+                    <dl class="homeTool-dl1 mb10 clearfix">
+                        <dt class="cr96 fw4">指数榜单</dt>
+                        <dd><a class="cr30" target="_blank" href="/rank/wxarc">微信热文</a></dd>
+                        <dd><a class="cr30" target="_blank" href="/custom/wxrank">自定义榜单<i class="icons2 icon-hot"></i></a></dd>
+                    </dl>
+                    <dl class="homeTool-dl2 mb10 clearfix">
+                        <dt class="cr96 fw4">微信工具</dt>
+                        <dd><a class="cr30" target="_blank" href="/tool/valindex">公众号估值</a></dd>
+                        <dd><a class="cr30" target="_blank" href="/tool/ygfsindex">微信粉丝预估</a></dd>
+                        <dd><a class="cr30" target="_blank" href="/recall/recall">公众号回溯</a></dd>
+                        <dd><a class="cr30" target="_blank" href="/tool/arcsearch">微信文章采集</a></dd>
+                        <dd><a class="cr30" target="_blank" href="/tool/readnum">分钟级监测</a></dd>
+                        <dd><a class="cr30" target="_blank" href="/tool/kpi">微信绩效考核</a></dd>
+                    </dl>
+                    <dl class="homeTool-dl3 mb10 clearfix">
+                        <dt class="cr96 fw4">其他工具</dt>
+                        <dd><a class="cr30" target="_blank" href="/recall/wbrecall">微博回溯</a></dd>
+                        <dd><a class="cr30" target="_blank" href="/recall/ttrecall">头条号回溯</a></dd>
+                        <dd><a class="cr30" target="_blank" href="/tool/hot">明日头条</a></dd>
+                    </dl>
+                </div>
+            </div>
+
+            <!-----------广告--------->
+            <div class="pt20">
+                <a class="dib mb16" href="javascript:void();" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/home/home-ad1.jpg" alt=""/></a>
+                <a class="dib mb16" href="javascript:void();" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/home/home-ad2.jpg" alt=""/></a>
+                <ul class="home-lk liShad">
+                    <li class="mb16 clearfix">
+                        <i class="dataIco dataIco6 fl mb0"></i>
+                        <div class="word">
+                            <a target="_blank" title="舆情监测" href="http://yuqing.gsdata.cn/">
+                                <h4 class="cr30 fs18 ">舆情监测</h4>
+                                <span class="cr7d">实时监测，自动预警</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="mb16 clearfix">
+                        <i class="dataIco dataIco7 fl mb0"></i>
+                        <div class="word">
+                            <a target="_blank" title="开放平台" href="http://open.gsdata.cn/">
+                                <h4 class="cr30 fs18 ">开放平台</h4>
+                                <span class="cr7d">丰富的API数据接口</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="mb16 clearfix">
+                        <i class="dataIco dataIco8 fl mb0"></i>
+                        <div class="word">
+                            <a target="_blank" title="清博管家" href="http://guanjia.gsdata.cn/">
+                                <h4 class="cr30 fs18 ">清博管家</h4>
+                                <span class="cr7d">新媒体运营工具</span>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+                <a class="dib" href="/recall/ttrecall" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/shouye_toutiao.jpg" alt=""/></a>
+            </div>
+        </div>
+        <div class="main-l fl">
+            <!-- 轮播（Carousel） -->
+            <div id="myCarousel" class="carousel slide mb16" data-ride="carousel" style="height:272px">
+                <!-- 轮播（Carousel）指标 -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                </ol>
+                <!-- 轮播（Carousel）项目 -->
+                <div class="carousel-inner">
+                    
+                    <div class="item active">
+                        <div class="banner">
+                            <a target="_blank" href="http://home.gsdata.cn/qb-school.html"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/f78e13f4de146e0981315ec521adc555.jpg" alt="First slide"></a>
+                        </div>
+                    </div>
+                    
+                    <div class="item ">
+                        <div class="banner">
+                            <a target="_blank" href="http://www.gsdata.cn/user/limit 
+"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/7122f017b45f696f39203e5ae90c3843.jpg 
+" alt="Second slide"></a>
+                        </div>
+                    </div>
+                    
+                    <div class="item ">
+                        <div class="banner">
+                            <a target="_blank" href="http://yuqing.gsdata.cn/"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/a3ca6759c66c823dd39246f6a37c159a.jpg" alt="Third slide"></a>
+                        </div>
+                    </div>
+                    
+                    <div class="item ">
+                        <div class="banner">
+                            <a target="_blank" href="http://ads.gsdata.cn/ "><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/55de6f91dbcdc9e75dcb2c507257573f.jpg" alt="Fourth slide"></a>
+                        </div>
+                    </div>
+                    
+                    <div class="item ">
+                        <div class="banner">
+                            <a target="_blank" href="http://www.gsdata.cn/recall/ttrecall 
+"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/643ad513e26ada3003f6073912ff33e8.jpg 
+" alt="Fifth slide"></a>
+                        </div>
+                    </div>
+                                    </div>
+                <!-- 轮播（Carousel）导航 -->
+                <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+            </div>
+            <script>
+                $("#myCarousel").carousel({
+                    interval: 5e3
+                }), $("#myCarousel .item").each(function() {
+                    var e = $(this).next();
+                    e.length || (e = $(this).siblings(":first")), e.children(":first-child").clone().appendTo($(this)), e.next().length > 0 ? e.next().children(":first-child").clone().appendTo($(this)) : $(this).siblings(":first").children(":first-child").clone().appendTo($(this))
+                });
+            </script>
+            <!-----------最新公告--------->
+            <div class="home-notice mb20">
+                <span class="home-notice-tit fl"><i class="icons2 icons1-notice"></i>最新公告：</span>
+                <div class="home-notice-cont">
+                    <div id="carousel-example-vertical" class="carousel vertical slide" data-ride="carousel">
+                        <div class="carousel-inner" role="listbox">
+                                                        <div class="item active">
+                                <p class="ticker-headline">
+                                    <a target="_blank" href="http://www.gsdata.cn/help/detail?id=77">移动版自定义榜单上线啦，移动版v2.4.0更新日志</a>
+                                    <a target="_blank" href="http://www.gsdata.cn/recall/ttrecall">清博指数推出今日头条数据回溯工具</a>
+                                </p>
+                            </div>
+                                                        <div class="item ">
+                                <p class="ticker-headline">
+                                    <a target="_blank" href="http://home.gsdata.cn/news-report/articles/1817.html">清博舆情换新颜，5项功能迎来重大升级</a>
+                                    <a target="_blank" href="http://home.gsdata.cn/news-report/articles/1802.html">清博大数据，国内领先的大数据智能服务公司</a>
+                                </p>
+                            </div>
+                                                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="homeCont1 pt20 mb16 clearfix">
+                <!-----------微信总榜--------->
+                <div class="homeTotalList col-xs-4 homeTot-bg1">
+                    <h2 class="fs24 mb16 fw7">微信榜单</h2>
+                    <a class="btn" target="_blank" href="/rank/wxrank">日榜</a><a class="btn" target="_blank" href="/rank/wxrank?type=week">周榜</a><a class="btn mr0" target="_blank" href="/rank/wxrank?type=month">月榜</a>
+                    <p class="mt10">更新时间：2017.10.06</p>
+                </div>
+                <!-----------微博总榜--------->
+                <div class="homeTotalList col-xs-4 homeTot-bg2">
+                    <h2 class="fs24 mb16 fw7">微博榜单</h2>
+                    <a class="btn" target="_blank" href="/rank/wbrank">日榜</a><a class="btn" target="_blank" href="/rank/wbrank?type=week">周榜</a>
+                    <p class="mt10">更新时间：2017.10.06</p>
+                </div>
+                <!-----------今日头条总榜--------->
+                <div class="homeTotalList col-xs-4 mr0 homeTot-bg3">
+                    <h2 class="fs24 mb16 fw7">头条榜单</h2>
+                    <a class="btn" target="_blank" href="/rank/toutiao">媒体榜</a><a class="btn" target="_blank" href="/rank/toutiao?gid=3">自媒体榜</a><a class="btn mr0" target="_blank" href="/rank/toutiao?gid=4">视频榜</a>
+                    <p class="mt10">更新时间：2017.10.06</p>
+                </div>
+            </div>
+            <!-----------报告--------->
+            <div class="homeCont2">
+                <div class="homeRept-tit clearfix wxNav-tabs">
+                    <ul class="nav nav-tabs fl fs16">
+                        <li class="active"><a href="#tab1" data-toggle="tab">研究报告</a></li>
+                        <li><a href="#tab2" data-toggle="tab">数据报告</a></li>
+                        <li><a href="#tab3" data-toggle="tab">舆情报告</a></li>
+                        <li><a href="#tab4" data-toggle="tab">热点订阅</a></li>
+                    </ul>
+                </div>
+                <div class="homeRept-cont">
+                    <div class="tab-content">
+                        <div class="active tab-pane fade in" id="tab1">
+                            <ul class="wxAti-li mb0">
+                                                                    <li class="clearfix">
+                                        <div class="wxAti-img fl">
+                                            <a href="http://home.gsdata.cn/news-report/articles/2061.html" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/home-gsdata-images/9b7e59c6d59b08ef4a87608ede078415.jpg" width="128" height="80"/></a>
+                                        </div>
+                                        <div class="wxAti-cont cr7d">
+                                            <h4 class="fs16"><a class="cr30" href="http://home.gsdata.cn/news-report/articles/2061.html" target="_blank">14335篇10W+爆文背后，原来发文时间也有套路！</a></h4>
+                                            <p class="wxAti-intr"><a class="cr7d" href="">到底什么时候发推文最好呢？ 有人说是早上8点，下午6点左右，这时候是上下班高峰时间段，大家可以在公交车上，地铁上利用碎片化的时间阅读；有人说是中午12点，吃饭，午睡前抽空刷一下微信；</a></p>
+                                            <div class="wxAti-info"><span><i class="icons1 icon1-time"></i>2017-09-30 18:11:32</span></div>
+                                        </div>
+                                    </li>
+                                                                    <li class="clearfix">
+                                        <div class="wxAti-img fl">
+                                            <a href="http://home.gsdata.cn/news-report/articles/2060.html" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/home-gsdata-images/8a85cef1a282936558030aabe925adf7.jpg" width="128" height="80"/></a>
+                                        </div>
+                                        <div class="wxAti-cont cr7d">
+                                            <h4 class="fs16"><a class="cr30" href="http://home.gsdata.cn/news-report/articles/2060.html" target="_blank">看完这篇1000万+爆文分析，听说你准备退出公众号了？</a></h4>
+                                            <p class="wxAti-intr"><a class="cr7d" href="">10万+已过气？1000万+时代来临？</a></p>
+                                            <div class="wxAti-info"><span><i class="icons1 icon1-time"></i>2017-09-30 17:59:00</span></div>
+                                        </div>
+                                    </li>
+                                                                    <li class="clearfix">
+                                        <div class="wxAti-img fl">
+                                            <a href="http://home.gsdata.cn/news-report/articles/2053.html" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/home-gsdata-images/6fde29202574ee751e11a3c87fc67d93.jpg" width="128" height="80"/></a>
+                                        </div>
+                                        <div class="wxAti-cont cr7d">
+                                            <h4 class="fs16"><a class="cr30" href="http://home.gsdata.cn/news-report/articles/2053.html" target="_blank">知乎又来抢豆瓣生意？电影票房离了新媒体怎么行</a></h4>
+                                            <p class="wxAti-intr"><a class="cr7d" href="">电影产业没有强大起来，与之相关的内容产业却火起来了</a></p>
+                                            <div class="wxAti-info"><span><i class="icons1 icon1-time"></i>2017-09-28 17:44:46</span></div>
+                                        </div>
+                                    </li>
+                                                                    <li class="clearfix">
+                                        <div class="wxAti-img fl">
+                                            <a href="http://home.gsdata.cn/news-report/articles/2051.html" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/home-gsdata-images/f713d3a5cecfb562e2da36f788eb23bd.jpg" width="128" height="80"/></a>
+                                        </div>
+                                        <div class="wxAti-cont cr7d">
+                                            <h4 class="fs16"><a class="cr30" href="http://home.gsdata.cn/news-report/articles/2051.html" target="_blank">蜻蜓FM融资10亿，何仙姑夫融资千万，什么才是新媒体永远吃不完的红利？</a></h4>
+                                            <p class="wxAti-intr"><a class="cr7d" href="">蜻蜓FM融资10亿？再不紧跟新玩法你就out了！</a></p>
+                                            <div class="wxAti-info"><span><i class="icons1 icon1-time"></i>2017-09-27 18:07:41</span></div>
+                                        </div>
+                                    </li>
+                                                                    <li class="clearfix">
+                                        <div class="wxAti-img fl">
+                                            <a href="http://home.gsdata.cn/news-report/articles/2049.html" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/home-gsdata-images/2553b6b5be0624c88ae1235cd13489f9.jpg" width="128" height="80"/></a>
+                                        </div>
+                                        <div class="wxAti-cont cr7d">
+                                            <h4 class="fs16"><a class="cr30" href="http://home.gsdata.cn/news-report/articles/2049.html" target="_blank">“算法推荐”是技术陷阱？资讯平台未来的路该怎么走</a></h4>
+                                            <p class="wxAti-intr"><a class="cr7d" href="">人民网又“怼人”了，这次是今日头条</a></p>
+                                            <div class="wxAti-info"><span><i class="icons1 icon1-time"></i>2017-09-26 17:57:52</span></div>
+                                        </div>
+                                    </li>
+                                                                    <li class="clearfix">
+                                        <div class="wxAti-img fl">
+                                            <a href="http://home.gsdata.cn/news-report/articles/2047.html" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/home-gsdata-images/80f95b3326e44b7020b02b9ef2463a23.png" width="128" height="80"/></a>
+                                        </div>
+                                        <div class="wxAti-cont cr7d">
+                                            <h4 class="fs16"><a class="cr30" href="http://home.gsdata.cn/news-report/articles/2047.html" target="_blank">公众号遭遇“滑铁卢”，他们却被置顶！粉丝到底喜欢看什么？</a></h4>
+                                            <p class="wxAti-intr"><a class="cr7d" href="">你置顶了几个公众号？</a></p>
+                                            <div class="wxAti-info"><span><i class="icons1 icon1-time"></i>2017-09-25 17:41:59</span></div>
+                                        </div>
+                                    </li>
+                                                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="tab2">
+                            <ul class="wxAti-li">
+                                                                    <li class="clearfix">
+                                        <div class="wxAti-img fl">
+                                            <a href="http://home.gsdata.cn/news-report/articles/1886.html" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/home-gsdata-images/f08ef11ec74480a07a1dd98aa7bfa18f.jpg" width="128" height="80"/></a>
+                                        </div>
+                                        <div class="wxAti-cont cr7d">
+                                            <h4 class="fs16"><a class="cr30" href="http://home.gsdata.cn/news-report/articles/1886.html" target="_blank">满屏都是红点，这 40个账号却篇篇10万+ ，看看他们的爆文修炼手册 | 全国微信1000强月度报告（2017.6）</a></h4>
+                                            <p class="wxAti-intr"><a class="cr7d" href="">1. 总点赞数再创高峰，达 9163万；
+2. “天天炫拍”领衔休娱冠军；
+3.国版《深夜食堂》口碑票房双扑街。</a></p>
+                                            <div class="wxAti-info"><span><i class="icons1 icon1-time"></i>2017-07-10 13:37:35</span></div>
+                                        </div>
+                                    </li>
+                                                                    <li class="clearfix">
+                                        <div class="wxAti-img fl">
+                                            <a href="http://home.gsdata.cn/news-report/articles/1885.html" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/home-gsdata-images/9a14dcb539ee16d2206d2bcf614f296e.jpg" width="128" height="80"/></a>
+                                        </div>
+                                        <div class="wxAti-cont cr7d">
+                                            <h4 class="fs16"><a class="cr30" href="http://home.gsdata.cn/news-report/articles/1885.html" target="_blank">全国微信1000强完整榜单（2017.6）丨清博指数独家</a></h4>
+                                            <p class="wxAti-intr"><a class="cr7d" href="">TOP1000共计推送30489次，发布文章共149189篇，总阅读数高达71.85亿，总点赞数达到9163.57万。其中，阅读量达到10万+的文章共有24130篇，占总文章数的16.17%。原创文章数达到12755篇，占总文章数的8.54%。</a></p>
+                                            <div class="wxAti-info"><span><i class="icons1 icon1-time"></i>2017-07-10 11:43:18</span></div>
+                                        </div>
+                                    </li>
+                                                                    <li class="clearfix">
+                                        <div class="wxAti-img fl">
+                                            <a href="http://home.gsdata.cn/news-report/articles/1837.html" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/home-gsdata-images/80339f0baeedea0b86c554a5eba34cc7.jpg" width="128" height="80"/></a>
+                                        </div>
+                                        <div class="wxAti-cont cr7d">
+                                            <h4 class="fs16"><a class="cr30" href="http://home.gsdata.cn/news-report/articles/1837.html" target="_blank">全国微信1000强月度报告（2017.5）丨清博指数独家</a></h4>
+                                            <p class="wxAti-intr"><a class="cr7d" href="">5月微信公号1000强中，共发布文章155358篇，总阅读数达到了72.89亿，总点赞数为9048万。其中，阅读量达到10万+的文章共有23603篇，占总发布量的15.19％。原创文章数达16365篇，占总发布量的10.53%。</a></p>
+                                            <div class="wxAti-info"><span><i class="icons1 icon1-time"></i>2017-06-12 16:37:36</span></div>
+                                        </div>
+                                    </li>
+                                                                    <li class="clearfix">
+                                        <div class="wxAti-img fl">
+                                            <a href="http://home.gsdata.cn/news-report/articles/1827.html" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/home-gsdata-images/ae37ac197ba961bb40ac79e7c614fe1c.png" width="128" height="80"/></a>
+                                        </div>
+                                        <div class="wxAti-cont cr7d">
+                                            <h4 class="fs16"><a class="cr30" href="http://home.gsdata.cn/news-report/articles/1827.html" target="_blank">全国微信1000强完整榜单（2017.5）丨清博指数独家</a></h4>
+                                            <p class="wxAti-intr"><a class="cr7d" href="">2017年5月全国微信公众号千豪榜强势出炉！TOP1000共计推送31256次，发布文章共155358篇，总阅读数高达72.89亿，总点赞数达到9048.88万。其中，阅读量达到10万+的文章共有23603篇，占总文章数的15.19%。原创文章数达到16365篇，占总文章数的10.53%。</a></p>
+                                            <div class="wxAti-info"><span><i class="icons1 icon1-time"></i>2017-06-07 11:42:32</span></div>
+                                        </div>
+                                    </li>
+                                                                    <li class="clearfix">
+                                        <div class="wxAti-img fl">
+                                            <a href="http://home.gsdata.cn/news-report/articles/1772.html" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/home-gsdata-images/906593f8bbdb75a7be170bd2c73fce1f.jpg" width="128" height="80"/></a>
+                                        </div>
+                                        <div class="wxAti-cont cr7d">
+                                            <h4 class="fs16"><a class="cr30" href="http://home.gsdata.cn/news-report/articles/1772.html" target="_blank">全国微信1000强月度报告（2017.4）丨清博指数独家</a></h4>
+                                            <p class="wxAti-intr"><a class="cr7d" href="">4月微信公号1000强中，共发布文章145331篇，总阅读量达到了69.32亿，总点赞数为8467.41万。其中，阅读量达到10万+的文章共有22574篇，占总文章数的15.53%。原创文章数达14140篇，占总文章数的9.73%。</a></p>
+                                            <div class="wxAti-info"><span><i class="icons1 icon1-time"></i>2017-05-10 22:17:49</span></div>
+                                        </div>
+                                    </li>
+                                                                    <li class="clearfix">
+                                        <div class="wxAti-img fl">
+                                            <a href="http://home.gsdata.cn/news-report/articles/1704.html" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/home-gsdata-images/7589d4338e2445b32e47746881b5f81d.jpg" width="128" height="80"/></a>
+                                        </div>
+                                        <div class="wxAti-cont cr7d">
+                                            <h4 class="fs16"><a class="cr30" href="http://home.gsdata.cn/news-report/articles/1704.html" target="_blank">全国微信1000强月度报告（2017.3）丨清博指数独家</a></h4>
+                                            <p class="wxAti-intr"><a class="cr7d" href="">2017年3月全国微信公号1000强快报：
+1. 原创文章数惊现黑马勇闯前三；
+2. 开通赞赏公号占原创公号数的23.4%；
+3. 辱母杀人案引爆舆论场。</a></p>
+                                            <div class="wxAti-info"><span><i class="icons1 icon1-time"></i>2017-04-10 09:48:57</span></div>
+                                        </div>
+                                    </li>
+                                                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="tab3">
+                            <ul class="wxAti-li">
+                                                                    <li class="clearfix">
+                                        <div class="wxAti-img fl">
+                                            <a href="http://home.gsdata.cn/news-report/articles/2062.html" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/home-gsdata-images/506b245a761625303369b94338970c16.jpg" width="128" height="80"/></a>
+                                        </div>
+                                        <div class="wxAti-cont cr7d">
+                                            <h4 class="fs16"><a class="cr30" href="http://home.gsdata.cn/news-report/articles/2062.html" target="_blank">坐地起价的彩礼引爆舆论，彩礼冲突频发的原因何在？</a></h4>
+                                            <p class="wxAti-intr"><a class="cr7d" href="">如果说婚姻是爱情的坟墓，那么彩礼可能是婚姻的毒药。近年来，不少情侣因彩礼而分手，甚至引发暴力事件。坐地起价的彩礼上演真实的“爱情买卖”，小伙爱不起，舆论看不起，更多的人伤不起。</a></p>
+                                            <div class="wxAti-info"><span><i class="icons1 icon1-time"></i>2017-09-30 19:08:41</span></div>
+                                        </div>
+                                    </li>
+                                                                    <li class="clearfix">
+                                        <div class="wxAti-img fl">
+                                            <a href="http://home.gsdata.cn/news-report/articles/2057.html" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/home-gsdata-images/c5f3f37a2aee40afdbc2389fc32eaa56.jpg" width="128" height="80"/></a>
+                                        </div>
+                                        <div class="wxAti-cont cr7d">
+                                            <h4 class="fs16"><a class="cr30" href="http://home.gsdata.cn/news-report/articles/2057.html" target="_blank">九月十大谣言，不要让安全事故谣言打扰长假好时光！</a></h4>
+                                            <p class="wxAti-intr"><a class="cr7d" href="">九月的“谣言圈”较为活跃，国庆中秋长假前，安全事故谣言多发，移花接木、无中生有、夸大事实等手段无所不用其极。国庆第一天，清博舆情（ID：web_idea）提醒大家，出门在外保持警觉性，注意生命财产安全，但也不要盲目被谣言带跑带偏。</a></p>
+                                            <div class="wxAti-info"><span><i class="icons1 icon1-time"></i>2017-09-30 09:23:05</span></div>
+                                        </div>
+                                    </li>
+                                                                    <li class="clearfix">
+                                        <div class="wxAti-img fl">
+                                            <a href="http://home.gsdata.cn/news-report/articles/2056.html" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/home-gsdata-images/884d3708543126b4a7378399825c4da5.jpg" width="128" height="80"/></a>
+                                        </div>
+                                        <div class="wxAti-cont cr7d">
+                                            <h4 class="fs16"><a class="cr30" href="http://home.gsdata.cn/news-report/articles/2056.html" target="_blank">细数营销号的“七宗罪”，兴风作浪就数它厉害</a></h4>
+                                            <p class="wxAti-intr"><a class="cr7d" href="">营销号本来是个人或企业推广自我品牌的一种渠道，但是现在多指为了最终利益参与舆论、制造舆论的不良账号。营销号广泛存在于互联网各个平台，积极参与各种热点话题，作为信息污染的主要源头之一，其影响之恶劣可能远超想象。</a></p>
+                                            <div class="wxAti-info"><span><i class="icons1 icon1-time"></i>2017-09-29 18:43:49</span></div>
+                                        </div>
+                                    </li>
+                                                                    <li class="clearfix">
+                                        <div class="wxAti-img fl">
+                                            <a href="http://home.gsdata.cn/news-report/articles/2054.html" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/home-gsdata-images/cea6aaab7c46ce877e8e953ab896a862.jpg" width="128" height="80"/></a>
+                                        </div>
+                                        <div class="wxAti-cont cr7d">
+                                            <h4 class="fs16"><a class="cr30" href="http://home.gsdata.cn/news-report/articles/2054.html" target="_blank">是什么逼得“最差”电影《纯洁心灵：逐梦演艺圈》撤档？</a></h4>
+                                            <p class="wxAti-intr"><a class="cr7d" href="">电影《纯洁心灵·逐梦演艺圈》是北京大学影视学博士毕志飞导演磨砺12年的心血之作，但自上映以来就饱受争议，出品方因电影评分创下豆瓣影评最低记录一度要求豆瓣道歉，引发更汹涌的负面吐槽，最终以影片撤档告终。</a></p>
+                                            <div class="wxAti-info"><span><i class="icons1 icon1-time"></i>2017-09-29 09:54:02</span></div>
+                                        </div>
+                                    </li>
+                                                                    <li class="clearfix">
+                                        <div class="wxAti-img fl">
+                                            <a href="http://home.gsdata.cn/news-report/articles/2052.html" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/home-gsdata-images/1cec088c568cbaf4e08fe4bf59e825f1.jpg" width="128" height="80"/></a>
+                                        </div>
+                                        <div class="wxAti-cont cr7d">
+                                            <h4 class="fs16"><a class="cr30" href="http://home.gsdata.cn/news-report/articles/2052.html" target="_blank">实实在在的倒打一耙，你被这个颠倒是非的视频迷惑了吗？</a></h4>
+                                            <p class="wxAti-intr"><a class="cr7d" href="">造谣是可恶的，比造谣更可恶的应该就属反咬一口的造谣了吧。26日网民爆料福建高速收费员脸黑态度差，结果是司机作恶不成倒打一耙。舆论场热闹异常，除了斥责还有关于制度的讨论。</a></p>
+                                            <div class="wxAti-info"><span><i class="icons1 icon1-time"></i>2017-09-27 18:28:43</span></div>
+                                        </div>
+                                    </li>
+                                                                    <li class="clearfix">
+                                        <div class="wxAti-img fl">
+                                            <a href="http://home.gsdata.cn/news-report/articles/2050.html" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/home-gsdata-images/85bb68a8df144b4ba2c16ad72273f8cb.png" width="128" height="80"/></a>
+                                        </div>
+                                        <div class="wxAti-cont cr7d">
+                                            <h4 class="fs16"><a class="cr30" href="http://home.gsdata.cn/news-report/articles/2050.html" target="_blank">小米校招风波登海外头条，舆情三阶段段段精彩</a></h4>
+                                            <p class="wxAti-intr"><a class="cr7d" href="">小米校招风波持续数日，舆情衰退即将恢复风平浪静之时，媒体报道相关新闻登上日本头条，有当地网民提出抵制诉求，这个关于“日语”的玩笑似乎一下子成了“国际玩笑”。</a></p>
+                                            <div class="wxAti-info"><span><i class="icons1 icon1-time"></i>2017-09-26 18:56:30</span></div>
+                                        </div>
+                                    </li>
+                                                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="tab4">
+                            <ul class="wxAti-li">
+                                                                    <li class="clearfix">
+                                        <div class="wxAti-img fl">
+                                            <a href="http://yuqing.gsdata.cn/yuqingMonitor/index?sid=86882&sc=2" target="_blank"><img src="http://oss.aliyuncs.com/saas-pubsentiment-img1/schemeSubscribe/1506767751.jpg" width="128" height="80"/></a>
+                                        </div>
+                                        <div class="wxAti-cont cr7d">
+                                            <h4 class="fs16"><a class="cr30" href="http://yuqing.gsdata.cn/yuqingMonitor/index?sid=86882&sc=2" target="_blank">国庆中秋双节</a></h4>
+                                            <p class="wxAti-intr"><a class="cr7d" href="">明天（10月1日）开始，国庆加中秋8天假期就要开始了。旅游部门预计，8天假期旅游人数将达到7.1亿人次。</a></p>
+                                            <div class="wxAti-info"><span><i class="icons1 icon1-time"></i>2017-09-30 00:00:00</span></div>
+                                        </div>
+                                    </li>
+                                                                    <li class="clearfix">
+                                        <div class="wxAti-img fl">
+                                            <a href="http://yuqing.gsdata.cn/yuqingMonitor/index?sid=86827&sc=2" target="_blank"><img src="http://oss.aliyuncs.com/saas-pubsentiment-img1/schemeSubscribe/1506753073.jpg" width="128" height="80"/></a>
+                                        </div>
+                                        <div class="wxAti-cont cr7d">
+                                            <h4 class="fs16"><a class="cr30" href="http://yuqing.gsdata.cn/yuqingMonitor/index?sid=86827&sc=2" target="_blank">苹果8充电爆裂</a></h4>
+                                            <p class="wxAti-intr"><a class="cr7d" href="">经历销售遇冷、通话现杂音之后，iPhone8系列手机又接连出现爆炸事件，苹果方面回应称，是出现了电池的肿胀，跟爆炸无关。</a></p>
+                                            <div class="wxAti-info"><span><i class="icons1 icon1-time"></i>2017-09-30 00:00:00</span></div>
+                                        </div>
+                                    </li>
+                                                                    <li class="clearfix">
+                                        <div class="wxAti-img fl">
+                                            <a href="http://yuqing.gsdata.cn/yuqingMonitor/index?sid=86537&sc=2" target="_blank"><img src="http://oss.aliyuncs.com/saas-pubsentiment-img1/schemeSubscribe/1506667180.jpg" width="128" height="80"/></a>
+                                        </div>
+                                        <div class="wxAti-cont cr7d">
+                                            <h4 class="fs16"><a class="cr30" href="http://yuqing.gsdata.cn/yuqingMonitor/index?sid=86537&sc=2" target="_blank">酷骑单车退押金风波</a></h4>
+                                            <p class="wxAti-intr"><a class="cr7d" href="">近日，酷骑单车陷押金难退囧境，APP上无法退款，用户需到其总部排队退押金。其创始人兼CEO高唯伟因“管理能力不足”被罢免</a></p>
+                                            <div class="wxAti-info"><span><i class="icons1 icon1-time"></i>2017-09-29 00:00:00</span></div>
+                                        </div>
+                                    </li>
+                                                                    <li class="clearfix">
+                                        <div class="wxAti-img fl">
+                                            <a href="http://yuqing.gsdata.cn/yuqingMonitor/index?sid=86292&sc=2" target="_blank"><img src="http://oss.aliyuncs.com/saas-pubsentiment-img1/schemeSubscribe/1506589449.jpg" width="128" height="80"/></a>
+                                        </div>
+                                        <div class="wxAti-cont cr7d">
+                                            <h4 class="fs16"><a class="cr30" href="http://yuqing.gsdata.cn/yuqingMonitor/index?sid=86292&sc=2" target="_blank">&ldquo;好人法&rdquo;十月起实施</a></h4>
+                                            <p class="wxAti-intr"><a class="cr7d" href="">民法总则将于10月1日正式实施，其中第184条规定被俗称为“好人法”，因自愿实施紧急救助行为造成受助人损害的，救助人不承</a></p>
+                                            <div class="wxAti-info"><span><i class="icons1 icon1-time"></i>2017-09-28 00:00:00</span></div>
+                                        </div>
+                                    </li>
+                                                                    <li class="clearfix">
+                                        <div class="wxAti-img fl">
+                                            <a href="http://yuqing.gsdata.cn/yuqingMonitor/index?sid=86262&sc=2" target="_blank"><img src="http://oss.aliyuncs.com/saas-pubsentiment-img1/schemeSubscribe/1506577598.jpg" width="128" height="80"/></a>
+                                        </div>
+                                        <div class="wxAti-cont cr7d">
+                                            <h4 class="fs16"><a class="cr30" href="http://yuqing.gsdata.cn/yuqingMonitor/index?sid=86262&sc=2" target="_blank">拼团购物平台涉嫌传销</a></h4>
+                                            <p class="wxAti-intr"><a class="cr7d" href="">江苏南京警方日前在官网发布《关于“拼多多”“拼好货”等拼团购物平台存在隐患问题的预警》，称拼多多等平台存在类似传销等问题</a></p>
+                                            <div class="wxAti-info"><span><i class="icons1 icon1-time"></i>2017-09-28 00:00:00</span></div>
+                                        </div>
+                                    </li>
+                                                                    <li class="clearfix">
+                                        <div class="wxAti-img fl">
+                                            <a href="http://yuqing.gsdata.cn/yuqingMonitor/index?sid=86133&sc=2" target="_blank"><img src="http://oss.aliyuncs.com/saas-pubsentiment-img1/schemeSubscribe/1506502830.jpg" width="128" height="80"/></a>
+                                        </div>
+                                        <div class="wxAti-cont cr7d">
+                                            <h4 class="fs16"><a class="cr30" href="http://yuqing.gsdata.cn/yuqingMonitor/index?sid=86133&sc=2" target="_blank">英拉获刑5年</a></h4>
+                                            <p class="wxAti-intr"><a class="cr7d" href="">据外媒报道，当地时间27日，泰国最高法院就前总理英拉“大米渎职案”宣判，英拉罪名成立获刑5年。</a></p>
+                                            <div class="wxAti-info"><span><i class="icons1 icon1-time"></i>2017-09-27 00:00:00</span></div>
+                                        </div>
+                                    </li>
+                                                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-----------大数据项目--------->
+    <div class="home-md">
+        <div class="home-tit pb20">
+            <h5 class="fs22 ac mb20">大数据项目</h5>
+        </div>
+        <ul class="bigData-proj liShad mb0 clearfix ac">
+            <li>
+                <a href="javascript:void();">
+                    <i class="dataIco dataIco1"></i>
+                    <h4 class="fs22">智库大数据</h4>
+                    <p class="fs16 cr7d">客观评价智库影响力</p>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void();">
+                    <i class="dataIco dataIco2"></i>
+                    <h4 class="fs22">文创大数据</h4>
+                    <p class="fs16 cr7d">高级语义研究平台</p>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void();">
+                    <i class="dataIco dataIco3"></i>
+                    <h4 class="fs22">旅游大数据</h4>
+                    <p class="fs16 cr7d">游客旅游大数据分析</p>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void();">
+                    <i class="dataIco dataIco4"></i>
+                    <h4 class="fs22">校友大数据</h4>
+                    <p class="fs16 cr7d">校友数据互动交流平台</p>
+                </a>
+            </li>
+            <li class="mr0">
+                <a href="javascript:void();">
+                    <i class="dataIco dataIco5"></i>
+                    <h4 class="fs22">人物大数据</h4>
+                    <p class="fs16 cr7d">意见领袖多维度分析</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-----------合作伙伴--------->
+    <div class="home-md">
+        <div class="home-tit pb20">
+            <h5 class="fs22 ac mb20">友情链接</h5>
+        </div>
+        <ul class="partner ac clearfix">
+            <li><a href="http://www.chinapeace.gov.cn/" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/partner/g_zzw.jpg" alt=""/></a></li>
+            <li><a href="http://www.spp.gov.cn/" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/partner/g_zgj.jpg" alt=""/></a></li>
+            <li><a href="http://www.acftu.org/" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/partner/g_qgzgh.jpg" alt=""/></a></li>
+            <li><a href="http://www.women.org.cn/" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/partner/g_qgfl.jpg" alt=""/></a></li>
+            <li><a href="http://www.moe.gov.cn/" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/partner/g_jyb.jpg" alt=""/></a></li>
+            <li><a href="http://www.sasac.gov.cn/" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/partner/g_gzw.jpg" alt=""/></a></li>
+            <li><a href="http://www.nhfpc.gov.cn/" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/partner/g_gjwjw.jpg" alt=""/></a></li>
+            <li><a href="http://www.ccyl.org.cn/" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/partner/g_zggqt.jpg" alt=""/></a></li>
+            <li><a href="http://www.china-railway.com.cn/" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/partner/g_zgtl.jpg" alt=""/></a></li>
+            <li><a href="http://www.cnpc.com.cn/cnpc/index.shtml" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/partner/g_zgsy.jpg" alt=""/></a></li>
+            <li><a href="http://www.flycua.com/" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/partner/g_zglh.jpg" alt=""/></a></li>
+            <li><a href="http://www.csg.cn/" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/partner/b_nfdw.jpg" alt=""/></a></li>
+            <li><a href="http://www.suning.com/?utm_source=yd-bd-yy&utm_medium=yyqd29&utm_campaign=721" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/partner/g_slyg.jpg" alt=""/></a></li>
+            <li><a href="http://www.wanda.cn/" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/partner/b_wanda.jpg" alt=""/></a></li>
+            <li><a href="http://www.haier.net/cn/" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/partner/b_haier.jpg" alt=""/></a></li>
+            <li><a href="http://www.ctrchina.cn/about.asp" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/partner/g_scyj.jpg" alt=""/></a></li>
+            <li><a href="http://www.bluefocusgroup.com/" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/partner/b_blue_icon.jpg" alt=""/></a></li>
+            <li><a href="http://www.alibabagroup.com/cn/global/home" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/partner/b_alibaba.jpg" alt=""/></a></li>
+            <li><a href="https://www.tencent.com/zh-cn/index.html" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/partner/b_tencent.jpg" alt=""/></a></li>
+            <li><a href="https://www.baidu.com/" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/partner/b_baidu.jpg" alt=""/></a></li>
+            <li><a href="http://www.sina.com.cn/" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/partner/g_sina.jpg" alt=""/></a></li>
+            <li><a href="http://www.toutiao.com/" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/partner/b_toutiao.jpg" alt=""/></a></li>
+            <li><a href="http://www.xinhuanet.com/" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/partner/b_xinhuashe.jpg" alt=""/></a></li>
+            <li><a href="http://bbs.tianya.cn/" target="_blank"><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/partner/b_tianya.jpg" alt=""/></a></li>
+        </ul>
+    </div>
+</div>
+</div>
+<div class="footer">
+    <div class="foot">
+        <div class="nav fl">
+            <a target="_blank" href="http://home.gsdata.cn/about-us.html">关于清博</a>
+            <a target="_blank" href="http://home.gsdata.cn/news-report/">清博资讯</a>
+            <a target="_blank" href="http://home.gsdata.cn/recruiting-talents.html">诚聘英才</a>
+            <a target="_blank" href="http://open.gsdata.cn/">开放平台</a>
+            <a target="_blank" href="/site/usage">榜单公式</a>
+            <a target="_blank" href="http://home.gsdata.cn/cooperation.html">商务合作</a>
+            <a target="_blank" href="http://home.gsdata.cn/contact-us.html">联系我们</a>
+            <p>©2014-2017 北京清博大数据科技有限公司 版权所有&nbsp;&nbsp;京ICP备16036802号-1&nbsp;&nbsp;<img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/beian.png" alt="公安局备案">
+                    <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010802024017" >
+                        <span >京公网安备11010802024017号</span>
+                    </a>
+            </p>
+        </div>
+        <div class="foot-imgs fr">
+            <a href=""><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/ewm_qbzs.jpg"/><span class="word">清博指数</span></a>
+            <a href=""><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/ewm_qb.jpg"/><span class="word">清博</span></a>
+            <a href=""><img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/ewm_qbyq.jpg"/><span class="word">清博舆情</span></a>
+        </div>
+    </div>
+</div>
+<script src="/themes/app/js/site/index.js"></script><script type="text/javascript">
+
+    $(document).keypress(function(event){
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if(keycode == '13'){
+            var target = event.target || event.srcElment;//srcElment针对IE
+            if(target.id == 'search_input'){
+                $(".search_wx").click();
+            }
+        }
+    });
+    $(document).ready(function(){
+        $('a').not($("a[href*='.gsdata.cn'],a[href*='javascript:']")).attr('rel','nofollow');
+        $('a').not($("a[href^='http://']")).removeAttr("rel");
+        //$("a[href*='://']:not(a[href^='http://www.gsdata.cn'],a[href^='javascript:'])").attr('rel',"nofollow");
+        //$("#link a[href*='://']").removeAttr("rel");
+    });
+    $(function() {
+
+        $('.search_wx').click(function(){
+            var search_input = $.trim($('#search_input').val());
+            if(search_input==''){return;}
+           /* $.cookie('gsdata_r', r(search_input),{
+                path: "/", expires: 3600
+            });*/
+            $('.search_arc').removeClass('btn-default').addClass('btn-border');
+            $('.search_wx').removeClass('btn-border').addClass('btn-default');
+            window.location.href="/query/wx?q="+search_input;
+        });
+        $('.search_arc').click(function(){
+            var search_input = $.trim($('#search_input').val());
+            if(search_input==''){return;}
+           /* $.cookie('gsdata_r', r(search_input),{
+                path: "/",expires: 3600
+            });*/
+            $('.search_arc').removeClass('btn-border').addClass('btn-default');
+            $('.search_wx').removeClass('btn-default').addClass('btn-border');
+            window.location.href="/query/arc?q="+search_input;
+        });
+
+        $('.js_account').hover(function() {
+            $(this).find('.js_account_menu').removeClass('hidden');
+        }, function() {
+            $(this).find('.js_account_menu').addClass('hidden');
+        });
+
+        heightAlign();
+
+        $(window).resize(function() {
+            heightAlign();
+        });
+    });
+
+    function heightAlign() {
+        var wh = $(window).height();
+        var mh = $('.main').height();
+        var hh = $('.header').outerHeight();
+
+        if (mh + hh < wh) {
+            $('.js_menu').height(wh - hh - 37);
+            $('.js_contanier_item').height(wh - hh - 20);
+
+            return;
+        }
+
+        $('.js_menu').height(mh - 37);
+    };
+</script>
+<script type="text/html" class="hide" id="tips">
+    <div class="form-warp">
+        <div class="form-group">
+            <div style="text-align: center">扫描二维码联系客服</div>
+            <br>
+            <img src="http://gsdata-img1.oss-cn-hangzhou.aliyuncs.com/gsdata/gsdata_doc/images/zonglijun.jpg" alt=""  style="margin-left: 60px;">
+        </div>
+    </div>
+</script>
+
+<script>
+    function getTips(){
+        html = $("#tips").html();
+        $(document).modalll({
+            title: "",
+            width: 500,
+            content: html,
+            enter : "关闭",
+            closeHide : true,
+            callback: function () {
+                $("#modalClose").click();
+            }
+        });
+    }
+</script></body>
+</html>
+

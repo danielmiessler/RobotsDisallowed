@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta name="robots" content="noindex,nofollow">
+<title>無効なURLです</title>
+</head>
+
+<body>
+
+<p>
+無効なURLです。<br />
+プログラム設定の反映待ちである可能性があります。<br />
+しばらく時間をおいて再度アクセスをお試しください。
+</p>
+
+</body>
+</html>

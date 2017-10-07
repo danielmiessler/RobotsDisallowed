@@ -1,0 +1,14 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /commonlogin/
+Disallow: /marketieradmin/
+Disallow: /commerceadmin/
+Disallow: /analyzeradmin/
+Disallow: /webservice/
+Disallow: /product-type/
+Disallow: /view_cart/
+Disallow: /checkout/
+Disallow: /my_account/
+Disallow: /payment/
+Disallow: /order/
+Disallow: /marketiercampaign/

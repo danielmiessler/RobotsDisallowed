@@ -1,0 +1,1 @@
+Sitemap: http://www.pjgirls.com/sitemap.xml

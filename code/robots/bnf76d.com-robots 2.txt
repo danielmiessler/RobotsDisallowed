@@ -1,0 +1,7 @@
+# robotstxt.org/
+
+User-agent: *
+Disallow: /admin/
+Disallow: /core/
+Disallow: /lang/
+Disallow: /uploads/

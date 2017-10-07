@@ -1,0 +1,315 @@
+<!-- views/login.ejs -->
+<!doctype html>
+<html>
+<head>
+	<title>Login to BitMedia</title>
+    <meta name="description" content="Login. Already have an account? Sign in!" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicons/new.png">
+    <link rel="stylesheet" href="/css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css?1f1b7ea236"/>
+    <link rel="stylesheet" href="/css/login.css?b81ae6e622"/>
+
+	<style>
+		body { padding-top:0px; }
+      .navbar-brand{
+        margin-top: 0;
+      }
+	</style>
+
+    <script>
+
+        function checkEnter(e) {
+            if(e && e.keyCode == 13) {
+                checkForm(e);
+            }
+        };
+        
+        var captchaRes = '';
+        var onReturnCallback = function(){
+            captchaRes = grecaptcha.getResponse();
+        }
+
+        function checkForm(event){
+            event.preventDefault();
+            var checked = check();
+                        
+            if (!checked.mail && !checked.pass && captchaRes.length) {
+                var input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'timezone';
+                input.value = (new Date()).getTimezoneOffset()/60;
+                $('#form')[0].appendChild(input);
+                $('#form').submit();
+            }
+        };
+
+    </script>
+
+        <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function()
+        { (i[r].q=i[r].q||[]).push(arguments)}
+        ,i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-60371802-1', 'auto');
+        ga('send', 'pageview');
+        </script>
+</head>
+<body>
+
+
+
+
+<script>
+
+    $(document).ready(function() {
+
+        var flagMenuHide = 0;
+
+        $('#header_account').hover(function() {
+            flagMenuHide = 0;
+            $('#account_settings').show();
+        }, function() {
+            flagMenuHide = 3;
+            setTimeout(function() {
+                if (flagMenuHide == 3)
+                    $('#account_settings').hide();
+            }, 100);
+        });
+
+        $('#account_settings').hover(function() {
+            flagMenuHide = 1;
+        }, function() {
+            flagMenuHide = 3;
+            setTimeout(function() {
+                if (flagMenuHide == 3)
+                    $('#account_settings').hide();
+            }, 100);
+        });
+
+        $('#scroll_arrow').click(function(){
+            $('html,body').animate({
+                scrollTop: 0
+            }, 600);
+        });
+        $('#year_now').append(new Date().getFullYear());
+
+        $.ajax({
+             type : 'GET',
+             url : '/bitcointousd',
+             dataType : 'json',
+             success : function(res){
+                $('#bitcoin_price').append(res.usd.toFixed(2));
+             },
+             error : function(){
+                $('.header-bitcoin').css('display','none');
+             }
+        });
+    });
+
+</script>
+ <!-- Header section -->
+    <header>
+        <div class="container-fluid header-menu-color">
+        <div class="container">
+          <div class="row">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <i class="fa fa-bars mobile-nav-icon" aria-hidden="true"></i>
+              </button>
+              <a class="navbar-brand" href="/"><img src="/img/logo_new.png" width="35" alt="">BITMEDIA.IO</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav navbar-right header-nav">
+               <li class="hidden-xs">
+                    <span class="header-bitcoin">
+                        <span id="bitcoin_price"><i class="fa fa-btc" aria-hidden="true"></i><span class="btc_on">1<span/> = <i class="fa fa-usd" aria-hidden="true"></i></span>
+                    </span>
+                </li>
+                <li>
+                    <a href="/login" class="sign-in">
+                        <i class="fa fa-unlock-alt" aria-hidden="true"></i> 
+                        <span id="sign-in-text-container">Sign in</span> 
+                    </a>
+                </li>
+                <li>
+                    <a href="/signup" class="sign-up">
+                        <span>Sign up</span>
+                    </a>
+                </li>
+                <li class="hidden-xs"><span class="header-or">or</span></li>
+                <li>
+                    <a href="/auth/facebook">
+                        <i class="fa fa-facebook-official facebook-header-white" aria-hidden="true"></i>
+                    </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>         
+    </div>
+ </header>
+<!-- End of header section -->
+
+<div class="login">
+    <div class="container">
+        <div class="row">
+
+        <div class="col-sx-12">
+            <div class="col-xs-5 unlock-img-block col-centered change-pass-width">
+                <i class="fa"><img src="/img/signin_01_03.png" width="35" alt=""></i>
+                <!--<i class="fa fa-unlock-alt" aria-hidden="true"></i>-->
+                <p>Sign In</p>
+            </div>
+        </div>
+
+        <div class="col-sm-4 col-sm-offset-4 padding-no">
+
+        <form action="/login" method="POST" class="form-horizontal" id="form">
+          <div class="form-group login-from-group">
+            <div class="col-xs-11 col-sm-7 col-md-5 col-centered change-pass-width">
+              <div class="inner-addon left-addon">
+                <span class="fa font-opensans icon-mail">@</span>
+                <input onKeyPress="return checkEnter(event)" id="input_email" type="email" name="email" class="form-control login-email" id="inputEmail3" placeholder="Email" required>
+                <span class="icon-success" id="icon-success-email"><i class="fa fa-check"></i></span>
+                 <!--<div id="email_status_icon" class="status_icon"></div>
+                    <div id="login_username_status" class="input_status">
+                        <div style="position: relative;">
+                        <div class="status_arrow"></div>
+                        </div>
+                        <span></span>
+                    </div>-->
+              </div>
+              <div class="inner-addon left-addon">
+                <i class="fa fa-lock icon-pass" aria-hidden="true"></i>
+                <input onKeyPress="return checkEnter(event)" type="password" name="password" class="form-control login-pass" id="input_password" placeholder="Password" required>
+                 <span class="icon-success" id="icon-success-pass"><i class="fa fa-check"></i></span>
+                <!--<div id="pass_status_icon" class="status_icon"></div>
+                    <div id="login_password_status" class="input_status">
+                        <div style="position: relative;">
+                            <div class="status_arrow"></div>
+                        </div>
+                        <span></span>
+                </div>-->
+              </div>
+            </div>
+         </div>
+         <div class="g-recaptcha" data-sitekey="6Ler_R4UAAAAAELu64xyKvW_hUcUxFa8woOuhIOh" data-callback="onReturnCallback"></div>
+          <div class="form-group">
+            <div class="col-xs-11 col-sm-7 col-md-5 col-centered change-pass-width">
+              <button type="submit" onclick="checkForm(event)" class="btn btn-default btn-sign-in">Sign in</button>
+            </div>
+          </div>
+        </form>
+          <div class="col-xs-11 col-sm-7 col-md-5 login-bottom-container col-centered change-pass-width padding-no">
+            <p class="text-secur">Not registered? <a href="/signup">Sign Up</a> - it`s quick and easy!</a></p>
+            <div class="text-or">
+                <span></span> <div>or</div> <span></span>
+            </div>
+            <a href="/auth/facebook" class="btn btn-default btn-facebook"><i class="fa fa-facebook" aria-hidden="true"></i> Connect with Facebook</a>
+            <a href="/forgot" class="login-forgot-pass">Forgot Your Password?</a>
+          </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1027571100667001', {
+em: 'insert_email_variable'
+});
+fbq('track', 'PageView');
+fbq('track', 'ViewContent');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1027571100667001&ev=PageView&noscript=1"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+<!-- Footer Section start -->
+<footer class="footer">
+    <div class="container-fluid footer-top">
+        <div class="container">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 footer-bottom-top">
+                <div class="col-sm-12 col-md-2 text-center footer-logo-block">
+                    <a href="/"><img src="/img/logo_new.png" alt="bitmedia.io" width="55"></a>
+                    <a class="navbar-brand footer-logo-text" href="/">BITMEDIA.IO</a>
+                </div>
+                <div class="col-sm-2 col-md-1 footer-responsive-text info-element">
+                    <div class="footer-main-header">Information:</div>
+                    <p class="footer-main-sub-text"><a href="/faq">FAQ</a></p>
+                    <p class="footer-main-sub-text footer-main-sub-text-becomeapub"><a href="/how-it-works">How It Works</a></p>
+                </div>
+                <div class="col-sm-2 col-md-2 footer-responsive-text padding-no">
+                    <div class="footer-main-header">Advertising:</div>
+                    <p class="footer-main-sub-text"><a href="/bitcoin-advertising">Advertising With Bitcoin</a></p>
+                    <p class="footer-main-sub-text footer-main-sub-text-becomeapub"><a href="/campaign/ad-placement-management">Ad Placement Management</a>
+                    </p>
+                </div>
+                <div class="col-sm-2 col-md-2 footer-responsive-text earn-element">
+                    <div class="footer-main-header">Earning:</div>
+                    <p class="footer-main-sub-text"><a href="/become-a-publisher">Become a Publisher</a></p>
+                    <p class="footer-main-sub-text footer-main-sub-text-becomeapub"><a href="/referral/program">Affiliate Program</a>
+                    </p>
+                </div>
+                <div class="col-sm-2 col-md-1 footer-responsive-text padding-no">
+                    <div class="footer-main-header">About:</div>
+                    
+                    <p class="footer-main-sub-text"><a href="/about">About Us</a></p> 
+                    <p class="footer-main-sub-text footer-main-sub-text-becomeapub" style="width:130%"><a href="/publisher-approval">Publisher Approval</a></p>
+                </div>
+                <div class="col-sm-4 col-md-3 footer-responsive-text padding-no">
+                    <div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 footer-main-header text-right">Follow us:</div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 footer-sosial-icons">
+                            <a href="https://twitter.com/bitmedia_io"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            <a href="https://www.facebook.com/bitmedia.io"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="col-xs-6 col-sm-6 col-md-6 footer-main-header footer-head-contact text-right">Contacts:</span>
+                        <a href="/cdn-cgi/l/email-protection#75060005051a070135171c011810111c145b1c1a" class="col-xs-6 col-sm-6 col-md-6 footer-email"><span class="__cf_email__" data-cfemail="8dfef8fdfde2fff9cdefe4f9e0e8e9e4eca3e4e2">[email&#160;protected]</span></a>
+                    </div>
+                </div>
+                <div class="col-sm-1 col-md-1">
+                    <div class="footer-scroll-top" id="scroll_arrow"><img src="/img/to_top.png" alt=""></div>
+                </div>
+          </div>
+         </div>
+       </div>
+    </div>
+    <div class="container-fluid footer-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-6 footer-copyright">
+                  <p><span id="year_now"></span> © BitMedia LTD, All rights reserved.</p>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 padding-no">
+                    <ul class="nav navbar-nav navbar-right footer-nav">
+                        <li><a href="/terms">Terms</a></li>
+                        <li><a href="/publisher-terms">Publisher Terms</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer Section end -->
+    <script style="display: none !important;">!function(e,t,r,n,c,a,l){function i(t,r){return r=e.createElement('div'),r.innerHTML='<a href="'+t.replace(/"/g,'&quot;')+'"></a>',r.childNodes[0].getAttribute('href')}function o(e,t,r,n){for(r='',n='0x'+e.substr(t,2)|0,t+=2;t<e.length;t+=2)r+=String.fromCharCode('0x'+e.substr(t,2)^n);return i(r)}try{for(c=e.getElementsByTagName('a'),l='/cdn-cgi/l/email-protection#',n=0;n<c.length;n++)try{(t=(a=c[n]).href.indexOf(l))>-1&&(a.href='mailto:'+o(a.href,t+l.length))}catch(e){}for(c=e.querySelectorAll('.__cf_email__'),n=0;n<c.length;n++)try{(a=c[n]).parentNode.replaceChild(e.createTextNode(o(a.getAttribute('data-cfemail'),0)),a)}catch(e){}}catch(e){}}(document);</script><script src="/js/inputs.js?67c94c2d42"></script>
+    <script src="/css/bootstrap/js/bootstrap.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+</body>
+</html>

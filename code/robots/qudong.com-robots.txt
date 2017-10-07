@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>驱动中国_国内知名科技媒体</title>
+<meta name="keywords" content="科技,科技新闻,最新科技新闻,移动互联网,手机新闻,手机评测,行情报价,机器人,云计算,数码资讯,软件资讯,家电,智能家电,3D打印,网络游戏" />
+<meta name="description" content="驱动中国为国内知名的科技媒体, 24小时滚动报道国内外最有价值的科技新闻、移动通信、IT互联网业界、数码产品、家电及智能穿戴、黑科技产品资讯，为用户提供及时权威的科技资讯。" />
+<link rel="stylesheet" href="http://img.qudong.com/templates/qudong/img2014/pic.css" charset="utf-8" media="all">
+<link rel="stylesheet" href="http://img.qudong.com/js_css/index2016.css" charset="utf-8" media="all">
+<link rel="stylesheet" type="text/css" href="http://img.qudong.com/js_css/css_h.css">
+<link rel="stylesheet" href="http://img.qudong.com/js_css/styletab.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="http://img.qudong.com/js_css/lanrenzhijia.css">
+<base href="." target="_blank">
+<script type="text/javascript" src="http://img.qudong.com/templates/qudong/css/jquery.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://img.qudong.com/templates/qudong/css/jigsaw.js"></script>
+<script type="text/javascript" src="http://img.qudong.com/templates/qudong/img2014/startMove.js"></script>
+<script type="text/javascript" src="http://img.qudong.com/templates/qudong/js/cms_index.js"></script>
+<script src="http://upload.qudong.com/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="http://upload.qudong.com/js/owl.carousel.js"></script>
+<script language="javascript" type="text/javascript" src="http://img.qudong.com/js_css/ss.js"></script>
+<script type="text/javascript" src="http://img.qudong.com/js_css/113.js"></script>
+<script type="text/javascript" src="http://img.qudong.com/js_css/switch.combo.js"></script>
+<script type="text/javascript">
+	(function(){
+	  var animenuToggle = document.querySelector('.animenu__toggle'),
+		  animenuNav    = document.querySelector('.animenu__nav'),
+		  hasClass = function( elem, className ) {
+			return new RegExp( ' ' + className + ' ' ).test( ' ' + elem.className + ' ' );
+		  },
+		  toggleClass = function( elem, className ) {
+			var newClass = ' ' + elem.className.replace( /[\t\r\n]/g, ' ' ) + ' ';
+			if( hasClass(elem, className ) ) {
+			  while( newClass.indexOf( ' ' + className + ' ' ) >= 0 ) {
+				newClass = newClass.replace( ' ' + className + ' ' , ' ' );
+			  }
+			  elem.className = newClass.replace( /^\s+|\s+$/g, '' );
+			} else {
+			  elem.className += ' ' + className;
+			}
+		  },           
+		  animenuToggleNav =  function (){        
+			toggleClass(animenuToggle, "animenu__toggle--active");
+			toggleClass(animenuNav, "animenu__nav--open");        
+		  }
+	  if (!animenuToggle.addEventListener) {
+		  animenuToggle.attachEvent("onclick", animenuToggleNav);
+	  }
+	  else {
+		  animenuToggle.addEventListener('click', animenuToggleNav);
+	  }
+	})()
+</script>
+<script type="text/javascript">
+window.onload=function(){
+	var aPicLi=document.getElementById('pic_list').getElementsByTagName('li');
+	var aTextLi=document.getElementById('text_list').getElementsByTagName('li');
+	var aIcoLi=document.getElementById('ico_list').getElementsByTagName('li');
+	var oIcoUl=document.getElementById('ico_list').getElementsByTagName('ul')[0];
+	var oPrev=document.getElementById('btn_prev');
+	var oNext=document.getElementById('btn_next');
+	var oDiv=document.getElementById('box');
+	var i=0;
+	var iNowUlLeft=0;
+	var iNow=0;
+	oPrev.onclick=function(){
+		if(iNowUlLeft>0){
+			iNowUlLeft--;
+			oUlleft();
+		}
+		oPrev.className=iNowUlLeft==0?'btn':'btn showBtn';
+		oNext.className=iNowUlLeft==(aIcoLi.length-7)?'btn':'btn showBtn';
+	}
+	oNext.onclick=function(){
+		if(iNowUlLeft<aIcoLi.length-7){
+			iNowUlLeft++;
+			oIcoUl.style.left=-aIcoLi[0].offsetWidth*iNowUlLeft+'px';
+		}
+		oPrev.className=iNowUlLeft==0?'btn':'btn showBtn';
+		oNext.className=iNowUlLeft==(aIcoLi.length-7)?'btn':'btn showBtn';
+	}
+	for(i=0;i<aIcoLi.length;i++){
+		aIcoLi[i].index=i;
+		aIcoLi[i].onclick=function(){
+			if(iNow==this.index){
+				return false;
+			}
+			iNow=this.index;
+			tab();
+		}
+	}
+	function tab(){
+		for(i=0;i<aIcoLi.length;i++){
+			aIcoLi[i].className='';
+			aPicLi[i].style.filter='alpha(opacity:0)';
+			aPicLi[i].style.opacity=0;
+			aTextLi[i].getElementsByTagName('h2')[0].className='';
+			miaovStopMove( aPicLi[i]);
+		}
+		aIcoLi[iNow].className='active';
+		//aPicLi[this.index].style.filter='alpha(opacity:100)';
+		//aPicLi[this.index].style.opacity=1;
+		miaovStartMove(aPicLi[iNow],{opacity:100},MIAOV_MOVE_TYPE.BUFFER);
+		aTextLi[iNow].getElementsByTagName('h2')[0].className='show';
+	}
+	function oUlleft(){
+		oIcoUl.style.left=-aIcoLi[0].offsetWidth*iNowUlLeft+'px';
+	}
+	function autoplay(){
+		iNow++;
+		if(iNow>=aIcoLi.length){
+			iNow=0;
+		}
+		if(iNow<iNowUlLeft){
+			iNowUlLeft=iNow;
+		}else if(iNow>=iNowUlLeft+7){
+			iNowUlLeft=iNow-6;
+		}
+		oPrev.className=iNowUlLeft==0?'btn':'btn showBtn';
+		oNext.className=iNowUlLeft==(aIcoLi.length-7)?'btn':'btn showBtn';
+		oUlleft();
+		tab();
+	}
+	var time=setInterval(autoplay,3000);
+	oDiv.onmouseover=function(){
+		clearInterval(time);
+	}
+	oDiv.onmouseout=function(){
+		time=setInterval(autoplay,3000);
+	}
+}
+</script>
+<script type="text/javascript">
+	window.onload = function(){
+		/*顶部的幻灯片*/
+		TAB({
+			menu: 'indexSlideTab',
+			content: 'indexSlideCont',
+			active_tab: 0,
+			active_css: 'tabactive',
+			auto: true,
+			duration: 4
+		});		/*底部切换*/
+		TAB({
+			menu: 'tabmenu',
+			content: 'tabcontent',
+			active_tab: 0,
+			active_css: 'tabactive'
+		});
+	}
+</script>
+<script>
+$(function(){
+	$('.zzsc .content ul').width(380*$('.zzsc .content li').length+'px');
+	$(".zzsc .tab a").mouseover(function(){
+		$(this).addClass('on').siblings().removeClass('on');
+		var index = $(this).index();
+		number = index;
+		var distance = -380*index;
+		$('.zzsc .content ul').stop().animate({
+			left:distance
+		});
+	});
+	var auto = 1;  //等于1则自动切换，其他任意数字则不自动切换
+	if(auto ==1){
+		var number = 0;
+		var maxNumber = $('.zzsc .tab a').length;
+		function autotab(){
+			number++;
+			number == maxNumber? number = 0 : number;
+			$('.zzsc .tab a:eq('+number+')').addClass('on').siblings().removeClass('on');
+			var distance = -380*number;
+			$('.zzsc .content ul').stop().animate({
+				left:distance
+			});
+		}
+		var tabChange = setInterval(autotab,30000);
+		//鼠标悬停暂停切换
+		$('.zzsc').mouseover(function(){
+			clearInterval(tabChange);
+		});
+		$('.zzsc').mouseout(function(){
+			tabChange = setInterval(autotab,30000);
+		});
+	  }  
+});
+</script>
+<script type="text/javascript">
+$(function(){
+	$('#owl-demo').owlCarousel({
+		items: 1,
+		navigation: true,
+		navigationText: ["上一个","下一个"],
+		autoPlay: true,
+		stopOnHover: true
+	}).hover(function(){
+		$('.owl-buttons').show();
+	}, function(){
+		$('.owl-buttons').hide();
+	});
+});
+</script>
+</head>
+<body>
+<header class="header no-scrolling-fixed">
+<div class="header-inner">
+<div class="header-container">
+<div class="site-qudong">
+<div class="site-logo">
+<h1 class="logo"><a href="http://www.qudong.com"><img src="http://img.qudong.com/pic/logo.png" alt="驱动中国" /></a></h1>
+</div>
+<div class="site-top-search">
+<div style="float: right; width:800px; height:67px;  margin-bottom:10px; ">
+<script>
+(function() {
+    var s = "_" + Math.random().toString(36).slice(2);
+    document.write('<div id="' + s + '"></div>');
+    (window.slotbydup=window.slotbydup || []).push({
+        id: '4677949',
+        container: s,
+        size: '800,60',
+        display: 'inlay-fix'
+    });
+})();
+</script>
+<script src="http://dup.baidustatic.com/js/os.js"></script>
+</div>
+</div></div>
+<nav class="nav pjax-nav">
+<ul class="jiemian-nav">
+<li class="nav-list">
+<div class="nav-list-inner">
+<a class="item-105" data-url="http://www.qudong.com/" href="http://www.qudong.com" data-pjax="data-pjax">首页</a>
+</div>
+</li>
+<li class="nav-list">
+<div class="nav-list-inner">
+<a class="item-32" href="http://news.qudong.com" data-url="http://news.qudong.com" data-pjax="data-pjax">新闻</a>
+</div>
+</li>
+<li class="nav-list">
+<div class="nav-list-inner">
+<a class="item-105" href="http://mobile.qudong.com" data-url="http://mobile.qudong.com" data-pjax="data-pjax">手机</a>
+</div>
+</li>
+<li class="nav-list">
+<div class="nav-list-inner">
+<a class="item-32" href="http://www.qudong.com/jiadian/" data-url="http://www.qudong.com/jiadian" data-pjax="data-pjax">家电</a>
+</div>
+</li>
+<li class="nav-list">
+<div class="nav-list-inner">
+<a class="item-32" href="http://digi.qudong.com" data-url="http://digi.qudong.com" data-pjax="data-pjax">数码</a>
+</div>
+</li>
+<li class="nav-list">
+<div class="nav-list-inner">
+<a class="item-105" href="http://www.qudong.com/robot" data-url="http://www.qudong.com/robot" data-pjax="data-pjax">机器人</a>
+</div>
+</li>
+<li class="nav-list">
+<div class="nav-list-inner">
+<a class="item-105" href="http://news.qudong.com/cloud/" data-url="http://news.qudong.com/cloud/" data-pjax="data-pjax">云计算</a>
+</div>
+</li>
+<li class="nav-list">
+<div class="nav-list-inner">
+<a class="item-105" href="http://news.qudong.com/ec/" data-url="http://news.qudong.com/ec/" data-pjax="data-pjax">电商</a>
+</div>
+</li>
+<li class="nav-list">
+<div class="nav-list-inner">
+<a class="item-105" href="http://v.qudong.com" data-url="http://v.qudong.com" data-pjax="data-pjax">视频</a>
+</div>
+</li>
+<li class="nav-list">
+<div class="nav-list-inner">
+<a class="item-32" href="http://game.qudong.com" data-url="http://game.qudong.com" data-pjax="data-pjax">游戏</a>
+</div>
+</li>
+<li class="nav-list">
+<div class="nav-list-inner" style="background-image: url(http://img.qudong.com/pic/new.png);">
+<a class="item-32" href="http://product.qudong.com/" data-url="http://product.qudong.com/" data-pjax="data-pjax">报价</a>
+</div>
+</li>
+<li class="nav-list">
+<div class="nav-list-inner">
+<a class="item-32" href="http://pic.qudong.com" data-url="http://pic.qudong.com" data-pjax="data-pjax">图说</a>
+</div>
+<li class="nav-list">
+<div class="nav-list-inner">
+<a class="item-32" href="http://www.qudong.com/ebikes" data-url="http://www.qudong.com/ebikes" data-pjax="data-pjax">共享单车</a>
+</div>
+</li>
+<li class="nav-list">
+<div class="nav-list-inner">
+<a class="item-32" href="http://www.qudong.com/vr" data-url="http://www.qudong.com/vr" data-pjax="data-pjax">AR/VR</a>
+</div>
+</li>
+<li class="nav-list">
+<div class="nav-list-inner">
+<a class="item-32" href="http://www.qudong.com/ai" data-url="http://www.qudong.com/ai" data-pjax="data-pjax">AI+</a>
+</div>
+</li>
+<li class="nav-right">
+<nav class="animenu">
+<ul class="animenu__nav">
+<li>
+<a href="#">更多频道</a>
+<ul class="animenu__nav__child">
+<li><a href="http://www.aliqiche.com" title="阿里汽车" target="_blank">阿里汽车</a></li>
+<li><a href="http://www.veryol.com/" title="非常在线" target="_blank">非常在线</a></li>
+<li><a href="http://www.qudong.com/hangpai" title="航拍之家" target="_blank">航拍之家</a></li>
+<li><a href="http://www.qudong.com/list/s184" title="焦点图列表" target="_blank">焦点资讯</a></li>
+<li><a href="http://www.qudong.com/list/s641" title="头条列表" target="_blank">科技头条</a></li>
+<li><a href="http://app.qudong.com/rss.php" title="RSS" target="_blank">站内订阅</a></li>
+<li><a href="http://drivers.qudong.com/" title="驱动下载" target="_blank">驱动下载</a></li>
+<li><a href="http://news.qudong.com/zhibo" title="会议直播" target="_blank">会议直播</a></li>
+<li><a href="http://www.qudong.com/3dprinter" title="3D打印" target="_blank">3D打印</a></li>
+<li><a href="http://space.qudong.com/" title="记者专栏" target="_blank">记者专栏</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</header>
+<div class="wenzilian">
+<ul>
+<li><a href="http://mobile.qudong.com/article/439327.shtml">iPhone 8 Plus测评 尴尬之外还有何惊喜</a></li>
+<li><a href="http://mobile.qudong.com/article/438593.shtml">Mate10售价曝光4299元起，10月20日发布</a></li>
+<li><a href="http://mobile.qudong.com/article/433483.shtml">9月全面屏手机大爆发 带来诸多黑科技</a></li>
+<li><a href="http://www.qudong.com/article/433583.shtml">无人机航拍钓鱼岛，日本政府抗议！</a></li>
+<li><a href="http://mobile.qudong.com/article/433643.shtml" style="color:#FF0000">vivo X20宣传语质疑 分屏也能算亮点？</a></li>
+<li><a href="http://mobile.qudong.com/article/433627.shtml">2017Q2出货量 华为连续两月超越苹果</a></li>
+<li><a href="http://mobile.qudong.com/article/433817.shtml">iPhone 8即将面世：国产手机如何应对？</a></li>
+<li><a href="http://www.qudong.com/article/433791.shtml">为何唯有长虹CHiQ电视被“御用”？</a></li>
+<li><a href="http://mobile.qudong.com/article/433833.shtml">三星中国市场的第一部双摄GalaxyC8发布</a></li>
+<li><a href="http://mobile.qudong.com/article/433841.shtml">iPhone 8改竖向双摄 AR产业将迎来爆发</a></li>
+</ul>
+</div>
+<div class="mian">
+<div class="miannei">
+<div class="hd_left">
+<div class="zx12000">
+<div class="zx12000_d">
+<a href="http://mobile.qudong.com/article/438735.shtml">苹果的Face ID双胞胎可互解:缺陷or漏洞?</a>
+<span><a href="http://www.qudong.com/list/s641">头条</a></span>
+</div>
+<div class="zx12000_x">
+<li>
+<span>要闻</span><a href="http://mobile.qudong.com/article/438905.shtml">碎不起！iPhone 8P玻璃后盖维修费顶1台安卓旗舰</a>
+<span>视点</span><a href="http://mobile.qudong.com/article/438933.shtml">二十周年难逃颓势，HTC能否扭转败局？</a>
+</li>
+</div>
+</div>
+<div class="hdeng">
+<div class="index-slide">
+<div id="owl-demo" class="owl-carousel">
+<a class="item" href="http://mobile.qudong.com/article/435259.shtml" target="_blank" title="iPhoneX和三星Note 8售价大涨 会不会带动国产手机价格飙升？"><img src="http://upload.qudong.com/2017/0915/thumb_600_330_1505453987949.jpg" alt="iPhoneX和三星Note 8售价大涨 会不会带动国产手机价格飙升？" width="600" height="330"><b></b><span>iPhoneX和三星Note 8售价大涨 会不会带动国产手机价格飙升？</span></a>
+<a class="item" href="http://mobile.qudong.com/article/434717.shtml" target="_blank" title="iPhone X：全面屏，999美元，十周年iPhone就这样！"><img src="http://upload.qudong.com/2017/0915/thumb_600_330_1505454255799.jpg" alt="iPhone X：全面屏，999美元，十周年iPhone就这样！" width="600" height="330"><b></b><span>iPhone X：全面屏，999美元，十周年iPhone就这样！</span></a>
+<a class="item" href="http://mobile.qudong.com/article/433493.shtml" target="_blank" title="全面屏大战爆发！国产厂商是盲目跟进还是完美颠覆？"><img src="http://upload.qudong.com/2017/0907/thumb_600_330_1504778166965.jpg" alt="全面屏大战爆发！国产厂商是盲目跟进还是完美颠覆？" width="600" height="330"><b></b><span>全面屏大战爆发！国产厂商是盲目跟进还是完美颠覆？</span></a>
+<a class="item" href="http://mobile.qudong.com/article/429945.shtml" target="_blank" title="青橙VOGA V激光投影手机测评：超乎想象的简单易用"><img src="http://upload.qudong.com/2017/0818/1503049724445.jpg" alt="青橙VOGA V激光投影手机测评：超乎想象的简单易用" width="600" height="330"><b></b><span>青橙VOGA V激光投影手机测评：超乎想象的简单易用</span></a>
+<a class="item" href="http://mobile.qudong.com/article/432749.shtml" target="_blank" title="酷派CEO刘江峰离职：等待酷派的将是什么样的命运和结局？"><img src="http://upload.qudong.com/2017/0907/thumb_600_330_1504778255561.jpg" alt="酷派CEO刘江峰离职：等待酷派的将是什么样的命运和结局？" width="600" height="330"><b></b><span>酷派CEO刘江峰离职：等待酷派的将是什么样的命运和结局？</span></a>
+</div>
+</div>
+</div>
+<div class="renwu">
+<div class="renwu_nei">高端访谈</div>
+<ul>
+<a href="http://news.qudong.com/article/397051.shtml"><img src="http://upload.qudong.com/2017/0307/thumb_170_90_1488854558450.jpg" alt="李彦宏" width="170" height="90"></a>
+</ul>
+<div class="mjia">被访问人</div><div class="mjia1"><a href="http://news.qudong.com/article/397051.shtml">李彦宏</a></div>
+<div class="mgou">企业名称</div> <div class="msc"><a href="http://news.qudong.com/article/397051.shtml">百度</a></div>
+<div class="mliping">人工智能正越来越清晰地呈现在人类面前，也带来了更多的讨论。今年全国两会开幕前，全国政协委员，百度公司董事长兼首席执行官李彦宏透露。 <a href="http://news.qudong.com/article/397051.shtml">查看详情</a></div>
+</div>
+</div>
+</div>
+<div class="pcqu_r">
+<div class="search">
+<form action="http://so.qudong.com/cse/search" target="_blank">
+<input type="hidden" name="s" value="14805102699730774074">
+<input type="text" class="text" name="q">
+<input type="submit" class="btn-submit" value="搜索">
+</form>
+</div>
+</div>
+<div class="rnews">
+<div class="zzsc">
+<div class="tab">
+<a href="javascript:;" class="on">要闻推荐</a>
+<a href="javascript:;">手机焦点</a>
+<a href="javascript:;">科技视点</a>
+<a href="javascript:;">实时滚动</a>
+</div>
+<div class="content">
+<ul>
+<li>
+<h2><a href="http://news.qudong.com/article/438643.shtml">押金难退!酷骑单车大势已去,倒闭或成定局</a>
+</h2>
+<p>
+<span><c>手机</c><a href="http://mobile.qudong.com/article/438907.shtml"><strong>iPhone 8P充电爆裂:电池生产商与Note7相同</strong></a>
+</span>
+<span><em></em><a href="http://mobile.qudong.com/article/439327.shtml" target="_blank">iPhone 8 Plus详细测评：尴尬之外还有何惊喜？</a></span>
+<span><em></em><a href="http://mobile.qudong.com/article/439259.shtml" target="_blank">彻底摆脱高通限制，苹果计划自研手机基带芯片</a></span>
+<span><em></em><a href="http://mobile.qudong.com/article/439221.shtml" target="_blank">透过“全面屏”看行业发展：手机创新到底应该什么样？</a></span>
+<span><e>视点</e><a href="http://www.qudong.com/2017/0928/438627.shtml"><strong>共享汽车遇窘境！九成企业车辆竟不足50台</strong></a>
+</span>
+<span><em></em><a href="http://news.qudong.com/article/439223.shtml" target="_blank">二手车电商车来车往CEO谢磊宣布公司破产：因资金链断裂！</a></span>
+<span><em></em><a href="http://news.qudong.com/article/439215.shtml" target="_blank">泡沫下的“繁荣”！二手车电商的出路在哪里？</a></span>
+<span><i>家电</i><strong><a href="http://www.qudong.com/2017/0930/439191.shtml" target="_blank" title="智能音箱战争打响！谷歌封掉亚马逊内容入口">智能音箱战争打响！谷歌封掉亚马逊内容入口</a>
+</strong></span>
+<span><em></em><a href="http://www.qudong.com/article/435991.shtml" target="_blank" title="都是高价惹的祸？夏普超高清8K电视不亲民">都是高价惹的祸？夏普超高清8K电视不亲民</a>
+</span>
+<span><em></em><a href="http://www.qudong.com/article/435925.shtml" target="_blank" title="携手苏宁易购！比佛利 “大器”复式高端洗衣机惊艳发布">携手苏宁易购！比佛利 “大器”复式高端洗衣机惊艳发布</a>
+</span>
+<span><e>推荐</e><a href="http://news.qudong.com/article/438697.shtml">SOAP R11荣获京东千元机热销榜冠军</a></span>
+<span><e>推荐</e><a href="http://news.qudong.com/article/439099.shtml">企业家汇集辽宁恒辉阜新八厂见证秸秆产业发展</a></span>
+</p>
+</li>
+<li>
+<p>
+<span><em></em><a href="http://mobile.qudong.com/article/439327.shtml" target="_blank">iPhone 8 Plus详细测评：尴尬之外还有何惊喜？</a></span>
+<span><em></em><a href="http://mobile.qudong.com/article/439259.shtml" target="_blank">彻底摆脱高通限制，苹果计划自研手机基带芯片</a></span>
+<span><em></em><a href="http://mobile.qudong.com/article/439221.shtml" target="_blank">透过“全面屏”看行业发展：手机创新到底应该什么样？</a></span>
+<span><em></em><a href="http://mobile.qudong.com/article/439205.shtml" target="_blank">谷歌新机也上全面屏，Android 8.1干掉虚拟按键</a></span>
+<span><em></em><a href="http://mobile.qudong.com/article/439201.shtml" target="_blank">苹果AR技术是噱头还是趋势？ARKit只是一个开始</a></span>
+<span><em></em><a href="http://mobile.qudong.com/article/439095.shtml" target="_blank">iPhone 8 Plus电池鼓包事件再次发生，苹果公司已着手调查</a></span>
+<span><em></em><a href="http://mobile.qudong.com/article/438933.shtml" target="_blank">二十周年难逃颓势，HTC能否扭转败局？</a></span>
+<span><em></em><a href="http://mobile.qudong.com/article/438907.shtml" target="_blank">首现iPhone 8 Plus充电爆裂事故：电池生产商与Note7相同</a></span>
+<span><em></em><a href="http://mobile.qudong.com/article/438905.shtml" target="_blank">碎不起！iPhone8 Plus玻璃后盖维修费顶一部安卓旗舰</a></span>
+<span><em></em><a href="http://mobile.qudong.com/article/438853.shtml" target="_blank">国行诺基亚8获3C认证即将上市，还有皇帝版有望预装安卓8.0</a></span>
+<span><em></em><a href="http://mobile.qudong.com/article/438885.shtml" target="_blank">长假出行带什么？这款“神器”满足你四大需求</a></span>
+<span><em></em><a href="http://mobile.qudong.com/article/438735.shtml" target="_blank">iPhone X Face ID功能双胞胎可互解：设计缺陷or技术漏洞？</a></span>
+<span><em></em><a href="http://mobile.qudong.com/article/438639.shtml" target="_blank">“源”来可以这么美！公牛首款移动电源上市</a></span>
+</p>
+</li>
+<li>
+<p>
+<span><em></em><a href="http://news.qudong.com/article/439223.shtml" target="_blank">二手车电商车来车往CEO谢磊宣布公司破产：因资金链断裂！</a></span>
+<span><em></em><a href="http://news.qudong.com/article/439215.shtml" target="_blank">泡沫下的“繁荣”！二手车电商的出路在哪里？</a></span>
+<span><em></em><a href="http://news.qudong.com/article/439211.shtml" target="_blank">BAT竞相抢滩的AI 医疗或成“资本无底洞”？</a></span>
+<span><em></em><a href="http://news.qudong.com/article/439143.shtml" target="_blank">天猫回应抄袭事件，致歉“你今天真好看”团队！</a></span>
+<span><em></em><a href="http://news.qudong.com/article/439061.shtml" target="_blank">车来车往CEO谢磊：严重亏损致资金链断裂，宣布公司破产！</a></span>
+<span><em></em><a href="http://news.qudong.com/article/439043.shtml" target="_blank">京东9.29超级品牌日女神林志玲携都市丽人联名内衣亮相！</a></span>
+<span><em></em><a href="http://news.qudong.com/article/438867.shtml" target="_blank">商务部召开新闻发布会，明确电商平台售假责任！</a></span>
+<span><em></em><a href="http://news.qudong.com/article/438797.shtml" target="_blank">创业公司控诉阿里抄袭成果，天猫：暂停并调查直到弄清楚！</a></span>
+<span><em></em><a href="http://news.qudong.com/article/438717.shtml" target="_blank">微信乘车码再升级！双离线二维码，没信号也能刷！</a></span>
+<span><em></em><a href="http://news.qudong.com/article/438643.shtml" target="_blank">再不退款就晚了！酷骑单车大势已去，倒闭或成定局</a></span>
+<span><em></em><a href="http://news.qudong.com/article/438555.shtml" target="_blank">支付宝微信两大支付身后的银联有条不紊布局智慧交通！</a></span>
+<span><em></em><a href="http://news.qudong.com/article/438543.shtml" target="_blank">蜻蜓FM获10亿融资，内容付费时代已经到来！</a></span>
+<span><em></em><a href="http://news.qudong.com/article/438387.shtml" target="_blank">美团新一轮融资将完成，滴滴有意投资饿了么对抗美团！</a></span>
+</p>
+</li>
+<li>
+<p>
+<span><em></em><a href="http://news.qudong.com/article/439443.shtml" target="_blank">寺库上市发展路径愈加清晰 持续打造精品生活方式平台</a></span>
+<span><em></em><a href="http://news.qudong.com/article/439441.shtml" target="_blank">摩拜新一代单车“史上最轻” 重新设计了每个零件</a></span>
+<span><em></em><a href="http://news.qudong.com/article/439439.shtml" target="_blank">摩拜物联网技术融入智慧生活 荣登“改变世界50家公司”榜</a></span>
+<span><em></em><a href="http://news.qudong.com/article/439437.shtml" target="_blank">摩拜新车“羽量级”轻盈省力，用户骑行体验全面提升</a></span>
+<span><em></em><a href="http://tech.qudong.com/2017/1006/439435.shtml" target="_blank">商家全面拥抱新零售 天猫是快消第一大平台</a></span>
+<span><em></em><a href="http://tech.qudong.com/2017/1006/439433.shtml" target="_blank">警告假期余额不足！不如与SMILEY玩转微笑自拍双人组</a></span>
+<span><em></em><a href="http://news.qudong.com/article/439431.shtml" target="_blank">加速经济发展实现双赢 首汽约车司机谈深港互通</a></span>
+<span><em></em><a href="http://tech.qudong.com/2017/1006/439429.shtml" target="_blank">足足12款力作！华硕Z370主板京东首发返E卡</a></span>
+<span><em></em><a href="http://news.qudong.com/article/439427.shtml" target="_blank">中网球迷的心声：有了首汽约车，今年观赛轻松出行</a></span>
+<span><em></em><a href="http://mobile.qudong.com/article/439425.shtml" target="_blank">同样是拍照美颜 为什么大家就只对美图T8s长草？</a></span>
+<span><em></em><a href="http://tech.qudong.com/2017/1006/439423.shtml" target="_blank">别再以为只有美国西海岸有街头文化，中国一样不差！</a></span>
+<span><em></em><a href="http://tech.qudong.com/2017/1006/439421.shtml" target="_blank">快闪店：输得起的试错之道，是否真的能屡试不爽？</a></span>
+<span><em></em><a href="http://notebook.qudong.com/2017/1006/439419.shtml" target="_blank">谷歌发布笔记本Pixelbook 设计极其轻薄</a></span>
+</p>
+</li> </ul>
+</div>
+</div>
+</div>
+<div style="width:1200px; margin:0 auto; background-color: #FFF; margin-top:8px;">
+<div class="mr_frbox">
+<img class="mr_frBtnL prev" src="http://img.qudong.com/js_css/images/mfrL.jpg" width="28" height="46" />
+<div class="mr_frUl">
+<ul>
+<dd>
+<img src="http://upload.qudong.com/2017/0830/1504062046517.jpg" alt="每日科技 乐视网上半年巨亏逾6亿 苹果发布会锁定9•12" width="165" height="83">
+<span style="background-color:#19528f;">每日科技</span>
+<i><a href="http://v.qudong.com/2017/0830/432109.shtml" target="_blank"></a></i>
+<li><a href="http://v.qudong.com/2017/0830/432109.shtml" target="_blank" title="每日科技 乐视网上半年巨亏逾6亿 苹果发布会锁定9•12">每日科技 乐视网上半年巨亏逾6亿 苹果发布会锁定9•12</a></li>
+</dd>
+<dd>
+<img src="http://upload.qudong.com/2017/0828/1503916329874.jpg" alt="每日科技 支付宝清理“僵尸号” TFBOYS入职一下科技" width="165" height="83">
+<span style="background-color:#19528f;">每日科技</span>
+<i><a href="http://v.qudong.com/2017/0828/431845.shtml" target="_blank"></a></i>
+<li><a href="http://v.qudong.com/2017/0828/431845.shtml" target="_blank" title="每日科技 支付宝清理“僵尸号” TFBOYS入职一下科技">每日科技 支付宝清理“僵尸号” TFBOYS入职一下科技</a></li>
+</dd>
+<dd>
+<img src="http://upload.qudong.com/2017/0804/1501830739469.png" alt="每日科技 BOSS直聘回应李文星事件 大疆零度否认收购传言" width="165" height="83">
+<span style="background-color:#19528f;">每日科技</span>
+<i><a href="http://v.qudong.com/2017/0804/427861.shtml" target="_blank"></a></i>
+<li><a href="http://v.qudong.com/2017/0804/427861.shtml" target="_blank" title="每日科技 BOSS直聘回应李文星事件 大疆零度否认收购传言">每日科技 BOSS直聘回应李文星事件 大疆零度否认收购传言</a></li>
+</dd>
+<dd>
+<img src="http://upload.qudong.com/2017/0801/1501577379357.jpg" alt="「每日科技」美团外卖再现群殴事件 首批Model 3正式交付" width="165" height="83">
+<span style="background-color:#19528f;">每日科技</span>
+<i><a href="http://v.qudong.com/2017/0801/427277.shtml" target="_blank"></a></i>
+<li><a href="http://v.qudong.com/2017/0801/427277.shtml" target="_blank" title="「每日科技」美团外卖再现群殴事件 首批Model 3正式交付">「每日科技」美团外卖再现群殴事件 首批Model 3正式交付</a></li>
+</dd>
+<dd>
+<img src="http://upload.qudong.com/2017/0728/1501232665243.png" alt="「每日科技」魅族PRO7 7Plus正式发布 亚马逊股价创下新高" width="165" height="83">
+<span style="background-color:#19528f;">每日科技</span>
+<i><a href="http://v.qudong.com/2017/0728/426737.shtml" target="_blank"></a></i>
+<li><a href="http://v.qudong.com/2017/0728/426737.shtml" target="_blank" title="「每日科技」魅族PRO7 7Plus正式发布 亚马逊股价创下新高">「每日科技」魅族PRO7 7Plus正式发布 亚马逊股价创下新高</a></li>
+</dd>
+<dd>
+<img src="http://upload.qudong.com/2017/0725/1500975903605.jpg" alt="「每日科技」ofo遭遇878万天价索赔 乐视易主进入孙宏斌时代" width="165" height="83">
+<span style="background-color:#19528f;">每日科技</span>
+<i><a href="http://v.qudong.com/2017/0725/425919.shtml" target="_blank"></a></i>
+<li><a href="http://v.qudong.com/2017/0725/425919.shtml" target="_blank" title="「每日科技」ofo遭遇878万天价索赔 乐视易主进入孙宏斌时代">「每日科技」ofo遭遇878万天价索赔 乐视易主进入孙宏斌时代</a></li>
+</dd>
+<dd>
+<img src="http://upload.qudong.com/2017/0720/1500545247633.png" alt="「每日科技」美国一机器人投池自杀 苹果为大中华区开小灶" width="165" height="83">
+<span style="background-color:#19528f;">每日科技</span>
+<i><a href="http://v.qudong.com/2017/0720/425103.shtml" target="_blank"></a></i>
+<li><a href="http://v.qudong.com/2017/0720/425103.shtml" target="_blank" title="「每日科技」美国一机器人投池自杀 苹果为大中华区开小灶">「每日科技」美国一机器人投池自杀 苹果为大中华区开小灶</a></li>
+</dd>
+<dd>
+<img src="http://upload.qudong.com/2017/0719/1500454271513.jpg" alt="「每日科技」HTC输入法弹广告遭声讨 高通服软盼与苹果和解" width="165" height="83">
+<span style="background-color:#19528f;">每日科技</span>
+<i><a href="http://v.qudong.com/2017/0719/424855.shtml" target="_blank"></a></i>
+<li><a href="http://v.qudong.com/2017/0719/424855.shtml" target="_blank" title="「每日科技」HTC输入法弹广告遭声讨 高通服软盼与苹果和解">「每日科技」HTC输入法弹广告遭声讨 高通服软盼与苹果和解</a></li>
+</dd>
+<dd>
+<img src="http://upload.qudong.com/2017/0715/1500091324469.jpg" alt="每日科技 坚果Pro销量意外曝光 DOTA2奖金池创新纪录" width="165" height="83">
+<span style="background-color:#19528f;">每日科技</span>
+<i><a href="http://v.qudong.com/2017/0715/424111.shtml" target="_blank"></a></i>
+<li><a href="http://v.qudong.com/2017/0715/424111.shtml" target="_blank" title="每日科技 坚果Pro销量意外曝光 DOTA2奖金池创新纪录">每日科技 坚果Pro销量意外曝光 DOTA2奖金池创新纪录</a></li>
+</dd>
+<dd>
+<img src="http://upload.qudong.com/2017/0707/1499423589998.jpg" alt="每日科技 微软大肆裁员谋转型 诺基亚蔡司再度牵手" width="165" height="83">
+<span style="background-color:#19528f;">每日科技</span>
+<i><a href="http://v.qudong.com/2017/0707/422913.shtml" target="_blank"></a></i>
+<li><a href="http://v.qudong.com/2017/0707/422913.shtml" target="_blank" title="每日科技 微软大肆裁员谋转型 诺基亚蔡司再度牵手">每日科技 微软大肆裁员谋转型 诺基亚蔡司再度牵手</a></li>
+</dd>
+<dd>
+<img src="http://upload.qudong.com/2017/0707/1499420786286.jpg" alt="每日科技 贾跃亭回应乐视危机 ofo获7亿美元融资" width="165" height="83">
+<span style="background-color:#19528f;">每日科技</span>
+<i><a href="http://v.qudong.com/2017/0707/422889.shtml" target="_blank"></a></i>
+<li><a href="http://v.qudong.com/2017/0707/422889.shtml" target="_blank" title="每日科技 贾跃亭回应乐视危机 ofo获7亿美元融资">每日科技 贾跃亭回应乐视危机 ofo获7亿美元融资</a></li>
+</dd>
+<dd>
+<img src="http://upload.qudong.com/2017/0630/thumb_165_83_1498784960866.jpg" alt="【每日科技】易到变天提现推迟 微博关闭15分钟长视频" width="165" height="83">
+<span style="background-color:#19528f;">每日科技</span>
+<i><a href="http://v.qudong.com/2017/0630/421607.shtml" target="_blank"></a></i>
+<li><a href="http://v.qudong.com/2017/0630/421607.shtml" target="_blank" title="【每日科技】易到变天提现推迟 微博关闭15分钟长视频">【每日科技】易到变天提现推迟 微博关闭15分钟长视频</a></li>
+</dd>
+<dd>
+<img src="http://upload.qudong.com/2017/0629/thumb_165_83_1498698860249.jpg" alt="【每日科技】新勒索病毒肆虐全球 申通开除打人快递员" width="165" height="83">
+<span style="background-color:#19528f;">每日科技</span>
+<i><a href="http://v.qudong.com/2017/0629/421325.shtml" target="_blank"></a></i>
+<li><a href="http://v.qudong.com/2017/0629/421325.shtml" target="_blank" title="【每日科技】新勒索病毒肆虐全球 申通开除打人快递员">【每日科技】新勒索病毒肆虐全球 申通开除打人快递员</a></li>
+</dd>
+<dd>
+<img src="http://upload.qudong.com/2017/0627/thumb_165_83_1498527380717.jpg" alt="【每日科技】 诺基亚“复古”功能机预约10万 B站投稿需实名认证" width="165" height="83">
+<span style="background-color:#19528f;">每日科技</span>
+<i><a href="http://v.qudong.com/2017/0627/420873.shtml" target="_blank"></a></i>
+<li><a href="http://v.qudong.com/2017/0627/420873.shtml" target="_blank" title="【每日科技】 诺基亚“复古”功能机预约10万 B站投稿需实名认证">【每日科技】 诺基亚“复古”功能机预约10万 B站投稿需实名认证</a></li>
+</dd>
+<dd>
+<img src="http://upload.qudong.com/2017/0623/thumb_165_83_1498211948734.jpg" alt="【每日科技】广电出手微博股价大跌 摩拜否认收购由你单车" width="165" height="83">
+<span style="background-color:#19528f;">每日科技</span>
+<i><a href="http://v.qudong.com/2017/0623/420485.shtml" target="_blank"></a></i>
+<li><a href="http://v.qudong.com/2017/0623/420485.shtml" target="_blank" title="【每日科技】广电出手微博股价大跌 摩拜否认收购由你单车">【每日科技】广电出手微博股价大跌 摩拜否认收购由你单车</a></li>
+</dd>
+</ul>
+</div>
+<img class="mr_frBtnR next" src="http://img.qudong.com/js_css/images/mfrR.jpg" width="28" height="46" />
+</div>
+<script language="javascript">
+$(".mr_frUl ul dd img").hover(function(){$(this).css("border-color","#A0C0EB");},function(){$(this).css("border-color","#d8d8d8")});
+jQuery(".mr_frbox").slide({titCell:"",mainCell:".mr_frUl ul",autoPage:true,effect:"leftLoop",autoPlay:true,vis:5});
+</script>
+</div>
+<div class="jdsen">
+<li><a href="http://mobile.qudong.com/news/" target="_blank">智能手机</a></li>
+<span><a href="http://www.qudong.com/2017/0930/439191.shtml" target="_blank" title="智能音箱战争打响！谷歌封掉亚马逊内容入口">智能音箱战争打响！谷歌封掉亚马逊内容入口</a>
+</span>
+</div>
+<div class="cptui">
+<ul>
+<img src="http://upload.qudong.com/2017/0926/thumb_120_90_1506394396948.jpg" alt="金立M7 6GB+64GB 香槟金" width="120" height="90">
+<li><a href="http://product.qudong.com/2017/0926/437675.shtml" target="_blank" title="金立M7 6GB+64GB 香槟金">金立M7 6GB+64GB 香槟金</a></li>
+<div class="sns"><a class="comm" href="http://product.qudong.com/2017/0926/437675.shtml">￥2799</a></div>
+</ul>
+<ul>
+<img src="http://upload.qudong.com/2017/0926/thumb_120_90_1506393751474.jpg" alt="vivo X20 4GB+64GB 玫瑰金" width="120" height="90">
+<li><a href="http://product.qudong.com/2017/0926/437639.shtml" target="_blank" title="vivo X20 4GB+64GB 玫瑰金">vivo X20 4GB+64GB 玫瑰金</a></li>
+<div class="sns"><a class="comm" href="http://product.qudong.com/2017/0926/437639.shtml">￥2998</a></div>
+</ul>
+<ul>
+<img src="http://upload.qudong.com/2017/0914/1505355714945.jpg" alt="三星GalaxyNote 8 6GB+64GB 谜夜黑" width="120" height="90">
+<li><a href="http://product.qudong.com/2017/0914/435021.shtml" target="_blank" title="三星GalaxyNote 8 6GB+64GB 谜夜黑">三星GalaxyNote 8 6GB+64GB 谜夜黑</a></li>
+<div class="sns"><a class="comm" href="http://product.qudong.com/2017/0914/435021.shtml">￥6988</a></div>
+</ul>
+<ul>
+<img src="http://upload.qudong.com/2017/0913/1505313529440.jpg" alt="Apple iPhone 8 Plus 64GB 金色手机" width="120" height="90">
+<li><a href="http://product.qudong.com/2017/0913/434995.shtml" target="_blank" title="Apple iPhone 8 Plus 64GB 金色手机">Apple iPhone 8 Plus 64GB 金色手机</a></li>
+<div class="sns"><a class="comm" href="http://product.qudong.com/2017/0913/434995.shtml">￥6688</a></div>
+</ul>
+<ul>
+<img src="http://upload.qudong.com/2017/0913/1505312940743.jpg" alt="Apple iPhone 8 64GB 金色4G手机" width="120" height="90">
+<li><a href="http://product.qudong.com/2017/0913/434993.shtml" target="_blank" title="Apple iPhone 8 64GB 金色4G手机">Apple iPhone 8 64GB 金色4G手机</a></li>
+<div class="sns"><a class="comm" href="http://product.qudong.com/2017/0913/434993.shtml">￥5888</a></div>
+</ul>
+<ul>
+<img src="http://upload.qudong.com/2017/0911/1505120662823.jpg" alt="夏普AQUOS S2 全面屏 全网通 4GB+64GB" width="120" height="90">
+<li><a href="http://product.qudong.com/2017/0911/434343.shtml" target="_blank" title="夏普AQUOS S2 全面屏 全网通 4GB+64GB">夏普AQUOS S2 全面屏 全网通 4GB+64GB</a></li>
+<div class="sns"><a class="comm" href="http://product.qudong.com/2017/0911/434343.shtml">￥2499</a></div>
+</ul>
+<ul>
+<img src="http://upload.qudong.com/2017/0910/1504974831291.jpg" alt="三星 2016版 Galaxy On7全网通" width="120" height="90">
+<li><a href="http://product.qudong.com/2017/0910/434073.shtml" target="_blank" title="三星 2016版 Galaxy On7全网通">三星 2016版 Galaxy On7全网通</a></li>
+<div class="sns"><a class="comm" href="http://product.qudong.com/2017/0910/434073.shtml">￥1599</a></div>
+</ul>
+<ul>
+<img src="http://upload.qudong.com/2017/0910/1504974504442.jpg" alt="华为荣耀V9 4G手机 铂光金" width="120" height="90">
+<li><a href="http://product.qudong.com/2017/0910/434071.shtml" target="_blank" title="华为荣耀V9 4G手机 铂光金">华为荣耀V9 4G手机 铂光金</a></li>
+<div class="sns"><a class="comm" href="http://product.qudong.com/2017/0910/434071.shtml">￥3299</a></div>
+</ul>
+</div>
+<div class="jd1200">
+<div class="hd_left">
+<div class="jd_left">
+<div class="jdimg_xiao">
+<ul>
+<a href="http://mobile.qudong.com/article/439327.shtml" target="_blank" title="iPhone 8 Plus详细测评：尴尬之外还有何惊喜？"><img src="http://upload.qudong.com/2017/1002/thumb_180_90_1506925762427.jpg" alt="iPhone 8 Plus详细测评：尴尬之外还有何惊喜？" width="180" height="90"></a>
+<li><a href="http://mobile.qudong.com/article/439327.shtml" target="_blank" title="iPhone 8 Plus详细测评：尴尬之外还有何惊喜？">iPhone 8 Plus详细测评：尴尬之外还有何惊喜？</a></li>
+<span class="yuanc">原创</span>
+<span class="yuana"><a href="http://mobile.qudong.com/article/439327.shtml" target="_blank" title="iPhone 8 Plus详细测评：尴尬之外还有何惊喜？">查阅</a></span>
+</ul>
+<ul>
+<a href="http://mobile.qudong.com/article/439259.shtml" target="_blank" title="彻底摆脱高通限制，苹果计划自研手机基带芯片"><img src="http://upload.qudong.com/2017/0930/thumb_180_90_1506764210623.png" alt="彻底摆脱高通限制，苹果计划自研手机基带芯片" width="180" height="90"></a>
+<li><a href="http://mobile.qudong.com/article/439259.shtml" target="_blank" title="彻底摆脱高通限制，苹果计划自研手机基带芯片">彻底摆脱高通限制，苹果计划自研手机基带芯片</a></li>
+<span class="yuanc">原创</span>
+<span class="yuana"><a href="http://mobile.qudong.com/article/439259.shtml" target="_blank" title="彻底摆脱高通限制，苹果计划自研手机基带芯片">查阅</a></span>
+</ul>
+<ul>
+<a href="http://mobile.qudong.com/article/439221.shtml" target="_blank" title="透过“全面屏”看行业发展：手机创新到底应该什么样？"><img src="http://upload.qudong.com/2017/0930/thumb_180_90_1506759345951.jpg" alt="透过“全面屏”看行业发展：手机创新到底应该什么样？" width="180" height="90"></a>
+<li><a href="http://mobile.qudong.com/article/439221.shtml" target="_blank" title="透过“全面屏”看行业发展：手机创新到底应该什么样？">透过“全面屏”看行业发展：手机创新到底应该什么样？</a></li>
+<span class="yuanc">原创</span>
+<span class="yuana"><a href="http://mobile.qudong.com/article/439221.shtml" target="_blank" title="透过“全面屏”看行业发展：手机创新到底应该什么样？">查阅</a></span>
+</ul>
+<ul>
+<a href="http://mobile.qudong.com/article/439205.shtml" target="_blank" title="谷歌新机也上全面屏，Android 8.1干掉虚拟按键"><img src="http://upload.qudong.com/2017/0930/thumb_180_90_1506755980236.jpg" alt="谷歌新机也上全面屏，Android 8.1干掉虚拟按键" width="180" height="90"></a>
+<li><a href="http://mobile.qudong.com/article/439205.shtml" target="_blank" title="谷歌新机也上全面屏，Android 8.1干掉虚拟按键">谷歌新机也上全面屏，Android 8.1干掉虚拟按键</a></li>
+<span class="yuanc">原创</span>
+<span class="yuana"><a href="http://mobile.qudong.com/article/439205.shtml" target="_blank" title="谷歌新机也上全面屏，Android 8.1干掉虚拟按键">查阅</a></span>
+</ul>
+</div>
+<div class="jdimg_ds">
+<ul>
+<li><a href="http://mobile.qudong.com/article/431639.shtml" target="_blank" title="三星官方回应Note8电池缩水：绝对不会再爆">三星官方回应Note8电池缩水：绝对不会再爆</a></li>
+<div class="left_ds">
+<img src="http://upload.qudong.com/2017/0828/thumb_80_60_1503887233146.jpg" alt="三星官方回应Note8电池缩水：绝对不会再爆" width="80" height="60">
+</div>
+<div class="right_ds">
+8月23日，三星在美国正式发布了旗舰Galaxy Note 8，首次采用双摄，全视曲面屏设计、功能更多的S-pen等成为亮点。但仔细对比Galaxy S8+，Not...</div>
+</ul>
+<ul>
+<li><a href="http://mobile.qudong.com/article/431255.shtml" target="_blank" title="互联网手机品牌纷纷布局线下市场 能否撼动OV的地位？">互联网手机品牌纷纷布局线下市场 能否撼动OV的地位？</a></li>
+<div class="left_ds">
+<img src="http://upload.qudong.com/2017/0824/thumb_80_60_1503559452259.jpg" alt="互联网手机品牌纷纷布局线下市场 能否撼动OV的地位？" width="80" height="60">
+</div>
+<div class="right_ds">
+随着移动互联网的快速发展，应运而生互联网手机成为我国智能手机发展初期的重要形式，从2013年下半年开始，国内手机业掀起了一股创立新品牌...</div>
+</ul>
+<ul>
+<li><a href="http://mobile.qudong.com/article/431101.shtml" target="_blank" title="华为和腾讯数据之争背后 是隐私边界模糊化带来的恐慌">华为和腾讯数据之争背后 是隐私边界模糊化带来的恐慌</a></li>
+<div class="left_ds">
+<img src="http://upload.qudong.com/2017/0823/thumb_80_60_1503477553536.jpg" alt="华为和腾讯数据之争背后 是隐私边界模糊化带来的恐慌" width="80" height="60">
+</div>
+<div class="right_ds">
+值得注意的是本次华为和腾讯之争中的一个重点在于，我们普遍认为用户之间的聊天内容数据隐私性应该很强，这也是目前智能化社会对隐私底线一...</div>
+</ul>
+<ul>
+<li><a href="http://mobile.qudong.com/article/428237.shtml" target="_blank" title="苹果App store涉嫌垄断 中国开发者集体举报">苹果App store涉嫌垄断 中国开发者集体举报</a></li>
+<div class="left_ds">
+<img src="http://upload.qudong.com/2017/0808/thumb_80_60_1502156078800.jpg" alt="苹果App store涉嫌垄断 中国开发者集体举报" width="80" height="60">
+</div>
+<div class="right_ds">
+日前，国内相关开发者和律师、法律专家团队召开发布会，认为苹果公司运营的应用商店App Store在长期运营中涉嫌违法、侵权并存在垄断行为，...</div>
+</ul>
+</div>
+</div>
+</div>
+<div class="jdr">
+<div class="jdr_tt">
+<li><a href="http://mobile.qudong.com/article/438907.shtml"><strong>iPhone 8P充电爆裂:电池生产商与Note7相同</strong></a>
+</li>
+</div>
+<ul>
+<li><i>06日</i><span>新闻</span><a href="http://mobile.qudong.com/article/439425.shtml" target="_blank" title="同样是拍照美颜 为什么大家就只对美图T8s长草？">同样是拍照美颜 为什么大家就只对美图T8s长草？</a></li>
+<li><i>02日</i><span>评测</span><a href="http://mobile.qudong.com/article/439327.shtml" target="_blank" title="iPhone 8 Plus详细测评：尴尬之外还有何惊喜？">iPhone 8 Plus详细测评：尴尬之外还有何惊喜？</a></li>
+<li><i>30日</i><span>新闻</span><a href="http://mobile.qudong.com/article/439259.shtml" target="_blank" title="彻底摆脱高通限制，苹果计划自研手机基带芯片">彻底摆脱高通限制，苹果计划自研手机基带芯片</a></li>
+<li><i>30日</i><span>新闻</span><a href="http://mobile.qudong.com/article/439221.shtml" target="_blank" title="透过“全面屏”看行业发展：手机创新到底应该什么样？">透过“全面屏”看行业发展：手机创新到底应该什么样？</a></li>
+<li><i>30日</i><span>导购</span><a href="http://mobile.qudong.com/article/439209.shtml" target="_blank" title="瑞士金色山口列车设美图T8s自拍专座 游客们的反应出乎意料">瑞士金色山口列车设美图T8s自拍专座 游客们的反应出乎意料</a></li>
+<li><i>30日</i><span>新闻</span><a href="http://mobile.qudong.com/article/439205.shtml" target="_blank" title="谷歌新机也上全面屏，Android 8.1干掉虚拟按键">谷歌新机也上全面屏，Android 8.1干掉虚拟按键</a></li>
+<li><i>30日</i><span>新闻</span><a href="http://mobile.qudong.com/article/439201.shtml" target="_blank" title="苹果AR技术是噱头还是趋势？ARKit只是一个开始">苹果AR技术是噱头还是趋势？ARKit只是一个开始</a></li>
+<li><i>30日</i><span>新闻</span><a href="http://mobile.qudong.com/article/439157.shtml" target="_blank" title="ivvi积极布局计算视觉 让人类见所未见">ivvi积极布局计算视觉 让人类见所未见</a></li>
+<li><i>30日</i><span>新闻</span><a href="http://mobile.qudong.com/article/439095.shtml" target="_blank" title="iPhone 8 Plus电池鼓包事件再次发生，苹果公司已着手调查">iPhone 8 Plus电池鼓包事件再次发生，苹果公司已着手调查</a></li>
+<li><i>30日</i><span>新闻</span><a href="http://mobile.qudong.com/article/439073.shtml" target="_blank" title="ivvi首次披露计算视觉战略目标：积极布局并加速落地">ivvi首次披露计算视觉战略目标：积极布局并加速落地</a></li>
+<li><i>30日</i><span>新闻</span><a href="http://mobile.qudong.com/article/439041.shtml" target="_blank" title="计算视觉市场迎来大突破，千亿规模需手机厂商积极布局">计算视觉市场迎来大突破，千亿规模需手机厂商积极布局</a></li>
+<li><i>30日</i><span>新闻</span><a href="http://mobile.qudong.com/article/439203.shtml" target="_blank" title="小米手机再传捷报：单月出货超千万台！">小米手机再传捷报：单月出货超千万台！</a></li>
+<li><i>30日</i><span>应用</span><a href="http://mobile.qudong.com/article/439171.shtml" target="_blank" title="微信聊天记录恢复！傻瓜式操作，轻松恢复">微信聊天记录恢复！傻瓜式操作，轻松恢复</a></li>
+<li><i>21日</i><c>推荐</c><a href="http://news.qudong.com/article/403013.shtml" target="_blank" title="英威诺唐欣：内容分发海外市场剑拨弩张，拉美是重要蓝海">英威诺唐欣：内容分发海外市场剑拨弩张，拉美是重要蓝海</a></li>
+<li><i>22日</i><c>推荐</c><a href="http://www.qudong.com/article/324623.shtml" target="_blank" title="夏普鸿海联姻后步伐加快，研发的电视或将年内上市">夏普鸿海联姻后步伐加快，研发的电视或将年内上市</a></li>
+</ul>
+</div>
+</div>
+<div class="jiaju_left">
+<div class="jia_n">
+<span><a href="http://news.qudong.com/yejie/" target="_blank">业界</a></span>
+<span><a href="http://news.qudong.com/ec/" target="_blank">电商</a></span>
+<span><a href="http://news.qudong.com/discovery/" target="_blank">探索</a></span>
+<span><a href="http://news.qudong.com/telecom/" target="_blank">通信</a></span>
+<span><a href="http://news.qudong.com/4g/" target="_blank">4G</a></span>
+<span><a href="http://news.qudong.com/soft/" target="_blank">软件</a></span>
+<span><a href="http://news.qudong.com/people/" target="_blank">人物</a></span>
+<span><a href="http://news.qudong.com/csnews/" target="_blank">厂商</a></span>
+<span><a href="http://news.qudong.com/other/" target="_blank">视野</a></span>
+<span><a href="http://news.qudong.com/cloud/" target="_blank">云计算</a></span>
+<span><a href="http://site.qudong.com/" target="_blank">互联网</a></span>
+科技资讯
+</div>
+<div class="jia_n_l">
+<ul>
+<img src="http://upload.qudong.com/2017/0921/1505979476781.jpg" alt="2017中国国际消费电子博览会在青岛开幕" width="160" height="80">
+<li><a href="http://www.qudong.com/article/436755.shtml" target="_blank" title="2017中国国际消费电子博览会在青岛开幕">2017中国国际消费电子博览会在青岛开幕</a></li>
+</ul>
+<ul>
+<img src="http://upload.qudong.com/2017/0525/1495680902332.png" alt="音响千千万，能做到耳目一新的为何只有Libratone？" width="160" height="80">
+<li><a href="http://news.qudong.com/article/413895.shtml" target="_blank" title="音响千千万，能做到耳目一新的为何只有Libratone？">音响千千万，能做到耳目一新的为何只有Libratone？</a></li>
+</ul>
+</div>
+<div class="jia_n_r">
+<div class="jdr_tt1">
+<li><a href="http://www.qudong.com/2017/0928/438627.shtml"><strong>共享汽车遇窘境！九成企业车辆竟不足50台</strong></a>
+</li>
+</div>
+<ul>
+<li><i>06日</i><span>业界</span><a href="http://news.qudong.com/article/439443.shtml" target="_blank" title="寺库上市发展路径愈加清晰 持续打造精品生活方式平台">寺库上市发展路径愈加清晰 持续打造精品生活方式平台</a></li>
+<li><i>06日</i><span>业界</span><a href="http://news.qudong.com/article/439441.shtml" target="_blank" title="摩拜新一代单车“史上最轻” 重新设计了每个零件">摩拜新一代单车“史上最轻” 重新设计了每个零件</a></li>
+<li><i>06日</i><span>业界</span><a href="http://news.qudong.com/article/439439.shtml" target="_blank" title="摩拜物联网技术融入智慧生活 荣登“改变世界50家公司”榜">摩拜物联网技术融入智慧生活 荣登“改变世界50家公司”榜</a></li>
+<li><i>06日</i><span>业界</span><a href="http://news.qudong.com/article/439437.shtml" target="_blank" title="摩拜新车“羽量级”轻盈省力，用户骑行体验全面提升">摩拜新车“羽量级”轻盈省力，用户骑行体验全面提升</a></li>
+<li><i>06日</i><span>业界</span><a href="http://news.qudong.com/article/439431.shtml" target="_blank" title="加速经济发展实现双赢 首汽约车司机谈深港互通">加速经济发展实现双赢 首汽约车司机谈深港互通</a></li>
+<li><i>06日</i><span>业界</span><a href="http://news.qudong.com/article/439427.shtml" target="_blank" title="中网球迷的心声：有了首汽约车，今年观赛轻松出行">中网球迷的心声：有了首汽约车，今年观赛轻松出行</a></li>
+<li><i>05日</i><span>业界</span><a href="http://news.qudong.com/article/439417.shtml" target="_blank" title="纳帕盛典成为中兴全球终端品牌战略上又一座里程丰碑">纳帕盛典成为中兴全球终端品牌战略上又一座里程丰碑</a></li>
+<li><i>05日</i><span>业界</span><a href="http://news.qudong.com/article/439413.shtml" target="_blank" title="双节出境游达600万人次 苏宁海外购推“空箱计划”解放双手">双节出境游达600万人次 苏宁海外购推“空箱计划”解放双手</a></li>
+<li><i>05日</i><span>业界</span><a href="http://news.qudong.com/article/439411.shtml" target="_blank" title="摩拜红包车升级“十一红包大派送” 全民骑行激情“寻宝”">摩拜红包车升级“十一红包大派送” 全民骑行激情“寻宝”</a></li>
+<li><i>05日</i><span>业界</span><a href="http://news.qudong.com/article/439409.shtml" target="_blank" title="摩拜红包车玩法升级 十一假期骑行红包“随处可见”">摩拜红包车玩法升级 十一假期骑行红包“随处可见”</a></li>
+<li><i>01日</i><c>推荐</c><a href="http://tech.qudong.com/2017/0901/432545.shtml" target="_blank" title="设计界泰斗靳埭强倾心打造“一丹奖”奖牌九月将面世">设计界泰斗靳埭强倾心打造“一丹奖”奖牌九月将面世</a></li>
+<li><i>22日</i><c>推荐</c><a href="http://news.qudong.com/article/430871.shtml" target="_blank" title="突破传统NAS局限，腾讯云CFS全面升级">突破传统NAS局限，腾讯云CFS全面升级</a></li>
+</ul>
+</div>
+</div>
+<div class="jiaju_right">
+<div class="jia_n">
+<span><a href="http://notebook.qudong.com" title="笔记本" target="_self">笔记本</a></span>
+<span><a href="http://pad.qudong.com" title="平板电脑" target="_self">平板电脑</a></span>
+<span><a href="http://netbook.qudong.com/" title="平板电脑" target="_self">上网本</a></span>
+<span><a href="http://dc.qudong.com" title="数码频道" target="_self">相机</a></span>
+<span><a href="http://dv.qudong.com" title="数码频道" target="_self">摄像机</a></span>
+<span><a href="http://digi.qudong.com" title="数码频道" target="_self">数码</a></span>
+3C数码</div>
+<div class="jia_n_r">
+<div class="jdr_tt1">
+<li><a href="http://news.qudong.com/article/386963.shtml" target="_blank" title="京东召开游戏一体机发布会 带动PC行业新趋势">京东召开游戏一体机发布会 带动PC行业新趋势</a>
+</li>
+</div>
+<ul>
+<li><i>06日</i><span>新闻</span><a href="http://notebook.qudong.com/2017/1006/439419.shtml" target="_blank" title="谷歌发布笔记本Pixelbook 设计极其轻薄">谷歌发布笔记本Pixelbook 设计极其轻薄</a></li>
+<li><i>30日</i><span>行情</span><a href="http://pad.qudong.com/2017/0930/439149.shtml" target="_blank" title="双节超级品牌日盛惠 华硕盛典平板会场好礼相送">双节超级品牌日盛惠 华硕盛典平板会场好礼相送</a></li>
+<li><i>29日</i><span>导购</span><a href="http://notebook.qudong.com/2017/0929/438917.shtml" target="_blank" title="AMD四核独显轻薄好物联想IdeaPad 320S震撼首发">AMD四核独显轻薄好物联想IdeaPad 320S震撼首发</a></li>
+<li><i>29日</i><span>导购</span><a href="http://notebook.qudong.com/2017/0929/438909.shtml" target="_blank" title="为大神而战 AMD新品钜惠促销献礼国庆">为大神而战 AMD新品钜惠促销献礼国庆</a></li>
+<li><i>29日</i><span>导购</span><a href="http://notebook.qudong.com/2017/0929/438869.shtml" target="_blank" title="视界大开 华硕傲世一体机V241升华视听体验">视界大开 华硕傲世一体机V241升华视听体验</a></li>
+<li><i>29日</i><span>导购</span><a href="http://notebook.qudong.com/2017/0929/438855.shtml" target="_blank" title="身灵动力无穷 ROG G20CI带来游戏新境界">身灵动力无穷 ROG G20CI带来游戏新境界</a></li>
+<li><i>26日</i><span>导购</span><a href="http://notebook.qudong.com/2017/0926/437945.shtml" target="_blank" title="玩转职场 华硕弘道系列P453商务安全管家">玩转职场 华硕弘道系列P453商务安全管家</a></li>
+<li><i>26日</i><span>导购</span><a href="http://notebook.qudong.com/2017/0926/437937.shtml" target="_blank" title="灵活随行 华硕商用PU403UF精巧干练">灵活随行 华硕商用PU403UF精巧干练</a></li>
+<li><i>25日</i><span>新闻</span><a href="http://pad.qudong.com/2017/0925/437579.shtml" target="_blank" title="至臻影音出色表现 华硕飞马10S平板预约开启">至臻影音出色表现 华硕飞马10S平板预约开启</a></li>
+<li><i>18日</i><span>新闻</span><a href="http://notebook.qudong.com/2017/0918/435923.shtml" target="_blank" title="联想还能留住多少小黑粉？ThinkPad 25周年复刻版情怀归来 ">联想还能留住多少小黑粉？ThinkPad 25周年复刻版情怀归来 </a></li>
+<li><i>22日</i><c>推荐</c><a href="http://news.qudong.com/article/430869.shtml" target="_blank" title="无限量归档存储CAS首推，腾讯云玩转公有云市场">无限量归档存储CAS首推，腾讯云玩转公有云市场</a></li>
+<li><i>22日</i><c>推荐</c><a href="http://news.qudong.com/article/430873.shtml" target="_blank" title="腾讯云首推私有云存储CSP，数据存储场景全覆盖">腾讯云首推私有云存储CSP，数据存储场景全覆盖</a></li>
+</ul>
+</div>
+<div class="jia_n_l">
+<ul>
+<img src="http://upload.qudong.com/2017/0518/1495095710760.png" alt="以“色”动人 联想YOGA 720 13正式开售" width="160" height="80">
+<li><a href="http://notebook.qudong.com/2017/0523/413383.shtml" target="_blank" title="以“色”动人 联想YOGA 720 13正式开售">以“色”动人 联想YOGA 720 13正式开售</a></li>
+</ul>
+<ul>
+<img src="http://upload.qudong.com/2017/0525/1495690136513.png" alt="不妥协的大屏独显轻薄本！联想ideapad 720S开启首发" width="160" height="80">
+<li><a href="http://notebook.qudong.com/2017/0525/413967.shtml" target="_blank" title="不妥协的大屏独显轻薄本！联想ideapad 720S开启首发">不妥协的大屏独显轻薄本！联想ideapad 720S开启首发</a></li>
+</ul>
+</div>
+</div>
+<div class="jdsen_xjd">
+<li><a href="http://www.qudong.com/jiadian" title="智能家电">智能家电</a></li>
+<i><a href="http://www.qudong.com/jiadian/tv" title="智能电视">电视</a></i>
+<i><a href="http://www.qudong.com/jiadian/icebox">冰箱</a></i>
+<i><a href="http://www.qudong.com/jiadian/ac/">空调</a></i>
+<i><a href="http://www.qudong.com/jiadian/washer/">洗衣机</a></i>
+<i><a href="http://www.qudong.com/jiadian/xjd/tvbox/">电视盒子</a></i>
+<i><a href="http://www.qudong.com/jiadian/kitchen/">厨卫家电</a></i>
+<i><a href="http://www.qudong.com/jiadian/xjd/cleaner/">扫地机器人</a></i>
+<i><a href="http://www.qudong.com/jiadian/kitchen/reshuiqi/">热水器</a></i>
+<i><a href="http://www.qudong.com/jiadian/kitchen/ranqizao/">燃气灶</a></i>
+<i><a href="http://www.qudong.com/jiadian/kitchen/hood/">抽油烟机</a></i>
+<i><a href="http://www.qudong.com/jiadian/kitchen/oven">烤箱</a></i>
+<i><a href="http://www.qudong.com/jiadian/kitchen/microwave_oven/">微波炉</a></i>
+<i><a href="http://www.qudong.com/jiadian/kitchen/cabinet/">消毒碗柜</a></i>
+<i><a href="http://www.qudong.com/jiadian/xjd/ap/">净化器</a></i>
+<i><a href="http://www.qudong.com/jiadian/kitchen/juicer/">榨汁机</a></i>
+</div>
+<div class="cptui">
+<ul>
+<img src="http://upload.qudong.com/2017/0910/1505039694947.jpg" alt="酷开KX49 49英寸4K超高清人工智能电视" width="120" height="90">
+<li><a href="http://product.qudong.com/2017/0910/434123.shtml" target="_blank" title="酷开KX49 49英寸4K超高清人工智能电视">酷开KX49 49英寸4K超高清人工智能电视</a></li>
+<div class="sns"><a class="comm" href="http://product.qudong.com/2017/0910/434123.shtml">￥2199</a></div>
+</ul>
+<ul>
+<img src="http://upload.qudong.com/2017/0910/1505039185118.jpg" alt="海信32英寸 高清蓝光平板液晶电视" width="120" height="90">
+<li><a href="http://product.qudong.com/2017/0910/434121.shtml" target="_blank" title="海信32英寸 高清蓝光平板液晶电视">海信32英寸 高清蓝光平板液晶电视</a></li>
+<div class="sns"><a class="comm" href="http://product.qudong.com/2017/0910/434121.shtml">￥1199</a></div>
+</ul>
+<ul>
+<img src="http://upload.qudong.com/2017/0910/1505038170448.jpg" alt="三星QA55Q7 55英寸超高清 QLED电视" width="120" height="90">
+<li><a href="http://product.qudong.com/2017/0910/434113.shtml" target="_blank" title="三星QA55Q7 55英寸超高清 QLED电视">三星QA55Q7 55英寸超高清 QLED电视</a></li>
+<div class="sns"><a class="comm" href="http://product.qudong.com/2017/0910/434113.shtml">￥17999</a></div>
+</ul>
+<ul>
+<img src="http://upload.qudong.com/2017/0910/1505037498127.jpg" alt="海尔(haier)LS65 4K 65英寸4K平板电视" width="120" height="90">
+<li><a href="http://product.qudong.com/2017/0910/434109.shtml" target="_blank" title="海尔(haier)LS65 4K 65英寸4K平板电视">海尔(haier)LS65 4K 65英寸4K平板电视</a></li>
+<div class="sns"><a class="comm" href="http://product.qudong.com/2017/0910/434109.shtml">￥5599</a></div>
+</ul>
+<ul>
+<img src="http://upload.qudong.com/2017/0910/1505036846818.jpg" alt="长虹49U1 49英寸4K超清智能电视" width="120" height="90">
+<li><a href="http://product.qudong.com/2017/0910/434107.shtml" target="_blank" title="长虹49U1 49英寸4K超清智能电视">长虹49U1 49英寸4K超清智能电视</a></li>
+<div class="sns"><a class="comm" href="http://product.qudong.com/2017/0910/434107.shtml">￥2690</a></div>
+</ul>
+<ul>
+<img src="http://upload.qudong.com/2017/0910/1505035785722.jpg" alt="夏普LCD-60SU465A 60英寸智能电视" width="120" height="90">
+<li><a href="http://product.qudong.com/2017/0910/434101.shtml" target="_blank" title="夏普LCD-60SU465A 60英寸智能电视">夏普LCD-60SU465A 60英寸智能电视</a></li>
+<div class="sns"><a class="comm" href="http://product.qudong.com/2017/0910/434101.shtml">￥4059</a></div>
+</ul>
+<ul>
+<img src="http://upload.qudong.com/2017/0910/1505034960744.jpg" alt="微鲸 WTV55K1T 55英寸PRO 4K平板电视" width="120" height="90">
+<li><a href="http://product.qudong.com/2017/0910/434099.shtml" target="_blank" title="微鲸 WTV55K1T 55英寸PRO 4K平板电视">微鲸 WTV55K1T 55英寸PRO 4K平板电视</a></li>
+<div class="sns"><a class="comm" href="http://product.qudong.com/2017/0910/434099.shtml">￥4598</a></div>
+</ul>
+<ul>
+<img src="http://upload.qudong.com/2017/0910/1505034145280.jpg" alt="KKTV LED55K70S 55英寸云电视" width="120" height="90">
+<li><a href="http://product.qudong.com/2017/0910/434097.shtml" target="_blank" title="KKTV LED55K70S 55英寸云电视">KKTV LED55K70S 55英寸云电视</a></li>
+<div class="sns"><a class="comm" href="http://product.qudong.com/2017/0910/434097.shtml">￥2599</a></div>
+</ul>
+</div>
+<div class="jd1200">
+<div class="hd_left">
+<div class="jd_left">
+<div class="jdimg_xiao">
+<ul>
+<a href="http://www.qudong.com/article/437149.shtml" target="_blank" title="自毁前程？曾经的彩电龙头康佳究竟是如何没落的？"><img src="http://upload.qudong.com/2017/0922/thumb_180_90_1506070119788.png" alt="自毁前程？曾经的彩电龙头康佳究竟是如何没落的？" width="180" height="90"></a>
+<li><a href="http://www.qudong.com/article/437149.shtml" target="_blank" title="自毁前程？曾经的彩电龙头康佳究竟是如何没落的？">自毁前程？曾经的彩电龙头康佳究竟是如何没落的？</a></li>
+<span class="yuanc">原创</span> <span>新闻</span>
+<span class="yuana"><a href="http://www.qudong.com/article/437149.shtml" target="_blank" title="自毁前程？曾经的彩电龙头康佳究竟是如何没落的？">查阅</a></span>
+</ul>
+<ul>
+<a href="http://www.qudong.com/article/434953.shtml" target="_blank" title="格力空调老大地位不保！？董明珠发力智能装备"><img src="http://upload.qudong.com/2017/0913/1505294528137.jpg" alt="格力空调老大地位不保！？董明珠发力智能装备" width="180" height="90"></a>
+<li><a href="http://www.qudong.com/article/434953.shtml" target="_blank" title="格力空调老大地位不保！？董明珠发力智能装备">格力空调老大地位不保！？董明珠发力智能装备</a></li>
+<span class="yuanc">原创</span> <span>空调</span>
+<span class="yuana"><a href="http://www.qudong.com/article/434953.shtml" target="_blank" title="格力空调老大地位不保！？董明珠发力智能装备">查阅</a></span>
+</ul>
+<ul>
+<a href="http://www.qudong.com/2017/0505/409443.shtml" target="_blank" title="空气净化器市场还要混乱多久？"><img src="http://upload.qudong.com/2017/0505/1493975796410.jpg" alt="空气净化器市场还要混乱多久？" width="180" height="90"></a>
+<li><a href="http://www.qudong.com/2017/0505/409443.shtml" target="_blank" title="空气净化器市场还要混乱多久？">空气净化器市场还要混乱多久？</a></li>
+<span class="yuanc">原创</span> <span>空气净化器</span>
+<span class="yuana"><a href="http://www.qudong.com/2017/0505/409443.shtml" target="_blank" title="空气净化器市场还要混乱多久？">查阅</a></span>
+</ul>
+<ul>
+<a href="http://www.qudong.com/2017/0908/433997.shtml" target="_blank" title="厨电品牌格局或将重构！ 海尔美的华帝市场份额直逼方太老板"><img src="http://upload.qudong.com/2017/0908/1504860759335.jpg" alt="厨电品牌格局或将重构！ 海尔美的华帝市场份额直逼方太老板" width="180" height="90"></a>
+<li><a href="http://www.qudong.com/2017/0908/433997.shtml" target="_blank" title="厨电品牌格局或将重构！ 海尔美的华帝市场份额直逼方太老板">厨电品牌格局或将重构！ 海尔美的华帝市场份额直逼方太老板</a></li>
+<span class="yuanc">原创</span> <span>燃气灶</span>
+<span class="yuana"><a href="http://www.qudong.com/2017/0908/433997.shtml" target="_blank" title="厨电品牌格局或将重构！ 海尔美的华帝市场份额直逼方太老板">查阅</a></span>
+</ul>
+</div>
+<div class="jdimg_ds">
+<ul>
+<li><a href="http://www.qudong.com/2017/0930/439237.shtml" target="_blank" title=" 售价100美元！佳明牵手迪士尼推出儿童智能手环"> 售价100美元！佳明牵手迪士尼推出儿童智能手环</a></li>
+<div class="left_ds">
+<img src="http://upload.qudong.com/2017/0930/thumb_80_60_1506761193325.jpg" alt=" 售价100美元！佳明牵手迪士尼推出儿童智能手环" width="80" height="60">
+</div>
+<div class="right_ds">
+智能手表大多都是为热爱健康运动的人设计的，其中佳明更是如此，其旗下多款智能手表都是为热爱户外运动的专业人士量身定制的，但...</div>
+</ul>
+<ul>
+<li><a href="http://www.qudong.com/2017/0930/439191.shtml" target="_blank" title="智能音箱战争已打响！谷歌封掉亚马逊的内容入口">智能音箱战争已打响！谷歌封掉亚马逊的内容入口</a></li>
+<div class="left_ds">
+<img src="http://upload.qudong.com/2017/0930/thumb_80_60_1506754851881.jpg" alt="智能音箱战争已打响！谷歌封掉亚马逊的内容入口" width="80" height="60">
+</div>
+<div class="right_ds">
+在没有任何征兆的情况下突然关掉了亚马逊旗下新款智能音箱Echo Show的Youtube视频入口。亚马逊表示，事先没有收到任何提示的情况...</div>
+</ul>
+<ul>
+<li><a href="http://www.qudong.com/2017/0929/438961.shtml" target="_blank" title="360°拍摄无盲区：米家全景相机自拍杆上架">360°拍摄无盲区：米家全景相机自拍杆上架</a></li>
+<div class="left_ds">
+<img src="http://upload.qudong.com/2017/0929/thumb_80_60_1506679558811.jpg" alt="360°拍摄无盲区：米家全景相机自拍杆上架" width="80" height="60">
+</div>
+<div class="right_ds">
+据小米最新消息，米家全景相机自拍杆上架。可以360度全视角拍摄影像，而且可完成一键式拍照。</div>
+</ul>
+<ul>
+<li><a href="http://www.qudong.com/article/438915.shtml" target="_blank" title="辨别“黑维修”： 中消协正式开通“查验宝”查询系统">辨别“黑维修”： 中消协正式开通“查验宝”查询系统</a></li>
+<div class="left_ds">
+<img src="http://upload.qudong.com/2017/0929/thumb_80_60_1506676191131.png" alt="辨别“黑维修”： 中消协正式开通“查验宝”查询系统" width="80" height="60">
+</div>
+<div class="right_ds">
+售后“黑维修”一直困扰着广大消费者。近日，中消协推出了“查验宝”查询系统旨在帮助广大消费者维护合法利益。</div>
+</ul>
+</div>
+</div>
+</div>
+<div class="jdr">
+<div class="jdr_tt">
+<li><a href="http://www.qudong.com/2017/0930/439191.shtml" target="_blank" title="智能音箱战争打响！谷歌封掉亚马逊内容入口">智能音箱战争打响！谷歌封掉亚马逊内容入口</a>
+</li>
+</div>
+<ul>
+<li><i>30日</i><span>空气净化器</span><a href="http://www.qudong.com/2017/0930/439247.shtml" target="_blank" title="小米搞错方向！升级版米家车载空气净化器跑偏路">小米搞错方向！升级版米家车载空气净化器跑偏路</a></li>
+<li><i>30日</i><span>新闻</span><a href="http://www.qudong.com/2017/0930/439237.shtml" target="_blank" title=" 售价100美元！佳明牵手迪士尼推出儿童智能手环"> 售价100美元！佳明牵手迪士尼推出儿童智能手环</a></li>
+<li><i>30日</i><span>新闻</span><a href="http://www.qudong.com/article/439193.shtml" target="_blank" title="“海夏之争”到底何时尘埃落定？ITC：最晚11月11日">“海夏之争”到底何时尘埃落定？ITC：最晚11月11日</a></li>
+<li><i>30日</i><span>新闻</span><a href="http://www.qudong.com/2017/0930/439191.shtml" target="_blank" title="智能音箱战争已打响！谷歌封掉亚马逊的内容入口">智能音箱战争已打响！谷歌封掉亚马逊的内容入口</a></li>
+<li><i>30日</i><span>新闻</span><a href="http://www.qudong.com/article/439063.shtml" target="_blank" title="长虹再传高层人事大变动，转型之路到底在何方？">长虹再传高层人事大变动，转型之路到底在何方？</a></li>
+<li><i>29日</i><span>新闻</span><a href="http://www.qudong.com/2017/0929/438961.shtml" target="_blank" title="360°拍摄无盲区：米家全景相机自拍杆上架">360°拍摄无盲区：米家全景相机自拍杆上架</a></li>
+<li><i>29日</i><span>新闻</span><a href="http://www.qudong.com/article/438955.shtml" target="_blank" title="OLED想要干掉液晶？JDI ：别太着急下结论">OLED想要干掉液晶？JDI ：别太着急下结论</a></li>
+<li><i>29日</i><span>新闻</span><a href="http://www.qudong.com/article/438915.shtml" target="_blank" title="辨别“黑维修”： 中消协正式开通“查验宝”查询系统">辨别“黑维修”： 中消协正式开通“查验宝”查询系统</a></li>
+<li><i>29日</i><span>新闻</span><a href="http://www.qudong.com/2017/0929/438899.shtml" target="_blank" title="新款Google Home曝光:主打音质 可与Sonos Play相媲美">新款Google Home曝光:主打音质 可与Sonos Play相媲美</a></li>
+<li><i>29日</i><span>新闻</span><a href="http://www.qudong.com/article/438839.shtml" target="_blank" title="为提高竞争力！LG将建设智能家电工厂 ">为提高竞争力！LG将建设智能家电工厂 </a></li>
+<li><i>29日</i><span>新闻</span><a href="http://www.qudong.com/article/438821.shtml" target="_blank" title="国庆来了，我们该怎么选择酒店？">国庆来了，我们该怎么选择酒店？</a></li>
+<li><i>29日</i><span>新闻</span><a href="http://www.qudong.com/article/438817.shtml" target="_blank" title="再获官方点赞：TCL免污洗衣机获家电行业首个特色认证">再获官方点赞：TCL免污洗衣机获家电行业首个特色认证</a></li>
+<li><i>29日</i><span>新闻</span><a href="http://www.qudong.com/2017/0929/438815.shtml" target="_blank" title="智能音箱市场竞争激烈，亚马逊欲以低价夺“天下”">智能音箱市场竞争激烈，亚马逊欲以低价夺“天下”</a></li>
+<li><i>01日</i><e>专题</e><a href="http://special.qudong.com/160314/" target="_blank" title="315国际消费者权益日专题报道">315国际消费者权益日专题报道</a></li>
+<li><i>01日</i><e>专题</e><a href="http://www.qudong.com/AWE/" target="_blank" title="AWE2016：上海家电博览会专题报道">AWE2016：上海家电博览会专题报道</a></li>
+</ul>
+</div>
+</div>
+<div class="jiaju_left">
+<div class="jia_n"><span><a href="http://jd.qudong.com/smart_home/news/">新闻</a></span><span><a href="http://jd.qudong.com/smart_home/market/">行情</a></span><span><a href="http://jd.qudong.com/smart_home/review/">评测</a></span>智能家居</div>
+<div class="jia_n_l">
+<ul>
+<img src="http://upload.qudong.com/2017/0920/1505889516747.jpg" alt="玩家陆续入局！智能音箱的风口到底在哪里？" width="160" height="80">
+<li><a href="http://www.qudong.com/2017/0919/436181.shtml" target="_blank" title="玩家陆续入局！智能音箱的风口到底在哪里？">玩家陆续入局！智能音箱的风口到底在哪里？</a></li>
+</ul>
+<ul>
+<img src="http://upload.qudong.com/2017/0505/1493979331314.jpg" alt="亚马逊Echo被投诉！竟是因为Alexa听不懂方言" width="160" height="80">
+<li><a href="http://www.qudong.com/2017/0504/409143.shtml" target="_blank" title="亚马逊Echo被投诉！竟是因为Alexa听不懂方言">亚马逊Echo被投诉！竟是因为Alexa听不懂方言</a></li>
+</ul>
+</div>
+<div class="jia_n_r">
+<div class="jdr_tt1">
+<li><a href="http://www.qudong.com/2017/0915/435445.shtml" target="_blank" title="售价799元！京东发布智能音箱叮咚2代">售价799元！京东发布智能音箱叮咚2代</a>
+</li>
+</div>
+<ul>
+<li><i>30日</i><span>新闻</span><a href="http://www.qudong.com/2017/0930/439191.shtml" target="_blank" title="智能音箱战争已打响！谷歌封掉亚马逊的内容入口">智能音箱战争已打响！谷歌封掉亚马逊的内容入口</a></li>
+<li><i>29日</i><span>新闻</span><a href="http://www.qudong.com/2017/0929/438961.shtml" target="_blank" title="360°拍摄无盲区：米家全景相机自拍杆上架">360°拍摄无盲区：米家全景相机自拍杆上架</a></li>
+<li><i>29日</i><span>新闻</span><a href="http://www.qudong.com/2017/0929/438899.shtml" target="_blank" title="新款Google Home曝光:主打音质 可与Sonos Play相媲美">新款Google Home曝光:主打音质 可与Sonos Play相媲美</a></li>
+<li><i>29日</i><span>新闻</span><a href="http://www.qudong.com/2017/0929/438815.shtml" target="_blank" title="智能音箱市场竞争激烈，亚马逊欲以低价夺“天下”">智能音箱市场竞争激烈，亚马逊欲以低价夺“天下”</a></li>
+<li><i>29日</i><span>新闻</span><a href="http://www.qudong.com/2017/0929/438813.shtml" target="_blank" title="京东叮咚音箱2代：可自定义唤醒词 售价799">京东叮咚音箱2代：可自定义唤醒词 售价799</a></li>
+<li><i>28日</i><span>新闻</span><a href="http://www.qudong.com/2017/0928/438641.shtml" target="_blank" title="664元起！亚马逊全Echo智能音箱新品来袭">664元起！亚马逊全Echo智能音箱新品来袭</a></li>
+<li><i>28日</i><span>新闻</span><a href="http://www.qudong.com/2017/0928/438471.shtml" target="_blank" title="智能家居时代已来！LG旗下87款家电支持Google Assistant">智能家居时代已来！LG旗下87款家电支持Google Assistant</a></li>
+<li><i>28日</i><span>新闻</span><a href="http://www.qudong.com/2017/0928/438425.shtml" target="_blank" title="对标苹果和谷歌！亚马逊发布三款智能音箱">对标苹果和谷歌！亚马逊发布三款智能音箱</a></li>
+<li><i>26日</i><span>新闻</span><a href="http://www.qudong.com/2017/0926/437923.shtml" target="_blank" title="友商扎心了！小米智能音箱23秒闪电售罄">友商扎心了！小米智能音箱23秒闪电售罄</a></li>
+<li><i>25日</i><span>新闻</span><a href="http://www.qudong.com/2017/0925/437523.shtml" target="_blank" title="深圳宝安机场引进嘟嘟E家智能家居 瞄准中高端科技市场">深圳宝安机场引进嘟嘟E家智能家居 瞄准中高端科技市场</a></li>
+<li><i>27日</i><c>推荐</c><a href="http://www.qudong.com/2016/0527/335493.shtml" target="_blank" title="Apple TV成为苹果布局智能家居的关键所在？谷歌亚马逊对手来了！">Apple TV成为苹果布局智能家居的关键所在？谷歌亚马逊对手来了！</a></li>
+<li><i>19日</i><c>推荐</c><a href="http://www.qudong.com/2016/0519/332589.shtml" target="_blank" title="和预测的一样！谷歌I/O开发者大会推出Google Home">和预测的一样！谷歌I/O开发者大会推出Google Home</a></li>
+</ul>
+</div>
+</div>
+<div class="jiaju_right">
+<div class="jia_n"><span><a href="http://jd.qudong.com/smart_wear/news/">新闻</a></span><span><a href="http://jd.qudong.com/smart_wear/market/">行情</a></span><span><a href="http://jd.qudong.com/smart_wear/review/">评测</a></span>智能穿戴</div>
+<div class="jia_n_r">
+<div class="jdr_tt1">
+<li><a href="http://www.qudong.com/2017/0919/436189.shtml" target="_blank" title="Nike推出智能化球衣 仅支持NFC功能">Nike推出智能化球衣 仅支持NFC功能</a>
+</li>
+</div>
+<ul>
+<li><i>30日</i><span>新闻</span><a href="http://www.qudong.com/2017/0930/439237.shtml" target="_blank" title=" 售价100美元！佳明牵手迪士尼推出儿童智能手环"> 售价100美元！佳明牵手迪士尼推出儿童智能手环</a></li>
+<li><i>27日</i><span>新闻</span><a href="http://www.qudong.com/2017/0927/438261.shtml" target="_blank" title="为何Apple Watch 3不插卡不连手机就能上网打电话？">为何Apple Watch 3不插卡不连手机就能上网打电话？</a></li>
+<li><i>27日</i><span>新闻</span><a href="http://www.qudong.com/2017/0927/438109.shtml" target="_blank" title="市场调研公司预测：Apple Watch总销量为3300万块 ">市场调研公司预测：Apple Watch总销量为3300万块 </a></li>
+<li><i>27日</i><span>新闻</span><a href="http://www.qudong.com/2017/0927/438053.shtml" target="_blank" title="加速研发健康产品！苹果三星参与FDA试点项目 ">加速研发健康产品！苹果三星参与FDA试点项目 </a></li>
+<li><i>26日</i><span>新闻</span><a href="http://www.qudong.com/2017/0926/437901.shtml" target="_blank" title="微软并非没有想过推出智能手表！Xbox原型机曝光">微软并非没有想过推出智能手表！Xbox原型机曝光</a></li>
+<li><i>26日</i><span>新闻</span><a href="http://www.qudong.com/2017/0926/437845.shtml" target="_blank" title="功能堪比Apple Watch 3的Verizon Wear24上市仅四个多月就惨遭停产停售！">功能堪比Apple Watch 3的Verizon Wear24上市仅四个多月就惨遭停产停售！</a></li>
+<li><i>26日</i><span>新闻</span><a href="http://www.qudong.com/2017/0926/437733.shtml" target="_blank" title="谷歌智能夹克将于周三上市！售价350美元">谷歌智能夹克将于周三上市！售价350美元</a></li>
+<li><i>25日</i><span>新闻</span><a href="http://www.qudong.com/2017/0925/437413.shtml" target="_blank" title="Apple Watch Series 3问题大盘点：基本都是LTE惹的祸！">Apple Watch Series 3问题大盘点：基本都是LTE惹的祸！</a></li>
+<li><i>23日</i><span>新闻</span><a href="http://www.qudong.com/2017/0923/437229.shtml" target="_blank" title="华为新手环发布：多彩腕带 可当蓝牙耳机">华为新手环发布：多彩腕带 可当蓝牙耳机</a></li>
+<li><i>22日</i><span>新闻</span><a href="http://www.qudong.com/2017/0922/437131.shtml" target="_blank" title="华为手环B3青春版面世！售价499元">华为手环B3青春版面世！售价499元</a></li>
+<li><i>26日</i><c>推荐</c><a href="http://www.qudong.com/2016/0526/334917.shtml" target="_blank" title="三星要放弃Android智能手表系统？ Yes or NO">三星要放弃Android智能手表系统？ Yes or NO</a></li>
+<li><i>18日</i><c>推荐</c><a href="http://www.qudong.com/2016/0518/332557.shtml" target="_blank" title="智能穿戴明明很火为何落地却无声？">智能穿戴明明很火为何落地却无声？</a></li>
+</ul>
+</div>
+<div class="jia_n_l">
+<ul>
+<img src="http://upload.qudong.com/2017/0920/1505889072577.jpg" alt="Apple Watch 3通话功能太鸡肋！仅美国地区可用" width="160" height="80">
+<li><a href="http://www.qudong.com/2017/0918/435759.shtml" target="_blank" title="Apple Watch 3通话功能太鸡肋！仅美国地区可用">Apple Watch 3通话功能太鸡肋！仅美国地区可用</a></li>
+</ul>
+<ul>
+<img src="http://upload.qudong.com/2017/0505/1493979625131.jpg" alt="死磕苹果？Fitbit打造全新智能手表和蓝牙耳机" width="160" height="80">
+<li><a href="http://www.qudong.com/2017/0502/408573.shtml" target="_blank" title="死磕苹果？Fitbit打造全新智能手表和蓝牙耳机">死磕苹果？Fitbit打造全新智能手表和蓝牙耳机</a></li>
+</ul>
+</div>
+</div>
+<div class="jiaju_left" style="margin-top:8px;">
+<div class="jia_n"><span><a href="http://oa.qudong.com/printer/">打印机</a></span><span><a href="http://oa.qudong.com/aio/">一体机</a></span>
+<span><a href="http://oa.qudong.com/fax/">传真机</a></span>
+<span><a href="http://oa.qudong.com/projector/">投影机</a></span>
+<span><a href="http://oa.qudong.com/network/">网络设备</a></span>
+<span><a href="http://oa.qudong.com/haocai/">耗材</a></span>
+OA办公</div>
+<div class="jia_n_l">
+<ul>
+<img src="http://upload.qudong.com/2017/0509/1494287875349.jpg" alt="华为路由 A1 畅享版图赏：外表清新 内心强悍 " width="160" height="80">
+<li><a href="http://oa.qudong.com/2017/0508/409843.shtml" target="_blank" title="华为路由 A1 畅享版图赏：外表清新 内心强悍 ">华为路由 A1 畅享版图赏：外表清新 内心强悍 </a></li>
+</ul>
+<ul>
+<img src="http://upload.qudong.com/2016/1017/thumb_160_80_1476664324266.jpg" alt="360WiFi扩展器开抢了！最低只需20元 扫除家中无线死角" width="160" height="80">
+<li><a href="http://oa.qudong.com/2016/1017/367055.shtml" target="_blank" title="360WiFi扩展器开抢了！最低只需20元 扫除家中无线死角">360WiFi扩展器开抢了！最低只需20元 扫除家中无线死角</a></li>
+</ul>
+</div>
+<div class="jia_n_r">
+<div class="jdr_tt1">
+<li><a href="http://news.qudong.com/article/406479.shtml" target="_blank" title="360安全路由新品发布会邀请函曝光：更快更轻更安全？">360安全路由新品发布会邀请函曝光：更快更轻更安全？</a>
+</li>
+</div>
+<ul>
+<li><i>30日</i><span>网络设备</span><a href="http://oa.qudong.com/2017/0930/439199.shtml" target="_blank" title="家庭云存储神器——中兴云盒国庆全网发售">家庭云存储神器——中兴云盒国庆全网发售</a></li>
+<li><i>30日</i><span>网络设备</span><a href="http://oa.qudong.com/2017/0930/439153.shtml" target="_blank" title="8天的超级假期，迎来一场路由远程下载狂欢">8天的超级假期，迎来一场路由远程下载狂欢</a></li>
+<li><i>28日</i><span>网络设备</span><a href="http://oa.qudong.com/2017/0928/438619.shtml" target="_blank" title="直击newifi新路由散热专利，实现路由器高效散热">直击newifi新路由散热专利，实现路由器高效散热</a></li>
+<li><i>27日</i><span>网络设备</span><a href="http://oa.qudong.com/2017/0927/438121.shtml" target="_blank" title="首发！代表斐讯高颜值系列的K2P香槟金版本路由上市">首发！代表斐讯高颜值系列的K2P香槟金版本路由上市</a></li>
+<li><i>27日</i><span>网络设备</span><a href="http://oa.qudong.com/2017/0927/438079.shtml" target="_blank" title="宽带和路由，究竟如何判别谁影响了网速？">宽带和路由，究竟如何判别谁影响了网速？</a></li>
+<li><i>27日</i><span>网络设备</span><a href="http://oa.qudong.com/2017/0927/438083.shtml" target="_blank" title="如果手机品牌的黑马是oppo，那路由品牌的黑马应属斐讯">如果手机品牌的黑马是oppo，那路由品牌的黑马应属斐讯</a></li>
+<li><i>25日</i><span>网络设备</span><a href="http://oa.qudong.com/2017/0925/437469.shtml" target="_blank" title="NETGEAR发布通过APP云网管的网络设备 实现任意 时间地点 的轻松管理">NETGEAR发布通过APP云网管的网络设备 实现任意 时间地点 的轻松管理</a></li>
+<li><i>22日</i><span>网络设备</span><a href="http://oa.qudong.com/2017/0922/437099.shtml" target="_blank" title="4k有好料，用newifi新路由get电影下载的新姿势">4k有好料，用newifi新路由get电影下载的新姿势</a></li>
+<li><i>21日</i><span>网络设备</span><a href="http://oa.qudong.com/2017/0921/436749.shtml" target="_blank" title="newifi新路由100分专利技术：凝胶金属背板匀热散热">newifi新路由100分专利技术：凝胶金属背板匀热散热</a></li>
+<li><i>19日</i><span>网络设备</span><a href="http://oa.qudong.com/2017/0919/436169.shtml" target="_blank" title="手机内存不够用？新路由管家V3.2.3是个解决方案">手机内存不够用？新路由管家V3.2.3是个解决方案</a></li>
+<li><i>25日</i><c>推荐</c><a href="http://oa.qudong.com/2015/0325/220104.shtml" target="_blank" title="柯尼卡美能达：以客户为中心的全胜时代">柯尼卡美能达：以客户为中心的全胜时代</a></li>
+<li><i>23日</i><c>推荐</c><a href="http://oa.qudong.com/2015/0323/219565.shtml" target="_blank" title="三星组建产品创新团队 疑涉及3D打印">三星组建产品创新团队 疑涉及3D打印</a></li>
+</ul>
+</div>
+</div>
+<div class="jiaju_right" style="margin-top:8px;">
+<div class="jia_n">
+<span><a href="http://mb.qudong.com/">主板</a></span>
+<span><a href="http://cpu.qudong.com/">CPU</a></span>
+<span><a href="http://vga.qudong.com/">显卡</a></span>
+<span><a href="http://lcd.qudong.com/">显示器</a></span>
+<span><a href="http://storage.qudong.com/">存储</a></span>
+<span><a href="http://mouse.qudong.com/">键鼠</a></span>
+DIY硬件</div>
+<div class="jia_n_r">
+<div class="jdr_tt1">
+<li><a href="http://lcd.qudong.com/2015/0730/237839.shtml" target="_blank" title="全面开启曲面视界 LG 21:9曲面超宽屏系列显示器京东震撼首发">全面开启曲面视界 LG 21:9曲面超宽屏系列显示器京东震撼首发</a>
+</li>
+</div>
+<ul>
+<li><i>27日</i><span>硬盘</span><a href="http://storage.qudong.com/2017/0927/438103.shtml" target="_blank" title="东芝宣布推出 SATA 接口 10TB 企业级容量型硬盘产品系列">东芝宣布推出 SATA 接口 10TB 企业级容量型硬盘产品系列</a></li>
+<li><i>22日</i><span>U盘</span><a href="http://storage.qudong.com/2017/0922/437083.shtml" target="_blank" title="全国海关知识产权保护“龙腾”行动中国品牌故事之朗科科技">全国海关知识产权保护“龙腾”行动中国品牌故事之朗科科技</a></li>
+<li><i>20日</i><span>主板</span><a href="http://mb.qudong.com/2017/0920/436535.shtml" target="_blank" title="梦想与情怀之行 Tt Best Modder全国巡展武汉站">梦想与情怀之行 Tt Best Modder全国巡展武汉站</a></li>
+<li><i>20日</i><span>硬盘</span><a href="http://storage.qudong.com/2017/0920/436529.shtml" target="_blank" title="国科微推出国内首款国密、国测双认证SSD控制芯片">国科微推出国内首款国密、国测双认证SSD控制芯片</a></li>
+<li><i>14日</i><span>键鼠</span><a href="http://mouse.qudong.com/2017/0914/435095.shtml" target="_blank" title="电竞FPS巨作国服即将公测 《CSGO》备战指南">电竞FPS巨作国服即将公测 《CSGO》备战指南</a></li>
+<li><i>14日</i><span>硬盘</span><a href="http://storage.qudong.com/2017/0914/435099.shtml" target="_blank" title="东芝推出面向移动客户存储应用的新1TB 硬盘">东芝推出面向移动客户存储应用的新1TB 硬盘</a></li>
+<li><i>12日</i><span>硬盘</span><a href="http://storage.qudong.com/2017/0912/434859.shtml" target="_blank" title="开学“秒杀”季  朗科固态硬盘“钜惠”来袭">开学“秒杀”季 朗科固态硬盘“钜惠”来袭</a></li>
+<li><i>12日</i><span>U盘</span><a href="http://storage.qudong.com/2017/0912/434853.shtml" target="_blank" title="朗科科技加密存储  确保信息安全万无一失">朗科科技加密存储 确保信息安全万无一失</a></li>
+<li><i>05日</i><span>U盘</span><a href="http://storage.qudong.com/2017/0905/433269.shtml" target="_blank" title="全新升级东芝TransMemory USB3.0 U363闪存盘震撼上市">全新升级东芝TransMemory USB3.0 U363闪存盘震撼上市</a></li>
+<li><i>31日</i><span>显示器</span><a href="http://lcd.qudong.com/2017/0831/432467.shtml" target="_blank" title="三星举办2017商用显示新品品鉴会 展现多行业解决方案">三星举办2017商用显示新品品鉴会 展现多行业解决方案</a></li>
+<li><i>28日</i><c>推荐</c><a href="http://storage.qudong.com/2015/0228/215415.shtml" target="_blank" title="老PC升级SSD 4款游戏实际体验性能区别">老PC升级SSD 4款游戏实际体验性能区别</a></li>
+<li><i>21日</i><c>推荐</c><a href="http://vga.qudong.com/2015/0121/211169.shtml" target="_blank" title="探索128-bit显存总线在 4K游戏当中的性能瓶颈">探索128-bit显存总线在 4K游戏当中的性能瓶颈</a></li>
+</ul>
+</div>
+<div class="jia_n_l">
+<ul>
+<img src="http://upload.qudong.com/2016/0314/1457960281932.jpg" alt="希捷8TB台式机硬盘上市 性能、容量双夺冠" width="160" height="80">
+<li><a href="http://storage.qudong.com/2015/1223/280365.shtml" target="_blank" title="希捷8TB台式机硬盘上市 性能、容量双夺冠">希捷8TB台式机硬盘上市 性能、容量双夺冠</a></li>
+</ul>
+<ul>
+<img src="http://upload.qudong.com/2016/0314/1457960134170.jpg" alt="全面开启曲面视界 LG 21:9曲面超宽屏系列显示器京东震撼首发" width="160" height="80">
+<li><a href="http://lcd.qudong.com/2015/0730/237839.shtml" target="_blank" title="全面开启曲面视界 LG 21:9曲面超宽屏系列显示器京东震撼首发">全面开启曲面视界 LG 21:9曲面超宽屏系列显示器京东震撼首发</a></li>
+</ul>
+</div>
+</div>
+<div class="bodyCon07">
+<div class="teacher">
+<div class="teacherPic">
+<div class="content">
+<img src="http://upload.qudong.com/2017/0605/1496634268830.jpg" alt="HUAWEI nova 2抢先体验：美的不仅仅是颜值和自拍" width="230" height="360" alt="HUAWEI nova 2抢先体验：美的不仅仅是颜值和自拍" />
+<div class="txt">
+<h3><a href="http://mobile.qudong.com/article/414349.shtml" title="HUAWEI nova 2抢先体验：美的不仅仅是颜值和自拍" target="_blank">HUAWEI nova 2抢先体验：美的不仅仅是颜值和自拍</a></h3>
+<h4></h4>
+<p>5月26日，HUAWEI nova 2正式在湖南长沙发布，作为HUAWEI nova系列的第三代机型，此次的新品总共包含了两款，分别为HUAWEI nova 2和HUAWEI nova 2 Plus。值得注意的是，HUAWEI nova 2系列依旧面向年轻消费群体，主打年轻娱乐市场，而相比前作，HUAWEI nova 2系列在外观设计、拍摄自拍以及音质音效等方面进一步强化提升，成为年内2000元价位档的焦点机型。日前，驱动中国有幸抢先拿到了HUAWEI nova 2 Plus曜石黑的样机，不妨一起先睹为快..</p>
+</div>
+</div>
+<div class="content">
+<img src="http://upload.qudong.com/2017/0605/1496633510432.jpg" alt="华为路由 A1 畅享版图赏：外表清新 内心强悍 " width="230" height="360" alt="华为路由 A1 畅享版图赏：外表清新 内心强悍 " />
+<div class="txt">
+<h3><a href="http://oa.qudong.com/2017/0508/409843.shtml" title="华为路由 A1 畅享版图赏：外表清新 内心强悍 " target="_blank">华为路由 A1 畅享版图赏：外表清新 内心强悍 </a></h3>
+<h4></h4>
+<p>今年的五四青年节，华为推出了一款颇有年轻化意味的新款路由器产品，名为华为路由 A1 畅享版。这款产品在外观上延续了早先内置天线的A1系列设计语言，纯白色的外观与不同的家居环境皆可实现融入，同时在功能及规格上，华为路由 A1 畅享版也拥有众多的升级亮点。而最令消费者关心的是，作为网络通讯见长的华为路由产品，此次新品的性价比也十分抢眼，那么接下来，不妨让我们来简单了解这款新品。..</p>
+</div>
+</div>
+<div class="content">
+<img src="http://upload.qudong.com/2017/0605/1496633266451.jpg" alt="绚丽流光机身抢先看！ivvi K5裸眼3D手机高清图集" width="230" height="360" alt="绚丽流光机身抢先看！ivvi K5裸眼3D手机高清图集" />
+<div class="txt">
+<h3><a href="http://mobile.qudong.com/article/406331.shtml" title="绚丽流光机身抢先看！ivvi K5裸眼3D手机高清图集" target="_blank">绚丽流光机身抢先看！ivvi K5裸眼3D手机高清图集</a></h3>
+<h4></h4>
+<p>北京时间2017年4月18日下午15点整，ivvi科技在深圳举行了年度春季新品发布会，正式发布了首款裸眼3D手机ivvi K5，新机主打裸眼3D显示。ivvi K5的外形设计也是一大特色，该机一共有蓝、金、白三种配色，ivvi K5的机身材质为全新的特殊复合材料，利用独特12道镜面处理工艺，让光线进入到玻璃后经过独特的折射和反射，再通过多层滤膜，呈现出K5独特的光学效果。..</p>
+</div>
+</div>
+<div class="content">
+<img src="http://upload.qudong.com/2017/0605/1496633027722.jpg" alt="深邃的时尚 vivo Xplay6磨砂黑真机图赏" width="230" height="360" alt="深邃的时尚 vivo Xplay6磨砂黑真机图赏" />
+<div class="txt">
+<h3><a href="http://mobile.qudong.com/article/401397.shtml" title="深邃的时尚 vivo Xplay6磨砂黑真机图赏" target="_blank">深邃的时尚 vivo Xplay6磨砂黑真机图赏</a></h3>
+<h4></h4>
+<p>昨晚，vivo在北京宣布正式发布vivo Xplay6的磨砂黑版本，一向以小清新风格示人的vivo，这次也开始走深沉路线。此次发布的vivo Xplay6磨砂黑为金属机身黑色全覆盖，包括耳机插孔、U型天线带、USB接口、补光灯等细节都做了改良设计进一步融入到纯黑的一体机身中，整机散发出一股深邃的气息。与此前配置相同，这款产品采用5.46寸OLED双曲面屏、分辨率为分辨率为2560x1440，同时搭载骁龙820处理器， 6+128GB存储组合、配备4080mAh电池，前置为1600百万像素摄像头。 ..</p>
+</div>
+</div>
+<div class="content">
+<img src="http://upload.qudong.com/2017/0605/thumb_230_360_1496632816457.jpg" alt="“人像摄影大师”华为P10/P10 Plus拍照样张赏析" width="230" height="360" alt="“人像摄影大师”华为P10/P10 Plus拍照样张赏析" />
+<div class="txt">
+<h3><a href="http://mobile.qudong.com/article/401303.shtml" title="“人像摄影大师”华为P10/P10 Plus拍照样张赏析" target="_blank">“人像摄影大师”华为P10/P10 Plus拍照样张赏析</a></h3>
+<h4></h4>
+<p>在2月26日的西班牙巴塞罗那世界移动通信大会MWC2017期间，华为正式推出了全新的开年旗舰P10以及P10 Plus。华为P10的国内发布会也将于3月24日下午14点整，在上海的东方体育中心举行。
+华为P10延续了P系列的时尚设计和在P9上首次出现的徕卡双摄镜头，并在此基础上推出了全新一代的徕卡镜头，华为P10号称“人像摄影大师”。..</p>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+	$(".content") .hover(function(){
+			$(this) .children(".txt").stop() .animate({height:"360px"},200);
+			$(this) .find(".txt h3").stop() .animate({paddingTop:"130"},550);
+			$(this) .find(".txt p").stop() .show();
+	},function(){
+			$(this) .children(".txt").stop() .animate({height:"133px"},200);
+			$(this) .find(".txt h3").stop().animate({paddingTop:"0px"},550);
+			$(this) .find(".txt p").stop() .hide();
+		})
+</script>
+</div>
+<div class="iyq">
+<div class="iyq_s">
+<span>合作联系方式：029-88663689</span> 友情链接
+</div>
+<div class="iyq_x" style="line-height:20px;">
+<a href='http://www.veryol.com/' target='_blank'>非常在线</a>
+<a href='http://www.aliqiche.com/' target='_blank'>阿里汽车</a>
+<a href='http://it.sohu.com/' target='_blank'>搜狐IT</a>
+<a href='http://www.kejixun.com' target='_blank'>科技讯</a>
+<a href='http://tech.ifeng.com/' target='_blank'>凤凰网科技</a>
+<a href='http://tech.huanqiu.com/' target='_blank'>环球网科技</a>
+<a href='http://www.chinaitlab.com/' target='_blank'>中国IT实验室</a>
+<a href='http://it.gmw.cn/' target='_blank'>光明网IT</a>
+<a href='http://www.tompda.com' target='_blank'>智能手机网</a>
+<a href='http://tech.hexun.com' target='_blank'>和讯科技</a>
+<a href='http://www.elecfans.com' target='_blank'>电子发烧友</a>
+<a href='http://www.ciotimes.com' target='_blank'>CIO时代网</a>
+<a href='http://mobile.yesky.com/' target='_blank'>天极手机频道 </a>
+<a href='http://dcdv.zol.com.cn/' target='_blank'>zol 数码影像</a>
+<a href='http://www.hqbpc.com/' target='_blank'>华强北电脑网</a>
+<a href='http://www.chinaz.com/' target='_blank'>站长之家</a>
+<a href="http://www.ccidnet.com/">赛迪网</a>
+<a href="http://www.ctocio.com.cn/">IT专家网</a>
+<a href="http://www.thethirdmedia.com" target="_blank">第三媒体</a>
+<a href="http://www.114la.com" target="_blank">114啦网址导航</a>
+<a href="http://it.enorth.com.cn/" target="_blank">北方网IT</a>
+<a href="http://www.feng.com/" target="_blank">威锋网</a>
+<a href="http://www.news.cn/info/index.htm" target="_blank">新华信息化</a>
+<a href="http://www.ithome.com" target="_blank">IT之家</a>
+<a href="http://www.mshishang.com" target="_blank">中国时尚网</a>
+<a href="http://www.ikanchai.com" target="_blank">砍柴网</a>
+<a href="http://www.itbear.com.cn" target="_blank">ITBear科技资讯</a>
+<a href="http://www.imobile.com.cn" target="_blank">手机之家</a>
+</div>
+</div>
+<div class="ifooter" style="height:200px;">
+<div class="ewei">
+<ul>
+<li><img src="http://upload.qudong.com/wei.jpg" width="100" height="100" /></li>
+<li style="line-height:20px;">官方微信二维码</li>
+</ul>
+<ul>
+<li><img src="http://upload.qudong.com/sina.png" width="100" height="100" /></li>
+<li style="line-height:20px;">官方微博二维码</li>
+</ul>
+<ul>
+<li><img src="http://upload.qudong.com/m.png" width="100" height="100" /></li>
+<li style="line-height:20px;">移动端二维码</li>
+</ul>
+<ul style="margin-top:10px;">
+<li><a key="59964b652548be47a02a5ab5" logo_size="83x30" logo_type="business" href="http://www.anquan.org"><script src="//static.anquan.org/static/outer/js/aq_auth.js"></script></a></li>
+</ul>
+</div>
+<div class="copyright">
+<ul><li>
+<a href="http://www.veryol.com/baodao"><font color="#FF0000">寻求报道</font></a>
+<a href="http://www.qudong.com/about/" title="">关于我们</a>
+<a href="http://www.qudong.com/about/contact.shtml" title="">联系我们</a>
+<a href="http://www.qudong.com/about/jobs.shtml" title="">加入我们</a>
+<a href="http://www.qudong.com/about/copyright.shtml" title="">版权声明</a>
+<a href="http://m.qudong.com" title="">手机访问</a>
+<a href="http://app.qudong.com/map.php" title="">网站地图</a>
+<a href="http://app.qudong.com/?app=guestbook" title="">留言反馈</a>
+<a href="http://app.qudong.com/rss.php" title="">RSS订阅</a>
+<a href="http://www.qudong.com/original/" title="">原创</a>
+</li></ul>
+<ul><li>Copyright@ 2005-2015 www.qudong.com 驱动中国 All Rights Reserved. 及时传播科技动态,科技引领生活之美</li></ul>
+<ul>
+<li>驱动中国提供专业的手机，智能家电，智能穿戴，智能家居，互联网及软件等信息服务</li>
+</ul>
+<ul>
+<li><font color="#FF0000">广播电视节目制作经营许可证:（京）字第07618号 <font color="#FFFFFF">---</font> 北京市公安局海淀分局网监中心备案编号:11010802009555号</font></li>
+</ul>
+<ul><li>厂商投稿 产品评测/网站合作 010-62681584 / 029-88663689 </li></ul>
+<ul><li><a href="http://www.miibeian.gov.cn">京ICP备11013097号</a><script src="http://img.qudong.com/js/cnzz.js" type="text/javascript"></script></li></ul>
+<ul><li> <a style="float: right;" href="http://www.cmstop.com" target="_blank"><img src="http://img.qudong.com/templates/qudong/img/cmstop-logo.gif" width="111px" height="13px" alt="思拓合众"></a></li></ul>
+</div>
+</div>
+</body>
+</html>

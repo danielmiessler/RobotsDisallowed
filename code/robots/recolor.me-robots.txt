@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>recolor.me</title>
+<meta charset="utf-8" />
+<meta name="Author" content="recolor.me" />
+<meta name="Keywords" content="avatar, avatars, games, puzzles, forum, recolor, recolors, recolorme, recolor.me" />
+<meta name="Description" content="An avatar and minigame community" />
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<link rel="apple-touch-icon" href="/images/site/re.png" />
+<link rel="apple-touch-icon-precomposed" href="/images/site/re.png" />
+<link rel="icon" type="image/png" href="/images/site/re.png">
+<link rel="stylesheet" href="/css/jquery-ui.css">
+<link rel="stylesheet" href="/css/spectrum.css?rev=1506574800">
+<style>
+	html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, a, img, strong
+	 {
+		margin:0;
+		padding:0;
+		border:0;
+		outline:0;
+		font-size:100%;
+		font-family: verdana !important;
+		vertical-align:baseline;
+		background:transparent;
+		line-height: 1;	
+		text-decoration: none;
+	}
+	
+	::-webkit-input-placeholder {color: #424242;}
+	::-moz-placeholder {color: #424242;}
+	:-ms-input-placeholder {color: #424242;}
+
+	input[type="text"], input[type="password"]
+	{
+		background: #CBB699;
+		color: #111;
+		width: 95%;
+		max-width: 175px;
+	}
+	
+	body 
+	{
+		background: url(/images/site/rc_repeat2.png) repeat #50801C;		
+		background: url(/images/site/grassland_tile.jpg) repeat scroll left 371px #61584f;
+		background: url(/images/site/grassland_tile.jpg) repeat scroll -23px 371px #61584f;
+		background: url(/images/site/grassland_42_tile.jpg) repeat scroll 0px 473px #61584f;
+		width: 100%;
+		height: 100%;
+		overflow-y: scroll;
+	}		
+
+		body.plains_dark
+		{
+			background: url("/images/site/plains_dark_repeat.png") repeat scroll center 520px #5e4f48;
+			background: url(/images/site/grassland_tile_dark.jpg) repeat scroll left 371px #61584f;
+			background: url(/images/site/grassland_tile_dark.jpg) repeat scroll -23px 371px #61584f;
+			background: url(/images/site/grassland_42_tile_dark.jpg) repeat scroll 0px 473px #61584f;
+		}
+		
+			body.plains_dark #global_container
+			{
+				background: url(/images/site/plains_dark_header.jpg) no-repeat center top transparent;
+				background: url(/images/site/grassland_header_dark.jpg) repeat-x left top transparent;
+				background: url(/images/site/grassland_42_header_dark.jpg) repeat-x left top transparent;
+			}		
+	
+	
+	.imgflip
+	{
+		-moz-transform: scaleX(-1);
+		-o-transform: scaleX(-1);
+		-webkit-transform: scaleX(-1);
+		transform: scaleX(-1);
+		filter: FlipH;
+		-ms-filter: "FlipH";
+	}
+		
+	.backshadow
+	{
+		filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id='backshadow'><feGaussianBlur in='SourceAlpha' stdDeviation='1'/><feOffset dx='1' dy='1'/><feComponentTransfer><feFuncA type='linear' slope='0.42'/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in='SourceGraphic'/></feMerge></filter></svg>#backshadow");		
+		-webkit-filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.42));
+		filter:progid:DXImageTransform.Microsoft.Dropshadow(OffX=1, OffY=1, Color='#424242'); 
+	}
+	
+	.grayscale 
+	{
+		filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0, 0.3333 0.3333 0.3333 0 0, 0.3333 0.3333 0.3333 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+		filter: gray;
+		-webkit-filter: grayscale(100%);
+	}
+	
+	.sepia
+	{
+		filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id='sepia' ><feColorMatrix type='matrix' values='.343 .669 .119 0 0 .249 .626 .130 0 0 .172 .334 .111 0 0 .000 .000 .000 1 0' /></filter></svg>#sepia");
+		filter: sepia(100%);
+		-webkit-filter: sepia(100%);
+		-moz-filter: sepia(100%);
+		-o-filter: sepia(100%);
+		-ms-filter: sepia(100%);
+	}
+	
+	.button
+	{
+		background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #3d94f6), color-stop(1, #1e62d0) );
+		background:-moz-linear-gradient( center top, #3d94f6 5%, #1e62d0 100% );
+		background: linear-gradient(to bottom, #3d94f6 0%, #1e62d0 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);			
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d94f6', endColorstr='#1e62d0');
+		background-color: #1e62d0;		
+		box-shadow: 0 2px 2px rgba(0,0,0,0.6);
+		border-radius: 4px;
+		text-indent: 0;
+		border: 1px solid #337fed;
+		display: inline-block;
+		color: #fff !important;
+		font-weight: bold;
+		font-style: normal;
+		white-space: nowrap;
+		padding: 8px 8px;
+		text-decoration: none;
+		text-align: center;
+		text-shadow: 1px 1px 1px #333333;
+		min-width: 150px;
+	}
+	
+		.button:hover
+		{
+			cursor: pointer;
+			background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #3daaf6), color-stop(1, #1e7ed0) );
+			background:-moz-linear-gradient( center top, #3daaf6 5%, #1e7ed0 100% );
+			background: linear-gradient(to bottom, #3daaf6 0%, #1e7ed0 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);			
+			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3daaf6', endColorstr='#1e7ed0');
+			background-color: #1e7ed0;	
+		}
+					
+
+	.button.button_yellow, .smallbutton.button_yellow {
+
+		background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #e6cb4e), color-stop(1, #dfa730) );
+		background:-moz-linear-gradient( center top, #e6cb4e 5%, #dfa730 100% );
+		background: linear-gradient(to bottom, #e6cb4e 0%, #dfa730 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);			
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e6cb4e', endColorstr='#dfa730');
+		background-color: #e6cb4e;		
+		border: 1px solid #a09b17;
+		text-shadow: 0 0 2px rgba(0,0,0,0.9);
+	}
+		.button.button_yellow:hover, .smallbutton.button_yellow:hover {
+					
+			background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #e6d15a), color-stop(1, #e6ad34) );
+			background:-moz-linear-gradient( center top, #e6d15a 5%, #e6ad34 100% );
+			background: linear-gradient(to bottom, #e6d15a 0%, #e6ad34 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);			
+			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e6d15a', endColorstr='#e6ad34');
+			background-color: #e6ad34;			
+		}
+		
+		
+	#global_container
+	{
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		max-width: 100%;
+		background: url(/images/site/rc_header1.jpg) no-repeat center top transparent;
+		margin: 0 auto;
+		padding: 80px 0 0;
+				min-height: 300px;
+		text-align: center;
+	}			
+		#global_container h1
+		{
+			position: absolute;
+			z-index: 2;
+			top: 0;
+			left: 4px;
+		}			
+			#global_container h1 img
+			{
+				height: 42px;
+			}
+		
+		#global_container h2
+		{
+			position: absolute;
+			z-index: 2;
+			top: 50px;
+			left: 7px;
+			color: #fff;
+			text-align: left;
+			font-size: 20px;
+			text-shadow: 0 1px 2px #000;
+		}
+		
+	#login_container
+	{
+		position: relative;
+	}	
+	
+		#login_avatar
+		{
+			position: relative;
+			z-index: 2;
+		}		
+			#login_avatar img
+			{
+				-webkit-backface-visibility: hidden;
+			  -webkit-transition: all 0.75s ease-in;
+			  -moz-transition: all 0.75s ease-in;
+			  -o-transition: all 0.75s ease-in;
+			  transition: all 0.75s ease-in;
+			}
+			
+		#login_extras
+		{
+			position: absolute;
+			z-index: 1;	
+			width: 100%;
+			height: 420px;
+			left: 0;
+			top: 0;
+			text-align: center;
+			overflow: hidden;
+			white-space: nowrap;
+		}		
+			#login_extras_content
+			{
+				display: inline-block;
+				position: relative;
+				left: 50%;
+									width: 100%;
+							}		
+			
+			#login_extras_avatars
+			{
+				margin-left: -100%;
+				white-space: nowrap;
+			}			
+		
+				#login_extras_avatars img
+				{
+					display: inline-block;
+					margin: -7px 25px 0;
+					vertical-align: top;
+					width: 250px;
+				}
+					#login_extras_avatars img.grayscale
+					{					
+						  -webkit-transition: all 0.75s ease-in;
+						  -moz-transition: all 0.75s ease-in;
+						  -o-transition: all 0.75s ease-in;
+						  transition: all 0.75s ease-in;
+					}
+			
+					#login_extras_avatars img:nth-of-type(1)
+					{
+						margin-top: 31px;
+							margin-right: -50px;
+												z-index: 2;
+					}
+			
+					#login_extras_avatars img:nth-of-type(2)
+					{
+						width: 200px;
+						z-index: 1;
+					}
+					
+					#login_extras_avatars img:nth-of-type(3)
+					{
+						margin-top: -16px;
+						width: 200px;
+						z-index: 1;
+					}
+			
+					#login_extras_avatars img:nth-of-type(4)
+					{
+						margin-top: 10px;
+							margin-left: -50px;
+												z-index: 2;
+					}
+			
+		#login_details
+		{
+			position: relative;
+			z-index: 5;	
+			width: 94%;
+			max-width: 420px;
+			margin: -125px auto 0;				
+			text-align: center;
+		}
+		
+				
+		#login_form
+		{
+			position: relative;
+			z-index: 3;
+			background: rgba(0, 0, 0, 0.75);
+			box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.5);
+			border-radius: 7px;
+			margin: 0 auto;
+			max-width: 350px;
+			padding: 16px 0 10px;
+					}
+	
+		#login_form p
+		{
+			text-align: center;
+			padding: 7px 0 12px;
+						padding: 10px 0;
+			color: #fff;
+			text-shadow: 0 0 2px #000;
+		}
+		
+			#login_form p input
+			{
+				font-size: 18px;
+				box-shadow: 1px 1px 1px 1px #222;
+				padding: 4px 2px;
+			}
+		
+		#login_details p #button_login
+		{
+			font-size: 19px;
+		}	
+		
+			#form_login.activated #button_login
+			{
+				opacity: 0.05;
+			  -webkit-transition: all 0.75s ease-in;
+			  -moz-transition: all 0.75s ease-in;
+			  -o-transition: all 0.75s ease-in;
+			  transition: all 0.75s ease-in;
+			}	
+		
+		#login_status
+		{
+			min-height: 31px;
+		}
+		
+		#login_details h2
+		{
+			border-bottom: 2px solid #CCCCCC;
+			color: #555555;
+			font-family: arial;
+			font-size: 30px;
+			margin: 0 auto 10px;
+			padding: 5px 0;
+			text-align: center;
+			width: 80%;
+		}
+		
+		#login_create
+		{
+			padding: 42px 0 50px;
+		}
+				
+			#login_create a
+			{
+				font-size: 22px;
+			}
+			
+		#login_reset
+		{
+			padding: 10px 0 42px;
+			margin: 0 auto 10px;
+		}
+			#login_reset a
+			{
+				font-weight: bold;
+				font-size: 16px;
+				color: #87cfff;
+				text-shadow: 0 1px 3px #000;
+			}
+				
+				#login_reset a:hover
+				{
+					text-decoration: underline;
+				}
+			
+	.red_text
+	{
+		color: #FF4B4B !important;
+	}
+	
+	.green_text
+	{
+		color: #1E9B0A;
+	}
+	
+#global_overlay
+{
+	display: none;
+	position: fixed;
+	z-index: 10;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.42);
+	text-align: center;
+}
+	#global_overlay.darker
+	{
+		background: rgba(0,0,0,0.75);
+	}
+
+	#global_overlay_message_container
+	{
+		position: relative;
+		display: table;
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+	}
+		
+		#global_overlay_message
+		{
+			display: table-cell;
+			padding-bottom: 10%;
+			text-align: center;
+			max-width: 94%;
+			font-weight: bold;
+			font-size: 31px;
+			color: #fff;
+			text-shadow: 0 2px 2px #000;
+			vertical-align: middle;
+		}			
+
+			#global_overlay_message h2
+			{
+				font-size: 25px;
+				padding: 4px 0;
+			}			
+
+			#global_overlay_message p
+			{
+				font-size: 18px;
+				padding: 4px 0;
+				margin: 4px 0;
+			}
+						
+				#global_overlay_message p img
+				{
+					vertical-align: middle;
+					margin: 0 4px;
+				}
+					
+			#global_overlay_message p a
+			{    
+				color: #87cfff;
+				font-weight: bold;
+				text-shadow: 0 1px 1px #000;
+			}
+					
+				#global_overlay_message p a:hover
+				{
+					text-decoration: underline;
+				}		
+				
+				
+	</style>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+<script src="/script/jquery-ui-touch.js?rev=1465362006"></script>
+<script src="/script/global.js?rev=1465362006"></script>
+<script src="/script/json.js"></script>
+<script src="/script/jquery-blockUI.js?rev=1465362006"></script>
+<script src="/script/jquery-rotate.js?rev=1465362006"></script>
+<script src="/script/spectrum.js?rev=1465362006"></script>
+<script>
+			
+		var re_login = {};
+
+		re_login.randNum = function (min,max)
+		{
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+		
+		$(document).ready(function() 
+		{			
+			$(document).on("submit", "#form_login", function ()
+			{							
+				if (!$(this).hasClass("activated") && $.trim($(this).find("input[type='text']").val()).length > 0 && $.trim($(this).find("input[type='password']").val()).length > 0)
+				{	
+					$(this).addClass("activated");
+					$("#login_status").html("<img alt='' src='/images/site/dots.gif' />");
+					
+					$("#login_extras_avatars img").each(function (i)
+					{
+						$(this).delay(re_login.randNum(50,250)).queue(function()
+						{
+							$(this).removeClass("grayscale").addClass("backshadow").dequeue();
+						});
+					});
+						
+							// setTimeout(function (){}, re_login.randNum(10,1000));
+						// });		
+						
+						// $("#div").addClass("error").delay(1000).queue(function(){
+						// $(this).removeClass("error").dequeue();
+						// });
+					
+					$.post("/login?json", $(this).serialize(), function (data)
+					{
+						var result = JSON.parse(data);
+						
+						if (result && typeof(result['account_id']) != 'undefined')
+						{
+							if (result['account_id'] > 0)
+							{
+								$("#login_avatar img").removeClass("grayscale").addClass("backshadow");
+								// $("#login_status").html("<span class='green_text'>Logged In <img alt='' src='/images/site/dots.gif' /></span>");
+								setTimeout(function ()
+								{
+									location.reload(true);
+								}, 250);
+							}
+							else
+							{
+								setTimeout(function ()
+								{
+									$("#login_extras_avatars img").addClass("grayscale").removeClass("backshadow");
+									$("#form_login").removeClass("activated");
+								}, 750);
+								
+								$("#login_status").html("<span class='red_text'>Unable to login</span>");
+							}
+						}
+					});
+				}
+				
+				return false;
+			});
+			
+			$(document).on("change", "input[name='account_name']", function ()
+			{
+				$.post("/get/name/"+$("input[name='account_name']").val(), function (data)
+				{
+					var result = JSON.parse(data);
+					
+					if (result.account_id != undefined && result.account_id > 0)
+					{
+						if (result.account_saves > 0)
+						{
+							$("#login_avatar img").attr("src", result.account_avatar);
+							
+							$("#login_extras_avatars img[data-avatar='"+result.account_id+"']").attr('src', '/av/0/0.png');
+						}
+					}
+				});
+			});
+			
+			
+			if (!isTouchScreen())
+				$("input[name='account_name']").eq(0).focus();
+				
+			if ($("input[name='account_name']").val().length > 0)
+			{
+				$("input[name='account_name']").eq(0).trigger("change");			
+				
+				if (!isTouchScreen())
+					$("input[name='account_password']").eq(0).focus();
+			}
+			
+			$('<img src="/images/site/grassland_42_tile.jpg"/>');
+			$('<img src="/images/site/grassland_42_header.jpg"/>');
+			
+		});
+		
+		function isTouchScreen()
+		{
+			return ('ontouchstart' in window || 'onmsgesturechange' in window);
+		}
+		
+	</script>
+</head>
+<body class="plains_dark">
+<div id="global_container">
+<h1><img alt="" src="/images/site/recolorme.png" /></h1>
+<h2>An Avatar and Minigame Community</h2>
+<div id="login_container">
+<div id='login_extras'><div id='login_extras_content'><div id='login_extras_avatars'><img alt='' data-avatar='33955' src='/av/4/33955b.png?1507352400' class='grayscale' /><img alt='' data-avatar='21' src='/av/1/21.png?1507352400' class='grayscale' /><img alt='' data-avatar='3' src='/av/1/3a.png?1507352400' class='imgflip grayscale' /><img alt='' data-avatar='55357' src='/av/6/55357.png?1507352400' class='imgflip grayscale' /></div></div></div>
+<div id="login_avatar"><img alt="" src="/av/0/0.png" class="imgflip grayscale" /></div>
+<div id="login_details">
+<div id="login_form">
+<form method="post" id="form_login" action="/login">
+<input type="hidden" name="action" value="login" />
+<input type="hidden" name="login_session" value="OxZUGRRTWCEfySMoRECNBhVnuiVb8CFq" />
+<input type="hidden" name="lastpage" value="/robots.txt" />
+<p>
+<input type="text" name="account_name" placeholder="Name..." value="" tabindex="1" />
+</p>
+ <p>
+<input type="password" name="account_password" placeholder="Password..." value="" tabindex="2" />
+</p>
+<p>
+<input type="checkbox" id="account_cookie" name="account_cookie" value="1" tabindex="3" />
+<label for="account_cookie">Stay logged in</label>
+</p>
+<p>
+<input class="button" type="submit" id="button_login" value="Log In" tabindex="4" />
+</p>
+<p id="login_status">
+</p>
+</form>
+</div>
+<div id="login_create">
+<a href="/register" class="button button_yellow">Create Account</a>
+</div>
+<div id="login_reset"><a href="/reset">Password Reset</a></div>
+</div>
+</div>
+</div>
+<div id="global_overlay"><div id="global_overlay_message_container"><div id="global_overlay_message">Loading...</div></div></div>
+</body>
+</html> 

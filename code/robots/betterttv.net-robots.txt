@@ -1,0 +1,449 @@
+<!doctype html>
+<html>
+    <head>
+        <title>NightDev - BetterTTV</title>
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/css/bootstrap.min.css" />
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+        <style type="text/css">
+            body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+            footer {
+                border-top: 1px solid rgba(0,0,0,0.2);
+            }
+        </style>
+        <meta name="google-site-verification" content="h1hEekdq72bcuV-w7CdhoKuOcRnfGuY5K8es5nxPMLU" />
+        <link rel="icon" type="image/png" href="/favicon.ico" />
+        <meta name="keywords" content="betterttv, twitchtv, better, bettertwitchtv, ttv, bettertwitch, bttv, twitch, tv" /> 
+<meta name="description" content="Enhances Twitch with new features, emotes, and more." />
+<link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/ajopnjidmegmdimjlfnijceegpefgped" />
+<script type="text/javascript" src="/js/ua-parser.min.js"></script>
+<style type="text/css">
+    #carousel-betterttv {
+        padding: 0px;
+    }
+
+    .carousel-caption {
+        background-color: rgba(0,0,0,0.7);
+        font-size: 12px;
+        line-height: 50px;
+        padding: 0px;
+        padding-bottom: 20px;
+        margin-bottom: 10px;
+    }
+
+    .btn-dl {
+        text-transform: uppercase;
+    }
+</style>
+    </head>
+    
+    <body>
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                    </button><a class="navbar-brand" href="/">NightDev</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="">
+                            <a href="/">Home</a>
+                        </li>
+                        <li class="">
+                            <a href="/contact">Contact</a>
+                        </li>
+                        <li class="">
+                            <a href="/support">Support</a>
+                        </li>
+                        <li class="dropdown active">
+                            <a href="/projects" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="https://nightbot.tv">Nightbot</a>
+                                </li>
+                                <li>
+                                    <a href="/betterttv">BetterTTV</a>
+                                </li>
+                                <li>
+                                    <a href="/kapchat">KapChat</a>
+                                </li>
+                                <li>
+                                    <a href="https://pussh.me">Pussh</a>
+                                </li>
+                                <li>
+                                    <a href="https://streamtip.com">Streamtip</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li class="dropdown-header">Beta Projects</li>
+                                <li>
+                                    <a href="/followalert">Follower Alert</a>
+                                </li>
+                                <li>
+                                    <a href="/hostalert">Host Alert</a>
+                                </li>
+                                <li>
+                                    <a href="/subalert">Subscriber Alert</a>
+                                </li>
+                                <li>
+                                    <a href="/twitchcast">TwitchCast</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div><!--/.navbar-collapse -->
+            </div>
+        </div><!-- Main jumbotron for a primary marketing message or call to action -->
+        
+<script>
+    $(document).ready(function() {
+        var bttvVersion = '7.0.29';
+        var parser = new UAParser();
+        var userBrowser = parser.getBrowser();
+        userBrowser.version = +userBrowser.version.split('.')[0];
+        var downloadPath = 'https://nightdev.com/betterttv/';
+
+        var buttonCallback = null;
+        var buttonUnsupported = false;
+
+        switch(userBrowser.name.toLowerCase()) {
+            case 'opera':
+                if (userBrowser.version >= 15) {
+                    buttonCallback = function() {
+                        window.location = downloadPath + 'opera/betterttv.nex';
+                        $('#opera-download').modal('show');
+                    };
+                } else {
+                    buttonUnsupported = true;
+                }
+                break;
+            case 'yandex':
+            case 'chrome':
+                buttonCallback = function() {
+                    chrome.webstore.install();
+                    $('#chrome-download').modal('show');
+                };
+                break;
+            case 'safari':
+                buttonCallback = function() {
+                    window.location = downloadPath + 'safari/betterttv.safariextz';
+                    $('#safari-download').modal('show');
+                };
+                break;
+            case 'edge':
+                buttonCallback = function() {
+                    window.location = 'ms-windows-store://pdp/?productid=9nblggh51tbk';
+                    $('#edge-download').modal('show');
+                }
+                break;
+            case 'ie':
+                buttonUnsupported = true;
+                break;
+            case 'firefox':
+            case 'iceweasel':
+                buttonCallback = function() {
+                    window.location = downloadPath + 'firefox/betterttv.xpi';
+                    $('#firefox-download').modal('show');
+                };
+                break;
+            default:
+                buttonCallback = function() {
+                    $('#other-download').modal('show');
+                };
+                break;
+        }
+
+        var $downloadLink = $('#download-link');
+        if (buttonUnsupported) {
+            $downloadLink.text(userBrowser.name + ' ' + userBrowser.version + ' Unsupported');
+            $downloadLink.removeClass('btn-success').addClass('btn-danger');
+        } else {
+            $downloadLink.text('Download v' + bttvVersion + ' for ' + userBrowser.name);
+            $downloadLink.click(buttonCallback);
+        }
+        
+        $('.download-links li a').popover();
+
+        ga('send', 'event', 'BetterTTV', 'click', 'Download: ' + userBrowser);
+    });
+</script>
+
+<div class="modal fade" id="all-downloads" tabindex="-1" role="dialog" aria-labelledby="all-downloads" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">All Downloads</h4>
+      </div>
+      <div class="modal-body">
+        <ul class="download-links">
+            <li><a href="firefox/betterttv.xpi" data-trigger="hover" data-title="Download Instructions" data-content="Click to download, and Mozilla Firefox should autodetect the plugin and ask to install it.">Mozilla Firefox</a></li>
+            <li><a href="#" onclick="javascript:chrome.webstore.install();" data-trigger="hover" data-title="Download Instructions" data-content="Click to download, and Google Chrome should autodetect the plugin and ask to install it.">Google Chrome</a> (<a href="https://chrome.google.com/webstore/detail/better-ttv/ajopnjidmegmdimjlfnijceegpefgped" style="padding-left:0px !important;">Webstore Link</a>)</li>
+            <li><a href="opera/betterttv.nex" data-trigger="hover" data-title="Download Instructions" data-content="Click to download. Drag the installation file into the Extensions manager within Opera. Click Install it to install it.">Opera</a></li>
+            <li><a href="safari/betterttv.safariextz" data-trigger="hover" data-title="Download Instructions" data-content="Click to download, and Safari should autodetect the plugin and ask to install it. You may need to manually open the file downloaded to install if you have Safari set to not open safe files.">Safari</a></li>
+            <li><a href="ms-windows-store://pdp/?productid=9nblggh51tbk" data-trigger="hover" data-title="Download Instructions" data-content="Click to download, and Microsoft Store should prompt you to install the addon">Microsoft Edge</a>  (<a href="https://www.microsoft.com/store/apps/9nblggh51tbk" style="padding-left:0px !important;">Microsoft Store Link</a>)</li>
+            <li><a href="other/betterttv.user.js" data-trigger="hover" data-title="Download Instructions" data-content="Chrome derivatives should be able to install this outright, but other kinds of browsers may need Greasemonkey, Tampermonkey, Violentmonkey, etc..">Userscript</a></li>
+            <li>Other browsers? Use the Userscript version.</li>
+        </ul>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="safari-download" tabindex="-1" role="dialog" aria-labelledby="safari-download" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Safari Installation</h4>
+      </div>
+      <div class="modal-body">
+        <p>Your download should have started. If not, please <a href="safari/betterttv.safariextz">click here</a>.</p>
+        <p>After the download has finished, open the extension in Safari in order to install.</p>
+        <p>Reload any Twitch pages you may have open after installation.</p>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="opera-download" tabindex="-1" role="dialog" aria-labelledby="opera-download" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Opera Installation</h4>
+      </div>
+      <div class="modal-body">
+        <p>Your download should have started. If not, please <a href="opera/betterttv.nex">click here</a>.</p>
+        <p>After the download has finished, drag the extension into the Extensions manager in Opera in order to install.</p>
+        <p>Reload any Twitch pages you may have open after installation.</p>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="firefox-download" tabindex="-1" role="dialog" aria-labelledby="firefox-download" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Firefox Installation</h4>
+      </div>
+      <div class="modal-body">
+        <p>Your download should have started. If not, please <a href="firefox/betterttv.xpi">click here</a>.</p>
+        <p>After the download has finished, your browser should prompt you to install.</p>
+        <p>Reload any Twitch pages you may have open after installation.</p>
+        <p><strong>Getting "Connection Failure" when installing?<br> &mdash; Disable your antivirus as it might be interfering.</strong></p>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="chrome-download" tabindex="-1" role="dialog" aria-labelledby="chrome-download" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Chrome Installation</h4>
+      </div>
+      <div class="modal-body">
+        <p>Chrome should have instantly prompted you to install the addon.</p>
+        <p>If not, please <a href="https://chrome.google.com/webstore/detail/better-ttv/ajopnjidmegmdimjlfnijceegpefgped">click here</a> to install from the Chrome Webstore.</p>
+        <p>Reload any Twitch pages you may have open after installation.</p>
+        <p><strong>Getting "Network Failed" when installing?<br> &mdash; Reinstall Google Chrome, as it's been corrupted.</strong></p>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="edge-download" tabindex="-1" role="dialog" aria-labelledby="edge-download" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Edge Installation</h4>
+      </div>
+      <div class="modal-body">
+        <p>Microsoft's Store should have instantly prompted you to install the addon.</p>
+        <p>If not, please <a href="https://www.microsoft.com/store/apps/9nblggh51tbk">click here</a> to install from the Microsoft's website.</p>
+        <p>Reload any Twitch pages you may have open after installation.</p>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="other-download" tabindex="-1" role="dialog" aria-labelledby="other-download" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Userscript Installation</h4>
+      </div>
+      <div class="modal-body">
+        <p>This browser isn't officially supported. :(</p>
+        <p>It may still work, however, but it will take a little extra work.</p>
+        <br />
+        <p>Chrome-like users need to install <a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en" target="_blank">TamperMonkey</a></p>
+        <p>Firefox-like users need to install <a href="https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/" target="_blank">GreaseMonkey</a></p>
+        <p>Maxthon users need to install <a href="http://extension.maxthon.com/detail/index.php?view_id=1680&category_id=" target="_blank">ViolentMonkey</a></p>
+        <p>There may be other Userscript solutions too!</p>
+        <br />
+        <p>After installing a userscript manager, install BetterTTV by <a href="other/betterttv.user.js">clicking here</a>.</p>
+        <p>After the download has finished, the manager should prompt you to install.</p>
+        <p>Reload any Twitch pages you may have open after installation.</p>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="container">
+    <div class="row">
+        <div class="jumbotron col-md-12"> 
+            <div class="col-md-6">
+                <h1>BetterTTV</h1>
+                <p class="lead">BetterTTV enhances Twitch with new features, emotes, and more.</p>
+                <p><a class="btn btn-lg btn-success btn-dl" id="download-link" href="#" role="button">Download</a></p>
+                <p><a class="btn btn-xs btn-primary" href="#" role="button" data-toggle="modal" data-target="#all-downloads">for another browser</a></p>
+            </div>
+
+            <div class="col-md-6">
+                <div id="carousel-betterttv" class="carousel slide col-md-6" style="width:100%;" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-betterttv" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-betterttv" data-slide-to="1"></li>
+                        <li data-target="#carousel-betterttv" data-slide-to="2"></li>
+                        <li data-target="#carousel-betterttv" data-slide-to="3"></li>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img src="https://cdn.nightdev.com/betterttv/images/ss1.png" alt="Channel page displaying the settings panel">
+                            <div class="carousel-caption">
+                                Channel page displaying the settings panel
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="https://cdn.nightdev.com/betterttv/images/ss2.png" alt="Channel page with darkened mode">
+                            <div class="carousel-caption">
+                                Channel page with darkened mode
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="https://cdn.nightdev.com/betterttv/images/ss3.png" alt="The Twitch dashboard using BetterTTV">
+                            <div class="carousel-caption">
+                                The Twitch dashboard using BetterTTV
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="https://cdn.nightdev.com/betterttv/images/ss4.png" alt="Moderator cards and the changed chat settings menu">
+                            <div class="carousel-caption">
+                                Moderator cards and the changed chat settings menu
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-betterttv" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-betterttv" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row marketing">
+        <div class="col-lg-6">
+            <div class="page-header">
+                <h2>Features</h2>
+            </div>
+            <h3>Notable Chat Tweaks</h3>
+            <p>Anon Chat</p>
+            <p>Blacklist/Highlight words and phrases</p>
+            <p>Recent chat history on chat load</p>
+            <p>Custom chat emoticons</p>
+            <p>Show or completely remove deleted messages</p>
+            <p>Embedded Strawpolls</p>
+            <p>Improved emote menu</p>
+            <p>Unban all users with /massunban</p>
+            <p>Username color recalculation (prevents hard-to-read colors like Spring Green)</p>
+            <p>Chat image link previews on hover</p>
+            <p>Link info on hover</p>
+            <p>A dark theme which will make you love Twitch even more</p>
+            <br />
+            <h4>And much more!</h4>
+        </div>
+        <div class="col-lg-6">
+            <div class="page-header">
+                <h2>Changelog</h2>
+            </div>
+            
+                        <div>
+                            <h4>
+                                Version 7.0.29 <small>(September 26, 2017)</small>
+                            </h4>
+                            <p>more vod chat bugfixes</p>
+                        </div>
+                        <br />
+                    
+                        <div>
+                            <h4>
+                                Version 7.0.28 <small>(September 22, 2017)</small>
+                            </h4>
+                            <p>fixes <a href="https://github.com/night/BetterTTV/issues/2676" target="_blank">#2676</a><br />fixes <a href="https://github.com/night/BetterTTV/issues/2683" target="_blank">#2683</a></p>
+                        </div>
+                        <br />
+                    
+                        <div>
+                            <h4>
+                                Version 7.0.27 <small>(September 18, 2017)</small>
+                            </h4>
+                            <p>beta support for twitch's beta site</p>
+                        </div>
+                        <br />
+                    
+                        <div>
+                            <h4>
+                                Version 7.0.26 <small>(September 9, 2017)</small>
+                            </h4>
+                            <p>fixes <a href="https://github.com/night/BetterTTV/issues/2601" target="_blank">#2601</a><br />fixes <a href="https://github.com/night/BetterTTV/issues/2608" target="_blank">#2608</a><br />fixes <a href="https://github.com/night/BetterTTV/issues/2616" target="_blank">#2616</a><br />fixes <a href="https://github.com/night/BetterTTV/issues/2643" target="_blank">#2643</a><br />fixes <a href="https://github.com/night/BetterTTV/issues/2670" target="_blank">#2670</a></p>
+                        </div>
+                        <br />
+                    
+                        <div>
+                            <h4>
+                                Version 7.0.25 <small>(August 2, 2017)</small>
+                            </h4>
+                            <p>dark theme fixes</p>
+                        </div>
+                        <br />
+                            </div>
+    </div>
+</div>
+        <div class="container">
+            <footer>
+                <br />
+                <p class="pull-left">Copyright &copy; 2017 NightDev, LLC. All Rights Reserved.</p>
+            </footer>
+        </div><!-- /container -->
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-39733925-2', 'auto');
+          ga('send', 'pageview');
+
+        </script>
+    </body>
+</html>

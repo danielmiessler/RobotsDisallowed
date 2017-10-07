@@ -1,0 +1,75 @@
+<!doctype html>
+<html xmlns:ng="http://angularjs.org" dir="{{::(conf.availableLanguages[env.lang].rtl ? 'rtl' : 'ltr')}}"
+      ng-class="{'integration-auto-height': confPartner.notifyOnResize}" lang="{{::(conf.availableLanguages[env.lang].short.toLowerCase())}}">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset="utf-8">
+    
+    <title ng-bind="siteTitle">Sport betting</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="sport betting,live sports betting,online betting,bet and win,online football,bet online,soccer bets,champions league,barclays premier league,football betting site">
+    <link rel="icon" href="favicon.ico?20170927.0211470.0.1" />
+    <link rel="stylesheet" href="css/main.min.css?20170927.0211470.0.1"/>
+    <link rel="stylesheet" href="skins/isagaming.com/css/skin.min.css?20170927.0211470.0.1"/>
+    <!--[if lt IE 10]>
+    <script src="//cdn.rawgit.com/jpillora/xdomain/0.7.3/dist/xdomain.min.js"></script>
+    <script>xdomain.slaves();</script>
+    <![endif]-->
+    
+    <link ng-if="conf.customLanguageCss.indexOf(env.lang) !== -1" rel="stylesheet" ng-href="css/fonts/{{env.lang}}.css"/>
+
+    <link ng-if="conf.customLanguageCss.indexOf(env.lang) !== -1" rel="stylesheet" ng-href="skins/{{conf.skin}}/css/fonts/{{env.lang}}.css"/>
+    <!-- /build -->
+
+    </head>
+<body class="{{::conf.site_name.split('.').join('')}}">
+    <div class="
+        body-wrapper
+        {{conf.integrationMode ? 'integration': ''}}
+        {{casinoGameOpened ? 'full-screen' : ''}}
+        {{env.sliderContent ? 'slider-open' : ''}}
+        {{noClassicScroll ? 'no-classic-scroll' : ''}}
+        {{conf.sportsLayout === 'external' ? 'sb': ''}}
+        {{$location.path() == '/' ? 'homepage' : ''}}
+        {{$location.path().indexOf('customsport') !== -1 ? 'sport' : ''}}
+        {{footerMovable ? 'footer-movable' : ''}}
+        lang-{{::env.lang}}
+        {{$location.path().split('/').join('')}}
+        theme-{{theme.id}}
+        {{::conf.site_name}}
+        {{::domainClass}}
+        {{(['/poolbetting/', '/freebet/'].indexOf($location.path()) > -1) ? 'modern' : (['/dashboard/', '/livecalendar/', '/results/', '/multiview/', '/overview/'].indexOf($location.path()) > -1 || conf.sportsLayout == 'classic') ? 'classic' : conf.sportsLayout}}
+        {{env.bodyWrapperClass||''}}
+    " no-animate>
+    <div class="wrapper-contain-row">
+
+        <div class="wrapper-cell">
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-cookies.min.js"></script>
+
+    <script id="app-config" data-config-url-path="" data-name="" data-config-is-externall=""></script>
+    <script src="app.min.js?20170927.021147-83a9fa3dd7c6a9f46781bbb2c943f151f5b37d3c" id="bc-main-js"></script>
+            <div class="contain-header tpl-container block-size-visible-b" ng-include="getTemplate('templates/header.html')" ng-class="{'subheader-enabled': currentPageHasSubHeader() }"></div>
+            <div ng-view ng-class="$location.path().split('/').join('')" class="view-container"></div>
+        </div>
+	</div>
+        <div class="footer-group">
+            <div class="footer-cell">
+                <div class="contain-footer-block"
+                     id="footerContainer"
+                     ng-hide="casinoGameOpened > 0"
+                     ng-class="{'active': footerOpen && !env.sliderContent, 'footer-fixed': footerMovable}"
+                     ng-include="getTemplate('templates/footer.html')"
+                     ng-if="$location.path() !='/popup/'"
+                ></div>
+                <div class="footer-button theme-{{theme.id}}" ng-click="footerOpen=!footerOpen" ng-class="{'footer-button-open': footerOpen}"
+                     ng-hide="casinoGameOpened > 0 || conf.footer.disable || !footerMovable || env.sliderContent"></div>
+            </div>
+        </div>
+</div>
+    
+</body>
+</html>

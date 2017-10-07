@@ -1,0 +1,26 @@
+User-agent: *
+Disallow: /*/print$
+# Don't allow indexing of search results
+Disallow: /search?
+# We only allow indexing of the licence-finder landing page
+Disallow: /licence-finder/
+Allow: /licence-finder
+Disallow: /apply-for-a-licence/
+# Don't allow indexing of user needs pages
+Disallow: /info/*
+Sitemap: https://www.gov.uk/sitemap.xml
+Crawl-delay: 0.5
+# https://ahrefs.com/robot/ crawls the site frequently
+User-agent: AhrefsBot
+Crawl-delay: 10
+# https://www.deepcrawl.com/bot/ makes lots of requests. Ideally
+# we'd slow it down rather than blocking it but it doesn't mention
+# whether or not it supports crawl-delay.
+User-agent: deepcrawl
+Disallow: /
+# Complaints of 429 'Too many requests' seem to be coming from SharePoint servers
+# (https://social.msdn.microsoft.com/Forums/en-US/3ea268ed-58a6-4166-ab40-d3f4fc55fef4)
+# The robot doesn't recognise its User-Agent string, see the MS support article:
+# https://support.microsoft.com/en-us/help/3019711/the-sharepoint-server-crawler-ignores-directives-in-robots-txt
+User-agent: MS Search 6.0 Robot
+Disallow: /

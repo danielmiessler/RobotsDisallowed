@@ -1,0 +1,844 @@
+﻿<!DOCTYPE html>
+<html lang="ru"><head>
+	<meta charset="utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" type="text/css" href="/assets/629c2215/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/assets/629c2215/css/bootstrap-responsive.css" />
+<link rel="stylesheet" type="text/css" href="/assets/629c2215/css/bootstrap-yii.css" />
+<link rel="stylesheet" type="text/css" href="/css/v3.1.css?4" />
+<link rel="stylesheet" type="text/css" href="/css/v3.1.mob.css" />
+<link rel="stylesheet" type="text/css" href="/css/face.css?1" />
+<style type="text/css">
+/*<![CDATA[*/
+body {
+	background-color: #ffffff;
+	color: #000000;
+}
+body, label, input, button, select, textarea {
+	font-size: 13px;
+	line-height: 18px;
+}
+#chat-box {
+	height: 300px;
+}.comments .comment .meta, .comments .comment .meta a, .translator .info, .translator .info a { color: #bbb; }
+.comments .comment:hover .meta, .comments .comment:hover .meta a, .translator tr:hover .info, .translator tr:hover .info a { color: #888; }
+/*]]>*/
+</style>
+<script type="text/javascript" src="/assets/4f6b9a00/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/629c2215/js/bootstrap.js"></script>
+<script type="text/javascript" src="/js/jquery.form.js"></script>
+<script type="text/javascript" src="/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/js/global.js?16"></script>
+<script type="text/javascript">
+/*<![CDATA[*/
+var User = new CUser({id: 0, login: 'anonymous'});
+
+/*]]>*/
+</script>
+<title>Система коллективных переводов Rulate Translate :: Tl.Rulate.ru</title>
+	<meta name="description" content="Коллективный перевод, Ранобэ на русском, Лайт новеллы на русском, читать ранобэ, новеллы читать, книги и другое" />
+	<meta name="language" content="ru" />
+	<meta name="keywords" content="Ранобэ на русском, Лайт новеллы на русском, читать ранобэ, новеллы читать, Коллективные переводы, перевод новелл, перевод ранобэ, translation, коллективный перевод текстов и книг, примеры перевода,коллективные переводы, краудсорсинг, crowdsourcing, рулейт переводы, переводы манги, коллективный перевод манги, книжен и новелл" />
+	<link rel='icon' href='/i/favicon.ico' type='image/x-icon'>
+	<link rel='shortcut icon' href='/i/favicon.ico' type='image/x-icon'>
+	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+	<!--[if IE]>
+		<script type="text/javascript" src="/js/jquery.input-placeholder.js"></script>
+		<link rel='stylesheet' href="/css/jquery.input-placeholder.css" />
+		<script type="text/javascript">
+			$(function() { $('input[placeholder]').inputDefault(); });
+		</script>
+	<![endif]-->
+
+	<style type="text/css">
+		.banner-poll { margin:5px 0; padding: 10px; text-align: center; border:1px solid #bbb; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0,0,0,.3) inset; background:#f0f0f0; font-size:10px; }
+		.banner-poll i {}
+		.banner-poll b {}
+		.banner-poll a { text-decoration: underline; }
+	</style>
+	
+	<script src="http://cdn.wysibb.com/js/jquery.wysibb.min.js"></script>
+	<link rel="stylesheet" href="http://cdn.wysibb.com/css/default/wbbtheme.css" />
+	
+	<style>.modesw {width: 75px;}</style>
+</head><body>
+
+<header>
+<div class="container" style="background-color:#fff;">
+	<a href="/" id="header-logo"><img src="/i/logo-v3.gif" width="124" height="130" alt="Tl.Rulate.ru" title="4" id="header-logo-img" /></a>
+
+	<nav>
+	<ul id="header-menu">
+		<li><a href="/blog/?topic=64">НОВОСТИ</a></li>
+		<li><a href="/search/?cat=2">КАТАЛОГ</a></li>
+		<li><a href="/abandon/">БРОШЕННЫЕ</a></li>
+		<li><a href="/users">ПЕРЕВОДЧИКИ</a></li>
+		<li><a href="/blog">БЛОГ</a></li>
+		<li><a href="/announces">АНОНСЫ</a></li>
+		<li><a href="http://vk.com/rulate_project">ВК</a></li>
+		<li><a href="#" onclick="return Chat.toggle()" title="Ctrl + ~">ЧАТ</a></li>
+		<li><a href="http://allmanga.me" style="color:#08C;">МАНГА</a></li>
+		<li class="search">
+			<form class="form-search" method="get" action="/search">
+								<input type="hidden" name="from" value="header">
+				<input type="text" name="t" class="input-medium search-query span3" placeholder="Ищете что-нибудь?" title="Кстати, отсюда можно найти и переводчика, если собаку (@), а потом сразу его ник."/>
+				<input type="submit" value="&raquo;" class="btn" style="border-radius: 20px;" />
+			</form>
+		</li>
+	</ul>
+
+	<ul id="header-submenu">
+			<li id="header-login">
+			<form method="post" action="/" class="form-inline btn-toolbar">
+				<input type="text" name="login[login]" placeholder="Логин" class="span1" />
+				<input type="password" name="login[pass]" placeholder="Пароль" class="span1" />
+				<input type="submit" value="Войти" class="btn" />
+			</form>
+		</li>
+		<li><a href="/register"><strong>Зарегистрироваться</strong></a></li>
+		<li><a href="/register/remind"><strong>Напомнить пароль</strong></a></li>
+		<li><p>Зарегистрировавшись, вы сможете добавлять свои версии перевода, общаться в блоге, ставить оценки переводам.</p></li>
+		</ul>
+
+	</nav>
+
+</div>
+</header>
+
+
+
+
+<div class="container">
+<div id="yw0"></div><div class="row">
+	<div class="span8" id="f-hot">
+
+<style>
+.row-books {
+	margin: 0px -10px 10px -10px;
+}
+.row-book {
+	width: 21%;
+	float: left;
+    padding-left: 10px;
+    padding-right: 0;
+}
+.row-book img {
+    box-shadow: 0 1px 3px 0 #4a4a4a;
+    min-height: 60px;
+	display: block;
+    max-width: 100%;
+	width: 168px!important;
+	height: 224px!important;
+}
+.row-book .title {
+    border-top: 2px solid white;
+    text-shadow: 0 0 4px black;
+    font-size: 14px;
+    color: white;
+    position: relative;
+    margin-top: -60px;
+    height: 60px;
+    overflow: hidden;
+    background-image: url(/i/grey.png);
+}
+.row-book .title strong {
+    font-size: 16px;
+    text-shadow: 0 0 4px blue;
+}
+</style>
+
+<div class="row-books">
+	<h3>Рекомендации</h3>
+		<div class="row-book">
+		<a href="/book/2554">
+			<img src="/i/book/17/2/14893.jpg" width="130" height="180">
+			<div class="title">
+				<strong>Мир Духовных Питомцев</strong>
+			</div>
+		</a>
+	</div>
+		<div class="row-book">
+		<a href="/book/11">
+			<img src="/i/book/16/9/21942.jpg" width="130" height="180">
+			<div class="title">
+				<strong>Призрачные Регалии</strong>
+			</div>
+		</a>
+	</div>
+		<div class="row-book">
+		<a href="/book/1346">
+			<img src="/i/book/16/10/19011.jpg" width="130" height="180">
+			<div class="title">
+				<strong>Синий Феникс</strong>
+			</div>
+		</a>
+	</div>
+		<div class="row-book">
+		<a href="/book/532">
+			<img src="/i/book/16/8/22282.jpg" width="130" height="180">
+			<div class="title">
+				<strong>Каждый возвращается домой</strong>
+			</div>
+		</a>
+	</div>
+		<div style="clear:both"></div>
+</div>
+		
+		<ul class="nav nav-tabs">
+			<li class="active" ><a href="/?tab=ready">Последние обновления</a></li>
+			<li  ><a href="/?tab=hot">Переводится сейчас</a></li>
+		</ul>
+		
+				
+		<h2>
+			Последние обновления
+			<a href="#" data-toggle="modal" data-target="#f-ready-ini" class="cog" title="Настроить внешний вид этого блока"><i class='icon-cog'></i></a>
+		</h2>
+		<ul class='imged'><li><a href='/book/247'><div class='bimg' style="background-image:url('/i/book/16/7/27452-5050.jpg')"></div></a><p class='title'><a href='/book/247/168901/ready'>Порок Сердца / Порок Сердца - Глава 105."Пропажа"</a></p><p class='info'>текст с русского на русский <span class='r'>10-07 09:36</span></p></li><li><a href='/book/4015'><div class='bimg' style="background-image:url('/i/book/17/3/22005-5050.jpg')"></div></a><p class='title'><a href='/book/4015/146961/ready'>The Great Thief (大盗贼) / Великий Вор - Глава 47</a></p><p class='info'>текст с китайского на русский <span class='r'>10-07 09:23</span></p></li><li><a href='/book/8787'><div class='bimg'></div></a><p class='title'><a href='/book/8787/170180/ready'>When I Woke Up, It was a Basement?! ~The Future of the Reincarnated Girl's Dream~ 目覚めたら地下室!?～転生少女の夢の先～ / Когда я проснулась, я была в подвале?! ~Мечта переродившейся девушки~ - Глава 10 – Поиск</a></p><p class='info'>текст с английского на русский <span class='r'>10-07 09:18</span></p></li><li><a href='/book/9340'><div class='bimg' style="background-image:url('/i/book/17/10/31691-5050.jpg')"></div></a><p class='title'><a href='/book/9340/177523/ready'>Темная Башня Похоти / Нескромный Бог Экстаза! - Пролог. </a></p><p class='info'>текст с русского на русский <span class='r'>10-07 09:15</span></p></li><li><a href='/book/2225'><div class='bimg' style="background-image:url('/i/book/16/12/9949-5050.jpg')"></div></a><p class='title'><a href='/book/2225/136878/ready'>Absolute Choice (绝对选项) / Абсолютный Выбор - Глава 345</a></p><p class='info'>текст с английского на русский <span class='r'>10-07 09:14</span></p></li><li><a href='/book/5893'><div class='bimg' style="background-image:url('/i/book/17/5/19357-5050.jpg')"></div></a><p class='title'><a href='/book/5893/137951/ready'>Number One Under Heaven / Номер один под небесами - Глава 59 - Божественное Пламя</a></p><p class='info'>текст с английского на русский <span class='r'>10-07 09:00</span></p></li><li><a href='/book/9347'><div class='bimg' style="background-image:url('/i/book/17/10/28195-5050.jpg')"></div></a><p class='title'><a href='/book/9347/177545/ready'>Драконоборец / Драконоборец - Глава 20: Ничто не вечно.</a></p><p class='info'>текст с русского на русский <span class='r'>10-07 08:55</span></p></li><li><a href='/book/5425'><div class='bimg' style="background-image:url('/i/book/17/5/19672-5050.jpg')"></div></a><p class='title'><a href='/book/5425/155111/ready'>Endless difficulty. System 2.0 / Бесконечная трудность. Система 2.0 - Глава 158</a></p><p class='info'>текст с русского на русский <span class='r'>10-07 08:49</span></p></li><li><a href='/book/4139'><div class='bimg' style="background-image:url('/i/book/17/7/4253-5050.jpg')"></div></a><p class='title'><a href='/book/4139/141915/ready'>Agent of the Realm? / Агент Королевства? - 76. Слежка</a></p><p class='info'>текст с английского на русский <span class='r'>10-07 08:37</span></p></li><li><a href='/book/6275'><div class='bimg' style="background-image:url('/i/book/17/6/897-5050.jpg')"></div></a><p class='title'><a href='/book/6275/171643/ready'>Insanely Pampered Wife: Divine Doctor Fifth Young Miss / Безумно избалованная жена: Божественный доктор пятая юная мисс - глава 37 "Условия награды, ведение переговоров"</a></p><p class='info'>текст с английского на русский <span class='r'>10-07 08:13</span></p></li><li><a href='/book/9347'><div class='bimg' style="background-image:url('/i/book/17/10/28195-5050.jpg')"></div></a><p class='title'><a href='/book/9347/177539/ready'>Драконоборец / Драконоборец - Глава 19: Свобода.</a></p><p class='info'>текст с русского на русский <span class='r'>10-07 08:03</span></p></li><li><a href='/book/2554'><div class='bimg' style="background-image:url('/i/book/17/2/14893-5050.jpg')"></div></a><p class='title'><a href='/book/2554/169431/ready'>The Charm of Soul Pets [宠魅] / Мир Духовных Питомцев - Глава 262 (139): Чу Му против Чу Юэ. Часть вторая</a></p><p class='info'>текст с английского на русский <span class='r'>10-07 08:01</span></p></li><li><a href='/book/9384'><div class='bimg' style="background-image:url('/i/book/17/10/8606-5050.jpg')"></div></a><p class='title'><a href='/book/9384/177018/ready'>Наследник Проклятого Трона / Наследник Проклятого Трона - Глава 2</a></p><p class='info'>текст с русского на русский <span class='r'>10-07 07:35</span></p></li><li><a href='/book/10'><div class='bimg' style="background-image:url('/i/book/17/10/28174-5050.jpg')"></div></a><p class='title'><a href='/book/10/135732/ready'>Otherworldly Evil Monarch (异世邪君) / Злой монарх - 2-044: Рост Суань-Зверей?</a></p><p class='info'>текст с английского на русский <span class='r'>10-07 07:35</span></p></li><li><a href='/book/10'><div class='bimg' style="background-image:url('/i/book/17/10/28174-5050.jpg')"></div></a><p class='title'><a href='/book/10/126616/ready'>Otherworldly Evil Monarch (异世邪君) / Злой монарх - 2-043: Побег Инь и Ян</a></p><p class='info'>текст с английского на русский <span class='r'>10-07 07:35</span></p></li><li><a href='/book/517'><div class='bimg' style="background-image:url('/i/book/16/9/13169-5050.jpg')"></div></a><p class='title'><a href='/book/517/118093/ready'>近戰法師 / Close Combat Mage / Маг Ближнего Боя - Глава 371</a></p><p class='info'>текст с английского на русский <span class='r'>10-07 07:33</span></p></li><li><a href='/book/126'><div class='bimg' style="background-image:url('/i/book/16/9/30569-5050.jpg')"></div></a><p class='title'><a href='/book/126/165985/ready'>Maken no Daydreamer / 魔拳のデイドリーマー / Фантастический кулак демона - Глава 29.1 – Встреча с Охраной (часть 1)</a></p><p class='info'>текст с английского на русский <span class='r'>10-07 07:32</span></p></li><li><a href='/book/4123'><div class='bimg' style="background-image:url('/i/book/17/5/29085-5050.jpg')"></div></a><p class='title'><a href='/book/4123/176636/ready'>Kono Sekai ga Game da to, Ore dake ga Shitte Iru / この世界がゲームだと俺だけが知っている / Только я знаю, что этот мир - игра - Глава 3. Часть 2</a></p><p class='info'>текст с японского на русский <span class='r'>10-07 07:31</span></p></li><li><a href='/book/1306'><div class='bimg' style="background-image:url('/i/book/16/10/16330-5050.jpg')"></div></a><p class='title'><a href='/book/1306/162333/ready'>The Cook of the Mercenary сorp / Кашевар у наёмников - Глава 19.5</a></p><p class='info'>текст с английского на русский <span class='r'>10-07 07:30</span></p></li><li><a href='/book/422'><div class='bimg' style="background-image:url('/i/book/16/12/15942-5050.jpg')"></div></a><p class='title'><a href='/book/422/152421/ready'>Quanzhi  Fashi / Профессия - Магистр!/Маг на полную ставку - Глава 630</a></p><p class='info'>текст с китайского на русский <span class='r'>10-07 07:27</span></p></li><li><a href='/book/422'><div class='bimg' style="background-image:url('/i/book/16/12/15942-5050.jpg')"></div></a><p class='title'><a href='/book/422/151825/ready'>Quanzhi  Fashi / Профессия - Магистр!/Маг на полную ставку - Глава 629</a></p><p class='info'>текст с китайского на русский <span class='r'>10-07 07:27</span></p></li><li><a href='/book/4'><div class='bimg' style="background-image:url('/i/book/16/7/9620-5050.jpg')"></div></a><p class='title'><a href='/book/4/157088/ready'>Peerless Martial God / Бесподобный воинственный бог - Глава 932</a></p><p class='info'>текст с английского на русский <span class='r'>10-07 07:27</span></p></li><li><a href='/book/4'><div class='bimg' style="background-image:url('/i/book/16/7/9620-5050.jpg')"></div></a><p class='title'><a href='/book/4/157087/ready'>Peerless Martial God / Бесподобный воинственный бог - Глава 931</a></p><p class='info'>текст с английского на русский <span class='r'>10-07 07:27</span></p></li><li><a href='/book/1123'><div class='bimg' style="background-image:url('/i/book/17/4/31022-5050.jpg')"></div></a><p class='title'><a href='/book/1123/43215/ready'>(Um, Sorry) I’ve Been Reincarnated! / 転生しちゃったよ （いや、ごめん） / (Мм, извини) Я был перерождён! - 059 – В замок.</a></p><p class='info'>текст с английского на русский <span class='r'>10-07 07:05</span></p></li><li><a href='/book/1816'><div class='bimg' style="background-image:url('/i/book/17/9/17126-5050.jpg')"></div></a><p class='title'><a href='/book/1816/176807/ready'>F**cking coach 2 / Тернистый путь звездного Бога Эроса (18+) - Глава 317.2 Трое в номере, не считая страпона... </a></p><p class='info'>текст с русского на русский <span class='r'>10-07 06:42</span></p></li><li><a href='/book/4486'><div class='bimg' style="background-image:url('/i/book/17/3/21915-5050.jpg')"></div></a><p class='title'><a href='/book/4486/161278/ready'>Age of Adepts / Эпоха Адептов - Глава 111</a></p><p class='info'>текст с английского на русский <span class='r'>10-07 06:18</span></p></li><li><a href='/book/3981'><div class='bimg' style="background-image:url('/i/book/17/3/14421-5050.jpg')"></div></a><p class='title'><a href='/book/3981/169427/ready'>The Wizard World / Мир магов - Глава 161</a></p><p class='info'>текст с английского на русский <span class='r'>10-07 06:10</span></p></li><li><a href='/book/9347'><div class='bimg' style="background-image:url('/i/book/17/10/28195-5050.jpg')"></div></a><p class='title'><a href='/book/9347/177519/ready'>Драконоборец / Драконоборец - Глава 18: Предложение.</a></p><p class='info'>текст с русского на русский <span class='r'>10-07 06:02</span></p></li><li><a href='/book/9347'><div class='bimg' style="background-image:url('/i/book/17/10/28195-5050.jpg')"></div></a><p class='title'><a href='/book/9347/177518/ready'>Драконоборец / Драконоборец - Глава 17: Поместье фон Таркенов.</a></p><p class='info'>текст с русского на русский <span class='r'>10-07 05:45</span></p></li><li><a href='/book/3805'><div class='bimg' style="background-image:url('/i/book/17/9/31364-5050.jpg')"></div></a><p class='title'><a href='/book/3805/152471/ready'>The Lone, Wanderer / Одинокий Странник - Глава 36</a></p><p class='info'>текст с английского на русский <span class='r'>10-07 05:03</span></p></li><li><a href='/book/9395'><div class='bimg' style="background-image:url('/i/book/17/10/11223-5050.jpg')"></div></a><p class='title'><a href='/book/9395/177320/ready'>Infinite Stratos(fanfic)+18 / Бесконечные Небеса(фанфик)+18 - Вступление</a></p><p class='info'>текст с английского на русский <span class='r'>10-07 04:48</span></p></li><li><a href='/book/6755'><div class='bimg' style="background-image:url('/i/book/17/9/23286-5050.jpg')"></div></a><p class='title'><a href='/book/6755/130453/ready'>I Have A Cheat Power But I Want To Live Relaxedly 「Let's Enjoy Reincarnated Life!」 / Cheat Aru Kedo Mattari Kurashitai  / У меня есть читерская сила, но я хочу жить не напрягаясь - Глава 9: Великий Храм</a></p><p class='info'>текст с английского на русский <span class='r'>10-07 04:03</span></p></li><li><a href='/book/9347'><div class='bimg' style="background-image:url('/i/book/17/10/28195-5050.jpg')"></div></a><p class='title'><a href='/book/9347/177513/ready'>Драконоборец / Драконоборец - Глава 16: Судьба вампиров.</a></p><p class='info'>текст с русского на русский <span class='r'>10-07 04:02</span></p></li><li><a href='/book/1689'><div class='bimg' style="background-image:url('/i/book/17/10/17295-5050.jpg')"></div></a><p class='title'><a href='/book/1689/177404/ready'>Pure Love x Insult Complex / Чистая любовь и Жажда Мести 18+ - Глава 173. Часть 1 - Антракт</a></p><p class='info'>текст с японского на русский <span class='r'>10-07 03:21</span></p></li></ul><div class="pagination"><ul id="yw1" class="yiiPager"><li class="first"><a href="/?tab=ready">&laquo;&laquo;&laquo;</a></li><li class="previous"><a href="/?tab=ready&page=1">&laquo;</a></li><li class="active"><a href="/?tab=ready&page=1">1</a></li><li class=""><a href="/?tab=ready&page=2">2</a></li><li class=""><a href="/?tab=ready&page=3">3</a></li><li class=""><a href="/?tab=ready&page=4">4</a></li><li class=""><a href="/?tab=ready&page=5">5</a></li><li class=""><a href="/?tab=ready&page=6">6</a></li><li class=""><a href="/?tab=ready&page=7">7</a></li><li class=""><a href="/?tab=ready&page=8">8</a></li><li class=""><a href="/?tab=ready&page=9">9</a></li><li class=""><a href="/?tab=ready&page=10">10</a></li><li class=""><a href="/?tab=ready&page=11">11</a></li><li class=""><a href="/?tab=ready&page=12">12</a></li><li class=""><a href="/?tab=ready&page=13">13</a></li><li class=""><a href="/?tab=ready&page=14">14</a></li><li class=""><a href="/?tab=ready&page=15">15</a></li><li class=""><a href="/?tab=ready&page=16">16</a></li><li class=""><a href="/?tab=ready&page=17">17</a></li><li class=""><a href="/?tab=ready&page=18">18</a></li><li class="next"><a href="/?tab=ready&page=2">&raquo;</a></li><li class="last"><a href="/?tab=ready&page=2555">&raquo;&raquo;&raquo;</a></li></ul></div>		
+		<div id="f-ready-ini" class="modal hide">
+			<form method="post" class="form-horizontal" action="/site/ini">
+				<input type="hidden" name="area" value="mainfilter" />
+				
+				<div class="modal-header" style='padding-bottom:0;'>
+					<a class="close" data-dismiss="modal">×</a>
+					<h3>Настройки блока</h3>
+				</div>
+				<div class="modal-body" style="max-height:350px">
+					<div class="control-group">
+						<label for="user_categories_na">
+							<input type="checkbox" name="user_categories_na" value="1" id="user_categories_na">
+							Не показывать авторское
+						</label>
+
+																		<label for="user_categories_0">
+							<input type="checkbox" name="user_categories[]" value="2" id="user_categories_0">
+							 Тексты						</label>
+																		<label for="user_categories_1">
+							<input type="checkbox" name="user_categories[]" value="12" id="user_categories_1">
+							.. Новеллы и ранобэ						</label>
+																		<label for="user_categories_2">
+							<input type="checkbox" name="user_categories[]" value="5" id="user_categories_2">
+							.... Китайские						</label>
+																		<label for="user_categories_3">
+							<input type="checkbox" name="user_categories[]" value="7" id="user_categories_3">
+							.... Корейские						</label>
+																		<label for="user_categories_4">
+							<input type="checkbox" name="user_categories[]" value="6" id="user_categories_4">
+							.... Японские						</label>
+																		<label for="user_categories_5">
+							<input type="checkbox" name="user_categories[]" value="18" id="user_categories_5">
+							.... Авторские						</label>
+																		<label for="user_categories_6">
+							<input type="checkbox" name="user_categories[]" value="19" id="user_categories_6">
+							.... Фанфики						</label>
+																		<label for="user_categories_7">
+							<input type="checkbox" name="user_categories[]" value="28" id="user_categories_7">
+							.... Английские						</label>
+																		<label for="user_categories_8">
+							<input type="checkbox" name="user_categories[]" value="13" id="user_categories_8">
+							.. Статьи						</label>
+																		<label for="user_categories_9">
+							<input type="checkbox" name="user_categories[]" value="14" id="user_categories_9">
+							.. Книги						</label>
+																		<label for="user_categories_10">
+							<input type="checkbox" name="user_categories[]" value="25" id="user_categories_10">
+							.... Аудиокниги						</label>
+																		<label for="user_categories_11">
+							<input type="checkbox" name="user_categories[]" value="15" id="user_categories_11">
+							.. Субтитры						</label>
+																		<label for="user_categories_12">
+							<input type="checkbox" name="user_categories[]" value="20" id="user_categories_12">
+							.... Аниме						</label>
+																		<label for="user_categories_13">
+							<input type="checkbox" name="user_categories[]" value="21" id="user_categories_13">
+							.... Фильмы						</label>
+																		<label for="user_categories_14">
+							<input type="checkbox" name="user_categories[]" value="16" id="user_categories_14">
+							.. Манга						</label>
+																		<label for="user_categories_15">
+							<input type="checkbox" name="user_categories[]" value="29" id="user_categories_15">
+							.. Комиксы						</label>
+																		<label for="user_categories_16">
+							<input type="checkbox" name="user_categories[]" value="3" id="user_categories_16">
+							 Игры						</label>
+																		<label for="user_categories_17">
+							<input type="checkbox" name="user_categories[]" value="8" id="user_categories_17">
+							.. Визуальные новеллы						</label>
+																		<label for="user_categories_18">
+							<input type="checkbox" name="user_categories[]" value="22" id="user_categories_18">
+							.. Большие игры						</label>
+																		<label for="user_categories_19">
+							<input type="checkbox" name="user_categories[]" value="23" id="user_categories_19">
+							.. Маленькие игры						</label>
+																		<label for="user_categories_20">
+							<input type="checkbox" name="user_categories[]" value="30" id="user_categories_20">
+							 Манга						</label>
+																		<label for="user_categories_21">
+							<input type="checkbox" name="user_categories[]" value="31" id="user_categories_21">
+							.. Китайские						</label>
+																		<label for="user_categories_22">
+							<input type="checkbox" name="user_categories[]" value="32" id="user_categories_22">
+							.. Японские						</label>
+																		<label for="user_categories_23">
+							<input type="checkbox" name="user_categories[]" value="33" id="user_categories_23">
+							.. Корейские						</label>
+																		<label for="user_categories_24">
+							<input type="checkbox" name="user_categories[]" value="34" id="user_categories_24">
+							.. Английские						</label>
+																		<label for="user_categories_25">
+							<input type="checkbox" name="user_categories[]" value="35" id="user_categories_25">
+							.. Авторские						</label>
+											</div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-success"><i class="icon-ok icon-white"></i> Сохранить</button>	
+					<button type="button" class="btn" data-dismiss="modal"><i class="icon-ban-circle"></i> Отмена</button>
+				</div>
+			</form>
+		</div>
+		
+				
+	</div>
+	
+	<div id="bm-chapters-ini" class="modal hide">
+		<form method="post" class="form-horizontal" action="/site/ini" style="margin:0">
+		<input type="hidden" name="area" value="bm" />
+		<div class="modal-header" style='padding-bottom:0;'>
+			<a class="close" data-dismiss="modal">×</a>
+			<h3>Настройки блока</h3>
+		</div>
+		<div class="modal-body" style="max-height:350px">
+			<div class="control-group">
+				<div class="controls">
+					<label class="checkbox"><input type="hidden" name="show_subscriptions" value="0" /><input type="checkbox" name="show_subscriptions" value="1" /> включать главы по подписке</label>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="subit" class="btn btn-success"><i class="icon-ok icon-white"></i> Сохранить</button>
+			<button type="button" class="btn" data-dismiss="modal"><i class="icon-ban-circle"></i> Отмена</button>
+		</div>
+		</form>
+	</div>
+	
+	<div class="span4" id="f-hitstop">
+		<div class='hero'>
+			<ul class="nav nav-tabs" style="margin-left: 20px;">
+				<li class="active"><a href="#hitsA" data-toggle="tab" class="nav_a" style="padding-left: 5px; padding-right: 5px;">Топ 15</a></li>
+				<li><a href="#hitsM" data-toggle="tab" class="nav_a" style="padding-left: 5px; padding-right: 5px;">Топ месяца</a></li>
+				<li><a href="#hitsW" data-toggle="tab" class="nav_a" style="padding-left: 5px; padding-right: 5px;">Топ недели</a></li>
+				<li><a href="#hitsAuth" data-toggle="tab" class="nav_a" style="padding-left: 5px; padding-right: 5px;">Топ авторских</a></li>
+			</ul>
+			<div id="rating-tabs" class="tab-content">
+				<div id="hitsA" class="tab-pane fade active in">
+					<ol>
+												<li><a href="/book/47">Истинный мир боевых искусств</a></li>
+												<li><a href="/book/190">Воинственный Бог Асура</a></li>
+												<li><a href="/book/68">Мир боевых искусств</a></li>
+												<li><a href="/book/422">Профессия - Магистр!/Маг на полную ставку</a></li>
+												<li><a href="/book/4">Бесподобный воинственный бог</a></li>
+												<li><a href="/book/9">Бог войны, отмеченный драконом</a></li>
+												<li><a href="/book/107">Извивающийся дракон</a></li>
+												<li><a href="/book/51">Древняя техника усиления</a></li>
+												<li><a href="/book/28">Слава Королю!</a></li>
+												<li><a href="/book/22">Противостояние святого</a></li>
+												<li><a href="/book/225">Божественный Меч Хаоса</a></li>
+												<li><a href="/book/127">Бог, бросивший вызов миру</a></li>
+												<li><a href="/book/378">Защита Подземелья</a></li>
+												<li><a href="/book/215">Власть императора</a></li>
+												<li><a href="/book/173">Аватар Короля</a></li>
+											</ol>
+				</div>
+				<div id="hitsW" class="tab-pane fade">
+					<ol>
+																		<li><a href="/book/47">Истинный мир боевых искусств</a></li>
+												<li><a href="/book/3555">Буря Звёздной Войны</a></li>
+												<li><a href="/book/422">Профессия - Магистр!/Маг на полную ставку</a></li>
+												<li><a href="/book/6649">Маг, Поедающий Книги</a></li>
+												<li><a href="/book/3166">Система Богов и Демонов</a></li>
+												<li><a href="/book/2536">Книга 2: Квазар. Демонический Бог.</a></li>
+												<li><a href="/book/4341">Призван, чтобы завоевать?</a></li>
+												<li><a href="/book/107">Извивающийся дракон</a></li>
+												<li><a href="/book/173">Аватар Короля</a></li>
+												<li><a href="/book/190">Воинственный Бог Асура</a></li>
+												<li><a href="/book/4">Бесподобный воинственный бог</a></li>
+												<li><a href="/book/111">Чернокнижник в мире Магов</a></li>
+												<li><a href="/book/68">Мир боевых искусств</a></li>
+												<li><a href="/book/6918">Сердце Дракона. нейросеть в мире боевых искусств</a></li>
+												<li><a href="/book/1689">Чистая любовь и Жажда Мести 18+</a></li>
+											</ol>
+				</div>
+				<div id="hitsM" class="tab-pane fade">
+					<ol>
+																		<li><a href="/book/47">Истинный мир боевых искусств</a></li>
+												<li><a href="/book/422">Профессия - Магистр!/Маг на полную ставку</a></li>
+												<li><a href="/book/3555">Буря Звёздной Войны</a></li>
+												<li><a href="/book/3166">Система Богов и Демонов</a></li>
+												<li><a href="/book/6649">Маг, Поедающий Книги</a></li>
+												<li><a href="/book/7600">Рыцарь-инженер, или вертел я ваши правила, потому как не обещал их соблюдать!</a></li>
+												<li><a href="/book/4341">Призван, чтобы завоевать?</a></li>
+												<li><a href="/book/190">Воинственный Бог Асура</a></li>
+												<li><a href="/book/2536">Книга 2: Квазар. Демонический Бог.</a></li>
+												<li><a href="/book/173">Аватар Короля</a></li>
+												<li><a href="/book/68">Мир боевых искусств</a></li>
+												<li><a href="/book/4">Бесподобный воинственный бог</a></li>
+												<li><a href="/book/111">Чернокнижник в мире Магов</a></li>
+												<li><a href="/book/107">Извивающийся дракон</a></li>
+												<li><a href="/book/1015">Вы призвали не того!</a></li>
+											</ol>
+				</div>
+				<div id="hitsAuth" class="tab-pane fade">
+					<ol>
+												<li><a href="/book/1015">Вы призвали не того!</a></li>
+												<li><a href="/book/2536">Книга 2: Квазар. Демонический Бог.</a></li>
+												<li><a href="/book/4341">Призван, чтобы завоевать?</a></li>
+												<li><a href="/book/2704">Ледяной Феникс</a></li>
+												<li><a href="/book/250">Эдер</a></li>
+												<li><a href="/book/1325">Империя монстров</a></li>
+												<li><a href="/book/1296">Проект поднятия демографии или как гарем портит нервные клетки</a></li>
+												<li><a href="/book/2510">Герой, но не совсем</a></li>
+												<li><a href="/book/991">Книга 1 Путешествие которого я не хотел</a></li>
+												<li><a href="/book/7600">Рыцарь-инженер, или вертел я ваши правила, потому как не обещал их соблюдать!</a></li>
+												<li><a href="/book/4723">Книга Вторая: Проклятое дитя</a></li>
+												<li><a href="/book/2382">Лучше Бога. Хуже Дьявола</a></li>
+												<li><a href="/book/3551">Обратное перерождение</a></li>
+												<li><a href="/book/6918">Сердце Дракона. нейросеть в мире боевых искусств</a></li>
+												<li><a href="/book/5555">Механический Зверь. Книга 2. Носитель Искры</a></li>
+											</ol>
+				</div>
+			</div>
+		</div>
+		
+		<script>
+		$('#rating-tabs a.nav_a').click(function (e) {
+			e.preventDefault();
+			$(this).tab('show');
+		})
+		</script>
+		
+		<div style="margin:10px auto; width:320px;"></div>
+	</div>
+	
+	<div class="span4" id="f-tagstop">
+		<div class='hero'>
+			<h3>Жанры</h3>
+			
+			<p class="cloud"><a href='/genre/?search=%D0%B0%D1%80%D1%82' style='font-size:10px'>арт</a>
+<a href='/genre/?search=%D0%B1%D0%BE%D0%B5%D0%B2%D0%B8%D0%BA' style='font-size:20px'>боевик</a>
+<a href='/genre/?search=%D0%B1%D0%BE%D0%B5%D0%B2%D1%8B%D0%B5%20%D0%B8%D1%81%D0%BA%D1%83%D1%81%D1%81%D1%82%D0%B2%D0%B0' style='font-size:16px'>боевые искусства</a>
+<a href='/genre/?search=%D0%B2%D0%B0%D0%BC%D0%BF%D0%B8%D1%80%D1%8B' style='font-size:11px'>вампиры</a>
+<a href='/genre/?search=%D0%B3%D0%B0%D1%80%D0%B5%D0%BC' style='font-size:15px'>гарем</a>
+<a href='/genre/?search=%D0%B3%D0%B5%D0%BD%D0%B4%D0%B5%D1%80%D0%BD%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%82%D1%80%D0%B8%D0%B3%D0%B0' style='font-size:11px'>гендерная интрига</a>
+<a href='/genre/?search=%D0%B3%D0%B5%D1%80%D0%BE%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B5%20%D1%84%D1%8D%D0%BD%D1%82%D0%B5%D0%B7%D0%B8' style='font-size:14px'>героическое фэнтези</a>
+<a href='/genre/?search=%D0%B4%D0%B5%D1%82%D0%B5%D0%BA%D1%82%D0%B8%D0%B2' style='font-size:11px'>детектив</a>
+<a href='/genre/?search=%D0%B4%D0%B7%D1%91%D1%81%D1%8D%D0%B9' style='font-size:10px'>дзёсэй</a>
+<a href='/genre/?search=%D0%B4%D0%BE%D0%B4%D0%B7%D0%B8%D0%BD%D1%81%D0%B8' style='font-size:10px'>додзинси</a>
+<a href='/genre/?search=%D0%B4%D1%80%D0%B0%D0%BC%D0%B0' style='font-size:16px'>драма</a>
+<a href='/genre/?search=%D0%B8%D0%B3%D1%80%D0%B0' style='font-size:14px'>игра</a>
+<a href='/genre/?search=%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F' style='font-size:12px'>история</a>
+<a href='/genre/?search=%D0%BA%D0%BE%D0%B4%D0%BE%D0%BC%D0%BE' style='font-size:10px'>кодомо</a>
+<a href='/genre/?search=%D0%BA%D0%BE%D0%BC%D0%B5%D0%B4%D0%B8%D1%8F' style='font-size:18px'>комедия</a>
+<a href='/genre/?search=%D0%BC%D0%B0%D1%85%D0%BE-%D1%81%D1%91%D0%B4%D0%B7%D1%91' style='font-size:10px'>махо-сёдзё</a>
+<a href='/genre/?search=%D0%BC%D0%B5%D1%85%D0%B0' style='font-size:10px'>меха</a>
+<a href='/genre/?search=%D0%BC%D0%B8%D1%81%D1%82%D0%B8%D0%BA%D0%B0' style='font-size:13px'>мистика</a>
+<a href='/genre/?search=%D0%BD%D0%B0%D1%83%D1%87%D0%BD%D0%B0%D1%8F%20%D1%84%D0%B0%D0%BD%D1%82%D0%B0%D1%81%D1%82%D0%B8%D0%BA%D0%B0' style='font-size:13px'>научная фантастика</a>
+<a href='/genre/?search=%D0%BF%D0%BE%D0%B2%D1%81%D0%B5%D0%B4%D0%BD%D0%B5%D0%B2%D0%BD%D0%BE%D1%81%D1%82%D1%8C' style='font-size:13px'>повседневность</a>
+<a href='/genre/?search=%D0%BF%D0%BE%D1%81%D1%82%D0%B0%D0%BF%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%BF%D1%82%D0%B8%D0%BA%D0%B0' style='font-size:12px'>постапокалиптика</a>
+<a href='/genre/?search=%D0%BF%D1%80%D0%B8%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D1%8F' style='font-size:29px'>приключения</a>
+<a href='/genre/?search=%D0%BF%D1%81%D0%B8%D1%85%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F' style='font-size:13px'>психология</a>
+<a href='/genre/?search=%D1%80%D0%BE%D0%BC%D0%B0%D0%BD%D1%82%D0%B8%D0%BA%D0%B0' style='font-size:21px'>романтика</a>
+<a href='/genre/?search=%D1%81%D0%B0%D0%BC%D1%83%D1%80%D0%B0%D0%B9%D1%81%D0%BA%D0%B8%D0%B9%20%D0%B1%D0%BE%D0%B5%D0%B2%D0%B8%D0%BA' style='font-size:10px'>самурайский боевик</a>
+<a href='/genre/?search=%D1%81%D0%B2%D0%B5%D1%80%D1%85%D1%8A%D0%B5%D1%81%D1%82%D0%B5%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D0%BE%D0%B5' style='font-size:14px'>сверхъестественное</a>
+<a href='/genre/?search=%D1%81%D0%BF%D0%BE%D1%80%D1%82' style='font-size:10px'>спорт</a>
+<a href='/genre/?search=%D1%81%D1%8D%D0%B9%D0%BD%D1%8D%D0%BD' style='font-size:11px'>сэйнэн</a>
+<a href='/genre/?search=%D1%81%D1%8F%D0%BD%D1%8C%D1%81%D1%8F%20%28XianXia%29' style='font-size:12px'>сянься (XianXia)</a>
+<a href='/genre/?search=%D1%81%D1%91%D0%B4%D0%B7%D1%91' style='font-size:11px'>сёдзё</a>
+<a href='/genre/?search=%D1%81%D1%91%D0%B4%D0%B7%D1%91-%D0%B0%D0%B9' style='font-size:10px'>сёдзё-ай</a>
+<a href='/genre/?search=%D1%81%D1%91%D0%BD%D1%8D%D0%BD' style='font-size:12px'>сёнэн</a>
+<a href='/genre/?search=%D1%81%D1%91%D0%BD%D1%8D%D0%BD-%D0%B0%D0%B9' style='font-size:10px'>сёнэн-ай</a>
+<a href='/genre/?search=%D1%82%D1%80%D0%B0%D0%B3%D0%B5%D0%B4%D0%B8%D1%8F' style='font-size:13px'>трагедия</a>
+<a href='/genre/?search=%D1%82%D1%80%D0%B8%D0%BB%D0%BB%D0%B5%D1%80' style='font-size:11px'>триллер</a>
+<a href='/genre/?search=%D1%83%D0%B6%D0%B0%D1%81%D1%8B' style='font-size:12px'>ужасы</a>
+<a href='/genre/?search=%D1%83%D1%81%D1%8F%20%28wuxia%29' style='font-size:11px'>уся (wuxia)</a>
+<a href='/genre/?search=%D1%84%D0%B0%D0%BD%D1%82%D0%B0%D1%81%D1%82%D0%B8%D0%BA%D0%B0' style='font-size:15px'>фантастика</a>
+<a href='/genre/?search=%D1%84%D1%8D%D0%BD%D1%82%D0%B5%D0%B7%D0%B8' style='font-size:30px'>фэнтези</a>
+<a href='/genre/?search=%D1%88%D0%BA%D0%BE%D0%BB%D0%B0' style='font-size:12px'>школа</a>
+<a href='/genre/?search=%D1%8D%D1%82%D1%82%D0%B8' style='font-size:12px'>этти</a>
+<a href='/genre/?search=%D1%8E%D1%80%D0%B8' style='font-size:10px'>юри</a>
+</p>
+		</div>
+		
+		<div style="margin:10px auto; width:320px;"></div>
+	</div>
+	
+	<div class="span4" id="f-tagstop">
+		<div class='hero'>
+			<h3>Популярные тэги</h3>
+			
+			<p class="cloud"><a href='/tag/?search=16%2B' style='font-size:17px'>16+</a>
+<a href='/tag/?search=18%2B' style='font-size:30px'>18+</a>
+<a href='/tag/?search=%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D1%8E%D1%80%D0%B8%D1%81%D1%82%D1%8B' style='font-size:11px'>авантюристы</a>
+<a href='/tag/?search=%D0%B0%D0%B4%D0%B5%D0%BA%D0%B2%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D0%B3%D0%B5%D1%80%D0%BE%D0%B9' style='font-size:14px'>адекватный главный герой</a>
+<a href='/tag/?search=%D0%B0%D0%BA%D0%B0%D0%B4%D0%B5%D0%BC%D0%B8%D1%8F' style='font-size:10px'>академия</a>
+<a href='/tag/?search=%D0%B0%D0%BB%D1%85%D0%B8%D0%BC%D0%B8%D1%8F' style='font-size:11px'>алхимия</a>
+<a href='/tag/?search=%D0%B0%D0%BB%D1%8C%D1%82%D0%B5%D1%80%D0%BD%D0%B0%D1%82%D0%B8%D0%B2%D0%BD%D0%B0%D1%8F%20%D0%B2%D1%81%D0%B5%D0%BB%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F' style='font-size:11px'>альтернативная вселенная</a>
+<a href='/tag/?search=%D0%B0%D0%BB%D1%8C%D1%82%D0%B5%D1%80%D0%BD%D0%B0%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B9%20%D0%BC%D0%B8%D1%80' style='font-size:12px'>альтернативный мир</a>
+<a href='/tag/?search=%D0%B0%D0%BD%D1%82%D0%B8%D0%B3%D0%B5%D1%80%D0%BE%D0%B9' style='font-size:13px'>антигерой</a>
+<a href='/tag/?search=%D0%B0%D0%BF%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%BF%D1%81%D0%B8%D1%81' style='font-size:11px'>апокалипсис</a>
+<a href='/tag/?search=%D0%B1%D0%B5%D0%B7%D0%B6%D0%B0%D0%BB%D0%BE%D1%81%D1%82%D0%BD%D1%8B%D0%B9%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D0%B3%D0%B5%D1%80%D0%BE%D0%B9' style='font-size:12px'>безжалостный главный герой</a>
+<a href='/tag/?search=%D0%B1%D0%BE%D0%B3%D0%B8' style='font-size:14px'>боги</a>
+<a href='/tag/?search=%D0%B1%D0%BE%D0%B5%D0%B2%D1%8B%D0%B5%20%D0%B8%D1%81%D0%BA%D1%83%D1%81%D1%81%D1%82%D0%B2%D0%B0' style='font-size:12px'>боевые искусства</a>
+<a href='/tag/?search=%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F%20%D1%80%D0%B5%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D1%8C' style='font-size:10px'>виртуальная реальность</a>
+<a href='/tag/?search=%D0%B2%D1%8B%D0%B6%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5' style='font-size:12px'>выживание</a>
+<a href='/tag/?search=%D0%B3%D0%B0%D1%80%D0%B5%D0%BC' style='font-size:13px'>гарем</a>
+<a href='/tag/?search=%D0%B3%D0%B5%D1%80%D0%BE%D0%B9%20%D1%81%D0%B8%D0%BB%D0%B5%D0%BD%20%D1%81%20%D1%81%D0%B0%D0%BC%D0%BE%D0%B3%D0%BE%20%D0%BD%D0%B0%D1%87%D0%B0%D0%BB%D0%B0' style='font-size:10px'>герой силен с самого начала</a>
+<a href='/tag/?search=%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F%20%D0%B3%D0%B5%D1%80%D0%BE%D0%B8%D0%BD%D1%8F%20%D0%B4%D0%B5%D0%B2%D1%83%D1%88%D0%BA%D0%B0' style='font-size:13px'>главная героиня девушка</a>
+<a href='/tag/?search=%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D0%B3%D0%B5%D1%80%D0%BE%D0%B9%20%D0%B4%D0%B5%D0%B2%D1%83%D1%88%D0%BA%D0%B0' style='font-size:11px'>главный герой девушка</a>
+<a href='/tag/?search=%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D0%B3%D0%B5%D1%80%D0%BE%D0%B9%20%D0%BC%D1%83%D0%B6%D1%87%D0%B8%D0%BD%D0%B0' style='font-size:23px'>главный герой мужчина</a>
+<a href='/tag/?search=%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D0%B3%D0%B5%D1%80%D0%BE%D0%B9%20%D0%BF%D1%80%D0%BE%D1%82%D0%B0%D0%B3%D0%BE%D0%BD%D0%B8%D1%81%D1%82' style='font-size:10px'>главный герой протагонист</a>
+<a href='/tag/?search=%D0%B4%D0%B5%D0%BC%D0%BE%D0%BD%D1%8B' style='font-size:14px'>демоны</a>
+<a href='/tag/?search=%D0%B4%D1%80%D0%B0%D0%BA%D0%BE%D0%BD%D1%8B' style='font-size:11px'>драконы</a>
+<a href='/tag/?search=%D0%B4%D1%80%D1%83%D0%B3%D0%BE%D0%B9%20%D0%BC%D0%B8%D1%80' style='font-size:18px'>другой мир</a>
+<a href='/tag/?search=%D0%B6%D0%B5%D1%81%D1%82%D0%BE%D0%BA%D0%BE%D1%81%D1%82%D1%8C' style='font-size:10px'>жестокость</a>
+<a href='/tag/?search=%D0%B8%D0%B3%D1%80%D0%BE%D0%B2%D0%B0%D1%8F%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0' style='font-size:10px'>игровая система</a>
+<a href='/tag/?search=%D0%B8%D0%B3%D1%80%D0%BE%D0%B2%D1%8B%D0%B5%20%D1%8D%D0%BB%D0%B5%D0%BC%D0%B5%D0%BD%D1%82%D1%8B' style='font-size:19px'>игровые элементы</a>
+<a href='/tag/?search=%D0%BA%D1%83%D0%BB%D1%8C%D1%82%D0%B8%D0%B2%D0%B0%D1%86%D0%B8%D1%8F' style='font-size:11px'>культивация</a>
+<a href='/tag/?search=%D0%BA%D1%83%D0%BB%D1%8C%D1%82%D0%B8%D0%B2%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5' style='font-size:13px'>культивирование</a>
+<a href='/tag/?search=%D0%BB%D0%B8%D1%82%D1%80%D0%BF%D0%B3' style='font-size:10px'>литрпг</a>
+<a href='/tag/?search=%D0%BC%D0%B0%D0%B3%D0%B8%D1%8F' style='font-size:25px'>магия</a>
+<a href='/tag/?search=%D0%BC%D0%B5%D1%87%20%D0%B8%20%D0%BC%D0%B0%D0%B3%D0%B8%D1%8F' style='font-size:10px'>меч и магия</a>
+<a href='/tag/?search=%D0%BC%D0%B8%D1%80%20%D0%BC%D0%B5%D1%87%D0%B0%20%D0%B8%20%D0%BC%D0%B0%D0%B3%D0%B8%D0%B8' style='font-size:13px'>мир меча и магии</a>
+<a href='/tag/?search=%D0%BC%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%8B' style='font-size:12px'>монстры</a>
+<a href='/tag/?search=%D0%BE%D1%82%20%D1%81%D0%BB%D0%B0%D0%B1%D0%BE%D0%B3%D0%BE%20%D0%B4%D0%BE%20%D1%81%D0%B8%D0%BB%D1%8C%D0%BD%D0%BE%D0%B3%D0%BE' style='font-size:13px'>от слабого до сильного</a>
+<a href='/tag/?search=%D0%BE%D1%82%20%D1%81%D0%BB%D0%B0%D0%B1%D0%BE%D0%B3%D0%BE%20%D0%BA%20%D1%81%D0%B8%D0%BB%D1%8C%D0%BD%D0%BE%D0%BC%D1%83' style='font-size:11px'>от слабого к сильному</a>
+<a href='/tag/?search=%D0%BF%D0%B5%D1%80%D0%B5%D0%BC%D0%B5%D1%89%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20%D0%B4%D1%80%D1%83%D0%B3%D0%BE%D0%B9%20%D0%BC%D0%B8%D1%80' style='font-size:10px'>перемещение в другой мир</a>
+<a href='/tag/?search=%D0%BF%D0%B5%D1%80%D0%B5%D1%80%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5' style='font-size:12px'>перерождение</a>
+<a href='/tag/?search=%D0%BF%D0%B5%D1%80%D0%B5%D1%80%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20%D0%B4%D1%80%D1%83%D0%B3%D0%BE%D0%BC%20%D0%BC%D0%B8%D1%80%D0%B5' style='font-size:10px'>перерождение в другом мире</a>
+<a href='/tag/?search=%D0%BF%D0%BE%D0%BF%D0%B0%D0%B4%D0%B0%D0%BD%D0%B5%D1%86' style='font-size:12px'>попаданец</a>
+<a href='/tag/?search=%D0%BF%D1%80%D0%B8%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D1%8F' style='font-size:14px'>приключения</a>
+<a href='/tag/?search=%D1%80%D0%B5%D0%B8%D0%BD%D0%BA%D0%B0%D1%80%D0%BD%D0%B0%D1%86%D0%B8%D1%8F' style='font-size:14px'>реинкарнация</a>
+<a href='/tag/?search=%D1%80%D0%B5%D0%B8%D0%BD%D0%BA%D0%B0%D1%80%D0%BD%D0%B0%D1%86%D0%B8%D1%8F%20%D0%B2%20%D0%B4%D1%80%D1%83%D0%B3%D0%BE%D0%BC%20%D0%BC%D0%B8%D1%80%D0%B5' style='font-size:10px'>реинкарнация в другом мире</a>
+<a href='/tag/?search=%D1%80%D0%BE%D0%BC%D0%B0%D0%BD%D1%82%D0%B8%D0%BA%D0%B0' style='font-size:13px'>романтика</a>
+<a href='/tag/?search=%D1%83%D0%BC%D0%BD%D1%8B%D0%B9%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D0%B3%D0%B5%D1%80%D0%BE%D0%B9' style='font-size:11px'>умный главный герой</a>
+<a href='/tag/?search=%D1%84%D0%B0%D0%BD%D1%82%D0%B0%D1%81%D1%82%D0%B8%D0%BA%D0%B0' style='font-size:10px'>фантастика</a>
+<a href='/tag/?search=%D1%84%D1%8D%D0%BD%D1%82%D0%B5%D0%B7%D0%B8' style='font-size:18px'>фэнтези</a>
+<a href='/tag/?search=%D1%8D%D0%B2%D0%BE%D0%BB%D1%8E%D1%86%D0%B8%D1%8F' style='font-size:11px'>эволюция</a>
+<a href='/tag/?search=%D1%8D%D0%BA%D1%88%D0%BD' style='font-size:10px'>экшн</a>
+<a href='/tag/?search=%D1%8D%D1%80%D0%BE%D1%82%D0%B8%D0%BA%D0%B0' style='font-size:11px'>эротика</a>
+<p class="links">&rarr; <a href="/tag/all">все тэги</a></p></p>
+		</div>
+		
+		<div style="margin:10px auto; width:320px;"></div>
+	</div>
+	
+		
+		<div class="span4" id="f-booktop">
+		<div class='hero'>
+			<h3><a href='/book/4378'>黑暗血时代 / Dark Blood Age / Темные Времена Крови</a></h3>
+			<div style="text-align: center;">
+				<a href='/book/4378'><img src='/i/book/17/5/22984.jpg' width='200' height='266' alt='' /></a>			</div>
+		</div>
+		
+		<div style="margin:10px auto; width:320px;"></div>
+	</div>
+		
+	<div class="span4" id="f-booktop">
+		<div class='hero'>
+			<h3>Последние комментарии</h3>
+										<p><a href="/book/6755/127926/ready">Cheat Aru Kedo Mattari Kurashitai  / У меня есть читерская сила, но я хочу жить не напрягаясь: Глава 3: Магия</a></p>
+						<p>Спасибо за труд.</p>
+										<p><a href="/book/4/157088/ready">Бесподобный воинственный бог: Глава 932</a></p>
+						<p>Божееее да когда уже эти 2 петуха кончат друг дружку, уже почти 30 гл выпендриваются друг на друга но нет ни одного умного решения</p>
+										<p><a href="/book/9361/177084/ready">Перерождение в Чистильщика: Глава-2</a></p>
+						<p>Может,все может быть :D</p>
+										<p><a href="/book/517/40455/ready">Маг Ближнего Боя: Глава 77</a></p>
+						<p>Может морально ?</p>
+										<p><a href="/book/111/117735/ready">Чернокнижник в мире Магов: Глава 308</a></p>
+						<p>Спасибо за главу!</p>
+					</div>
+		
+		<div style="margin:10px auto; width:320px;"></div>
+	</div>
+	
+	<div class="span4" id="f-booktop">
+		
+			<div style="text-align: center;">
+				<a href="https://play.google.com/store/apps/details?id=ru.late&hl=ru"><img src="/i/google-play.png" /></a>
+			</div>
+		
+		<div style="margin:10px auto; width:320px;"></div>
+	</div>
+</div>
+
+<div id="f-about">
+	<div class='hero'>
+		<h3>Что это тут у нас такое?</h3>
+		<p>
+			Привет. Добро пожаловать в систему управления коллективными переводами &laquo;Rulate Translate&raquo;. Этот сайт предназначен для коллективных переводов любых текстов на разные языки.
+		</p>
+		<h3>Как это работает?</h3>
+		<p>
+			Текст разбивается на множество мелких кусочков (предложений и абзацев и тп). Каждый участник перевода читает фрагмент на языке оригинала, думает, и предлагает
+			свой вариант перевода. Если именно этот вариант нравится другим посетителям, они ставят ему &laquo;плюс&raquo;. Все оценки суммируются,
+			и, таким образом, видно, какой вариант перевода приятней для слуха. Из лучших вариантов собирается готовый перевод. Получается либо очень быстро, либо очень хорошо, либо и так и сяк.
+			Также к вашим услугам - <a href="/site/help">система разделения прав доступа</a>, коллективный блог перевода, комментирование фрагментов, разнообразная статистика.
+			Попробуйте сами.
+		</p>
+		<h3>Переводчик? Заработай на переводе любимого произведения!</h3>
+		<p>
+			Любой переводчик заработать на переводе любимого произведения, как это работает? Просто! Переводчик создает перевод публикует главы публичного доступа, а так же платные главы доступные по подписке, которые могут приобрести нетерпеливые пользователи!
+			Переводчик может сам установить цену на каждый переводимый проект (за главу). Хорошая мотивация переводчику, а так же быстрый перевод для читателей! Конечно платно делать не обязательно, это все на ваше усмотрение!
+		</p>
+		<h3>Не можете разобраться?!</h3>
+		<p>
+		<font size="3"><b><a href="http://tl.rulate.ru/blog/63">FAQ ПО ПОДПИСКЕ</a></b></font>
+		</p>
+		<h3>А ещё:</h3>
+		<ol>
+			<li>Переводить что-нибудь интересное в компании единомышленников - интересное и увлекательное занятие.</li>
+			<li>Чтение и обсуждение чужих вариантов перевода здорово помогает изучать иностранный язык.</li>
+			<li>Читать любимое произведение на родном языке гораздо приятнее! Попробуйте!</li>
+		</ol>
+	</div>
+</div>
+
+<div id="f-search-top">
+	<h2>
+		<span rel='popover' data-content='Чем крупнее название, тем чаще его ищут на этом сайте.' data-title="Что это такое?">
+		Популярные переводы
+		</span>
+		<script type='text/javascript'>$("span[rel=popover]").popover();</script>
+	</h2>
+	<p class="cloud"><a href='/search/?t=18%2B&from=stop' style='font-size:23px'>18+</a>
+<a href='/search/?t=andur&from=stop' style='font-size:11px'>andur</a>
+<a href='/search/?t=er+gen&from=stop' style='font-size:19px'>er gen</a>
+<a href='/search/?t=i+eat+tomatoes&from=stop' style='font-size:14px'>i eat tomatoes</a>
+<a href='/search/?t=kda&from=stop' style='font-size:13px'>kda</a>
+<a href='/search/?t=overlord&from=stop' style='font-size:40px'>overlord</a>
+<a href='/search/?t=shengur&from=stop' style='font-size:11px'>shengur</a>
+<a href='/search/?t=skylen&from=stop' style='font-size:10px'>skylen</a>
+<a href='/search/?t=syosetu&from=stop' style='font-size:11px'>syosetu</a>
+<a href='/search/?t=%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80+%D0%BA%D0%BE%D1%80%D0%BE%D0%BB%D1%8F&from=stop' style='font-size:12px'>аватар короля</a>
+<a href='/search/?t=%D0%B0%D0%B9%D1%82%D0%B1%D0%B0%D0%B5%D0%B2+%D1%82.%D0%B0.&from=stop' style='font-size:12px'>айтбаев т.а.</a>
+<a href='/search/?t=%D0%B0%D1%81%D1%83%D1%80%D0%B0&from=stop' style='font-size:11px'>асура</a>
+<a href='/search/?t=%D0%B1%D0%BE%D0%B3&from=stop' style='font-size:14px'>бог</a>
+<a href='/search/?t=%D0%B1%D0%BE%D0%B3+%D1%80%D0%B5%D0%B7%D0%BD%D0%B8&from=stop' style='font-size:19px'>бог резни</a>
+<a href='/search/?t=%D0%B1%D1%83%D1%80%D1%8F&from=stop' style='font-size:18px'>буря</a>
+<a href='/search/?t=%D0%B2%D0%B0%D0%BD+%D0%BF%D0%B8%D1%81&from=stop' style='font-size:12px'>ван пис</a>
+<a href='/search/?t=%D0%B2%D0%BB%D0%B0%D0%B4%D1%8B%D0%BA%D0%B0&from=stop' style='font-size:12px'>владыка</a>
+<a href='/search/?t=%D0%B2%D0%BE%D1%81%D1%81%D1%82%D0%B0%D0%B2%D1%88%D0%B8%D0%B9&from=stop' style='font-size:11px'>восставший</a>
+<a href='/search/?t=%D0%B2%D0%BE%D1%81%D1%81%D1%82%D0%B0%D0%B2%D1%88%D0%B8%D0%B9+%D0%BF%D1%80%D0%BE%D1%82%D0%B8%D0%B2+%D0%BD%D0%B5%D0%B1%D0%B0&from=stop' style='font-size:12px'>восставший против неба</a>
+<a href='/search/?t=%D0%B3%D1%83%D1%80%D0%BC%D0%B0%D0%BD&from=stop' style='font-size:12px'>гурман</a>
+<a href='/search/?t=%D0%B4%D0%B5%D0%BC%D0%BE%D0%BD&from=stop' style='font-size:14px'>демон</a>
+<a href='/search/?t=%D0%B4%D1%80%D0%B0%D0%BA%D0%BE%D0%BD&from=stop' style='font-size:14px'>дракон</a>
+<a href='/search/?t=%D0%B7%D0%BB%D0%BE%D0%B9+%D0%BC%D0%BE%D0%BD%D0%B0%D1%80%D1%85&from=stop' style='font-size:13px'>злой монарх</a>
+<a href='/search/?t=%D0%B8%D0%B7%D0%B2%D0%B8%D0%B2%D0%B0%D1%8E%D1%89%D0%B8%D0%B9%D1%81%D1%8F+%D0%B4%D1%80%D0%B0%D0%BA%D0%BE%D0%BD&from=stop' style='font-size:11px'>извивающийся дракон</a>
+<a href='/search/?t=%D0%B8%D0%BC%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80&from=stop' style='font-size:11px'>император</a>
+<a href='/search/?t=%D0%B8%D0%BC%D0%BF%D0%B5%D1%80%D0%B8%D1%8F&from=stop' style='font-size:10px'>империя</a>
+<a href='/search/?t=%D0%BA%D0%B2%D0%B0%D0%B7%D0%B0%D1%80&from=stop' style='font-size:23px'>квазар</a>
+<a href='/search/?t=%D0%BA%D0%BB%D0%B5%D0%B2%D0%B0%D0%BD%D1%81%D0%BA%D0%B8%D0%B9+%D0%BA%D0%B8%D1%80%D0%B8%D0%BB%D0%BB&from=stop' style='font-size:10px'>клеванский кирилл</a>
+<a href='/search/?t=%D0%BA%D1%83%D0%BA%D0%BE%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9+%D0%B4%D0%BE%D0%BC%D0%B8%D0%BA&from=stop' style='font-size:11px'>кукольный домик</a>
+<a href='/search/?t=%D0%BC%D0%B0%D0%B3&from=stop' style='font-size:19px'>маг</a>
+<a href='/search/?t=%D0%BC%D0%B8%D1%80&from=stop' style='font-size:12px'>мир</a>
+<a href='/search/?t=%D0%BC%D0%B8%D1%80+%D0%B1%D0%BE%D0%B5%D0%B2%D1%8B%D1%85&from=stop' style='font-size:13px'>мир боевых</a>
+<a href='/search/?t=%D0%BC%D0%B8%D1%80%D1%8B+%D0%B3%D0%B4%D0%B5+%D0%B8%D0%B3%D1%80%D0%B0%D1%8E%D1%82+%D0%B1%D0%BE%D0%B3%D0%B8%21&from=stop' style='font-size:21px'>миры где играют боги!</a>
+<a href='/search/?t=%D0%BC%D0%BE%D0%BD%D0%B0%D1%80%D1%85&from=stop' style='font-size:13px'>монарх</a>
+<a href='/search/?t=%D0%BC%D1%8B%D1%81%D0%BB%D1%8C&from=stop' style='font-size:11px'>мысль</a>
+<a href='/search/?t=%D0%BD%D0%B0%D1%80%D1%83%D1%82%D0%BE&from=stop' style='font-size:21px'>наруто</a>
+<a href='/search/?t=%D0%BD%D0%B5%D0%BA%D1%80%D0%BE%D0%BC%D0%B0%D0%BD%D1%82&from=stop' style='font-size:12px'>некромант</a>
+<a href='/search/?t=%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D1%80%D0%BE%D1%82&from=stop' style='font-size:10px'>переворот</a>
+<a href='/search/?t=%D0%BF%D0%B5%D1%80%D0%B5%D1%80%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5&from=stop' style='font-size:15px'>перерождение</a>
+<a href='/search/?t=%D0%BF%D0%BE%D0%B2%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D1%8C&from=stop' style='font-size:17px'>повелитель</a>
+<a href='/search/?t=%D0%BF%D1%80%D0%B8%D0%B7%D0%B2%D0%B0%D0%BD&from=stop' style='font-size:10px'>призван</a>
+<a href='/search/?t=%D1%81%D0%B5%D1%80%D0%B4%D1%86%D0%B5+%D0%B4%D1%80%D0%B0%D0%BA%D0%BE%D0%BD%D0%B0&from=stop' style='font-size:11px'>сердце дракона</a>
+<a href='/search/?t=%D1%81%D0%B5%D1%80%D0%B6&from=stop' style='font-size:11px'>серж</a>
+<a href='/search/?t=%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0&from=stop' style='font-size:20px'>система</a>
+<a href='/search/?t=%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0+%D0%B1%D0%BE%D0%B3%D0%BE%D0%B2+%D0%B8+%D0%B4%D0%B5%D0%BC%D0%BE%D0%BD%D0%BE%D0%B2&from=stop' style='font-size:13px'>система богов и демонов</a>
+<a href='/search/?t=%D1%81%D0%BB%D0%B0%D0%B2%D0%B0+%D0%BA%D0%BE%D1%80%D0%BE%D0%BB%D1%8E&from=stop' style='font-size:10px'>слава королю</a>
+<a href='/search/?t=%D1%81%D0%BB%D0%B8%D0%B7%D1%8C&from=stop' style='font-size:10px'>слизь</a>
+<a href='/search/?t=%D1%87%D0%B5%D1%80%D0%BD%D0%BE%D0%BA%D0%BD%D0%B8%D0%B6%D0%BD%D0%B8%D0%BA&from=stop' style='font-size:22px'>чернокнижник</a>
+<a href='/search/?t=%D1%87%D0%B5%D1%80%D0%BD%D0%BE%D0%BA%D0%BD%D0%B8%D0%B6%D0%BD%D0%B8%D0%BA+%D0%B2+%D0%BC%D0%B8%D1%80%D0%B5+%D0%BC%D0%B0%D0%B3%D0%BE%D0%B2&from=stop' style='font-size:10px'>чернокнижник в мире магов</a>
+<a href='/search/?t=%D1%88%D0%B0%D0%BF%D0%BE%D1%87%D0%BA%D0%B8%D0%BD+%D0%B0%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%80&from=stop' style='font-size:11px'>шапочкин александр</a>
+</p>
+	<p class="links">
+		&rarr; <a href="/search">поиск переводов</a>
+	</p>
+</div>
+
+<div class="row">
+	<div id="f-announces" class="span7">
+		<h2>
+			Новости переводов
+			<span class="links">&rarr; <a href="/announces">все новости</a></span>
+		</h2>
+		<div class='announce'>
+	<div class='a'>
+		<div class='img' style="background-image:url('/i/book/17/4/31022-5050.jpg')"></div>		<div class='r'>100%</div>
+	</div>
+	<div class='b'>
+		<h2 title="07 окт. 2017 г., 9:05">
+			<a href='/book/1123'>(Um, Sorry) I’ve Been Reincarnated! / 転生しちゃったよ （いや、ごめん） / (Мм, извини) Я был перерождён!</a>		</h2>
+		<p class='info'>
+			<span class='label label-success'>Готово</span> текст с английского на русский  от <a href='/users/16816' class='user user-inactive'>andrejjjj</a> в разделе &laquo;<a href='/search?cat=6'>Японские</a>&raquo;<span class='cmt'></span> 		</p>
+		<div class='msg'><i class='v'></i>
+			Добавлена глава 096 – Верни мне мои надежды!<br />
+Открыта глава 059 – В замок.<br />
+Приятного чтения.<br />
+<img src="http://s8.hostingkartinok.com/uploads/images/2016/11/87d231e301360f225aa4e5dac7eca672.jpg" alt="87d231e301360f225aa4e5dac7eca672.jpg" />		</div>
+	</div>
+</div><div class='announce'>
+	<div class='a'>
+		<div class='img' style="background-image:url('/i/book/17/1/5925-5050.jpg')"></div>		<div class='r'>99.2%</div>
+	</div>
+	<div class='b'>
+		<h2 title="07 окт. 2017 г., 4:49">
+			<a href='/book/2556'>Master Hunter K / 마스터헌터K / Профессиональный Охотник Кей</a>		</h2>
+		<p class='info'>
+			<span class='label label-success'>Готово</span> текст с английского на русский  от <a href='/users/6419' class='user user-inactive'>Lex</a> в разделе &laquo;<a href='/search?cat=7'>Корейские</a>&raquo;<span class='cmt'></span> 		</p>
+		<div class='msg'><i class='v'></i>
+			Глава 125. Замёрзшие Равнины Карихаран (4) – готова по подписке.<br />
+Приятного чтения!		</div>
+	</div>
+</div><div class='announce'>
+	<div class='a'>
+		<div class='img' style="background-image:url('/i/book/17/5/30283-5050.jpg')"></div>		<div class='r'>100%</div>
+	</div>
+	<div class='b'>
+		<h2 title="07 окт. 2017 г., 1:00">
+			<a href='/book/3166'>God and Devil World / Система Богов и Демонов</a>		</h2>
+		<p class='info'>
+			<span class='label label-success'>Готово</span> текст с китайского на русский  от <a href='/users/47406' class='user user-inactive'>Big_Brother</a> в разделе &laquo;<a href='/search?cat=5'>Китайские</a>&raquo;<span class='cmt'><a href='/book/3166/announces/16893#Comments' title='Комментариев: 1, новых: 1'><i class='icon-nb-comment new'></i> +1</a> </span> 		</p>
+		<div class='msg'><i class='v'></i>
+			<b>Из-за жесткого косяка глав сегодня не будет (прошу прощения)<br />
+<br />
+Открыл пару глав<br />
+<br />
+Глава 703 – открыта в бесплатный доступ<br />
+Глава 704 – открыта в бесплатный доступ<br />
+</b>		</div>
+	</div>
+</div><div class='announce'>
+	<div class='a'>
+		<div class='img' style="background-image:url('/i/book/17/10/20182-5050.jpg')"></div>		<div class='r'>100%</div>
+	</div>
+	<div class='b'>
+		<h2 title="07 окт. 2017 г., 0:51">
+			<a href='/book/9393'>Трансформация / Трансформация</a>		</h2>
+		<p class='info'>
+			<span class='label label-success'>Готово</span> текст с русского на русский  от <a href='/users/44237' class='user user-inactive'>Siriys123</a> в разделе &laquo;<a href='/search?cat=2'>Тексты</a>&raquo;<span class='cmt'></span> 		</p>
+		<div class='msg'><i class='v'></i>
+			Земля и все живое прошло через Игровую Трансформацию. По всей Земле катастрофы: свойства материалов меняются, появляются новые виды флоры и фауны, электричества больше нет. Вместо прежней цивилизации пришла Игра с участием множества других миров. <br />
+Однако не все идет по плану пришельцев. Присоединившие Землю к игровому ареалу и, по сути, превратившие ее в новый огромный данж теряют главный бонус за первое игровое действие. Его получает не лидер захватчиков, а обычный молодой парень. <br />
+Как он сможет этим распорядиться, кто из пришлых игроков будет союзником, а кто врагом? И смогут ли дерзнувшие пойти супротив всесильных захватчиков, вернуть себе свои земли и даже создать свой новый мир?		</div>
+	</div>
+</div><div class='announce'>
+	<div class='a'>
+		<div class='img' style="background-image:url('/i/book/17/8/15999-5050.jpg')"></div>		<div class='r'>100%</div>
+	</div>
+	<div class='b'>
+		<h2 title="07 окт. 2017 г., 0:34">
+			<a href='/book/6040'>(Строго 18+) Операция ~Футанари~ / Главная героиня злодействует в мейд-кафе симулятора свиданий ~Шлюховатый Токио 2~</a>		</h2>
+		<p class='info'>
+			<span class='label label-success'>Готово</span> текст с русского на русский  от <a href='/users/46090' class='user user-inactive'>grimuare</a> в разделе &laquo;<a href='/search?cat=18'>Авторские</a>&raquo;<span class='cmt'></span> 		</p>
+		<div class='msg'><i class='v'></i>
+			Глава 3 часть 2 &ndash; бесплатно! Читайте на здоровье!<br />
+Выиграй игру! Подробности &ndash; <a rel="nofollow" href='http://tl.rulate.ru/book/5270/175390/ready'>http://tl.rulate.ru/book/5270/175390/ready</a><br />
+<br />
+<a rel="nofollow" href="http://radikal.ru"><img src="http://s018.radikal.ru/i517/1709/90/f7f34029762a.jpg" alt="f7f34029762a.jpg" /></a>		</div>
+	</div>
+</div>		<p class="links">
+			&rarr; <a href="/announces">остальные новости</a>
+		</p>
+	</div>
+	<div id="f-blog" class="span5">
+		<h2>
+			Обсуждается в блоге
+			<span class="links">&rarr; <a href="/blog">весь блог</a></span>
+		</h2>
+		<ul>
+		<li><a href='/blog/16897'>Удалили перевод</a><p>Начал писать книгу (Авторское). Проект прожил ровно час, после чего просто исчез. Может где-то есть правила которые я не...</p></li><li><a href='/blog/1588'>Помощь в поиске новеллы <span class='c'><i class='icon-nb-comment'></i> 1800</span></a><p>Тут можно писать запросы на поиск новеллы, если помните сюжет или описание, а мы будем помогать искать)</p></li><li><a href='/blog/9216'>Подтверждение аккаунта <span class='c'><i class='icon-nb-comment'></i> 252</span></a><p>Если к вам не пришло письмо с подтверждением аккаунта, то отпишитесь в данной теме.Нужно только для аккаунтов, которые з...</p></li><li><a href='/blog/16832'>Свежая идея <span class='c'><i class='icon-nb-comment'></i> 24</span></a><p>Помниться, уже писал, прям крик души. Вновь и вновь сталкиваюсь с проблемой очевидного слива "единичками", причём даже с...</p></li><li><a href='/blog/883'>Размещение вашей новеллы на главной <span class='c'><i class='icon-nb-comment'></i> 1299</span></a><p>Уважаемые переводчики, если вы хотите увидеть свою новеллу на главной старнице, пишите под этим постом заявку с ссылкой ...</p></li><li><a href='/blog/16716'>Удалили перевод <span class='c'><i class='icon-nb-comment'></i> 13</span></a><p>Можно узнать причину, хотя бы пойму что не так сделал. новелла The Case of a Stupid FPS Player Fall Into Another World</p></li><li><a href='/blog/16884'>Здравствуйте! Хочется узнать, какой алгоритм удаления рецензий? <span class='c'><i class='icon-nb-comment'></i> 1</span></a><p>Удалялась несколько раз рецензия на новеллу "Маг поедающий книги". Мне не совсем понятно что в ней вызывало такую реакци...</p></li><li><a href='/blog/15976'>Товарищи Хозяева Сайта и их подчиненные!!! <span class='c'><i class='icon-nb-comment'></i> 35</span></a><p>Может прекратите вот так в наглую забивать переводы, тупо вбив одно название.
+На создавали твинко аккаунтов и вперед...
+...</p></li><li><a href='/blog/68'>Вывод средств <span class='c'><i class='icon-nb-comment'></i> 273</span></a><p>Уважаемые переводчики!
+Теперь каждый может выводить заработанную денежку с переводов!
+Доступные способы вывода: QIWI, YA...</p></li><li><a href='/blog/15609'>Амбициозные люди, прошу ко мне <span class='c'><i class='icon-nb-comment'></i> 36</span></a><p>В общих чертах. 
+Я хочу набрать команду на проект. Трое:
+Человек-сюжет
+Человек-редактор
+Человек-иллюстратор/дополнитель/...</p></li>		</ul>
+		<p class="links">
+			&rarr; <a href="/blog">остальные посты</a>
+		</p>
+	</div>
+</div>
+<!-- A: 1 --></div>
+
+<footer>
+    <div class="container"><div class="row">
+        <div class="span6">
+            &copy; <a href="http://rulate.ru/" rel="nofollow">Rulate.Ru</a> 2012&ndash;2017 | <a href="http://tl.rulate.ru/blog/1319" rel="nofollow">Для правообладателей</a> | <a href="http://tl.rulate.ru/site/tos" rel="nofollow">Пользовательское соглашение</a>
+            <br />
+            <a href="/site/help">Справка</a> |
+            <a href="http://tl.rulate.ru/blog/2271">Не пополнился баланс?</a> |
+			<a href="/site/donate" style="color:#5d7b02;">Сказать &laquo;спасибо!&raquo;</a> |
+			<a href="http://tl.rulate.ru/my/mail/write?to=realizm">Написать в поддержку</a> |
+			<a href="http://tl.rulate.ru/blog/59">Услуги</a>
+        </div>
+        <div class="span4 sape">
+		<a href="http://tl.rulate.ru/blog/179">Авторские права переводчиков - их интелектуальная собственность.</a> <br>Копирование материалов сайта с платной подписки запрещено к распространению.
+        </div>
+        <div class="span2 counters">
+		<!--LiveInternet counter--><script type="text/javascript"><!--
+document.write("<a href='//www.liveinternet.ru/click' "+
+"target=_blank><img src='//counter.yadro.ru/hit?t11.6;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random()+
+"' alt='' title='LiveInternet: показано число просмотров за 24"+
+" часа, посетителей за 24 часа и за сегодня' "+
+"border='0' width='88' height='31'><\/a>")
+//--></script><!--/LiveInternet-->
+	
+		</div>
+    </div></div>
+</footer>
+
+<style>
+#up
+{
+	width: 48px;
+	height: 48px;
+	position:fixed;
+	bottom:20px;
+	right:20px;
+}
+</style>
+<script>
+$(document).ready(function(){
+	$("#up").click(function(){
+		var curPos=$(document).scrollTop();
+		var scrollTime=curPos/3.46;
+		$("body,html").animate({"scrollTop":0},scrollTime);
+	});
+	
+	/*
+	var element = $('#up');
+    $(window).scroll(function(){
+        element['fade'+ ($(this).scrollTop() > 200 ? 'In': 'Out')](500);           
+    });
+	*/
+});
+</script>
+<div id="up" class="visible-desktop"><img src="/img/up.png" /></div>
+
+<script type="text/javascript">
+/*<![CDATA[*/
+jQuery(function($) {
+jQuery('a.tooltip').tooltip({'placement':'bottom'});
+jQuery('a[rel="popover"]').popover();
+jQuery('#yw0 .alert').alert();
+});
+/*]]>*/
+</script>
+</body></html>

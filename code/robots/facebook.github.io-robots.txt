@@ -1,0 +1,32 @@
+<html>
+<head>
+  <script type="text/javascript" charset="utf-8">
+    // Map of projects that support handling 404s.
+    // If a string is provided, we will assume that is a URL and redirect to it,
+    // first replacing ${from} with the original URL.
+    // eg foo: 'http://foo.com/index.php?show=404&from=${from}'
+    //
+    // Otherwise we will just redirect to facebook.github.io/project/404.html?from=originalURL
+    var supportedProjects = {
+      react: true,
+      'react-native': 'http://facebook.github.io/react-native/docs/getting-started.html',
+      'origami': 'http://origami.design/'
+    };
+
+    var project = window.location.pathname.split('/')[1];
+
+    // Always fallback to regular redirect to code.facebook.com.
+    var loc = 'https://code.facebook.com';
+
+    if (supportedProjects.hasOwnProperty(project)) {
+      if (typeof supportedProjects[project] === 'string') {
+        loc = supportedProjects[project].replace('${from}', window.location.href)
+      } else {
+        loc = 'http://facebook.github.io/' + project + '/404.html?from=' + window.location.href;
+      }
+    }
+    window.location.href = loc;
+  </script>
+</head>
+<body></body>
+</html>

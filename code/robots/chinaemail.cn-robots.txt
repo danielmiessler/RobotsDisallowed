@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>BossMail邮局</title>
+	<link href="/resources/css/css.css?v=22058" type="text/css" rel="stylesheet" />
+	<!--banner-->
+	<script type="text/javascript" src="/resources/js/jquery-1.8.0.min.js"></script>
+	<script type="text/javascript" src="/resources/js/jquery.jslides.js"></script>
+	<!--banner-->
+    <!--nav-->
+    <script>
+        <!--
+        function setTab(m,n){
+			var tli = $('#menu'+m).children('li');
+			var mli = $('#main'+m ).children('li');
+            for(var i=0;i<tli.length;i++){
+				tli[i].className=i==n?"hover":"";
+                if(mli.length){
+					mli[i].style.display=i==n?"block":"none";
+				}
+            }
+        }
+        //-->
+    </script>
+    <!--nav-->
+</head>
+<body>
+<div id="header">
+	<div class="top">
+		<h1><a href="/"><img src="/resources/images/logo.gif" title="BossMail邮局" alt="BossMail邮局" /></a></h1>
+	</div>
+
+	<!--nav-->
+	<div class="nav">
+		<ul id="menu1">
+			<li class="hover"><a href="/">首页</a></li>
+			<li>
+				<ul class="nav_s1">
+					<li><a href="/product?type=sys">Bossmail邮件系统</a></li>
+					<li style = "display:none;"><a href="/product?type=m">BossmailM邮件客户端</a></li>
+					<li><a href="/product?type=smart">Webmail系统智能终端版</a></li>
+					<li><a href="/product?type=addr">通讯录同步插件</a></li>
+					<li><a href="/product?type=q">企业即时通</a></li>
+					<li><a href="/product?type=solution">解决方案</a></li>
+				</ul>
+				<a href="/product">产品</a>
+			</li>
+			<li>
+				<ul class="nav_s2">
+					<li><a href="/download?type=m">邮件客户端</a></li>
+					<li><a href="/download?type=q">移动即时通客户端</a></li>
+					<li><a href="/download?type=addr">通讯录同步插件</a></li>
+					<li><a href="/download?type=doc">文档下载</a></li>
+				</ul>
+				<a href="/download">下载</a>
+			</li>
+			<li><a href="/buy">购买</a></li>
+			<li><a href="/cases">客户</a></li>
+			<li>
+				<ul class="nav_s3">
+					<li><a href="/information">新闻公告</a></li>
+					<li><a href="/help">常见问题</a></li>
+					<li><a href="/aboutus">关于我们</a></li>
+				</ul>
+				<a href="/information">我们</a>
+			</li>
+		</ul>
+
+	</div>
+	<!--nav End-->
+	<!--<a href="#" class="top_btn"></a>-->
+</div>
+<script>
+    function showWeixin(){
+        $("#code_box").show();
+        $("body").bind("mousedown",function(){
+            $("#code_box").hide();
+        });
+    }
+
+    setTab(1,0);
+</script>
+<script>
+    function validateName(value){
+        var pattern=/\"|\\|\>|\</;
+        return pattern.exec(value);
+    }
+    function buyFormSub(iscommon){
+        $("#buybtn").html("正在提交...").attr("onclick","return false");
+        var data_name = $("#name").val();
+        var data_phone = $("#phone").val();
+        var data_company = $("#company").val();
+        var data_url = $("#url").val();
+        var error = false;
+        var reg = /(\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$/;
+        if(data_url == "" || data_url == "公司网址" || validateName(data_url)){
+            if(iscommon){
+                $("#url").val("公司网址");
+            }
+            $("#url").css("border-color","red").focus();
+            error = true;
+        }else{
+            $("#url").css("border-color","#c0c8cc");
+        }
+        if(data_company == "" || data_company == "公司名称" ||  validateName(data_company)){
+            if(iscommon){
+                $("#company").val("公司名称");
+            }
+            $("#company").css("border-color","red").focus();
+            error = true;
+        }else{
+            $("#company").css("border-color","#c0c8cc");
+        }
+
+        if(!reg.test(data_phone)){
+            if(iscommon){
+                $("#phone").val("联系电话");
+            }
+            $("#phone").css("border-color","red").focus();
+            error = true;
+        }else{
+            $("#phone").css("border-color","#c0c8cc");
+        }
+
+        if(data_name == "" || data_name == "联系人" ||  validateName(data_name)){
+            if(iscommon){
+                $("#name").val("联系人");
+            }
+            $("#name").css("border-color","red").focus();
+            error = true;
+        }else{
+            $("#name").css("border-color","#c0c8cc");
+        }
+
+        if(!error){
+            $.ajax({
+                type: "POST",
+                url: "/sendMail",
+                data: { name:data_name,phone:data_phone,company:data_company,url:data_url,issub:1},
+                success: function(msg){
+                    if(msg == "success"){
+                        $("#buybtn").css('background-color','#47d91c').html("谢谢惠顾").attr("onclick","return false");
+                        $("#name").css("border-color","#c0c8cc").val("");
+                        $("#phone").css("border-color","#c0c8cc").val("");
+                        $("#company").css("border-color","#c0c8cc").val("");
+                        $("#url").css("border-color","#c0c8cc").val("");
+                        /*if(iscommon){
+                            $("#name").val("联系人");
+                            $("#phone").val("联系电话");
+                            $("#company").val("公司名称");
+                            $("#url").val("公司网址");
+                        }*/
+                    }else{
+                        $("#buybtn").html("提交失败").attr("onclick","return false");
+                    }
+                }
+            });
+        }else{
+            $("#buybtn").html("再次提交").attr("onclick","buyFormSub("+iscommon+")");
+        }
+    }
+
+</script>
+<!-- banner -->
+<!-- banner -->
+<div id="full-screen-slider">
+	<ul id="slides">
+		<li style="background:url('/resources/images/banner04.jpg') no-repeat center top;">
+			  <div class="index_banner_04" style="width:1000px; height:384px;margin:0px auto;text-align:center; position:relative;"><a href="#!"></a></div>
+		</li>
+		<li style="background:url('/resources/images/banner1.jpg') no-repeat center top"></li>
+		<li style="background:url('/resources/images/banner2.jpg') no-repeat center top"></li>
+		<li style="background:url('/resources/images/banner3.jpg') no-repeat center top"></li>
+	</ul>
+</div>
+<!-- banner End -->
+<div class="c"></div>
+
+<div class="function">
+	<div class="function_box">
+		<a href="/product?type=solution">
+			<img class="function_icon_1" src="/resources/images/blank.gif" />
+			<h4>无限空间 安全存储</h4>
+			<p>首推无限空间，妥善解决空间难题<br />可发送300M普通附件、2G超大附件<br />免费赠送G级超大网络硬盘</p>
+		</a>
+	</div>
+	<div class="h_line"></div>
+	<div class="function_box">
+		<a href="/product?type=solution&tab=1">
+			<img class="function_icon_2" src="/resources/images/blank.gif" />
+			<h4>全球畅通 收发无阻</h4>
+			<p>拥有海外服务器群组、加密传输邮件<br />海外邮件双向收发，保证准确投递<br />国同唯一8线接入的BGP机房，南北互通</p>
+		</a>
+	</div>
+	<div class="h_line"></div>
+	<div class="function_box">
+		<a href="/product?type=solution&tab=3">
+			<img class="function_icon_3" src="/resources/images/blank.gif" />
+			<h4>智能反垃圾 实时防病毒</h4>
+			<p>拥有先进的思科邮件网关，行业领先<br />多层智能反垃圾，高效拦截垃圾邮件<br />实时病毒检测，超强病毒免疫</p>
+		</a>
+	</div>
+	<div class="h_line"></div>
+	<div class="function_box">
+		<a href="/product?type=q">
+			<img class="function_icon_4" src="/resources/images/blank.gif" />
+			<h4>企业即时通 高效沟通</h4>
+			<p>具有PC、iPhone、Android版本<br />消息、语音、视频多种沟通方式<br />随时随地沟通，畅通无阻</p>
+		</a>
+	</div>
+</div>
+<div class="c"></div>
+
+<div class="content">
+	<div class="noticeBox">
+		<h3 class="title_1"><a href="/information">更多>></a>新闻公告</h3>
+		<ul>
+																														<li><a href="notice?itemid=216" title="关于防范“钓鱼邮件”的通知_20160531">关于防范“钓鱼邮件”的通知_20160...</a><span>05-31</span></li>
+															<li><a href="information?itemid=215" title="老板邮局沟通协同一体化 助力高效办公">老板邮局沟通协同一体化 助力高效...</a><span>04-28</span></li>
+															<li><a href="information?itemid=214" title="老板邮局整合多终端系统 开启协同办公新平台">老板邮局整合多终端系统 开启协同...</a><span>04-14</span></li>
+															<li><a href="information?itemid=213" title="老板邮局日程管理 企业办公井井有条">老板邮局日程管理 企业办公井井有...</a><span>03-29</span></li>
+															<li><a href="information?itemid=212" title="老板邮局邮件管家：企业老板的“第三只眼睛”">老板邮局邮件管家：企业老板的“第三...</a><span>03-10</span></li>
+					</ul>
+	</div>
+
+	<div class="hotlineBox">
+		<h3 class="title_1">联系方式</h3>
+		<div class="hotline">
+			<p><span>老板邮局VIP专线：</span><br />400-8872-888 / 0592-2958885<br /><span>老板邮局销售专线：</span><br />400-8873-999</p>
+			<p><span>电子邮箱：</span><br /><a href="mailto:VIP@laobanmail.com" style="color: #7e7e7e">VIP@laobanmail.com</a></p>
+		</div>
+	</div>
+
+	<div class="h_downloadBox">
+		<h3 class="title_1"><a href="/download">更多软件下载>></a>软件下载</h3>
+		<div class="h_download">
+			<a href="/download?id=33" class="h_download_btn"></a>
+		</div>
+	</div>
+</div>
+<div class="c"></div>
+<div class="footer">
+	<div class="footer_box">
+		<div class="f_l">
+			<a href="/aboutus">关于中资源</a> &nbsp;|&nbsp;
+			<a href="/help">帮助</a> &nbsp;|&nbsp;
+			<a href="http://www.zzy.cn/" target="_blank">中资源</a> &nbsp;|&nbsp;
+			<a target="_blank" href="http://www.yzhantong.com/">移站通网站</a> &nbsp;|&nbsp;
+			<a target="_blank" href="http://www.114.com.cn/">114网站</a><br />厦门市中资源网络服务有限公司版权所有  闽B2-20040086-1
+		</div>
+		<div class="footer_img">
+			<script type="text/javascript" src="https://kxlogo.knet.cn/seallogo.dll?sn=2010061700100001292"> </script>
+			<a href="http://xmcyberpolice.cn/index.asp" target="_blank"><img src="/resources/images/footer_img.jpg" alt="厦门市公安局公共信息网络安全监察处" /></a>
+			<script type="text/javascript" src="http://wljg.xmgs.gov.cn:8080/scripts/businessLicense.js?id=40288a8546eb44d0014738c086e40064"></script>
+		</div>
+		<div class="c"></div>
+	</div>
+</div>
+
+<!--固定右下角-->
+<div class="r_fixed">
+	<a href="http://www.qihuatong.com/chat/webChat?u_i=1&lang=0&r_u=http%3A%2F%2Fwww.baidu.com%2Fs%3Fwd%3Dzzy&v_u=http%3A%2F%2Fwww.zzy.cn%2F&skin=1&target=chat&cookie=124753337735443510&free=1&s_i=-1&t_i=1" target="_blank" class="scanning"><img src="/resources/images/blank.gif" /><p>在线客服</p></a>
+	<b class="division"></b>
+	<a href="http://weibo.com/zzycn" target="_blank" class="micro_blog"><img src="/resources/images/blank.gif" /><p>官方微博</p></a>
+	<b class="division"></b>
+	<a href="javascript:void(0);" class="micro_message" onmouseout="$('.micro_mail').hide();" onmouseover="$('.micro_mail').show();"><img src="/resources/images/blank.gif" /><p>企业微信</p></a>
+	<img style="display:none;" src="/resources/images/micro_mail.png" class="micro_mail" /><!--微信二维码，点击按钮显示 style="display:none;"-->
+</div>
+<!--固定右下角 End-->
+</body>
+</html>

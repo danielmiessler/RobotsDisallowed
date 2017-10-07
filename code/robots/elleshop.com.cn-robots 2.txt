@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<title>ELLESHOP中国--出错啦</title>
+        <style>
+			html {
+				height: 100%;
+			}
+			body {
+				height: 100%;
+				margin: 0;
+				font-family: "Microsoft YaHei";
+			}
+			img {
+				float: left;
+				width: 100%;
+			}
+			p {
+				margin-top: 0;
+				margin-bottom: 0;
+			}
+        	.wapper {
+				position: relative;
+				height: 100%;
+				margin-bottom: 198px;
+			}
+			.section {
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				overflow: hidden;
+				width: 400px;
+				margin-left: -260px;
+				-webkit-transform: translateY(-50%);
+				-moz-transform: translateY(-50%);
+				-ms-transform: translateY(-50%);
+				-o-transform: translateY(-50%);
+				transform: translateY(-50%);
+			}
+			.img {
+				width: 270px;
+				height: 266px;
+				overflow: hidden;
+				margin: 0 auto;
+			}
+			.txt-1 {
+				font-size: 18px;
+				line-height: 36px;
+				text-align: center;
+				margin-bottom: 26px;
+				color: #333;
+			}
+			.txt-2 {
+				font-size: 12px;
+				line-height: 20px;
+				text-align: center;
+				color: #333;
+			}
+			.txt-2 a, .txt-2 a:hover, .txt-2 a:active, .txt-2 a:focus, .txt-2 a:visited  {
+				text-decoration: underline;
+			}
+			.txt-2 .color-red {
+				color: #b81c22;
+			}
+        </style>
+	</head>
+	<body>
+		<div class="wapper">
+        	<div class="section">
+                <div class="img">
+                    <img src="/404.png">
+                </div>
+                <p class="txt-1">该页无法正常显示，请尝试其他页面。</p>
+                <p class="txt-2"><span class="color-red" id="totalSecond">5</span>秒钟之后自动返回 ELLESHOP 首页</p>
+                <p class="txt-2">直接访问 <a href="/"  class="color-red">ELLESHOP首页</a></p>
+                <p class="txt-2"><a href="/index.php?route=product/search"  class="color-red">搜索页面</a> 搜索相关内容</p>
+            </div>			
+		</div>
+		<script language="javascript" type="text/javascript">
+			var second = document.getElementById('totalSecond').textContent;
+
+			if (navigator.appName.indexOf("Explorer") > -1)
+			{
+				second = document.getElementById('totalSecond').innerText;
+			} else
+			{
+				second = document.getElementById('totalSecond').textContent;
+			}
+
+			setInterval("redirect()", 1000);
+			function redirect()
+			{
+				if (second < 0)
+				{
+					location.href = '/index.php';
+				} else
+				{
+					if (navigator.appName.indexOf("Explorer") > -1)
+					{
+						document.getElementById('totalSecond').innerText = second--;
+					} else
+					{
+						document.getElementById('totalSecond').textContent = second--;
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

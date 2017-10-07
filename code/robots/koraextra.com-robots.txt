@@ -1,0 +1,1244 @@
+
+<script>
+var lang_alert = "\u062a\u0646\u0628\u064a\u0647 !" ;
+var lang_continue = "\u0645\u062a\u0627\u0628\u0639\u0629" ;
+var lang_cancel = "\u0625\u0644\u063a\u0627\u0621" ;
+var lang_ok = "\u0645\u0648\u0627\u0641\u0642" ;
+var lang_delete_msg = "\u0647\u0644 \u062a\u0631\u064a\u062f \u062d\u0630\u0641 \u0647\u0630\u0627 \u0627\u0644\u0645\u0644\u0641 \u0628\u0627\u0644\u062a\u0623\u0643\u064a\u062f \u061f";
+var lang_loading1 = '<i class="fa fa-spinner fa-spin fa-fw margin-bottom"></i>';
+var lang_loading5 = '<center><i class="fa fa-spinner fa-spin fa-5x fa-fw margin-bottom"></i></center>';
+
+var timer_owl = setInterval(function()
+{
+    $('.owl-carousel-sli').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:false,
+    items:1,
+    center:true,
+    autoplay:true,
+    autoplayTimeout:5000,
+    autoplayHoverPause:true
+  });
+
+
+
+  $('.owl-carousel').owlCarousel({
+      loop:true,
+      margin:5,
+      nav:false,
+      center:true,
+      autoplay:true,
+      autoplayTimeout:5000,
+      autoplayHoverPause:true,
+      responsive:{
+          0:{
+              items:1
+          },
+          600:{
+              items:3
+          },
+          1000:{
+              items:5
+          }
+      }
+  });
+
+
+}, 1000);
+
+  var timer_Table = setInterval(function()
+  {
+    var i = 0;
+    while(i<10)
+    {
+      try
+      {
+        i++;
+        if ( $.fn.dataTable.isDataTable( '#Table_'+i ) )
+        {
+          table = $('#Table_'+i).DataTable();
+        }
+        else
+        {
+          table = $('#Table_'+i).DataTable( {
+              'language': { 'url': '//cdn.datatables.net/plug-ins/1.10.12/i18n/Arabic.json' }
+          } );
+        }
+      }
+      catch(err){}
+
+      var defaults = { calendarWeeks: true, showClear: true, showClose: true, allowInputToggle: true, useCurrent: true, ignoreReadonly: true,
+        toolbarPlacement: 'top',  locale: 'en',
+        icons: {    time: 'fa fa-clock-o',    date: 'fa fa-calendar',    up: 'fa fa-angle-up',    down: 'fa fa-angle-down',    previous: 'fa fa-angle-left',
+          next: 'fa fa-angle-right',    today: 'fa fa-dot-circle-o',    clear: 'fa fa-trash',    close: 'fa fa-times'
+        }
+      };
+
+      try
+      {
+        var optionsDate = $.extend({}, defaults, {format:'YYYY/MM/DD'});
+        $('.datepicker').datetimepicker(optionsDate);
+
+        var optionsDatetime = $.extend({}, defaults, {format:'YYYY/MM/DD HH:mm'});
+        $('.datetimepicker').datetimepicker(optionsDatetime);
+
+        var optionstime = $.extend({}, defaults, {format:'HH:mm'});
+        $('.timepicker').datetimepicker(optionsDatetime);
+      }
+      catch(err){}
+
+
+    }
+  }, 1000);
+
+  var timer_select2 = setInterval(function()
+  {
+      try
+      {
+        //$('select').select2();
+      }
+      catch(err){}
+  }, 1000);
+</script>
+
+
+
+
+<script>
+  function count_down(id)
+  {
+      var hd =0;  var md =0;
+      var sec= document.getElementById("sec"+id);
+      var min= document.getElementById("min"+id);
+      var hor= document.getElementById("hor"+id);
+
+      var counter_down = setInterval( function()
+      {
+          var dtnow = new Date;
+          if( (dtnow.getMinutes() == "00" && dtnow.getSeconds() == "00") || (dtnow.getMinutes() == "0" && dtnow.getSeconds() == "0") )
+          {
+            get_tb("home_tbl","panel-2","tod");
+          }
+          else if( hor.innerHTML == 0 && min.innerHTML == 0 && sec.innerHTML == 0 )
+          {
+              get_tb("home_tbl","panel-2","tod");
+              clearInterval(counter_down);
+          }
+
+          else if( hor.innerHTML > 0 && hd ==0 && md ==0 )
+          {
+              if( min.innerHTML == 0 )
+              {
+                  if( sec.innerHTML == 0 )
+                  {
+                      hor.innerHTML=hor.innerHTML*1-1;
+                      min.innerHTML=59;
+                      sec.innerHTML=59;
+                  }
+                  else
+                  {
+                      sec.innerHTML=sec.innerHTML*1-1;
+                  }
+              }
+              else if( min.innerHTML > 0 )
+              {
+                  if( sec.innerHTML == 0 )
+                  {
+                      min.innerHTML=min.innerHTML*1-1;
+                      sec.innerHTML=59;
+                      md=1;
+                  }
+                  else
+                  {
+                      sec.innerHTML=sec.innerHTML*1-1;
+                  }
+              }
+          }
+
+          else if( hor.innerHTML == 0 && hd ==0 && md ==0 )
+          {
+              if( min.innerHTML > 0 )
+              {
+                  if( sec.innerHTML == 0 )
+                  {
+                      min.innerHTML=min.innerHTML*1-1;
+                      sec.innerHTML=59;
+                      md=1;
+                  }
+                  else
+                  {
+                      sec.innerHTML=sec.innerHTML*1-1;
+                  }
+              }
+              if( min.innerHTML == 0 )
+              {
+                  if( sec.innerHTML == 0 )
+                  {
+                      min.innerHTML=99;
+                  }
+                  else
+                  {
+                      sec.innerHTML=sec.innerHTML*1-1;
+                  }
+              }
+          }
+
+          else
+          {
+              if( sec.innerHTML > 0 )
+              {
+                  sec.innerHTML=sec.innerHTML*1-1;
+              }
+              else if( sec.innerHTML == 0 )
+              {
+                  hd=0; md=0;
+              }
+          }
+
+
+
+      } , 1000 )
+
+  }
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  function del(what,id) // in cp and site delete any thing
+  {
+    swal({
+      title: lang_alert,text: lang_delete_msg,type: "warning",showCancelButton: true, confirmButtonClass: "btn-danger",
+      confirmButtonText: lang_continue,cancelButtonText: lang_cancel, closeOnConfirm: false
+    }).then(function ()
+    {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function()
+      {
+        if (xhttp.readyState == 4 && xhttp.status == 200)
+        {
+          var info = jQuery.parseJSON(xhttp.responseText);
+
+          if (info.type == "TRUE") { swal("", info.msg, "success"); }
+          else { swal("خطأ", info.msg, "error"); }
+          do_now(info.do,info.pr1,info.pr2);
+        }
+      }
+      xhttp.open("POST", "ajax.php", true);
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhttp.send("delete="+what+"&id="+id );
+    });
+  }
+</script>
+<script>
+  function info(what,id,mod="modal-edit1")
+  {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function()
+    {
+      if (xhttp.readyState == 4 && xhttp.status == 200)
+      {
+        show_mod(mod);
+        var info = jQuery.parseJSON(xhttp.responseText);
+
+        if(what != "admins")
+        {
+          var i;
+          for(i=1;i<=info.max;i++)
+          {
+            try{ document.getElementById("edit"+i).value = info["edit"+i]; }catch(err){}
+          }
+        }
+        $('select').select2();
+      }
+    }
+    xhttp.open("POST", "ajax.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("info="+what+"&id="+id);
+  }
+</script>
+
+<script>
+  function get_tb(what,ele_id,id=0,extra=0) // in cp and site refrsh div and get table in it
+  {
+    document.getElementById(ele_id).innerHTML=lang_loading5;
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function()
+    {
+      if (xhttp.readyState == 4 && xhttp.status == 200)
+      {
+        try
+        {
+          var info = jQuery.parseJSON(xhttp.responseText);
+          if (info.type == "TRUE"){ swal("", info.msg, "success"); }
+          else { swal("", info.msg, "error"); }
+        }
+        catch(err){}
+
+        document.getElementById(ele_id).innerHTML = xhttp.responseText;
+      }
+    }
+    xhttp.open("POST", "ajax.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("tb="+what+"&id="+id );
+  }
+</script>
+
+
+<script>
+function send_form(thisObj,form_name,id=0,alert_all="",old) // in cp and site send froms like new post , new pck ..etc
+{
+    setTimeout( function()
+    {
+      var formData = new FormData($("form#"+form_name)[0]);
+      formData.append("form",form_name);
+      formData.append("form_id",id);
+
+      if(form_name == "page_new" || form_name == "post_new" || form_name == "news_new")
+      {
+        var des = CKEDITOR.instances.cke_new.getData(); formData.append("des",des);
+      }
+      if(form_name.search("page_edit_") > 0)
+      {
+        var des = CKEDITOR.instances["cke_edit"+id].getData(); formData.append("des",des);
+      }
+
+      $.ajax({
+        url: 'ajax.php', type: 'POST',data: formData, async: false,cache: false, contentType: false, processData: false,success: function (returndata)
+        {
+          if(alert_all != ""){ alert(form_name+"--"+returndata); }
+          var info = jQuery.parseJSON(returndata);
+          if (info.type == "TRUE")
+          {
+            if(info.do=="reset")
+            {
+              try { $('#'+form_name)[0].reset(); }
+              catch(err) { try { CKEDITOR.instances.cke_new.destroy(true); $('#'+form_name)[0].reset(); } catch(err){} }
+              try {
+                    $('.select2-hidden-accessible').each(function()
+                    {
+                      $('select').select2();
+                      $(this).select2("val", $(this).val());
+                      $('select').select2();
+                    });
+                  }
+             catch(err){}
+            }
+
+            // $('.modal').modal('hide');
+            swal("", info.msg, "success");
+          }
+          else { swal("", info.msg, "error"); }
+
+
+          try { eval(info.do); }
+          catch(err) { try{ do_now(info.do); } catch(err){} }
+
+        }
+      });
+      $(thisObj).prop("disabled",false);
+      $(thisObj).html(old);
+
+    }, 1379 )
+}
+
+
+</script>
+
+<script>
+  function show_mod(id) { $('#'+id).modal('show'); }
+  function hide_mod(id) { $('#'+id).modal('hide'); }
+  function go_to_url(value) { location.href=value; }
+  function show_div(div) { document.getElementById(div).style = ""; }
+  function hide_div(div) { document.getElementById(div).style = "display:none;"; }
+  function search_hh(e) // in site search button in header
+  {
+    if(e.keyCode === 13){search("search_input");}return false;
+  }
+  function search_hp(e) // in site just to accept enter pressing
+  {
+    if(e.keyCode === 13){ search("search_input2"); } return false;
+  }
+  function search(input) // in site in search page
+  {
+    var ser = document.getElementById(input).value ; var res = ser.replace(/ /g, "-"); go_to_url("search/"+res);
+  }
+</script>
+
+
+<script>
+function do_now(what,pr1="",pr2="")
+{
+  if(what == "lis")
+  {
+    $('body').on('click', '[goto]', function() { go_to($(this).attr('goto'));  });
+    $('body').on('click', '[gettb]', function() { get_tb($(this).attr('gettb'),$(this).attr('pr1'),$(this).attr('pr2'));  });
+    $('body').on('click', '[info]', function() { info($(this).attr('info'),$(this).attr('pr1'),$(this).attr('pr2'));  });
+    $('body').on('click', '[del]', function() { del($(this).attr('del'),$(this).attr('pr1'));  });
+
+    $('body').on('mousemove', '[dataTable]', function()
+    {
+      if ( $.fn.dataTable.isDataTable($(this)))
+      {
+        table = $(this).DataTable();
+      }
+      else
+      {
+        if($(this).attr('dataTable') == "ASC")
+        {
+          table = $(this).DataTable( {
+              'language': { 'url': '//cdn.datatables.net/plug-ins/1.10.12/i18n/Arabic.json' } , "order": [0, 'ASC']
+          } );
+        }
+        else if($(this).attr('dataTable') == "DESC")
+        {
+          table = $(this).DataTable( {
+              'language': { 'url': '//cdn.datatables.net/plug-ins/1.10.12/i18n/Arabic.json' } , "order": [0, 'DESC']
+          } );
+        }
+      }
+    });
+
+    $('body').on('click', '[sendform]', function()
+    {
+      send_form($(this),$(this).attr('sendform'),$(this).attr('pr1'),$(this).attr('pr2'),$(this).html());
+      $(this).html(lang_loading1+$(this).html()); $(this).prop("disabled",true);
+    });
+    $('body').on('click', '[data-show]', function()
+    {
+      $('.filter-days a[href="#'+$(this).attr('data-show')+'"]').tab('show');
+      $(".filter-days>li.active").removeClass("active");
+      $(".tab-content>div.active").removeClass("active");
+      $(this).addClass('active');
+      $('#'+$(this).attr('data-show')).addClass('active');
+    });
+
+    $('select').select2();
+
+      $('[clock]').each(function()
+      {
+         //time = new Date(0, 0, 0, $(this).attr('hor'), $(this).attr('min'), $(this).attr('sec'));
+	       var clock = $(this).FlipClock( $(this).attr('clock')  ,{ countdown: true	});
+         //count_down($(this).attr('clock'));
+      });
+
+      $('.mach-live').hover(function(){ $(this).css("opacity", "100") },function(){ $(this).css("opacity", "0") });
+      $('.show-mach').hover(function(){ $(this).css("opacity", "100") },function(){ $(this).css("opacity", "0") });
+      count();
+  }
+  else if(what == "redirect"){ setTimeout(function(){ location.reload(); }, 2333) }
+
+  else if(what == "go_to('cats')"){ go_to('cats'); }
+  else if(what == "get_tb('cats')"){ get_tb('cats',pr1,pr2); }
+  else if(what == "get_tb('channels')"){ get_tb('channels',pr1,pr2); }
+  else if(what == "get_tb('teams')"){ get_tb('teams',pr1,pr2); }
+
+
+}
+</script>
+
+<script>
+
+var progress_bar_timer;
+var i = 0;
+
+  function go_to(value) // in cp go to part of admin like posts , news , upload ...etc
+  {
+    clearTimeout(progress_bar_timer);
+    i=0; progress_bar_timer = setInterval( function() { progress_bar_plus1(value) }, 100);
+  }
+
+  function progress_bar_plus1(value)
+  {
+      $('#progress_bar').attr('aria-valuenow',i ).css('width',i +'%' );
+      if(i==50) { document.getElementById("main_content").innerHTML =""; }
+      else if(i==70) { progress_bar_plus2(value); }
+      else if(i==100)
+      {
+        i= 0;
+        $('#progress_bar').attr('aria-valuenow',i ).css('width',i +'%' );
+        $('select').select2();
+        //if(value == "mth"){ get_tb("mth","tab2"); }
+        if(value == "channels"){ get_tb("channels","tab2"); }
+        clearInterval(progress_bar_timer) ;
+        return;
+      }
+      i=i+5*1;
+  }
+  function progress_bar_plus2(value)
+  {
+    clearTimeout(progress_bar_timer);
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function()
+    {
+      if (xhttp.readyState == 4 && xhttp.status == 200)
+      {
+        document.getElementById("main_content").innerHTML = xhttp.responseText;
+        progress_bar_timer = setInterval( function() { progress_bar_plus1(value) }, 100);
+      }
+    }
+    xhttp.open("POST", "ajax.php", true); xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("get=go_to&id="+value);
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+<!--
+    <div class="col-md-12 tbl-item">
+      <a href="match/1858/Ghana-vs-Uganda.html">
+        <div class="shahed-div">
+          <div class="shahed-inn flex-center">
+            <div class="h4 shahed">شاهد الآن</div>
+          </div>
+        </div>
+        <div class="col-md-12 flex-center">
+          <div class="col-md-4 mth-tbl-frr">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/غانا.png' class='team-flag'>              </div>
+              <div class="tbl-h4">غانا</div>
+            </center>
+          </div>
+          <div class="col-md-4 flex-center mth-tbl-ti tbl-h4">
+              -  16 : 00  -          </div>
+          <div class="col-md-4 mth-tbl-frl">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/اوغندا.png' class='team-flag'>              </div>
+              <div class="tbl-h4">اوغندا</div>
+            </center>
+          </div>
+        </div>
+        <div class="mth-tbl-in col-md-12">
+          <br>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-microphone" aria-hidden="true"></i> احمد عبدة          </div>
+          <div class="flex-center  col-md-4">
+            <i class="fa fa-television" aria-hidden="true"></i> بي ان سبورت 1          </div>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-trophy" aria-hidden="true"></i> تصفيات كأس العالم 2118: افريقيا          </div>
+        </div>
+      </a>
+    </div>
+    <hr class="h4">
+        <div class="col-md-12 tbl-item">
+      <a href="match/1850/nigeria-vs-zambia.html">
+        <div class="shahed-div">
+          <div class="shahed-inn flex-center">
+            <div class="h4 shahed">شاهد الآن</div>
+          </div>
+        </div>
+        <div class="col-md-12 flex-center">
+          <div class="col-md-4 mth-tbl-frr">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/نيجيريا.png' class='team-flag'>              </div>
+              <div class="tbl-h4">نيجيريا</div>
+            </center>
+          </div>
+          <div class="col-md-4 flex-center mth-tbl-ti tbl-h4">
+              -  19 : 00  -          </div>
+          <div class="col-md-4 mth-tbl-frl">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/زامبيا.png' class='team-flag'>              </div>
+              <div class="tbl-h4">زامبيا</div>
+            </center>
+          </div>
+        </div>
+        <div class="mth-tbl-in col-md-12">
+          <br>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-microphone" aria-hidden="true"></i> عادل حلو          </div>
+          <div class="flex-center  col-md-4">
+            <i class="fa fa-television" aria-hidden="true"></i> بى ان سبورت 4          </div>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-trophy" aria-hidden="true"></i> تصفيات كأس العالم 2118: افريقيا          </div>
+        </div>
+      </a>
+    </div>
+    <hr class="h4">
+        <div class="col-md-12 tbl-item">
+      <a href="match/1851/cameroon-vs-algeria.html">
+        <div class="shahed-div">
+          <div class="shahed-inn flex-center">
+            <div class="h4 shahed">شاهد الآن</div>
+          </div>
+        </div>
+        <div class="col-md-12 flex-center">
+          <div class="col-md-4 mth-tbl-frr">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/الجزائر.png' class='team-flag'>              </div>
+              <div class="tbl-h4">الجزائر</div>
+            </center>
+          </div>
+          <div class="col-md-4 flex-center mth-tbl-ti tbl-h4">
+              -  19 : 00  -          </div>
+          <div class="col-md-4 mth-tbl-frl">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/الكاميرون.png' class='team-flag'>              </div>
+              <div class="tbl-h4">الكاميرون</div>
+            </center>
+          </div>
+        </div>
+        <div class="mth-tbl-in col-md-12">
+          <br>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-microphone" aria-hidden="true"></i> عبد القادر الشنيوني          </div>
+          <div class="flex-center  col-md-4">
+            <i class="fa fa-television" aria-hidden="true"></i> بى ان سبورت 3          </div>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-trophy" aria-hidden="true"></i> تصفيات كأس العالم 2118: افريقيا          </div>
+        </div>
+      </a>
+    </div>
+    <hr class="h4">
+        <div class="col-md-12 tbl-item">
+      <a href="match/1852/guinea-vs-tunisia.html">
+        <div class="shahed-div">
+          <div class="shahed-inn flex-center">
+            <div class="h4 shahed">شاهد الآن</div>
+          </div>
+        </div>
+        <div class="col-md-12 flex-center">
+          <div class="col-md-4 mth-tbl-frr">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/تونس.png' class='team-flag'>              </div>
+              <div class="tbl-h4">تونس</div>
+            </center>
+          </div>
+          <div class="col-md-4 flex-center mth-tbl-ti tbl-h4">
+              -  20 : 00  -          </div>
+          <div class="col-md-4 mth-tbl-frl">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/غينيا.png' class='team-flag'>              </div>
+              <div class="tbl-h4">غينيا</div>
+            </center>
+          </div>
+        </div>
+        <div class="mth-tbl-in col-md-12">
+          <br>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-microphone" aria-hidden="true"></i> رؤوف خليف          </div>
+          <div class="flex-center  col-md-4">
+            <i class="fa fa-television" aria-hidden="true"></i> بي ان سبورت 1          </div>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-trophy" aria-hidden="true"></i> تصفيات كأس العالم 2118: افريقيا          </div>
+        </div>
+      </a>
+    </div>
+    <hr class="h4">
+        <div class="col-md-12 tbl-item">
+      <a href="match/1853/libya-vs-congo-dr.html">
+        <div class="shahed-div">
+          <div class="shahed-inn flex-center">
+            <div class="h4 shahed">شاهد الآن</div>
+          </div>
+        </div>
+        <div class="col-md-12 flex-center">
+          <div class="col-md-4 mth-tbl-frr">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/ليبيا.png' class='team-flag'>              </div>
+              <div class="tbl-h4">ليبيا</div>
+            </center>
+          </div>
+          <div class="col-md-4 flex-center mth-tbl-ti tbl-h4">
+              -  20 : 00  -          </div>
+          <div class="col-md-4 mth-tbl-frl">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/جمهورية الكونغو.png' class='team-flag'>              </div>
+              <div class="tbl-h4">جمهورية الكونغو</div>
+            </center>
+          </div>
+        </div>
+        <div class="mth-tbl-in col-md-12">
+          <br>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-microphone" aria-hidden="true"></i> محمد بركات          </div>
+          <div class="flex-center  col-md-4">
+            <i class="fa fa-television" aria-hidden="true"></i> بى ان سبورت 8          </div>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-trophy" aria-hidden="true"></i> تصفيات كأس العالم 2118: افريقيا          </div>
+        </div>
+      </a>
+    </div>
+    <hr class="h4">
+        <div class="col-md-12 tbl-item">
+      <a href="match/1854/belarus-vs-netherlands.html">
+        <div class="shahed-div">
+          <div class="shahed-inn flex-center">
+            <div class="h4 shahed">شاهد الآن</div>
+          </div>
+        </div>
+        <div class="col-md-12 flex-center">
+          <div class="col-md-4 mth-tbl-frr">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/هولندا.png' class='team-flag'>              </div>
+              <div class="tbl-h4">هولندا</div>
+            </center>
+          </div>
+          <div class="col-md-4 flex-center mth-tbl-ti tbl-h4">
+              -  21 : 45  -          </div>
+          <div class="col-md-4 mth-tbl-frl">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/روسيا البيضاء.png' class='team-flag'>              </div>
+              <div class="tbl-h4">روسيا البيضاء</div>
+            </center>
+          </div>
+        </div>
+        <div class="mth-tbl-in col-md-12">
+          <br>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-microphone" aria-hidden="true"></i> محمد الشامسي          </div>
+          <div class="flex-center  col-md-4">
+            <i class="fa fa-television" aria-hidden="true"></i> أبو ظبي الرياضية 5          </div>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-trophy" aria-hidden="true"></i> تصفيات كأس العالم 2118: أوروبا          </div>
+        </div>
+      </a>
+    </div>
+    <hr class="h4">
+        <div class="col-md-12 tbl-item">
+      <a href="match/1855/bulgaria-vs-france.html">
+        <div class="shahed-div">
+          <div class="shahed-inn flex-center">
+            <div class="h4 shahed">شاهد الآن</div>
+          </div>
+        </div>
+        <div class="col-md-12 flex-center">
+          <div class="col-md-4 mth-tbl-frr">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/فرنسا.png' class='team-flag'>              </div>
+              <div class="tbl-h4">فرنسا</div>
+            </center>
+          </div>
+          <div class="col-md-4 flex-center mth-tbl-ti tbl-h4">
+              -  21 : 45  -          </div>
+          <div class="col-md-4 mth-tbl-frl">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/بلغاريا.png' class='team-flag'>              </div>
+              <div class="tbl-h4">بلغاريا</div>
+            </center>
+          </div>
+        </div>
+        <div class="mth-tbl-in col-md-12">
+          <br>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-microphone" aria-hidden="true"></i> علي حميد          </div>
+          <div class="flex-center  col-md-4">
+            <i class="fa fa-television" aria-hidden="true"></i> أبو ظبي الرياضية 3          </div>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-trophy" aria-hidden="true"></i> تصفيات كأس العالم 2118: أوروبا          </div>
+        </div>
+      </a>
+    </div>
+    <hr class="h4">
+        <div class="col-md-12 tbl-item">
+      <a href="match/1856/andorra-vs-portugal.html">
+        <div class="shahed-div">
+          <div class="shahed-inn flex-center">
+            <div class="h4 shahed">شاهد الآن</div>
+          </div>
+        </div>
+        <div class="col-md-12 flex-center">
+          <div class="col-md-4 mth-tbl-frr">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/البرتغال.png' class='team-flag'>              </div>
+              <div class="tbl-h4">البرتغال</div>
+            </center>
+          </div>
+          <div class="col-md-4 flex-center mth-tbl-ti tbl-h4">
+              -  21 : 45  -          </div>
+          <div class="col-md-4 mth-tbl-frl">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/أندورا.png' class='team-flag'>              </div>
+              <div class="tbl-h4">أندورا</div>
+            </center>
+          </div>
+        </div>
+        <div class="mth-tbl-in col-md-12">
+          <br>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-microphone" aria-hidden="true"></i> حازم عبدالسلام          </div>
+          <div class="flex-center  col-md-4">
+            <i class="fa fa-television" aria-hidden="true"></i> أبو ظبي الرياضية 4          </div>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-trophy" aria-hidden="true"></i> تصفيات كأس العالم 2118: أوروبا          </div>
+        </div>
+      </a>
+    </div>
+    <hr class="h4">
+        <div class="col-md-12 tbl-item">
+      <a href="match/1857/morocco-vs-gabon.html">
+        <div class="shahed-div">
+          <div class="shahed-inn flex-center">
+            <div class="h4 shahed">شاهد الآن</div>
+          </div>
+        </div>
+        <div class="col-md-12 flex-center">
+          <div class="col-md-4 mth-tbl-frr">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/المغرب.png' class='team-flag'>              </div>
+              <div class="tbl-h4">المغرب</div>
+            </center>
+          </div>
+          <div class="col-md-4 flex-center mth-tbl-ti tbl-h4">
+              -  22 : 00  -          </div>
+          <div class="col-md-4 mth-tbl-frl">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/الجابون.png' class='team-flag'>              </div>
+              <div class="tbl-h4">الجابون</div>
+            </center>
+          </div>
+        </div>
+        <div class="mth-tbl-in col-md-12">
+          <br>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-microphone" aria-hidden="true"></i> غير معروف          </div>
+          <div class="flex-center  col-md-4">
+            <i class="fa fa-television" aria-hidden="true"></i> الرياضية المغربية           </div>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-trophy" aria-hidden="true"></i> تصفيات كأس العالم 2118: افريقيا          </div>
+        </div>
+      </a>
+    </div>
+    <hr class="h4">
+        <div class="col-md-12 tbl-item">
+      <a href="match/1843/argentina-vs-peru.html">
+        <div class="shahed-div">
+          <div class="shahed-inn flex-center">
+            <div class="h4 shahed">شاهد الآن</div>
+          </div>
+        </div>
+        <div class="col-md-12 flex-center">
+          <div class="col-md-4 mth-tbl-frr">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/الأرجنتين.png' class='team-flag'>              </div>
+              <div class="tbl-h4">الأرجنتين</div>
+            </center>
+          </div>
+          <div class="col-md-4 flex-center mth-tbl-ti tbl-h4 ">
+              انتهت المباراة          </div>
+          <div class="col-md-4 mth-tbl-frl">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/البيرو.png' class='team-flag'>              </div>
+              <div class="tbl-h4">البيرو</div>
+            </center>
+          </div>
+        </div>
+        <div class="mth-tbl-in col-md-12">
+          <br>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-microphone" aria-hidden="true"></i> رؤوف خليف          </div>
+          <div class="flex-center  col-md-4">
+            <i class="fa fa-television" aria-hidden="true"></i> بي ان سبورت 1          </div>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-trophy" aria-hidden="true"></i> تصفيات كأس العالم 2118: امريكا الجنوبية          </div>
+        </div>
+      </a>
+    </div>
+    <hr class="h4">
+        <div class="col-md-12 tbl-item">
+      <a href="match/1844/chile-vs-ecuador.html">
+        <div class="shahed-div">
+          <div class="shahed-inn flex-center">
+            <div class="h4 shahed">شاهد الآن</div>
+          </div>
+        </div>
+        <div class="col-md-12 flex-center">
+          <div class="col-md-4 mth-tbl-frr">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/تشيلي.png' class='team-flag'>              </div>
+              <div class="tbl-h4">تشيلي</div>
+            </center>
+          </div>
+          <div class="col-md-4 flex-center mth-tbl-ti tbl-h4 ">
+              انتهت المباراة          </div>
+          <div class="col-md-4 mth-tbl-frl">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/الاكوادور.png' class='team-flag'>              </div>
+              <div class="tbl-h4">الاكوادور</div>
+            </center>
+          </div>
+        </div>
+        <div class="mth-tbl-in col-md-12">
+          <br>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-microphone" aria-hidden="true"></i> علي محمد علي          </div>
+          <div class="flex-center  col-md-4">
+            <i class="fa fa-television" aria-hidden="true"></i> بي ان سبورت 2          </div>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-trophy" aria-hidden="true"></i> تصفيات كأس العالم 2118: امريكا الجنوبية          </div>
+        </div>
+      </a>
+    </div>
+    <hr class="h4">
+        <div class="col-md-12 tbl-item">
+      <a href="match/1845/georgia-vs-wales.html">
+        <div class="shahed-div">
+          <div class="shahed-inn flex-center">
+            <div class="h4 shahed">شاهد الآن</div>
+          </div>
+        </div>
+        <div class="col-md-12 flex-center">
+          <div class="col-md-4 mth-tbl-frr">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/ويلز.png' class='team-flag'>              </div>
+              <div class="tbl-h4">ويلز</div>
+            </center>
+          </div>
+          <div class="col-md-4 flex-center mth-tbl-ti tbl-h4 ">
+              انتهت المباراة          </div>
+          <div class="col-md-4 mth-tbl-frl">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/1 2017-10-05 21:26:30 1377538728.png' class='team-flag'>              </div>
+              <div class="tbl-h4">جورجيا</div>
+            </center>
+          </div>
+        </div>
+        <div class="mth-tbl-in col-md-12">
+          <br>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-microphone" aria-hidden="true"></i> عصام عبده          </div>
+          <div class="flex-center  col-md-4">
+            <i class="fa fa-television" aria-hidden="true"></i> أبو ظبي الرياضية 3          </div>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-trophy" aria-hidden="true"></i> تصفيات كأس العالم 2118: أوروبا          </div>
+        </div>
+      </a>
+    </div>
+    <hr class="h4">
+        <div class="col-md-12 tbl-item">
+      <a href="match/1846/italy-vs-macedonia.html">
+        <div class="shahed-div">
+          <div class="shahed-inn flex-center">
+            <div class="h4 shahed">شاهد الآن</div>
+          </div>
+        </div>
+        <div class="col-md-12 flex-center">
+          <div class="col-md-4 mth-tbl-frr">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/ايطاليا.png' class='team-flag'>              </div>
+              <div class="tbl-h4">ايطاليا</div>
+            </center>
+          </div>
+          <div class="col-md-4 flex-center mth-tbl-ti tbl-h4 ">
+              انتهت المباراة          </div>
+          <div class="col-md-4 mth-tbl-frl">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/مقدونيا.png' class='team-flag'>              </div>
+              <div class="tbl-h4">مقدونيا</div>
+            </center>
+          </div>
+        </div>
+        <div class="mth-tbl-in col-md-12">
+          <br>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-microphone" aria-hidden="true"></i> علي سعيد الكعبي          </div>
+          <div class="flex-center  col-md-4">
+            <i class="fa fa-television" aria-hidden="true"></i> أبو ظبي الرياضية 4          </div>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-trophy" aria-hidden="true"></i> تصفيات كأس العالم 2118: أوروبا          </div>
+        </div>
+      </a>
+    </div>
+    <hr class="h4">
+        <div class="col-md-12 tbl-item">
+      <a href="match/1847/spain-vs-albania.html">
+        <div class="shahed-div">
+          <div class="shahed-inn flex-center">
+            <div class="h4 shahed">شاهد الآن</div>
+          </div>
+        </div>
+        <div class="col-md-12 flex-center">
+          <div class="col-md-4 mth-tbl-frr">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/اسبانيا.png' class='team-flag'>              </div>
+              <div class="tbl-h4">اسبانيا</div>
+            </center>
+          </div>
+          <div class="col-md-4 flex-center mth-tbl-ti tbl-h4 ">
+              انتهت المباراة          </div>
+          <div class="col-md-4 mth-tbl-frl">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/البانيا.png' class='team-flag'>              </div>
+              <div class="tbl-h4">البانيا</div>
+            </center>
+          </div>
+        </div>
+        <div class="mth-tbl-in col-md-12">
+          <br>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-microphone" aria-hidden="true"></i> علي حميد          </div>
+          <div class="flex-center  col-md-4">
+            <i class="fa fa-television" aria-hidden="true"></i> أبو ظبي الرياضية 5          </div>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-trophy" aria-hidden="true"></i> تصفيات كأس العالم 2118: أوروبا          </div>
+        </div>
+      </a>
+    </div>
+    <hr class="h4">
+        <div class="col-md-12 tbl-item">
+      <a href="match/1848/turkey-vs-iceland.html">
+        <div class="shahed-div">
+          <div class="shahed-inn flex-center">
+            <div class="h4 shahed">شاهد الآن</div>
+          </div>
+        </div>
+        <div class="col-md-12 flex-center">
+          <div class="col-md-4 mth-tbl-frr">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/تركيا.png' class='team-flag'>              </div>
+              <div class="tbl-h4">تركيا</div>
+            </center>
+          </div>
+          <div class="col-md-4 flex-center mth-tbl-ti tbl-h4 ">
+              انتهت المباراة          </div>
+          <div class="col-md-4 mth-tbl-frl">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/أيسلندا.png' class='team-flag'>              </div>
+              <div class="tbl-h4">أيسلندا</div>
+            </center>
+          </div>
+        </div>
+        <div class="mth-tbl-in col-md-12">
+          <br>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-microphone" aria-hidden="true"></i> محمد الشامسي          </div>
+          <div class="flex-center  col-md-4">
+            <i class="fa fa-television" aria-hidden="true"></i> أبو ظبي الرياضية 3          </div>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-trophy" aria-hidden="true"></i> تصفيات كأس العالم 2118: أوروبا          </div>
+        </div>
+      </a>
+    </div>
+    <hr class="h4">
+        <div class="col-md-12 tbl-item">
+      <a href="match/1849/mali-vs-ivory-coast.html">
+        <div class="shahed-div">
+          <div class="shahed-inn flex-center">
+            <div class="h4 shahed">شاهد الآن</div>
+          </div>
+        </div>
+        <div class="col-md-12 flex-center">
+          <div class="col-md-4 mth-tbl-frr">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/مالي.png' class='team-flag'>              </div>
+              <div class="tbl-h4">مالي</div>
+            </center>
+          </div>
+          <div class="col-md-4 flex-center mth-tbl-ti tbl-h4 ">
+              انتهت المباراة          </div>
+          <div class="col-md-4 mth-tbl-frl">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/ساحل العاج.png' class='team-flag'>              </div>
+              <div class="tbl-h4">ساحل العاج</div>
+            </center>
+          </div>
+        </div>
+        <div class="mth-tbl-in col-md-12">
+          <br>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-microphone" aria-hidden="true"></i> نوفل باشي          </div>
+          <div class="flex-center  col-md-4">
+            <i class="fa fa-television" aria-hidden="true"></i> بي ان سبورت 1          </div>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-trophy" aria-hidden="true"></i> تصفيات كأس العالم 2118: افريقيا          </div>
+        </div>
+      </a>
+    </div>
+    <hr class="h4">
+        <div class="col-md-12 tbl-item">
+      <a href="match/1859/lithuania-vs-england.html">
+        <div class="shahed-div">
+          <div class="shahed-inn flex-center">
+            <div class="h4 shahed">شاهد الآن</div>
+          </div>
+        </div>
+        <div class="col-md-12 flex-center">
+          <div class="col-md-4 mth-tbl-frr">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/انجلترا.png' class='team-flag'>              </div>
+              <div class="tbl-h4">انجلترا</div>
+            </center>
+          </div>
+          <div class="col-md-4 flex-center mth-tbl-ti tbl-h4">
+              -  19 : 00  -          </div>
+          <div class="col-md-4 mth-tbl-frl">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/ليتوانيا.png' class='team-flag'>              </div>
+              <div class="tbl-h4">ليتوانيا</div>
+            </center>
+          </div>
+        </div>
+        <div class="mth-tbl-in col-md-12">
+          <br>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-microphone" aria-hidden="true"></i> علي حميد          </div>
+          <div class="flex-center  col-md-4">
+            <i class="fa fa-television" aria-hidden="true"></i> أبو ظبي الرياضية 4          </div>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-trophy" aria-hidden="true"></i> تصفيات كأس العالم 2118: أوروبا          </div>
+        </div>
+      </a>
+    </div>
+    <hr class="h4">
+        <div class="col-md-12 tbl-item">
+      <a href="match/1860/egypt-vs-congo.html">
+        <div class="shahed-div">
+          <div class="shahed-inn flex-center">
+            <div class="h4 shahed">شاهد الآن</div>
+          </div>
+        </div>
+        <div class="col-md-12 flex-center">
+          <div class="col-md-4 mth-tbl-frr">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/مصر.png' class='team-flag'>              </div>
+              <div class="tbl-h4">مصر</div>
+            </center>
+          </div>
+          <div class="col-md-4 flex-center mth-tbl-ti tbl-h4">
+              -  20 : 00  -          </div>
+          <div class="col-md-4 mth-tbl-frl">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/الكونغو.png' class='team-flag'>              </div>
+              <div class="tbl-h4">الكونغو</div>
+            </center>
+          </div>
+        </div>
+        <div class="mth-tbl-in col-md-12">
+          <br>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-microphone" aria-hidden="true"></i> مدحت شلبي          </div>
+          <div class="flex-center  col-md-4">
+            <i class="fa fa-television" aria-hidden="true"></i> ON Sport          </div>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-trophy" aria-hidden="true"></i> تصفيات كأس العالم 2118: افريقيا          </div>
+        </div>
+      </a>
+    </div>
+    <hr class="h4">
+        <div class="col-md-12 tbl-item">
+      <a href="match/1861/germany-vs-azerbaijan.html">
+        <div class="shahed-div">
+          <div class="shahed-inn flex-center">
+            <div class="h4 shahed">شاهد الآن</div>
+          </div>
+        </div>
+        <div class="col-md-12 flex-center">
+          <div class="col-md-4 mth-tbl-frr">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/المانيا.png' class='team-flag'>              </div>
+              <div class="tbl-h4">المانيا</div>
+            </center>
+          </div>
+          <div class="col-md-4 flex-center mth-tbl-ti tbl-h4">
+              -  21 : 45  -          </div>
+          <div class="col-md-4 mth-tbl-frl">
+            <center>
+              <div class="col-md-12">
+                <img src='images/teams/أذربيجان.png' class='team-flag'>              </div>
+              <div class="tbl-h4">أذربيجان</div>
+            </center>
+          </div>
+        </div>
+        <div class="mth-tbl-in col-md-12">
+          <br>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-microphone" aria-hidden="true"></i> علي سعيد الكعبي          </div>
+          <div class="flex-center  col-md-4">
+            <i class="fa fa-television" aria-hidden="true"></i> أبو ظبي الرياضية 3          </div>
+          <div class="flex-center col-md-4">
+            <i class="fa fa-trophy" aria-hidden="true"></i> تصفيات كأس العالم 2118: أوروبا          </div>
+        </div>
+      </a>
+    </div>
+    <hr class="h4">
+    -->
+<script>location.href = '../home'</script>

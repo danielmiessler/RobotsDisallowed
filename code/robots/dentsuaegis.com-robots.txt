@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /m/en-UK/--D--/
+Disallow: /m/en-UK/Myxz16--Oqpld/
+Disallow: /m/en-UK/EMBARGOED CONTENT - NOT TO BE RELEASE/
+Disallow: /SiteServices/AdvertisersTandCs
+
+Sitemap: http://www.dentsuaegiesnetwork.com/sitemap.xml

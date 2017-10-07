@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /calendar-2/action~posterboard/
+Disallow: /calendar-2/action~agenda/
+Disallow: /calendar-2/action~oneday/
+Disallow: /calendar-2/action~month/
+Disallow: /calendar-2/action~week/
+Disallow: /calendar-2/action~stream/

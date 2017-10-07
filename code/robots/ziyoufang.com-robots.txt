@@ -1,0 +1,1041 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <title>自由坊－有声PPT录制分享传播平台 </title>
+  <meta name="title" content="自由坊－行业领先的演讲录制工具。提供PPT演讲视频的快速录制、即时发布、一键分享。一个基于PPT加语音的直播、录制和分享平台，我们致力于让知识更高效的传播">
+  <meta name="description"
+        content="PPT、PPT+语音、PPT分享、PPT演讲、演讲录制、PPT云存储、PPT遥控、PPT素材、PPT直播、知识分享、翻转课堂、企业培训、远程会议、创业路演、在线教育、课堂留存、有声PPT、自由坊，通过自由坊录制PPT会自动生成一个PPT视频,效果和视频一样，但是文件只有视频的百分之一，简单方便、易分享。">
+  <meta name="keywords" content="PPT、PPT+语音、PPT分享、PPT演讲、演讲录制、PPT云存储、PPT遥控、PPT素材、PPT直播、知识分享、翻转课堂、企业培训、远程会议、创业路演、在线教育、课堂留存、有声PPT">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=0"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+  <meta name="renderer" content="webkit">
+  
+
+<link href="https://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="https://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" rel="stylesheet">
+
+<link href="https://cdn.bootcss.com/slick-carousel/1.5.8/slick.min.css" rel="stylesheet">
+<link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link rel="shortcut icon" href="https://s.ziyoufang.cn/static/image/favicon3.0.ico"/>
+
+  <link rel="stylesheet" href="/static/mincss/swiper-3.3.1.min.css">
+  <link rel="stylesheet" href="/static/mincss/zyfAssemblyPopups.min.css">
+  <link rel="stylesheet" href="/static/css/home.css">
+  <style>
+  </style>
+</head>
+<body>
+
+
+<style>
+  body{
+    min-height: 100%;
+  }
+  a{
+    cursor: pointer;
+    color: #000;
+    text-decoration: none;
+  }
+  #nav{
+    width: 100%;
+    min-width: 60rem;
+    height: 3.4rem;
+    min-height: 2.8rem;
+    background: url("//s.ziyoufang.cn/static/image/nav3.1.1.png");
+    background-position: center;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .nav-bar{
+    width: 48.5rem;
+    /*height: 2.4rem;*/
+    height: 81%;
+    margin: auto;
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    /*flex-direction: column;*/
+    justify-content: space-around;
+    /*justify-content: center;*/
+    align-items: center;
+    align-content: center;
+  }
+  .nav-bar-left,.nav-bar-right,.logo{
+    flex: 1 1 auto;
+    font-size: 0;
+  }
+  .nav-bar-left{
+    text-align: right;
+    height: 100%;
+  }
+  .nav-bar-left ul,.nav-bar-right ul{
+    -webkit-padding-start: 0;
+    height: 100%;
+  }
+  .nav-bar-right{
+    text-align: left;
+    height: 100%;
+    position: relative;
+  }
+  .nav-bar ul,.logo{
+    text-align: center;
+  }
+  .logo img{
+    width: 15rem;
+    height: auto;
+    margin-top: 0.1rem;
+    cursor: pointer;
+  }
+  .company-idea{
+    font-size: 0.6rem;
+    font-family: ZHSRXT--GBK1-0;
+    font-family: 微软雅黑;
+    color: #00A5E3;
+    text-shadow: 0.01rem 0.01rem 0.01rem;
+    line-height: 1rem;
+  }
+  .nav-after{
+    right: 0;
+  }
+  .nav-before{
+    left: 0;
+  }
+  .nav-li{
+    list-style-type: none;
+    display: inline-block;
+    font-size: 0.7rem;
+    color: #333;
+    width: 4.75rem;
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+    height: 100%;
+    padding-top: .8rem;
+    vertical-align: middle;
+  }
+  .nav-li a{
+    color:#333;
+  }
+  .nav-li a:hover{
+    text-decoration: none;
+  }
+  .nav-li a.active{
+    color: #00A5E3;
+    font-size: .8rem;
+  }
+  .nav-li-right{
+    width: 3.6rem;
+    /*flex-grow:5;*/
+  }
+  .user .nav-li-right:last-child{
+    width: 8rem;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  #search{
+    width: 0.7rem;
+    height: auto;
+  }
+  #search1{
+    width: 0.9rem;
+    height: auto;
+  }
+  #appDownload{
+    width: auto;
+    height: 1rem;
+    -webkit-animation: bounce 1s 1s 1 alternate;
+    animation: bounce 1s 1s 1 alternate;
+  }
+  #txtSearch,#txtSearch1{
+    border: none;
+    /*float: left;*/
+    width: 0;
+    margin-right: 1rem;
+    font-size: 0.7rem;
+    color: rgb(191,191,191);
+    padding-left: 0.5rem;
+    background: rgb(248,248,248);
+    outline:none;
+  }
+  /*.shrink{*/
+  /*animation : grow-right 0.5s ease-in-out 0s 1 alternate forwards;*/
+  /*-webkit-animation : grow-right 0.5s ease-in-out 0s 1 alternate forwards;*/
+  /*}*/
+
+  .grow{
+    animation : grow-left 0.3s ease-in-out 0s 1 alternate forwards;
+    -webkit-animation : grow-left 0.3s ease-in-out 0s 1 alternate forwards;
+  }
+  .down-wrap{
+    position: absolute;
+    width: 10rem;
+    height: 11rem;
+    padding: 1.5rem 0;
+    text-align: center;
+    background: #f7f7f7;
+    margin: 1rem 0 0 -3rem;
+    color: #151212;
+    display: none;
+    margin: 1rem 0 0 -3rem;
+    /*border-top: 3.2rem solid rgba(0,0,0,0.0);*/
+    background-clip: padding-box;
+  }
+  .down-wrap img{
+    width: 7rem;
+    margin-bottom: 0.5rem;
+  }
+  /*.user{*/
+    /*position: relative;*/
+  /*}*/
+  #userHeader{
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    margin-left: 1.5rem;
+  }
+  #nickname{
+    vertical-align: middle;
+  }
+  .nav-bar ul.drop-down{
+    right: 1.5rem;
+    position: absolute;
+    min-width: 5rem;
+    height: auto;
+    display: none;
+    padding:.5rem;
+    font-size: 0.7rem;
+    color: #333;
+    list-style-type: none;
+    /*margin-left: 1.5rem;*/
+    margin-top: .1rem;
+    background: #f7f7f7;
+    border-radius: 0 0 0.5rem 0.5rem;
+    line-height: 1.5rem;
+    text-align: left;
+    /*border-top: 3rem solid rgba(0,0,0,0.0);*/
+    background-clip: padding-box;
+  }
+  .drop-down li{
+    padding-left: 0.15rem;
+    text-align: left;
+  }
+  .drop-down-active{
+    animation : grow-down 0.5s ease-in-out 0s 1 alternate forwards;
+    -webkit-animation : grow-down 0.5s ease-in-out 0s 1 alternate forwards;
+  }
+  .nav-after,.nav-before{
+    position: absolute;
+    /*margin-top: -0.1rem;*/
+  }
+  /*.nav-li:before,.nav-li:before{*/
+  /*content: '丨';*/
+  /*font-size: 2.1rem;*/
+  /*color: #333;*/
+  /*}*/
+  @keyframes enlarge {
+    0% {background-size: auto 100%;}
+    100% {background-size: auto 120%;}
+  }
+  @-webkit-keyframes bounce {
+    0%,
+    100% {
+      -webkit-transform: rotate(0deg) scale(1, 1);
+      transform: rotate(0deg) scale(1, 1);
+    }
+    5% {
+      -webkit-transform: rotate(0deg) scale(1.3, 1.3);
+      transform: rotate(0deg) scale(1.3, 1.3);
+    }
+    10% {
+      -webkit-transform: rotate(0deg) scale(1.3, 1.3);
+      transform: rotate(0deg) scale(1.3, 1.3);
+    }
+    30% {
+      -webkit-transform: rotate(15deg) scale(1.3, 1.3);
+      transform: rotate(15deg) scale(1.3, 1.3);
+    }
+    50% {
+      -webkit-transform: rotate(-15deg) scale(1.3, 1.3);
+      transform: rotate(-15deg) scale(1.3, 1.3);
+    }
+    70% {
+      -webkit-transform: rotate(5deg) scale(1.3, 1.3);
+      transform: rotate(5deg) scale(1.3, 1.3);
+    }
+    80% {
+      -webkit-transform: rotate(-5deg) scale(1.3, 1.3);
+      transform: rotate(-5deg) scale(1.3, 1.3);
+    }
+    90% {
+      -webkit-transform: rotate(0deg) scale(1.3, 1.3);
+      transform: rotate(0deg) scale(1.3, 1.3);
+    }
+    95% {
+      -webkit-transform: rotate(0deg) scale(1.3, 1.3);
+      transform: rotate(0deg) scale(1.3, 1.3);
+    }
+  }
+  @keyframes bounce {
+    0%,
+    100% {
+      -webkit-transform: rotate(0deg) scale(1, 1);
+      transform: rotate(0deg) scale(1, 1);
+    }
+    5% {
+      -webkit-transform: rotate(0deg) scale(1.3, 1.3);
+      transform: rotate(0deg) scale(1.3, 1.3);
+    }
+    10% {
+      -webkit-transform: rotate(0deg) scale(1.3, 1.3);
+      transform: rotate(0deg) scale(1.3, 1.3);
+    }
+    30% {
+      -webkit-transform: rotate(15deg) scale(1.3, 1.3);
+      transform: rotate(15deg) scale(1.3, 1.3);
+    }
+    50% {
+      -webkit-transform: rotate(-15deg) scale(1.3, 1.3);
+      transform: rotate(-15deg) scale(1.3, 1.3);
+    }
+    70% {
+      -webkit-transform: rotate(5deg) scale(1.3, 1.3);
+      transform: rotate(5deg) scale(1.3, 1.3);
+    }
+    80% {
+      -webkit-transform: rotate(-5deg) scale(1.3, 1.3);
+      transform: rotate(-5deg) scale(1.3, 1.3);
+    }
+    90% {
+      -webkit-transform: rotate(0deg) scale(1.3, 1.3);
+      transform: rotate(0deg) scale(1.3, 1.3);
+    }
+    95% {
+      -webkit-transform: rotate(0deg) scale(1.3, 1.3);
+      transform: rotate(0deg) scale(1.3, 1.3);
+    }
+  }
+
+  @-webkit-keyframes grow-left {
+    0% {
+      width:0;
+    }
+    100% {
+      width: 30rem;
+      float: left;
+    }
+  }
+  @keyframes grow-left {
+    0% {
+      width:0;
+    }
+    100% {
+      width: 30rem;
+      float: left;
+    }
+  }
+  @-webkit-keyframes grow-right {
+    0% {
+      width:29.5rem;
+    }
+    100% {
+      width: 0rem;
+    }
+  }
+  @keyframes grow-right {
+    0% {
+      width:29.5rem;
+    }
+    100% {
+      width: 0rem;
+    }
+  }
+  @-webkit-keyframes grow-down {
+    0% {
+      dsiplay:block;
+      height:0;
+    }
+    100% {
+      height: auto;
+    }
+  }
+  @keyframes grow-down {
+    0% {
+      dsiplay:block;
+      height:0;
+    }
+    100% {
+      height: auto;
+    }
+  }
+  #logout{
+    cursor: pointer;
+  }
+  footer{
+    /*position: absolute;*/
+    /*bottom: 0;*/
+    /*left: 0;*/
+    width: 100%;
+    height: 1.55rem;
+    background: #000;
+    font-size: 0;
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+  }
+  .footer-left,.footer-right{
+    /*font-family: FZLTHJW--GB1-0;*/
+    color: #FFFFFF;
+    font-size: 0.7rem;
+    flex: 1 1 auto;
+    text-align: center;
+  }
+  .footer-li{
+    list-style-type: none;
+    display: inline-block;
+    margin:0 1.1rem;
+    color: #FFFFff;
+  }
+  #cnzz_stat_icon_1260859047{
+    float: right;
+    margin-right: 10px;
+    display: none;
+  }
+
+  .load-container{
+    width: 100%;
+    height: 5rem;
+    margin: auto;
+    /*background:red;*/
+    /*background:#eee;*/
+    display: flex;
+    display: -webkit-flex;
+    justify-content:center;
+    -webkit-justify-content:center;
+    align-items:center;
+    -webkit-align-items:center;
+    position: relative;
+    /*display: none;*/
+  }
+  .boun1{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background:#5CCBF7;
+    opacity: 0.6;
+    -webkit-animation: boun 1.5s infinite ease-in-out;
+    -moz-animation: boun 1.5s infinite ease-in-out;
+    -o-animation: boun 1.5s infinite ease-in-out;
+    animation: boun 1.5s infinite ease-in-out;
+  }
+  .boun2{
+    display: flex;
+    display: -webkit-flex;
+    -webkit-justify-content:center;
+    justify-content:center;
+    -webkit-align-items:center;
+    align-items:center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background:#00A5E3;
+    opacity: 0.6;
+    -webkit-animation: boun1 1.5s infinite ease-in-out;
+    -moz-animation: boun1 1.5s infinite ease-in-out;
+    -o-animation: boun1 1.5s infinite ease-in-out;
+    animation: boun1 1.5s infinite ease-in-out;
+    /*-webkit-box-shadow: 0 0 .5rem #00A5E3;
+    -moz-box-shadow: 0 0 .5rem #00A5E3;
+    box-shadow: 0 0 .5rem #00A5E3;  */
+  }
+  @keyframes boun{
+    0% {
+      transform: scale(0.0);
+    }
+    50% {
+      transform: scale(1.0);
+    }
+    100% {
+      transform: scale(0.0);
+    }
+  }
+
+  @keyframes boun1{
+    0% {
+      transform: scale(1.0);
+    }
+    50% {
+      transform: scale(0.5);
+    }
+    100% {
+      transform: scale(1.0);
+    }
+  }
+
+  .load-container1{
+    width: 10rem;
+    height: 5rem;
+    margin: auto;
+    /*background:#eee;*/
+    display: flex;
+    display: -webkit-flex;
+    justify-content:center;
+    -webkit-justify-content:center;
+    align-items:center;
+    -webkitd-items:center;
+    position: relative;
+    display: none;
+  }
+  .boun3,.boun4,.boun5{
+    width: .5rem;
+    height: .5rem;
+    background:#EEE;
+    border-radius: 50%;
+    margin:0 .3rem;
+  }
+  .boun3{
+    -webkit-animation: boun2 1.5s infinite ease-in-out;
+    -moz-animation: boun2 1.5s infinite ease-in-out;
+    -o-animation: boun2 1.5s infinite ease-in-out;
+    animation: boun2 1.5s infinite ease-in-out;
+  }
+  .boun4{
+    -webkit-animation: boun3 1.5s infinite ease-in-out;
+    -moz-animation: boun3 1.5s infinite ease-in-out;
+    -o-animation: boun3 1.5s infinite ease-in-out;
+    animation: boun3 1.5s infinite ease-in-out;
+  }
+  .boun5{
+    -webkit-animation: boun4 1.5s infinite ease-in-out;
+    -moz-animation: boun4 1.5s infinite ease-in-out;
+    -o-animation: boun4 1.5s infinite ease-in-out;
+    animation: boun4 1.5s infinite ease-in-out;
+  }
+  @keyframes boun2{
+    0% {
+      background:#00A5E3;
+    }
+    33% {
+      background:#EEE;
+    }
+    66% {
+      background:#EEE;
+    }
+  }
+
+  @keyframes boun3{
+    0% {
+      background:#EEE;
+    }
+    33% {
+      background:#00A5E3;
+    }
+    66% {
+      background:#EEE;
+    }
+  }
+
+  @keyframes boun4{
+    0% {
+      background:#EEE;
+    }
+    33% {
+      background:#EEE;
+    }
+    66% {
+      background:#00A5E3;
+    }
+  }
+</style>
+<div id="nav">
+  <div class="nav-bar">
+    <div class="nav-bar-left">
+      <ul>
+        <li class="nav-li nav-li-left"><a href="/home" class="active" id="index">首 页</a><img
+                src="//s.ziyoufang.cn/static/image/nav-before3.1.png" alt="" class="nav-after"></li>
+        <li class="nav-li nav-li-left"><a href="/material/upload" id="material">上 传</a><img
+                src="//s.ziyoufang.cn/static/image/nav-before3.1.png" alt="" class="nav-after"></li>
+        <li class="nav-li nav-li-left" id="record">录 制<img src="//s.ziyoufang.cn/static/image/nav-before3.1.png" alt=""
+                                                class="nav-after"></li>
+      </ul>
+    </div>
+    <div class="logo">
+      <img src="//s.ziyoufang.cn/static/image/logo3.0.4.png" alt="自由坊－行业领先的演讲录制工具" title="自由坊－行业领先的演讲录制工具">
+      
+    </div>
+    <div class="nav-bar-right">
+      <ul class="login">
+        <li class="nav-li nav-li-right">
+          <input type="text" id="txtSearch" placeholder="请输入有声PPT、PPT、作者名称" class="hide">
+          <img src="//s.ziyoufang.cn/static/image/nav-before3.1.png" alt="" class="nav-before">
+          <img src="//s.ziyoufang.cn/static/image/nav-search3.1.png" alt="" id="search" issearch="false">
+          <img src="//s.ziyoufang.cn/static/image/nav-before3.1.png" alt="" class="nav-after">
+        </li>
+        <li class="nav-li nav-li-right li-download">
+          APP下载<img src="//s.ziyoufang.cn/static/image/nav-before3.1.png" alt="" class="nav-after">
+          <div class="down-wrap" ishover="false">
+            <img src="//s.ziyoufang.cn/static/image/iosandandroid3.01.png" alt=""><br>Android & iOS
+          </div>
+        </li>
+        <li class="nav-li nav-li-right" id="navLogin">
+          登 录<img src="//s.ziyoufang.cn/static/image/nav-before3.1.png" alt="" class="nav-before">
+          <img src="//s.ziyoufang.cn/static/image/nav-before3.1.png" alt="" class="nav-after">
+        </li>
+        <li class="nav-li nav-li-right" id="navRegist">
+          注 册
+        </li>
+      </ul>
+      <ul class="user hide">
+        <li class="nav-li nav-li-right">
+          <img src="//s.ziyoufang.cn/static/image/nav-before3.1.png" alt="" class="nav-before">
+          <input type="text" id="txtSearch1" placeholder="请输入有声PPT、PPT、作者名称" class="hide">
+          <img src="//s.ziyoufang.cn/static/image/nav-search3.1.png" alt="" id="search1" issearch="false">
+          <img src="//s.ziyoufang.cn/static/image/nav-before3.1.png" alt="" class="nav-after">
+        </li>
+        <li class="nav-li nav-li-right li-download">
+          <img src="//s.ziyoufang.cn/static/image/app-download3.1.png" alt="" id="appDownload">
+          <img src="//s.ziyoufang.cn/static/image/nav-before3.1.png" alt="" class="nav-after">
+          <div class="down-wrap" ishover="false">
+            <img src="//s.ziyoufang.cn/static/image/iosandandroid3.01.png" alt=""><br>Android & iOS
+          </div>
+        </li>
+        <li class="nav-li nav-li-right user-info">
+          <a href="/person">
+            <img src="https://s.ziyoufang.cn/static/image/u-header4.0.png" alt="" id="userHeader">
+            <span id="nickname"></span>
+          </a>
+        </li>
+        
+      </ul>
+      <ul class="drop-down" ishover="false">
+        
+        
+        <li><a href="/material" target="_blank">我的PPT</a></li>
+        <li><a href="/person" target="_blank">我的发布</a></li>
+        <li><a href="/collection" target="_blank">我的收藏</a></li>
+        <li id="logout">退出</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="swiper-container">
+    <div class="swiper-wrapper bottom">
+
+    </div>
+    
+    
+    <div class="swiper-pagination"></div>
+  </div>
+</header>
+<article class="hot">
+
+</article>
+<div class="line-l"></div>
+<div id="type-container">
+
+</div>
+<div class="about-us">
+  <img class="idea" src="https://s.ziyoufang.cn/static/image/team-idea3.0.png" alt="自由坊－有声PPT录制分享传播平台">
+</div>
+
+<footer>
+  <div class="footer-left">
+    ©  北京自由坊科技有限责任公司 京ICP备15050456号-3
+  </div>
+  <div class="footer-right">
+    <ul>
+      <a href="/agreements" target="_blank"><li class="footer-li">关于我们</li></a>
+      <a href="/agreements#1" target="_blank"><li class="footer-li">商务合作</li></a>
+      <a href="/agreements#2" target="_blank"><li class="footer-li">版权说明</li></a>
+      <a href="/agreements#3" target="_blank"><li class="footer-li">帮助</li></a>
+    </ul>
+  </div>
+</footer>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260859047'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1260859047%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+
+
+<style>
+  /*login and register*/
+  .login-regist-mark{
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    position: fixed;
+    width: 100%;
+    height: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.75);
+    /*display: none;*/
+  }
+  .lr{
+    width: 25rem;
+    height: auto;
+    background: #FFFFff;
+    border-radius: 0.3rem;
+    font-size: 0;
+  }
+  .lr-header{
+    width: 100%;
+    height: 3rem;
+    border-bottom: 0.05rem solid rgb(222,222,222);
+  }
+  .lr-header .active{
+    background: rgb(222,222,222);
+  }
+  .t-login,.t-regist{
+    display: inline-block;
+    font-size: 0.8rem;
+    width: 50%;
+    text-align: center;
+    line-height: 3rem;
+    cursor: pointer;
+  }
+  .t-login{
+    border-top-left-radius: 0.3rem;
+  }
+  .t-regist{
+    border-top-right-radius: 0.3rem;
+  }
+  .lr-content{
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.8rem 2.5rem 1rem 2.5rem;
+  }
+  .lr-content input[type='text'],.lr-content input[type='password'],.lr-content input[type='button']{
+    width: 100%;
+    height: 2.5rem;
+    outline: none;
+  }
+  .lr-content input[type='text'],.lr-content input[type='password']{
+    border: 0.05rem solid RGB(222, 222, 222);
+    border-radius: 0.5rem;
+    padding-left: 1.1rem;
+    margin: 0.7rem 0;
+    color: #999;
+    font-size: 0.8rem;
+  }
+  .lr-content input[type='text']:focus,.lr-content input[type='password']:focus{
+    border: 0.05rem solid RGB(0,165,227);
+  }
+  .lr-content input[type='button']{
+    background: rgb(75,187,250);
+    border:0.05rem solid rgb(0,165,227);
+    color: #FFF;
+    font-size: 0.9rem;
+    margin: 1.95rem 0;
+    -webkit-border-radius: .5rem;
+    -moz-border-radius: .5rem;
+    border-radius: .5rem;
+  }
+  .verification-area{
+    font-size: 0;
+  }
+  #verificationCode,#requestVarifyCode{
+    width: 9.5rem;
+    display: inline-block;
+    font-size: .8rem;
+    vertical-align: middle;
+    margin: 0;
+  }
+  #requestVarifyCode{
+    float: right;
+  }
+  #btnRegist{
+    margin: 1.45rem 0 1rem 0;
+  }
+  .lr-content input[type='button']:hover{
+    background: rgb(0,165,227);
+  }
+  .remember{
+    padding: .5rem 0 0 0;
+    font-size: 0;
+  }
+  #remeLoginStatus{
+    /*width: 1.2rem;*/
+    /*height: 1.2rem;*/
+    border-radius: 0.2rem;
+    color: #FFFFff;
+    outline: none;
+    /*margin-right: 1rem;*/
+    border: none;
+    -ms-transform: scale(2);
+    -moz-transform: scale(2);
+    -webkit-transform: scale(1.5);
+    -o-transform: scale(2);
+    margin: 0 .8rem 0 0;
+  }
+  .check-txt{
+    color: #000;
+    font-size: .8rem;
+    color: rgb(0, 165, 227);
+  }
+  #remeLoginStatus,.check-txt{
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .login.login-tp{
+    text-align: center;
+    padding-bottom: 1rem;
+  }
+  .tp-header{
+    margin-bottom: .5rem;
+  }
+  .tp-login{
+    font-size: 0;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+  }
+  .pt-ico{
+    /*display: inline-block;*/
+    flex: 1 1 auto;
+  }
+  .pt-left,.pt-right{
+    flex: 2 1 auto;
+    height: .05rem;
+    background: rgb(222,222,222);
+  }
+  .pt-ico .qq,.pt-ico .wx,.pt-ico .wb{
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+  }
+  .pt-ico .qq{
+    background: url('//s.ziyoufang.cn/static/image/qq3.0.png');
+    background-position: center;
+    background-size: 100% 100%;
+  }
+  .pt-ico .wx{
+    background: url('//s.ziyoufang.cn/static/image/wx3.0.png');
+    background-position: center;
+    background-size: 100% 100%;
+  }
+  .pt-ico .wb{
+    background: url('//s.ziyoufang.cn/static/image/wb3.0.png');
+    background-position: center;
+    background-size: 100% 100%;
+  }
+  .pt-ico .qq:hover{
+    background: url('//s.ziyoufang.cn/static/image/qq-active3.0.png');
+  }
+  .pt-ico .wx:hover{
+    background: url('//s.ziyoufang.cn/static/image/wx-active3.0.png');
+  }
+  .pt-ico .wb:hover{
+    background: url('//s.ziyoufang.cn/static/image/wb-active3.0.png');
+  }
+  .dialog-error{
+    position: absolute;
+    font-size: .7rem;
+    margin-top: .5rem;
+    color: red;
+  }
+</style>
+<div class="login-regist-mark hide">
+  <div class="lr">
+    <div class="lr-header">
+      <div class="t-login">登录</div>
+      <div class="t-regist active">注册</div>
+    </div>
+    <div class="lr-content">
+      <div class="l-content hide">
+        <div class="login login-input">
+          <div>
+            账号
+            <input type="text" id="account" placeholder="手机号码">
+          </div>
+          <div>
+            密码
+            <input type="password" id="password" placeholder="密码">
+          </div>
+          <div class="remember">
+            <input type="checkbox" id="remeLoginStatus"> <span class="check-txt">记住密码</span>
+          </div>
+          <span class="dialog-error"></span>
+          <div>
+            <input type="button" value="登录" id="btnLogin">
+          </div>
+        </div>
+        <div class="login login-tp hide">
+          <div class="tp-header">微信登录</div>
+          <div class="navbar-qr-code"></div>
+          <span class="dialog-error"></span>
+        </div>
+        <div class="tp-login">
+          <div class="pt-left"></div>
+          <div class="pt-ico">
+            <span class="qq"></span>
+          </div>
+          <div class="pt-ico">
+            <span class="wx"></span>
+          </div>
+          <div class="pt-ico">
+            <span class="wb"></span>
+          </div>
+          <div class="pt-right"></div>
+        </div>
+      </div>
+      <div class="r-content hide">
+        <div>
+          账号
+          <input type="text" id="phone-reg" placeholder="手机号码">
+        </div>
+        <div>
+          密码
+          <input type="password" id="password-reg" placeholder="密码">
+        </div>
+        <div>
+          确认密码
+          <input type="password" id="rePassword" placeholder="密码">
+        </div>
+        <div class="verification-area">
+          <input type="text" id="verificationCode" placeholder="验证码">
+          <input type="button" id="requestVarifyCode" value="获取验证码">
+        </div>
+        <span class="register-error dialog-error"></span>
+        <div>
+          <input type="button" value="注册" id="btnRegist">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+<script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/lazyload/2.0.3/lazyload-min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/handlebars.js/3.0.3/handlebars.min.js"></script>
+<script src="https://cdn.bootcss.com/js-cookie/2.0.1/js.cookie.min.js"></script>
+<script src="https://cdn.bootcss.com/slick-carousel/1.5.8/slick.min.js"></script>
+<script src="https://cdn.bootcss.com/screenfull.js/2.0.0/screenfull.min.js"></script>
+<script src="https://cdn.bootcss.com/jplayer/2.9.2/jplayer/jquery.jplayer.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+<script src="https://cdn.bootcss.com/socket.io/1.3.7/socket.io.min.js"></script>
+<script src="/static/minjs/common.min.js"></script>
+<script src="/static/minjs/handlebarsHelper.min.js"></script>
+
+<script>
+  isPresent2Web = false;
+</script>
+
+
+<script src="/static/minjs/swiper-3.3.1.min.js"></script>
+<script src="/static/minjs/zyfAssemblyPopups.min.js"></script>
+<script src="/static/minjs/loginLogic.min.js"></script>
+<script src="/static/minjs/navbar3.0.min.js"></script>
+
+<script src="/static/js/home.js"></script>
+
+
+<script id="carousel-template" type="text/x-handlebars-template">
+  {{#each this}}
+  
+  
+  {{{getByType this}}}
+  {{/each}}
+</script>
+
+<script id="hot-template" type="text/x-handlebars-template">
+  <section class="hot-content">
+
+    {{#each this}}
+    <div class="npp-hot-left hide" type="{{@key}}">
+      <div class="title">热门有声PPT <span class="more">更多<img src="//s.ziyoufang.cn/static/image/more3.1.png" alt=""></span></div>
+      <a href="/npp/player2?nppId={{nppId}}" target="_blank">
+        <div class="npp-thumb" style="background:url('{{#if thumbEditor}}{{thumbEditor}}{{else}}{{thumbMedium}}{{/if}}') no-repeat; background-size: auto 100%;background-position: center center;">
+          <div class="mark mark-hot">
+            <img src="//s.ziyoufang.cn/static/image/play-circle3.1.png" alt="">
+          </div>
+        </div>
+      </a>
+      <span class="time-length">{{getTimeString audioLength}}</span>
+      <div class="npp-details">
+        <a href="/npp/player2?nppId={{nppId}}" target="_blank">
+          <span class="hot-title" title="{{title}}">{{title}}</span><br>
+        </a>
+        <span class="hot-det" title="{{#if descriptionEditor}}{{descriptionEditor}}{{else}}{{description}}{{/if}}">{{#if descriptionEditor}}{{getD descriptionEditor}}{{else}}{{getD description}}{{/if}}</span><br>
+        <a href="/person?userId={{userId}}" target="_blank">
+          <span class="hot-author">
+            <img src="{{headerUrl}}" alt="">
+            <span>{{getUserName nickname}}</span>
+          </span>
+        </a>
+      </div>
+    </div>
+    {{/each}}
+  </section>
+  <aside class="hot-type">
+    <ul>
+      {{#each this}}
+      <li class="type-one">{{@key}}</li>
+      {{/each}}
+    </ul>
+  </aside>
+</script>
+
+<script id="typenpp-template" type="text/x-handlebars-template">
+  {{#each this}}
+  <article class="type">
+    <span id="{{@key}}" class="point"></span>
+    <div class=" title type-title">{{@key}}
+      
+    </div>
+    <div class="type-list">
+      {{#each this}}
+      <div class="npp-one">
+        <a href="/npp/player2?nppId={{nppId}}" target="_blank">
+          <div class="npp-one-thumb" style="background:url('{{#if thumbEditor}}{{thumbEditor}}{{else}}{{thumbMedium}}{{/if}}') no-repeat; background-size: auto 9.2rem;background-position: center center;">
+            <div class="mark">
+              <img src="//s.ziyoufang.cn/static/image/play-circle3.1.png" alt="">
+            </div>
+          </div>
+        </a>
+        <span class="time-lengthS">{{getTimeString audioLength}}</span>
+        <div class="npp-one-det">
+          <a href="/npp/player2?nppId={{nppId}}" target="_blank">
+            <span class="npp-title" title="{{title}}">{{title}}</span><br><br>
+          </a>
+          <span class="npp-dis" title='{{#if descriptionEditor}}{{descriptionEditor}}{{else}}{{description}}{{/if}}'>{{#if descriptionEditor}}{{getD descriptionEditor}}{{else}}{{getD description}}{{/if}}</span><br>
+          <a href="/person?userId={{userId}}" target="_blank">
+            <span class="npp-author">
+              <img src="{{headerUrl}}" alt="">
+              <span>{{getUserName nickname}}</span>
+            </span>
+          </a>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    <div class="line-l"></div>
+  </article>
+  {{/each}}
+</script>
+</body>
+</html>

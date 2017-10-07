@@ -1,0 +1,922 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+	<base href="http://ru.toponavi.com" />
+    <title>Расстояние между городами | TopoNavi.com</title>
+	<meta name="description" content="Расстояние между городами (в км и милях), калькулятор расхода топлива, стоимость. Проложить маршрут между двумя и более городами. Направление движения."/>
+	<meta name="keywords" content="Расстояние между городами, км, миль"/>
+	<link rel="shortcut icon" href="http://toponavi.cachefly.net/images/favicon.png">
+	<link rel="stylesheet" href="http://toponavi.cachefly.net/css/style.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script>
+		$(setup)
+		function setup() {
+		var wlang = '<span class="tn_adaptive">Русский &#9660;</span><span class="tn_adaptive_setting"><img src="http://toponavi.cachefly.net/images/setting.png"></span>';
+		var wcountry = '<img src="http://toponavi.cachefly.net/images/flags/ru.png" class="tn_adaptive_flag"><span class="tn_adaptive"> &nbsp; Россия</span> <span class="tn_arrow_fix">&#9660;</span>';
+		$('#intro select').zelect({ placeholder: wlang })
+		$('#intro2 select').zelect({ placeholder: wcountry })
+		}
+    </script>
+	<script type="text/javascript">
+	  $(function() {
+		$('#tn_tip, #tn_tip2').tipsy({gravity: 'n'});
+		$('#tn_tip3').tipsy({gravity: 's'});
+	  });
+	</script>
+	<script>
+	    jQuery(document).ready(function(){
+        jQuery('.scrollbar-macosx').scrollbar();
+    });
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('html').click(function() {
+				$('#addcity1, #addcity2, #addcity3, #addcity4').hide();
+			});
+			$('#addcity1, #addcity2, #addcity3, #addcity4').click(function(event){
+				event.stopPropagation();
+				return true;
+			});
+		}); 
+	</script>
+</head>
+<body>
+
+<script>
+	function redir_lang(value)
+	{
+		document.location.href = value;
+	}
+
+	function redir_country(value)
+	{
+		document.location.href = value;
+	}
+</script>
+
+<div class="tn_top">
+	<div class="tn_top_inside">
+		<div class="tn_top_inside_logo"><a href="">top<span>o</span>navi</a></div>
+		<div class="tn_top_inside_socials">
+<div class="tn_soc"  data-path="http://toponavi.cachefly.net/images/" data-icons-file="icons.png"></div>
+<script type="text/javascript" src="http://toponavi.cachefly.net/js/socials.js"></script> 	
+
+		</div>
+		<div class="tn_top_inside_country">
+		
+		<script src="http://toponavi.cachefly.net/js/zelect.js"></script>
+		<script src="http://toponavi.cachefly.net/js/jquery.scrollbar.js"></script>
+		
+			<section id="intro2">
+			<select onchange="redir_country(this.value)">
+							<option  class="tn_au" value="http://au.toponavi.com">Австралия</option>
+							<option  class="tn_at" value="http://at.toponavi.com">Австрия</option>
+							<option  class="tn_az" value="http://az.toponavi.com">Азербайджан</option>
+							<option  class="tn_ax" value="http://ax.toponavi.com">Аландские острова</option>
+							<option  class="tn_al" value="http://al.toponavi.com">Албания</option>
+							<option  class="tn_dz" value="http://dz.toponavi.com">Алжир</option>
+							<option  class="tn_as" value="http://as.toponavi.com">Американское Самоа</option>
+							<option  class="tn_ao" value="http://ao.toponavi.com">Ангола</option>
+							<option  class="tn_ai" value="http://ai.toponavi.com">Ангилья</option>
+							<option  class="tn_ad" value="http://ad.toponavi.com">Андорра</option>
+							<option  class="tn_aq" value="http://aq.toponavi.com">Антарктида</option>
+							<option  class="tn_ag" value="http://ag.toponavi.com">Антигуа и Барбуда</option>
+							<option  class="tn_an" value="http://an.toponavi.com">Антильские острова</option>
+							<option  class="tn_ar" value="http://ar.toponavi.com">Аргентина</option>
+							<option  class="tn_am" value="http://am.toponavi.com">Армения</option>
+							<option  class="tn_aw" value="http://aw.toponavi.com">Аруба</option>
+							<option  class="tn_af" value="http://af.toponavi.com">Афганистан</option>
+							<option  class="tn_bs" value="http://bs.toponavi.com">Багамские острова</option>
+							<option  class="tn_bd" value="http://bd.toponavi.com">Бангладеш</option>
+							<option  class="tn_bb" value="http://bb.toponavi.com">Барбадос</option>
+							<option  class="tn_bh" value="http://bh.toponavi.com">Бахрейн</option>
+							<option  class="tn_by" value="http://by.toponavi.com">Беларусь</option>
+							<option  class="tn_bz" value="http://bz.toponavi.com">Белиз</option>
+							<option  class="tn_be" value="http://be.toponavi.com">Бельгия</option>
+							<option  class="tn_bj" value="http://bj.toponavi.com">Бенин</option>
+							<option  class="tn_bm" value="http://bm.toponavi.com">Бермудские острова</option>
+							<option  class="tn_bg" value="http://bg.toponavi.com">Болгария</option>
+							<option  class="tn_bo" value="http://bo.toponavi.com">Боливия</option>
+							<option  class="tn_ba" value="http://ba.toponavi.com">Босния и Герцеговина</option>
+							<option  class="tn_bw" value="http://bw.toponavi.com">Ботсвана</option>
+							<option  class="tn_br" value="http://br.toponavi.com">Бразилия</option>
+							<option  class="tn_io" value="http://io.toponavi.com">Британская территория в Индийском океане</option>
+							<option  class="tn_vg" value="http://vg.toponavi.com">Британские Виргинские острова</option>
+							<option  class="tn_bn" value="http://bn.toponavi.com">Бруней</option>
+							<option  class="tn_bv" value="http://bv.toponavi.com">Буве</option>
+							<option  class="tn_bf" value="http://bf.toponavi.com">Буркина Фасо</option>
+							<option  class="tn_bi" value="http://bi.toponavi.com">Бурунди</option>
+							<option  class="tn_bt" value="http://bt.toponavi.com">Бутан</option>
+							<option  class="tn_vu" value="http://vu.toponavi.com">Вануату</option>
+							<option  class="tn_va" value="http://va.toponavi.com">Ватикан</option>
+							<option  class="tn_gb" value="http://gb.toponavi.com">Великобритания</option>
+							<option  class="tn_hu" value="http://hu.toponavi.com">Венгрия</option>
+							<option  class="tn_ve" value="http://ve.toponavi.com">Венесуэла</option>
+							<option  class="tn_vi" value="http://vi.toponavi.com">Виргинские Острова США</option>
+							<option  class="tn_um" value="http://um.toponavi.com">Внешние малые острова США</option>
+							<option  class="tn_tl" value="http://tl.toponavi.com">Восточный Тимор</option>
+							<option  class="tn_vn" value="http://vn.toponavi.com">Вьетнам</option>
+							<option  class="tn_ga" value="http://ga.toponavi.com">Габон</option>
+							<option  class="tn_ht" value="http://ht.toponavi.com">Гаити</option>
+							<option  class="tn_gy" value="http://gy.toponavi.com">Гайана</option>
+							<option  class="tn_gm" value="http://gm.toponavi.com">Гамбия</option>
+							<option  class="tn_gh" value="http://gh.toponavi.com">Гана</option>
+							<option  class="tn_gp" value="http://gp.toponavi.com">Гваделупа</option>
+							<option  class="tn_gt" value="http://gt.toponavi.com">Гватемала</option>
+							<option  class="tn_gn" value="http://gn.toponavi.com">Гвинея</option>
+							<option  class="tn_gw" value="http://gw.toponavi.com">Гвинея-Бисау</option>
+							<option  class="tn_de" value="http://de.toponavi.com">Германия</option>
+							<option  class="tn_gg" value="http://gg.toponavi.com">Гернси</option>
+							<option  class="tn_gi" value="http://gi.toponavi.com">Гибралтар</option>
+							<option  class="tn_hn" value="http://hn.toponavi.com">Гондурас</option>
+							<option  class="tn_hk" value="http://hk.toponavi.com">Гонконг</option>
+							<option  class="tn_gd" value="http://gd.toponavi.com">Гренада</option>
+							<option  class="tn_gl" value="http://gl.toponavi.com">Гренландия</option>
+							<option  class="tn_gr" value="http://gr.toponavi.com">Греция</option>
+							<option  class="tn_ge" value="http://ge.toponavi.com">Грузия</option>
+							<option  class="tn_gu" value="http://gu.toponavi.com">Гуам</option>
+							<option  class="tn_dk" value="http://dk.toponavi.com">Дания</option>
+							<option  class="tn_cd" value="http://cd.toponavi.com">Демократическая Республика Конго</option>
+							<option  class="tn_je" value="http://je.toponavi.com">Джерси</option>
+							<option  class="tn_dj" value="http://dj.toponavi.com">Джибути</option>
+							<option  class="tn_dm" value="http://dm.toponavi.com">Доминика</option>
+							<option  class="tn_do" value="http://do.toponavi.com">Доминиканская республика</option>
+							<option  class="tn_eu" value="http://eu.toponavi.com">Европейский Союз</option>
+							<option  class="tn_eg" value="http://eg.toponavi.com">Египет</option>
+							<option  class="tn_zm" value="http://zm.toponavi.com">Замбия</option>
+							<option  class="tn_eh" value="http://eh.toponavi.com">Западная Сахара</option>
+							<option  class="tn_zw" value="http://zw.toponavi.com">Зимбабве</option>
+							<option  class="tn_il" value="http://il.toponavi.com">Израиль</option>
+							<option  class="tn_in" value="http://in.toponavi.com">Индия</option>
+							<option  class="tn_id" value="http://id.toponavi.com">Индонезия</option>
+							<option  class="tn_jo" value="http://jo.toponavi.com">Иордания</option>
+							<option  class="tn_iq" value="http://iq.toponavi.com">Ирак</option>
+							<option  class="tn_ir" value="http://ir.toponavi.com">Иран</option>
+							<option  class="tn_ie" value="http://ie.toponavi.com">Ирландия</option>
+							<option  class="tn_is" value="http://is.toponavi.com">Исландия</option>
+							<option  class="tn_es" value="http://es.toponavi.com">Испания</option>
+							<option  class="tn_it" value="http://it.toponavi.com">Италия</option>
+							<option  class="tn_ye" value="http://ye.toponavi.com">Йемен</option>
+							<option  class="tn_cv" value="http://cv.toponavi.com">Кабо-Верде</option>
+							<option  class="tn_kz" value="http://kz.toponavi.com">Казахстан</option>
+							<option  class="tn_ky" value="http://ky.toponavi.com">Каймановы острова</option>
+							<option  class="tn_kh" value="http://kh.toponavi.com">Камбоджа</option>
+							<option  class="tn_cm" value="http://cm.toponavi.com">Камерун</option>
+							<option  class="tn_ca" value="http://ca.toponavi.com">Канада</option>
+							<option  class="tn_qa" value="http://qa.toponavi.com">Катар</option>
+							<option  class="tn_ke" value="http://ke.toponavi.com">Кения</option>
+							<option  class="tn_cy" value="http://cy.toponavi.com">Кипр</option>
+							<option  class="tn_ki" value="http://ki.toponavi.com">Кирибати</option>
+							<option  class="tn_cn" value="http://cn.toponavi.com">Китай</option>
+							<option  class="tn_cc" value="http://cc.toponavi.com">Кокосовые острова</option>
+							<option  class="tn_co" value="http://co.toponavi.com">Колумбия</option>
+							<option  class="tn_km" value="http://km.toponavi.com">Коморские острова</option>
+							<option  class="tn_cg" value="http://cg.toponavi.com">Конго</option>
+							<option  class="tn_kp" value="http://kp.toponavi.com">Корейская Народно-Демократическая Республика</option>
+							<option  class="tn_cr" value="http://cr.toponavi.com">Коста-Рика</option>
+							<option  class="tn_ci" value="http://ci.toponavi.com">Кот-д'Ивуар</option>
+							<option  class="tn_cu" value="http://cu.toponavi.com">Куба</option>
+							<option  class="tn_kw" value="http://kw.toponavi.com">Кувейт</option>
+							<option  class="tn_kg" value="http://kg.toponavi.com">Киргизия</option>
+							<option  class="tn_la" value="http://la.toponavi.com">Лаос</option>
+							<option  class="tn_lv" value="http://lv.toponavi.com">Латвия</option>
+							<option  class="tn_ls" value="http://ls.toponavi.com">Лесото</option>
+							<option  class="tn_lr" value="http://lr.toponavi.com">Либерия</option>
+							<option  class="tn_lb" value="http://lb.toponavi.com">Ливан</option>
+							<option  class="tn_ly" value="http://ly.toponavi.com">Ливия</option>
+							<option  class="tn_lt" value="http://lt.toponavi.com">Литва</option>
+							<option  class="tn_li" value="http://li.toponavi.com">Лихтенштейн</option>
+							<option  class="tn_lu" value="http://lu.toponavi.com">Люксембург</option>
+							<option  class="tn_mu" value="http://mu.toponavi.com">Маврикий</option>
+							<option  class="tn_mr" value="http://mr.toponavi.com">Мавритания</option>
+							<option  class="tn_mg" value="http://mg.toponavi.com">Мадагаскар</option>
+							<option  class="tn_yt" value="http://yt.toponavi.com">Майотта</option>
+							<option  class="tn_mo" value="http://mo.toponavi.com">Макао</option>
+							<option  class="tn_mk" value="http://mk.toponavi.com">Македония</option>
+							<option  class="tn_mw" value="http://mw.toponavi.com">Малави</option>
+							<option  class="tn_my" value="http://my.toponavi.com">Малайзия</option>
+							<option  class="tn_ml" value="http://ml.toponavi.com">Мали</option>
+							<option  class="tn_mv" value="http://mv.toponavi.com">Мальдивские острова</option>
+							<option  class="tn_mt" value="http://mt.toponavi.com">Мальта</option>
+							<option  class="tn_ma" value="http://ma.toponavi.com">Марокко</option>
+							<option  class="tn_mq" value="http://mq.toponavi.com">Мартиника</option>
+							<option  class="tn_mh" value="http://mh.toponavi.com">Маршалловы острова</option>
+							<option  class="tn_mx" value="http://mx.toponavi.com">Мексика</option>
+							<option  class="tn_fm" value="http://fm.toponavi.com">Микронезия</option>
+							<option  class="tn_mz" value="http://mz.toponavi.com">Мозамбик</option>
+							<option  class="tn_md" value="http://md.toponavi.com">Молдова</option>
+							<option  class="tn_mc" value="http://mc.toponavi.com">Монако</option>
+							<option  class="tn_mn" value="http://mn.toponavi.com">Монголия</option>
+							<option  class="tn_ms" value="http://ms.toponavi.com">Монтсеррат</option>
+							<option  class="tn_mm" value="http://mm.toponavi.com">Мьянма</option>
+							<option  class="tn_na" value="http://na.toponavi.com">Намибия</option>
+							<option  class="tn_nr" value="http://nr.toponavi.com">Науру</option>
+							<option  class="tn_np" value="http://np.toponavi.com">Непал</option>
+							<option  class="tn_ne" value="http://ne.toponavi.com">Нигер</option>
+							<option  class="tn_ng" value="http://ng.toponavi.com">Нигерия</option>
+							<option  class="tn_nl" value="http://nl.toponavi.com">Нидерланды</option>
+							<option  class="tn_ni" value="http://ni.toponavi.com">Никарагуа</option>
+							<option  class="tn_nu" value="http://nu.toponavi.com">Ниуэ</option>
+							<option  class="tn_nz" value="http://nz.toponavi.com">Новая Зеландия</option>
+							<option  class="tn_nc" value="http://nc.toponavi.com">Новая Каледония</option>
+							<option  class="tn_no" value="http://no.toponavi.com">Норвегия</option>
+							<option  class="tn_nf" value="http://nf.toponavi.com">Норфолк</option>
+							<option  class="tn_ae" value="http://ae.toponavi.com">Объединенные Арабские Эмираты</option>
+							<option  class="tn_om" value="http://om.toponavi.com">Оман</option>
+							<option  class="tn_im" value="http://im.toponavi.com">Остров Мэн</option>
+							<option  class="tn_sh" value="http://sh.toponavi.com">Остров Святой Елены</option>
+							<option  class="tn_ck" value="http://ck.toponavi.com">Острова Кука</option>
+							<option  class="tn_pk" value="http://pk.toponavi.com">Пакистан</option>
+							<option  class="tn_pw" value="http://pw.toponavi.com">Палау</option>
+							<option  class="tn_ps" value="http://ps.toponavi.com">Палестина</option>
+							<option  class="tn_pa" value="http://pa.toponavi.com">Панама</option>
+							<option  class="tn_pg" value="http://pg.toponavi.com">Папуа Новая Гвинея</option>
+							<option  class="tn_py" value="http://py.toponavi.com">Парагвай</option>
+							<option  class="tn_pe" value="http://pe.toponavi.com">Перу</option>
+							<option  class="tn_pn" value="http://pn.toponavi.com">Питкэрн</option>
+							<option  class="tn_pl" value="http://pl.toponavi.com">Польша</option>
+							<option  class="tn_pt" value="http://pt.toponavi.com">Португалия</option>
+							<option  class="tn_pr" value="http://pr.toponavi.com">Пуэрто Рико</option>
+							<option  class="tn_kr" value="http://kr.toponavi.com">Республика Корея</option>
+							<option  class="tn_re" value="http://re.toponavi.com">Реюньон</option>
+							<option selected class="tn_ru" value="http://ru.toponavi.com">Россия</option>
+							<option  class="tn_rw" value="http://rw.toponavi.com">Руанда</option>
+							<option  class="tn_ro" value="http://ro.toponavi.com">Румыния</option>
+							<option  class="tn_sv" value="http://sv.toponavi.com">Сальвадор</option>
+							<option  class="tn_ws" value="http://ws.toponavi.com">Самоа</option>
+							<option  class="tn_sm" value="http://sm.toponavi.com">Сан-Марино</option>
+							<option  class="tn_st" value="http://st.toponavi.com">Сан-Томе и Принсипи</option>
+							<option  class="tn_sa" value="http://sa.toponavi.com">Саудовская Аравия</option>
+							<option  class="tn_sz" value="http://sz.toponavi.com">Свазиленд</option>
+							<option  class="tn_sj" value="http://sj.toponavi.com">Шпицберген и Ян-Майен</option>
+							<option  class="tn_lc" value="http://lc.toponavi.com">Святая Люсия</option>
+							<option  class="tn_mp" value="http://mp.toponavi.com">Северные Марианские острова</option>
+							<option  class="tn_sc" value="http://sc.toponavi.com">Сейшеллы</option>
+							<option  class="tn_mf" value="http://mf.toponavi.com">Сен-Мартен</option>
+							<option  class="tn_pm" value="http://pm.toponavi.com">Сен-Пьер и Микелон</option>
+							<option  class="tn_sn" value="http://sn.toponavi.com">Сенегал</option>
+							<option  class="tn_kn" value="http://kn.toponavi.com">Сент Китс и Невис</option>
+							<option  class="tn_vc" value="http://vc.toponavi.com">Сент-Винсент и Гренадины</option>
+							<option  class="tn_rs" value="http://rs.toponavi.com">Сербия</option>
+							<option  class="tn_sg" value="http://sg.toponavi.com">Сингапур</option>
+							<option  class="tn_sy" value="http://sy.toponavi.com">Сирия</option>
+							<option  class="tn_sk" value="http://sk.toponavi.com">Словакия</option>
+							<option  class="tn_si" value="http://si.toponavi.com">Словения</option>
+							<option  class="tn_sb" value="http://sb.toponavi.com">Соломоновы острова</option>
+							<option  class="tn_so" value="http://so.toponavi.com">Сомали</option>
+							<option  class="tn_sd" value="http://sd.toponavi.com">Судан</option>
+							<option  class="tn_sr" value="http://sr.toponavi.com">Суринам</option>
+							<option  class="tn_us" value="http://us.toponavi.com">США</option>
+							<option  class="tn_sl" value="http://sl.toponavi.com">Сьерра-Леоне</option>
+							<option  class="tn_tj" value="http://tj.toponavi.com">Таджикистан</option>
+							<option  class="tn_th" value="http://th.toponavi.com">Таиланд</option>
+							<option  class="tn_tw" value="http://tw.toponavi.com">Тайвань</option>
+							<option  class="tn_tz" value="http://tz.toponavi.com">Танзания</option>
+							<option  class="tn_tg" value="http://tg.toponavi.com">Того</option>
+							<option  class="tn_tk" value="http://tk.toponavi.com">Токелау</option>
+							<option  class="tn_to" value="http://to.toponavi.com">Тонга</option>
+							<option  class="tn_tt" value="http://tt.toponavi.com">Тринидад и Тобаго</option>
+							<option  class="tn_tv" value="http://tv.toponavi.com">Тувалу</option>
+							<option  class="tn_tn" value="http://tn.toponavi.com">Тунис</option>
+							<option  class="tn_tm" value="http://tm.toponavi.com">Туркменистан</option>
+							<option  class="tn_tc" value="http://tc.toponavi.com">Туркс и Кейкос</option>
+							<option  class="tn_tr" value="http://tr.toponavi.com">Турция</option>
+							<option  class="tn_ug" value="http://ug.toponavi.com">Уганда</option>
+							<option  class="tn_uz" value="http://uz.toponavi.com">Узбекистан</option>
+							<option  class="tn_ua" value="http://ua.toponavi.com">Украина</option>
+							<option  class="tn_wf" value="http://wf.toponavi.com">Уоллис и Футуна</option>
+							<option  class="tn_uy" value="http://uy.toponavi.com">Уругвай</option>
+							<option  class="tn_fo" value="http://fo.toponavi.com">Фарерские острова</option>
+							<option  class="tn_fj" value="http://fj.toponavi.com">Фиджи</option>
+							<option  class="tn_ph" value="http://ph.toponavi.com">Филиппины</option>
+							<option  class="tn_fi" value="http://fi.toponavi.com">Финляндия</option>
+							<option  class="tn_fk" value="http://fk.toponavi.com">Фолклендские острова</option>
+							<option  class="tn_fr" value="http://fr.toponavi.com">Франция</option>
+							<option  class="tn_pf" value="http://pf.toponavi.com">Французская Полинезия</option>
+							<option  class="tn_gf" value="http://gf.toponavi.com">Французская Гвинея</option>
+							<option  class="tn_hr" value="http://hr.toponavi.com">Хорватия</option>
+							<option  class="tn_cf" value="http://cf.toponavi.com">Центрально-Африканская Республика</option>
+							<option  class="tn_td" value="http://td.toponavi.com">Чад</option>
+							<option  class="tn_me" value="http://me.toponavi.com">Черногория</option>
+							<option  class="tn_cz" value="http://cz.toponavi.com">Чехия</option>
+							<option  class="tn_cl" value="http://cl.toponavi.com">Чили</option>
+							<option  class="tn_ch" value="http://ch.toponavi.com">Швейцария</option>
+							<option  class="tn_se" value="http://se.toponavi.com">Швеция</option>
+							<option  class="tn_lk" value="http://lk.toponavi.com">Шри-Ланка</option>
+							<option  class="tn_ec" value="http://ec.toponavi.com">Эквадор</option>
+							<option  class="tn_gq" value="http://gq.toponavi.com">Экваториальная Гвинея</option>
+							<option  class="tn_er" value="http://er.toponavi.com">Эритрея</option>
+							<option  class="tn_ee" value="http://ee.toponavi.com">Эстония</option>
+							<option  class="tn_et" value="http://et.toponavi.com">Эфиопия</option>
+							<option  class="tn_za" value="http://za.toponavi.com">Южно-Африканская Республика</option>
+							<option  class="tn_jm" value="http://jm.toponavi.com">Ямайка</option>
+							<option  class="tn_jp" value="http://jp.toponavi.com">Япония</option>
+						</select>
+			</section>
+			
+		</div>
+		<div class="tn_top_inside_links">
+			
+
+			<section id="intro">
+			<select onchange="redir_lang(this.value)">
+							<option  value="http://ru.toponavi.com/lang/az">Azərbaycan</option>
+							<option  value="http://ru.toponavi.com/lang/sq">Shqiptar</option>
+							<option  value="http://ru.toponavi.com/lang/en">English</option>
+							<option  value="http://ru.toponavi.com/lang/ar">العربية</option>
+							<option  value="http://ru.toponavi.com/lang/hy">հայերեն</option>
+							<option  value="http://ru.toponavi.com/lang/af">Afrikaans</option>
+							<option  value="http://ru.toponavi.com/lang/eu">Euskal</option>
+							<option  value="http://ru.toponavi.com/lang/be">беларускі</option>
+							<option  value="http://ru.toponavi.com/lang/bn">বাঙালি</option>
+							<option  value="http://ru.toponavi.com/lang/my">မြန်မာ</option>
+							<option  value="http://ru.toponavi.com/lang/bg">български</option>
+							<option  value="http://ru.toponavi.com/lang/bs">bosanski</option>
+							<option  value="http://ru.toponavi.com/lang/cy">Cymraeg</option>
+							<option  value="http://ru.toponavi.com/lang/hu">magyar</option>
+							<option  value="http://ru.toponavi.com/lang/vi">tiếng Việt</option>
+							<option  value="http://ru.toponavi.com/lang/gl">galego</option>
+							<option  value="http://ru.toponavi.com/lang/el">ελληνικά</option>
+							<option  value="http://ru.toponavi.com/lang/ka">ქართული</option>
+							<option  value="http://ru.toponavi.com/lang/gu">ગુજરાતી</option>
+							<option  value="http://ru.toponavi.com/lang/da">dansk</option>
+							<option  value="http://ru.toponavi.com/lang/zu">Zulu</option>
+							<option  value="http://ru.toponavi.com/lang/iw">עברית</option>
+							<option  value="http://ru.toponavi.com/lang/ig">Igbo</option>
+							<option  value="http://ru.toponavi.com/lang/yi">ייִדיש</option>
+							<option  value="http://ru.toponavi.com/lang/id">Indonesia</option>
+							<option  value="http://ru.toponavi.com/lang/ga">irish</option>
+							<option  value="http://ru.toponavi.com/lang/is">icelandic</option>
+							<option  value="http://ru.toponavi.com/lang/es">español</option>
+							<option  value="http://ru.toponavi.com/lang/it">italiano</option>
+							<option  value="http://ru.toponavi.com/lang/yo">Yorùbá</option>
+							<option  value="http://ru.toponavi.com/lang/kk">Қазақ</option>
+							<option  value="http://ru.toponavi.com/lang/kn">ಕನ್ನಡ</option>
+							<option  value="http://ru.toponavi.com/lang/ca">Català</option>
+							<option  value="http://ru.toponavi.com/lang/zh-TW">中國（繁體）</option>
+							<option  value="http://ru.toponavi.com/lang/zh-CN">中国（简体）</option>
+							<option  value="http://ru.toponavi.com/lang/ko">한국의</option>
+							<option  value="http://ru.toponavi.com/lang/ht">kreyòl (Ayiti)</option>
+							<option  value="http://ru.toponavi.com/lang/km">ខ្មែរ</option>
+							<option  value="http://ru.toponavi.com/lang/lo">ລາວ</option>
+							<option  value="http://ru.toponavi.com/lang/la">latin</option>
+							<option  value="http://ru.toponavi.com/lang/lv">Latvijas</option>
+							<option  value="http://ru.toponavi.com/lang/lt">Lietuvos</option>
+							<option  value="http://ru.toponavi.com/lang/mk">македонски</option>
+							<option  value="http://ru.toponavi.com/lang/mg">Malagasy</option>
+							<option  value="http://ru.toponavi.com/lang/ms">Melayu</option>
+							<option  value="http://ru.toponavi.com/lang/ml">മലയാളം</option>
+							<option  value="http://ru.toponavi.com/lang/mt">maltese</option>
+							<option  value="http://ru.toponavi.com/lang/mi">Maori</option>
+							<option  value="http://ru.toponavi.com/lang/mr">मराठी</option>
+							<option  value="http://ru.toponavi.com/lang/mn">Монгол улсын</option>
+							<option  value="http://ru.toponavi.com/lang/de">Deutsch</option>
+							<option  value="http://ru.toponavi.com/lang/ne">नेपाली</option>
+							<option  value="http://ru.toponavi.com/lang/nl">Nederlands</option>
+							<option  value="http://ru.toponavi.com/lang/no">norsk</option>
+							<option  value="http://ru.toponavi.com/lang/pa">ਪੰਜਾਬੀ ਦੇ</option>
+							<option  value="http://ru.toponavi.com/lang/fa">فارسی</option>
+							<option  value="http://ru.toponavi.com/lang/pl">polski</option>
+							<option  value="http://ru.toponavi.com/lang/pt">português</option>
+							<option  value="http://ru.toponavi.com/lang/ro">român</option>
+							<option selected value="http://ru.toponavi.com/lang/ru">Русский</option>
+							<option  value="http://ru.toponavi.com/lang/ceb">sebuansky</option>
+							<option  value="http://ru.toponavi.com/lang/sr">српски</option>
+							<option  value="http://ru.toponavi.com/lang/st">Sesotho</option>
+							<option  value="http://ru.toponavi.com/lang/si">සිංහල</option>
+							<option  value="http://ru.toponavi.com/lang/sk">slovenčina</option>
+							<option  value="http://ru.toponavi.com/lang/sl">slovenščina</option>
+							<option  value="http://ru.toponavi.com/lang/so">Soomaaliya</option>
+							<option  value="http://ru.toponavi.com/lang/sw">Kiswahili</option>
+							<option  value="http://ru.toponavi.com/lang/su">Sunda</option>
+							<option  value="http://ru.toponavi.com/lang/tl">tagalog</option>
+							<option  value="http://ru.toponavi.com/lang/tg">Тоҷикистон</option>
+							<option  value="http://ru.toponavi.com/lang/th">ไทย</option>
+							<option  value="http://ru.toponavi.com/lang/ta">தமிழ்</option>
+							<option  value="http://ru.toponavi.com/lang/te">తెలుగు</option>
+							<option  value="http://ru.toponavi.com/lang/tr">Türk</option>
+							<option  value="http://ru.toponavi.com/lang/uz">O'zbekiston</option>
+							<option  value="http://ru.toponavi.com/lang/uk">український</option>
+							<option  value="http://ru.toponavi.com/lang/ur">اردو</option>
+							<option  value="http://ru.toponavi.com/lang/fi">suomalainen</option>
+							<option  value="http://ru.toponavi.com/lang/fr">français</option>
+							<option  value="http://ru.toponavi.com/lang/ha">gidan</option>
+							<option  value="http://ru.toponavi.com/lang/hi">हिन्दी</option>
+							<option  value="http://ru.toponavi.com/lang/hmn">Hmong</option>
+							<option  value="http://ru.toponavi.com/lang/hr">hrvatski</option>
+							<option  value="http://ru.toponavi.com/lang/ny">Chewa</option>
+							<option  value="http://ru.toponavi.com/lang/cs">čeština</option>
+							<option  value="http://ru.toponavi.com/lang/sv">svenska</option>
+							<option  value="http://ru.toponavi.com/lang/eo">esperanto</option>
+							<option  value="http://ru.toponavi.com/lang/et">eesti</option>
+							<option  value="http://ru.toponavi.com/lang/jw">Jawa</option>
+							<option  value="http://ru.toponavi.com/lang/ja">日本人</option>
+						</select>
+			</section>
+			
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<div class="tn_body_center">
+<div class="tn_body">
+
+
+<script>
+	function addCity1(name)
+	{
+		$('#city1_id').val(""); 
+		
+		$.get('/searchcity1/'+name, function (data){
+			if(data)
+			{
+				
+				$('#addcity1').html(data);
+				$('#addcity1').css('display', 'block'); 
+			} else {
+				$('#addcity1').css('display', 'none'); 
+			}
+		});
+		
+		
+		return false;
+	}
+	
+	
+	function addValue1(name, id)
+	{
+		$('#city1_id').val(id); 		
+		$('#city1').val(name); 
+		$('#addcity1').css('display', 'none'); 
+		return false;
+	}
+	
+	
+	
+	function addCity2(name)
+	{
+		$('#city2_id').val(""); 
+		
+		$.get('/searchcity2/'+name, function (data){
+			if(data)
+			{
+				
+				$('#addcity2').html(data);
+				$('#addcity2').css('display', 'block'); 
+			} else {
+				$('#addcity2').css('display', 'none'); 
+			}
+		});
+		
+		
+		return false;
+	}
+	
+	
+	function addValue2(name, id)
+	{
+		$('#city2_id').val(id);		
+		$('#city2').val(name); 
+		$('#addcity2').css('display', 'none'); 
+		return false;
+	}
+	
+	function addCity3(name)
+	{
+		$('#city3_id').val(""); 
+		
+		$.get('/searchcity3/'+name, function (data){
+			if(data)
+			{
+				
+				$('#addcity3').html(data);
+				$('#addcity3').css('display', 'block'); 
+			} else {
+				$('#addcity3').css('display', 'none'); 
+			}
+		});
+		
+		
+		return false;
+	}
+	
+	
+	function addValue3(name, id)
+	{
+		$('#city3_id').val(id); 		
+		$('#city3').val(name); 
+		$('#addcity3').css('display', 'none'); 
+		return false;
+	}
+
+	function addCity4(name)
+	{
+		$('#city4_id').val(""); 
+		
+		$.get('/searchcity4/'+name, function (data){
+			if(data)
+			{
+				
+				$('#addcity4').html(data);
+				$('#addcity4').css('display', 'block'); 
+			} else {
+				$('#addcity4').css('display', 'none'); 
+			}
+		});
+		
+		
+		return false;
+	}
+	
+	
+	function addValue4(name, id)
+	{
+		$('#city4_id').val(id); 		
+		$('#city4').val(name); 
+		$('#addcity4').css('display', 'none'); 
+		return false;
+	}
+	
+</script>
+
+<script type="text/javascript">
+
+var JSON = JSON || {};
+
+JSON.stringify = JSON.stringify || function (obj) {
+
+	var t = typeof (obj);
+	if (t != "object" || obj === null) {
+
+		if (t == "string") obj = '"'+obj+'"';
+		return String(obj);
+
+	}
+	else {
+
+		var n, v, json = [], arr = (obj && obj.constructor == Array);
+
+		for (n in obj) {
+			v = obj[n]; t = typeof(v);
+
+			if (t == "string") v = '"'+v+'"';
+			else if (t == "object" && v !== null) v = JSON.stringify(v);
+
+			json.push((arr ? "" : '"' + n + '":') + String(v));
+		}
+
+		return (arr ? "[" : "{") + String(json) + (arr ? "]" : "}");
+	}
+};
+
+JSON.parse = JSON.parse || function (str) {
+	if (str === "") str = '""';
+	eval("var p=" + str + ";");
+	return p;
+};
+
+
+function search_google() {
+	
+
+
+	return true;
+}
+
+
+
+$(document).ready(function() {
+	$('.form-search').submit(function() {
+		city1 = $('#city1').val();
+		city2 = $('#city2').val();
+		city3 = $('#city3').val();
+
+		city1_id = $('#city1_id').val();
+		city2_id = $('#city2_id').val();
+		city3_id = $('#city3_id').val();
+		
+		if(!city1 || !city2)
+		{
+			if(!city1)
+			{
+			
+				$('#city1').addClass("checkempty");
+				setTimeout( function(){ $('#city1').removeClass("checkempty");},3000);
+
+			} else {
+				
+			}
+			if(!city2)
+			{
+				$('#city2').addClass("checkempty");
+				setTimeout( function(){ $('#city2').removeClass("checkempty");},3000);
+			} else {
+				
+			}
+			return false;
+		} else {
+
+		}
+
+		if(city1 && !city1_id)
+		{
+			$.ajax({
+		        url: 'https://maps.googleapis.com/maps/api/geocode/json?address='+city1+'&sensor=true_or_false&language=ru',
+		        crossDomain: true,
+		        async: false,
+		        type: 'GET',
+		        dataType: 'json',
+		        success: function(data, textStatus, jqXHR)
+		        {
+		        	$('#city1_json').val(JSON.stringify(data));
+		        }
+		    });
+		}
+		if(city2 && !city2_id)
+		{
+			$.ajax({
+		        url: 'https://maps.googleapis.com/maps/api/geocode/json?address='+city2+'&sensor=true_or_false&language=ru',
+		        crossDomain: true,
+		        async: false,
+		        type: 'GET',
+		        dataType: 'json',
+		        success: function(data, textStatus, jqXHR)
+		        {
+		        	$('#city2_json').val(JSON.stringify(data));
+		        }
+		    });
+		}
+		if(city3 && !city3_id)
+		{
+			$.ajax({
+		        url: 'https://maps.googleapis.com/maps/api/geocode/json?address='+city3+'&sensor=true_or_false&language=ru',
+		        crossDomain: true,
+		        async: false,
+		        type: 'GET',
+		        dataType: 'json',
+		        success: function(data, textStatus, jqXHR)
+		        {
+		        	$('#city3_json').val(JSON.stringify(data));
+		        }
+		    });
+		}
+
+		$('.form-search').submit();
+	});
+
+
+	$('.form-search2').submit(function() {
+		city4 = $('#city4').val();
+
+		city4_id = $('#city4_id').val();
+		
+		if(!city4)
+		{
+			if(!city4)
+			{
+			
+				$('#city4').addClass("checkempty");
+				setTimeout( function(){ $('#city4').removeClass("checkempty");},3000);
+
+			} else {
+				
+			}
+			return false;
+		} else {
+
+		}
+
+		if(city4 && !city4_id)
+		{
+			$.ajax({
+		        url: 'https://maps.googleapis.com/maps/api/geocode/json?address='+city4+'&sensor=true_or_false&language=ru',
+		        crossDomain: true,
+		        async: false,
+		        type: 'GET',
+		        dataType: 'json',
+		        success: function(data, textStatus, jqXHR)
+		        {
+		        	$('#city4_json').val(JSON.stringify(data));
+		        }
+		    });
+		}
+
+		$('.form-search2').submit();
+	});
+	
+}); 
+</script>
+
+<script>
+ $(function() { 
+        $('#viabtn').click(function(e) {
+		$("#viainp").show()
+		$("#viabtn").hide()
+	});
+	});
+</script>
+
+<form class="form-search" method="post" action="/">
+<input type="hidden" name="cityfrom_id" id="city1_id" value="" />
+<input type="hidden" name="cityvia_id" id="city3_id" value="" />
+<input type="hidden" name="cityto_id" id="city2_id" value="" />
+
+<input type="hidden" name="cityfrom_json" id="city1_json" value="" />
+<input type="hidden" name="cityvia_json" id="city3_json" value="" />
+<input type="hidden" name="cityto_json" id="city2_json" value="" />
+<table class="tn_find_block">
+	<tr>
+    <td class="tn_find_from">    
+    	<div style="position: relative;">
+			<input autocomplete="off" onclick="this.value=''" type="text" name="cityfrom"  id="city1" onkeyup="addCity1(this.value)" value="" placeholder="Откуда" />
+			<div id="addcity1"></div>
+		</div>
+    </td>
+    <td class="tn_find_to">
+    	<div style="position: relative;">
+			<input autocomplete="off" onclick="this.value=''" type="text" name="cityto"  id="city2" onkeyup="addCity2(this.value)" value="" placeholder="Куда"  />
+			<div id="addcity2"></div>
+		</div>
+    </td>
+    <td class="tn_find_via"> 
+		<div id="viabtn">+ Через</div>    	<div id="viainp" style="position: relative;">
+			<input autocomplete="off" onclick="this.value=''" type="text" name="cityvia"  id="city3" onkeyup="addCity3(this.value)" value="" placeholder="Через" />
+			<div id="addcity3"></div>
+		</div>
+    </td>
+	<td class="tn_find_button">
+		<input type="submit" name="send" value="">
+	</td>
+	</tr>
+</table>
+</form>
+
+<script>
+$(document).ready(function() {
+		if ($('body').width() < 800 && $('body').width() < 800) {
+				$('.tn_find_button input').val('Искать');
+			}
+			else {
+				$('.tn_find_button input').val('Искать');
+			}
+});
+</script><div class="tn_h1_box tn_index_fix"><h1>Расстояние между городами <span>введите названия двух или трех городов</span></h1></div>
+
+<script src="http://toponavi.cachefly.net/js/jquery.tipsy.js"></script>
+
+ <script type="text/javascript">
+            $(document).ready(function() {
+                stylesheetToggle();
+                $(window).resize(stylesheetToggle);
+            });
+
+            var show_width = 0;
+            
+            function stylesheetToggle()
+            {
+                if ($('body').width() < 800 && $('body').width() >= 320) {
+                    if(show_width==2 || show_width==3 || show_width==0)
+                    {
+                        $.ajax({
+                            url: '/adsblocksmall.php',
+                            type: 'GET',
+                            dataType: 'json',
+                            success: function(data, textStatus, jqXHR)
+                            {
+                                $(".tn_ad1").html(data.tn_ad1);
+                                $(".tn_ad2").html(data.tn_ad2);
+                            }
+                        });
+                        show_width = 1;
+                    }
+                }
+                else if ($('body').width() < 320) {
+                    if(show_width==1 || show_width==3 || show_width==0)
+                    {
+                        $.ajax({
+                            url: '/adsblockverysmall.php',
+                            type: 'GET',
+                            dataType: 'json',
+                            success: function(data, textStatus, jqXHR)
+                            {
+                                $(".tn_ad1").html(data.tn_ad1);
+                                $(".tn_ad2").html(data.tn_ad2);
+                            }
+                        });
+                        show_width = 2;
+                    }
+                } else {
+                    if(show_width==1 || show_width==2 || show_width==0)
+                    {
+                        $.ajax({
+                            url: '/adsblock.php',
+                            type: 'GET',
+                            dataType: 'json',
+                            success: function(data, textStatus, jqXHR)
+                            {
+                                $(".tn_ad1").html(data.tn_ad1);
+                                $(".tn_ad2").html(data.tn_ad2);
+                            }
+                        });
+                        show_width = 3;
+                    }
+                }
+            }    
+        </script>
+		<div class="tn_ad1"></div>
+		<div id="map_canvas"></div>
+		<div class="tn_ad2"></div>
+
+	<div class="tn_index_text">
+	<div class="tn_title">калькулятор расстояний</div>
+	TopoNavi — это отличный сервис, который позволяет получать информацию о расстояниях между городами, населенными пунктами, и не только. Кроме того, в нашем справочнике имеется информация обо всех крупных аэропортах мира.<br><br>Все страны мира, более 100 000 крупнейших городов и восемь миллиардов расстояний с точными схемами проезда доступны для поиска прямо сейчас. Информация переведена на все существующие языки мира, что очень удобно для посетителей в разных стран.<br><br>Для того чтобы начать поиск расстояния, вам необходимо указать начальный пункт и конечный. Если вы хотите чтобы ваш маршрут проходил через определенный город или населенный пункт, укажите это в поле "Через город". В таком случае маршрут будет проложен именно так, как вы указали.	
+	</div>
+	
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyCb3xReRZwvR6EPBOiDCK2MBrnd1oXnZag&sensor=false&language=ru"></script>
+	<script type="text/javascript">  
+
+      var geocoder;
+      var map;
+      function initialize() {
+        geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(0, 0);
+        var mapOptions = {
+          zoom: 3,
+          center: latlng,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+        var address = "Russian Federation";
+        geocoder.geocode( { 'address': address}, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+            });
+          }
+        });
+        
+      }
+
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+
+
+
+
+	<div class="clear"></div>
+
+</div>
+</div>
+
+	<div class="tn_stat">
+		<div class="tn_stat_country"><img src="http://toponavi.cachefly.net/images/fc.png">Все страны мира</div>
+		<div class="tn_stat_city"><img src="http://toponavi.cachefly.net/images/fs.png">Тысячи городов</div>
+		<div class="tn_stat_ways"><img src="http://toponavi.cachefly.net/images/fd.png">Миллиарды расстояний</div>
+		<div class="clear"></div>
+	</div>
+
+<div class="clear"></div>
+
+<div class="tn_footer">
+	<div class="tn_footer_inside">
+		<div class="tn_footer_inside_mobopt">
+			<div id="tn_tip3" title="Оптимизировано для мобильных устройств."><img src="http://toponavi.cachefly.net/images/mobopt.png"></div>
+		</div>
+		<div class="tn_footer_inside_links">
+			2017			<a href="">TopoNavi</a>
+			<a href="/privacy">Политика конфиденциальности</a>
+			<a href="/terms">Условия использования</a>
+			<a href="/contacts">Контакты</a>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<script>
+$(document).ready(function() {
+            $('.zearch').attr('placeholder', 'Искать...');
+});
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-65242622-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</body>
+</html>

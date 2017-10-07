@@ -1,0 +1,122 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Welcome to Norwegian Reward</title>
+
+    <!-- Google Analytics -->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-24900547-1', 'auto');  // Replace with your property ID.
+        ga('require', 'linkid', 'linkid.js');   // Load the plug-in. Note: this call will block until the plug-in is loaded.
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
+
+    <script src="//ajax.aspnetcdn.com/ajax/jquery/jquery-1.8.3.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/scripts/jquery-1.8.3.js">\x3C/script>')</script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Track clicks on external links as an event with Goggle Analytics
+            $("a[rel*='external']").each(function (index, element) {
+                $(element).click(function () {
+                    var category = 'External link';
+                    var action = $(this).attr('href');
+                    var label = (function (anchor) {
+                        var text = $(anchor).text();
+                        if (text.length == 0) {
+                            text = $(anchor).children('img').first().attr('alt');
+                            if (text.length == 0) {
+                                text = document.location;
+                            }
+                        }
+                        return text;
+                    })(element);
+                    var value = index;
+                    ga('send', 'event', category, action, label, value);
+                    setTimeout(window.open($(this).attr('href'), $(this).attr('target')), 100);
+                    return false;
+                });
+            });
+        });
+    </script>
+
+    <link href="css/stylesheet.css" rel="stylesheet" type="text/css">
+    <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+
+    <meta name="description" content="Norwegian Reward is a free loyalty program from Norwegian for those who would like to travel cheaper and better." />
+    <meta name="keywords" content="Norwegian Reward, Norwegian, CashPoints, CashPoint, points, poeng, bonus, bonuspoeng, fly, tjene, tilbud, salg, fordel, fordelsprogram, loyalty program" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <link rel="shortcut icon" href="img/favicons/favicon.png" />
+    <link rel="icon" type="image/png" href="img/favicons/norwegian-reward.png" />
+    <link rel="icon" type="image/png" href="img/favicons/norwegian-reward-300x233.png" />
+    <link rel="apple-touch-icon" href="img/favicons/norwegian-reward-apple.png" />
+
+    <meta name="msapplication-TileImage" content="img/favicons/norwegian-reward-win8-144.png" />
+    <meta name="msapplication-TileColor" content="#e63027" />
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="header-ribbon">
+            <div style="text-align: center;">
+                <img class="header-logo" src="img/norwegian-reward-logo-new.svg" />
+            </div>
+        </div>
+        <hr class="blue-line-6px" />
+        <div class="padding-text">
+            <h1 class="text-center text-color-norwegian-blue margin-top-md">Welcome to Norwegian Reward</h1>
+            <h2 class="text-center margin-bottom-md">Norwegian's loyalty program</h2>
+        </div>
+        <div class="lang-wrap">
+            <div class="text-left margin-left-xs">
+                <h3>
+                    <a href="//no.norwegianreward.com/">
+                        <span class="lang-circle lang-nb-NO"></span>Norge (norsk)
+                    </a>
+                </h3>
+                <h3>
+                    <a href="//se.norwegianreward.com/">
+                        <span class="lang-circle lang-sv-SE"></span>Sverige (svenska)
+                    </a>
+                </h3>
+                <h3>
+                    <a href="//dk.norwegianreward.com/">
+                        <span class="lang-circle lang-da-DK"></span>Danmark (dansk)
+                    </a>
+                </h3>
+                <h3>
+                    <a href="//fi.norwegianreward.com/">
+                        <span class="lang-circle lang-fi-FI"></span>Suomi (suomeksi)
+                    </a>
+                </h3>
+                <h3>
+                    <a href="//es.norwegianreward.com/">
+                        <span class="lang-circle lang-es-ES"></span>España (español)
+                    </a>
+                </h3>
+                <h3>
+                    <a href="//en.norwegianreward.com/">
+                        <span class="lang-circle lang-en-IE"></span>Other (English)
+                    </a>
+                </h3>
+            </div>
+        </div>
+        <div class="footer">
+            <div id="servername">NAS-NRFRONT01</div>
+            <img class="position-absolute-bottom" style="width: 100%;" src="img/clouds.svg" />
+        </div>
+    </div>
+</body>
+</html>

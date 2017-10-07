@@ -1,0 +1,84 @@
+# Google - Most Important bot
+#	Unfortunately a robots.txt will only stop it crawling certain urls, and NOT adding any
+#	urls which it comes across into its index. So we're relying on a meta noindex tag.
+User-agent: Googlebot
+Disallow:
+
+# Yahoo - Too aggressive
+#	So limit it as much as possible.
+User-agent: Slurp
+# Disallow Everything
+Disallow: /
+# Now allow bits and then disallow bits
+Allow: /robots.txt$
+Allow: /forum/index.php$
+Allow: /forum/index.php?topic=*.0$
+Allow: /forum/index.php?topic=*.*0$
+Allow: /forum/index.php?topic=*.*5$
+Allow: /forum/index.php?board=*.0$
+Allow: /forum/index.php?board=*.*0$
+Allow: /forum/index.php?board=*.*5$
+# But don't allow these
+Disallow: /forum/index.php?*.msg
+Disallow: /forum/index.php?topic=*.msg*0$
+Disallow: /forum/index.php?topic=*.msg*5$
+Disallow: /forum/index.php?*.new
+# Anything with a ; disallow
+Disallow: /forum/index.php?*;*
+
+# Bad bot - Often ignores robots.txt - Waste of bandwidth
+#	Despite claiming on their website to be a search engine in development
+#	I'm suspicious as to whether they are a harvester pretending to be SE
+User-agent: Twiceler
+Disallow: /
+
+# Archive.org's "wayback machine" ... nice concept, but not when it sucks down 1.3 GB of bandwidth within a week
+User-agent: ia_archiver
+Disallow: /
+
+User-Agent: W3C-checklink
+Disallow: /
+
+# Stop following PHPSESSID's
+User-Agent: MJ12bot
+Disallow: /forum/index.php?PHPSESSID
+
+# Catch all (remainder)
+#	Will be followed by any bots other than ones identified above
+#	Uses BASIC robots.txt directives without wildcards, end-anchors etc
+#	So Spiders should understand these (including MSNBOT)
+User-agent: *
+# Default SMF Folders
+Disallow: /forum/attachments/
+Disallow: /forum/avatars/
+Disallow: /forum/cache/
+Disallow: /forum/Packages/
+Disallow: /forum/Smileys/
+Disallow: /forum/Sources/
+Disallow: /forum/Themes/
+# Default SMF Actions
+Disallow: /forum/index.php?action=activate
+Disallow: /forum/index.php?action=admin
+Disallow: /forum/index.php?action=calendar
+Disallow: /forum/index.php?action=emailuser
+Disallow: /forum/index.php?action=findmember
+Disallow: /forum/index.php?action=help
+Disallow: /forum/index.php?action=helpadmin
+Disallow: /forum/index.php?action=login
+Disallow: /forum/index.php?action=logout
+Disallow: /forum/index.php?action=mlist
+Disallow: /forum/index.php?action=modifykarma
+Disallow: /forum/index.php?action=pm
+Disallow: /forum/index.php?action=post
+Disallow: /forum/index.php?action=printpage
+Disallow: /forum/index.php?action=profile
+Disallow: /forum/index.php?action=recent
+Disallow: /forum/index.php?action=register
+Disallow: /forum/index.php?action=reminder
+Disallow: /forum/index.php?action=search
+Disallow: /forum/index.php?action=theme
+Disallow: /forum/index.php?action=unread
+Disallow: /forum/index.php?action=unreadreplies
+Disallow: /forum/index.php?action=verificationcode
+Disallow: /forum/index.php?action=who
+Disallow: /forum/index.php?theme

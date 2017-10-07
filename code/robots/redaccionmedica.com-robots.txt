@@ -1,0 +1,817 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Expires" CONTENT="-1">
+<title>
+Redacci&oacute;n M&eacute;dica</title>
+<style>
+        #Overlay {
+            display: block;
+            height: 100%;
+            left: 0;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 999;
+            text-align: center;
+            background: #FFF;
+        }
+        #Overlay img {
+            margin: 20px auto;
+            cursor:pointer;
+        }
+    </style>
+<link href="https://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css">
+<link href="https://www.redaccionmedica.com/css/screen_v6.css" rel="stylesheet" type="text/css">
+<script src="https://www.redaccionmedica.com/js/jquery.js" type="text/javascript"></script>
+<script>
+        function MM_validateForm() { //v4.0
+            if (document.getElementById){
+                var i,p,q,nm,test,num,min,max,errors='',args=MM_validateForm.arguments;
+                for (i=0; i<(args.length-2); i+=3) { test=args[i+2]; val=document.getElementById(args[i]);
+                    if (val) { nm=val.name; if ((val=val.value)!="") {
+                        if (test.indexOf('isEmail')!=-1) { p=val.indexOf('@');
+                            if (p<1 || p==(val.length-1)) errors+='- '+nm+' must contain an e-mail address.\n';
+                        } else if (test!='R') { num = parseFloat(val);
+                            if (isNaN(val)) errors+='- '+nm+' must contain a number.\n';
+                            if (test.indexOf('inRange') != -1) { p=test.indexOf(':');
+                                min=test.substring(8,p); max=test.substring(p+1);
+                                if (num<min || max<num) errors+='- '+nm+' must contain a number between '+min+' and '+max+'.\n';
+                            } } } else if (test.charAt(0) == 'R') errors += '- '+nm+' is required.\n'; }
+                } if (errors) alert('ATENCION:\nSeleccione una fecha del calendario');
+                document.MM_returnValue = (errors == '');
+            } }
+    </script>
+<script language="JavaScript" src="https://www.redaccionmedica.com/calendario/javascripts.js"></script>
+<link rel='stylesheet' id='bootstrap-css' href='https://www.redaccionmedica.com/css/menu_v6/menu_v6.css' type='text/css' media='all' />
+
+<script src="https://www.redaccionmedica.com/js/jquery.1.7.2.min_v5.js" type="text/javascript"></script>
+<script src="https://www.redaccionmedica.com/js/jquery-ui.min_v5.js"></script>
+<script src="https://www.redaccionmedica.com/js/jquery.coda-slider-3.0_v6.js" type="text/javascript"></script>
+<script>
+        function mostrarTexto(elemento) {
+            if(document.getElementById(elemento).style.display=="none"){
+                document.getElementById(elemento).style.display="block";
+            }
+        }
+
+        function ocultarTexto(elemento) {
+            if(document.getElementById(elemento).style.display=="block"){
+                document.getElementById(elemento).style.display="none";
+            }
+        }
+
+        function mostrarOcultarCompartir(elemento,editor,fecha) {
+            if(document.getElementById(elemento).style.display=="none"){
+                document.getElementById(elemento).style.display="block";
+                if(document.getElementById(editor)){
+                    document.getElementById(editor).style.display="none";
+                }
+                document.getElementById(fecha).style.display="none";
+            }else {
+                document.getElementById(elemento).style.display = "none";
+                if(document.getElementById(editor)){
+                    document.getElementById(editor).style.display="block";
+                }
+                document.getElementById(fecha).style.display="block";
+            }
+        }
+    </script>
+<style>
+        .titular {
+            font-size: 35px;
+            font-family: "Open Sans";
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .texto {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        #buscador_form2 {
+            float: none;
+            width: 600px !important;
+            margin: 0 auto;
+            display: block;
+        }
+
+        #buscador_form2 #texto_buscador {
+            background: #FFFFFF;
+            border-radius: 0;
+            padding: 10px;
+            width: 600px !important;
+            font-size: 12px;
+        }
+
+        #buscador_form2 #btn_buscador {
+            display: none;
+        }
+    </style>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="/css/responsive_v6.css" type="text/css" media="screen" /><script>jQuery.noConflict();</script>
+</head>
+<body class="seccion pagina_error">
+<div id="layer">
+<div id="contenidos">
+<div id="cabecera">
+<script type="text/javascript">
+                function cambiarIcono(id){
+                    var elemento = document.getElementById(id);
+                    var ruta = elemento.src;
+                    var ruta_actualizada;
+
+                    switch(id){
+                        case "icono_menu":
+                            if(ruta=="https://www.redaccionmedica.com/images/menu-responsive/abrir_menu_v6.jpg"){
+                                if(document.getElementById('buscador_form_res').style.display=="block") {
+                                    document.getElementById('buscador_form_res').style.display="none";
+                                }
+                                ruta_actualizada = "https://www.redaccionmedica.com/images/menu-responsive/cerrar_menu_v6.png";
+                            }else{
+                                ruta_actualizada="https://www.redaccionmedica.com/images/menu-responsive/abrir_menu_v6.jpg";
+                            }
+                            break;
+                        default:
+                            if(ruta=="https://www.redaccionmedica.com/images/menu-responsive/abrir_submenu_v6.png"){
+                                ruta_actualizada = "https://www.redaccionmedica.com/images/menu-responsive/cerrar_submenu_v6.png";
+                            }else{
+                                ruta_actualizada="https://www.redaccionmedica.com/images/menu-responsive/abrir_submenu_v6.png";
+                            }
+                            break;
+                    }
+
+                    document.getElementById(id).src=ruta_actualizada;
+
+                }
+
+                function abrir_cerrar_buscador(id) {
+                    var elemento = document.getElementById(id);
+
+                    if(elemento.style.display=="none") {
+                        if(document.getElementById('tm').checked==true) {
+                            document.getElementById('tm').checked=false;
+                            document.getElementById('icono_menu').src="https://www.redaccionmedica.com/images/menu-responsive/abrir_menu_v6.jpg";
+                        }
+                        document.getElementById(id).style.display="block";
+                    }else {
+                        document.getElementById(id).style.display = "none";
+                    }
+                }
+
+            </script>
+<ul id="paises">
+<li>
+España
+</li>
+<li>
+<a href="http://www.redaccionmedica.ec" target="_blank">
+Ecuador
+</a>
+</li>
+
+</ul>
+<a href="https://www.redaccionmedica.com/" id="logo_redaccion_res"><img id="logo_header" src="https://www.redaccionmedica.com/images/logo_nuevo_redaccion_v6.png" /></a>
+<div id="cabecera_contents">
+<div id="cabecera_contents_left">
+<ul id="social_icon">
+<li>
+<a href="https://www.facebook.com/redaccionmedica" target="_blank">
+<img src="https://www.redaccionmedica.com/images/ico_v6_face.png">
+</a>
+</li>
+<li>
+<a href="https://twitter.com/redaccionmedica" target="_blank">
+<img src="https://www.redaccionmedica.com/images/ico_v6_twit.png">
+</a>
+</li>
+<li>
+<a href="https://www.linkedin.com/company/redacci%C3%B3n-m%C3%A9dica" target="_blank">
+<img src="https://www.redaccionmedica.com/images/ico_v6_in.png">
+</a>
+</li>
+<li>
+<a href="https://youtube.com/redaccionmedica" target="_blank">
+<img src="https://www.redaccionmedica.com/images/ico_v6_yout.png">
+</a>
+</li>
+<li>
+<a href="https://plus.google.com/+redaccionmedica/posts" target="_blank">
+<img src="https://www.redaccionmedica.com/images/ico_v6_google.png">
+</a>
+</li>
+<li>
+<a href="https://www.instagram.com/redaccionmedica/" target="_blank">
+<img src="https://www.redaccionmedica.com/images/ico_v6_insta.png">
+</a>
+</li>
+</ul>
+</div>
+
+<div id="cabecera_contents_right">
+<div id="hemeroteca-link">
+<script>
+                            $(function() {
+                                $( "#hemeroteca_fecha" ).datepicker({
+                                    dateFormat: "dd/mm/yy",
+                                    dayNamesMin: [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" ],
+                                    dayNamesMin: [ "D", "L", "M", "X", "J", "V", "S" ],
+                                    firstDay: 1,
+                                    //showMonthAfterYear: false,
+                                    maxDate: 0,
+                                    monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ],
+                                    altField:'#hemeroteca_fecha_alt',
+                                    onSelect: function () {
+                                        $('#hemeroteca_fecha').val("HEMEROTECA");
+                                        $('#hemeroteca_form').submit();
+                                    }
+                                });
+                            });
+                        </script>
+<script>
+                            function quitarFoco(){
+                                elemento = document.getElementById("hemeroteca_fecha");
+                                elemento.blur();
+                            }
+                        </script>
+<input type="text" id="hemeroteca_fecha" value="HEMEROTECA" onclick="quitarFoco()" />
+
+<form action="https://www.redaccionmedica.com" method="post" name="hemeroteca_form" id="hemeroteca_form">
+<input type="hidden" id="hemeroteca_fecha_alt" name="hemeroteca_fecha" />
+</form>
+</div>
+
+<form id="buscador_form" name="buscador_form" method="GET" action="https://www.redaccionmedica.com/busqueda">
+<input type="text" onclick="if(this.value == 'Buscar en Redacci&oacute;n') { this.value=''; }" value="Buscar en Redacci&oacute;n" name="busqueda" id="texto_buscador">
+<input type="image" id="btn_buscador" src="https://www.redaccionmedica.com/images/ico_v6_buscador.jpg">
+
+</form>
+</div>
+</div>
+<nav class="menu" id="menu_top">
+<div class="menu-footer-menu-container">
+<ul id="menu-navigation" class="menu">
+<li class="">
+<a href="#">
+Política Sanitaria </a>
+<ul class="sub-menu2">
+<li class="">
+<a href="https://www.redaccionmedica.com/secciones/sanidad-hoy">
+Sanidad hoy </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/secciones/enfermeria">
+Enfermería </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/secciones/farmacia">
+Farmacia </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/secciones/medicina">
+Medicina </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/secciones/otras-profesiones">
+Otras profesiones </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/secciones/parlamentarios">
+Parlamentarios </a>
+</li>
+</ul>
+</li>
+<li class="">
+<a href="#">
+Especialidades </a>
+ <ul class="sub-menu2">
+<li class="">
+<a href="https://www.redaccionmedica.com/secciones/aparato-digestivo">
+Aparato Digestivo </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/secciones/cardiologia">
+Cardiología </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/secciones/dermatologia">
+Dermatología </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/secciones/farmacia-hospitalaria">
+Farmacia Hospitalaria </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/secciones/hematologia-y-hemoterapia">
+Hematología y Hemoterapia </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/secciones/medicina-familiar-y-comunitaria">
+Medicina de Familia </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/secciones/medicina-interna">
+Medicina Interna </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/secciones/neumologia">
+Neumología </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/secciones/neurologia">
+Neurología </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/secciones/oncologia-medica">
+Oncología Médica </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/secciones/pediatria">
+Pediatría </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/secciones/psiquiatria">
+Psiquiatría </a>
+</li>
+</ul>
+</li>
+<li class="">
+<a href="#">
+Conocimiento </a>
+<ul class="sub-menu2">
+<li class="">
+<a href="https://www.redaccionmedica.com/secciones/derecho">
+Derecho </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/secciones/formacion">
+Formación </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/secciones/gestion">
+Gestión </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/secciones/ingenieria">
+Ingeniería </a>
+</li>
+</ul>
+</li>
+<li class="">
+<a href="#">
+Empresas </a>
+<ul class="sub-menu2">
+<li class="">
+<a href="https://www.redaccionmedica.com/secciones/industria">
+Industria </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/secciones/tecnologia">
+Tecnología </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/secciones/privada">
+Privada </a>
+</li>
+</ul>
+</li>
+<li class="">
+<a href="#">
+Sociosanitario </a>
+<ul class="sub-menu2">
+<li class="">
+<a href="https://www.redaccionmedica.com/secciones/dependencia">
+Dependencia </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/secciones/pacientes">
+Pacientes </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/secciones/responsabilidad-sociosanitaria">
+Responsabilidad Social </a>
+</li>
+</ul>
+</li>
+<li class="">
+<a href="#" id="item_menu_autonomias">Autonom&iacute;as</a>
+<ul class="sub-menu">
+<li class="">
+<a href="https://www.redaccionmedica.com/autonomias/andalucia" class="autonomias_item_menu">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/andalucia.png" class="img_bandera">Andalucía </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/autonomias/cataluna" class="autonomias_item_menu">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/cataluna.png" class="img_bandera">Cataluña </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/autonomias/madrid" class="autonomias_item_menu">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/madrid.png" class="img_bandera">Madrid </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/autonomias/valencia" class="autonomias_item_menu">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/valencia.png" class="img_bandera">C. Valenciana </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/autonomias/galicia" class="autonomias_item_menu">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/galicia.png" class="img_bandera">Galicia </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/autonomias/castilla-leon" class="autonomias_item_menu">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/castilla-leon.png" class="img_bandera">Castilla y León </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/autonomias/pais-vasco" class="autonomias_item_menu">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/pais-vasco.png" class="img_bandera">País Vasco </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/autonomias/canarias" class="autonomias_item_menu">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/canarias.png" class="img_bandera">Canarias </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/autonomias/castilla-mancha" class="autonomias_item_menu">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/castilla-mancha.png" class="img_bandera">C-La Mancha </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/autonomias/murcia" class="autonomias_item_menu">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/murcia.png" class="img_bandera">Murcia </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/autonomias/aragon" class="autonomias_item_menu">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/aragon.png" class="img_bandera">Aragón </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/autonomias/extremadura" class="autonomias_item_menu">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/extremadura.png" class="img_bandera">Extremadura </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/autonomias/asturias" class="autonomias_item_menu">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/asturias.png" class="img_bandera">Asturias </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/autonomias/baleares" class="autonomias_item_menu">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/baleares.png" class="img_bandera">Baleares </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/autonomias/navarra" class="autonomias_item_menu">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/navarra.png" class="img_bandera">Navarra </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/autonomias/cantabria" class="autonomias_item_menu">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/cantabria.png" class="img_bandera">Cantabria </a>
+</li>
+<li class="">
+<a href="https://www.redaccionmedica.com/autonomias/rioja" class="autonomias_item_menu">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/rioja.png" class="img_bandera">La Rioja </a>
+</li>
+</ul>
+</li>
+<li id="opinion_menu_link" class="">
+<a href="https://www.redaccionmedica.com/opinion">Opini&oacute;n</a>
+</li>
+<li id="revista_menu_link" class="">
+<a href="https://www.redaccionmedica.com/la-revista">La Revista</a>
+</li>
+<li id="virico_menu_link" class="">
+<a href="https://www.redaccionmedica.com/virico">Víricö</a>
+</li>
+</ul>
+</div>
+</nav>
+<div id='cssmenu' style="display:none;">
+<label for="tm" id="toggle-menu"><img src="https://www.redaccionmedica.com/images/menu-responsive/abrir_menu_v6.jpg" class="drop-icon" onclick="cambiarIcono('icono_menu')" id="icono_menu" /> </label>
+<input type="checkbox" id="tm">
+<ul class="menu-principal" id="menu_principal_res">
+<li>
+<a class="parent_res"> Política Sanitaria <label title="Toggle Drop-down" class="drop-icon" for="sm1"><img src="https://www.redaccionmedica.com/images/menu-responsive/abrir_submenu_v6.png" onclick="cambiarIcono('icono_submenu1')" id="icono_submenu1" /></label></a>
+<input type="checkbox" id="sm1">
+<ul class="sub-menu ">
+<li>
+<a href="https://www.redaccionmedica.com/secciones/sanidad-hoy">
+Sanidad hoy </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/secciones/enfermeria">
+Enfermería </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/secciones/farmacia">
+Farmacia </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/secciones/medicina">
+Medicina </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/secciones/otras-profesiones">
+Otras profesiones </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/secciones/parlamentarios">
+Parlamentarios </a>
+</li>
+</ul>
+</li>
+<li>
+<a class="parent_res"> Especialidades <label title="Toggle Drop-down" class="drop-icon" for="sm2"><img src="https://www.redaccionmedica.com/images/menu-responsive/abrir_submenu_v6.png" onclick="cambiarIcono('icono_submenu2')" id="icono_submenu2" /></label></a>
+<input type="checkbox" id="sm2">
+<ul class="sub-menu ">
+<li>
+<a href="https://www.redaccionmedica.com/secciones/aparato-digestivo">
+Aparato Digestivo </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/secciones/cardiologia">
+Cardiología </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/secciones/dermatologia">
+Dermatología </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/secciones/farmacia-hospitalaria">
+Farmacia Hospitalaria </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/secciones/hematologia-y-hemoterapia">
+Hematología y Hemoterapia </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/secciones/medicina-familiar-y-comunitaria">
+Medicina de Familia </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/secciones/medicina-interna">
+Medicina Interna </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/secciones/neumologia">
+Neumología </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/secciones/neurologia">
+Neurología </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/secciones/oncologia-medica">
+Oncología Médica </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/secciones/pediatria">
+Pediatría </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/secciones/psiquiatria">
+Psiquiatría </a>
+</li>
+</ul>
+</li>
+<li>
+<a class="parent_res"> Conocimiento <label title="Toggle Drop-down" class="drop-icon" for="sm3"><img src="https://www.redaccionmedica.com/images/menu-responsive/abrir_submenu_v6.png" onclick="cambiarIcono('icono_submenu3')" id="icono_submenu3" /></label></a>
+<input type="checkbox" id="sm3">
+<ul class="sub-menu ">
+<li>
+<a href="https://www.redaccionmedica.com/secciones/derecho">
+Derecho </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/secciones/formacion">
+Formación </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/secciones/gestion">
+Gestión </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/secciones/ingenieria">
+Ingeniería </a>
+</li>
+</ul>
+</li>
+<li>
+<a class="parent_res"> Empresas <label title="Toggle Drop-down" class="drop-icon" for="sm4"><img src="https://www.redaccionmedica.com/images/menu-responsive/abrir_submenu_v6.png" onclick="cambiarIcono('icono_submenu4')" id="icono_submenu4" /></label></a>
+<input type="checkbox" id="sm4">
+<ul class="sub-menu ">
+<li>
+<a href="https://www.redaccionmedica.com/secciones/industria">
+Industria </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/secciones/tecnologia">
+Tecnología </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/secciones/privada">
+Privada </a>
+</li>
+</ul>
+</li>
+<li>
+<a class="parent_res"> Sociosanitario <label title="Toggle Drop-down" class="drop-icon" for="sm5"><img src="https://www.redaccionmedica.com/images/menu-responsive/abrir_submenu_v6.png" onclick="cambiarIcono('icono_submenu5')" id="icono_submenu5" /></label></a>
+<input type="checkbox" id="sm5">
+<ul class="sub-menu ">
+<li>
+<a href="https://www.redaccionmedica.com/secciones/dependencia">
+Dependencia </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/secciones/pacientes">
+Pacientes </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/secciones/responsabilidad-sociosanitaria">
+Responsabilidad Social Sociosanitaria </a>
+</li>
+</ul>
+</li>
+<li>
+<a class="parent_res"> Autonomías <label title="Toggle Drop-down" class="drop-icon" for="sm6"><img src="https://www.redaccionmedica.com/images/menu-responsive/abrir_submenu_v6.png" onclick="cambiarIcono('icono_submenu6')" id="icono_submenu6" /></label></a>
+<input type="checkbox" id="sm6">
+<ul class="sub-menu sub-menu_autonomias_res">
+<li>
+<a href="https://www.redaccionmedica.com/autonomias/andalucia">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/andalucia.png" class="img_bandera">
+Andalucía </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/autonomias/cataluna">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/cataluna.png" class="img_bandera">
+Cataluña </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/autonomias/madrid">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/madrid.png" class="img_bandera">
+Madrid </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/autonomias/valencia">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/valencia.png" class="img_bandera">
+C. Valenciana </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/autonomias/galicia">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/galicia.png" class="img_bandera">
+ Galicia </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/autonomias/castilla-leon">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/castilla-leon.png" class="img_bandera">
+Castilla y León </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/autonomias/pais-vasco">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/pais-vasco.png" class="img_bandera">
+País Vasco </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/autonomias/canarias">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/canarias.png" class="img_bandera">
+Canarias </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/autonomias/castilla-mancha">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/castilla-mancha.png" class="img_bandera">
+C-La Mancha </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/autonomias/murcia">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/murcia.png" class="img_bandera">
+Murcia </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/autonomias/aragon">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/aragon.png" class="img_bandera">
+Aragón </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/autonomias/extremadura">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/extremadura.png" class="img_bandera">
+Extremadura </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/autonomias/asturias">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/asturias.png" class="img_bandera">
+Asturias </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/autonomias/baleares">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/baleares.png" class="img_bandera">
+Baleares </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/autonomias/navarra">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/navarra.png" class="img_bandera">
+Navarra </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/autonomias/cantabria">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/cantabria.png" class="img_bandera">
+Cantabria </a>
+</li>
+<li>
+<a href="https://www.redaccionmedica.com/autonomias/rioja">
+<img src="https://www.redaccionmedica.com/images/banderas_autonomias_v6/rioja.png" class="img_bandera">
+La Rioja </a>
+</li>
+</ul>
+</li>
+<li id="parent_res_opinion" class="">
+<a class="parent_res" href="https://www.redaccionmedica.com/opinion">Opini&oacute;n</a>
+</li>
+<li id="parent_res_revista" class="">
+<a class="parent_res" href="https://www.redaccionmedica.com/la-revista">La Revista</a>
+</li>
+<li id="parent_res_virico" class="">
+<a class="parent_res" href="https://www.redaccionmedica.com/virico">Víricö</a>
+</li>
+</ul>
+</div>
+<img src="https://www.redaccionmedica.com/images/lupa_buscar_res_v6.png" class="lupa_buscar_res" style="display: none" onclick="abrir_cerrar_buscador('buscador_form_res')" />
+<form style="display: none" id="buscador_form_res" class="buscador_form_res" name="buscador_form" method="GET" action="https://www.redaccionmedica.com/busqueda">
+<input type="text" onclick="if(this.value == 'Buscar en Redacci&oacute;n') { this.value=''; }" value="Buscar en Redacci&oacute;n" name="busqueda" id="texto_buscador">
+<input type="image" id="btn_buscador" src="https://www.redaccionmedica.com/images/ico_v6_buscador.jpg">
+</form>
+</div>
+<div id="bloques" class="bloque_seccion" style="min-height: 575px;">
+<div class="titular">Página no encontrada</div>
+<div class="texto">
+<h2>El contenido solicitado no existe en Redacción Médica.</h2>
+Es posible que haya accedido desde una dirección incorrecta o que el contenido solicitado ya no esté disponible.
+<br />
+Puede utilizar nuestro buscador para localizar contenido en Redacción Médica
+<br />
+<br />
+<form id="buscador_form2" name="buscador_form" method="GET" action="https://www.redaccionmedica.com/busqueda">
+<input type="text" onclick="if(this.value == 'Buscar en Redacci&oacute;n') { this.value=''; }" value="Buscar en Redacci&oacute;n" name="busqueda" id="texto_buscador" style="width: 500px;">
+<input type="image" id="btn_buscador" src="https://www.redaccionmedica.com/images/ico_v6_buscador.jpg">
+
+</form>
+</div>
+<iframe src="https://www.redaccionmedica.com/en-portada" style="border:0px; width: 1200px; height: 400px; margin-top: 50px;" scrolling="no"></iframe>
+</div>
+</div>
+</div>
+</div>
+<div id="pie">
+<div id="footer">
+<div id="footer_contenidos">
+<div id="footer_copy">
+<img src="https://www.redaccionmedica.com/images/logo-sanitaria-ec.png" />
+<br>
+Copyright &copy; 2012 Sanitaria 2000
+<br>
+<br>
+Conforme con: XHTML 1.0, CSS 2.1
+</div>
+<div id="enlaces_res" style="display: none;">
+<a href="http://www.sanitaria2000.com/quienes-somos/" target="_blank">Qui&eacute;nes somos</a> -
+<a href="http://www.sanitaria2000.com/publicidad/" target="_blank">Publicidad</a> - <br>
+<a href="http://www.sanitaria2000.com/publicidad/" target="_blank">Contacto</a> -
+<a href="https://www.redaccionmedica.com/aviso-legal">Aviso legal y <br> condiciones de uso</a> -
+<a href="https://www.redaccionmedica.com/suscripcion" target="_blank" style="color: #E32C2D;">Suscripci&oacute;n</a>
+</div>
+<div id="footer_soporte">
+<div id="social_footer">
+<a href="https://www.facebook.com/redaccionmedica" target="_blank"><img src="https://www.redaccionmedica.com/images/ico_v6_face_2.png"></a>
+<a href="https://twitter.com/redaccionmedica" target="_blank">
+<img src="https://www.redaccionmedica.com/images/ico_v6_twit_2.png">
+</a>
+<a href="https://www.linkedin.com/company/redacci%C3%B3n-m%C3%A9dica" target="_blank">
+<img src="https://www.redaccionmedica.com/images/ico_v6_in_2.png">
+</a>
+<a href="https://youtube.com/redaccionmedica" target="_blank">
+<img src="https://www.redaccionmedica.com/images/ico_v6_yout_2.png">
+</a>
+<a href="https://plus.google.com/+redaccionmedica/posts" target="_blank">
+<img src="https://www.redaccionmedica.com/images/ico_v6_google_2.png">
+</a>
+<a href="https://www.instagram.com/redaccionmedica/" target="_blank">
+<img src="https://www.redaccionmedica.com/images/ico_v6_insta_2.png">
+</a>
+</div>
+<p>| Soporte V&aacute;lido 1/05-W-CM: La informaci&oacute;n que figura en esta edici&oacute;n digital est&aacute; dirigida exclusivamente al profesional destinado a prescribir o dispensar medicamentos por lo que se requiere una formaci&oacute;n especializada para su correcta interpretaci&oacute;n |</p>
+</div>
+<div id="footer_links_right">
+<div id="enlaces">
+<a href="http://www.sanitaria2000.com/quienes-somos/" target="_blank">Qui&eacute;nes somos</a> -
+<a href="http://www.sanitaria2000.com/publicidad/" target="_blank">Publicidad</a> - <br>
+<a href="http://www.sanitaria2000.com/publicidad/" target="_blank">Contacto</a> -
+<a href="https://www.redaccionmedica.com/aviso-legal">Aviso legal y <br> condiciones de uso</a> -
+<a href="https://www.redaccionmedica.com/suscripcion" target="_blank" style="color: #E32C2D;">Suscripci&oacute;n</a>
+</div>
+<p id="direccion">C/ Rufino González 23 bis, 2º, 28037 MADRID</p>
+<div id="iberpixel">
+<a href="http://www.iberpixel.com" target="_blank">
+agencia interactiva <img src="https://www.redaccionmedica.com/images/logo_iberpixel.png" alt="iberpixel.com" border="0" align="middle">
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

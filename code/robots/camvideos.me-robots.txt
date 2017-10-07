@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Start page - Camvideos.me</title>
+<script src="/cdn-cgi/apps/head/fRVnFvZ1for8h6j41MPegLETxKQ.js"></script><link rel="stylesheet" href="/css/camvideos.css">
+<link rel="shortcut icon" href="/img/camvideos/favicon.png" type="image/x-icon" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900" type="text/theme">
+</head>
+<body>
+<a class="backtotop">Back to top</a>
+<header class="header">
+<a href="/" class="logo"></a>
+<form action="/search" method="post">
+<input size="12" name="query" class="search" type="text" placeholder="SEARCH" value="">
+</form>
+</header>
+<div class="content">
+<div class="error"><span>404</span>Page not found</div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+    $(function() {
+        'use strict';
+
+        // Go to a specific page
+        $('#page_input').keydown(function(evt) {
+            if (evt.keyCode === 13) {
+                window.location.search = 'page=' + $(evt.target).val();
+            }
+        });
+
+        // Listen to the button
+        $('#goto_page_button').click(function() {
+            window.location.search = 'page=' + $('#page_input').val();
+        });
+
+        // Display back to top when scrolling down
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 48) {
+                $('.backtotop').addClass('active');
+            } else {
+                $('.backtotop').removeClass('active');
+            }
+        });
+
+        // Back to top we go
+        $('.backtotop').click(function() {
+            $('html, body').animate({
+                scrollTop: 0
+            })
+        });
+    });
+</script>
+</body>
+</html>

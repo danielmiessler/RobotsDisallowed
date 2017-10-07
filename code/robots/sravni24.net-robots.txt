@@ -1,0 +1,3 @@
+User-Agent: *
+Disallow: /cgi-bin/
+Disallow: /public/
