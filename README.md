@@ -15,17 +15,31 @@ So what we did is take the Alexa Top 100,000 websites, download their robots.txt
 ### History and updates
 
 - This project was initially created in 2017, and used the Alexa 100K.
-- This project was last updated in March of 2019, and used the Majestic Million top 100K.
+- This project was last updated in March of 2019, and used the Majestic Million top 100K. In addition to using the Majestic list instead of Alexa (Alexa went to a pay model), we also simplified the file structure. We also created an /archive directory so that older versions of the files can persist. The old code directory is also in there. Finally, we removed the actual robots.txt files because…well, they're big and worthless.
 
 ## How to use the project
 
-You use the project by coming to the root and downloading the DisallowedDirectories files there. You can then plug them into your favorite web assessment tool/function, e.g., Burp Intruder, ZAP, etc.
+1. Clone the directory to your system.
+2. Pick the file you want to use based on the assessment you're doing. If you have lots of time, maybe use one of the bigger top-*N* lists---vs. using a smaller one if you have less time.
 
-The files are broken down into Top-*N* lists, which are sorted lists based on the most common directories found. But if you are pressed for time or are looking for the highest-value targets, check out the InterestingDirectories.txt file, which I blogged about [here](https://danielmiessler.com/blog/the-most-interesting-disallowed-directories/).
+*My personal favorite option, however, is to go with the ``curated.txt`` list, because it's only around 500 items, and it is a collection of directories containing the following strings and content:*
+
+- "admin"
+- "user"
+- "account"
+- "password"
+- "forgot"
+- "login"
+- "backup"
+- The top 25 entries from the full list
+
+In short, it's the best of the best. I blogged more about [here](https://danielmiessler.com/blog/the-most-interesting-disallowed-directories/).
+
+**TL;DR**: If you want the best use of your time, go with ``curated.txt``.
 
 ## Credit
 
-This concept is not new. The RAFT project was the first to do this, and we thank them for their pioneering the idea. But the project is now dead and gone, and since the idea works best when it's kept up-to-date, we decided to give it a refresh in the form of RobotsDisallowed.
+This concept is not new. The RAFT project was the first to do this, and we thank them for their pioneering of the idea. But the project is now dead and gone, and since the idea works best when it's kept up-to-date, we decided to give it a refresh in the form of RobotsDisallowed.
 
 ## Shoutouts
 
@@ -33,8 +47,6 @@ Thanks so much to [Jason Haddix](https://twitter.com/jhaddix)  and [Tim Tomes](h
 
 ## Feedback
 
-If you have any ideas on what to improve, please let us know. You can email me at:
+If you have any ideas on what to improve, please email us at github@danielmiessler.com or submit a pull request.
 
-github@danielmiessler.com
-
-Thank you!
+Thank you, and happy hacking!
