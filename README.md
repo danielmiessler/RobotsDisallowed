@@ -15,7 +15,7 @@ So what we did is take the Alexa Top 100,000 websites, download their robots.txt
 ### History and updates
 
 - This project was initially created in 2017, and used the Alexa 100K.
-- This project was last updated in March of 2019, and used the Majestic Million top 100K. In addition to using the Majestic list instead of Alexa (Alexa went to a pay model), we also simplified the file structure. We also created an /archive directory so that older versions of the files can persist. The old code directory is also in there. Finally, we removed the actual robots.txt files because…well, they're big and worthless.
+- This project was last updated in March of 2019, and used the Majestic Million top 100K. In addition to using the Majestic list instead of Alexa (Alexa went to a pay model), we also switched to Chromium as the user-agent (instead of curl), simplified the file structure, and created an /archive directory so that older versions of the files can persist. The old code directory is also in there. Finally, we removed the actual robots.txt files because…well, they're big and worthless.
 
 ## How to use the project
 
