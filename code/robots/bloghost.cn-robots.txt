@@ -1,2 +1,0 @@
-
-Disallow: /?r=*

@@ -1,1 +1,0 @@
-<!DOCTYPE html><html><head><meta http-equiv="refresh" content="5" /></head><body><input type=hidden value="403"/></body></html>

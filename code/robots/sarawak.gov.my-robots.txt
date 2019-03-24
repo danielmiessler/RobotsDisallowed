@@ -1,1829 +1,0 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<HTML xmlns="http://www.w3.org/1999/xhtml" xml:lang="en_GB" lang="en_GB">
-<HEAD>
-<meta name="description" content="Sarawak Government Official Portal is a single gateway to access the Sarawak State Government information and the online services provided by the Sarawak State Government.">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="SHORTCUT ICON" href="https://sarawak.gov.my/media/images/Banner/sarawak_crest_icon.ico"><title>The Official Portal of the Sarawak Government</title><link rel="stylesheet" type="text/css" href="https://sarawak.gov.my/web/web/web/share.css" /><link rel="stylesheet" type="text/css" href="https://sarawak.gov.my/web/web/web/color/royaleblue/share_color.css" /><link rel="stylesheet" type="text/css" href="https://sarawak.gov.my/web/web/web/module.css" /><link rel="stylesheet" type="text/css" href="https://sarawak.gov.my/web/web/web/color/royaleblue/module_color.css" /><script type="text/javascript" src="/moonlight_kernel/moonlight/plugin/jquery/jquery-1.4.2.min.js"></script>
-
-<script>
-(function($) {
-	$.fn.customFadeIn = function(speed, callback) {
-		$(this).fadeIn(speed, function() {
-			if(!$.support.opacity)
-				$(this).get(0).style.removeAttribute('filter');
-			if(callback != undefined)
-				callback();
-		});
-	};
-	$.fn.customFadeOut = function(speed, callback) {
-		$(this).fadeOut(speed, function() {
-			if(!$.support.opacity)
-				$(this).get(0).style.removeAttribute('filter');
-			if(callback != undefined)
-				callback();
-		});
-	};
-	$.fn.customFadeTo = function(speed,to,callback) {
-		return this.animate({opacity: to}, speed, function() {
-			if (to == 1 && jQuery.browser.msie)
-				this.style.removeAttribute('filter');
-			if (jQuery.isFunction(callback))
-				callback();
-		});
-	};
-})(jQuery);
-</script><script type="text/javascript" src="/moonlight_kernel/moonlight/plugin/jquery-qtip2/dist/2.0.0/jquery.qtip.min.js"></script>
-<link rel="stylesheet" type="text/css" href="/moonlight_kernel/moonlight/plugin/jquery-qtip2/dist/2.0.0/jquery.qtip.css" />
-<style>
-	.qtip_hr{
-		margin: 0px -9px;
-		color: #F1F1F1;
-	}
-	.qtip_custom_top_area{
-		margin: -3px -9px 0px -9px;
-		background-color:#F1F1F1;
-		padding:8px 3px;
-		border-bottom:1px solid #808080;
-	}
-	
-	.qtip_custom_top_area .title{
-		font-weight: bold;
-		font-size:1.2em;
-		display:inline;
-	}
-	.qtip_custom_top_area .content{
-		margin: 0px 9px 0px 9px;
-		line-height:1.3;
-	}
-	.qtip_custom_bottom_area{
-		margin: 0px -9px -3px -9px;
-		padding:3px;
-		background-color:#F1F1F1;
-		border-top:1px solid #808080
-	}
-	
-	.qtip_custom_bottom_area .content{
-		margin: 0px 9px 3px 9px;
-		line-height:1.3;
-	}
-	.qtip_custom_area{
-		margin: 0px -9px 0px -9px;
-		padding:3px;
-		/*background-color:#F1F1F1;*/
-		border-bottom:0px solid #808080
-	}
-	.qtip_custom_area .title{
-		font-weight: bold;
-		font-size:1.2em;
-		display:inline;
-	}
-	.qtip_custom_area .content{
-		margin: 0px 9px 0px 9px;
-		line-height:1.3;
-	}
-	
-	/* Overwrite Styles in jquery.qtip.css*/
-	.ui-tooltip-titlebar{
-		position: relative;
-		/*min-height: 14px;*/
-		min-height: 1px;
-		/*padding: 8px 35px 8px 10px;*/
-		padding: 0px 35px 1px 10px;
-		overflow: hidden;
-		border-width: 0 0 1px;
-		font-weight: bold;
-		font-size:1.2em;
-	}
-	.qtip{
-		max-width: 800px;
-	}
-	.qtip-default{
-		border: 1px solid #888888;
-		background-color: #FFFFFF;
-		color: #555;
-	}
-	#qtip-overlay.blurs{ 
-		cursor: default;
-	}
-	.ui-tooltip, .qtip {
-		max-width:100%;
-		font-size:inherit;
-	}	
-	.ui-tooltip-content{
-		background-color: transparent;
-		overflow:auto;
-	}
-</style>
-<script type="text/javascript">
-function init_jquery_qtip(p_id){
-		// Make sure to only match links to wikipedia with a rel tag
-		p_tag = p_id != null ? $('#' + p_id) : '.qtipPopupTrigger';
-		$(p_tag).each(function()
-		{
-			var parent_obj = this; 
-		
-			var v_fullscreen = parent_obj.parentNode.id == 'qtipPopupContainer' ? true : false;
-			// We make use of the .each() loop to gain access to each element via the "this" keyword...
-			$(this).qtip(
-			{
-			
-				id: $(this).attr('ajax_id'),
-				content: {
-					// Set the text to an image HTML string with the correct src URL to the loading image you want to use
-					text: $(this).attr('qtip_id') ? $('#' + $(this).attr('qtip_id')) : $(this).attr('qtips') ? $(this).attr('qtips') : "<center><table width=100% cellpadding=0 cellspacing=0 ><tr><td align=right width=48%><img src='https://sarawak.gov.my/k/loading.gif' border='0' style='vertical-align:middle;'  /></td><td>&nbsp;&nbsp;&nbsp;&nbsp;Loading.....</td></tr></table></center>",
-					ajax: {
-						// Use the rel attribute of each element for the url to load
-						url: $(this).attr('ajax_url') ? $(this).attr('ajax_url').split("?")[1]==null 
-															? $(this).attr('ajax_url') + $(this).attr('ajax_id') + '/' 
-															: $(this).attr('ajax_url').replace("?", $(this).attr('ajax_id')+"/?")
-													: '', 
-						// data: { id: $(this).val() },
-						data: '',
-						once : $(this).attr('ajax_no_cache')!=null ? false : true,
-						loading: true,
-						type: 'GET', // POST or GET
-						success: function(data, status) {
-							// Process the data
-							// Set the content manually (required!)
-							if( v_fullscreen ){
-								this.set('content.text', '<center><table><tr><td>'+data+'</td></tr></table></center>');
-							}else{
-								this.set('content.text', data);
-							}
-							
-							//== ajax callback
-							var fn = window[$(parent_obj).attr('ajax_callback')]; 
-							if(typeof fn === 'function') {
-								fn();
-							}
-						}
-					},
-					title: {
-						text: $(this).attr('ajax_header')!=null ? '<span></span>' : false,
-						// text: $(this).attr('ajax_title'), // Give the tooltip a title using each elements text
-						// text: "<br>", // Give the tooltip a title using each elements text
-						button: false
-					}
-				},
-				position: {
-					type: 'relative',
-					at: $(this).attr('ajax_position_at') ? $(this).attr('ajax_position_at') : 'bottom center', // Position the tooltip above the link
-					my: $(this).attr('ajax_position_my') ? $(this).attr('ajax_position_my') : 'top left',
-					viewport: $(window), // Keep the tooltip on-screen at all times
-					// viewport: false, // Keep the tooltip on-screen at all times
-					effect: false, // Disable positioning animation
-					adjust: {
-						method: $(this).attr('ajax_position_adjust_method') ? $(this).attr('ajax_position_adjust_method') : 'flip flip'
-					},
-					corner: {
-						// target: 'bottomRight',
-						// tooltip: 'topLeft'
-						// adjust : {
-							// screen : true
-						// },
-						target: 'center',
-						tooltip: 'center'
-					},
-					target: v_fullscreen ? $(window) : $(this)
-				},
-				
-				style: {
-					tip: {
-						width:13,
-						height:13,
-						show: true,
-						mimic: $(this).attr('style_tip_mimic') ? $(this).attr('style_tip_mimic') : false,
-						offset: $(this).attr('style_tip_offset') ? parseInt($(this).attr('style_tip_offset')) : 0
-					},
-					
-					classes: 'ui-tooltip-wiki ui-tooltip-light ui-tooltip-shadow',
-					width: $(this).attr('ajax_width') ? $(this).attr('ajax_width') : 'auto',
-					zIndex: $(this).attr('ajax_zIndex') ? $(this).attr('ajax_zIndex') : 'auto'
-				},
-				hide: {
-					  event: $(this).attr('ajax_hide') ? $(this).attr('ajax_hide') : 'unfocus'
-				 },
-				show: {
-					 modal: {
-						on: v_fullscreen ? true : false,
-						blur: v_fullscreen ? true : false
-					},
-					event:$(this).attr('event_type')==null? 'click': $(this).attr('event_type'),
-					delay: $(this).attr('event_delay')!=null ? $(this).attr('event_delay') : 90, //default as 90 miliseconds
-					solo: false, // Only show one tooltip at a time
-					ready: $(this).attr('ajax_ready')!=null ? true : false // Show the tooltip as soon as it's bound, vital so it shows up the first time you hover!
-				},
-				
-				events: {
-					hide: function(event, api) {
-						var fn = window[$(parent_obj).attr('ajax_event_hide')]; 
-						if(typeof fn === 'function') {
-							fn();
-						}
-					},
-					hidden: function(event, api) {
-						var fn = window[$(parent_obj).attr('ajax_event_hidden')]; 
-						if(typeof fn === 'function') {
-							fn();
-						}
-						//== destroy qtip object for fullscreen mode
-						if( v_fullscreen ){
-							document.getElementById('qtipPopupContainer').innerHTML = '';
-							$(parent_obj).qtip('destroy');
-						}
-					},
-					show: function(event, api) {
-						var fn = window[$(parent_obj).attr('ajax_event_show')]; 
-						if(typeof fn === 'function') {
-							fn();
-						}
-					},
-					render: function(event, api) {
-						var fn = window[$(parent_obj).attr('ajax_event_render')]; 
-						if(typeof fn === 'function') {
-							fn();
-						}
-					},
-					visible: function(event, api) {
-						//== for popup iframe
-						open_qtip_iframe_visible(event, api, parent_obj);
-						var fn = window[$(parent_obj).attr('ajax_event_visible')]; 
-						if(typeof fn === 'function') {
-							fn();
-						}
-					},
-					move: function(event, api) {
-						var fn = window[$(parent_obj).attr('ajax_event_move')]; 
-						if(typeof fn === 'function') {
-							fn();
-						}
-					},
-					focus: function(event, api) {
-						var fn = window[$(parent_obj).attr('ajax_event_focus')]; 
-						if(typeof fn === 'function') {
-							fn();
-						}
-					},
-					blur: function(event, api) {
-						var fn = window[$(parent_obj).attr('ajax_event_blur')]; 
-						if(typeof fn === 'function') {
-							fn();
-						}
-					}
-				}
-				
-			})
-		})
-		// Make sure it doesn't follow the link when we click it
-		.click(function(event) { event.preventDefault(); });
-}
-
-function open_qtip_iframe_visible(event, api, p_obj){
-	if( $(p_obj).attr('ajax_url')==null && $(p_obj).attr('ajax_iframe_url')!=null){
-		v_random = new Date().getTime();
-		v_frame_id = 'iframe_qtip_' + v_random;
-		v_height = $(p_obj).attr('ajax_height') ? $(p_obj).attr('ajax_height') : '100';
-		api.set({
-			'content.text': '<iframe id="'+v_frame_id+'" style="visibility:hidden;border:0; width:100%; height: ' + v_height + '" src="'+$(p_obj).attr('ajax_iframe_url')+'"></iframe>',
-			'style.height': 100
-		});
-		$('#' + v_frame_id).load(function() {
-			$('#' + v_frame_id).parent().css('padding', '0');
-			if($(p_obj).attr('ajax_height') == null){
-				v_height = this.contentWindow.document.body.offsetHeight;
-			}
-			api.set({
-				'style.height': v_height
-			 });
-			$('#' + v_frame_id).attr('height', v_height + 'px');
-			api.reposition();
-			$('#' + v_frame_id).css("visibility","visible");
-			
-			//== ajax callback
-			var fn = window[$(p_obj).attr('ajax_callback')];
-			if(typeof fn === 'function') {
-				fn();
-			}
-		});
-	}
-}
-
-function open_qtip_iframe_hidden(event, api, p_obj){
-	if( $(p_obj).attr('ajax_iframe_url')!=null){
-		if(document.getElementById('div_qtip_area')) document.getElementById('div_qtip_area').innerHTML = '';
-		$(p_obj).qtip('destroy');
-	}
-}
-
-function close_qtip(p_id){
-	p_id==null ? $('.qtipPopupTrigger').qtip("hide") : "";
-	//== hide fullscreen popup qtip if necessary
-	// $('#qtipPopupWrapper').qtip("hide");
-	// $('#qtipPopupWrapper').qtip('destroy');
-	$('#qtipPopupContainer').empty('#qtipPopupWrapper');
-	// document.getElementById('qtipPopupContainer').innerHTML = '';
-}
-
-function open_qtip_ajax(p_url, p_callback){
-	
-	var v_obj = document.createElement('div');
-	v_obj.setAttribute('id', 'qtipPopupWrapper');
-	v_obj.setAttribute('ajax_ready', 'true');
-	v_obj.setAttribute('ajax_position_at', 'center');
-	v_obj.setAttribute('ajax_position_my', 'center');
-	v_obj.setAttribute('ajax_id', 'div_qtip_area_ajax');
-	v_obj.setAttribute('ajax_width', '99.9%');
-	v_obj.setAttribute('ajax_target', 'window');
-	v_obj.setAttribute('ajax_url', p_url);
-	v_obj.setAttribute('ajax_callback', p_callback);
-	
-	//== append into qtip area
-	document.getElementById('qtipPopupContainer').appendChild(v_obj);
-	
-	//== initiate 
-	init_jquery_qtip('qtipPopupWrapper');
-}
-
-function open_qtip_iframe(p_url, p_callback, p_height){
-	var v_obj = document.createElement('div');
-	v_obj.setAttribute('id', 'qtipPopupWrapper');
-	v_obj.setAttribute('ajax_ready', 'true');
-	v_obj.setAttribute('ajax_position_at', 'center');
-	v_obj.setAttribute('ajax_position_my', 'center');
-	v_obj.setAttribute('ajax_width', '99.9%');
-	p_height != null && p_height != '' ? v_obj.setAttribute('ajax_height', p_height) : '';
-	v_obj.setAttribute('ajax_target', 'window');
-	v_obj.setAttribute('ajax_iframe_url', p_url);
-	v_obj.setAttribute('ajax_callback', p_callback);
-	
-	document.getElementById('qtipPopupContainer').appendChild(v_obj);
-	
-	//== initiate 
-	init_jquery_qtip('qtipPopupWrapper');
-}
-
-// Create the tooltips only on document load
-$(document).ready(function()
-{
-	init_jquery_qtip();
-	
-});
-
-</script><SCRIPT LANGUAGE="javascript" TYPE="text/javascript" SRC="https://sarawak.gov.my/moonlight_kernel/moonlight/js/min/moonlight.js"></SCRIPT><link rel="stylesheet" href="/moonlight_kernel/moonlight/plugin/dhtmlwindow/windowfiles/dhtmlwindow.css" type="text/css">
-<script type="text/javascript" src="/moonlight_kernel/moonlight/plugin/dhtmlwindow/windowfiles/dhtmlwindow.js"></script>
-<script type="text/javascript" src="/moonlight_kernel/moonlight/plugin//iscroll/iscroll.js"></script>
-
-
-
-
-<style type="text/css" media="all">
-#wrapper {
-	position:absolute; z-index:1;
-	top:0px; bottom:0px; left:0;
-	width:100%;
-	background:#aaa;
-	overflow:auto;
-	height:100%;
-}
-
-#scroller {
-	position:absolute; z-index:1;
-	/*-webkit-touch-callout:none;*/
-	-webkit-tap-highlight-color:rgba(0,0,0,0);
-	width:100%;
-	padding:0;
-}
-</style>
-
-
-<script language="javascript">
-dhtmlwindow.imagefiles[0]="/moonlight_kernel/moonlight/plugin/dhtmlwindow/windowfiles/vista_min.gif";
-dhtmlwindow.imagefiles[1]="/moonlight_kernel/moonlight/plugin/dhtmlwindow/windowfiles/vista_close.gif";
-dhtmlwindow.imagefiles[2]="/moonlight_kernel/moonlight/plugin/dhtmlwindow/windowfiles/vista_restore.gif";
-dhtmlwindow.imagefiles[3]="/moonlight_kernel/moonlight/plugin/dhtmlwindow/windowfiles/resize.gif";
-dhtmlwindow.imagefiles[4]="/moonlight_kernel/moonlight/plugin/dhtmlwindow/windowfiles/vista_min_highlight.gif";
-dhtmlwindow.imagefiles[5]="/moonlight_kernel/moonlight/plugin/dhtmlwindow/windowfiles/vista_close_highlight.gif";
-dhtmlwindow.imagefiles[6]="/moonlight_kernel/moonlight/plugin/dhtmlwindow/windowfiles/vista_restore_highlight.gif";
-
-
-// Add by Hii Ding Chen on 5/7/2011 to customise own onclose function
-function dhtml_close(){};
-
-function openNewDhtmlWindow( pURL_or_DivID, pTitle, pWidth, pHeight, pSetting, pWinType ){
-	var vWinName = unescape(pTitle);
-	pWidth = (pWidth=="") ? '600' : pWidth;
-	pHeight = (pHeight=="") ? '200' : pHeight;
-	pWinType = (pWinType=="") ? 'iframe' : pWinType;
-	pSetting = (pSetting=="") ? 'width='+pWidth+'px,height='+pHeight+'px,left=200px,top=80px,resize=1,scrolling=1' : pSetting;
-	mydhtmlwin = dhtmlwindow.open( vWinName, pWinType, pURL_or_DivID, pTitle, pSetting);
-	mydhtmlwin.isResize(true);
-	mydhtmlwin.isScrolling(true);
-	mydhtmlwin.setSize(pWidth,pHeight);
-	mydhtmlwin.moveTo('middle', 'middle');
-	mydhtmlwin.onclose = function(){
-		
-		if(isFunction(dhtml_close)){
-			// Modified by Hii Ding Chen on 20-July-2012 to cancel the closing process
-			result = dhtml_close();
-			if (result === false){
-				return result;
-			}
-		}
-		if(isFunction(grayOut)){
-			grayOut(false);
-		}
-		return 1;
-	}
-	
-	// Add by Hii Ding Chen on 09-March-2012 to resize the gray out background when the window is resized.
-	window.onresize = function(){
-		if (isFunction(resizeDarkScreen)){
-			resizeDarkScreen();
-		}
-	}
-	
-	switch (pWinType.toLowerCase()){
-		case 'div':
-			mydhtmlwin.onclose=function(){
-				if(isFunction(dhtml_close)){
-					result = dhtml_close();
-					if (result === false){
-						return result;
-					}
-				}
-				if(isFunction(grayOut)){
-					grayOut(false);
-				}
-				originalDiv = document.getElementById(pURL_or_DivID);
-				originalDiv.innerHTML=originalDiv.defaultHTML;
-
-				switch (originalDiv.defaultStyleDisplayStatus){
-					case '':
-						showItSimple(pURL_or_DivID);
-						break;
-					case 'block':
-						showItSimple(pURL_or_DivID);
-						break;
-					case 'none':
-						hideItSimple(pURL_or_DivID);
-						break;
-				}
-				//showItSimple(pURL_or_DivID);
-				return true;
-			}
-			break;
-	}
-	
-	grayOut(true);
-	//return mydhtmlwin;
-}
-
-function isFunction(a) {
-	return typeof a == 'function';
-}
-</script>
-
-<!--
-  ~ jquery.mb.components
-  ~ Copyright (c) 2001-2010. Matteo Bicocchi (Pupunzi); Open lab srl, Firenze - Italy
-  ~ email: info@pupunzi.com
-  ~ site: http://pupunzi.com
-  ~
-  ~ Licences: MIT, GPL
-  ~ http://www.opensource.org/licenses/mit-license.php
-  ~ http://www.gnu.org/licenses/gpl.html
-  -->
-
-<script type="text/javascript" src="/moonlight_kernel/moonlight/plugin/jquery.mb.tooltip.1.6/inc/jquery.timers.js"></script>
-<script type="text/javascript" src="/moonlight_kernel/moonlight/plugin/jquery.mb.tooltip.1.6/inc/jquery.dropshadow.js"></script>
-<script type="text/javascript" src="/moonlight_kernel/moonlight/plugin/jquery.mb.tooltip.1.6/inc/mbTooltip.js"></script>
-<link rel="stylesheet" type="text/css" href="/moonlight_kernel/moonlight/plugin/jquery.mb.tooltip.1.6/css/mbTooltip.min.css" title="style1"  media="screen">
-<script> 
-function init_jquery_mb_tooltip(){
-	if ($("[tips]").mbTooltip){
-		$("[tips]").mbTooltip({ // also $([domElement]).mbTooltip  >>  in this case only children element are involved
-		  opacity : 1,       //opacity
-		  wait:1,           //before show
-		  imgPath:"/moonlight_kernel/moonlight/plugin/jquery.mb.tooltip.1.6/images/",
-		  anchor: "parent", //"mouse", //"parent"  you can ancor the tooltip to the mouse position or at the bottom of the element
-		  timePerWord:1000,
-		  mb_fade:0,
-		  shadowLeft: 0,
-		  shadowTop: 0
-		});
-	}
-}
-$(document).ready(function(){
-	init_jquery_mb_tooltip();
-});
-</script>
-<link rel="stylesheet" type="text/css" href="/moonlight_kernel/moonlight/plugin/jquery.ajax.tooltip/ajax_tooltip.css" title="style1"  media="screen"><!--<script type="text/javascript" src="/moonlight_kernel/moonlight/plugin/jquery.ajax.tooltip/jquery.hoverIntent_modified_minified.js"></script>--><script type="text/javascript" src="/moonlight_kernel/moonlight/plugin/jquery.ajax.tooltip/jquery.hoverIntent.minified.js"></script><script>function init_jquery_ajax_tooltip(){	$(function()	{		var ajaxPosition = 'left'; // bottom		var hideDelay = 0;		var currentID;		var hideTimer = null;		var ajax = null;		var isContainerVisible = false;		var hideFunction = function()		{			if (hideTimer)				clearTimeout(hideTimer);			hideTimer = setTimeout(function()			{				currentPosition = { left: '-1000px', top: '-1000px' };				$("#ajaxPopupContainer").removeShadow();				container.css('display', 'none');				isContainerVisible = false;			}, hideDelay);		};		var currentPosition = { left: '0px', top: '0px' };		// One instance that's reused to show info for the current ajax		var container3 = $('<div id="ajaxPopupContainer">'			+ '<table width="" border="0" cellspacing="0" cellpadding="0" align="center" class="ajaxPopupPopup">'			+ '<tr>'			+ '   <td class="corner topLeft"></td>'			+ '   <td class="top"></td>'			+ '   <td class="corner topRight"></td>'			+ '</tr>'			+ '<tr>'			+ '   <td class="left">&nbsp;</td>'			+ '   <td><div id="ajaxPopupContent"></div></td>'			+ '   <td class="right">&nbsp;</td>'			+ '</tr>'			+ '<tr>'			+ '   <td class="corner bottomLeft">&nbsp;</td>'			+ '   <td class="bottom">&nbsp;</td>'			+ '   <td class="corner bottomRight"></td>'			+ '</tr>'			+ '</table>'			+ '</div>');				  var container = $('<div id="ajaxPopupContainer">'		  + '<div id="ajaxPopupPointer"></div>'		  + '<div id="ajaxPopupContent"></div>'		  + '</div>');				$('body').append(container);		if ( isContainerVisible ){			$("#ajaxPopupContainer").dropShadow({left:1, top:1, blur:1, opacity:0.5});		}		$('.ajaxPopupTrigger').live('mouseover', function()		{			if (!$(this).data('hoverIntentAttached'))			{				$(this).data('hoverIntentAttached', true);				$(this).hoverIntent				(					// hoverIntent mouseOver					function()					{						if (hideTimer)							clearTimeout(hideTimer);						var ajaxURL = $(this).attr('ajax_url');						var ajaxID = $(this).attr('ajax_id');						var ajaxPositionCustom = $(this).attr('ajax_position');						if (ajaxPositionCustom!='undefined'){							ajaxPosition = ajaxPositionCustom;						}						// If no guid in url rel tag, don't popup blank						if (ajaxID == '')							return;						var pos = $(this).offset();						var width = $(this).width();						var height = $(this).height();						//alert( 'pos='+pos+'\nwidth='+width+'\nheight='+height )												switch ( ajaxPosition ){							case 'top':								var reposition = { left: (pos.left + 5) + 'px', top: (pos.top - height - 5) + 'px' };								$('#ajaxPopupPointer').css( 'margin-top', '-8px' );								$('#ajaxPopupPointer').css( 'margin-left', '4px' );								$('#ajaxPopupPointer').html( '<img src="/moonlight_kernel/moonlight/plugin/jquery.ajax.tooltip/arrow_down.gif">' );								break;							case 'bottom':								var reposition = { left: (pos.left - 10) + 'px', top: (pos.top + height + 10) + 'px' };								$('#ajaxPopupPointer').css( 'margin-top', '-8px' );								$('#ajaxPopupPointer').css( 'margin-left', '4px' );								$('#ajaxPopupPointer').html( '<img src="/moonlight_kernel/moonlight/plugin/jquery.ajax.tooltip/arrow_up.gif">' );								break;							case 'left':							default:								var reposition = { left: (pos.left + width) + 'px', top: pos.top - 5 + 'px' };								$('#ajaxPopupPointer').css( 'margin-left', '-8px' );								$('#ajaxPopupPointer').css( 'margin-top', '0px' );								$('#ajaxPopupPointer').html( '<img src="/moonlight_kernel/moonlight/plugin/jquery.ajax.tooltip/arrow_left.gif">' );						}						// If the same popup is already shown, then don't requery						if (currentPosition.left == reposition.left &&							currentPosition.top == reposition.top)							return;						container.css({							left: reposition.left,							top: reposition.top						});						currentPosition = reposition;						$('#ajaxPopupContent').html('Loading... Please wait.');						//$("#ajaxPopupContainer").dropShadow({left:1, top:1, blur:1, opacity:0.5});						//$("#ajaxPopupContainer").redrawShadow();						if (ajax)						{							ajax.abort();							ajax = null;						}//alert(ajaxURL + ajaxID);						ajax = $.ajax({							type: 'GET',							url: ajaxURL + ajaxID,							data: '',							success: function(data)							{								// Verify that we're pointed to a page that returned the expected results.								if (data.indexOf('ajaxPopupResult') < 0)								{									$('#ajaxPopupContent').html( "Sorry, some errors have occurred while loading the data. Please contact your system administrator." );									//$("#ajaxPopupContainer").redrawShadow();								}								// Verify requested ajax is this ajax since we could have multiple ajax								// requests out if the server is taking a while.								if (data.indexOf(ajaxID) > 0)								{									var text = $(data).find('.ajaxPopupResult').html();									document.getElementById('ajaxPopupContent').innerHTML = data; //temp solution. by chongbh on 20/3/12									// $('#ajaxPopupContent').html(data);									// $("#ajaxPopupContainer").redrawShadow();								}else{									if ( ajaxID!='' ){										$('#ajaxPopupContent').html('Loading... Please wait.');									}else{										$('#ajaxPopupContent').html( ajaxID + "No record found."+data );									}									//$("#ajaxPopupContainer").redrawShadow();								}								//$("#ajaxPopupContainer").removeShadow();								//$("#ajaxPopupContainer").dropShadow({left:1, top:1, blur:1, opacity:0.5});																if (isContainerVisible){									var theEl=$("#ajaxPopupContainer");									var ww= $(window).width()+$(window).scrollLeft();									var wh= $(window).height()+$(window).scrollTop();																		var w=$("#ajaxPopupContainer").outerWidth();									var h=$("#ajaxPopupContainer").outerHeight();									var content_top = $("#ajaxPopupContainer").offset().top;									var pointer_top = $("#ajaxPopupPointer").offset().top;									//alert('window height:'+wh+'\nobject height:'+h+'\ncontent top:'+theEl.offset().top)									//window.status='window height:'+wh+'\nobject height:'+h+'\ncontent top:'+theEl.offset().top;																		// repositioning container									switch ( ajaxPosition ){										case 'top':											//var content_top_new = content_top-h+50;											var content_top_new = content_top - h + height;											window.status='content_top_new='+content_top;											var pointer_top_new = h;											$("#ajaxPopupContainer").css({top:content_top_new});											$("#ajaxPopupContainer").css( 'margin-left', '0px' );											$('#ajaxPopupPointer').css( 'margin-top', pointer_top_new+'px' );																						//window.status='wh:'+wh+'\nh:'+h+'\ncontent top:'+content_top+'\ncontent_top_new='+content_top_new+'\npointer_top_new='+pointer_top_new+'\npointer_top='+pointer_top+'\nph='+height;																						break;										case 'left':											var content_top_new = ( h+content_top < wh ) ? content_top : content_top-h+30;											var pointer_top_new = ( h+content_top < wh ) ? '4' : h-26;											$("#ajaxPopupContainer").css({top:content_top_new});											$('#ajaxPopupPointer').css( 'margin-top', pointer_top_new+'px' );											break;									}																		// redraw shadow									$("#ajaxPopupContainer").redrawShadow();								}							}						});						container.css('display', 'block');						isContainerVisible = true;						$("#ajaxPopupContainer").redrawShadow();					},					// hoverIntent mouseOut					hideFunction				);				// Fire mouseover so hoverIntent can start doing its magic				$(this).trigger('mouseover');			}		});		// Allow mouse over of details without hiding details		$('#ajaxPopupContainer').mouseover(function()		{			if (hideTimer)				clearTimeout(hideTimer);		});		// Hide after mouseout		$('#ajaxPopupContainer').mouseout(hideFunction);	});}init_jquery_ajax_tooltip();</script><script src="/moonlight_kernel/moonlight/plugin/superfish-1.4.8/js/jquery.bgiframe.min.js"></script> 
-<script src="/moonlight_kernel/moonlight/plugin/superfish-1.4.8/js/superfish.js"></script> 
-<script src="/moonlight_kernel/moonlight/plugin/superfish-1.4.8/js/supersubs.js"></script> 
-<script> 
-	/*
-    $(document).ready(function(){ 
-        $("ul.sf-menu").superfish().find('ul').bgIframe({opacity:false}); 
-    }); 
-	*/
-	
-	$(document).ready(function(){ 
-        $("ul.sf-menu").supersubs({ 
-            minWidth:    12,   // minimum width of sub-menus in em units 
-            maxWidth:    27,   // maximum width of sub-menus in em units 
-            extraWidth:  1     // extra width can ensure lines don't sometimes turn over 
-                               // due to slight rounding differences and font-family 
-        }).superfish({
-			delay: 10,
-			speed: 'fast',
-			autoArrows: true
-		});
-						// call supersubs first, then superfish, so that subs are 
-                         // not display:none when measuring. Call before initialising 
-                         // containing tabs for same reason. 
-    }); 
-	
-</script><link rel="stylesheet" href="/moonlight_kernel/moonlight/plugin/jqueryui/themes/base/jquery.ui.all.css">
-<script src="/moonlight_kernel/moonlight/plugin/jqueryui/ui/jquery.ui.core.js"></script>
-<script src="/moonlight_kernel/moonlight/plugin/jqueryui/ui/jquery.ui.widget.js"></script><script src="/moonlight_kernel/moonlight/plugin/jqueryui/ui/jquery.ui.accordion.js"></script>
-<script>
-$(document).ready(function(){
-	$(function() {
-		$( ".accordion" ).accordion({
-			collapsible: true,
-			active: false,
-			autoHeight:false
-		});
-		
-	});
-	
-});
-
-</script><script language="javascript">
-							 var HTTP_PATH = "https://sarawak.gov.my/web/";
-							 </script><script src="https://sarawak.gov.my/web/web/js/module.js"></script>
-			<SCRIPT LANGUAGE="javascript" TYPE="text/javascript">
-			function handleKeyPress(ptype, event){
-				//alert(ptype);
-				var keyCode = event.keyCode ? event.keyCode : event.which ? event.which : event.charCode;
-				switch (keyCode){
-					
-				}
-			}
-			</SCRIPT>
-			
-			<SCRIPT LANGUAGE="javascript" TYPE="text/javascript">
-			function handleOnClick(pFieldName){
-				switch (pFieldName){
-					
-				}
-			}
-			</SCRIPT>
-			
-			<SCRIPT LANGUAGE="javascript" TYPE="text/javascript">
-			function handleDateField(pDiv){
-				if ( document.getElementById(pDiv) ){
-					if ( document.getElementById(pDiv).onclick ){
-						document.getElementById(pDiv).onclick();
-					}else{
-						document.getElementById(pDiv).click()
-					}
-					if ( document.getElementById(pDiv).value!='' ){
-						
-					}
-				}
-			}
-			function clearDateField(pFieldID){
-				if ( document.getElementById(pFieldID) ){
-					document.getElementById(pFieldID).value='';
-					hideItSimple(pFieldID+'_clear');
-				}
-				if ( window.afterDateSelected ){
-					y=m=d=e=''; 
-					gdCtrl=document.getElementById(pFieldID);
-					afterDateSelected(y,m,d,e,gdCtrl);
-				}
-			}
-			</SCRIPT>
-		<div style="clear:both;display:none;"></div><!--<script type="text/javascript" src="/moonlight_kernel/moonlight/plugin/jquery-fancybox/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>-->
-
-<script type="text/javascript" src="/moonlight_kernel/moonlight/plugin/jquery-fancybox/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
-<link rel="stylesheet" type="text/css" href="/moonlight_kernel/moonlight/plugin/jquery-fancybox/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
-<script type="text/javascript">
-$(document).ready(function() {
-	$("a[rel=lightbox]").fancybox({
-		'type' : 'image',
-		'transitionIn'		: 'elastic',
-		'transitionOut'		: 'none',
-		'titlePosition' 	: 'inside',
-		'titleFormat'		: function(title, currentArray, currentIndex, currentOpts) {
-			if(title==''){
-				return '';
-			}else{
-				return '<span id="fancybox-title-inside">' + title +'</span>';
-			}
-		}
-	});
-});
-</script>
-<script type="text/javascript" src="/moonlight_kernel/moonlight/plugin/flowplayer/flowplayer-3.2.4.min.js"></script>
-<script>
-function initFlowPlayerAdvance(playerId){
-	flowplayer(playerId, "/moonlight_kernel/moonlight/plugin/flowplayer/flowplayer-3.2.5.swf", {
-			clip:  {
-					autoPlay: false,
-					autoBuffering: false			}
-	});
-}
-
-function initFlowPlayerSimple(playerId){
-	flowplayer(playerId, "/moonlight_kernel/moonlight/plugin/flowplayer/flowplayer-3.2.5.swf", {
-			clip:  {
-					autoPlay: false,
-					autoBuffering: false			},
-			plugins:  {
-        controls: {
-
-          url: '/moonlight_kernel/moonlight/plugin/flowplayer/flowplayer.controls-3.2.3.swf',
-          /* you may want to remove the gradient */
-          // backgroundGradient: 'none',
-
-          // these buttons are visible
-          all:false,
-          scrubber:true,
-          play:true,
-          mute:true,
-					fullscreen:true,
-
-          // custom colors
-          // bufferColor: '#333333',
-          // progressColor: '#cc0000',
-          // buttonColor: '#cc0000',
-          // buttonOverColor: '#ff0000',
-
-          // tooltip background color (since 3.1.0)
-          // tooltipColor: '#cc0000',
-
-          // custom dimension
-          // height: 25,
-          // width: 400,
-
-          // setup auto hide
-          autoHide: 'always'
-
-          // a little more styling
-          // width: '80%',
-          // bottom: 5,
-          // left: '50%',
-          // borderRadius: 15
-        }
-      }
-
-	});
-}
-
-function initFlowPlayerAudio(playerId){
-
-  flowplayer(playerId, "/moonlight_kernel/moonlight/plugin/flowplayer/flowplayer-3.2.5.swf", {
-			clip:  {
-					autoPlay: false,
-					autoBuffering: false,
-					provider: "audio"
-			},
-
-      plugins: {
-          audio: { url: '/moonlight_kernel/moonlight/plugin/flowplayer/flowplayer.audio-3.2.2.swf' },
-          controls: {
-            url: '/moonlight_kernel/moonlight/plugin/flowplayer/flowplayer.controls-3.2.3.swf',
-            all:false,
-            scrubber:true,
-            play:true,
-            mute:true,
-            fullscreen:true,
-            autoHide: false
-          }
-      }
-  });
-  
-}
-</script>	<link rel="stylesheet" type="text/css" href="https://sarawak.gov.my/web/web/web/responsive.css" />
-	<script type="text/javascript" language="javascript">
-		$(document).ready(function(){
-			init_change_tab();
-			/*Collapse*/
-			vC=1;
-			vTotal=$(".col2 div .content").length;
-			$(".col2 div .content").each(function(){
-				if(vC>1 && vC<vTotal){ //if 1st and last matched
-					/* slide up the content if display is set to none by czwong */
-					if($(this).css('display') == "none"){
-						$(this).slideUp('fast');
-					}
-				}
-				vC++;
-			});
-			
-			/*register onclick function to toggle expand/collapse*/
-			vC=1;
-			vTotal=$(".col2 div .title").length;
-			$(".col2 div .title").each(function(){
-				$(this).css('cursor','pointer'); //move to css
-				if(vC>1 && vC<vTotal){ //if 1st and last matched
-					
-					/* Start modified by czwong to slideDown first if the content is hide */
-					if($(this).parent().find('.content').css('display') == 'none'){
-						$(this).toggle(
-							function(){
-								$(this).parent().find('.content').slideDown('fast');
-							},
-							function(){
-								$(this).parent().find('.content').slideUp('fast');
-							}
-						);
-					}else{
-						$(this).toggle(
-							function(){
-								$(this).parent().find('.content').slideUp('fast');
-							},
-							function(){
-								$(this).parent().find('.content').slideDown('fast');
-							}	
-						);
-					}
-					/* End modified by czwong to slideDown first if the content is hide */
-				}else{
-				
-					/* Start modified by czwong to slideDown first if the content is hide */
-					if($(this).parent().find('.content').css('display') == 'none'){
-						$(this).toggle(
-							function(){
-								$(this).parent().find('.content').slideDown('fast');
-							},
-							function(){
-								$(this).parent().find('.content').slideUp('fast');
-							}
-						);
-					}else{
-						$(this).toggle(
-							function(){
-								$(this).parent().find('.content').slideUp('fast');
-							},
-							function(){
-								$(this).parent().find('.content').slideDown('fast');
-							}
-						);
-					}
-					/* End modified by czwong to slideDown first if the content is hide */
-				}
-				vC++;
-			});
-			
-		});
-	</script>
-</HEAD>
-<body>
-<!-- Start width control-->
-	<div id="header">
-	 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-               <div id='divDisabledAjaxError' style="display:none"><div id='divAjaxError' class='nowLoading' style="display:none" >	<table width=100% cellpadding=1 cellspacing=0 border=0>	<tr>		<td align="right"><image src="https://sarawak.gov.my/k/warning.gif" alt='warning icon' style='vertical-align:middle;'/></td>		<td><strong>AJAX Error</strong>Sorry, failed to load required information. Please contact your system administrator.</td>		<td width=1% valign=top>			<a href="javascript:hideItSimple('divAjaxError')">				<image src="https://sarawak.gov.my/k/close.png" alt='close icon' style='vertical-align:middle;'/>			</a>		</td>	</tr>	<tr>		<td colspan=3 align=right valugb=bottom>			<a href="javascript:hideItSimple('divAjaxError')">Close</a>		</td>	</tr>	</table></div></div><div id='divLoading' class='nowLoading' style="display:none" >	<table width=100% cellpadding=0 cellspacing=0 border=0>	<tr>		<td align="right"><image src="https://sarawak.gov.my/k/loading.gif" alt='loading icon' style='vertical-align:middle;'/></td>		<td>&nbsp;&nbsp;&nbsp;&nbsp;Loading.....</td>	</tr>	</table></div><style>.nowLoading {	color: #333;	display: none;	position: absolute;	top: 30%;	left: 35%;	width: 240px;	height: 95px;	padding: 10px;	border: 1px solid #D1CAA3;	background-color: #F9F2AA;	text-align: center;	overflow: auto;	z-index:8080;	filter: progid:DXImageTransform.Microsoft.Shadow(color=gray,direction=135,Strength=5), alpha(opacity=90);	-moz-opacity: .09;	opacity: .90;}</style><link rel="stylesheet" href="/moonlight_kernel/moonlight/plugin/jquery-megamenu2/stylesheets/jquery.megamenu.css" type="text/css" media="screen" /><script src="/moonlight_kernel/moonlight/plugin/jquery-megamenu2/javascripts/jquery.megamenu.js" type="text/javascript"></script>
-<script src="/moonlight_kernel/moonlight/plugin/jquery-megamenu2/javascripts/jquery.verticalmenu.js" type="text/javascript"></script>
-
-<script type="text/javascript" language="javascript">	$(document).ready(function(){
-		jQuery(".megamenu2").megamenu();
-		jQuery(".verticalmenu2").verticalmenu();
-	});
-
-	function initMegamenu(p_id){
-		jQuery("." + p_id).megamenu();
-	}
-</script><script src="/moonlight_kernel/moonlight/plugin/jquery-megamenu/javascripts/jquery.megamenu.js" type="text/javascript"></script>
-<script src="/moonlight_kernel/moonlight/plugin/jquery-megamenu/javascripts/jquery.verticalmenu.js" type="text/javascript"></script>
-
-<script type="text/javascript" language="javascript">	$(document).ready(function(){
-		jQuery(".megamenu").megamenu();
-		jQuery(".verticalmenu").verticalmenu();
-	});
-
-	function initMegamenu(p_id){
-		jQuery("." + p_id).megamenu();
-	}
-</script>	<div id="topHeadWrapper">
-		<div class="weblayoutwidth">
-	<div class='topHead'><div class='topHeadLeft'><style>
-#pMenuTop ul{
-margin:0px;
-padding:0px;
-}
-#pMenuTop ul li{
-margin:0px;
-padding:0px 5px;
-float:left;
-list-style:none;
-}
-#pMenuTop ul li a{
-font-style:normal;
-}
-</style>
-<div id="pMenuTop">
-<ul>
-<li><a href="/web/home/index">Home</a></li><li><a href="/web/member/index">Login MySEG</a></li><li><a href="/web/home/sitemap/257/">Site Map</a></li><li><a href="/web/home/faq/258/">FAQ</a></li></ul>
-</div></div><div class='topHeadRight'>&nbsp;&nbsp;<span><a href="https://www.sarawak.gov.my/web/share/set_lang/en" title="Select language: English" style="font-style:normal;" >English</a></span>&nbsp;|&nbsp;<span><a href="https://www.sarawak.gov.my/web/share/set_lang/bm" title="Select language: Bahasa Malaysia" style="font-style:normal;" >Bahasa Malaysia</a></span>&nbsp;&nbsp;<div id="pSearchSimpleField" style="display:inline-block;"><input type="hidden" class="text" name="txt_search_simple_category" id="txt_search_simple_category" value="" ><input type="text" class="text" name="txt_search_simple" id="txt_search_simple" value=""  onkeyup="if(event.keyCode==13){portlet_search_simple();}search_suggest(event.keyCode);" style="border-color:#A7C2E0;height:12px;margin:0;" x-webkit-speech  onFocus="this.className='text_focus'" onBlur="this.className='text'" onKeyPress="handleKeyPress(this.name, event)"><label for='txt_search_simple' onclick='javascript:portlet_search_simple();' style='cursor:hand;cursor:pointer;' tips=''>&nbsp;<a href='javascript:void(0);' style='text-decoration:none; font-weight:normal; color:#006697;' tips=''><img src="https://sarawak.gov.my/web/web/web/res/search.gif" style="vertical-align:top;" alt="Image for Search" /></a></label>	<div class="search_suggestion">		<div class="search_suggestion_wrapper" id="search_suggestion_wrapper"></div>	</div></div><script language="javascript">function portlet_search_simple(){	window.location='https://sarawak.gov.my/web/home/search/?keyword='+escape(document.getElementById('txt_search_simple').value)+'&cat='+escape(document.getElementById('txt_search_simple_category').value);}var vSearchSuggestULSelectedIndex=(-1);function search_suggest(vEventKeyCode){	console.log(vEventKeyCode);	vObjSearchBox=document.getElementById('txt_search_simple');	if(vEventKeyCode==38 || vEventKeyCode==40){/*Arrow Down*/		/*Selector*/		vObjSearchSuggestDiv=document.getElementById('search_suggestion_wrapper');		vObjSearchSuggestUL=vObjSearchSuggestDiv.getElementsByTagName('ul')[0];/*Get the <ul> tag*/		vObjSearchSuggestLI=vObjSearchSuggestUL.getElementsByTagName('li');/*Get all <li> tag*/		vObjSearchSuggestLILength=vObjSearchSuggestLI.length;/*Number of <li> tag*/			if(vEventKeyCode==38){			vSearchSuggestULSelectedIndex--;			/*Cannot less than zero*/			if(vSearchSuggestULSelectedIndex<0){				vSearchSuggestULSelectedIndex=0;			}		}else{			vSearchSuggestULSelectedIndex++;			/*Cannot more than maximum rec.*/			if(vSearchSuggestULSelectedIndex>vObjSearchSuggestLILength-1){				vSearchSuggestULSelectedIndex=vObjSearchSuggestLILength-1;			}		}		/*Clear previous "selected" class.*/		for(vI=0;vI<vObjSearchSuggestLILength;vI++){			vObjSearchSuggestLI[vI].className='';		}		vObjSearchSuggestLIToBeSelect=vObjSearchSuggestLI[vSearchSuggestULSelectedIndex];		vObjSearchSuggestLIToBeSelect.className+=" selected";		vObjSearchBox.value=vObjSearchSuggestLIToBeSelect.innerHTML;	}else{		vValSearchBox=vObjSearchBox.value;		if(vValSearchBox!='' && vValSearchBox.length>=4){			makeGETRequest("https://sarawak.gov.my/web/home/p_search_simple_ajax/"+escape(vValSearchBox),"search_suggestion_wrapper");			vSearchSuggestULSelectedIndex=(-1);		}	}}function search_select(vObjLI){	vObjSearchBox.value=vObjLI.innerHTML;	portlet_search_simple();}</script><style>.search_suggestion{	position:relative;	top:1px;	background:#fff;	width:100%;	z-index:99999999;}.search_suggestion .search_suggestion_wrapper{	background:#fff;	width:100%;	position:absolute;}.search_suggestion .search_suggestion_wrapper ul{	text-align:left;	margin:0;	padding:0;	list-style-type:none;	border:1px solid #999;}.search_suggestion .search_suggestion_wrapper ul li{	padding:5px 5px;}.search_suggestion .search_suggestion_wrapper ul li:hover{	background:#ffff8c !important;	cursor:pointer;}.search_suggestion .search_suggestion_wrapper ul li.selected{	background:#FFFE00;}</style><span id="pFontSizer">&nbsp;&nbsp;<a href="javascript:void(0);" onclick="javascript:change_font('+');" title="Increase font size"><image src="https://www.sarawak.gov.my/web/web/web/res/font_large.gif" alt="Increase font size" title="Increase font size" style="vertical-align:middle;"></a>&nbsp;<a href="javascript:void(0);" onclick="javascript:change_font('R');" title="Reset font size"><image src="https://www.sarawak.gov.my/web/web/web/res/font_normal.gif" alt="Reset font size" title="Reset font size" style="vertical-align:middle;"></a>&nbsp;<a href="javascript:void(0);" onclick="javascript:change_font('-');" title="Decrease font size"><image src="https://www.sarawak.gov.my/web/web/web/res/font_small.gif" alt="Decrease font size" title="Decrease font size" style="vertical-align:middle;"></a>&nbsp;&nbsp;</span></div></div>		</div>
-	</div>
-	<div id="BannerWrapper">
-		<div class="weblayoutwidth">
-	<table width='100%' cellspacing='0' cellpadding='0'><tr><td class='bannerHolder'><div id="div_banner_img">
-<img src="https://www.sarawak.gov.my/media/images/Banner/banner_eng.png" class='banner' style="display:block;" alt='banner'>
-</div>
-<div id="div_banner_text">
-The Official Portal of the Sarawak Government</div></td></tr></table>			</div>
-		</div>
-	</div>
-	<div id="MenuWrapper" style="background: transparent;">
-		<div class="weblayoutwidth">
-			<div class='menuHolder'><ul class='megamenu2'><li style='text-align:center;'><a href="http://www.sarawak.gov.my/web/home/article_view/228/244/" class="" alt="Menu link to About Sarawak"><img src='/media/menu/2_abt_swak.gif' style='max-width:50px;max-height:25px;' alt="Menu link to About Sarawak"><br/>About Sarawak</a><div class="mm-container" style='text-align:left;'><table cellpadding=0 cellspacing=0 border=0><tr><td style='vertical-align:top;min-width:200px;'><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/228/244/"' class='mm-item-no-image'><a href="/web/home/article_view/228/244/">History</a></h3><div class="list-content"><div onclick='javascript:window.location="/web/home/article_view/233/244/"'><a href="/web/home/article_view/233/244/">Sarawak before 1841</a></div><div onclick='javascript:window.location="/web/home/article_view/234/245/"'><a href="/web/home/article_view/234/245/">The Brooke Era</a></div><div onclick='javascript:window.location="/web/home/article_view/235/246/"'><a href="/web/home/article_view/235/246/">The Japanese Occupation</a></div><div onclick='javascript:window.location="/web/home/article_view/236/247/"'><a href="/web/home/article_view/236/247/">British Military Administration</a></div><div onclick='javascript:window.location="/web/home/article_view/237/248/"'><a href="/web/home/article_view/237/248/">Sarawak as a British Crown Colony</a></div><div onclick='javascript:window.location="/web/home/article_view/238/249/"'><a href="/web/home/article_view/238/249/">Self-Governing Sarawak 1963</a></div><div onclick='javascript:window.location="/web/home/article_view/239/250/"'><a href="/web/home/article_view/239/250/">Formation of Malaysia 1963</a></div></div></div><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/153/172/"' class='mm-item-no-image'><a href="/web/home/article_view/153/172/">State Symbols</a></h3><div class="list-content"><div onclick='javascript:window.location="/web/home/article_view/154/172/"'><a href="/web/home/article_view/154/172/">Sarawak State Flag</a></div><div onclick='javascript:window.location="/web/home/article_view/155/187/"'><a href="/web/home/article_view/155/187/">Sarawak State Crest</a></div><div onclick='javascript:window.location="/web/home/article_view/157/174/"'><a href="/web/home/article_view/157/174/">Sarawak State Anthem</a></div></div></div><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/158/175/"' class='mm-item-no-image'><a href="/web/home/article_view/158/175/">Demographics</a></h3><div class="list-content"><div onclick='javascript:window.location="/web/home/article_view/240/175/"'><a href="/web/home/article_view/240/175/">Population</a></div><div onclick='javascript:window.location="/web/home/article_view/241/251/"'><a href="/web/home/article_view/241/251/">Births and Deaths</a></div></div></div></td><td style='border-left:1px solid #c0c0c0;'></td><td style='vertical-align:top;min-width:200px;'><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/159/176/"' class='mm-item-no-image'><a href="/web/home/article_view/159/176/">Geography</a></h3></div><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/160/177/"' class='mm-item-no-image'><a href="/web/home/article_view/160/177/">Transport and Infrastructure</a></h3></div><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/164/181/"' class='mm-item-no-image'><a href="/web/home/article_view/164/181/">Communication</a></h3></div></td></tr></table></div></li><li style='text-align:center;'><a href="/web/home/page/152/government/" class="" alt="Menu link to Sarawak Government"><img src='/media/menu/3_swak_gov.gif' style='max-width:50px;max-height:25px;' alt="Menu link to Sarawak Government"><br/>Sarawak Government</a><div class="mm-container" style='text-align:left;'><table cellpadding=0 cellspacing=0 border=0><tr><td style='vertical-align:top;min-width:200px;'><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/229/188/"' class='mm-item-no-image'><a href="/web/home/article_view/229/188/">Sarawak Government</a></h3></div><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/340/284/"' class='mm-item-no-image'><a href="/web/home/article_view/340/284/">53 Principles and Action Chief Minister of Sarawak</a></h3></div><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/183/199/"' class='mm-item-no-image'><a href="/web/home/article_view/183/199/">Sarawak Civil Service</a></h3><div class="list-content"><div onclick='javascript:window.location="/web/home/article_view/259/191/"'><a href="/web/home/article_view/259/191/">Chief Minister's Department</a></div><div onclick='javascript:window.location="/web/home/article_view/260/192/"'><a href="/web/home/article_view/260/192/">Client's Charter</a></div><div onclick='javascript:window.location="/web/home/article_view/261/291/"'><a href="/web/home/article_view/261/291/">Client's Charter Achievement</a></div></div></div><div class="mm-inner-container"><h3 onclick='javascript:window.location="/nolink"' class='mm-item-no-image'><a href="/nolink">Research Database</a></h3><div class="list-content"><div onclick='javascript:window.location="/web/home/article_view/343/285/"'><a href="/web/home/article_view/343/285/">Open Data</a></div><div onclick='javascript:window.location="/web/home/article_view/350/294/"'><a href="/web/home/article_view/350/294/">Get Involved</a></div><div onclick='javascript:window.location="/web/home/article_view/347/288/"'><a href="/web/home/article_view/347/288/">Consultation</a></div></div></div><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/173/189/"' class='mm-item-no-image'><a href="/web/home/article_view/173/189/">Yang di-Pertua Negeri</a></h3></div><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/174/190/"' class='mm-item-no-image'><a href="/web/home/article_view/174/190/">Chief Minister</a></h3></div><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/180/196/"' class='mm-item-no-image'><a href="/web/home/article_view/180/196/">Judiciary</a></h3></div><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/182/198/"' class='mm-item-no-image'><a href="/web/home/article_view/182/198/">Executive</a></h3></div><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/list_agency/230/"' class='mm-item-no-image'><a href="/web/home/list_agency/230/">Government Directories</a></h3></div></td></tr></table></div></li><li style='text-align:center;'><a href="http://www.sarawak.gov.my/web/home/article_view/186/242/" class="" alt="Menu link to Online Services"><img src='/media/menu/4_online_serv.gif' style='max-width:50px;max-height:25px;' alt="Menu link to Online Services"><br/>Online Services</a><div class="mm-container" style='text-align:left;'><table cellpadding=0 cellspacing=0 border=0><tr><td style='vertical-align:top;min-width:200px;'><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/186/242/"' class='mm-item-no-image'><a href="/web/home/article_view/186/242/">Online Services</a></h3></div><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/187/205/"' class='mm-item-no-image'><a href="/web/home/article_view/187/205/">Mobile And SMS Services</a></h3></div><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/service_statistic"' class='mm-item-no-image'><a href="/web/home/service_statistic">Statistics</a></h3></div></td></tr></table></div></li><li style='text-align:center;'><a href="/web/home/article_view/193/211/" class="" alt="Menu link to Residents"><img src='/media/menu/5_residents.gif' style='max-width:50px;max-height:25px;' alt="Menu link to Residents"><br/>Residents</a><div class="mm-container" style='text-align:left;'><table cellpadding=0 cellspacing=0 border=0><tr><td style='vertical-align:top;min-width:200px;'><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/194/211/"' class='mm-item-no-image'><a href="/web/home/article_view/194/211/">Citizenship</a></h3></div><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/195/213/"' class='mm-item-no-image'><a href="/web/home/article_view/195/213/">Malaysian Passport</a></h3></div><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/197/215/"' class='mm-item-no-image'><a href="/web/home/article_view/197/215/">Education</a></h3></div><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/198/292/"' class='mm-item-no-image'><a href="/web/home/article_view/198/292/">Public Holidays 2017</a></h3></div><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/199/293/"' class='mm-item-no-image'><a href="/web/home/article_view/199/293/">School Holidays 2017</a></h3></div></td></tr></table></div></li><li style='text-align:center;'><a href="/web/home/page/200/investor/" class="" alt="Menu link to Investors"><img src='/media/menu/6_investors.gif' style='max-width:50px;max-height:25px;' alt="Menu link to Investors"><br/>Investors</a><div class="mm-container" style='text-align:left;'><table cellpadding=0 cellspacing=0 border=0><tr><td style='vertical-align:top;min-width:200px;'><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/201/218/"' class='mm-item-no-image'><a href="/web/home/article_view/201/218/">Sarawak Advantages</a></h3><div class="list-content"><div onclick='javascript:window.location="/web/home/article_view/202/218/"'><a href="/web/home/article_view/202/218/">Location</a></div><div onclick='javascript:window.location="/web/home/article_view/203/219/"'><a href="/web/home/article_view/203/219/">Government</a></div><div onclick='javascript:window.location="/web/home/article_view/204/220/"'><a href="/web/home/article_view/204/220/">Economic Growth</a></div><div onclick='javascript:window.location="/web/home/article_view/205/221/"'><a href="/web/home/article_view/205/221/">Climate and Natural Resources</a></div><div onclick='javascript:window.location="/web/home/article_view/206/222/"'><a href="/web/home/article_view/206/222/">Labour Market</a></div><div onclick='javascript:window.location="/web/home/article_view/207/177/"'><a href="/web/home/article_view/207/177/">Infrastructure</a></div><div onclick='javascript:window.location="/web/home/article_view/208/224/"'><a href="/web/home/article_view/208/224/">Utilities</a></div><div onclick='javascript:window.location="/web/home/article_view/209/225/"'><a href="/web/home/article_view/209/225/">Quality of Life</a></div><div onclick='javascript:window.location="/web/home/article_view/210/226/"'><a href="/web/home/article_view/210/226/">Financial Services</a></div></div></div><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/211/227/"' class='mm-item-no-image'><a href="/web/home/article_view/211/227/">Industrial Estate</a></h3><div class="list-content"><div onclick='javascript:window.location="/web/home/article_view/212/227/"'><a href="/web/home/article_view/212/227/">Industrial Estate by Division</a></div><div onclick='javascript:window.location="/web/home/article_view/213/228/"'><a href="/web/home/article_view/213/228/">Industrial Estate Developed by MID</a></div></div></div><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/214/229/"' class='mm-item-no-image'><a href="/web/home/article_view/214/229/">Investment Incentives</a></h3></div><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/215/230/"' class='mm-item-no-image'><a href="/web/home/article_view/215/230/">Equity Protection Policies</a></h3></div></td><td style='border-left:1px solid #c0c0c0;'></td><td style='vertical-align:top;min-width:200px;'><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/216/231/"' class='mm-item-no-image'><a href="/web/home/article_view/216/231/">Manufacturing Applications</a></h3></div></td></tr></table></div></li><li style='text-align:center;'><a href="/web/home/page/217/visitors/" class="" alt="Menu link to Visitors"><img src='/media/menu/7_visitor.gif' style='max-width:50px;max-height:25px;' alt="Menu link to Visitors"><br/>Visitors</a><div class="mm-container" style='text-align:left;'><table cellpadding=0 cellspacing=0 border=0><tr><td style='vertical-align:top;min-width:200px;'><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/218/233/"' class='mm-item-no-image'><a href="/web/home/article_view/218/233/">Getting Around</a></h3></div><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/219/234/"' class='mm-item-no-image'><a href="/web/home/article_view/219/234/">Travel Tips</a></h3></div><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/220/235/"' class='mm-item-no-image'><a href="/web/home/article_view/220/235/">Places of Interest</a></h3></div><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/221/279/"' class='mm-item-no-image'><a href="/web/home/article_view/221/279/">Malaysia My Second Home</a></h3></div></td></tr></table></div></li><li style='text-align:center;'><a href="/web/home/list_agency/243/" class="" alt="Menu link to Directory"><img src='/media/menu/8_directory.gif' style='max-width:50px;max-height:25px;' alt="Menu link to Directory"><br/>Directory</a></li><li style='text-align:center;'><a href="/web/home/list_news/223/" class="" alt="Menu link to Media Centre"><img src='/media/menu/9_media_ctr.gif' style='max-width:50px;max-height:25px;' alt="Menu link to Media Centre"><br/>Media Centre</a><div class="mm-container" style='text-align:left;'><table cellpadding=0 cellspacing=0 border=0><tr><td style='vertical-align:top;min-width:200px;'><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/list_news/244/"' class='mm-item-no-image'><a href="/web/home/list_news/244/">News</a></h3></div><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/list_event/353/"' class='mm-item-no-image'><a href="/web/home/list_event/353/">Events</a></h3></div><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/album/226/"' class='mm-item-no-image'><a href="/web/home/album/226/">Photo Gallery</a></h3></div><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/video/231/"' class='mm-item-no-image'><a href="/web/home/video/231/">Video Gallery</a></h3></div><div class="mm-inner-container"><h3 onclick='javascript:window.location="/web/home/article_view/247/259/"' class='mm-item-no-image'><a href="/web/home/article_view/247/259/">Publication</a></h3></div></td></tr></table></div></li></ul><div id='cssmenu'>
-<ul><li class='has-sub'><a href="http://www.sarawak.gov.my/web/home/article_view/228/244/" class="" alt="Menu link to About Sarawak">About Sarawak</a><ul><li class='has-sub'><a href="/web/home/article_view/228/244/">History</a><ul><li><a href="/web/home/article_view/233/244/">Sarawak before 1841</a></li><li><a href="/web/home/article_view/234/245/">The Brooke Era</a></li><li><a href="/web/home/article_view/235/246/">The Japanese Occupation</a></li><li><a href="/web/home/article_view/236/247/">British Military Administration</a></li><li><a href="/web/home/article_view/237/248/">Sarawak as a British Crown Colony</a></li><li><a href="/web/home/article_view/238/249/">Self-Governing Sarawak 1963</a></li><li><a href="/web/home/article_view/239/250/">Formation of Malaysia 1963</a></li></ul></li><li class='has-sub'><a href="/web/home/article_view/153/172/">State Symbols</a><ul><li><a href="/web/home/article_view/154/172/">Sarawak State Flag</a></li><li><a href="/web/home/article_view/155/187/">Sarawak State Crest</a></li><li><a href="/web/home/article_view/157/174/">Sarawak State Anthem</a></li></ul></li><li class='has-sub'><a href="/web/home/article_view/158/175/">Demographics</a><ul><li><a href="/web/home/article_view/240/175/">Population</a></li><li><a href="/web/home/article_view/241/251/">Births and Deaths</a></li></ul></li><li><a href="/web/home/article_view/159/176/">Geography</a></li><li><a href="/web/home/article_view/160/177/">Transport and Infrastructure</a></li><li><a href="/web/home/article_view/164/181/">Communication</a></li></ul></li><li class='has-sub'><a href="/web/home/page/152/government/" class="" alt="Menu link to Sarawak Government">Sarawak Government</a><ul><li><a href="/web/home/article_view/229/188/">Sarawak Government</a></li><li><a href="/web/home/article_view/340/284/">53 Principles and Action Chief Minister of Sarawak</a></li><li class='has-sub'><a href="/web/home/article_view/183/199/">Sarawak Civil Service</a><ul><li><a href="/web/home/article_view/259/191/">Chief Minister's Department</a></li><li><a href="/web/home/article_view/260/192/">Client's Charter</a></li><li><a href="/web/home/article_view/261/291/">Client's Charter Achievement</a></li></ul></li><li class='has-sub'><a href="/nolink">Research Database</a><ul><li><a href="/web/home/article_view/343/285/">Open Data</a></li><li><a href="/web/home/article_view/350/294/">Get Involved</a></li><li><a href="/web/home/article_view/347/288/">Consultation</a></li></ul></li><li><a href="/web/home/article_view/173/189/">Yang di-Pertua Negeri</a></li><li><a href="/web/home/article_view/174/190/">Chief Minister</a></li><li><a href="/web/home/article_view/180/196/">Judiciary</a></li><li><a href="/web/home/article_view/182/198/">Executive</a></li><li><a href="/web/home/list_agency/230/">Government Directories</a></li></ul></li><li class='has-sub'><a href="http://www.sarawak.gov.my/web/home/article_view/186/242/" class="" alt="Menu link to Online Services">Online Services</a><ul><li><a href="/web/home/article_view/186/242/">Online Services</a></li><li><a href="/web/home/article_view/187/205/">Mobile And SMS Services</a></li><li><a href="/web/home/service_statistic">Statistics</a></li></ul></li><li class='has-sub'><a href="/web/home/article_view/193/211/" class="" alt="Menu link to Residents">Residents</a><ul><li><a href="/web/home/article_view/194/211/">Citizenship</a></li><li><a href="/web/home/article_view/195/213/">Malaysian Passport</a></li><li><a href="/web/home/article_view/197/215/">Education</a></li><li><a href="/web/home/article_view/198/292/">Public Holidays 2017</a></li><li><a href="/web/home/article_view/199/293/">School Holidays 2017</a></li></ul></li><li class='has-sub'><a href="/web/home/page/200/investor/" class="" alt="Menu link to Investors">Investors</a><ul><li class='has-sub'><a href="/web/home/article_view/201/218/">Sarawak Advantages</a><ul><li><a href="/web/home/article_view/202/218/">Location</a></li><li><a href="/web/home/article_view/203/219/">Government</a></li><li><a href="/web/home/article_view/204/220/">Economic Growth</a></li><li><a href="/web/home/article_view/205/221/">Climate and Natural Resources</a></li><li><a href="/web/home/article_view/206/222/">Labour Market</a></li><li><a href="/web/home/article_view/207/177/">Infrastructure</a></li><li><a href="/web/home/article_view/208/224/">Utilities</a></li><li><a href="/web/home/article_view/209/225/">Quality of Life</a></li><li><a href="/web/home/article_view/210/226/">Financial Services</a></li></ul></li><li class='has-sub'><a href="/web/home/article_view/211/227/">Industrial Estate</a><ul><li><a href="/web/home/article_view/212/227/">Industrial Estate by Division</a></li><li><a href="/web/home/article_view/213/228/">Industrial Estate Developed by MID</a></li></ul></li><li><a href="/web/home/article_view/214/229/">Investment Incentives</a></li><li><a href="/web/home/article_view/215/230/">Equity Protection Policies</a></li><li><a href="/web/home/article_view/216/231/">Manufacturing Applications</a></li></ul></li><li class='has-sub'><a href="/web/home/page/217/visitors/" class="" alt="Menu link to Visitors">Visitors</a><ul><li><a href="/web/home/article_view/218/233/">Getting Around</a></li><li><a href="/web/home/article_view/219/234/">Travel Tips</a></li><li><a href="/web/home/article_view/220/235/">Places of Interest</a></li><li><a href="/web/home/article_view/221/279/">Malaysia My Second Home</a></li></ul></li><li><a href="/web/home/list_agency/243/" class="" alt="Menu link to Directory">Directory</a></li><li class='has-sub'><a href="/web/home/list_news/223/" class="" alt="Menu link to Media Centre">Media Centre</a><ul><li><a href="/web/home/list_news/244/">News</a></li><li><a href="/web/home/list_event/353/">Events</a></li><li><a href="/web/home/album/226/">Photo Gallery</a></li><li><a href="/web/home/video/231/">Video Gallery</a></li><li><a href="/web/home/article_view/247/259/">Publication</a></li></ul></li></ul></div>
-
-<script language="javascript">
-( function( $ ) {
-$( document ).ready(function() {
-$('#cssmenu').prepend('<div id="menu-button">Menu</div>');
-	$('#cssmenu #menu-button').click(function() {
-		var menu = $(this).next('ul');
-		if (menu.hasClass('open')) {
-			menu.removeClass('open');
-		}
-		else {
-			menu.addClass('open');
-		}
-	});
-});
-} )( jQuery );
-</script></div>		</div>
-	</div>
-<div id='weblayoutwidth' style="background-color:#ffffff;">
-	<div class="contentWrapper">
-		<div class="portletVerticalSeparator">&nbsp;</div>
-		<div class="colmask fullpage"><div class="col1"><div><style>#pPhotoSliderDescBtn{	position:relative;	z-index:10;}#pPhotoSliderDescBtn2{	position:absolute;	top:-22px;	left:3px;}#pPhotoSliderDescBtn2 div{	display:inline-block;	background-color:white;	cursor:pointer;	margin:3px;	padding:4px 4px;	border-radius:4px;}#pPhotoSliderDescBtn2 .selected{	background-color:#444;	color:#fff;}</style><div id="pPhotoSliderDesc" style="height:272px;width:100%;overflow:hidden;margin:0;padding:0;"><a href='http://www.sarawak.gov.my/web/home/page/217/visitors/' target='_blank'><div id='div_photo_slider_desc_1' style='position:relative;display:none;height:272px;'><img id='1' src='/media/images/Photo Slider Home/sarawak2.jpg' alt='Animated Image' style='width:1000px;'></div></a></div><div id="pPhotoSliderDescBtn"><div id="pPhotoSliderDescBtn2"><div id='photo_slider_desc_btn_1' class='selected' onclick="changeSlideDesc(1)"></div><input type="hidden" class="text" name="curr_photo_slider_id" id="curr_photo_slider_id" value="1" style="width:400px;" ></div></div><script type="text/javascript" language="javascript">var psdt;var psdi=600000;$(document).ready(function(){		document.getElementById('div_photo_slider_desc_1').style.display = "block";	document.getElementById('curr_photo_slider_id').value = "1";	startSliderDesc(psdi);	});function startSliderDesc(intvl){	psdt=setInterval("changeSlideDesc('')",intvl);}function changeSlideDesc(vID){	if(vID==''){		v_curr_id = document.getElementById('curr_photo_slider_id').value;		if(document.getElementById('curr_photo_slider_id').value == "1"){			v_next_id = 1;		}else{			v_next_id = parseInt(document.getElementById('curr_photo_slider_id').value) + 1;		}		// alert(v_next_id);		$('#div_photo_slider_desc_'+v_curr_id).fadeOut();		$('#div_photo_slider_desc_'+v_next_id).fadeIn();		document.getElementById('curr_photo_slider_id').value = v_next_id;		$('#pPhotoSliderDescBtn2 div').attr('class','');				document.getElementById('photo_slider_desc_btn_'+v_next_id).className = 'selected';			}else{		window.clearInterval(psdt);				v_curr_id = document.getElementById('curr_photo_slider_id').value;		v_next_id = vID;		// alert(v_next_id);		$('#div_photo_slider_desc_'+v_curr_id).fadeOut();		$('#div_photo_slider_desc_'+v_next_id).fadeIn();		document.getElementById('curr_photo_slider_id').value = v_next_id;		$('#pPhotoSliderDescBtn2 div').attr('class','');				document.getElementById('photo_slider_desc_btn_'+v_next_id).className = 'selected';				startSliderDesc(psdi);	}}</script><div class="portletVerticalSeparator">&nbsp;</div></div></div></div>		<div class="colmask rightmenu">
-			<div class="colleft">
-				<div class="col1">
-					<!-- Column 1 start -->
-						<div class="col1inner">
-<div id="pAppPlace_responsive">
-	<div class="pWrapper">
-		<!-- Title -->
-					<div class="title">
-				<div class="middle">
-					
-							<div>Online Services</div>
-				</div>
-			</div>
-		
-		<div class="content" align="center">
-			<!--<div class="app_place">-->
-			<div style='float:left;width:100px;height:140px;padding:5px;'><a title="Link to Pay Bills" href='https://paybills.sarawak.gov.my' style="padding-left:1px;padding-right:1px;"><img alt="Image for Pay Bills" src='https://www.sarawak.gov.my/web/share/app_show/147' width='100px' height='70px'><br/>Pay Bills</a></div><div style='float:left;width:100px;height:140px;padding:5px;'><a title="Link to eMap" href='http://www.elasis.sarawak.gov.my/' style="padding-left:1px;padding-right:1px;"><img alt="Image for eMap" src='https://www.sarawak.gov.my/web/share/app_show/150' width='100px' height='70px'><br/>eMap</a></div><div style='float:left;width:100px;height:140px;padding:5px;'><a title="Link to eRent" href='https://www.elasis.sarawak.gov.my/searchLandRentPremiumEnquiry' style="padding-left:1px;padding-right:1px;"><img alt="Image for eRent" src='https://www.sarawak.gov.my/web/share/app_show/151' width='100px' height='70px'><br/>eRent</a></div><div style='float:left;width:100px;height:140px;padding:5px;'><a title="Link to iHydro" href='http://www.ihydro.did.sarawak.gov.my' style="padding-left:1px;padding-right:1px;"><img alt="Image for iHydro" src='https://www.sarawak.gov.my/web/share/app_show/152' width='100px' height='70px'><br/>iHydro</a></div><div style='float:left;width:100px;height:140px;padding:5px;'><a title="Link to eMunakahat" href='http://e-munakahat.sarawak.gov.my' style="padding-left:1px;padding-right:1px;"><img alt="Image for eMunakahat" src='https://www.sarawak.gov.my/web/share/app_show/153' width='100px' height='70px'><br/>eMunakahat</a></div><div style='float:left;width:100px;height:140px;padding:5px;'><a title="Link to LawNet" href='http://lawnet.sarawak.gov.my/lawnet/Law/TLnetPubHome.jsp' style="padding-left:1px;padding-right:1px;"><img alt="Image for LawNet" src='https://www.sarawak.gov.my/web/share/app_show/154' width='100px' height='70px'><br/>LawNet</a></div><div style='float:left;width:100px;height:140px;padding:5px;'><a title="Link to HomeApps" href='http://homeapps.sarawak.gov.my/' style="padding-left:1px;padding-right:1px;"><img alt="Image for HomeApps" src='https://www.sarawak.gov.my/web/share/app_show/155' width='100px' height='70px'><br/>HomeApps</a></div><div style='float:left;width:100px;height:140px;padding:5px;'><a title="Link to Child Adoption Application" href='http://child.sarawak.gov.my' style="padding-left:1px;padding-right:1px;"><img alt="Image for Child Adoption Application" src='https://www.sarawak.gov.my/web/share/app_show/137' width='100px' height='70px'><br/>Child Adoption Application</a></div><div style='float:left;width:100px;height:140px;padding:5px;'><a title="Link to Probate Registration" href='http://probate.sarawak.gov.my' style="padding-left:1px;padding-right:1px;"><img alt="Image for Probate Registration" src='https://www.sarawak.gov.my/web/share/app_show/138' width='100px' height='70px'><br/>Probate Registration</a></div><div style='float:left;width:100px;height:140px;padding:5px;'><a title="Link to e-Libraries" href='http://www.pustaka-sarawak.com/Pustaka-Sarawak/' style="padding-left:1px;padding-right:1px;"><img alt="Image for e-Libraries" src='https://www.sarawak.gov.my/web/share/app_show/139' width='100px' height='70px'><br/>e-Libraries</a></div><div style='float:left;width:100px;height:140px;padding:5px;'><a title="Link to e-Scholarship" href='http://escholarship.sarawak.gov.my/' style="padding-left:1px;padding-right:1px;"><img alt="Image for e-Scholarship" src='https://www.sarawak.gov.my/web/share/app_show/132' width='100px' height='70px'><br/>e-Scholarship</a></div><div style='float:left;width:100px;height:140px;padding:5px;'><a title="Link to e-Booking" href='http://ebooking.sarawak.gov.my/' style="padding-left:1px;padding-right:1px;"><img alt="Image for e-Booking" src='https://www.sarawak.gov.my/web/share/app_show/133' width='100px' height='70px'><br/>e-Booking</a></div><div style='float:left;width:100px;height:140px;padding:5px;'><a title="Link to e-Recruitment" href='http://erecruitment.sarawak.gov.my' style="padding-left:1px;padding-right:1px;"><img alt="Image for e-Recruitment" src='https://www.sarawak.gov.my/web/share/app_show/148' width='100px' height='70px'><br/>e-Recruitment</a></div><div style='float:left;width:100px;height:140px;padding:5px;'><a title="Link to Entrepreneur Registration" href='http://www.eds.sarawak.gov.my/UPUB/initLogin' style="padding-left:1px;padding-right:1px;"><img alt="Image for Entrepreneur Registration" src='https://www.sarawak.gov.my/web/share/app_show/149' width='100px' height='70px'><br/>Entrepreneur Registration</a></div><div style='float:left;width:100px;height:140px;padding:5px;'><a title="Link to e-Tender" href='http://www.etendernotice.sarawak.gov.my/' style="padding-left:1px;padding-right:1px;"><img alt="Image for e-Tender" src='https://www.sarawak.gov.my/web/share/app_show/134' width='100px' height='70px'><br/>e-Tender</a></div><div style='float:left;width:100px;height:140px;padding:5px;'><a title="Link to e-UPK" href='http://sccrs.sarawak.gov.my/upkj/upk_login/pemohon_berdaftar_login.jsp' style="padding-left:1px;padding-right:1px;"><img alt="Image for e-UPK" src='https://www.sarawak.gov.my/web/share/app_show/135' width='100px' height='70px'><br/>e-UPK</a></div><div style='float:left;width:100px;height:140px;padding:5px;'><a title="Link to Talikhidmat" href='http://talikhidmat.sarawak.gov.my/apps/talikhidmat/v3/modules/web/' style="padding-left:1px;padding-right:1px;"><img alt="Image for Talikhidmat" src='https://www.sarawak.gov.my/web/share/app_show/140' width='100px' height='70px'><br/>Talikhidmat</a></div><div style='float:left;width:100px;height:140px;padding:5px;'><a title="Link to Contractors Registry" href='http://sccrlist.sarawak.gov.my/comsearch/search/search.jsp' style="padding-left:1px;padding-right:1px;"><img alt="Image for Contractors Registry" src='https://www.sarawak.gov.my/web/share/app_show/141' width='100px' height='70px'><br/>Contractors Registry</a></div><div style='float:left;width:100px;height:140px;padding:5px;'><a title="Link to Handy Guide to Sarawak Government Services" href='http://sgservicesguide.sarawak.gov.my/modules/web/' style="padding-left:1px;padding-right:1px;"><img alt="Image for Handy Guide to Sarawak Government Services" src='https://www.sarawak.gov.my/web/share/app_show/142' width='100px' height='70px'><br/>Handy Guide to Sarawak Government Services</a></div><div style='float:left;width:100px;height:140px;padding:5px;'><a title="Link to eMINDS" href='http://eminds.sarawak.gov.my/' style="padding-left:1px;padding-right:1px;"><img alt="Image for eMINDS" src='https://www.sarawak.gov.my/web/share/app_show/143' width='100px' height='70px'><br/>eMINDS</a></div><div style='float:left;width:100px;height:140px;padding:5px;'><a title="Link to MyEG Services" href='http://www.myeg.com.my/' style="padding-left:1px;padding-right:1px;"><img alt="Image for MyEG Services" src='https://www.sarawak.gov.my/web/share/app_show/144' width='100px' height='70px'><br/>MyEG Services</a></div><div style='float:left;width:100px;height:140px;padding:5px;'><a title="Link to MySMS" href='http://www.mysms.gov.my/' style="padding-left:1px;padding-right:1px;"><img alt="Image for MySMS" src='https://www.sarawak.gov.my/web/share/app_show/145' width='100px' height='70px'><br/>MySMS</a></div>				<div style="clear:both;"></div>
-			<!--</div>-->
-			<div class="readmore"><a title="Link to more Online Services" href="javascript:void(0);" onClick="javascript: window.location='https://www.sarawak.gov.my/web/home/app/0/';">
-				More			</a>
-			</div>
-		</div>
-	</div>
-</div><style>
-p{
-	margin:0px;
-}
-</style>
-<div id="pAppPlace" style="height:350px;">
-	<div class="pWrapper" style="position:relative; width:690px;">
-		<!-- Title -->
-					<div class="title">
-				<div class="middle">
-					<div>Online Services</div>
-				</div>
-			</div>
-				
-		<!-- Content -->
-		<div style='position:absolute;left:1px;top:90px;z-index:9; width:25px; height:200px; opacity: 0.5; filter: alpha(opacity=50);background-color:#cecece;' id="div_app_prev" class="app_prev">
-			<div style='position:relative;left:3px;'>
-				<div style='position:absolute;top:90px;'>
-					<img src='https://www.sarawak.gov.my/web/web/web/color/royaleblue/res/left_arrow_grey.png' alt="Previous">
-				</div>
-			</div>
-		</div>
-				
-		<div style='position:absolute;'>
-			<div id="div_app" class="content" style="position:relative; overflow:hidden; width:676px;height:300px;">
-				<div id="div_app_content" style="padding:0px; margin:0px auto;border-spacing:0px;position:absolute; left:0px;">
-				<div id='app_child_1' style='display:block; float:left; position:relative; width:641px; height:250px; margin-left:25px;margin-right:10px;'><table width='100%' cellpadding='0' border='0' cellspacing='0' style='height:300px;'><tr>										<td width="25%" style="">
-											<table width="100%" cellpadding="2px" border="0" cellspacing="2px">
-												<tr>
-													<td style="height:100px;vertical-align:top;">														
-														<a title="Link to Pay Bills" href='https://paybills.sarawak.gov.my' style='font-weight:bold;' target='_blank'>
-														<img alt="Image for Pay Bills" src='https://www.sarawak.gov.my/web/share/app_show/147' style="max-width:150px">
-														</a>
-													</td>
-												</tr>
-												<tr>
-													<td style="height:150px;vertical-align:top;">
-														<a title="Link to Pay Bills" href='https://paybills.sarawak.gov.my' style='font-weight:bold;' target='_blank'>
-														Pay Bills
-														</a>
-														<br/><br/>
-														<p>
-	Paybills is a secured online payment channel (SSL Protected) provided by the Sarawak Government.</p>
-													</td>
-												</tr>
-											</table>
-										</td>										<td width="25%" style="">
-											<table width="100%" cellpadding="2px" border="0" cellspacing="2px">
-												<tr>
-													<td style="height:100px;vertical-align:top;">														
-														<a title="Link to eMap" href='http://www.elasis.sarawak.gov.my/' style='font-weight:bold;' target='_blank'>
-														<img alt="Image for eMap" src='https://www.sarawak.gov.my/web/share/app_show/150' style="max-width:150px">
-														</a>
-													</td>
-												</tr>
-												<tr>
-													<td style="height:150px;vertical-align:top;">
-														<a title="Link to eMap" href='http://www.elasis.sarawak.gov.my/' style='font-weight:bold;' target='_blank'>
-														eMap
-														</a>
-														<br/><br/>
-														<p>
-	Search for land information as well as to purchase maps such as Cadastral Map Sheets, Orthophotos, Aerial Photographs and Cartographic Maps.</p>
-													</td>
-												</tr>
-											</table>
-										</td>										<td width="25%" style="">
-											<table width="100%" cellpadding="2px" border="0" cellspacing="2px">
-												<tr>
-													<td style="height:100px;vertical-align:top;">														
-														<a title="Link to eRent" href='https://www.elasis.sarawak.gov.my/searchLandRentPremiumEnquiry' style='font-weight:bold;' target='_blank'>
-														<img alt="Image for eRent" src='https://www.sarawak.gov.my/web/share/app_show/151' style="max-width:150px">
-														</a>
-													</td>
-												</tr>
-												<tr>
-													<td style="height:150px;vertical-align:top;">
-														<a title="Link to eRent" href='https://www.elasis.sarawak.gov.my/searchLandRentPremiumEnquiry' style='font-weight:bold;' target='_blank'>
-														eRent
-														</a>
-														<br/><br/>
-														<p>
-	Land Rent&nbsp; &amp; Premium Enquiry</p>
-													</td>
-												</tr>
-											</table>
-										</td>										<td width="25%" style="">
-											<table width="100%" cellpadding="2px" border="0" cellspacing="2px">
-												<tr>
-													<td style="height:100px;vertical-align:top;">														
-														<a title="Link to iHydro" href='http://www.ihydro.did.sarawak.gov.my' style='font-weight:bold;' target='_blank'>
-														<img alt="Image for iHydro" src='https://www.sarawak.gov.my/web/share/app_show/152' style="max-width:150px">
-														</a>
-													</td>
-												</tr>
-												<tr>
-													<td style="height:150px;vertical-align:top;">
-														<a title="Link to iHydro" href='http://www.ihydro.did.sarawak.gov.my' style='font-weight:bold;' target='_blank'>
-														iHydro
-														</a>
-														<br/><br/>
-														<p>
-	Online Hydrological Telemetry System developed to provide platform for real-time flood and drought monitoring.</p>
-													</td>
-												</tr>
-											</table>
-										</td></table></div><div id='app_child_2' style='display:block; float:left; position:relative; width:641px; height:250px; margin-left:25px;margin-right:10px;'><table width='100%' cellpadding='0' border='0' cellspacing='0' style='height:300px;'><tr>										<td width="25%" style="">
-											<table width="100%" cellpadding="2px" border="0" cellspacing="2px">
-												<tr>
-													<td style="height:100px;vertical-align:top;">														
-														<a title="Link to eMunakahat" href='http://e-munakahat.sarawak.gov.my' style='font-weight:bold;' target='_blank'>
-														<img alt="Image for eMunakahat" src='https://www.sarawak.gov.my/web/share/app_show/153' style="max-width:150px">
-														</a>
-													</td>
-												</tr>
-												<tr>
-													<td style="height:150px;vertical-align:top;">
-														<a title="Link to eMunakahat" href='http://e-munakahat.sarawak.gov.my' style='font-weight:bold;' target='_blank'>
-														eMunakahat
-														</a>
-														<br/><br/>
-														<p>
-	<span id="result_box" lang="en"><span>Application for registration of</span> <span>pre-marital course</span> <span>and</span> <span>online<span id="result_box" lang="en"> <span id="result_box" lang="en"><span><span id="result_box" lang="en"><span><span id="result_box" lang="en"><span><span id="result_box" lang="en"><span>marriage </span></span></span></span></span></span></span></span><span>registration&nbsp;</span></span></span></span></p>
-													</td>
-												</tr>
-											</table>
-										</td>										<td width="25%" style="">
-											<table width="100%" cellpadding="2px" border="0" cellspacing="2px">
-												<tr>
-													<td style="height:100px;vertical-align:top;">														
-														<a title="Link to LawNet" href='http://lawnet.sarawak.gov.my/lawnet/Law/TLnetPubHome.jsp' style='font-weight:bold;' target='_blank'>
-														<img alt="Image for LawNet" src='https://www.sarawak.gov.my/web/share/app_show/154' style="max-width:150px">
-														</a>
-													</td>
-												</tr>
-												<tr>
-													<td style="height:150px;vertical-align:top;">
-														<a title="Link to LawNet" href='http://lawnet.sarawak.gov.my/lawnet/Law/TLnetPubHome.jsp' style='font-weight:bold;' target='_blank'>
-														LawNet
-														</a>
-														<br/><br/>
-														<p>
-	To search and view ordinances and laws related to Sarawak</p>
-													</td>
-												</tr>
-											</table>
-										</td>										<td width="25%" style="">
-											<table width="100%" cellpadding="2px" border="0" cellspacing="2px">
-												<tr>
-													<td style="height:100px;vertical-align:top;">														
-														<a title="Link to HomeApps" href='http://homeapps.sarawak.gov.my/' style='font-weight:bold;' target='_blank'>
-														<img alt="Image for HomeApps" src='https://www.sarawak.gov.my/web/share/app_show/155' style="max-width:150px">
-														</a>
-													</td>
-												</tr>
-												<tr>
-													<td style="height:150px;vertical-align:top;">
-														<a title="Link to HomeApps" href='http://homeapps.sarawak.gov.my/' style='font-weight:bold;' target='_blank'>
-														HomeApps
-														</a>
-														<br/><br/>
-														<p>
-	For housing developers and advocates in Sarawak to apply for normal and low cost housing licenses and permits. And for the house purchasers to lodge a Tribunal claims.</p>
-													</td>
-												</tr>
-											</table>
-										</td>										<td width="25%" style="">
-											<table width="100%" cellpadding="2px" border="0" cellspacing="2px">
-												<tr>
-													<td style="height:100px;vertical-align:top;">														
-														<a title="Link to Child Adoption Application" href='http://child.sarawak.gov.my' style='font-weight:bold;' target='_blank'>
-														<img alt="Image for Child Adoption Application" src='https://www.sarawak.gov.my/web/share/app_show/137' style="max-width:150px">
-														</a>
-													</td>
-												</tr>
-												<tr>
-													<td style="height:150px;vertical-align:top;">
-														<a title="Link to Child Adoption Application" href='http://child.sarawak.gov.my' style='font-weight:bold;' target='_blank'>
-														Child Adoption Application
-														</a>
-														<br/><br/>
-														<p>
-	Register to apply for child adoption with <strong>District Offices</strong>. &nbsp; <a href="http://www.sarawak.gov.my/web/home/article_view/256/267/" target="_self" title="child adoption application">View list of the District Offices</a>.</p>
-													</td>
-												</tr>
-											</table>
-										</td></table></div><div id='app_child_3' style='display:block; float:left; position:relative; width:641px; height:250px; margin-left:25px;margin-right:10px;'><table width='100%' cellpadding='0' border='0' cellspacing='0' style='height:300px;'><tr>										<td width="25%" style="">
-											<table width="100%" cellpadding="2px" border="0" cellspacing="2px">
-												<tr>
-													<td style="height:100px;vertical-align:top;">														
-														<a title="Link to Probate Registration" href='http://probate.sarawak.gov.my' style='font-weight:bold;' target='_blank'>
-														<img alt="Image for Probate Registration" src='https://www.sarawak.gov.my/web/share/app_show/138' style="max-width:150px">
-														</a>
-													</td>
-												</tr>
-												<tr>
-													<td style="height:150px;vertical-align:top;">
-														<a title="Link to Probate Registration" href='http://probate.sarawak.gov.my' style='font-weight:bold;' target='_blank'>
-														Probate Registration
-														</a>
-														<br/><br/>
-														<p>
-	Register probate with <strong>Disctrict Offices</strong>.&nbsp; <a href="http://www.sarawak.gov.my/web/home/article_view/256/266/" target="_self">View list of the District Offices</a>.</p>
-													</td>
-												</tr>
-											</table>
-										</td>										<td width="25%" style="">
-											<table width="100%" cellpadding="2px" border="0" cellspacing="2px">
-												<tr>
-													<td style="height:100px;vertical-align:top;">														
-														<a title="Link to e-Libraries" href='http://www.pustaka-sarawak.com/Pustaka-Sarawak/' style='font-weight:bold;' target='_blank'>
-														<img alt="Image for e-Libraries" src='https://www.sarawak.gov.my/web/share/app_show/139' style="max-width:150px">
-														</a>
-													</td>
-												</tr>
-												<tr>
-													<td style="height:150px;vertical-align:top;">
-														<a title="Link to e-Libraries" href='http://www.pustaka-sarawak.com/Pustaka-Sarawak/' style='font-weight:bold;' target='_blank'>
-														e-Libraries
-														</a>
-														<br/><br/>
-														<p>
-	Get services from over 20 public library in Sarawak.&nbsp; <a class="list of library" href="http://www1.librarynet.com.my/" target="_blank">View list of the libraries.</a></p>
-													</td>
-												</tr>
-											</table>
-										</td>										<td width="25%" style="">
-											<table width="100%" cellpadding="2px" border="0" cellspacing="2px">
-												<tr>
-													<td style="height:100px;vertical-align:top;">														
-														<a title="Link to e-Scholarship" href='http://escholarship.sarawak.gov.my/' style='font-weight:bold;' target='_blank'>
-														<img alt="Image for e-Scholarship" src='https://www.sarawak.gov.my/web/share/app_show/132' style="max-width:150px">
-														</a>
-													</td>
-												</tr>
-												<tr>
-													<td style="height:150px;vertical-align:top;">
-														<a title="Link to e-Scholarship" href='http://escholarship.sarawak.gov.my/' style='font-weight:bold;' target='_blank'>
-														e-Scholarship
-														</a>
-														<br/><br/>
-														<p>
-	Apply for Scholarships from State Public Services Commisssions.</p>
-													</td>
-												</tr>
-											</table>
-										</td>										<td width="25%" style="">
-											<table width="100%" cellpadding="2px" border="0" cellspacing="2px">
-												<tr>
-													<td style="height:100px;vertical-align:top;">														
-														<a title="Link to e-Booking" href='http://ebooking.sarawak.gov.my/' style='font-weight:bold;' target='_blank'>
-														<img alt="Image for e-Booking" src='https://www.sarawak.gov.my/web/share/app_show/133' style="max-width:150px">
-														</a>
-													</td>
-												</tr>
-												<tr>
-													<td style="height:150px;vertical-align:top;">
-														<a title="Link to e-Booking" href='http://ebooking.sarawak.gov.my/' style='font-weight:bold;' target='_blank'>
-														e-Booking
-														</a>
-														<br/><br/>
-														<p>
-	Book for government facilities.</p>
-													</td>
-												</tr>
-											</table>
-										</td></table></div><div id='app_child_4' style='display:block; float:left; position:relative; width:641px; height:250px; margin-left:25px;margin-right:10px;'><table width='100%' cellpadding='0' border='0' cellspacing='0' style='height:300px;'><tr>										<td width="25%" style="">
-											<table width="100%" cellpadding="2px" border="0" cellspacing="2px">
-												<tr>
-													<td style="height:100px;vertical-align:top;">														
-														<a title="Link to e-Recruitment" href='http://erecruitment.sarawak.gov.my' style='font-weight:bold;' target='_blank'>
-														<img alt="Image for e-Recruitment" src='https://www.sarawak.gov.my/web/share/app_show/148' style="max-width:150px">
-														</a>
-													</td>
-												</tr>
-												<tr>
-													<td style="height:150px;vertical-align:top;">
-														<a title="Link to e-Recruitment" href='http://erecruitment.sarawak.gov.my' style='font-weight:bold;' target='_blank'>
-														e-Recruitment
-														</a>
-														<br/><br/>
-														<p>
-	Apply for vacancy in the State government agencies.</p>
-													</td>
-												</tr>
-											</table>
-										</td>										<td width="25%" style="">
-											<table width="100%" cellpadding="2px" border="0" cellspacing="2px">
-												<tr>
-													<td style="height:100px;vertical-align:top;">														
-														<a title="Link to Entrepreneur Registration" href='http://www.eds.sarawak.gov.my/UPUB/initLogin' style='font-weight:bold;' target='_blank'>
-														<img alt="Image for Entrepreneur Registration" src='https://www.sarawak.gov.my/web/share/app_show/149' style="max-width:150px">
-														</a>
-													</td>
-												</tr>
-												<tr>
-													<td style="height:150px;vertical-align:top;">
-														<a title="Link to Entrepreneur Registration" href='http://www.eds.sarawak.gov.my/UPUB/initLogin' style='font-weight:bold;' target='_blank'>
-														Entrepreneur Registration
-														</a>
-														<br/><br/>
-														<p>
-	Register to view and register the training and promotion programme organise by Bumiputera Entrepreneur Development Unit.</p>
-													</td>
-												</tr>
-											</table>
-										</td>										<td width="25%" style="">
-											<table width="100%" cellpadding="2px" border="0" cellspacing="2px">
-												<tr>
-													<td style="height:100px;vertical-align:top;">														
-														<a title="Link to e-Tender" href='http://www.etendernotice.sarawak.gov.my/' style='font-weight:bold;' target='_blank'>
-														<img alt="Image for e-Tender" src='https://www.sarawak.gov.my/web/share/app_show/134' style="max-width:150px">
-														</a>
-													</td>
-												</tr>
-												<tr>
-													<td style="height:150px;vertical-align:top;">
-														<a title="Link to e-Tender" href='http://www.etendernotice.sarawak.gov.my/' style='font-weight:bold;' target='_blank'>
-														e-Tender
-														</a>
-														<br/><br/>
-														<p>
-	View State Government agencies tender notices.</p>
-													</td>
-												</tr>
-											</table>
-										</td>										<td width="25%" style="">
-											<table width="100%" cellpadding="2px" border="0" cellspacing="2px">
-												<tr>
-													<td style="height:100px;vertical-align:top;">														
-														<a title="Link to e-UPK" href='http://sccrs.sarawak.gov.my/upkj/upk_login/pemohon_berdaftar_login.jsp' style='font-weight:bold;' target='_blank'>
-														<img alt="Image for e-UPK" src='https://www.sarawak.gov.my/web/share/app_show/135' style="max-width:150px">
-														</a>
-													</td>
-												</tr>
-												<tr>
-													<td style="height:150px;vertical-align:top;">
-														<a title="Link to e-UPK" href='http://sccrs.sarawak.gov.my/upkj/upk_login/pemohon_berdaftar_login.jsp' style='font-weight:bold;' target='_blank'>
-														e-UPK
-														</a>
-														<br/><br/>
-														<p>
-	Register as Government Contractor / Consultant.</p>
-													</td>
-												</tr>
-											</table>
-										</td></table></div><div id='app_child_5' style='display:block; float:left; position:relative; width:641px; height:250px; margin-left:25px;margin-right:10px;'><table width='100%' cellpadding='0' border='0' cellspacing='0' style='height:300px;'><tr>										<td width="25%" style="">
-											<table width="100%" cellpadding="2px" border="0" cellspacing="2px">
-												<tr>
-													<td style="height:100px;vertical-align:top;">														
-														<a title="Link to Talikhidmat" href='http://talikhidmat.sarawak.gov.my/apps/talikhidmat/v3/modules/web/' style='font-weight:bold;' target='_blank'>
-														<img alt="Image for Talikhidmat" src='https://www.sarawak.gov.my/web/share/app_show/140' style="max-width:150px">
-														</a>
-													</td>
-												</tr>
-												<tr>
-													<td style="height:150px;vertical-align:top;">
-														<a title="Link to Talikhidmat" href='http://talikhidmat.sarawak.gov.my/apps/talikhidmat/v3/modules/web/' style='font-weight:bold;' target='_blank'>
-														Talikhidmat
-														</a>
-														<br/><br/>
-														<p>
-	Complaints and Feedback to all Government Agencies and non Government Organisations.</p>
-													</td>
-												</tr>
-											</table>
-										</td>										<td width="25%" style="">
-											<table width="100%" cellpadding="2px" border="0" cellspacing="2px">
-												<tr>
-													<td style="height:100px;vertical-align:top;">														
-														<a title="Link to Contractors Registry" href='http://sccrlist.sarawak.gov.my/comsearch/search/search.jsp' style='font-weight:bold;' target='_blank'>
-														<img alt="Image for Contractors Registry" src='https://www.sarawak.gov.my/web/share/app_show/141' style="max-width:150px">
-														</a>
-													</td>
-												</tr>
-												<tr>
-													<td style="height:150px;vertical-align:top;">
-														<a title="Link to Contractors Registry" href='http://sccrlist.sarawak.gov.my/comsearch/search/search.jsp' style='font-weight:bold;' target='_blank'>
-														Contractors Registry
-														</a>
-														<br/><br/>
-														<p>
-	Search and view contractors Registry.</p>
-													</td>
-												</tr>
-											</table>
-										</td>										<td width="25%" style="">
-											<table width="100%" cellpadding="2px" border="0" cellspacing="2px">
-												<tr>
-													<td style="height:100px;vertical-align:top;">														
-														<a title="Link to Handy Guide to Sarawak Government Services" href='http://sgservicesguide.sarawak.gov.my/modules/web/' style='font-weight:bold;' target='_blank'>
-														<img alt="Image for Handy Guide to Sarawak Government Services" src='https://www.sarawak.gov.my/web/share/app_show/142' style="max-width:150px">
-														</a>
-													</td>
-												</tr>
-												<tr>
-													<td style="height:150px;vertical-align:top;">
-														<a title="Link to Handy Guide to Sarawak Government Services" href='http://sgservicesguide.sarawak.gov.my/modules/web/' style='font-weight:bold;' target='_blank'>
-														Handy Guide to Sarawak Government Services
-														</a>
-														<br/><br/>
-														<p>
-	Search and view the acts, ordinances and guidelines on Government Services.</p>
-													</td>
-												</tr>
-											</table>
-										</td>										<td width="25%" style="">
-											<table width="100%" cellpadding="2px" border="0" cellspacing="2px">
-												<tr>
-													<td style="height:100px;vertical-align:top;">														
-														<a title="Link to eMINDS" href='http://eminds.sarawak.gov.my/' style='font-weight:bold;' target='_blank'>
-														<img alt="Image for eMINDS" src='https://www.sarawak.gov.my/web/share/app_show/143' style="max-width:150px">
-														</a>
-													</td>
-												</tr>
-												<tr>
-													<td style="height:150px;vertical-align:top;">
-														<a title="Link to eMINDS" href='http://eminds.sarawak.gov.my/' style='font-weight:bold;' target='_blank'>
-														eMINDS
-														</a>
-														<br/><br/>
-														<p>
-	EIU Main Information, Database and Network System.</p>
-													</td>
-												</tr>
-											</table>
-										</td></table></div><div id='app_child_6' style='display:block; float:left; position:relative; width:641px; height:250px; margin-left:25px;margin-right:10px;'><table width='100%' cellpadding='0' border='0' cellspacing='0' style='height:300px;'><tr>										<td width="25%" style="">
-											<table width="100%" cellpadding="2px" border="0" cellspacing="2px">
-												<tr>
-													<td style="height:100px;vertical-align:top;">														
-														<a title="Link to MyEG Services" href='http://www.myeg.com.my/' style='font-weight:bold;' target='_blank'>
-														<img alt="Image for MyEG Services" src='https://www.sarawak.gov.my/web/share/app_show/144' style="max-width:150px">
-														</a>
-													</td>
-												</tr>
-												<tr>
-													<td style="height:150px;vertical-align:top;">
-														<a title="Link to MyEG Services" href='http://www.myeg.com.my/' style='font-weight:bold;' target='_blank'>
-														MyEG Services
-														</a>
-														<br/><br/>
-														<p>
-	<span class="popup">MyEG Services</span></p>
-													</td>
-												</tr>
-											</table>
-										</td>										<td width="25%" style="">
-											<table width="100%" cellpadding="2px" border="0" cellspacing="2px">
-												<tr>
-													<td style="height:100px;vertical-align:top;">														
-														<a title="Link to MySMS" href='http://www.mysms.gov.my/' style='font-weight:bold;' target='_blank'>
-														<img alt="Image for MySMS" src='https://www.sarawak.gov.my/web/share/app_show/145' style="max-width:150px">
-														</a>
-													</td>
-												</tr>
-												<tr>
-													<td style="height:150px;vertical-align:top;">
-														<a title="Link to MySMS" href='http://www.mysms.gov.my/' style='font-weight:bold;' target='_blank'>
-														MySMS
-														</a>
-														<br/><br/>
-														<p>
-	MySMS 15888 Gerbang SMS Kerajaan Malaysia</p>
-													</td>
-												</tr>
-											</table>
-										</td><td width='25%'>&nbsp;</td><td width='25%'>&nbsp;</td></tr></table></div>				</div>
-			</div>
-		</div>
-	
-		<div style='position:absolute;right:1px;top:90px;z-index:9; width:25px; height:200px; opacity: 0.5; filter: alpha(opacity=50); background-color:#cecece;' id="div_app_next" class="app_next">
-			<div style='position:relative;left:3px;'>
-				<div style='position:absolute;top:90px;'>
-					<img src='https://www.sarawak.gov.my/web/web/web/color/royaleblue/res/right_arrow_grey.png' alt="Next">
-				</div>
-			</div>
-		</div>
-		
-	</div>
-</div>
-
-<div class="portletVerticalSeparator">&nbsp;</div>
-<script type="text/javascript" language="javascript">
-
-$(document).ready(function(){
-
-    var app = $('#div_app');
-    var app_width = app.width(); 
-    var slider = $('#div_app_content');
-    var box = $('div', slider);
-    var box_length = box.length; 
-
-    var counter = 0; 
-
-    slider.width(app_width*box_length);
-
-    $('#div_app_prev, #div_app_next').click(function(e){
-      e.preventDefault();
-      var dir = this.id=='div_app_next' ? counter++ : counter-- ;
-      counter = counter<0 ? box_length-1 : counter%box_length;    
-	  slider.stop().animate({ left: -counter*app_width },800);  
-    });
-	
-	$("div.app_next").mouseout(function(){
-		$("div.app_next").css("background-color","#cecece");
-	}).mouseover(function(){
-		$("div.app_next").css("background-color","#b7b7b7");
-	});
-	
-	$("div.app_prev").mouseout(function(){
-		$("div.app_prev").css("background-color","#cecece");
-	}).mouseover(function(){
-		$("div.app_prev").css("background-color","#b7b7b7");
-	});
-	 
-});
-
-function add_style(p_id){
-	document.getElementById(p_id).style.border = "1px solid #e1e1e1";
-	document.getElementById(p_id).style.padding = "1px";
-}
-
-function remove_style(p_id){
-	document.getElementById(p_id).style.border = "0px";
-	document.getElementById(p_id).style.padding = "2px";
-}
-
-</script>
-</div>					<!-- Column 1 end -->
-					
-																		
-										</div>
-				<!-- Column 2 start -->
-					<div class='col2'><script type="text/javascript" language="javascript">
-$(document).ready(function(){
-	var divRssObj=$(".rssfeedajax");
-		
-	var v_href = document.getElementsByTagName("a");
-	for(v_c=1;v_c<v_href.length;v_c++){
-		v_id = v_href[v_c].id;
-		if(v_id.substr(0,11)=="flowplayer_"){
-			document.getElementById(v_id).innerHTML = "";
-			initFlowPlayerSimple(v_id);
-		}
-	}
-});
-</script>
-<div class="pCustomWrapper">
-	<div class="">
-		<!-- Title -->
-				<!-- Content -->
-		<div class="contentNoBg"><p>
-	<style type="text/css">
-.portlet_tab{background-color:#ffffff; display:inline-block; list-style:none; padding:8px; cursor:pointer;}
-
-.portlet_tab_selected{display:inline-block; list-style:none;padding:5px; background-color: #CCCCCC ; color: #000000;cursor:pointer;}
-
-.portlet_tab_ul{margin:0px 0px 0px 0px;padding:0px;}
-
-.portlet_tab_div div{ border-top:#FF3366 solid thin; background: #fcfcfc; padding:6px;}	</style>
-</p>
-<div class="portlet_tab_div">
-	<ul class="portlet_tab_ul" id="portlet_tab">
-		<li class="portlet_tab_selected" onclick="portlet_change_tab(this.parentNode.id,1);this.className='portlet_tab_selected';">
-			<strong>Announcement</strong></li>
-		<li class="portlet_tab" onclick="portlet_change_tab(this.parentNode.id,2);this.className='portlet_tab_selected';">
-			<strong>Mobile Apps</strong></li>
-		<li class="portlet_tab" onclick="portlet_change_tab(this.parentNode.id,3);this.className='portlet_tab_selected';">
-			<strong>Events</strong></li>
-	</ul>
-	<div style="display:block; ">
-		<p>
-			<em><em><span style="color: rgb(255, 0, 0); padding-right:5px;"><i class="bullet_arrow">&raquo;&nbsp;</i></span></em></em><em><em><span style="color: rgb(255, 0, 0); padding-right:5px;"><i class="bullet_arrow"><em><em><span style="color: rgb(255, 0, 0); padding-right:5px;"><i class="bullet_arrow"><a href="https://www.sarawak.gov.my/web/home/announcement_view/0/69/" rel="https://www.sarawak.gov.my/web/home/announcement_view/0/69/" title="Read more on news New Poscode For Bario Sub District">New Poscode For Bario Sub District</a></i></span></em></em></i></span></em></em><br />
-			&nbsp;</p>
-		<p>
-			<em><em><span style="color: rgb(255, 0, 0); padding-right:5px;"><i class="bullet_arrow"><em><em><em><em><span style="color: rgb(255, 0, 0); padding-right:5px;"><i class="bullet_arrow">&raquo;</i></span></em></em></em></em></i></span></em></em><em><em><span style="color: rgb(255, 0, 0); padding-right:5px;"><i class="bullet_arrow"><em><em><span style="color: rgb(255, 0, 0); padding-right:5px;"><a href="https://www.sarawak.gov.my/web/home/announcement_view/0/71/" id="ann_link2" rel="https://www.sarawak.gov.my/web/home/announcement_view/0/71/" title="Read more on news Closing of Miri Petroleum Museum">Closing of Miri Petroleum Museum </a></span></em></em></i></span></em></em><br />
-			&nbsp;</p>
-		<p>
-			<em><em><em><em><span style="color: rgb(255, 0, 0); padding-right:5px;"><i class="bullet_arrow">&raquo;</i></span></em></em></em></em><em><em><span style="color: rgb(255, 0, 0); padding-right:5px;"><i class="bullet_arrow"><a href="https://www.sarawak.gov.my/web/home/announcement_view/0/68/" id="ann_link1" rel="https://www.sarawak.gov.my/web/home/announcement_view/0/68/" title="Read more on news The Sarawak State Government Development Bank Of Sarawak (DBOS) Logo competition">The Sarawak State Government Development Bank Of Sarawak (DBOS) Logo competition<br />
-			</a></i></span></em></em></p>
-		<p>
-			<em><span style="color: rgb(255, 0, 0); padding-right:5px;"><i class="bullet_arrow">&raquo; <a href="http://infodisaster.sarawak.gov.my" id="ann_link2" rel="https://www.sarawak.gov.my/web/home/announcement_view/0/55/" target="_blank" title="Information on rabbies in Sarawak is now available on Sarawak Disaster Information website">Information on rabies in Sarawak is now available on Sarawak Disaster Information website</a></i></span></em><br />
-			<br />
-			<em><span style="color: rgb(255, 0, 0); padding-right:5px;"><i class="bullet_arrow">&raquo; <a href="https://www.sarawak.gov.my/web/home/announcement_view/0/67/" id="ann_link1" rel="https://www.sarawak.gov.my/web/home/announcement_view/0/67/" title="Read more on news Survey on Potential Workforce in Digital Economy">Survey on Potential Workforce in Digital Economy </a></i></span></em></p>
-		<p style="text-align: right;">
-			<a href="https://www.sarawak.gov.my/web/home/list_announcement/"><b>More... </b></a></p>
-<!--<p style="padding-right: 20px; text-align:right; ">
-			<a href="https://www.sarawak.gov.my/web/home/list_announcement/0/" target="_self"> <strong>More</strong>... </a></p>-->	</div>
-	<div style="display:block;min-height:100px;padding:8px; ">
-		<table border="0" cellpadding="1" cellspacing="1" width="100%">
-			<tbody>
-				<tr>
-					<td colspan="2" style="vertical-align: middle;">
-						<strong>Sarawak Government Apps</strong></td>
-				</tr>
-				<tr>
-					<td colspan="2" style="vertical-align: middle;">
-						Sarawak Government apps is now available for download from Google play store (Android) and Apple apps store (IOS).</td>
-				</tr>
-				<tr>
-					<td style="vertical-align: middle;">
-						<img alt="Sarawak apps android version QR" src="https://www.sarawak.gov.my/media/images/icon/QR/sarawakgov_android.jpg" style="width: 100px; height: 100px;" /><br />
-						Android version</td>
-					<td style="vertical-align: middle;">
-						<img alt="Sarawak apps IOS version QR" src="https://www.sarawak.gov.my/media/images/icon/QR/sarawakgov_ios.jpg" style="width: 100px; height: 100px;" /><br />
-						IOS version</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	<div style="display:block;min-height:100px;">
-		<p>
-			<span><b><a class="event_title" href="https://www.sarawak.gov.my/web/home/event_view/353/241/" id="event_link2" title="Link to event Sarawak Handicraft Competition">Sarawak Handicraft Competition</a></b></span><br />
-			1st June 2017 - 30 Sept 2017<br />
-			Residence Office<br />
-			<br />
-			<b><a class="event_title" href="https://www.sarawak.gov.my/web/home/event_view/353/246/" id="event_link2" title="Link to event Malaysia Day Celebration State Level 2017">Malaysia Day Celebration State Level 2017 </a><br />
-			</b><span>16 September 2017</span><br />
-			Dataran Bandar Sibu<br />
-			<br />
-			<b><a class="event_title" href="https://www.sarawak.gov.my/web/home/event_view/353/245/" id="event_link1" title="Link to event Highland Night Run 2017">Highland Night Run 2017 </a> </b><br />
-			<span>6 October 2017</span><br />
-			Matang Wildlife Homestay</p>
-		<p style="padding-right: 20px; text-align: right;">
-			<b><a href="https://www.sarawak.gov.my/web/home/list_event/113//" title="view full list of the events"><br />
-			More events... </a></b></p>
-	</div>
-</div></div>
-	</div>
-</div>
-<div class="portletVerticalSeparator">&nbsp;</div></div>				<!-- Column 2 end -->
-			</div>
-		</div>
-		<div class="portletVerticalSeparator"></div>
-		<!--<div class="glow">&nbsp;</div>-->
-				<div class="colmask bottommenu">
-			<div class="colleft">
-				<div class="col1">			
-					<div class="col11"><div><script type="text/javascript" language="javascript">
-$(document).ready(function(){
-	var divRssObj=$(".rssfeedajax");
-		
-	var v_href = document.getElementsByTagName("a");
-	for(v_c=1;v_c<v_href.length;v_c++){
-		v_id = v_href[v_c].id;
-		if(v_id.substr(0,11)=="flowplayer_"){
-			document.getElementById(v_id).innerHTML = "";
-			initFlowPlayerSimple(v_id);
-		}
-	}
-});
-</script>
-<div class="pCustomWrapper">
-	<div class="">
-		<!-- Title -->
-					<div class="titlenobg">
-				<div class="middle">
-					<div>Media Centre</div>
-				</div>
-			</div>
-				<!-- Content -->
-		<div class="contentNoBg"><table border="0" cellpadding="0" cellspacing="0" style="width: 80%;">
-	<tbody>
-		<tr>
-			<td style="width: 38%;">
-				<p style="text-align: center; ">
-					<a href="https://www.sarawak.gov.my/web/home/list_news/244/"><img alt="Image for news" src="https://www.sarawak.gov.my/media/images/sector_investors.jpg" style="width: 120px; background-color: white;   box-shadow: 5px 5px 5px #888888;" /></a><br />
-					<strong><a href="https://www.sarawak.gov.my/web/home/list_news/244/" target="_blank">News </a></strong></p>
-			</td>
-			<td>
-				<p style="text-align: center; ">
-					<a href="https://www.sarawak.gov.my/web/home/video/231/"><img alt="Image for Video Gallery" src="https://www.sarawak.gov.my/media/images/StJA_EFZjRE.jpg" style="height: 59px; width: 120px; background-color: white;   box-shadow: 5px 5px 5px #888888;" /></a><br />
-					<strong><a href="https://www.sarawak.gov.my/web/home/video/231/" target="_blank">Video Gallery</a></strong></p>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<p style="text-align: center; ">
-					<a href="https://www.sarawak.gov.my/web/home/article_view/247/259/"><img alt="Image for Publications" src="https://www.sarawak.gov.my/media/images/publications.png" style="width: 120px; height: 59px;background-color: white;   box-shadow: 5px 5px 5px #888888;" /></a><br />
-					<strong><a href="https://www.sarawak.gov.my/web/home/article_view/247/259/" target="_blank">Publications</a></strong></p>
-			</td>
-			<td>
-				<p style="text-align: center; ">
-					<a href="https://www.sarawak.gov.my/web/home/album/226/"><img alt="Image for Photo Gallery" src="https://www.sarawak.gov.my/media/images/9.jpg" style="width: 120px; height: 59px;background-color: white;   box-shadow: 5px 5px 5px #888888;" /></a><br />
-					<strong><a href="https://www.sarawak.gov.my/web/home/album/226/" target="_blank">Photo Gallery</a></strong></p>
-			</td>
-		</tr>
-	</tbody>
-</table></div>
-	</div>
-</div>
-<div class="portletVerticalSeparator">&nbsp;</div></div></div>					<div class="col12"><div><script type="text/javascript" language="javascript">
-$(document).ready(function(){
-	var divRssObj=$(".rssfeedajax");
-		
-	var v_href = document.getElementsByTagName("a");
-	for(v_c=1;v_c<v_href.length;v_c++){
-		v_id = v_href[v_c].id;
-		if(v_id.substr(0,11)=="flowplayer_"){
-			document.getElementById(v_id).innerHTML = "";
-			initFlowPlayerSimple(v_id);
-		}
-	}
-});
-</script>
-<div class="pCustomWrapper">
-	<div class="">
-		<!-- Title -->
-					<div class="titlenobg">
-				<div class="middle">
-					<div>Follow Us</div>
-				</div>
-			</div>
-				<!-- Content -->
-		<div class="contentNoBg"><table border="0" cellpadding="1" cellspacing="1" height="174" width="326">
-	<tbody>
-		<tr>
-			<td colspan="4">
-				<p>
-					<img alt="Image for follow us" height="84" src="https://www.sarawak.gov.my/media/images/follow_us.png" width="316" /></p>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="1" rowspan="2">
-				<a href="https://www.youtube.com/c/SarawakStateGovernment " target="_blank" title="Link to Youtube"><img alt="Image for Youtube" height="76" src="https://www.sarawak.gov.my/media/images/icon/youtube.jpg" width="79" /></a></td>
-			<td colspan="1" rowspan="2">
-				<a href="https://www.sarawak.gov.my/web/home/rsspub/?type=news&amp;lang=" title="Pautan ke RSS"><img alt="Imej untuk RSS" height="79" src="https://www.sarawak.gov.my/media/images/icon/rss.jpg" width="79" /></a></td>
-			<td colspan="1" rowspan="2">
-				<a href="https://www.sarawak.gov.my/web/home/article_view/228/258"><img alt="Rate US" src="https://www.sarawak.gov.my/media/images/icon/rate us.jpg" style="width: 81px; height: 81px;" /></a></td>
-			<td colspan="1" rowspan="2">
-				<a href="https://www.sarawak.gov.my/web/home/article_view/345/288/"><img alt="Get Involved" src="https://www.sarawak.gov.my/media/images/icon/get involved.jpg" style="width: 78px; height: 78px;" /></a></td>
-		</tr>
-	</tbody>
-</table>
-<p>
-	&nbsp;</p>
-<p>
-	&nbsp;&nbsp;&nbsp;</p></div>
-	</div>
-</div>
-<div class="portletVerticalSeparator">&nbsp;</div></div></div>						
-				</div>
-				<!-- Column 2 start -->
-					<div class='col2'></div>				<!-- Column 2 end -->
-			</div>
-		</div>
-				<div class="portletVerticalSeparator">&nbsp;</div>		
-		
-	</div>
-</div><!-- end width control -->
-<div class="portletVerticalSeparator">&nbsp;</div>
-<div id="footerWrapper">
-	<div class="weblayoutwidth">
-		<div id="footer">
-			<table cellspacing="0" cellpadding="0" width="100%">
-				<tr>
-					<td width="70%" class="footerLeft"><div><style>
-	#pMenuFooter .menufooter{
-		float:left;
-		margin:0px 25px 5px 0;
-		padding:0;
-		min-width:80px;
-		list-style:none;
-		font-weight:bold;
-	}
-	#pMenuFooter .menufooter a{color:#ffffff;}
-	#pMenuFooter .menufootersub{
-		font-weight:normal;
-		list-style:none;
-		padding:0;
-		margin:0;
-	}
-</style>
-<div id="pMenuFooter">
-<div valign='top' style='float:left;vertical-align:top;padding:0px;'><ul class='menufooter'><li><a href="/web/home/article_view/250/261/">Security Policy</a></li></ul></div><div valign='top' style='float:left;vertical-align:top;padding:0px;'><ul class='menufooter'><li><a href="/web/home/article_view/251/262/">Privacy Policy</a></li></ul></div><div valign='top' style='float:left;vertical-align:top;padding:0px;'><ul class='menufooter'><li><a href="/web/home/article_view/253/289/">Terms & Conditions</a></li></ul></div><div valign='top' style='float:left;vertical-align:top;padding:0px;'><ul class='menufooter'><li><a href="/web/home/feedback/254/">Feedback/Comment</a></li></ul></div><div valign='top' style='float:left;vertical-align:top;padding:0px;'><ul class='menufooter'><li><a href="/web/home/article_view/264/273/">About Us</a></li></ul></div></div><div style="clear:both;"></div><script type="text/javascript" language="javascript">
-$(document).ready(function(){
-	var divRssObj=$(".rssfeedajax");
-		
-	var v_href = document.getElementsByTagName("a");
-	for(v_c=1;v_c<v_href.length;v_c++){
-		v_id = v_href[v_c].id;
-		if(v_id.substr(0,11)=="flowplayer_"){
-			document.getElementById(v_id).innerHTML = "";
-			initFlowPlayerSimple(v_id);
-		}
-	}
-});
-</script>
-<div class="pCustomWrapper">
-	<div class="">
-		<!-- Title -->
-				<!-- Content -->
-		<div class="contentNoBg"><table border="0" cellpadding="1" cellspacing="1">
-	<tbody>
-		<tr>
-			<td style="width: 25%;">
-				<p style="text-align: center;">
-					<img alt="QR code" src="https://www.sarawak.gov.my/media/images/icon/mobile.jpg" style="width: 104px; height: 104px;" /></p>
-				<p style="text-align: center;">
-					<strong>Scan the above QR code to access this portal through mobile</strong></p>
-			</td>
-			<td>
-				Copyright &copy; 2016 Sarawak Government
-				<p style="text-align: justify;">
-					<strong>Disclaimer: </strong>The Government of Sarawak shall not be liable for any loss or damage caused by the usage of any information obtained from this portal. Services provided through this portal are subject to the terms and conditions of the respective service providers.</p>
-				<p>
-					Best viewed with latest Mozilla Firefox and Google Chrome; Screen resolution 1024 by 768 pixels</p>
-			</td>
-		</tr>
-	</tbody>
-</table></div>
-	</div>
-</div>
-<div class="portletVerticalSeparator">&nbsp;</div><div id='pLastUpdatedDate'>
-<div>Last Updated Date : 06 October 2017</div>
-</div>
-	<div id="pAppPlace">	<div class="">		<div class="contentNoBg"><div>Web Counter : <span style="font-size:1.2em;font-weight:bold;">7122994</span></div></div></div></div><div class="portletVerticalSeparator">&nbsp;</div><script type="text/javascript">v_uniq_hits_span = document.getElementById('span_uniq_hits');if(v_uniq_hits_span){	v_uniq_hits_span.innerHTML = "7122994";}</script></div></td><td width="1%" style="border-left:1px solid #FFF100;"></td><td class="footerRight"><div><script type="text/javascript" language="javascript">
-$(document).ready(function(){
-	var divRssObj=$(".rssfeedajax");
-		
-	var v_href = document.getElementsByTagName("a");
-	for(v_c=1;v_c<v_href.length;v_c++){
-		v_id = v_href[v_c].id;
-		if(v_id.substr(0,11)=="flowplayer_"){
-			document.getElementById(v_id).innerHTML = "";
-			initFlowPlayerSimple(v_id);
-		}
-	}
-});
-</script>
-<div class="pCustomWrapper">
-	<div class="">
-		<!-- Title -->
-				<!-- Content -->
-		<div class="contentNoBg"><div style="padding-bottom: 10px; padding-left: 10px; padding-right: 10px; padding-top: 10px">
-	<strong>Contact Us</strong>:<br />
-	<br />
-	<span style="font-family: Arial,Helvetica,sans-serif;">State Secretary</span><br />
-	Sarawak State Secretary Office<br />
-	Level 20 , Wisma Bapa Malaysia<br />
-	Petra Jaya, 93502 Kuching<br />
-	Tel :082-441957<br />
-	Fax :082-441677<br />
-	<img alt="email:555999@sarawak.gov.my" src="https://www.sarawak.gov.my/media/images/Background/mel.jpg" /></div>
-<div style="padding-bottom: 10px; padding-left: 10px; padding-right: 10px; padding-top: 10px">
-	<br />
-	<br />
-	<br />
-	<strong>Useful Link:</strong><br />
-	<a href="https://www.malaysia.gov.my/" target="_blank"><img alt="malaysia government website" src="https://www.sarawak.gov.my/media/images/icon/malaysia_button.jpg" style="width: 60px; height: 60px;" /></a> <a href="http://www.data.gov.my/"><img alt="www.data.gov.my" src="https://www.sarawak.gov.my/media/images/icon/data_button.jpg" style="width: 60px; height: 60px;" /></a></div></div>
-	</div>
-</div>
-<div class="portletVerticalSeparator">&nbsp;</div></div></td>				</tr>
-			</table>	
-		</div>
-		<div id="footer_responsive">
-			<table cellspacing="0" cellpadding="0" width="100%">
-				<tr>
-					<td width="70%" class="footerLeft"><div><style>
-	#pMenuFooter .menufooter{
-		float:left;
-		margin:0px 25px 5px 0;
-		padding:0;
-		min-width:80px;
-		list-style:none;
-		font-weight:bold;
-	}
-	#pMenuFooter .menufooter a{color:#ffffff;}
-	#pMenuFooter .menufootersub{
-		font-weight:normal;
-		list-style:none;
-		padding:0;
-		margin:0;
-	}
-</style>
-<div id="pMenuFooter">
-<div valign='top' style='float:left;vertical-align:top;padding:0px;'><ul class='menufooter'><li><a href="/web/home/article_view/250/261/">Security Policy</a></li></ul></div><div valign='top' style='float:left;vertical-align:top;padding:0px;'><ul class='menufooter'><li><a href="/web/home/article_view/251/262/">Privacy Policy</a></li></ul></div><div valign='top' style='float:left;vertical-align:top;padding:0px;'><ul class='menufooter'><li><a href="/web/home/article_view/253/289/">Terms & Conditions</a></li></ul></div><div valign='top' style='float:left;vertical-align:top;padding:0px;'><ul class='menufooter'><li><a href="/web/home/feedback/254/">Feedback/Comment</a></li></ul></div><div valign='top' style='float:left;vertical-align:top;padding:0px;'><ul class='menufooter'><li><a href="/web/home/article_view/264/273/">About Us</a></li></ul></div></div><div style="clear:both;"></div><script type="text/javascript" language="javascript">
-$(document).ready(function(){
-	var divRssObj=$(".rssfeedajax");
-		
-	var v_href = document.getElementsByTagName("a");
-	for(v_c=1;v_c<v_href.length;v_c++){
-		v_id = v_href[v_c].id;
-		if(v_id.substr(0,11)=="flowplayer_"){
-			document.getElementById(v_id).innerHTML = "";
-			initFlowPlayerSimple(v_id);
-		}
-	}
-});
-</script>
-<div class="pCustomWrapper">
-	<div class="">
-		<!-- Title -->
-				<!-- Content -->
-		<div class="contentNoBg"><table border="0" cellpadding="1" cellspacing="1">
-	<tbody>
-		<tr>
-			<td style="width: 25%;">
-				<p style="text-align: center;">
-					<img alt="QR code" src="https://www.sarawak.gov.my/media/images/icon/mobile.jpg" style="width: 104px; height: 104px;" /></p>
-				<p style="text-align: center;">
-					<strong>Scan the above QR code to access this portal through mobile</strong></p>
-			</td>
-			<td>
-				Copyright &copy; 2016 Sarawak Government
-				<p style="text-align: justify;">
-					<strong>Disclaimer: </strong>The Government of Sarawak shall not be liable for any loss or damage caused by the usage of any information obtained from this portal. Services provided through this portal are subject to the terms and conditions of the respective service providers.</p>
-				<p>
-					Best viewed with latest Mozilla Firefox and Google Chrome; Screen resolution 1024 by 768 pixels</p>
-			</td>
-		</tr>
-	</tbody>
-</table></div>
-	</div>
-</div>
-<div class="portletVerticalSeparator">&nbsp;</div><div id='pLastUpdatedDate'>
-<div>Last Updated Date : 06 October 2017</div>
-</div>
-	<div id="pAppPlace">	<div class="">		<div class="contentNoBg"><div>Web Counter : <span style="font-size:1.2em;font-weight:bold;">7122994</span></div></div></div></div><div class="portletVerticalSeparator">&nbsp;</div><script type="text/javascript">v_uniq_hits_span = document.getElementById('span_uniq_hits');if(v_uniq_hits_span){	v_uniq_hits_span.innerHTML = "7122994";}</script></div></td>				</tr>
-			</table>	
-		</div>
-	</div>
-</div>
-<SCRIPT LANGUAGE="javascript" TYPE="text/javascript" SRC="https://sarawak.gov.my//moonlight_kernel/moonlight/plugin/shortcut/shortcuts.js"></SCRIPT><SCRIPT LANGUAGE="javascript" TYPE="text/javascript">j_lbl_field_required="This field is required.";</SCRIPT></body></HTML>

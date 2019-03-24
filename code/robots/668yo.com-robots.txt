@@ -1,3 +1,0 @@
-<script language=javascript> 
-window.location="http://www.2345.com/" 
-</script>
