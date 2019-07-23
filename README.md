@@ -1,6 +1,6 @@
 # RobotsDisallowed
 
-The RobotsDisallowed project is a harvest of the robots.txt disallowed directories of the world's top websites---specifically thos of the Alexa 100K and the Majestic 100K.
+The RobotsDisallowed project is a harvest of the robots.txt disallowed directories of the world's top websites---specifically those of the Alexa 100K and the Majestic 100K.
 
 This list of Disallowed directories is a great way to supplement content discovery during a web security assessment or bug bounty, since the website owner is basically saying, 
 
