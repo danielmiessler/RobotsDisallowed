@@ -27,7 +27,7 @@ if [[ $NOS =~ ^[0-9]+$ ]]; then
             exit 1
         fi
 
-#Get the current list of Alexa sites (Updated daily)
+# Get the current list of Alexa sites (Updated daily)
 echo ""
 echo "Downloading the top websites file…"
 echo ""
@@ -39,10 +39,10 @@ rm *.zip
 sed 's/.*,//g' top-1m.csv > tocomma.csv
 sed 's/,//g' tocomma.csv > domains.txt
 
- Take a certain number of them to work on
+# Take a certain number of them to work on
 head -n $NOS domains.txt > $DATE-top$NOS-domains.txt
 
- Pull the robots.txt file from each
+# Pull the robots.txt file from each
 echo ""
 echo "Downloading the robots.txt file for each site…"
 echo ""
